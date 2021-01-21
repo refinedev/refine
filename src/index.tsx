@@ -1,10 +1,12 @@
 import React from "react";
-import styles from "./styles.module.css";
+import "antd/dist/antd.css";
 
-interface Props {
-    text: string;
+import { Layout } from "./components/layout/index";
+
+export interface AdminProps {
+    foo?: string;
 }
 
-export const ExampleComponent: React.FC<Props> = ({ text }) => {
-    return <div className={styles.test}>Example Component: {text}</div>;
+export const Admin: React.FC<AdminProps> = ({ children }) => {
+    return <Layout>{children}</Layout>;
 };

@@ -1,10 +1,13 @@
-import React from 'react'
+import React from "react";
 
-import { ExampleComponent } from 'readmin'
-import 'readmin/dist/index.css'
+import { Admin } from "readmin";
 
-const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
-}
+const App: React.FC = () => {
+    return (
+        <Admin>
+            <span>Content</span>
+        </Admin>
+    );
+};
 
-export default App
+export default App;

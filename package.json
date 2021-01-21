@@ -49,10 +49,14 @@
     "prettier": "^2.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1",
+    "react-scripts": "^4.0.1",
     "typescript": "^3.7.5"
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "@ant-design/icons": "^4.4.0",
+    "antd": "^4.10.3"
+  }
 }
