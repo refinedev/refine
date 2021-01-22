@@ -18,19 +18,7 @@ export const Auth: React.FC<IAuthProps> = ({ login, checkAuth }) => {
             .then(() => setAuth(true))
             .catch(() => setAuth(false));
 
-    const renderDashboard = () => {
-        return (
-            <Router>
-                <Switch>
-                    <Route exact path="/">
-                        <DashboardPage />
-                    </Route>
-                </Switch>
-            </Router>
-        );
-    };
-
-    const renderLogin = () => {
+    if (!auth) {
         const onSubmit = async (values: ILoginForm) => {
             login &&
                 login(values)
@@ -38,11 +26,15 @@ export const Auth: React.FC<IAuthProps> = ({ login, checkAuth }) => {
                     .catch(() => console.log("login error"));
         };
         return <LoginPage onSubmit={onSubmit} />;
-    };
-
-    if (!auth) {
-        return renderLogin();
     }
 
-    return renderDashboard();
+    return (
+        <Router>
+            <Switch>
+                <Route exact path="/">
+                    <DashboardPage />
+                </Route>
+            </Switch>
+        </Router>
+    );
 };
