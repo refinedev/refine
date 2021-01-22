@@ -21,18 +21,42 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
+      "@actions/*": [
+        "src/actions/*"
+      ],
+      "@actions": [
+        "src/actions"
+      ],
       "@components/*": [
         "src/Components/*"
       ],
       "@components": [
         "src/Components"
       ],
+      "@containers/*": [
+        "src/containers/*"
+      ],
+      "@containers": [
+        "src/containers"
+      ],
       "@pages/*": [
         "src/pages/*"
       ],
       "@pages": [
         "src/pages"
-      ]
+      ],
+      "@redux/*": [
+        "src/redux/*"
+      ],
+      "@redux": [
+        "src/redux"
+      ],
+      "@interfaces/*": [
+        "src/interfaces/*"
+      ],
+      "@interfaces": [
+        "src/interfaces"
+      ],
     }
   },
   "include": [

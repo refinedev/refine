@@ -1,18 +1,18 @@
 import React from "react";
 import { Row, Col, Layout, Typography, Form, Input, Button } from "antd";
-import { useHistory } from "react-router-dom";
+export interface ILoginForm {
+    username: string;
+    password: string;
+}
 
-export const LoginPage: React.FC = () => {
+export interface ILoginPageProps {
+    onSubmit?: ((values: ILoginForm) => void) | undefined;
+}
+
+export const LoginPage: React.FC<ILoginPageProps> = ({ onSubmit }) => {
     const { Title } = Typography;
 
     const [form] = Form.useForm();
-    const history = useHistory();
-
-    const onFinish = (values: any) => {
-        console.log(`LoginFormValues: ${JSON.stringify(values)}`);
-
-        history.push("/");
-    };
 
     return (
         <Layout>
@@ -32,12 +32,12 @@ export const LoginPage: React.FC = () => {
                         className="ant-form-vertical"
                         form={form}
                         name="control-hooks"
-                        onFinish={onFinish}
+                        onFinish={onSubmit}
                     >
                         <Form.Item
-                            name="email"
-                            label="E-Mail"
-                            rules={[{ required: true }, { type: "email" }]}
+                            name="username"
+                            label="Username"
+                            rules={[{ required: true }]}
                         >
                             <Input />
                         </Form.Item>
