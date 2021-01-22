@@ -26,6 +26,12 @@
       ],
       "@components": [
         "src/Components"
+      ],
+      "@pages/*": [
+        "src/pages/*"
+      ],
+      "@pages": [
+        "src/pages"
       ]
     }
   },
