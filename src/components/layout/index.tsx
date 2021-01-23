@@ -1,8 +1,13 @@
 import React from "react";
 import { Layout as AntLayout, Menu } from "antd";
-import { UnorderedListOutlined } from "@ant-design/icons";
+import { LogoutOutlined, UnorderedListOutlined } from "@ant-design/icons";
+import { MenuClickEventHandler } from "rc-menu/lib/interface";
 
-export const Layout: React.FC = ({ children }) => {
+export interface LayoutProps {
+    menuOnClick?: MenuClickEventHandler;
+}
+
+export const Layout: React.FC<LayoutProps> = ({ menuOnClick, children }) => {
     const [collapsed, setCollapsed] = React.useState(false);
 
     return (
@@ -25,12 +30,20 @@ export const Layout: React.FC = ({ children }) => {
                 >
                     Brand Name
                 </div>
-                <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-                    <Menu.Item key="1" icon={<UnorderedListOutlined />}>
+                <Menu
+                    onClick={menuOnClick}
+                    theme="dark"
+                    defaultSelectedKeys={["1"]}
+                    mode="inline"
+                >
+                    <Menu.Item key="menu1" icon={<UnorderedListOutlined />}>
                         Option 1
                     </Menu.Item>
-                    <Menu.Item key="2" icon={<UnorderedListOutlined />}>
+                    <Menu.Item key="menu2" icon={<UnorderedListOutlined />}>
                         Option 2
+                    </Menu.Item>
+                    <Menu.Item key="logout" icon={<LogoutOutlined />}>
+                        Logout
                     </Menu.Item>
                 </Menu>
             </AntLayout.Sider>

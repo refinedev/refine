@@ -12,10 +12,10 @@ const App: React.FC = () => {
 
             return Promise.reject();
         },
-        // logout: () => {
-        //     localStorage.removeItem("username");
-        //     return Promise.resolve();
-        // },
+        logout: () => {
+            localStorage.removeItem("username");
+            return Promise.resolve();
+        },
         checkError: () => Promise.resolve(),
         checkAuth: () =>
             localStorage.getItem("username")

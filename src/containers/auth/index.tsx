@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { UserActions } from "@actions";
+import { Layout } from "@components";
 import { DashboardPage, LoginPage } from "@pages";
 import { ILoginForm } from "@pages/login";
 import { useDispatch } from "react-redux";
@@ -10,12 +11,14 @@ export interface IAuthProps {
     login?: (params: ILoginForm) => Promise<any>;
     checkAuth?: () => Promise<any>;
     userIdentity?: () => Promise<any>;
+    logout?: () => Promise<any>;
 }
 
 export const Auth: React.FC<IAuthProps> = ({
     login,
     checkAuth,
     userIdentity,
+    logout,
 }) => {
     const [auth, setAuth] = React.useState(false);
     const dispatch = useDispatch();
@@ -43,12 +46,20 @@ export const Auth: React.FC<IAuthProps> = ({
         });
 
     return (
-        <Router>
-            <Switch>
-                <Route exact path="/">
-                    <DashboardPage />
-                </Route>
-            </Switch>
-        </Router>
+        <Layout
+            menuOnClick={({ key }) => {
+                if (key === "logout") {
+                    logout && logout().then(() => setAuth(false));
+                }
+            }}
+        >
+            <Router>
+                <Switch>
+                    <Route exact path="/">
+                        <DashboardPage />
+                    </Route>
+                </Switch>
+            </Router>
+        </Layout>
     );
 };
