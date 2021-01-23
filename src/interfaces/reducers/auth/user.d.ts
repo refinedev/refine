@@ -1,5 +1,5 @@
 export interface IAuthUserReducer {
-    isLogin: boolean;
-    // token?: string;
-    // user?: any;
+    id?: string;
+    fullName?: string;
+    avatar?: string;
 }

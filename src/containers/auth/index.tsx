@@ -1,16 +1,24 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import { UserActions } from "@actions";
 import { DashboardPage, LoginPage } from "@pages";
 import { ILoginForm } from "@pages/login";
+import { useDispatch } from "react-redux";
 
 export interface IAuthProps {
     login?: (params: ILoginForm) => Promise<any>;
     checkAuth?: () => Promise<any>;
+    userIdentity?: () => Promise<any>;
 }
 
-export const Auth: React.FC<IAuthProps> = ({ login, checkAuth }) => {
+export const Auth: React.FC<IAuthProps> = ({
+    login,
+    checkAuth,
+    userIdentity,
+}) => {
     const [auth, setAuth] = React.useState(false);
+    const dispatch = useDispatch();
 
     // check auth
     checkAuth &&
@@ -27,6 +35,12 @@ export const Auth: React.FC<IAuthProps> = ({ login, checkAuth }) => {
         };
         return <LoginPage onSubmit={onSubmit} />;
     }
+
+    // set user identity
+    userIdentity &&
+        userIdentity().then((data) => {
+            dispatch(UserActions.setIdentity(data));
+        });
 
     return (
         <Router>
