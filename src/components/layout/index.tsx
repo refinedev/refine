@@ -2,13 +2,21 @@ import React from "react";
 import { Layout as AntLayout, Menu } from "antd";
 import { LogoutOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { MenuClickEventHandler } from "rc-menu/lib/interface";
+import { useSelector } from "react-redux";
 
+import { IState } from "@interfaces";
 export interface LayoutProps {
     menuOnClick?: MenuClickEventHandler;
 }
 
 export const Layout: React.FC<LayoutProps> = ({ menuOnClick, children }) => {
     const [collapsed, setCollapsed] = React.useState(false);
+
+    const resources = useSelector((state: IState) => state.resources);
+
+    const renderResourceTitle = (title: string) => {
+        return title.charAt(0).toUpperCase() + title.slice(1);
+    };
 
     return (
         <AntLayout style={{ minHeight: "100vh" }}>
@@ -36,12 +44,14 @@ export const Layout: React.FC<LayoutProps> = ({ menuOnClick, children }) => {
                     defaultSelectedKeys={["1"]}
                     mode="inline"
                 >
-                    <Menu.Item key="menu1" icon={<UnorderedListOutlined />}>
-                        Option 1
-                    </Menu.Item>
-                    <Menu.Item key="menu2" icon={<UnorderedListOutlined />}>
-                        Option 2
-                    </Menu.Item>
+                    {Object.keys(resources).map((item) => (
+                        <Menu.Item
+                            key={`resource-${item}`}
+                            icon={<UnorderedListOutlined />}
+                        >
+                            {renderResourceTitle(item)}
+                        </Menu.Item>
+                    ))}
                     <Menu.Item key="logout" icon={<LogoutOutlined />}>
                         Logout
                     </Menu.Item>

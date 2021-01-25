@@ -4,4 +4,7 @@ export const ActionTypes = {
             SetIdentity: "AUTH_USER_SETIDENTITY",
         },
     },
+    Resource: {
+        Register: "RESOURCE_REGISTER",
+    },
 };
