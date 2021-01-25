@@ -1,5 +1,15 @@
 import React from "react";
-import { Row, Col, Layout, Card, Typography, Form, Input, Button } from "antd";
+import {
+    Row,
+    Col,
+    Layout,
+    Card,
+    Typography,
+    Form,
+    Input,
+    Button,
+    Alert,
+} from "antd";
 export interface ILoginForm {
     username: string;
     password: string;
@@ -7,9 +17,13 @@ export interface ILoginForm {
 
 export interface ILoginPageProps {
     onSubmit?: ((values: ILoginForm) => void) | undefined;
+    isLoginError?: boolean;
 }
 
-export const LoginPage: React.FC<ILoginPageProps> = ({ onSubmit }) => {
+export const LoginPage: React.FC<ILoginPageProps> = ({
+    isLoginError,
+    onSubmit,
+}) => {
     const { Title } = Typography;
 
     const [form] = Form.useForm();
@@ -25,6 +39,15 @@ export const LoginPage: React.FC<ILoginPageProps> = ({ onSubmit }) => {
                 }}
             >
                 <Col xl={6} lg={8} md={12} sm={18} xs={22}>
+                    {isLoginError && (
+                        <Alert
+                            type="error"
+                            message="Login Error"
+                            description="Invalid username or password"
+                            style={{ marginBottom: 20 }}
+                        />
+                    )}
+
                     <Card>
                         <Title level={2} style={{ textAlign: "center" }}>
                             Login

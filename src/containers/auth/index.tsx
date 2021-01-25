@@ -21,6 +21,8 @@ export const Auth: React.FC<IAuthProps> = ({
     logout,
 }) => {
     const [auth, setAuth] = React.useState(false);
+    const [loginError, setLoginError] = React.useState(false);
+
     const dispatch = useDispatch();
 
     // check auth
@@ -33,10 +35,13 @@ export const Auth: React.FC<IAuthProps> = ({
         const onSubmit = async (values: ILoginForm) => {
             login &&
                 login(values)
-                    .then(() => setAuth(true))
-                    .catch(() => console.log("login error"));
+                    .then(() => {
+                        setAuth(true);
+                        setLoginError(false);
+                    })
+                    .catch(() => setLoginError(true));
         };
-        return <LoginPage onSubmit={onSubmit} />;
+        return <LoginPage onSubmit={onSubmit} isLoginError={loginError} />;
     }
 
     // set user identity
