@@ -3,6 +3,7 @@ import { Layout as AntLayout, Menu } from "antd";
 import { LogoutOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { MenuClickEventHandler } from "rc-menu/lib/interface";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { IState } from "@interfaces";
 export interface LayoutProps {
@@ -49,7 +50,9 @@ export const Layout: React.FC<LayoutProps> = ({ menuOnClick, children }) => {
                             key={`resource-${item}`}
                             icon={<UnorderedListOutlined />}
                         >
-                            {renderResourceTitle(item)}
+                            <Link to={`/resources/${item}`}>
+                                {renderResourceTitle(item)}
+                            </Link>
                         </Menu.Item>
                     ))}
                     <Menu.Item key="logout" icon={<LogoutOutlined />}>

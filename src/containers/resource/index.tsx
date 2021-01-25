@@ -42,5 +42,5 @@ export const Resource: React.FC<ResourceProps> = ({
         dispatch(ResourceActions.register(data));
     }, []);
 
-    return <span>resource - {name}</span>;
+    return null;
 };

@@ -1,10 +1,10 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
 import { UserActions } from "@actions";
 import { Layout } from "@components";
 import { LoginPage } from "@pages";
 import { ILoginForm } from "@pages/login";
-import { useDispatch } from "react-redux";
 
 export interface IAuthProps {
     login?: (params: ILoginForm) => Promise<any>;
@@ -53,8 +53,10 @@ export const Auth: React.FC<IAuthProps> = ({
     return (
         <Layout
             menuOnClick={({ key }) => {
-                if (key === "logout") {
-                    logout && logout().then(() => setAuth(false));
+                switch (key) {
+                    case "logout":
+                        logout && logout().then(() => setAuth(false));
+                        break;
                 }
             }}
         >

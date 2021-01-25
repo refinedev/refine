@@ -1,5 +1,8 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 export const ResourcePage: React.FC = () => {
-    return <span>resource page</span>;
+    const { name } = useParams<Record<string, string | undefined>>();
+
+    return <span>resource page {name}</span>;
 };
