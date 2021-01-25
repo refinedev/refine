@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Admin } from "readmin";
+import { Admin, Resource } from "readmin";
 
 const App: React.FC = () => {
     const authProvider = {
@@ -33,7 +33,8 @@ const App: React.FC = () => {
 
     return (
         <Admin authProvider={authProvider}>
-            <span>Content</span>
+            <Resource name="posts" />
+            <Resource name="users" />
         </Admin>
     );
 };

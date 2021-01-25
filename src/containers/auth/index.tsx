@@ -1,9 +1,8 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { UserActions } from "@actions";
 import { Layout } from "@components";
-import { DashboardPage, LoginPage } from "@pages";
+import { LoginPage } from "@pages";
 import { ILoginForm } from "@pages/login";
 import { useDispatch } from "react-redux";
 
@@ -19,6 +18,7 @@ export const Auth: React.FC<IAuthProps> = ({
     checkAuth,
     userIdentity,
     logout,
+    children,
 }) => {
     const [auth, setAuth] = React.useState(false);
     const [loginError, setLoginError] = React.useState(false);
@@ -58,13 +58,7 @@ export const Auth: React.FC<IAuthProps> = ({
                 }
             }}
         >
-            <Router>
-                <Switch>
-                    <Route exact path="/">
-                        <DashboardPage />
-                    </Route>
-                </Switch>
-            </Router>
+            {children}
         </Layout>
     );
 };
