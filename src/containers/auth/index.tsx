@@ -4,12 +4,10 @@ import { useHistory } from "react-router-dom";
 
 import { UserActions } from "@actions";
 import { Layout } from "@components";
-import { AuthContext, AuthContextProps } from "@contexts/auth";
+import { AuthContext, IAuthContext } from "@contexts/auth";
 
 export const Auth: React.FC = ({ children }) => {
-    const { checkAuth, userIdentity } = useContext<AuthContextProps>(
-        AuthContext,
-    );
+    const { checkAuth, userIdentity } = useContext<IAuthContext>(AuthContext);
     const history = useHistory();
 
     const dispatch = useDispatch();

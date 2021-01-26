@@ -2,15 +2,15 @@ import React from "react";
 
 import jsonServerDataProvider from "@dataProviders/jsonServer";
 
-export interface DataContextProps {
-    getList: (resousrce: string, params: object) => Promise<any>;
-}
+import { IDataContext } from "./IDataContext";
 
-export const DataContext = React.createContext<DataContextProps>(
+export { IDataContext };
+
+export const DataContext = React.createContext<IDataContext>(
     jsonServerDataProvider("http://jsonplaceholder.typicode.com"),
 );
 
-export const DataContextProvider: React.FC<DataContextProps> = ({
+export const DataContextProvider: React.FC<IDataContext> = ({
     getList,
     children,
 }) => {

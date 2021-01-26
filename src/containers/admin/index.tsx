@@ -3,15 +3,15 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "antd/dist/antd.css";
 
-import { AuthContextProvider, AuthContextProps } from "@contexts/auth";
-import { DataContextProvider, DataContextProps } from "@contexts/data";
+import { AuthContextProvider, IAuthContext } from "@contexts/auth";
+import { DataContextProvider, IDataContext } from "@contexts/data";
 import { Auth } from "@containers/auth";
 import { DashboardPage, ResourcePage, LoginPage } from "@pages";
 import { store } from "@redux/store";
 
 export interface AdminProps {
-    authProvider: AuthContextProps;
-    dataProvider: DataContextProps;
+    authProvider: IAuthContext;
+    dataProvider: IDataContext;
 }
 
 export const Admin: React.FC<AdminProps> = ({

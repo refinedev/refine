@@ -1,21 +1,10 @@
 import React from "react";
 
-export interface AuthContextProps {
-    login: (params: any) => Promise<any>;
-    logout: (params: any) => Promise<void | false | string>;
-    checkAuth: (params: any) => Promise<void>;
-    checkError: (error: any) => Promise<void>;
-    getPermissions: (params: any) => Promise<any>;
-    getIdentity?: () => Promise<{
-        id: string | number;
-        fullName?: string;
-        avatar?: string;
-        [key: string]: any;
-    }>;
-    [key: string]: any;
-}
+import { IAuthContext } from "./IAuthContext";
 
-const defaultProvider: AuthContextProps = {
+export { IAuthContext };
+
+const defaultProvider: IAuthContext = {
     login: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -27,11 +16,9 @@ const defaultProvider: AuthContextProps = {
         }),
 };
 
-export const AuthContext = React.createContext<AuthContextProps>(
-    defaultProvider,
-);
+export const AuthContext = React.createContext<IAuthContext>(defaultProvider);
 
-export const AuthContextProvider: React.FC<AuthContextProps> = ({
+export const AuthContextProvider: React.FC<IAuthContext> = ({
     login,
     logout,
     checkAuth,

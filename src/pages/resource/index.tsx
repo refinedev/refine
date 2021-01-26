@@ -1,13 +1,22 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 
-import { DataContext, DataContextProps } from "@contexts/data";
+import { DataContext, IDataContext } from "@contexts/data";
 
 export const ResourcePage: React.FC = () => {
-    const { resourceName } = useParams<Record<string, string | undefined>>();
-    const { getList } = useContext<DataContextProps>(DataContext);
+    const { resourceName } = useParams<Record<string, string>>();
+    const { getList } = useContext<IDataContext>(DataContext);
 
-    getList("post", {}).then((data) => {
+    getList(resourceName, {
+        pagination: {
+            page: 1,
+            perPage: 10,
+        },
+        sort: {
+            field: "id",
+            order: "DESC",
+        },
+    }).then((data) => {
         console.log("data", data);
     });
 

@@ -10,13 +10,13 @@ import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
 import { IState } from "@interfaces";
-import { AuthContext, AuthContextProps } from "@contexts/auth";
+import { AuthContext, IAuthContext } from "@contexts/auth";
 
 export const Layout: React.FC = ({ children }) => {
     const [collapsed, setCollapsed] = React.useState(false);
 
     const history = useHistory();
-    const { logout } = useContext<AuthContextProps>(AuthContext);
+    const { logout } = useContext<IAuthContext>(AuthContext);
 
     const resources = useSelector((state: IState) => state.resources);
 

@@ -12,7 +12,7 @@ import {
 } from "antd";
 import { useHistory } from "react-router-dom";
 
-import { AuthContext, AuthContextProps } from "@contexts/auth";
+import { AuthContext, IAuthContext } from "@contexts/auth";
 
 export interface ILoginForm {
     username: string;
@@ -27,7 +27,7 @@ export const LoginPage: React.FC = () => {
 
     const [isError, setError] = React.useState(false);
 
-    const { login } = useContext<AuthContextProps>(AuthContext);
+    const { login } = useContext<IAuthContext>(AuthContext);
 
     const onSubmit = (values: ILoginForm) => {
         login(values)
