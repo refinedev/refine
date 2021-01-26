@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
 import { IState } from "@interfaces";
-import { AuthContext, AuthContextProps } from "@providers/auth";
+import { AuthContext, AuthContextProps } from "@contexts/auth";
 
 export const Layout: React.FC = ({ children }) => {
     const [collapsed, setCollapsed] = React.useState(false);

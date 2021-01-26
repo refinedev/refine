@@ -57,11 +57,11 @@
       "@interfaces": [
         "src/interfaces"
       ],
-      "@providers/*": [
-        "src/providers/*"
+      "@contexts/*": [
+        "src/contexts/*"
       ],
-      "@providers": [
-        "src/providers"
+      "@contexts": [
+        "src/contexts"
       ],
       "@dataProviders/*": [
         "src/dataProviders/*"

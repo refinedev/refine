@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 
-import { DataContext, DataContextProps } from "@providers/data";
+import { DataContext, DataContextProps } from "@contexts/data";
 
 export const ResourcePage: React.FC = () => {
     const { resourceName } = useParams<Record<string, string | undefined>>();

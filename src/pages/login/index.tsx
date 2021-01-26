@@ -12,7 +12,7 @@ import {
 } from "antd";
 import { useHistory } from "react-router-dom";
 
-import { AuthContext, AuthContextProps } from "@providers/auth";
+import { AuthContext, AuthContextProps } from "@contexts/auth";
 
 export interface ILoginForm {
     username: string;

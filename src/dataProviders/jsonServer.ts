@@ -1,4 +1,4 @@
-import { DataContextProps } from "@providers/data";
+import { DataContextProps } from "@contexts/data";
 
 const JsonServer = (apiUrl: string): DataContextProps => ({
     getList: (resource, params) => {

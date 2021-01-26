@@ -3,8 +3,8 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "antd/dist/antd.css";
 
-import { AuthContextProvider, AuthContextProps } from "@providers/auth";
-import { DataContextProvider, DataContextProps } from "@providers/data";
+import { AuthContextProvider, AuthContextProps } from "@contexts/auth";
+import { DataContextProvider, DataContextProps } from "@contexts/data";
 import { Auth } from "@containers/auth";
 import { DashboardPage, ResourcePage, LoginPage } from "@pages";
 import { store } from "@redux/store";
