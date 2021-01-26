@@ -26,7 +26,7 @@ export const Admin: React.FC<AdminProps> = ({ authProvider, children }) => {
                             <Route exact path="/">
                                 <DashboardPage />
                             </Route>
-                            <Route path="/resources/:name">
+                            <Route path="/resources/:resourceName">
                                 <ResourcePage />
                             </Route>
                         </Auth>

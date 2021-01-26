@@ -1,6 +1,10 @@
 import React, { useContext } from "react";
 import { Layout as AntLayout, Menu } from "antd";
-import { LogoutOutlined, UnorderedListOutlined } from "@ant-design/icons";
+import {
+    DashboardOutlined,
+    LogoutOutlined,
+    UnorderedListOutlined,
+} from "@ant-design/icons";
 import { MenuClickEventHandler } from "rc-menu/lib/interface";
 import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
@@ -50,9 +54,13 @@ export const Layout: React.FC = ({ children }) => {
                 <Menu
                     onClick={menuOnClick}
                     theme="dark"
-                    defaultSelectedKeys={["1"]}
+                    defaultSelectedKeys={["dashboard"]}
                     mode="inline"
                 >
+                    <Menu.Item key={`dashboard`} icon={<DashboardOutlined />}>
+                        <Link to={`/`}>Dashboard</Link>
+                    </Menu.Item>
+
                     {Object.keys(resources).map((item) => (
                         <Menu.Item
                             key={`resource-${item}`}
