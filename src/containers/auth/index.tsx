@@ -15,11 +15,11 @@ export const Auth: React.FC = ({ children }) => {
     const dispatch = useDispatch();
 
     // check auth
-    checkAuth && checkAuth().catch(() => history.push("/login"));
+    checkAuth({}).catch(() => history.push("/login"));
 
     // set user identity
     userIdentity &&
-        userIdentity().then((data) => {
+        userIdentity().then((data: any) => {
             dispatch(UserActions.setIdentity(data));
         });
 

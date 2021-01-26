@@ -27,7 +27,7 @@ export const Layout: React.FC = ({ children }) => {
     const menuOnClick: MenuClickEventHandler = ({ key }) => {
         console.log(`clicked -> ${key}`);
         if (key === "logout") {
-            logout && logout().then(() => history.push("/login"));
+            logout({}).then(() => history.push("/login"));
         }
     };
 

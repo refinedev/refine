@@ -1,24 +1,55 @@
 import React from "react";
 
 export interface AuthContextProps {
-    login?: (params: any) => Promise<any>;
-    checkAuth?: () => Promise<any>;
-    userIdentity?: () => Promise<any>;
-    logout?: () => Promise<any>;
+    login: (params: any) => Promise<any>;
+    logout: (params: any) => Promise<void | false | string>;
+    checkAuth: (params: any) => Promise<void>;
+    checkError: (error: any) => Promise<void>;
+    getPermissions: (params: any) => Promise<any>;
+    getIdentity?: () => Promise<{
+        id: string | number;
+        fullName?: string;
+        avatar?: string;
+        [key: string]: any;
+    }>;
+    [key: string]: any;
 }
 
-export const AuthContext = React.createContext<AuthContextProps>({});
+const defaultProvider: AuthContextProps = {
+    login: () => Promise.resolve(),
+    logout: () => Promise.resolve(),
+    checkAuth: () => Promise.resolve(),
+    checkError: () => Promise.resolve(),
+    getPermissions: () => Promise.resolve(),
+    getIdentity: () =>
+        Promise.resolve({
+            id: 1,
+        }),
+};
+
+export const AuthContext = React.createContext<AuthContextProps>(
+    defaultProvider,
+);
 
 export const AuthContextProvider: React.FC<AuthContextProps> = ({
     login,
-    checkAuth,
-    userIdentity,
     logout,
+    checkAuth,
+    checkError,
+    getPermissions,
+    getIdentity,
     children,
 }) => {
     return (
         <AuthContext.Provider
-            value={{ login, checkAuth, userIdentity, logout }}
+            value={{
+                login,
+                logout,
+                checkAuth,
+                checkError,
+                getPermissions,
+                getIdentity,
+            }}
         >
             {children}
         </AuthContext.Provider>

@@ -30,10 +30,9 @@ export const LoginPage: React.FC = () => {
     const { login } = useContext<AuthContextProps>(AuthContext);
 
     const onSubmit = (values: ILoginForm) => {
-        login &&
-            login(values)
-                .then(() => history.push("/"))
-                .catch(() => setError(true));
+        login(values)
+            .then(() => history.push("/"))
+            .catch(() => setError(true));
     };
 
     return (
