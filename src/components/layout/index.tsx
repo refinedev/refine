@@ -1,22 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Layout as AntLayout, Menu } from "antd";
 import { LogoutOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { MenuClickEventHandler } from "rc-menu/lib/interface";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { IState } from "@interfaces";
-export interface LayoutProps {
-    menuOnClick?: MenuClickEventHandler;
-}
+import { AuthContext, AuthContextProps } from "@providers/auth";
 
-export const Layout: React.FC<LayoutProps> = ({ menuOnClick, children }) => {
+export const Layout: React.FC = ({ children }) => {
     const [collapsed, setCollapsed] = React.useState(false);
+
+    const history = useHistory();
+    const { logout } = useContext<AuthContextProps>(AuthContext);
 
     const resources = useSelector((state: IState) => state.resources);
 
     const renderResourceTitle = (title: string) => {
         return title.charAt(0).toUpperCase() + title.slice(1);
+    };
+
+    const menuOnClick: MenuClickEventHandler = ({ key }) => {
+        console.log(`clicked -> ${key}`);
+        if (key === "logout") {
+            logout && logout().then(() => history.push("/login"));
+        }
     };
 
     return (

@@ -1,48 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { UserActions } from "@actions";
 import { Layout } from "@components";
-import { LoginPage } from "@pages";
-import { ILoginForm } from "@pages/login";
+import { AuthContext, AuthContextProps } from "@providers/auth";
 
-export interface IAuthProps {
-    login?: (params: ILoginForm) => Promise<any>;
-    checkAuth?: () => Promise<any>;
-    userIdentity?: () => Promise<any>;
-    logout?: () => Promise<any>;
-}
-
-export const Auth: React.FC<IAuthProps> = ({
-    login,
-    checkAuth,
-    userIdentity,
-    logout,
-    children,
-}) => {
-    const [auth, setAuth] = React.useState(false);
-    const [loginError, setLoginError] = React.useState(false);
+export const Auth: React.FC = ({ children }) => {
+    const { checkAuth, userIdentity } = useContext<AuthContextProps>(
+        AuthContext,
+    );
+    const history = useHistory();
 
     const dispatch = useDispatch();
 
     // check auth
-    checkAuth &&
-        checkAuth()
-            .then(() => setAuth(true))
-            .catch(() => setAuth(false));
-
-    if (!auth) {
-        const onSubmit = async (values: ILoginForm) => {
-            login &&
-                login(values)
-                    .then(() => {
-                        setAuth(true);
-                        setLoginError(false);
-                    })
-                    .catch(() => setLoginError(true));
-        };
-        return <LoginPage onSubmit={onSubmit} isLoginError={loginError} />;
-    }
+    checkAuth && checkAuth().catch(() => history.push("/login"));
 
     // set user identity
     userIdentity &&
@@ -50,17 +23,5 @@ export const Auth: React.FC<IAuthProps> = ({
             dispatch(UserActions.setIdentity(data));
         });
 
-    return (
-        <Layout
-            menuOnClick={({ key }) => {
-                switch (key) {
-                    case "logout":
-                        logout && logout().then(() => setAuth(false));
-                        break;
-                }
-            }}
-        >
-            {children}
-        </Layout>
-    );
+    return <Layout>{children}</Layout>;
 };

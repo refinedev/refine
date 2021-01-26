@@ -57,6 +57,12 @@
       "@interfaces": [
         "src/interfaces"
       ],
+      "@providers/*": [
+        "src/providers/*"
+      ],
+      "@providers": [
+        "src/providers"
+      ],
     }
   },
   "include": [

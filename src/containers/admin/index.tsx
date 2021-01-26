@@ -3,30 +3,36 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "antd/dist/antd.css";
 
-import { Auth, IAuthProps } from "@containers/auth";
-import { DashboardPage, ResourcePage } from "@pages";
+import { AuthContextProvider, AuthContextProps } from "@providers/auth";
+import { Auth } from "@containers/auth";
+import { DashboardPage, ResourcePage, LoginPage } from "@pages";
 import { store } from "@redux/store";
 
 export interface AdminProps {
-    authProvider: IAuthProps;
+    authProvider: AuthContextProps;
 }
 
 export const Admin: React.FC<AdminProps> = ({ authProvider, children }) => {
     return (
-        <Router>
-            <Provider store={store}>
-                <Auth {...authProvider}>
-                    {children}
+        <AuthContextProvider {...authProvider}>
+            <Router>
+                <Provider store={store}>
                     <Switch>
-                        <Route exact path="/">
-                            <DashboardPage />
+                        <Route exact path="/login">
+                            <LoginPage />
                         </Route>
-                        <Route path="/resources/:name">
-                            <ResourcePage />
-                        </Route>
+                        <Auth>
+                            {children}
+                            <Route exact path="/">
+                                <DashboardPage />
+                            </Route>
+                            <Route path="/resources/:name">
+                                <ResourcePage />
+                            </Route>
+                        </Auth>
                     </Switch>
-                </Auth>
-            </Provider>
-        </Router>
+                </Provider>
+            </Router>
+        </AuthContextProvider>
     );
 };
