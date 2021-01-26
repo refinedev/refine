@@ -36,8 +36,8 @@ const App: React.FC = () => {
             authProvider={authProvider}
             dataProvider={JsonServer("https://jsonplaceholder.typicode.com")}
         >
-            <Resource name="posts" />
             <Resource name="users" />
+            <Resource name="posts" />
         </Admin>
     );
 };
