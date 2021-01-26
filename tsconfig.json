@@ -63,6 +63,12 @@
       "@providers": [
         "src/providers"
       ],
+      "@dataProviders/*": [
+        "src/dataProviders/*"
+      ],
+      "@dataProviders": [
+        "src/dataProviders"
+      ],
     }
   },
   "include": [

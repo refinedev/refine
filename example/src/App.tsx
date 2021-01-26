@@ -1,9 +1,9 @@
 import React from "react";
 
-import { Admin, Resource } from "readmin";
+import { Admin, Resource, AuthProvider, JsonServer } from "readmin";
 
 const App: React.FC = () => {
-    const authProvider = {
+    const authProvider: AuthProvider = {
         login: (params: any) => {
             if (params.username === "admin") {
                 localStorage.setItem("username", params.username);
@@ -32,7 +32,10 @@ const App: React.FC = () => {
     };
 
     return (
-        <Admin authProvider={authProvider}>
+        <Admin
+            authProvider={authProvider}
+            dataProvider={JsonServer("https://jsonplaceholder.typicode.com")}
+        >
             <Resource name="posts" />
             <Resource name="users" />
         </Admin>
