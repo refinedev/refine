@@ -7,6 +7,7 @@ import "antd/dist/antd.css";
 
 import { AuthContextProvider, IAuthContext } from "@contexts/auth";
 import { DataContextProvider, IDataContext } from "@contexts/data";
+import { ResourceContextProvider } from "@contexts/resource";
 import { Auth } from "@containers/auth";
 import { DashboardPage, LoginPage } from "@pages";
 import { store } from "@redux/store";
@@ -23,25 +24,33 @@ export const Admin: React.FC<AdminProps> = ({
 }) => {
     const queryClient = new QueryClient();
 
+    const resources: string[] = [];
+    React.Children.map(children, (child: any) => {
+        resources.push(child.props.name);
+    });
+
     return (
         <QueryClientProvider client={queryClient}>
             <AuthContextProvider {...authProvider}>
                 <DataContextProvider {...dataProvider}>
-                    <Router>
-                        <Provider store={store}>
-                            <Switch>
-                                <Route exact path="/login">
-                                    <LoginPage />
-                                </Route>
-                                <Auth>
-                                    <Route exact path="/">
-                                        <DashboardPage />
+                    <ResourceContextProvider resources={resources}>
+                        <Router>
+                            <Provider store={store}>
+                                <Switch>
+                                    <Route exact path="/login">
+                                        <LoginPage />
                                     </Route>
-                                    {children}
-                                </Auth>
-                            </Switch>
-                        </Provider>
-                    </Router>
+                                    <Auth>
+                                        <Route exact path="/">
+                                            <DashboardPage />
+                                        </Route>
+
+                                        {children}
+                                    </Auth>
+                                </Switch>
+                            </Provider>
+                        </Router>
+                    </ResourceContextProvider>
                 </DataContextProvider>
             </AuthContextProvider>
             <ReactQueryDevtools initialIsOpen={false} />

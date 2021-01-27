@@ -9,12 +9,14 @@ import { MenuClickEventHandler } from "rc-menu/lib/interface";
 import { Link, useHistory } from "react-router-dom";
 
 import { AuthContext, IAuthContext } from "@contexts/auth";
+import { ResourceContext, IResourceContext } from "@contexts/resource";
 
 export const Layout: React.FC = ({ children }) => {
     const [collapsed, setCollapsed] = React.useState(false);
 
     const history = useHistory();
     const { logout } = useContext<IAuthContext>(AuthContext);
+    const { resources } = useContext<IResourceContext>(ResourceContext);
 
     const renderResourceTitle = (title: string) => {
         return title.charAt(0).toUpperCase() + title.slice(1);
@@ -57,22 +59,16 @@ export const Layout: React.FC = ({ children }) => {
                         <Link to={`/`}>Dashboard</Link>
                     </Menu.Item>
 
-                    <Menu.Item
-                        key={`resource-posts`}
-                        icon={<UnorderedListOutlined />}
-                    >
-                        <Link to={`/resources/posts`}>
-                            {renderResourceTitle("posts")}
-                        </Link>
-                    </Menu.Item>
-                    <Menu.Item
-                        key={`resource-users`}
-                        icon={<UnorderedListOutlined />}
-                    >
-                        <Link to={`/resources/users`}>
-                            {renderResourceTitle("users")}
-                        </Link>
-                    </Menu.Item>
+                    {resources.map((item) => (
+                        <Menu.Item
+                            key={`resource-${item}`}
+                            icon={<UnorderedListOutlined />}
+                        >
+                            <Link to={`/resources/${item}`}>
+                                {renderResourceTitle(item)}
+                            </Link>
+                        </Menu.Item>
+                    ))}
 
                     <Menu.Item key="logout" icon={<LogoutOutlined />}>
                         Logout
