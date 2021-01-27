@@ -1,5 +1,4 @@
 import React from "react";
-import { Provider } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -14,10 +13,9 @@ import {
     LoginPage,
     ListPage,
     CreatePage,
-    ShowPage,
     EditPage,
+    ShowPage,
 } from "@pages";
-import { store } from "@redux/store";
 
 export interface AdminProps {
     authProvider: IAuthContext;
@@ -42,47 +40,45 @@ export const Admin: React.FC<AdminProps> = ({
                 <DataContextProvider {...dataProvider}>
                     <ResourceContextProvider resources={resources}>
                         <Router>
-                            <Provider store={store}>
-                                <Switch>
-                                    <Route exact path="/login">
-                                        <LoginPage />
+                            <Switch>
+                                <Route exact path="/login">
+                                    <LoginPage />
+                                </Route>
+                                <Auth>
+                                    <Route exact path="/">
+                                        <DashboardPage />
                                     </Route>
-                                    <Auth>
-                                        <Route exact path="/">
-                                            <DashboardPage />
-                                        </Route>
-                                        <Route
-                                            exact
-                                            path="/resources/:resourceName"
-                                        >
-                                            <ListPage />
-                                        </Route>
-                                        <Route
-                                            exact
-                                            path="/resources/:resourceName/create"
-                                        >
-                                            <CreatePage />
-                                        </Route>
-                                        <Route
-                                            exact
-                                            path="/resources/:resourceName/edit/:id"
-                                        >
-                                            <EditPage />
-                                        </Route>
-                                        <Route
-                                            exact
-                                            path="/resources/:resourceName/show/:id"
-                                        >
-                                            <ShowPage />
-                                        </Route>
-                                    </Auth>
-                                </Switch>
-                            </Provider>
+                                    <Route
+                                        exact
+                                        path="/resources/:resourceName"
+                                    >
+                                        <ListPage />
+                                    </Route>
+                                    <Route
+                                        exact
+                                        path="/resources/:resourceName/create"
+                                    >
+                                        <CreatePage />
+                                    </Route>
+                                    <Route
+                                        exact
+                                        path="/resources/:resourceName/edit/:id"
+                                    >
+                                        <EditPage />
+                                    </Route>
+                                    <Route
+                                        exact
+                                        path="/resources/:resourceName/show/:id"
+                                    >
+                                        <ShowPage />
+                                    </Route>
+                                </Auth>
+                            </Switch>
                         </Router>
                     </ResourceContextProvider>
                 </DataContextProvider>
             </AuthContextProvider>
-            <ReactQueryDevtools initialIsOpen={false} />
+            <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
         </QueryClientProvider>
     );
 };
