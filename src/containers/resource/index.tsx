@@ -1,5 +1,4 @@
 import React from "react";
-
 export interface ResourceProps {
     name: string;
     list?: boolean;
@@ -8,7 +7,6 @@ export interface ResourceProps {
     show?: boolean;
 }
 
-export const Resource: React.FC<ResourceProps> = ({ name }) => {
-    console.log("resource -> ", name);
+export const Resource: React.FC<ResourceProps> = () => {
     return null;
 };

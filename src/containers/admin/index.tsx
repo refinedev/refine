@@ -9,7 +9,14 @@ import { AuthContextProvider, IAuthContext } from "@contexts/auth";
 import { DataContextProvider, IDataContext } from "@contexts/data";
 import { ResourceContextProvider } from "@contexts/resource";
 import { Auth } from "@containers/auth";
-import { DashboardPage, LoginPage } from "@pages";
+import {
+    DashboardPage,
+    LoginPage,
+    ListPage,
+    CreatePage,
+    ShowPage,
+    EditPage,
+} from "@pages";
 import { store } from "@redux/store";
 
 export interface AdminProps {
@@ -44,8 +51,30 @@ export const Admin: React.FC<AdminProps> = ({
                                         <Route exact path="/">
                                             <DashboardPage />
                                         </Route>
-
-                                        {children}
+                                        <Route
+                                            exact
+                                            path="/resources/:resourceName"
+                                        >
+                                            <ListPage />
+                                        </Route>
+                                        <Route
+                                            exact
+                                            path="/resources/:resourceName/create"
+                                        >
+                                            <CreatePage />
+                                        </Route>
+                                        <Route
+                                            exact
+                                            path="/resources/:resourceName/edit/:id"
+                                        >
+                                            <EditPage />
+                                        </Route>
+                                        <Route
+                                            exact
+                                            path="/resources/:resourceName/show/:id"
+                                        >
+                                            <ShowPage />
+                                        </Route>
                                     </Auth>
                                 </Switch>
                             </Provider>
