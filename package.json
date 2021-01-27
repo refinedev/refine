@@ -61,6 +61,7 @@
     "@ant-design/icons": "^4.4.0",
     "antd": "^4.10.3",
     "axios": "^0.21.1",
+    "query-string": "^6.13.8",
     "react-query": "^3.6.0",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",

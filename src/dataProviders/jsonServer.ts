@@ -1,12 +1,19 @@
 import axios from "axios";
+import { stringify } from "query-string";
 
 import { IDataContext } from "@contexts/data";
 
 const JsonServer = (apiUrl: string): IDataContext => ({
-    getList: async (resource) => {
+    getList: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
 
-        return axios.get(url);
+        const { page, perPage } = params.pagination;
+        const query = {
+            _start: (page - 1) * perPage,
+            _end: page * perPage,
+        };
+
+        return axios.get(`${url}?${stringify(query)}`);
     },
 });
 

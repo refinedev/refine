@@ -34,9 +34,10 @@ const App: React.FC = () => {
     return (
         <Admin
             authProvider={authProvider}
-            dataProvider={JsonServer("https://jsonplaceholder.typicode.com")}
+            dataProvider={JsonServer("https://readmin-fake-rest.pankod.com")}
         >
             <Resource name="posts" />
+            <Resource name="categories" />
             <Resource name="users" />
         </Admin>
     );
