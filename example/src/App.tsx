@@ -1,6 +1,9 @@
 import React from "react";
+import { Admin, Resource, AuthProvider, JsonServer } from "readmin";
 
-import { Admin, Resource, AuthProvider, List, JsonServer } from "readmin";
+import { PostList } from "./post";
+import { CategoryList } from "./category";
+import { UserList } from "./user";
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
@@ -31,18 +34,14 @@ const App: React.FC = () => {
             }),
     };
 
-    const CrudList = (props: any) => {
-        return <List {...props} />;
-    };
-
     return (
         <Admin
             authProvider={authProvider}
             dataProvider={JsonServer("https://readmin-fake-rest.pankod.com")}
         >
-            <Resource name="posts" list={CrudList} />
-            <Resource name="categories" list={CrudList} />
-            <Resource name="users" list={CrudList} />
+            <Resource name="posts" list={PostList} />
+            <Resource name="categories" list={CategoryList} />
+            <Resource name="users" list={UserList} />
         </Admin>
     );
 };
