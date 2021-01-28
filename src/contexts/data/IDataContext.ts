@@ -1,19 +1,25 @@
-import { AxiosResponse } from "axios";
+type Identifier = string | number;
 
-export interface GetListParams {
-    pagination: {
-        page: number;
-        perPage: number;
-    };
-    sort: {
-        field: string;
-        order: string;
-    };
+export interface Record {
+    id: Identifier;
+    [key: string]: any;
+}
+
+export interface Pagination {
+    current: number;
+    pageSize: number;
+}
+
+export interface GetListResponse {
+    data: Record[];
+    total: number;
 }
 
 export interface IDataContext {
     getList: (
         resource: string,
-        params: GetListParams,
-    ) => Promise<AxiosResponse<any>>;
+        params: {
+            pagination: Pagination;
+        },
+    ) => Promise<GetListResponse>;
 }
