@@ -1,4 +1,4 @@
 export { Layout } from "./layout";
-export { BaseList } from "./baselist";
 export { List } from "./list";
+export { Table } from "./table";
 export { Column } from "./column";

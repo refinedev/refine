@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import { BaseList } from "@components";
 export interface ResourceProps {
     name: string;
     list?: any;
@@ -16,9 +15,7 @@ export const Resource: React.FC<ResourceProps> = ({ list, name }) => {
     return (
         <Switch>
             <Route exact path={`/resources/${name}`}>
-                <BaseList resourceName={name}>
-                    <ListComponent />
-                </BaseList>
+                <ListComponent resourceName={name} />
             </Route>
             <Route exact path={`/resources/${name}/create`}>
                 <span>{`${name}->create`}</span>

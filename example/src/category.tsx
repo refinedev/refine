@@ -1,11 +1,13 @@
 import React from "react";
-import { List, Column } from "readmin";
+import { List, Table, Column } from "readmin";
 
 export const CategoryList = (props: any) => {
     return (
         <List {...props}>
-            <Column key="id" title="ID" dataIndex="id" />
-            <Column key="title" title="Title" dataIndex="title" />
+            <Table>
+                <Column key="id" title="ID" dataIndex="id" />
+                <Column key="title" title="Title" dataIndex="title" />
+            </Table>
         </List>
     );
 };
