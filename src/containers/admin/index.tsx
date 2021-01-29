@@ -4,11 +4,12 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "antd/dist/antd.css";
 
-import { AuthContextProvider, IAuthContext } from "@contexts/auth";
-import { DataContextProvider, IDataContext } from "@contexts/data";
+import { AuthContextProvider } from "@contexts/auth";
+import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider } from "@contexts/resource";
 import { Auth } from "@containers/auth";
 import { DashboardPage, LoginPage } from "@pages";
+import { IDataContext, IAuthContext } from "@interfaces";
 
 export interface AdminProps {
     authProvider: IAuthContext;

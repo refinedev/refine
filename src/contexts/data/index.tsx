@@ -2,9 +2,7 @@ import React from "react";
 
 import jsonServerDataProvider from "@dataProviders/jsonServer";
 
-import { IDataContext } from "./IDataContext";
-
-export { IDataContext };
+import { IDataContext } from "@interfaces";
 
 export const DataContext = React.createContext<IDataContext>(
     jsonServerDataProvider("http://jsonplaceholder.typicode.com"),

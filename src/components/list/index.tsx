@@ -5,9 +5,9 @@ import { Button, Space, Row } from "antd";
 import { TablePaginationConfig } from "antd/lib/table";
 import { PlusOutlined } from "@ant-design/icons";
 
-import { DataContext, IDataContext } from "@contexts/data";
+import { DataContext } from "@contexts/data";
 import { TableProps } from "@components/table";
-import { GetListResponse } from "@interfaces";
+import { GetListResponse, IDataContext } from "@interfaces";
 
 export interface ListProps {
     resourceName: string;
