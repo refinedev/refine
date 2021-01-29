@@ -28,9 +28,6 @@ const JsonServer = (apiUrl: string): IDataContext => ({
     create: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
 
-        console.log("url", url);
-        console.log("params", params);
-
         const { data } = await axios.post<Record>(url, params);
 
         return {
