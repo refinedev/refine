@@ -22,3 +22,7 @@ export const PostList = (props: any) => {
         </List>
     );
 };
+
+export const PostCreate = () => {
+    return <span>create component</span>;
+};

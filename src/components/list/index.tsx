@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { useQuery } from "react-query";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import { Button, Space, Row } from "antd";
 import { TablePaginationConfig } from "antd/lib/table";
+import { PlusOutlined } from "@ant-design/icons";
 
 import { DataContext, IDataContext } from "@contexts/data";
 import { TableProps } from "@components/table";
@@ -9,11 +11,17 @@ import { GetListResponse } from "@interfaces";
 
 export interface ListProps {
     resourceName: string;
+    isCreate?: boolean;
 }
 
-export const List: React.FC<ListProps> = ({ resourceName, children }) => {
+export const List: React.FC<ListProps> = ({
+    resourceName,
+    isCreate,
+    children,
+}) => {
     const { getList } = useContext<IDataContext>(DataContext);
     const queryParams = new URLSearchParams(useLocation().search);
+    const history = useHistory();
 
     let current = 1;
     const queryParamCurrent = queryParams.get("current");
@@ -61,5 +69,27 @@ export const List: React.FC<ListProps> = ({ resourceName, children }) => {
         return child;
     });
 
-    return <div>{childrenWithProps}</div>;
+    return (
+        <section>
+            <Row justify="end" style={{ marginBottom: 12 }}>
+                <Space align="end" direction="horizontal">
+                    {isCreate && (
+                        <Button
+                            onClick={() =>
+                                history.push(
+                                    `/resources/${resourceName}/create`,
+                                )
+                            }
+                            type="primary"
+                            shape="round"
+                            icon={<PlusOutlined />}
+                        >
+                            Create
+                        </Button>
+                    )}
+                </Space>
+            </Row>
+            <Row>{childrenWithProps}</Row>
+        </section>
+    );
 };

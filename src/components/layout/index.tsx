@@ -79,7 +79,7 @@ export const Layout: React.FC = ({ children }) => {
                 <AntLayout.Header
                     style={{ padding: 0, backgroundColor: "#FFF" }}
                 />
-                <AntLayout.Content style={{ margin: "0 16px" }}>
+                <AntLayout.Content>
                     <div style={{ padding: 24, minHeight: 360 }}>
                         {children}
                     </div>

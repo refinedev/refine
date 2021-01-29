@@ -22,6 +22,7 @@ export const Table: React.FC<TableProps> = ({
     const history = useHistory();
     return (
         <AntdTable
+            style={{ width: "100%" }}
             dataSource={dataSource}
             loading={loading}
             pagination={pagination}
