@@ -27,7 +27,8 @@
   "watch": {
     "build": {
       "patterns": ["src"],
-      "extensions": "ts,tsx"
+      "extensions": "ts,tsx",
+      "delay": 2500
     }
   },
   "peerDependencies": {

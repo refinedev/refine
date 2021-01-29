@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { Record } from "@interfaces";
 
 export interface TableProps {
-    resourceName: string;
+    resourceName?: string;
     dataSource?: Record[];
     loading?: boolean;
     pagination?: false | TablePaginationConfig;

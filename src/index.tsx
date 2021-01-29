@@ -1,7 +1,7 @@
-import JsonServer from "@dataProviders/jsonServer";
+import JsonServer from "./dataProviders/jsonServer";
 
 export { JsonServer };
-export { Admin, Resource } from "@containers";
+export { Admin, Resource } from "./containers";
 export {
     List,
     Column,
@@ -10,7 +10,8 @@ export {
     FormItem,
     Create,
     Input,
-} from "@components";
+    Textarea,
+} from "./components";
 
-export { IAuthContext as AuthProvider } from "@contexts/auth";
-export { IDataContext as DataProvider } from "@contexts/data";
+export { IAuthContext as AuthProvider } from "./contexts/auth";
+export { IDataContext as DataProvider } from "./contexts/data";

@@ -1,5 +1,14 @@
 import React from "react";
-import { List, Column, Table, Create, Form, FormItem, Input } from "readmin";
+import {
+    List,
+    Column,
+    Table,
+    Create,
+    Form,
+    FormItem,
+    Input,
+    Textarea,
+} from "readmin";
 
 export const PostList = (props: any) => {
     return (
@@ -26,18 +35,28 @@ export const PostList = (props: any) => {
 export const PostCreate = (props: any) => {
     return (
         <Create {...props}>
-            <Form>
+            <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <FormItem
-                    label="Username"
-                    name="username"
+                    label="Title"
+                    name="title"
                     rules={[
                         {
                             required: true,
-                            message: "Please input your username!",
                         },
                     ]}
                 >
                     <Input />
+                </FormItem>
+                <FormItem
+                    label="Content"
+                    name="content"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Textarea />
                 </FormItem>
             </Form>
         </Create>

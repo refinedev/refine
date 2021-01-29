@@ -15,6 +15,10 @@ export interface GetListResponse {
     total: number;
 }
 
+export interface CreateResponse {
+    data: Record;
+}
+
 export interface IDataContext {
     getList: (
         resource: string,
@@ -22,4 +26,6 @@ export interface IDataContext {
             pagination: Pagination;
         },
     ) => Promise<GetListResponse>;
+
+    create: (resource: string, params: any) => Promise<CreateResponse>;
 }

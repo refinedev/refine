@@ -1,7 +1,7 @@
 import React from "react";
 
 export interface CreateProps {
-    resourceName: string;
+    resourceName?: string;
 }
 
 export const Create: React.FC<CreateProps> = ({ resourceName, children }) => {
