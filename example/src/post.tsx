@@ -1,5 +1,5 @@
 import React from "react";
-import { List, Column, Table } from "readmin";
+import { List, Column, Table, Create, Form, FormItem, Input } from "readmin";
 
 export const PostList = (props: any) => {
     return (
@@ -23,6 +23,23 @@ export const PostList = (props: any) => {
     );
 };
 
-export const PostCreate = () => {
-    return <span>create component</span>;
+export const PostCreate = (props: any) => {
+    return (
+        <Create {...props}>
+            <Form>
+                <FormItem
+                    label="Username"
+                    name="username"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Please input your username!",
+                        },
+                    ]}
+                >
+                    <Input />
+                </FormItem>
+            </Form>
+        </Create>
+    );
 };

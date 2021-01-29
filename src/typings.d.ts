@@ -18,3 +18,7 @@ declare module "*.svg" {
     export default svgUrl;
     export { svgComponent as ReactComponent };
 }
+
+import { FormItemProps, FormProps } from "antd/lib/form";
+
+export { FormItemProps, FormProps };
