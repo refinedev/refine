@@ -1,5 +1,5 @@
 import React from "react";
-import { List, Table, Column } from "readmin";
+import { List, Table, Column, Create, Form, FormItem, Input } from "readmin";
 
 export const CategoryList = (props: any) => {
     return (
@@ -9,5 +9,25 @@ export const CategoryList = (props: any) => {
                 <Column key="title" title="Title" dataIndex="title" />
             </Table>
         </List>
+    );
+};
+
+export const CategoryCreate = (props: any) => {
+    return (
+        <Create {...props}>
+            <Form wrapperCol={{ span: 14 }} layout="vertical">
+                <FormItem
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </FormItem>
+            </Form>
+        </Create>
     );
 };
