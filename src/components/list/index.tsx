@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { useHistory, useLocation } from "react-router-dom";
 import { Button, Space, Row } from "antd";
 import { TablePaginationConfig } from "antd/lib/table";
-import { PlusOutlined } from "@ant-design/icons";
+import { PlusSquareOutlined } from "@ant-design/icons";
 
 import { DataContext } from "@contexts/data";
 import { TableProps } from "@components/table";
@@ -88,9 +88,8 @@ export const List: React.FC<ListProps> = ({
                                     `/resources/${resourceName}/create`,
                                 )
                             }
-                            type="primary"
-                            shape="round"
-                            icon={<PlusOutlined />}
+                            type="default"
+                            icon={<PlusSquareOutlined />}
                         >
                             Create
                         </Button>
