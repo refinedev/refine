@@ -19,6 +19,14 @@ export interface CreateResponse {
     data: Record;
 }
 
+export interface UpdateResponse {
+    data: Record;
+}
+
+export interface GetOneResponse {
+    data: Record;
+}
+
 export interface IDataContext {
     getList: (
         resource: string,
@@ -26,6 +34,11 @@ export interface IDataContext {
             pagination: Pagination;
         },
     ) => Promise<GetListResponse>;
-
+    getOne: (resource: string, id: Identifier) => Promise<GetOneResponse>;
     create: (resource: string, params: any) => Promise<CreateResponse>;
+    update: (
+        resource: string,
+        id: Identifier,
+        params: any,
+    ) => Promise<UpdateResponse>;
 }

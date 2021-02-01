@@ -1,8 +1,9 @@
 import React from "react";
-import { Table as AntdTable } from "antd";
+import { Table as AntdTable, Button } from "antd";
 import { TablePaginationConfig } from "antd/lib/table";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
+import { Column } from "@components";
 import { Record } from "@interfaces";
 
 export interface TableProps {
@@ -10,6 +11,7 @@ export interface TableProps {
     dataSource?: Record[];
     loading?: boolean;
     pagination?: false | TablePaginationConfig;
+    isEdit?: boolean;
 }
 
 export const Table: React.FC<TableProps> = ({
@@ -17,6 +19,7 @@ export const Table: React.FC<TableProps> = ({
     dataSource,
     loading,
     pagination,
+    isEdit,
     children,
 }) => {
     const history = useHistory();
@@ -33,6 +36,20 @@ export const Table: React.FC<TableProps> = ({
             }}
         >
             {children}
+            {isEdit && (
+                <Column
+                    title="Actions"
+                    dataIndex="actions"
+                    key="actions"
+                    render={(text: any = "Edit", record: any) => (
+                        <Link
+                            to={`/resources/${resourceName}/edit/${record.id}`}
+                        >
+                            <Button type="link">{text}</Button>
+                        </Link>
+                    )}
+                />
+            )}
         </AntdTable>
     );
 };

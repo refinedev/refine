@@ -8,8 +8,9 @@ import {
 import { MenuClickEventHandler } from "rc-menu/lib/interface";
 import { Link, useHistory } from "react-router-dom";
 
-import { AuthContext, IAuthContext } from "@contexts/auth";
+import { AuthContext } from "@contexts/auth";
 import { ResourceContext, IResourceContext } from "@contexts/resource";
+import { IAuthContext } from "@interfaces";
 
 export const Layout: React.FC = ({ children }) => {
     const [collapsed, setCollapsed] = React.useState(false);

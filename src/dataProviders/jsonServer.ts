@@ -34,6 +34,28 @@ const JsonServer = (apiUrl: string): IDataContext => ({
             data,
         };
     },
+
+    update: async (resource, id, params) => {
+        const url = `${apiUrl}/${resource}/${id}`;
+
+        const { data } = await axios.put<Record>(url, params);
+
+        return {
+            data,
+        };
+    },
+
+    getOne: async (resource, id) => {
+        const url = `${apiUrl}/${resource}/${id}`;
+
+        console.log("url", url);
+
+        const { data } = await axios.get<Record>(url);
+
+        return {
+            data,
+        };
+    },
 });
 
 export default JsonServer;

@@ -9,9 +9,10 @@ export {
     Form,
     FormItem,
     Create,
+    Edit,
     Input,
     Textarea,
 } from "./components";
 
-export { IAuthContext as AuthProvider } from "./contexts/auth";
-export { IDataContext as DataProvider } from "./contexts/data";
+export { IAuthContext as AuthProvider } from "./interfaces";
+export { IDataContext as DataProvider } from "./interfaces";

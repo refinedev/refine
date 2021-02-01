@@ -12,7 +12,8 @@ import {
 } from "antd";
 import { useHistory } from "react-router-dom";
 
-import { AuthContext, IAuthContext } from "@contexts/auth";
+import { AuthContext } from "@contexts/auth";
+import { IAuthContext } from "@interfaces";
 
 export interface ILoginForm {
     username: string;

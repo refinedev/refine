@@ -1,5 +1,14 @@
 import React from "react";
-import { List, Table, Column, Create, Form, FormItem, Input } from "readmin";
+import {
+    List,
+    Table,
+    Column,
+    Create,
+    Edit,
+    Form,
+    FormItem,
+    Input,
+} from "readmin";
 
 export const CategoryList = (props: any) => {
     return (
@@ -29,5 +38,25 @@ export const CategoryCreate = (props: any) => {
                 </FormItem>
             </Form>
         </Create>
+    );
+};
+
+export const CategoryEdit = (props: any) => {
+    return (
+        <Edit {...props}>
+            <Form wrapperCol={{ span: 14 }} layout="vertical">
+                <FormItem
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </FormItem>
+            </Form>
+        </Edit>
     );
 };

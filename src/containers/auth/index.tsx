@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 import { Layout } from "@components";
-import { AuthContext, IAuthContext } from "@contexts/auth";
+import { AuthContext } from "@contexts/auth";
+import { IAuthContext } from "@interfaces";
 
 export const Auth: React.FC = ({ children }) => {
     const { checkAuth } = useContext<IAuthContext>(AuthContext);

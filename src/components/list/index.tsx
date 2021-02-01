@@ -12,11 +12,13 @@ import { GetListResponse, IDataContext } from "@interfaces";
 export interface ListProps {
     resourceName: string;
     isCreate?: boolean;
+    isEdit?: boolean;
 }
 
 export const List: React.FC<ListProps> = ({
     resourceName,
     isCreate,
+    isEdit,
     children,
 }) => {
     const { getList } = useContext<IDataContext>(DataContext);
@@ -64,6 +66,7 @@ export const List: React.FC<ListProps> = ({
                 dataSource: data?.data,
                 loading: isFetching,
                 pagination,
+                isEdit,
             });
         }
         return child;

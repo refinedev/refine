@@ -11,10 +11,12 @@ export const DataContext = React.createContext<IDataContext>(
 export const DataContextProvider: React.FC<IDataContext> = ({
     getList,
     create,
+    getOne,
+    update,
     children,
 }) => {
     return (
-        <DataContext.Provider value={{ getList, create }}>
+        <DataContext.Provider value={{ getList, getOne, update, create }}>
             {children}
         </DataContext.Provider>
     );
