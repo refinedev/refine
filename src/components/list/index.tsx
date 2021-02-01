@@ -10,7 +10,7 @@ import { TableProps } from "@components/table";
 import { GetListResponse, IDataContext } from "@interfaces";
 
 export interface ListProps {
-    resourceName: string;
+    resourceName?: string;
     isCreate?: boolean;
     isEdit?: boolean;
 }
@@ -24,6 +24,11 @@ export const List: React.FC<ListProps> = ({
     const { getList } = useContext<IDataContext>(DataContext);
     const queryParams = new URLSearchParams(useLocation().search);
     const history = useHistory();
+
+    if (!resourceName) {
+        // TODO: render resource error page
+        return <span>params error</span>;
+    }
 
     let current = 1;
     const queryParamCurrent = queryParams.get("current");

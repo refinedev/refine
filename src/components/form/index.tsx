@@ -9,7 +9,7 @@ import { SaveOutlined } from "@ant-design/icons";
 
 export interface FormProps extends AntdFormProps {
     onFinish?: (values: any) => void;
-    form?: FormInstance<any>;
+    form?: FormInstance;
     error?: any;
     isLoading?: boolean;
 }

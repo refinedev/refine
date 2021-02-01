@@ -19,7 +19,7 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
 
     if (!resourceName || !id) {
         // TODO: render resource error page
-        return null;
+        return <span>params error</span>;
     }
 
     const { data } = useQuery<GetOneResponse>(

@@ -1,7 +1,8 @@
 import React from "react";
 import { Table as AntdTable, Button } from "antd";
 import { TablePaginationConfig } from "antd/lib/table";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { EditOutlined } from "@ant-design/icons";
 
 import { Column } from "@components";
 import { Record } from "@interfaces";
@@ -42,11 +43,18 @@ export const Table: React.FC<TableProps> = ({
                     dataIndex="actions"
                     key="actions"
                     render={(text: any = "Edit", record: any) => (
-                        <Link
-                            to={`/resources/${resourceName}/edit/${record.id}`}
+                        <Button
+                            onClick={() => {
+                                history.push(
+                                    `/resources/${resourceName}/edit/${record.id}`,
+                                );
+                            }}
+                            type="default"
+                            size="small"
+                            icon={<EditOutlined />}
                         >
-                            <Button type="link">{text}</Button>
-                        </Link>
+                            {text}
+                        </Button>
                     )}
                 />
             )}

@@ -13,6 +13,11 @@ export const Create: React.FC<CreateProps> = ({ resourceName, children }) => {
     const { create } = useContext<IDataContext>(DataContext);
     const history = useHistory();
 
+    if (!resourceName) {
+        // TODO: render resource error page
+        return <span>params error</span>;
+    }
+
     const mutation = useMutation(
         ({ resourceName, values }: { resourceName: string; values: string }) =>
             create(resourceName, values),
@@ -22,11 +27,6 @@ export const Create: React.FC<CreateProps> = ({ resourceName, children }) => {
             },
         },
     );
-
-    if (!resourceName) {
-        // TODO: render resource error page
-        return null;
-    }
 
     const onFinish = async (values: any) => {
         mutation.mutate({ resourceName, values });
