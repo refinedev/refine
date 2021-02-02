@@ -45,6 +45,7 @@ const App: React.FC = () => {
                 list={CategoryList}
                 create={CategoryCreate}
                 edit={CategoryEdit}
+                isDelete
             />
             <Resource name="users" list={UserList} />
         </Admin>

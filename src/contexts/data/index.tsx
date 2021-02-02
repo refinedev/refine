@@ -13,10 +13,13 @@ export const DataContextProvider: React.FC<IDataContext> = ({
     create,
     getOne,
     update,
+    deleteOne,
     children,
 }) => {
     return (
-        <DataContext.Provider value={{ getList, getOne, update, create }}>
+        <DataContext.Provider
+            value={{ getList, getOne, update, create, deleteOne }}
+        >
             {children}
         </DataContext.Provider>
     );

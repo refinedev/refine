@@ -27,6 +27,10 @@ export interface GetOneResponse {
     data: Record;
 }
 
+export interface DeleteOneResponse {
+    data: Record;
+}
+
 export interface IDataContext {
     getList: (
         resource: string,
@@ -35,6 +39,7 @@ export interface IDataContext {
         },
     ) => Promise<GetListResponse>;
     getOne: (resource: string, id: Identifier) => Promise<GetOneResponse>;
+    deleteOne: (resource: string, id: Identifier) => Promise<DeleteOneResponse>;
     create: (resource: string, params: any) => Promise<CreateResponse>;
     update: (
         resource: string,

@@ -6,7 +6,7 @@ export interface ResourceProps {
     list?: any;
     create?: any;
     edit?: any;
-    show?: boolean;
+    isDelete?: boolean;
 }
 
 export const Resource: React.FC<ResourceProps> = ({
@@ -14,6 +14,7 @@ export const Resource: React.FC<ResourceProps> = ({
     create,
     edit,
     name,
+    isDelete,
 }) => {
     const ListComponent = list;
     const CreateComponent = create;
@@ -29,6 +30,7 @@ export const Resource: React.FC<ResourceProps> = ({
                     resourceName={name}
                     isCreate={isCreate}
                     isEdit={isEdit}
+                    isDelete={isDelete}
                 />
             </Route>
             <Route exact path={`/resources/${name}/create`}>
@@ -36,9 +38,6 @@ export const Resource: React.FC<ResourceProps> = ({
             </Route>
             <Route exact path={`/resources/${name}/edit/:id`}>
                 <EditComponent resourceName={name} />
-            </Route>
-            <Route exact path={`/resources/${name}/show/:id`}>
-                <span>{`${name}->show`}</span>
             </Route>
         </Switch>
     );

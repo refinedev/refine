@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useQuery } from "react-query";
 import { useHistory, useLocation } from "react-router-dom";
-import { Button, Space, Row } from "antd";
+import { Button, Row, Card } from "antd";
 import { TablePaginationConfig } from "antd/lib/table";
 import { PlusSquareOutlined } from "@ant-design/icons";
 
@@ -13,12 +13,14 @@ export interface ListProps {
     resourceName?: string;
     isCreate?: boolean;
     isEdit?: boolean;
+    isDelete?: boolean;
 }
 
 export const List: React.FC<ListProps> = ({
     resourceName,
     isCreate,
     isEdit,
+    isDelete,
     children,
 }) => {
     const { getList } = useContext<IDataContext>(DataContext);
@@ -51,9 +53,6 @@ export const List: React.FC<ListProps> = ({
                     pageSize,
                 },
             }),
-        {
-            keepPreviousData: true,
-        },
     );
 
     const pagination: TablePaginationConfig = {
@@ -72,31 +71,31 @@ export const List: React.FC<ListProps> = ({
                 loading: isFetching,
                 pagination,
                 isEdit,
+                isDelete,
             });
         }
         return child;
     });
 
     return (
-        <section>
-            <Row justify="end" style={{ marginBottom: 12 }}>
-                <Space align="end" direction="horizontal">
-                    {isCreate && (
-                        <Button
-                            onClick={() =>
-                                history.push(
-                                    `/resources/${resourceName}/create`,
-                                )
-                            }
-                            type="default"
-                            icon={<PlusSquareOutlined />}
-                        >
-                            Create
-                        </Button>
-                    )}
-                </Space>
-            </Row>
+        <Card
+            type="inner"
+            title={resourceName}
+            extra={
+                isCreate && (
+                    <Button
+                        onClick={() =>
+                            history.push(`/resources/${resourceName}/create`)
+                        }
+                        type="default"
+                        icon={<PlusSquareOutlined />}
+                    >
+                        Create
+                    </Button>
+                )
+            }
+        >
             <Row>{childrenWithProps}</Row>
-        </section>
+        </Card>
     );
 };
