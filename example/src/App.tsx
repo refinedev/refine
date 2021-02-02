@@ -2,7 +2,7 @@ import React from "react";
 import { Admin, Resource, AuthProvider, JsonServer } from "readmin";
 
 import { PostCreate, PostList, PostEdit } from "./post";
-import { CategoryList, CategoryCreate, CategoryEdit } from "./category";
+import { CategoryList, CategoryCreate } from "./category";
 import { UserList } from "./user";
 
 const App: React.FC = () => {
@@ -50,7 +50,6 @@ const App: React.FC = () => {
                 name="categories"
                 list={CategoryList}
                 create={CategoryCreate}
-                edit={CategoryEdit}
                 canDelete
             />
             <Resource name="users" list={UserList} />

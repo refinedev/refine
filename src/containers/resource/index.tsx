@@ -34,7 +34,7 @@ export const Resource: React.FC<ResourceProps> = ({
                 />
             </Route>
             <Route exact path={`/resources/${name}/create`}>
-                <CreateComponent resourceName={name} />
+                <CreateComponent resourceName={name} isEdit={isEdit} />
             </Route>
             <Route exact path={`/resources/${name}/edit/:id`}>
                 <EditComponent resourceName={name} />
