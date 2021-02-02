@@ -4,6 +4,7 @@ import {
     Column,
     Table,
     Create,
+    Edit,
     Form,
     FormItem,
     Input,
@@ -20,12 +21,12 @@ export const PostList = (props: any) => {
                     key="slug"
                     title="Slug"
                     dataIndex="slug"
-                    render={(text: any, record: any) => (
-                        <div>
-                            <p>{text}</p>
-                            <p>{record.title}</p>
-                        </div>
-                    )}
+                    // render={(text: any, record: any) => (
+                    //     <div>
+                    //         <p>{text}</p>
+                    //         <p>{record.title}</p>
+                    //     </div>
+                    // )}
                 />
             </Table>
         </List>
@@ -60,5 +61,36 @@ export const PostCreate = (props: any) => {
                 </FormItem>
             </Form>
         </Create>
+    );
+};
+
+export const PostEdit = (props: any) => {
+    return (
+        <Edit {...props}>
+            <Form wrapperCol={{ span: 14 }} layout="vertical">
+                <FormItem
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </FormItem>
+                <FormItem
+                    label="Content"
+                    name="content"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Textarea />
+                </FormItem>
+            </Form>
+        </Edit>
     );
 };

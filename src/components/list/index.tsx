@@ -4,6 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { Button, Row, Card } from "antd";
 import { TablePaginationConfig } from "antd/lib/table";
 import { PlusSquareOutlined } from "@ant-design/icons";
+import humanizeString from "humanize-string";
 
 import { DataContext } from "@contexts/data";
 import { TableProps } from "@components/table";
@@ -53,6 +54,9 @@ export const List: React.FC<ListProps> = ({
                     pageSize,
                 },
             }),
+        {
+            keepPreviousData: true,
+        },
     );
 
     const pagination: TablePaginationConfig = {
@@ -61,6 +65,7 @@ export const List: React.FC<ListProps> = ({
         pageSize,
         defaultCurrent: 1,
         defaultPageSize: 10,
+        position: ["bottomCenter"],
     };
 
     const childrenWithProps = React.Children.map(children, (child) => {
@@ -79,8 +84,8 @@ export const List: React.FC<ListProps> = ({
 
     return (
         <Card
-            type="inner"
-            title={resourceName}
+            bodyStyle={{ padding: 0 }}
+            title={humanizeString(resourceName)}
             extra={
                 isCreate && (
                     <Button

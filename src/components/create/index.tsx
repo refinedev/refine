@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { useMutation } from "react-query";
 import { useHistory } from "react-router-dom";
+import { Card } from "antd";
+import pluralize from "pluralize";
 
 import { DataContext } from "@contexts/data";
 import { IDataContext } from "@interfaces";
@@ -44,5 +46,9 @@ export const Create: React.FC<CreateProps> = ({ resourceName, children }) => {
         return child;
     });
 
-    return <section>{childrenWithProps}</section>;
+    return (
+        <Card title={`Create ${pluralize.singular(resourceName)}`}>
+            {childrenWithProps}
+        </Card>
+    );
 };

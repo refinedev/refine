@@ -26,7 +26,9 @@
   },
   "watch": {
     "build": {
-      "patterns": ["src"],
+      "patterns": [
+        "src"
+      ],
       "extensions": "ts,tsx",
       "delay": 2500
     }
@@ -40,6 +42,7 @@
     "@testing-library/user-event": "^7.2.1",
     "@types/jest": "^26.0.20",
     "@types/node": "^12.12.38",
+    "@types/pluralize": "0.0.29",
     "@types/react": "^16.9.27",
     "@types/react-dom": "^16.9.7",
     "@types/react-redux": "^7.1.16",
@@ -70,6 +73,8 @@
     "@ant-design/icons": "^4.4.0",
     "antd": "^4.10.3",
     "axios": "^0.21.1",
+    "humanize-string": "^2.1.0",
+    "pluralize": "^8.0.0",
     "query-string": "^6.13.8",
     "react-query": "^3.6.0",
     "react-redux": "^7.2.2",

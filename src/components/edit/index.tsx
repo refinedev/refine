@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { useMutation, useQuery } from "react-query";
 import { useHistory, useParams } from "react-router-dom";
-import { Form } from "antd";
+import { Form, Card } from "antd";
+import pluralize from "pluralize";
 
 import { DataContext } from "@contexts/data";
 import { GetOneResponse, IDataContext } from "@interfaces";
@@ -60,5 +61,9 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
         return child;
     });
 
-    return <section>{childrenWithProps}</section>;
+    return (
+        <Card title={`Edit ${pluralize.singular(resourceName)}`}>
+            {childrenWithProps}
+        </Card>
+    );
 };

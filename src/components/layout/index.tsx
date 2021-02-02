@@ -7,6 +7,7 @@ import {
 } from "@ant-design/icons";
 import { MenuClickEventHandler } from "rc-menu/lib/interface";
 import { Link, useHistory } from "react-router-dom";
+import humanizeString from "humanize-string";
 
 import { AuthContext } from "@contexts/auth";
 import { ResourceContext, IResourceContext } from "@contexts/resource";
@@ -18,10 +19,6 @@ export const Layout: React.FC = ({ children }) => {
     const history = useHistory();
     const { logout } = useContext<IAuthContext>(AuthContext);
     const { resources } = useContext<IResourceContext>(ResourceContext);
-
-    const renderResourceTitle = (title: string) => {
-        return title.charAt(0).toUpperCase() + title.slice(1);
-    };
 
     const menuOnClick: MenuClickEventHandler = ({ key }) => {
         console.log(`clicked -> ${key}`);
@@ -66,7 +63,7 @@ export const Layout: React.FC = ({ children }) => {
                             icon={<UnorderedListOutlined />}
                         >
                             <Link to={`/resources/${item}`}>
-                                {renderResourceTitle(item)}
+                                {humanizeString(item)}
                             </Link>
                         </Menu.Item>
                     ))}

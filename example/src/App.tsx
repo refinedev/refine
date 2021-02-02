@@ -1,7 +1,7 @@
 import React from "react";
 import { Admin, Resource, AuthProvider, JsonServer } from "readmin";
 
-import { PostCreate, PostList } from "./post";
+import { PostCreate, PostList, PostEdit } from "./post";
 import { CategoryList, CategoryCreate, CategoryEdit } from "./category";
 import { UserList } from "./user";
 
@@ -39,7 +39,13 @@ const App: React.FC = () => {
             authProvider={authProvider}
             dataProvider={JsonServer("https://readmin-fake-rest.pankod.com")}
         >
-            <Resource name="posts" list={PostList} create={PostCreate} />
+            <Resource
+                name="posts"
+                list={PostList}
+                create={PostCreate}
+                edit={PostEdit}
+                isDelete
+            />
             <Resource
                 name="categories"
                 list={CategoryList}
