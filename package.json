@@ -21,7 +21,17 @@
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "predeploy": "cd example && npm install && npm run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "watch": "npm-watch"
+  },
+  "watch": {
+    "build": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "ts,tsx",
+      "delay": 2500
+    }
   },
   "peerDependencies": {
     "react": "^16.0.0"
@@ -30,8 +40,9 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "@types/jest": "^25.1.4",
+    "@types/jest": "^26.0.20",
     "@types/node": "^12.12.38",
+    "@types/pluralize": "0.0.29",
     "@types/react": "^16.9.27",
     "@types/react-dom": "^16.9.7",
     "@types/react-redux": "^7.1.16",
@@ -48,6 +59,7 @@
     "gh-pages": "^2.2.0",
     "microbundle-crl": "^0.13.10",
     "npm-run-all": "^4.1.5",
+    "npm-watch": "^0.7.0",
     "prettier": "^2.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -60,6 +72,11 @@
   "dependencies": {
     "@ant-design/icons": "^4.4.0",
     "antd": "^4.10.3",
+    "axios": "^0.21.1",
+    "humanize-string": "^2.1.0",
+    "pluralize": "^8.0.0",
+    "query-string": "^6.13.8",
+    "react-query": "^3.6.0",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",

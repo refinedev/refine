@@ -1,46 +1,44 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-
-import { ResourceActions } from "@actions";
-import { IResourceReducer } from "@interfaces";
+import { Route, Switch } from "react-router-dom";
 
 export interface ResourceProps {
     name: string;
-    list: boolean;
-    create: boolean;
-    edit: boolean;
-    show: boolean;
+    list?: any;
+    create?: any;
+    edit?: any;
+    isDelete?: boolean;
 }
 
 export const Resource: React.FC<ResourceProps> = ({
-    name,
     list,
     create,
     edit,
-    show,
+    name,
+    isDelete,
 }) => {
-    const dispatch = useDispatch();
+    const ListComponent = list;
+    const CreateComponent = create;
+    const EditComponent = edit;
 
-    React.useEffect(() => {
-        const data: { [name: string]: IResourceReducer } = {
-            [name]: {
-                props: {
-                    name: name,
-                    hasCreate: create,
-                    hasEdit: edit,
-                    hasList: list,
-                    hasShow: show,
-                },
-                data: [],
-                list: {
-                    params: {
-                        page: 1,
-                    },
-                },
-            },
-        };
-        dispatch(ResourceActions.register(data));
-    }, []);
+    const isCreate = !!create;
+    const isEdit = !!edit;
 
-    return <span>resource - {name}</span>;
+    return (
+        <Switch>
+            <Route exact path={`/resources/${name}`}>
+                <ListComponent
+                    resourceName={name}
+                    isCreate={isCreate}
+                    isEdit={isEdit}
+                    isDelete={isDelete}
+                />
+            </Route>
+            <Route exact path={`/resources/${name}/create`}>
+                <CreateComponent resourceName={name} />
+            </Route>
+            <Route exact path={`/resources/${name}/edit/:id`}>
+                <EditComponent resourceName={name} />
+            </Route>
+        </Switch>
+    );
 };

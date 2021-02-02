@@ -1,18 +1,61 @@
 import React from "react";
-import { Provider } from "react-redux";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { QueryClientProvider, QueryClient } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import "antd/dist/antd.css";
 
-import { Auth, IAuthProps } from "@containers/auth";
-import { store } from "@redux/store";
+import { AuthContextProvider } from "@contexts/auth";
+import { DataContextProvider } from "@contexts/data";
+import { ResourceContextProvider } from "@contexts/resource";
+import { Auth } from "@containers/auth";
+import { DashboardPage, LoginPage } from "@pages";
+import { IDataContext, IAuthContext } from "@interfaces";
 
 export interface AdminProps {
-    authProvider: IAuthProps;
+    authProvider: IAuthContext;
+    dataProvider: IDataContext;
 }
 
-export const Admin: React.FC<AdminProps> = ({ authProvider, children }) => {
+export const Admin: React.FC<AdminProps> = ({
+    authProvider,
+    dataProvider,
+    children,
+}) => {
+    const queryClient = new QueryClient({
+        defaultOptions: {
+            queries: {
+                refetchOnWindowFocus: false,
+            },
+        },
+    });
+
+    const resources: string[] = [];
+    React.Children.map(children, (child: any) => {
+        resources.push(child.props.name);
+    });
+
     return (
-        <Provider store={store}>
-            <Auth {...authProvider}>{children}</Auth>
-        </Provider>
+        <QueryClientProvider client={queryClient}>
+            <AuthContextProvider {...authProvider}>
+                <DataContextProvider {...dataProvider}>
+                    <ResourceContextProvider resources={resources}>
+                        <Router>
+                            <Switch>
+                                <Route exact path="/login">
+                                    <LoginPage />
+                                </Route>
+                                <Auth>
+                                    <Route exact path="/">
+                                        <DashboardPage />
+                                    </Route>
+                                    {children}
+                                </Auth>
+                            </Switch>
+                        </Router>
+                    </ResourceContextProvider>
+                </DataContextProvider>
+            </AuthContextProvider>
+            <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+        </QueryClientProvider>
     );
 };

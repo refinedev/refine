@@ -1,64 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 
-import { UserActions } from "@actions";
 import { Layout } from "@components";
-import { LoginPage } from "@pages";
-import { ILoginForm } from "@pages/login";
-import { useDispatch } from "react-redux";
+import { AuthContext } from "@contexts/auth";
+import { IAuthContext } from "@interfaces";
 
-export interface IAuthProps {
-    login?: (params: ILoginForm) => Promise<any>;
-    checkAuth?: () => Promise<any>;
-    userIdentity?: () => Promise<any>;
-    logout?: () => Promise<any>;
-}
+export const Auth: React.FC = ({ children }) => {
+    const { checkAuth } = useContext<IAuthContext>(AuthContext);
+    const history = useHistory();
 
-export const Auth: React.FC<IAuthProps> = ({
-    login,
-    checkAuth,
-    userIdentity,
-    logout,
-    children,
-}) => {
-    const [auth, setAuth] = React.useState(false);
-    const [loginError, setLoginError] = React.useState(false);
-
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     // check auth
-    checkAuth &&
-        checkAuth()
-            .then(() => setAuth(true))
-            .catch(() => setAuth(false));
-
-    if (!auth) {
-        const onSubmit = async (values: ILoginForm) => {
-            login &&
-                login(values)
-                    .then(() => {
-                        setAuth(true);
-                        setLoginError(false);
-                    })
-                    .catch(() => setLoginError(true));
-        };
-        return <LoginPage onSubmit={onSubmit} isLoginError={loginError} />;
-    }
+    checkAuth({}).catch(() => history.push("/login"));
 
     // set user identity
-    userIdentity &&
-        userIdentity().then((data) => {
-            dispatch(UserActions.setIdentity(data));
-        });
+    // userIdentity &&
+    //     userIdentity().then((data: any) => {
+    //         dispatch(UserActions.setIdentity(data));
+    //     });
 
-    return (
-        <Layout
-            menuOnClick={({ key }) => {
-                if (key === "logout") {
-                    logout && logout().then(() => setAuth(false));
-                }
-            }}
-        >
-            {children}
-        </Layout>
-    );
+    return <Layout>{children}</Layout>;
 };

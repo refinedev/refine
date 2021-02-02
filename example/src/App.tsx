@@ -1,9 +1,12 @@
 import React from "react";
+import { Admin, Resource, AuthProvider, JsonServer } from "readmin";
 
-import { Admin, Resource } from "readmin";
+import { PostCreate, PostList, PostEdit } from "./post";
+import { CategoryList, CategoryCreate, CategoryEdit } from "./category";
+import { UserList } from "./user";
 
 const App: React.FC = () => {
-    const authProvider = {
+    const authProvider: AuthProvider = {
         login: (params: any) => {
             if (params.username === "admin") {
                 localStorage.setItem("username", params.username);
@@ -21,7 +24,7 @@ const App: React.FC = () => {
             localStorage.getItem("username")
                 ? Promise.resolve()
                 : Promise.reject(),
-        // getPermissions: () => Promise.reject("Unknown method"),
+        getPermissions: () => Promise.reject("Unknown method"),
         userIdentity: () =>
             Promise.resolve({
                 id: 1,
@@ -32,9 +35,25 @@ const App: React.FC = () => {
     };
 
     return (
-        <Admin authProvider={authProvider}>
-            <Resource name="posts" />
-            <Resource name="users" />
+        <Admin
+            authProvider={authProvider}
+            dataProvider={JsonServer("https://readmin-fake-rest.pankod.com")}
+        >
+            <Resource
+                name="posts"
+                list={PostList}
+                create={PostCreate}
+                edit={PostEdit}
+                isDelete
+            />
+            <Resource
+                name="categories"
+                list={CategoryList}
+                create={CategoryCreate}
+                edit={CategoryEdit}
+                isDelete
+            />
+            <Resource name="users" list={UserList} />
         </Admin>
     );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
     Row,
     Col,
@@ -10,23 +10,31 @@ import {
     Button,
     Alert,
 } from "antd";
+import { useHistory } from "react-router-dom";
+
+import { AuthContext } from "@contexts/auth";
+import { IAuthContext } from "@interfaces";
+
 export interface ILoginForm {
     username: string;
     password: string;
 }
 
-export interface ILoginPageProps {
-    onSubmit?: ((values: ILoginForm) => void) | undefined;
-    isLoginError?: boolean;
-}
-
-export const LoginPage: React.FC<ILoginPageProps> = ({
-    isLoginError,
-    onSubmit,
-}) => {
+export const LoginPage: React.FC = () => {
     const { Title } = Typography;
 
     const [form] = Form.useForm();
+    const history = useHistory();
+
+    const [isError, setError] = React.useState(false);
+
+    const { login } = useContext<IAuthContext>(AuthContext);
+
+    const onSubmit = (values: ILoginForm) => {
+        login(values)
+            .then(() => history.push("/"))
+            .catch(() => setError(true));
+    };
 
     return (
         <Layout>
@@ -39,7 +47,7 @@ export const LoginPage: React.FC<ILoginPageProps> = ({
                 }}
             >
                 <Col xl={6} lg={8} md={12} sm={18} xs={22}>
-                    {isLoginError && (
+                    {isError && (
                         <Alert
                             type="error"
                             message="Login Error"
@@ -74,7 +82,11 @@ export const LoginPage: React.FC<ILoginPageProps> = ({
                             </Form.Item>
 
                             <Form.Item>
-                                <Button type="primary" htmlType="submit">
+                                <Button
+                                    type="primary"
+                                    size="large"
+                                    htmlType="submit"
+                                >
                                     Login
                                 </Button>
                             </Form.Item>

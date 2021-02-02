@@ -57,6 +57,24 @@
       "@interfaces": [
         "src/interfaces"
       ],
+      "@contexts/*": [
+        "src/contexts/*"
+      ],
+      "@contexts": [
+        "src/contexts"
+      ],
+      "@dataProviders/*": [
+        "src/dataProviders/*"
+      ],
+      "@dataProviders": [
+        "src/dataProviders"
+      ],
+      "@helpers/*": [
+        "src/helpers/*"
+      ],
+      "@helpers": [
+        "src/helpers"
+      ],
     }
   },
   "include": [
