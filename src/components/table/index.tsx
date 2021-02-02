@@ -15,7 +15,7 @@ export interface TableProps {
     loading?: boolean;
     pagination?: false | TablePaginationConfig;
     isEdit?: boolean;
-    isDelete?: boolean;
+    canDelete?: boolean;
     onConfirmDelete?: (id: any) => void;
 }
 
@@ -25,7 +25,7 @@ export const Table: React.FC<TableProps> = ({
     loading,
     pagination,
     isEdit,
-    isDelete,
+    canDelete,
     children,
 }) => {
     const history = useHistory();
@@ -84,7 +84,7 @@ export const Table: React.FC<TableProps> = ({
     };
 
     const renderActions = () => {
-        if (isEdit || isDelete) {
+        if (isEdit || canDelete) {
             return (
                 <Column
                     title="Actions"
@@ -103,10 +103,10 @@ export const Table: React.FC<TableProps> = ({
                                     size="small"
                                     icon={<EditOutlined />}
                                 >
-                                    Edit {isEdit} {isDelete}
+                                    Edit
                                 </Button>
                             )}
-                            {isDelete && renderDeleteButton(record.id)}
+                            {canDelete && renderDeleteButton(record.id)}
                         </Space>
                     )}
                 />

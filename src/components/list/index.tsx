@@ -14,14 +14,14 @@ export interface ListProps {
     resourceName?: string;
     isCreate?: boolean;
     isEdit?: boolean;
-    isDelete?: boolean;
+    canDelete?: boolean;
 }
 
 export const List: React.FC<ListProps> = ({
     resourceName,
     isCreate,
     isEdit,
-    isDelete,
+    canDelete,
     children,
 }) => {
     const { getList } = useContext<IDataContext>(DataContext);
@@ -76,7 +76,7 @@ export const List: React.FC<ListProps> = ({
                 loading: isFetching,
                 pagination,
                 isEdit,
-                isDelete,
+                canDelete,
             });
         }
         return child;

@@ -44,14 +44,14 @@ const App: React.FC = () => {
                 list={PostList}
                 create={PostCreate}
                 edit={PostEdit}
-                isDelete
+                canDelete
             />
             <Resource
                 name="categories"
                 list={CategoryList}
                 create={CategoryCreate}
                 edit={CategoryEdit}
-                isDelete
+                canDelete
             />
             <Resource name="users" list={UserList} />
         </Admin>
