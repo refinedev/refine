@@ -21,7 +21,13 @@ export const Admin: React.FC<AdminProps> = ({
     dataProvider,
     children,
 }) => {
-    const queryClient = new QueryClient();
+    const queryClient = new QueryClient({
+        defaultOptions: {
+            queries: {
+                refetchOnWindowFocus: false,
+            },
+        },
+    });
 
     const resources: string[] = [];
     React.Children.map(children, (child: any) => {

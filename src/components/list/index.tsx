@@ -46,7 +46,7 @@ export const List: React.FC<ListProps> = ({
     }
 
     const { data, isFetching } = useQuery<GetListResponse>(
-        [`resource/list/${resourceName}`, current],
+        [`resource/list/${resourceName}`, { current, pageSize }],
         () =>
             getList(resourceName, {
                 pagination: {
