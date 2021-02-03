@@ -9,6 +9,7 @@ import {
     FormItem,
     Input,
     Textarea,
+    Select,
 } from "readmin";
 
 export const PostList = (props: any) => {
@@ -28,6 +29,7 @@ export const PostList = (props: any) => {
                     //     </div>
                     // )}
                 />
+                <Column key="status" title="Status" dataIndex="status" />
             </Table>
         </List>
     );
@@ -49,6 +51,17 @@ export const PostCreate = (props: any) => {
                     <Input />
                 </FormItem>
                 <FormItem
+                    label="Url"
+                    name="slug"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </FormItem>
+                <FormItem
                     label="Content"
                     name="content"
                     rules={[
@@ -58,6 +71,29 @@ export const PostCreate = (props: any) => {
                     ]}
                 >
                     <Textarea />
+                </FormItem>
+                <FormItem
+                    label="Status"
+                    name="status"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select
+                        defaultValue="active"
+                        options={[
+                            {
+                                label: "Active",
+                                value: "active",
+                            },
+                            {
+                                label: "Draft",
+                                value: "draft",
+                            },
+                        ]}
+                    />
                 </FormItem>
             </Form>
         </Create>
@@ -80,6 +116,17 @@ export const PostEdit = (props: any) => {
                     <Input />
                 </FormItem>
                 <FormItem
+                    label="Url"
+                    name="slug"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </FormItem>
+                <FormItem
                     label="Content"
                     name="content"
                     rules={[
@@ -89,6 +136,29 @@ export const PostEdit = (props: any) => {
                     ]}
                 >
                     <Textarea />
+                </FormItem>
+                <FormItem
+                    label="Status"
+                    name="status"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select
+                        defaultValue="active"
+                        options={[
+                            {
+                                label: "Active",
+                                value: "active",
+                            },
+                            {
+                                label: "Draft",
+                                value: "draft",
+                            },
+                        ]}
+                    />
                 </FormItem>
             </Form>
         </Edit>

@@ -13,6 +13,7 @@ export {
     Input,
     Textarea,
     AutoComplete,
+    Select,
 } from "./components";
 
 export { IAuthContext as AuthProvider } from "./interfaces";
