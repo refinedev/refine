@@ -36,6 +36,7 @@ export interface IDataContext {
         resource: string,
         params: {
             pagination: Pagination;
+            search?: string;
         },
     ) => Promise<GetListResponse>;
     getOne: (resource: string, id: Identifier) => Promise<GetOneResponse>;

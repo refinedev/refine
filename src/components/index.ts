@@ -7,3 +7,5 @@ export { Edit } from "./edit";
 export { Form, FormItem } from "./form";
 export { TextInput, TextareaInput } from "./textInput";
 export { SelectInput } from "./selectInput";
+export { AutoComplete } from "./autocomplete";
+export { ReferenceInput } from "./referenceInput";

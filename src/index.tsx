@@ -13,6 +13,8 @@ export {
     TextInput,
     TextareaInput,
     SelectInput,
+    AutoComplete,
+    ReferenceInput,
 } from "./components";
 
 export { IAuthContext as AuthProvider } from "./interfaces";

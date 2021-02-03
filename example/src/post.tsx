@@ -10,6 +10,7 @@ import {
     TextInput,
     TextareaInput,
     SelectInput,
+    ReferenceInput,
 } from "readmin";
 
 export const PostList = (props: any) => {
@@ -19,15 +20,9 @@ export const PostList = (props: any) => {
                 <Column key="id" title="ID" dataIndex="id" />
                 <Column key="title" title="Title" dataIndex="title" />
                 <Column
-                    key="slug"
-                    title="Slug"
-                    dataIndex="slug"
-                    // render={(text: any, record: any) => (
-                    //     <div>
-                    //         <p>{text}</p>
-                    //         <p>{record.title}</p>
-                    //     </div>
-                    // )}
+                    key="categoryId"
+                    title="Category"
+                    dataIndex="categoryId"
                 />
                 <Column key="status" title="Status" dataIndex="status" />
             </Table>
@@ -95,6 +90,36 @@ export const PostCreate = (props: any) => {
                         ]}
                     />
                 </FormItem>
+                <FormItem
+                    label="Category"
+                    name="categoryId"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <ReferenceInput
+                        reference="categories"
+                        renderLabelColumn="title"
+                    />
+                </FormItem>
+                <FormItem
+                    label="User"
+                    name="userId"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                    help="Autocomplete (search user email)"
+                >
+                    <ReferenceInput
+                        showSearch
+                        reference="users"
+                        renderLabelColumn="email"
+                    />
+                </FormItem>
             </Form>
         </Create>
     );
@@ -158,6 +183,36 @@ export const PostEdit = (props: any) => {
                                 value: "draft",
                             },
                         ]}
+                    />
+                </FormItem>
+                <FormItem
+                    label="Category"
+                    name="categoryId"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <ReferenceInput
+                        reference="categories"
+                        renderLabelColumn="title"
+                    />
+                </FormItem>
+                <FormItem
+                    label="User"
+                    name="userId"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                    help="Autocomplete (search user email)"
+                >
+                    <ReferenceInput
+                        showSearch
+                        reference="users"
+                        renderLabelColumn="email"
                     />
                 </FormItem>
             </Form>
