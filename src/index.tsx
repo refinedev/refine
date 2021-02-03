@@ -12,6 +12,7 @@ export {
     Edit,
     Input,
     Textarea,
+    AutoComplete,
     Select,
 } from "./components";
 

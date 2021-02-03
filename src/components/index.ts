@@ -6,4 +6,5 @@ export { Create } from "./create";
 export { Edit } from "./edit";
 export { Form, FormItem } from "./form";
 export { Input, Textarea } from "./input";
+export { AutoComplete } from "./autocomplete";
 export { Select } from "./select";
