@@ -12,7 +12,7 @@ export {
     Edit,
     TextInput,
     TextareaInput,
-    Select,
+    SelectInput,
 } from "./components";
 
 export { IAuthContext as AuthProvider } from "./interfaces";

@@ -6,4 +6,4 @@ export { Create } from "./create";
 export { Edit } from "./edit";
 export { Form, FormItem } from "./form";
 export { TextInput, TextareaInput } from "./textInput";
-export { Select } from "./select";
+export { SelectInput } from "./selectInput";
