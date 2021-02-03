@@ -12,7 +12,7 @@ const JsonServer = (apiUrl: string): IDataContext => ({
         const query = {
             _start: (current - 1) * pageSize,
             _end: current * pageSize,
-            q: q,
+            q,
         };
 
         const { data, headers } = await axios.get<Record[]>(
