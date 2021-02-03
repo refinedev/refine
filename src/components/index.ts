@@ -5,5 +5,5 @@ export { Column } from "./column";
 export { Create } from "./create";
 export { Edit } from "./edit";
 export { Form, FormItem } from "./form";
-export { Input, Textarea } from "./input";
+export { TextInput, TextareaInput } from "./textInput";
 export { Select } from "./select";
