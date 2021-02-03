@@ -9,9 +9,14 @@ import { IDataContext } from "@interfaces";
 
 export interface CreateProps {
     resourceName?: string;
+    canEdit?: any;
 }
 
-export const Create: React.FC<CreateProps> = ({ resourceName, children }) => {
+export const Create: React.FC<CreateProps> = ({
+    resourceName,
+    canEdit,
+    children,
+}) => {
     const { create } = useContext<IDataContext>(DataContext);
     const history = useHistory();
 
@@ -24,7 +29,13 @@ export const Create: React.FC<CreateProps> = ({ resourceName, children }) => {
         ({ resourceName, values }: { resourceName: string; values: string }) =>
             create(resourceName, values),
         {
-            onSuccess: () => {
+            onSuccess: (data) => {
+                if (canEdit) {
+                    return history.push(
+                        `/resources/${resourceName}/edit/${data.data.id}`,
+                    );
+                }
+
                 return history.push(`/resources/${resourceName}`);
             },
         },

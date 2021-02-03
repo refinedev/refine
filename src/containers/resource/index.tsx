@@ -20,21 +20,21 @@ export const Resource: React.FC<ResourceProps> = ({
     const CreateComponent = create;
     const EditComponent = edit;
 
-    const isCreate = !!create;
-    const isEdit = !!edit;
+    const canCreate = !!create;
+    const canEdit = !!edit;
 
     return (
         <Switch>
             <Route exact path={`/resources/${name}`}>
                 <ListComponent
                     resourceName={name}
-                    isCreate={isCreate}
-                    isEdit={isEdit}
+                    canCreate={canCreate}
+                    canEdit={canEdit}
                     canDelete={canDelete}
                 />
             </Route>
             <Route exact path={`/resources/${name}/create`}>
-                <CreateComponent resourceName={name} />
+                <CreateComponent resourceName={name} canEdit={canEdit} />
             </Route>
             <Route exact path={`/resources/${name}/edit/:id`}>
                 <EditComponent resourceName={name} />
