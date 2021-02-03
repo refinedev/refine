@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useQuery } from "react-query";
 import { SelectProps } from "antd/lib/select";
 
-import { Select } from "@components";
+import { SelectInput } from "@components";
 import { DataContext } from "@contexts/data";
 import { GetListResponse, IDataContext } from "@interfaces";
 
@@ -58,7 +58,7 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
     };
 
     return (
-        <Select
+        <SelectInput
             optionFilterProp="label"
             showSearch={showSearch}
             onSearch={onSearch}
