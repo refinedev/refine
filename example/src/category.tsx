@@ -7,7 +7,7 @@ import {
     Edit,
     Form,
     FormItem,
-    Input,
+    TextInput,
 } from "readmin";
 
 export const CategoryList = (props: any) => {
@@ -34,7 +34,7 @@ export const CategoryCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <Input />
+                    <TextInput />
                 </FormItem>
             </Form>
         </Create>
@@ -54,7 +54,7 @@ export const CategoryEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <Input />
+                    <TextInput />
                 </FormItem>
             </Form>
         </Edit>

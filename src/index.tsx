@@ -10,10 +10,10 @@ export {
     FormItem,
     Create,
     Edit,
-    Input,
-    Textarea,
-    AutoComplete,
-    Select,
+    TextInput,
+    TextareaInput,
+    SelectInput,
+    AutoCompleteInput,
     ReferenceInput,
 } from "./components";
 

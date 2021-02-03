@@ -7,9 +7,9 @@ import {
     Edit,
     Form,
     FormItem,
-    Input,
-    Textarea,
-    Select,
+    TextInput,
+    TextareaInput,
+    SelectInput,
     ReferenceInput,
 } from "readmin";
 
@@ -43,7 +43,7 @@ export const PostCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <Input />
+                    <TextInput />
                 </FormItem>
                 <FormItem
                     label="Url"
@@ -54,7 +54,7 @@ export const PostCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <Input />
+                    <TextInput />
                 </FormItem>
                 <FormItem
                     label="Content"
@@ -65,7 +65,7 @@ export const PostCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <Textarea />
+                    <TextareaInput />
                 </FormItem>
                 <FormItem
                     label="Status"
@@ -76,7 +76,8 @@ export const PostCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <Select
+                    <SelectInput
+                        defaultValue="active"
                         options={[
                             {
                                 label: "Active",
@@ -137,7 +138,7 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <Input />
+                    <TextInput />
                 </FormItem>
                 <FormItem
                     label="Url"
@@ -148,7 +149,7 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <Input />
+                    <TextInput />
                 </FormItem>
                 <FormItem
                     label="Content"
@@ -159,7 +160,7 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <Textarea />
+                    <TextareaInput />
                 </FormItem>
                 <FormItem
                     label="Status"
@@ -170,7 +171,7 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <Select
+                    <SelectInput
                         defaultValue="active"
                         options={[
                             {
