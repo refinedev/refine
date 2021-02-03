@@ -13,7 +13,7 @@ export {
     TextInput,
     TextareaInput,
     SelectInput,
-    AutoComplete,
+    AutoCompleteInput,
     ReferenceInput,
 } from "./components";
 
