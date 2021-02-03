@@ -12,15 +12,15 @@ import { GetListResponse, IDataContext } from "@interfaces";
 
 export interface ListProps {
     resourceName?: string;
-    isCreate?: boolean;
-    isEdit?: boolean;
+    canCreate?: boolean;
+    canEdit?: boolean;
     canDelete?: boolean;
 }
 
 export const List: React.FC<ListProps> = ({
     resourceName,
-    isCreate,
-    isEdit,
+    canCreate,
+    canEdit,
     canDelete,
     children,
 }) => {
@@ -75,7 +75,7 @@ export const List: React.FC<ListProps> = ({
                 dataSource: data?.data,
                 loading: isFetching,
                 pagination,
-                isEdit,
+                canEdit,
                 canDelete,
             });
         }
@@ -87,7 +87,7 @@ export const List: React.FC<ListProps> = ({
             bodyStyle={{ padding: 0 }}
             title={humanizeString(resourceName)}
             extra={
-                isCreate && (
+                canCreate && (
                     <Button
                         onClick={() =>
                             history.push(`/resources/${resourceName}/create`)
