@@ -7,3 +7,4 @@ export { Edit } from "./edit";
 export { Form, FormItem } from "./form";
 export { Input, Textarea } from "./input";
 export { Select } from "./select";
+export { ReferenceInput } from "./referenceInput";
