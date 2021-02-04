@@ -101,7 +101,7 @@ export const PostCreate = (props: any) => {
                 >
                     <ReferenceInput
                         reference="categories"
-                        renderLabelColumn="title"
+                        optionText="title"
                         sort={{
                             field: "title",
                             order: "asc",
@@ -121,7 +121,7 @@ export const PostCreate = (props: any) => {
                     <ReferenceInput
                         showSearch
                         reference="users"
-                        renderLabelColumn="email"
+                        optionText="email"
                         sort={{
                             field: "email",
                             order: "asc",
