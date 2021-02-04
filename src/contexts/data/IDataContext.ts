@@ -43,6 +43,7 @@ export interface IDataContext {
             pagination?: Pagination;
             search?: string;
             sort?: Sort;
+            filter?: any;
         },
     ) => Promise<GetListResponse>;
     getOne: (resource: string, id: Identifier) => Promise<GetOneResponse>;

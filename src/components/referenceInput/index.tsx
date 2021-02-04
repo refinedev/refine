@@ -12,6 +12,7 @@ export interface ReferenceInputProps {
     optionValue?: string;
     pageSize?: number;
     sort?: Sort;
+    filter?: { [k: string]: any };
 }
 
 interface Option {
@@ -27,6 +28,7 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
     optionValue = "id",
     pageSize = 25,
     sort,
+    filter,
     children,
 }) => {
     const [search, setSearch] = React.useState<string | undefined>();
@@ -42,6 +44,7 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
                 },
                 search,
                 sort,
+                filter,
             }),
         {
             onSuccess: (data) => {
