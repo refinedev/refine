@@ -106,7 +106,9 @@ export const PostCreate = (props: any) => {
                             field: "title",
                             order: "asc",
                         }}
-                    />
+                    >
+                        <SelectInput />
+                    </ReferenceInput>
                 </FormItem>
                 <FormItem
                     label="User"
@@ -119,17 +121,15 @@ export const PostCreate = (props: any) => {
                     help="Autocomplete (search user email)"
                 >
                     <ReferenceInput
-                        showSearch
                         reference="users"
                         optionText="email"
                         sort={{
                             field: "email",
                             order: "asc",
                         }}
-                        filter={{
-                            status: true,
-                        }}
-                    />
+                    >
+                        <SelectInput showSearch />
+                    </ReferenceInput>
                 </FormItem>
             </Form>
         </Create>
@@ -205,7 +205,9 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <ReferenceInput reference="categories" optionText="title" />
+                    <ReferenceInput reference="categories" optionText="title">
+                        <SelectInput />
+                    </ReferenceInput>
                 </FormItem>
                 <FormItem
                     label="User"
@@ -217,11 +219,9 @@ export const PostEdit = (props: any) => {
                     ]}
                     help="Autocomplete (search user email)"
                 >
-                    <ReferenceInput
-                        showSearch
-                        reference="users"
-                        optionText="email"
-                    />
+                    <ReferenceInput reference="users" optionText="email">
+                        <SelectInput showSearch />
+                    </ReferenceInput>
                 </FormItem>
             </Form>
         </Edit>
