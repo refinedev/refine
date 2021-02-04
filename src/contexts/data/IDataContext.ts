@@ -6,8 +6,13 @@ export interface Record {
 }
 
 export interface Pagination {
-    current: number;
-    pageSize: number;
+    current?: number;
+    pageSize?: number;
+}
+
+export interface Sort {
+    field?: string;
+    order?: string;
 }
 
 export interface GetListResponse {
@@ -35,8 +40,9 @@ export interface IDataContext {
     getList: (
         resource: string,
         params: {
-            pagination: Pagination;
+            pagination?: Pagination;
             search?: string;
+            sort?: Sort;
         },
     ) => Promise<GetListResponse>;
     getOne: (resource: string, id: Identifier) => Promise<GetOneResponse>;

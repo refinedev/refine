@@ -102,6 +102,10 @@ export const PostCreate = (props: any) => {
                     <ReferenceInput
                         reference="categories"
                         renderLabelColumn="title"
+                        sort={{
+                            field: "title",
+                            order: "asc",
+                        }}
                     />
                 </FormItem>
                 <FormItem
@@ -118,6 +122,10 @@ export const PostCreate = (props: any) => {
                         showSearch
                         reference="users"
                         renderLabelColumn="email"
+                        sort={{
+                            field: "email",
+                            order: "asc",
+                        }}
                     />
                 </FormItem>
             </Form>

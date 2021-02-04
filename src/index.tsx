@@ -17,5 +17,5 @@ export {
     ReferenceInput,
 } from "./components";
 
-export { IAuthContext as AuthProvider } from "./interfaces";
+export { IAuthContext as AuthProvider, Sort, Pagination } from "./interfaces";
 export { IDataContext as DataProvider } from "./interfaces";

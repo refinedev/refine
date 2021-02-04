@@ -4,12 +4,13 @@ import { SelectProps } from "antd/lib/select";
 
 import { SelectInput } from "@components";
 import { DataContext } from "@contexts/data";
-import { GetListResponse, IDataContext } from "@interfaces";
+import { GetListResponse, IDataContext, Sort } from "@interfaces";
 
 export interface ReferenceInputProps extends SelectProps<any> {
     reference: string;
     renderLabelColumn: string; //TODO: We need better :)
     pageSize?: number;
+    sort?: Sort;
 }
 
 interface Option {
@@ -22,7 +23,8 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
     reference,
     renderLabelColumn,
     showSearch,
-    pageSize,
+    pageSize = 25,
+    sort,
     ...rest
 }) => {
     const [search, setSearch] = React.useState<string | undefined>();
@@ -34,10 +36,10 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
         () =>
             getList(reference, {
                 pagination: {
-                    current: 1,
-                    pageSize: pageSize || 25,
+                    pageSize,
                 },
                 search,
+                sort,
             }),
         {
             onSuccess: (data) => {
