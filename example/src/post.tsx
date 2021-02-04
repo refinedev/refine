@@ -126,6 +126,9 @@ export const PostCreate = (props: any) => {
                             field: "email",
                             order: "asc",
                         }}
+                        filter={{
+                            status: true,
+                        }}
                     />
                 </FormItem>
             </Form>
