@@ -8,7 +8,8 @@ import { GetListResponse, IDataContext, Sort } from "@interfaces";
 
 export interface ReferenceInputProps extends SelectProps<any> {
     reference: string;
-    renderLabelColumn: string; //TODO: We need better :)
+    optionText?: string;
+    optionValue?: string;
     pageSize?: number;
     sort?: Sort;
 }
@@ -21,7 +22,8 @@ interface Option {
 
 export const ReferenceInput: React.FC<ReferenceInputProps> = ({
     reference,
-    renderLabelColumn,
+    optionText = "name",
+    optionValue = "id",
     showSearch,
     pageSize = 25,
     sort,
@@ -44,9 +46,9 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
         {
             onSuccess: (data) => {
                 const options: Option[] = data.data.map((item) => ({
-                    label: item[renderLabelColumn],
-                    value: item.id,
-                    key: item[renderLabelColumn],
+                    label: item[optionText],
+                    value: item[optionValue],
+                    key: item[optionValue],
                 }));
 
                 setOptions(options);

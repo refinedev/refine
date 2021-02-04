@@ -202,10 +202,7 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <ReferenceInput
-                        reference="categories"
-                        renderLabelColumn="title"
-                    />
+                    <ReferenceInput reference="categories" optionText="title" />
                 </FormItem>
                 <FormItem
                     label="User"
@@ -220,7 +217,7 @@ export const PostEdit = (props: any) => {
                     <ReferenceInput
                         showSearch
                         reference="users"
-                        renderLabelColumn="email"
+                        optionText="email"
                     />
                 </FormItem>
             </Form>
