@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { useQuery } from "react-query";
-import { SelectProps } from "antd/lib/select";
 
-import { SelectInput } from "@components";
 import { DataContext } from "@contexts/data";
 import { GetListResponse, IDataContext, Sort } from "@interfaces";
 
-export interface ReferenceInputProps extends SelectProps<any> {
+export interface ReferenceInputProps {
     reference: string;
+    onChange?: (value: string | number) => void;
+    value?: string | number;
     optionText?: string;
     optionValue?: string;
     pageSize?: number;
@@ -17,17 +17,17 @@ export interface ReferenceInputProps extends SelectProps<any> {
 interface Option {
     label: string;
     value: any;
-    key: any;
 }
 
 export const ReferenceInput: React.FC<ReferenceInputProps> = ({
     reference,
+    onChange,
+    value,
     optionText = "name",
     optionValue = "id",
-    showSearch,
     pageSize = 25,
     sort,
-    ...rest
+    children,
 }) => {
     const [search, setSearch] = React.useState<string | undefined>();
     const [options, setOptions] = React.useState<Option[]>();
@@ -48,7 +48,6 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
                 const options: Option[] = data.data.map((item) => ({
                     label: item[optionText],
                     value: item[optionValue],
-                    key: item[optionValue],
                 }));
 
                 setOptions(options);
@@ -61,14 +60,19 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
         refetch();
     };
 
-    return (
-        <SelectInput
-            optionFilterProp="label"
-            showSearch={showSearch}
-            onSearch={onSearch}
-            loading={isLoading}
-            options={options}
-            {...rest}
-        />
-    );
+    const childrenWithProps = React.Children.map(children, (child) => {
+        // checking isValidElement is the safe way and avoids a typescript error too
+        if (React.isValidElement(child)) {
+            return React.cloneElement(child, {
+                onChange,
+                onSearch,
+                value,
+                options,
+                loading: isLoading,
+            });
+        }
+        return child;
+    });
+
+    return <React.Fragment>{childrenWithProps}</React.Fragment>;
 };
