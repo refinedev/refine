@@ -12,7 +12,7 @@ export interface ReferenceInputProps extends SelectProps<any> {
     optionValue?: string;
     pageSize?: number;
     sort?: Sort;
-    filter?: any;
+    filter?: [k: string]: any;
 }
 
 interface Option {
