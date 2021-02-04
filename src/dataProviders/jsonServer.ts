@@ -18,7 +18,11 @@ const JsonServer = (apiUrl: string): IDataContext => ({
         const field = params.sort?.field || "id";
         const order = params.sort?.order || "DESC";
 
+        // filter
+        const filter = params.filter;
+
         const query = {
+            ...filter,
             _start: (current - 1) * pageSize,
             _end: current * pageSize,
             _sort: field,
