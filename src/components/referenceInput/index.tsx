@@ -8,7 +8,8 @@ import { GetListResponse, IDataContext } from "@interfaces";
 
 export interface ReferenceInputProps extends SelectProps<any> {
     reference: string;
-    renderLabelColumn: string; //TODO: We need better :)
+    optionText?: string;
+    optionValue?: string;
     pageSize?: number;
 }
 
@@ -20,9 +21,10 @@ interface Option {
 
 export const ReferenceInput: React.FC<ReferenceInputProps> = ({
     reference,
-    renderLabelColumn,
+    optionText = "name",
+    optionValue = "id",
     showSearch,
-    pageSize,
+    pageSize = 25,
     ...rest
 }) => {
     const [search, setSearch] = React.useState<string | undefined>();
@@ -35,16 +37,16 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
             getList(reference, {
                 pagination: {
                     current: 1,
-                    pageSize: pageSize || 25,
+                    pageSize: pageSize,
                 },
                 search,
             }),
         {
             onSuccess: (data) => {
                 const options: Option[] = data.data.map((item) => ({
-                    label: item[renderLabelColumn],
-                    value: item.id,
-                    key: item[renderLabelColumn],
+                    label: item[optionText],
+                    value: item[optionValue],
+                    key: item[optionValue],
                 }));
 
                 setOptions(options);
