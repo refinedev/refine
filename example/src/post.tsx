@@ -131,6 +131,19 @@ export const PostCreate = (props: any) => {
                         <SelectInput showSearch />
                     </ReferenceInput>
                 </FormItem>
+                <FormItem
+                    label="Tags"
+                    name="tags"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <ReferenceInput reference="tags" optionText="title">
+                        <SelectInput mode="multiple" />
+                    </ReferenceInput>
+                </FormItem>
             </Form>
         </Create>
     );
@@ -205,8 +218,15 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <ReferenceInput reference="categories" optionText="title">
-                        <SelectInput />
+                    <ReferenceInput
+                        reference="categories"
+                        optionText="title"
+                        sort={{
+                            field: "title",
+                            order: "asc",
+                        }}
+                    >
+                        <SelectInput showSearch />
                     </ReferenceInput>
                 </FormItem>
                 <FormItem
@@ -221,6 +241,19 @@ export const PostEdit = (props: any) => {
                 >
                     <ReferenceInput reference="users" optionText="email">
                         <SelectInput showSearch />
+                    </ReferenceInput>
+                </FormItem>
+                <FormItem
+                    label="Tags"
+                    name="tags"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <ReferenceInput reference="tags" optionText="title">
+                        <SelectInput mode="multiple" />
                     </ReferenceInput>
                 </FormItem>
             </Form>

@@ -4,6 +4,7 @@ import { Admin, Resource, AuthProvider, JsonServer } from "readmin";
 import { PostCreate, PostList, PostEdit } from "./post";
 import { CategoryList, CategoryCreate } from "./category";
 import { UserList } from "./user";
+import { TagList, TagCreate, TagEdit } from "./tag";
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
@@ -53,6 +54,13 @@ const App: React.FC = () => {
                 canDelete
             />
             <Resource name="users" list={UserList} />
+            <Resource
+                name="tags"
+                list={TagList}
+                edit={TagEdit}
+                create={TagCreate}
+                canDelete
+            />
         </Admin>
     );
 };
