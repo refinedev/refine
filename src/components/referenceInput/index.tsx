@@ -26,7 +26,7 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
     value,
     optionText = "name",
     optionValue = "id",
-    pageSize = 25,
+    pageSize = 999,
     sort,
     filter,
     children,
