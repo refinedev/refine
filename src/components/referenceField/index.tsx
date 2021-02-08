@@ -6,15 +6,13 @@ import { GetOneResponse, IDataContext } from "@interfaces";
 
 export interface ReferenceFieldProps {
     resource: string;
-    optionText?: string;
     value: string | number;
-    record?: any;
 }
 
 export const ReferenceField: React.FC<ReferenceFieldProps> = ({
     resource,
-    optionText = "title",
     value,
+    children,
 }) => {
     const { getOne } = useContext<IDataContext>(DataContext);
 
@@ -28,5 +26,14 @@ export const ReferenceField: React.FC<ReferenceFieldProps> = ({
         return <span>loading</span>;
     }
 
-    return <span>{data?.data[optionText]}</span>;
+    const childrenWithProps = React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+            return React.cloneElement(child, {
+                record: data?.data,
+            });
+        }
+        return child;
+    });
+
+    return <React.Fragment>{childrenWithProps}</React.Fragment>;
 };

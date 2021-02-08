@@ -18,6 +18,7 @@ export {
     RadioGroupInput,
     AutoCompleteInput,
     ReferenceInput,
+    TextField,
 } from "./components";
 
 export { IAuthContext as AuthProvider, Sort, Pagination } from "./interfaces";
