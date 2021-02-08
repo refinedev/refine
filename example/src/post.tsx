@@ -11,6 +11,7 @@ import {
     TextareaInput,
     SelectInput,
     ReferenceInput,
+    ReferenceField,
 } from "readmin";
 
 export const PostList = (props: any) => {
@@ -23,6 +24,15 @@ export const PostList = (props: any) => {
                     key="categoryId"
                     title="Category"
                     dataIndex="categoryId"
+                    render={(value) => {
+                        return (
+                            <ReferenceField
+                                value={value}
+                                resource="categories"
+                                optionText="title"
+                            />
+                        );
+                    }}
                 />
                 <Column key="status" title="Status" dataIndex="status" />
             </Table>

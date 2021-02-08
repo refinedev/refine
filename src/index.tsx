@@ -5,6 +5,7 @@ export { Admin, Resource } from "./containers";
 export {
     List,
     Column,
+    ReferenceField,
     Table,
     Form,
     FormItem,
