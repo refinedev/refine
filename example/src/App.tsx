@@ -26,7 +26,7 @@ const App: React.FC = () => {
                 ? Promise.resolve()
                 : Promise.reject(),
         getPermissions: () => Promise.resolve(["admin"]),
-        userIdentity: () =>
+        getUserIdentity: () =>
             Promise.resolve({
                 id: 1,
                 fullName: "Jane Doe",

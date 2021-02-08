@@ -4,7 +4,7 @@ export interface IAuthContext {
     checkAuth: (params: any) => Promise<void>;
     checkError: (error: any) => Promise<void>;
     getPermissions: (params: any) => Promise<any>;
-    getIdentity?: () => Promise<{
+    getUserIdentity?: () => Promise<{
         id: string | number;
         fullName?: string;
         avatar?: string;
