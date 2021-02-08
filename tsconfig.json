@@ -75,6 +75,12 @@
       "@helpers": [
         "src/helpers"
       ],
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
+      "@hooks": [
+        "src/hooks"
+      ],
     }
   },
   "include": [
