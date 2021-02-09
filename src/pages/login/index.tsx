@@ -1,17 +1,8 @@
 import React, { useContext } from "react";
-import {
-    Row,
-    Col,
-    Layout,
-    Card,
-    Typography,
-    Form,
-    Input,
-    Button,
-    Alert,
-} from "antd";
+import { Row, Col, Layout, Card, Typography, Form, Input, Button } from "antd";
 import { useHistory } from "react-router-dom";
 
+import { useNotification } from "@hooks";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "@interfaces";
 
@@ -25,15 +16,19 @@ export const LoginPage: React.FC = () => {
 
     const [form] = Form.useForm();
     const history = useHistory();
-
-    const [isError, setError] = React.useState(false);
+    const notification = useNotification();
 
     const { login } = useContext<IAuthContext>(AuthContext);
 
     const onSubmit = (values: ILoginForm) => {
         login(values)
             .then(() => history.push("/"))
-            .catch(() => setError(true));
+            .catch(() => {
+                notification["error"]({
+                    message: "Login Error",
+                    description: "Invalid username or password",
+                });
+            });
     };
 
     return (
@@ -47,15 +42,6 @@ export const LoginPage: React.FC = () => {
                 }}
             >
                 <Col xl={6} lg={8} md={12} sm={18} xs={22}>
-                    {isError && (
-                        <Alert
-                            type="error"
-                            message="Login Error"
-                            description="Invalid username or password"
-                            style={{ marginBottom: 20 }}
-                        />
-                    )}
-
                     <Card>
                         <Title level={2} style={{ textAlign: "center" }}>
                             Login
