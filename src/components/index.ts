@@ -1,15 +1,6 @@
+export * from "./fields";
+export * from "./inputs";
+export * from "./table";
+
 export { Layout } from "./layout";
-export { List } from "./list";
-export { Table } from "./table";
-export { Column } from "./column";
-export { ReferenceField } from "./referenceField";
-export { TextField } from "./textField";
-export { Create } from "./create";
-export { Edit } from "./edit";
-export { Form, FormItem } from "./form";
-export { TextInput, TextareaInput } from "./textInput";
-export { SelectInput } from "./selectInput";
-export { RadioInput, RadioGroupInput } from "./radioInput";
-export { AutoCompleteInput } from "./autocompleteInput";
-export { ReferenceInput } from "./referenceInput";
 export { Authenticated } from "./authenticated";

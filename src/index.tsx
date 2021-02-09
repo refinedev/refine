@@ -2,25 +2,13 @@ import JsonServer from "./dataProviders/jsonServer";
 
 export { JsonServer };
 export { Admin, Resource } from "./containers";
-export {
-    List,
-    Column,
-    ReferenceField,
-    Table,
-    Form,
-    FormItem,
-    Create,
-    Edit,
-    TextInput,
-    TextareaInput,
-    SelectInput,
-    RadioInput,
-    RadioGroupInput,
-    AutoCompleteInput,
-    ReferenceInput,
-    TextField,
-    Authenticated,
-} from "./components";
+
+export * from "./components/inputs";
+export * from "./components/fields";
+export * from "./components/table";
+export * from "./components/crud";
+
+export { Layout, Authenticated } from "./components";
 
 export * from "./hooks";
 
