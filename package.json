@@ -71,6 +71,7 @@
   ],
   "dependencies": {
     "@ant-design/icons": "^4.4.0",
+    "@types/query-string": "^6.3.0",
     "antd": "^4.10.3",
     "axios": "^0.21.1",
     "humanize-string": "^2.1.0",

@@ -6,5 +6,5 @@ export interface TextFieldProps {
 }
 
 export const TextField: React.FC<TextFieldProps> = ({ record, source }) => {
-    return <span>{record[source]}</span>;
+    return <span>{record?.[source]}</span>;
 };

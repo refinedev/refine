@@ -1,18 +1,15 @@
-import React, { useContext } from "react";
-import { useMutation, useQuery } from "react-query";
+import React from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { Form, Card } from "antd";
 import pluralize from "pluralize";
 
-import { DataContext } from "@contexts/data";
-import { GetOneResponse, IDataContext } from "@interfaces";
+import { useOne, useUpdate } from "@hooks";
 
 export interface EditProps {
     resourceName?: string;
 }
 
 export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
-    const { update, getOne } = useContext<IDataContext>(DataContext);
     const history = useHistory();
     const { id } = useParams<Record<string, string | undefined>>();
 
@@ -23,10 +20,7 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
         return <span>params error</span>;
     }
 
-    const { data } = useQuery<GetOneResponse>(
-        `resource/getOne/${resourceName}`,
-        () => getOne(resourceName, id),
-    );
+    const { data } = useOne(resourceName, id);
 
     // TODO: handle isError state
 
@@ -34,18 +28,17 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
         ...data?.data,
     });
 
-    const mutation = useMutation(
-        ({ resourceName, values }: { resourceName: string; values: string }) =>
-            update(resourceName, id, values),
-        {
-            onSuccess: () => {
-                return history.push(`/resources/${resourceName}`);
-            },
-        },
-    );
+    const { mutate, error, isLoading } = useUpdate(resourceName);
 
     const onFinish = async (values: any) => {
-        mutation.mutate({ resourceName, values });
+        mutate(
+            { id, values },
+            {
+                onSuccess: () => {
+                    return history.push(`/resources/${resourceName}`);
+                },
+            },
+        );
     };
 
     const childrenWithProps = React.Children.map(children, (child) => {
@@ -54,8 +47,8 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
                 resourceName,
                 form,
                 onFinish,
-                error: mutation.error,
-                isLoading: mutation.isLoading,
+                error: error,
+                isLoading: isLoading,
             });
         }
         return child;
