@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { Form, Card } from "antd";
 import pluralize from "pluralize";
 
-import { useOne, useUpdate } from "@hooks/data";
+import { useOne, useUpdate } from "@hooks";
 
 export interface EditProps {
     resourceName?: string;

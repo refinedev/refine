@@ -6,8 +6,8 @@ import { PlusSquareOutlined } from "@ant-design/icons";
 import humanizeString from "humanize-string";
 
 import { TableProps } from "@components/table";
-import { useSearchParams } from "@hooks";
-import { useList } from "@hooks/data";
+import { useSearchParams } from "@hooks/util";
+import { useList } from "@hooks";
 
 export interface ListProps {
     resourceName?: string;

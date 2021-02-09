@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Card } from "antd";
 import pluralize from "pluralize";
 
-import { useCreate } from "@hooks/data";
+import { useCreate } from "@hooks";
 
 export interface CreateProps {
     resourceName?: string;

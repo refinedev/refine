@@ -6,7 +6,7 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 import { Column } from "@components";
 import { Record } from "@interfaces";
-import { useDelete } from "@hooks/data";
+import { useDelete } from "@hooks";
 
 export interface TableProps {
     resourceName?: string;
