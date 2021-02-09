@@ -6,7 +6,7 @@ import {
     UnorderedListOutlined,
 } from "@ant-design/icons";
 import { MenuClickEventHandler } from "rc-menu/lib/interface";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import humanizeString from "humanize-string";
 
 import { AuthContext } from "@contexts/auth";
@@ -19,6 +19,15 @@ export const Layout: React.FC = ({ children }) => {
     const history = useHistory();
     const { logout } = useContext<IAuthContext>(AuthContext);
     const { resources } = useContext<IResourceContext>(ResourceContext);
+
+    const location = useLocation();
+
+    const selectedKey = React.useMemo(() => {
+        const selectedResource = resources.find((el) =>
+            location.pathname.startsWith(`/resources/${el}`),
+        );
+        return `/resources/${selectedResource ?? ""}`;
+    }, [location]);
 
     const menuOnClick: MenuClickEventHandler = ({ key }) => {
         console.log(`clicked -> ${key}`);
@@ -51,6 +60,7 @@ export const Layout: React.FC = ({ children }) => {
                     onClick={menuOnClick}
                     theme="dark"
                     defaultSelectedKeys={["dashboard"]}
+                    selectedKeys={[selectedKey]}
                     mode="inline"
                 >
                     <Menu.Item key={`dashboard`} icon={<DashboardOutlined />}>
@@ -59,7 +69,7 @@ export const Layout: React.FC = ({ children }) => {
 
                     {resources.map((item) => (
                         <Menu.Item
-                            key={`resource-${item}`}
+                            key={`/resources/${item}`}
                             icon={<UnorderedListOutlined />}
                         >
                             <Link to={`/resources/${item}`}>
