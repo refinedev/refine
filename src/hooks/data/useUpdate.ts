@@ -15,6 +15,10 @@ type UseUpdateReturnType = UseMutationResult<
 export const useUpdate = (resource: string): UseUpdateReturnType => {
     const { update } = useContext<IDataContext>(DataContext);
 
+    if (!resource) {
+        throw new Error("'resource' is required for useUpdate hook.");
+    }
+
     const mutation = useMutation(
         ({ id, values }: { id: string; values: string }) =>
             update(resource, id, values),

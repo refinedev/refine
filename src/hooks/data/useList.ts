@@ -11,6 +11,10 @@ export const useList = (
 ): QueryObserverResult<GetListResponse, unknown> => {
     const { getList } = useContext<IDataContext>(DataContext);
 
+    if (!resource) {
+        throw new Error("'resource' is required for useList hook.");
+    }
+
     const queryResponse = useQuery<GetListResponse>(
         [`resource/list/${resource}`, { current, pageSize }],
         () =>

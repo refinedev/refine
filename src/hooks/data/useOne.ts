@@ -12,7 +12,7 @@ export const useOne = (
 
     if (!resource || !id) {
         throw new Error(
-            `Resource and ID is required. You provided resource: ${resource}, id: ${id}`,
+            `'resource' and 'id' is required. You provided resource: ${resource}, id: ${id}`,
         );
     }
 
