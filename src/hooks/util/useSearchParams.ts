@@ -1,14 +1,9 @@
-import React from "react";
+import { useLocation } from "react-router-dom";
 
 export const useSearchParams = (): Record<string, string> => {
-    const [searchParams] = React.useState(
-        new URLSearchParams(
-            (typeof window !== "undefined"
-                ? window
-                : undefined
-            )?.location.search,
-        ),
-    );
+    const { search } = useLocation();
+
+    const searchParams = new URLSearchParams(search);
 
     const parsed = {};
 
