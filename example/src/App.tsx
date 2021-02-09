@@ -25,8 +25,8 @@ const App: React.FC = () => {
             localStorage.getItem("username")
                 ? Promise.resolve()
                 : Promise.reject(),
-        getPermissions: () => Promise.reject("Unknown method"),
-        userIdentity: () =>
+        getPermissions: () => Promise.resolve(["admin"]),
+        getUserIdentity: () =>
             Promise.resolve({
                 id: 1,
                 fullName: "Jane Doe",
