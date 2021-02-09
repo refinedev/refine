@@ -1,14 +1,13 @@
-import React, { useContext } from "react";
-import { useQuery } from "react-query";
-import { useHistory, useLocation } from "react-router-dom";
+import React from "react";
+import { useHistory } from "react-router-dom";
 import { Button, Row, Card } from "antd";
 import { TablePaginationConfig } from "antd/lib/table";
 import { PlusSquareOutlined } from "@ant-design/icons";
 import humanizeString from "humanize-string";
 
-import { DataContext } from "@contexts/data";
 import { TableProps } from "@components/table";
-import { GetListResponse, IDataContext } from "@interfaces";
+import { useSearchParams } from "@hooks";
+import { useList } from "@hooks/data";
 
 export interface ListProps {
     resourceName?: string;
@@ -24,8 +23,7 @@ export const List: React.FC<ListProps> = ({
     canDelete,
     children,
 }) => {
-    const { getList } = useContext<IDataContext>(DataContext);
-    const queryParams = new URLSearchParams(useLocation().search);
+    const queryParams = useSearchParams();
     const history = useHistory();
 
     if (!resourceName) {
@@ -34,30 +32,18 @@ export const List: React.FC<ListProps> = ({
     }
 
     let current = 1;
-    const queryParamCurrent = queryParams.get("current");
+    const queryParamCurrent = queryParams.current;
     if (queryParamCurrent) {
         current = +queryParamCurrent;
     }
 
     let pageSize = 10;
-    const queryParamPageSize = queryParams.get("pageSize");
+    const queryParamPageSize = queryParams.pageSize;
     if (queryParamPageSize) {
         pageSize = +queryParamPageSize;
     }
 
-    const { data, isFetching } = useQuery<GetListResponse>(
-        [`resource/list/${resourceName}`, { current, pageSize }],
-        () =>
-            getList(resourceName, {
-                pagination: {
-                    current,
-                    pageSize,
-                },
-            }),
-        {
-            keepPreviousData: true,
-        },
-    );
+    const { data, isFetching } = useList(resourceName, current, pageSize);
 
     const pagination: TablePaginationConfig = {
         total: data?.total,
