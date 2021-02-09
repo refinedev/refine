@@ -13,7 +13,7 @@ import { IAuthContext } from "@interfaces";
  * return <button onClick={handleClick}>Logout</button>;
  */
 
-export const useLogout = (redirectPath: "/login") => {
+export const useLogout = (redirectPath = "/login") => {
     const history = useHistory();
     const authContext = React.useContext<IAuthContext>(AuthContext);
 

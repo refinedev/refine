@@ -19,6 +19,7 @@ export {
     AutoCompleteInput,
     ReferenceInput,
     TextField,
+    Authenticated,
 } from "./components";
 
 export * from "./hooks";
