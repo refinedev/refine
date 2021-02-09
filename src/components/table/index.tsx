@@ -1,13 +1,12 @@
-import React, { useContext } from "react";
-import { useMutation, useQueryClient } from "react-query";
+import React from "react";
 import { Table as AntdTable, Button, Space, Popconfirm } from "antd";
 import { TablePaginationConfig } from "antd/lib/table";
 import { useHistory } from "react-router-dom";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 import { Column } from "@components";
-import { DataContext } from "@contexts/data";
-import { Record, IDataContext } from "@interfaces";
+import { Record } from "@interfaces";
+import { useDelete } from "@hooks/data";
 
 export interface TableProps {
     resourceName?: string;
@@ -29,25 +28,13 @@ export const Table: React.FC<TableProps> = ({
     children,
 }) => {
     const history = useHistory();
-    const { deleteOne } = useContext<IDataContext>(DataContext);
 
     if (!resourceName) {
         // TODO: render resource error page
         return <span>params error</span>;
     }
 
-    const queryClient = useQueryClient();
-
-    const mutation = useMutation(
-        ({ resourceName, id }: { resourceName: string; id: string | number }) =>
-            deleteOne(resourceName, id),
-        {
-            onSuccess: () => {
-                // invalidate resource list query
-                queryClient.invalidateQueries(`resource/list/${resourceName}`);
-            },
-        },
-    );
+    const { mutate, isLoading } = useDelete(resourceName);
 
     const renderDeleteButton = (id: any) => {
         const [visibleDeleteConfirm, setVisibleDeleteConfirm] = React.useState(
@@ -61,9 +48,9 @@ export const Table: React.FC<TableProps> = ({
                 okType="danger"
                 title="Are you sure?"
                 onCancel={() => setVisibleDeleteConfirm(false)}
-                okButtonProps={{ disabled: mutation.isLoading }}
+                okButtonProps={{ disabled: isLoading }}
                 onConfirm={() => {
-                    mutation.mutate({ resourceName, id });
+                    mutate({ id });
 
                     setVisibleDeleteConfirm(false);
                 }}
