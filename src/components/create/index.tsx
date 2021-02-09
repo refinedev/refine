@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
-import { useMutation } from "react-query";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { Card } from "antd";
 import pluralize from "pluralize";
 
-import { DataContext } from "@contexts/data";
-import { IDataContext } from "@interfaces";
+import { useCreate } from "@hooks/data";
 
 export interface CreateProps {
     resourceName?: string;
@@ -17,7 +15,6 @@ export const Create: React.FC<CreateProps> = ({
     canEdit,
     children,
 }) => {
-    const { create } = useContext<IDataContext>(DataContext);
     const history = useHistory();
 
     if (!resourceName) {
@@ -25,24 +22,23 @@ export const Create: React.FC<CreateProps> = ({
         return <span>params error</span>;
     }
 
-    const mutation = useMutation(
-        ({ resourceName, values }: { resourceName: string; values: string }) =>
-            create(resourceName, values),
-        {
-            onSuccess: (data) => {
-                if (canEdit) {
-                    return history.push(
-                        `/resources/${resourceName}/edit/${data.data.id}`,
-                    );
-                }
+    const { mutate, error, isLoading } = useCreate(resourceName);
 
-                return history.push(`/resources/${resourceName}`);
+    const onFinish = async (values: string) => {
+        mutate(
+            { values },
+            {
+                onSuccess: (data) => {
+                    if (canEdit) {
+                        return history.push(
+                            `/resources/${resourceName}/edit/${data.data.id}`,
+                        );
+                    }
+
+                    return history.push(`/resources/${resourceName}`);
+                },
             },
-        },
-    );
-
-    const onFinish = async (values: any) => {
-        mutation.mutate({ resourceName, values });
+        );
     };
 
     const childrenWithProps = React.Children.map(children, (child) => {
@@ -50,8 +46,8 @@ export const Create: React.FC<CreateProps> = ({
             return React.cloneElement(child, {
                 resourceName,
                 onFinish,
-                error: mutation.error,
-                isLoading: mutation.isLoading,
+                error: error,
+                isLoading: isLoading,
             });
         }
         return child;
