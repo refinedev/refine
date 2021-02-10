@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { ReactNode, useContext } from "react";
 import { Layout as AntLayout, Menu } from "antd";
 import {
     DashboardOutlined,
@@ -14,7 +14,7 @@ import { ResourceContext, IResourceContext } from "@contexts/resource";
 import { IAuthContext } from "@interfaces";
 
 export interface LayoutProps {
-    title?: string;
+    title?: ReactNode;
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children, title }) => {
