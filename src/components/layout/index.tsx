@@ -13,7 +13,11 @@ import { AuthContext } from "@contexts/auth";
 import { ResourceContext, IResourceContext } from "@contexts/resource";
 import { IAuthContext } from "@interfaces";
 
-export const Layout: React.FC = ({ children }) => {
+export interface LayoutProps {
+    title?: string;
+}
+
+export const Layout: React.FC<LayoutProps> = ({ children, title }) => {
     const [collapsed, setCollapsed] = React.useState(false);
 
     const history = useHistory();
@@ -54,7 +58,7 @@ export const Layout: React.FC = ({ children }) => {
                         alignItems: "center",
                     }}
                 >
-                    Brand Name
+                    {title ?? "Readmin"}
                 </div>
                 <Menu
                     onClick={menuOnClick}

@@ -14,11 +14,13 @@ import { IDataContext, IAuthContext } from "@interfaces";
 export interface AdminProps {
     authProvider: IAuthContext;
     dataProvider: IDataContext;
+    title?: string;
 }
 
 export const Admin: React.FC<AdminProps> = ({
     authProvider,
     dataProvider,
+    title,
     children,
 }) => {
     const queryClient = new QueryClient({
@@ -44,7 +46,7 @@ export const Admin: React.FC<AdminProps> = ({
                                 <Route exact path="/login">
                                     <LoginPage />
                                 </Route>
-                                <Auth>
+                                <Auth title={title}>
                                     <Route exact path="/">
                                         <DashboardPage />
                                     </Route>
