@@ -5,6 +5,8 @@ import { TablePaginationConfig } from "antd/lib/table";
 import { PlusSquareOutlined } from "@ant-design/icons";
 import humanizeString from "humanize-string";
 
+import { TextInput, FormItem } from "@components";
+import { Filter } from "@containers";
 import { TableProps } from "@components/table";
 import { useSearchParams } from "@hooks/util";
 import { useList } from "@hooks";
@@ -14,6 +16,7 @@ export interface ListProps {
     canCreate?: boolean;
     canEdit?: boolean;
     canDelete?: boolean;
+    filters?: any;
 }
 
 export const List: React.FC<ListProps> = ({
@@ -71,24 +74,36 @@ export const List: React.FC<ListProps> = ({
     });
 
     return (
-        <Card
-            bodyStyle={{ padding: 0 }}
-            title={humanizeString(resourceName)}
-            extra={
-                canCreate && (
-                    <Button
-                        onClick={() =>
-                            history.push(`/resources/${resourceName}/create`)
-                        }
-                        type="default"
-                        icon={<PlusSquareOutlined />}
-                    >
-                        Create
-                    </Button>
-                )
-            }
-        >
-            <Row>{childrenWithProps}</Row>
-        </Card>
+        <React.Fragment>
+            <Filter resourceName={resourceName}>
+                <FormItem label="Search" name="q">
+                    <TextInput placeholder="Search" />
+                </FormItem>
+                <FormItem label="Status" name="status">
+                    <TextInput />
+                </FormItem>
+            </Filter>
+            <Card
+                bodyStyle={{ padding: 0 }}
+                title={humanizeString(resourceName)}
+                extra={
+                    canCreate && (
+                        <Button
+                            onClick={() =>
+                                history.push(
+                                    `/resources/${resourceName}/create`,
+                                )
+                            }
+                            type="default"
+                            icon={<PlusSquareOutlined />}
+                        >
+                            Create
+                        </Button>
+                    )
+                }
+            >
+                <Row>{childrenWithProps}</Row>
+            </Card>
+        </React.Fragment>
     );
 };
