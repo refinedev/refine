@@ -5,12 +5,12 @@ import { IResourceContext } from "./IResourceContext";
 export { IResourceContext };
 
 export const ResourceContext = React.createContext<IResourceContext>({
-    resources: []
+    resources: [],
 });
 
 export const ResourceContextProvider: React.FC<IResourceContext> = ({
     resources,
-    children
+    children,
 }) => {
     return (
         <ResourceContext.Provider value={{ resources }}>

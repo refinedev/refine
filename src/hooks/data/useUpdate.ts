@@ -21,7 +21,7 @@ export const useUpdate = (resource: string): UseUpdateReturnType => {
 
     const mutation = useMutation(
         ({ id, values }: { id: string; values: string }) =>
-            update(resource, id, values)
+            update(resource, id, values),
     );
 
     return mutation;

@@ -5,7 +5,7 @@ import jsonServerDataProvider from "@dataProviders/jsonServer";
 import { IDataContext } from "@interfaces";
 
 export const DataContext = React.createContext<IDataContext>(
-    jsonServerDataProvider("http://jsonplaceholder.typicode.com")
+    jsonServerDataProvider("http://jsonplaceholder.typicode.com"),
 );
 
 export const DataContextProvider: React.FC<IDataContext> = ({
@@ -14,7 +14,7 @@ export const DataContextProvider: React.FC<IDataContext> = ({
     getOne,
     update,
     deleteOne,
-    children
+    children,
 }) => {
     return (
         <DataContext.Provider

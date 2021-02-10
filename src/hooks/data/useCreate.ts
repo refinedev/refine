@@ -21,7 +21,7 @@ export const useCreate = (resource: string): UseCreateReturnType => {
     }
 
     const mutation = useMutation(({ values }: { values: string }) =>
-        create(resource, values)
+        create(resource, values),
     );
 
     return mutation;

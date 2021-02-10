@@ -14,7 +14,7 @@ export const Resource: React.FC<ResourceProps> = ({
     create,
     edit,
     name,
-    canDelete
+    canDelete,
 }) => {
     const ListComponent = list;
     const CreateComponent = create;

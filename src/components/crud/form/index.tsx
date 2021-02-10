@@ -3,7 +3,7 @@ import { Form as AntdForm, Button } from "antd";
 import {
     FormInstance,
     FormItemProps,
-    FormProps as AntdFormProps
+    FormProps as AntdFormProps,
 } from "antd/lib/form";
 import { SaveOutlined } from "@ant-design/icons";
 

@@ -13,7 +13,7 @@ export interface CreateProps {
 export const Create: React.FC<CreateProps> = ({
     resourceName,
     canEdit,
-    children
+    children,
 }) => {
     const history = useHistory();
 
@@ -31,13 +31,13 @@ export const Create: React.FC<CreateProps> = ({
                 onSuccess: data => {
                     if (canEdit) {
                         return history.push(
-                            `/resources/${resourceName}/edit/${data.data.id}`
+                            `/resources/${resourceName}/edit/${data.data.id}`,
                         );
                     }
 
                     return history.push(`/resources/${resourceName}`);
-                }
-            }
+                },
+            },
         );
     };
 
@@ -47,7 +47,7 @@ export const Create: React.FC<CreateProps> = ({
                 resourceName,
                 onFinish,
                 error: error,
-                isLoading: isLoading
+                isLoading: isLoading,
             });
         }
         return child;

@@ -26,7 +26,7 @@ export const LoginPage: React.FC = () => {
             .catch(() => {
                 notification.error({
                     message: "Login Error",
-                    description: "Invalid username or password"
+                    description: "Invalid username or password",
                 });
             });
     };
@@ -38,7 +38,7 @@ export const LoginPage: React.FC = () => {
                 style={{
                     display: "flex",
                     alignContent: "center",
-                    height: "100vh"
+                    height: "100vh",
                 }}
             >
                 <Col xl={6} lg={8} md={12} sm={18} xs={22}>

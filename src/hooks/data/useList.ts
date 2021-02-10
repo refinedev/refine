@@ -13,18 +13,18 @@ interface UseListConfig {
 
 const defaultConfig: UseListConfig = {
     pagination: {
-        pageSize: 999
-    }
+        pageSize: 999,
+    },
 };
 
 const defaultOptions: UseQueryOptions<GetListResponse> = {
-    keepPreviousData: true
+    keepPreviousData: true,
 };
 
 export const useList = (
     resource: string,
     config = defaultConfig,
-    queryOptions = defaultOptions
+    queryOptions = defaultOptions,
 ): QueryObserverResult<GetListResponse, unknown> => {
     const { getList } = useContext<IDataContext>(DataContext);
 
@@ -35,7 +35,7 @@ export const useList = (
     const queryResponse = useQuery<GetListResponse>(
         [`resource/list/${resource}`, { ...config }],
         () => getList(resource, config),
-        queryOptions
+        queryOptions,
     );
 
     return queryResponse;

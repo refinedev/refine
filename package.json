@@ -28,9 +28,10 @@
     }
   },
   "prettier": {
-    "printWidth": 80,
     "semi": true,
+    "trailingComma": "all",
     "singleQuote": false,
+    "printWidth": 80,
     "tabWidth": 4
   },
   "name": "readmin",

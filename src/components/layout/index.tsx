@@ -3,7 +3,7 @@ import { Layout as AntLayout, Menu } from "antd";
 import {
     DashboardOutlined,
     LogoutOutlined,
-    UnorderedListOutlined
+    UnorderedListOutlined,
 } from "@ant-design/icons";
 import { MenuClickEventHandler } from "rc-menu/lib/interface";
 import { Link, useHistory, useLocation } from "react-router-dom";
@@ -24,7 +24,7 @@ export const Layout: React.FC = ({ children }) => {
 
     const selectedKey = React.useMemo(() => {
         const selectedResource = resources.find(el =>
-            location.pathname.startsWith(`/resources/${el}`)
+            location.pathname.startsWith(`/resources/${el}`),
         );
         return `/resources/${selectedResource ?? ""}`;
     }, [location]);
@@ -51,7 +51,7 @@ export const Layout: React.FC = ({ children }) => {
                         height: 60,
                         display: "flex",
                         justifyContent: "center",
-                        alignItems: "center"
+                        alignItems: "center",
                     }}
                 >
                     Brand Name

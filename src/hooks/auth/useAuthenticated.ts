@@ -28,7 +28,7 @@ export const useAuthenticated = () => {
             checkAuth().catch(() => {
                 return history.push(redirectPath);
             }),
-        []
+        [],
     );
 
     return authenticated;

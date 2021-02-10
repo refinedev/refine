@@ -12,13 +12,13 @@ export interface ReferenceFieldProps {
 export const ReferenceField: React.FC<ReferenceFieldProps> = ({
     resource,
     value,
-    children
+    children,
 }) => {
     const { getOne } = useContext<IDataContext>(DataContext);
 
     const { data, isFetching } = useQuery<GetOneResponse>(
         [`resource/one/${resource}/`, { id: value }],
-        () => getOne(resource, value)
+        () => getOne(resource, value),
     );
 
     if (isFetching) {
@@ -29,7 +29,7 @@ export const ReferenceField: React.FC<ReferenceFieldProps> = ({
     const childrenWithProps = React.Children.map(children, child => {
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {
-                record: data?.data
+                record: data?.data,
             });
         }
         return child;

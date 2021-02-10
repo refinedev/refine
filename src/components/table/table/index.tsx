@@ -25,7 +25,7 @@ export const Table: React.FC<TableProps> = ({
     pagination,
     canEdit,
     canDelete,
-    children
+    children,
 }) => {
     const history = useHistory();
 
@@ -38,7 +38,7 @@ export const Table: React.FC<TableProps> = ({
 
     const renderDeleteButton = (id: any) => {
         const [visibleDeleteConfirm, setVisibleDeleteConfirm] = React.useState(
-            false
+            false,
         );
         return (
             <Popconfirm
@@ -83,7 +83,7 @@ export const Table: React.FC<TableProps> = ({
                                 <Button
                                     onClick={() => {
                                         history.push(
-                                            `/resources/${resourceName}/edit/${record.id}`
+                                            `/resources/${resourceName}/edit/${record.id}`,
                                         );
                                     }}
                                     type="default"
@@ -112,7 +112,7 @@ export const Table: React.FC<TableProps> = ({
                 pagination={pagination}
                 onChange={pagination => {
                     history.push(
-                        `/resources/${resourceName}?current=${pagination.current}&pageSize=${pagination.pageSize}`
+                        `/resources/${resourceName}?current=${pagination.current}&pageSize=${pagination.pageSize}`,
                     );
                 }}
             >

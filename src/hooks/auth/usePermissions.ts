@@ -25,7 +25,7 @@ export const usePermissions = () => {
         error?: any;
     }>({
         loading: true,
-        loaded: false
+        loaded: false,
     });
 
     const { getPermissions } = useContext<IAuthContext>(AuthContext);
@@ -39,7 +39,7 @@ export const usePermissions = () => {
                 setState({
                     loading: false,
                     loaded: true,
-                    error
+                    error,
                 });
             });
     }, [getPermissions, setState]);

@@ -22,7 +22,7 @@ import { IAuthContext } from "@interfaces";
 
 const defaultIdentity = {
     id: "",
-    fullName: null
+    fullName: null,
 };
 
 export const useGetIdentity = () => {
@@ -33,7 +33,7 @@ export const useGetIdentity = () => {
         error?: any;
     }>({
         loading: true,
-        loaded: false
+        loaded: false,
     });
 
     const { getUserIdentity } = React.useContext<IAuthContext>(AuthContext);
@@ -45,14 +45,14 @@ export const useGetIdentity = () => {
                     setState({
                         loading: false,
                         loaded: true,
-                        userIdentity: userIdentity || defaultIdentity
+                        userIdentity: userIdentity || defaultIdentity,
                     });
                 })
                 .catch(error => {
                     setState({
                         loading: false,
                         loaded: true,
-                        error
+                        error,
                     });
                 });
         }

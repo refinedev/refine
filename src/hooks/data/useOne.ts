@@ -6,19 +6,19 @@ import { GetOneResponse, IDataContext } from "@interfaces";
 
 export const useOne = (
     resource: string,
-    id: string
+    id: string,
 ): QueryObserverResult<GetOneResponse, unknown> => {
     const { getOne } = useContext<IDataContext>(DataContext);
 
     if (!resource || !id) {
         throw new Error(
-            `'resource' and 'id' is required. You provided resource: ${resource}, id: ${id}`
+            `'resource' and 'id' is required. You provided resource: ${resource}, id: ${id}`,
         );
     }
 
     const queryResponse = useQuery<GetOneResponse>(
         `resource/getOne/${resource}`,
-        () => getOne(resource, id)
+        () => getOne(resource, id),
     );
 
     return queryResponse;

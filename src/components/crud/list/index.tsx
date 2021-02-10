@@ -21,7 +21,7 @@ export const List: React.FC<ListProps> = ({
     canCreate,
     canEdit,
     canDelete,
-    children
+    children,
 }) => {
     const queryParams = useSearchParams();
     const history = useHistory();
@@ -44,7 +44,7 @@ export const List: React.FC<ListProps> = ({
     }
 
     const { data, isFetching } = useList(resourceName, {
-        pagination: { current, pageSize }
+        pagination: { current, pageSize },
     });
 
     const pagination: TablePaginationConfig = {
@@ -53,7 +53,7 @@ export const List: React.FC<ListProps> = ({
         pageSize,
         defaultCurrent: 1,
         defaultPageSize: 10,
-        position: ["bottomCenter"]
+        position: ["bottomCenter"],
     };
 
     const childrenWithProps = React.Children.map(children, child => {
@@ -64,7 +64,7 @@ export const List: React.FC<ListProps> = ({
                 loading: isFetching,
                 pagination,
                 canEdit,
-                canDelete
+                canDelete,
             });
         }
         return child;

@@ -19,14 +19,14 @@ export interface AdminProps {
 export const Admin: React.FC<AdminProps> = ({
     authProvider,
     dataProvider,
-    children
+    children,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
             queries: {
-                refetchOnWindowFocus: false
-            }
-        }
+                refetchOnWindowFocus: false,
+            },
+        },
     });
 
     const resources: string[] = [];

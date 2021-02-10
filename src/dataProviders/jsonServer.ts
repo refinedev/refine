@@ -27,18 +27,18 @@ const JsonServer = (apiUrl: string): IDataContext => ({
             _end: current * pageSize,
             _sort: field,
             _order: order,
-            q
+            q,
         };
 
         const { data, headers } = await axios.get<Record[]>(
-            `${url}?${stringify(query)}`
+            `${url}?${stringify(query)}`,
         );
 
         const total = +headers["x-total-count"];
 
         return {
             data,
-            total
+            total,
         };
     },
 
@@ -48,7 +48,7 @@ const JsonServer = (apiUrl: string): IDataContext => ({
         const { data } = await axios.post<Record>(url, params);
 
         return {
-            data
+            data,
         };
     },
 
@@ -58,7 +58,7 @@ const JsonServer = (apiUrl: string): IDataContext => ({
         const { data } = await axios.put<Record>(url, params);
 
         return {
-            data
+            data,
         };
     },
 
@@ -68,7 +68,7 @@ const JsonServer = (apiUrl: string): IDataContext => ({
         const { data } = await axios.get<Record>(url);
 
         return {
-            data
+            data,
         };
     },
 
@@ -78,9 +78,9 @@ const JsonServer = (apiUrl: string): IDataContext => ({
         const { data } = await axios.delete<Record>(url);
 
         return {
-            data
+            data,
         };
-    }
+    },
 });
 
 export default JsonServer;

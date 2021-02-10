@@ -44,7 +44,7 @@ export interface IDataContext {
             search?: string;
             sort?: Sort;
             filter?: any;
-        }
+        },
     ) => Promise<GetListResponse>;
     getOne: (resource: string, id: Identifier) => Promise<GetOneResponse>;
     deleteOne: (resource: string, id: Identifier) => Promise<DeleteOneResponse>;
@@ -52,6 +52,6 @@ export interface IDataContext {
     update: (
         resource: string,
         id: Identifier,
-        params: any
+        params: any,
     ) => Promise<UpdateResponse>;
 }

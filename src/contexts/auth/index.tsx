@@ -10,8 +10,8 @@ const defaultProvider: IAuthContext = {
     getPermissions: () => Promise.resolve(),
     getUserIdentity: () =>
         Promise.resolve({
-            id: 1
-        })
+            id: 1,
+        }),
 };
 
 export const AuthContext = React.createContext<IAuthContext>(defaultProvider);
@@ -23,7 +23,7 @@ export const AuthContextProvider: React.FC<IAuthContext> = ({
     checkError,
     getPermissions,
     getUserIdentity,
-    children
+    children,
 }) => {
     return (
         <AuthContext.Provider
@@ -33,7 +33,7 @@ export const AuthContextProvider: React.FC<IAuthContext> = ({
                 checkAuth,
                 checkError,
                 getPermissions,
-                getUserIdentity
+                getUserIdentity,
             }}
         >
             {children}

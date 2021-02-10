@@ -28,7 +28,7 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
     pageSize = 999,
     sort,
     filter,
-    children
+    children,
 }) => {
     const [search, setSearch] = React.useState<string | undefined>();
     const [options, setOptions] = React.useState<Option[]>();
@@ -40,19 +40,19 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
             sort,
             filter,
             pagination: {
-                pageSize
-            }
+                pageSize,
+            },
         },
         {
             onSuccess: data => {
                 const options: Option[] = data.data.map(item => ({
                     label: item[optionText],
-                    value: item[optionValue]
+                    value: item[optionValue],
                 }));
 
                 setOptions(options);
-            }
-        }
+            },
+        },
     );
 
     const onSearch = (value: string) => {
@@ -68,7 +68,7 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
                 onSearch,
                 value,
                 options,
-                loading: isLoading
+                loading: isLoading,
             });
         }
         return child;

@@ -25,7 +25,7 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
     // TODO: handle isError state
 
     form.setFieldsValue({
-        ...data?.data
+        ...data?.data,
     });
 
     const { mutate, error, isLoading } = useUpdate(resourceName);
@@ -36,8 +36,8 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
             {
                 onSuccess: () => {
                     return history.push(`/resources/${resourceName}`);
-                }
-            }
+                },
+            },
         );
     };
 
@@ -48,7 +48,7 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
                 form,
                 onFinish,
                 error: error,
-                isLoading: isLoading
+                isLoading: isLoading,
             });
         }
         return child;

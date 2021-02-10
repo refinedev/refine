@@ -30,8 +30,8 @@ export const useDelete = (resource: string): UseDeleteReturnType => {
             // Always refetch after error or success:
             onSettled: () => {
                 queryClient.invalidateQueries(queryResource);
-            }
-        }
+            },
+        },
     );
 
     return mutation;
