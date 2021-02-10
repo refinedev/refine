@@ -26,4 +26,7 @@ COPY --from=0 /opt/app/example/build /opt/app
 WORKDIR /opt/app/
 
 ENV NODE_ENV=production
-CMD [ "npx", "http-server -p 5000"]
+
+RUN npm install -g http-server
+
+CMD http-server -p 5000
