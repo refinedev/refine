@@ -37,12 +37,6 @@ jobs:
           expirationTime: 1200
       - name: Get nodes
         run: kubectl get nodes
-      - name: Get current time
-        uses: 1466587594/get-current-time@v1
-        id: current-time
-        with:
-          format: DD-MM-YYYY-HH-mm
-          utcOffset: "+03:00"
       - name: web docker build
         uses: docker/build-push-action@v1
         with:
