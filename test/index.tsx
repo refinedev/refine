@@ -5,6 +5,8 @@ import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider } from "@contexts/resource";
 import { IDataContext, IAuthContext } from "@interfaces";
+import { Router } from "react-router-dom";
+import { createMemoryHistory } from "history";
 
 const queryClient = new QueryClient();
 
@@ -41,10 +43,14 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
             withData
         );
 
+        const history = createMemoryHistory();
+
         return (
-            <QueryClientProvider client={queryClient}>
-                {withAuth}
-            </QueryClientProvider>
+            <Router history={history}>
+                <QueryClientProvider client={queryClient}>
+                    {withAuth}
+                </QueryClientProvider>
+            </Router>
         );
     };
 };
