@@ -41,7 +41,9 @@ export const Layout: React.FC = ({ children }) => {
             <AntLayout.Sider
                 collapsible
                 collapsed={collapsed}
-                onCollapse={collapsed => setCollapsed(collapsed)}
+                onCollapse={(collapsed: boolean): void =>
+                    setCollapsed(collapsed)
+                }
             >
                 <div
                     style={{
