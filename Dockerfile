@@ -17,4 +17,6 @@ WORKDIR /opt/app/example
 
 RUN npm install --dev 
 
+RUN SKIP_PREFLIGHT_CHECK=true npm run build
+
 CMD [ "npm", "run", "serve" ]
