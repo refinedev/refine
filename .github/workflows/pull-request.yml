@@ -19,16 +19,17 @@ jobs:
         uses: rokroskar/workflow-run-cleanup-action@v0.2.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: update-pull-request
-        uses: kt3k/update-pr-description@v1.0.1
-        with:
-          pr_body: "CI inprogress"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Get PR Branch Name
         uses: mdecoleman/pr-branch-name@1.0.0
         id: pr-branch-name
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: update-pull-request
+        uses: kt3k/update-pr-description@v1.0.1
+        with:
+          pr_body: "CI In Progress. Please check later!"
+          destination_branch: ${{ steps.pr-branch-name.outputs.branch }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Substring PR Branch Name
         id: substring-pr-branch-name
         run: |
@@ -85,4 +86,5 @@ jobs:
         uses: kt3k/update-pr-description@v1.0.1
         with:
           pr_body: "Test me: [https://${{ steps.substring-pr-branch-name.outputs.substring }}.readmin.pankod.com](url)"
+          destination_branch: ${{ steps.pr-branch-name.outputs.branch }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
