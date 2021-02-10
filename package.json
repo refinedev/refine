@@ -47,11 +47,13 @@
     }
   ],
   "devDependencies": {
+    "@babel/core": "^7.12.13",
     "@size-limit/preset-small-lib": "^4.9.2",
     "@types/pluralize": "^0.0.29",
     "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.7",
+    "babel-plugin-module-resolver": "^4.1.0",
     "husky": "^5.0.9",
     "react": "*",
     "react-dom": "^17.0.1",

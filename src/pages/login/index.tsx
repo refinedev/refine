@@ -14,8 +14,6 @@ export interface ILoginForm {
 export const LoginPage: React.FC = () => {
   const { Title } = Typography;
 
-  const a = 1;
-
   const [form] = Form.useForm();
   const history = useHistory();
   const notification = useNotification();
