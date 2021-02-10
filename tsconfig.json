@@ -4,6 +4,7 @@
         "module": "esnext",
         "lib": ["dom", "esnext", "dom.iterable"],
         "moduleResolution": "node",
+        "target": "esnext",
         "jsx": "react",
         "sourceMap": true,
         "declaration": true,
