@@ -5,10 +5,11 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: docker.pkg.github.com/pankod/readmin/readmin-example
   pullPolicy: IfNotPresent
 
-imagePullSecrets: []
+imagePullSecrets:
+    - name: github
 nameOverride: ""
 fullnameOverride: ""
 
