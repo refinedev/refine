@@ -8,7 +8,7 @@
     "build": "node ../node_modules/react-scripts/bin/react-scripts.js build",
     "test": "node ../node_modules/react-scripts/bin/react-scripts.js test",
     "eject": "node ../node_modules/react-scripts/bin/react-scripts.js eject",
-    "serve": "serve -s build -l 3000"
+    "serve": "serve -s build -l 3000 --host 0.0.0.0"
   },
   "dependencies": {
     "@testing-library/jest-dom": "file:../node_modules/@testing-library/jest-dom",
