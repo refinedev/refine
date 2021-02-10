@@ -43,7 +43,9 @@ export const List: React.FC<ListProps> = ({
         pageSize = +queryParamPageSize;
     }
 
-    const { data, isFetching } = useList(resourceName, current, pageSize);
+    const { data, isFetching } = useList(resourceName, {
+        pagination: { current, pageSize },
+    });
 
     const pagination: TablePaginationConfig = {
         total: data?.total,

@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
-import { useQuery } from "react-query";
+import React from "react";
 
-import { DataContext } from "@contexts/data";
-import { GetListResponse, IDataContext, Sort } from "@interfaces";
+import { Sort } from "@interfaces";
+import { useList } from "@hooks";
 
 export interface ReferenceInputProps {
     reference: string;
@@ -33,19 +32,17 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
 }) => {
     const [search, setSearch] = React.useState<string | undefined>();
     const [options, setOptions] = React.useState<Option[]>();
-    const { getList } = useContext<IDataContext>(DataContext);
 
-    const { isLoading, refetch } = useQuery<GetListResponse>(
-        [`resource/list/${reference}`, { search }],
-        () =>
-            getList(reference, {
-                pagination: {
-                    pageSize,
-                },
-                search,
-                sort,
-                filter,
-            }),
+    const { isLoading, refetch } = useList(
+        reference,
+        {
+            search,
+            sort,
+            filter,
+            pagination: {
+                pageSize,
+            },
+        },
         {
             onSuccess: (data) => {
                 const options: Option[] = data.data.map((item) => ({
