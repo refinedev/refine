@@ -20,8 +20,8 @@
         "paths": {
             "@actions/*": ["src/actions/*"],
             "@actions": ["src/actions"],
-            "@components/*": ["src/Components/*"],
-            "@components": ["src/Components"],
+            "@components/*": ["src/components/*"],
+            "@components": ["src/components"],
             "@containers/*": ["src/containers/*"],
             "@containers": ["src/containers"],
             "@pages/*": ["src/pages/*"],
