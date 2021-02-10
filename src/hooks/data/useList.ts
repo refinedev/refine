@@ -1,13 +1,30 @@
 import { useContext } from "react";
-import { QueryObserverResult, useQuery } from "react-query";
+import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
 
 import { DataContext } from "@contexts/data";
-import { GetListResponse, IDataContext } from "@interfaces";
+import { GetListResponse, IDataContext, Sort, Pagination } from "@interfaces";
+
+interface UseListConfig {
+    pagination?: Pagination;
+    search?: string;
+    sort?: Sort;
+    filter?: Record<string, unknown>;
+}
+
+const defaultConfig: UseListConfig = {
+    pagination: {
+        pageSize: 999,
+    },
+};
+
+const defaultOptions: UseQueryOptions<GetListResponse> = {
+    keepPreviousData: true,
+};
 
 export const useList = (
     resource: string,
-    current = 1,
-    pageSize = 999,
+    config = defaultConfig,
+    queryOptions = defaultOptions,
 ): QueryObserverResult<GetListResponse, unknown> => {
     const { getList } = useContext<IDataContext>(DataContext);
 
@@ -16,17 +33,9 @@ export const useList = (
     }
 
     const queryResponse = useQuery<GetListResponse>(
-        [`resource/list/${resource}`, { current, pageSize }],
-        () =>
-            getList(resource, {
-                pagination: {
-                    current,
-                    pageSize,
-                },
-            }),
-        {
-            keepPreviousData: true,
-        },
+        [`resource/list/${resource}`, { ...config }],
+        () => getList(resource, config),
+        queryOptions,
     );
 
     return queryResponse;
