@@ -1,2 +1,2 @@
-export { Table, TableProps } from './table';
-export { Column, ColumnProps } from './components/column';
+export { Table, TableProps } from "./table";
+export { Column, ColumnProps } from "./components/column";

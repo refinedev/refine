@@ -1,8 +1,8 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React from "react";
+import { useHistory } from "react-router-dom";
 
-import { AuthContext } from '@contexts/auth';
-import { IAuthContext } from '@interfaces';
+import { AuthContext } from "@contexts/auth";
+import { IAuthContext } from "@interfaces";
 
 /**
  * @example
@@ -17,14 +17,14 @@ import { IAuthContext } from '@interfaces';
  */
 
 export const useLogin = () => {
-  const history = useHistory();
-  const authContext = React.useContext<IAuthContext>(AuthContext);
+    const history = useHistory();
+    const authContext = React.useContext<IAuthContext>(AuthContext);
 
-  const login = React.useCallback((params: any) => {
-    authContext.login(params).then(() => {
-      return history.push('/');
-    });
-  }, []);
+    const login = React.useCallback((params: any) => {
+        authContext.login(params).then(() => {
+            return history.push("/");
+        });
+    }, []);
 
-  return login;
+    return login;
 };

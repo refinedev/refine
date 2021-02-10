@@ -1,20 +1,20 @@
-import React from 'react';
+import React from "react";
 
-import { IResourceContext } from './IResourceContext';
+import { IResourceContext } from "./IResourceContext";
 
 export { IResourceContext };
 
 export const ResourceContext = React.createContext<IResourceContext>({
-  resources: []
+    resources: []
 });
 
 export const ResourceContextProvider: React.FC<IResourceContext> = ({
-  resources,
-  children
+    resources,
+    children
 }) => {
-  return (
-    <ResourceContext.Provider value={{ resources }}>
-      {children}
-    </ResourceContext.Provider>
-  );
+    return (
+        <ResourceContext.Provider value={{ resources }}>
+            {children}
+        </ResourceContext.Provider>
+    );
 };

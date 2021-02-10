@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 
-import { AuthContext } from '@contexts/auth';
-import { IAuthContext } from '@interfaces';
+import { AuthContext } from "@contexts/auth";
+import { IAuthContext } from "@interfaces";
 
 /**
  * @example
@@ -18,30 +18,30 @@ import { IAuthContext } from '@interfaces';
  */
 
 export const usePermissions = () => {
-  const [state, setState] = React.useState<{
-    loading: boolean;
-    loaded: boolean;
-    permissions?: any;
-    error?: any;
-  }>({
-    loading: true,
-    loaded: false
-  });
+    const [state, setState] = React.useState<{
+        loading: boolean;
+        loaded: boolean;
+        permissions?: any;
+        error?: any;
+    }>({
+        loading: true,
+        loaded: false
+    });
 
-  const { getPermissions } = useContext<IAuthContext>(AuthContext);
+    const { getPermissions } = useContext<IAuthContext>(AuthContext);
 
-  React.useEffect(() => {
-    getPermissions({})
-      .then(permissions => {
-        setState({ loading: false, loaded: true, permissions });
-      })
-      .catch(error => {
-        setState({
-          loading: false,
-          loaded: true,
-          error
-        });
-      });
-  }, [getPermissions, setState]);
-  return state;
+    React.useEffect(() => {
+        getPermissions({})
+            .then(permissions => {
+                setState({ loading: false, loaded: true, permissions });
+            })
+            .catch(error => {
+                setState({
+                    loading: false,
+                    loaded: true,
+                    error
+                });
+            });
+    }, [getPermissions, setState]);
+    return state;
 };

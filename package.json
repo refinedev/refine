@@ -30,8 +30,8 @@
   "prettier": {
     "printWidth": 80,
     "semi": true,
-    "singleQuote": true,
-    "tabWidth": 2
+    "singleQuote": false,
+    "tabWidth": 4
   },
   "name": "readmin",
   "author": "Pankod",

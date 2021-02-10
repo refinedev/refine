@@ -1,5 +1,5 @@
-import { notification } from 'antd';
-import { NotificationApi } from 'antd/lib/notification';
+import { notification } from "antd";
+import { NotificationApi } from "antd/lib/notification";
 
 /**
  * @example
@@ -14,5 +14,5 @@ import { NotificationApi } from 'antd/lib/notification';
  */
 
 export const useNotification = (): NotificationApi => {
-  return notification;
+    return notification;
 };
