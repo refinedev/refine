@@ -24,7 +24,7 @@ export const LoginPage: React.FC = () => {
         login(values)
             .then(() => history.push("/"))
             .catch(() => {
-                notification["error"]({
+                notification.error({
                     message: "Login Error",
                     description: "Invalid username or password",
                 });
