@@ -1,1 +1,1 @@
-export { useSearchParams } from "./useSearchParams";
+export { useSearchParams } from './useSearchParams';

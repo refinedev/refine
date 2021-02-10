@@ -1,1 +1,1 @@
-export { Column, ColumnProps } from "./column";
+export { Column, ColumnProps } from './column';

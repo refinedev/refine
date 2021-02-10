@@ -1,2 +1,2 @@
-export { Table, TableProps } from "./table";
-export * from "./components";
+export { Table, TableProps } from './table';
+export * from './components';

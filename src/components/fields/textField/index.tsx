@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
 export interface TextFieldProps {
-    record?: any;
-    source: string;
+  record?: any;
+  source: string;
 }
 
 export const TextField: React.FC<TextFieldProps> = ({ record, source }) => {
-    return <span>{record?.[source]}</span>;
+  return <span>{record?.[source]}</span>;
 };

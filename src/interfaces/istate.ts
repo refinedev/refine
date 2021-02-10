@@ -1,11 +1,11 @@
-import { IAuthUserReducer } from "@interfaces";
-import { IResourceReducer } from "./reducers/resource/resource";
+import { IAuthUserReducer } from '@interfaces';
+import { IResourceReducer } from './reducers/resource/resource';
 
 export interface IState {
-    auth: {
-        user: IAuthUserReducer;
-    };
-    resources: {
-        [name: string]: IResourceReducer;
-    };
+  auth: {
+    user: IAuthUserReducer;
+  };
+  resources: {
+    [name: string]: IResourceReducer;
+  };
 }

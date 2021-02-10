@@ -1,5 +1,5 @@
 export interface IAuthUserReducer {
-    id?: string;
-    fullName?: string;
-    avatar?: string;
+  id?: string;
+  fullName?: string;
+  avatar?: string;
 }

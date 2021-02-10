@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 
-import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "@interfaces";
-import { useHistory } from "react-router-dom";
+import { AuthContext } from '@contexts/auth';
+import { IAuthContext } from '@interfaces';
+import { useHistory } from 'react-router-dom';
 
 /**
  * @example
@@ -20,16 +20,16 @@ import { useHistory } from "react-router-dom";
  */
 
 export const useAuthenticated = () => {
-    const { checkAuth } = useContext<IAuthContext>(AuthContext);
-    const history = useHistory();
+  const { checkAuth } = useContext<IAuthContext>(AuthContext);
+  const history = useHistory();
 
-    const authenticated = React.useCallback(
-        (redirectPath = "/login") =>
-            checkAuth().catch(() => {
-                return history.push(redirectPath);
-            }),
-        [],
-    );
+  const authenticated = React.useCallback(
+    (redirectPath = '/login') =>
+      checkAuth().catch(() => {
+        return history.push(redirectPath);
+      }),
+    []
+  );
 
-    return authenticated;
+  return authenticated;
 };

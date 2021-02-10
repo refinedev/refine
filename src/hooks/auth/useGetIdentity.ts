@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "@interfaces";
+import { AuthContext } from '@contexts/auth';
+import { IAuthContext } from '@interfaces';
 
 /**
  * @example
@@ -21,41 +21,41 @@ import { IAuthContext } from "@interfaces";
  */
 
 const defaultIdentity = {
-    id: "",
-    fullName: null,
+  id: '',
+  fullName: null
 };
 
 export const useGetIdentity = () => {
-    const [state, setState] = React.useState<{
-        loading: boolean;
-        loaded: boolean;
-        userIdentity?: any;
-        error?: any;
-    }>({
-        loading: true,
-        loaded: false,
-    });
+  const [state, setState] = React.useState<{
+    loading: boolean;
+    loaded: boolean;
+    userIdentity?: any;
+    error?: any;
+  }>({
+    loading: true,
+    loaded: false
+  });
 
-    const { getUserIdentity } = React.useContext<IAuthContext>(AuthContext);
+  const { getUserIdentity } = React.useContext<IAuthContext>(AuthContext);
 
-    React.useEffect(() => {
-        if (typeof getUserIdentity === "function") {
-            getUserIdentity()
-                .then((userIdentity) => {
-                    setState({
-                        loading: false,
-                        loaded: true,
-                        userIdentity: userIdentity || defaultIdentity,
-                    });
-                })
-                .catch((error) => {
-                    setState({
-                        loading: false,
-                        loaded: true,
-                        error,
-                    });
-                });
-        }
-    }, [getUserIdentity, setState]);
-    return state;
+  React.useEffect(() => {
+    if (typeof getUserIdentity === 'function') {
+      getUserIdentity()
+        .then(userIdentity => {
+          setState({
+            loading: false,
+            loaded: true,
+            userIdentity: userIdentity || defaultIdentity
+          });
+        })
+        .catch(error => {
+          setState({
+            loading: false,
+            loaded: true,
+            error
+          });
+        });
+    }
+  }, [getUserIdentity, setState]);
+  return state;
 };
