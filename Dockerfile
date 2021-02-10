@@ -19,4 +19,11 @@ RUN npm install --dev
 
 RUN SKIP_PREFLIGHT_CHECK=true npm run build
 
-CMD [ "npm", "run", "serve" ]
+
+FROM node:12-alpine
+
+COPY --from=0 /opt/app/example/build /opt/app
+WORKDIR /opt/app/
+
+ENV NODE_ENV=production
+CMD [ "npx", "http-server -p 5000"]
