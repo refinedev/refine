@@ -38,9 +38,11 @@
             "@helpers/*": ["src/helpers/*"],
             "@helpers": ["src/helpers"],
             "@hooks/*": ["src/hooks/*"],
-            "@hooks": ["src/hooks"]
+            "@hooks": ["src/hooks"],
+            "@test/*": ["test/*"],
+            "@test": ["test"]
         }
     },
-    "include": ["src"],
+    "include": ["src", "test"],
     "exclude": ["node_modules", "dist", "example"]
 }
