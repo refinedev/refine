@@ -3,5 +3,4 @@ dist/
 node_modules/
 .snapshots/
 *.min.js
-test/
 example/
