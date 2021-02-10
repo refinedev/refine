@@ -47,6 +47,7 @@ jobs:
           tags: sha-${{ steps.current-time.outputs.formattedTime }}
       - name: Deploy readmin-example-develop to k8s
         run: |
+          cd example
           echo ${{ env.domain }}
           mv ./k8s/readmin-example/Chart.yaml ./k8s/readmin-example/Chart.old.yaml &&
           cat ./k8s/readmin-example/Chart.old.yaml | grep -v appVersion > ./k8s/readmin-example/Chart.yaml &&

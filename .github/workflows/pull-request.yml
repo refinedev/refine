@@ -54,6 +54,7 @@ jobs:
           tag_with_sha: true
       - name: Deploy readmin-example to k8s
         run: |
+          cd example
           mv ./k8s/readmin-example/Chart.yaml ./k8s/readmin-example/Chart.old.yaml &&
           cat ./k8s/readmin-example/Chart.old.yaml | grep -v appVersion > ./k8s/readmin-example/Chart.yaml &&
           echo -e "\r\nappVersion: sha-${GITHUB_SHA::7}\r\n" >> ./k8s/readmin-example/Chart.yaml &&
