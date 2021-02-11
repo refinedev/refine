@@ -12,7 +12,7 @@ type UseUpdateReturnType = UseMutationResult<
 >;
 
 // TODO update type
-export const useUpdate = (resource: string): UseUpdateReturnType => {
+export const useUpdate = (resource?: string): UseUpdateReturnType => {
     const { update } = useContext<IDataContext>(DataContext);
 
     if (!resource) {

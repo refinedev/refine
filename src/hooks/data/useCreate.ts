@@ -13,7 +13,7 @@ type UseCreateReturnType = UseMutationResult<
     unknown
 >;
 
-export const useCreate = (resource: string): UseCreateReturnType => {
+export const useCreate = (resource?: string): UseCreateReturnType => {
     const { create } = useContext<IDataContext>(DataContext);
 
     if (!resource) {

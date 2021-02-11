@@ -22,7 +22,7 @@ const defaultOptions: UseQueryOptions<GetListResponse> = {
 };
 
 export const useList = (
-    resource: string,
+    resource?: string,
     config = defaultConfig,
     queryOptions = defaultOptions,
 ): QueryObserverResult<GetListResponse, unknown> => {

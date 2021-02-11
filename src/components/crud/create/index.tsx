@@ -16,13 +16,12 @@ export const Create: React.FC<CreateProps> = ({
     children,
 }) => {
     const history = useHistory();
+    const { mutate, error, isLoading } = useCreate(resourceName);
 
     if (!resourceName) {
         // TODO: render resource error page
         return <span>params error</span>;
     }
-
-    const { mutate, error, isLoading } = useCreate(resourceName);
 
     const onFinish = async (values: string) => {
         mutate(

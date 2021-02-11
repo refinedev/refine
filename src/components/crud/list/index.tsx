@@ -26,11 +26,6 @@ export const List: React.FC<ListProps> = ({
     const queryParams = useSearchParams();
     const history = useHistory();
 
-    if (!resourceName) {
-        // TODO: render resource error page
-        return <span>params error</span>;
-    }
-
     let current = 1;
     const queryParamCurrent = queryParams.current;
     if (queryParamCurrent) {
@@ -46,6 +41,11 @@ export const List: React.FC<ListProps> = ({
     const { data, isFetching } = useList(resourceName, {
         pagination: { current, pageSize },
     });
+
+    if (!resourceName) {
+        // TODO: render resource error page
+        return <span>params error</span>;
+    }
 
     const pagination: TablePaginationConfig = {
         total: data?.total,

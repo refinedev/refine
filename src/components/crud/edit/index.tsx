@@ -15,20 +15,20 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
 
     const [form] = Form.useForm();
 
+    const { data } = useOne(resourceName, id);
+
+    const { mutate, error, isLoading } = useUpdate(resourceName);
+
     if (!resourceName || !id) {
         // TODO: render resource error page
         return <span>params error</span>;
     }
-
-    const { data } = useOne(resourceName, id);
 
     // TODO: handle isError state
 
     form.setFieldsValue({
         ...data?.data,
     });
-
-    const { mutate, error, isLoading } = useUpdate(resourceName);
 
     const onFinish = async (values: any) => {
         mutate(

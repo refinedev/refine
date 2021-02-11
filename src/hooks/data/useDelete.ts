@@ -13,7 +13,7 @@ type UseDeleteReturnType = UseMutationResult<
     unknown
 >;
 
-export const useDelete = (resource: string): UseDeleteReturnType => {
+export const useDelete = (resource?: string): UseDeleteReturnType => {
     const { deleteOne } = useContext<IDataContext>(DataContext);
 
     if (!resource) {

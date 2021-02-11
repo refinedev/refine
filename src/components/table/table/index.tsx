@@ -28,47 +28,12 @@ export const Table: React.FC<TableProps> = ({
     children,
 }) => {
     const history = useHistory();
+    const { mutate, isLoading } = useDelete(resourceName);
 
     if (!resourceName) {
         // TODO: render resource error page
         return <span>params error</span>;
     }
-
-    const { mutate, isLoading } = useDelete(resourceName);
-
-    const renderDeleteButton = (id: any) => {
-        const [visibleDeleteConfirm, setVisibleDeleteConfirm] = React.useState(
-            false,
-        );
-        return (
-            <Popconfirm
-                key="delete"
-                visible={visibleDeleteConfirm}
-                okText="Delete"
-                okType="danger"
-                title="Are you sure?"
-                onCancel={() => setVisibleDeleteConfirm(false)}
-                okButtonProps={{ disabled: isLoading }}
-                onConfirm={() => {
-                    mutate({ id });
-
-                    setVisibleDeleteConfirm(false);
-                }}
-            >
-                <Button
-                    onClick={() => {
-                        setVisibleDeleteConfirm(true);
-                    }}
-                    type="default"
-                    size="small"
-                    danger
-                    icon={<DeleteOutlined />}
-                >
-                    Delete
-                </Button>
-            </Popconfirm>
-        );
-    };
 
     const renderActions = () => {
         if (canEdit || canDelete) {
@@ -93,7 +58,12 @@ export const Table: React.FC<TableProps> = ({
                                     Edit
                                 </Button>
                             )}
-                            {canDelete && renderDeleteButton(record.id)}
+                            {canDelete && (
+                                <DeleteButton
+                                    onConfirm={() => mutate({ id: record.id })}
+                                    isLoading={isLoading}
+                                />
+                            )}
                         </Space>
                     )}
                 />
@@ -120,5 +90,41 @@ export const Table: React.FC<TableProps> = ({
                 {renderActions()}
             </AntdTable>
         </React.Fragment>
+    );
+};
+
+const DeleteButton: React.FC<{
+    onConfirm(): void;
+    isLoading: boolean;
+}> = ({ onConfirm, isLoading }) => {
+    const [visibleDeleteConfirm, setVisibleDeleteConfirm] = React.useState(
+        false,
+    );
+    return (
+        <Popconfirm
+            key="delete"
+            visible={visibleDeleteConfirm}
+            okText="Delete"
+            okType="danger"
+            title="Are you sure?"
+            onCancel={() => setVisibleDeleteConfirm(false)}
+            okButtonProps={{ disabled: isLoading }}
+            onConfirm={() => {
+                onConfirm();
+                setVisibleDeleteConfirm(false);
+            }}
+        >
+            <Button
+                onClick={() => {
+                    setVisibleDeleteConfirm(true);
+                }}
+                type="default"
+                size="small"
+                danger
+                icon={<DeleteOutlined />}
+            >
+                Delete
+            </Button>
+        </Popconfirm>
     );
 };
