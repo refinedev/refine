@@ -46,8 +46,21 @@ export const List: React.FC<ListProps> = ({
         pageSize = +queryParamPageSize;
     }
 
+    console.log("queryParams", queryParams);
+
+    let search;
+    const queryParamSearch = queryParams.q;
+    if (queryParamSearch) {
+        search = queryParamSearch;
+    }
+
+    console.log("current", current);
+    console.log("pageSize", pageSize);
+    console.log("search", search);
+
     const { data, isFetching } = useList(resourceName, {
         pagination: { current, pageSize },
+        search,
     });
 
     const pagination: TablePaginationConfig = {
