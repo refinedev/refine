@@ -44,8 +44,8 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
             },
         },
         {
-            onSuccess: data => {
-                const options: Option[] = data.data.map(item => ({
+            onSuccess: (data) => {
+                const options: Option[] = data.data.map((item) => ({
                     label: item[optionText],
                     value: item[optionValue],
                 }));
@@ -60,7 +60,7 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
         refetch();
     };
 
-    const childrenWithProps = React.Children.map(children, child => {
+    const childrenWithProps = React.Children.map(children, (child) => {
         // checking isValidElement is the safe way and avoids a typescript error too
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {

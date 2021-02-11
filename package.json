@@ -1,76 +1,84 @@
 {
-  "version": "0.1.0",
-  "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
-  "engines": {
-    "node": ">=10"
-  },
-  "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test --passWithNoTests",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
-  },
-  "peerDependencies": {
-    "react": "^17.0.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
-  },
-  "prettier": {
-    "semi": true,
-    "trailingComma": "all",
-    "singleQuote": false,
-    "printWidth": 80,
-    "tabWidth": 4
-  },
-  "name": "readmin",
-  "author": "Pankod",
-  "module": "dist/tsdx.esm.js",
-  "size-limit": [
-    {
-      "path": "dist/tsdx.cjs.production.min.js",
-      "limit": "10 KB"
+    "version": "0.1.0",
+    "license": "MIT",
+    "main": "dist/index.js",
+    "typings": "dist/index.d.ts",
+    "files": [
+        "dist",
+        "src"
+    ],
+    "engines": {
+        "node": ">=10"
     },
-    {
-      "path": "dist/tsdx.esm.js",
-      "limit": "10 KB"
+    "scripts": {
+        "start": "tsdx watch",
+        "build": "tsdx build",
+        "test": "tsdx test --passWithNoTests",
+        "test:watch": "tsdx test --watch",
+        "test:coverage": "tsdx test --coverage",
+        "lint": "tsdx lint",
+        "prepare": "tsdx build",
+        "size": "size-limit",
+        "analyze": "size-limit --why"
+    },
+    "peerDependencies": {
+        "react": "^17.0.1"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "tsdx lint"
+        }
+    },
+    "prettier": {
+        "arrowParens": "always",
+        "semi": true,
+        "trailingComma": "all",
+        "singleQuote": false,
+        "printWidth": 80,
+        "tabWidth": 4
+    },
+    "name": "readmin",
+    "author": "Pankod",
+    "module": "dist/tsdx.esm.js",
+    "size-limit": [
+        {
+            "path": "dist/tsdx.cjs.production.min.js",
+            "limit": "10 KB"
+        },
+        {
+            "path": "dist/tsdx.esm.js",
+            "limit": "10 KB"
+        }
+    ],
+    "devDependencies": {
+        "@testing-library/jest-dom": "^4.2.4",
+        "@testing-library/react": "^9.5.0",
+        "@testing-library/react-hooks": "^5.0.3",
+        "@testing-library/user-event": "^7.2.1",
+        "@babel/core": "^7.12.13",
+        "@size-limit/preset-small-lib": "^4.9.2",
+        "@types/pluralize": "^0.0.29",
+        "@types/react": "^17.0.1",
+        "@types/react-dom": "^17.0.0",
+        "@types/react-router-dom": "^5.1.7",
+        "babel-plugin-module-resolver": "^4.1.0",
+        "husky": "^5.0.9",
+        "msw": "^0.26.2",
+        "react": "*",
+        "react-dom": "^17.0.1",
+        "size-limit": "^4.9.2",
+        "tsdx": "^0.14.1",
+        "tslib": "^2.1.0",
+        "typescript": "^3.9.8"
+    },
+    "dependencies": {
+        "@ant-design/icons": "^4.5.0",
+        "antd": "^4.12.2",
+        "axios": "^0.21.1",
+        "humanize-string": "^2.1.0",
+        "pluralize": "^8.0.0",
+        "query-string": "^6.14.0",
+        "react-query": "^3.8.2",
+        "react-router-dom": "^5.2.0"
     }
-  ],
-  "devDependencies": {
-    "@babel/core": "^7.12.13",
-    "@size-limit/preset-small-lib": "^4.9.2",
-    "@types/pluralize": "^0.0.29",
-    "@types/react": "^17.0.1",
-    "@types/react-dom": "^17.0.0",
-    "@types/react-router-dom": "^5.1.7",
-    "babel-plugin-module-resolver": "^4.1.0",
-    "husky": "^5.0.9",
-    "react": "*",
-    "react-dom": "^17.0.1",
-    "size-limit": "^4.9.2",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.1.0",
-    "typescript": "^3.9.8"
-  },
-  "dependencies": {
-    "@ant-design/icons": "^4.5.0",
-    "antd": "^4.12.2",
-    "axios": "^0.21.1",
-    "humanize-string": "^2.1.0",
-    "pluralize": "^8.0.0",
-    "query-string": "^6.14.0",
-    "react-query": "^3.8.2",
-    "react-router-dom": "^5.2.0"
-  }
 }
