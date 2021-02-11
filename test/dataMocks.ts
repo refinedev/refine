@@ -29,6 +29,25 @@ export const posts = [
     },
 ];
 
+export const categories = [
+    {
+        id: 8,
+        title: "Account",
+    },
+    {
+        id: 39,
+        title: "Account Division Pci",
+    },
+    {
+        id: 22,
+        title: "Alarm Designer Enable",
+    },
+    {
+        id: 28,
+        title: "Analyst Com",
+    },
+];
+
 export const MockJSONServer = JsonServer(
     "https://readmin-fake-rest.pankod.com",
 );
@@ -38,7 +57,19 @@ export const createMockServer = (): SetupServerApi =>
         rest.get(
             "https://readmin-fake-rest.pankod.com/posts",
             (_req, res, ctx) => {
-                return res(ctx.json(posts), ctx.set("x-total-count", "2"));
+                return res(
+                    ctx.json(posts),
+                    ctx.set("x-total-count", posts.length.toString()),
+                );
+            },
+        ),
+        rest.get(
+            "https://readmin-fake-rest.pankod.com/categories",
+            (_req, res, ctx) => {
+                return res(
+                    ctx.json(categories),
+                    ctx.set("x-total-count", categories.length.toString()),
+                );
             },
         ),
     );
