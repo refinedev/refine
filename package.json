@@ -14,6 +14,8 @@
         "start": "tsdx watch",
         "build": "tsdx build",
         "test": "tsdx test --passWithNoTests",
+        "test:watch": "tsdx test --watch",
+        "test:coverage": "tsdx test --coverage",
         "lint": "tsdx lint",
         "prepare": "tsdx build",
         "size": "size-limit",
