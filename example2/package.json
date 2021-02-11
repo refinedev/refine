@@ -13,9 +13,9 @@
     "react": "file:../node_modules/react",
     "react-dom": "file:../node_modules/react-dom",
     "react-scripts": "4.0.2",
+    "readmin": "file:..",
     "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1",
-    "readmin": "file:.."
+    "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

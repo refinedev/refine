@@ -35,28 +35,22 @@ export const List: React.FC<ListProps> = ({
     }
 
     let current = 1;
-    const queryParamCurrent = queryParams.current;
+    const queryParamCurrent = queryParams.get("current");
     if (queryParamCurrent) {
         current = +queryParamCurrent;
     }
 
     let pageSize = 10;
-    const queryParamPageSize = queryParams.pageSize;
+    const queryParamPageSize = queryParams.get("pageSize");
     if (queryParamPageSize) {
         pageSize = +queryParamPageSize;
     }
 
-    console.log("queryParams", queryParams);
-
     let search;
-    const queryParamSearch = queryParams.q;
+    const queryParamSearch = queryParams.get("q");
     if (queryParamSearch) {
         search = queryParamSearch;
     }
-
-    console.log("current", current);
-    console.log("pageSize", pageSize);
-    console.log("search", search);
 
     const { data, isFetching } = useList(resourceName, {
         pagination: { current, pageSize },

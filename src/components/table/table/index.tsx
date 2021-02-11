@@ -7,6 +7,7 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Column } from "@components";
 import { Record } from "@interfaces";
 import { useDelete } from "@hooks";
+import { useSearchParams } from "@hooks/util";
 
 export interface TableProps {
     resourceName?: string;
@@ -28,6 +29,7 @@ export const Table: React.FC<TableProps> = ({
     children,
 }) => {
     const history = useHistory();
+    const queryParams = useSearchParams();
 
     if (!resourceName) {
         // TODO: render resource error page
@@ -101,8 +103,9 @@ export const Table: React.FC<TableProps> = ({
                 loading={loading}
                 pagination={pagination}
                 onChange={(pagination) => {
+                    const q = queryParams.get("q");
                     history.push(
-                        `/resources/${resourceName}?current=${pagination.current}&pageSize=${pagination.pageSize}`,
+                        `/resources/${resourceName}?current=${pagination.current}&pageSize=${pagination.pageSize}&q=${q}`,
                     );
                 }}
             >

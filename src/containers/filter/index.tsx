@@ -17,7 +17,7 @@ export const Filter: React.FC<FilterProps> = ({ resourceName, children }) => {
             onValuesChange={(_changedValues, values): void => {
                 const preQueries = qs.parse(search);
 
-                const newQueries = { ...preQueries, ...values };
+                const newQueries = { ...preQueries, ...values, current: 1 };
 
                 return history.push(
                     `/resources/${resourceName}?${qs.stringify(newQueries)}`,
