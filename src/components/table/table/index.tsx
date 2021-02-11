@@ -110,7 +110,7 @@ export const Table: React.FC<TableProps> = ({
                 dataSource={dataSource}
                 loading={loading}
                 pagination={pagination}
-                onChange={(pagination) => {
+                onChange={pagination => {
                     history.push(
                         `/resources/${resourceName}?current=${pagination.current}&pageSize=${pagination.pageSize}`,
                     );

@@ -17,4 +17,16 @@ WORKDIR /opt/app/example
 
 RUN npm install --dev 
 
-CMD [ "npm", "run", "serve" ]
+RUN SKIP_PREFLIGHT_CHECK=true npm run build
+
+
+FROM node:12-alpine
+
+COPY --from=0 /opt/app/example/build /opt/app
+WORKDIR /opt/app/
+
+ENV NODE_ENV=production
+
+RUN npm install -g http-server
+
+CMD http-server -p 5000
