@@ -47,9 +47,13 @@ export const Admin: React.FC<AdminProps> = ({
                                     <LoginPage />
                                 </Route>
                                 <Auth dashboard={dashboard}>
-                                    {dashboard && (
+                                    {dashboard ? (
                                         <Route exact path="/">
                                             {dashboard}
+                                        </Route>
+                                    ) : (
+                                        <Route path={`/resources/${resources[0]}`}>
+                                            {children}
                                         </Route>
                                     )}
                                 </Auth>
