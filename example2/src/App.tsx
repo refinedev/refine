@@ -6,6 +6,7 @@ import { PostCreate, PostList, PostEdit } from './components/pages/post'
 import { CategoryList, CategoryCreate } from './components/pages/category';
 import { UserList } from './components/pages/user';
 import { TagList, TagCreate, TagEdit } from './components/pages/tag';
+import { DashboardPage } from './components/pages/dashboard';
 
 import { LoginPage } from "./components/login";
 
@@ -41,6 +42,7 @@ function App() {
       authProvider={authProvider}
       dataProvider={JsonServer('https://readmin-fake-rest.pankod.com')}
       loginPage={LoginPage}
+      dashboard={DashboardPage}
     >
       <Resource
         name="posts"
