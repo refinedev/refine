@@ -6,7 +6,7 @@ import pluralize from "pluralize";
 import { useCreate } from "@hooks";
 
 export interface CreateProps {
-    resourceName?: string;
+    resourceName: string;
     canEdit?: any;
 }
 
@@ -17,14 +17,9 @@ export const Create: React.FC<CreateProps> = ({
 }) => {
     const history = useHistory();
 
-    if (!resourceName) {
-        // TODO: render resource error page
-        throw new Error("`resourceName` is required for <Create/> Component.");
-    }
-
     const { mutate, error, isLoading } = useCreate(resourceName);
 
-    const onFinish = async (values: string) => {
+    const onFinish = async (values: object): Promise<void> => {
         mutate(
             { values },
             {

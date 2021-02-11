@@ -6,25 +6,16 @@ import pluralize from "pluralize";
 import { useOne, useUpdate } from "@hooks";
 
 export interface EditProps {
-    resourceName?: string;
+    resourceName: string;
 }
 
 export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
     const history = useHistory();
-    const { id } = useParams<Record<string, string | undefined>>();
+    const { id } = useParams<Record<string, string>>();
 
     const [form] = Form.useForm();
 
-    if (!resourceName || !id) {
-        // TODO: render resource error page
-        throw new Error(
-            "`resourceName` and `id` are required for <Edit/> Component.",
-        );
-    }
-
     const { data } = useOne(resourceName, id);
-
-    // TODO: handle isError state
 
     form.setFieldsValue({
         ...data?.data,
@@ -32,7 +23,7 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
 
     const { mutate, error, isLoading } = useUpdate(resourceName);
 
-    const onFinish = async (values: any) => {
+    const onFinish = async (values: object): Promise<void> => {
         mutate(
             { id, values },
             {

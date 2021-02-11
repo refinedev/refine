@@ -2,6 +2,7 @@ type Identifier = string | number;
 
 export interface Record {
     id: Identifier;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
 }
 
@@ -43,15 +44,15 @@ export interface IDataContext {
             pagination?: Pagination;
             search?: string;
             sort?: Sort;
-            filter?: any;
+            filter?: object;
         },
     ) => Promise<GetListResponse>;
     getOne: (resource: string, id: Identifier) => Promise<GetOneResponse>;
     deleteOne: (resource: string, id: Identifier) => Promise<DeleteOneResponse>;
-    create: (resource: string, params: any) => Promise<CreateResponse>;
+    create: (resource: string, params: object) => Promise<CreateResponse>;
     update: (
         resource: string,
         id: Identifier,
-        params: any,
+        params: object,
     ) => Promise<UpdateResponse>;
 }
