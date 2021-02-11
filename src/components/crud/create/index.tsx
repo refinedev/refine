@@ -28,7 +28,7 @@ export const Create: React.FC<CreateProps> = ({
         mutate(
             { values },
             {
-                onSuccess: (data) => {
+                onSuccess: data => {
                     if (canEdit) {
                         return history.push(
                             `/resources/${resourceName}/edit/${data.data.id}`,
@@ -41,7 +41,7 @@ export const Create: React.FC<CreateProps> = ({
         );
     };
 
-    const childrenWithProps = React.Children.map(children, (child) => {
+    const childrenWithProps = React.Children.map(children, child => {
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {
                 resourceName,

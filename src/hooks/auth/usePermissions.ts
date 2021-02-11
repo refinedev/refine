@@ -17,13 +17,15 @@ import { IAuthContext } from "@interfaces";
  * };
  */
 
-export const usePermissions = () => {
-    const [state, setState] = React.useState<{
-        loading: boolean;
-        loaded: boolean;
-        permissions?: any;
-        error?: any;
-    }>({
+interface State {
+    loading: boolean;
+    loaded: boolean;
+    permissions?: object;
+    error?: string;
+}
+
+export const usePermissions = (): State => {
+    const [state, setState] = React.useState<State>({
         loading: true,
         loaded: false,
     });
@@ -32,10 +34,10 @@ export const usePermissions = () => {
 
     React.useEffect(() => {
         getPermissions({})
-            .then((permissions) => {
+            .then(permissions => {
                 setState({ loading: false, loaded: true, permissions });
             })
-            .catch((error) => {
+            .catch(error => {
                 setState({
                     loading: false,
                     loaded: true,

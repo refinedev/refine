@@ -8,7 +8,9 @@
         "commonjs": true
     },
     "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint"],
+    "plugins": [
+        "@typescript-eslint"
+    ],
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
@@ -18,13 +20,16 @@
     ],
     "overrides": [
         {
-            "files": ["*.js"],
+            "files": [
+                "*.js"
+            ],
             "rules": {
                 "@typescript-eslint/no-var-requires": "off"
             }
         }
     ],
     "rules": {
-        "@typescript-eslint/ban-types": "off"
+        "@typescript-eslint/ban-types": "off",
+        "@typescript-eslint/interface-name-prefix": "off"
     }
 }

@@ -1,44 +1,25 @@
 {
-  "name": "readmin-example",
-  "homepage": ".",
-  "version": "0.0.0",
-  "private": true,
+  "name": "example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
   "scripts": {
-    "start": "node ../node_modules/react-scripts/bin/react-scripts.js start",
-    "build": "node ../node_modules/react-scripts/bin/react-scripts.js build",
-    "test": "node ../node_modules/react-scripts/bin/react-scripts.js test",
-    "eject": "node ../node_modules/react-scripts/bin/react-scripts.js eject"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "dependencies": {
-    "@testing-library/jest-dom": "file:../node_modules/@testing-library/jest-dom",
-    "@testing-library/react": "file:../node_modules/@testing-library/react",
-    "@testing-library/user-event": "file:../node_modules/@testing-library/user-event",
-    "@types/jest": "file:../node_modules/@types/jest",
-    "@types/node": "file:../node_modules/@types/node",
-    "@types/react": "file:../node_modules/@types/react",
-    "@types/react-dom": "file:../node_modules/@types/react-dom",
-    "react": "file:../node_modules/react",
-    "react-dom": "file:../node_modules/react-dom",
-    "react-scripts": "file:../node_modules/react-scripts",
-    "typescript": "file:../node_modules/typescript",
-    "readmin": "file:.."
+    "react-app-polyfill": "^1.0.6"
+  },
+  "alias": {
+    "react": "../node_modules/react",
+    "react-dom": "../node_modules/react-dom/profiling",
+    "scheduler/tracing": "../node_modules/scheduler/tracing-profiling"
   },
   "devDependencies": {
-    "@babel/plugin-syntax-object-rest-spread": "^7.8.3"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "@babel/core": "^7.12.13",
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.8.4",
+    "parcel": "^1.12.3",
+    "typescript": "^3.4.5"
   }
 }

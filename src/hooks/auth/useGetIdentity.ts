@@ -41,14 +41,14 @@ export const useGetIdentity = () => {
     React.useEffect(() => {
         if (typeof getUserIdentity === "function") {
             getUserIdentity()
-                .then((userIdentity) => {
+                .then(userIdentity => {
                     setState({
                         loading: false,
                         loaded: true,
                         userIdentity: userIdentity || defaultIdentity,
                     });
                 })
-                .catch((error) => {
+                .catch(error => {
                     setState({
                         loading: false,
                         loaded: true,

@@ -1,48 +1,86 @@
 {
+    // see https://www.typescriptlang.org/tsconfig to better understand tsconfigs
+    "include": [
+        "src",
+        "types"
+    ],
     "compilerOptions": {
-        "outDir": "dist",
         "module": "esnext",
-        "lib": ["dom", "esnext", "dom.iterable"],
-        "moduleResolution": "node",
-        "target": "esnext",
-        "jsx": "react",
-        "sourceMap": true,
+        "lib": [
+            "dom",
+            "esnext"
+        ],
+        "importHelpers": true,
+        // output .d.ts declaration files for consumers
         "declaration": true,
-        "esModuleInterop": true,
+        // output .js.map sourcemap files for consumers
+        "sourceMap": true,
+        // match output dir to input dir. e.g. dist/index instead of dist/src/index
+        "rootDir": "./src",
+        // stricter type-checking for stronger correctness. Recommended by TS
+        "strict": true,
+        // linter checks for common issues
         "noImplicitReturns": true,
-        "noImplicitThis": true,
-        "noImplicitAny": true,
-        "strictNullChecks": true,
-        "suppressImplicitAnyIndexErrors": true,
+        "noFallthroughCasesInSwitch": true,
+        // noUnused* overlap with @typescript-eslint/no-unused-vars, can disable if duplicative
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "allowSyntheticDefaultImports": true,
+        // use Node's module resolution algorithm, instead of the legacy TS one
+        "moduleResolution": "node",
+        // transpile JSX to React.createElement
+        "jsx": "react",
+        // interop between ESM and CJS modules. Recommended by TS
+        "esModuleInterop": true,
+        // significant perf increase by skipping checking .d.ts files, particularly those in node_modules. Recommended by TS
+        "skipLibCheck": true,
+        // error out if import and file system have a casing mismatch. Recommended by TS
+        "forceConsistentCasingInFileNames": true,
+        // `tsdx build` ignores this option, but it is commonly used when type-checking separately with `tsc`
+        "noEmit": true,
         "baseUrl": ".",
         "paths": {
-            "@actions/*": ["src/actions/*"],
-            "@actions": ["src/actions"],
-            "@components/*": ["src/Components/*"],
-            "@components": ["src/Components"],
-            "@containers/*": ["src/containers/*"],
-            "@containers": ["src/containers"],
-            "@pages/*": ["src/pages/*"],
-            "@pages": ["src/pages"],
-            "@redux/*": ["src/redux/*"],
-            "@redux": ["src/redux"],
-            "@interfaces/*": ["src/interfaces/*"],
-            "@interfaces": ["src/interfaces"],
-            "@contexts/*": ["src/contexts/*"],
-            "@contexts": ["src/contexts"],
-            "@dataProviders/*": ["src/dataProviders/*"],
-            "@dataProviders": ["src/dataProviders"],
-            "@helpers/*": ["src/helpers/*"],
-            "@helpers": ["src/helpers"],
-            "@hooks/*": ["src/hooks/*"],
-            "@hooks": ["src/hooks"],
-            "@test/*": ["test/*"],
-            "@test": ["test"]
+            "@components/*": [
+                "src/components/*"
+            ],
+            "@components": [
+                "src/components"
+            ],
+            "@containers/*": [
+                "src/containers/*"
+            ],
+            "@containers": [
+                "src/containers"
+            ],
+            "@pages/*": [
+                "src/pages/*"
+            ],
+            "@pages": [
+                "src/pages"
+            ],
+            "@interfaces/*": [
+                "src/interfaces/*"
+            ],
+            "@interfaces": [
+                "src/interfaces"
+            ],
+            "@contexts/*": [
+                "src/contexts/*"
+            ],
+            "@contexts": [
+                "src/contexts"
+            ],
+            "@dataProviders/*": [
+                "src/dataProviders/*"
+            ],
+            "@dataProviders": [
+                "src/dataProviders"
+            ],
+            "@hooks/*": [
+                "src/hooks/*"
+            ],
+            "@hooks": [
+                "src/hooks"
+            ]
         }
-    },
-    "include": ["src", "test"],
-    "exclude": ["node_modules", "dist", "example"]
+    }
 }
