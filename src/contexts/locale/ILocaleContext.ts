@@ -1,4 +1,4 @@
-type LocaleFn<T> = (values: T) => string;
+type LocaleFn<T> = (values?: T) => string;
 
 // type LocaleType<T = Record<string, unknown>> = LocaleFn<T> | string;
 
@@ -71,17 +71,17 @@ export const defaultLocale: ILocaleContext = {
         logout: "Logout",
     },
     routes: {
-        list: ({ resource }) => capitalize(`List ${resource}`),
-        edit: ({ resource }) => capitalize(`Edit ${resource}`),
-        create: ({ resource }) => capitalize(`Create ${resource}`),
-        view: ({ resource }) => capitalize(`View ${resource}`),
+        list: (values) => capitalize(`List ${values?.resource}`),
+        edit: (values) => capitalize(`Edit ${values?.resource}`),
+        create: (values) => capitalize(`Create ${values?.resource}`),
+        view: (values) => capitalize(`View ${values?.resource}`),
     },
     actions: {
-        title: "Actions",
-        create: ({ resource }) => capitalize(`Create ${resource}`),
-        edit: "Edit",
-        delete: "Delete",
-        save: "Save",
+        title: () => "Actions",
+        create: (values) => capitalize(`Create ${values?.resource}`),
+        edit: () => "Edit",
+        delete: () => "Delete",
+        save: () => "Save",
     },
     sider: {
         dashboard: "Dashboard",
