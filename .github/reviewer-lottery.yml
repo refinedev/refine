@@ -1,0 +1,11 @@
+groups:
+  - name: devs
+    reviewers: 4
+    usernames:
+      - omeraplak
+      - burcukaragozzz
+      - aliemir
+      - mhrrmk
+      - necatiozmen
+      - yildirayunlu
+
