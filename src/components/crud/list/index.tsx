@@ -10,7 +10,7 @@ import { useSearchParams } from "@hooks/util";
 import { useList } from "@hooks";
 
 export interface ListProps {
-    resourceName?: string;
+    resourceName: string;
     canCreate?: boolean;
     canEdit?: boolean;
     canDelete?: boolean;
@@ -25,11 +25,6 @@ export const List: React.FC<ListProps> = ({
 }) => {
     const queryParams = useSearchParams();
     const history = useHistory();
-
-    if (!resourceName) {
-        // TODO: render resource error page
-        throw new Error("`resourceName` is required for <List/> Component.");
-    }
 
     let current = 1;
     const queryParamCurrent = queryParams.current;
@@ -77,7 +72,7 @@ export const List: React.FC<ListProps> = ({
             extra={
                 canCreate && (
                     <Button
-                        onClick={() =>
+                        onClick={(): void =>
                             history.push(`/resources/${resourceName}/create`)
                         }
                         type="default"
