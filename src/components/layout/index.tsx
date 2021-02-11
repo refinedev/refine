@@ -18,7 +18,11 @@ export interface LayoutProps {
     dashboard?: React.FC;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children, title, dashboard }) => {
+export const Layout: React.FC<LayoutProps> = ({
+    children,
+    title,
+    dashboard,
+}) => {
     const [collapsed, setCollapsed] = React.useState(false);
 
     const history = useHistory();
@@ -70,11 +74,14 @@ export const Layout: React.FC<LayoutProps> = ({ children, title, dashboard }) =>
                     selectedKeys={[selectedKey]}
                     mode="inline"
                 >
-                    {dashboard && 
-                        <Menu.Item key={`dashboard`} icon={<DashboardOutlined />}>
+                    {dashboard && (
+                        <Menu.Item
+                            key={`dashboard`}
+                            icon={<DashboardOutlined />}
+                        >
                             <Link to={`/`}>Dashboard</Link>
                         </Menu.Item>
-                    }
+                    )}
 
                     {resources.map((item) => (
                         <Menu.Item

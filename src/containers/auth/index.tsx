@@ -25,5 +25,9 @@ export const Auth: React.FC<AuthProps> = ({ children, title, dashboard }) => {
     //         dispatch(UserActions.setIdentity(data));
     //     });
 
-    return <Layout title={title} dashboard={dashboard}>{children}</Layout>;
+    return (
+        <Layout title={title} dashboard={dashboard}>
+            {children}
+        </Layout>
+    );
 };
