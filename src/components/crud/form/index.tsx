@@ -6,6 +6,7 @@ import {
     FormProps as AntdFormProps,
 } from "antd/lib/form";
 import { SaveOutlined } from "@ant-design/icons";
+import { useTranslation } from "@hooks";
 
 export interface FormProps extends AntdFormProps {
     onFinish?: (values: object) => void;
@@ -22,6 +23,7 @@ export const Form: React.FC<FormProps> = ({
     children,
     ...rest
 }) => {
+    const { actions } = useTranslation();
     return (
         <section>
             {error && <span>{JSON.stringify(error)}</span>}
@@ -34,7 +36,7 @@ export const Form: React.FC<FormProps> = ({
                         type="primary"
                         icon={<SaveOutlined />}
                     >
-                        Save
+                        {actions.save()}
                     </Button>
                 </FormItem>
             </AntdForm>

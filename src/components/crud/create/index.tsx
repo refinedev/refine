@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Card } from "antd";
 import pluralize from "pluralize";
 
-import { useCreate } from "@hooks";
+import { useCreate, useTranslation } from "@hooks";
 
 export interface CreateProps {
     resourceName: string;
@@ -16,6 +16,7 @@ export const Create: React.FC<CreateProps> = ({
     children,
 }) => {
     const history = useHistory();
+    const { routes } = useTranslation();
 
     const { mutate, error, isLoading } = useCreate(resourceName);
 
@@ -49,7 +50,11 @@ export const Create: React.FC<CreateProps> = ({
     });
 
     return (
-        <Card title={`Create ${pluralize.singular(resourceName)}`}>
+        <Card
+            title={routes.create({
+                resource: pluralize.singular(resourceName),
+            })}
+        >
             {childrenWithProps}
         </Card>
     );

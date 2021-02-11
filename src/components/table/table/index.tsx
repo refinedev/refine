@@ -6,7 +6,7 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 import { Column } from "@components";
 import { Record } from "@interfaces";
-import { useDelete } from "@hooks";
+import { useDelete, useTranslation } from "@hooks";
 
 export interface TableProps {
     resourceName: string;
@@ -31,13 +31,16 @@ export const Table: React.FC<TableProps> = ({
 
     const { mutate, isLoading } = useDelete(resourceName);
 
+    const { common, actions } = useTranslation();
+
     const renderDeleteButton = (id: number | string): React.ReactNode => {
         return (
             <Popconfirm
                 key="delete"
-                okText="Delete"
+                okText={common.delete}
+                cancelText={common.cancel}
                 okType="danger"
-                title="Are you sure?"
+                title={common.confirm}
                 okButtonProps={{ disabled: isLoading }}
                 onConfirm={(): void => {
                     mutate({ id });
@@ -49,7 +52,7 @@ export const Table: React.FC<TableProps> = ({
                     danger
                     icon={<DeleteOutlined />}
                 >
-                    Delete
+                    {actions.delete()}
                 </Button>
             </Popconfirm>
         );
@@ -59,7 +62,7 @@ export const Table: React.FC<TableProps> = ({
         if (canEdit || canDelete) {
             return (
                 <Column
-                    title="Actions"
+                    title={actions.title()}
                     dataIndex="actions"
                     key="actions"
                     render={(
@@ -80,7 +83,7 @@ export const Table: React.FC<TableProps> = ({
                                     size="small"
                                     icon={<EditOutlined />}
                                 >
-                                    Edit
+                                    {actions.edit()}
                                 </Button>
                             )}
                             {canDelete && renderDeleteButton(record.id)}

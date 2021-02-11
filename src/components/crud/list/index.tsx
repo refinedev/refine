@@ -3,11 +3,11 @@ import { useHistory } from "react-router-dom";
 import { Button, Row, Card } from "antd";
 import { TablePaginationConfig } from "antd/lib/table";
 import { PlusSquareOutlined } from "@ant-design/icons";
-import humanizeString from "humanize-string";
+import pluralize from "pluralize";
 
 import { TableProps } from "@components/table";
 import { useSearchParams } from "@hooks/util";
-import { useList } from "@hooks";
+import { useList, useTranslation } from "@hooks";
 
 export interface ListProps {
     resourceName: string;
@@ -25,6 +25,7 @@ export const List: React.FC<ListProps> = ({
 }) => {
     const queryParams = useSearchParams();
     const history = useHistory();
+    const { common, routes } = useTranslation();
 
     let current = 1;
     const queryParamCurrent = queryParams.current;
@@ -44,6 +45,10 @@ export const List: React.FC<ListProps> = ({
 
     const pagination: TablePaginationConfig = {
         total: data?.total,
+        locale: {
+            // eslint-disable-next-line @typescript-eslint/camelcase
+            items_per_page: `/ ${common.page}`,
+        },
         current,
         pageSize,
         defaultCurrent: 1,
@@ -68,7 +73,9 @@ export const List: React.FC<ListProps> = ({
     return (
         <Card
             bodyStyle={{ padding: 0 }}
-            title={humanizeString(resourceName)}
+            title={routes.list({
+                resource: pluralize.plural(resourceName),
+            })}
             extra={
                 canCreate && (
                     <Button

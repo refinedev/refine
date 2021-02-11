@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { Form, Card } from "antd";
 import pluralize from "pluralize";
 
-import { useOne, useUpdate } from "@hooks";
+import { useOne, useTranslation, useUpdate } from "@hooks";
 
 export interface EditProps {
     resourceName: string;
@@ -16,6 +16,8 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
     const [form] = Form.useForm();
 
     const { data } = useOne(resourceName, id);
+
+    const { routes } = useTranslation();
 
     form.setFieldsValue({
         ...data?.data,
@@ -48,7 +50,11 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
     });
 
     return (
-        <Card title={`Edit ${pluralize.singular(resourceName)}`}>
+        <Card
+            title={routes.edit({
+                resource: pluralize.singular(resourceName),
+            })}
+        >
             {childrenWithProps}
         </Card>
     );
