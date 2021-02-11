@@ -5,7 +5,7 @@ const paths = compilerOptions.paths ? compilerOptions.paths : {};
 
 module.exports = {
     preset: "ts-jest",
-    rootDir: "../",
+    rootDir: "./",
     globals: {
         "ts-jest": {
             tsconfig: "tsconfig.test.json",
