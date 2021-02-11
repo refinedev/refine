@@ -40,7 +40,7 @@ const App = () => {
     <Admin
       authProvider={authProvider}
       dataProvider={JsonServer('https://readmin-fake-rest.pankod.com')}
-      dashboard={<DashboardPage />}
+      dashboard={DashboardPage}
     >
       <Resource
         name="posts"

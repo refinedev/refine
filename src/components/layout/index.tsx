@@ -15,7 +15,7 @@ import { IAuthContext } from "@interfaces";
 
 export interface LayoutProps {
     title?: ReactNode;
-    dashboard?: ReactNode;
+    dashboard?: React.FC;
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children, title, dashboard }) => {

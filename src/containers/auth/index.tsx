@@ -7,7 +7,7 @@ import { IAuthContext } from "@interfaces";
 
 export interface AuthProps {
     title?: ReactNode;
-    dashboard?: ReactNode;
+    dashboard?: React.FC;
 }
 
 export const Auth: React.FC<AuthProps> = ({ children, title, dashboard }) => {

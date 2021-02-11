@@ -15,7 +15,7 @@ export interface AdminProps {
     authProvider: IAuthContext;
     dataProvider: IDataContext;
     title?: ReactNode;
-    dashboard?: ReactNode;
+    dashboard?: React.FC;
 }
 
 export const Admin: React.FC<AdminProps> = ({
