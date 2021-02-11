@@ -7,19 +7,22 @@ import "antd/dist/antd.css";
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider } from "@contexts/resource";
+import { LocaleContextProvider } from "@contexts/locale";
 import { Auth } from "@containers/auth";
 import { DashboardPage, LoginPage } from "@pages";
-import { IDataContext, IAuthContext } from "@interfaces";
+import { IDataContext, IAuthContext, ICustomLocale } from "@interfaces";
 
 export interface AdminProps {
     authProvider: IAuthContext;
     dataProvider: IDataContext;
+    locale?: ICustomLocale;
     title?: ReactNode;
 }
 
 export const Admin: React.FC<AdminProps> = ({
     authProvider,
     dataProvider,
+    locale,
     title,
     children,
 }) => {
@@ -41,19 +44,21 @@ export const Admin: React.FC<AdminProps> = ({
             <AuthContextProvider {...authProvider}>
                 <DataContextProvider {...dataProvider}>
                     <ResourceContextProvider resources={resources}>
-                        <Router>
-                            <Switch>
-                                <Route exact path="/login">
-                                    <LoginPage />
-                                </Route>
-                                <Auth title={title}>
-                                    <Route exact path="/">
-                                        <DashboardPage />
+                        <LocaleContextProvider locale={locale ?? {}}>
+                            <Router>
+                                <Switch>
+                                    <Route exact path="/login">
+                                        <LoginPage />
                                     </Route>
-                                    {children}
-                                </Auth>
-                            </Switch>
-                        </Router>
+                                    <Auth title={title}>
+                                        <Route exact path="/">
+                                            <DashboardPage />
+                                        </Route>
+                                        {children}
+                                    </Auth>
+                                </Switch>
+                            </Router>
+                        </LocaleContextProvider>
                     </ResourceContextProvider>
                 </DataContextProvider>
             </AuthContextProvider>
