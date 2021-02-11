@@ -31,15 +31,16 @@ export const Table: React.FC<TableProps> = ({
 
     if (!resourceName) {
         // TODO: render resource error page
-        return <span>params error</span>;
+        throw new Error("`resourceName` is required for <Table/> Component.");
     }
 
     const { mutate, isLoading } = useDelete(resourceName);
 
+    const [visibleDeleteConfirm, setVisibleDeleteConfirm] = React.useState(
+        false,
+    );
+
     const renderDeleteButton = (id: any) => {
-        const [visibleDeleteConfirm, setVisibleDeleteConfirm] = React.useState(
-            false,
-        );
         return (
             <Popconfirm
                 key="delete"
@@ -110,7 +111,7 @@ export const Table: React.FC<TableProps> = ({
                 dataSource={dataSource}
                 loading={loading}
                 pagination={pagination}
-                onChange={pagination => {
+                onChange={(pagination) => {
                     history.push(
                         `/resources/${resourceName}?current=${pagination.current}&pageSize=${pagination.pageSize}`,
                     );
