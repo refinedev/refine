@@ -10,12 +10,6 @@ export const useOne = (
 ): QueryObserverResult<GetOneResponse, unknown> => {
     const { getOne } = useContext<IDataContext>(DataContext);
 
-    if (!resource || !id) {
-        throw new Error(
-            `'resource' and 'id' is required. You provided resource: ${resource}, id: ${id}`,
-        );
-    }
-
     const queryResponse = useQuery<GetOneResponse>(
         `resource/getOne/${resource}`,
         () => getOne(resource, id),

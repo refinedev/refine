@@ -9,13 +9,13 @@ import { Record } from "@interfaces";
 import { useDelete } from "@hooks";
 
 export interface TableProps {
-    resourceName?: string;
+    resourceName: string;
     dataSource?: Record[];
     loading?: boolean;
     pagination?: false | TablePaginationConfig;
     canEdit?: boolean;
     canDelete?: boolean;
-    onConfirmDelete?: (id: any) => void;
+    onConfirmDelete?: (id: string | number) => void;
 }
 
 export const Table: React.FC<TableProps> = ({
@@ -29,36 +29,21 @@ export const Table: React.FC<TableProps> = ({
 }) => {
     const history = useHistory();
 
-    if (!resourceName) {
-        // TODO: render resource error page
-        return <span>params error</span>;
-    }
-
     const { mutate, isLoading } = useDelete(resourceName);
 
-    const renderDeleteButton = (id: any) => {
-        const [visibleDeleteConfirm, setVisibleDeleteConfirm] = React.useState(
-            false,
-        );
+    const renderDeleteButton = (id: number | string): React.ReactNode => {
         return (
             <Popconfirm
                 key="delete"
-                visible={visibleDeleteConfirm}
                 okText="Delete"
                 okType="danger"
                 title="Are you sure?"
-                onCancel={() => setVisibleDeleteConfirm(false)}
                 okButtonProps={{ disabled: isLoading }}
-                onConfirm={() => {
+                onConfirm={(): void => {
                     mutate({ id });
-
-                    setVisibleDeleteConfirm(false);
                 }}
             >
                 <Button
-                    onClick={() => {
-                        setVisibleDeleteConfirm(true);
-                    }}
                     type="default"
                     size="small"
                     danger
@@ -70,18 +55,23 @@ export const Table: React.FC<TableProps> = ({
         );
     };
 
-    const renderActions = () => {
+    const renderActions = (): React.ReactNode => {
         if (canEdit || canDelete) {
             return (
                 <Column
                     title="Actions"
                     dataIndex="actions"
                     key="actions"
-                    render={(_text: any, record: any) => (
+                    render={(
+                        _text: string | number,
+                        record: {
+                            id: string | number;
+                        },
+                    ): React.ReactNode => (
                         <Space>
                             {canEdit && (
                                 <Button
-                                    onClick={() => {
+                                    onClick={(): void => {
                                         history.push(
                                             `/resources/${resourceName}/edit/${record.id}`,
                                         );
@@ -110,7 +100,7 @@ export const Table: React.FC<TableProps> = ({
                 dataSource={dataSource}
                 loading={loading}
                 pagination={pagination}
-                onChange={pagination => {
+                onChange={(pagination): void => {
                     history.push(
                         `/resources/${resourceName}?current=${pagination.current}&pageSize=${pagination.pageSize}`,
                     );

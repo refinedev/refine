@@ -1,11 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, ReactNode } from "react";
 import { useHistory } from "react-router-dom";
 
 import { Layout } from "@components";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "@interfaces";
 
-export const Auth: React.FC = ({ children }) => {
+export interface AuthProps {
+    title?: ReactNode;
+}
+
+export const Auth: React.FC<AuthProps> = ({ children, title }) => {
     const { checkAuth } = useContext<IAuthContext>(AuthContext);
     const history = useHistory();
 
@@ -20,5 +24,5 @@ export const Auth: React.FC = ({ children }) => {
     //         dispatch(UserActions.setIdentity(data));
     //     });
 
-    return <Layout>{children}</Layout>;
+    return <Layout title={title}>{children}</Layout>;
 };

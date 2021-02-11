@@ -6,23 +6,16 @@ import pluralize from "pluralize";
 import { useOne, useUpdate } from "@hooks";
 
 export interface EditProps {
-    resourceName?: string;
+    resourceName: string;
 }
 
 export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
     const history = useHistory();
-    const { id } = useParams<Record<string, string | undefined>>();
+    const { id } = useParams<Record<string, string>>();
 
     const [form] = Form.useForm();
 
-    if (!resourceName || !id) {
-        // TODO: render resource error page
-        return <span>params error</span>;
-    }
-
     const { data } = useOne(resourceName, id);
-
-    // TODO: handle isError state
 
     form.setFieldsValue({
         ...data?.data,
@@ -30,7 +23,7 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
 
     const { mutate, error, isLoading } = useUpdate(resourceName);
 
-    const onFinish = async (values: any) => {
+    const onFinish = async (values: object): Promise<void> => {
         mutate(
             { id, values },
             {
@@ -41,7 +34,7 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
         );
     };
 
-    const childrenWithProps = React.Children.map(children, child => {
+    const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {
                 resourceName,

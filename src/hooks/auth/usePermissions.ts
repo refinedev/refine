@@ -34,10 +34,10 @@ export const usePermissions = (): State => {
 
     React.useEffect(() => {
         getPermissions({})
-            .then(permissions => {
+            .then((permissions) => {
                 setState({ loading: false, loaded: true, permissions });
             })
-            .catch(error => {
+            .catch((error) => {
                 setState({
                     loading: false,
                     loaded: true,
