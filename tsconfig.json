@@ -10,6 +10,7 @@
         "strict": true,
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
+        "downlevelIteration": true,
         "moduleResolution": "node",
         "jsx": "react",
         "esModuleInterop": true,
