@@ -45,13 +45,7 @@ export const Admin: React.FC<AdminProps> = ({
                     <ResourceContextProvider resources={resources}>
                         <Router>
                             <Switch>
-                                {
-                                (loginPage !== false)
-                                ? (
-                                <Route exact path="/login" component={loginPage}/>
-                                )
-                                : null
-                                }
+                                {loginPage && <Route exact path="/login" component={loginPage}/>}
                                 <Auth title={title}>
                                     <Route exact path="/">
                                         <DashboardPage />
