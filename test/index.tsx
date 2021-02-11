@@ -22,7 +22,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     dataProvider,
     resources,
 }) => {
-    return ({ children }) => {
+    return ({ children }): React.ReactElement => {
         const withResource = (
             <ResourceContextProvider resources={resources}>
                 {children}
