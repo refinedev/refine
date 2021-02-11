@@ -27,6 +27,6 @@ WORKDIR /opt/app/
 
 ENV NODE_ENV=production
 
-RUN npm install -g http-server
+RUN npm install -g serve
 
-CMD http-server -p 5000
+CMD serve -s build -l 5000
