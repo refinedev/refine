@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -14,12 +14,14 @@ import { IDataContext, IAuthContext } from "@interfaces";
 export interface AdminProps {
     authProvider: IAuthContext;
     dataProvider: IDataContext;
-    dashboard?: React.ReactNode;
+    title?: ReactNode;
+    dashboard?: ReactNode;
 }
 
 export const Admin: React.FC<AdminProps> = ({
     authProvider,
     dataProvider,
+    title,
     dashboard,
     children,
 }) => {
@@ -46,8 +48,7 @@ export const Admin: React.FC<AdminProps> = ({
                                 <Route exact path="/login">
                                     <LoginPage />
                                 </Route>
-                                
-                                <Auth dashboard={dashboard}>
+                                <Auth title={title} dashboard={dashboard}>
                                     <Route exact path="/">
                                         {dashboard ? dashboard : <Redirect to={`/resources/${resources[0]}`} />}
                                     </Route>

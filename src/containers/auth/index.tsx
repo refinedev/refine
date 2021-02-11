@@ -6,10 +6,11 @@ import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "@interfaces";
 
 export interface AuthProps {
+    title?: ReactNode;
     dashboard?: ReactNode;
 }
 
-export const Auth: React.FC<AuthProps> = ({ children, dashboard }) => {
+export const Auth: React.FC<AuthProps> = ({ children, title, dashboard }) => {
     const { checkAuth } = useContext<IAuthContext>(AuthContext);
     const history = useHistory();
 
@@ -24,5 +25,5 @@ export const Auth: React.FC<AuthProps> = ({ children, dashboard }) => {
     //         dispatch(UserActions.setIdentity(data));
     //     });
 
-    return <Layout dashboard={dashboard}>{children}</Layout>;
+    return <Layout title={title} dashboard={dashboard}>{children}</Layout>;
 };

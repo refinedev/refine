@@ -14,10 +14,11 @@ import { ResourceContext, IResourceContext } from "@contexts/resource";
 import { IAuthContext } from "@interfaces";
 
 export interface LayoutProps {
+    title?: ReactNode;
     dashboard?: ReactNode;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
+export const Layout: React.FC<LayoutProps> = ({ children, title, dashboard }) => {
     const [collapsed, setCollapsed] = React.useState(false);
 
     const history = useHistory();
@@ -27,7 +28,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
     const location = useLocation();
 
     const selectedKey = React.useMemo(() => {
-        const selectedResource = resources.find(el =>
+        const selectedResource = resources.find((el) =>
             location.pathname.startsWith(`/resources/${el}`),
         );
         return `/resources/${selectedResource ?? ""}`;
@@ -60,7 +61,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
                         alignItems: "center",
                     }}
                 >
-                    Brand Name
+                    {title ?? "Readmin"}
                 </div>
                 <Menu
                     onClick={menuOnClick}
@@ -75,7 +76,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
                         </Menu.Item>
                     }
 
-                    {resources.map(item => (
+                    {resources.map((item) => (
                         <Menu.Item
                             key={`/resources/${item}`}
                             icon={<UnorderedListOutlined />}
