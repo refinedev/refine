@@ -9,7 +9,7 @@ import { Record } from "@interfaces";
 import { useDelete, useTranslation } from "@hooks";
 
 export interface TableProps {
-    resourceName: string;
+    resourceName?: string;
     dataSource?: Record[];
     loading?: boolean;
     pagination?: false | TablePaginationConfig;
@@ -29,7 +29,8 @@ export const Table: React.FC<TableProps> = ({
 }) => {
     const history = useHistory();
 
-    const { mutate, isLoading } = useDelete(resourceName);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const { mutate, isLoading } = useDelete(resourceName!);
 
     const { common, actions } = useTranslation();
 
