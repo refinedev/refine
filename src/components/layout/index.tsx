@@ -15,9 +15,14 @@ import { IAuthContext } from "@interfaces";
 
 export interface LayoutProps {
     title?: ReactNode;
+    dashboard?: React.FC;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children, title }) => {
+export const Layout: React.FC<LayoutProps> = ({
+    children,
+    title,
+    dashboard,
+}) => {
     const [collapsed, setCollapsed] = React.useState(false);
 
     const history = useHistory();
@@ -69,9 +74,14 @@ export const Layout: React.FC<LayoutProps> = ({ children, title }) => {
                     selectedKeys={[selectedKey]}
                     mode="inline"
                 >
-                    <Menu.Item key={`dashboard`} icon={<DashboardOutlined />}>
-                        <Link to={`/`}>Dashboard</Link>
-                    </Menu.Item>
+                    {dashboard && (
+                        <Menu.Item
+                            key={`dashboard`}
+                            icon={<DashboardOutlined />}
+                        >
+                            <Link to={`/`}>Dashboard</Link>
+                        </Menu.Item>
+                    )}
 
                     {resources.map((item) => (
                         <Menu.Item
