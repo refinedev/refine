@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { ReactNode, useContext } from "react";
 import { Layout as AntLayout, Menu } from "antd";
 import {
     DashboardOutlined,
@@ -13,7 +13,11 @@ import { AuthContext } from "@contexts/auth";
 import { ResourceContext, IResourceContext } from "@contexts/resource";
 import { IAuthContext } from "@interfaces";
 
-export const Layout: React.FC = ({ children }) => {
+export interface LayoutProps {
+    dashboard?: ReactNode;
+}
+
+export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
     const [collapsed, setCollapsed] = React.useState(false);
 
     const history = useHistory();
@@ -65,9 +69,11 @@ export const Layout: React.FC = ({ children }) => {
                     selectedKeys={[selectedKey]}
                     mode="inline"
                 >
-                    <Menu.Item key={`dashboard`} icon={<DashboardOutlined />}>
-                        <Link to={`/`}>Dashboard</Link>
-                    </Menu.Item>
+                    {dashboard && 
+                        <Menu.Item key={`dashboard`} icon={<DashboardOutlined />}>
+                            <Link to={`/`}>Dashboard</Link>
+                        </Menu.Item>
+                    }
 
                     {resources.map(item => (
                         <Menu.Item
