@@ -22,5 +22,5 @@ jobs:
         npm install
         npm run lint
         npm test
-        npm run build:cli
+        npm run build
 
