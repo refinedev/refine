@@ -56,7 +56,7 @@ export const List: React.FC<ListProps> = ({
         position: ["bottomCenter"],
     };
 
-    const childrenWithProps = React.Children.map(children, (child) => {
+    const childrenWithProps = React.Children.map(children, child => {
         if (React.isValidElement(child)) {
             return React.cloneElement<TableProps>(child, {
                 resourceName,
