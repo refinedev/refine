@@ -36,30 +36,19 @@ export const Table: React.FC<TableProps> = ({
 
     const { mutate, isLoading } = useDelete(resourceName);
 
-    const [visibleDeleteConfirm, setVisibleDeleteConfirm] = React.useState(
-        false,
-    );
-
     const renderDeleteButton = (id: any) => {
         return (
             <Popconfirm
                 key="delete"
-                visible={visibleDeleteConfirm}
                 okText="Delete"
                 okType="danger"
                 title="Are you sure?"
-                onCancel={() => setVisibleDeleteConfirm(false)}
                 okButtonProps={{ disabled: isLoading }}
                 onConfirm={() => {
                     mutate({ id });
-
-                    setVisibleDeleteConfirm(false);
                 }}
             >
                 <Button
-                    onClick={() => {
-                        setVisibleDeleteConfirm(true);
-                    }}
                     type="default"
                     size="small"
                     danger
