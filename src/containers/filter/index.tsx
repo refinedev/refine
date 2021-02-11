@@ -14,7 +14,7 @@ export const Filter: React.FC<FilterProps> = ({ resourceName, children }) => {
     return (
         <Form
             layout="vertical"
-            onValuesChange={(_changedValues, values) => {
+            onValuesChange={(_changedValues, values): void => {
                 const preQueries = qs.parse(search);
 
                 const newQueries = { ...preQueries, ...values };
