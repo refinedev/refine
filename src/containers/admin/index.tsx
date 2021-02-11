@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ComponentType, ReactNode } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -15,6 +15,7 @@ export interface AdminProps {
     authProvider: IAuthContext;
     dataProvider: IDataContext;
     title?: ReactNode;
+    loginPage?: ComponentType | false ;
 }
 
 export const Admin: React.FC<AdminProps> = ({
@@ -22,6 +23,7 @@ export const Admin: React.FC<AdminProps> = ({
     dataProvider,
     title,
     children,
+    loginPage = LoginPage
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -43,9 +45,13 @@ export const Admin: React.FC<AdminProps> = ({
                     <ResourceContextProvider resources={resources}>
                         <Router>
                             <Switch>
-                                <Route exact path="/login">
-                                    <LoginPage />
-                                </Route>
+                                {
+                                (loginPage !== false)
+                                ? (
+                                <Route exact path="/login" component={loginPage}/>
+                                )
+                                : null
+                                }
                                 <Auth title={title}>
                                     <Route exact path="/">
                                         <DashboardPage />
