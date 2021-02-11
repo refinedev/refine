@@ -13,7 +13,8 @@ export const Filter: React.FC<FilterProps> = ({ resourceName, children }) => {
 
     return (
         <Form
-            layout="vertical"
+            style={{ marginBlock: 10 }}
+            layout="inline"
             onValuesChange={(_changedValues, values): void => {
                 const preQueries = qs.parse(search);
 

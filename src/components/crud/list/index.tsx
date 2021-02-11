@@ -6,10 +6,11 @@ import { PlusSquareOutlined } from "@ant-design/icons";
 import humanizeString from "humanize-string";
 import qs from "query-string";
 
-import { TextInput, FormItem } from "@components";
+import { TextInput, FormItem, SelectInput } from "@components";
 import { Filter } from "@containers";
 import { TableProps } from "@components/table";
 import { useList } from "@hooks";
+import { ReferenceInput } from "@components/inputs";
 
 export interface ListProps {
     resourceName: string;
@@ -78,7 +79,32 @@ export const List: React.FC<ListProps> = ({
                     <TextInput placeholder="Search" />
                 </FormItem>
                 <FormItem label="Status" name="status">
-                    <TextInput />
+                    <SelectInput
+                        allowClear
+                        placeholder="All Status"
+                        options={[
+                            {
+                                label: "Active",
+                                value: "active",
+                            },
+                            {
+                                label: "Draft",
+                                value: "draft",
+                            },
+                        ]}
+                    />
+                </FormItem>
+                <FormItem label="Category" name="categoryId">
+                    <ReferenceInput
+                        reference="categories"
+                        optionText="title"
+                        sort={{
+                            field: "title",
+                            order: "asc",
+                        }}
+                    >
+                        <SelectInput allowClear placeholder="Select Category" />
+                    </ReferenceInput>
                 </FormItem>
             </Filter>
             <Card
