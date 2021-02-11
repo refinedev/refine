@@ -14,6 +14,7 @@ import { IDataContext, IAuthContext } from "@interfaces";
 export interface AdminProps {
     authProvider: IAuthContext;
     dataProvider: IDataContext;
+    catchAll?: React.ReactNode;
 }
 
 export const Admin: React.FC<AdminProps> = ({
@@ -34,6 +35,8 @@ export const Admin: React.FC<AdminProps> = ({
         resources.push(child.props.name);
     });
 
+    console.log("resource", resources)
+
     return (
         <QueryClientProvider client={queryClient}>
             <AuthContextProvider {...authProvider}>
@@ -50,6 +53,8 @@ export const Admin: React.FC<AdminProps> = ({
                                     </Route>
                                     {children}
                                 </Auth>
+                        
+
                             </Switch>
                         </Router>
                     </ResourceContextProvider>

@@ -11,6 +11,7 @@ import {
 } from "readmin";
 
 export const CategoryList = (props: any) => {
+    console.log("props", props);
     return (
         <List {...props}>
             <Table>
