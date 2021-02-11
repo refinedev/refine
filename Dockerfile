@@ -17,12 +17,12 @@ WORKDIR /opt/app/example
 
 RUN npm install --dev 
 
-RUN SKIP_PREFLIGHT_CHECK=true npm run build
+RUN npm run build
 
 
 FROM node:12-alpine
 
-COPY --from=0 /opt/app/example/build /opt/app
+COPY --from=0 /opt/app/example/dist /opt/app
 WORKDIR /opt/app/
 
 ENV NODE_ENV=production
