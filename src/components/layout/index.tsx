@@ -27,7 +27,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, title }) => {
     const location = useLocation();
 
     const selectedKey = React.useMemo(() => {
-        const selectedResource = resources.find((el) =>
+        const selectedResource = resources.find(el =>
             location.pathname.startsWith(`/resources/${el}`),
         );
         return `/resources/${selectedResource ?? ""}`;
@@ -45,7 +45,9 @@ export const Layout: React.FC<LayoutProps> = ({ children, title }) => {
             <AntLayout.Sider
                 collapsible
                 collapsed={collapsed}
-                onCollapse={(collapsed) => setCollapsed(collapsed)}
+                onCollapse={(collapsed: boolean): void =>
+                    setCollapsed(collapsed)
+                }
             >
                 <div
                     style={{
@@ -71,7 +73,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, title }) => {
                         <Link to={`/`}>Dashboard</Link>
                     </Menu.Item>
 
-                    {resources.map((item) => (
+                    {resources.map(item => (
                         <Menu.Item
                             key={`/resources/${item}`}
                             icon={<UnorderedListOutlined />}
