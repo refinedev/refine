@@ -17,7 +17,9 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
 
     if (!resourceName || !id) {
         // TODO: render resource error page
-        return <span>params error</span>;
+        throw new Error(
+            "`resourceName` and `id` are required for <Edit/> Component.",
+        );
     }
 
     const { data } = useOne(resourceName, id);
@@ -41,7 +43,7 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
         );
     };
 
-    const childrenWithProps = React.Children.map(children, child => {
+    const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {
                 resourceName,

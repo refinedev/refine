@@ -28,7 +28,7 @@ export const List: React.FC<ListProps> = ({
 
     if (!resourceName) {
         // TODO: render resource error page
-        return <span>params error</span>;
+        throw new Error("`resourceName` is required for <List/> Component.");
     }
 
     let current = 1;
@@ -56,7 +56,7 @@ export const List: React.FC<ListProps> = ({
         position: ["bottomCenter"],
     };
 
-    const childrenWithProps = React.Children.map(children, child => {
+    const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement<TableProps>(child, {
                 resourceName,

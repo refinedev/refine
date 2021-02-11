@@ -1,19 +1,20 @@
 {
-  "plugins": [
-    [
-      "module-resolver",
-      {
-        "root": "./",
-        "alias": {
-          "@components": "./src/components",
-          "@containers": "./src/containers",
-          "@pages": "./src/pages",
-          "@interfaces": "./src/interfaces",
-          "@contexts": "./src/contexts",
-          "@dataProviders": "./src/dataProviders",
-          "@hooks": "./src/hooks"
-        }
-      }
+    "plugins": [
+        [
+            "module-resolver",
+            {
+                "root": "./",
+                "alias": {
+                    "@components": "./src/components",
+                    "@containers": "./src/containers",
+                    "@pages": "./src/pages",
+                    "@interfaces": "./src/interfaces",
+                    "@contexts": "./src/contexts",
+                    "@dataProviders": "./src/dataProviders",
+                    "@hooks": "./src/hooks",
+                    "@test": "./test"
+                }
+            }
+        ]
     ]
-  ]
 }
