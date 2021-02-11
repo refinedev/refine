@@ -7,6 +7,7 @@ import { CategoryList, CategoryCreate } from './components/pages/category';
 import { UserList } from './components/pages/user';
 import { TagList, TagCreate, TagEdit } from './components/pages/tag';
 
+import { LoginPage } from "./components/login";
 
 function App() {
   const authProvider: AuthProvider = {
@@ -39,6 +40,7 @@ function App() {
     <Admin
       authProvider={authProvider}
       dataProvider={JsonServer('https://readmin-fake-rest.pankod.com')}
+      loginPage={LoginPage}
     >
       <Resource
         name="posts"
