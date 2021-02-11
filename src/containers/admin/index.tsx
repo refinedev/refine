@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "antd/dist/antd.css";
@@ -46,16 +46,12 @@ export const Admin: React.FC<AdminProps> = ({
                                 <Route exact path="/login">
                                     <LoginPage />
                                 </Route>
+                                
                                 <Auth dashboard={dashboard}>
-                                    {dashboard ? (
-                                        <Route exact path="/">
-                                            {dashboard}
-                                        </Route>
-                                    ) : (
-                                        <Route path={`/resources/${resources[0]}`}>
-                                            {children}
-                                        </Route>
-                                    )}
+                                    <Route exact path="/">
+                                        {dashboard ? dashboard : <Redirect to={`/resources/${resources[0]}`} />}
+                                    </Route>
+                                        {children}
                                 </Auth>
                             </Switch>
                         </Router>
