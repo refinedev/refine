@@ -24,14 +24,17 @@ export const useLogin = () => {
     const notification = useNotification();
 
     const login = React.useCallback((params: any) => {
-        authContext.login(params).then(() => {
-            return history.push("/");
-        }).catch(() => {
-            notification.error({
-                message: "Login Error",
-                description: "Invalid username or password",
+        authContext
+            .login(params)
+            .then(() => {
+                return history.push("/");
+            })
+            .catch(() => {
+                notification.error({
+                    message: "Login Error",
+                    description: "Invalid username or password",
+                });
             });
-        });
     }, []);
 
     return login;

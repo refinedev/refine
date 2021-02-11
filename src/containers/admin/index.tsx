@@ -20,7 +20,7 @@ export interface AdminProps {
     authProvider: IAuthContext;
     dataProvider: IDataContext;
     title?: ReactNode;
-    loginPage?: ComponentType | false ;
+    loginPage?: ComponentType | false;
     dashboard?: React.FC;
 }
 
@@ -30,7 +30,7 @@ export const Admin: React.FC<AdminProps> = ({
     title,
     dashboard,
     children,
-    loginPage = LoginPage
+    loginPage = LoginPage,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -52,7 +52,13 @@ export const Admin: React.FC<AdminProps> = ({
                     <ResourceContextProvider resources={resources}>
                         <Router>
                             <Switch>
-                                {loginPage && <Route exact path="/login" component={loginPage}/>}
+                                {loginPage && (
+                                    <Route
+                                        exact
+                                        path="/login"
+                                        component={loginPage}
+                                    />
+                                )}
                                 <Auth title={title} dashboard={dashboard}>
                                     <Switch>
                                         <Route exact path="/">
