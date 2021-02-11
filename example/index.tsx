@@ -7,6 +7,7 @@ import { PostCreate, PostList, PostEdit } from './post';
 import { CategoryList, CategoryCreate } from './category';
 import { UserList } from './user';
 import { TagList, TagCreate, TagEdit } from './tag';
+import { DashboardPage } from './dashboard';
 
 const App = () => {
   const authProvider: AuthProvider = {
@@ -39,6 +40,7 @@ const App = () => {
     <Admin
       authProvider={authProvider}
       dataProvider={JsonServer('https://readmin-fake-rest.pankod.com')}
+      dashboard={<DashboardPage />}
     >
       <Resource
         name="posts"
