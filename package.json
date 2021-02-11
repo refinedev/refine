@@ -75,6 +75,7 @@
         "@ant-design/icons": "^4.5.0",
         "antd": "^4.12.2",
         "axios": "^0.21.1",
+        "deepmerge": "^4.2.2",
         "humanize-string": "^2.1.0",
         "pluralize": "^8.0.0",
         "query-string": "^6.14.0",
