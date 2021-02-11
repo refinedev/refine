@@ -1,5 +1,10 @@
 import React, { ReactNode } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+} from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "antd/dist/antd.css";
@@ -8,19 +13,21 @@ import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider } from "@contexts/resource";
 import { Auth } from "@containers/auth";
-import { DashboardPage, LoginPage } from "@pages";
+import { LoginPage } from "@pages";
 import { IDataContext, IAuthContext } from "@interfaces";
 
 export interface AdminProps {
     authProvider: IAuthContext;
     dataProvider: IDataContext;
     title?: ReactNode;
+    dashboard?: React.FC;
 }
 
 export const Admin: React.FC<AdminProps> = ({
     authProvider,
     dataProvider,
     title,
+    dashboard,
     children,
 }) => {
     const queryClient = new QueryClient({
@@ -46,11 +53,19 @@ export const Admin: React.FC<AdminProps> = ({
                                 <Route exact path="/login">
                                     <LoginPage />
                                 </Route>
-                                <Auth title={title}>
-                                    <Route exact path="/">
-                                        <DashboardPage />
-                                    </Route>
-                                    {children}
+                                <Auth title={title} dashboard={dashboard}>
+                                    <Switch>
+                                        <Route exact path="/">
+                                            {dashboard ? (
+                                                dashboard
+                                            ) : (
+                                                <Redirect
+                                                    to={`/resources/${resources[0]}`}
+                                                />
+                                            )}
+                                        </Route>
+                                        {children}
+                                    </Switch>
                                 </Auth>
                             </Switch>
                         </Router>
