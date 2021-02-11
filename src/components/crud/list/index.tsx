@@ -12,7 +12,7 @@ import { TableProps } from "@components/table";
 import { useList } from "@hooks";
 
 export interface ListProps {
-    resourceName?: string;
+    resourceName: string;
     canCreate?: boolean;
     canEdit?: boolean;
     canDelete?: boolean;
@@ -28,11 +28,6 @@ export const List: React.FC<ListProps> = ({
 }) => {
     const searchQuery = useLocation().search;
     const history = useHistory();
-
-    if (!resourceName) {
-        // TODO: render resource error page
-        throw new Error("`resourceName` is required for <List/> Component.");
-    }
 
     const parsedSearchQuery = qs.parse(searchQuery);
 
@@ -92,7 +87,7 @@ export const List: React.FC<ListProps> = ({
                 extra={
                     canCreate && (
                         <Button
-                            onClick={() =>
+                            onClick={(): void =>
                                 history.push(
                                     `/resources/${resourceName}/create`,
                                 )

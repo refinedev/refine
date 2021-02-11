@@ -10,13 +10,13 @@ import { useDelete } from "@hooks";
 import { useSearchParams } from "@hooks/util";
 
 export interface TableProps {
-    resourceName?: string;
+    resourceName: string;
     dataSource?: Record[];
     loading?: boolean;
     pagination?: false | TablePaginationConfig;
     canEdit?: boolean;
     canDelete?: boolean;
-    onConfirmDelete?: (id: any) => void;
+    onConfirmDelete?: (id: string | number) => void;
 }
 
 export const Table: React.FC<TableProps> = ({
@@ -31,14 +31,9 @@ export const Table: React.FC<TableProps> = ({
     const history = useHistory();
     const queryParams = useSearchParams();
 
-    if (!resourceName) {
-        // TODO: render resource error page
-        throw new Error("`resourceName` is required for <Table/> Component.");
-    }
-
     const { mutate, isLoading } = useDelete(resourceName);
 
-    const renderDeleteButton = (id: any) => {
+    const renderDeleteButton = (id: number | string): React.ReactNode => {
         return (
             <Popconfirm
                 key="delete"
@@ -46,7 +41,7 @@ export const Table: React.FC<TableProps> = ({
                 okType="danger"
                 title="Are you sure?"
                 okButtonProps={{ disabled: isLoading }}
-                onConfirm={() => {
+                onConfirm={(): void => {
                     mutate({ id });
                 }}
             >
@@ -62,18 +57,23 @@ export const Table: React.FC<TableProps> = ({
         );
     };
 
-    const renderActions = () => {
+    const renderActions = (): React.ReactNode => {
         if (canEdit || canDelete) {
             return (
                 <Column
                     title="Actions"
                     dataIndex="actions"
                     key="actions"
-                    render={(_text: any, record: any) => (
+                    render={(
+                        _text: string | number,
+                        record: {
+                            id: string | number;
+                        },
+                    ): React.ReactNode => (
                         <Space>
                             {canEdit && (
                                 <Button
-                                    onClick={() => {
+                                    onClick={(): void => {
                                         history.push(
                                             `/resources/${resourceName}/edit/${record.id}`,
                                         );
@@ -102,7 +102,7 @@ export const Table: React.FC<TableProps> = ({
                 dataSource={dataSource}
                 loading={loading}
                 pagination={pagination}
-                onChange={(pagination) => {
+                onChange={(pagination): void => {
                     const q = queryParams.get("q");
                     history.push(
                         `/resources/${resourceName}?current=${pagination.current}&pageSize=${pagination.pageSize}&q=${q}`,
