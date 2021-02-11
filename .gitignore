@@ -1,11 +1,7 @@
-
-# See https://help.github.com/ignore-files/ for more about ignoring files.
-
-# dependencies
+*.log
+.DS_Store
 node_modules
-
-# builds
-build
+.cache
 dist
 .rpt2_cache
 
@@ -23,3 +19,4 @@ yarn-error.log*
 
 # eslint cache
 example/.eslintcache
+example/.cache
