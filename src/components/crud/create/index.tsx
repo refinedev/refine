@@ -19,7 +19,7 @@ export const Create: React.FC<CreateProps> = ({
 
     const { mutate, error, isLoading } = useCreate(resourceName);
 
-    const onFinish = async (values: string): Promise<void> => {
+    const onFinish = async (values: object): Promise<void> => {
         mutate(
             { values },
             {

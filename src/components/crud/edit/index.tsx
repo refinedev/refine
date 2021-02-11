@@ -23,7 +23,7 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
 
     const { mutate, error, isLoading } = useUpdate(resourceName);
 
-    const onFinish = async (values: any): Promise<void> => {
+    const onFinish = async (values: object): Promise<void> => {
         mutate(
             { id, values },
             {
