@@ -7,7 +7,7 @@ import { IDataContext, UpdateResponse } from "@interfaces";
 type UseUpdateReturnType = UseMutationResult<
     UpdateResponse,
     unknown,
-    { id: string; values: string },
+    { id: string; values: object },
     unknown
 >;
 
@@ -20,7 +20,7 @@ export const useUpdate = (resource: string): UseUpdateReturnType => {
     }
 
     const mutation = useMutation(
-        ({ id, values }: { id: string; values: string }) =>
+        ({ id, values }: { id: string; values: object }) =>
             update(resource, id, values),
     );
 

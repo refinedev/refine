@@ -1,10 +1,18 @@
 import axios from "axios";
 import { stringify } from "query-string";
 
-import { IDataContext, Record } from "@interfaces";
+import {
+    GetListResponse,
+    CreateResponse,
+    UpdateResponse,
+    DeleteOneResponse,
+    IDataContext,
+    Record,
+    GetOneResponse,
+} from "@interfaces";
 
 const JsonServer = (apiUrl: string): IDataContext => ({
-    getList: async (resource, params) => {
+    getList: async (resource, params): Promise<GetListResponse> => {
         const url = `${apiUrl}/${resource}`;
 
         // search
@@ -42,7 +50,7 @@ const JsonServer = (apiUrl: string): IDataContext => ({
         };
     },
 
-    create: async (resource, params) => {
+    create: async (resource, params): Promise<CreateResponse> => {
         const url = `${apiUrl}/${resource}`;
 
         const { data } = await axios.post<Record>(url, params);
@@ -52,7 +60,7 @@ const JsonServer = (apiUrl: string): IDataContext => ({
         };
     },
 
-    update: async (resource, id, params) => {
+    update: async (resource, id, params): Promise<UpdateResponse> => {
         const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await axios.put<Record>(url, params);
@@ -62,7 +70,7 @@ const JsonServer = (apiUrl: string): IDataContext => ({
         };
     },
 
-    getOne: async (resource, id) => {
+    getOne: async (resource, id): Promise<GetOneResponse> => {
         const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await axios.get<Record>(url);
@@ -72,7 +80,7 @@ const JsonServer = (apiUrl: string): IDataContext => ({
         };
     },
 
-    deleteOne: async (resource, id) => {
+    deleteOne: async (resource, id): Promise<DeleteOneResponse> => {
         const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await axios.delete<Record>(url);
