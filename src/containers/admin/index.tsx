@@ -8,17 +8,19 @@ import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider } from "@contexts/resource";
 import { Auth } from "@containers/auth";
-import { DashboardPage, LoginPage } from "@pages";
+import { LoginPage } from "@pages";
 import { IDataContext, IAuthContext } from "@interfaces";
 
 export interface AdminProps {
     authProvider: IAuthContext;
     dataProvider: IDataContext;
+    dashboard?: React.ReactNode;
 }
 
 export const Admin: React.FC<AdminProps> = ({
     authProvider,
     dataProvider,
+    dashboard,
     children,
 }) => {
     const queryClient = new QueryClient({
@@ -44,11 +46,12 @@ export const Admin: React.FC<AdminProps> = ({
                                 <Route exact path="/login">
                                     <LoginPage />
                                 </Route>
-                                <Auth>
-                                    <Route exact path="/">
-                                        <DashboardPage />
-                                    </Route>
-                                    {children}
+                                <Auth dashboard={dashboard}>
+                                    {dashboard && (
+                                        <Route exact path="/">
+                                            {dashboard}
+                                        </Route>
+                                    )}
                                 </Auth>
                             </Switch>
                         </Router>
