@@ -16,10 +16,6 @@ type UseCreateReturnType = UseMutationResult<
 export const useCreate = (resource: string): UseCreateReturnType => {
     const { create } = useContext<IDataContext>(DataContext);
 
-    if (!resource) {
-        throw new Error("'resource' is required for useCreate hook.");
-    }
-
     const mutation = useMutation(({ values }: { values: string }) =>
         create(resource, values),
     );
