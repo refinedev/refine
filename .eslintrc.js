@@ -1,35 +1,33 @@
 module.exports = {
-    "root": true,
-    "env": {
-        "browser": true,
-        "es6": true,
-        "jest": true,
-        "amd": true,
-        "commonjs": true
+    root: true,
+    env: {
+        browser: true,
+        es6: true,
+        jest: true,
+        amd: true,
+        commonjs: true,
     },
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-        "@typescript-eslint"
-    ],
-    "extends": [
+    parser: "@typescript-eslint/parser",
+    plugins: ["@typescript-eslint"],
+    extends: [
         "eslint:recommended",
+        "plugin:react/recommended",
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
         "prettier/@typescript-eslint",
-        "plugin:prettier/recommended"
+        "plugin:prettier/recommended",
     ],
-    "overrides": [
+    overrides: [
         {
-            "files": [
-                "*.js"
-            ],
-            "rules": {
-                "@typescript-eslint/no-var-requires": "off"
-            }
-        }
+            files: ["*.js"],
+            rules: {
+                "@typescript-eslint/no-var-requires": "off",
+            },
+        },
     ],
-    "rules": {
+    rules: {
         "@typescript-eslint/ban-types": "off",
-        "@typescript-eslint/interface-name-prefix": "off"
-    }
-}
+        "@typescript-eslint/interface-name-prefix": "off",
+        "react/prop-types": "off",
+    },
+};
