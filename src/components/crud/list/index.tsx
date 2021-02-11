@@ -1,14 +1,14 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { Button, Row, Card } from "antd";
 import { TablePaginationConfig } from "antd/lib/table";
 import { PlusSquareOutlined } from "@ant-design/icons";
 import humanizeString from "humanize-string";
+import qs from "query-string";
 
 import { TextInput, FormItem } from "@components";
 import { Filter } from "@containers";
 import { TableProps } from "@components/table";
-import { useSearchParams } from "@hooks/util";
 import { useList } from "@hooks";
 
 export interface ListProps {
@@ -26,7 +26,7 @@ export const List: React.FC<ListProps> = ({
     canDelete,
     children,
 }) => {
-    const queryParams = useSearchParams();
+    const searchQuery = useLocation().search;
     const history = useHistory();
 
     if (!resourceName) {
@@ -34,27 +34,23 @@ export const List: React.FC<ListProps> = ({
         throw new Error("`resourceName` is required for <List/> Component.");
     }
 
-    let current = 1;
-    const queryParamCurrent = queryParams.get("current");
-    if (queryParamCurrent) {
-        current = +queryParamCurrent;
-    }
+    const parsedSearchQuery = qs.parse(searchQuery);
 
-    let pageSize = 10;
-    const queryParamPageSize = queryParams.get("pageSize");
-    if (queryParamPageSize) {
-        pageSize = +queryParamPageSize;
-    }
-
-    let search;
-    const queryParamSearch = queryParams.get("q");
-    if (queryParamSearch) {
-        search = queryParamSearch;
-    }
+    const {
+        q,
+        current = 1,
+        pageSize = 10,
+        ...filter
+    }: {
+        q?: string;
+        current?: number;
+        pageSize?: number;
+    } = parsedSearchQuery;
 
     const { data, isFetching } = useList(resourceName, {
         pagination: { current, pageSize },
-        search,
+        search: q,
+        filter: filter as Record<string, unknown> | undefined,
     });
 
     const pagination: TablePaginationConfig = {
