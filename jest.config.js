@@ -5,6 +5,7 @@ const paths = compilerOptions.paths ? compilerOptions.paths : {};
 
 module.exports = {
     preset: "ts-jest",
+    testEnvironment: "jsdom",
     rootDir: "./",
     globals: {
         "ts-jest": {

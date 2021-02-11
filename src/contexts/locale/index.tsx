@@ -1,7 +1,8 @@
 import React from "react";
 import deepmerge from "deepmerge";
 
-import { defaultLocale, ILocaleContext, ICustomLocale } from "./ILocaleContext";
+import defaultLocale from "./default";
+import { ILocaleContext, ICustomLocale } from "./ILocaleContext";
 
 export const LocaleContext = React.createContext<ILocaleContext>(defaultLocale);
 
