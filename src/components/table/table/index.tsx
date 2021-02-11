@@ -10,7 +10,7 @@ import { useDelete } from "@hooks";
 import { useSearchParams } from "@hooks/util";
 
 export interface TableProps {
-    resourceName: string;
+    resourceName?: string;
     dataSource?: Record[];
     loading?: boolean;
     pagination?: false | TablePaginationConfig;
@@ -31,7 +31,8 @@ export const Table: React.FC<TableProps> = ({
     const history = useHistory();
     const queryParams = useSearchParams();
 
-    const { mutate, isLoading } = useDelete(resourceName);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const { mutate, isLoading } = useDelete(resourceName!);
 
     const renderDeleteButton = (id: number | string): React.ReactNode => {
         return (
