@@ -33,6 +33,10 @@ export interface GetOneResponse {
     data: Record;
 }
 
+export interface GetManyResponse {
+    data: Record[];
+}
+
 export interface DeleteOneResponse {
     data: Record;
 }
@@ -47,6 +51,7 @@ export interface IDataContext {
             filter?: object;
         },
     ) => Promise<GetListResponse>;
+    getMany: (resource: string, ids: Identifier[]) => Promise<GetManyResponse>;
     getOne: (resource: string, id: Identifier) => Promise<GetOneResponse>;
     deleteOne: (resource: string, id: Identifier) => Promise<DeleteOneResponse>;
     create: (resource: string, params: object) => Promise<CreateResponse>;

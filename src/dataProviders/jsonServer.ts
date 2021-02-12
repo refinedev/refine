@@ -9,6 +9,7 @@ import {
     IDataContext,
     Record,
     GetOneResponse,
+    GetManyResponse,
 } from "@interfaces";
 
 const JsonServer = (apiUrl: string): IDataContext => ({
@@ -50,6 +51,14 @@ const JsonServer = (apiUrl: string): IDataContext => ({
         };
     },
 
+    getMany: async (resource, ids): Promise<GetManyResponse> => {
+        const { data } = await axios.get<Record[]>(
+            `${apiUrl}/${resource}?${stringify({ id: ids })}`,
+        );
+        return {
+            data,
+        };
+    },
     create: async (resource, params): Promise<CreateResponse> => {
         const url = `${apiUrl}/${resource}`;
 
