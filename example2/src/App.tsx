@@ -7,7 +7,7 @@ import { CategoryList, CategoryCreate } from './components/pages/category';
 import { UserList } from './components/pages/user';
 import { TagList, TagCreate, TagEdit } from './components/pages/tag';
 import { DashboardPage } from './components/pages/dashboard';
-
+import { ReadyPage } from './components/ready';
 
 function App() {
   const authProvider: AuthProvider = {
@@ -41,6 +41,7 @@ function App() {
       authProvider={authProvider}
       dataProvider={JsonServer('https://readmin-fake-rest.pankod.com')}
       dashboard={DashboardPage}
+      ready={ReadyPage}
     >
       <Resource
         name="posts"
