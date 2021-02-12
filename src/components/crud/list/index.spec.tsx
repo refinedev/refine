@@ -21,7 +21,7 @@ describe("<List/>", () => {
                 {
                     wrapper: TestWrapper({
                         dataProvider: MockJSONServer,
-                        resources: ["posts"],
+                        resources: [{name: "posts"}],
                     }),
                 },
             );
@@ -38,7 +38,7 @@ describe("<List/>", () => {
                 {
                     wrapper: TestWrapper({
                         dataProvider: MockJSONServer,
-                        resources: ["posts"],
+                        resources: [{ name: "posts" }],
                     }),
                 },
             );

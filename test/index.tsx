@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
-import { ResourceContextProvider } from "@contexts/resource";
+import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { IDataContext, IAuthContext } from "@interfaces";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
@@ -13,7 +13,7 @@ const queryClient = new QueryClient();
 interface ITestWrapperProps {
     authProvider?: IAuthContext;
     dataProvider?: IDataContext;
-    resources: string[];
+    resources: IResourceItem[];
     children?: React.ReactNode;
 }
 
