@@ -16,7 +16,7 @@ export interface Sort {
     order?: string;
 }
 
-export interface GetListResponse<TData = BaseRecord> {
+export interface GetListResponse<TData extends BaseRecord = BaseRecord> {
     data: TData[];
     total: number;
 }
@@ -33,11 +33,11 @@ export interface UpdateManyResponse {
     data: BaseRecord[];
 }
 
-export interface GetOneResponse<TData = BaseRecord> {
+export interface GetOneResponse<TData extends BaseRecord = BaseRecord> {
     data: TData;
 }
 
-export interface GetManyResponse<TData = BaseRecord> {
+export interface GetManyResponse<TData extends BaseRecord = BaseRecord> {
     data: TData[];
 }
 
@@ -50,7 +50,7 @@ export interface DeleteManyResponse {
 }
 
 export interface IDataContext {
-    getList: <TData = BaseRecord>(
+    getList: <TData extends BaseRecord = BaseRecord>(
         resource: string,
         params: {
             pagination?: Pagination;
@@ -59,24 +59,24 @@ export interface IDataContext {
             filter?: object;
         },
     ) => Promise<GetListResponse<TData>>;
-    getMany: <TData = BaseRecord>(
+    getMany: <TData extends BaseRecord = BaseRecord>(
         resource: string,
         ids: Identifier[],
     ) => Promise<GetManyResponse<TData>>;
-    getOne: <TData = BaseRecord>(
+    getOne: <TData extends BaseRecord = BaseRecord>(
         resource: string,
         id: Identifier,
     ) => Promise<GetOneResponse<TData>>;
-    create: <TParams = BaseRecord>(
+    create: <TParams extends BaseRecord = BaseRecord>(
         resource: string,
         params: TParams,
     ) => Promise<CreateResponse>;
-    update: <TParams = BaseRecord>(
+    update: <TParams extends BaseRecord = BaseRecord>(
         resource: string,
         id: Identifier,
         params: TParams,
     ) => Promise<UpdateResponse>;
-    updateMany: <TParams = BaseRecord>(
+    updateMany: <TParams extends BaseRecord = BaseRecord>(
         resource: string,
         ids: Identifier[],
         params: TParams,
