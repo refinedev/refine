@@ -1,21 +1,10 @@
 import axios from "axios";
 import { stringify } from "query-string";
 
-import {
-    GetListResponse,
-    CreateResponse,
-    UpdateResponse,
-    DeleteOneResponse,
-    IDataContext,
-    Record,
-    GetOneResponse,
-    GetManyResponse,
-    UpdateManyResponse,
-    DeleteManyResponse,
-} from "@interfaces";
+import { IDataContext } from "@interfaces";
 
 const JsonServer = (apiUrl: string): IDataContext => ({
-    getList: async (resource, params): Promise<GetListResponse> => {
+    getList: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
 
         // search
@@ -41,9 +30,7 @@ const JsonServer = (apiUrl: string): IDataContext => ({
             q,
         };
 
-        const { data, headers } = await axios.get<Record[]>(
-            `${url}?${stringify(query)}`,
-        );
+        const { data, headers } = await axios.get(`${url}?${stringify(query)}`);
 
         const total = +headers["x-total-count"];
 
@@ -53,8 +40,8 @@ const JsonServer = (apiUrl: string): IDataContext => ({
         };
     },
 
-    getMany: async (resource, ids): Promise<GetManyResponse> => {
-        const { data } = await axios.get<Record[]>(
+    getMany: async (resource, ids) => {
+        const { data } = await axios.get(
             `${apiUrl}/${resource}?${stringify({ id: ids })}`,
         );
         return {
@@ -62,34 +49,30 @@ const JsonServer = (apiUrl: string): IDataContext => ({
         };
     },
 
-    // getManyReference: async (resource, params) => Promise<GetManyReferenceResponse> => {
-    //     return;
-    // }
-
-    create: async (resource, params): Promise<CreateResponse> => {
+    create: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { data } = await axios.post<Record>(url, params);
+        const { data } = await axios.post(url, params);
 
         return {
             data,
         };
     },
 
-    update: async (resource, id, params): Promise<UpdateResponse> => {
+    update: async (resource, id, params) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await axios.put<Record>(url, params);
+        const { data } = await axios.put(url, params);
 
         return {
             data,
         };
     },
 
-    updateMany: async (resource, ids, params): Promise<UpdateManyResponse> => {
+    updateMany: async (resource, ids, params) => {
         const response = await Promise.all(
             ids.map(async (id) => {
-                const { data } = await axios.put<Record>(
+                const { data } = await axios.put(
                     `${apiUrl}/${resource}/${id}`,
                     params,
                 );
@@ -99,30 +82,30 @@ const JsonServer = (apiUrl: string): IDataContext => ({
         return { data: response };
     },
 
-    getOne: async (resource, id): Promise<GetOneResponse> => {
+    getOne: async (resource, id) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await axios.get<Record>(url);
+        const { data } = await axios.get(url);
 
         return {
             data,
         };
     },
 
-    deleteOne: async (resource, id): Promise<DeleteOneResponse> => {
+    deleteOne: async (resource, id) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await axios.delete<Record>(url);
+        const { data } = await axios.delete(url);
 
         return {
             data,
         };
     },
 
-    deleteMany: async (resource, ids): Promise<DeleteManyResponse> => {
+    deleteMany: async (resource, ids) => {
         const response = await Promise.all(
             ids.map(async (id) => {
-                const { data } = await axios.delete<Record>(
+                const { data } = await axios.delete(
                     `${apiUrl}/${resource}/${id}`,
                 );
                 return data;
