@@ -24,7 +24,7 @@ export const Resource: React.FC<ResourceProps> = ({
     const canEdit = !!edit;
 
     return (
-        <Switch>
+        <>
             <Route exact path={`/resources/${name}`}>
                 <ListComponent
                     resourceName={name}
@@ -39,6 +39,6 @@ export const Resource: React.FC<ResourceProps> = ({
             <Route exact path={`/resources/${name}/edit/:id`}>
                 <EditComponent resourceName={name} />
             </Route>
-        </Switch>
+        </>
     );
 };
