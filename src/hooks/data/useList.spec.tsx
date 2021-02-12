@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import { renderHook } from "@testing-library/react-hooks";
 
 import { MockJSONServer, TestWrapper } from "@test";
