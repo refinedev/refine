@@ -21,8 +21,8 @@ const TestComponent = (props: any) => {
 };
 
 describe("<ReferenceInput/>", () => {
-    describe("JSON Rest Server", () => {
-        it("passes label-value pairs as options to child", async () => {
+    describe("JSON Rest Server", async () => {
+        it("passes label-value pairs as options to child", async (done) => {
             const { findAllByTestId } = render(
                 <ReferenceInput optionText="title" reference="categories">
                     <TestComponent />
@@ -40,6 +40,7 @@ describe("<ReferenceInput/>", () => {
             const retrieved = options.map((el) => el.innerHTML);
 
             expect(retrieved).toMatchObject(expected);
+            done();
         });
     });
 });
