@@ -9,14 +9,16 @@ import {
     UpdateManyResponse,
 } from "@interfaces";
 
-type UseUpdateManyReturnType<T = BaseRecord> = UseMutationResult<
+type UseUpdateManyReturnType<
+    T extends BaseRecord = BaseRecord
+> = UseMutationResult<
     UpdateManyResponse,
     unknown,
     { id: Identifier[]; values: T },
     unknown
 >;
 
-export const useUpdateMany = <TParams = BaseRecord>(
+export const useUpdateMany = <TParams extends BaseRecord = BaseRecord>(
     resource: string,
 ): UseUpdateManyReturnType<TParams> => {
     const { updateMany } = useContext<IDataContext>(DataContext);

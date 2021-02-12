@@ -23,7 +23,7 @@ const defaultConfig: UseListConfig = {
     },
 };
 
-export const useList = <TData = BaseRecord>(
+export const useList = <TData extends BaseRecord = BaseRecord>(
     resource: string,
     config?: UseListConfig,
     queryOptions?: UseQueryOptions<GetListResponse<TData>>,

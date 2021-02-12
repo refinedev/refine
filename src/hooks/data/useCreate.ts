@@ -4,7 +4,9 @@ import { useMutation, UseMutationResult } from "react-query";
 import { DataContext } from "@contexts/data";
 import { CreateResponse, IDataContext, BaseRecord } from "@interfaces";
 
-type UseCreateReturnType<TParams = BaseRecord> = UseMutationResult<
+type UseCreateReturnType<
+    TParams extends BaseRecord = BaseRecord
+> = UseMutationResult<
     CreateResponse,
     unknown,
     {
@@ -13,7 +15,7 @@ type UseCreateReturnType<TParams = BaseRecord> = UseMutationResult<
     unknown
 >;
 
-export const useCreate = <TParams = BaseRecord>(
+export const useCreate = <TParams extends BaseRecord = BaseRecord>(
     resource: string,
 ): UseCreateReturnType<TParams> => {
     const { create } = useContext<IDataContext>(DataContext);

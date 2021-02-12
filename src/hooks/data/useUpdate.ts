@@ -4,14 +4,16 @@ import { useMutation, UseMutationResult } from "react-query";
 import { DataContext } from "@contexts/data";
 import { BaseRecord, IDataContext, UpdateResponse } from "@interfaces";
 
-type UseUpdateReturnType<TParams = BaseRecord> = UseMutationResult<
+type UseUpdateReturnType<
+    TParams extends BaseRecord = BaseRecord
+> = UseMutationResult<
     UpdateResponse,
     unknown,
     { id: string; values: TParams },
     unknown
 >;
 
-export const useUpdate = <TParams = BaseRecord>(
+export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
     resource: string,
 ): UseUpdateReturnType<TParams> => {
     const { update } = useContext<IDataContext>(DataContext);

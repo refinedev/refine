@@ -9,7 +9,7 @@ import {
     GetManyResponse,
 } from "@interfaces";
 
-export const useMany = <TData = BaseRecord>(
+export const useMany = <TData extends BaseRecord = BaseRecord>(
     resource: string,
     ids: Identifier[],
 ): QueryObserverResult<GetManyResponse<TData>> => {
