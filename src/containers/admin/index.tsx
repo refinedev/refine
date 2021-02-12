@@ -11,7 +11,7 @@ import "antd/dist/antd.css";
 
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
-import { ResourceContextProvider } from "@contexts/resource";
+import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { Auth } from "@containers/auth";
 import { LoginPage } from "@pages";
 import { IDataContext, IAuthContext } from "@interfaces";
@@ -40,9 +40,13 @@ export const Admin: React.FC<AdminProps> = ({
         },
     });
 
-    const resources: string[] = [];
+    const resources: IResourceItem[] = [];
     React.Children.map(children, (child: any) => {
-        resources.push(child.props.name);
+        resources.push({
+            name: child.props.name,
+            label: child.props.options?.label,
+            icon: child.props.icon,
+        });
     });
 
     return (
