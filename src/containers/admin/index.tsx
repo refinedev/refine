@@ -20,6 +20,7 @@ export interface AdminProps {
     authProvider: IAuthContext;
     dataProvider: IDataContext;
     title?: ReactNode;
+    loginPage?: ComponentType | false;
     dashboard?: React.FC;
     ready?: ComponentType | true;
 }
@@ -30,6 +31,7 @@ export const Admin: React.FC<AdminProps> = ({
     title,
     dashboard,
     ready = ReadyPage,
+    loginPage = LoginPage,
     children,
 }) => {
     const queryClient = new QueryClient({
@@ -53,9 +55,13 @@ export const Admin: React.FC<AdminProps> = ({
                         <ResourceContextProvider resources={resources}>
                             <Router>
                                 <Switch>
-                                    <Route exact path="/login">
-                                        <LoginPage />
-                                    </Route>
+                                    {loginPage && (
+                                        <Route
+                                            exact
+                                            path="/login"
+                                            component={loginPage}
+                                        />
+                                    )}
                                     <Auth title={title} dashboard={dashboard}>
                                         {/* <Switch> */}
                                         {/*  <Route exact path="/"> TODO: router yapısını düzelttiğimizde bu kısmı handle edelim
