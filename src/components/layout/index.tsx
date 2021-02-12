@@ -10,8 +10,9 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import humanizeString from "humanize-string";
 
 import { AuthContext } from "@contexts/auth";
-import { ResourceContext, IResourceContext } from "@contexts/resource";
 import { IAuthContext } from "@interfaces";
+
+import { useResource } from "@hooks";
 
 export interface LayoutProps {
     title?: ReactNode;
@@ -27,7 +28,7 @@ export const Layout: React.FC<LayoutProps> = ({
 
     const history = useHistory();
     const { logout } = useContext<IAuthContext>(AuthContext);
-    const { resources } = useContext<IResourceContext>(ResourceContext);
+    const {resources} = useResource()
 
     const location = useLocation();
 
