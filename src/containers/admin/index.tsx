@@ -61,7 +61,7 @@ export const Admin: React.FC<AdminProps> = ({
                                 )}
                                 <Auth title={title} dashboard={dashboard}>
                                     {/* <Switch> */}
-                                   {/*  <Route exact path="/"> TODO: router yapısını düzelttiğimizde bu kısmı handle edelim
+                                    {/*  <Route exact path="/"> TODO: router yapısını düzelttiğimizde bu kısmı handle edelim
                                         {dashboard ? (
                                             dashboard
                                         ) : (
