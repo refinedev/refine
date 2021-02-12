@@ -10,20 +10,33 @@ export interface FilterProps {
 export const Filter: React.FC<FilterProps> = ({ resourceName, children }) => {
     const history = useHistory();
     const { search } = useLocation();
+    const [form] = Form.useForm();
+
+    const preQueries = qs.parse(search);
+
+    form.setFieldsValue(preQueries);
+
+    const onValuesChange = (_changedValues: object, values: object): void => {
+        const newQueries = {
+            ...preQueries,
+            ...values,
+            current: 1,
+        };
+
+        return history.push(
+            `/resources/${resourceName}?${qs.stringify(newQueries)}`,
+        );
+    };
 
     return (
         <Form
-            style={{ marginBlock: 10 }}
-            layout="inline"
-            onValuesChange={(_changedValues, values): void => {
-                const preQueries = qs.parse(search);
-
-                const newQueries = { ...preQueries, ...values, current: 1 };
-
-                return history.push(
-                    `/resources/${resourceName}?${qs.stringify(newQueries)}`,
-                );
+            name="filter-form"
+            form={form}
+            style={{
+                marginBlock: 10,
             }}
+            layout="inline"
+            onValuesChange={onValuesChange}
         >
             {children}
         </Form>

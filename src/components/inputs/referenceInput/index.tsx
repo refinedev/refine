@@ -11,12 +11,13 @@ export interface ReferenceInputProps {
     optionValue?: string;
     pageSize?: number;
     sort?: Sort;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     filter?: { [k: string]: any };
 }
 
 interface Option {
     label: string;
-    value: any;
+    value: string;
 }
 
 export const ReferenceInput: React.FC<ReferenceInputProps> = ({
@@ -47,7 +48,7 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
             onSuccess: (data) => {
                 const options: Option[] = data.data.map((item) => ({
                     label: item[optionText],
-                    value: item[optionValue],
+                    value: item[optionValue].toString(),
                 }));
 
                 setOptions(options);
@@ -55,7 +56,7 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
         },
     );
 
-    const onSearch = (value: string) => {
+    const onSearch = (value: string): void => {
         setSearch(value);
         refetch();
     };
