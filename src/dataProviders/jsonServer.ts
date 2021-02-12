@@ -10,6 +10,7 @@ import {
     Record,
     GetOneResponse,
     GetManyResponse,
+    UpdateManyResponse,
 } from "@interfaces";
 
 const JsonServer = (apiUrl: string): IDataContext => ({
@@ -77,6 +78,19 @@ const JsonServer = (apiUrl: string): IDataContext => ({
         return {
             data,
         };
+    },
+
+    updateMany: async (resource, ids, params): Promise<UpdateManyResponse> => {
+        const response = await Promise.all(
+            ids.map(async (id) => {
+                const { data } = await axios.put<Record>(
+                    `${apiUrl}/${resource}/${id}`,
+                    params,
+                );
+                return data;
+            }),
+        );
+        return { data: response };
     },
 
     getOne: async (resource, id): Promise<GetOneResponse> => {

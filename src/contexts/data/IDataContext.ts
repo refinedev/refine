@@ -29,6 +29,10 @@ export interface UpdateResponse {
     data: Record;
 }
 
+export interface UpdateManyResponse {
+    data: Record[];
+}
+
 export interface GetOneResponse {
     data: Record;
 }
@@ -60,4 +64,9 @@ export interface IDataContext {
         id: Identifier,
         params: object,
     ) => Promise<UpdateResponse>;
+    updateMany: (
+        resource: string,
+        ids: Identifier[],
+        params: object,
+    ) => Promise<UpdateManyResponse>;
 }
