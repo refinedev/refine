@@ -11,6 +11,7 @@ import {
     GetOneResponse,
     GetManyResponse,
     UpdateManyResponse,
+    DeleteManyResponse,
 } from "@interfaces";
 
 const JsonServer = (apiUrl: string): IDataContext => ({
@@ -111,6 +112,18 @@ const JsonServer = (apiUrl: string): IDataContext => ({
         return {
             data,
         };
+    },
+
+    deleteMany: async (resource, ids): Promise<DeleteManyResponse> => {
+        const response = await Promise.all(
+            ids.map(async (id) => {
+                const { data } = await axios.delete<Record>(
+                    `${apiUrl}/${resource}/${id}`,
+                );
+                return data;
+            }),
+        );
+        return { data: response };
     },
 });
 

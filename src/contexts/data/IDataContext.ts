@@ -45,6 +45,10 @@ export interface DeleteOneResponse {
     data: Record;
 }
 
+export interface DeleteManyResponse {
+    data: Record[];
+}
+
 export interface IDataContext {
     getList: (
         resource: string,
@@ -58,6 +62,10 @@ export interface IDataContext {
     getMany: (resource: string, ids: Identifier[]) => Promise<GetManyResponse>;
     getOne: (resource: string, id: Identifier) => Promise<GetOneResponse>;
     deleteOne: (resource: string, id: Identifier) => Promise<DeleteOneResponse>;
+    deleteMany: (
+        resource: string,
+        ids: Identifier[],
+    ) => Promise<DeleteManyResponse>;
     create: (resource: string, params: object) => Promise<CreateResponse>;
     update: (
         resource: string,
