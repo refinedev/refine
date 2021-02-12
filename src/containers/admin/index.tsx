@@ -51,7 +51,7 @@ export const Admin: React.FC<AdminProps> = ({
         <QueryClientProvider client={queryClient}>
             <AuthContextProvider {...authProvider}>
                 <DataContextProvider {...dataProvider}>
-                    {resources.length > 2 ? (
+                    {resources.length > 0 ? (
                         <ResourceContextProvider resources={resources}>
                             <Router>
                                 <Switch>
