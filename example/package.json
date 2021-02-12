@@ -15,7 +15,7 @@
     "react-scripts": "4.0.2",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1",
-    "readmin": "file:.."
+    "readmin": "file:../."
   },
   "scripts": {
     "start": "react-scripts start",

@@ -32,20 +32,15 @@ export const List: React.FC<ListProps> = ({
 
     const parsedSearchQuery = qs.parse(searchQuery);
 
-    const {
-        q,
-        current = 1,
-        pageSize = 10,
-        ...filter
-    }: {
-        q?: string;
-        current?: number;
-        pageSize?: number;
-    } = parsedSearchQuery;
+    const { q, ...filter } = parsedSearchQuery;
+    let { current = 1, pageSize = 10 } = parsedSearchQuery;
+
+    current = Number(current);
+    pageSize = Number(pageSize);
 
     const { data, isFetching } = useList(resourceName, {
         pagination: { current, pageSize },
-        search: q,
+        search: q as string | undefined,
         filter: filter as Record<string, unknown> | undefined,
     });
 
@@ -57,6 +52,8 @@ export const List: React.FC<ListProps> = ({
         defaultPageSize: 10,
         position: ["bottomCenter"],
     };
+
+    console.log("pagination", pagination);
 
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
