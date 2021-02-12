@@ -17,7 +17,7 @@ export const ReadyPage: React.FC = () => {
         <Row align="middle" justify="center" style={styles.root}>
             <Col style={{ textAlign: "center" }}>
                 <Title>readmin</Title>
-                <h2>Welcome to readmin</h2>
+                <Title level={2}>Welcome to readmin</Title>
                 <div>
                     Your application is properly configured.
                     <br />
