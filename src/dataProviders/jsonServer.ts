@@ -61,6 +61,11 @@ const JsonServer = (apiUrl: string): IDataContext => ({
             data,
         };
     },
+
+    // getManyReference: async (resource, params) => Promise<GetManyReferenceResponse> => {
+    //     return;
+    // }
+
     create: async (resource, params): Promise<CreateResponse> => {
         const url = `${apiUrl}/${resource}`;
 

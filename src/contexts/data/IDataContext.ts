@@ -41,6 +41,10 @@ export interface GetManyResponse {
     data: Record[];
 }
 
+// export interface GetManyReferenceResponse {
+//     data: Record[];
+// }
+
 export interface DeleteOneResponse {
     data: Record;
 }
@@ -60,6 +64,10 @@ export interface IDataContext {
         },
     ) => Promise<GetListResponse>;
     getMany: (resource: string, ids: Identifier[]) => Promise<GetManyResponse>;
+    // getManyReference: (
+    //     resource: string,
+    //     params: object,
+    // ) => Promise<GetManyReferenceResponse>;
     getOne: (resource: string, id: Identifier) => Promise<GetOneResponse>;
     deleteOne: (resource: string, id: Identifier) => Promise<DeleteOneResponse>;
     deleteMany: (
