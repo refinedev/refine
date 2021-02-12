@@ -18,7 +18,7 @@ import {
 export const PostList = (props: any) => {
   return (
     <List {...props}>
-      <Table>
+      <Table {...props}>
         <Column key="id" title="ID" dataIndex="id" />
         <Column key="title" title="Title" dataIndex="title" />
         <Column

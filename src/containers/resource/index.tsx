@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, /* Switch */ } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 export interface ResourceProps {
     name: string;
@@ -17,14 +17,15 @@ export const Resource: React.FC<ResourceProps> = ({
     canDelete,
 }) => {
     const ListComponent = list;
-/*     const CreateComponent = create;
-    const EditComponent = edit; */
+    const CreateComponent = create;
+    const EditComponent = edit;
 
     const canCreate = !!create;
     const canEdit = !!edit;
 
+
     return (
-       
+        <Switch>
             <Route exact path={`/resources/${name}`}>
                 <ListComponent
                     resourceName={name}
@@ -33,12 +34,12 @@ export const Resource: React.FC<ResourceProps> = ({
                     canDelete={canDelete}
                 />
             </Route>
-         /*    <Route exact path={`/resources/${name}/create`}>
+            <Route exact path={`/resources/${name}/create`}>
                 <CreateComponent resourceName={name} canEdit={canEdit} />
             </Route>
             <Route exact path={`/resources/${name}/edit/:id`}>
                 <EditComponent resourceName={name} />
             </Route>
-         */
+        </ Switch>
     );
 };

@@ -10,10 +10,10 @@ import {
   TextInput
 } from 'readmin';
 
-export const CategoryList = (props: any) => {
+export const CategoryList = (props: {resourceName: string}) => {
   return (
     <List {...props}>
-      <Table>
+      <Table {...props}>
         <Column key="id" title="ID" dataIndex="id" />
         <Column key="title" title="Title" dataIndex="title" />
       </Table>

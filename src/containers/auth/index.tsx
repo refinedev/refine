@@ -16,7 +16,7 @@ export const Auth: React.FC<AuthProps> = ({ children, title }) => {
     // const dispatch = useDispatch();
 
     // check auth
-    checkAuth({}).catch(() => history.push("/login"));
+   /*  checkAuth({}).catch(() => history.push("/login")); */
 
     // set user identity
     // userIdentity &&
@@ -26,3 +26,5 @@ export const Auth: React.FC<AuthProps> = ({ children, title }) => {
 
     return <Layout title={title}>{children}</Layout>;
 };
+
+
