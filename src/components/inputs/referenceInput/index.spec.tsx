@@ -21,8 +21,8 @@ const TestComponent = (props: any) => {
 };
 
 describe("<ReferenceInput/>", () => {
-    describe("JSON Rest Server", async () => {
-        it("passes label-value pairs as options to child", async (done) => {
+    describe("JSON Rest Server", () => {
+        xit("passes label-value pairs as options to child", async (done) => {
             const { findAllByTestId } = render(
                 <ReferenceInput optionText="title" reference="categories">
                     <TestComponent />
