@@ -53,8 +53,6 @@ export const List: React.FC<ListProps> = ({
         position: ["bottomCenter"],
     };
 
-    console.log("pagination", pagination);
-
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement<TableProps>(child, {
