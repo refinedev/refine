@@ -1,6 +1,6 @@
-type Identifier = string | number;
+export type Identifier = string | number;
 
-export interface Record {
+export interface BaseRecord {
     id: Identifier;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
@@ -16,45 +16,41 @@ export interface Sort {
     order?: string;
 }
 
-export interface GetListResponse {
-    data: Record[];
+export interface GetListResponse<TData = BaseRecord> {
+    data: TData[];
     total: number;
 }
 
 export interface CreateResponse {
-    data: Record;
+    data: BaseRecord;
 }
 
 export interface UpdateResponse {
-    data: Record;
+    data: BaseRecord;
 }
 
 export interface UpdateManyResponse {
-    data: Record[];
+    data: BaseRecord[];
 }
 
-export interface GetOneResponse {
-    data: Record;
+export interface GetOneResponse<TData = BaseRecord> {
+    data: TData;
 }
 
-export interface GetManyResponse {
-    data: Record[];
+export interface GetManyResponse<TData = BaseRecord> {
+    data: TData[];
 }
-
-// export interface GetManyReferenceResponse {
-//     data: Record[];
-// }
 
 export interface DeleteOneResponse {
-    data: Record;
+    data: BaseRecord;
 }
 
 export interface DeleteManyResponse {
-    data: Record[];
+    data: BaseRecord[];
 }
 
 export interface IDataContext {
-    getList: (
+    getList: <TData = BaseRecord>(
         resource: string,
         params: {
             pagination?: Pagination;
@@ -62,27 +58,32 @@ export interface IDataContext {
             sort?: Sort;
             filter?: object;
         },
-    ) => Promise<GetListResponse>;
-    getMany: (resource: string, ids: Identifier[]) => Promise<GetManyResponse>;
-    // getManyReference: (
-    //     resource: string,
-    //     params: object,
-    // ) => Promise<GetManyReferenceResponse>;
-    getOne: (resource: string, id: Identifier) => Promise<GetOneResponse>;
+    ) => Promise<GetListResponse<TData>>;
+    getMany: <TData = BaseRecord>(
+        resource: string,
+        ids: Identifier[],
+    ) => Promise<GetManyResponse<TData>>;
+    getOne: <TData = BaseRecord>(
+        resource: string,
+        id: Identifier,
+    ) => Promise<GetOneResponse<TData>>;
+    create: <TParams = BaseRecord>(
+        resource: string,
+        params: TParams,
+    ) => Promise<CreateResponse>;
+    update: <TParams = BaseRecord>(
+        resource: string,
+        id: Identifier,
+        params: TParams,
+    ) => Promise<UpdateResponse>;
+    updateMany: <TParams = BaseRecord>(
+        resource: string,
+        ids: Identifier[],
+        params: TParams,
+    ) => Promise<UpdateManyResponse>;
     deleteOne: (resource: string, id: Identifier) => Promise<DeleteOneResponse>;
     deleteMany: (
         resource: string,
         ids: Identifier[],
     ) => Promise<DeleteManyResponse>;
-    create: (resource: string, params: object) => Promise<CreateResponse>;
-    update: (
-        resource: string,
-        id: Identifier,
-        params: object,
-    ) => Promise<UpdateResponse>;
-    updateMany: (
-        resource: string,
-        ids: Identifier[],
-        params: object,
-    ) => Promise<UpdateManyResponse>;
 }

@@ -2,7 +2,13 @@ import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
 
 import { DataContext } from "@contexts/data";
-import { GetListResponse, IDataContext, Sort, Pagination } from "@interfaces";
+import {
+    GetListResponse,
+    IDataContext,
+    Sort,
+    Pagination,
+    BaseRecord,
+} from "@interfaces";
 
 interface UseListConfig {
     pagination?: Pagination;
@@ -17,21 +23,17 @@ const defaultConfig: UseListConfig = {
     },
 };
 
-const defaultOptions: UseQueryOptions<GetListResponse> = {
-    keepPreviousData: true,
-};
-
-export const useList = (
+export const useList = <TData = BaseRecord>(
     resource: string,
-    config = defaultConfig,
-    queryOptions = defaultOptions,
-): QueryObserverResult<GetListResponse, unknown> => {
+    config?: UseListConfig,
+    queryOptions?: UseQueryOptions<GetListResponse<TData>>,
+): QueryObserverResult<GetListResponse<TData>, unknown> => {
     const { getList } = useContext<IDataContext>(DataContext);
 
-    const queryResponse = useQuery<GetListResponse>(
-        [`resource/list/${resource}`, { ...config }],
-        () => getList(resource, config),
-        queryOptions,
+    const queryResponse = useQuery<GetListResponse<TData>>(
+        [`resource/list/${resource}`, { ...(config ?? defaultConfig) }],
+        () => getList<TData>(resource, config ?? defaultConfig),
+        queryOptions ?? { keepPreviousData: true },
     );
 
     return queryResponse;
