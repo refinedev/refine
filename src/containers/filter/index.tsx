@@ -28,17 +28,15 @@ export const Filter: React.FC<FilterProps> = ({ resourceName, children }) => {
         );
     };
 
-    return (
-        <Form
-            name="filter-form"
-            form={form}
-            style={{
-                marginBlock: 10,
-            }}
-            layout="inline"
-            onValuesChange={onValuesChange}
-        >
-            {children}
-        </Form>
-    );
+    const childrenWithProps = React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+            return React.cloneElement(child, {
+                onValuesChange,
+                form,
+            });
+        }
+        return child;
+    });
+
+    return <React.Fragment>{childrenWithProps}</React.Fragment>;
 };

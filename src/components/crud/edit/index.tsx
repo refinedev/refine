@@ -1,7 +1,8 @@
 import React from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { Form, Card } from "antd";
+import { Form, Card, Button } from "antd";
 import pluralize from "pluralize";
+import { SaveOutlined } from "@ant-design/icons";
 
 import { useOne, useUpdate } from "@hooks";
 
@@ -15,13 +16,13 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
 
     const [form] = Form.useForm();
 
-    const { data } = useOne(resourceName, id);
+    const { data, isLoading } = useOne(resourceName, id);
 
     form.setFieldsValue({
         ...data?.data,
     });
 
-    const { mutate, error, isLoading } = useUpdate(resourceName);
+    const { mutate } = useUpdate(resourceName);
 
     const onFinish = async (values: object): Promise<void> => {
         mutate(
@@ -40,15 +41,26 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
                 resourceName,
                 form,
                 onFinish,
-                error: error,
-                isLoading: isLoading,
             });
         }
         return child;
     });
 
     return (
-        <Card title={`Edit ${pluralize.singular(resourceName)}`}>
+        <Card
+            title={`Edit ${pluralize.singular(resourceName)}`}
+            extra={
+                <Button
+                    htmlType="submit"
+                    disabled={isLoading}
+                    type="primary"
+                    icon={<SaveOutlined />}
+                    onClick={(): void => form.submit()}
+                >
+                    Save
+                </Button>
+            }
+        >
             {childrenWithProps}
         </Card>
     );

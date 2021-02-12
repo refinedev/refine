@@ -1,7 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Card } from "antd";
+import { Card, Button, Form } from "antd";
 import pluralize from "pluralize";
+import { SaveOutlined } from "@ant-design/icons";
 
 import { useCreate } from "@hooks";
 
@@ -16,8 +17,9 @@ export const Create: React.FC<CreateProps> = ({
     children,
 }) => {
     const history = useHistory();
+    const [form] = Form.useForm();
 
-    const { mutate, error, isLoading } = useCreate(resourceName);
+    const { mutate, isLoading } = useCreate(resourceName);
 
     const onFinish = async (values: object): Promise<void> => {
         mutate(
@@ -41,15 +43,27 @@ export const Create: React.FC<CreateProps> = ({
             return React.cloneElement(child, {
                 resourceName,
                 onFinish,
-                error: error,
-                isLoading: isLoading,
+                form,
             });
         }
         return child;
     });
 
     return (
-        <Card title={`Create ${pluralize.singular(resourceName)}`}>
+        <Card
+            title={`Create ${pluralize.singular(resourceName)}`}
+            extra={
+                <Button
+                    htmlType="submit"
+                    disabled={isLoading}
+                    type="primary"
+                    icon={<SaveOutlined />}
+                    onClick={(): void => form.submit()}
+                >
+                    Save
+                </Button>
+            }
+        >
             {childrenWithProps}
         </Card>
     );
