@@ -28,7 +28,7 @@ export const Layout: React.FC<LayoutProps> = ({
 
     const history = useHistory();
     const { logout } = useContext<IAuthContext>(AuthContext);
-    const {resources} = useResource()
+    const { resources } = useResource();
 
     const location = useLocation();
 

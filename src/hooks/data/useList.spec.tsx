@@ -9,7 +9,7 @@ describe("useList Hook", () => {
         const { result, waitFor } = renderHook(() => useList("posts"), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
-                resources: [{name: "posts"}],
+                resources: [{ name: "posts" }],
             }),
         });
 

@@ -1,1 +1,1 @@
-export {useResource} from "./useResource"
+export { useResource } from "./useResource";
