@@ -74,13 +74,7 @@ export const Admin: React.FC<AdminProps> = ({
                             </Router>
                         </ResourceContextProvider>
                     ) : (
-                        <Router>
-                            <Switch>
-                                <Route exact path="/">
-                                    <ReadyPage />
-                                </Route>
-                            </Switch>
-                        </Router>
+                        <ReadyPage />
                     )}
                 </DataContextProvider>
             </AuthContextProvider>
