@@ -49,34 +49,39 @@ export const Admin: React.FC<AdminProps> = ({
         <QueryClientProvider client={queryClient}>
             <AuthContextProvider {...authProvider}>
                 <DataContextProvider {...dataProvider}>
-                    <ResourceContextProvider resources={resources}>
+                    {resources.length > 2 ? (
+                        <ResourceContextProvider resources={resources}>
+                            <Router>
+                                <Switch>
+                                    <Route exact path="/login">
+                                        <LoginPage />
+                                    </Route>
+                                    <Auth title={title} dashboard={dashboard}>
+                                        {/* <Switch> */}
+                                    {/*  <Route exact path="/"> TODO: router yapısını düzelttiğimizde bu kısmı handle edelim
+                                            {dashboard ? (
+                                                dashboard
+                                            ) : (
+                                                <Redirect
+                                                    to={`/resources/${resources[0]}`}
+                                                />
+                                            )}
+                                        </Route> */}
+                                        {children}
+                                        {/*    </Switch> */}
+                                    </Auth>
+                                </Switch>
+                            </Router>
+                        </ResourceContextProvider>
+                    ) : (
                         <Router>
                             <Switch>
-                                {ready && (
-                                    <Route exact path="/">
-                                        <ReadyPage />
-                                    </Route>
-                                )}
-                                <Route exact path="/login">
-                                    <LoginPage />
+                                <Route exact path="/">
+                                    <ReadyPage />
                                 </Route>
-                                <Auth title={title} dashboard={dashboard}>
-                                    {/* <Switch> */}
-                                   {/*  <Route exact path="/"> TODO: router yapısını düzelttiğimizde bu kısmı handle edelim
-                                        {dashboard ? (
-                                            dashboard
-                                        ) : (
-                                            <Redirect
-                                                to={`/resources/${resources[0]}`}
-                                            />
-                                        )}
-                                    </Route> */}
-                                    {children}
-                                    {/*    </Switch> */}
-                                </Auth>
                             </Switch>
                         </Router>
-                    </ResourceContextProvider>
+                    )}
                 </DataContextProvider>
             </AuthContextProvider>
             <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
