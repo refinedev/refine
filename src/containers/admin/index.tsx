@@ -47,24 +47,27 @@ export const Admin: React.FC<AdminProps> = ({
         resources.push(child.props.name);
     });
 
+    if (resources.length === 0) {
+        return <ReadyPage />;
+    }
+
     return (
         <QueryClientProvider client={queryClient}>
             <AuthContextProvider {...authProvider}>
                 <DataContextProvider {...dataProvider}>
-                    {resources.length > 0 ? (
-                        <ResourceContextProvider resources={resources}>
-                            <Router>
-                                <Switch>
-                                    {loginPage && (
-                                        <Route
-                                            exact
-                                            path="/login"
-                                            component={loginPage}
-                                        />
-                                    )}
-                                    <Auth title={title} dashboard={dashboard}>
-                                        {/* <Switch> */}
-                                        {/*  <Route exact path="/"> TODO: router yapısını düzelttiğimizde bu kısmı handle edelim
+                    <ResourceContextProvider resources={resources}>
+                        <Router>
+                            <Switch>
+                                {loginPage && (
+                                    <Route
+                                        exact
+                                        path="/login"
+                                        component={loginPage}
+                                    />
+                                )}
+                                <Auth title={title} dashboard={dashboard}>
+                                    {/* <Switch> */}
+                                    {/*  <Route exact path="/"> TODO: router yapısını düzelttiğimizde bu kısmı handle edelim
                                             {dashboard ? (
                                                 dashboard
                                             ) : (
@@ -73,15 +76,12 @@ export const Admin: React.FC<AdminProps> = ({
                                                 />
                                             )}
                                         </Route> */}
-                                        {children}
-                                        {/*    </Switch> */}
-                                    </Auth>
-                                </Switch>
-                            </Router>
-                        </ResourceContextProvider>
-                    ) : (
-                        <ReadyPage />
-                    )}
+                                    {children}
+                                    {/*    </Switch> */}
+                                </Auth>
+                            </Switch>
+                        </Router>
+                    </ResourceContextProvider>
                 </DataContextProvider>
             </AuthContextProvider>
             <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
