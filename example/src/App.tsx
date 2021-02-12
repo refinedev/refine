@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Admin, Resource, AuthProvider, JsonServer } from 'readmin';
+import { Admin, Resource, AuthProvider, JsonServer, UserOutlined } from 'readmin';
 
 import { PostCreate, PostList, PostEdit } from './components/pages/post'
 import { CategoryList, CategoryCreate } from './components/pages/category';
@@ -50,6 +50,7 @@ function App() {
         create={PostCreate}
         edit={PostEdit}
         canDelete
+        options={{label: "My Posts"}}
       />
       <Resource
         name="categories"
@@ -57,7 +58,7 @@ function App() {
         create={CategoryCreate}
         canDelete
       />
-      <Resource name="users" list={UserList} />
+      <Resource name="users" list={UserList} icon={<UserOutlined/>} />
       <Resource
         name="tags"
         list={TagList}
