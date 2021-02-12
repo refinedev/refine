@@ -2,17 +2,18 @@ import { useContext } from "react";
 import { useMutation, UseMutationResult } from "react-query";
 
 import { DataContext } from "@contexts/data";
-import { IDataContext, UpdateResponse } from "@interfaces";
+import { BaseRecord, IDataContext, UpdateResponse } from "@interfaces";
 
-type UseUpdateReturnType = UseMutationResult<
+type UseUpdateReturnType<TParams = BaseRecord> = UseMutationResult<
     UpdateResponse,
     unknown,
-    { id: string; values: object },
+    { id: string; values: TParams },
     unknown
 >;
 
-// TODO update type
-export const useUpdate = (resource: string): UseUpdateReturnType => {
+export const useUpdate = <TParams = BaseRecord>(
+    resource: string,
+): UseUpdateReturnType<TParams> => {
     const { update } = useContext<IDataContext>(DataContext);
 
     if (!resource) {
@@ -20,8 +21,8 @@ export const useUpdate = (resource: string): UseUpdateReturnType => {
     }
 
     const mutation = useMutation(
-        ({ id, values }: { id: string; values: object }) =>
-            update(resource, id, values),
+        ({ id, values }: { id: string; values: TParams }) =>
+            update<TParams>(resource, id, values),
     );
 
     return mutation;
