@@ -29,7 +29,7 @@ describe("<List/>", () => {
                 },
             );
 
-            waitForElementToBeRemoved(() => getByText("No Data"));
+            await waitForElementToBeRemoved(() => getByText("No Data"));
         });
         it("renders given data", async () => {
             const { findByText } = render(
