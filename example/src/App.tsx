@@ -45,7 +45,7 @@ function App() {
       dashboard={DashboardPage}
       ready={ReadyPage}
     >
-      <Resource
+      {/* <Resource
         name="posts"
         list={PostList}
         create={PostCreate}
@@ -65,7 +65,7 @@ function App() {
         edit={TagEdit}
         create={TagCreate}
         canDelete
-      />
+      /> */}
     </Admin>
   );
 }
