@@ -14,7 +14,7 @@ describe("ReadyPage", () => {
 
     it("should render 4 texts", async () => {
         const { getByText } = render(<ReadyPage />);
-        
+
         getByText("readmin");
         getByText("Welcome to readmin");
         getByText("Your application is properly configured.");
