@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ComponentType, ReactNode } from "react";
 import {
     BrowserRouter as Router,
     Switch,
@@ -13,7 +13,7 @@ import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider } from "@contexts/resource";
 import { Auth } from "@containers/auth";
-import { LoginPage } from "@pages";
+import { LoginPage, ReadyPage } from "@pages";
 import { IDataContext, IAuthContext } from "@interfaces";
 
 export interface AdminProps {
@@ -21,6 +21,7 @@ export interface AdminProps {
     dataProvider: IDataContext;
     title?: ReactNode;
     dashboard?: React.FC;
+    ready?: ComponentType | true;
 }
 
 export const Admin: React.FC<AdminProps> = ({
@@ -28,6 +29,7 @@ export const Admin: React.FC<AdminProps> = ({
     dataProvider,
     title,
     dashboard,
+    ready = ReadyPage,
     children,
 }) => {
     const queryClient = new QueryClient({
@@ -50,6 +52,11 @@ export const Admin: React.FC<AdminProps> = ({
                     <ResourceContextProvider resources={resources}>
                         <Router>
                             <Switch>
+                                {ready && (
+                                    <Route exact path="/">
+                                        <ReadyPage />
+                                    </Route>
+                                )}
                                 <Route exact path="/login">
                                     <LoginPage />
                                 </Route>
