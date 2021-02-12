@@ -1,4 +1,4 @@
-name: Push
+name: Lint & Test & Build [Push]
 
 on: push
 
@@ -22,5 +22,4 @@ jobs:
         npm install
         npm run lint
         npm test
-        npm run build
 
