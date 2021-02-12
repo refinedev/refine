@@ -10,6 +10,7 @@ module.exports = {
     //         tsconfig: "tsconfig.test.json",
     //     },
     // },
+    testEnvironment: "jsdom",
     setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
     testPathIgnorePatterns: [
         "<rootDir>/node_modules/",
