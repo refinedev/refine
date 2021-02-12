@@ -1,13 +1,13 @@
 import React from "react";
 import { Table as AntdTable, Button, Space, Popconfirm } from "antd";
 import { TablePaginationConfig } from "antd/lib/table";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import qs from "query-string";
 
 import { Column } from "@components";
 import { Record } from "@interfaces";
 import { useDelete } from "@hooks";
-import { useSearchParams } from "@hooks/util";
 
 export interface TableProps {
     resourceName?: string;
@@ -29,7 +29,7 @@ export const Table: React.FC<TableProps> = ({
     children,
 }) => {
     const history = useHistory();
-    const queryParams = useSearchParams();
+    const { search } = useLocation();
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const { mutate, isLoading } = useDelete(resourceName!);
@@ -104,9 +104,15 @@ export const Table: React.FC<TableProps> = ({
                 loading={loading}
                 pagination={pagination}
                 onChange={(pagination): void => {
-                    const q = queryParams.get("q");
+                    const parsedSearchQuery = qs.parse(search);
+
+                    parsedSearchQuery.current = String(pagination.current);
+                    parsedSearchQuery.pageSize = String(pagination.pageSize);
+
                     history.push(
-                        `/resources/${resourceName}?current=${pagination.current}&pageSize=${pagination.pageSize}&q=${q}`,
+                        `/resources/${resourceName}?${qs.stringify(
+                            parsedSearchQuery,
+                        )}`,
                     );
                 }}
             >
