@@ -29,4 +29,4 @@ ENV NODE_ENV=production
 
 RUN npm install -g serve
 
-CMD serve -s build -l 5000
+CMD serve -l 5000
