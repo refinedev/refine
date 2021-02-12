@@ -1,25 +1,25 @@
-import * as React from 'react';
+import * as React from "react";
 
 const styles = {
     root: {
-        width: '100vw',
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column' as 'column',
+        width: "100vw",
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column" as "column",
         fontFamily: '"Roboto", sans-serif',
     },
     main: {
         flex: 1,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center' as 'center',
-        flexDirection: 'column' as 'column',
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center" as "center",
+        flexDirection: "column" as "column",
         background:
-            'linear-gradient(135deg, #D5D5A4 0%, #C6C6AD 50%, #D0D0CD 100%)',
-        color: '#565656',
-        fontSize: '1.5em',
-        fontWeight: 'bold' as 'bold',
+            "linear-gradient(135deg, #D5D5A4 0%, #C6C6AD 50%, #D0D0CD 100%)",
+        color: "#565656",
+        fontSize: "1.5em",
+        fontWeight: "bold" as "bold",
     },
 };
 
@@ -38,4 +38,4 @@ export const ReadyPage: React.FC = () => {
             </div>
         </div>
     );
-}
+};
