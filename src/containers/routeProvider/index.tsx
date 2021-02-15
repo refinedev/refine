@@ -1,7 +1,13 @@
-import React, { useContext, useState, ReactNode, ComponentType,ReactElement,ReactChild } from "react";
-import { Switch, Route, useLocation, RouteProps } from "react-router-dom";
+import React, { useContext, useState, ReactNode, ComponentType } from "react";
+import {
+    Switch,
+    Route,
+    useLocation,
+    RouteProps,
+    Redirect,
+} from "react-router-dom";
 import { Layout, ErrorComponent } from "@components";
-import { DashboardPage, LoginPage } from "@pages";
+import { LoginPage } from "@pages";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "@interfaces";
 
@@ -9,15 +15,22 @@ export interface RouteProviderProps {
     title?: ReactNode;
     resources: React.ReactNode;
     catchAll?: React.ReactNode;
+    dashboard?: React.ElementType;
+    loginPage?: ComponentType | false;
 }
+
+type IRoutesProps = RouteProps & { routes?: RouteProps[] };
 
 export const RouteProvider: React.FC<RouteProviderProps> = ({
     title,
     resources,
     catchAll,
+    dashboard,
+    loginPage,
 }) => {
     const { checkAuth } = useContext<IAuthContext>(AuthContext);
     const [authenticated, setAuthenticated] = useState<boolean>(false);
+    const resourcesArray: string[] = [];
 
     // TODO Her sayfa değişimi render a sebeb oluyor.
     useLocation();
@@ -25,14 +38,6 @@ export const RouteProvider: React.FC<RouteProviderProps> = ({
     checkAuth({})
         .then(() => setAuthenticated(true))
         .catch(() => setAuthenticated(false));
-
-    /*  useEffect(() => {
-        checkAuth({})
-            .then(() => setAuthenticated(true))
-            .catch(() => setAuthenticated(false));
-    }, [location]); */
-
-    type IRoutesProps = RouteProps & { routes?: RouteProps[] };
 
     const routes: IRoutesProps[] = [];
     const RouteHandler = (val: React.ReactElement): void => {
@@ -44,16 +49,26 @@ export const RouteProvider: React.FC<RouteProviderProps> = ({
 
         const canCreate = !!create;
         const canEdit = !!edit;
-
         routes.push(
             {
                 path: "/",
                 exact: true,
-                component: () => <DashboardPage />,
+                component: () =>
+                    dashboard ? (
+                        React.createElement(dashboard, null)
+                    ) : (
+                        <Redirect to={`/resources/${resourcesArray[0]}`} />
+                    ),
             },
             {
                 path: `/resources/${name}`,
                 component: () => (
+                    /*   React.cloneElement(list, {
+                        resourceName: name,
+                        canCreate: canCreate,
+                        canEdit: canEdit,
+                        canDelete: canDelete,
+                    }), */
                     <ListComponent
                         resourceName={name}
                         canCreate={canCreate}
@@ -61,6 +76,7 @@ export const RouteProvider: React.FC<RouteProviderProps> = ({
                         canDelete={canDelete}
                     />
                 ),
+
                 routes: [
                     {
                         path: `/resources/${name}/create`,
@@ -78,10 +94,11 @@ export const RouteProvider: React.FC<RouteProviderProps> = ({
                 ],
             },
         );
+
         return;
     };
-
     React.Children.map(resources, (child: any) => {
+        resourcesArray.push(child.props.name);
         RouteHandler(child);
     });
 
@@ -89,7 +106,7 @@ export const RouteProvider: React.FC<RouteProviderProps> = ({
         return (
             <Route
                 path={route.path}
-                render={(props: any) => (
+                render={(props) => (
                     <route.component {...props} routes={route.routes} />
                 )}
             />
@@ -109,9 +126,11 @@ export const RouteProvider: React.FC<RouteProviderProps> = ({
 
     const renderUnauthorized = () => (
         <Switch>
-            <Route exact path="/login">
-                <LoginPage />
-            </Route>
+            <Route
+                exact
+                path={["/", "/login"]}
+                component={() => <LoginPage />}
+            />
             <Route>{catchAll ?? <ErrorComponent />}</Route>
         </Switch>
     );

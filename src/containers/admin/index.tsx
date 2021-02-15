@@ -1,19 +1,15 @@
 import React, { ComponentType, ReactNode } from "react";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "antd/dist/antd.css";
 
+import { LoginPage } from "@pages";
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
 import { RouteProvider } from "@containers/routeProvider";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
-import { LoginPage } from "@pages";
+
 import { IDataContext, IAuthContext } from "@interfaces";
 
 export interface AdminProps {
@@ -61,6 +57,8 @@ export const Admin: React.FC<AdminProps> = ({
                                 resources={children}
                                 catchAll={catchAll}
                                 title={title}
+                                dashboard={dashboard}
+                                loginPage={loginPage}
                             />
                         </Router>
                     </ResourceContextProvider>
@@ -70,4 +68,3 @@ export const Admin: React.FC<AdminProps> = ({
         </QueryClientProvider>
     );
 };
-
