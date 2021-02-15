@@ -1,5 +1,11 @@
 import React, { ReactNode, useContext, useState } from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect, useLocation } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+    useLocation,
+} from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "antd/dist/antd.css";
@@ -27,12 +33,12 @@ export const Admin: React.FC<AdminProps> = ({
     children,
     catchAll,
 }) => {
-
-/*     const { checkAuth } = useContext<IAuthContext>(AuthContext);
+    const { checkAuth } = useContext<IAuthContext>(AuthContext);
     const [authenticated, setAuthenticated] = useState<boolean>(false);
-    checkAuth({}).then(() => setAuthenticated(true)).catch(() => setAuthenticated(false));
-    console.log(checkAuth().then(val => console.log("val", val)))
- */
+    checkAuth({})
+        .then(() => setAuthenticated(true))
+        .catch(() => setAuthenticated(false));
+    console.log(checkAuth().then((val) => console.log("val", val)));
 
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -57,7 +63,7 @@ export const Admin: React.FC<AdminProps> = ({
             {
                 path: "/",
                 exact: true,
-                component: () => <DashboardPage />
+                component: () => <DashboardPage />,
             },
             {
                 path: `/resources/${name}`,
@@ -89,28 +95,28 @@ export const Admin: React.FC<AdminProps> = ({
         return;
     };
 
-    const PrivateRoute = ({ render, ...rest }: {
+    const PrivateRoute = ({
+        render,
+        ...rest
+    }: {
         path: string;
         render: any;
         exact?: boolean;
     }) => {
-        /* const { checkAuth } = useContext<IAuthContext>(AuthContext);
-        let auth = useAuth(); */
-        const isLogin = true;
         return (
             <Route
                 {...rest}
                 render={({ location }) =>
-                isLogin ? (
+                    authenticated ? (
                         render()
                     ) : (
-                            <Redirect
-                                to={{
-                                    pathname: "/login",
-                                    state: { from: location },
-                                }}
-                            />
-                        )
+                        <Redirect
+                            to={{
+                                pathname: "/login",
+                                state: { from: location },
+                            }}
+                        />
+                    )
                 }
             />
         );
@@ -149,7 +155,7 @@ export const Admin: React.FC<AdminProps> = ({
             <Route exact path="/login">
                 <LoginPage />
             </Route>
-             <Route>{catchAll ?? <ErrorComponent />}</Route> 
+            <Route>{catchAll ?? <ErrorComponent />}</Route>
         </Switch>
     );
 
@@ -159,7 +165,9 @@ export const Admin: React.FC<AdminProps> = ({
                 <DataContextProvider {...dataProvider}>
                     <ResourceContextProvider resources={resources}>
                         <Router>
-                          {authenticated ? renderAuthorized() : renderUnauthorized()} 
+                            {authenticated
+                                ? renderAuthorized()
+                                : renderUnauthorized()}
                         </Router>
                     </ResourceContextProvider>
                 </DataContextProvider>
