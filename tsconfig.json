@@ -10,9 +10,6 @@
         "strict": true,
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
-        // noUnused* overlap with @typescript-eslint/no-unused-vars, can disable if duplicative
-       
-        // use Node's module resolution algorithm, instead of the legacy TS one
         "moduleResolution": "node",
         "jsx": "react",
         "esModuleInterop": true,

@@ -1,12 +1,17 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Route, Switch } from "react-router-dom";
 
+export interface OptionsProps {
+    label: string;
+}
 export interface ResourceProps {
     name: string;
     list?: any;
     create?: any;
     edit?: any;
     canDelete?: boolean;
+    icon?: ReactNode;
+    options?: OptionsProps;
 }
 
 export const Resource: React.FC<ResourceProps> = ({
@@ -25,7 +30,7 @@ export const Resource: React.FC<ResourceProps> = ({
 
 
     return (
-        <Switch>
+        <>
             <Route exact path={`/resources/${name}`}>
                 <ListComponent
                     resourceName={name}
@@ -40,6 +45,6 @@ export const Resource: React.FC<ResourceProps> = ({
             <Route exact path={`/resources/${name}/edit/:id`}>
                 <EditComponent resourceName={name} />
             </Route>
-        </ Switch>
+        </>
     );
 };

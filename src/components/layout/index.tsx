@@ -10,25 +10,31 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import humanizeString from "humanize-string";
 
 import { AuthContext } from "@contexts/auth";
-import { ResourceContext, IResourceContext } from "@contexts/resource";
 import { IAuthContext } from "@interfaces";
+
+import { useResource } from "@hooks";
 
 export interface LayoutProps {
     title?: ReactNode;
+    dashboard?: React.FC;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children, title }) => {
+export const Layout: React.FC<LayoutProps> = ({
+    children,
+    title,
+    dashboard,
+}) => {
     const [collapsed, setCollapsed] = React.useState(false);
 
     const history = useHistory();
     const { logout } = useContext<IAuthContext>(AuthContext);
-    const { resources } = useContext<IResourceContext>(ResourceContext);
+    const { resources } = useResource();
 
     const location = useLocation();
 
     const selectedKey = React.useMemo(() => {
         const selectedResource = resources.find((el) =>
-            location.pathname.startsWith(`/resources/${el}`),
+            location.pathname.startsWith(`/resources/${el.name}`),
         );
         return `/resources/${selectedResource ?? ""}`;
     }, [location]);
@@ -69,17 +75,22 @@ export const Layout: React.FC<LayoutProps> = ({ children, title }) => {
                     selectedKeys={[selectedKey]}
                     mode="inline"
                 >
-                    <Menu.Item key={`dashboard`} icon={<DashboardOutlined />}>
-                        <Link to={`/`}>Dashboard</Link>
-                    </Menu.Item>
+                    {dashboard && (
+                        <Menu.Item
+                            key={`dashboard`}
+                            icon={<DashboardOutlined />}
+                        >
+                            <Link to={`/`}>Dashboard</Link>
+                        </Menu.Item>
+                    )}
 
                     {resources.map((item) => (
                         <Menu.Item
-                            key={`/resources/${item}`}
-                            icon={<UnorderedListOutlined />}
+                            key={`/resources/${item.name}`}
+                            icon={item.icon ?? <UnorderedListOutlined />}
                         >
-                            <Link to={`/resources/${item}`}>
-                                {humanizeString(item)}
+                            <Link to={`/resources/${item.name}`}>
+                                {item.label ?? humanizeString(item.name)}
                             </Link>
                         </Menu.Item>
                     ))}

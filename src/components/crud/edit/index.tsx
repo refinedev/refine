@@ -4,6 +4,7 @@ import { Form, Card } from "antd";
 import pluralize from "pluralize";
 
 import { useOne, useUpdate } from "@hooks";
+import { BaseRecord } from "@interfaces";
 
 export interface EditProps {
     resourceName: string;
@@ -23,7 +24,7 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
 
     const { mutate, error, isLoading } = useUpdate(resourceName);
 
-    const onFinish = async (values: object): Promise<void> => {
+    const onFinish = async (values: BaseRecord): Promise<void> => {
         mutate(
             { id, values },
             {

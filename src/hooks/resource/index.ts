@@ -1,0 +1,1 @@
+export { useResource } from "./useResource";

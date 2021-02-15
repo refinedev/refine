@@ -15,3 +15,4 @@ export * from "./hooks";
 export { IAuthContext as AuthProvider, Sort, Pagination } from "./interfaces";
 export { IDataContext as DataProvider } from "./interfaces";
 
+export * from "./icons";

@@ -21,12 +21,12 @@ describe("<List/>", () => {
                 {
                     wrapper: TestWrapper({
                         dataProvider: MockJSONServer,
-                        resources: ["posts"],
+                        resources: [{ name: "posts" }],
                     }),
                 },
             );
 
-            waitForElementToBeRemoved(() => getByText("No Data"));
+            await waitForElementToBeRemoved(() => getByText("No Data"));
         });
         it("renders given data", async () => {
             const { findByText } = render(
@@ -38,7 +38,7 @@ describe("<List/>", () => {
                 {
                     wrapper: TestWrapper({
                         dataProvider: MockJSONServer,
-                        resources: ["posts"],
+                        resources: [{ name: "posts" }],
                     }),
                 },
             );

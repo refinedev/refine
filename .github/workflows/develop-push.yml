@@ -1,4 +1,4 @@
-name: Push [Develop]
+name: Publish Develop
 
 on:
   push:

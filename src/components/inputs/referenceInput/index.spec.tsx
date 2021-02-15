@@ -30,7 +30,7 @@ describe("<ReferenceInput/>", () => {
                 {
                     wrapper: TestWrapper({
                         dataProvider: MockJSONServer,
-                        resources: ["posts", "categories"],
+                        resources: [{ name: "posts" }, { name: "categories" }],
                     }),
                 },
             );

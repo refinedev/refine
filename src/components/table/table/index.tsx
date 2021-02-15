@@ -5,12 +5,12 @@ import { useHistory } from "react-router-dom";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 import { Column } from "@components";
-import { Record } from "@interfaces";
+import { BaseRecord } from "@interfaces";
 import { useDelete } from "@hooks";
 
 export interface TableProps {
-    resourceName: string;
-    dataSource?: Record[];
+    resourceName?: string;
+    dataSource?: BaseRecord[];
     loading?: boolean;
     pagination?: false | TablePaginationConfig;
     canEdit?: boolean;
@@ -29,7 +29,8 @@ export const Table: React.FC<TableProps> = ({
 }) => {
     const history = useHistory();
 
-    const { mutate, isLoading } = useDelete(resourceName);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const { mutate, isLoading } = useDelete(resourceName!);
 
     const renderDeleteButton = (id: number | string): React.ReactNode => {
         return (

@@ -1,14 +1,16 @@
-import 'react-app-polyfill/ie11';
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { Admin, Resource, AuthProvider, JsonServer } from '../.';
+import React from 'react';
 
-import { PostCreate, PostList, PostEdit } from './post';
-import { CategoryList, CategoryCreate } from './category';
-import { UserList } from './user';
-import { TagList, TagCreate, TagEdit } from './tag';
+import { Admin, Resource, AuthProvider, JsonServer, Icons } from 'readmin';
 
-const App = () => {
+import { PostCreate, PostList, PostEdit } from './components/pages/post'
+import { CategoryList, CategoryCreate } from './components/pages/category';
+import { UserList } from './components/pages/user';
+import { TagList, TagCreate, TagEdit } from './components/pages/tag';
+import { DashboardPage } from './components/pages/dashboard';
+
+import { LoginPage } from "./components/login";
+
+function App() {
   const authProvider: AuthProvider = {
     login: (params: any) => {
       if (params.username === 'admin') {
@@ -39,7 +41,8 @@ const App = () => {
     <Admin
       authProvider={authProvider}
       dataProvider={JsonServer('https://readmin-fake-rest.pankod.com')}
-     /*  catchAll={<div>error</div>} */
+      loginPage={LoginPage}
+      dashboard={DashboardPage}
     >
       <Resource
         name="posts"
@@ -47,6 +50,7 @@ const App = () => {
         create={PostCreate}
         edit={PostEdit}
         canDelete
+        options={{label: "My Posts"}}
       />
       <Resource
         name="categories"
@@ -54,7 +58,7 @@ const App = () => {
         create={CategoryCreate}
         canDelete
       />
-      <Resource name="users" list={UserList} />
+      <Resource name="users" list={UserList} icon={<Icons.UserOutlined />} />
       <Resource
         name="tags"
         list={TagList}
@@ -64,6 +68,6 @@ const App = () => {
       />
     </Admin>
   );
-};
+}
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export default App;
