@@ -56,3 +56,4 @@ export const Admin: React.FC<AdminProps> = ({
         </QueryClientProvider>
     );
 };
+

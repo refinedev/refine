@@ -1,14 +1,5 @@
-import React, {
-    useContext,
-    useState,
-    ReactNode,
-    useEffect,
-} from "react";
-import {
-    Switch,
-    Route,
-    useLocation,
-} from "react-router-dom";
+import React, { useContext, useState, ReactNode, ComponentType,ReactElement,ReactChild } from "react";
+import { Switch, Route, useLocation, RouteProps } from "react-router-dom";
 import { Layout, ErrorComponent } from "@components";
 import { DashboardPage, LoginPage } from "@pages";
 import { AuthContext } from "@contexts/auth";
@@ -28,18 +19,23 @@ export const RouteProvider: React.FC<RouteProviderProps> = ({
     const { checkAuth } = useContext<IAuthContext>(AuthContext);
     const [authenticated, setAuthenticated] = useState<boolean>(false);
 
-    const location = useLocation();
+    // TODO Her sayfa değişimi render a sebeb oluyor.
+    useLocation();
 
-    useEffect(() => {
+    checkAuth({})
+        .then(() => setAuthenticated(true))
+        .catch(() => setAuthenticated(false));
+
+    /*  useEffect(() => {
         checkAuth({})
             .then(() => setAuthenticated(true))
             .catch(() => setAuthenticated(false));
-    }, [location]);
+    }, [location]); */
 
-    console.log("authendicated", authenticated);
+    type IRoutesProps = RouteProps & { routes?: RouteProps[] };
 
-    const routes: any[] = [];
-    const RouteHandler = (val: any) => {
+    const routes: IRoutesProps[] = [];
+    const RouteHandler = (val: React.ReactElement): void => {
         const { list, name, create, edit, canDelete } = val.props;
 
         const ListComponent = list;

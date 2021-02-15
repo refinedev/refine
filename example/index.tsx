@@ -39,6 +39,7 @@ const App = () => {
     <Admin
       authProvider={authProvider}
       dataProvider={JsonServer('https://readmin-fake-rest.pankod.com')}
+     /*  catchAll={<div>error</div>} */
     >
       <Resource
         name="posts"
