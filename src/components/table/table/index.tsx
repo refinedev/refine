@@ -6,12 +6,12 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import qs from "query-string";
 
 import { Column } from "@components";
-import { Record } from "@interfaces";
+import { BaseRecord } from "@interfaces";
 import { useDelete } from "@hooks";
 
 export interface TableProps {
     resourceName?: string;
-    dataSource?: Record[];
+    dataSource?: BaseRecord[];
     loading?: boolean;
     pagination?: false | TablePaginationConfig;
     canEdit?: boolean;

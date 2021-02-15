@@ -5,6 +5,7 @@ import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
 import { useOne, useUpdate } from "@hooks";
+import { BaseRecord } from "@interfaces";
 
 export interface EditProps {
     resourceName: string;
@@ -24,7 +25,7 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
 
     const { mutate } = useUpdate(resourceName);
 
-    const onFinish = async (values: object): Promise<void> => {
+    const onFinish = async (values: BaseRecord): Promise<void> => {
         mutate(
             { id, values },
             {

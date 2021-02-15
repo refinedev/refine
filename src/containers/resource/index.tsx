@@ -1,12 +1,17 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Route, Switch } from "react-router-dom";
 
+export interface OptionsProps {
+    label: string;
+}
 export interface ResourceProps {
     name: string;
     list?: any;
     create?: any;
     edit?: any;
     canDelete?: boolean;
+    icon?: ReactNode;
+    options?: OptionsProps;
 }
 
 export const Resource: React.FC<ResourceProps> = ({
