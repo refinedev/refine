@@ -4,6 +4,7 @@ node_modules
 .cache
 dist
 .rpt2_cache
+.vscode
 
 # misc
 .DS_Store
