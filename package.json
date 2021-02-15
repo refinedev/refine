@@ -62,6 +62,7 @@
         "@types/react-dom": "^17.0.0",
         "@types/react-router-dom": "^5.1.7",
         "babel-plugin-module-resolver": "^4.1.0",
+        "eslint-plugin-prettier": "^3.3.1",
         "husky": "^5.0.9",
         "msw": "^0.26.2",
         "react": "*",
@@ -77,6 +78,7 @@
         "axios": "^0.21.1",
         "humanize-string": "^2.1.0",
         "pluralize": "^8.0.0",
+        "prettier": "^2.2.1",
         "query-string": "^6.14.0",
         "react-query": "^3.8.2",
         "react-router-dom": "^5.2.0"
