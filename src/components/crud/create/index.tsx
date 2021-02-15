@@ -4,6 +4,7 @@ import { Card } from "antd";
 import pluralize from "pluralize";
 
 import { useCreate } from "@hooks";
+import { BaseRecord } from "@interfaces";
 
 export interface CreateProps {
     resourceName: string;
@@ -19,7 +20,7 @@ export const Create: React.FC<CreateProps> = ({
 
     const { mutate, error, isLoading } = useCreate(resourceName);
 
-    const onFinish = async (values: object): Promise<void> => {
+    const onFinish = async (values: BaseRecord): Promise<void> => {
         mutate(
             { values },
             {
