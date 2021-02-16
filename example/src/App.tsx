@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Admin, Resource, AuthProvider, JsonServer, Icons } from 'readmin';
-
 import { PostCreate, PostList, PostEdit } from './components/pages/post'
 import { CategoryList, CategoryCreate } from './components/pages/category';
 import { UserList } from './components/pages/user';

@@ -24,9 +24,14 @@
     "peerDependencies": {
         "react": "^17.0.1"
     },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx}": [
+            "npm run lint -- --quiet --fix --allow-empty"
+        ]
+    },
     "husky": {
         "hooks": {
-            "pre-commit": "tsdx lint -- --fix"
+            "pre-commit": "lint-staged"
         }
     },
     "prettier": {
@@ -63,7 +68,8 @@
         "@types/react-router-dom": "^5.1.7",
         "babel-plugin-module-resolver": "^4.1.0",
         "eslint-plugin-prettier": "^3.3.1",
-        "husky": "^5.0.9",
+        "husky": "^4.3.8",
+        "lint-staged": "^10.5.4",
         "msw": "^0.26.2",
         "react": "*",
         "react-dom": "^17.0.1",
