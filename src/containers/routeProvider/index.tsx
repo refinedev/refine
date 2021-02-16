@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React, { useContext, useState, ReactNode, ComponentType } from "react";
+import React, { useContext, useState, ReactNode } from "react";
 import {
     Switch,
     Route,

@@ -14,7 +14,7 @@ export const ResourceContextProvider: React.FC<IResourceContext> = ({
 }) => {
     return (
         <ResourceContext.Provider value={{ resources }}>
-            {children} 
+            {children}
         </ResourceContext.Provider>
     );
 };
