@@ -7,6 +7,7 @@ import { GetOneResponse, IDataContext } from "@interfaces";
 export interface ReferenceFieldProps {
     resource: string;
     value: string | number;
+    title: string;
 }
 
 export const ReferenceField: React.FC<ReferenceFieldProps> = ({
@@ -29,11 +30,14 @@ export const ReferenceField: React.FC<ReferenceFieldProps> = ({
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {
+                ...child.props,
                 record: data?.data,
             });
         }
         return child;
     });
+
+    console.log("RefermeceField childrenWithProps: ", childrenWithProps)
 
     return <React.Fragment>{childrenWithProps}</React.Fragment>;
 };

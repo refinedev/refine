@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 import { Table as AntdTable, Button, Space, Popconfirm } from "antd";
 import { TablePaginationConfig } from "antd/lib/table";
 import { useHistory } from "react-router-dom";
@@ -94,6 +94,38 @@ export const Table: React.FC<TableProps> = ({
         return null;
     };
 
+    const columnsFromChildren = Children.map(children, (child: any) => {
+        console.log("child: ", child)
+
+        const { title, source, value, resource } = child.props
+
+        console.log("child.props: ", source, value)
+        return <Column
+
+            key={source ?? value}
+            title={title}
+            dataIndex={source ?? value}
+            // either ReferencerField or normal Field components
+            render={(columnItemValue, record, _index) => {
+                const clone = React.cloneElement(child, {
+                    ...child.props,
+                    resource,
+                    value: columnItemValue,
+                    source: value ? source : columnItemValue,
+                })
+                console.log("table columnsFromChildren Column render clone from child: ", clone)
+                console.log("table columnsFromChildren Column render columnItemValue: ", columnItemValue)
+                console.log("table columnsFromChildren Column render record: ", record)
+                return (
+                    clone
+                )
+            }}
+        />
+    })
+
+    console.log("columnsFromChildren: ", columnsFromChildren)
+    console.log("dataSource: ", dataSource)
+
     return (
         <React.Fragment>
             <AntdTable
@@ -107,7 +139,7 @@ export const Table: React.FC<TableProps> = ({
                     );
                 }}
             >
-                {children}
+                {columnsFromChildren}
                 {renderActions()}
             </AntdTable>
         </React.Fragment>
