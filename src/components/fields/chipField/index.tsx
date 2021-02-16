@@ -6,6 +6,10 @@ export interface ChipFieldProps extends TagProps {
     source: string;
 }
 
-export const ChipField: React.FC<ChipFieldProps> = ({ record, source, ...rest }) => {
-    return <Tag {...rest} >{record ? record?.[source] : source}</Tag>;
+export const ChipField: React.FC<ChipFieldProps> = ({
+    record,
+    source,
+    ...rest
+}) => {
+    return <Tag {...rest}>{record ? record?.[source] : source}</Tag>;
 };

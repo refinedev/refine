@@ -37,7 +37,7 @@ export const ReferenceField: React.FC<ReferenceFieldProps> = ({
         return child;
     });
 
-    console.log("RefermeceField childrenWithProps: ", childrenWithProps)
+    console.log("RefermeceField childrenWithProps: ", childrenWithProps);
 
     return <React.Fragment>{childrenWithProps}</React.Fragment>;
 };
