@@ -118,19 +118,17 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
 
     const renderUnauthorized = () => (
         <Switch>
-            {loginPage !== false && (
-                <Route
-                    exact
-                    path={["/", "/login"]}
-                    component={() =>
-                        loginPage ? (
-                            React.createElement(loginPage, null)
-                        ) : (
-                            <DefaultLoginPage />
-                        )
-                    }
-                />
-            )}
+            <Route
+                exact
+                path={["/", "/login"]}
+                component={() =>
+                    loginPage ? (
+                        React.createElement(loginPage, null)
+                    ) : (
+                        <DefaultLoginPage />
+                    )
+                }
+            />
             <Route>{catchAll ?? <ErrorComponent />}</Route>
         </Switch>
     );
