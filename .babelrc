@@ -12,7 +12,8 @@
                     "@contexts": "./src/contexts",
                     "@dataProviders": "./src/dataProviders",
                     "@hooks": "./src/hooks",
-                    "@test": "./test"
+                    "@test": "./test",
+                    "@definitions": "./src/definitions"
                 }
             }
         ]

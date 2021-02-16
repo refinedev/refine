@@ -33,7 +33,15 @@
             "@hooks/*": ["src/hooks/*"],
             "@hooks": ["src/hooks"],
             "@test/*": ["test/*"],
-            "@test": ["test"]
+            "@test": [
+                "test"
+            ],
+            "@definitions/*": [
+                "src/definitions/*"
+            ],
+            "@definitions": [
+                "src/definitions"
+            ]
         }
     }
 }
