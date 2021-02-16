@@ -8,7 +8,7 @@ import {
     Redirect,
 } from "react-router-dom";
 import { Layout, ErrorComponent } from "@components";
-import { LoginPage } from "@pages";
+import { LoginPage as DefaultLoginPage } from "@pages";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "@interfaces";
 
@@ -17,7 +17,7 @@ export interface RouteProviderProps {
     resources: React.ReactNode;
     catchAll?: React.ReactNode;
     dashboard?: React.ElementType;
-    loginPage?: React.ReactNode;
+    loginPage?: React.FC | false;
 }
 
 type IRoutesProps = RouteProps & { routes?: RouteProps[] };
@@ -35,6 +35,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
 
     // TODO Her sayfa değişimi render a sebeb oluyor.
     useLocation();
+
     checkAuth({})
         .then(() => setAuthenticated(true))
         .catch(() => setAuthenticated(false));
@@ -117,11 +118,19 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
 
     const renderUnauthorized = () => (
         <Switch>
-            <Route
-                exact
-                path={["/", "/login"]}
-                component={() => (loginPage ? <LoginPage /> : <LoginPage />)}
-            />
+            {loginPage !== false && (
+                <Route
+                    exact
+                    path={["/", "/login"]}
+                    component={() =>
+                        loginPage ? (
+                            React.createElement(loginPage, null)
+                        ) : (
+                            <DefaultLoginPage />
+                        )
+                    }
+                />
+            )}
             <Route>{catchAll ?? <ErrorComponent />}</Route>
         </Switch>
     );

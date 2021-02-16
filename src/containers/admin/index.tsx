@@ -4,7 +4,6 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "antd/dist/antd.css";
 
-import { LoginPage } from "@pages";
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
 import { RouteProvider } from "@containers/routeProvider";
@@ -17,7 +16,7 @@ export interface AdminProps {
     dataProvider: IDataContext;
     catchAll?: React.ReactNode;
     title?: ReactNode;
-    loginPage?: React.ReactNode;
+    loginPage?: React.FC | false;
     dashboard?: React.FC;
 }
 
@@ -27,7 +26,7 @@ export const Admin: React.FC<AdminProps> = ({
     title,
     dashboard,
     children,
-    loginPage = LoginPage,
+    loginPage,
     catchAll,
 }) => {
     const queryClient = new QueryClient({
