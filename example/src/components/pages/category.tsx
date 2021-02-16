@@ -2,20 +2,20 @@ import * as React from 'react';
 import {
   List,
   Table,
-  Column,
   Create,
   Edit,
   Form,
   FormItem,
-  TextInput
+  TextInput,
+  TextField,
 } from 'readmin';
 
-export const CategoryList = (props: any) => {
+export const CategoryList = (props: {resourceName: string}) => {
   return (
     <List {...props}>
       <Table>
-        <Column key="id" title="ID" dataIndex="id" />
-        <Column key="title" title="Title" dataIndex="title" />
+        <TextField source="id" title="ID" />
+        <TextField source="title" title="Title" />
       </Table>
     </List>
   );

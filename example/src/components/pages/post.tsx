@@ -1,7 +1,6 @@
 import * as React from "react";
 import {
     List,
-    Column,
     Table,
     Create,
     Edit,
@@ -13,6 +12,7 @@ import {
     ReferenceInput,
     ReferenceField,
     TextField,
+    ChipField,
 } from "readmin";
 
 export const PostList = (props: any) => {
@@ -61,21 +61,15 @@ export const PostList = (props: any) => {
     return (
         <List {...props} filters={filters}>
             <Table>
-                <Column key="id" title="ID" dataIndex="id" />
-                <Column key="title" title="Title" dataIndex="title" />
-                <Column
-                    key="categoryId"
+                <TextField title="ID" source="id" />
+                <ReferenceField
                     title="Category"
-                    dataIndex="categoryId"
-                    render={(value) => {
-                        return (
-                            <ReferenceField value={value} resource="categories">
-                                <TextField source="title" />
-                            </ReferenceField>
-                        );
-                    }}
-                />
-                <Column key="status" title="Status" dataIndex="status" />
+                    value="categoryId"
+                    resource="categories"
+                >
+                    <TextField source="title" />
+                </ReferenceField>
+                <ChipField title="Status" source="status" />
             </Table>
         </List>
     );

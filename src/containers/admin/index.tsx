@@ -1,26 +1,22 @@
-import React, { ComponentType, ReactNode } from "react";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect,
-} from "react-router-dom";
+import React, { ReactNode } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "antd/dist/antd.css";
 
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
+import { RouteProvider } from "@containers/routeProvider";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
-import { Auth } from "@containers/auth";
-import { LoginPage } from "@pages";
+
 import { IDataContext, IAuthContext } from "@interfaces";
 
 export interface AdminProps {
     authProvider: IAuthContext;
     dataProvider: IDataContext;
+    catchAll?: React.ReactNode;
     title?: ReactNode;
-    loginPage?: ComponentType | false;
+    loginPage?: React.FC | false;
     dashboard?: React.FC;
 }
 
@@ -30,7 +26,8 @@ export const Admin: React.FC<AdminProps> = ({
     title,
     dashboard,
     children,
-    loginPage = LoginPage,
+    loginPage,
+    catchAll,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -55,29 +52,13 @@ export const Admin: React.FC<AdminProps> = ({
                 <DataContextProvider {...dataProvider}>
                     <ResourceContextProvider resources={resources}>
                         <Router>
-                            <Switch>
-                                {loginPage && (
-                                    <Route
-                                        exact
-                                        path="/login"
-                                        component={loginPage}
-                                    />
-                                )}
-                                <Auth title={title} dashboard={dashboard}>
-                                    {/* <Switch> */}
-                                    {/*  <Route exact path="/"> TODO: router yapısını düzelttiğimizde bu kısmı handle edelim
-                                        {dashboard ? (
-                                            dashboard
-                                        ) : (
-                                            <Redirect
-                                                to={`/resources/${resources[0]}`}
-                                            />
-                                        )}
-                                    </Route> */}
-                                    {children}
-                                    {/*    </Switch> */}
-                                </Auth>
-                            </Switch>
+                            <RouteProvider
+                                resources={children}
+                                catchAll={catchAll}
+                                title={title}
+                                dashboard={dashboard}
+                                loginPage={loginPage}
+                            />
                         </Router>
                     </ResourceContextProvider>
                 </DataContextProvider>

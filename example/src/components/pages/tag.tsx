@@ -1,21 +1,21 @@
 import * as React from 'react';
 import {
   List,
-  Column,
   Table,
   Create,
   Edit,
   Form,
   FormItem,
-  TextInput
+  TextInput,
+  TextField,
 } from 'readmin';
 
 export const TagList = (props: any) => {
   return (
     <List {...props}>
       <Table>
-        <Column key="id" title="ID" dataIndex="id" />
-        <Column key="title" title="Title" dataIndex="title" />
+        <TextField source="id" title="ID" />
+        <TextField source="title" title="Title" />
       </Table>
     </List>
   );
