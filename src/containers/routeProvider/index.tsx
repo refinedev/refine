@@ -49,52 +49,40 @@ export const RouteProvider: React.FC<RouteProviderProps> = ({
 
         const canCreate = !!create;
         const canEdit = !!edit;
-        routes.push(
-            {
-                path: "/",
-                exact: true,
-                component: () =>
-                    dashboard ? (
-                        React.createElement(dashboard, null)
-                    ) : (
-                        <Redirect to={`/resources/${resourcesArray[0]}`} />
-                    ),
-            },
-            {
-                path: `/resources/${name}`,
-                component: () => (
-                    /*   React.cloneElement(list, {
+        routes.push({
+            path: `/resources/${name}`,
+            component: () => (
+                /*   React.cloneElement(list, {
                         resourceName: name,
                         canCreate: canCreate,
                         canEdit: canEdit,
                         canDelete: canDelete,
                     }), */
-                    <ListComponent
-                        resourceName={name}
-                        canCreate={canCreate}
-                        canEdit={canEdit}
-                        canDelete={canDelete}
-                    />
-                ),
+                <ListComponent
+                    resourceName={name}
+                    canCreate={canCreate}
+                    canEdit={canEdit}
+                    canDelete={canDelete}
+                />
+            ),
 
-                routes: [
-                    {
-                        path: `/resources/${name}/create`,
-                        component: () => (
-                            <CreateComponent
-                                resourceName={name}
-                                canEdit={canEdit}
-                            />
-                        ),
-                    },
-                    {
-                        path: `/resources/${name}/edit/:id`,
-                        component: () => <EditComponent resourceName={name} />,
-                    },
-                ],
-            },
-        );
-
+            routes: [
+                {
+                    path: `/resources/${name}/create`,
+                    component: () => (
+                        <CreateComponent
+                            resourceName={name}
+                            canEdit={canEdit}
+                        />
+                    ),
+                },
+                {
+                    path: `/resources/${name}/edit/:id`,
+                    component: () => <EditComponent resourceName={name} />,
+                },
+            ],
+        });
+        console.log("routes", routes);
         return;
     };
     React.Children.map(resources, (child: any) => {
@@ -116,6 +104,17 @@ export const RouteProvider: React.FC<RouteProviderProps> = ({
     const renderAuthorized = () => (
         <Layout title={title}>
             <Switch>
+                <Route
+                    path="/"
+                    exact
+                    component={() =>
+                        dashboard ? (
+                            React.createElement(dashboard, null)
+                        ) : (
+                            <Redirect to={`/resources/${resourcesArray[0]}`} />
+                        )
+                    }
+                />
                 {routes.map((route, i) => (
                     <RouteWithSubRoutes key={i} {...route} />
                 ))}
