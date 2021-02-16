@@ -53,12 +53,10 @@ export const Filter: FC<FilterProps> = ({ resourceName, children }) => {
                     (item) => item.name === filterItemName,
                 );
 
-                let hidden = false;
+                let hidden = currentFormItem?.hidden;
 
-                if (currentFormItem && currentFormItem.hidden) {
-                    if (!preQueries[filterItemName]) {
-                        hidden = true;
-                    }
+                if (preQueries[filterItemName]) {
+                    hidden = false;
                 }
 
                 const props = {
@@ -107,13 +105,24 @@ export const Filter: FC<FilterProps> = ({ resourceName, children }) => {
                     (item) => item.name === key,
                 );
 
+                const newQueries = {
+                    ...preQueries,
+                };
+
                 const selectedItem = newFilters[selectedItemIndex];
 
                 if (selectedItem) {
                     selectedItem.hidden = !selectedItem.hidden;
+
+                    // remove query
+                    delete newQueries[`${selectedItem.name}`];
                 }
 
                 setFilters(newFilters);
+
+                return history.push(
+                    `/resources/${resourceName}?${qs.stringify(newQueries)}`,
+                );
             }}
         >
             {filters.map((item) => (
