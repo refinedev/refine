@@ -95,7 +95,6 @@ export const Table: React.FC<TableProps> = ({
     };
 
     const columnsFromChildren = Children.map(children, (child: any) => {
-
         const { title, source, value, resource } = child.props;
 
         return (
