@@ -30,6 +30,8 @@ export const Filter: FC<FilterProps> = ({ resourceName, children }) => {
     const { search } = useLocation();
     const [form] = AntdForm.useForm();
 
+    const preQueries = qs.parse(search);
+
     const childFilters: FormItemProps[] = [];
     Children.map(children, (filterForm) => {
         if (isValidElement(filterForm)) {
@@ -45,12 +47,19 @@ export const Filter: FC<FilterProps> = ({ resourceName, children }) => {
         const children = Children.map(
             form.props.children,
             (formItem): ReactNode => {
+                const filterItemName = formItem.props.name;
+
                 const currentFormItem = filters.find(
-                    (item) => item.name === formItem.props.name,
+                    (item) => item.name === filterItemName,
                 );
 
-                const hidden =
-                    (currentFormItem && currentFormItem.hidden) || false;
+                let hidden = false;
+
+                if (currentFormItem && currentFormItem.hidden) {
+                    if (!preQueries[filterItemName]) {
+                        hidden = true;
+                    }
+                }
 
                 const props = {
                     hidden,
@@ -64,8 +73,6 @@ export const Filter: FC<FilterProps> = ({ resourceName, children }) => {
             children: children,
         });
     };
-
-    const preQueries = qs.parse(search);
 
     form.setFieldsValue(preQueries);
 
