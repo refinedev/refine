@@ -4,7 +4,7 @@ import { List, Table, Column } from 'readmin';
 export const UserList = (props: any) => {
   return (
     <List {...props}>
-      <Table {...props}>
+      <Table>
         <Column key="id" title="ID" dataIndex="id" />
         <Column key="firstName" title="First Name" dataIndex="firstName" />
         <Column key="lastName" title="Last Name" dataIndex="lastName" />
