@@ -5,14 +5,12 @@ import { BaseFieldProps } from "@interfaces";
 
 import { fieldContent } from "@definitions";
 
-export type ChipFieldProps = BaseFieldProps & TagProps & {}
+export type ChipFieldProps = BaseFieldProps & TagProps & {};
 
 export const ChipField: React.FC<ChipFieldProps> = ({
     record,
     source,
     ...rest
 }) => {
-    return (
-        <Tag {...rest}>{fieldContent({ record, source })}</Tag>
-    );
+    return <Tag {...rest}>{fieldContent({ record, source })}</Tag>;
 };

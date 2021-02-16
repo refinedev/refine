@@ -8,14 +8,12 @@ import { fieldContent } from "@definitions";
 
 const { Text } = Typography;
 
-export type TextFieldProps = BaseFieldProps & TextProps & {}
+export type TextFieldProps = BaseFieldProps & TextProps & {};
 
 export const TextField: React.FC<TextFieldProps> = ({
     record,
     source,
     ...rest
 }) => {
-    return (
-        <Text {...rest}>{fieldContent({ record, source })}</Text>
-    );
+    return <Text {...rest}>{fieldContent({ record, source })}</Text>;
 };
