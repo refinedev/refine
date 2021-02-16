@@ -26,7 +26,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "tsdx lint -- --fix"
+            "pre-commit": "npm run lint -- --fix"
         }
     },
     "prettier": {
