@@ -7,7 +7,7 @@ import { GetOneResponse, IDataContext } from "@interfaces";
 export interface ReferenceFieldProps {
     resource: string;
     value: string | number;
-    title: string;
+    title?: string;
 }
 
 export const ReferenceField: React.FC<ReferenceFieldProps> = ({

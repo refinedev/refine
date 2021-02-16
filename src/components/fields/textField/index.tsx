@@ -2,20 +2,18 @@ import React from "react";
 import { Typography } from "antd";
 import { TextProps } from "antd/lib/typography/Text";
 
+import { BaseFieldProps } from "@interfaces";
+
+import { fieldContent } from "@definitions";
+
 const { Text } = Typography;
 
-export interface TextFieldProps extends TextProps {
-    record?: any;
-    source: string | boolean;
-}
+export type TextFieldProps = BaseFieldProps & TextProps & {};
 
 export const TextField: React.FC<TextFieldProps> = ({
     record,
     source,
     ...rest
 }) => {
-    const stringSource = source.toString();
-    return (
-        <Text {...rest}>{record ? record?.[stringSource] : stringSource}</Text>
-    );
+    return <Text {...rest}>{fieldContent({ record, source })}</Text>;
 };
