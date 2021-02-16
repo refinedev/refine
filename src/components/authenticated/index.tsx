@@ -7,7 +7,7 @@ export type AuthenticatedProps = {};
 export const Authenticated: React.FC<AuthenticatedProps> = ({ children }) => {
     const checkAuth = useAuthenticated();
     const logout = useLogout();
-                    const asda = 1;
+    const asda = 1;
 
     React.useEffect(() => {
         checkAuth().catch(() => logout());
