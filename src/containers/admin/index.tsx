@@ -1,4 +1,4 @@
-import React, { ComponentType, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 import { Table as AntdTable, Button, Space, Popconfirm } from "antd";
 import { TablePaginationConfig } from "antd/lib/table";
 import { useHistory } from "react-router-dom";
@@ -94,6 +94,30 @@ export const Table: React.FC<TableProps> = ({
         return null;
     };
 
+    const columnsFromChildren = Children.map(children, (child: any) => {
+        const { title, source, value, resource } = child.props;
+
+        return (
+            <Column
+                key={source ?? value}
+                title={title}
+                dataIndex={source ?? value}
+                // child will be either ReferencerField or normal Field components
+                // RefernceField props: {resource, value}
+                // Normal Field props: {source}
+                render={(columnItemValue, _record, _index) => {
+                    const clone = React.cloneElement(child, {
+                        ...child.props,
+                        resource,
+                        value: columnItemValue,
+                        source: value ? source : columnItemValue,
+                    });
+                    return clone;
+                }}
+            />
+        );
+    });
+
     return (
         <React.Fragment>
             <AntdTable
@@ -107,7 +131,7 @@ export const Table: React.FC<TableProps> = ({
                     );
                 }}
             >
-                {children}
+                {columnsFromChildren}
                 {renderActions()}
             </AntdTable>
         </React.Fragment>
