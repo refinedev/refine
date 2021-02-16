@@ -27,7 +27,7 @@ export const PostList = (props: any) => {
             <FormItem label="Search" name="q">
                 <TextInput placeholder="Search" />
             </FormItem>
-            <FormItem label="Status" name="status">
+            <FormItem label="Status" name="status" hidden>
                 <SelectInput
                     allowClear
                     placeholder="All Status"
@@ -43,7 +43,7 @@ export const PostList = (props: any) => {
                     ]}
                 />
             </FormItem>
-            <FormItem label="Category" name="categoryId">
+            <FormItem label="Category" name="categoryId" hidden>
                 <ReferenceInput
                     reference="categories"
                     optionText="title"
