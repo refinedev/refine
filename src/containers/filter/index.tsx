@@ -6,7 +6,6 @@ import React, {
     isValidElement,
     cloneElement,
     useState,
-    useEffect,
 } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import qs from "query-string";

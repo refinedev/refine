@@ -34,7 +34,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     const resourcesArray: string[] = [];
 
     // TODO Her sayfa değişimi render a sebeb oluyor.
-    useLocation();
+    // useLocation();
 
     checkAuth({})
         .then(() => setAuthenticated(true))
