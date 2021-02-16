@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {
   List,
-  Column,
   Table,
   Create,
   Edit,
@@ -20,7 +19,7 @@ export const PostList = (props: any) => {
   return (
     <List {...props}>
       <Table>
-        <TextField key="id" title="ID" source="id" />
+        <TextField title="ID" source="id" />
         <ReferenceField title="Category" value="categoryId" resource="categories">
           <TextField source="title" />
         </ReferenceField>

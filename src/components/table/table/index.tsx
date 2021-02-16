@@ -95,36 +95,29 @@ export const Table: React.FC<TableProps> = ({
     };
 
     const columnsFromChildren = Children.map(children, (child: any) => {
-        console.log("child: ", child)
 
-        const { title, source, value, resource } = child.props
+        const { title, source, value, resource } = child.props;
 
-        console.log("child.props: ", source, value)
-        return <Column
-
-            key={source ?? value}
-            title={title}
-            dataIndex={source ?? value}
-            // either ReferencerField or normal Field components
-            render={(columnItemValue, record, _index) => {
-                const clone = React.cloneElement(child, {
-                    ...child.props,
-                    resource,
-                    value: columnItemValue,
-                    source: value ? source : columnItemValue,
-                })
-                console.log("table columnsFromChildren Column render clone from child: ", clone)
-                console.log("table columnsFromChildren Column render columnItemValue: ", columnItemValue)
-                console.log("table columnsFromChildren Column render record: ", record)
-                return (
-                    clone
-                )
-            }}
-        />
-    })
-
-    console.log("columnsFromChildren: ", columnsFromChildren)
-    console.log("dataSource: ", dataSource)
+        return (
+            <Column
+                key={source ?? value}
+                title={title}
+                dataIndex={source ?? value}
+                // child will be either ReferencerField or normal Field components
+                // RefernceField props: {resource, value}
+                // Normal Field props: {source}
+                render={(columnItemValue, _record, _index) => {
+                    const clone = React.cloneElement(child, {
+                        ...child.props,
+                        resource,
+                        value: columnItemValue,
+                        source: value ? source : columnItemValue,
+                    });
+                    return clone;
+                }}
+            />
+        );
+    });
 
     return (
         <React.Fragment>

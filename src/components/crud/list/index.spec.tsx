@@ -7,7 +7,7 @@ import {
     waitForElementToBeRemoved,
 } from "@test";
 
-import { Table, Column } from "@components";
+import { Table, TextField } from "@components";
 
 import { List } from "./index";
 
@@ -32,7 +32,7 @@ describe("<List/>", () => {
             const { findByText } = render(
                 <List resourceName="posts">
                     <Table>
-                        <Column key="slug" title="Slug" dataIndex="slug" />
+                        <TextField title="Slug" source="slug" />
                     </Table>
                 </List>,
                 {
@@ -43,9 +43,7 @@ describe("<List/>", () => {
                 },
             );
 
-            const slug = await findByText("ut-ad-et");
-
-            expect(slug).toHaveProperty("className", "ant-table-cell");
+            await findByText("ut-ad-et");
         });
     });
 });
