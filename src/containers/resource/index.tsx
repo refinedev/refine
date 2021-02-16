@@ -28,7 +28,6 @@ export const Resource: React.FC<ResourceProps> = ({
     const canCreate = !!create;
     const canEdit = !!edit;
 
-
     return (
         <>
             <Route exact path={`/resources/${name}`}>
