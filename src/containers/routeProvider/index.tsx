@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { useContext, useState, ReactNode, ComponentType } from "react";
 import {
     Switch,
@@ -16,12 +17,12 @@ export interface RouteProviderProps {
     resources: React.ReactNode;
     catchAll?: React.ReactNode;
     dashboard?: React.ElementType;
-    loginPage?: ComponentType | false;
+    loginPage?: React.ReactNode;
 }
 
 type IRoutesProps = RouteProps & { routes?: RouteProps[] };
 
-export const RouteProvider: React.FC<RouteProviderProps> = ({
+const RouteProviderBase: React.FC<RouteProviderProps> = ({
     title,
     resources,
     catchAll,
@@ -34,7 +35,6 @@ export const RouteProvider: React.FC<RouteProviderProps> = ({
 
     // TODO Her sayfa değişimi render a sebeb oluyor.
     useLocation();
-
     checkAuth({})
         .then(() => setAuthenticated(true))
         .catch(() => setAuthenticated(false));
@@ -49,42 +49,35 @@ export const RouteProvider: React.FC<RouteProviderProps> = ({
 
         const canCreate = !!create;
         const canEdit = !!edit;
-        routes.push({
-            path: `/resources/${name}`,
-            component: () => (
-                /*   React.cloneElement(list, {
-                        resourceName: name,
-                        canCreate: canCreate,
-                        canEdit: canEdit,
-                        canDelete: canDelete,
-                    }), */
-                <ListComponent
-                    resourceName={name}
-                    canCreate={canCreate}
-                    canEdit={canEdit}
-                    canDelete={canDelete}
-                />
-            ),
-
-            routes: [
-                {
-                    path: `/resources/${name}/create`,
-                    component: () => (
-                        <CreateComponent
-                            resourceName={name}
-                            canEdit={canEdit}
-                        />
-                    ),
-                },
-                {
-                    path: `/resources/${name}/edit/:id`,
-                    component: () => <EditComponent resourceName={name} />,
-                },
-            ],
-        });
-        console.log("routes", routes);
+        routes.push(
+            {
+                exact: true,
+                path: `/resources/${name}/create`,
+                component: () => (
+                    <CreateComponent resourceName={name} canEdit={canEdit} />
+                ),
+            },
+            {
+                exact: true,
+                path: `/resources/${name}/edit/:id`,
+                component: () => <EditComponent resourceName={name} />,
+            },
+            {
+                exact: true,
+                path: `/resources/${name}`,
+                component: () => (
+                    <ListComponent
+                        resourceName={name}
+                        canCreate={canCreate}
+                        canEdit={canEdit}
+                        canDelete={canDelete}
+                    />
+                ),
+            },
+        );
         return;
     };
+
     React.Children.map(resources, (child: any) => {
         resourcesArray.push(child.props.name);
         RouteHandler(child);
@@ -93,10 +86,9 @@ export const RouteProvider: React.FC<RouteProviderProps> = ({
     const RouteWithSubRoutes = (route: any) => {
         return (
             <Route
+                exact
                 path={route.path}
-                render={(props) => (
-                    <route.component {...props} routes={route.routes} />
-                )}
+                render={(props) => <route.component {...props} />}
             />
         );
     };
@@ -128,7 +120,7 @@ export const RouteProvider: React.FC<RouteProviderProps> = ({
             <Route
                 exact
                 path={["/", "/login"]}
-                component={() => <LoginPage />}
+                component={() => (loginPage ? <LoginPage /> : <LoginPage />)}
             />
             <Route>{catchAll ?? <ErrorComponent />}</Route>
         </Switch>
@@ -136,3 +128,5 @@ export const RouteProvider: React.FC<RouteProviderProps> = ({
 
     return authenticated ? renderAuthorized() : renderUnauthorized();
 };
+
+export const RouteProvider = React.memo(RouteProviderBase);

@@ -40,7 +40,6 @@ export const Layout: React.FC<LayoutProps> = ({
     }, [location]);
 
     const menuOnClick: MenuClickEventHandler = ({ key }) => {
-        console.log(`clicked -> ${key}`);
         if (key === "logout") {
             logout({}).then(() => history.push("/login"));
         }

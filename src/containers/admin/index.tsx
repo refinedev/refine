@@ -17,7 +17,7 @@ export interface AdminProps {
     dataProvider: IDataContext;
     catchAll?: React.ReactNode;
     title?: ReactNode;
-    loginPage?: ComponentType | false;
+    loginPage?: React.ReactNode;
     dashboard?: React.FC;
 }
 
