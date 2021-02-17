@@ -1,18 +1,16 @@
 import React from "react";
 import { Tag, TagProps } from "antd";
 
-export interface ChipFieldProps extends TagProps {
-    record?: any;
-    source: string | boolean;
-}
+import { BaseFieldProps } from "@interfaces";
+
+import { fieldContent } from "@definitions";
+
+export type ChipFieldProps = BaseFieldProps & TagProps & {};
 
 export const ChipField: React.FC<ChipFieldProps> = ({
     record,
     source,
     ...rest
 }) => {
-    const stringSource = source.toString();
-    return (
-        <Tag {...rest}>{record ? record?.[stringSource] : stringSource}</Tag>
-    );
+    return <Tag {...rest}>{fieldContent({ record, source })}</Tag>;
 };
