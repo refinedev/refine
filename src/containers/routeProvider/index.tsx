@@ -11,6 +11,7 @@ import { Layout, ErrorComponent } from "@components";
 import { LoginPage as DefaultLoginPage } from "@pages";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "@interfaces";
+import { OptionalComponent } from "@definitions";
 
 export interface RouteProviderProps {
     title?: ReactNode;
@@ -121,13 +122,11 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
             <Route
                 exact
                 path={["/", "/login"]}
-                component={() =>
-                    loginPage ? (
-                        React.createElement(loginPage, null)
-                    ) : (
+                component={() => (
+                    <OptionalComponent optional={loginPage}>
                         <DefaultLoginPage />
-                    )
-                }
+                    </OptionalComponent>
+                )}
             />
             <Route>{catchAll ?? <ErrorComponent />}</Route>
         </Switch>
