@@ -10,7 +10,7 @@ export const Authenticated: React.FC<AuthenticatedProps> = ({ children }) => {
 
     React.useEffect(() => {
         checkAuth().catch(() => logout());
-    }, []);
+    }, [checkAuth, logout]);
 
     return <>{children}</>;
 };

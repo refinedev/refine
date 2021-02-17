@@ -96,6 +96,7 @@ export const Table: React.FC<TableProps> = ({
         return null;
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const columnsFromChildren = Children.map(children, (child: any) => {
         const { title, source, value, resource } = child.props;
 
@@ -107,7 +108,7 @@ export const Table: React.FC<TableProps> = ({
                 // child will be either ReferencerField or normal Field components
                 // RefernceField props: {resource, value}
                 // Normal Field props: {source}
-                render={(columnItemValue, _record, _index) => {
+                render={(columnItemValue) => {
                     const clone = React.cloneElement(child, {
                         ...child.props,
                         resource,
