@@ -6,7 +6,7 @@ import { BaseFieldProps } from "@interfaces";
 
 import { fieldContent } from "@definitions";
 
-const { Link } = Typography
+const { Link } = Typography;
 
 export type EmailFieldProps = BaseFieldProps & LinkProps & {};
 
@@ -15,5 +15,9 @@ export const EmailField: React.FC<EmailFieldProps> = ({
     source,
     ...rest
 }) => {
-    return <Link href="mailto:"  {...rest}>{fieldContent({ record, source })}</Link>;
+    return (
+        <Link href="mailto:" {...rest}>
+            {fieldContent({ record, source })}
+        </Link>
+    );
 };
