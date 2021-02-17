@@ -9,13 +9,15 @@ import qs from "query-string";
 import { Filter } from "@containers";
 import { TableProps } from "@components/table";
 import { useList } from "@hooks";
-
+import { DefaultEmpty } from "./components";
+import { OptionalComponent } from "@definitions";
 export interface ListProps {
     resourceName: string;
     canCreate?: boolean;
     canEdit?: boolean;
     canDelete?: boolean;
     filters?: Record<string, unknown>;
+    empty?: React.FC | false;
 }
 
 export const List: React.FC<ListProps> = ({
@@ -24,6 +26,7 @@ export const List: React.FC<ListProps> = ({
     canEdit,
     canDelete,
     filters,
+    empty,
     children,
 }) => {
     const searchQuery = useLocation().search;
@@ -42,6 +45,8 @@ export const List: React.FC<ListProps> = ({
         search: q as string | undefined,
         filter: filter as Record<string, unknown> | undefined,
     });
+
+    const showEmpty = (!data && !isFetching) || (data && !data.data.length);
 
     const pagination: TablePaginationConfig = {
         total: data?.total,
@@ -88,7 +93,17 @@ export const List: React.FC<ListProps> = ({
                     )
                 }
             >
-                <Row>{childrenWithProps}</Row>
+                <Row>
+                    {showEmpty ? (
+                        <OptionalComponent optional={empty}>
+                            <DefaultEmpty
+                                style={{ width: "100%", margin: "20px 0" }}
+                            />
+                        </OptionalComponent>
+                    ) : (
+                        childrenWithProps
+                    )}
+                </Row>
             </Card>
         </React.Fragment>
     );

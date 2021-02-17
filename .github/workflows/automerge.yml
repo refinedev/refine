@@ -20,3 +20,4 @@ jobs:
           prlabel-onhold: 'pr-onhold'
           prlabel-reviewrequired: 'review-required'
           prlabel-automerge: 'auto-merge'
+          prmerge-deletebranch: true
