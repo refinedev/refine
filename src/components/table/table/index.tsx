@@ -104,13 +104,14 @@ export const Table: React.FC<TableProps> = ({
                 dataIndex={source ?? value}
                 // child will be either ReferencerField or normal Field components
                 // RefernceField props: {resource, value}
-                // Normal Field props: {source}
-                render={(columnItemValue, _record, _index) => {
+                // Normal Field props: {record, source}
+                render={(columnItemValue, record, _index) => {
                     const clone = React.cloneElement(child, {
                         ...child.props,
                         resource,
                         value: columnItemValue,
-                        source: value ? source : columnItemValue,
+                        source,
+                        record,
                     });
                     return clone;
                 }}
