@@ -1,12 +1,13 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { Button, Row, Card } from "antd";
 import { TablePaginationConfig } from "antd/lib/table";
 import { PlusSquareOutlined } from "@ant-design/icons";
 import humanizeString from "humanize-string";
+import qs from "query-string";
 
+import { Filter } from "@containers";
 import { TableProps } from "@components/table";
-import { useSearchParams } from "@hooks/util";
 import { useList } from "@hooks";
 import { DefaultEmpty } from "./components";
 import { OptionalComponent } from "@definitions";
@@ -15,6 +16,7 @@ export interface ListProps {
     canCreate?: boolean;
     canEdit?: boolean;
     canDelete?: boolean;
+    filters?: Record<string, unknown>;
     empty?: React.FC | false;
 }
 
@@ -23,26 +25,25 @@ export const List: React.FC<ListProps> = ({
     canCreate,
     canEdit,
     canDelete,
+    filters,
     empty,
     children,
 }) => {
-    const queryParams = useSearchParams();
+    const searchQuery = useLocation().search;
     const history = useHistory();
 
-    let current = 1;
-    const queryParamCurrent = queryParams.current;
-    if (queryParamCurrent) {
-        current = +queryParamCurrent;
-    }
+    const parsedSearchQuery = qs.parse(searchQuery);
 
-    let pageSize = 10;
-    const queryParamPageSize = queryParams.pageSize;
-    if (queryParamPageSize) {
-        pageSize = +queryParamPageSize;
-    }
+    const { q, ...filter } = parsedSearchQuery;
+    let { current = 1, pageSize = 10 } = parsedSearchQuery;
+
+    current = Number(current);
+    pageSize = Number(pageSize);
 
     const { data, isFetching } = useList(resourceName, {
         pagination: { current, pageSize },
+        search: q as string | undefined,
+        filter: filter as Record<string, unknown> | undefined,
     });
 
     const showEmpty = (!data && !isFetching) || (data && !data.data.length);
@@ -71,34 +72,39 @@ export const List: React.FC<ListProps> = ({
     });
 
     return (
-        <Card
-            bodyStyle={{ padding: 0 }}
-            title={humanizeString(resourceName)}
-            extra={
-                canCreate && (
-                    <Button
-                        onClick={(): void =>
-                            history.push(`/resources/${resourceName}/create`)
-                        }
-                        type="default"
-                        icon={<PlusSquareOutlined />}
-                    >
-                        Create
-                    </Button>
-                )
-            }
-        >
-            <Row>
-                {showEmpty ? (
-                    <OptionalComponent optional={empty}>
-                        <DefaultEmpty
-                            style={{ width: "100%", margin: "20px 0" }}
-                        />
-                    </OptionalComponent>
-                ) : (
-                    childrenWithProps
-                )}
-            </Row>
-        </Card>
+        <>
+            <Filter resourceName={resourceName}>{filters}</Filter>
+            <Card
+                bodyStyle={{ padding: 0 }}
+                title={humanizeString(resourceName)}
+                extra={
+                    canCreate && (
+                        <Button
+                            onClick={(): void =>
+                                history.push(
+                                    `/resources/${resourceName}/create`,
+                                )
+                            }
+                            type="default"
+                            icon={<PlusSquareOutlined />}
+                        >
+                            Create
+                        </Button>
+                    )
+                }
+            >
+                <Row>
+                    {showEmpty ? (
+                        <OptionalComponent optional={empty}>
+                            <DefaultEmpty
+                                style={{ width: "100%", margin: "20px 0" }}
+                            />
+                        </OptionalComponent>
+                    ) : (
+                        childrenWithProps
+                    )}
+                </Row>
+            </Card>
+        </>
     );
 };
