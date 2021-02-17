@@ -26,7 +26,6 @@ export const List: React.FC<ListProps> = ({
     const queryParams = useSearchParams();
     const history = useHistory();
 
-    console.log(queryParams)
     let current = 1;
     const queryParamCurrent = queryParams.current;
     if (queryParamCurrent) {
