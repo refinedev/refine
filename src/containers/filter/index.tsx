@@ -123,6 +123,7 @@ export const Filter: FC<FilterProps> = ({ resourceName, children }) => {
                     `/resources/${resourceName}?${qs.stringify(newQueries)}`,
                 );
             }}
+            data-testid="filters-dropdown"
         >
             {filters.map((item) => (
                 <Menu.Item key={item.name as string}>{item.label}</Menu.Item>
@@ -136,6 +137,7 @@ export const Filter: FC<FilterProps> = ({ resourceName, children }) => {
             <Col>
                 <Dropdown overlay={menu} trigger={["click"]}>
                     <Button
+                        data-testid="filters-dropdown-button"
                         className="ant-dropdown-link"
                         onClick={(e) => e.preventDefault()}
                     >

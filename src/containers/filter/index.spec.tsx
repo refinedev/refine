@@ -1,52 +1,55 @@
 import React from "react";
 
-import { render, TestWrapper, MockJSONServer, getByTestId } from "@test";
+import {
+    render,
+    TestWrapper,
+    MockJSONServer,
+    getByTestId,
+    fireEvent,
+} from "@test";
+import { act } from "react-dom/test-utils";
 import { Form, FormItem, SelectInput, TextInput } from "@components";
 import { Filter } from "./";
 
-// import { categories } from "@test/dataMocks";
-
 describe("containers / filter", () => {
+    const filters = (
+        <Form
+            data-testid="filter-form"
+            name="filter-form"
+            style={{
+                marginBlock: 10,
+            }}
+            layout="inline"
+        >
+            <FormItem label="Search" name="q" data-testid="search">
+                <TextInput placeholder="Search" />
+            </FormItem>
+            <FormItem label="Status" name="status" hidden data-testid="status">
+                <SelectInput
+                    allowClear
+                    placeholder="All Status"
+                    options={[
+                        {
+                            label: "Active",
+                            value: "active",
+                        },
+                        {
+                            label: "Draft",
+                            value: "draft",
+                        },
+                    ]}
+                />
+            </FormItem>
+        </Form>
+    );
+
     it("render correct filters", async () => {
-        const { debug, container, findAllByTestId } = render(
-            <Filter resourceName="posts">
-                <Form
-                    name="filter-form"
-                    style={{
-                        marginBlock: 10,
-                    }}
-                    layout="inline"
-                >
-                    <FormItem label="Search" name="q" data-testid="search">
-                        <TextInput placeholder="Search" />
-                    </FormItem>
-                    <FormItem
-                        label="Status"
-                        name="status"
-                        hidden
-                        data-testid="status"
-                    >
-                        <SelectInput
-                            allowClear
-                            placeholder="All Status"
-                            options={[
-                                {
-                                    label: "Active",
-                                    value: "active",
-                                },
-                                {
-                                    label: "Draft",
-                                    value: "draft",
-                                },
-                            ]}
-                        />
-                    </FormItem>
-                </Form>
-            </Filter>,
+        const { container, findByTestId } = render(
+            <Filter resourceName="posts">{filters}</Filter>,
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }, { name: "categories" }],
+                    resources: [],
                 }),
             },
         );
@@ -57,13 +60,24 @@ describe("containers / filter", () => {
             await getByTestId(container, "status").getAttribute("class"),
         ).toContain("ant-form-item-hidden");
 
-        // debug();
+        expect(await findByTestId("filter-form")).toMatchSnapshot();
+    });
 
-        // const options = await findAllByTestId("option-item");
+    it("render correct filters dropdown", async () => {
+        const { container, findByTestId } = render(
+            <Filter resourceName="posts">{filters}</Filter>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [],
+                }),
+            },
+        );
 
-        // const expected = categories.map((el) => el.title);
-        // const retrieved = options.map((el) => el.innerHTML);
+        act(() => {
+            fireEvent.click(getByTestId(container, "filters-dropdown-button"));
+        });
 
-        // expect(retrieved).toMatchObject(expected);
+        expect(await findByTestId("filters-dropdown")).toMatchSnapshot();
     });
 });
