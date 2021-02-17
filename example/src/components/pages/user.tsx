@@ -10,7 +10,7 @@ export const UserList = (props: any) => {
                 <TextField source="lastName" title="Last Name" />
                 <TextField source="status" title="Status" />
                 <EmailField source="email" title="Email" />
-                <FunctionField title="Full Name" render={(record) => `${record.firstName} ${record.lastName}`} />
+                <FunctionField title="Full Name" render={(record: any) => `${record.firstName} ${record.lastName}`} />
             </Table>
         </List>
     );
