@@ -5,9 +5,10 @@ import { BaseFieldProps } from "@interfaces";
 
 import { fieldContent } from "@definitions";
 
-export type ImageFieldProps = BaseFieldProps & ImageProps & {
-    imageTitle?: string;
-};
+export type ImageFieldProps = BaseFieldProps &
+    ImageProps & {
+        imageTitle?: string;
+    };
 
 export const ImageField: React.FC<ImageFieldProps> = ({
     record,
@@ -20,5 +21,6 @@ export const ImageField: React.FC<ImageFieldProps> = ({
             {...rest}
             src={fieldContent({ record, source })}
             title={imageTitle}
-        />);
+        />
+    );
 };
