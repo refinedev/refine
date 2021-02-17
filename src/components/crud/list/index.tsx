@@ -16,6 +16,7 @@ export interface ListProps {
     canEdit?: boolean;
     canDelete?: boolean;
     empty?: React.FC | false;
+    component?: any;
 }
 
 export const List: React.FC<ListProps> = ({
@@ -25,9 +26,13 @@ export const List: React.FC<ListProps> = ({
     canDelete,
     empty,
     children,
+    component,
 }) => {
     const queryParams = useSearchParams();
     const history = useHistory();
+
+    const CustomComponent = component;
+    console.log("component", CustomComponent);
 
     let current = 1;
     const queryParamCurrent = queryParams.current;
@@ -70,7 +75,21 @@ export const List: React.FC<ListProps> = ({
         return child;
     });
 
-    return (
+    const Content = () => (
+        <Row>
+            {showEmpty ? (
+                <OptionalComponent optional={empty}>
+                    <DefaultEmpty style={{ width: "100%", margin: "20px 0" }} />
+                </OptionalComponent>
+            ) : (
+                childrenWithProps
+            )}
+        </Row>
+    );
+
+    const CustomWrapper = () => <CustomComponent>{Content()}</CustomComponent>;
+
+    const DefaultWrapper = () => (
         <Card
             bodyStyle={{ padding: 0 }}
             title={humanizeString(resourceName)}
@@ -88,17 +107,9 @@ export const List: React.FC<ListProps> = ({
                 )
             }
         >
-            <Row>
-                {showEmpty ? (
-                    <OptionalComponent optional={empty}>
-                        <DefaultEmpty
-                            style={{ width: "100%", margin: "20px 0" }}
-                        />
-                    </OptionalComponent>
-                ) : (
-                    childrenWithProps
-                )}
-            </Row>
+            {Content()}
         </Card>
     );
+
+    return component ? CustomWrapper() : DefaultWrapper();
 };
