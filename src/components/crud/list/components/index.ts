@@ -1,1 +1,1 @@
-export { DeafultEmpty } from "./empty";
+export { DefaultEmpty } from "./empty";

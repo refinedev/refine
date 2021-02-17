@@ -8,7 +8,7 @@ import humanizeString from "humanize-string";
 import { TableProps } from "@components/table";
 import { useSearchParams } from "@hooks/util";
 import { useList } from "@hooks";
-import { DeafultEmpty } from "./components";
+import { DefaultEmpty } from "./components";
 import { OptionalComponent } from "@definitions";
 export interface ListProps {
     resourceName: string;
@@ -91,7 +91,7 @@ export const List: React.FC<ListProps> = ({
             <Row>
                 {showEmpty ? (
                     <OptionalComponent optional={empty}>
-                        <DeafultEmpty
+                        <DefaultEmpty
                             style={{ width: "100%", margin: "20px 0" }}
                         />
                     </OptionalComponent>
