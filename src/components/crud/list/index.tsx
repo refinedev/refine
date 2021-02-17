@@ -72,7 +72,7 @@ export const List: React.FC<ListProps> = ({
     });
 
     return (
-        <React.Fragment>
+        <>
             <Filter resourceName={resourceName}>{filters}</Filter>
             <Card
                 bodyStyle={{ padding: 0 }}
@@ -105,6 +105,6 @@ export const List: React.FC<ListProps> = ({
                     )}
                 </Row>
             </Card>
-        </React.Fragment>
+        </>
     );
 };

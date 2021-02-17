@@ -12,5 +12,5 @@ export const Authenticated: React.FC<AuthenticatedProps> = ({ children }) => {
         checkAuth().catch(() => logout());
     }, []);
 
-    return <React.Fragment>{children}</React.Fragment>;
+    return <>{children}</>;
 };

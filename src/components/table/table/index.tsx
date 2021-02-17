@@ -121,7 +121,7 @@ export const Table: React.FC<TableProps> = ({
     });
 
     return (
-        <React.Fragment>
+        <>
             <AntdTable
                 style={{ width: "100%" }}
                 dataSource={dataSource}
@@ -143,6 +143,6 @@ export const Table: React.FC<TableProps> = ({
                 {columnsFromChildren}
                 {renderActions()}
             </AntdTable>
-        </React.Fragment>
+        </>
     );
 };

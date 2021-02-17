@@ -75,5 +75,5 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
         return child;
     });
 
-    return <React.Fragment>{childrenWithProps}</React.Fragment>;
+    return <>{childrenWithProps}</>;
 };
