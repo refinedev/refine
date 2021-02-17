@@ -131,6 +131,10 @@ export const Filter: FC<FilterProps> = ({ resourceName, children }) => {
         </Menu>
     );
 
+    if (!children) {
+        return null;
+    }
+
     return (
         <Row align="middle" justify="space-between">
             <Col>{filterFormElement}</Col>
