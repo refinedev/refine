@@ -34,7 +34,7 @@ export const Filter: FC<FilterProps> = ({ resourceName, children }) => {
     const childFilters: FormItemProps[] = [];
     Children.map(children, (filterForm) => {
         if (isValidElement(filterForm)) {
-            filterForm.props.children.map((filterItem: ReactElement) => {
+            filterForm.props.children.map((filterItem: ReactElement): void => {
                 const { name, label, hidden } = filterItem.props;
                 childFilters.push({ name, label, hidden });
             });

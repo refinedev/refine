@@ -15,7 +15,7 @@ export interface ListProps {
     canCreate?: boolean;
     canEdit?: boolean;
     canDelete?: boolean;
-    filters?: any;
+    filters?: Record<string, unknown>;
 }
 
 export const List: React.FC<ListProps> = ({

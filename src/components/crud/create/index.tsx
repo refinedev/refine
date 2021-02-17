@@ -9,7 +9,7 @@ import { BaseRecord } from "@interfaces";
 
 export interface CreateProps {
     resourceName: string;
-    canEdit?: any;
+    canEdit?: boolean;
 }
 
 export const Create: React.FC<CreateProps> = ({
