@@ -5,9 +5,9 @@ import { BaseFieldProps } from "../../../interfaces/field";
 
 import { renderFieldRecord } from "@definitions";
 
-export type ChipFieldProps = BaseFieldProps & TagProps & {};
+export type TagFieldProps = BaseFieldProps & TagProps & {};
 
-export const ChipField: React.FC<ChipFieldProps> = ({
+export const TagField: React.FC<TagFieldProps> = ({
     value,
     record,
     renderRecordKey,

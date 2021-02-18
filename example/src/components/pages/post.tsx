@@ -13,7 +13,7 @@ import {
     ReferenceInput,
     ReferenceField,
     TextField,
-    ChipField,
+    TagField,
 } from "readmin";
 
 export const PostList = (props: any) => {
@@ -85,7 +85,7 @@ export const PostList = (props: any) => {
                     dataIndex="status"
                     title="Status"
                     key="status"
-                    render={(value) => <ChipField value={value} />}
+                    render={(value) => <TagField value={value} />}
                 />
             </Table>
         </List>
