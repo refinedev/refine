@@ -8,9 +8,10 @@ import { renderFieldRecord } from "@definitions";
 
 const { Link } = Typography;
 
-export type FileFieldProps = BaseFieldProps & LinkProps & {
-    src?: string;
-};
+export type FileFieldProps = BaseFieldProps &
+    LinkProps & {
+        src?: string;
+    };
 
 export const FileField: React.FC<FileFieldProps> = ({
     record,
@@ -20,26 +21,43 @@ export const FileField: React.FC<FileFieldProps> = ({
     src,
     ...rest
 }) => {
-
     if (Array.isArray(value)) {
         return (
             <ul>
                 {value.map((file, index) => {
-                    const fileUrl = renderFieldRecord({value: src, record: file, renderRecordKey: src})
-                    const fileTitleValue = renderFieldRecord({ value: title, record: file, renderRecordKey: title })
+                    const fileUrl = renderFieldRecord({
+                        value: src,
+                        record: file,
+                        renderRecordKey: src,
+                    });
+                    const fileTitleValue = renderFieldRecord({
+                        value: title,
+                        record: file,
+                        renderRecordKey: title,
+                    });
 
                     return (
                         <li key={index}>
-                            <Link title={fileTitleValue} href={fileUrl} {...rest}>{fileTitleValue}</Link>
+                            <Link
+                                title={fileTitleValue}
+                                href={fileUrl}
+                                {...rest}
+                            >
+                                {fileTitleValue}
+                            </Link>
                         </li>
-                    )
+                    );
                 })}
             </ul>
-        )
+        );
     }
 
-    const url = renderFieldRecord({ value, record, renderRecordKey })
-    const titleValue = renderFieldRecord({ value: title, record, renderRecordKey: title })
+    const url = renderFieldRecord({ value, record, renderRecordKey });
+    const titleValue = renderFieldRecord({
+        value: title,
+        record,
+        renderRecordKey: title,
+    });
 
     return (
         <Link title={titleValue} href={url} {...rest}>

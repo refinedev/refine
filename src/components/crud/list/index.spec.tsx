@@ -50,7 +50,7 @@ describe("<List/>", () => {
             const { container } = render(
                 <List component={"section"} resourceName="posts">
                     <Table>
-                        <TextField title="Slug" source="slug" />
+                        <Column title="Slug" dataIndex="slug" />
                     </Table>
                 </List>,
                 {
