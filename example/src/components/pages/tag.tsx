@@ -8,6 +8,8 @@ import {
     FormItem,
     TextInput,
     Column,
+    ImageField,
+    ReferenceField,
 } from "readmin";
 
 export const TagList = (props: any) => {
@@ -16,6 +18,21 @@ export const TagList = (props: any) => {
             <Table>
                 <Column key="id" dataIndex="id" title="ID" />
                 <Column key="title" dataIndex="title" title="Title" />
+                <Column
+                    key="id"
+                    dataIndex="id"
+                    title="Image"
+                    render={(value) => (
+                        <ReferenceField resource="images" value={value}>
+                            <ImageField
+                                value
+                                renderRecordKey="url"
+                                imageTitle="meow"
+                                width={200}
+                            />
+                        </ReferenceField>
+                    )}
+                />
             </Table>
         </List>
     );

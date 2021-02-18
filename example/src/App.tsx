@@ -5,6 +5,7 @@ import { PostCreate, PostList, PostEdit } from "./components/pages/post";
 import { CategoryList, CategoryCreate } from "./components/pages/category";
 import { UserList } from "./components/pages/user";
 import { TagList, TagCreate, TagEdit } from "./components/pages/tag";
+import { ImagesList } from "./components/pages/images";
 import { DashboardPage } from "./components/pages/dashboard";
 
 import { LoginPage } from "./components/login";
@@ -71,6 +72,7 @@ function App() {
                 create={TagCreate}
                 canDelete
             />
+            <Resource name="images" list={ImagesList} />
         </Admin>
     );
 }
