@@ -7,7 +7,7 @@ import "antd/dist/antd.css";
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
 import { RouteProvider } from "@containers/routeProvider";
-import { ResourceContextProvider } from "@contexts/resource";
+import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { ReadyPage } from "@pages";
 
 import { IDataContext, IAuthContext } from "@interfaces";
@@ -28,9 +28,9 @@ export const Admin: React.FC<AdminProps> = ({
     title,
     dashboard,
     ready,
+    children,
     loginPage,
     catchAll,
-    children,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
