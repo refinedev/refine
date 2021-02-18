@@ -18,7 +18,7 @@ export interface ListProps {
     canDelete?: boolean;
     filters?: Record<string, unknown>;
     empty?: React.FC | false;
-    component?: any;
+    component?: React.FC;
 }
 
 export const List: React.FC<ListProps> = ({
@@ -82,7 +82,8 @@ export const List: React.FC<ListProps> = ({
             childrenWithProps
         );
 
-    const CustomWrapper = () => <CustomComponent>{Content()}</CustomComponent>;
+    const CustomWrapper = () =>
+        CustomComponent ? <CustomComponent>{Content()}</CustomComponent> : null;
 
     const DefaultWrapper = () => (
         <Card
