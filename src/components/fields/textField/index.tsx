@@ -15,5 +15,8 @@ export const TextField: React.FC<TextFieldProps> = ({
     source,
     ...rest
 }) => {
+
+    console.log("record", record)
+    console.log("source", source)
     return <Text {...rest}>{fieldContent({ record, source })}</Text>;
 };
