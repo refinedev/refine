@@ -15,10 +15,10 @@ export const renderFieldRecord = ({
 };
 
 interface IOptionalComponent {
-    optional?: React.FC | false;
+    optional?: React.ComponentType | false;
 }
 
-export const OptionalComponent: React.FC<IOptionalComponent> = ({
+export const OptionalComponent: React.ComponentType<IOptionalComponent> = ({
     optional,
     children,
 }) => {

@@ -14,7 +14,7 @@ import {
 
 export const TagList = (props: any) => {
     return (
-        <List {...props}>
+        <List {...props} component={ListWrapper}>
             <Table rowKey="id">
                 <Column key="id" dataIndex="id" title="ID" />
                 <Column key="title" dataIndex="title" title="Title" />
@@ -35,6 +35,15 @@ export const TagList = (props: any) => {
                 />
             </Table>
         </List>
+    );
+};
+
+export const ListWrapper = (props: any) => {
+    return (
+        <div><span>Custom wrapper</span>
+            {props.children}
+        </div>
+
     );
 };
 
