@@ -3,7 +3,7 @@ import React from "react";
 import { BaseFieldProps } from "@interfaces";
 
 export const fieldContent = ({ record, source }: BaseFieldProps) => {
-    return record && source ? record[source].toString() : source;
+    return record && source && record[source] ? record[source].toString() : source;
 };
 
 interface IOptionalComponent {
