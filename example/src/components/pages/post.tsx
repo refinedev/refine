@@ -81,16 +81,12 @@ export const PostList = (props: any) => {
                         />
                     )}
                 />
-
-                {/* <TextField title="ID" source="id" />
-                <ReferenceField
-                    title="Category"
-                    value="categoryId"
-                    
-                >
-                    <TextField source="title" />
-                </ReferenceField>
-                <ChipField title="Status" source="status" /> */}
+                <Column
+                    dataIndex="status"
+                    title="Status"
+                    key="status"
+                    render={(value) => <ChipField value={value} />}
+                />
             </Table>
         </List>
     );

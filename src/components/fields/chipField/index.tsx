@@ -1,7 +1,7 @@
 import React from "react";
 import { Tag, TagProps } from "antd";
 
-import { BaseFieldProps } from "@interfaces";
+import { BaseFieldProps } from "../../../interfaces/field";
 
 import { renderFieldRecord } from "@definitions";
 

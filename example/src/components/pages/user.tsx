@@ -1,5 +1,5 @@
 import * as React from "react";
-import { List, Table, Column, EmailField } from "readmin";
+import { List, Table, Column, EmailField, ChipField } from "readmin";
 
 export const UserList = (props: any) => {
     return (
@@ -12,7 +12,12 @@ export const UserList = (props: any) => {
                     title="First Name"
                 />
                 <Column key="lastName" dataIndex="lastName" title="Last Name" />
-                <Column key="status" dataIndex="status" title="Status" />
+                <Column
+                    dataIndex="status"
+                    title="Status"
+                    key="status"
+                    render={(value) => <ChipField value={value} />}
+                />
                 <Column
                     key="email"
                     dataIndex="email"
