@@ -2,6 +2,7 @@ import * as React from "react";
 import {
     List,
     Table,
+    Column,
     Create,
     Edit,
     Form,
@@ -12,7 +13,8 @@ import {
     ReferenceInput,
     ReferenceField,
     TextField,
-    ChipField,
+    TagField,
+    ImageField,
 } from "readmin";
 
 export const PostList = (props: any) => {
@@ -60,16 +62,44 @@ export const PostList = (props: any) => {
 
     return (
         <List {...props} filters={filters}>
-            <Table>
-                <TextField title="ID" source="id" />
-                <ReferenceField
+            <Table rowKey="id">
+                <Column dataIndex="id" title="ID" key="id" />
+                <Column
+                    key="image"
+                    title="Image"
+                    dataIndex="image"
+                    render={(value) => (
+                        <ImageField
+                            value={value}
+                            title="Image"
+                            imageTitle="meow"
+                            width={100}
+                            data-testid="image"
+                        />
+                    )}
+                />
+                <Column
+                    dataIndex="title"
+                    title="Title"
+                    key="title"
+                    render={(value) => <TextField value={value} />}
+                />
+                <Column
+                    dataIndex="categoryId"
                     title="Category"
-                    value="categoryId"
-                    resource="categories"
-                >
-                    <TextField source="title" />
-                </ReferenceField>
-                <ChipField title="Status" source="status" />
+                    key="categoryId"
+                    render={(value) => (
+                        <ReferenceField resource="categories" value={value}>
+                            <TextField value renderRecordKey="title" />
+                        </ReferenceField>
+                    )}
+                />
+                <Column
+                    dataIndex="status"
+                    title="Status"
+                    key="status"
+                    render={(value) => <TagField value={value} />}
+                />
             </Table>
         </List>
     );

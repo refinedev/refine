@@ -7,15 +7,15 @@ import {
     Form,
     FormItem,
     TextInput,
-    TextField,
+    Column,
 } from "readmin";
 
 export const CategoryList = (props: { resourceName: string }) => {
     return (
         <List {...props}>
-            <Table>
-                <TextField source="id" title="ID" />
-                <TextField source="title" title="Title" />
+            <Table rowKey="id">
+                <Column key="id" dataIndex="id" title="ID" />
+                <Column key="title" dataIndex="title" title="Title" />
             </Table>
         </List>
     );
