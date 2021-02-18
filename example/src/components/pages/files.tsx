@@ -10,8 +10,8 @@ export const FilesList = (props: any) => {
                     key="url"
                     dataIndex="url"
                     title="Image"
-                    render={(value, record) => (
-                        <FileField record={record} download value={value} title="File"/>
+                    render={(value) => (
+                        <FileField value={value} title="File" />
                     )}
                 />
                 <Column
@@ -19,8 +19,18 @@ export const FilesList = (props: any) => {
                     dataIndex="url"
                     title="Image"
                     render={(value, record) => (
-                        <FileField record={record} value={value} title="title" target="_blank" rel="noopener" />
+                        <FileField download record={record} value={value} title="title"/>
                     )}
+                />
+                <Column
+                    key="files"
+                    dataIndex="files"
+                    title="Image Files"
+                    render={(value, record) => {
+                        console.log("value: ", value)
+                        return (
+                        <FileField record={record} value={value} src="url" title="title" target="_blank" rel="noopener" />
+                    )}}
                 />
             </Table>
         </List>

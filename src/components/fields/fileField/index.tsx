@@ -21,9 +21,25 @@ export const FileField: React.FC<FileFieldProps> = ({
     ...rest
 }) => {
 
-    const url = renderFieldRecord({value, record, renderRecordKey })
+    if (Array.isArray(value)) {
+        return (
+            <ul>
+                {value.map((file, index) => {
+                    const fileUrl = renderFieldRecord({value: src, record: file, renderRecordKey: src})
+                    const fileTitleValue = renderFieldRecord({ value: title, record: file, renderRecordKey: title })
 
-    const titleValue = renderFieldRecord({value: title, record, renderRecordKey: title})
+                    return (
+                        <li key={index}>
+                            <Link title={fileTitleValue} href={fileUrl} {...rest}>{fileTitleValue}</Link>
+                        </li>
+                    )
+                })}
+            </ul>
+        )
+    }
+
+    const url = renderFieldRecord({ value, record, renderRecordKey })
+    const titleValue = renderFieldRecord({ value: title, record, renderRecordKey: title })
 
     return (
         <Link title={titleValue} href={url} {...rest}>
