@@ -1,16 +1,20 @@
 import React from "react";
 import { Table as AntdTable, Button, Space, Popconfirm } from "antd";
-import { TablePaginationConfig } from "antd/lib/table";
-import { useHistory } from "react-router-dom";
+import {
+    TablePaginationConfig,
+    TableProps as AntdTableProps,
+} from "antd/lib/table";
+import { useHistory, useLocation } from "react-router-dom";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import qs from "query-string";
 
 import { Column } from "@components";
-import { Record } from "@interfaces";
+import { BaseRecord } from "@interfaces";
 import { useDelete } from "@hooks";
 
-export interface TableProps {
+export interface TableProps extends AntdTableProps<any> {
     resourceName?: string;
-    dataSource?: Record[];
+    dataSource?: BaseRecord[];
     loading?: boolean;
     pagination?: false | TablePaginationConfig;
     canEdit?: boolean;
@@ -26,8 +30,10 @@ export const Table: React.FC<TableProps> = ({
     canEdit,
     canDelete,
     children,
+    ...rest
 }) => {
     const history = useHistory();
+    const { search } = useLocation();
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const { mutate, isLoading } = useDelete(resourceName!);
@@ -95,21 +101,29 @@ export const Table: React.FC<TableProps> = ({
     };
 
     return (
-        <React.Fragment>
+        <>
             <AntdTable
                 style={{ width: "100%" }}
                 dataSource={dataSource}
                 loading={loading}
                 pagination={pagination}
                 onChange={(pagination): void => {
+                    const parsedSearchQuery = qs.parse(search);
+
+                    parsedSearchQuery.current = String(pagination.current);
+                    parsedSearchQuery.pageSize = String(pagination.pageSize);
+
                     history.push(
-                        `/resources/${resourceName}?current=${pagination.current}&pageSize=${pagination.pageSize}`,
+                        `/resources/${resourceName}?${qs.stringify(
+                            parsedSearchQuery,
+                        )}`,
                     );
                 }}
+                {...rest}
             >
                 {children}
                 {renderActions()}
             </AntdTable>
-        </React.Fragment>
+        </>
     );
 };

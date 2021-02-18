@@ -15,13 +15,13 @@ describe("<List/>", () => {
     describe("JSON Rest Server", () => {
         it("mounts with table", async () => {
             const { getByText } = render(
-                <List resourceName="posts">
-                    <Table />
+                <List key="posts" resourceName="posts">
+                    <Table rowKey="id" />
                 </List>,
                 {
                     wrapper: TestWrapper({
                         dataProvider: MockJSONServer,
-                        resources: ["posts"],
+                        resources: [{ name: "posts" }],
                     }),
                 },
             );
@@ -29,23 +29,38 @@ describe("<List/>", () => {
             await waitForElementToBeRemoved(() => getByText("No Data"));
         });
         it("renders given data", async () => {
-            const { findByText } = render(
-                <List resourceName="posts">
-                    <Table>
-                        <Column key="slug" title="Slug" dataIndex="slug" />
+            const { container } = render(
+                <List key="posts" resourceName="posts">
+                    <Table rowKey="id">
+                        <Column key="title" title="Title" dataIndex="title" />
                     </Table>
                 </List>,
                 {
                     wrapper: TestWrapper({
                         dataProvider: MockJSONServer,
-                        resources: ["posts"],
+                        resources: [{ name: "posts" }],
                     }),
                 },
             );
 
-            const slug = await findByText("ut-ad-et");
+            expect(container).toMatchSnapshot();
+        });
 
-            expect(slug).toHaveProperty("className", "ant-table-cell");
+        it("should wrap with given component", async () => {
+            const { container } = render(
+                <List component={"section"} resourceName="posts">
+                    <Table>
+                        <TextField title="Slug" source="slug" />
+                    </Table>
+                </List>,
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+            expect(container.querySelector("section")).toBeTruthy();
         });
     });
 });

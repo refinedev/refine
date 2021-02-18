@@ -3,24 +3,25 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
-import { ResourceContextProvider } from "@contexts/resource";
+import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { IDataContext, IAuthContext } from "@interfaces";
-import { Router } from "react-router-dom";
-import { createMemoryHistory } from "history";
+import { MemoryRouter } from "react-router-dom";
 
 const queryClient = new QueryClient();
 
 interface ITestWrapperProps {
     authProvider?: IAuthContext;
     dataProvider?: IDataContext;
-    resources: string[];
+    resources: IResourceItem[];
     children?: React.ReactNode;
+    routerInitialEntries?: string[];
 }
 
 export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     authProvider,
     dataProvider,
     resources,
+    routerInitialEntries,
 }) => {
     // eslint-disable-next-line react/display-name
     return ({ children }): React.ReactElement => {
@@ -44,14 +45,12 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
             withData
         );
 
-        const history = createMemoryHistory();
-
         return (
-            <Router history={history}>
+            <MemoryRouter initialEntries={routerInitialEntries}>
                 <QueryClientProvider client={queryClient}>
                     {withAuth}
                 </QueryClientProvider>
-            </Router>
+            </MemoryRouter>
         );
     };
 };

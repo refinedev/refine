@@ -1,28 +1,25 @@
-import React, { ComponentType, ReactNode } from "react";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect,
-} from "react-router-dom";
+import React, { ReactNode } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "antd/dist/antd.css";
 
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
+import { RouteProvider } from "@containers/routeProvider";
 import { ResourceContextProvider } from "@contexts/resource";
-import { Auth } from "@containers/auth";
-import { LoginPage, ReadyPage } from "@pages";
+import { ReadyPage } from "@pages";
+
 import { IDataContext, IAuthContext } from "@interfaces";
 
 export interface AdminProps {
     authProvider: IAuthContext;
     dataProvider: IDataContext;
+    catchAll?: React.ReactNode;
     title?: ReactNode;
-    loginPage?: ComponentType | false;
+    loginPage?: React.FC | false;
     dashboard?: React.FC;
-    ready?: ComponentType | true;
+    ready?: React.FC;
 }
 
 export const Admin: React.FC<AdminProps> = ({
@@ -30,8 +27,9 @@ export const Admin: React.FC<AdminProps> = ({
     dataProvider,
     title,
     dashboard,
-    ready = ReadyPage,
-    loginPage = LoginPage,
+    ready,
+    loginPage,
+    catchAll,
     children,
 }) => {
     const queryClient = new QueryClient({
@@ -42,9 +40,13 @@ export const Admin: React.FC<AdminProps> = ({
         },
     });
 
-    const resources: string[] = [];
+    const resources: IResourceItem[] = [];
     React.Children.map(children, (child: any) => {
-        resources.push(child.props.name);
+        resources.push({
+            name: child.props.name,
+            label: child.props.options?.label,
+            icon: child.props.icon,
+        });
     });
 
     if (resources.length === 0) {
@@ -57,29 +59,13 @@ export const Admin: React.FC<AdminProps> = ({
                 <DataContextProvider {...dataProvider}>
                     <ResourceContextProvider resources={resources}>
                         <Router>
-                            <Switch>
-                                {loginPage && (
-                                    <Route
-                                        exact
-                                        path="/login"
-                                        component={loginPage}
-                                    />
-                                )}
-                                <Auth title={title} dashboard={dashboard}>
-                                    {/* <Switch> */}
-                                    {/*  <Route exact path="/"> TODO: router yapısını düzelttiğimizde bu kısmı handle edelim
-                                            {dashboard ? (
-                                                dashboard
-                                            ) : (
-                                                <Redirect
-                                                    to={`/resources/${resources[0]}`}
-                                                />
-                                            )}
-                                        </Route> */}
-                                    {children}
-                                    {/*    </Switch> */}
-                                </Auth>
-                            </Switch>
+                            <RouteProvider
+                                resources={children}
+                                catchAll={catchAll}
+                                title={title}
+                                dashboard={dashboard}
+                                loginPage={loginPage}
+                            />
                         </Router>
                     </ResourceContextProvider>
                 </DataContextProvider>

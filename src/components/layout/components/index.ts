@@ -1,0 +1,1 @@
+export { ErrorComponent } from "./error";
