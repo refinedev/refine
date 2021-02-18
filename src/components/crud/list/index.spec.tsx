@@ -45,5 +45,22 @@ describe("<List/>", () => {
 
             await findByText("ut-ad-et");
         });
+
+        it("should wrap with given component", async () => {
+            const { container } = render(
+                <List component={"section"} resourceName="posts">
+                    <Table>
+                        <TextField title="Slug" source="slug" />
+                    </Table>
+                </List>,
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+            expect(container.querySelector("section")).toBeTruthy();
+        });
     });
 });

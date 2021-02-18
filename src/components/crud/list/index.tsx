@@ -26,13 +26,10 @@ export const List: React.FC<ListProps> = ({
     canDelete,
     empty,
     children,
-    component,
+    component: CustomComponent,
 }) => {
     const queryParams = useSearchParams();
     const history = useHistory();
-
-    const CustomComponent = component;
-    console.log("component", CustomComponent);
 
     let current = 1;
     const queryParamCurrent = queryParams.current;
@@ -75,17 +72,14 @@ export const List: React.FC<ListProps> = ({
         return child;
     });
 
-    const Content = () => (
-        <Row>
-            {showEmpty ? (
-                <OptionalComponent optional={empty}>
-                    <DefaultEmpty style={{ width: "100%", margin: "20px 0" }} />
-                </OptionalComponent>
-            ) : (
-                childrenWithProps
-            )}
-        </Row>
-    );
+    const Content = () =>
+        showEmpty ? (
+            <OptionalComponent optional={empty}>
+                <DefaultEmpty style={{ width: "100%", margin: "20px 0" }} />
+            </OptionalComponent>
+        ) : (
+            childrenWithProps
+        );
 
     const CustomWrapper = () => <CustomComponent>{Content()}</CustomComponent>;
 
@@ -111,5 +105,5 @@ export const List: React.FC<ListProps> = ({
         </Card>
     );
 
-    return component ? CustomWrapper() : DefaultWrapper();
+    return CustomComponent ? CustomWrapper() : DefaultWrapper();
 };

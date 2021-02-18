@@ -15,14 +15,10 @@ import {
     ChipField,
 } from "readmin";
 
-const TestComp: React.FC = ({ children }) => (
-    <div className="test2222">{children}</div>
-);
 
 export const PostList = (props: any) => {
     return (
         <List
-            component={(children: any) => <TestComp {...children} />}
             {...props}
         >
             <Table>
