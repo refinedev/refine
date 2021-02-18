@@ -50,7 +50,6 @@ export const ReferenceField: React.FC<ReferenceFieldProps> = ({
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {
-                // ...child.props,
                 value,
                 record: data?.data,
             });
