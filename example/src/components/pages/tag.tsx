@@ -21,7 +21,7 @@ export const TagList = (props: any) => {
     );
 };
 
-export const ListWrapper = (props: any) => {
+export const ListWrapper = ({ children }) => {
     return (
         <div><span>Custom wrapper</span>
             {props.children}
