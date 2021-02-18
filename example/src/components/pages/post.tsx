@@ -2,6 +2,7 @@ import * as React from "react";
 import {
     List,
     Table,
+    Column,
     Create,
     Edit,
     Form,
@@ -61,15 +62,35 @@ export const PostList = (props: any) => {
     return (
         <List {...props} filters={filters}>
             <Table>
-                <TextField title="ID" source="id" />
+                <Column dataIndex="id" title="ID" key="id" />
+                <Column
+                    dataIndex="title"
+                    title="Title"
+                    key="title"
+                    render={(value) => <TextField value={value} strong />}
+                />
+                <Column
+                    dataIndex="categoryId"
+                    title="Category"
+                    key="categoryId"
+                    render={(value) => (
+                        <ReferenceField
+                            resource="categories"
+                            value={value}
+                            renderRecordKey="title"
+                        />
+                    )}
+                />
+
+                {/* <TextField title="ID" source="id" />
                 <ReferenceField
                     title="Category"
                     value="categoryId"
-                    resource="categories"
+                    
                 >
                     <TextField source="title" />
                 </ReferenceField>
-                <ChipField title="Status" source="status" />
+                <ChipField title="Status" source="status" /> */}
             </Table>
         </List>
     );

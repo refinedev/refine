@@ -96,31 +96,6 @@ export const Table: React.FC<TableProps> = ({
         return null;
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const columnsFromChildren = Children.map(children, (child: any) => {
-        const { title, source, value, resource } = child.props;
-
-        return (
-            <Column
-                key={source ?? value}
-                title={title}
-                dataIndex={source ?? value}
-                // child will be either ReferencerField or normal Field components
-                // RefernceField props: {resource, value}
-                // Normal Field props: {source}
-                render={(columnItemValue) => {
-                    const clone = React.cloneElement(child, {
-                        ...child.props,
-                        resource,
-                        value: columnItemValue,
-                        source: value ? source : columnItemValue,
-                    });
-                    return clone;
-                }}
-            />
-        );
-    });
-
     return (
         <>
             <AntdTable
@@ -141,7 +116,7 @@ export const Table: React.FC<TableProps> = ({
                     );
                 }}
             >
-                {columnsFromChildren}
+                {children}
                 {renderActions()}
             </AntdTable>
         </>

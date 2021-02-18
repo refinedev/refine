@@ -2,9 +2,16 @@ import React from "react";
 
 import { BaseFieldProps } from "@interfaces";
 
-export const fieldContent = ({ record, source }: BaseFieldProps) => {
-    const stringSource = source.toString();
-    return record ? record?.[stringSource] : stringSource;
+export const renderFieldRecord = ({
+    value,
+    record,
+    renderRecordKey,
+}: BaseFieldProps): string => {
+    if (record && renderRecordKey && record[renderRecordKey]) {
+        return record[renderRecordKey];
+    }
+
+    return `${value}`;
 };
 
 interface IOptionalComponent {

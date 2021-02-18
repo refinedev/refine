@@ -1,41 +1,42 @@
 import React, { useContext } from "react";
 import { useQuery } from "react-query";
+import { Typography } from "antd";
 
 import { DataContext } from "@contexts/data";
 import { GetOneResponse, IDataContext } from "@interfaces";
+import { renderFieldRecord } from "@definitions";
+import { BaseFieldProps } from "../../../interfaces/field";
 
-export interface ReferenceFieldProps {
+export interface ReferenceFieldProps extends BaseFieldProps {
     resource: string;
-    value: string | number;
-    title?: string;
 }
 
 export const ReferenceField: React.FC<ReferenceFieldProps> = ({
     resource,
     value,
-    children,
+    renderRecordKey = "title",
 }) => {
     const { getOne } = useContext<IDataContext>(DataContext);
 
     const { data, isFetching } = useQuery<GetOneResponse>(
         [`resource/one/${resource}/`, { id: value }],
-        () => getOne(resource, value),
+        () => getOne(resource, Number(value)),
     );
+
+    const { Text } = Typography;
 
     if (isFetching) {
         // TODO: Add loding ui.
-        return <span>loading</span>;
+        return <Text>loading</Text>;
     }
 
-    const childrenWithProps = React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-            return React.cloneElement(child, {
-                ...child.props,
-                record: data?.data,
-            });
-        }
-        return child;
-    });
+    if (!data) {
+        return <Text>{value}</Text>;
+    }
 
-    return <>{childrenWithProps}</>;
+    return (
+        <Text>
+            {renderFieldRecord({ value, record: data.data, renderRecordKey })}
+        </Text>
+    );
 };

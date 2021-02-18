@@ -3,14 +3,19 @@ import { Tag, TagProps } from "antd";
 
 import { BaseFieldProps } from "@interfaces";
 
-import { fieldContent } from "@definitions";
+import { renderFieldRecord } from "@definitions";
 
 export type ChipFieldProps = BaseFieldProps & TagProps & {};
 
 export const ChipField: React.FC<ChipFieldProps> = ({
+    value,
     record,
-    source,
+    renderRecordKey,
     ...rest
 }) => {
-    return <Tag {...rest}>{fieldContent({ record, source })}</Tag>;
+    return (
+        <Tag {...rest}>
+            {renderFieldRecord({ value, record, renderRecordKey })}
+        </Tag>
+    );
 };
