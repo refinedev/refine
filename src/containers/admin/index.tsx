@@ -28,9 +28,9 @@ export const Admin: React.FC<AdminProps> = ({
     title,
     dashboard,
     ready,
-    children,
     loginPage,
     catchAll,
+    children,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -65,6 +65,7 @@ export const Admin: React.FC<AdminProps> = ({
                                 title={title}
                                 dashboard={dashboard}
                                 loginPage={loginPage}
+                                ready={ready}
                             />
                         </Router>
                     </ResourceContextProvider>

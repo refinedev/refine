@@ -1,7 +1,12 @@
 import React from "react";
 
-import JsonServer from "@dataProviders/jsonServer";
-import { render } from "@test";
+import { ReadyPage } from "@pages";
+import { Resource } from "@containers";
+
+import {
+    render,
+    MockJSONServer,
+} from "@test";
 
 import { Admin } from "./index";
 
@@ -31,13 +36,14 @@ const mockAuthProvider = {
         })
 };
 
-describe("Admin", () => {
-    it("should render page successfuly", async () => {
-        render(<Admin
-            authProvider={mockAuthProvider}
-            dataProvider={JsonServer('https://readmin-fake-rest.pankod.com')}
-        />);
-
-        expect(Admin).toBeDefined();
+describe("Admin Container", () => {
+    it("should render without resource", async () => {
+        render(
+            <Admin
+                authProvider={mockAuthProvider}
+                dataProvider={MockJSONServer}
+            />
+        );
+        expect(ReadyPage).toBeTruthy();
     });
 });
