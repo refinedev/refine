@@ -1,4 +1,6 @@
+import { BaseRecord } from "@interfaces";
+
 export interface BaseFieldProps {
-    record?: any;
-    source: string | boolean;
+    record?: BaseRecord;
+    source?: string;
 }
