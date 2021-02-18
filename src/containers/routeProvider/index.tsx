@@ -30,16 +30,13 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     dashboard,
     loginPage,
 }) => {
-    const { checkAuth } = useContext<IAuthContext>(AuthContext);
-    const [authenticated, setAuthenticated] = useState<boolean>(false);
+    const { isAuthenticated, checkAuth } = useContext<IAuthContext>(
+        AuthContext,
+    );
+
     const resourcesArray: string[] = [];
 
-    // TODO Her sayfa değişimi render a sebeb oluyor.
-    useLocation();
-
-    checkAuth({})
-        .then(() => setAuthenticated(true))
-        .catch(() => setAuthenticated(false));
+    checkAuth({});
 
     const routes: IRoutesProps[] = [];
     const RouteHandler = (val: React.ReactElement): void => {
@@ -132,7 +129,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         </Switch>
     );
 
-    return authenticated ? renderAuthorized() : renderUnauthorized();
+    return isAuthenticated ? renderAuthorized() : renderUnauthorized();
 };
 
 export const RouteProvider = React.memo(RouteProviderBase);

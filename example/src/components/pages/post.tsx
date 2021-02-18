@@ -15,12 +15,51 @@ import {
     ChipField,
 } from "readmin";
 
-
 export const PostList = (props: any) => {
-    return (
-        <List
-            {...props}
+    const filters = (
+        <Form
+            name="filter-form"
+            style={{
+                marginBlock: 10,
+            }}
+            layout="inline"
         >
+            <FormItem label="Search" name="q">
+                <TextInput placeholder="Search" />
+            </FormItem>
+            <FormItem label="Status" name="status" hidden>
+                <SelectInput
+                    allowClear
+                    placeholder="All Status"
+                    options={[
+                        {
+                            label: "Active",
+                            value: "active",
+                        },
+                        {
+                            label: "Draft",
+                            value: "draft",
+                        },
+                    ]}
+                />
+            </FormItem>
+            <FormItem label="Category" name="categoryId" hidden>
+                <ReferenceInput
+                    reference="categories"
+                    optionText="title"
+                    sort={{
+                        field: "title",
+                        order: "asc",
+                    }}
+                >
+                    <SelectInput allowClear placeholder="Select Category" />
+                </ReferenceInput>
+            </FormItem>
+        </Form>
+    );
+
+    return (
+        <List {...props} filters={filters}>
             <Table>
                 <TextField title="ID" source="id" />
                 <ReferenceField
