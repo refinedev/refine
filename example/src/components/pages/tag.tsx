@@ -12,12 +12,21 @@ import {
 
 export const TagList = (props: any) => {
     return (
-        <List {...props}>
+        <List {...props} component={ListWrapper}>
             <Table>
                 <TextField source="id" title="ID" />
                 <TextField source="title" title="Title" />
             </Table>
         </List>
+    );
+};
+
+export const ListWrapper = (props: any) => {
+    return (
+        <div><span>Custom wrapper</span>
+            {props.children}
+        </div>
+
     );
 };
 
