@@ -74,11 +74,9 @@ export const PostList = (props: any) => {
                     title="Category"
                     key="categoryId"
                     render={(value) => (
-                        <ReferenceField
-                            resource="categories"
-                            value={value}
-                            renderRecordKey="title"
-                        />
+                        <ReferenceField resource="categories" value={value}>
+                            <TextField strong value renderRecordKey="title" />
+                        </ReferenceField>
                     )}
                 />
                 <Column

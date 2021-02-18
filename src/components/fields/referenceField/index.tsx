@@ -14,7 +14,8 @@ export interface ReferenceFieldProps extends BaseFieldProps {
 export const ReferenceField: React.FC<ReferenceFieldProps> = ({
     resource,
     value,
-    renderRecordKey = "title",
+    renderRecordKey,
+    children,
 }) => {
     const { getOne } = useContext<IDataContext>(DataContext);
 
@@ -34,9 +35,28 @@ export const ReferenceField: React.FC<ReferenceFieldProps> = ({
         return <Text>{value}</Text>;
     }
 
-    return (
-        <Text>
-            {renderFieldRecord({ value, record: data.data, renderRecordKey })}
-        </Text>
-    );
+    if (renderRecordKey) {
+        return (
+            <Text>
+                {renderFieldRecord({
+                    value,
+                    record: data.data,
+                    renderRecordKey,
+                })}
+            </Text>
+        );
+    }
+
+    const childrenWithProps = React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+            return React.cloneElement(child, {
+                // ...child.props,
+                value,
+                record: data?.data,
+            });
+        }
+        return child;
+    });
+
+    return <>{childrenWithProps}</>;
 };
