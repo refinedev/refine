@@ -1,6 +1,9 @@
-import React, { Children } from "react";
+import React from "react";
 import { Table as AntdTable, Button, Space, Popconfirm } from "antd";
-import { TablePaginationConfig } from "antd/lib/table";
+import {
+    TablePaginationConfig,
+    TableProps as AntdTableProps,
+} from "antd/lib/table";
 import { useHistory, useLocation } from "react-router-dom";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import qs from "query-string";
@@ -9,7 +12,7 @@ import { Column } from "@components";
 import { BaseRecord } from "@interfaces";
 import { useDelete } from "@hooks";
 
-export interface TableProps {
+export interface TableProps extends AntdTableProps<any> {
     resourceName?: string;
     dataSource?: BaseRecord[];
     loading?: boolean;
@@ -27,6 +30,7 @@ export const Table: React.FC<TableProps> = ({
     canEdit,
     canDelete,
     children,
+    ...rest
 }) => {
     const history = useHistory();
     const { search } = useLocation();
@@ -115,6 +119,7 @@ export const Table: React.FC<TableProps> = ({
                         )}`,
                     );
                 }}
+                {...rest}
             >
                 {children}
                 {renderActions()}
