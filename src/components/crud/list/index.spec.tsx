@@ -7,7 +7,7 @@ import {
     waitForElementToBeRemoved,
 } from "@test";
 
-import { Table, TextField } from "@components";
+import { Table, Column } from "@components";
 
 import { List } from "./index";
 
@@ -15,8 +15,8 @@ describe("<List/>", () => {
     describe("JSON Rest Server", () => {
         it("mounts with table", async () => {
             const { getByText } = render(
-                <List resourceName="posts">
-                    <Table />
+                <List key="posts" resourceName="posts">
+                    <Table rowKey="id" />
                 </List>,
                 {
                     wrapper: TestWrapper({
@@ -29,8 +29,26 @@ describe("<List/>", () => {
             await waitForElementToBeRemoved(() => getByText("No Data"));
         });
         it("renders given data", async () => {
-            const { findByText } = render(
-                <List resourceName="posts">
+            const { container } = render(
+                <List key="posts" resourceName="posts">
+                    <Table rowKey="id">
+                        <Column key="title" title="Title" dataIndex="title" />
+                    </Table>
+                </List>,
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            expect(container).toMatchSnapshot();
+        });
+
+        it("should wrap with given component", async () => {
+            const { container } = render(
+                <List component={"section"} resourceName="posts">
                     <Table>
                         <TextField title="Slug" source="slug" />
                     </Table>
@@ -42,8 +60,7 @@ describe("<List/>", () => {
                     }),
                 },
             );
-
-            await findByText("ut-ad-et");
+            expect(container.querySelector("section")).toBeTruthy();
         });
     });
 });

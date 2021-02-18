@@ -4,14 +4,14 @@ import { render, TestWrapper, MockJSONServer } from "@test";
 
 import { Resource } from "./index";
 import { List } from "@components/crud";
-import { Table, TextField } from "@components";
+import { Table, Column } from "@components";
 
 describe("<Resource />", () => {
     const PostList = ({ resourceName }: { resourceName: string }) => {
         return (
             <List resourceName={resourceName}>
-                <Table>
-                    <TextField source="title" />
+                <Table rowKey="id">
+                    <Column key="title" title="Title" dataIndex="title" />
                 </Table>
             </List>
         );

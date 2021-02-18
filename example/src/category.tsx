@@ -14,7 +14,7 @@ export const CategoryList = (props: any) => {
     console.log("props", props);
     return (
         <List {...props}>
-            <Table>
+            <Table rowKey="id">
                 <Column key="id" title="ID" dataIndex="id" />
                 <Column key="title" title="Title" dataIndex="title" />
             </Table>

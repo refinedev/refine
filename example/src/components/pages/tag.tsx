@@ -7,22 +7,43 @@ import {
     Form,
     FormItem,
     TextInput,
-    TextField,
-    ReferenceField,
+    Column,
     ImageField,
+    ReferenceField,
 } from "readmin";
 
 export const TagList = (props: any) => {
     return (
-        <List {...props}>
-            <Table>
-                <TextField source="id" title="ID" />
-                <TextField source="title" title="Title" />
-                <ReferenceField value="id" resource="images" title="Image" > 
-                    <ImageField source="url" imageTitle="meow" width={200} />
-                </ReferenceField>
+        <List {...props} component={ListWrapper}>
+            <Table rowKey="id">
+                <Column key="id" dataIndex="id" title="ID" />
+                <Column key="title" dataIndex="title" title="Title" />
+                <Column
+                    key="id"
+                    dataIndex="id"
+                    title="Image"
+                    render={(value) => (
+                        <ReferenceField resource="images" value={value}>
+                            <ImageField
+                                value
+                                renderRecordKey="url"
+                                imageTitle="meow"
+                                width={200}
+                            />
+                        </ReferenceField>
+                    )}
+                />
             </Table>
         </List>
+    );
+};
+
+export const ListWrapper = (props: any) => {
+    return (
+        <div><span>Custom wrapper</span>
+            {props.children}
+        </div>
+
     );
 };
 

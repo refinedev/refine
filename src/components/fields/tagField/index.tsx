@@ -1,24 +1,21 @@
 import React from "react";
-import { Typography } from "antd";
-import { LinkProps } from "antd/lib/typography/Link";
+import { Tag, TagProps } from "antd";
 
 import { BaseFieldProps } from "../../../interfaces/field";
 
 import { renderFieldRecord } from "@definitions";
 
-const { Link } = Typography;
+export type TagFieldProps = BaseFieldProps & TagProps & {};
 
-export type EmailFieldProps = BaseFieldProps & LinkProps & {};
-
-export const EmailField: React.FC<EmailFieldProps> = ({
+export const TagField: React.FC<TagFieldProps> = ({
     value,
     record,
     renderRecordKey,
     ...rest
 }) => {
     return (
-        <Link href="mailto:" {...rest}>
+        <Tag {...rest}>
             {renderFieldRecord({ value, record, renderRecordKey })}
-        </Link>
+        </Tag>
     );
 };
