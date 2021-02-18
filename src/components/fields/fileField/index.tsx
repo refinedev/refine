@@ -2,9 +2,9 @@ import React from "react";
 import { Typography } from "antd";
 import { LinkProps } from "antd/lib/typography/Link";
 
-import { BaseFieldProps } from "@interfaces";
+import { BaseFieldProps } from "../../../interfaces/field";
 
-import { fieldContent } from "@definitions";
+import { renderFieldRecord } from "@definitions";
 
 const { Link } = Typography;
 
@@ -14,18 +14,19 @@ export type FileFieldProps = BaseFieldProps & LinkProps & {
 
 export const FileField: React.FC<FileFieldProps> = ({
     record,
-    source,
+    renderRecordKey,
+    value,
     title,
     src,
     ...rest
 }) => {
 
-    const sourceValue = fieldContent({ record, source })
+    const url = renderFieldRecord({value, record, renderRecordKey })
 
-    const titleValue = fieldContent({ record, source: title }) ?? title
+    const titleValue = renderFieldRecord({value: title, record, renderRecordKey: title})
 
     return (
-        <Link title={titleValue} href={fieldContent({ record, source })} {...rest}>
+        <Link title={titleValue} href={url} {...rest}>
             {titleValue}
         </Link>
     );
