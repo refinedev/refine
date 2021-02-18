@@ -79,8 +79,8 @@ export const List: React.FC<ListProps> = ({
                 <DefaultEmpty style={{ width: "100%", margin: "20px 0" }} />
             </OptionalComponent>
         ) : (
-            childrenWithProps
-        );
+                childrenWithProps
+            );
 
     const CustomWrapper = () =>
         CustomComponent
