@@ -4,7 +4,7 @@ import { List, Table, Column, ImageField } from "readmin";
 export const ImagesList = (props: any) => {
     return (
         <List {...props}>
-            <Table>
+            <Table rowKey="id">
                 <Column key="id" title="ID" dataIndex="id" />
                 <Column
                     key="url"

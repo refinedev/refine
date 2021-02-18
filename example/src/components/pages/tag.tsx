@@ -15,7 +15,7 @@ import {
 export const TagList = (props: any) => {
     return (
         <List {...props}>
-            <Table>
+            <Table rowKey="id">
                 <Column key="id" dataIndex="id" title="ID" />
                 <Column key="title" dataIndex="title" title="Title" />
                 <Column

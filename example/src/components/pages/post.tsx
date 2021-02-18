@@ -62,7 +62,7 @@ export const PostList = (props: any) => {
 
     return (
         <List {...props} filters={filters}>
-            <Table>
+            <Table rowKey="id">
                 <Column dataIndex="id" title="ID" key="id" />
                 <Column
                     key="image"

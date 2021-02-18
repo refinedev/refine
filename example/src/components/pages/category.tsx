@@ -13,7 +13,7 @@ import {
 export const CategoryList = (props: { resourceName: string }) => {
     return (
         <List {...props}>
-            <Table>
+            <Table rowKey="id">
                 <Column key="id" dataIndex="id" title="ID" />
                 <Column key="title" dataIndex="title" title="Title" />
             </Table>

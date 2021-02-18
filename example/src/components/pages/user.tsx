@@ -4,7 +4,7 @@ import { List, Table, Column, EmailField, TagField } from "readmin";
 export const UserList = (props: any) => {
     return (
         <List {...props}>
-            <Table>
+            <Table rowKey="id">
                 <Column key="id" dataIndex="id" title="ID" />
                 <Column
                     key="firstName"
