@@ -17,7 +17,7 @@ import {
     ImageField,
     FilterDropdown,
 } from "readmin";
-import { Radio } from "antd";
+import { Checkbox } from "antd";
 
 export const PostList = (props: any) => {
     return (
@@ -54,7 +54,25 @@ export const PostList = (props: any) => {
                             <TextField value renderRecordKey="title" />
                         </ReferenceField>
                     )}
-                    // filterDropdown={(props) => <TextInputFilter {...props} />}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <ReferenceInput
+                                reference="categories"
+                                optionText="title"
+                                sort={{
+                                    field: "title",
+                                    order: "asc",
+                                }}
+                            >
+                                <SelectInput
+                                    style={{ minWidth: 200 }}
+                                    showSearch
+                                    // mode="multiple"
+                                    placeholder="Select Category"
+                                />
+                            </ReferenceInput>
+                        </FilterDropdown>
+                    )}
                 />
                 <Column
                     dataIndex="status"
@@ -63,10 +81,10 @@ export const PostList = (props: any) => {
                     render={(value) => <TagField value={value} />}
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
-                            <Radio.Group>
-                                <Radio value="active">Active</Radio>
-                                <Radio value="draft">Draft</Radio>
-                            </Radio.Group>
+                            <Checkbox.Group>
+                                <Checkbox value="active">Active</Checkbox>
+                                <Checkbox value="draft">Draft</Checkbox>
+                            </Checkbox.Group>
                         </FilterDropdown>
                     )}
                 />

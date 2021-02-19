@@ -1,5 +1,5 @@
-import React from "react";
-import { Button, Row, Col, Space } from "antd";
+import React, { useEffect, useState } from "react";
+import { Button, Space } from "antd";
 import { FilterDropdownProps as AntdFilterDropdownProps } from "antd/lib/table/interface";
 import { FilterOutlined } from "@ant-design/icons";
 
@@ -20,15 +20,25 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
         if (confirm) confirm();
     };
 
-    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedKeys([event.target.value]);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const onChange = (e: any) => {
+        if (typeof e === "object") {
+            if (Array.isArray(e)) {
+                return setSelectedKeys(e);
+            }
+
+            const { target }: React.ChangeEvent<HTMLInputElement> = e;
+            return setSelectedKeys([target.value]);
+        }
+
+        return setSelectedKeys([e]);
     };
 
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {
                 onChange,
-                value: selectedKeys[0],
+                value: selectedKeys,
             });
         }
         return child;
