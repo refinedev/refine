@@ -7,7 +7,6 @@ import { BaseFieldProps } from "@interfaces";
 import { renderFieldRecord } from "@definitions";
 
 dayjs.extend(LocalizedFormat);
-/* dayjs.locale("tr"); */
 
 type DateProps = {
     locales?: string;
