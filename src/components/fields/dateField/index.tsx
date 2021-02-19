@@ -1,25 +1,24 @@
 import React from "react";
-import { Image, ImageProps } from "antd";
+import dayjs from "dayjs";
+
+import LocalizedFormat from "dayjs/plugin/localizedFormat";
+import "dayjs/locale/tr";
 
 import { BaseFieldProps } from "@interfaces";
-
 import { fieldContent } from "@definitions";
 
-export type DateFieldProps = BaseFieldProps;
+dayjs.extend(LocalizedFormat);
+dayjs.locale("tr");
+
+type DateProps = {
+    locales?: string;
+    format?: string;
+};
+
+export type DateFieldProps = BaseFieldProps & DateProps;
 
 export const DateField: React.FC<DateFieldProps> = ({
     record,
     source,
-    ...rest
-}) => {
-    return (
-        /*   <Image
-            {...rest}
-            src={fieldContent({ record, source })}
-            title={imageTitle}
-        />
- */
-        <div className="">test date</div>
-        <div className="">{fieldContent({ record, source })}</div>
-    );
-};
+    format: dateFormat = "L",
+}) => <div>{dayjs(fieldContent({ record, source })).format(dateFormat)}</div>;
