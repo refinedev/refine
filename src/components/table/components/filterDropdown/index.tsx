@@ -54,7 +54,6 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
                 alignItems: "flex-end",
             }}
         >
-            <span>{JSON.stringify(selectedKeys)}</span>
             <div style={{ marginBottom: 15 }}>{childrenWithProps}</div>
             <Space>
                 <Button type="primary" size="small" onClick={() => onFilter()}>

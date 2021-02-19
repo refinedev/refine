@@ -44,11 +44,6 @@ export const PostList = (props: any) => {
                     title="Title"
                     key="title"
                     render={(value) => <TextField value={value} />}
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <TextInput placeholder="Search title" />
-                        </FilterDropdown>
-                    )}
                 />
                 <Column
                     dataIndex="categoryId"
