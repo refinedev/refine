@@ -29,7 +29,6 @@ export const UserList = (props: any) => {
                     key="birthday"
                     dataIndex="birthday"
                     title="Birthday"
-
                     render={(value) => <DateField value={value} />}
                 />
             </Table>
