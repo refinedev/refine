@@ -123,7 +123,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         <Switch>
             <Route
                 exact
-                path={["/"]}
+                path={"/"}
                 component={() => (
                     <OptionalComponent optional={ready}>
                         <DefaultReadyPage />
@@ -132,7 +132,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
             />
             <Route
                 exact
-                path={["/login"]}
+                path={"/login"}
                 component={() => (
                     <OptionalComponent optional={loginPage}>
                         <DefaultLoginPage />
