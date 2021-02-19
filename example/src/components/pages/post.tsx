@@ -15,8 +15,9 @@ import {
     TextField,
     TagField,
     ImageField,
-    TextInputFilter,
+    FilterDropdown,
 } from "readmin";
+import { Radio } from "antd";
 
 export const PostList = (props: any) => {
     return (
@@ -42,7 +43,7 @@ export const PostList = (props: any) => {
                     title="Title"
                     key="title"
                     render={(value) => <TextField value={value} />}
-                    filterDropdown={(props) => <TextInputFilter {...props} />}
+                    // filterDropdown={(props) => <TextInputFilter {...props} />}
                 />
                 <Column
                     dataIndex="categoryId"
@@ -53,13 +54,21 @@ export const PostList = (props: any) => {
                             <TextField value renderRecordKey="title" />
                         </ReferenceField>
                     )}
-                    filterDropdown={(props) => <TextInputFilter {...props} />}
+                    // filterDropdown={(props) => <TextInputFilter {...props} />}
                 />
                 <Column
                     dataIndex="status"
                     title="Status"
                     key="status"
                     render={(value) => <TagField value={value} />}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Radio.Group>
+                                <Radio value="active">Active</Radio>
+                                <Radio value="draft">Draft</Radio>
+                            </Radio.Group>
+                        </FilterDropdown>
+                    )}
                 />
             </Table>
         </List>

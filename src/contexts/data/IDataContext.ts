@@ -56,7 +56,7 @@ export interface IDataContext {
             pagination?: Pagination;
             search?: string;
             sort?: Sort;
-            filter?: object;
+            filters?: Record<string, (string | number | boolean)[] | null>;
         },
     ) => Promise<GetListResponse<TData>>;
     getMany: <TData extends BaseRecord = BaseRecord>(

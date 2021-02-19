@@ -14,7 +14,7 @@ interface UseListConfig {
     pagination?: Pagination;
     search?: string;
     sort?: Sort;
-    filter?: Record<string, unknown>;
+    filters?: Record<string, (string | number | boolean)[] | null>;
 }
 
 const defaultConfig: UseListConfig = {

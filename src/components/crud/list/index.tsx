@@ -31,9 +31,11 @@ export const List: React.FC<ListProps> = ({
 
     const [current, setCurrent] = useState(1);
     const [pageSize, setPageSize] = useState(10);
+    const [filters, setFilters] = useState({});
 
     const { data, isFetching, refetch } = useList(resourceName, {
         pagination: { current, pageSize },
+        filters,
     });
 
     const showEmpty = (!data && !isFetching) || (data && !data.data.length);
@@ -55,7 +57,7 @@ export const List: React.FC<ListProps> = ({
         setCurrent(current || 1);
         setPageSize(pageSize || 10);
 
-        console.log("filters", filters);
+        setFilters(filters);
 
         refetch();
     };
