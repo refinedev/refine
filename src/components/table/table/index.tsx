@@ -35,8 +35,6 @@ export const Table: React.FC<TableProps> = ({
     const history = useHistory();
     const { search } = useLocation();
 
-    console.log("datasource", dataSource)
-
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const { mutate, isLoading } = useDelete(resourceName!);
 
