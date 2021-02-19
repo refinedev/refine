@@ -15,7 +15,6 @@ export const UrlField: React.FC<UrlFieldProps> = ({
     renderRecordKey,
     ...rest
 }) => {
-    console.log("props", rest);
     return (
         <Link {...rest}>
             {renderFieldRecord({
