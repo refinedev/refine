@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { Button, Row, Card } from "antd";
+import { Button, Card } from "antd";
 import { TablePaginationConfig } from "antd/lib/table";
 import { PlusSquareOutlined } from "@ant-design/icons";
 import humanizeString from "humanize-string";
@@ -79,8 +79,8 @@ export const List: React.FC<ListProps> = ({
                 <DefaultEmpty style={{ width: "100%", margin: "20px 0" }} />
             </OptionalComponent>
         ) : (
-                childrenWithProps
-            );
+            childrenWithProps
+        );
 
     const CustomWrapper = () =>
         CustomComponent
