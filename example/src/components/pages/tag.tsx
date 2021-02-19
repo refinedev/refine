@@ -40,10 +40,10 @@ export const TagList = (props: any) => {
 
 export const ListWrapper = (props: any) => {
     return (
-        <div>
-            <span>Custom wrapper</span>
+        <div><span>Custom wrapper</span>
             {props.children}
         </div>
+
     );
 };
 
