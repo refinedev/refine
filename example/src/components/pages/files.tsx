@@ -27,7 +27,6 @@ export const FilesList = (props: any) => {
                     dataIndex="files"
                     title="Image Files"
                     render={(value, record) => {
-                        console.log("value: ", value)
                         return (
                         <FileField record={record} value={value} src="url" title="title" target="_blank" rel="noopener" />
                     )}}
