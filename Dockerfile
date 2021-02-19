@@ -6,7 +6,7 @@ ENV NODE_ENV development
 
 COPY package*.json ./
 
-RUN npm ci
+RUN npm install
 
 COPY . /opt/app
 
@@ -15,7 +15,7 @@ RUN npm run build
 #Example 
 WORKDIR /opt/app/example
 
-RUN npm ci
+RUN npm install
 
 RUN npm run build
 
