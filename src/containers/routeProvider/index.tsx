@@ -8,7 +8,10 @@ import {
     Redirect,
 } from "react-router-dom";
 import { Layout, ErrorComponent } from "@components";
-import { LoginPage as DefaultLoginPage } from "@pages";
+import {
+    LoginPage as DefaultLoginPage,
+    ReadyPage as DefaultReadyPage,
+} from "@pages";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "@interfaces";
 import { OptionalComponent } from "@definitions";
@@ -19,6 +22,7 @@ export interface RouteProviderProps {
     catchAll?: React.ReactNode;
     dashboard?: React.ElementType;
     loginPage?: React.FC | false;
+    ready?: React.FC;
 }
 
 type IRoutesProps = RouteProps & { routes?: RouteProps[] };
@@ -29,6 +33,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     catchAll,
     dashboard,
     loginPage,
+    ready,
 }) => {
     const { isAuthenticated, checkAuth } = useContext<IAuthContext>(
         AuthContext,
