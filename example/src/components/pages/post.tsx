@@ -16,8 +16,9 @@ import {
     TagField,
     ImageField,
     FilterDropdown,
+    RadioInput,
+    RadioGroupInput,
 } from "readmin";
-import { Checkbox } from "antd";
 
 export const PostList = (props: any) => {
     return (
@@ -43,7 +44,11 @@ export const PostList = (props: any) => {
                     title="Title"
                     key="title"
                     render={(value) => <TextField value={value} />}
-                    // filterDropdown={(props) => <TextInputFilter {...props} />}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <TextInput placeholder="Search title" />
+                        </FilterDropdown>
+                    )}
                 />
                 <Column
                     dataIndex="categoryId"
@@ -67,7 +72,7 @@ export const PostList = (props: any) => {
                                 <SelectInput
                                     style={{ minWidth: 200 }}
                                     showSearch
-                                    // mode="multiple"
+                                    mode="multiple"
                                     placeholder="Select Category"
                                 />
                             </ReferenceInput>
@@ -81,10 +86,10 @@ export const PostList = (props: any) => {
                     render={(value) => <TagField value={value} />}
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
-                            <Checkbox.Group>
-                                <Checkbox value="active">Active</Checkbox>
-                                <Checkbox value="draft">Draft</Checkbox>
-                            </Checkbox.Group>
+                            <RadioGroupInput>
+                                <RadioInput value="active">Active</RadioInput>
+                                <RadioInput value="draft">Draft</RadioInput>
+                            </RadioGroupInput>
                         </FilterDropdown>
                     )}
                 />

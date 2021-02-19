@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Button, Space } from "antd";
 import { FilterDropdownProps as AntdFilterDropdownProps } from "antd/lib/table/interface";
 import { FilterOutlined } from "@ant-design/icons";
@@ -34,11 +34,12 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
         return setSelectedKeys([e]);
     };
 
+    const value = selectedKeys.length > 1 ? selectedKeys : selectedKeys[0];
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {
                 onChange,
-                value: selectedKeys,
+                value,
             });
         }
         return child;
@@ -53,6 +54,7 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
                 alignItems: "flex-end",
             }}
         >
+            <span>{JSON.stringify(selectedKeys)}</span>
             <div style={{ marginBottom: 15 }}>{childrenWithProps}</div>
             <Space>
                 <Button type="primary" size="small" onClick={() => onFilter()}>
