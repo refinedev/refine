@@ -49,8 +49,8 @@ describe("<List/>", () => {
         it("should wrap with given component", async () => {
             const { container } = render(
                 <List component={"section"} resourceName="posts">
-                    <Table>
-                        <Column title="Slug" dataIndex="slug" />
+                    <Table rowKey="id">
+                        <Column key="title" title="Title" dataIndex="title" />
                     </Table>
                 </List>,
                 {
