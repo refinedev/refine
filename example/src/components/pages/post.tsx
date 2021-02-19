@@ -15,53 +15,12 @@ import {
     TextField,
     TagField,
     ImageField,
+    TextInputFilter,
 } from "readmin";
 
 export const PostList = (props: any) => {
-    const filters = (
-        <Form
-            name="filter-form"
-            style={{
-                marginBlock: 10,
-            }}
-            layout="inline"
-        >
-            <FormItem label="Search" name="q">
-                <TextInput placeholder="Search" />
-            </FormItem>
-            <FormItem label="Status" name="status" hidden>
-                <SelectInput
-                    allowClear
-                    placeholder="All Status"
-                    options={[
-                        {
-                            label: "Active",
-                            value: "active",
-                        },
-                        {
-                            label: "Draft",
-                            value: "draft",
-                        },
-                    ]}
-                />
-            </FormItem>
-            <FormItem label="Category" name="categoryId" hidden>
-                <ReferenceInput
-                    reference="categories"
-                    optionText="title"
-                    sort={{
-                        field: "title",
-                        order: "asc",
-                    }}
-                >
-                    <SelectInput allowClear placeholder="Select Category" />
-                </ReferenceInput>
-            </FormItem>
-        </Form>
-    );
-
     return (
-        <List {...props} filters={filters}>
+        <List {...props}>
             <Table rowKey="id">
                 <Column dataIndex="id" title="ID" key="id" />
                 <Column
@@ -83,6 +42,7 @@ export const PostList = (props: any) => {
                     title="Title"
                     key="title"
                     render={(value) => <TextField value={value} />}
+                    filterDropdown={(props) => <TextInputFilter {...props} />}
                 />
                 <Column
                     dataIndex="categoryId"
@@ -93,6 +53,7 @@ export const PostList = (props: any) => {
                             <TextField value renderRecordKey="title" />
                         </ReferenceField>
                     )}
+                    filterDropdown={(props) => <TextInputFilter {...props} />}
                 />
                 <Column
                     dataIndex="status"

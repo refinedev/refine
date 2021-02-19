@@ -16,7 +16,6 @@ export interface ListProps {
     canCreate?: boolean;
     canEdit?: boolean;
     canDelete?: boolean;
-    filters?: Record<string, unknown>;
     empty?: React.ComponentType | false;
     component?: React.ComponentType | string;
 }
@@ -26,7 +25,6 @@ export const List: React.FC<ListProps> = ({
     canCreate,
     canEdit,
     canDelete,
-    filters,
     empty,
     children,
     component: CustomComponent,
@@ -59,6 +57,27 @@ export const List: React.FC<ListProps> = ({
         position: ["bottomCenter"],
     };
 
+    const onChange = (pagination: TablePaginationConfig) => {
+        const { current, pageSize } = pagination;
+
+        console.log("current", current);
+        console.log("pageSize", pageSize);
+    };
+
+    // onChange={(pagination, filters, sorter): void => {
+    //                 console.log("filters", filters);
+    //                 console.log("sorter", sorter);
+
+    //                 const { current, pageSize } = pagination;
+    //                 const qsFilters = qs.stringify(filters, {
+    //                     skipNull: true,
+    //                 });
+
+    //                 history.push(
+    //                     `/resources/${resourceName}?current=${current}&perPage=${pageSize}&${qsFilters}?sortFi`,
+    //                 );
+    //             }}
+
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement<TableProps>(child, {
@@ -66,6 +85,7 @@ export const List: React.FC<ListProps> = ({
                 dataSource: data?.data,
                 loading: isFetching,
                 pagination,
+                onChange,
                 canEdit,
                 canDelete,
             });
@@ -109,10 +129,5 @@ export const List: React.FC<ListProps> = ({
         </Card>
     );
 
-    return (
-        <>
-            <Filter resourceName={resourceName}>{filters}</Filter>
-            {CustomComponent ? CustomWrapper() : DefaultWrapper()}
-        </>
-    );
+    return <>{CustomComponent ? CustomWrapper() : DefaultWrapper()}</>;
 };
