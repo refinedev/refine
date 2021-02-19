@@ -1,9 +1,9 @@
 import React from "react";
 import { Image, ImageProps } from "antd";
 
-import { BaseFieldProps } from "@interfaces";
+import { BaseFieldProps } from "../../../interfaces/field";
 
-import { fieldContent } from "@definitions";
+import { renderFieldRecord } from "@definitions";
 
 export type ImageFieldProps = BaseFieldProps &
     ImageProps & {
@@ -11,15 +11,16 @@ export type ImageFieldProps = BaseFieldProps &
     };
 
 export const ImageField: React.FC<ImageFieldProps> = ({
+    value,
     record,
-    source,
+    renderRecordKey,
     imageTitle,
     ...rest
 }) => {
     return (
         <Image
             {...rest}
-            src={fieldContent({ record, source })}
+            src={renderFieldRecord({ value, record, renderRecordKey })}
             title={imageTitle}
         />
     );

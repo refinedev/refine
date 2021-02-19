@@ -5,7 +5,7 @@ import LocalizedFormat from "dayjs/plugin/localizedFormat";
 /* import "dayjs/locale/tr"; */
 
 import { BaseFieldProps } from "@interfaces";
-import { fieldContent } from "@definitions";
+import { renderFieldRecord } from "@definitions";
 
 dayjs.extend(LocalizedFormat);
 /* dayjs.locale("tr"); */
@@ -18,7 +18,14 @@ type DateProps = {
 export type DateFieldProps = BaseFieldProps & DateProps;
 
 export const DateField: React.FC<DateFieldProps> = ({
+    value,
     record,
-    source,
+    renderRecordKey,
     format: dateFormat = "L",
-}) => <div>{dayjs(fieldContent({ record, source })).format(dateFormat)}</div>;
+}) => (
+    <div>
+        {dayjs(renderFieldRecord({ value, record, renderRecordKey })).format(
+            dateFormat,
+        )}
+    </div>
+);

@@ -72,10 +72,7 @@ function App() {
                 create={TagCreate}
                 canDelete
             />
-            <Resource
-              name="images"
-              list={ImagesList}
-            />
+            <Resource name="images" list={ImagesList} />
         </Admin>
     );
 }

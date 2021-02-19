@@ -2,15 +2,23 @@ import React from "react";
 
 import { BaseFieldProps } from "@interfaces";
 
-export const fieldContent = ({ record, source }: BaseFieldProps) => {
-    return record && source ? record[source].toString() : source;
+export const renderFieldRecord = ({
+    value,
+    record,
+    renderRecordKey,
+}: BaseFieldProps): string => {
+    if (record && renderRecordKey && record[renderRecordKey]) {
+        return record[renderRecordKey];
+    }
+
+    return `${value}`;
 };
 
 interface IOptionalComponent {
-    optional?: React.FC | false;
+    optional?: React.ComponentType | false;
 }
 
-export const OptionalComponent: React.FC<IOptionalComponent> = ({
+export const OptionalComponent: React.ComponentType<IOptionalComponent> = ({
     optional,
     children,
 }) => {

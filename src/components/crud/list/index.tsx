@@ -17,7 +17,8 @@ export interface ListProps {
     canEdit?: boolean;
     canDelete?: boolean;
     filters?: Record<string, unknown>;
-    empty?: React.FC | false;
+    empty?: React.ComponentType | false;
+    component?: React.ComponentType | string;
 }
 
 export const List: React.FC<ListProps> = ({
@@ -28,6 +29,7 @@ export const List: React.FC<ListProps> = ({
     filters,
     empty,
     children,
+    component: CustomComponent,
 }) => {
     const searchQuery = useLocation().search;
     const history = useHistory();
@@ -71,40 +73,46 @@ export const List: React.FC<ListProps> = ({
         return child;
     });
 
+    const Content = () =>
+        showEmpty ? (
+            <OptionalComponent optional={empty}>
+                <DefaultEmpty style={{ width: "100%", margin: "20px 0" }} />
+            </OptionalComponent>
+        ) : (
+            childrenWithProps
+        );
+
+    const CustomWrapper = () =>
+        CustomComponent
+            ? React.createElement(CustomComponent ?? null, {}, Content())
+            : null;
+
+    const DefaultWrapper = () => (
+        <Card
+            bodyStyle={{ padding: 0 }}
+            title={humanizeString(resourceName)}
+            extra={
+                canCreate && (
+                    <Button
+                        onClick={(): void =>
+                            history.push(`/resources/${resourceName}/create`)
+                        }
+                        type="default"
+                        icon={<PlusSquareOutlined />}
+                    >
+                        Create
+                    </Button>
+                )
+            }
+        >
+            {Content()}
+        </Card>
+    );
+
     return (
         <>
             <Filter resourceName={resourceName}>{filters}</Filter>
-            <Card
-                bodyStyle={{ padding: 0 }}
-                title={humanizeString(resourceName)}
-                extra={
-                    canCreate && (
-                        <Button
-                            onClick={(): void =>
-                                history.push(
-                                    `/resources/${resourceName}/create`,
-                                )
-                            }
-                            type="default"
-                            icon={<PlusSquareOutlined />}
-                        >
-                            Create
-                        </Button>
-                    )
-                }
-            >
-                <Row>
-                    {showEmpty ? (
-                        <OptionalComponent optional={empty}>
-                            <DefaultEmpty
-                                style={{ width: "100%", margin: "20px 0" }}
-                            />
-                        </OptionalComponent>
-                    ) : (
-                        childrenWithProps
-                    )}
-                </Row>
-            </Card>
+            {CustomComponent ? CustomWrapper() : DefaultWrapper()}
         </>
     );
 };
