@@ -41,6 +41,7 @@ export const FilesList = (props: any) => {
                             />
                         );
                     }}
+
                 />
                 <Column
                     key="url"
@@ -49,7 +50,7 @@ export const FilesList = (props: any) => {
                     render={(value, record) => {
                         return (
                             <UrlField
-                                href={"www.google.com"}
+                                href="www.google.com"
                                 target="_blank"
                                 value={value}
                             />
