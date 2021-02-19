@@ -18,6 +18,11 @@ describe("NumberField", () => {
             <NumberField value={testPrice} locale={locale} options={options} />,
         );
 
-        getByText(testPrice.toLocaleString(locale, options));
+        const formattedTestPrice = testPrice
+            .toLocaleString(locale, options)
+            .replace(String.fromCharCode(160), " ");
+
+        // node 14 uses non-breaking space resulting in imcompatibility
+        getByText(formattedTestPrice);
     });
 });
