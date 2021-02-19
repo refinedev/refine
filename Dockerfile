@@ -2,11 +2,11 @@ FROM node:12-alpine
 
 WORKDIR /opt/app
 
-ENV NODE_ENV production
+ENV NODE_ENV development
 
 COPY package*.json ./
 
-RUN npm install --dev 
+RUN npm install
 
 COPY . /opt/app
 
@@ -15,7 +15,7 @@ RUN npm run build
 #Example 
 WORKDIR /opt/app/example
 
-RUN npm install --dev 
+RUN npm install
 
 RUN npm run build
 

@@ -7,7 +7,7 @@ import {
     waitForElementToBeRemoved,
 } from "@test";
 
-import { Table, Column } from "@components";
+import { Table, Column, TextField } from "@components";
 
 import { List } from "./index";
 

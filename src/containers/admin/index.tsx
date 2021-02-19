@@ -8,6 +8,8 @@ import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
 import { RouteProvider } from "@containers/routeProvider";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
+import { ReadyPage as DefaultReadyPage } from "@pages";
+import { OptionalComponent } from "@definitions";
 
 import { IDataContext, IAuthContext } from "@interfaces";
 
@@ -18,6 +20,7 @@ export interface AdminProps {
     title?: ReactNode;
     loginPage?: React.FC | false;
     dashboard?: React.FC;
+    ready?: React.FC;
 }
 
 export const Admin: React.FC<AdminProps> = ({
@@ -25,9 +28,10 @@ export const Admin: React.FC<AdminProps> = ({
     dataProvider,
     title,
     dashboard,
-    children,
+    ready,
     loginPage,
     catchAll,
+    children,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -46,6 +50,14 @@ export const Admin: React.FC<AdminProps> = ({
         });
     });
 
+    if (resources.length === 0) {
+        return (
+            <OptionalComponent optional={ready}>
+                <DefaultReadyPage />
+            </OptionalComponent>
+        );
+    }
+
     return (
         <QueryClientProvider client={queryClient}>
             <AuthContextProvider {...authProvider}>
@@ -58,6 +70,7 @@ export const Admin: React.FC<AdminProps> = ({
                                 title={title}
                                 dashboard={dashboard}
                                 loginPage={loginPage}
+                                ready={ready}
                             />
                         </Router>
                     </ResourceContextProvider>

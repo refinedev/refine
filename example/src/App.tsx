@@ -7,7 +7,7 @@ import { UserList } from "./components/pages/user";
 import { TagList, TagCreate, TagEdit } from "./components/pages/tag";
 import { ImagesList } from "./components/pages/images";
 import { DashboardPage } from "./components/pages/dashboard";
-
+import { ReadyPage } from './components/ready';
 import { LoginPage } from "./components/login";
 
 function App() {
@@ -45,6 +45,7 @@ function App() {
             dataProvider={JsonServer("https://readmin-fake-rest.pankod.com")}
             loginPage={LoginPage}
             dashboard={DashboardPage}
+            ready={ReadyPage}
         >
             <Resource
                 name="posts"
