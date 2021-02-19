@@ -1,12 +1,10 @@
 import React from "react";
-import { Typography } from "antd";
 import { LinkProps } from "antd/lib/typography/Link";
 
 import { BaseFieldProps } from "../../../interfaces/field";
 
 import { renderFieldRecord } from "@definitions";
-
-const { Link } = Typography;
+import { UrlField } from "@components";
 
 export type FileFieldProps = BaseFieldProps &
     LinkProps & {
@@ -38,13 +36,12 @@ export const FileField: React.FC<FileFieldProps> = ({
 
                     return (
                         <li key={index}>
-                            <Link
+                            <UrlField
+                                value={title ? fileTitleValue : fileUrl}
                                 title={fileTitleValue}
                                 href={fileUrl}
                                 {...rest}
-                            >
-                                {title ? fileTitleValue : fileUrl}
-                            </Link>
+                            />
                         </li>
                     );
                 })}
@@ -60,8 +57,11 @@ export const FileField: React.FC<FileFieldProps> = ({
     });
 
     return (
-        <Link title={titleValue} href={url} {...rest}>
-            {title ? titleValue : url}
-        </Link>
+        <UrlField
+            title={titleValue}
+            href={url}
+            value={title ? titleValue : url}
+            {...rest}
+        />
     );
 };

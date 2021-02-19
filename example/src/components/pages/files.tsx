@@ -1,5 +1,5 @@
 import * as React from "react";
-import { List, Table, Column, FileField } from "readmin";
+import { List, Table, Column, FileField, UrlField } from "readmin";
 
 export const FilesList = (props: any) => {
     return (
@@ -10,16 +10,19 @@ export const FilesList = (props: any) => {
                     key="url"
                     dataIndex="url"
                     title="Image"
-                    render={(value) => (
-                        <FileField value={value} title="File" />
-                    )}
+                    render={(value) => <FileField value={value} title="File" />}
                 />
                 <Column
                     key="url"
                     dataIndex="url"
                     title="Image"
                     render={(value, record) => (
-                        <FileField download record={record} value={value} title="title"/>
+                        <FileField
+                            download
+                            record={record}
+                            value={value}
+                            title="title"
+                        />
                     )}
                 />
                 <Column
@@ -28,8 +31,30 @@ export const FilesList = (props: any) => {
                     title="Image Files"
                     render={(value, record) => {
                         return (
-                        <FileField record={record} value={value} src="url" title="title" target="_blank" rel="noopener" />
-                    )}}
+                            <FileField
+                                record={record}
+                                value={value}
+                                src="url"
+                                title="title"
+                                target="_blank"
+                                rel="noopener"
+                            />
+                        );
+                    }}
+                />
+                <Column
+                    key="url"
+                    dataIndex="url"
+                    title="Image link"
+                    render={(value, record) => {
+                        return (
+                            <UrlField
+                                href={"www.google.com"}
+                                target="_blank"
+                                value={value}
+                            />
+                        );
+                    }}
                 />
             </Table>
         </List>
