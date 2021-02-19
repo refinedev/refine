@@ -43,7 +43,7 @@ export const FileField: React.FC<FileFieldProps> = ({
                                 href={fileUrl}
                                 {...rest}
                             >
-                                {fileTitleValue}
+                                {title ? fileTitleValue : fileUrl}
                             </Link>
                         </li>
                     );
@@ -61,7 +61,7 @@ export const FileField: React.FC<FileFieldProps> = ({
 
     return (
         <Link title={titleValue} href={url} {...rest}>
-            {titleValue}
+            {title ? titleValue : url}
         </Link>
     );
 };
