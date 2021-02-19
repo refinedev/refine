@@ -2,13 +2,13 @@ import React from "react";
 import dayjs from "dayjs";
 
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
-import "dayjs/locale/tr";
+/* import "dayjs/locale/tr"; */
 
 import { BaseFieldProps } from "@interfaces";
 import { fieldContent } from "@definitions";
 
 dayjs.extend(LocalizedFormat);
-dayjs.locale("tr");
+/* dayjs.locale("tr"); */
 
 type DateProps = {
     locales?: string;
