@@ -26,8 +26,6 @@ export const NumberField: React.FC<NumberFieldProps> = ({
     options,
     ...rest
 }) => {
-    console.log("locale ", locale);
-    console.log("options ", options);
     return (
         <Text {...rest}>
             {toLocaleStringSupportsOptions()
