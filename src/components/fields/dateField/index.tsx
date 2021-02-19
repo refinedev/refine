@@ -2,7 +2,6 @@ import React from "react";
 import dayjs from "dayjs";
 
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
-/* import "dayjs/locale/tr"; */
 
 import { BaseFieldProps } from "@interfaces";
 import { renderFieldRecord } from "@definitions";
