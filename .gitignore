@@ -5,6 +5,7 @@ node_modules
 dist
 .rpt2_cache
 .vscode
+.husky
 
 # misc
 .DS_Store

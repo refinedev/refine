@@ -9,6 +9,7 @@ import { TableProps } from "@components/table";
 import { useList } from "@hooks";
 import { DefaultEmpty } from "./components";
 import { OptionalComponent } from "@definitions";
+
 export interface ListProps {
     resourceName: string;
     canCreate?: boolean;

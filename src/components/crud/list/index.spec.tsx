@@ -7,7 +7,7 @@ import {
     waitForElementToBeRemoved,
 } from "@test";
 
-import { Table, Column } from "@components";
+import { Table, Column, TextField } from "@components";
 
 import { List } from "./index";
 
@@ -49,8 +49,8 @@ describe("<List/>", () => {
         it("should wrap with given component", async () => {
             const { container } = render(
                 <List component={"section"} resourceName="posts">
-                    <Table>
-                        <TextField title="Slug" source="slug" />
+                    <Table rowKey="id">
+                        <Column key="title" title="Title" dataIndex="title" />
                     </Table>
                 </List>,
                 {
