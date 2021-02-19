@@ -12,7 +12,7 @@ export interface ReferenceInputProps {
     pageSize?: number;
     sort?: Sort;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    filter?: { [k: string]: any };
+    filters?: Record<string, (string | number | boolean)[] | null>;
 }
 
 interface Option {
@@ -28,7 +28,7 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
     optionValue = "id",
     pageSize = 999,
     sort,
-    filter,
+    filters,
     children,
 }) => {
     const [search, setSearch] = React.useState<string | undefined>();
@@ -39,7 +39,7 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
         {
             search,
             sort,
-            filter,
+            filters,
             pagination: {
                 pageSize,
             },
