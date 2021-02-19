@@ -8,7 +8,8 @@ import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
 import { RouteProvider } from "@containers/routeProvider";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
-import { ReadyPage } from "@pages";
+import { ReadyPage as DefaultReadyPage } from "@pages";
+import { OptionalComponent } from "@definitions";
 
 import { IDataContext, IAuthContext } from "@interfaces";
 
@@ -50,7 +51,11 @@ export const Admin: React.FC<AdminProps> = ({
     });
 
     if (resources.length === 0) {
-        return <ReadyPage />;
+        return (
+            <OptionalComponent optional={ready}>
+                <DefaultReadyPage />
+            </OptionalComponent>
+        );
     }
 
     return (
