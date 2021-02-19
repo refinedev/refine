@@ -1,6 +1,7 @@
 import React from "react";
-import { Button } from "antd";
+import { Button, Row, Col, Space } from "antd";
 import { FilterDropdownProps as AntdFilterDropdownProps } from "antd/lib/table/interface";
+import { FilterOutlined } from "@ant-design/icons";
 
 export type FilterDropdownProps = AntdFilterDropdownProps & {};
 
@@ -34,10 +35,23 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
     });
 
     return (
-        <>
-            {childrenWithProps}
-            <Button onClick={() => onFilter()}>Filter</Button>
-            <Button onClick={() => clearFilter()}>Clear</Button>
-        </>
+        <div
+            style={{
+                padding: 10,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-end",
+            }}
+        >
+            <div style={{ marginBottom: 15 }}>{childrenWithProps}</div>
+            <Space>
+                <Button type="primary" size="small" onClick={() => onFilter()}>
+                    <FilterOutlined /> Filter
+                </Button>
+                <Button danger size="small" onClick={() => clearFilter()}>
+                    Clear
+                </Button>
+            </Space>
+        </div>
     );
 };
