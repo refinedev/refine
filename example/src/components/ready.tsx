@@ -18,8 +18,13 @@ export const ReadyPage: React.FC = () => {
             <Col style={{ textAlign: "center" }}>
                 <Title>readmin</Title>
                 <Title level={2}>Welcome to readmin</Title>
-                <p style={{ marginBottom: 0 }}>Your application is properly configured.</p>
-                <p>Now you can add a &lt;Resource&gt; as child of &lt;Admin&gt;.</p>
+                <p style={{ marginBottom: 0 }}>
+                    Your application is properly configured.
+                </p>
+                <p>
+                    Now you can add a &lt;Resource&gt; as child of
+                    &lt;Admin&gt;.
+                </p>
             </Col>
         </Row>
     );
