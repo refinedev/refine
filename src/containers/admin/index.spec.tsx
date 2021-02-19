@@ -3,6 +3,7 @@ import React from "react";
 import { ReadyPage } from "@pages";
 
 import { render, MockJSONServer } from "@test";
+import { Row } from "antd";
 
 import { Admin } from "./index";
 
@@ -41,5 +42,28 @@ describe("Admin Container", () => {
             />,
         );
         expect(ReadyPage).toBeTruthy();
+    });
+
+    it("should render correctly readyPage with ready prop", async () => {
+        const readyPage = () => {
+            return (
+                <Row
+                    align="middle"
+                    justify="center"
+                    data-testid="readyContainer"
+                >
+                    <p>readyPage rendered with ready prop</p>
+                </Row>
+            );
+        };
+        const { getByTestId, getByText } = render(
+            <Admin
+                authProvider={mockAuthProvider}
+                dataProvider={MockJSONServer}
+                ready={readyPage}
+            />,
+        );
+        expect(getByTestId("readyContainer")).toBeTruthy();
+        getByText("readyPage rendered with ready prop");
     });
 });
