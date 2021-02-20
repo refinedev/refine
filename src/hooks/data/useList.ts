@@ -6,6 +6,7 @@ import {
     GetListResponse,
     IDataContext,
     Sort,
+    Filters,
     Pagination,
     BaseRecord,
 } from "@interfaces";
@@ -14,7 +15,7 @@ interface UseListConfig {
     pagination?: Pagination;
     search?: string;
     sort?: Sort;
-    filters?: Record<string, (string | number | boolean)[] | null>;
+    filters?: Filters;
 }
 
 const defaultConfig: UseListConfig = {

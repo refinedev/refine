@@ -8,6 +8,7 @@ import humanizeString from "humanize-string";
 import { TableProps } from "@components/table";
 import { useList } from "@hooks";
 import { DefaultEmpty } from "./components";
+import { Sort, Filters } from "@interfaces";
 import { OptionalComponent } from "@definitions";
 
 export interface ListProps {
@@ -32,11 +33,13 @@ export const List: React.FC<ListProps> = ({
 
     const [current, setCurrent] = useState(1);
     const [pageSize, setPageSize] = useState(10);
-    const [filters, setFilters] = useState({});
+    const [filters, setFilters] = useState<Filters>({});
+    const [sort, setSort] = useState<Sort>({});
 
     const { data, isFetching, refetch } = useList(resourceName, {
         pagination: { current, pageSize },
         filters,
+        sort,
     });
 
     const showEmpty = (!data && !isFetching) || (data && !data.data.length);
@@ -52,13 +55,15 @@ export const List: React.FC<ListProps> = ({
 
     const onChange = (
         pagination: TablePaginationConfig,
-        filters: Record<string, (string | number | boolean)[] | null>,
+        filters: Filters,
+        sorter: Sort,
     ) => {
         const { current, pageSize } = pagination;
         setCurrent(current || 1);
         setPageSize(pageSize || 10);
 
         setFilters(filters);
+        setSort(sorter);
 
         refetch();
     };

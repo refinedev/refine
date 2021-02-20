@@ -44,6 +44,18 @@ export const PostList = (props: any) => {
                     title="Title"
                     key="title"
                     render={(value) => <TextField value={value} />}
+                    sorter={{
+                        multiple: 1,
+                    }}
+                />
+                <Column
+                    dataIndex="slug"
+                    title="Slug"
+                    key="slug"
+                    render={(value) => <TextField value={value} />}
+                    sorter={{
+                        multiple: 2,
+                    }}
                 />
                 <Column
                     dataIndex="categoryId"
