@@ -1,5 +1,5 @@
 import * as React from "react";
-import { List, Table, Column, EmailField, TagField } from "readmin";
+import { List, Table, Column, EmailField, TagField, DateField } from "readmin";
 
 export const UserList = (props: any) => {
     return (
@@ -23,6 +23,13 @@ export const UserList = (props: any) => {
                     dataIndex="email"
                     title="Email"
                     render={(value) => <EmailField value={value} />}
+                />
+
+                <Column
+                    key="birthday"
+                    dataIndex="birthday"
+                    title="Birthday"
+                    render={(value) => <DateField value={value} />}
                 />
             </Table>
         </List>
