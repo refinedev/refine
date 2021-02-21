@@ -1,5 +1,5 @@
 import React from "react";
-import { TextProps } from 'antd/lib/typography/Text';
+import { TextProps } from "antd/lib/typography/Text";
 import { Typography, Tooltip } from "antd";
 
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
@@ -8,12 +8,13 @@ import { BaseFieldProps } from "../../../interfaces/field";
 
 import { renderFieldRecord } from "@definitions";
 
-export type BooleanFieldProps = BaseFieldProps & TextProps & {
-    valueLabelTrue?: string;
-    valueLabelFalse?: string;
-    TrueIcon?: React.FC | object;
-    FalseIcon?: React.FC | object;
-};
+export type BooleanFieldProps = BaseFieldProps &
+    TextProps & {
+        valueLabelTrue?: string;
+        valueLabelFalse?: string;
+        TrueIcon?: React.FC | object;
+        FalseIcon?: React.FC | object;
+    };
 
 const { Text } = Typography;
 
@@ -27,7 +28,6 @@ export const BooleanField: React.FC<BooleanFieldProps> = ({
     FalseIcon = <CloseOutlined />,
     ...rest
 }) => {
-
     if (value === false || value === true) {
         return (
             <Text {...rest}>
@@ -35,8 +35,8 @@ export const BooleanField: React.FC<BooleanFieldProps> = ({
                     {value === true ? (
                         <span>{TrueIcon}</span>
                     ) : (
-                            <span>{FalseIcon}</span>
-                        )}
+                        <span>{FalseIcon}</span>
+                    )}
                 </Tooltip>
             </Text>
         );
