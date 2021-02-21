@@ -25,6 +25,7 @@ export const FilesList = (props: any) => {
                         />
                     )}
                 />
+
                 <Column
                     key="files"
                     dataIndex="files"
@@ -41,18 +42,18 @@ export const FilesList = (props: any) => {
                             />
                         );
                     }}
-
                 />
+
                 <Column
                     key="url"
                     dataIndex="url"
-                    title="Image link"
-                    render={(value, record) => {
+                    title="Test UrlField"
+                    render={(value) => {
                         return (
                             <UrlField
-                                href="www.google.com"
-                                target="_blank"
                                 value={value}
+                                target="_blank"
+                                title="test title"
                             />
                         );
                     }}
