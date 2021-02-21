@@ -1,5 +1,14 @@
 import * as React from "react";
-import { List, Table, Column, EmailField, TagField } from "readmin";
+import {
+    List,
+    Table,
+    Column,
+    EmailField,
+    TagField,
+    BooleanField,
+} from "readmin";
+import { EditOutlined } from "@ant-design/icons";
+
 
 export const UserList = (props: any) => {
     return (
@@ -23,6 +32,12 @@ export const UserList = (props: any) => {
                     dataIndex="email"
                     title="Email"
                     render={(value) => <EmailField value={value} />}
+                />
+                <Column
+                    dataIndex="status"
+                    title="Status"
+                    key="boolean"
+                    render={(value) => <BooleanField value={value} />}
                 />
             </Table>
         </List>
