@@ -10,19 +10,18 @@ const { Link } = Typography;
 export type UrlFieldProps = BaseFieldProps & LinkProps;
 
 export const UrlField: React.FC<UrlFieldProps> = ({
+    children,
     value,
     record,
     renderRecordKey,
     ...rest
 }) => {
-    console.log("props", rest);
     return (
-        <Link {...rest}>
-            {renderFieldRecord({
-                value,
-                record,
-                renderRecordKey,
-            })}
+        <Link
+            href={renderFieldRecord({ value, record, renderRecordKey })}
+            {...rest}
+        >
+            {children ?? renderFieldRecord({ value, record, renderRecordKey })}
         </Link>
     );
 };
