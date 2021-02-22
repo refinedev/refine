@@ -1,4 +1,5 @@
 import React from "react";
+import { get } from "lodash";
 
 import { BaseFieldProps } from "@interfaces";
 
@@ -7,11 +8,16 @@ export const renderFieldRecord = ({
     record,
     renderRecordKey,
 }: BaseFieldProps): string => {
-    if (record && renderRecordKey && record[renderRecordKey]) {
-        return record[renderRecordKey];
+    if (record && renderRecordKey) {
+        const recordValue = get(record, renderRecordKey);
+        if (recordValue) {
+            return recordValue;
+        } else {
+            throw new Error("undefined record or renderRecordKey");
+        }
     }
 
-    return `${value}`;
+    return value;
 };
 
 interface IOptionalComponent {
