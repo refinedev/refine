@@ -52,8 +52,6 @@ export const FileField: React.FC<FileFieldProps> = ({
     const url = renderFieldRecord({ value, record, renderRecordKey });
     const titleValue = renderFieldRecord({
         value: title,
-        record,
-        renderRecordKey: title,
     });
 
     return (

@@ -18,7 +18,7 @@ describe("UrlField", () => {
         const record = { id: 1, source: { path: url } };
 
         const { getByText } = render(
-            <UrlField value record={record} renderRecordKey="source.path" />,
+            <UrlField record={record} renderRecordKey="source.path" />,
         );
 
         const link = getByText(url) as HTMLAnchorElement;
