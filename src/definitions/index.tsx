@@ -13,7 +13,7 @@ export const renderFieldRecord = ({
         if (recordValue) {
             return recordValue;
         } else {
-            throw new Error("undefined record or renderRecordKey");
+            throw new Error("undefined record or renderRecordKey value");
         }
     }
 
