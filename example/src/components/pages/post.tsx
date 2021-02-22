@@ -18,26 +18,28 @@ import {
     FilterDropdown,
     RadioInput,
     RadioGroupInput,
+    Empty,
 } from "readmin";
 
 export const PostList = (props: any) => {
     return (
         <List {...props}>
-            <Table rowKey="id">
-                <Column dataIndex="id" title="ID" key="id" />
+            <Table
+                rowKey="id"
+                pagination={{
+                    pageSize: 20,
+                    position: ["bottomCenter"],
+                    size: "small",
+                }}
+            >
                 <Column
-                    key="image"
-                    title="Image"
-                    dataIndex="image"
-                    render={(value) => (
-                        <ImageField
-                            value={value}
-                            title="Image"
-                            imageTitle="meow"
-                            width={100}
-                            data-testid="image"
-                        />
-                    )}
+                    dataIndex="id"
+                    title="ID"
+                    key="id"
+                    sorter={{
+                        multiple: 3,
+                    }}
+                    defaultSortOrder="descend"
                 />
                 <Column
                     dataIndex="title"
@@ -63,7 +65,7 @@ export const PostList = (props: any) => {
                     key="categoryId"
                     render={(value) => (
                         <ReferenceField resource="categories" value={value}>
-                            <TextField value renderRecordKey="title" />
+                            <TextField renderRecordKey="title" />
                         </ReferenceField>
                     )}
                     filterDropdown={(props) => (
@@ -99,6 +101,7 @@ export const PostList = (props: any) => {
                             </RadioGroupInput>
                         </FilterDropdown>
                     )}
+                    defaultFilteredValue={["active"]}
                 />
             </Table>
         </List>

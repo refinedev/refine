@@ -1,5 +1,5 @@
 import * as React from "react";
-import { List, Table, Column, FileField } from "readmin";
+import { List, Table, Column, FileField, UrlField } from "readmin";
 
 export const FilesList = (props: any) => {
     return (
@@ -25,6 +25,7 @@ export const FilesList = (props: any) => {
                         />
                     )}
                 />
+
                 <Column
                     key="files"
                     dataIndex="files"
@@ -38,6 +39,21 @@ export const FilesList = (props: any) => {
                                 title="title"
                                 target="_blank"
                                 rel="noopener"
+                            />
+                        );
+                    }}
+                />
+
+                <Column
+                    key="url"
+                    dataIndex="url"
+                    title="Test UrlField"
+                    render={(value) => {
+                        return (
+                            <UrlField
+                                value={value}
+                                target="_blank"
+                                title="test title"
                             />
                         );
                     }}

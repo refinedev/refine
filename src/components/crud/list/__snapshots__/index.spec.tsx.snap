@@ -107,7 +107,7 @@ exports[`<List/> JSON Rest Server renders given data 1`] = `
               </div>
             </div>
             <ul
-              class="ant-pagination ant-table-pagination ant-table-pagination-center"
+              class="ant-pagination ant-table-pagination ant-table-pagination-right"
               unselectable="unselectable"
             >
               <li

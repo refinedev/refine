@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Table as AntdTable, Button, Space, Popconfirm } from "antd";
 import {
     TablePaginationConfig,
@@ -8,33 +8,70 @@ import { useHistory } from "react-router-dom";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 import { Column } from "@components";
-import { BaseRecord } from "@interfaces";
-import { useDelete } from "@hooks";
+import { Filters, Sort } from "@interfaces";
+import { useDelete, useList } from "@hooks";
+import {
+    getDefaultSortOrder,
+    getDefaultFilteredValue,
+} from "@definitions/table";
 
 export interface TableProps extends AntdTableProps<any> {
     resourceName?: string;
-    dataSource?: BaseRecord[];
-    loading?: boolean;
-    pagination?: false | TablePaginationConfig;
     canEdit?: boolean;
     canDelete?: boolean;
-    onConfirmDelete?: (id: string | number) => void;
 }
 
 export const Table: React.FC<TableProps> = ({
     resourceName,
-    dataSource,
-    loading,
     pagination,
     canEdit,
     canDelete,
     children,
     ...rest
 }) => {
+    const defaultCurrent = 1;
+    const defaultPageSize = 10;
+
     const history = useHistory();
 
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const { mutate, isLoading } = useDelete(resourceName!);
+    if (!resourceName) {
+        throw new Error(`resource not found!`);
+    }
+
+    const { mutate, isLoading } = useDelete(resourceName);
+
+    const [current, setCurrent] = useState(
+        (pagination && pagination.current) || defaultCurrent,
+    );
+    const [pageSize, setPageSize] = useState(
+        (pagination && pagination.pageSize) || defaultPageSize,
+    );
+
+    const [sort, setSort] = useState<Sort>(getDefaultSortOrder(children));
+    const [filters, setFilters] = useState<Filters>(
+        getDefaultFilteredValue(children),
+    );
+
+    const { data, isFetching, refetch } = useList(resourceName, {
+        pagination: { current, pageSize },
+        filters,
+        sort,
+    });
+
+    const onChange = (
+        pagination: TablePaginationConfig,
+        filters: Filters,
+        sorter: Sort,
+    ) => {
+        const { current, pageSize } = pagination;
+        setCurrent(current || defaultCurrent);
+        setPageSize(pageSize || defaultPageSize);
+
+        setFilters(filters);
+        setSort(sorter);
+
+        refetch();
+    };
 
     const renderDeleteButton = (id: number | string): React.ReactNode => {
         return (
@@ -102,9 +139,15 @@ export const Table: React.FC<TableProps> = ({
         <>
             <AntdTable
                 style={{ width: "100%" }}
-                dataSource={dataSource}
-                loading={loading}
-                pagination={pagination}
+                dataSource={data?.data}
+                loading={isFetching}
+                pagination={{
+                    ...pagination,
+                    current,
+                    pageSize,
+                    total: data?.total,
+                }}
+                onChange={onChange}
                 {...rest}
             >
                 {children}

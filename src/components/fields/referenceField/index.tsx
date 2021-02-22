@@ -7,9 +7,9 @@ import { GetOneResponse, IDataContext } from "@interfaces";
 import { renderFieldRecord } from "@definitions";
 import { BaseFieldProps } from "../../../interfaces/field";
 
-export interface ReferenceFieldProps extends BaseFieldProps {
+export type ReferenceFieldProps = BaseFieldProps & {
     resource: string;
-}
+};
 
 export const ReferenceField: React.FC<ReferenceFieldProps> = ({
     resource,

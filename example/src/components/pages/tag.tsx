@@ -14,7 +14,7 @@ import {
 
 export const TagList = (props: any) => {
     return (
-        <List {...props} component={ListWrapper}>
+        <List {...props}>
             <Table rowKey="id">
                 <Column key="id" dataIndex="id" title="ID" />
                 <Column key="title" dataIndex="title" title="Title" />
@@ -25,7 +25,6 @@ export const TagList = (props: any) => {
                     render={(value) => (
                         <ReferenceField resource="images" value={value}>
                             <ImageField
-                                value
                                 renderRecordKey="url"
                                 imageTitle="meow"
                                 width={200}
@@ -35,15 +34,6 @@ export const TagList = (props: any) => {
                 />
             </Table>
         </List>
-    );
-};
-
-export const ListWrapper = (props: any) => {
-    return (
-        <div>
-            <span>Custom wrapper</span>
-            {props.children}
-        </div>
     );
 };
 

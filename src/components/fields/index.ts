@@ -6,4 +6,5 @@ export { ImageField } from "./imageField";
 export { BooleanField } from "./booleanField";
 export { DateField } from "./dateField";
 export { FileField } from "./fileField";
+export { UrlField } from "./urlField";
 export { NumberField } from "./numberField";
