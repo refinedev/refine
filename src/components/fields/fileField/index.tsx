@@ -36,9 +36,7 @@ export const FileField: React.FC<FileFieldProps> = ({
                     return (
                         <li key={index}>
                             <UrlField
-                                value={src}
-                                record={file}
-                                renderRecordKey={src}
+                                value={fileUrl}
                                 title={fileTitleValue}
                                 {...rest}
                             >
@@ -59,13 +57,7 @@ export const FileField: React.FC<FileFieldProps> = ({
     });
 
     return (
-        <UrlField
-            value={value}
-            record={record}
-            renderRecordKey={renderRecordKey}
-            title={titleValue}
-            {...rest}
-        >
+        <UrlField value={url} title={titleValue} {...rest}>
             {title ? titleValue : url}
         </UrlField>
     );
