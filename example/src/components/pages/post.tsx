@@ -115,7 +115,7 @@ export const PostList = (props: any) => {
                             </RadioGroupInput>
                         </FilterDropdown>
                     )}
-                    defaultFilteredValue={["activex"]}
+                    defaultFilteredValue={["active"]}
                 />
             </Table>
         </List>
