@@ -7,7 +7,7 @@ import {
     waitForElementToBeRemoved,
 } from "@test";
 
-import { Table, Column, TextField } from "@components";
+import { Table, Column } from "@components";
 
 import { List } from "./index";
 
@@ -46,21 +46,21 @@ describe("<List/>", () => {
             expect(container).toMatchSnapshot();
         });
 
-        it("should wrap with given component", async () => {
-            const { container } = render(
-                <List component={"section"} resourceName="posts">
-                    <Table rowKey="id">
-                        <Column key="title" title="Title" dataIndex="title" />
-                    </Table>
-                </List>,
-                {
-                    wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [{ name: "posts" }],
-                    }),
-                },
-            );
-            expect(container.querySelector("section")).toBeTruthy();
-        });
+        // xit("should wrap with given component", async () => {
+        //     const { container } = render(
+        //         <List component={"section"} resourceName="posts">
+        //             <Table rowKey="id">
+        //                 <Column key="title" title="Title" dataIndex="title" />
+        //             </Table>
+        //         </List>,
+        //         {
+        //             wrapper: TestWrapper({
+        //                 dataProvider: MockJSONServer,
+        //                 resources: [{ name: "posts" }],
+        //             }),
+        //         },
+        //     );
+        //     expect(container.querySelector("section")).toBeTruthy();
+        // });
     });
 });
