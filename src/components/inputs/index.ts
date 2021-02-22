@@ -5,3 +5,4 @@ export { CheckboxInput, CheckboxGroupInput } from "./checkboxInput";
 export { AutoCompleteInput } from "./autocompleteInput";
 export { ReferenceInput } from "./referenceInput";
 export { BooleanInput } from "./booleanInput";
+export { NullableBooleanInput } from "./nullableBooleanInput";

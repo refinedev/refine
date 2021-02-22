@@ -11,6 +11,7 @@ import {
     FormItem,
     BooleanInput,
     TextInput,
+    NullableBooleanInput,
 } from "readmin";
 
 export const UserList = (props: any) => {
@@ -63,15 +64,14 @@ export const UserEdit = (props: any) => {
                 >
                     <TextInput />
                 </FormItem>
-                <FormItem
-                    label="Status"
-                    name="status"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
+                <FormItem label="Status" name="status">
+                    <NullableBooleanInput
+                        falseLabel="False"
+                        trueLabel="True"
+                        nullLabel="Null"
+                    />
+                </FormItem>
+                <FormItem label="Status" name="status">
                     <BooleanInput />
                 </FormItem>
             </Form>
