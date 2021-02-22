@@ -7,7 +7,6 @@ import {
     TagField,
     BooleanField,
 } from "readmin";
-import { EditOutlined } from "@ant-design/icons";
 
 export const UserList = (props: any) => {
     return (

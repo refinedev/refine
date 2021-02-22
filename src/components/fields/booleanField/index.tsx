@@ -1,6 +1,6 @@
 import React from "react";
-import { TextProps } from "antd/lib/typography/Text";
-import { Typography, Tooltip } from "antd";
+import { TooltipProps } from "antd/lib/tooltip";
+import { Tooltip } from "antd";
 
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 
@@ -9,14 +9,12 @@ import { BaseFieldProps } from "../../../interfaces/field";
 import { renderFieldRecord } from "@definitions";
 
 export type BooleanFieldProps = BaseFieldProps &
-    TextProps & {
+    TooltipProps & {
         valueLabelTrue?: string;
         valueLabelFalse?: string;
         TrueIcon?: React.FC | object;
         FalseIcon?: React.FC | object;
     };
-
-const { Text } = Typography;
 
 export const BooleanField: React.FC<BooleanFieldProps> = ({
     value,
@@ -28,23 +26,16 @@ export const BooleanField: React.FC<BooleanFieldProps> = ({
     FalseIcon = <CloseOutlined />,
     ...rest
 }) => {
-    if (value === false || value === true) {
-        return (
-            <Text {...rest}>
-                <Tooltip title={value ? valueLabelTrue : valueLabelFalse}>
-                    {value === true ? (
-                        <span>{TrueIcon}</span>
-                    ) : (
-                        <span>{FalseIcon}</span>
-                    )}
-                </Tooltip>
-            </Text>
-        );
-    }
+    const recordValue = Boolean(
+        renderFieldRecord({ value, record, renderRecordKey }),
+    );
 
     return (
-        <Text {...rest}>
-            {renderFieldRecord({ value, record, renderRecordKey }) && ""}
-        </Text>
+        <Tooltip
+            title={recordValue ? valueLabelTrue : valueLabelFalse}
+            {...rest}
+        >
+            {recordValue ? <span>{TrueIcon}</span> : <span>{FalseIcon}</span>}
+        </Tooltip>
     );
 };
