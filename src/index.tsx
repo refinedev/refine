@@ -8,7 +8,7 @@ export * from "./components/fields";
 export * from "./components/table";
 export * from "./components/crud";
 
-export { Layout, Authenticated } from "./components";
+export { Layout, Authenticated, Empty } from "./components";
 
 export * from "./hooks";
 
