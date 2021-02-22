@@ -1,22 +1,21 @@
-import React from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Button, Card } from "antd";
 import { TablePaginationConfig } from "antd/lib/table";
 import { PlusSquareOutlined } from "@ant-design/icons";
 import humanizeString from "humanize-string";
-import qs from "query-string";
 
-import { Filter } from "@containers";
 import { TableProps } from "@components/table";
 import { useList } from "@hooks";
 import { DefaultEmpty } from "./components";
+import { Sort, Filters } from "@interfaces";
 import { OptionalComponent } from "@definitions";
+
 export interface ListProps {
     resourceName: string;
     canCreate?: boolean;
     canEdit?: boolean;
     canDelete?: boolean;
-    filters?: Record<string, unknown>;
     empty?: React.ComponentType | false;
     component?: React.ComponentType | string;
 }
@@ -26,26 +25,21 @@ export const List: React.FC<ListProps> = ({
     canCreate,
     canEdit,
     canDelete,
-    filters,
     empty,
     children,
     component: CustomComponent,
 }) => {
-    const searchQuery = useLocation().search;
     const history = useHistory();
 
-    const parsedSearchQuery = qs.parse(searchQuery);
+    const [current, setCurrent] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
+    const [filters, setFilters] = useState<Filters>({});
+    const [sort, setSort] = useState<Sort>({});
 
-    const { q, ...filter } = parsedSearchQuery;
-    let { current = 1, pageSize = 10 } = parsedSearchQuery;
-
-    current = Number(current);
-    pageSize = Number(pageSize);
-
-    const { data, isFetching } = useList(resourceName, {
+    const { data, isFetching, refetch } = useList(resourceName, {
         pagination: { current, pageSize },
-        search: q as string | undefined,
-        filter: filter as Record<string, unknown> | undefined,
+        filters,
+        sort,
     });
 
     const showEmpty = (!data && !isFetching) || (data && !data.data.length);
@@ -59,6 +53,21 @@ export const List: React.FC<ListProps> = ({
         position: ["bottomCenter"],
     };
 
+    const onChange = (
+        pagination: TablePaginationConfig,
+        filters: Filters,
+        sorter: Sort,
+    ) => {
+        const { current, pageSize } = pagination;
+        setCurrent(current || 1);
+        setPageSize(pageSize || 10);
+
+        setFilters(filters);
+        setSort(sorter);
+
+        refetch();
+    };
+
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement<TableProps>(child, {
@@ -66,6 +75,7 @@ export const List: React.FC<ListProps> = ({
                 dataSource: data?.data,
                 loading: isFetching,
                 pagination,
+                onChange,
                 canEdit,
                 canDelete,
             });
@@ -109,10 +119,5 @@ export const List: React.FC<ListProps> = ({
         </Card>
     );
 
-    return (
-        <>
-            <Filter resourceName={resourceName}>{filters}</Filter>
-            {CustomComponent ? CustomWrapper() : DefaultWrapper()}
-        </>
-    );
+    return <>{CustomComponent ? CustomWrapper() : DefaultWrapper()}</>;
 };

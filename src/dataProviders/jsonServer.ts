@@ -15,22 +15,42 @@ const JsonServer = (apiUrl: string): IDataContext => ({
         const pageSize = params.pagination?.pageSize || 10;
 
         // sort
-        const field = params.sort?.field || "id";
-        const order = params.sort?.order || "DESC";
+        let _sort = ["id"]; // default sorting field
+        let _order = ["desc"]; // default sorting
+
+        const { sort } = params;
+
+        if (Array.isArray(sort) || sort?.field) {
+            _sort = [];
+            _order = [];
+
+            if (Array.isArray(sort)) {
+                sort.map((item) => {
+                    _sort.push(`${item.field}`);
+                    _order.push(`${item.order}`.replace("end", "")); // replace -> [ascend, descend] -> [asc,desc]
+                });
+            } else {
+                _sort.push(`${sort.field}`);
+                _order.push(`${sort.order}`.replace("end", "")); // replace -> [ascend, descend] -> [asc,desc]
+            }
+        }
 
         // filter
-        const filter = params.filter;
+        const filters = stringify(params.filters || {}, {
+            skipNull: true,
+        });
 
         const query = {
-            ...filter,
             _start: (current - 1) * pageSize,
             _end: current * pageSize,
-            _sort: field,
-            _order: order,
+            _sort: _sort.join(","),
+            _order: _order.join(","),
             q,
         };
 
-        const { data, headers } = await axios.get(`${url}?${stringify(query)}`);
+        const { data, headers } = await axios.get(
+            `${url}?${stringify(query)}&${filters}`,
+        );
 
         const total = +headers["x-total-count"];
 

@@ -1,3 +1,5 @@
+import { SorterResult } from "antd/lib/table/interface";
+
 export type Identifier = string | number;
 
 export interface BaseRecord {
@@ -11,10 +13,9 @@ export interface Pagination {
     pageSize?: number;
 }
 
-export interface Sort {
-    field?: string;
-    order?: string;
-}
+export type Sort = SorterResult<any> | SorterResult<any>[];
+
+export type Filters = Record<string, (string | number | boolean)[] | null>;
 
 export interface GetListResponse<TData extends BaseRecord = BaseRecord> {
     data: TData[];
@@ -56,7 +57,7 @@ export interface IDataContext {
             pagination?: Pagination;
             search?: string;
             sort?: Sort;
-            filter?: object;
+            filters?: Filters;
         },
     ) => Promise<GetListResponse<TData>>;
     getMany: <TData extends BaseRecord = BaseRecord>(

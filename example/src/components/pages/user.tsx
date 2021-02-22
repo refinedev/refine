@@ -6,6 +6,7 @@ import {
     EmailField,
     TagField,
     BooleanField,
+    DateField,
 } from "readmin";
 
 export const UserList = (props: any) => {
@@ -36,6 +37,12 @@ export const UserList = (props: any) => {
                     title="Status"
                     key="boolean"
                     render={(value) => <BooleanField value={value} />}
+                />
+                <Column
+                    key="birthday"
+                    dataIndex="birthday"
+                    title="Birthday"
+                    render={(value) => <DateField value={value} />}
                 />
             </Table>
         </List>
