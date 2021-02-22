@@ -12,8 +12,8 @@ export type BooleanFieldProps = BaseFieldProps &
     AbstractTooltipProps & {
         valueLabelTrue?: string;
         valueLabelFalse?: string;
-        TrueIcon?: React.FC | object;
-        FalseIcon?: React.FC | object;
+        trueIcon?: React.FC | object;
+        falseIcon?: React.FC | object;
     };
 
 export const BooleanField: React.FC<BooleanFieldProps> = ({
@@ -22,8 +22,8 @@ export const BooleanField: React.FC<BooleanFieldProps> = ({
     renderRecordKey,
     valueLabelTrue = "true",
     valueLabelFalse = "false",
-    TrueIcon = <CheckOutlined />,
-    FalseIcon = <CloseOutlined />,
+    trueIcon = <CheckOutlined />,
+    falseIcon = <CloseOutlined />,
     ...rest
 }) => {
     const recordValue = Boolean(
@@ -35,7 +35,7 @@ export const BooleanField: React.FC<BooleanFieldProps> = ({
             title={recordValue ? valueLabelTrue : valueLabelFalse}
             {...rest}
         >
-            {recordValue ? <span>{TrueIcon}</span> : <span>{FalseIcon}</span>}
+            {recordValue ? <span>{trueIcon}</span> : <span>{falseIcon}</span>}
         </Tooltip>
     );
 };

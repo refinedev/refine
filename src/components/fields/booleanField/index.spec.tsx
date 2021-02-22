@@ -41,11 +41,7 @@ describe("BooleanField", () => {
         it("should use prop for custom text", async () => {
             const baseDom = render(
                 <div data-testid="custom-field">
-                    <BooleanField
-                        value={true}
-                        valueLabelTrue="test"
-                        TrueIcon={<CheckSquareOutlined />}
-                    />
+                    <BooleanField value={true} valueLabelTrue="test" />
                 </div>,
             );
 
@@ -61,8 +57,7 @@ describe("BooleanField", () => {
                 <div data-testid="custom-field">
                     <BooleanField
                         value={true}
-                        valueLabelTrue="test"
-                        TrueIcon={<CheckSquareOutlined />}
+                        trueIcon={<CheckSquareOutlined />}
                     />
                 </div>,
             );
