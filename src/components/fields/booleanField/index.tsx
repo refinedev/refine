@@ -1,5 +1,5 @@
 import React from "react";
-import { TooltipProps } from "antd/lib/tooltip";
+import { AbstractTooltipProps } from "antd/lib/tooltip";
 import { Tooltip } from "antd";
 
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
@@ -9,7 +9,7 @@ import { BaseFieldProps } from "../../../interfaces/field";
 import { renderFieldRecord } from "@definitions";
 
 export type BooleanFieldProps = BaseFieldProps &
-    TooltipProps & {
+    AbstractTooltipProps & {
         valueLabelTrue?: string;
         valueLabelFalse?: string;
         TrueIcon?: React.FC | object;
