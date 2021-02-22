@@ -5,4 +5,5 @@ export { EmailField } from "./emailField";
 export { ImageField } from "./imageField";
 export { DateField } from "./dateField";
 export { FileField } from "./fileField";
+export { UrlField } from "./urlField";
 export { NumberField } from "./numberField";
