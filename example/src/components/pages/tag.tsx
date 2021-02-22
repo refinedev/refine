@@ -15,7 +15,14 @@ import {
 export const TagList = (props: any) => {
     return (
         <List {...props}>
-            <Table rowKey="id">
+            <Table
+                rowKey="id"
+                pagination={{
+                    pageSize: 20,
+                    position: ["bottomCenter"],
+                    size: "small",
+                }}
+            >
                 <Column key="id" dataIndex="id" title="ID" />
                 <Column key="title" dataIndex="title" title="Title" />
                 <Column

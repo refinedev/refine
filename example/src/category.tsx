@@ -14,7 +14,14 @@ export const CategoryList = (props: any) => {
     console.log("props", props);
     return (
         <List {...props}>
-            <Table rowKey="id">
+            <Table
+                rowKey="id"
+                pagination={{
+                    pageSize: 20,
+                    position: ["bottomCenter"],
+                    size: "small",
+                }}
+            >
                 <Column key="id" title="ID" dataIndex="id" />
                 <Column key="title" title="Title" dataIndex="title" />
             </Table>
