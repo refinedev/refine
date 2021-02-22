@@ -1,5 +1,17 @@
 import * as React from "react";
-import { List, Table, Column, EmailField, TagField, DateField } from "readmin";
+import {
+    List,
+    Table,
+    Column,
+    EmailField,
+    TagField,
+    DateField,
+    Edit,
+    Form,
+    FormItem,
+    BooleanInput,
+    TextInput,
+} from "readmin";
 
 export const UserList = (props: any) => {
     return (
@@ -33,5 +45,36 @@ export const UserList = (props: any) => {
                 />
             </Table>
         </List>
+    );
+};
+
+export const UserEdit = (props: any) => {
+    return (
+        <Edit {...props}>
+            <Form wrapperCol={{ span: 14 }} layout="vertical">
+                <FormItem
+                    label="First Name"
+                    name="firstName"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <TextInput />
+                </FormItem>
+                <FormItem
+                    label="Status"
+                    name="status"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <BooleanInput />
+                </FormItem>
+            </Form>
+        </Edit>
     );
 };

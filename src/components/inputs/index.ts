@@ -4,3 +4,4 @@ export { RadioInput, RadioGroupInput } from "./radioInput";
 export { CheckboxInput, CheckboxGroupInput } from "./checkboxInput";
 export { AutoCompleteInput } from "./autocompleteInput";
 export { ReferenceInput } from "./referenceInput";
+export { BooleanInput } from "./booleanInput";
