@@ -1,5 +1,5 @@
 import * as React from "react";
-import { List, Table, Column, ImageField } from "readmin";
+import { List, Table, Column, ImageField, NumberField } from "readmin";
 
 export const ImagesList = (props: any) => {
     return (
@@ -17,6 +17,22 @@ export const ImagesList = (props: any) => {
                             imageTitle="meow"
                             width={200}
                             data-testid="image"
+                        />
+                    )}
+                />
+                <Column
+                    key="price"
+                    title="Price"
+                    dataIndex="price"
+                    render={(value) => (
+                        <NumberField
+                            value={value}
+                            locale="de-DE"
+                            options={{
+                                style: "currency",
+                                currency: "EUR",
+                                maximumFractionDigits: 1,
+                            }}
                         />
                     )}
                 />
