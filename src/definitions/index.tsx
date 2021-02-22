@@ -8,6 +8,10 @@ export const renderFieldRecord = ({
     record,
     renderRecordKey,
 }: BaseFieldProps): string => {
+    if (renderRecordKey && !record) {
+        throw new Error("undefined record");
+    }
+
     if (record && renderRecordKey) {
         const recordValue = get(record, renderRecordKey);
 
