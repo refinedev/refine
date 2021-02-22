@@ -1,23 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { Button, Card } from "antd";
-import { TablePaginationConfig } from "antd/lib/table";
 import { PlusSquareOutlined } from "@ant-design/icons";
 import humanizeString from "humanize-string";
 
 import { TableProps } from "@components/table";
-import { useList } from "@hooks";
-import { DefaultEmpty } from "./components";
-import { Sort, Filters } from "@interfaces";
-import { OptionalComponent } from "@definitions";
-
 export interface ListProps {
     resourceName: string;
     canCreate?: boolean;
     canEdit?: boolean;
     canDelete?: boolean;
-    empty?: React.ComponentType | false;
-    component?: React.ComponentType | string;
 }
 
 export const List: React.FC<ListProps> = ({
@@ -25,57 +17,14 @@ export const List: React.FC<ListProps> = ({
     canCreate,
     canEdit,
     canDelete,
-    empty,
     children,
-    component: CustomComponent,
 }) => {
     const history = useHistory();
-
-    const [current, setCurrent] = useState(1);
-    const [pageSize, setPageSize] = useState(10);
-    const [filters, setFilters] = useState<Filters>({});
-    const [sort, setSort] = useState<Sort>({});
-
-    const { data, isFetching, refetch } = useList(resourceName, {
-        pagination: { current, pageSize },
-        filters,
-        sort,
-    });
-
-    const showEmpty = (!data && !isFetching) || (data && !data.data.length);
-
-    const pagination: TablePaginationConfig = {
-        total: data?.total,
-        current,
-        pageSize,
-        defaultCurrent: 1,
-        defaultPageSize: 10,
-        position: ["bottomCenter"],
-    };
-
-    const onChange = (
-        pagination: TablePaginationConfig,
-        filters: Filters,
-        sorter: Sort,
-    ) => {
-        const { current, pageSize } = pagination;
-        setCurrent(current || 1);
-        setPageSize(pageSize || 10);
-
-        setFilters(filters);
-        setSort(sorter);
-
-        refetch();
-    };
 
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement<TableProps>(child, {
                 resourceName,
-                dataSource: data?.data,
-                loading: isFetching,
-                pagination,
-                onChange,
                 canEdit,
                 canDelete,
             });
@@ -83,21 +32,7 @@ export const List: React.FC<ListProps> = ({
         return child;
     });
 
-    const Content = () =>
-        showEmpty ? (
-            <OptionalComponent optional={empty}>
-                <DefaultEmpty style={{ width: "100%", margin: "20px 0" }} />
-            </OptionalComponent>
-        ) : (
-            childrenWithProps
-        );
-
-    const CustomWrapper = () =>
-        CustomComponent
-            ? React.createElement(CustomComponent ?? null, {}, Content())
-            : null;
-
-    const DefaultWrapper = () => (
+    return (
         <Card
             bodyStyle={{ padding: 0 }}
             title={humanizeString(resourceName)}
@@ -115,9 +50,7 @@ export const List: React.FC<ListProps> = ({
                 )
             }
         >
-            {Content()}
+            {childrenWithProps}
         </Card>
     );
-
-    return <>{CustomComponent ? CustomWrapper() : DefaultWrapper()}</>;
 };

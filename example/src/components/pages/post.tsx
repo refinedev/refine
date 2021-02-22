@@ -18,13 +18,29 @@ import {
     FilterDropdown,
     RadioInput,
     RadioGroupInput,
+    Empty,
 } from "readmin";
 
 export const PostList = (props: any) => {
     return (
         <List {...props}>
-            <Table rowKey="id">
-                <Column dataIndex="id" title="ID" key="id" />
+            <Table
+                rowKey="id"
+                pagination={{
+                    pageSize: 20,
+                    position: ["bottomCenter"],
+                    size: "small",
+                }}
+            >
+                <Column
+                    dataIndex="id"
+                    title="ID"
+                    key="id"
+                    sorter={{
+                        multiple: 3,
+                    }}
+                    defaultSortOrder="descend"
+                />
                 <Column
                     key="image"
                     title="Image"
@@ -99,6 +115,7 @@ export const PostList = (props: any) => {
                             </RadioGroupInput>
                         </FilterDropdown>
                     )}
+                    defaultFilteredValue={["activex"]}
                 />
             </Table>
         </List>
