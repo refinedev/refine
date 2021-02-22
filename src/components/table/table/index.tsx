@@ -4,9 +4,8 @@ import {
     TablePaginationConfig,
     TableProps as AntdTableProps,
 } from "antd/lib/table";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import qs from "query-string";
 
 import { Column } from "@components";
 import { BaseRecord } from "@interfaces";
@@ -33,7 +32,6 @@ export const Table: React.FC<TableProps> = ({
     ...rest
 }) => {
     const history = useHistory();
-    const { search } = useLocation();
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const { mutate, isLoading } = useDelete(resourceName!);
@@ -107,18 +105,6 @@ export const Table: React.FC<TableProps> = ({
                 dataSource={dataSource}
                 loading={loading}
                 pagination={pagination}
-                onChange={(pagination): void => {
-                    const parsedSearchQuery = qs.parse(search);
-
-                    parsedSearchQuery.current = String(pagination.current);
-                    parsedSearchQuery.pageSize = String(pagination.pageSize);
-
-                    history.push(
-                        `/resources/${resourceName}?${qs.stringify(
-                            parsedSearchQuery,
-                        )}`,
-                    );
-                }}
                 {...rest}
             >
                 {children}

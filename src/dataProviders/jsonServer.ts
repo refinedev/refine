@@ -19,10 +19,11 @@ const JsonServer = (apiUrl: string): IDataContext => ({
         const order = params.sort?.order || "DESC";
 
         // filter
-        const filter = params.filter;
+        const filters = stringify(params.filters || {}, {
+            skipNull: true,
+        });
 
         const query = {
-            ...filter,
             _start: (current - 1) * pageSize,
             _end: current * pageSize,
             _sort: field,
@@ -30,7 +31,9 @@ const JsonServer = (apiUrl: string): IDataContext => ({
             q,
         };
 
-        const { data, headers } = await axios.get(`${url}?${stringify(query)}`);
+        const { data, headers } = await axios.get(
+            `${url}?${stringify(query)}&${filters}`,
+        );
 
         const total = +headers["x-total-count"];
 
