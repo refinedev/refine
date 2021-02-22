@@ -26,20 +26,6 @@ export const PostList = (props: any) => {
             <Table rowKey="id">
                 <Column dataIndex="id" title="ID" key="id" />
                 <Column
-                    key="image"
-                    title="Image"
-                    dataIndex="image"
-                    render={(value) => (
-                        <ImageField
-                            value={value}
-                            title="Image"
-                            imageTitle="meow"
-                            width={100}
-                            data-testid="image"
-                        />
-                    )}
-                />
-                <Column
                     dataIndex="title"
                     title="Title"
                     key="title"
@@ -63,7 +49,7 @@ export const PostList = (props: any) => {
                     key="categoryId"
                     render={(value) => (
                         <ReferenceField resource="categories" value={value}>
-                            <TextField value renderRecordKey="title" />
+                            <TextField renderRecordKey="title" />
                         </ReferenceField>
                     )}
                     filterDropdown={(props) => (

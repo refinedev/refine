@@ -14,7 +14,7 @@ export type BaseFieldProps = RequireOnlyOne<
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         value: any;
         record?: BaseRecord;
-        renderRecordKey?: string;
+        renderRecordKey: string;
     },
     "value" | "renderRecordKey"
 >;

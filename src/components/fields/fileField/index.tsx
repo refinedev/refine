@@ -22,17 +22,15 @@ export const FileField: React.FC<FileFieldProps> = ({
         return (
             <ul>
                 {value.map((file, index) => {
+                    console.log("file", file);
                     const fileUrl = renderFieldRecord({
-                        value: src,
                         record: file,
-                        renderRecordKey: src,
+                        renderRecordKey: `${src}`,
                     });
                     const fileTitleValue = renderFieldRecord({
-                        value: title,
                         record: file,
-                        renderRecordKey: title,
+                        renderRecordKey: `${title}`,
                     });
-
                     return (
                         <li key={index}>
                             <UrlField
