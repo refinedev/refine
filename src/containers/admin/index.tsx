@@ -3,11 +3,10 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "antd/dist/antd.css";
-import "../../../i18n.js";
-import { useTranslation } from 'react-i18next';
 
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
+import { TranslationProvider } from "@contexts/translation";
 import { RouteProvider } from "@containers/routeProvider";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { ReadyPage as DefaultReadyPage } from "@pages";
@@ -59,23 +58,24 @@ export const Admin: React.FC<AdminProps> = ({
             </OptionalComponent>
         );
     }
-    const { t, i18n } = useTranslation();
+
     return (
         <QueryClientProvider client={queryClient}>
             <AuthContextProvider {...authProvider}>
                 <DataContextProvider {...dataProvider}>
                     <ResourceContextProvider resources={resources}>
-                        <div className="">{t('Welcome to React')}</div>
-                        <Router>
-                            <RouteProvider
-                                resources={children}
-                                catchAll={catchAll}
-                                title={title}
-                                dashboard={dashboard}
-                                loginPage={loginPage}
-                                ready={ready}
-                            />
-                        </Router>
+                        <TranslationProvider>
+                            <Router>
+                                <RouteProvider
+                                    resources={children}
+                                    catchAll={catchAll}
+                                    title={title}
+                                    dashboard={dashboard}
+                                    loginPage={loginPage}
+                                    ready={ready}
+                                />
+                            </Router>
+                        </TranslationProvider>
                     </ResourceContextProvider>
                 </DataContextProvider>
             </AuthContextProvider>

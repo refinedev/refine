@@ -8,11 +8,12 @@ import {
 import { MenuClickEventHandler } from "rc-menu/lib/interface";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import humanizeString from "humanize-string";
+import { useTranslation } from "react-i18next";
+
 
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "@interfaces";
-
-import { useResource } from "@hooks";
+import { useResource, useSetLocale } from "@hooks";
 
 export interface LayoutProps {
     title?: ReactNode;
@@ -31,6 +32,9 @@ export const Layout: React.FC<LayoutProps> = ({
     const { resources } = useResource();
 
     const location = useLocation();
+
+    const { t, i18n } = useTranslation();
+    const setLocal = useSetLocale();
 
     const selectedKey = React.useMemo(() => {
         const selectedResource = resources.find((el) =>
@@ -103,6 +107,15 @@ export const Layout: React.FC<LayoutProps> = ({
                 <AntLayout.Header
                     style={{ padding: 0, backgroundColor: "#FFF" }}
                 />
+
+                <div className="">{t("Welcome to React")}</div>
+                <button type="button" onClick={() => setLocal("fr")}>
+                    {t("translation:fr")}
+                </button>
+                <button type="button" onClick={() => setLocal("en")}>
+                    {t("translation:en")}
+                </button>
+
                 <AntLayout.Content>
                     <div style={{ padding: 24, minHeight: 360 }}>
                         {children}
