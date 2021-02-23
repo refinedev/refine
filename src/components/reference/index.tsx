@@ -48,7 +48,7 @@ export const Reference: React.FC<ReferenceProps> = ({
             onSuccess: (data) => {
                 const options: Option[] = data.data.map((item) => ({
                     label: item[optionText],
-                    value: item[optionValue].toString(),
+                    value: item[optionValue],
                 }));
 
                 setOptions(options);
