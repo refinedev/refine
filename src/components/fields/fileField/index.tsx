@@ -22,7 +22,6 @@ export const FileField: React.FC<FileFieldProps> = ({
         return (
             <ul>
                 {value.map((file, index) => {
-                    console.log("file", file);
                     const fileUrl = renderFieldRecord({
                         record: file,
                         renderRecordKey: `${src}`,
@@ -50,6 +49,8 @@ export const FileField: React.FC<FileFieldProps> = ({
     const url = renderFieldRecord({ value, record, renderRecordKey });
     const titleValue = renderFieldRecord({
         value: title,
+        record,
+        renderRecordKey,
     });
 
     return (

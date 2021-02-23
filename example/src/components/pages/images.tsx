@@ -4,7 +4,14 @@ import { List, Table, Column, ImageField, NumberField } from "readmin";
 export const ImagesList = (props: any) => {
     return (
         <List {...props}>
-            <Table rowKey="id">
+            <Table
+                rowKey="id"
+                pagination={{
+                    pageSize: 20,
+                    position: ["bottomCenter"],
+                    size: "small",
+                }}
+            >
                 <Column key="id" title="ID" dataIndex="id" />
                 <Column
                     key="url"

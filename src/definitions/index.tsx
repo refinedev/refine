@@ -1,13 +1,13 @@
 import React from "react";
 import get from "lodash/get";
 
-import { BaseFieldProps } from "@interfaces";
+import { RenderFieldProps } from "@interfaces";
 
 export const renderFieldRecord = ({
     value,
     record,
     renderRecordKey,
-}: BaseFieldProps): string => {
+}: RenderFieldProps): string => {
     if (renderRecordKey && !record) {
         throw new Error("undefined record");
     }

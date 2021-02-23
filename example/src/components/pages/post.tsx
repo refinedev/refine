@@ -6,19 +6,14 @@ import {
     Create,
     Edit,
     Form,
-    FormItem,
-    TextInput,
-    TextareaInput,
-    SelectInput,
-    ReferenceInput,
+    Reference,
     ReferenceField,
     TextField,
     TagField,
-    ImageField,
     FilterDropdown,
-    RadioInput,
-    RadioGroupInput,
-    Empty,
+    Select,
+    Radio,
+    Input,
 } from "readmin";
 
 export const PostList = (props: any) => {
@@ -70,7 +65,7 @@ export const PostList = (props: any) => {
                     )}
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
-                            <ReferenceInput
+                            <Reference
                                 reference="categories"
                                 optionText="title"
                                 sort={{
@@ -78,13 +73,13 @@ export const PostList = (props: any) => {
                                     order: "asc",
                                 }}
                             >
-                                <SelectInput
+                                <Select
                                     style={{ minWidth: 200 }}
                                     showSearch
                                     mode="multiple"
                                     placeholder="Select Category"
                                 />
-                            </ReferenceInput>
+                            </Reference>
                         </FilterDropdown>
                     )}
                 />
@@ -95,10 +90,10 @@ export const PostList = (props: any) => {
                     render={(value) => <TagField value={value} />}
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
-                            <RadioGroupInput>
-                                <RadioInput value="active">Active</RadioInput>
-                                <RadioInput value="draft">Draft</RadioInput>
-                            </RadioGroupInput>
+                            <Radio.Group>
+                                <Radio value="active">Active</Radio>
+                                <Radio value="draft">Draft</Radio>
+                            </Radio.Group>
                         </FilterDropdown>
                     )}
                     defaultFilteredValue={["active"]}
@@ -112,7 +107,7 @@ export const PostCreate = (props: any) => {
     return (
         <Create {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
-                <FormItem
+                <Form.Item
                     label="Title"
                     name="title"
                     rules={[
@@ -121,9 +116,9 @@ export const PostCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <TextInput />
-                </FormItem>
-                <FormItem
+                    <Input />
+                </Form.Item>
+                <Form.Item
                     label="Url"
                     name="slug"
                     rules={[
@@ -132,9 +127,9 @@ export const PostCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <TextInput />
-                </FormItem>
-                <FormItem
+                    <Input />
+                </Form.Item>
+                <Form.Item
                     label="Content"
                     name="content"
                     rules={[
@@ -143,9 +138,9 @@ export const PostCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <TextareaInput />
-                </FormItem>
-                <FormItem
+                    <Input.TextArea />
+                </Form.Item>
+                <Form.Item
                     label="Status"
                     name="status"
                     rules={[
@@ -154,7 +149,7 @@ export const PostCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <SelectInput
+                    <Select
                         defaultValue="active"
                         options={[
                             {
@@ -167,8 +162,8 @@ export const PostCreate = (props: any) => {
                             },
                         ]}
                     />
-                </FormItem>
-                <FormItem
+                </Form.Item>
+                <Form.Item
                     label="Category"
                     name="categoryId"
                     rules={[
@@ -177,7 +172,7 @@ export const PostCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <ReferenceInput
+                    <Reference
                         reference="categories"
                         optionText="title"
                         sort={{
@@ -185,10 +180,10 @@ export const PostCreate = (props: any) => {
                             order: "asc",
                         }}
                     >
-                        <SelectInput />
-                    </ReferenceInput>
-                </FormItem>
-                <FormItem
+                        <Select />
+                    </Reference>
+                </Form.Item>
+                <Form.Item
                     label="User"
                     name="userId"
                     rules={[
@@ -198,7 +193,7 @@ export const PostCreate = (props: any) => {
                     ]}
                     help="Autocomplete (search user email)"
                 >
-                    <ReferenceInput
+                    <Reference
                         reference="users"
                         optionText="email"
                         sort={{
@@ -206,10 +201,10 @@ export const PostCreate = (props: any) => {
                             order: "asc",
                         }}
                     >
-                        <SelectInput showSearch />
-                    </ReferenceInput>
-                </FormItem>
-                <FormItem
+                        <Select showSearch />
+                    </Reference>
+                </Form.Item>
+                <Form.Item
                     label="Tags"
                     name="tags"
                     rules={[
@@ -218,10 +213,10 @@ export const PostCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <ReferenceInput reference="tags" optionText="title">
-                        <SelectInput mode="multiple" />
-                    </ReferenceInput>
-                </FormItem>
+                    <Reference reference="tags" optionText="title">
+                        <Select mode="multiple" />
+                    </Reference>
+                </Form.Item>
             </Form>
         </Create>
     );
@@ -231,7 +226,7 @@ export const PostEdit = (props: any) => {
     return (
         <Edit {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
-                <FormItem
+                <Form.Item
                     label="Title"
                     name="title"
                     rules={[
@@ -240,9 +235,9 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <TextInput />
-                </FormItem>
-                <FormItem
+                    <Input />
+                </Form.Item>
+                <Form.Item
                     label="Url"
                     name="slug"
                     rules={[
@@ -251,9 +246,9 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <TextInput />
-                </FormItem>
-                <FormItem
+                    <Input />
+                </Form.Item>
+                <Form.Item
                     label="Content"
                     name="content"
                     rules={[
@@ -262,9 +257,9 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <TextareaInput />
-                </FormItem>
-                <FormItem
+                    <Input.TextArea />
+                </Form.Item>
+                <Form.Item
                     label="Status"
                     name="status"
                     rules={[
@@ -273,7 +268,7 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <SelectInput
+                    <Select
                         defaultValue="active"
                         options={[
                             {
@@ -286,8 +281,8 @@ export const PostEdit = (props: any) => {
                             },
                         ]}
                     />
-                </FormItem>
-                <FormItem
+                </Form.Item>
+                <Form.Item
                     label="Category"
                     name="categoryId"
                     rules={[
@@ -296,7 +291,7 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <ReferenceInput
+                    <Reference
                         reference="categories"
                         optionText="title"
                         sort={{
@@ -304,10 +299,10 @@ export const PostEdit = (props: any) => {
                             order: "asc",
                         }}
                     >
-                        <SelectInput showSearch />
-                    </ReferenceInput>
-                </FormItem>
-                <FormItem
+                        <Select showSearch />
+                    </Reference>
+                </Form.Item>
+                <Form.Item
                     label="User"
                     name="userId"
                     rules={[
@@ -317,11 +312,11 @@ export const PostEdit = (props: any) => {
                     ]}
                     help="Autocomplete (search user email)"
                 >
-                    <ReferenceInput reference="users" optionText="email">
-                        <SelectInput showSearch />
-                    </ReferenceInput>
-                </FormItem>
-                <FormItem
+                    <Reference reference="users" optionText="email">
+                        <Select showSearch />
+                    </Reference>
+                </Form.Item>
+                <Form.Item
                     label="Tags"
                     name="tags"
                     rules={[
@@ -330,10 +325,10 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <ReferenceInput reference="tags" optionText="title">
-                        <SelectInput mode="multiple" />
-                    </ReferenceInput>
-                </FormItem>
+                    <Reference reference="tags" optionText="title">
+                        <Select mode="multiple" />
+                    </Reference>
+                </Form.Item>
             </Form>
         </Edit>
     );
