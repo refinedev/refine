@@ -15,7 +15,7 @@ export const TagField: React.FC<TagFieldProps> = ({
 }) => {
     return (
         <Tag {...rest}>
-            {renderFieldRecord({ value, record, renderRecordKey })}
+            {`${renderFieldRecord({ value, record, renderRecordKey })}`}
         </Tag>
     );
 };
