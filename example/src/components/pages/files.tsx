@@ -4,7 +4,13 @@ import { List, Table, Column, FileField, UrlField } from "readmin";
 export const FilesList = (props: any) => {
     return (
         <List {...props}>
-            <Table>
+            <Table
+                pagination={{
+                    pageSize: 20,
+                    position: ["bottomCenter"],
+                    size: "small",
+                }}
+            >
                 <Column key="id" dataIndex="id" title="ID" />
                 <Column
                     key="url"

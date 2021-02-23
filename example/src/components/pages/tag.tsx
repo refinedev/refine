@@ -5,17 +5,23 @@ import {
     Create,
     Edit,
     Form,
-    FormItem,
-    TextInput,
     Column,
     ImageField,
     ReferenceField,
+    Input,
 } from "readmin";
 
 export const TagList = (props: any) => {
     return (
-        <List {...props} component={ListWrapper}>
-            <Table rowKey="id">
+        <List {...props}>
+            <Table
+                rowKey="id"
+                pagination={{
+                    pageSize: 20,
+                    position: ["bottomCenter"],
+                    size: "small",
+                }}
+            >
                 <Column key="id" dataIndex="id" title="ID" />
                 <Column key="title" dataIndex="title" title="Title" />
                 <Column
@@ -25,7 +31,6 @@ export const TagList = (props: any) => {
                     render={(value) => (
                         <ReferenceField resource="images" value={value}>
                             <ImageField
-                                value
                                 renderRecordKey="url"
                                 imageTitle="meow"
                                 width={200}
@@ -38,20 +43,11 @@ export const TagList = (props: any) => {
     );
 };
 
-export const ListWrapper = (props: any) => {
-    return (
-        <div>
-            <span>Custom wrapper</span>
-            {props.children}
-        </div>
-    );
-};
-
 export const TagCreate = (props: any) => {
     return (
         <Create {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
-                <FormItem
+                <Form.Item
                     label="Title"
                     name="title"
                     rules={[
@@ -60,8 +56,8 @@ export const TagCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <TextInput />
-                </FormItem>
+                    <Input />
+                </Form.Item>
             </Form>
         </Create>
     );
@@ -71,7 +67,7 @@ export const TagEdit = (props: any) => {
     return (
         <Edit {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
-                <FormItem
+                <Form.Item
                     label="Title"
                     name="title"
                     rules={[
@@ -80,8 +76,8 @@ export const TagEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <TextInput />
-                </FormItem>
+                    <Input />
+                </Form.Item>
             </Form>
         </Edit>
     );

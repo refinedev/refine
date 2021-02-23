@@ -17,13 +17,8 @@ describe("FileField", () => {
         const text = { url: "test.txt", title: "Text" };
         const cat = { url: "cat.png", title: "Cat" };
         const files = [text, cat];
-        const { getByTitle, debug } = render(
-            <FileField
-                record={{ id: 1, files }}
-                value={files}
-                src="url"
-                title="title"
-            />,
+        const { getByTitle } = render(
+            <FileField value={files} src="url" title="title" />,
         );
 
         [text, cat].forEach((item) => {

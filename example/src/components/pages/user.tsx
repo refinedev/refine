@@ -4,7 +4,14 @@ import { List, Table, Column, EmailField, TagField, DateField } from "readmin";
 export const UserList = (props: any) => {
     return (
         <List {...props}>
-            <Table rowKey="id">
+            <Table
+                rowKey="id"
+                pagination={{
+                    pageSize: 20,
+                    position: ["bottomCenter"],
+                    size: "small",
+                }}
+            >
                 <Column key="id" dataIndex="id" title="ID" />
                 <Column
                     key="firstName"

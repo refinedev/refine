@@ -3,12 +3,12 @@ import JsonServer from "./dataProviders/jsonServer";
 export { JsonServer };
 export { Admin, Resource } from "./containers";
 
-export * from "./components/inputs";
+export * from "./components/antd";
 export * from "./components/fields";
 export * from "./components/table";
 export * from "./components/crud";
 
-export { Layout, Authenticated } from "./components";
+export { Layout, Authenticated, Reference } from "./components";
 
 export * from "./hooks";
 
