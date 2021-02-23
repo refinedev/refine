@@ -25,6 +25,7 @@ describe("BooleanField", () => {
                 index === 2 || index === 3 || index === 4
                     ? `"${initialValues[index]}"`
                     : initialValues[index];
+
             it(`renders boolean field value(${testName}) with correct tooltip text and icon`, async () => {
                 const baseDom = render(
                     <div data-testid="default-field">
