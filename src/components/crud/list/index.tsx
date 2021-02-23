@@ -10,6 +10,7 @@ export interface ListProps {
     canCreate?: boolean;
     canEdit?: boolean;
     canDelete?: boolean;
+    canShow?: boolean;
 }
 
 export const List: React.FC<ListProps> = ({
@@ -17,6 +18,7 @@ export const List: React.FC<ListProps> = ({
     canCreate,
     canEdit,
     canDelete,
+    canShow,
     children,
 }) => {
     const history = useHistory();
@@ -27,6 +29,7 @@ export const List: React.FC<ListProps> = ({
                 resourceName,
                 canEdit,
                 canDelete,
+                canShow,
             });
         }
         return child;

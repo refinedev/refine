@@ -35,14 +35,16 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
 
     const routes: IRoutesProps[] = [];
     const RouteHandler = (val: React.ReactElement): void => {
-        const { list, name, create, edit, canDelete } = val.props;
+        const { list, name, create, edit, show, canDelete } = val.props;
 
         const ListComponent = list;
         const CreateComponent = create;
         const EditComponent = edit;
+        const ShowComponent = show;
 
         const canCreate = !!create;
         const canEdit = !!edit;
+        const canShow = !!show;
         routes.push(
             {
                 exact: true,
@@ -58,6 +60,11 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
             },
             {
                 exact: true,
+                path: `/resources/${name}/show/:id`,
+                component: () => <ShowComponent resourceName={name} />,
+            },
+            {
+                exact: true,
                 path: `/resources/${name}`,
                 component: () => (
                     <ListComponent
@@ -65,6 +72,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
                         canCreate={canCreate}
                         canEdit={canEdit}
                         canDelete={canDelete}
+                        canShow={canShow}
                     />
                 ),
             },

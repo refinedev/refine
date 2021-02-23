@@ -9,6 +9,7 @@ export interface ResourceProps {
     list?: any;
     create?: any;
     edit?: any;
+    show?: any;
     canDelete?: boolean;
     icon?: ReactNode;
     options?: OptionsProps;

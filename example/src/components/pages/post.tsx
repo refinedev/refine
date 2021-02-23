@@ -5,6 +5,7 @@ import {
     Column,
     Create,
     Edit,
+    Show,
     Form,
     FormItem,
     TextInput,
@@ -335,4 +336,17 @@ export const PostEdit = (props: any) => {
             </Form>
         </Edit>
     );
+};
+
+export const PostShow = (props: any) => {
+    return (
+        <Show {...props}>
+            <Test />
+        </Show>
+    );
+};
+
+const Test = ({ record }: { record?: any }) => {
+    console.log("record: ", record);
+    return null;
 };
