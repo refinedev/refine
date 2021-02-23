@@ -1,5 +1,14 @@
 import * as React from "react";
-import { List, Table, Column, EmailField, TagField, DateField } from "readmin";
+import {
+    List,
+    Table,
+    Column,
+    EmailField,
+    TagField,
+    BooleanField,
+    DateField,
+} from "readmin";
+
 import { Aside } from "../aside";
 
 export const UserList = (props: any) => {
@@ -32,7 +41,12 @@ export const UserList = (props: any) => {
                     title="Email"
                     render={(value) => <EmailField value={value} />}
                 />
-
+                <Column
+                    dataIndex="status"
+                    title="Status"
+                    key="boolean"
+                    render={(value) => <BooleanField value={value} />}
+                />
                 <Column
                     key="birthday"
                     dataIndex="birthday"
