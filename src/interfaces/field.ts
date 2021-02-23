@@ -9,12 +9,14 @@ type RequireOnlyOne<T, Keys extends keyof T = keyof T> = Pick<
             Partial<Record<Exclude<Keys, K>, undefined>>;
     }[Keys];
 
+export type RenderFieldProps = {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    value?: any;
+    record?: BaseRecord;
+    renderRecordKey?: string;
+};
+
 export type BaseFieldProps = RequireOnlyOne<
-    {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        value: any;
-        record?: BaseRecord;
-        renderRecordKey: string;
-    },
+    RenderFieldProps,
     "value" | "renderRecordKey"
 >;
