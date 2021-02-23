@@ -1,9 +1,10 @@
 import * as React from "react";
 import { List, Table, Column, EmailField, TagField, DateField } from "readmin";
+import { Aside } from "../aside";
 
 export const UserList = (props: any) => {
     return (
-        <List {...props}>
+        <List {...props} aside={Aside}>
             <Table
                 rowKey="id"
                 pagination={{
