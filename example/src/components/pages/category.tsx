@@ -1,14 +1,5 @@
 import * as React from "react";
-import {
-    List,
-    Table,
-    Create,
-    Edit,
-    Form,
-    FormItem,
-    TextInput,
-    Column,
-} from "readmin";
+import { List, Table, Create, Edit, Form, Column, Input } from "readmin";
 
 export const CategoryList = (props: { resourceName: string }) => {
     return (
@@ -32,7 +23,7 @@ export const CategoryCreate = (props: any) => {
     return (
         <Create {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
-                <FormItem
+                <Form.Item
                     label="Title"
                     name="title"
                     rules={[
@@ -41,8 +32,8 @@ export const CategoryCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <TextInput />
-                </FormItem>
+                    <Input />
+                </Form.Item>
             </Form>
         </Create>
     );
@@ -52,7 +43,7 @@ export const CategoryEdit = (props: any) => {
     return (
         <Edit {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
-                <FormItem
+                <Form.Item
                     label="Title"
                     name="title"
                     rules={[
@@ -61,8 +52,8 @@ export const CategoryEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <TextInput />
-                </FormItem>
+                    <Input />
+                </Form.Item>
             </Form>
         </Edit>
     );
