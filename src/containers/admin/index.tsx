@@ -3,6 +3,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "antd/dist/antd.css";
+import "../../../i18n.js";
+import { useTranslation } from 'react-i18next';
 
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
@@ -57,12 +59,13 @@ export const Admin: React.FC<AdminProps> = ({
             </OptionalComponent>
         );
     }
-
+    const { t, i18n } = useTranslation();
     return (
         <QueryClientProvider client={queryClient}>
             <AuthContextProvider {...authProvider}>
                 <DataContextProvider {...dataProvider}>
                     <ResourceContextProvider resources={resources}>
+                        <div className="">{t('Welcome to React')}</div>
                         <Router>
                             <RouteProvider
                                 resources={children}
