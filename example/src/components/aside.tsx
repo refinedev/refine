@@ -3,8 +3,15 @@ import { Card, CardProps } from "antd";
 
 export const Aside: React.FC<CardProps> = (props: any) => {
     return (
-        <Card {...props} title="Post details" extra={<a href="#">More</a>}>
-            <p>Posts will only be published once an editor approves them</p>
+        <Card
+            {...props}
+            title="Users List Details"
+            extra={<a href="#">More</a>}
+        >
+            <p>
+                You can view personal data of users registered in your system in
+                the user table.
+            </p>
         </Card>
     );
 };
