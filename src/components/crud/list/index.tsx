@@ -5,6 +5,7 @@ import { PlusSquareOutlined } from "@ant-design/icons";
 import humanizeString from "humanize-string";
 
 import { TableProps } from "@components/table";
+import { OptionalComponent } from "@definitions";
 
 export interface ListProps {
     resourceName: string;
@@ -36,8 +37,8 @@ export const List: React.FC<ListProps> = ({
     });
 
     return (
-        <Row>
-            <Col flex={1}>
+        <Row gutter={[16, 16]}>
+            <Col flex="1 1 200px">
                 <Card
                     bodyStyle={{ padding: 0, flex: 1 }}
                     title={humanizeString(resourceName)}
@@ -61,7 +62,11 @@ export const List: React.FC<ListProps> = ({
                 </Card>
             </Col>
 
-            {aside && <Col style={{ width: 200 }}>{aside}</Col>}
+            {aside && (
+                <Col flex="0 1 300px">
+                    <OptionalComponent optional={aside} />
+                </Col>
+            )}
         </Row>
     );
 };
