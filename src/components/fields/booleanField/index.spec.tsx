@@ -7,33 +7,47 @@ import { BooleanField } from "./";
 
 describe("BooleanField", () => {
     describe("BooleanField with default props values", () => {
-        it("renders boolean field value with correct tooltip text", async () => {
-            const baseDom = render(
-                <div data-testid="default-field">
-                    <BooleanField value={true} />
-                </div>,
-            );
+        const initialValues = [true, false, "true", "false", "", undefined];
 
-            fireEvent.mouseOver(
-                baseDom.getByTestId("default-field").children[0],
-            );
+        const sonuc = ["true", "false", "true", "true", "false", "false"];
 
-            expect(await baseDom.findByText("true")).toBeInTheDocument();
-        });
+        const iconClass = [
+            "anticon-check",
+            "anticon-close",
+            "anticon-check",
+            "anticon-check",
+            "anticon-close",
+            "anticon-close",
+        ];
 
-        it("renders boolean field value with correct icon", () => {
-            const baseDom = render(
-                <div data-testid="default-field">
-                    <BooleanField value={true} />
-                </div>,
-            );
+        initialValues.forEach((element, index) => {
+            const testName =
+                index === 2 || index === 3 || index === 4
+                    ? `"${initialValues[index]}"`
+                    : initialValues[index];
+            it(`renders boolean field value(${testName}) with correct tooltip text and icon`, async () => {
+                const baseDom = render(
+                    <div data-testid="default-field">
+                        <BooleanField value={element} />
+                    </div>,
+                );
 
-            const booleanField = baseDom.getByTestId("default-field")
-                .children[0];
+                fireEvent.mouseOver(
+                    baseDom.getByTestId("default-field").children[0],
+                );
 
-            expect(
-                booleanField.children[0].classList.contains("anticon-check"),
-            ).toBe(true);
+                expect(
+                    await baseDom.findByText(sonuc[index]),
+                ).toBeInTheDocument();
+
+                expect(
+                    baseDom
+                        .getByTestId("default-field")
+                        .children[0].children[0].classList.contains(
+                            iconClass[index],
+                        ),
+                ).toBe(true);
+            });
         });
     });
 
