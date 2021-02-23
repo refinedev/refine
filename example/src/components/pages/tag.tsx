@@ -5,11 +5,10 @@ import {
     Create,
     Edit,
     Form,
-    FormItem,
-    TextInput,
     Column,
     ImageField,
     ReferenceField,
+    Input,
 } from "readmin";
 
 export const TagList = (props: any) => {
@@ -48,7 +47,7 @@ export const TagCreate = (props: any) => {
     return (
         <Create {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
-                <FormItem
+                <Form.Item
                     label="Title"
                     name="title"
                     rules={[
@@ -57,8 +56,8 @@ export const TagCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <TextInput />
-                </FormItem>
+                    <Input />
+                </Form.Item>
             </Form>
         </Create>
     );
@@ -68,7 +67,7 @@ export const TagEdit = (props: any) => {
     return (
         <Edit {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
-                <FormItem
+                <Form.Item
                     label="Title"
                     name="title"
                     rules={[
@@ -77,8 +76,8 @@ export const TagEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <TextInput />
-                </FormItem>
+                    <Input />
+                </Form.Item>
             </Form>
         </Edit>
     );

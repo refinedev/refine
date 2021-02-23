@@ -2,7 +2,7 @@ import React from "react";
 
 import { render, TestWrapper, MockJSONServer } from "@test";
 
-import { ReferenceInput } from "./index";
+import { Reference } from "./index";
 import { categories } from "@test/dataMocks";
 
 const TestComponent = (props: any) => {
@@ -24,9 +24,9 @@ describe("<ReferenceInput/>", () => {
     describe("JSON Rest Server", () => {
         it("passes label-value pairs as options to child", async () => {
             const { findAllByTestId } = render(
-                <ReferenceInput optionText="title" reference="categories">
+                <Reference optionText="title" reference="categories">
                     <TestComponent />
-                </ReferenceInput>,
+                </Reference>,
                 {
                     wrapper: TestWrapper({
                         dataProvider: MockJSONServer,
