@@ -6,12 +6,12 @@ import { BaseRecord } from "@interfaces";
 
 const { Title } = Typography;
 
-type SimpleShowLayoutProps = CardProps & {
+type ShowSimpleProps = CardProps & {
     aside?: FC;
     record?: BaseRecord;
 };
 
-export const SimpleShow: FC<SimpleShowLayoutProps> = ({
+export const ShowSimple: FC<ShowSimpleProps> = ({
     children,
     record,
 }) =>

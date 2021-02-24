@@ -15,7 +15,7 @@ import {
     Select,
     Radio,
     Input,
-    SimpleShow,
+    ShowSimple,
 } from "readmin";
 
 import { ShowAside } from "../showAside";
@@ -341,11 +341,11 @@ export const PostEdit = (props: any) => {
 export const PostShow = (props: any) => {
     return (
         <Show {...props} aside={ShowAside}>
-            <SimpleShow>
+            <ShowSimple>
                 <TextField renderRecordKey="id" />
                 <TextField renderRecordKey="title" />
                 <TextField renderRecordKey="userId" />
-            </SimpleShow>
+            </ShowSimple>
         </Show>
     );
 };

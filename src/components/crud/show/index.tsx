@@ -14,7 +14,7 @@ export interface ShowProps {
 export const Show: React.FC<ShowProps> = ({
     resourceName,
     aside,
-    component,
+    // component,
     children,
 }) => {
     const { id } = useParams<Record<string, string>>();
@@ -54,4 +54,4 @@ export const Show: React.FC<ShowProps> = ({
     );
 };
 
-export { SimpleShow } from "./simpleShow";
+export { ShowSimple } from "./showSimple";
