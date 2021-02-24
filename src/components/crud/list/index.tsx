@@ -5,6 +5,8 @@ import { PlusSquareOutlined } from "@ant-design/icons";
 import humanizeString from "humanize-string";
 
 import { TableProps } from "@components/table";
+import { useTranslate } from "@hooks";
+
 export interface ListProps {
     resourceName: string;
     canCreate?: boolean;
@@ -31,11 +33,16 @@ export const List: React.FC<ListProps> = ({
         }
         return child;
     });
+    const translate = useTranslate();
 
+    console.log("resourceName", resourceName)
+    console.log("humanizeString(resourceName)", humanizeString(resourceName))
     return (
         <Card
             bodyStyle={{ padding: 0 }}
-            title={humanizeString(resourceName)}
+            title={translate(
+                `common:resources.${humanizeString(resourceName)}.title`,
+            )}
             extra={
                 canCreate && (
                     <Button
@@ -45,7 +52,7 @@ export const List: React.FC<ListProps> = ({
                         type="default"
                         icon={<PlusSquareOutlined />}
                     >
-                        Create
+                        {translate(`common:buttons.Create`)}
                     </Button>
                 )
             }

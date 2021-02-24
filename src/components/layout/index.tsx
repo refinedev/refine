@@ -48,7 +48,6 @@ export const Layout: React.FC<LayoutProps> = ({
         }
     };
 
-
     return (
         <AntLayout style={{ minHeight: "100vh" }}>
             <AntLayout.Sider
@@ -93,7 +92,11 @@ export const Layout: React.FC<LayoutProps> = ({
                             icon={item.icon ?? <UnorderedListOutlined />}
                         >
                             <Link to={`/resources/${item.name}`}>
-                                {item.label ?? humanizeString(item.name)}
+                                {translate(
+                                    `common:resources.${item.name}.${
+                                        item.label ?? humanizeString(item.name)
+                                    }`,
+                                )}
                             </Link>
                         </Menu.Item>
                     ))}
@@ -109,6 +112,9 @@ export const Layout: React.FC<LayoutProps> = ({
                 />
 
                 <div className="">{translate("Welcome to React")}</div>
+                <div className="">{translate("resources.posts.My Posts")}</div>
+                <div className="">{translate("resources.posts.test2")}</div>
+                <div className="">{translate("common:test")}</div>
                 <button type="button" onClick={() => setLocale("fr")}>
                     {translate("translation:fr")}
                 </button>

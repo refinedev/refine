@@ -1,0 +1,10 @@
+{
+    "Welcome to React": "Bienvenue à React et react-i18next",
+    "resources": {
+        "posts": {
+            "test2": "necati fr",
+            "My Posts": "FR Posts"
+        }
+    },
+    "test3": "necati 2 fr"
+}

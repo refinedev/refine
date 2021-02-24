@@ -1,0 +1,14 @@
+{
+    "resources": {
+        "posts": {
+            "test2": "necati fr",
+            "My Posts": "FR Posts"
+        },
+        "Posts": {
+            "title": "FR Posts"
+        }
+    },
+    "buttons": {
+        "Create": "Create FR"
+    }
+}

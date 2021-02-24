@@ -1,0 +1,18 @@
+{
+    "resources": {
+        "posts": {
+            "test2": "necati",
+            "My Posts": "My Posts"
+        },
+        "Posts": {
+            "title": "Posts"
+        }
+    },
+    "buttons": {
+        "Create": "Create"
+    },
+    "columns": {
+
+    }
+    
+}
