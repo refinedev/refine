@@ -4,7 +4,7 @@ import jsonServerDataProvider from "@dataProviders/jsonServer";
 
 import { IDataContext } from "@interfaces";
 
-const defaultApiUrl = "http://jsonplaceholder.typicode.com";
+const defaultApiUrl = "https://readmin-fake-rest.pankod.com";
 
 export const DataContext = React.createContext<IDataContext>(
     jsonServerDataProvider(defaultApiUrl),
