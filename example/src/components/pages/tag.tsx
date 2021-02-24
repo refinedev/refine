@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import {
     List,
     Table,
@@ -9,12 +9,47 @@ import {
     ImageField,
     ReferenceField,
     Input,
+    Button,
 } from "readmin";
 
 export const TagList = (props: any) => {
+    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const start = () => {
+        setLoading(true);
+
+        setTimeout(() => {
+            setSelectedRowKeys([]);
+            setLoading(false);
+        }, 1000);
+    };
+
+    const onSelectChange = (selectedRowKeys: any) => {
+        setSelectedRowKeys(selectedRowKeys);
+    };
+
+    const rowSelection = {
+        selectedRowKeys,
+        onChange: onSelectChange,
+    };
+
+    const hasSelected = selectedRowKeys.length > 0;
+
     return (
         <List {...props}>
+            <div style={{ padding: "12px 24px" }}>
+                <Button
+                    type="primary"
+                    onClick={start}
+                    disabled={!hasSelected}
+                    loading={loading}
+                >
+                    Reload
+                </Button>
+            </div>
             <Table
+                rowSelection={rowSelection}
                 rowKey="id"
                 pagination={{
                     pageSize: 20,
