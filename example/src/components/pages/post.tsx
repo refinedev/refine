@@ -15,8 +15,7 @@ import {
     Radio,
     Input,
     Upload,
-    Button,
-    Icons,
+    normalizeFile,
 } from "readmin";
 
 export const PostList = (props: any) => {
@@ -221,26 +220,32 @@ export const PostCreate = (props: any) => {
                     </Reference>
                 </Form.Item>
 
-                <Form.Item
-                    label="Image"
-                    name="image"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Upload
-                        name="file"
-                        action="https://readmin-fake-rest.pankod.com/upload"
-                        listType="picture"
-                        multiple={false}
-                        type="drag"
+                <Form.Item label="Image">
+                    <Form.Item
+                        name="image"
+                        valuePropName="fileList"
+                        getValueFromEvent={normalizeFile}
+                        noStyle
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
                     >
-                        <Button icon={<Icons.UploadOutlined />}>
-                            Click to upload
-                        </Button>
-                    </Upload>
+                        <Upload.Dragger
+                            name="file"
+                            action="https://readmin-fake-rest.pankod.com/upload"
+                            listType="picture"
+                            multiple={false}
+                        >
+                            <p className="ant-upload-text">
+                                Click or drag file to this area to upload
+                            </p>
+                            <p className="ant-upload-hint">
+                                Support for a single upload.
+                            </p>
+                        </Upload.Dragger>
+                    </Form.Item>
                 </Form.Item>
             </Form>
         </Create>
@@ -353,6 +358,28 @@ export const PostEdit = (props: any) => {
                     <Reference reference="tags" optionText="title">
                         <Select mode="multiple" />
                     </Reference>
+                </Form.Item>
+                <Form.Item label="Image">
+                    <Form.Item
+                        name="image"
+                        valuePropName="fileList"
+                        getValueFromEvent={normalizeFile}
+                        noStyle
+                    >
+                        <Upload.Dragger
+                            name="file"
+                            action="https://readmin-fake-rest.pankod.com/upload"
+                            listType="picture"
+                            multiple={false}
+                        >
+                            <p className="ant-upload-text">
+                                Click or drag file to this area to upload
+                            </p>
+                            <p className="ant-upload-hint">
+                                Support for a single upload.
+                            </p>
+                        </Upload.Dragger>
+                    </Form.Item>
                 </Form.Item>
             </Form>
         </Edit>
