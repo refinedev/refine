@@ -12,11 +12,17 @@ import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { ReadyPage as DefaultReadyPage } from "@pages";
 import { OptionalComponent } from "@definitions";
 
-import { IDataContext, IAuthContext } from "@interfaces";
+import {
+    IDataContext,
+    IAuthContext,
+    ITranslationContext,
+    I18nProvider,
+} from "@interfaces";
 
 export interface AdminProps {
     authProvider: IAuthContext;
     dataProvider: IDataContext;
+    i18nProvider: I18nProvider;
     catchAll?: React.ReactNode;
     title?: ReactNode;
     loginPage?: React.FC | false;
@@ -33,6 +39,7 @@ export const Admin: React.FC<AdminProps> = ({
     loginPage,
     catchAll,
     children,
+    i18nProvider,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -64,7 +71,7 @@ export const Admin: React.FC<AdminProps> = ({
             <AuthContextProvider {...authProvider}>
                 <DataContextProvider {...dataProvider}>
                     <ResourceContextProvider resources={resources}>
-                        <TranslationProvider>
+                        <TranslationProvider i18nProvider={i18nProvider}>
                             <Router>
                                 <RouteProvider
                                     resources={children}

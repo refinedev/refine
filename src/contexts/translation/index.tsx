@@ -1,31 +1,33 @@
-import React, { useState } from "react";
-import "../../../i18n.js";
-import { useTranslation } from "react-i18next";
+import React from "react";
 
-import { ITranslationContext } from "@interfaces";
-import { useSetLocale } from "@hooks/index.js";
+import "../../../i18n.js";
+
+import { ITranslationContext, I18nProvider } from "@interfaces";
 
 const defaultProvider: ITranslationContext = {
-    locale: "en",
-    i18nProvider: null,
+    i18nProvider: {
+        translate: (x) => x,
+        changeLocale: () => Promise.resolve(),
+        getLocale: () => "en",
+    },
 };
 
 export const TranslationContext = React.createContext<ITranslationContext>(
     defaultProvider,
 );
 
-export const TranslationProvider: React.FC = ({ children }) => {
-    const { t, i18n } = useTranslation();
-    const setLocal = useSetLocale();
-    const changeLanguage = (code: any) => {
-        i18n.changeLanguage(code);
-    };
+interface TranslationProviderProps {
+    i18nProvider: I18nProvider;
+}
 
+export const TranslationProvider: React.FC<TranslationProviderProps> = ({
+    children,
+    i18nProvider,
+}) => {
     return (
         <TranslationContext.Provider
             value={{
-                locale: "en",
-                i18nProvider: i18n,
+                i18nProvider,
             }}
         >
             {children}

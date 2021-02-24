@@ -33,7 +33,7 @@ export const Layout: React.FC<LayoutProps> = ({
 
     const location = useLocation();
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const setLocal = useSetLocale();
 
     const selectedKey = React.useMemo(() => {
