@@ -16,6 +16,7 @@ import {
     Input,
     Upload,
     normalizeFile,
+    useApiUrl,
 } from "readmin";
 
 export const PostList = (props: any) => {
@@ -106,6 +107,8 @@ export const PostList = (props: any) => {
 };
 
 export const PostCreate = (props: any) => {
+    const apiUrl = useApiUrl();
+
     return (
         <Create {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
@@ -234,7 +237,7 @@ export const PostCreate = (props: any) => {
                     >
                         <Upload.Dragger
                             name="file"
-                            action="https://readmin-fake-rest.pankod.com/upload"
+                            action={`${apiUrl}/upload`}
                             listType="picture"
                             maxCount={1}
                         >
@@ -253,6 +256,8 @@ export const PostCreate = (props: any) => {
 };
 
 export const PostEdit = (props: any) => {
+    const apiUrl = useApiUrl();
+
     return (
         <Edit {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
@@ -368,7 +373,7 @@ export const PostEdit = (props: any) => {
                     >
                         <Upload.Dragger
                             name="file"
-                            action="https://readmin-fake-rest.pankod.com/upload"
+                            action={`${apiUrl}/upload`}
                             listType="picture"
                             maxCount={1}
                         >

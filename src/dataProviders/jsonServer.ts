@@ -133,6 +133,10 @@ const JsonServer = (apiUrl: string): IDataContext => ({
         );
         return { data: response };
     },
+
+    getApiUrl: () => {
+        return apiUrl;
+    },
 });
 
 export default JsonServer;

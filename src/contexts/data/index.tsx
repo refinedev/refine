@@ -4,8 +4,10 @@ import jsonServerDataProvider from "@dataProviders/jsonServer";
 
 import { IDataContext } from "@interfaces";
 
+const defaultApiUrl = "http://jsonplaceholder.typicode.com";
+
 export const DataContext = React.createContext<IDataContext>(
-    jsonServerDataProvider("http://jsonplaceholder.typicode.com"),
+    jsonServerDataProvider(defaultApiUrl),
 );
 
 export const DataContextProvider: React.FC<IDataContext> = ({
@@ -17,6 +19,7 @@ export const DataContextProvider: React.FC<IDataContext> = ({
     updateMany,
     deleteOne,
     deleteMany,
+    getApiUrl,
     children,
 }) => {
     return (
@@ -30,6 +33,7 @@ export const DataContextProvider: React.FC<IDataContext> = ({
                 create,
                 deleteOne,
                 deleteMany,
+                getApiUrl,
             }}
         >
             {children}
