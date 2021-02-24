@@ -2,7 +2,6 @@ import * as React from "react";
 import { Card } from "antd";
 
 export const ShowAside: React.FC<{ record: any }> = ({ record }) => {
- 
     return (
         <Card
             style={{
