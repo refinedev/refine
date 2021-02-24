@@ -3,12 +3,14 @@ import { useParams } from "react-router-dom";
 import { Card, Col, Row } from "antd";
 import pluralize from "pluralize";
 
+import { BaseRecord } from "@interfaces";
+
 import { useOne } from "@hooks";
 
 export interface ShowProps {
     resourceName: string;
-    aside?: FC<{ record: any }>;
-    component?: FC<{ record: any }>;
+    aside?: FC<{ record?: BaseRecord }>;
+    component?: FC<{ record?: BaseRecord }>;
 }
 
 export const Show: React.FC<ShowProps> = ({
