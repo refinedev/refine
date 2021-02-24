@@ -7,6 +7,5 @@ export interface I18nProvider {
 }
 
 export interface ITranslationContext {
-    locale?: string;
     i18nProvider: I18nProvider;
 }

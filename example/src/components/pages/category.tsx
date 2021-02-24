@@ -8,11 +8,19 @@ import {
     FormItem,
     TextInput,
     Column,
+    useSetLocale,
 } from "readmin";
 
 export const CategoryList = (props: { resourceName: string }) => {
+    const setLocal = useSetLocale();
     return (
         <List {...props}>
+            <button type="button" onClick={() => setLocal("fr")}>
+                fr
+            </button>
+            <button type="button" onClick={() => setLocal("en")}>
+                en
+            </button>
             <Table
                 rowKey="id"
                 pagination={{
