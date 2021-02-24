@@ -18,7 +18,7 @@ import {
     ShowSimple,
 } from "readmin";
 
-import { ShowAside } from "../showAside";
+import { ShowAside, ShowComponent } from "../show";
 
 export const PostList = (props: any) => {
     return (
@@ -340,8 +340,8 @@ export const PostEdit = (props: any) => {
 
 export const PostShow = (props: any) => {
     return (
-        <Show {...props} aside={ShowAside}>
-            <ShowSimple>
+        <Show {...props} aside={ShowAside} /* component={ShowComponent} */>
+            <ShowSimple title="Post Title">
                 <TextField renderRecordKey="id" />
                 <TextField renderRecordKey="title" />
                 <TextField renderRecordKey="userId" />
