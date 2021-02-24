@@ -14,12 +14,12 @@ export const normalizeFile = (event: Event) => {
 
     return fileList.map((item) => {
         let { url } = item;
-        const { uid, name, status, response } = item;
+        const { uid, name, response } = item;
 
         if (response) {
             url = response.fileUrl;
         }
 
-        return { uid, name, status, url };
+        return { uid, name, url };
     });
 };
