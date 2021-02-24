@@ -1,18 +1,18 @@
 import * as React from "react";
+import { Card } from "antd";
 
 export const ShowAside: React.FC<{ record: any }> = ({ record }) => {
     console.log("record: ", record);
     return (
-        <div
+        <Card
             style={{
-                width: 200,
-                paddingLeft: 30,
+                width: 300,
             }}
         >
             <p>{record?.title}</p>
             <p>{record?.slug}</p>
             <p>{record?.status}</p>
             <p>{record?.content}</p>
-        </div>
+        </Card>
     );
 };
