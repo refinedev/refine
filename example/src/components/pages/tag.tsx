@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import {
     List,
     Table,
@@ -9,12 +9,60 @@ import {
     ImageField,
     ReferenceField,
     Input,
+    Button,
+    AntdTable,
+    Alert,
 } from "readmin";
 
 export const TagList = (props: any) => {
+    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const start = () => {
+        setLoading(true);
+
+        setTimeout(() => {
+            setSelectedRowKeys([]);
+            setLoading(false);
+        }, 1000);
+    };
+
+    const onSelectChange = (selectedRowKeys: any) => {
+        console.log("selectedRowKeys changed: ", selectedRowKeys);
+        setSelectedRowKeys(selectedRowKeys);
+    };
+
+    const rowSelection = {
+        selectedRowKeys,
+        onChange: onSelectChange,
+        selections: [
+            AntdTable.SELECTION_ALL,
+            AntdTable.SELECTION_INVERT,
+            AntdTable.SELECTION_NONE,
+        ],
+    };
+
+    const hasSelected = selectedRowKeys.length > 0;
+
     return (
         <List {...props}>
+            <div style={{ padding: "16px 8px" }}>
+                <Button
+                    type="primary"
+                    onClick={start}
+                    disabled={!hasSelected}
+                    loading={loading}
+                >
+                    Reload
+                </Button>
+                <span style={{ marginLeft: 8 }}>
+                    {hasSelected
+                        ? `Selected ${selectedRowKeys.length} items`
+                        : ""}
+                </span>
+            </div>
             <Table
+                rowSelection={rowSelection}
                 rowKey="id"
                 pagination={{
                     pageSize: 20,
