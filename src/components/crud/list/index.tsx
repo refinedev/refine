@@ -12,7 +12,7 @@ export interface ListProps {
     canCreate?: boolean;
     canEdit?: boolean;
     canDelete?: boolean;
-    aside?: React.FC | false;
+    aside?: React.FC;
 }
 
 export const List: React.FC<ListProps> = ({
