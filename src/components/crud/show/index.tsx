@@ -64,3 +64,4 @@ export const Show: React.FC<ShowProps> = ({
 };
 
 export { ShowSimple } from "./showSimple";
+export { ShowTab, Tab } from "./showTab";
