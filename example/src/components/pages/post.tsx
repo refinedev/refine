@@ -236,7 +236,7 @@ export const PostCreate = (props: any) => {
                             name="file"
                             action="https://readmin-fake-rest.pankod.com/upload"
                             listType="picture"
-                            multiple={false}
+                            maxCount={1}
                         >
                             <p className="ant-upload-text">
                                 Click or drag file to this area to upload
@@ -370,7 +370,7 @@ export const PostEdit = (props: any) => {
                             name="file"
                             action="https://readmin-fake-rest.pankod.com/upload"
                             listType="picture"
-                            multiple={false}
+                            maxCount={1}
                         >
                             <p className="ant-upload-text">
                                 Click or drag file to this area to upload
