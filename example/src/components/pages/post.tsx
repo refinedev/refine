@@ -14,6 +14,9 @@ import {
     Select,
     Radio,
     Input,
+    Upload,
+    Button,
+    Icons,
 } from "readmin";
 
 export const PostList = (props: any) => {
@@ -216,6 +219,28 @@ export const PostCreate = (props: any) => {
                     <Reference reference="tags" optionText="title">
                         <Select mode="multiple" />
                     </Reference>
+                </Form.Item>
+
+                <Form.Item
+                    label="Image"
+                    name="image"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Upload
+                        name="file"
+                        action="https://readmin-fake-rest.pankod.com/upload"
+                        listType="picture"
+                        multiple={false}
+                        type="drag"
+                    >
+                        <Button icon={<Icons.UploadOutlined />}>
+                            Click to upload
+                        </Button>
+                    </Upload>
                 </Form.Item>
             </Form>
         </Create>
