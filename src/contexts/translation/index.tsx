@@ -1,12 +1,11 @@
 import React from "react";
 
-import "../../../i18n.js";
 
 import { ITranslationContext, I18nProvider } from "@interfaces";
 
 const defaultProvider: ITranslationContext = {
     i18nProvider: {
-        translate: (x) => x,
+        translate: (key) => key,
         changeLocale: () => Promise.resolve(),
         getLocale: () => "en",
     },

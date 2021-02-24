@@ -12,7 +12,6 @@ import { DashboardPage } from "./components/pages/dashboard";
 import { ReadyPage } from "./components/ready";
 import { LoginPage } from "./components/login";
 
-import "./i18n.js";
 function App() {
     const authProvider: AuthProvider = {
         login: (params: any) => {

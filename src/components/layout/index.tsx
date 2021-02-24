@@ -10,10 +10,9 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import humanizeString from "humanize-string";
 import { useTranslation } from "react-i18next";
 
-
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "@interfaces";
-import { useResource, useSetLocale } from "@hooks";
+import { useResource, useSetLocale, useTranslate } from "@hooks";
 
 export interface LayoutProps {
     title?: ReactNode;
@@ -33,8 +32,8 @@ export const Layout: React.FC<LayoutProps> = ({
 
     const location = useLocation();
 
-    const { t } = useTranslation();
     const setLocal = useSetLocale();
+    const translate = useTranslate();
 
     const selectedKey = React.useMemo(() => {
         const selectedResource = resources.find((el) =>
@@ -108,12 +107,12 @@ export const Layout: React.FC<LayoutProps> = ({
                     style={{ padding: 0, backgroundColor: "#FFF" }}
                 />
 
-                <div className="">{t("Welcome to React")}</div>
+                <div className="">{translate("Welcome to React")}</div>
                 <button type="button" onClick={() => setLocal("fr")}>
-                    {t("translation:fr")}
+                    {translate("translation:fr")}
                 </button>
                 <button type="button" onClick={() => setLocal("en")}>
-                    {t("translation:en")}
+                    {translate("translation:en")}
                 </button>
 
                 <AntLayout.Content>

@@ -11,13 +11,7 @@ import { RouteProvider } from "@containers/routeProvider";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { ReadyPage as DefaultReadyPage } from "@pages";
 import { OptionalComponent } from "@definitions";
-
-import {
-    IDataContext,
-    IAuthContext,
-    ITranslationContext,
-    I18nProvider,
-} from "@interfaces";
+import { IDataContext, IAuthContext, I18nProvider } from "@interfaces";
 
 export interface AdminProps {
     authProvider: IAuthContext;
