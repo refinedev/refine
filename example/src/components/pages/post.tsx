@@ -5,6 +5,7 @@ import {
     Column,
     Create,
     Edit,
+    Show,
     Form,
     Reference,
     ReferenceField,
@@ -14,7 +15,10 @@ import {
     Select,
     Radio,
     Input,
+    ShowSimple,
 } from "readmin";
+
+import { ShowAside, ShowComponent } from "../show";
 
 export const PostList = (props: any) => {
     return (
@@ -331,5 +335,17 @@ export const PostEdit = (props: any) => {
                 </Form.Item>
             </Form>
         </Edit>
+    );
+};
+
+export const PostShow = (props: any) => {
+    return (
+        <Show {...props} aside={ShowAside} component={ShowComponent}>
+            <ShowSimple title="Post Title">
+                <TextField renderRecordKey="id" />
+                <TextField renderRecordKey="title" />
+                <TextField renderRecordKey="userId" />
+            </ShowSimple>
+        </Show>
     );
 };
