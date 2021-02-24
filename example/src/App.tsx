@@ -1,6 +1,7 @@
 import React from "react";
-
 import { Admin, Resource, AuthProvider, JsonServer, Icons } from "readmin";
+import { useTranslation } from "react-i18next";
+
 import { PostCreate, PostList, PostEdit } from "./components/pages/post";
 import { CategoryList, CategoryCreate } from "./components/pages/category";
 import { UserList } from "./components/pages/user";
@@ -11,6 +12,7 @@ import { DashboardPage } from "./components/pages/dashboard";
 import { ReadyPage } from "./components/ready";
 import { LoginPage } from "./components/login";
 
+import "./i18n.js";
 function App() {
     const authProvider: AuthProvider = {
         login: (params: any) => {
@@ -40,6 +42,14 @@ function App() {
             }),
     };
 
+    const { t, i18n } = useTranslation();
+
+    const i18nProvider = {
+        translate: (key: string) => t(key),
+        changeLocale: (lang: string) => i18n.changeLanguage(lang),
+        getLocale: () => i18n.language,
+    };
+
     return (
         <Admin
             authProvider={authProvider}
@@ -47,6 +57,7 @@ function App() {
             loginPage={LoginPage}
             dashboard={DashboardPage}
             ready={ReadyPage}
+            i18nProvider={i18nProvider}
         >
             <Resource
                 name="posts"
