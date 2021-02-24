@@ -8,11 +8,10 @@ import {
 import { MenuClickEventHandler } from "rc-menu/lib/interface";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import humanizeString from "humanize-string";
-import { useTranslation } from "react-i18next";
 
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "@interfaces";
-import { useResource, useSetLocale, useTranslate } from "@hooks";
+import { useGetLocale, useResource, useSetLocale, useTranslate } from "@hooks";
 
 export interface LayoutProps {
     title?: ReactNode;
@@ -32,8 +31,9 @@ export const Layout: React.FC<LayoutProps> = ({
 
     const location = useLocation();
 
-    const setLocal = useSetLocale();
+    const setLocale = useSetLocale();
     const translate = useTranslate();
+    const getLocale = useGetLocale();
 
     const selectedKey = React.useMemo(() => {
         const selectedResource = resources.find((el) =>
@@ -47,6 +47,7 @@ export const Layout: React.FC<LayoutProps> = ({
             logout({}).then(() => history.push("/login"));
         }
     };
+
 
     return (
         <AntLayout style={{ minHeight: "100vh" }}>
@@ -108,12 +109,13 @@ export const Layout: React.FC<LayoutProps> = ({
                 />
 
                 <div className="">{translate("Welcome to React")}</div>
-                <button type="button" onClick={() => setLocal("fr")}>
+                <button type="button" onClick={() => setLocale("fr")}>
                     {translate("translation:fr")}
                 </button>
-                <button type="button" onClick={() => setLocal("en")}>
+                <button type="button" onClick={() => setLocale("en")}>
                     {translate("translation:en")}
                 </button>
+                <div className="">Current locale {getLocale()}</div>
 
                 <AntLayout.Content>
                     <div style={{ padding: 24, minHeight: 360 }}>
