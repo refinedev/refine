@@ -5,7 +5,7 @@ import {
     TableProps as AntdTableProps,
 } from "antd/lib/table";
 import { useHistory } from "react-router-dom";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
 
 import { Column } from "@components";
 import { Filters, Sort } from "@interfaces";
@@ -19,6 +19,7 @@ export interface TableProps extends AntdTableProps<any> {
     resourceName?: string;
     canEdit?: boolean;
     canDelete?: boolean;
+    canShow?: boolean;
 }
 
 export const Table: React.FC<TableProps> = ({
@@ -26,6 +27,7 @@ export const Table: React.FC<TableProps> = ({
     pagination,
     canEdit,
     canDelete,
+    canShow,
     children,
     ...rest
 }) => {
@@ -97,6 +99,19 @@ export const Table: React.FC<TableProps> = ({
         );
     };
 
+    const renderShowButton = (id: string | number) => (
+        <Button
+            onClick={(): void => {
+                history.push(`/resources/${resourceName}/show/${id}`);
+            }}
+            type="default"
+            size="small"
+            icon={<EyeOutlined />}
+        >
+            Show
+        </Button>
+    );
+
     const renderActions = (): React.ReactNode => {
         if (canEdit || canDelete) {
             return (
@@ -126,6 +141,7 @@ export const Table: React.FC<TableProps> = ({
                                 </Button>
                             )}
                             {canDelete && renderDeleteButton(record.id)}
+                            {canShow && renderShowButton(record.id)}
                         </Space>
                     )}
                 />
