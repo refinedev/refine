@@ -10,6 +10,7 @@ import {
     ReferenceField,
     Input,
     Button,
+    AntdTable,
 } from "readmin";
 
 export const TagList = (props: any) => {
@@ -32,13 +33,18 @@ export const TagList = (props: any) => {
     const rowSelection = {
         selectedRowKeys,
         onChange: onSelectChange,
+        selections: [
+            AntdTable.SELECTION_ALL,
+            AntdTable.SELECTION_INVERT,
+            AntdTable.SELECTION_NONE,
+        ],
     };
 
     const hasSelected = selectedRowKeys.length > 0;
 
     return (
         <List {...props}>
-            <div style={{ padding: "12px 24px" }}>
+            <div style={{ padding: "16px 8px" }}>
                 <Button
                     type="primary"
                     onClick={start}
@@ -47,6 +53,11 @@ export const TagList = (props: any) => {
                 >
                     Reload
                 </Button>
+                <span style={{ marginLeft: 8 }}>
+                    {hasSelected
+                        ? `Selected ${selectedRowKeys.length} items`
+                        : ""}
+                </span>
             </div>
             <Table
                 rowSelection={rowSelection}
