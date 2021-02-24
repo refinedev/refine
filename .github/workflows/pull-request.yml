@@ -81,7 +81,7 @@ jobs:
         uses: meercodeio/meercode-custom-variable@0.1.0
         with:
           meercode-token: ${{ secrets.MEERCODE_TOKEN }}
-          url: 'https://${{ steps.substring-pr-branch-name.outputs.substring }}.readmin.pankod.com'
+          url: 'https://${{ steps.substring-pr-branch-name.outputs.substring }}-readmin.pankod.com'
       - name: update-pull-request
         uses: kt3k/update-pr-description@v1.0.1
         with:
