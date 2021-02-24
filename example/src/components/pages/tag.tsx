@@ -11,6 +11,7 @@ import {
     Input,
     Button,
     AntdTable,
+    Alert,
 } from "readmin";
 
 export const TagList = (props: any) => {
@@ -27,6 +28,7 @@ export const TagList = (props: any) => {
     };
 
     const onSelectChange = (selectedRowKeys: any) => {
+        console.log("selectedRowKeys changed: ", selectedRowKeys);
         setSelectedRowKeys(selectedRowKeys);
     };
 
