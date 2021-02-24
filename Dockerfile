@@ -15,7 +15,7 @@ RUN npm run build
 #Example 
 WORKDIR /opt/app/example
 
-RUN npm ci
+RUN npm install
 
 RUN npm run build
 
