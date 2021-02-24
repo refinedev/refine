@@ -1,19 +1,27 @@
-import React from "react";
-import { useHistory, useParams } from "react-router-dom";
-import { Form, Card, Button } from "antd";
+import React, { createElement, FC } from "react";
+import { useParams } from "react-router-dom";
+import { Card } from "antd";
 import pluralize from "pluralize";
 
 import { useOne } from "@hooks";
-import { BaseRecord } from "@interfaces";
 
 export interface ShowProps {
     resourceName: string;
+    aside?: FC<{ record?: any }>;
+    // component?: FC;
 }
 
-export const Show: React.FC<ShowProps> = ({ resourceName, children }) => {
+export const Show: React.FC<ShowProps> = ({
+    resourceName,
+    aside,
+    component,
+    children,
+}) => {
     const { id } = useParams<Record<string, string>>();
 
     const { data, isLoading } = useOne(resourceName, id);
+
+    console.log("data: ", data)
 
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
@@ -25,22 +33,25 @@ export const Show: React.FC<ShowProps> = ({ resourceName, children }) => {
         return child;
     });
 
+    console.log("childrenWithProps ", childrenWithProps);
+
+    // const Wrapper = component ?? Card;
+
     return (
         <Card
             title={`Show ${pluralize.singular(resourceName)}`}
-            // extra={
-            //     <Button
-            //         htmlType="submit"
-            //         disabled={isLoading}
-            //         type="primary"
-            //         // icon={<SaveOutlined />}
-            //         // onClick={(): void => form.submit()}
-            //     >
-            //         Save
-            //     </Button>
-            // }
+            bodyStyle={{
+                display: "flex",
+                flexDirection: "row",
+            }}
         >
             {childrenWithProps}
+            {aside &&
+                createElement(aside, {
+                    record: data?.data,
+                })}
         </Card>
     );
 };
+
+export { SimpleShow } from "./simpleShow";

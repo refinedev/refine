@@ -15,7 +15,10 @@ import {
     Select,
     Radio,
     Input,
+    SimpleShow,
 } from "readmin";
+
+import { ShowAside } from "../showAside";
 
 export const PostList = (props: any) => {
     return (
@@ -337,13 +340,12 @@ export const PostEdit = (props: any) => {
 
 export const PostShow = (props: any) => {
     return (
-        <Show {...props}>
-            <Test />
+        <Show {...props} aside={ShowAside}>
+            <SimpleShow>
+                <TextField renderRecordKey="id" />
+                <TextField renderRecordKey="title" />
+                <TextField renderRecordKey="userId" />
+            </SimpleShow>
         </Show>
     );
-};
-
-const Test = ({ record }: { record?: any }) => {
-    console.log("record: ", record);
-    return null;
 };
