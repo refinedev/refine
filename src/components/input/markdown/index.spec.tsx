@@ -1,12 +1,12 @@
 import React from "react";
 
 import { render } from "@test";
-import { MarkdownInput } from "./";
+import { Markdown } from "./";
 
-describe("MarkdownInput", () => {
+describe("Markdown", () => {
     it("renders given value correctly", () => {
         const { getByText } = render(
-            <MarkdownInput
+            <Markdown
                 value={
                     "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
                 }

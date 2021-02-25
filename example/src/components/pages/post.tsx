@@ -16,7 +16,7 @@ import {
     Radio,
     Input,
     ShowSimple,
-    MarkdownInput,
+    Markdown,
     MarkdownField,
 } from "readmin";
 
@@ -263,7 +263,7 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <MarkdownInput />
+                    <Markdown />
                 </Form.Item>
                 <Form.Item
                     label="Status"
