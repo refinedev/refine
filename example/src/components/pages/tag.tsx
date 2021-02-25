@@ -10,9 +10,11 @@ import {
     Column,
     ImageField,
     ReferenceField,
+    useTranslate,
 } from "readmin";
 
 export const TagList = (props: any) => {
+    const translate = useTranslate();
     return (
         <List {...props}>
             <Table
@@ -23,12 +25,20 @@ export const TagList = (props: any) => {
                     size: "small",
                 }}
             >
-                <Column key="id" dataIndex="id" title="ID" />
-                <Column key="title" dataIndex="title" title="Title" />
                 <Column
                     key="id"
                     dataIndex="id"
-                    title="Image"
+                    title={translate("common:columns.id")}
+                />
+                <Column
+                    key="title"
+                    dataIndex="title"
+                    title={translate("common:columns.title")}
+                />
+                <Column
+                    key="id"
+                    dataIndex="id"
+                    title={translate("common:columns.image")}
                     render={(value) => (
                         <ReferenceField resource="images" value={value}>
                             <ImageField
@@ -45,11 +55,12 @@ export const TagList = (props: any) => {
 };
 
 export const TagCreate = (props: any) => {
+    const translate = useTranslate();
     return (
         <Create {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <FormItem
-                    label="Title"
+                    label={translate("common:columns.image")}
                     name="title"
                     rules={[
                         {
@@ -65,11 +76,12 @@ export const TagCreate = (props: any) => {
 };
 
 export const TagEdit = (props: any) => {
+    const translate = useTranslate();
     return (
         <Edit {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <FormItem
-                    label="Title"
+                    label={translate("common:columns.title")}
                     name="title"
                     rules={[
                         {

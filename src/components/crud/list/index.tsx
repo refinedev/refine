@@ -35,8 +35,7 @@ export const List: React.FC<ListProps> = ({
     });
     const translate = useTranslate();
 
-    console.log("resourceName", resourceName)
-    console.log("humanizeString(resourceName)", humanizeString(resourceName))
+
     return (
         <Card
             bodyStyle={{ padding: 0 }}

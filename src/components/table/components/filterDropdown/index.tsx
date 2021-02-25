@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Space } from "antd";
 import { FilterDropdownProps as AntdFilterDropdownProps } from "antd/lib/table/interface";
 import { FilterOutlined } from "@ant-design/icons";
+import { useTranslate } from "@hooks";
 
 export type FilterDropdownProps = AntdFilterDropdownProps & {};
 
@@ -44,7 +45,7 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
         }
         return child;
     });
-
+    const translate = useTranslate();
     return (
         <div
             style={{
@@ -57,10 +58,10 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
             <div style={{ marginBottom: 15 }}>{childrenWithProps}</div>
             <Space>
                 <Button type="primary" size="small" onClick={() => onFilter()}>
-                    <FilterOutlined /> Filter
+                    <FilterOutlined /> {translate("common:buttons.filter")}
                 </Button>
                 <Button danger size="small" onClick={() => clearFilter()}>
-                    Clear
+                    {translate("common:buttons.clear")}
                 </Button>
             </Space>
         </div>

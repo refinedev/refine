@@ -102,7 +102,7 @@ export const Layout: React.FC<LayoutProps> = ({
                     ))}
 
                     <Menu.Item key="logout" icon={<LogoutOutlined />}>
-                        Logout
+                        {translate("common:buttons.logout")}
                     </Menu.Item>
                 </Menu>
             </AntLayout.Sider>

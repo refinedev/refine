@@ -1,18 +1,79 @@
 {
     "resources": {
         "posts": {
-            "test2": "necati",
             "My Posts": "My Posts"
+        },
+        "categories": {
+            "Categories": "Categories"
+        },
+        "users": {
+            "Users": "Users"
+        },
+        "tags": {
+            "Tags": "Tags"
+        },
+        "images": {
+            "Images": "Images"
+        },
+        "files": {
+            "Files": "Files"
         },
         "Posts": {
             "title": "Posts"
+        },
+        "Images": {
+            "title": "Images"
+        },
+        "Tags": {
+            "title": "Tags"
+        },
+        "Users": {
+            "title": "Users"
+        },
+        "Files": {
+            "title": "Files"
+        },
+        "Categories": {
+            "title": "Categories"
         }
     },
     "buttons": {
-        "Create": "Create"
+        "create": "Create",
+        "save": "Save",
+        "logout": "Logout",
+        "delete": "Delete",
+        "edit": "Edit",
+        "cancel": "Cancel",
+        "confirm": "Are you sure?",
+        "filter": "Filter",
+        "clear": "Clear"
     },
     "columns": {
-
+        "id": "ID",
+        "url": "Url",
+        "title": "Title",
+        "slug": "Slug",
+        "category": "Category",
+        "status": "Status",
+        "image": "Image",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "birthday": "Birthday"
+    },
+    "forms": {
+        "id": "ID",
+        "title": "Title",
+        "url": "Url",
+        "content": "Content",
+        "status": "Status",
+        "user": "User",
+        "tags": "Tags",
+        "category": "Category",
+        "imageFiles": "Image Files",
+        "price": "Price"
+    },
+    "fields": {
+        "file": "File"
     }
-    
 }

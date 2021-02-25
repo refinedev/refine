@@ -9,7 +9,7 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 import { Column } from "@components";
 import { Filters, Sort } from "@interfaces";
-import { useDelete, useList } from "@hooks";
+import { useDelete, useList, useTranslate } from "@hooks";
 import {
     getDefaultSortOrder,
     getDefaultFilteredValue,
@@ -73,13 +73,16 @@ export const Table: React.FC<TableProps> = ({
         refetch();
     };
 
+    const translate = useTranslate();
+
     const renderDeleteButton = (id: number | string): React.ReactNode => {
         return (
             <Popconfirm
                 key="delete"
-                okText="Delete"
+                okText={translate("common:buttons.delete")}
+                cancelText={translate("common:buttons.cancel")}
                 okType="danger"
-                title="Are you sure?"
+                title={translate("common:buttons.confirm")}
                 okButtonProps={{ disabled: isLoading }}
                 onConfirm={(): void => {
                     mutate({ id });
@@ -91,7 +94,7 @@ export const Table: React.FC<TableProps> = ({
                     danger
                     icon={<DeleteOutlined />}
                 >
-                    Delete
+                    {translate("common:buttons.delete")}
                 </Button>
             </Popconfirm>
         );
@@ -122,7 +125,7 @@ export const Table: React.FC<TableProps> = ({
                                     size="small"
                                     icon={<EditOutlined />}
                                 >
-                                    Edit
+                                    {translate("common:buttons.edit")}
                                 </Button>
                             )}
                             {canDelete && renderDeleteButton(record.id)}

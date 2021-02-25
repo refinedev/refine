@@ -8,19 +8,13 @@ import {
     FormItem,
     TextInput,
     Column,
-    useSetLocale,
+    useTranslate,
 } from "readmin";
 
 export const CategoryList = (props: { resourceName: string }) => {
-    const setLocal = useSetLocale();
+    const translate = useTranslate();
     return (
         <List {...props}>
-            <button type="button" onClick={() => setLocal("fr")}>
-                fr
-            </button>
-            <button type="button" onClick={() => setLocal("en")}>
-                en
-            </button>
             <Table
                 rowKey="id"
                 pagination={{
@@ -29,19 +23,28 @@ export const CategoryList = (props: { resourceName: string }) => {
                     size: "small",
                 }}
             >
-                <Column key="id" dataIndex="id" title="ID" />
-                <Column key="title" dataIndex="title" title="Title" />
+                <Column
+                    key="id"
+                    dataIndex="id"
+                    title={translate("common:columns.id")}
+                />
+                <Column
+                    key="title"
+                    dataIndex="title"
+                    title={translate("common:columns.title")}
+                />
             </Table>
         </List>
     );
 };
 
 export const CategoryCreate = (props: any) => {
+    const translate = useTranslate();
     return (
         <Create {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <FormItem
-                    label="Title"
+                    label={translate("common:forms.title")}
                     name="title"
                     rules={[
                         {
@@ -57,11 +60,12 @@ export const CategoryCreate = (props: any) => {
 };
 
 export const CategoryEdit = (props: any) => {
+    const translate = useTranslate();
     return (
         <Edit {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <FormItem
-                    label="Title"
+                    label={translate("common:forms.title")}
                     name="title"
                     rules={[
                         {
