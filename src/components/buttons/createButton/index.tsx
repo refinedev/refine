@@ -7,7 +7,7 @@ type CreateButtonProps = ButtonProps & {
     resourceName: string
 }
 
-export const CreateButton: FC<CreateButtonProps> = ({resourceName}) => {
+export const CreateButton: FC<CreateButtonProps> = ({resourceName, ...rest}) => {
     const history = useHistory();
 
     return (
@@ -19,6 +19,7 @@ export const CreateButton: FC<CreateButtonProps> = ({resourceName}) => {
             }
             type="default"
             icon={<PlusSquareOutlined />}
+            {...rest}
         >
             Create
         </Button>
