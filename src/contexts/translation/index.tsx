@@ -1,7 +1,6 @@
 import React from "react";
 
-
-import { ITranslationContext, I18nProvider } from "@interfaces";
+import { ITranslationContext } from "@interfaces";
 
 const defaultProvider: ITranslationContext = {
     i18nProvider: {
@@ -15,11 +14,7 @@ export const TranslationContext = React.createContext<ITranslationContext>(
     defaultProvider,
 );
 
-interface TranslationProviderProps {
-    i18nProvider: I18nProvider;
-}
-
-export const TranslationProvider: React.FC<TranslationProviderProps> = ({
+export const TranslationContextProvider: React.FC<ITranslationContext> = ({
     children,
     i18nProvider,
 }) => {

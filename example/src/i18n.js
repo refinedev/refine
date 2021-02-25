@@ -1,28 +1,20 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import translationEN from "./locales/en/translation.json";
-import translationFR from "./locales/fr/translation.json";
-import commonFR from "./locales/fr/common.json";
-import commonEN from "./locales/en/common.json";
+import Backend from "i18next-xhr-backend";
 
-const resources = {
-    en: {
-        translation: translationEN,
-        common: commonEN,
-    },
-    fr: {
-        translation: translationFR,
-        common: commonFR,
-    },
-};
-
-i18n.use(initReactI18next) // passes i18n down to react-i18next
+i18n.use(Backend)
+    .use(initReactI18next) // passes i18n down to react-i18next
     .init({
-        resources,
         lng: "en",
+        react: {
+            useSuspense: false,
+        },
 
         interpolation: {
             escapeValue: false, // react already safes from xss
+        },
+        backend: {
+            loadPath: "/locales/{{lng}}/{{ns}}.json",
         },
     });
 

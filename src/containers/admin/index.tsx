@@ -6,7 +6,7 @@ import "antd/dist/antd.css";
 
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
-import { TranslationProvider } from "@contexts/translation";
+import { TranslationContextProvider } from "@contexts/translation";
 import { RouteProvider } from "@containers/routeProvider";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { ReadyPage as DefaultReadyPage } from "@pages";
@@ -65,7 +65,7 @@ export const Admin: React.FC<AdminProps> = ({
             <AuthContextProvider {...authProvider}>
                 <DataContextProvider {...dataProvider}>
                     <ResourceContextProvider resources={resources}>
-                        <TranslationProvider i18nProvider={i18nProvider}>
+                        <TranslationContextProvider i18nProvider={i18nProvider}>
                             <Router>
                                 <RouteProvider
                                     resources={children}
@@ -76,7 +76,7 @@ export const Admin: React.FC<AdminProps> = ({
                                     ready={ready}
                                 />
                             </Router>
-                        </TranslationProvider>
+                        </TranslationContextProvider>
                     </ResourceContextProvider>
                 </DataContextProvider>
             </AuthContextProvider>

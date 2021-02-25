@@ -41,7 +41,7 @@ function App() {
             }),
     };
 
-    const { t, i18n } = useTranslation();
+    const { t, i18n } = useTranslation(["common", "translation"]);
 
     const i18nProvider = {
         translate: (key: string) => t(key),
