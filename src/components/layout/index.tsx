@@ -111,10 +111,6 @@ export const Layout: React.FC<LayoutProps> = ({
                     style={{ padding: 0, backgroundColor: "#FFF" }}
                 />
 
-                <div className="">{translate("Welcome to React")}</div>
-                <div className="">{translate("resources.posts.My Posts")}</div>
-                <div className="">{translate("resources.posts.test2")}</div>
-                <div className="">{translate("common:test")}</div>
                 <button type="button" onClick={() => setLocale("fr")}>
                     {translate("translation:fr")}
                 </button>

@@ -1,14 +1,79 @@
 {
     "resources": {
         "posts": {
-            "test2": "necati fr",
-            "My Posts": "FR Posts"
+            "My Posts": "My Posts fr"
+        },
+        "categories": {
+            "Categories": "Categories fr"
+        },
+        "users": {
+            "Users": "Users fr"
+        },
+        "tags": {
+            "Tags": "Tags fr"
+        },
+        "images": {
+            "Images": "Images fr"
+        },
+        "files": {
+            "Files": "Files fr"
         },
         "Posts": {
-            "title": "FR Posts"
+            "title": "Posts fr"
+        },
+        "Images": {
+            "title": "Images fr"
+        },
+        "Tags": {
+            "title": "Tags fr"
+        },
+        "Users": {
+            "title": "Users fr"
+        },
+        "Files": {
+            "title": "Files fr"
+        },
+        "Categories": {
+            "title": "Categories fr"
         }
     },
     "buttons": {
-        "Create": "Create FR"
+        "create": "Create fr",
+        "save": "Save fr",
+        "logout": "Logout fr",
+        "delete": "Delete fr",
+        "edit": "Edit fr",
+        "cancel": "Cancel fr",
+        "confirm": "Are you sure? fr",
+        "filter": "Filter fr",
+        "clear": "Clear fr"
+    },
+    "columns": {
+        "id": "ID fr",
+        "url": "Url fr",
+        "title": "Title fr",
+        "slug": "Slug fr",
+        "category": "Category fr",
+        "status": "Status fr",
+        "image": "Image fr",
+        "firstName": "First Name fr",
+        "lastName": "Last Name fr",
+        "email": "Email fr",
+        "birthday": "Birthday"
+    },
+    "forms": {
+        "id": "ID fr",
+        "title": "Title fr",
+        "url": "Url fr",
+        "content": "Content fr",
+        "status": "Status fr",
+        "user": "User fr",
+        "tags": "Tags fr",
+        "category": "Category fr",
+        "imageFiles": "Image Files fr",
+        "price": "Price fr"
+    },
+    "fields": {
+        "file": "File fr"
     }
 }

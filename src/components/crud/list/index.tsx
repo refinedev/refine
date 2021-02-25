@@ -51,7 +51,7 @@ export const List: React.FC<ListProps> = ({
                         type="default"
                         icon={<PlusSquareOutlined />}
                     >
-                        {translate(`common:buttons.Create`)}
+                        {translate(`common:buttons.create`)}
                     </Button>
                 )
             }
