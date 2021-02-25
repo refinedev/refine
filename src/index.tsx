@@ -5,6 +5,7 @@ export { Admin, Resource } from "./containers";
 
 export * from "./components/antd";
 export * from "./components/fields";
+export * from "./components/input";
 export * from "./components/table";
 export * from "./components/crud";
 
