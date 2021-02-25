@@ -17,6 +17,7 @@ import {
     Input,
     ShowSimple,
     MarkdownInput,
+    MarkdownField,
 } from "readmin";
 
 import { ShowAside, ShowComponent } from "../show";
@@ -346,6 +347,7 @@ export const PostShow = (props: any) => {
                 <TextField renderRecordKey="id" />
                 <TextField renderRecordKey="title" />
                 <TextField renderRecordKey="userId" />
+                <MarkdownField renderRecordKey="content" />
             </ShowSimple>
         </Show>
     );
