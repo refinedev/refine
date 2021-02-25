@@ -242,7 +242,7 @@ export const PostCreate = (props: any) => {
                         <Upload.Dragger
                             name="file"
                             action={`${apiUrl}/upload`}
-                            listType="picture-card"
+                            listType="picture"
                             maxCount={1}
                         >
                             <p className="ant-upload-text">
@@ -378,7 +378,7 @@ export const PostEdit = (props: any) => {
                         <Upload.Dragger
                             name="file"
                             action={`${apiUrl}/upload`}
-                            listType="picture-card"
+                            listType="picture"
                             maxCount={1}
                         >
                             <p className="ant-upload-text">
