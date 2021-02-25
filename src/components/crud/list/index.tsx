@@ -45,7 +45,7 @@ export const List: React.FC<ListProps> = ({
                     title={humanizeString(resourceName)}
                     extra={
                         canCreate && (
-                            <CreateButton resourceName={resourceName} />
+                            <CreateButton/>
                         )
                     }
                 >
