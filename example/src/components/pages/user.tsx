@@ -7,6 +7,10 @@ import {
     TagField,
     BooleanField,
     DateField,
+    Show,
+    ShowTab,
+    Tab,
+    TextField,
 } from "readmin";
 
 import { Aside } from "../aside";
@@ -55,5 +59,23 @@ export const UserList = (props: any) => {
                 />
             </Table>
         </List>
+    );
+};
+
+export const UserShow = (props: any) => {
+    return (
+        <Show {...props}>
+            <ShowTab>
+                <Tab tab="Summary">
+                    <TextField renderRecordKey="id" />
+                    <TextField renderRecordKey="firstName" />
+                    <TextField renderRecordKey="lastName" />
+                </Tab>
+                <Tab tab="Detail">
+                    <EmailField renderRecordKey="email" />
+                    <DateField renderRecordKey="birthday" />
+                </Tab>
+            </ShowTab>
+        </Show>
     );
 };

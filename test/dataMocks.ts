@@ -64,6 +64,15 @@ export const createMockServer = (): SetupServerApi =>
             },
         ),
         rest.get(
+            "https://readmin-fake-rest.pankod.com/posts/1",
+            (_req, res, ctx) => {
+                return res(
+                    ctx.json(posts[0]),
+                    ctx.set("x-total-count", posts.length.toString()),
+                );
+            },
+        ),
+        rest.get(
             "https://readmin-fake-rest.pankod.com/categories",
             (_req, res, ctx) => {
                 return res(
