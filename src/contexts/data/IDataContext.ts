@@ -87,4 +87,5 @@ export interface IDataContext {
         resource: string,
         ids: Identifier[],
     ) => Promise<DeleteManyResponse>;
+    getApiUrl: () => string;
 }

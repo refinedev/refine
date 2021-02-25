@@ -15,7 +15,10 @@ import {
     Select,
     Radio,
     Input,
+    Upload,
     ShowSimple,
+    normalizeFile,
+    useApiUrl,
 } from "readmin";
 
 import { ShowAside, ShowComponent } from "../show";
@@ -108,6 +111,8 @@ export const PostList = (props: any) => {
 };
 
 export const PostCreate = (props: any) => {
+    const apiUrl = useApiUrl();
+
     return (
         <Create {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
@@ -221,12 +226,42 @@ export const PostCreate = (props: any) => {
                         <Select mode="multiple" />
                     </Reference>
                 </Form.Item>
+
+                <Form.Item label="Image">
+                    <Form.Item
+                        name="image"
+                        valuePropName="fileList"
+                        getValueFromEvent={normalizeFile}
+                        noStyle
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Upload.Dragger
+                            name="file"
+                            action={`${apiUrl}/upload`}
+                            listType="picture"
+                            maxCount={1}
+                        >
+                            <p className="ant-upload-text">
+                                Click or drag file to this area to upload
+                            </p>
+                            <p className="ant-upload-hint">
+                                Support for a single upload.
+                            </p>
+                        </Upload.Dragger>
+                    </Form.Item>
+                </Form.Item>
             </Form>
         </Create>
     );
 };
 
 export const PostEdit = (props: any) => {
+    const apiUrl = useApiUrl();
+
     return (
         <Edit {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
@@ -332,6 +367,28 @@ export const PostEdit = (props: any) => {
                     <Reference reference="tags" optionText="title">
                         <Select mode="multiple" />
                     </Reference>
+                </Form.Item>
+                <Form.Item label="Image">
+                    <Form.Item
+                        name="image"
+                        valuePropName="fileList"
+                        getValueFromEvent={normalizeFile}
+                        noStyle
+                    >
+                        <Upload.Dragger
+                            name="file"
+                            action={`${apiUrl}/upload`}
+                            listType="picture"
+                            maxCount={1}
+                        >
+                            <p className="ant-upload-text">
+                                Click or drag file to this area to upload
+                            </p>
+                            <p className="ant-upload-hint">
+                                Support for a single upload.
+                            </p>
+                        </Upload.Dragger>
+                    </Form.Item>
                 </Form.Item>
             </Form>
         </Edit>
