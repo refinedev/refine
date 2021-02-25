@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { Table as AntdTable, Button, Space, Popconfirm } from "antd";
+import { Table as AntdTable, Button, Space } from "antd";
 import
 {
     TablePaginationConfig,
     TableProps as AntdTableProps,
 } from "antd/lib/table";
 import { useHistory } from "react-router-dom";
-import { DeleteOutlined, EyeOutlined } from "@ant-design/icons";
+import { EyeOutlined } from "@ant-design/icons";
 
-import { Column, EditButton } from "@components";
+import { Column, EditButton, DeleteButton } from "@components";
 import { Filters, Sort } from "@interfaces";
-import { useDelete, useList } from "@hooks";
+import { useList } from "@hooks";
 import
 {
     getDefaultSortOrder,
@@ -43,8 +43,6 @@ export const Table: React.FC<TableProps> = ({
     if (!resourceName) {
         throw new Error(`resource not found!`);
     }
-
-    const { mutate, isLoading } = useDelete(resourceName);
 
     const [current, setCurrent] = useState(
         (pagination && pagination.current) || defaultCurrent,
@@ -80,32 +78,6 @@ export const Table: React.FC<TableProps> = ({
         refetch();
     };
 
-    const renderDeleteButton = (id: number | string): React.ReactNode =>
-    {
-        return (
-            <Popconfirm
-                key="delete"
-                okText="Delete"
-                okType="danger"
-                title="Are you sure?"
-                okButtonProps={{ disabled: isLoading }}
-                onConfirm={(): void =>
-                {
-                    mutate({ id });
-                }}
-            >
-                <Button
-                    type="default"
-                    size="small"
-                    danger
-                    icon={<DeleteOutlined />}
-                >
-                    Delete
-                </Button>
-            </Popconfirm>
-        );
-    };
-
     const renderShowButton = (id: string | number) => (
         <Button
             onClick={(): void =>
@@ -136,7 +108,7 @@ export const Table: React.FC<TableProps> = ({
                     ): React.ReactNode => (
                         <Space>
                             {canEdit && <EditButton itemId={record.id} />}
-                            {canDelete && renderDeleteButton(record.id)}
+                            {canDelete && <DeleteButton itemId={record.id} />}
                             {canShow && renderShowButton(record.id)}
                         </Space>
                     )}
