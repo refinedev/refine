@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Typography, Tabs, TabsProps } from "antd";
+import { Tabs, TabsProps } from "antd";
 
 import { BaseRecord } from "@interfaces";
 
