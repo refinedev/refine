@@ -11,7 +11,6 @@ import {
     Input,
     Button,
     AntdTable,
-    Alert,
 } from "readmin";
 
 export const TagList = (props: any) => {
