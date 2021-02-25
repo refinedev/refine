@@ -113,7 +113,7 @@ export const Table: React.FC<TableProps> = ({
     );
 
     const renderActions = (): React.ReactNode => {
-        if (canEdit || canDelete) {
+        if (canEdit || canDelete || canShow) {
             return (
                 <Column
                     title="Actions"
