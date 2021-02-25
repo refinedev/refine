@@ -11,3 +11,6 @@ export * from "@contexts/auth/IAuthContext";
 
 // field
 export * from "@interfaces/field";
+
+// match
+export * from "@interfaces/match"
