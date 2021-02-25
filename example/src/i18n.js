@@ -6,10 +6,10 @@ i18n.use(Backend)
     .use(initReactI18next) // passes i18n down to react-i18next
     .init({
         lng: "en",
-        react: {
+      /*   react: {
             useSuspense: false,
         },
-
+ */
         interpolation: {
             escapeValue: false, // react already safes from xss
         },

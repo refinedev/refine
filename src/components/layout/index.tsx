@@ -1,5 +1,5 @@
 import React, { ReactNode, useContext } from "react";
-import { Layout as AntLayout, Menu } from "antd";
+import { Layout as AntLayout, Menu, Button } from "antd";
 import {
     DashboardOutlined,
     LogoutOutlined,
@@ -96,6 +96,7 @@ export const Layout: React.FC<LayoutProps> = ({
                                     `common:resources.${item.name}.${
                                         item.label ?? humanizeString(item.name)
                                     }`,
+                                    { default: humanizeString(item.name) },
                                 )}
                             </Link>
                         </Menu.Item>
@@ -109,15 +110,14 @@ export const Layout: React.FC<LayoutProps> = ({
             <AntLayout className="site-layout">
                 <AntLayout.Header
                     style={{ padding: 0, backgroundColor: "#FFF" }}
-                />
-
-                <button type="button" onClick={() => setLocale("fr")}>
-                    {translate("translation:fr")}
-                </button>
-                <button type="button" onClick={() => setLocale("en")}>
-                    {translate("translation:en")}
-                </button>
-                <div className="">Current locale {getLocale()}</div>
+                >
+                    <Button size="middle" onClick={() => setLocale("en")}>
+                        EN
+                    </Button>
+                    <Button size="middle" onClick={() => setLocale("fr")}>
+                        FR
+                    </Button>
+                </AntLayout.Header>
 
                 <AntLayout.Content>
                     <div style={{ padding: 24, minHeight: 360 }}>
