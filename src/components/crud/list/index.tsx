@@ -24,7 +24,6 @@ export const List: React.FC<ListProps> = ({
     aside,
     children,
 }) => {
-
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement<TableProps>(child, {
@@ -43,11 +42,7 @@ export const List: React.FC<ListProps> = ({
                 <Card
                     bodyStyle={{ padding: 0, flex: 1 }}
                     title={humanizeString(resourceName)}
-                    extra={
-                        canCreate && (
-                            <CreateButton/>
-                        )
-                    }
+                    extra={canCreate && <CreateButton />}
                 >
                     {childrenWithProps}
                 </Card>

@@ -1,4 +1,4 @@
-import React, { FC } from "react"
+import React, { FC } from "react";
 import { Button, ButtonProps, Popconfirm } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useRouteMatch } from "react-router-dom";
@@ -9,13 +9,18 @@ import { MatchResourceName } from "@interfaces";
 type DeleteButtonProps = ButtonProps & {
     resourceName?: string;
     itemId: string | number;
-}
+};
 
-export const DeleteButton: FC<DeleteButtonProps> = ({ resourceName, itemId, ...rest }) =>
-{
-    const match = useRouteMatch("/resources/:routeResourceName")
+export const DeleteButton: FC<DeleteButtonProps> = ({
+    resourceName,
+    itemId,
+    ...rest
+}) => {
+    const match = useRouteMatch("/resources/:routeResourceName");
 
-    const { params: { routeResourceName } } = match as unknown as MatchResourceName
+    const {
+        params: { routeResourceName },
+    } = (match as unknown) as MatchResourceName;
 
     const { mutate, isLoading } = useDelete(resourceName ?? routeResourceName);
 
@@ -26,8 +31,7 @@ export const DeleteButton: FC<DeleteButtonProps> = ({ resourceName, itemId, ...r
             okType="danger"
             title="Are you sure?"
             okButtonProps={{ disabled: isLoading }}
-            onConfirm={(): void =>
-            {
+            onConfirm={(): void => {
                 mutate({ id: itemId });
             }}
         >
@@ -39,7 +43,7 @@ export const DeleteButton: FC<DeleteButtonProps> = ({ resourceName, itemId, ...r
                 {...rest}
             >
                 Delete
-                </Button>
+            </Button>
         </Popconfirm>
-    )
-}
+    );
+};

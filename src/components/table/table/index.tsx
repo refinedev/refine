@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Table as AntdTable, Button, Space } from "antd";
-import
-{
+import {
     TablePaginationConfig,
     TableProps as AntdTableProps,
 } from "antd/lib/table";
@@ -11,14 +10,12 @@ import { EyeOutlined } from "@ant-design/icons";
 import { Column, EditButton, DeleteButton } from "@components";
 import { Filters, Sort } from "@interfaces";
 import { useList } from "@hooks";
-import
-{
+import {
     getDefaultSortOrder,
     getDefaultFilteredValue,
 } from "@definitions/table";
 
-export interface TableProps extends AntdTableProps<any>
-{
+export interface TableProps extends AntdTableProps<any> {
     resourceName?: string;
     canEdit?: boolean;
     canDelete?: boolean;
@@ -33,8 +30,7 @@ export const Table: React.FC<TableProps> = ({
     canShow,
     children,
     ...rest
-}) =>
-{
+}) => {
     const defaultCurrent = 1;
     const defaultPageSize = 10;
 
@@ -66,8 +62,7 @@ export const Table: React.FC<TableProps> = ({
         pagination: TablePaginationConfig,
         filters: Filters,
         sorter: Sort,
-    ) =>
-    {
+    ) => {
         const { current, pageSize } = pagination;
         setCurrent(current || defaultCurrent);
         setPageSize(pageSize || defaultPageSize);
@@ -80,8 +75,7 @@ export const Table: React.FC<TableProps> = ({
 
     const renderShowButton = (id: string | number) => (
         <Button
-            onClick={(): void =>
-            {
+            onClick={(): void => {
                 history.push(`/resources/${resourceName}/show/${id}`);
             }}
             type="default"
@@ -92,8 +86,7 @@ export const Table: React.FC<TableProps> = ({
         </Button>
     );
 
-    const renderActions = (): React.ReactNode =>
-    {
+    const renderActions = (): React.ReactNode => {
         if (canEdit || canDelete || canShow) {
             return (
                 <Column
