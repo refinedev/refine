@@ -1,5 +1,5 @@
 import React, { createElement, FC } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { Card, CardProps, Col, Row, Space } from "antd";
 import pluralize from "pluralize";
 
@@ -29,6 +29,8 @@ export const Show: React.FC<ShowProps> = ({
     children,
     ...rest
 }) => {
+    const history = useHistory();
+
     const { id } = useParams<Record<string, string>>();
 
     const { data, isLoading } = useOne(resourceName, id);
@@ -74,6 +76,11 @@ export const Show: React.FC<ShowProps> = ({
                                         <DeleteButton
                                             resourceName={resourceName}
                                             recordItemId={id}
+                                            onDelete={() =>
+                                                history.push(
+                                                    `/resources/${resourceName}`,
+                                                )
+                                            }
                                         />
                                     )}
                                     <RefreshButton

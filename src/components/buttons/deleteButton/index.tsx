@@ -4,16 +4,18 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { useRouteMatch } from "react-router-dom";
 
 import { useDelete } from "@hooks";
-import { MatchRoute } from "@interfaces";
+import { MatchRoute, DeleteOneResponse } from "@interfaces";
 
 type DeleteButtonProps = ButtonProps & {
     resourceName?: string;
     recordItemId?: string | number;
+    onDelete?: (value: DeleteOneResponse) => void;
 };
 
 export const DeleteButton: FC<DeleteButtonProps> = ({
     resourceName,
     recordItemId,
+    onDelete,
     ...rest
 }) => {
     const match = useRouteMatch({
@@ -28,7 +30,9 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
         params: { resourceName: routeResourceName, id: idFromRoute },
     } = (match as unknown) as MatchRoute;
 
-    const { mutate, isLoading } = useDelete(resourceName ?? routeResourceName);
+    const { mutateAsync, isLoading } = useDelete(
+        resourceName ?? routeResourceName,
+    );
 
     return (
         <Popconfirm
@@ -38,7 +42,11 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
             title="Are you sure?"
             okButtonProps={{ disabled: isLoading }}
             onConfirm={(): void => {
-                mutate({ id: recordItemId ?? idFromRoute });
+                mutateAsync({ id: recordItemId ?? idFromRoute }).then(
+                    (value) => {
+                        onDelete && onDelete(value);
+                    },
+                );
             }}
         >
             <Button type="default" danger icon={<DeleteOutlined />} {...rest}>
