@@ -36,7 +36,6 @@ describe("<ShowSimple/>", () => {
         const { getByText } = render(
             <ShowSimple
                 record={{ id: 1, slug: "testslug" }}
-                data-testid="showsimple"
                 title="Post Title"
             />,
             {
