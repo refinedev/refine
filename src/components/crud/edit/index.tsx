@@ -59,8 +59,8 @@ export const Edit: React.FC<EditProps> = ({
             extra={
                 <Row>
                     <Space>
-                        <ListButton />
-                        <RefreshButton />
+                        <ListButton resourceName={resourceName} />
+                        <RefreshButton resourceName={resourceName} />
                         <Button
                             htmlType="submit"
                             disabled={isLoading}
