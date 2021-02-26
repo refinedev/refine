@@ -9,9 +9,14 @@ import { BaseRecord } from "@interfaces";
 
 export interface EditProps {
     resourceName: string;
+    title?: string;
 }
 
-export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
+export const Edit: React.FC<EditProps> = ({
+    resourceName,
+    title,
+    children,
+}) => {
     const history = useHistory();
     const { id } = useParams<Record<string, string>>();
 
@@ -49,7 +54,7 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
 
     return (
         <Card
-            title={`Edit ${pluralize.singular(resourceName)}`}
+            title={title ?? `Edit ${pluralize.singular(resourceName)}`}
             extra={
                 <Button
                     htmlType="submit"
