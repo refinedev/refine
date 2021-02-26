@@ -111,12 +111,22 @@ export const Layout: React.FC<LayoutProps> = ({
                 <AntLayout.Header
                     style={{ padding: 0, backgroundColor: "#FFF" }}
                 >
-                    <Button size="middle" onClick={() => setLocale("en")}>
-                        EN
-                    </Button>
-                    <Button size="middle" onClick={() => setLocale("fr")}>
-                        FR
-                    </Button>
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "flex-end",
+                            height: "100%",
+                            alignItems: "center",
+                            padding: "24px",
+                        }}
+                    >
+                        <Button size="middle" onClick={() => setLocale("en")}>
+                            EN
+                        </Button>
+                        <Button size="middle" onClick={() => setLocale("tr")}>
+                            TR
+                        </Button>
+                    </div>
                 </AntLayout.Header>
 
                 <AntLayout.Content>
