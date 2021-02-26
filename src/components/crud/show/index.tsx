@@ -16,7 +16,6 @@ export type ShowProps = CardProps & {
     resourceName: string;
     aside?: FC<{ record?: BaseRecord }>;
     component?: FC<{ record?: BaseRecord }>;
-    canCreate?: boolean;
     canEdit?: boolean;
     canDelete?: boolean;
 };
@@ -25,7 +24,6 @@ export const Show: React.FC<ShowProps> = ({
     resourceName,
     aside,
     component,
-    canCreate,
     canEdit,
     canDelete,
     children,
