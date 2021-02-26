@@ -5,7 +5,12 @@ import pluralize from "pluralize";
 
 import { BaseRecord } from "@interfaces";
 import { useOne } from "@hooks";
-import { EditButton, DeleteButton, RefreshButton } from "@components";
+import {
+    EditButton,
+    DeleteButton,
+    RefreshButton,
+    ListButton,
+} from "@components";
 
 export type ShowProps = CardProps & {
     resourceName: string;
@@ -60,6 +65,7 @@ export const Show: React.FC<ShowProps> = ({
                         extra={
                             <Row>
                                 <Space>
+                                    <ListButton resourceName={resourceName} />
                                     {canEdit && (
                                         <EditButton
                                             resourceName={resourceName}
