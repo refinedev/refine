@@ -1,4 +1,11 @@
 {
+    "pages": {
+        "login": {
+            "title": "Login",
+            "username": "Username",
+            "password": "Password"
+        }
+    },
     "resources": {
         "categories": {
             "Categories": "Categories",
