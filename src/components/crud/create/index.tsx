@@ -10,11 +10,13 @@ import { BaseRecord } from "@interfaces";
 export interface CreateProps {
     resourceName: string;
     canEdit?: boolean;
+    title?: string;
 }
 
 export const Create: React.FC<CreateProps> = ({
     resourceName,
     canEdit,
+    title,
     children,
 }) => {
     const history = useHistory();
@@ -52,7 +54,7 @@ export const Create: React.FC<CreateProps> = ({
 
     return (
         <Card
-            title={`Create ${pluralize.singular(resourceName)}`}
+            title={title ?? `Create ${pluralize.singular(resourceName)}`}
             extra={
                 <Button
                     htmlType="submit"
