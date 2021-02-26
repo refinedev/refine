@@ -17,6 +17,8 @@ import {
     Input,
     Upload,
     ShowSimple,
+    Markdown,
+    MarkdownField,
     normalizeFile,
     useApiUrl,
 } from "readmin";
@@ -296,7 +298,7 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <Input.TextArea />
+                    <Markdown />
                 </Form.Item>
                 <Form.Item
                     label="Status"
@@ -402,6 +404,7 @@ export const PostShow = (props: any) => {
                 <TextField renderRecordKey="id" />
                 <TextField renderRecordKey="title" />
                 <TextField renderRecordKey="userId" />
+                <MarkdownField renderRecordKey="content" />
             </ShowSimple>
         </Show>
     );
