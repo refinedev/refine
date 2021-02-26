@@ -52,6 +52,7 @@ function App() {
 
     return (
         <Admin
+            authProvider={authProvider}
             dataProvider={JsonServer("https://readmin-fake-rest.pankod.com")}
             loginPage={LoginPage}
             dashboard={DashboardPage}
