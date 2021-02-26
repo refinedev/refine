@@ -7,7 +7,7 @@ import { GetOneResponse, BaseRecord, IDataContext } from "@interfaces";
 export const useOne = <TData extends BaseRecord = BaseRecord>(
     resource: string,
     id: string,
-    options?: any,
+    options?: UseQueryOptions<GetOneResponse<TData>>,
 ): QueryObserverResult<GetOneResponse<TData>> => {
     const { getOne } = useContext<IDataContext>(DataContext);
 
