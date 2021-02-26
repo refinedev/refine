@@ -57,6 +57,13 @@ describe("<List/>", () => {
             getByText("Aside");
         });
 
+        it("should render optional title with title prop", async () => {
+            const { getByText } = render(
+                <List resourceName="posts" title="New Title"></List>,
+            );
+            getByText("New Title");
+        });
+
         // xit("should wrap with given component", async () => {
         //     const { container } = render(
         //         <List component={"section"} resourceName="posts">

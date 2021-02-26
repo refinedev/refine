@@ -8,3 +8,5 @@ export { useDelete } from "./useDelete";
 
 export { useUpdateMany } from "./useUpdateMany";
 export { useDeleteMany } from "./useDeleteMany";
+
+export { useApiUrl } from "./useApiUrl";

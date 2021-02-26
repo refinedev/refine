@@ -13,6 +13,7 @@ export interface ListProps {
     canDelete?: boolean;
     canShow?: boolean;
     aside?: React.FC;
+    title?: string;
 }
 
 export const List: React.FC<ListProps> = ({
@@ -22,6 +23,7 @@ export const List: React.FC<ListProps> = ({
     canDelete,
     canShow,
     aside,
+    title,
     children,
 }) => {
     const childrenWithProps = React.Children.map(children, (child) => {
@@ -41,7 +43,7 @@ export const List: React.FC<ListProps> = ({
             <Col flex="1 1 200px">
                 <Card
                     bodyStyle={{ padding: 0, flex: 1 }}
-                    title={humanizeString(resourceName)}
+                    title={title ?? humanizeString(resourceName)}
                     extra={canCreate && <CreateButton size="middle" />}
                 >
                     {childrenWithProps}

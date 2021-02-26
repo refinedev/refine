@@ -32,4 +32,20 @@ describe("<ShowSimple/>", () => {
 
         getByText("testslug");
     });
+
+    it("renders optional title with title prop", () => {
+        const { getByText } = render(
+            <ShowSimple
+                record={{ id: 1, slug: "testslug" }}
+                title="Post Title"
+            />,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        getByText("Post Title");
+    });
 });

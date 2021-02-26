@@ -8,3 +8,4 @@ export { DateField } from "./dateField";
 export { FileField } from "./fileField";
 export { UrlField } from "./urlField";
 export { NumberField } from "./numberField";
+export { MarkdownField } from "./markdownField";
