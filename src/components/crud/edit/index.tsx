@@ -1,11 +1,12 @@
 import React from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { Form, Card, Button } from "antd";
+import { Form, Card, Button, Row, Space } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
 import { useOne, useUpdate } from "@hooks";
 import { BaseRecord } from "@interfaces";
+import { ListButton, RefreshButton } from "@components/buttons";
 
 export interface EditProps {
     resourceName: string;
@@ -51,15 +52,21 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
         <Card
             title={`Edit ${pluralize.singular(resourceName)}`}
             extra={
-                <Button
-                    htmlType="submit"
-                    disabled={isLoading}
-                    type="primary"
-                    icon={<SaveOutlined />}
-                    onClick={(): void => form.submit()}
-                >
-                    Save
-                </Button>
+                <Row>
+                    <Space>
+                        <ListButton />
+                        <RefreshButton />
+                        <Button
+                            htmlType="submit"
+                            disabled={isLoading}
+                            type="primary"
+                            icon={<SaveOutlined />}
+                            onClick={(): void => form.submit()}
+                        >
+                            Save
+                        </Button>
+                    </Space>
+                </Row>
             }
         >
             {childrenWithProps}

@@ -30,7 +30,6 @@ export const CreateButton: FC<CreateButtonProps> = ({
                     `/resources/${resourceName ?? routeResourceName}/create`,
                 )
             }
-            size="small"
             type="default"
             icon={<PlusSquareOutlined />}
             {...rest}

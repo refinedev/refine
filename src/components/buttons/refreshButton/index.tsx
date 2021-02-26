@@ -37,7 +37,6 @@ export const RefreshButton: FC<RefreshButtonProps> = ({
     return (
         <Button
             type="default"
-            size="small"
             icon={<RedoOutlined spin={isFetching} />}
             onClick={() => refetch()}
             {...rest}

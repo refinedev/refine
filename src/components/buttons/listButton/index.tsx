@@ -29,7 +29,6 @@ export const ListButton: FC<ListButtonProps> = ({
     return (
         <Button
             onClick={(): void => history.push(`/resources/${resourceName}`)}
-            size="small"
             type="default"
             icon={<BarsOutlined />}
             {...rest}

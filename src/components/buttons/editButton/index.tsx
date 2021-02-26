@@ -39,7 +39,6 @@ export const EditButton: FC<EditButtonProps> = ({
                 );
             }}
             type="default"
-            size="small"
             icon={<EditOutlined />}
             {...rest}
         >

@@ -38,7 +38,6 @@ export const ShowButton: FC<ShowButtonProps> = ({
                     }`,
                 )
             }
-            size="small"
             type="default"
             icon={<EyeOutlined />}
             {...rest}

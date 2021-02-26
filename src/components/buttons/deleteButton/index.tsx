@@ -41,13 +41,7 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
                 mutate({ id: recordItemId ?? idFromRoute });
             }}
         >
-            <Button
-                type="default"
-                size="small"
-                danger
-                icon={<DeleteOutlined />}
-                {...rest}
-            >
+            <Button type="default" danger icon={<DeleteOutlined />} {...rest}>
                 Delete
             </Button>
         </Popconfirm>
