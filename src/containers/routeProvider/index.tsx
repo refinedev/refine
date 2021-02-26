@@ -51,7 +51,6 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
                 exact: true,
                 path: `/resources/${name}/create`,
                 component: () => {
-                    console.log("routes", routes);
                     return (
                         <CreateComponent
                             resourceName={name}
