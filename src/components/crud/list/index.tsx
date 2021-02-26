@@ -35,12 +35,12 @@ export const List: React.FC<ListProps> = ({
     });
     const translate = useTranslate();
 
-
     return (
         <Card
             bodyStyle={{ padding: 0 }}
             title={translate(
-                `common:resources.${humanizeString(resourceName)}.title`,
+                `common:resources.${resourceName}.title`,
+                humanizeString(resourceName),
             )}
             extra={
                 canCreate && (

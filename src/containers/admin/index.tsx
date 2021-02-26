@@ -6,7 +6,10 @@ import "antd/dist/antd.css";
 
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
-import { TranslationContextProvider } from "@contexts/translation";
+import {
+    defaultProvider,
+    TranslationContextProvider,
+} from "@contexts/translation";
 import { RouteProvider } from "@containers/routeProvider";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { ReadyPage as DefaultReadyPage } from "@pages";
@@ -16,7 +19,7 @@ import { IDataContext, IAuthContext, I18nProvider } from "@interfaces";
 export interface AdminProps {
     authProvider: IAuthContext;
     dataProvider: IDataContext;
-    i18nProvider: I18nProvider;
+    i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
     title?: ReactNode;
     loginPage?: React.FC | false;
@@ -33,7 +36,7 @@ export const Admin: React.FC<AdminProps> = ({
     loginPage,
     catchAll,
     children,
-    i18nProvider,
+    i18nProvider = defaultProvider.i18nProvider,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {

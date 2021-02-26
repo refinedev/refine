@@ -96,14 +96,14 @@ export const Layout: React.FC<LayoutProps> = ({
                                     `common:resources.${item.name}.${
                                         item.label ?? humanizeString(item.name)
                                     }`,
-                                    { default: humanizeString(item.name) },
+                                    item.label ?? humanizeString(item.name),
                                 )}
                             </Link>
                         </Menu.Item>
                     ))}
 
                     <Menu.Item key="logout" icon={<LogoutOutlined />}>
-                        {translate("common:buttons.logout")}
+                        {translate("common:buttons.logout", "Logout")}
                     </Menu.Item>
                 </Menu>
             </AntLayout.Sider>

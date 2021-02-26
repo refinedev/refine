@@ -2,9 +2,9 @@ import React from "react";
 
 import { ITranslationContext } from "@interfaces";
 
-const defaultProvider: ITranslationContext = {
+export const defaultProvider: ITranslationContext = {
     i18nProvider: {
-        translate: (key) => key,
+        translate: (key: string, options: any) => options,
         changeLocale: () => Promise.resolve(),
         getLocale: () => "en",
     },
@@ -21,7 +21,7 @@ export const TranslationContextProvider: React.FC<ITranslationContext> = ({
     return (
         <TranslationContext.Provider
             value={{
-                i18nProvider,
+                i18nProvider: i18nProvider,
             }}
         >
             {children}

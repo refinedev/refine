@@ -44,14 +44,14 @@ function App() {
     const { t, i18n } = useTranslation(["common", "translation"]);
 
     const i18nProvider = {
-        translate: (key: string) => t(key),
+        translate: (key: string, defaultTranslate: string) =>
+            t(key, defaultTranslate),
         changeLocale: (lang: string) => i18n.changeLanguage(lang),
         getLocale: () => i18n.language,
     };
 
     return (
         <Admin
-            authProvider={authProvider}
             dataProvider={JsonServer("https://readmin-fake-rest.pankod.com")}
             loginPage={LoginPage}
             dashboard={DashboardPage}

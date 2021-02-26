@@ -1,10 +1,12 @@
 {
     "resources": {
-        "posts": {
-            "My Posts": "My Posts fr"
-        },
         "categories": {
-            "Categories": "Categories fr"
+            "Categories": "Kategoriler",
+            "title": "Kategoriler",
+            "fields": {
+                "id": "Id",
+                "title": "Başlık"
+            }
         },
         "users": {
             "Users": "Users fr"

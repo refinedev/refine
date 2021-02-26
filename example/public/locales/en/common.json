@@ -1,10 +1,11 @@
 {
     "resources": {
-        "posts": {
-            "My Posts": "My Posts"
-        },
         "categories": {
-            "Categories": "Categories"
+            "Categories": "Categories",
+            "title": "Categories",
+            "fields": {
+                "id": "Id"
+            }
         },
         "users": {
             "Users": "Users"
@@ -32,9 +33,6 @@
         },
         "Files": {
             "title": "Files"
-        },
-        "Categories": {
-            "title": "Categories"
         }
     },
     "buttons": {

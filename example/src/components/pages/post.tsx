@@ -34,7 +34,7 @@ export const PostList = (props: any) => {
             >
                 <Column
                     dataIndex="id"
-                    title={translate("common:columns.id")}
+                    title={"ID"}
                     key="id"
                     sorter={{
                         multiple: 3,
@@ -43,7 +43,7 @@ export const PostList = (props: any) => {
                 />
                 <Column
                     dataIndex="title"
-                    title={translate("common:columns.title")}
+                    title={translate("common:columns.title", "Title")}
                     key="title"
                     render={(value) => <TextField value={value} />}
                     sorter={{
