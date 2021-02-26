@@ -4,7 +4,7 @@ import { Form, Card, Button } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
-import { useOne, useUpdate } from "@hooks";
+import { useOne, useUpdate, useTranslate } from "@hooks";
 import { BaseRecord } from "@interfaces";
 
 export interface EditProps {
@@ -24,6 +24,7 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
     });
 
     const { mutate } = useUpdate(resourceName);
+    const translate = useTranslate();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         mutate(
@@ -58,7 +59,7 @@ export const Edit: React.FC<EditProps> = ({ resourceName, children }) => {
                     icon={<SaveOutlined />}
                     onClick={(): void => form.submit()}
                 >
-                    Save
+                    {translate("common:buttons.save", "Save")}
                 </Button>
             }
         >

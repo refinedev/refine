@@ -28,17 +28,17 @@ export const TagList = (props: any) => {
                 <Column
                     key="id"
                     dataIndex="id"
-                    title={translate("common:columns.id")}
+                    title={translate("common:resources.tags.fields.id")}
                 />
                 <Column
                     key="title"
                     dataIndex="title"
-                    title={translate("common:columns.title")}
+                    title={translate("common:resources.tags.fields.title")}
                 />
                 <Column
                     key="id"
                     dataIndex="id"
-                    title={translate("common:columns.image")}
+                    title={translate("common:resources.tags.fields.image")}
                     render={(value) => (
                         <ReferenceField resource="images" value={value}>
                             <ImageField
@@ -60,7 +60,7 @@ export const TagCreate = (props: any) => {
         <Create {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <FormItem
-                    label={translate("common:columns.image")}
+                    label={translate("common:resources.tags.fields.image")}
                     name="title"
                     rules={[
                         {
@@ -81,7 +81,7 @@ export const TagEdit = (props: any) => {
         <Edit {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <FormItem
-                    label={translate("common:columns.title")}
+                    label={translate("common:resources.tags.fields.title")}
                     name="title"
                     rules={[
                         {

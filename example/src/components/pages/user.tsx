@@ -24,35 +24,35 @@ export const UserList = (props: any) => {
                 <Column
                     key="id"
                     dataIndex="id"
-                    title={translate("common:columns.id")}
+                    title={translate("common:resources.users.fields.id")}
                 />
                 <Column
                     key="firstName"
                     dataIndex="firstName"
-                    title={translate("common:columns.firstName")}
+                    title={translate("common:resources.users.fields.firstName")}
                 />
                 <Column
                     key="lastName"
                     dataIndex="lastName"
-                    title={translate("common:columns.lastName")}
+                    title={translate("common:resources.users.fields.lastName")}
                 />
                 <Column
                     dataIndex="status"
-                    title={translate("common:columns.status")}
+                    title={translate("common:resources.users.fields.status")}
                     key="status"
                     render={(value) => <TagField value={value} />}
                 />
                 <Column
                     key="email"
                     dataIndex="email"
-                    title={translate("common:columns.email")}
+                    title={translate("common:resources.users.fields.email")}
                     render={(value) => <EmailField value={value} />}
                 />
 
                 <Column
                     key="birthday"
                     dataIndex="birthday"
-                    title={translate("common:columns.birthday")}
+                    title={translate("common:resources.users.fields.birthday")}
                     render={(value) => <DateField value={value} />}
                 />
             </Table>

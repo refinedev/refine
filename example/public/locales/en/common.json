@@ -4,35 +4,69 @@
             "Categories": "Categories",
             "title": "Categories",
             "fields": {
-                "id": "Id"
+                "id": "Id",
+                "title": "Title"
+            },
+            "forms": {
+                "title": "Title"
+            }
+        },
+        "files": {
+            "Files": "Files",
+            "title": "Files",
+            "fields": {
+                "id": "Id",
+                "url": "Url",
+                "file": "File",
+                "image": "Image",
+                "title": "Title"
+            },
+            "forms": {
+                "title": "Title",
+                "imageFiles": "Image Files"
+            }
+        },
+        "images": {
+            "Images": "Images",
+            "fields": {
+                "id": "Id",
+                "image": "Image",
+                "price": "Price"
+            }
+        },
+        "posts": {
+            "Posts": "Posts",
+            "fields": {
+                "id": "Id",
+                "title": "Title",
+                "slug": "Slug",
+                "category": "Category",
+                "status": "Status",
+                "url": "Url",
+                "content": "Content",
+                "user": "User",
+                "tags": "Tags"
+            }
+        },
+        "tags": {
+            "Tags": "Tags",
+            "fields": {
+                "id": "Id",
+                "title": "Title",
+                "image": "Image"
             }
         },
         "users": {
-            "Users": "Users"
-        },
-        "tags": {
-            "Tags": "Tags"
-        },
-        "images": {
-            "Images": "Images"
-        },
-        "files": {
-            "Files": "Files"
-        },
-        "Posts": {
-            "title": "Posts"
-        },
-        "Images": {
-            "title": "Images"
-        },
-        "Tags": {
-            "title": "Tags"
-        },
-        "Users": {
-            "title": "Users"
-        },
-        "Files": {
-            "title": "Files"
+            "Users": "Users",
+            "fields": {
+                "id": "Id",
+                "status": "Status",
+                "image": "Image",
+                "firstName": "First Name",
+                "lastName": "Last Name",
+                "email": "Email",
+                "birthday": "Birthday"
+            }
         }
     },
     "buttons": {
@@ -45,33 +79,5 @@
         "confirm": "Are you sure?",
         "filter": "Filter",
         "clear": "Clear"
-    },
-    "columns": {
-        "id": "ID",
-        "url": "Url",
-        "title": "Title",
-        "slug": "Slug",
-        "category": "Category",
-        "status": "Status",
-        "image": "Image",
-        "firstName": "First Name",
-        "lastName": "Last Name",
-        "email": "Email",
-        "birthday": "Birthday"
-    },
-    "forms": {
-        "id": "ID",
-        "title": "Title",
-        "url": "Url",
-        "content": "Content",
-        "status": "Status",
-        "user": "User",
-        "tags": "Tags",
-        "category": "Category",
-        "imageFiles": "Image Files",
-        "price": "Price"
-    },
-    "fields": {
-        "file": "File"
     }
 }

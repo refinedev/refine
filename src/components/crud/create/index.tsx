@@ -63,7 +63,7 @@ export const Create: React.FC<CreateProps> = ({
                     icon={<SaveOutlined />}
                     onClick={(): void => form.submit()}
                 >
-                    {translate("common:buttons.save")}
+                    {translate("common:buttons.save", "Save")}
                 </Button>
             }
         >

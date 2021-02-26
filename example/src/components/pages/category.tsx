@@ -26,12 +26,14 @@ export const CategoryList = (props: { resourceName: string }) => {
                 <Column
                     key="id"
                     dataIndex="id"
-                    title={translate("common:columns.id")}
+                    title={translate("common:resources.categories.fields.id")}
                 />
                 <Column
                     key="title"
                     dataIndex="title"
-                    title={translate("common:columns.title")}
+                    title={translate(
+                        "common:resources.categories.fields.title",
+                    )}
                 />
             </Table>
         </List>
@@ -44,7 +46,7 @@ export const CategoryCreate = (props: any) => {
         <Create {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <FormItem
-                    label={translate("common:forms.title")}
+                    label={translate("common:resources.categories.forms.title")}
                     name="title"
                     rules={[
                         {
@@ -65,7 +67,7 @@ export const CategoryEdit = (props: any) => {
         <Edit {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <FormItem
-                    label={translate("common:forms.title")}
+                    label={translate("common:resources.categories.forms.title")}
                     name="title"
                     rules={[
                         {

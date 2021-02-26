@@ -22,29 +22,33 @@ export const FilesList = (props: any) => {
                 <Column
                     key="id"
                     dataIndex="id"
-                    title={translate("common:columns.id")}
+                    title={translate("common:resources.files.fields.id")}
                 />
                 <Column
                     key="url"
                     dataIndex="url"
-                    title={translate("common:columns.url")}
+                    title={translate("common:resources.files.fields.url")}
                     render={(value) => (
                         <FileField
                             value={value}
-                            title={translate("common:fields.File")}
+                            title={translate(
+                                "common:resources.files.fields.file",
+                            )}
                         />
                     )}
                 />
                 <Column
                     key="url"
                     dataIndex="url"
-                    title={translate("common:columns.image")}
+                    title={translate("common:resources.files.fields.image")}
                     render={(value, record) => (
                         <FileField
                             download
                             record={record}
                             value={value}
-                            title={translate("common:forms.title")}
+                            title={translate(
+                                "common:resources.files.forms.title",
+                            )}
                         />
                     )}
                 />
@@ -52,7 +56,7 @@ export const FilesList = (props: any) => {
                 <Column
                     key="files"
                     dataIndex="files"
-                    title={translate("common:forms.imageFiles")}
+                    title={translate("resources.files.forms.imageFiles")}
                     render={(value, record) => {
                         return (
                             <FileField

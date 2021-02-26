@@ -22,17 +22,19 @@ export const ImagesList = (props: any) => {
             >
                 <Column
                     key="id"
-                    title={translate("common:columns.id")}
+                    title={translate("common:resources.images.fields.id")}
                     dataIndex="id"
                 />
                 <Column
                     key="url"
-                    title={translate("common:columns.image")}
+                    title={translate("common:resources.images.fields.image")}
                     dataIndex="url"
                     render={(value) => (
                         <ImageField
                             value={value}
-                            title={translate("common:columns.image")}
+                            title={translate(
+                                "common:resources.images.fields.image",
+                            )}
                             imageTitle="meow"
                             width={200}
                             data-testid="image"
@@ -41,7 +43,7 @@ export const ImagesList = (props: any) => {
                 />
                 <Column
                     key="price"
-                    title={translate("common:columns.title")}
+                    title={translate("common:resources.images.fields.price")}
                     dataIndex="price"
                     render={(value) => (
                         <NumberField
