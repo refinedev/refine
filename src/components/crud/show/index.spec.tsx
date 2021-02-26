@@ -8,24 +8,13 @@ import { TextField } from "@components";
 import { Show, ShowSimple } from "./index";
 
 const renderShow = (show: ReactNode) => {
-    return render(
-        <Route path="/resources/posts/show/:id">
-            {/* <Show key="posts" resourceName="posts"> */}
-            {show}
-            {/* <ShowSimple data-testid="showsimple">
-                <TextField renderRecordKey="id" />
-                <TextField renderRecordKey="slug" />
-            </ShowSimple> */}
-            {/* </Show> */}
-        </Route>,
-        {
-            wrapper: TestWrapper({
-                dataProvider: MockJSONServer,
-                resources: [{ name: "posts" }],
-                routerInitialEntries: ["/resources/posts/show/1"],
-            }),
-        },
-    );
+    return render(<Route path="/resources/posts/show/:id">{show}</Route>, {
+        wrapper: TestWrapper({
+            dataProvider: MockJSONServer,
+            resources: [{ name: "posts" }],
+            routerInitialEntries: ["/resources/posts/show/1"],
+        }),
+    });
 };
 describe("<Show/>", () => {
     describe("JSON Rest Server", () => {
