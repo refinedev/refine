@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { Table as AntdTable, Button, Space } from "antd";
+import { Table as AntdTable, Space } from "antd";
 import {
     TablePaginationConfig,
     TableProps as AntdTableProps,
 } from "antd/lib/table";
-import { useHistory } from "react-router-dom";
-import { EyeOutlined } from "@ant-design/icons";
 
-import { Column, EditButton, DeleteButton } from "@components";
+import { Column, EditButton, DeleteButton, ShowButton } from "@components";
 import { Filters, Sort } from "@interfaces";
 import { useList } from "@hooks";
 import {
@@ -33,8 +31,6 @@ export const Table: React.FC<TableProps> = ({
 }) => {
     const defaultCurrent = 1;
     const defaultPageSize = 10;
-
-    const history = useHistory();
 
     if (!resourceName) {
         throw new Error(`resource not found!`);
@@ -73,19 +69,6 @@ export const Table: React.FC<TableProps> = ({
         refetch();
     };
 
-    const renderShowButton = (id: string | number) => (
-        <Button
-            onClick={(): void => {
-                history.push(`/resources/${resourceName}/show/${id}`);
-            }}
-            type="default"
-            size="small"
-            icon={<EyeOutlined />}
-        >
-            Show
-        </Button>
-    );
-
     const renderActions = (): React.ReactNode => {
         if (canEdit || canDelete || canShow) {
             return (
@@ -104,7 +87,7 @@ export const Table: React.FC<TableProps> = ({
                             {canDelete && (
                                 <DeleteButton recordItemId={record.id} />
                             )}
-                            {canShow && renderShowButton(record.id)}
+                            {canShow && <ShowButton recordItemId={record.id} />}
                         </Space>
                     )}
                 />

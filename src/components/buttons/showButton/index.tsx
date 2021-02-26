@@ -1,21 +1,22 @@
 import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
-import { RedoOutlined } from "@ant-design/icons";
-import { useRouteMatch } from "react-router-dom";
+import { EyeOutlined } from "@ant-design/icons";
+import { useHistory, useRouteMatch } from "react-router-dom";
 
-import { useOne } from "@hooks";
 import { MatchRoute } from "@interfaces";
 
-type RefreshButtonProps = ButtonProps & {
+type ShowButtonProps = ButtonProps & {
     resourceName?: string;
     recordItemId?: string | number;
 };
 
-export const RefreshButton: FC<RefreshButtonProps> = ({
+export const ShowButton: FC<ShowButtonProps> = ({
     resourceName,
     recordItemId,
     ...rest
 }) => {
+    const history = useHistory();
+
     const match = useRouteMatch({
         path: [
             "/resources/:resourceName/:action/:id",
@@ -28,21 +29,21 @@ export const RefreshButton: FC<RefreshButtonProps> = ({
         params: { resourceName: routeResourceName, id: idFromRoute },
     } = (match as unknown) as MatchRoute;
 
-    const { refetch, isFetching } = useOne(
-        resourceName ?? routeResourceName,
-        `${recordItemId ?? idFromRoute}`,
-        { enabled: false },
-    );
-
     return (
         <Button
-            type="default"
+            onClick={(): void =>
+                history.push(
+                    `/resources/${resourceName ?? routeResourceName}/show/${
+                        recordItemId ?? idFromRoute
+                    }`,
+                )
+            }
             size="small"
-            icon={<RedoOutlined spin={isFetching} />}
-            onClick={() => refetch()}
+            type="default"
+            icon={<EyeOutlined />}
             {...rest}
         >
-            Refresh
+            Show
         </Button>
     );
 };

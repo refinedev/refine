@@ -25,8 +25,6 @@ export const EditButton: FC<EditButtonProps> = ({
         ],
     });
 
-    console.log("edit match: ", match);
-
     const {
         params: { resourceName: routeResourceName, id: idFromRoute },
     } = (match as unknown) as MatchRoute;
