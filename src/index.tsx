@@ -7,6 +7,7 @@ export * from "./components/antd";
 export * from "./components/fields";
 export * from "./components/table";
 export * from "./components/crud";
+export * from "./components/buttons";
 
 export { Layout, Authenticated, Reference } from "./components";
 

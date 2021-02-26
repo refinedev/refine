@@ -42,7 +42,7 @@ export const List: React.FC<ListProps> = ({
                 <Card
                     bodyStyle={{ padding: 0, flex: 1 }}
                     title={humanizeString(resourceName)}
-                    extra={canCreate && <CreateButton />}
+                    extra={canCreate && <CreateButton size="middle" />}
                 >
                     {childrenWithProps}
                 </Card>

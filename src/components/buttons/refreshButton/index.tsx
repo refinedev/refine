@@ -4,27 +4,35 @@ import { RedoOutlined } from "@ant-design/icons";
 import { useRouteMatch } from "react-router-dom";
 
 import { useOne } from "@hooks";
-import { MatchResourceName } from "@interfaces";
+import { MatchRoute } from "@interfaces";
 
 type RefreshButtonProps = ButtonProps & {
     resourceName?: string;
-    itemId?: string | number;
+    recordItemId?: string | number;
 };
 
 export const RefreshButton: FC<RefreshButtonProps> = ({
     resourceName,
-    itemId,
+    recordItemId,
     ...rest
 }) => {
-    const match = useRouteMatch("/resources/:routeResourceName");
+    const match = useRouteMatch({
+        path: [
+            "/resources/:resourceName/:action/:id",
+            "/resources/:resourceName",
+            "/*",
+        ],
+    });
+
+    console.log("resfresh match: ", match);
 
     const {
-        params: { routeResourceName },
-    } = (match as unknown) as MatchResourceName;
+        params: { resourceName: routeResourceName, id: idFromRoute },
+    } = (match as unknown) as MatchRoute;
 
     const { refetch, isFetching } = useOne(
         resourceName ?? routeResourceName,
-        `${itemId}`,
+        `${recordItemId ?? idFromRoute}`,
         { enabled: false },
     );
 

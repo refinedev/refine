@@ -340,7 +340,7 @@ export const PostEdit = (props: any) => {
 
 export const PostShow = (props: any) => {
     return (
-        <Show {...props} aside={ShowAside} component={ShowComponent}>
+        <Show {...props} aside={ShowAside}>
             <ShowSimple title="Post Title">
                 <TextField renderRecordKey="id" />
                 <TextField renderRecordKey="title" />

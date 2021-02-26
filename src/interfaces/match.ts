@@ -1,5 +1,7 @@
-export type MatchResourceName = {
+export type MatchRoute = {
     params: {
-        routeResourceName: string;
+        resourceName: string;
+        action: string;
+        id: string;
     };
 };

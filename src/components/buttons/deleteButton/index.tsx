@@ -4,23 +4,29 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { useRouteMatch } from "react-router-dom";
 
 import { useDelete } from "@hooks";
-import { MatchResourceName } from "@interfaces";
+import { MatchRoute } from "@interfaces";
 
 type DeleteButtonProps = ButtonProps & {
     resourceName?: string;
-    itemId: string | number;
+    recordItemId?: string | number;
 };
 
 export const DeleteButton: FC<DeleteButtonProps> = ({
     resourceName,
-    itemId,
+    recordItemId,
     ...rest
 }) => {
-    const match = useRouteMatch("/resources/:routeResourceName");
+    const match = useRouteMatch({
+        path: [
+            "/resources/:resourceName/:action/:id",
+            "/resources/:resourceName",
+            "/*",
+        ],
+    });
 
     const {
-        params: { routeResourceName },
-    } = (match as unknown) as MatchResourceName;
+        params: { resourceName: routeResourceName, id: idFromRoute },
+    } = (match as unknown) as MatchRoute;
 
     const { mutate, isLoading } = useDelete(resourceName ?? routeResourceName);
 
@@ -32,7 +38,7 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
             title="Are you sure?"
             okButtonProps={{ disabled: isLoading }}
             onConfirm={(): void => {
-                mutate({ id: itemId });
+                mutate({ id: recordItemId ?? idFromRoute });
             }}
         >
             <Button

@@ -3,7 +3,7 @@ import { Button, ButtonProps } from "antd";
 import { PlusSquareOutlined } from "@ant-design/icons";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
-import { MatchResourceName } from "@interfaces";
+import { MatchRoute } from "@interfaces";
 
 type CreateButtonProps = ButtonProps & {
     resourceName?: string;
@@ -15,11 +15,13 @@ export const CreateButton: FC<CreateButtonProps> = ({
 }) => {
     const history = useHistory();
 
-    const match = useRouteMatch("/resources/:routeResourceName");
+    const match = useRouteMatch({
+        path: ["/resources/:resourceName", "/*"],
+    });
 
     const {
-        params: { routeResourceName },
-    } = (match as unknown) as MatchResourceName;
+        params: { resourceName: routeResourceName },
+    } = (match as unknown) as MatchRoute;
 
     return (
         <Button
@@ -28,6 +30,7 @@ export const CreateButton: FC<CreateButtonProps> = ({
                     `/resources/${resourceName ?? routeResourceName}/create`,
                 )
             }
+            size="small"
             type="default"
             icon={<PlusSquareOutlined />}
             {...rest}

@@ -3,7 +3,6 @@ import { Card, CardProps, Col, Typography } from "antd";
 import humanizeString from "humanize-string";
 
 import { BaseRecord } from "@interfaces";
-import { RefreshButton } from "@components";
 
 const { Title } = Typography;
 
@@ -35,16 +34,7 @@ export const ShowSimple: FC<ShowSimpleProps> = ({
     };
 
     return (
-        <Card
-            style={{ flex: 1 }}
-            extra={
-                <RefreshButton
-                    disabled={!`${record?.id}`}
-                    itemId={record?.id}
-                />
-            }
-            {...rest}
-        >
+        <Card style={{ flex: 1 }} {...rest}>
             <Col>{record && renderChildrenWithPropsAndLabel()}</Col>
         </Card>
     );

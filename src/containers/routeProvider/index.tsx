@@ -61,7 +61,14 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
             {
                 exact: true,
                 path: `/resources/${name}/show/:id`,
-                component: () => <ShowComponent resourceName={name} />,
+                component: () => (
+                    <ShowComponent
+                        resourceName={name}
+                        canCreate={canCreate}
+                        canEdit={canEdit}
+                        canDelete={canDelete}
+                    />
+                ),
             },
             {
                 exact: true,

@@ -100,8 +100,10 @@ export const Table: React.FC<TableProps> = ({
                         },
                     ): React.ReactNode => (
                         <Space>
-                            {canEdit && <EditButton itemId={record.id} />}
-                            {canDelete && <DeleteButton itemId={record.id} />}
+                            {canEdit && <EditButton recordItemId={record.id} />}
+                            {canDelete && (
+                                <DeleteButton recordItemId={record.id} />
+                            )}
                             {canShow && renderShowButton(record.id)}
                         </Space>
                     )}
