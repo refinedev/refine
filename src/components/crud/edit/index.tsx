@@ -69,10 +69,7 @@ export const Edit: React.FC<EditProps> = ({
                     key="footer-buttons"
                     style={{ float: "right", marginRight: 24 }}
                 >
-                    <DeleteButton
-                        resourceName={resourceName}
-                        recordItemId={id}
-                    />
+                    <DeleteButton />
                     <Button
                         htmlType="submit"
                         disabled={isLoading}

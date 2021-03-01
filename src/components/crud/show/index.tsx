@@ -63,23 +63,10 @@ export const Show: React.FC<ShowProps> = ({
                         extra={
                             <Row>
                                 <Space>
-                                    <ListButton resourceName={resourceName} />
-                                    {canEdit && (
-                                        <EditButton
-                                            resourceName={resourceName}
-                                            recordItemId={id}
-                                        />
-                                    )}
-                                    {canDelete && (
-                                        <DeleteButton
-                                            resourceName={resourceName}
-                                            recordItemId={id}
-                                        />
-                                    )}
-                                    <RefreshButton
-                                        resourceName={resourceName}
-                                        recordItemId={id}
-                                    />
+                                    <ListButton />
+                                    {canEdit && <EditButton />}
+                                    {canDelete && <DeleteButton />}
+                                    <RefreshButton />
                                 </Space>
                             </Row>
                         }
