@@ -52,7 +52,8 @@
                 "url": "Url",
                 "content": "İçerik",
                 "user": "Kullanıcı",
-                "tags": "Tags"
+                "tags": "Tags",
+                "image": "Resim"
             }
         },
         "tags": {
