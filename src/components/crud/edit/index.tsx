@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { Form, Card, Button, Row, Space } from "antd";
+import { Form, Card, Button, Row, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
@@ -11,11 +11,13 @@ import { ListButton, RefreshButton } from "@components/buttons";
 export interface EditProps {
     resourceName: string;
     title?: string;
+    saveButtonProps?: ButtonProps;
 }
 
 export const Edit: React.FC<EditProps> = ({
     resourceName,
     title,
+    saveButtonProps,
     children,
 }) => {
     const history = useHistory();
@@ -25,9 +27,11 @@ export const Edit: React.FC<EditProps> = ({
 
     const { data, isLoading } = useOne(resourceName, id);
 
-    form.setFieldsValue({
-        ...data?.data,
-    });
+    React.useEffect(() => {
+        form.setFieldsValue({
+            ...data?.data,
+        });
+    }, [data]);
 
     const { mutate } = useUpdate(resourceName);
 
@@ -67,6 +71,7 @@ export const Edit: React.FC<EditProps> = ({
                             type="primary"
                             icon={<SaveOutlined />}
                             onClick={(): void => form.submit()}
+                            {...saveButtonProps}
                         >
                             Save
                         </Button>

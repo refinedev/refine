@@ -21,9 +21,10 @@ import {
     MarkdownField,
     normalizeFile,
     useApiUrl,
+    useFileUploadState,
 } from "readmin";
 
-import { ShowAside, ShowComponent } from "../show";
+import { ShowAside } from "../show";
 
 export const PostList = (props: any) => {
     return (
@@ -115,8 +116,10 @@ export const PostList = (props: any) => {
 export const PostCreate = (props: any) => {
     const apiUrl = useApiUrl();
 
+    const { isLoading, onChange } = useFileUploadState();
+
     return (
-        <Create {...props}>
+        <Create {...props} createButtonProps={{ disabled: isLoading }}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label="Title"
@@ -245,7 +248,9 @@ export const PostCreate = (props: any) => {
                             name="file"
                             action={`${apiUrl}/upload`}
                             listType="picture"
-                            maxCount={1}
+                            maxCount={5}
+                            multiple
+                            onChange={onChange}
                         >
                             <p className="ant-upload-text">
                                 Click or drag file to this area to upload
@@ -264,8 +269,10 @@ export const PostCreate = (props: any) => {
 export const PostEdit = (props: any) => {
     const apiUrl = useApiUrl();
 
+    const { isLoading, onChange } = useFileUploadState();
+
     return (
-        <Edit {...props}>
+        <Edit {...props} saveButtonProps={{ disabled: isLoading }}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label="Title"
@@ -381,7 +388,9 @@ export const PostEdit = (props: any) => {
                             name="file"
                             action={`${apiUrl}/upload`}
                             listType="picture"
-                            maxCount={1}
+                            maxCount={5}
+                            multiple
+                            onChange={onChange}
                         >
                             <p className="ant-upload-text">
                                 Click or drag file to this area to upload

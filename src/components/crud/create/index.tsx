@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Card, Button, Form } from "antd";
+import { Card, Button, Form, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
@@ -11,12 +11,14 @@ export interface CreateProps {
     resourceName: string;
     canEdit?: boolean;
     title?: string;
+    createButtonProps?: ButtonProps;
 }
 
 export const Create: React.FC<CreateProps> = ({
     resourceName,
     canEdit,
     title,
+    createButtonProps,
     children,
 }) => {
     const history = useHistory();
@@ -62,8 +64,9 @@ export const Create: React.FC<CreateProps> = ({
                     type="primary"
                     icon={<SaveOutlined />}
                     onClick={(): void => form.submit()}
+                    {...createButtonProps}
                 >
-                    Save
+                    Create
                 </Button>
             }
         >
