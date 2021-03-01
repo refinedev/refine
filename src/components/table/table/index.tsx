@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import { Table as AntdTable, Button, Space, Popconfirm } from "antd";
+import { Table as AntdTable, Space } from "antd";
 import {
     TablePaginationConfig,
     TableProps as AntdTableProps,
 } from "antd/lib/table";
-import { useHistory } from "react-router-dom";
-import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
 
-import { Column } from "@components";
+import { Column, EditButton, DeleteButton, ShowButton } from "@components";
 import { Filters, Sort } from "@interfaces";
-import { useDelete, useList } from "@hooks";
+import { useList } from "@hooks";
 import {
     getDefaultSortOrder,
     getDefaultFilteredValue,
@@ -34,13 +32,9 @@ export const Table: React.FC<TableProps> = ({
     const defaultCurrent = 1;
     const defaultPageSize = 10;
 
-    const history = useHistory();
-
     if (!resourceName) {
         throw new Error(`resource not found!`);
     }
-
-    const { mutate, isLoading } = useDelete(resourceName);
 
     const [current, setCurrent] = useState(
         (pagination && pagination.current) || defaultCurrent,
@@ -75,43 +69,6 @@ export const Table: React.FC<TableProps> = ({
         refetch();
     };
 
-    const renderDeleteButton = (id: number | string): React.ReactNode => {
-        return (
-            <Popconfirm
-                key="delete"
-                okText="Delete"
-                okType="danger"
-                title="Are you sure?"
-                okButtonProps={{ disabled: isLoading }}
-                onConfirm={(): void => {
-                    mutate({ id });
-                }}
-            >
-                <Button
-                    type="default"
-                    size="small"
-                    danger
-                    icon={<DeleteOutlined />}
-                >
-                    Delete
-                </Button>
-            </Popconfirm>
-        );
-    };
-
-    const renderShowButton = (id: string | number) => (
-        <Button
-            onClick={(): void => {
-                history.push(`/resources/${resourceName}/show/${id}`);
-            }}
-            type="default"
-            size="small"
-            icon={<EyeOutlined />}
-        >
-            Show
-        </Button>
-    );
-
     const renderActions = (): React.ReactNode => {
         if (canEdit || canDelete || canShow) {
             return (
@@ -127,21 +84,23 @@ export const Table: React.FC<TableProps> = ({
                     ): React.ReactNode => (
                         <Space>
                             {canEdit && (
-                                <Button
-                                    onClick={(): void => {
-                                        history.push(
-                                            `/resources/${resourceName}/edit/${record.id}`,
-                                        );
-                                    }}
-                                    type="default"
+                                <EditButton
                                     size="small"
-                                    icon={<EditOutlined />}
-                                >
-                                    Edit
-                                </Button>
+                                    recordItemId={record.id}
+                                />
                             )}
-                            {canDelete && renderDeleteButton(record.id)}
-                            {canShow && renderShowButton(record.id)}
+                            {canDelete && (
+                                <DeleteButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                            )}
+                            {canShow && (
+                                <ShowButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                            )}
                         </Space>
                     )}
                 />
