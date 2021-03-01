@@ -61,18 +61,22 @@ export const Edit: React.FC<EditProps> = ({
                     <Space>
                         <ListButton resourceName={resourceName} />
                         <RefreshButton resourceName={resourceName} />
-                        <Button
-                            htmlType="submit"
-                            disabled={isLoading}
-                            type="primary"
-                            icon={<SaveOutlined />}
-                            onClick={(): void => form.submit()}
-                        >
-                            Save
-                        </Button>
                     </Space>
                 </Row>
             }
+            actions={[
+                <Button
+                    key="save-button"
+                    htmlType="submit"
+                    disabled={isLoading}
+                    type="primary"
+                    icon={<SaveOutlined />}
+                    onClick={(): void => form.submit()}
+                    style={{ float: "right", marginRight: 24 }}
+                >
+                    Save
+                </Button>,
+            ]}
         >
             {childrenWithProps}
         </Card>

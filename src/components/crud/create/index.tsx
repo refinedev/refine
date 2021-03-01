@@ -55,17 +55,19 @@ export const Create: React.FC<CreateProps> = ({
     return (
         <Card
             title={title ?? `Create ${pluralize.singular(resourceName)}`}
-            extra={
+            actions={[
                 <Button
+                    key="save-button"
                     htmlType="submit"
                     disabled={isLoading}
                     type="primary"
                     icon={<SaveOutlined />}
                     onClick={(): void => form.submit()}
+                    style={{ float: "right", marginRight: 24 }}
                 >
                     Save
-                </Button>
-            }
+                </Button>,
+            ]}
         >
             {childrenWithProps}
         </Card>
