@@ -69,7 +69,7 @@ export const Edit: React.FC<EditProps> = ({
                             icon={<SaveOutlined />}
                             onClick={(): void => form.submit()}
                         >
-                           {translate("common:buttons.save", "Save")}
+                            {translate("common:buttons.save", "Save")}
                         </Button>
                     </Space>
                 </Row>
