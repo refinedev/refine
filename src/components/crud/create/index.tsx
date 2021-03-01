@@ -11,14 +11,14 @@ export interface CreateProps {
     resourceName: string;
     canEdit?: boolean;
     title?: string;
-    createButtonProps?: ButtonProps;
+    saveButtonProps?: ButtonProps;
 }
 
 export const Create: React.FC<CreateProps> = ({
     resourceName,
     canEdit,
     title,
-    createButtonProps,
+    saveButtonProps,
     children,
 }) => {
     const history = useHistory();
@@ -66,7 +66,7 @@ export const Create: React.FC<CreateProps> = ({
                     type="primary"
                     icon={<SaveOutlined />}
                     onClick={(): void => form.submit()}
-                    {...createButtonProps}
+                    {...saveButtonProps}
                 >
                     {translate("common:buttons.save", "Save")}
                 </Button>

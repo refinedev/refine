@@ -122,7 +122,7 @@ export const PostCreate = (props: any) => {
     const { isLoading, onChange } = useFileUploadState();
 
     return (
-        <Create {...props} createButtonProps={{ disabled: isLoading }}>
+        <Create {...props} saveButtonProps={{ disabled: isLoading }}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
