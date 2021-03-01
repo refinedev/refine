@@ -21,11 +21,13 @@ import {
     MarkdownField,
     normalizeFile,
     useApiUrl,
+    useTranslate,
 } from "readmin";
 
 import { ShowAside, ShowComponent } from "../show";
 
 export const PostList = (props: any) => {
+    const translate = useTranslate();
     return (
         <List {...props}>
             <Table
@@ -38,7 +40,7 @@ export const PostList = (props: any) => {
             >
                 <Column
                     dataIndex="id"
-                    title="ID"
+                    title={translate("common:resources.posts.fields.id")}
                     key="id"
                     sorter={{
                         multiple: 3,
@@ -47,7 +49,7 @@ export const PostList = (props: any) => {
                 />
                 <Column
                     dataIndex="title"
-                    title="Title"
+                    title={translate("common:resources.posts.fields.title")}
                     key="title"
                     render={(value) => <TextField value={value} />}
                     sorter={{
@@ -56,7 +58,7 @@ export const PostList = (props: any) => {
                 />
                 <Column
                     dataIndex="slug"
-                    title="Slug"
+                    title={translate("common:resources.posts.fields.slug")}
                     key="slug"
                     render={(value) => <TextField value={value} />}
                     sorter={{
@@ -65,7 +67,7 @@ export const PostList = (props: any) => {
                 />
                 <Column
                     dataIndex="categoryId"
-                    title="Category"
+                    title={translate("common:resources.posts.fields.category")}
                     key="categoryId"
                     render={(value) => (
                         <ReferenceField resource="categories" value={value}>
@@ -94,7 +96,7 @@ export const PostList = (props: any) => {
                 />
                 <Column
                     dataIndex="status"
-                    title="Status"
+                    title={translate("common:resources.posts.fields.status")}
                     key="status"
                     render={(value) => <TagField value={value} />}
                     filterDropdown={(props) => (
@@ -114,12 +116,13 @@ export const PostList = (props: any) => {
 
 export const PostCreate = (props: any) => {
     const apiUrl = useApiUrl();
+    const translate = useTranslate();
 
     return (
         <Create {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
-                    label="Title"
+                    label={translate("common:resources.posts.fields.title")}
                     name="title"
                     rules={[
                         {
@@ -130,7 +133,7 @@ export const PostCreate = (props: any) => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Url"
+                    label={translate("common:resources.posts.fields.url")}
                     name="slug"
                     rules={[
                         {
@@ -141,7 +144,7 @@ export const PostCreate = (props: any) => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Content"
+                    label={translate("common:resources.posts.fields.content")}
                     name="content"
                     rules={[
                         {
@@ -152,7 +155,7 @@ export const PostCreate = (props: any) => {
                     <Input.TextArea />
                 </Form.Item>
                 <Form.Item
-                    label="Status"
+                    label={translate("common:resources.posts.fields.status")}
                     name="status"
                     rules={[
                         {
@@ -175,7 +178,7 @@ export const PostCreate = (props: any) => {
                     />
                 </Form.Item>
                 <Form.Item
-                    label="Category"
+                    label={translate("common:resources.posts.fields.category")}
                     name="categoryId"
                     rules={[
                         {
@@ -195,7 +198,7 @@ export const PostCreate = (props: any) => {
                     </Reference>
                 </Form.Item>
                 <Form.Item
-                    label="User"
+                    label={translate("common:resources.posts.fields.user")}
                     name="userId"
                     rules={[
                         {
@@ -216,7 +219,7 @@ export const PostCreate = (props: any) => {
                     </Reference>
                 </Form.Item>
                 <Form.Item
-                    label="Tags"
+                    label={translate("common:resources.posts.fields.tags")}
                     name="tags"
                     rules={[
                         {
@@ -229,7 +232,9 @@ export const PostCreate = (props: any) => {
                     </Reference>
                 </Form.Item>
 
-                <Form.Item label="Image">
+                <Form.Item
+                    label={translate("common:resources.posts.fields.image")}
+                >
                     <Form.Item
                         name="image"
                         valuePropName="fileList"
@@ -263,12 +268,13 @@ export const PostCreate = (props: any) => {
 
 export const PostEdit = (props: any) => {
     const apiUrl = useApiUrl();
+    const translate = useTranslate();
 
     return (
         <Edit {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
-                    label="Title"
+                    label={translate("common:resources.posts.fields.title")}
                     name="title"
                     rules={[
                         {
@@ -279,7 +285,7 @@ export const PostEdit = (props: any) => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Url"
+                    label={translate("common:resources.posts.fields.url")}
                     name="slug"
                     rules={[
                         {
@@ -290,7 +296,7 @@ export const PostEdit = (props: any) => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Content"
+                    label={translate("common:resources.posts.fields.content")}
                     name="content"
                     rules={[
                         {
@@ -301,7 +307,7 @@ export const PostEdit = (props: any) => {
                     <Markdown />
                 </Form.Item>
                 <Form.Item
-                    label="Status"
+                    label={translate("common:resources.posts.fields.status")}
                     name="status"
                     rules={[
                         {
@@ -324,7 +330,7 @@ export const PostEdit = (props: any) => {
                     />
                 </Form.Item>
                 <Form.Item
-                    label="Category"
+                    label={translate("common:resources.posts.fields.category")}
                     name="categoryId"
                     rules={[
                         {
@@ -344,7 +350,7 @@ export const PostEdit = (props: any) => {
                     </Reference>
                 </Form.Item>
                 <Form.Item
-                    label="User"
+                    label={translate("common:resources.posts.fields.user")}
                     name="userId"
                     rules={[
                         {
@@ -358,7 +364,7 @@ export const PostEdit = (props: any) => {
                     </Reference>
                 </Form.Item>
                 <Form.Item
-                    label="Tags"
+                    label={translate("common:resources.posts.fields.tags")}
                     name="tags"
                     rules={[
                         {
@@ -370,7 +376,9 @@ export const PostEdit = (props: any) => {
                         <Select mode="multiple" />
                     </Reference>
                 </Form.Item>
-                <Form.Item label="Image">
+                <Form.Item
+                    label={translate("common:resources.posts.fields.image")}
+                >
                     <Form.Item
                         name="image"
                         valuePropName="fileList"

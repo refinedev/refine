@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Row, Col, Layout, Card, Typography, Form, Input, Button } from "antd";
 import { useHistory } from "react-router-dom";
 
-import { useNotification } from "@hooks";
+import { useNotification, useTranslate } from "@hooks";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "@interfaces";
 
@@ -17,6 +17,7 @@ export const LoginPage: React.FC = () => {
     const [form] = Form.useForm();
     const history = useHistory();
     const notification = useNotification();
+    const translate = useTranslate();
 
     const { login } = useContext<IAuthContext>(AuthContext);
 
@@ -44,7 +45,7 @@ export const LoginPage: React.FC = () => {
                 <Col xl={6} lg={8} md={12} sm={18} xs={22}>
                     <Card>
                         <Title level={2} style={{ textAlign: "center" }}>
-                            Login
+                            {translate("common:pages.login.title", "Login")}
                         </Title>
                         <Form
                             className="ant-form-vertical"
@@ -54,14 +55,20 @@ export const LoginPage: React.FC = () => {
                         >
                             <Form.Item
                                 name="username"
-                                label="Username"
+                                label={translate(
+                                    "common:pages.login.username",
+                                    "Username",
+                                )}
                                 rules={[{ required: true }]}
                             >
                                 <Input />
                             </Form.Item>
                             <Form.Item
                                 name="password"
-                                label="Password"
+                                label={translate(
+                                    "common:pages.login.password",
+                                    "Password",
+                                )}
                                 rules={[{ required: true }]}
                             >
                                 <Input type="password" />
@@ -73,7 +80,11 @@ export const LoginPage: React.FC = () => {
                                     size="large"
                                     htmlType="submit"
                                 >
-                                    Login
+                                    label=
+                                    {translate(
+                                        "common:pages.login.title",
+                                        "Login",
+                                    )}
                                 </Button>
                             </Form.Item>
                         </Form>

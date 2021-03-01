@@ -11,9 +11,11 @@ import {
     Input,
     Button,
     AntdTable,
+    useTranslate,
 } from "readmin";
 
 export const TagList = (props: any) => {
+    const translate = useTranslate();
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -69,12 +71,20 @@ export const TagList = (props: any) => {
                     size: "small",
                 }}
             >
-                <Column key="id" dataIndex="id" title="ID" />
-                <Column key="title" dataIndex="title" title="Title" />
                 <Column
                     key="id"
                     dataIndex="id"
-                    title="Image"
+                    title={translate("common:resources.tags.fields.id")}
+                />
+                <Column
+                    key="title"
+                    dataIndex="title"
+                    title={translate("common:resources.tags.fields.title")}
+                />
+                <Column
+                    key="id"
+                    dataIndex="id"
+                    title={translate("common:resources.tags.fields.image")}
                     render={(value) => (
                         <ReferenceField resource="images" value={value}>
                             <ImageField
@@ -91,11 +101,12 @@ export const TagList = (props: any) => {
 };
 
 export const TagCreate = (props: any) => {
+    const translate = useTranslate();
     return (
         <Create {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
-                    label="Title"
+                    label={translate("common:resources.tags.fields.image")}
                     name="title"
                     rules={[
                         {
@@ -111,11 +122,12 @@ export const TagCreate = (props: any) => {
 };
 
 export const TagEdit = (props: any) => {
+    const translate = useTranslate();
     return (
         <Edit {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
-                    label="Title"
+                    label={translate("common:resources.tags.fields.title")}
                     name="title"
                     rules={[
                         {

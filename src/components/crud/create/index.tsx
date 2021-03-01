@@ -4,7 +4,7 @@ import { Card, Button, Form } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
-import { useCreate } from "@hooks";
+import { useCreate, useTranslate } from "@hooks";
 import { BaseRecord } from "@interfaces";
 
 export interface CreateProps {
@@ -23,6 +23,8 @@ export const Create: React.FC<CreateProps> = ({
     const [form] = Form.useForm();
 
     const { mutate, isLoading } = useCreate(resourceName);
+
+    const translate = useTranslate();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         mutate(
@@ -63,7 +65,7 @@ export const Create: React.FC<CreateProps> = ({
                     icon={<SaveOutlined />}
                     onClick={(): void => form.submit()}
                 >
-                    Save
+                    {translate("common:buttons.save", "Save")}
                 </Button>
             }
         >
