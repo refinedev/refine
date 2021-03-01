@@ -12,3 +12,6 @@ export * from "@contexts/translation/ITranslationContext";
 
 // field
 export * from "@interfaces/field";
+
+// match
+export * from "@interfaces/match";

@@ -19,6 +19,7 @@ describe("<ShowSimple/>", () => {
             {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts" }],
+                    routerInitialEntries: ["/resources/posts"],
                 }),
             },
         );

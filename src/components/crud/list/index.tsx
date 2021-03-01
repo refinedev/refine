@@ -1,12 +1,11 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import { Button, Card, Row, Col } from "antd";
-import { PlusSquareOutlined } from "@ant-design/icons";
+import { Card, Row, Col } from "antd";
 import humanizeString from "humanize-string";
 
 import { TableProps } from "@components/table";
 import { useTranslate } from "@hooks";
 import { OptionalComponent } from "@definitions";
+import { CreateButton } from "@components";
 
 export interface ListProps {
     resourceName: string;
@@ -28,8 +27,6 @@ export const List: React.FC<ListProps> = ({
     title,
     children,
 }) => {
-    const history = useHistory();
-
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement<TableProps>(child, {
@@ -48,25 +45,14 @@ export const List: React.FC<ListProps> = ({
             <Col flex="1 1 200px">
                 <Card
                     bodyStyle={{ padding: 0, flex: 1 }}
-                    title={title ?? translate(
-                        `common:resources.${resourceName}.title`,
-                        humanizeString(resourceName),
-                    )}
-                    extra={
-                        canCreate && (
-                            <Button
-                                onClick={(): void =>
-                                    history.push(
-                                        `/resources/${resourceName}/create`,
-                                    )
-                                }
-                                type="default"
-                                icon={<PlusSquareOutlined />}
-                            >
-                                {translate(`common:buttons.create`, "Create")}
-                            </Button>
+                    title={
+                        title ??
+                        translate(
+                            `common:resources.${resourceName}.title`,
+                            humanizeString(resourceName),
                         )
                     }
+                    extra={canCreate && <CreateButton size="middle" />}
                 >
                     {childrenWithProps}
                 </Card>
