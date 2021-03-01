@@ -1,6 +1,5 @@
 import * as React from "react";
-import { renderHook } from "@testing-library/react-hooks";
-import { render, TestWrapper, MockJSONServer } from "@test";
+import { render, TestWrapper } from "@test";
 import { useTranslate } from "@hooks";
 
 describe("useTranslate", () => {
