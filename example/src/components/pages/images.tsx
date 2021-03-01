@@ -1,7 +1,15 @@
 import * as React from "react";
-import { List, Table, Column, ImageField, NumberField } from "readmin";
+import {
+    List,
+    Table,
+    Column,
+    ImageField,
+    NumberField,
+    useTranslate,
+} from "readmin";
 
 export const ImagesList = (props: any) => {
+    const translate = useTranslate();
     return (
         <List {...props}>
             <Table
@@ -12,15 +20,21 @@ export const ImagesList = (props: any) => {
                     size: "small",
                 }}
             >
-                <Column key="id" title="ID" dataIndex="id" />
+                <Column
+                    key="id"
+                    title={translate("common:resources.images.fields.id")}
+                    dataIndex="id"
+                />
                 <Column
                     key="url"
-                    title="Image"
+                    title={translate("common:resources.images.fields.image")}
                     dataIndex="url"
                     render={(value) => (
                         <ImageField
                             value={value}
-                            title="Image"
+                            title={translate(
+                                "common:resources.images.fields.image",
+                            )}
                             imageTitle="meow"
                             width={200}
                             data-testid="image"
@@ -29,7 +43,7 @@ export const ImagesList = (props: any) => {
                 />
                 <Column
                     key="price"
-                    title="Price"
+                    title={translate("common:resources.images.fields.price")}
                     dataIndex="price"
                     render={(value) => (
                         <NumberField

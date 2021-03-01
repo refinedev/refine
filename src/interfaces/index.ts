@@ -8,6 +8,7 @@ export * from "@interfaces/istate";
 // contexts
 export * from "@contexts/data/IDataContext";
 export * from "@contexts/auth/IAuthContext";
+export * from "@contexts/translation/ITranslationContext";
 
 // field
 export * from "@interfaces/field";

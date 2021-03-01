@@ -1,0 +1,91 @@
+{
+    "pages": {
+        "login": {
+            "title": "Login",
+            "username": "Kullanıcı Adı",
+            "password": "Şifre"
+        }
+    },
+    "resources": {
+        "categories": {
+            "Categories": "Kategoriler",
+            "title": "Kategoriler",
+            "fields": {
+                "id": "Id",
+                "title": "Başlık"
+            },
+            "forms": {
+                "title": "Başlık"
+            }
+        },
+        "files": {
+            "Files": "Dosyalar",
+            "title": "Dosyalar",
+            "fields": {
+                "id": "Id",
+                "url": "Url",
+                "file": "Dosya",
+                "image": "Resim",
+                "title": "Başlık"
+            },
+            "forms": {
+                "title": "Başlık",
+                "imageFiles": "Resim Dosyaları"
+            }
+        },
+        "images": {
+            "Images": "Resimler",
+            "fields": {
+                "id": "Id",
+                "image": "Resim",
+                "price": "Fiyat"
+            }
+        },
+        "posts": {
+            "Posts": "Gönderiler",
+            "fields": {
+                "id": "Id",
+                "title": "Başlık",
+                "slug": "Slug",
+                "category": "Kategori",
+                "status": "Durum",
+                "url": "Url",
+                "content": "İçerik",
+                "user": "Kullanıcı",
+                "tags": "Tags",
+                "image": "Resim"
+            }
+        },
+        "tags": {
+            "Tags": "Tags",
+            "fields": {
+                "id": "Id",
+                "title": "Başlık",
+                "image": "Resim"
+            }
+        },
+        "users": {
+            "Users": "Kullanıcılar",
+            "fields": {
+                "id": "Id",
+                "status": "Durum",
+                "image": "Resim",
+                "firstName": "İsim",
+                "lastName": "Soyisim",
+                "email": "Email",
+                "birthday": "Doğum Günü"
+            }
+        }
+    },
+    "buttons": {
+        "create": "Oluştur",
+        "save": "Kaydet",
+        "logout": "Çıkış yap",
+        "delete": "Sil",
+        "edit": "Düzenle",
+        "cancel": "İptal",
+        "confirm": "Emin misiniz?",
+        "filter": "Filtrele",
+        "clear": "Temizle"
+    }
+}

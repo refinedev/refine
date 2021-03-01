@@ -4,14 +4,19 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
-import { IDataContext, IAuthContext } from "@interfaces";
+import { IDataContext, IAuthContext, I18nProvider } from "@interfaces";
 import { MemoryRouter } from "react-router-dom";
+import {
+    defaultProvider,
+    TranslationContextProvider,
+} from "@contexts/translation";
 
 const queryClient = new QueryClient();
 
 interface ITestWrapperProps {
     authProvider?: IAuthContext;
     dataProvider?: IDataContext;
+    i18nProvider?: I18nProvider;
     resources: IResourceItem[];
     children?: React.ReactNode;
     routerInitialEntries?: string[];
@@ -21,6 +26,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     authProvider,
     dataProvider,
     resources,
+    i18nProvider,
     routerInitialEntries,
 }) => {
     // eslint-disable-next-line react/display-name
@@ -37,12 +43,21 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
         ) : (
             withResource
         );
-        const withAuth = authProvider ? (
-            <AuthContextProvider {...authProvider}>
+
+        const withTranslation = i18nProvider ? (
+            <TranslationContextProvider i18nProvider={i18nProvider}>
                 {withData}
-            </AuthContextProvider>
+            </TranslationContextProvider>
         ) : (
             withData
+        );
+
+        const withAuth = authProvider ? (
+            <AuthContextProvider {...authProvider}>
+                {withTranslation}
+            </AuthContextProvider>
+        ) : (
+            withTranslation
         );
 
         return (

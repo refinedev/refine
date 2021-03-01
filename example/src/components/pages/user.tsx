@@ -11,11 +11,13 @@ import {
     ShowTab,
     Tab,
     TextField,
+    useTranslate,
 } from "readmin";
 
 import { Aside } from "../aside";
 
 export const UserList = (props: any) => {
+    const translate = useTranslate();
     return (
         <List {...props} aside={Aside}>
             <Table
@@ -26,23 +28,31 @@ export const UserList = (props: any) => {
                     size: "small",
                 }}
             >
-                <Column key="id" dataIndex="id" title="ID" />
+                <Column
+                    key="id"
+                    dataIndex="id"
+                    title={translate("common:resources.users.fields.id")}
+                />
                 <Column
                     key="firstName"
                     dataIndex="firstName"
-                    title="First Name"
+                    title={translate("common:resources.users.fields.firstName")}
                 />
-                <Column key="lastName" dataIndex="lastName" title="Last Name" />
+                <Column
+                    key="lastName"
+                    dataIndex="lastName"
+                    title={translate("common:resources.users.fields.lastName")}
+                />
                 <Column
                     dataIndex="status"
-                    title="Status"
+                    title={translate("common:resources.users.fields.status")}
                     key="status"
                     render={(value) => <TagField value={value} />}
                 />
                 <Column
                     key="email"
                     dataIndex="email"
-                    title="Email"
+                    title={translate("common:resources.users.fields.email")}
                     render={(value) => <EmailField value={value} />}
                 />
                 <Column
@@ -54,7 +64,7 @@ export const UserList = (props: any) => {
                 <Column
                     key="birthday"
                     dataIndex="birthday"
-                    title="Birthday"
+                    title={translate("common:resources.users.fields.birthday")}
                     render={(value) => <DateField value={value} />}
                 />
             </Table>
