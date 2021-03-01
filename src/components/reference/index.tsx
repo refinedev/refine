@@ -3,7 +3,7 @@ import React from "react";
 import { Sort } from "@interfaces";
 import { useList } from "@hooks";
 
-export interface ReferenceInputProps {
+export interface ReferenceProps {
     reference: string;
     onChange?: (value: string | number) => void;
     value?: string | number;
@@ -20,7 +20,7 @@ interface Option {
     value: string;
 }
 
-export const ReferenceInput: React.FC<ReferenceInputProps> = ({
+export const Reference: React.FC<ReferenceProps> = ({
     reference,
     onChange,
     value,
@@ -48,7 +48,7 @@ export const ReferenceInput: React.FC<ReferenceInputProps> = ({
             onSuccess: (data) => {
                 const options: Option[] = data.data.map((item) => ({
                     label: item[optionText],
-                    value: item[optionValue].toString(),
+                    value: item[optionValue],
                 }));
 
                 setOptions(options);

@@ -2,9 +2,14 @@ import React from "react";
 import { Admin, Resource, AuthProvider, JsonServer, Icons } from "readmin";
 import { useTranslation } from "react-i18next";
 
-import { PostCreate, PostList, PostEdit } from "./components/pages/post";
+import {
+    PostCreate,
+    PostList,
+    PostEdit,
+    PostShow,
+} from "./components/pages/post";
 import { CategoryList, CategoryCreate } from "./components/pages/category";
-import { UserList } from "./components/pages/user";
+import { UserList, UserShow } from "./components/pages/user";
 import { TagList, TagCreate, TagEdit } from "./components/pages/tag";
 import { ImagesList } from "./components/pages/images";
 import { FilesList } from "./components/pages/files";
@@ -53,7 +58,7 @@ function App() {
     return (
         <Admin
             authProvider={authProvider}
-            dataProvider={JsonServer("https://readmin-fake-rest.pankod.com")}
+            dataProvider={JsonServer("/api")}
             loginPage={LoginPage}
             dashboard={DashboardPage}
             ready={ReadyPage}
@@ -64,6 +69,7 @@ function App() {
                 list={PostList}
                 create={PostCreate}
                 edit={PostEdit}
+                show={PostShow}
                 canDelete
                 options={{ label: "My Posts" }}
             />
@@ -76,6 +82,7 @@ function App() {
             <Resource
                 name="users"
                 list={UserList}
+                show={UserShow}
                 icon={<Icons.UserOutlined />}
             />
             <Resource

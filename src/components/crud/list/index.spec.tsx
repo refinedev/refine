@@ -46,6 +46,24 @@ describe("<List/>", () => {
             expect(container).toMatchSnapshot();
         });
 
+        it("should render asideComponent with aside prop", async () => {
+            const asideComponent = () => {
+                return <p>Aside</p>;
+            };
+
+            const { getByText } = render(
+                <List aside={asideComponent} resourceName="posts"></List>,
+            );
+            getByText("Aside");
+        });
+
+        it("should render optional title with title prop", async () => {
+            const { getByText } = render(
+                <List resourceName="posts" title="New Title"></List>,
+            );
+            getByText("New Title");
+        });
+
         // xit("should wrap with given component", async () => {
         //     const { container } = render(
         //         <List component={"section"} resourceName="posts">

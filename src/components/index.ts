@@ -1,9 +1,9 @@
 export * from "./fields";
-export * from "./inputs";
+export * from "./input";
 export * from "./table";
 export * from "./crud";
 
 export { Layout } from "./layout";
-export { Empty } from "./empty";
+export { Reference } from "./reference";
 export { ErrorComponent } from "./layout/components";
 export { Authenticated } from "./authenticated";

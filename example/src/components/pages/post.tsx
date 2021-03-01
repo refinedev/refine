@@ -5,20 +5,26 @@ import {
     Column,
     Create,
     Edit,
+    Show,
     Form,
-    FormItem,
-    TextInput,
-    TextareaInput,
-    SelectInput,
-    ReferenceInput,
+    Reference,
     ReferenceField,
     TextField,
     TagField,
     FilterDropdown,
-    RadioInput,
-    RadioGroupInput,
+    Select,
+    Radio,
+    Input,
+    Upload,
+    ShowSimple,
+    Markdown,
+    MarkdownField,
+    normalizeFile,
+    useApiUrl,
     useTranslate,
 } from "readmin";
+
+import { ShowAside, ShowComponent } from "../show";
 
 export const PostList = (props: any) => {
     const translate = useTranslate();
@@ -70,7 +76,7 @@ export const PostList = (props: any) => {
                     )}
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
-                            <ReferenceInput
+                            <Reference
                                 reference="categories"
                                 optionText="title"
                                 sort={{
@@ -78,13 +84,13 @@ export const PostList = (props: any) => {
                                     order: "asc",
                                 }}
                             >
-                                <SelectInput
+                                <Select
                                     style={{ minWidth: 200 }}
                                     showSearch
                                     mode="multiple"
                                     placeholder="Select Category"
                                 />
-                            </ReferenceInput>
+                            </Reference>
                         </FilterDropdown>
                     )}
                 />
@@ -95,10 +101,10 @@ export const PostList = (props: any) => {
                     render={(value) => <TagField value={value} />}
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
-                            <RadioGroupInput>
-                                <RadioInput value="active">Active</RadioInput>
-                                <RadioInput value="draft">Draft</RadioInput>
-                            </RadioGroupInput>
+                            <Radio.Group>
+                                <Radio value="active">Active</Radio>
+                                <Radio value="draft">Draft</Radio>
+                            </Radio.Group>
                         </FilterDropdown>
                     )}
                     defaultFilteredValue={["active"]}
@@ -109,11 +115,13 @@ export const PostList = (props: any) => {
 };
 
 export const PostCreate = (props: any) => {
+    const apiUrl = useApiUrl();
     const translate = useTranslate();
+
     return (
         <Create {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
-                <FormItem
+                <Form.Item
                     label={translate("common:resources.posts.fields.title")}
                     name="title"
                     rules={[
@@ -122,9 +130,9 @@ export const PostCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <TextInput />
-                </FormItem>
-                <FormItem
+                    <Input />
+                </Form.Item>
+                <Form.Item
                     label={translate("common:resources.posts.fields.url")}
                     name="slug"
                     rules={[
@@ -133,9 +141,9 @@ export const PostCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <TextInput />
-                </FormItem>
-                <FormItem
+                    <Input />
+                </Form.Item>
+                <Form.Item
                     label={translate("common:resources.posts.fields.content")}
                     name="content"
                     rules={[
@@ -144,9 +152,9 @@ export const PostCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <TextareaInput />
-                </FormItem>
-                <FormItem
+                    <Input.TextArea />
+                </Form.Item>
+                <Form.Item
                     label={translate("common:resources.posts.fields.status")}
                     name="status"
                     rules={[
@@ -155,7 +163,7 @@ export const PostCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <SelectInput
+                    <Select
                         defaultValue="active"
                         options={[
                             {
@@ -168,8 +176,8 @@ export const PostCreate = (props: any) => {
                             },
                         ]}
                     />
-                </FormItem>
-                <FormItem
+                </Form.Item>
+                <Form.Item
                     label={translate("common:resources.posts.fields.category")}
                     name="categoryId"
                     rules={[
@@ -178,7 +186,7 @@ export const PostCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <ReferenceInput
+                    <Reference
                         reference="categories"
                         optionText="title"
                         sort={{
@@ -186,10 +194,10 @@ export const PostCreate = (props: any) => {
                             order: "asc",
                         }}
                     >
-                        <SelectInput />
-                    </ReferenceInput>
-                </FormItem>
-                <FormItem
+                        <Select />
+                    </Reference>
+                </Form.Item>
+                <Form.Item
                     label={translate("common:resources.posts.fields.user")}
                     name="userId"
                     rules={[
@@ -199,7 +207,7 @@ export const PostCreate = (props: any) => {
                     ]}
                     help="Autocomplete (search user email)"
                 >
-                    <ReferenceInput
+                    <Reference
                         reference="users"
                         optionText="email"
                         sort={{
@@ -207,10 +215,10 @@ export const PostCreate = (props: any) => {
                             order: "asc",
                         }}
                     >
-                        <SelectInput showSearch />
-                    </ReferenceInput>
-                </FormItem>
-                <FormItem
+                        <Select showSearch />
+                    </Reference>
+                </Form.Item>
+                <Form.Item
                     label={translate("common:resources.posts.fields.tags")}
                     name="tags"
                     rules={[
@@ -219,21 +227,53 @@ export const PostCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <ReferenceInput reference="tags" optionText="title">
-                        <SelectInput mode="multiple" />
-                    </ReferenceInput>
-                </FormItem>
+                    <Reference reference="tags" optionText="title">
+                        <Select mode="multiple" />
+                    </Reference>
+                </Form.Item>
+
+                <Form.Item
+                    label={translate("common:resources.posts.fields.image")}
+                >
+                    <Form.Item
+                        name="image"
+                        valuePropName="fileList"
+                        getValueFromEvent={normalizeFile}
+                        noStyle
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Upload.Dragger
+                            name="file"
+                            action={`${apiUrl}/upload`}
+                            listType="picture"
+                            maxCount={1}
+                        >
+                            <p className="ant-upload-text">
+                                Click or drag file to this area to upload
+                            </p>
+                            <p className="ant-upload-hint">
+                                Support for a single upload.
+                            </p>
+                        </Upload.Dragger>
+                    </Form.Item>
+                </Form.Item>
             </Form>
         </Create>
     );
 };
 
 export const PostEdit = (props: any) => {
+    const apiUrl = useApiUrl();
     const translate = useTranslate();
+
     return (
         <Edit {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
-                <FormItem
+                <Form.Item
                     label={translate("common:resources.posts.fields.title")}
                     name="title"
                     rules={[
@@ -242,9 +282,9 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <TextInput />
-                </FormItem>
-                <FormItem
+                    <Input />
+                </Form.Item>
+                <Form.Item
                     label={translate("common:resources.posts.fields.url")}
                     name="slug"
                     rules={[
@@ -253,9 +293,9 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <TextInput />
-                </FormItem>
-                <FormItem
+                    <Input />
+                </Form.Item>
+                <Form.Item
                     label={translate("common:resources.posts.fields.content")}
                     name="content"
                     rules={[
@@ -264,9 +304,9 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <TextareaInput />
-                </FormItem>
-                <FormItem
+                    <Markdown />
+                </Form.Item>
+                <Form.Item
                     label={translate("common:resources.posts.fields.status")}
                     name="status"
                     rules={[
@@ -275,7 +315,7 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <SelectInput
+                    <Select
                         defaultValue="active"
                         options={[
                             {
@@ -288,8 +328,8 @@ export const PostEdit = (props: any) => {
                             },
                         ]}
                     />
-                </FormItem>
-                <FormItem
+                </Form.Item>
+                <Form.Item
                     label={translate("common:resources.posts.fields.category")}
                     name="categoryId"
                     rules={[
@@ -298,7 +338,7 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <ReferenceInput
+                    <Reference
                         reference="categories"
                         optionText="title"
                         sort={{
@@ -306,10 +346,10 @@ export const PostEdit = (props: any) => {
                             order: "asc",
                         }}
                     >
-                        <SelectInput showSearch />
-                    </ReferenceInput>
-                </FormItem>
-                <FormItem
+                        <Select showSearch />
+                    </Reference>
+                </Form.Item>
+                <Form.Item
                     label={translate("common:resources.posts.fields.user")}
                     name="userId"
                     rules={[
@@ -319,11 +359,11 @@ export const PostEdit = (props: any) => {
                     ]}
                     help="Autocomplete (search user email)"
                 >
-                    <ReferenceInput reference="users" optionText="email">
-                        <SelectInput showSearch />
-                    </ReferenceInput>
-                </FormItem>
-                <FormItem
+                    <Reference reference="users" optionText="email">
+                        <Select showSearch />
+                    </Reference>
+                </Form.Item>
+                <Form.Item
                     label={translate("common:resources.posts.fields.tags")}
                     name="tags"
                     rules={[
@@ -332,11 +372,48 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <ReferenceInput reference="tags" optionText="title">
-                        <SelectInput mode="multiple" />
-                    </ReferenceInput>
-                </FormItem>
+                    <Reference reference="tags" optionText="title">
+                        <Select mode="multiple" />
+                    </Reference>
+                </Form.Item>
+                <Form.Item
+                    label={translate("common:resources.posts.fields.image")}
+                >
+                    <Form.Item
+                        name="image"
+                        valuePropName="fileList"
+                        getValueFromEvent={normalizeFile}
+                        noStyle
+                    >
+                        <Upload.Dragger
+                            name="file"
+                            action={`${apiUrl}/upload`}
+                            listType="picture"
+                            maxCount={1}
+                        >
+                            <p className="ant-upload-text">
+                                Click or drag file to this area to upload
+                            </p>
+                            <p className="ant-upload-hint">
+                                Support for a single upload.
+                            </p>
+                        </Upload.Dragger>
+                    </Form.Item>
+                </Form.Item>
             </Form>
         </Edit>
+    );
+};
+
+export const PostShow = (props: any) => {
+    return (
+        <Show {...props} aside={ShowAside} component={ShowComponent}>
+            <ShowSimple title="Post Title">
+                <TextField renderRecordKey="id" />
+                <TextField renderRecordKey="title" />
+                <TextField renderRecordKey="userId" />
+                <MarkdownField renderRecordKey="content" />
+            </ShowSimple>
+        </Show>
     );
 };

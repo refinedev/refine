@@ -35,28 +35,50 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
 
     const routes: IRoutesProps[] = [];
     const RouteHandler = (val: React.ReactElement): void => {
-        const { list, name, create, edit, canDelete } = val.props;
+        const { list, name, create, edit, show, canDelete } = val.props;
 
         const ListComponent = list;
         const CreateComponent = create;
         const EditComponent = edit;
+        const ShowComponent = show;
 
         const canCreate = !!create;
         const canEdit = !!edit;
-        routes.push(
-            {
+        const canShow = !!show;
+
+        if (CreateComponent) {
+            routes.push({
                 exact: true,
                 path: `/resources/${name}/create`,
-                component: () => (
-                    <CreateComponent resourceName={name} canEdit={canEdit} />
-                ),
-            },
-            {
+                component: () => {
+                    return (
+                        <CreateComponent
+                            resourceName={name}
+                            canEdit={canEdit}
+                        />
+                    );
+                },
+            });
+        }
+
+        if (EditComponent) {
+            routes.push({
                 exact: true,
                 path: `/resources/${name}/edit/:id`,
                 component: () => <EditComponent resourceName={name} />,
-            },
-            {
+            });
+        }
+
+        if (ShowComponent) {
+            routes.push({
+                exact: true,
+                path: `/resources/${name}/show/:id`,
+                component: () => <ShowComponent resourceName={name} />,
+            });
+        }
+
+        if (ListComponent) {
+            routes.push({
                 exact: true,
                 path: `/resources/${name}`,
                 component: () => (
@@ -65,10 +87,12 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
                         canCreate={canCreate}
                         canEdit={canEdit}
                         canDelete={canDelete}
+                        canShow={canShow}
                     />
                 ),
-            },
-        );
+            });
+        }
+
         return;
     };
 

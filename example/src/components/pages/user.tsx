@@ -5,14 +5,21 @@ import {
     Column,
     EmailField,
     TagField,
+    BooleanField,
     DateField,
+    Show,
+    ShowTab,
+    Tab,
+    TextField,
     useTranslate,
 } from "readmin";
+
+import { Aside } from "../aside";
 
 export const UserList = (props: any) => {
     const translate = useTranslate();
     return (
-        <List {...props}>
+        <List {...props} aside={Aside}>
             <Table
                 rowKey="id"
                 pagination={{
@@ -48,7 +55,12 @@ export const UserList = (props: any) => {
                     title={translate("common:resources.users.fields.email")}
                     render={(value) => <EmailField value={value} />}
                 />
-
+                <Column
+                    dataIndex="status"
+                    title="Status"
+                    key="boolean"
+                    render={(value) => <BooleanField value={value} />}
+                />
                 <Column
                     key="birthday"
                     dataIndex="birthday"
@@ -57,5 +69,23 @@ export const UserList = (props: any) => {
                 />
             </Table>
         </List>
+    );
+};
+
+export const UserShow = (props: any) => {
+    return (
+        <Show {...props}>
+            <ShowTab>
+                <Tab tab="Summary">
+                    <TextField renderRecordKey="id" />
+                    <TextField renderRecordKey="firstName" />
+                    <TextField renderRecordKey="lastName" />
+                </Tab>
+                <Tab tab="Detail">
+                    <EmailField renderRecordKey="email" />
+                    <DateField renderRecordKey="birthday" />
+                </Tab>
+            </ShowTab>
+        </Show>
     );
 };

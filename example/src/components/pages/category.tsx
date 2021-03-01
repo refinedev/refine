@@ -5,9 +5,8 @@ import {
     Create,
     Edit,
     Form,
-    FormItem,
-    TextInput,
     Column,
+    Input,
     useTranslate,
 } from "readmin";
 
@@ -45,7 +44,7 @@ export const CategoryCreate = (props: any) => {
     return (
         <Create {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
-                <FormItem
+                <Form.Item
                     label={translate("common:resources.categories.forms.title")}
                     name="title"
                     rules={[
@@ -54,8 +53,8 @@ export const CategoryCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <TextInput />
-                </FormItem>
+                    <Input />
+                </Form.Item>
             </Form>
         </Create>
     );
@@ -66,7 +65,7 @@ export const CategoryEdit = (props: any) => {
     return (
         <Edit {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
-                <FormItem
+                <Form.Item
                     label={translate("common:resources.categories.forms.title")}
                     name="title"
                     rules={[
@@ -75,8 +74,8 @@ export const CategoryEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <TextInput />
-                </FormItem>
+                    <Input />
+                </Form.Item>
             </Form>
         </Edit>
     );
