@@ -22,3 +22,6 @@ yarn-error.log*
 # eslint cache
 example/.eslintcache
 example/.cache
+
+example-graphql/.eslintcache
+example-graphql/.cache
