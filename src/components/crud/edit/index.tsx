@@ -6,7 +6,7 @@ import { SaveOutlined } from "@ant-design/icons";
 
 import { useOne, useUpdate } from "@hooks";
 import { BaseRecord } from "@interfaces";
-import { ListButton, RefreshButton } from "@components/buttons";
+import { DeleteButton, RefreshButton, ListButton } from "@components";
 
 export interface EditProps {
     resourceName: string;
@@ -65,17 +65,24 @@ export const Edit: React.FC<EditProps> = ({
                 </Row>
             }
             actions={[
-                <Button
-                    key="save-button"
-                    htmlType="submit"
-                    disabled={isLoading}
-                    type="primary"
-                    icon={<SaveOutlined />}
-                    onClick={(): void => form.submit()}
+                <Space
+                    key="footer-buttons"
                     style={{ float: "right", marginRight: 24 }}
                 >
-                    Save
-                </Button>,
+                    <DeleteButton
+                        resourceName={resourceName}
+                        recordItemId={id}
+                    />
+                    <Button
+                        htmlType="submit"
+                        disabled={isLoading}
+                        type="primary"
+                        icon={<SaveOutlined />}
+                        onClick={(): void => form.submit()}
+                    >
+                        Save
+                    </Button>
+                </Space>,
             ]}
         >
             {childrenWithProps}
