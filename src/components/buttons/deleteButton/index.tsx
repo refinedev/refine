@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Button, ButtonProps, Popconfirm } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
-import { useRouteMatch } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 
 import { useDelete } from "@hooks";
 import { MatchRoute, DeleteOneResponse } from "@interfaces";
@@ -9,15 +9,17 @@ import { MatchRoute, DeleteOneResponse } from "@interfaces";
 type DeleteButtonProps = ButtonProps & {
     resourceName?: string;
     recordItemId?: string | number;
-    onDelete?: (value: DeleteOneResponse) => void;
+    onSuccess?: (value: DeleteOneResponse) => void;
 };
 
 export const DeleteButton: FC<DeleteButtonProps> = ({
-    resourceName,
+    resourceName: propResourceName,
     recordItemId,
-    onDelete,
+    onSuccess,
     ...rest
 }) => {
+    const history = useHistory();
+
     const match = useRouteMatch({
         path: [
             "/resources/:resourceName/:action/:id",
@@ -30,9 +32,9 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
         params: { resourceName: routeResourceName, id: idFromRoute },
     } = (match as unknown) as MatchRoute;
 
-    const { mutateAsync, isLoading } = useDelete(
-        resourceName ?? routeResourceName,
-    );
+    const resourceName = propResourceName ?? routeResourceName;
+
+    const { mutateAsync, isLoading } = useDelete(resourceName);
 
     return (
         <Popconfirm
@@ -44,7 +46,9 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
             onConfirm={(): void => {
                 mutateAsync({ id: recordItemId ?? idFromRoute }).then(
                     (value) => {
-                        onDelete && onDelete(value);
+                        onSuccess
+                            ? onSuccess(value)
+                            : history.push(`/resources/${resourceName}`);
                     },
                 );
             }}

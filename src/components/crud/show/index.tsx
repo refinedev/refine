@@ -29,8 +29,6 @@ export const Show: React.FC<ShowProps> = ({
     children,
     ...rest
 }) => {
-    const history = useHistory();
-
     const { id } = useParams<Record<string, string>>();
 
     const { data, isLoading } = useOne(resourceName, id);
@@ -76,11 +74,6 @@ export const Show: React.FC<ShowProps> = ({
                                         <DeleteButton
                                             resourceName={resourceName}
                                             recordItemId={id}
-                                            onDelete={() =>
-                                                history.push(
-                                                    `/resources/${resourceName}`,
-                                                )
-                                            }
                                         />
                                     )}
                                     <RefreshButton
