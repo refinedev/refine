@@ -1,8 +1,15 @@
 {
-    "include": ["src", "types"],
+    "include": [
+        "src",
+        "types"
+    ],
     "compilerOptions": {
         "module": "esnext",
-        "lib": ["dom", "esnext", "DOM.Iterable"],
+        "lib": [
+            "dom",
+            "esnext",
+            "DOM.Iterable"
+        ],
         "importHelpers": true,
         "declaration": true,
         "sourceMap": true,
@@ -18,21 +25,51 @@
         "noEmit": true,
         "baseUrl": ".",
         "paths": {
-            "@components/*": ["src/components/*"],
-            "@components": ["src/components"],
-            "@containers/*": ["src/containers/*"],
-            "@containers": ["src/containers"],
-            "@pages/*": ["src/pages/*"],
-            "@pages": ["src/pages"],
-            "@interfaces/*": ["src/interfaces/*"],
-            "@interfaces": ["src/interfaces"],
-            "@contexts/*": ["src/contexts/*"],
-            "@contexts": ["src/contexts"],
-            "@dataProviders/*": ["src/dataProviders/*"],
-            "@dataProviders": ["src/dataProviders"],
-            "@hooks/*": ["src/hooks/*"],
-            "@hooks": ["src/hooks"],
-            "@test/*": ["test/*"],
+            "@components/*": [
+                "src/components/*"
+            ],
+            "@components": [
+                "src/components"
+            ],
+            "@containers/*": [
+                "src/containers/*"
+            ],
+            "@containers": [
+                "src/containers"
+            ],
+            "@pages/*": [
+                "src/pages/*"
+            ],
+            "@pages": [
+                "src/pages"
+            ],
+            "@interfaces/*": [
+                "src/interfaces/*"
+            ],
+            "@interfaces": [
+                "src/interfaces"
+            ],
+            "@contexts/*": [
+                "src/contexts/*"
+            ],
+            "@contexts": [
+                "src/contexts"
+            ],
+            "@dataProviders/*": [
+                "src/dataProviders/*"
+            ],
+            "@dataProviders": [
+                "src/dataProviders"
+            ],
+            "@hooks/*": [
+                "src/hooks/*"
+            ],
+            "@hooks": [
+                "src/hooks"
+            ],
+            "@test/*": [
+                "test/*"
+            ],
             "@test": [
                 "test"
             ],

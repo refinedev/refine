@@ -16,7 +16,7 @@
         "test": "tsdx test --passWithNoTests --runInBand",
         "test:watch": "tsdx test --watch",
         "test:coverage": "tsdx test --coverage",
-        "lint": "tsdx lint src test example",
+        "lint": "tsdx lint src test example example-graphql",
         "prepare": "tsdx build",
         "size": "size-limit",
         "analyze": "size-limit --why"
@@ -86,6 +86,9 @@
         "antd": "^4.12.2",
         "axios": "^0.21.1",
         "dayjs": "^1.10.4",
+        "gql-query-builder": "^3.5.5",
+        "graphql": "^15.5.0",
+        "graphql-request": "^3.4.0",
         "humanize-string": "^2.1.0",
         "lodash": "^4.17.21",
         "pluralize": "^8.0.0",

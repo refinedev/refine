@@ -1,6 +1,7 @@
 import JsonServer from "./dataProviders/jsonServer";
+import JsonGraphqlServer from "./dataProviders/jsonGraphqlServer";
 
-export { JsonServer };
+export { JsonServer, JsonGraphqlServer };
 export { Admin, Resource } from "./containers";
 
 export * from "./components/antd";

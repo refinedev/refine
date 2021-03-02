@@ -59,6 +59,7 @@ export interface IDataContext {
             sort?: Sort;
             filters?: Filters;
         },
+        fields?: string[],
     ) => Promise<GetListResponse<TData>>;
     getMany: <TData extends BaseRecord = BaseRecord>(
         resource: string,

@@ -1,6 +1,12 @@
 import React from "react";
 
-import { Admin, Resource, AuthProvider, JsonServer, Icons } from "readmin";
+import {
+    Admin,
+    Resource,
+    AuthProvider,
+    Icons,
+    JsonGraphqlServer,
+} from "readmin";
 import {
     PostCreate,
     PostList,
@@ -48,7 +54,7 @@ function App() {
     return (
         <Admin
             authProvider={authProvider}
-            dataProvider={JsonServer("/api")}
+            dataProvider={JsonGraphqlServer("/api")}
             loginPage={LoginPage}
             dashboard={DashboardPage}
             ready={ReadyPage}
