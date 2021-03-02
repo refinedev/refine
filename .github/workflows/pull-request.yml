@@ -82,9 +82,11 @@ jobs:
         with:
           meercode-token: ${{ secrets.MEERCODE_TOKEN }}
           url: 'https://${{ steps.substring-pr-branch-name.outputs.substring }}-readmin.pankod.com'
-      - name: update-pull-request
-        uses: kt3k/update-pr-description@v1.0.1
+      - uses: tzkhan/pr-update-action@v2
         with:
-          pr_body: "Test me: [https://${{ steps.substring-pr-branch-name.outputs.substring }}.readmin.pankod.com](url)"
-          destination_branch: ${{ steps.pr-branch-name.outputs.branch }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          title-template: '[%headbranch%] '
+          body-template: |
+            Test me! '%basebranch%'
+            [Link to %headbranch%](https://${{ steps.substring-pr-branch-name.outputs.substring }}-readmin.pankod.com)
+          body-update-action: 'suffix'
