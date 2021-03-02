@@ -28,3 +28,4 @@ class Example extends Component {
 ## License
 
 MIT © [pankod](https://github.com/pankod)
+

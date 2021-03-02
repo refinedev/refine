@@ -1,10 +1,10 @@
 import React from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { Form, Card, Button, Row, Space } from "antd";
+import { Form, Card, Button, Row, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
-import { useOne, useUpdate } from "@hooks";
+import { useOne, useUpdate, useTranslate } from "@hooks";
 import { BaseRecord } from "@interfaces";
 import { DeleteButton, RefreshButton, ListButton } from "@components";
 
@@ -12,12 +12,14 @@ export interface EditProps {
     resourceName: string;
     title?: string;
     actionButtons?: React.FC;
+    saveButtonProps?: ButtonProps;
 }
 
 export const Edit: React.FC<EditProps> = ({
     resourceName,
     title,
     actionButtons,
+    saveButtonProps,
     children,
 }) => {
     const history = useHistory();
@@ -27,11 +29,14 @@ export const Edit: React.FC<EditProps> = ({
 
     const { data, isLoading } = useOne(resourceName, id);
 
-    form.setFieldsValue({
-        ...data?.data,
-    });
+    React.useEffect(() => {
+        form.setFieldsValue({
+            ...data?.data,
+        });
+    }, [data]);
 
     const { mutate } = useUpdate(resourceName);
+    const translate = useTranslate();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         mutate(
@@ -80,8 +85,9 @@ export const Edit: React.FC<EditProps> = ({
                                 type="primary"
                                 icon={<SaveOutlined />}
                                 onClick={(): void => form.submit()}
+                                {...saveButtonProps}
                             >
-                                Save
+                                {translate("common:buttons.save", "Save")}
                             </Button>
                         </>
                     )}

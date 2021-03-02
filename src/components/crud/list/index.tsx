@@ -3,6 +3,7 @@ import { Card, Row, Col } from "antd";
 import humanizeString from "humanize-string";
 
 import { TableProps } from "@components/table";
+import { useTranslate } from "@hooks";
 import { OptionalComponent } from "@definitions";
 import { CreateButton } from "@components";
 
@@ -37,13 +38,20 @@ export const List: React.FC<ListProps> = ({
         }
         return child;
     });
+    const translate = useTranslate();
 
     return (
         <Row gutter={[16, 16]}>
             <Col flex="1 1 200px">
                 <Card
                     bodyStyle={{ padding: 0, flex: 1 }}
-                    title={title ?? humanizeString(resourceName)}
+                    title={
+                        title ??
+                        translate(
+                            `common:resources.${resourceName}.title`,
+                            humanizeString(resourceName),
+                        )
+                    }
                     extra={canCreate && <CreateButton size="middle" />}
                 >
                     {childrenWithProps}

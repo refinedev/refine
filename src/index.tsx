@@ -15,7 +15,11 @@ export { Layout, Authenticated, Reference } from "./components";
 export * from "./hooks";
 
 export { IAuthContext as AuthProvider, Sort, Pagination } from "./interfaces";
-export { IDataContext as DataProvider } from "./interfaces";
+export {
+    IDataContext as DataProvider,
+    ITranslationContext as TranslationProvider,
+    I18nProvider,
+} from "./interfaces";
 
 export * from "./icons";
 

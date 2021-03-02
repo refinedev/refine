@@ -1,10 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Card, Button, Form, Space } from "antd";
+import { Card, Button, Form, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
-import { useCreate } from "@hooks";
+import { useCreate, useTranslate } from "@hooks";
 import { BaseRecord } from "@interfaces";
 
 export interface CreateProps {
@@ -12,6 +12,7 @@ export interface CreateProps {
     canEdit?: boolean;
     title?: string;
     actionButtons?: React.FC;
+    saveButtonProps?: ButtonProps;
 }
 
 export const Create: React.FC<CreateProps> = ({
@@ -19,12 +20,15 @@ export const Create: React.FC<CreateProps> = ({
     canEdit,
     title,
     actionButtons,
+    saveButtonProps,
     children,
 }) => {
     const history = useHistory();
     const [form] = Form.useForm();
 
     const { mutate, isLoading } = useCreate(resourceName);
+
+    const translate = useTranslate();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         mutate(
@@ -69,8 +73,9 @@ export const Create: React.FC<CreateProps> = ({
                             type="primary"
                             icon={<SaveOutlined />}
                             onClick={(): void => form.submit()}
+                            {...saveButtonProps}
                         >
-                            Save
+                            {translate("common:buttons.save", "Save")}
                         </Button>
                     )}
                 </Space>,
