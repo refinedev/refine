@@ -50,26 +50,17 @@ describe("<Show/>", () => {
     });
 
     it("should render optional buttons with actionButtons prop", async () => {
-        const renderButtons = () => {
-            return (
-                <>
-                    <Button>New Save Button</Button>
-                    <Button>New Delete Button</Button>
-                </>
-            );
-        };
-
         const { findByText } = renderShow(
             <Show
                 key="posts"
                 resourceName="posts"
-                actionButtons={renderButtons}
-            >
-                <ShowSimple data-testid="showsimple">
-                    <TextField renderRecordKey="id" />
-                    <TextField renderRecordKey="slug" />
-                </ShowSimple>
-            </Show>,
+                actionButtons={
+                    <>
+                        <Button>New Save Button</Button>
+                        <Button>New Delete Button</Button>
+                    </>
+                }
+            />,
         );
 
         await findByText("New Save Button");
