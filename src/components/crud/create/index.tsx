@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Card, Button, Form, ButtonProps } from "antd";
+import { Card, Button, Form, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
@@ -11,6 +11,7 @@ export interface CreateProps {
     resourceName: string;
     canEdit?: boolean;
     title?: string;
+    actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
 }
 
@@ -18,6 +19,7 @@ export const Create: React.FC<CreateProps> = ({
     resourceName,
     canEdit,
     title,
+    actionButtons,
     saveButtonProps,
     children,
 }) => {
@@ -59,18 +61,25 @@ export const Create: React.FC<CreateProps> = ({
     return (
         <Card
             title={title ?? `Create ${pluralize.singular(resourceName)}`}
-            extra={
-                <Button
-                    htmlType="submit"
-                    disabled={isLoading}
-                    type="primary"
-                    icon={<SaveOutlined />}
-                    onClick={(): void => form.submit()}
-                    {...saveButtonProps}
+            actions={[
+                <Space
+                    key="action-buttons"
+                    style={{ float: "right", marginRight: 24 }}
                 >
-                    {translate("common:buttons.save", "Save")}
-                </Button>
-            }
+                    {actionButtons ?? (
+                        <Button
+                            htmlType="submit"
+                            disabled={isLoading}
+                            type="primary"
+                            icon={<SaveOutlined />}
+                            onClick={(): void => form.submit()}
+                            {...saveButtonProps}
+                        >
+                            {translate("common:buttons.save", "Save")}
+                        </Button>
+                    )}
+                </Space>,
+            ]}
         >
             {childrenWithProps}
         </Card>
