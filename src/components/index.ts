@@ -8,9 +8,8 @@ export * from "./crud";
 export * from "./buttons";
 export * from "./pages";
 export * from "./containers";
-export * from "./antd";
 
-export { Layout } from "./layout";
+export { ReadminLayout } from "./layout";
 export { Reference } from "./reference";
 export { ErrorComponent } from "./layout/components";
 export { Authenticated } from "./authenticated";

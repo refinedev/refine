@@ -3,6 +3,7 @@ import JsonServer from "./dataProviders/jsonServer";
 export { JsonServer };
 
 export * from "./components";
+export * from "./components/antd";
 export * from "./hooks";
 
 export { IAuthContext as AuthProvider, Sort, Pagination } from "./interfaces";
