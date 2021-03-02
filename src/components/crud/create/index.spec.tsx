@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "antd";
 
 import { render, TestWrapper, MockJSONServer } from "@test";
 import { Create } from "./";
@@ -15,7 +16,7 @@ describe("Create", () => {
         expect(container).toBeTruthy();
     });
 
-    it("should render save button successfuly", async () => {
+    it("should render default save button successfuly", async () => {
         const { container, getByText } = render(
             <Create resourceName="posts" />,
             {
@@ -28,6 +29,25 @@ describe("Create", () => {
 
         expect(container.querySelector("button")).toBeTruthy();
         getByText("Save");
+    });
+
+    it("should render optional button with actionButtons prop", async () => {
+        const optionalButton = () => {
+            return <span>Optional Button</span>;
+        };
+
+        const { container, getByText } = render(
+            <Create resourceName="posts" actionButtons={optionalButton} />,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        expect(container.querySelector("button")).toBeTruthy();
+        getByText("Optional Button");
     });
 
     it("should render default title successfuly", async () => {
