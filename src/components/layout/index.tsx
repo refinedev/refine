@@ -18,7 +18,7 @@ export interface LayoutProps {
     dashboard?: React.FC;
 }
 
-export const ReadminLayout: React.FC<LayoutProps> = ({
+export const Layout: React.FC<LayoutProps> = ({
     children,
     title,
     dashboard,

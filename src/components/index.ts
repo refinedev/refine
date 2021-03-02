@@ -9,7 +9,7 @@ export * from "./buttons";
 export * from "./pages";
 export * from "./containers";
 
-export { ReadminLayout } from "./layout";
+export { Layout as ReadminLayout } from "./layout";
 export { Reference } from "./reference";
 export { ErrorComponent } from "./layout/components";
 export { Authenticated } from "./authenticated";
