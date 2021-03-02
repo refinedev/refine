@@ -32,12 +32,11 @@ describe("Create", () => {
     });
 
     it("should render optional button with actionButtons prop", async () => {
-        const optionalButton = () => {
-            return <span>Optional Button</span>;
-        };
-
         const { container, getByText } = render(
-            <Create resourceName="posts" actionButtons={optionalButton} />,
+            <Create
+                resourceName="posts"
+                actionButtons={<Button>Optional Button</Button>}
+            />,
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
