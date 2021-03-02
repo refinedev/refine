@@ -85,7 +85,6 @@ jobs:
       - uses: tzkhan/pr-update-action@v2
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          title-template: '[%headbranch%] '
           body-template: |
             Test me! '%basebranch%'
             [Link to %headbranch%](https://${{ steps.substring-pr-branch-name.outputs.substring }}-readmin.pankod.com)
