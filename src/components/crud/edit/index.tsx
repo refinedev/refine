@@ -11,7 +11,7 @@ import { DeleteButton, RefreshButton, ListButton } from "@components";
 export interface EditProps {
     resourceName: string;
     title?: string;
-    actionButtons?: React.FC;
+    actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
 }
 

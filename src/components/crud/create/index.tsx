@@ -11,7 +11,7 @@ export interface CreateProps {
     resourceName: string;
     canEdit?: boolean;
     title?: string;
-    actionButtons?: React.FC;
+    actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
 }
 

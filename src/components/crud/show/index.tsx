@@ -18,7 +18,7 @@ export type ShowProps = CardProps & {
     component?: FC<{ record?: BaseRecord }>;
     canEdit?: boolean;
     canDelete?: boolean;
-    actionButtons?: React.FC;
+    actionButtons?: React.ReactNode;
 };
 
 export const Show: React.FC<ShowProps> = ({
