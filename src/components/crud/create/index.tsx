@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Card, Button, Form } from "antd";
+import { Card, Button, Form, Space } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
@@ -11,12 +11,14 @@ export interface CreateProps {
     resourceName: string;
     canEdit?: boolean;
     title?: string;
+    actionButtons?: React.FC;
 }
 
 export const Create: React.FC<CreateProps> = ({
     resourceName,
     canEdit,
     title,
+    actionButtons,
     children,
 }) => {
     const history = useHistory();
@@ -56,17 +58,22 @@ export const Create: React.FC<CreateProps> = ({
         <Card
             title={title ?? `Create ${pluralize.singular(resourceName)}`}
             actions={[
-                <Button
-                    key="save-button"
-                    htmlType="submit"
-                    disabled={isLoading}
-                    type="primary"
-                    icon={<SaveOutlined />}
-                    onClick={(): void => form.submit()}
+                <Space
+                    key="action-buttons"
                     style={{ float: "right", marginRight: 24 }}
                 >
-                    Save
-                </Button>,
+                    {actionButtons ?? (
+                        <Button
+                            htmlType="submit"
+                            disabled={isLoading}
+                            type="primary"
+                            icon={<SaveOutlined />}
+                            onClick={(): void => form.submit()}
+                        >
+                            Save
+                        </Button>
+                    )}
+                </Space>,
             ]}
         >
             {childrenWithProps}

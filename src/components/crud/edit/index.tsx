@@ -11,11 +11,13 @@ import { DeleteButton, RefreshButton, ListButton } from "@components";
 export interface EditProps {
     resourceName: string;
     title?: string;
+    actionButtons?: React.FC;
 }
 
 export const Edit: React.FC<EditProps> = ({
     resourceName,
     title,
+    actionButtons,
     children,
 }) => {
     const history = useHistory();
@@ -66,19 +68,23 @@ export const Edit: React.FC<EditProps> = ({
             }
             actions={[
                 <Space
-                    key="footer-buttons"
+                    key="action-buttons"
                     style={{ float: "right", marginRight: 24 }}
                 >
-                    <DeleteButton />
-                    <Button
-                        htmlType="submit"
-                        disabled={isLoading}
-                        type="primary"
-                        icon={<SaveOutlined />}
-                        onClick={(): void => form.submit()}
-                    >
-                        Save
-                    </Button>
+                    {actionButtons ?? (
+                        <>
+                            <DeleteButton />
+                            <Button
+                                htmlType="submit"
+                                disabled={isLoading}
+                                type="primary"
+                                icon={<SaveOutlined />}
+                                onClick={(): void => form.submit()}
+                            >
+                                Save
+                            </Button>
+                        </>
+                    )}
                 </Space>,
             ]}
         >
