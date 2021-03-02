@@ -3,6 +3,7 @@ import { Button, ButtonProps } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
+import { useTranslate } from "@hooks";
 import { MatchRoute } from "@interfaces";
 
 type ShowButtonProps = ButtonProps & {
@@ -16,6 +17,7 @@ export const ShowButton: FC<ShowButtonProps> = ({
     ...rest
 }) => {
     const history = useHistory();
+    const translate = useTranslate();
 
     const match = useRouteMatch({
         path: [
@@ -42,7 +44,7 @@ export const ShowButton: FC<ShowButtonProps> = ({
             icon={<EyeOutlined />}
             {...rest}
         >
-            Show
+            {translate("common:buttons.refresh", "Refresh")}
         </Button>
     );
 };

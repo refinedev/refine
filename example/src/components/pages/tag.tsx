@@ -29,7 +29,6 @@ export const TagList = (props: any) => {
     };
 
     const onSelectChange = (selectedRowKeys: any) => {
-        console.log("selectedRowKeys changed: ", selectedRowKeys);
         setSelectedRowKeys(selectedRowKeys);
     };
 
@@ -54,7 +53,7 @@ export const TagList = (props: any) => {
                     disabled={!hasSelected}
                     loading={loading}
                 >
-                    Reload
+                    {translate("common:resources.tags.reload")}
                 </Button>
                 <span style={{ marginLeft: 8 }}>
                     {hasSelected

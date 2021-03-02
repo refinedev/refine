@@ -10,6 +10,7 @@
         "categories": {
             "Categories": "Kategoriler",
             "title": "Kategoriler",
+            "Create": "Kategori oluştur",
             "fields": {
                 "id": "Id",
                 "title": "Başlık"
@@ -35,6 +36,7 @@
         },
         "images": {
             "Images": "Resimler",
+            "title": "Resimler",
             "fields": {
                 "id": "Id",
                 "image": "Resim",
@@ -43,6 +45,8 @@
         },
         "posts": {
             "Posts": "Gönderiler",
+            "title": "Gönderiler",
+            "Create": "Gönderi oluştur",
             "fields": {
                 "id": "Id",
                 "title": "Başlık",
@@ -52,27 +56,38 @@
                 "url": "Url",
                 "content": "İçerik",
                 "user": "Kullanıcı",
-                "tags": "Tags",
+                "tags": "Etiketler",
                 "image": "Resim"
+            },
+            "forms": {
+                "active": "Aktif",
+                "draft": "Taslak",
+                "autocomplete": "Otomatik tamamlama(Kullanıcı email arayın)",
+                "uploadText": "TıklayıRn ya da yüklemek istediğiniz dosyayı bu alana sürükleyin",
+                "uploadHintText": "Aynı anda tek dosya yüklenebilir"
             }
         },
         "tags": {
-            "Tags": "Tags",
+            "Tags": "Etiketler",
+            "title": "Etiketler",
+            "Create": "Etiket oluştur",
             "fields": {
                 "id": "Id",
                 "title": "Başlık",
                 "image": "Resim"
-            }
+            },
+            "reload": "Yenile"
         },
         "users": {
             "Users": "Kullanıcılar",
+            "title": "Kullanıcılar",
             "fields": {
                 "id": "Id",
                 "status": "Durum",
                 "image": "Resim",
-                "firstName": "İsim",
-                "lastName": "Soyisim",
-                "email": "Email",
+                "firstName": "Ad",
+                "lastName": "Soyad",
+                "email": "E-Posta",
                 "birthday": "Doğum Günü"
             }
         }
@@ -86,6 +101,16 @@
         "cancel": "İptal",
         "confirm": "Emin misiniz?",
         "filter": "Filtrele",
-        "clear": "Temizle"
+        "clear": "Temizle",
+        "refresh": "Yenile",
+        "show": "Göster"
+    },
+    "table": {
+        "actions": "İşlemler"
+    },
+    "aside": {
+        "title": "Kullanıcı listesi detayları",
+        "more": "Daha fazla",
+        "content": "Sisteminize kayıtlı kullanıcıların kişisel verilerini kullanıcı tablosunda görüntüleyebilirsiniz."
     }
 }

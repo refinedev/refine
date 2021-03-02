@@ -54,9 +54,16 @@ export const Create: React.FC<CreateProps> = ({
         return child;
     });
 
+    console.log("singular", resourceName);
     return (
         <Card
-            title={title ?? `Create ${pluralize.singular(resourceName)}`}
+            title={
+                title ??
+                translate(
+                    `common:resources.${resourceName}.Create`,
+                    `Create ${pluralize.singular(resourceName)}`,
+                )
+            }
             extra={
                 <Button
                     htmlType="submit"
