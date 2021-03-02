@@ -1,6 +1,9 @@
 import * as React from "react";
+import dayjs from "dayjs";
+
 import {
     List,
+    Edit,
     Table,
     Column,
     EmailField,
@@ -10,7 +13,10 @@ import {
     Show,
     ShowTab,
     Tab,
+    Form,
+    Input,
     TextField,
+    Tabs,
     useTranslate,
 } from "readmin";
 
@@ -69,6 +75,74 @@ export const UserList = (props: any) => {
                 />
             </Table>
         </List>
+    );
+};
+
+export const UserEdit = (props: any) => {
+    const translate = useTranslate();
+
+    const { TabPane } = Tabs;
+
+    const dateFormat = "MM/DD/YYYY";
+
+    const worker = {
+        birthday: dayjs("2020-06-09T12:40:14+0000"),
+    };
+
+    return (
+        <Edit {...props}>
+            <Form
+                wrapperCol={{ span: 14 }}
+                layout="vertical"
+                initialValues={worker}
+            >
+                <Tabs>
+                    <TabPane tab="Summary" key="summary">
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.firstName",
+                            )}
+                            name="firstName"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.lastName",
+                            )}
+                            name="lastName"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </TabPane>
+                    <TabPane tab="Detail" key="detail">
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.email",
+                            )}
+                            name="email"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </TabPane>
+                </Tabs>
+            </Form>
+        </Edit>
     );
 };
 
