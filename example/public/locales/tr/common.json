@@ -63,7 +63,7 @@
                 "active": "Aktif",
                 "draft": "Taslak",
                 "autocomplete": "Otomatik tamamlama(Kullanıcı email arayın)",
-                "uploadText": "TıklayıRn ya da yüklemek istediğiniz dosyayı bu alana sürükleyin",
+                "uploadText": "Tıklayın ya da yüklemek istediğiniz dosyayı bu alana sürükleyin",
                 "uploadHintText": "Aynı anda tek dosya yüklenebilir"
             }
         },
