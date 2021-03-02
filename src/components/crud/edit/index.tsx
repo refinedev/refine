@@ -6,17 +6,19 @@ import { SaveOutlined } from "@ant-design/icons";
 
 import { useOne, useUpdate, useTranslate } from "@hooks";
 import { BaseRecord } from "@interfaces";
-import { ListButton, RefreshButton } from "@components/buttons";
+import { DeleteButton, RefreshButton, ListButton } from "@components";
 
 export interface EditProps {
     resourceName: string;
     title?: string;
+    actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
 }
 
 export const Edit: React.FC<EditProps> = ({
     resourceName,
     title,
+    actionButtons,
     saveButtonProps,
     children,
 }) => {
@@ -66,19 +68,31 @@ export const Edit: React.FC<EditProps> = ({
                     <Space>
                         <ListButton resourceName={resourceName} />
                         <RefreshButton resourceName={resourceName} />
-                        <Button
-                            htmlType="submit"
-                            disabled={isLoading}
-                            type="primary"
-                            icon={<SaveOutlined />}
-                            onClick={(): void => form.submit()}
-                            {...saveButtonProps}
-                        >
-                            {translate("common:buttons.save", "Save")}
-                        </Button>
                     </Space>
                 </Row>
             }
+            actions={[
+                <Space
+                    key="action-buttons"
+                    style={{ float: "right", marginRight: 24 }}
+                >
+                    {actionButtons ?? (
+                        <>
+                            <DeleteButton />
+                            <Button
+                                htmlType="submit"
+                                disabled={isLoading}
+                                type="primary"
+                                icon={<SaveOutlined />}
+                                onClick={(): void => form.submit()}
+                                {...saveButtonProps}
+                            >
+                                {translate("common:buttons.save", "Save")}
+                            </Button>
+                        </>
+                    )}
+                </Space>,
+            ]}
         >
             {childrenWithProps}
         </Card>
