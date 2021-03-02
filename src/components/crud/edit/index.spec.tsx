@@ -34,21 +34,20 @@ describe("Edit", () => {
     });
 
     it("should render optional buttons with actionButtons prop", () => {
-        const renderButtons = () => {
-            return (
-                <>
-                    <Button>New Save Button</Button>
-                    <Button>New Delete Button</Button>
-                </>
-            );
-        };
-
         const { getByText } = renderShow(
-            <Edit resourceName="posts" actionButtons={renderButtons} />,
+            <Edit
+                resourceName="posts"
+                actionButtons={
+                    <>
+                        <Button>New Save Button</Button>
+                        <Button>New Delete Button</Button>
+                    </>
+                }
+            />,
         );
 
-        getByText("Save");
-        getByText("Delete");
+        getByText("New Save Button");
+        getByText("New Delete Button");
     });
 
     it("should render default title successfuly", () => {
