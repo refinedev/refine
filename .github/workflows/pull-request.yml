@@ -24,12 +24,6 @@ jobs:
         id: pr-branch-name
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: update-pull-request
-        uses: kt3k/update-pr-description@v1.0.1
-        with:
-          pr_body: "CI In Progress. Please check later!"
-          destination_branch: ${{ steps.pr-branch-name.outputs.branch }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Substring PR Branch Name
         id: substring-pr-branch-name
         run: |
@@ -85,6 +79,8 @@ jobs:
       - uses: tzkhan/pr-update-action@v2
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          base-branch-regex: '[a-z\d-_.\\/]+'
+          head-branch-regex: '[a-z\d-_.\\/]+'
           body-template: |
             Test me! '%basebranch%'
             [Link to %headbranch%](https://${{ steps.substring-pr-branch-name.outputs.substring }}-readmin.pankod.com)
