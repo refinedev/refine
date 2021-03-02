@@ -28,8 +28,6 @@ export const ListButton: FC<ListButtonProps> = ({
 
     const resourceName = propResourceName ?? routeResourceName;
 
-    console.log("resource", resourceName)
-
     return (
         <Button
             onClick={(): void => history.push(`/resources/${resourceName}`)}
