@@ -23,6 +23,7 @@ import {
     useApiUrl,
     useFileUploadState,
     useTranslate,
+    useNotification,
 } from "readmin";
 
 import { ShowAside } from "../show";
@@ -118,18 +119,37 @@ export const PostList = (props: any) => {
 export const PostCreate = (props: any) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
+    const notification = useNotification();
+
+    const onSuccess = () => {
+        notification.success({
+            message: "Custom notification",
+            description: "Custom notification",
+        });
+    };
+    const onError = () => {
+        notification.error({
+            message: "Custom error",
+            description: "Custom error",
+        });
+    };
 
     const { isLoading, onChange } = useFileUploadState();
 
     return (
-        <Create {...props} saveButtonProps={{ disabled: isLoading }}>
+        <Create
+            {...props}
+            onSuccessActions={onSuccess}
+            onErrorActions={onError}
+            saveButtonProps={{ disabled: isLoading }}
+        >
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
                     name="title"
                     rules={[
                         {
-                            required: true,
+                            required: false,
                         },
                     ]}
                 >
@@ -140,7 +160,7 @@ export const PostCreate = (props: any) => {
                     name="slug"
                     rules={[
                         {
-                            required: true,
+                            required: false,
                         },
                     ]}
                 >
@@ -151,7 +171,7 @@ export const PostCreate = (props: any) => {
                     name="content"
                     rules={[
                         {
-                            required: true,
+                            required: false,
                         },
                     ]}
                 >
@@ -162,7 +182,7 @@ export const PostCreate = (props: any) => {
                     name="status"
                     rules={[
                         {
-                            required: true,
+                            required: false,
                         },
                     ]}
                 >
@@ -185,7 +205,7 @@ export const PostCreate = (props: any) => {
                     name="categoryId"
                     rules={[
                         {
-                            required: true,
+                            required: false,
                         },
                     ]}
                 >
@@ -205,7 +225,7 @@ export const PostCreate = (props: any) => {
                     name="userId"
                     rules={[
                         {
-                            required: true,
+                            required: false,
                         },
                     ]}
                     help="Autocomplete (search user email)"
@@ -226,7 +246,7 @@ export const PostCreate = (props: any) => {
                     name="tags"
                     rules={[
                         {
-                            required: true,
+                            required: false,
                         },
                     ]}
                 >
@@ -245,7 +265,7 @@ export const PostCreate = (props: any) => {
                         noStyle
                         rules={[
                             {
-                                required: true,
+                                required: false,
                             },
                         ]}
                     >
@@ -285,7 +305,7 @@ export const PostEdit = (props: any) => {
                     name="title"
                     rules={[
                         {
-                            required: true,
+                            required: false,
                         },
                     ]}
                 >
@@ -296,7 +316,7 @@ export const PostEdit = (props: any) => {
                     name="slug"
                     rules={[
                         {
-                            required: true,
+                            required: false,
                         },
                     ]}
                 >
@@ -307,7 +327,7 @@ export const PostEdit = (props: any) => {
                     name="content"
                     rules={[
                         {
-                            required: true,
+                            required: false,
                         },
                     ]}
                 >
@@ -318,7 +338,7 @@ export const PostEdit = (props: any) => {
                     name="status"
                     rules={[
                         {
-                            required: true,
+                            required: false,
                         },
                     ]}
                 >
@@ -341,7 +361,7 @@ export const PostEdit = (props: any) => {
                     name="categoryId"
                     rules={[
                         {
-                            required: true,
+                            required: false,
                         },
                     ]}
                 >
@@ -361,7 +381,7 @@ export const PostEdit = (props: any) => {
                     name="userId"
                     rules={[
                         {
-                            required: true,
+                            required: false,
                         },
                     ]}
                     help="Autocomplete (search user email)"
@@ -375,7 +395,7 @@ export const PostEdit = (props: any) => {
                     name="tags"
                     rules={[
                         {
-                            required: true,
+                            required: false,
                         },
                     ]}
                 >

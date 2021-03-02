@@ -4,7 +4,7 @@ import { Card, Button, Form, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
-import { useCreate, useTranslate } from "@hooks";
+import { useCreate, useTranslate, useNotification } from "@hooks";
 import { BaseRecord } from "@interfaces";
 
 export interface CreateProps {
@@ -13,6 +13,8 @@ export interface CreateProps {
     title?: string;
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
+    onSuccessActions?: () => void;
+    onErrorActions?: () => void;
 }
 
 export const Create: React.FC<CreateProps> = ({
@@ -22,12 +24,14 @@ export const Create: React.FC<CreateProps> = ({
     actionButtons,
     saveButtonProps,
     children,
+    onSuccessActions,
+    onErrorActions,
 }) => {
     const history = useHistory();
     const [form] = Form.useForm();
 
     const { mutate, isLoading } = useCreate(resourceName);
-
+    const notification = useNotification();
     const translate = useTranslate();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
@@ -35,6 +39,13 @@ export const Create: React.FC<CreateProps> = ({
             { values },
             {
                 onSuccess: (data) => {
+                    if (onSuccessActions) {
+                        return onSuccessActions();
+                    }
+                    notification.success({
+                        message: "Successfull",
+                        description: `New ${resourceName} created`,
+                    });
                     if (canEdit) {
                         return history.push(
                             `/resources/${resourceName}/edit/${data.data.id}`,
@@ -42,6 +53,15 @@ export const Create: React.FC<CreateProps> = ({
                     }
 
                     return history.push(`/resources/${resourceName}`);
+                },
+                onError: (err: any) => {
+                    if (onErrorActions) {
+                        return onErrorActions();
+                    }
+                    notification.error({
+                        message: "There is a problem",
+                        description: err.message,
+                    });
                 },
             },
         );
