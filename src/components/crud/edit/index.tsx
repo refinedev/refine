@@ -52,7 +52,7 @@ export const Edit: React.FC<EditProps> = ({
                         return onSuccessActions();
                     }
                     notification.success({
-                        message: "Successfull",
+                        message: "Successful",
                         description: `Id:${id} ${resourceName} edited`,
                     });
                     return history.push(`/resources/${resourceName}`);

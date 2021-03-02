@@ -43,7 +43,7 @@ export const Create: React.FC<CreateProps> = ({
                         return onSuccessActions();
                     }
                     notification.success({
-                        message: "Successfull",
+                        message: "Successful",
                         description: `New ${resourceName} created`,
                     });
                     if (canEdit) {
