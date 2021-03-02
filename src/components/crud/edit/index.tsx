@@ -4,7 +4,7 @@ import { Form, Card, Button, Row, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
-import { useOne, useUpdate, useTranslate } from "@hooks";
+import { useOne, useUpdate, useTranslate, useNotification } from "@hooks";
 import { BaseRecord } from "@interfaces";
 import { DeleteButton, RefreshButton, ListButton } from "@components";
 
@@ -13,6 +13,8 @@ export interface EditProps {
     title?: string;
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
+    onErrorActions?: () => void;
+    onSuccessActions?: () => void;
 }
 
 export const Edit: React.FC<EditProps> = ({
@@ -21,6 +23,8 @@ export const Edit: React.FC<EditProps> = ({
     actionButtons,
     saveButtonProps,
     children,
+    onSuccessActions,
+    onErrorActions,
 }) => {
     const history = useHistory();
     const { id } = useParams<Record<string, string>>();
@@ -37,13 +41,30 @@ export const Edit: React.FC<EditProps> = ({
 
     const { mutate } = useUpdate(resourceName);
     const translate = useTranslate();
+    const notification = useNotification();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         mutate(
             { id, values },
             {
                 onSuccess: () => {
+                    if (onSuccessActions) {
+                        return onSuccessActions();
+                    }
+                    notification.success({
+                        message: "Successfull",
+                        description: `Id:${id} ${resourceName} edited`,
+                    });
                     return history.push(`/resources/${resourceName}`);
+                },
+                onError: (err: any) => {
+                    if (onErrorActions) {
+                        return onErrorActions();
+                    }
+                    notification.error({
+                        message: "There is a problem",
+                        description: err.message,
+                    });
                 },
             },
         );

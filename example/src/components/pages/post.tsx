@@ -123,14 +123,14 @@ export const PostCreate = (props: any) => {
 
     const onSuccess = () => {
         notification.success({
-            message: "Custom notification",
-            description: "Custom notification",
+            message: "Custom create notification",
+            description: "Custom create notification",
         });
     };
     const onError = () => {
         notification.error({
-            message: "Custom error",
-            description: "Custom error",
+            message: "Custom create error",
+            description: "Custom create error",
         });
     };
 
@@ -149,7 +149,7 @@ export const PostCreate = (props: any) => {
                     name="title"
                     rules={[
                         {
-                            required: false,
+                            required: true,
                         },
                     ]}
                 >
@@ -160,7 +160,7 @@ export const PostCreate = (props: any) => {
                     name="slug"
                     rules={[
                         {
-                            required: false,
+                            required: true,
                         },
                     ]}
                 >
@@ -171,7 +171,7 @@ export const PostCreate = (props: any) => {
                     name="content"
                     rules={[
                         {
-                            required: false,
+                            required: true,
                         },
                     ]}
                 >
@@ -182,7 +182,7 @@ export const PostCreate = (props: any) => {
                     name="status"
                     rules={[
                         {
-                            required: false,
+                            required: true,
                         },
                     ]}
                 >
@@ -205,7 +205,7 @@ export const PostCreate = (props: any) => {
                     name="categoryId"
                     rules={[
                         {
-                            required: false,
+                            required: true,
                         },
                     ]}
                 >
@@ -225,7 +225,7 @@ export const PostCreate = (props: any) => {
                     name="userId"
                     rules={[
                         {
-                            required: false,
+                            required: true,
                         },
                     ]}
                     help="Autocomplete (search user email)"
@@ -246,7 +246,7 @@ export const PostCreate = (props: any) => {
                     name="tags"
                     rules={[
                         {
-                            required: false,
+                            required: true,
                         },
                     ]}
                 >
@@ -265,7 +265,7 @@ export const PostCreate = (props: any) => {
                         noStyle
                         rules={[
                             {
-                                required: false,
+                                required: true,
                             },
                         ]}
                     >
@@ -295,10 +295,30 @@ export const PostEdit = (props: any) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
 
+    const notification = useNotification();
+
     const { isLoading, onChange } = useFileUploadState();
 
+    const onSuccess = () => {
+        notification.success({
+            message: "Custom edit notification",
+            description: "Custom edit notification",
+        });
+    };
+    const onError = () => {
+        notification.error({
+            message: "Custom edit error",
+            description: "Custom edit error",
+        });
+    };
+
     return (
-        <Edit {...props} saveButtonProps={{ disabled: isLoading }}>
+        <Edit
+            {...props}
+            onErrorActions={onError}
+            onSuccessActions={onSuccess}
+            saveButtonProps={{ disabled: isLoading }}
+        >
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
