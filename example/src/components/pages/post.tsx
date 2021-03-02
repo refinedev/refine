@@ -325,7 +325,7 @@ export const PostEdit = (props: any) => {
                     name="title"
                     rules={[
                         {
-                            required: false,
+                            required: true,
                         },
                     ]}
                 >
@@ -336,7 +336,7 @@ export const PostEdit = (props: any) => {
                     name="slug"
                     rules={[
                         {
-                            required: false,
+                            required: true,
                         },
                     ]}
                 >
@@ -347,7 +347,7 @@ export const PostEdit = (props: any) => {
                     name="content"
                     rules={[
                         {
-                            required: false,
+                            required: true,
                         },
                     ]}
                 >
@@ -358,7 +358,7 @@ export const PostEdit = (props: any) => {
                     name="status"
                     rules={[
                         {
-                            required: false,
+                            required: true,
                         },
                     ]}
                 >
@@ -381,7 +381,7 @@ export const PostEdit = (props: any) => {
                     name="categoryId"
                     rules={[
                         {
-                            required: false,
+                            required: true,
                         },
                     ]}
                 >
@@ -401,7 +401,7 @@ export const PostEdit = (props: any) => {
                     name="userId"
                     rules={[
                         {
-                            required: false,
+                            required: true,
                         },
                     ]}
                     help="Autocomplete (search user email)"
@@ -415,7 +415,7 @@ export const PostEdit = (props: any) => {
                     name="tags"
                     rules={[
                         {
-                            required: false,
+                            required: true,
                         },
                     ]}
                 >
