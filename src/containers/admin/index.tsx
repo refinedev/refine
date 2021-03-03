@@ -83,7 +83,7 @@ export const Admin: React.FC<AdminProps> = ({
                     </ResourceContextProvider>
                 </DataContextProvider>
             </AuthContextProvider>
-            <ReactQueryDevtools initialIsOpen={true} position="bottom-right" />
+            <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
         </QueryClientProvider>
     );
 };

@@ -131,7 +131,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
             onError: !(mutationMode === "pessimistic")
                 ? (err, variables, context) => {
                       if (context) {
-                          for (const query of context?.previousListQueries) {
+                          for (const query of context.previousListQueries) {
                               queryClient.setQueryData(
                                   query.queryKey,
                                   query.query,
