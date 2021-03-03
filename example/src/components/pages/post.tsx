@@ -119,30 +119,11 @@ export const PostList = (props: any) => {
 export const PostCreate = (props: any) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
-    const notification = useNotification();
-
-    const onSuccess = () => {
-        notification.success({
-            message: "Custom create notification",
-            description: "Custom create notification",
-        });
-    };
-    const onError = () => {
-        notification.error({
-            message: "Custom create error",
-            description: "Custom create error",
-        });
-    };
 
     const { isLoading, onChange } = useFileUploadState();
 
     return (
-        <Create
-            {...props}
-            onSuccessActions={onSuccess}
-            onErrorActions={onError}
-            saveButtonProps={{ disabled: isLoading }}
-        >
+        <Create {...props} saveButtonProps={{ disabled: isLoading }}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
@@ -295,30 +276,10 @@ export const PostEdit = (props: any) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
 
-    const notification = useNotification();
-
     const { isLoading, onChange } = useFileUploadState();
 
-    const onSuccess = () => {
-        notification.success({
-            message: "Custom edit notification",
-            description: "Custom edit notification",
-        });
-    };
-    const onError = () => {
-        notification.error({
-            message: "Custom edit error",
-            description: "Custom edit error",
-        });
-    };
-
     return (
-        <Edit
-            {...props}
-            onErrorActions={onError}
-            onSuccessActions={onSuccess}
-            saveButtonProps={{ disabled: isLoading }}
-        >
+        <Edit {...props} saveButtonProps={{ disabled: isLoading }}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
