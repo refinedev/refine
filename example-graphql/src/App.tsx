@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Admin, Resource, AuthProvider, JsonGraphqlServer } from "readmin";
-import { PostList } from "./components/pages/post";
+import { PostList, PostCreate, PostEdit } from "./components/pages/post";
 
 function App() {
     const authProvider: AuthProvider = {
@@ -40,10 +40,10 @@ function App() {
             <Resource
                 name="Posts"
                 list={PostList}
-                // create={PostCreate}
-                // edit={PostEdit}
+                create={PostCreate}
+                edit={PostEdit}
                 // show={PostShow}
-                // canDelete
+                canDelete
                 // options={{ label: "My Posts" }}
             />
         </Admin>

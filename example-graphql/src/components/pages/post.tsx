@@ -63,8 +63,6 @@ export const PostList = (props: any) => {
 };
 
 export const PostCreate = (props: any) => {
-    const apiUrl = useApiUrl();
-
     return (
         <Create {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
@@ -85,8 +83,6 @@ export const PostCreate = (props: any) => {
 };
 
 export const PostEdit = (props: any) => {
-    const apiUrl = useApiUrl();
-
     return (
         <Edit {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">

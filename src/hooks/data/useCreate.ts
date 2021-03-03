@@ -2,26 +2,24 @@ import { useContext } from "react";
 import { useMutation, UseMutationResult } from "react-query";
 
 import { DataContext } from "@contexts/data";
-import { CreateResponse, IDataContext, BaseRecord } from "@interfaces";
+import { CreateResponse, IDataContext, Params } from "@interfaces";
 
-type UseCreateReturnType<
-    TParams extends BaseRecord = BaseRecord
-> = UseMutationResult<
+type UseCreateReturnType = UseMutationResult<
     CreateResponse,
     unknown,
     {
-        values: TParams;
+        values: Params;
     },
     unknown
 >;
 
-export const useCreate = <TParams extends BaseRecord = BaseRecord>(
+export const useCreate = <TData extends CreateResponse = CreateResponse>(
     resource: string,
-): UseCreateReturnType<TParams> => {
+): UseCreateReturnType => {
     const { create } = useContext<IDataContext>(DataContext);
 
-    const mutation = useMutation(({ values }: { values: TParams }) =>
-        create<TParams>(resource, values),
+    const mutation = useMutation(({ values }: { values: Params }) =>
+        create(resource, values),
     );
 
     return mutation;

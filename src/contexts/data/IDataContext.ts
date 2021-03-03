@@ -8,6 +8,10 @@ export interface BaseRecord {
     [key: string]: any;
 }
 
+export interface Params {
+    [key: string]: any;
+}
+
 export interface Pagination {
     current?: number;
     pageSize?: number;
@@ -22,8 +26,8 @@ export interface GetListResponse<TData extends BaseRecord = BaseRecord> {
     total: number;
 }
 
-export interface CreateResponse {
-    data: BaseRecord;
+export interface CreateResponse<TData extends BaseRecord = BaseRecord> {
+    data: TData;
 }
 
 export interface UpdateResponse {
@@ -69,11 +73,12 @@ export interface IDataContext {
     getOne: <TData extends BaseRecord = BaseRecord>(
         resource: string,
         id: Identifier,
+        fields?: string[],
     ) => Promise<GetOneResponse<TData>>;
-    create: <TParams extends BaseRecord = BaseRecord>(
+    create: <TData extends BaseRecord = BaseRecord>(
         resource: string,
-        params: TParams,
-    ) => Promise<CreateResponse>;
+        params: Params,
+    ) => Promise<CreateResponse<TData>>;
     update: <TParams extends BaseRecord = BaseRecord>(
         resource: string,
         id: Identifier,

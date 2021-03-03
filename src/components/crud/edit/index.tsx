@@ -27,7 +27,10 @@ export const Edit: React.FC<EditProps> = ({
 
     const [form] = Form.useForm();
 
-    const { data, isLoading } = useOne(resourceName, id);
+    // get fields for graphql
+    const fields = Object.keys(form.getFieldsValue());
+
+    const { data, isLoading } = useOne(resourceName, id, fields);
 
     React.useEffect(() => {
         form.setFieldsValue({

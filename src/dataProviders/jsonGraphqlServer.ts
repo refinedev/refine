@@ -10,10 +10,18 @@ import { generateFieldsArray } from "@definitions/graphql";
 const JsonGraphqlServer = (apiUrl: string): IDataContext => {
     const client = new GraphQLClient("http://localhost:3000");
 
-    const request = async (
+    const query = async (
         options: IQueryBuilderOptions | IQueryBuilderOptions[],
     ) => {
         const qb = gql.query(options);
+
+        return client.request(qb.query, qb.variables);
+    };
+
+    const mutation = async (
+        options: IQueryBuilderOptions | IQueryBuilderOptions[],
+    ) => {
+        const qb = gql.mutation(options);
 
         return client.request(qb.query, qb.variables);
     };
@@ -46,7 +54,7 @@ const JsonGraphqlServer = (apiUrl: string): IDataContext => {
             let data: BaseRecord[] = [];
             let total = 0;
 
-            const responseData = await request({
+            const responseData = await query({
                 operation,
                 fields,
                 variables: {
@@ -58,7 +66,7 @@ const JsonGraphqlServer = (apiUrl: string): IDataContext => {
             });
             data = responseData["allPosts"];
 
-            const responseMetaData = await request({
+            const responseMetaData = await query({
                 operation: `_${operation}Meta`,
                 fields: ["count"],
             });
@@ -80,6 +88,12 @@ const JsonGraphqlServer = (apiUrl: string): IDataContext => {
         },
 
         create: async (resource, params) => {
+            await mutation({
+                operation: "createPost",
+                // eslint-disable-next-line @typescript-eslint/camelcase
+                variables: { id: 0, views: 99, user_id: 1, ...params },
+            });
+
             const url = `${apiUrl}/${resource}`;
 
             const { data } = await axios.post(url, params);
@@ -112,7 +126,20 @@ const JsonGraphqlServer = (apiUrl: string): IDataContext => {
             return { data: response };
         },
 
-        getOne: async (resource, id) => {
+        getOne: async (resource, id, fields) => {
+            const responseData = await query({
+                operation: "Post",
+                variables: {
+                    id: {
+                        value: 1,
+                        required: true,
+                        type: "ID",
+                    },
+                },
+                fields,
+            });
+            console.log(responseData);
+
             const url = `${apiUrl}/${resource}/${id}`;
 
             const { data } = await axios.get(url);
