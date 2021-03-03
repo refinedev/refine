@@ -1,5 +1,4 @@
 import * as React from "react";
-import dayjs from "dayjs";
 
 import {
     List,
@@ -17,6 +16,7 @@ import {
     Input,
     TextField,
     Tabs,
+    DatePicker,
     useTranslate,
 } from "readmin";
 
@@ -83,19 +83,11 @@ export const UserEdit = (props: any) => {
 
     const { TabPane } = Tabs;
 
-    const dateFormat = "MM/DD/YYYY";
-
-    const worker = {
-        birthday: dayjs("2020-06-09T12:40:14+0000"),
-    };
+    const dateFormat = "DD/MM/YYYY";
 
     return (
         <Edit {...props}>
-            <Form
-                wrapperCol={{ span: 14 }}
-                layout="vertical"
-                initialValues={worker}
-            >
+            <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <Tabs>
                     <TabPane tab="Summary" key="summary">
                         <Form.Item
@@ -138,6 +130,19 @@ export const UserEdit = (props: any) => {
                             ]}
                         >
                             <Input />
+                        </Form.Item>
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.birthday",
+                            )}
+                            name="birthday"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <DatePicker format={dateFormat} />
                         </Form.Item>
                     </TabPane>
                 </Tabs>
