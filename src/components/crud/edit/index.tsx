@@ -5,19 +5,20 @@ import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
 import { useOne, useUpdate, useTranslate } from "@hooks";
-import { BaseRecord } from "@interfaces";
+import { BaseRecord, MutationMode } from "@interfaces";
 import { ListButton, RefreshButton } from "@components/buttons";
-
 export interface EditProps {
     resourceName: string;
     title?: string;
     saveButtonProps?: ButtonProps;
+    mutationMode?: MutationMode;
 }
 
 export const Edit: React.FC<EditProps> = ({
     resourceName,
     title,
     saveButtonProps,
+    mutationMode = "pessimistic",
     children,
 }) => {
     const history = useHistory();
@@ -33,19 +34,23 @@ export const Edit: React.FC<EditProps> = ({
         });
     }, [data]);
 
-    const { mutate } = useUpdate(resourceName);
+    const { mutate } = useUpdate(resourceName, mutationMode);
     const translate = useTranslate();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         mutate(
             { id, values },
             {
-                // onSuccess: () => {
-                //     return history.push(`/resources/${resourceName}`);
-                // },
+                onSuccess:
+                    mutationMode === "pessimistic"
+                        ? () => {
+                              return history.push(`/resources/${resourceName}`);
+                          }
+                        : undefined,
             },
         );
-        history.push(`/resources/${resourceName}`);
+        !(mutationMode === "pessimistic") &&
+            history.push(`/resources/${resourceName}`);
     };
 
     const childrenWithProps = React.Children.map(children, (child) => {
