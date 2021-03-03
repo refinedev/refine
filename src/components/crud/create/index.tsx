@@ -13,8 +13,8 @@ export interface CreateProps {
     title?: string;
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
-    onSuccessActions?: () => void;
-    onErrorActions?: () => void;
+    onSuccess?: (data: any) => void;
+    onError?: (error: any) => void;
 }
 
 export const Create: React.FC<CreateProps> = ({
@@ -24,8 +24,8 @@ export const Create: React.FC<CreateProps> = ({
     actionButtons,
     saveButtonProps,
     children,
-    onSuccessActions,
-    onErrorActions,
+    onSuccess,
+    onError,
 }) => {
     const history = useHistory();
     const [form] = Form.useForm();
@@ -39,8 +39,9 @@ export const Create: React.FC<CreateProps> = ({
             { values },
             {
                 onSuccess: (data) => {
-                    if (onSuccessActions) {
-                        return onSuccessActions();
+                    if (onSuccess) {
+                        onSuccess(data);
+                        return;
                     }
                     notification.success({
                         message: "Successful",
@@ -54,13 +55,14 @@ export const Create: React.FC<CreateProps> = ({
 
                     return history.push(`/resources/${resourceName}`);
                 },
-                onError: (err: any) => {
-                    if (onErrorActions) {
-                        return onErrorActions();
+                onError: (error: any) => {
+                    if (onError) {
+                        onError(error);
+                        return;
                     }
                     notification.error({
                         message: "There is a problem",
-                        description: err.message,
+                        description: error.message,
                     });
                 },
             },
