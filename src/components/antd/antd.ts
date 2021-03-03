@@ -1,8 +1,3 @@
-import { Dayjs } from "dayjs";
-import dayjsGenerateConfig from "rc-picker/lib/generate/dayjs";
-import generatePicker from "antd/es/date-picker/generatePicker";
-import "antd/es/date-picker/style/index";
-
 export type { AffixProps } from "antd/lib/affix";
 export { default as Affix } from "antd/lib/affix";
 
@@ -57,8 +52,6 @@ export { default as Comment } from "antd/lib/comment";
 export { default as ConfigProvider } from "antd/lib/config-provider";
 
 export type { DatePickerProps } from "antd/lib/date-picker";
-const DatePicker = generatePicker<Dayjs>(dayjsGenerateConfig);
-export { DatePicker };
 
 export type { DescriptionsProps } from "antd/lib/descriptions";
 export { default as Descriptions } from "antd/lib/descriptions";
