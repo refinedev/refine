@@ -1,6 +1,7 @@
 import React from "react";
-
 import { Admin, Resource, AuthProvider, JsonServer, Icons } from "readmin";
+import { useTranslation } from "react-i18next";
+
 import {
     PostCreate,
     PostList,
@@ -45,6 +46,15 @@ function App() {
             }),
     };
 
+    const { t, i18n } = useTranslation(["common", "translation"]);
+
+    const i18nProvider = {
+        translate: (key: string, defaultTranslate: string) =>
+            t(key, defaultTranslate),
+        changeLocale: (lang: string) => i18n.changeLanguage(lang),
+        getLocale: () => i18n.language,
+    };
+
     return (
         <Admin
             authProvider={authProvider}
@@ -52,6 +62,7 @@ function App() {
             loginPage={LoginPage}
             dashboard={DashboardPage}
             ready={ReadyPage}
+            i18nProvider={i18nProvider}
         >
             <Resource
                 name="posts"
@@ -60,7 +71,6 @@ function App() {
                 edit={PostEdit}
                 show={PostShow}
                 canDelete
-                options={{ label: "My Posts" }}
             />
             <Resource
                 name="categories"

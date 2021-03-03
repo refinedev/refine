@@ -38,7 +38,7 @@ jobs:
       - name: Delete helm release
         run: |
           echo ${{ steps.substring-pr-branch-name.outputs.substring }}
-          helm delete readmin-example-${{ env.branch }}
+          helm delete ${{ env.branch }}-readmin-example
         env:
           branch: ${{ steps.substring-pr-branch-name.outputs.substring }}
  

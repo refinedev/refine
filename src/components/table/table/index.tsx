@@ -7,7 +7,7 @@ import {
 
 import { Column, EditButton, DeleteButton, ShowButton } from "@components";
 import { Filters, Sort } from "@interfaces";
-import { useList } from "@hooks";
+import { useList, useTranslate } from "@hooks";
 import {
     getDefaultSortOrder,
     getDefaultFilteredValue,
@@ -64,6 +64,8 @@ export const Table: React.FC<TableProps> = ({
         fields,
     });
 
+    const translate = useTranslate();
+
     const onChange = (
         pagination: TablePaginationConfig,
         filters: Filters,
@@ -83,7 +85,7 @@ export const Table: React.FC<TableProps> = ({
         if (canEdit || canDelete || canShow) {
             return (
                 <Column
-                    title="Actions"
+                    title={translate("common:table.actions", "Actions")}
                     dataIndex="actions"
                     key="actions"
                     render={(

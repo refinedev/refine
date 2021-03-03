@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { Route } from "react-router-dom";
+import { Button } from "antd";
 
 import { render, TestWrapper, MockJSONServer } from "@test";
 
@@ -46,5 +47,23 @@ describe("<Show/>", () => {
         await findByText("Posts");
         await findByText("Delete");
         await findByText("Edit");
+    });
+
+    it("should render optional buttons with actionButtons prop", async () => {
+        const { findByText } = renderShow(
+            <Show
+                key="posts"
+                resourceName="posts"
+                actionButtons={
+                    <>
+                        <Button>New Save Button</Button>
+                        <Button>New Delete Button</Button>
+                    </>
+                }
+            />,
+        );
+
+        await findByText("New Save Button");
+        await findByText("New Delete Button");
     });
 });

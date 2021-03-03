@@ -1,5 +1,5 @@
 import React, { ReactNode, useContext } from "react";
-import { Layout as AntLayout, Menu } from "antd";
+import { Layout as AntLayout, Menu, Button } from "antd";
 import {
     DashboardOutlined,
     LogoutOutlined,
@@ -11,8 +11,7 @@ import humanizeString from "humanize-string";
 
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "@interfaces";
-
-import { useResource } from "@hooks";
+import { useGetLocale, useResource, useSetLocale, useTranslate } from "@hooks";
 
 export interface LayoutProps {
     title?: ReactNode;
@@ -31,6 +30,10 @@ export const Layout: React.FC<LayoutProps> = ({
     const { resources } = useResource();
 
     const location = useLocation();
+
+    const setLocale = useSetLocale();
+    const translate = useTranslate();
+    const getLocale = useGetLocale();
 
     const selectedKey = React.useMemo(() => {
         const selectedResource = resources.find((el) =>
@@ -89,20 +92,43 @@ export const Layout: React.FC<LayoutProps> = ({
                             icon={item.icon ?? <UnorderedListOutlined />}
                         >
                             <Link to={`/resources/${item.name}`}>
-                                {item.label ?? humanizeString(item.name)}
+                                {translate(
+                                    `common:resources.${item.name}.${
+                                        item.label ?? humanizeString(item.name)
+                                    }`,
+                                    item.label ?? humanizeString(item.name),
+                                )}
                             </Link>
                         </Menu.Item>
                     ))}
 
                     <Menu.Item key="logout" icon={<LogoutOutlined />}>
-                        Logout
+                        {translate("common:buttons.logout", "Logout")}
                     </Menu.Item>
                 </Menu>
             </AntLayout.Sider>
             <AntLayout className="site-layout">
                 <AntLayout.Header
                     style={{ padding: 0, backgroundColor: "#FFF" }}
-                />
+                >
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "flex-end",
+                            height: "100%",
+                            alignItems: "center",
+                            padding: "24px",
+                        }}
+                    >
+                        <Button size="middle" onClick={() => setLocale("en")}>
+                            EN
+                        </Button>
+                        <Button size="middle" onClick={() => setLocale("tr")}>
+                            TR
+                        </Button>
+                    </div>
+                </AntLayout.Header>
+
                 <AntLayout.Content>
                     <div style={{ padding: 24, minHeight: 360 }}>
                         {children}

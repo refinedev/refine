@@ -6,16 +6,19 @@ import "antd/dist/antd.css";
 
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
-import { RouteProvider } from "@containers/routeProvider";
+import {
+    defaultProvider,
+    TranslationContextProvider,
+} from "@contexts/translation";
+import { RouteProvider, ReadyPage as DefaultReadyPage } from "@components";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
-import { ReadyPage as DefaultReadyPage } from "@pages";
 import { OptionalComponent } from "@definitions";
-
-import { IDataContext, IAuthContext } from "@interfaces";
+import { IDataContext, IAuthContext, I18nProvider } from "@interfaces";
 
 export interface AdminProps {
     authProvider: IAuthContext;
     dataProvider: IDataContext;
+    i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
     title?: ReactNode;
     loginPage?: React.FC | false;
@@ -32,6 +35,7 @@ export const Admin: React.FC<AdminProps> = ({
     loginPage,
     catchAll,
     children,
+    i18nProvider = defaultProvider.i18nProvider,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -63,16 +67,18 @@ export const Admin: React.FC<AdminProps> = ({
             <AuthContextProvider {...authProvider}>
                 <DataContextProvider {...dataProvider}>
                     <ResourceContextProvider resources={resources}>
-                        <Router>
-                            <RouteProvider
-                                resources={children}
-                                catchAll={catchAll}
-                                title={title}
-                                dashboard={dashboard}
-                                loginPage={loginPage}
-                                ready={ready}
-                            />
-                        </Router>
+                        <TranslationContextProvider i18nProvider={i18nProvider}>
+                            <Router>
+                                <RouteProvider
+                                    resources={children}
+                                    catchAll={catchAll}
+                                    title={title}
+                                    dashboard={dashboard}
+                                    loginPage={loginPage}
+                                    ready={ready}
+                                />
+                            </Router>
+                        </TranslationContextProvider>
                     </ResourceContextProvider>
                 </DataContextProvider>
             </AuthContextProvider>

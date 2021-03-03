@@ -2,22 +2,16 @@ import JsonServer from "./dataProviders/jsonServer";
 import JsonGraphqlServer from "./dataProviders/jsonGraphqlServer";
 
 export { JsonServer, JsonGraphqlServer };
-export { Admin, Resource } from "./containers";
 
+export * from "./components";
 export * from "./components/antd";
-export * from "./components/fields";
-export * from "./components/input";
-export * from "./components/table";
-export * from "./components/crud";
-export * from "./components/buttons";
-
-export { Layout, Authenticated, Reference } from "./components";
-
 export * from "./hooks";
 
 export { IAuthContext as AuthProvider, Sort, Pagination } from "./interfaces";
-export { IDataContext as DataProvider } from "./interfaces";
-
-export * from "./icons";
+export {
+    IDataContext as DataProvider,
+    ITranslationContext as TranslationProvider,
+    I18nProvider,
+} from "./interfaces";
 
 export * from "./definitions/upload";

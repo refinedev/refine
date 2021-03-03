@@ -3,6 +3,7 @@ import { Button, ButtonProps } from "antd";
 import { EditOutlined } from "@ant-design/icons";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
+import { useTranslate } from "@hooks";
 import { MatchRoute } from "@interfaces";
 
 type EditButtonProps = ButtonProps & {
@@ -16,6 +17,7 @@ export const EditButton: FC<EditButtonProps> = ({
     ...rest
 }) => {
     const history = useHistory();
+    const translate = useTranslate();
 
     const match = useRouteMatch({
         path: [
@@ -42,7 +44,7 @@ export const EditButton: FC<EditButtonProps> = ({
             icon={<EditOutlined />}
             {...rest}
         >
-            Edit
+            {translate("common:buttons.edit", "Edit")}
         </Button>
     );
 };
