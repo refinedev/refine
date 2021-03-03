@@ -18,6 +18,7 @@ export type ShowProps = CardProps & {
     component?: FC<{ record?: BaseRecord }>;
     canEdit?: boolean;
     canDelete?: boolean;
+    actionButtons?: React.ReactNode;
 };
 
 export const Show: React.FC<ShowProps> = ({
@@ -26,6 +27,7 @@ export const Show: React.FC<ShowProps> = ({
     component,
     canEdit,
     canDelete,
+    actionButtons,
     children,
     ...rest
 }) => {
@@ -62,24 +64,15 @@ export const Show: React.FC<ShowProps> = ({
                         loading={isLoading}
                         extra={
                             <Row>
-                                <Space>
-                                    <ListButton resourceName={resourceName} />
-                                    {canEdit && (
-                                        <EditButton
-                                            resourceName={resourceName}
-                                            recordItemId={id}
-                                        />
+                                <Space key="extra-buttons">
+                                    {actionButtons ?? (
+                                        <>
+                                            <ListButton />
+                                            {canEdit && <EditButton />}
+                                            {canDelete && <DeleteButton />}
+                                            <RefreshButton />
+                                        </>
                                     )}
-                                    {canDelete && (
-                                        <DeleteButton
-                                            resourceName={resourceName}
-                                            recordItemId={id}
-                                        />
-                                    )}
-                                    <RefreshButton
-                                        resourceName={resourceName}
-                                        recordItemId={id}
-                                    />
                                 </Space>
                             </Row>
                         }

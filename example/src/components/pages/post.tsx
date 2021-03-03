@@ -170,11 +170,15 @@ export const PostCreate = (props: any) => {
                         defaultValue="active"
                         options={[
                             {
-                                label: "Active",
+                                label: translate(
+                                    "common:resources.posts.forms.active",
+                                ),
                                 value: "active",
                             },
                             {
-                                label: "Draft",
+                                label: translate(
+                                    "common:resources.posts.forms.draft",
+                                ),
                                 value: "draft",
                             },
                         ]}
@@ -208,7 +212,9 @@ export const PostCreate = (props: any) => {
                             required: true,
                         },
                     ]}
-                    help="Autocomplete (search user email)"
+                    help={translate(
+                        "common:resources.posts.forms.autocomplete",
+                    )}
                 >
                     <Reference
                         reference="users"
@@ -258,10 +264,14 @@ export const PostCreate = (props: any) => {
                             onChange={onChange}
                         >
                             <p className="ant-upload-text">
-                                Click or drag file to this area to upload
+                                {translate(
+                                    "common:resources.posts.forms.uploadText",
+                                )}
                             </p>
                             <p className="ant-upload-hint">
-                                Support for a single upload.
+                                {translate(
+                                    "common:resources.posts.forms.uploadHintText",
+                                )}
                             </p>
                         </Upload.Dragger>
                     </Form.Item>

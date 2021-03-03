@@ -1,17 +1,18 @@
 import React from "react";
 import { Card, CardProps } from "antd";
 
+import { useTranslate } from "readmin";
+
 export const Aside: React.FC<CardProps> = (props: any) => {
+    const translate = useTranslate();
+
     return (
         <Card
             {...props}
-            title="Users List Details"
-            extra={<a href="#">More</a>}
+            title={translate("common:aside.title")}
+            extra={<a href="#">{translate("common:aside.more")}</a>}
         >
-            <p>
-                You can view personal data of users registered in your system in
-                the user table.
-            </p>
+            <p>{translate("common:aside.content")}</p>
         </Card>
     );
 };
