@@ -3,7 +3,7 @@ import { Button, ButtonProps } from "antd";
 import { RedoOutlined } from "@ant-design/icons";
 import { useRouteMatch } from "react-router-dom";
 
-import { useOne } from "@hooks";
+import { useOne, useTranslate } from "@hooks";
 import { MatchRoute } from "@interfaces";
 
 type RefreshButtonProps = ButtonProps & {
@@ -23,6 +23,7 @@ export const RefreshButton: FC<RefreshButtonProps> = ({
             "/*",
         ],
     });
+    const translate = useTranslate();
 
     const {
         params: { resourceName: routeResourceName, id: idFromRoute },
@@ -41,7 +42,7 @@ export const RefreshButton: FC<RefreshButtonProps> = ({
             onClick={() => refetch()}
             {...rest}
         >
-            Refresh
+            {translate("common:buttons.refresh", "Refresh")}
         </Button>
     );
 };

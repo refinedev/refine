@@ -83,7 +83,7 @@ export type { InputNumberProps } from "antd/lib/input-number";
 export { default as InputNumber } from "antd/lib/input-number";
 
 export type { LayoutProps } from "antd/lib/layout";
-export { default as Layout } from "antd/lib/layout";
+export { default as AntdLayout } from "antd/lib/layout";
 
 export type { ListProps } from "antd/lib/list";
 export { default as AntdList } from "antd/lib/list";

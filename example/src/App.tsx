@@ -71,7 +71,6 @@ function App() {
                 edit={PostEdit}
                 show={PostShow}
                 canDelete
-                options={{ label: "My Posts" }}
             />
             <Resource
                 name="categories"

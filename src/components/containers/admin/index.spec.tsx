@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ReadyPage } from "@pages";
+import { ReadyPage } from "@components/pages";
 
 import { render, MockJSONServer } from "@test";
 import { Row } from "antd";

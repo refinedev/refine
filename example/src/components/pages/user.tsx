@@ -63,7 +63,7 @@ export const UserList = (props: any) => {
                 />
                 <Column
                     dataIndex="status"
-                    title="Status"
+                    title={translate("common:resources.users.fields.status")}
                     key="boolean"
                     render={(value) => <BooleanField value={value} />}
                 />

@@ -60,7 +60,13 @@ export const Create: React.FC<CreateProps> = ({
 
     return (
         <Card
-            title={title ?? `Create ${pluralize.singular(resourceName)}`}
+            title={
+                title ??
+                translate(
+                    `common:resources.${resourceName}.Create`,
+                    `Create ${pluralize.singular(resourceName)}`,
+                )
+            }
             actions={[
                 <Space
                     key="action-buttons"

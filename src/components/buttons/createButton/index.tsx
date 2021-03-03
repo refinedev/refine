@@ -4,6 +4,7 @@ import { PlusSquareOutlined } from "@ant-design/icons";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
 import { MatchRoute } from "@interfaces";
+import { useTranslate } from "@hooks";
 
 type CreateButtonProps = ButtonProps & {
     resourceName?: string;
@@ -14,6 +15,7 @@ export const CreateButton: FC<CreateButtonProps> = ({
     ...rest
 }) => {
     const history = useHistory();
+    const translate = useTranslate();
 
     const match = useRouteMatch({
         path: ["/resources/:resourceName", "/*"],
@@ -34,7 +36,7 @@ export const CreateButton: FC<CreateButtonProps> = ({
             icon={<PlusSquareOutlined />}
             {...rest}
         >
-            Create
+            {translate("common:buttons.create", "Create")}
         </Button>
     );
 };
