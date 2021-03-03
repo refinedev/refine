@@ -40,11 +40,12 @@ export const Edit: React.FC<EditProps> = ({
         mutate(
             { id, values },
             {
-                onSuccess: () => {
-                    return history.push(`/resources/${resourceName}`);
-                },
+                // onSuccess: () => {
+                //     return history.push(`/resources/${resourceName}`);
+                // },
             },
         );
+        history.push(`/resources/${resourceName}`);
     };
 
     const childrenWithProps = React.Children.map(children, (child) => {

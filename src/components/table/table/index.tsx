@@ -54,6 +54,9 @@ export const Table: React.FC<TableProps> = ({
         sort,
     });
 
+    // console.log("table useList data: ", data);
+    // console.log("table useList isetching: ", isFetching);
+
     const onChange = (
         pagination: TablePaginationConfig,
         filters: Filters,
