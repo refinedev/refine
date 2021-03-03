@@ -35,7 +35,17 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
 
     const routes: IRoutesProps[] = [];
     const RouteHandler = (val: React.ReactElement): void => {
-        const { list, name, create, edit, show, canDelete } = val.props;
+        const {
+            list,
+            name,
+            create,
+            edit,
+            show,
+            canDelete,
+            options,
+        } = val.props;
+
+        const routeName = options?.route ?? name;
 
         const ListComponent = list;
         const CreateComponent = create;
@@ -49,7 +59,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (CreateComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/${name}/create`,
+                path: `/resources/${routeName}/create`,
                 component: () => {
                     return (
                         <CreateComponent
@@ -64,7 +74,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (EditComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/${name}/edit/:id`,
+                path: `/resources/${routeName}/edit/:id`,
                 component: () => <EditComponent resourceName={name} />,
             });
         }
@@ -72,7 +82,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (ShowComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/${name}/show/:id`,
+                path: `/resources/${routeName}/show/:id`,
                 component: () => (
                     <ShowComponent
                         resourceName={name}
@@ -87,7 +97,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (ListComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/${name}`,
+                path: `/resources/${routeName}`,
                 component: () => (
                     <ListComponent
                         resourceName={name}

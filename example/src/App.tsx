@@ -16,6 +16,7 @@ import { FilesList } from "./components/pages/files";
 import { DashboardPage } from "./components/pages/dashboard";
 import { ReadyPage } from "./components/ready";
 import { LoginPage } from "./components/login";
+import { PostLightList } from "./components/pages/post-light";
 
 function App() {
     const authProvider: AuthProvider = {
@@ -71,6 +72,11 @@ function App() {
                 edit={PostEdit}
                 show={PostShow}
                 canDelete
+            />
+            <Resource
+                name="posts"
+                list={PostLightList}
+                options={{ label: "Post Light", route: "post-light" }}
             />
             <Resource
                 name="categories"
