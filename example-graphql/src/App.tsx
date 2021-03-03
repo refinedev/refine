@@ -1,26 +1,7 @@
 import React from "react";
 
-import {
-    Admin,
-    Resource,
-    AuthProvider,
-    Icons,
-    JsonGraphqlServer,
-} from "readmin";
-import {
-    PostCreate,
-    PostList,
-    PostEdit,
-    PostShow,
-} from "./components/pages/post";
-import { CategoryList, CategoryCreate } from "./components/pages/category";
-import { UserList, UserShow } from "./components/pages/user";
-import { TagList, TagCreate, TagEdit } from "./components/pages/tag";
-import { ImagesList } from "./components/pages/images";
-import { FilesList } from "./components/pages/files";
-import { DashboardPage } from "./components/pages/dashboard";
-import { ReadyPage } from "./components/ready";
-import { LoginPage } from "./components/login";
+import { Admin, Resource, AuthProvider, JsonGraphqlServer } from "readmin";
+import { PostList } from "./components/pages/post";
 
 function App() {
     const authProvider: AuthProvider = {
@@ -55,18 +36,15 @@ function App() {
         <Admin
             authProvider={authProvider}
             dataProvider={JsonGraphqlServer("/api")}
-            loginPage={LoginPage}
-            dashboard={DashboardPage}
-            ready={ReadyPage}
         >
             <Resource
                 name="Posts"
                 list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
-                show={PostShow}
-                canDelete
-                options={{ label: "My Posts" }}
+                // create={PostCreate}
+                // edit={PostEdit}
+                // show={PostShow}
+                // canDelete
+                // options={{ label: "My Posts" }}
             />
         </Admin>
     );
