@@ -10,6 +10,7 @@ import {
     ReferenceField,
     Input,
     Button,
+    Collapse,
     AntdTable,
     useTranslate,
 } from "readmin";
@@ -122,20 +123,29 @@ export const TagCreate = (props: any) => {
 
 export const TagEdit = (props: any) => {
     const translate = useTranslate();
+
+    const { Panel } = Collapse;
+
     return (
         <Edit {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
-                <Form.Item
-                    label={translate("common:resources.tags.fields.title")}
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
+                <Collapse accordion>
+                    <Panel header="Detail" key="1">
+                        <Form.Item
+                            label={translate(
+                                "common:resources.tags.fields.title",
+                            )}
+                            name="title"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </Panel>
+                </Collapse>
             </Form>
         </Edit>
     );
