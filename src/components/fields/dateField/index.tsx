@@ -19,7 +19,7 @@ export const DateField: React.FC<DateFieldProps> = ({
     value,
     record,
     renderRecordKey,
-    format: dateFormat = "DD/MM/YYYY",
+    format: dateFormat = "L",
 }) => (
     <span>
         {dayjs(renderFieldRecord({ value, record, renderRecordKey })).format(

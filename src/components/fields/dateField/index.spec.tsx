@@ -9,7 +9,7 @@ describe("DateField", () => {
             <DateField value={new Date("2021-05-20")} />,
         );
 
-        getByText("20/05/2021");
+        getByText("05/20/2021");
     });
 
     it("renders date with given format", () => {
