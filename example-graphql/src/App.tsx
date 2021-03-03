@@ -60,7 +60,7 @@ function App() {
             ready={ReadyPage}
         >
             <Resource
-                name="posts"
+                name="Posts"
                 list={PostList}
                 create={PostCreate}
                 edit={PostEdit}
@@ -68,27 +68,6 @@ function App() {
                 canDelete
                 options={{ label: "My Posts" }}
             />
-            <Resource
-                name="categories"
-                list={CategoryList}
-                create={CategoryCreate}
-                canDelete
-            />
-            <Resource
-                name="users"
-                list={UserList}
-                show={UserShow}
-                icon={<Icons.UserOutlined />}
-            />
-            <Resource
-                name="tags"
-                list={TagList}
-                edit={TagEdit}
-                create={TagCreate}
-                canDelete
-            />
-            <Resource name="images" list={ImagesList} />
-            <Resource name="files" list={FilesList} />
         </Admin>
     );
 }

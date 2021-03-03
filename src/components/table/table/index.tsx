@@ -36,6 +36,15 @@ export const Table: React.FC<TableProps> = ({
         throw new Error(`resource not found!`);
     }
 
+    // get all fields for graphql
+    const fields: string[] = [];
+    React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+            // TODO: Check Column component.
+            fields.push(child.props.dataIndex);
+        }
+    });
+
     const [current, setCurrent] = useState(
         (pagination && pagination.current) || defaultCurrent,
     );
@@ -52,6 +61,7 @@ export const Table: React.FC<TableProps> = ({
         pagination: { current, pageSize },
         filters,
         sort,
+        fields,
     });
 
     const onChange = (

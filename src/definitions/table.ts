@@ -17,6 +17,10 @@ export const getDefaultSortOrder = (children: any): Sort => {
         }
     });
 
+    if (cols.length === 1) {
+        return cols[0];
+    }
+
     return cols;
 };
 

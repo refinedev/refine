@@ -23,7 +23,7 @@ import {
     useApiUrl,
 } from "readmin";
 
-import { ShowAside, ShowComponent } from "../show";
+import { ShowAside } from "../show";
 
 export const PostList = (props: any) => {
     return (
@@ -31,7 +31,7 @@ export const PostList = (props: any) => {
             <Table
                 rowKey="id"
                 pagination={{
-                    pageSize: 20,
+                    pageSize: 5,
                     position: ["bottomCenter"],
                     size: "small",
                 }}
@@ -40,72 +40,36 @@ export const PostList = (props: any) => {
                     dataIndex="id"
                     title="ID"
                     key="id"
-                    sorter={{
-                        multiple: 3,
-                    }}
-                    defaultSortOrder="descend"
+                    sorter
+                    defaultSortOrder="ascend"
                 />
                 <Column
                     dataIndex="title"
                     title="Title"
                     key="title"
                     render={(value) => <TextField value={value} />}
-                    sorter={{
-                        multiple: 1,
-                    }}
+                    sorter
                 />
                 <Column
-                    dataIndex="slug"
-                    title="Slug"
-                    key="slug"
+                    dataIndex="views"
+                    title="Views"
+                    key="views"
                     render={(value) => <TextField value={value} />}
-                    sorter={{
-                        multiple: 2,
+                    sorter
+                />
+                <Column
+                    dataIndex="User.name"
+                    title="User"
+                    key="userName"
+                    render={(value, record) => {
+                        return (
+                            <TextField
+                                record={record.User}
+                                renderRecordKey="name"
+                            />
+                        );
                     }}
-                />
-                <Column
-                    dataIndex="categoryId"
-                    title="Category"
-                    key="categoryId"
-                    render={(value) => (
-                        <ReferenceField resource="categories" value={value}>
-                            <TextField renderRecordKey="title" />
-                        </ReferenceField>
-                    )}
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Reference
-                                reference="categories"
-                                optionText="title"
-                                sort={{
-                                    field: "title",
-                                    order: "asc",
-                                }}
-                            >
-                                <Select
-                                    style={{ minWidth: 200 }}
-                                    showSearch
-                                    mode="multiple"
-                                    placeholder="Select Category"
-                                />
-                            </Reference>
-                        </FilterDropdown>
-                    )}
-                />
-                <Column
-                    dataIndex="status"
-                    title="Status"
-                    key="status"
-                    render={(value) => <TagField value={value} />}
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Radio.Group>
-                                <Radio value="active">Active</Radio>
-                                <Radio value="draft">Draft</Radio>
-                            </Radio.Group>
-                        </FilterDropdown>
-                    )}
-                    defaultFilteredValue={["active"]}
+                    sorter
                 />
             </Table>
         </List>

@@ -2,71 +2,67 @@ import axios from "axios";
 import { stringify } from "query-string";
 import { GraphQLClient } from "graphql-request";
 import * as gql from "gql-query-builder";
+import IQueryBuilderOptions from "gql-query-builder/build/IQueryBuilderOptions";
 
-import { IDataContext } from "@interfaces";
+import { BaseRecord, IDataContext } from "@interfaces";
+import { generateFieldsArray } from "@definitions/graphql";
 
 const JsonGraphqlServer = (apiUrl: string): IDataContext => {
     const client = new GraphQLClient("http://localhost:3000");
 
+    const request = async (
+        options: IQueryBuilderOptions | IQueryBuilderOptions[],
+    ) => {
+        const qb = gql.query(options);
+
+        return client.request(qb.query, qb.variables);
+    };
+
     return {
-        getList: async (resource, params, fields) => {
-            const url = `${apiUrl}/${resource}`;
+        getList: async (resource, params) => {
+            const operation = `all${resource}`;
 
             // search
-            const q = params.search;
+            // const q = params.search;
 
             // pagination
-            const current = params.pagination?.current || 1;
-            const pageSize = params.pagination?.pageSize || 10;
-
-            const qb = gql.query({
-                operation: "allPosts",
-                fields: ["id", "title", "views"],
-            });
-
-            client
-                .request(qb.query, qb.variables)
-                .then((e: any) => console.log("e", e));
+            const page = params.pagination?.current || 1;
+            const perPage = params.pagination?.pageSize || 10;
 
             // sort
-            let _sort = ["id"]; // default sorting field
-            let _order = ["desc"]; // default sorting
-
             const { sort } = params;
+            let sortField = "id"; // default sorting field
+            let sortOrder = "desc"; // default sorting
 
-            if (Array.isArray(sort) || sort?.field) {
-                _sort = [];
-                _order = [];
-
-                if (Array.isArray(sort)) {
-                    sort.map((item) => {
-                        _sort.push(`${item.field}`);
-                        _order.push(`${item.order}`.replace("end", "")); // replace -> [ascend, descend] -> [asc,desc]
-                    });
-                } else {
-                    _sort.push(`${sort.field}`);
-                    _order.push(`${sort.order}`.replace("end", "")); // replace -> [ascend, descend] -> [asc,desc]
-                }
+            // multiple sorting not support marmelab/json-graphql-server
+            if (!Array.isArray(sort) && sort && sort.field && sort.order) {
+                sortField = String(sort.field);
+                sortOrder = sort.order.replace("end", ""); // replace -> [ascend, descend] -> [asc,desc];
             }
 
-            // filter
-            const filters = stringify(params.filters || {}, {
-                skipNull: true,
+            // fields
+            const fields = generateFieldsArray(params.fields || []);
+
+            let data: BaseRecord[] = [];
+            let total = 0;
+
+            const responseData = await request({
+                operation,
+                fields,
+                variables: {
+                    sortField,
+                    sortOrder,
+                    page: page - 1, // start page: 0
+                    perPage,
+                },
             });
+            data = responseData["allPosts"];
 
-            const query = {
-                _start: (current - 1) * pageSize,
-                _end: current * pageSize,
-                _sort: _sort.join(","),
-                _order: _order.join(","),
-                q,
-            };
-
-            const { data, headers } = await axios.get(
-                `${url}?${stringify(query)}&${filters}`,
-            );
-
-            const total = +headers["x-total-count"];
+            const responseMetaData = await request({
+                operation: `_${operation}Meta`,
+                fields: ["count"],
+            });
+            total = responseMetaData["_allPostsMeta"].count;
 
             return {
                 data,

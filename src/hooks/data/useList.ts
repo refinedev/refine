@@ -16,6 +16,7 @@ interface UseListConfig {
     search?: string;
     sort?: Sort;
     filters?: Filters;
+    fields?: string[];
 }
 
 const defaultConfig: UseListConfig = {
@@ -24,16 +25,16 @@ const defaultConfig: UseListConfig = {
     },
 };
 
-export const useList = <TData extends BaseRecord = BaseRecord>(
+export const useList = (
     resource: string,
     config?: UseListConfig,
-    queryOptions?: UseQueryOptions<GetListResponse<TData>>,
-): QueryObserverResult<GetListResponse<TData>, unknown> => {
+    queryOptions?: UseQueryOptions<GetListResponse>,
+): QueryObserverResult<GetListResponse, unknown> => {
     const { getList } = useContext<IDataContext>(DataContext);
 
-    const queryResponse = useQuery<GetListResponse<TData>>(
+    const queryResponse = useQuery<GetListResponse>(
         [`resource/list/${resource}`, { ...(config ?? defaultConfig) }],
-        () => getList<TData>(resource, config ?? defaultConfig),
+        () => getList(resource, config ?? defaultConfig),
         queryOptions ?? { keepPreviousData: true },
     );
 
