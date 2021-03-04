@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import {
     QueryKey,
     useMutation,
     UseMutationResult,
     useQueryClient,
 } from "react-query";
-import { Button } from "antd";
 import { DataContext } from "@contexts/data";
 import {
     BaseRecord,
@@ -14,7 +13,6 @@ import {
     GetListResponse,
     MutationMode,
 } from "@interfaces";
-import { useNotification } from "@hooks";
 
 type UpdateContext = {
     previousListQueries: {
@@ -39,9 +37,10 @@ type UseUpdateReturnType<
 export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
     resource: string,
     mutationMode: MutationMode = "pessimistic",
+    onCancel?: (cancelMutation: () => void) => void,
 ): UseUpdateReturnType<TParams> => {
     const queryClient = useQueryClient();
-    const notification = useNotification();
+    // const notification = useNotification();
     const { update } = useContext<IDataContext>(DataContext);
 
     if (!resource) {
@@ -67,22 +66,11 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                         resolve(update<TParams>(resource, id, values));
                     }, 5000);
 
-                    notification.info({
-                        description: "Undo",
-                        message: "You have 5 seconds to undo",
-                        btn: (
-                            <Button
-                                onClick={() => {
-                                    clearTimeout(updateTimeout);
-                                    reject("mutation cancelled");
-                                    notification.close("undo");
-                                }}
-                            >
-                                Undo
-                            </Button>
-                        ),
-                        key: "undo",
-                    });
+                    onCancel &&
+                        onCancel(() => {
+                            clearTimeout(updateTimeout);
+                            reject("mutation cancelled");
+                        });
                 },
             );
             return updatePromise;

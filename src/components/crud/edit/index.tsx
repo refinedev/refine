@@ -4,7 +4,7 @@ import { Form, Card, Button, Row, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
-import { useOne, useUpdate, useTranslate } from "@hooks";
+import { useOne, useUpdate, useTranslate, useNotification } from "@hooks";
 import { BaseRecord, MutationMode } from "@interfaces";
 import { DeleteButton, RefreshButton, ListButton } from "@components";
 
@@ -25,6 +25,8 @@ export const Edit: React.FC<EditProps> = ({
     children,
 }) => {
     const history = useHistory();
+    const notification = useNotification();
+
     const { id } = useParams<Record<string, string>>();
 
     const [form] = Form.useForm();
@@ -37,7 +39,27 @@ export const Edit: React.FC<EditProps> = ({
         });
     }, [data]);
 
-    const { mutate } = useUpdate(resourceName, mutationMode);
+    const { mutate } = useUpdate(
+        resourceName,
+        mutationMode,
+        (cancelMutation) => {
+            notification.info({
+                description: "Undo",
+                message: "You have 5 seconds to undo",
+                btn: (
+                    <Button
+                        onClick={() => {
+                            cancelMutation();
+                            notification.close("undo");
+                        }}
+                    >
+                        Undo
+                    </Button>
+                ),
+                key: "undo",
+            });
+        },
+    );
     const translate = useTranslate();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
