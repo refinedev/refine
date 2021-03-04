@@ -3,6 +3,7 @@ import * as React from "react";
 import {
     List,
     Edit,
+    Create,
     Table,
     Column,
     EmailField,
@@ -148,6 +149,79 @@ export const UserEdit = (props: any) => {
                 </Tabs>
             </Form>
         </Edit>
+    );
+};
+
+export const UserCreate = (props: any) => {
+    const translate = useTranslate();
+
+    const { TabPane } = Tabs;
+
+    const dateFormat = "DD/MM/YYYY";
+
+    return (
+        <Create {...props}>
+            <Form wrapperCol={{ span: 14 }} layout="vertical">
+                <Tabs>
+                    <TabPane tab="Summary" key="summary">
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.firstName",
+                            )}
+                            name="firstName"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.lastName",
+                            )}
+                            name="lastName"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </TabPane>
+                    <TabPane tab="Detail" key="detail">
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.email",
+                            )}
+                            name="email"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.birthday",
+                            )}
+                            name="birthday"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <DatePicker format={dateFormat} />
+                        </Form.Item>
+                    </TabPane>
+                </Tabs>
+            </Form>
+        </Create>
     );
 };
 
