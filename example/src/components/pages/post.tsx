@@ -7,6 +7,7 @@ import {
     Edit,
     Show,
     Form,
+    Steps,
     Reference,
     ReferenceField,
     TextField,
@@ -286,113 +287,144 @@ export const PostEdit = (props: any) => {
     const translate = useTranslate();
 
     const { isLoading, onChange } = useFileUploadState();
+    const { Step } = Steps;
 
-    return (
-        <Edit {...props} saveButtonProps={{ disabled: isLoading }}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
-                <Form.Item
-                    label={translate("common:resources.posts.fields.title")}
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label={translate("common:resources.posts.fields.url")}
-                    name="slug"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label={translate("common:resources.posts.fields.content")}
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Markdown />
-                </Form.Item>
-                <Form.Item
-                    label={translate("common:resources.posts.fields.status")}
-                    name="status"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select
-                        defaultValue="active"
-                        options={[
+    const [current, setCurrent] = React.useState(0);
+
+    const steps = [
+        {
+            title: "Description",
+            content: (
+                <>
+                    <Form.Item
+                        label={translate("common:resources.posts.fields.title")}
+                        name="title"
+                        rules={[
                             {
-                                label: "Active",
-                                value: "active",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
+                                required: true,
                             },
                         ]}
-                    />
-                </Form.Item>
-                <Form.Item
-                    label={translate("common:resources.posts.fields.category")}
-                    name="categoryId"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Reference
-                        reference="categories"
-                        optionText="title"
-                        sort={{
-                            field: "title",
-                            order: "asc",
-                        }}
                     >
-                        <Select showSearch />
-                    </Reference>
-                </Form.Item>
-                <Form.Item
-                    label={translate("common:resources.posts.fields.user")}
-                    name="userId"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                    help="Autocomplete (search user email)"
-                >
-                    <Reference reference="users" optionText="email">
-                        <Select showSearch />
-                    </Reference>
-                </Form.Item>
-                <Form.Item
-                    label={translate("common:resources.posts.fields.tags")}
-                    name="tags"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Reference reference="tags" optionText="title">
-                        <Select mode="multiple" />
-                    </Reference>
-                </Form.Item>
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label={translate("common:resources.posts.fields.url")}
+                        name="slug"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label={translate(
+                            "common:resources.posts.fields.content",
+                        )}
+                        name="content"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Markdown />
+                    </Form.Item>
+                </>
+            ),
+        },
+        {
+            title: "Informations",
+            content: (
+                <>
+                    <Form.Item
+                        label={translate(
+                            "common:resources.posts.fields.status",
+                        )}
+                        name="status"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Select
+                            defaultValue="active"
+                            options={[
+                                {
+                                    label: "Active",
+                                    value: "active",
+                                },
+                                {
+                                    label: "Draft",
+                                    value: "draft",
+                                },
+                            ]}
+                        />
+                    </Form.Item>
+                    <Form.Item
+                        label={translate(
+                            "common:resources.posts.fields.category",
+                        )}
+                        name="categoryId"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Reference
+                            reference="categories"
+                            optionText="title"
+                            sort={{
+                                field: "title",
+                                order: "asc",
+                            }}
+                        >
+                            <Select showSearch />
+                        </Reference>
+                    </Form.Item>
+                </>
+            ),
+        },
+        {
+            title: "Details",
+            content: (
+                <>
+                    <Form.Item
+                        label={translate("common:resources.posts.fields.user")}
+                        name="userId"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                        help="Autocomplete (search user email)"
+                    >
+                        <Reference reference="users" optionText="email">
+                            <Select showSearch />
+                        </Reference>
+                    </Form.Item>
+                    <Form.Item
+                        label={translate("common:resources.posts.fields.tags")}
+                        name="tags"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Reference reference="tags" optionText="title">
+                            <Select mode="multiple" />
+                        </Reference>
+                    </Form.Item>
+                </>
+            ),
+        },
+        {
+            title: "Image",
+            content: (
                 <Form.Item
                     label={translate("common:resources.posts.fields.image")}
                 >
@@ -419,6 +451,23 @@ export const PostEdit = (props: any) => {
                         </Upload.Dragger>
                     </Form.Item>
                 </Form.Item>
+            ),
+        },
+    ];
+
+    const onChangeCurrent = (current: any) => {
+        setCurrent(current);
+    };
+
+    return (
+        <Edit {...props} saveButtonProps={{ disabled: isLoading }}>
+            <Form wrapperCol={{ span: 14 }} layout="vertical">
+                <Steps current={current} onChange={onChangeCurrent}>
+                    {steps.map((item) => (
+                        <Step key={item.title} title={item.title} />
+                    ))}
+                </Steps>
+                <div style={{ paddingTop: 36 }}>{steps[current].content}</div>
             </Form>
         </Edit>
     );
