@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { PlusSquareOutlined } from "@ant-design/icons";
-import { useHistory, useRouteMatch } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
-import { MatchRoute } from "@interfaces";
 import { useTranslate } from "@hooks";
+import { ResourceRouterParams } from "@interfaces";
 
 type CreateButtonProps = ButtonProps & {
     resourceName?: string;
@@ -17,13 +17,7 @@ export const CreateButton: FC<CreateButtonProps> = ({
     const history = useHistory();
     const translate = useTranslate();
 
-    const match = useRouteMatch({
-        path: ["/resources/:resourceName", "/*"],
-    });
-
-    const {
-        params: { resourceName: routeResourceName },
-    } = (match as unknown) as MatchRoute;
+    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     return (
         <Button

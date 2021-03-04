@@ -1,14 +1,18 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Card, Button, Form, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
-import { useCreate, useTranslate, useNotification } from "@hooks";
-import { BaseRecord } from "@interfaces";
+import {
+    useCreate,
+    useResourceWithRoute,
+    useTranslate,
+    useNotification,
+} from "@hooks";
+import { BaseRecord, ResourceRouterParams } from "@interfaces";
 
 export interface CreateProps {
-    resourceName: string;
     canEdit?: boolean;
     title?: string;
     actionButtons?: React.ReactNode;
@@ -18,7 +22,6 @@ export interface CreateProps {
 }
 
 export const Create: React.FC<CreateProps> = ({
-    resourceName,
     canEdit,
     title,
     actionButtons,
@@ -28,10 +31,17 @@ export const Create: React.FC<CreateProps> = ({
     onError,
 }) => {
     const history = useHistory();
+
+    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
+
+    const resource = useResourceWithRoute(routeResourceName);
+
     const [form] = Form.useForm();
 
-    const { mutate, isLoading } = useCreate(resourceName);
+    const { mutate, isLoading } = useCreate(resource.name);
+
     const notification = useNotification();
+
     const translate = useTranslate();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
@@ -43,25 +53,28 @@ export const Create: React.FC<CreateProps> = ({
                         onSuccess(data);
                         return;
                     }
+
                     notification.success({
                         message: "Successful",
-                        description: `New ${resourceName} created`,
+                        description: `New ${resource.name} created!`,
                     });
+
                     if (canEdit) {
                         return history.push(
-                            `/resources/${resourceName}/edit/${data.data.id}`,
+                            `/resources/${resource.route}/edit/${data.data.id}`,
                         );
                     }
 
-                    return history.push(`/resources/${resourceName}`);
+                    return history.push(`/resources/${resource.route}`);
                 },
                 onError: (error: any) => {
                     if (onError) {
                         onError(error);
                         return;
                     }
+
                     notification.error({
-                        message: "There is a problem",
+                        message: `There was an error creating it ${resource.name}!`,
                         description: error.message,
                     });
                 },
@@ -72,7 +85,7 @@ export const Create: React.FC<CreateProps> = ({
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {
-                resourceName,
+                resourceName: resource.name,
                 onFinish,
                 form,
             });
@@ -85,8 +98,8 @@ export const Create: React.FC<CreateProps> = ({
             title={
                 title ??
                 translate(
-                    `common:resources.${resourceName}.Create`,
-                    `Create ${pluralize.singular(resourceName)}`,
+                    `common:resources.${resource.name}.Create`,
+                    `Create ${pluralize.singular(resource.name)}`,
                 )
             }
             actions={[

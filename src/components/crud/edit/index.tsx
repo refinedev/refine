@@ -1,15 +1,20 @@
 import React from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, useRouteMatch } from "react-router-dom";
 import { Form, Card, Button, Row, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
-import { useOne, useUpdate, useTranslate, useNotification } from "@hooks";
-import { BaseRecord } from "@interfaces";
+import {
+    useOne,
+    useUpdate,
+    useTranslate,
+    useResourceWithRoute,
+    useNotification,
+} from "@hooks";
+import { BaseRecord, ResourceRouterParams } from "@interfaces";
 import { DeleteButton, RefreshButton, ListButton } from "@components";
 
 export interface EditProps {
-    resourceName: string;
     title?: string;
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
@@ -18,7 +23,6 @@ export interface EditProps {
 }
 
 export const Edit: React.FC<EditProps> = ({
-    resourceName,
     title,
     actionButtons,
     saveButtonProps,
@@ -27,11 +31,17 @@ export const Edit: React.FC<EditProps> = ({
     onError,
 }) => {
     const history = useHistory();
-    const { id } = useParams<Record<string, string>>();
 
     const [form] = Form.useForm();
 
-    const { data, isLoading } = useOne(resourceName, id);
+    const {
+        resource: routeResourceName,
+        id: idFromRoute,
+    } = useParams<ResourceRouterParams>();
+
+    const resource = useResourceWithRoute(routeResourceName);
+
+    const { data, isLoading } = useOne(resource.name, idFromRoute);
 
     React.useEffect(() => {
         form.setFieldsValue({
@@ -39,30 +49,33 @@ export const Edit: React.FC<EditProps> = ({
         });
     }, [data]);
 
-    const { mutate } = useUpdate(resourceName);
+    const { mutate } = useUpdate(resource.name);
     const translate = useTranslate();
     const notification = useNotification();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         mutate(
-            { id, values },
+            { id: idFromRoute, values },
             {
                 onSuccess: () => {
                     if (onSuccess) {
                         return onSuccess();
                     }
+
                     notification.success({
                         message: "Successful",
-                        description: `Id:${id} ${resourceName} edited`,
+                        description: `Id:$ {id} ${resource.name} edited`,
                     });
-                    return history.push(`/resources/${resourceName}`);
+
+                    return history.push(`/resources/${resource.route}`);
                 },
                 onError: (err: any) => {
                     if (onError) {
                         return onError();
                     }
+
                     notification.error({
-                        message: "There is a problem",
+                        message: `There was an error updating it ${resource.name}!`,
                         description: err.message,
                     });
                 },
@@ -73,7 +86,7 @@ export const Edit: React.FC<EditProps> = ({
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {
-                resourceName,
+                resourceName: resource.name,
                 form,
                 onFinish,
             });
@@ -83,12 +96,12 @@ export const Edit: React.FC<EditProps> = ({
 
     return (
         <Card
-            title={title ?? `Edit ${pluralize.singular(resourceName)}`}
+            title={title ?? `Edit ${pluralize.singular(resource.name)}`}
             extra={
                 <Row>
                     <Space>
-                        <ListButton resourceName={resourceName} />
-                        <RefreshButton resourceName={resourceName} />
+                        <ListButton />
+                        <RefreshButton />
                     </Space>
                 </Row>
             }

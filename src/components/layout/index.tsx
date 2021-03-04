@@ -33,13 +33,12 @@ export const Layout: React.FC<LayoutProps> = ({
 
     const setLocale = useSetLocale();
     const translate = useTranslate();
-    const getLocale = useGetLocale();
 
     const selectedKey = React.useMemo(() => {
         const selectedResource = resources.find((el) =>
-            location.pathname.startsWith(`/resources/${el.name}`),
+            location.pathname.startsWith(`/resources/${el.route}`),
         );
-        return `/resources/${selectedResource ?? ""}`;
+        return `/resources/${selectedResource?.route ?? ""}`;
     }, [location]);
 
     const menuOnClick: MenuClickEventHandler = ({ key }) => {
@@ -88,10 +87,10 @@ export const Layout: React.FC<LayoutProps> = ({
 
                     {resources.map((item) => (
                         <Menu.Item
-                            key={`/resources/${item.name}`}
+                            key={`/resources/${item.route}`}
                             icon={item.icon ?? <UnorderedListOutlined />}
                         >
-                            <Link to={`/resources/${item.name}`}>
+                            <Link to={`/resources/${item.route}`}>
                                 {translate(
                                     `common:resources.${item.name}.${
                                         item.label ?? humanizeString(item.name)

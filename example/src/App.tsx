@@ -22,6 +22,12 @@ import { DashboardPage } from "./components/pages/dashboard";
 import { ReadyPage } from "./components/ready";
 import { LoginPage } from "./components/login";
 import { LandingList } from "./components/pages/landing";
+import {
+    PostLightCreate,
+    PostLightEdit,
+    PostLightList,
+    PostLightShow,
+} from "./components/pages/post-light";
 
 function App() {
     const authProvider: AuthProvider = {
@@ -76,6 +82,15 @@ function App() {
                 create={PostCreate}
                 edit={PostEdit}
                 show={PostShow}
+                canDelete
+            />
+            <Resource
+                name="posts"
+                list={PostLightList}
+                create={PostLightCreate}
+                edit={PostLightEdit}
+                show={PostLightShow}
+                options={{ label: "Post Light", route: "post-light" }}
                 canDelete
             />
             <Resource

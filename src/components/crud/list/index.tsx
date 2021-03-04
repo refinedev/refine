@@ -1,11 +1,13 @@
 import React from "react";
 import { Card, Row, Col } from "antd";
 import humanizeString from "humanize-string";
+import { useParams } from "react-router-dom";
 
 import { TableProps } from "@components/table";
-import { useTranslate } from "@hooks";
+import { useResourceWithRoute, useTranslate } from "@hooks";
 import { OptionalComponent } from "@definitions";
 import { CreateButton } from "@components";
+import { ResourceRouterParams } from "@interfaces";
 
 export interface ListProps {
     resourceName: string;
@@ -18,7 +20,6 @@ export interface ListProps {
 }
 
 export const List: React.FC<ListProps> = ({
-    resourceName,
     canCreate,
     canEdit,
     canDelete,
@@ -27,10 +28,14 @@ export const List: React.FC<ListProps> = ({
     title,
     children,
 }) => {
+    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
+
+    const resource = useResourceWithRoute(routeResourceName);
+
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement<TableProps>(child, {
-                resourceName,
+                resourceName: resource.name,
                 canEdit,
                 canDelete,
                 canShow,
@@ -48,8 +53,8 @@ export const List: React.FC<ListProps> = ({
                     title={
                         title ??
                         translate(
-                            `common:resources.${resourceName}.title`,
-                            humanizeString(resourceName),
+                            `common:resources.${resource.name}.title`,
+                            humanizeString(resource.name),
                         )
                     }
                     extra={canCreate && <CreateButton size="middle" />}
