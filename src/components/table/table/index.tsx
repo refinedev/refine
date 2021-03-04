@@ -34,6 +34,8 @@ export const Table: React.FC<TableProps> = ({
     const defaultCurrent = 1;
     const defaultPageSize = 10;
 
+    const permanentFilter = filter;
+
     if (!resourceName) {
         throw new Error(`resource not found!`);
     }
@@ -52,7 +54,7 @@ export const Table: React.FC<TableProps> = ({
 
     const { data, isFetching, refetch } = useList(resourceName, {
         pagination: { current, pageSize },
-        filters: { ...filters, ...filter },
+        filters: { ...filters, ...permanentFilter },
         sort,
     });
 
