@@ -3,12 +3,7 @@ import { Button, ButtonProps, Popconfirm } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
-import {
-    useDelete,
-    useResource,
-    useResourceWithRoute,
-    useTranslate,
-} from "@hooks";
+import { useDelete, useResourceWithRoute, useTranslate } from "@hooks";
 import { MatchRoute, DeleteOneResponse } from "@interfaces";
 
 type DeleteButtonProps = ButtonProps & {

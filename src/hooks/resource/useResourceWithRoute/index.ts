@@ -7,7 +7,7 @@ export const useResourceWithRoute = (route: string) => {
     const resource = resources.find((p) => p.route === route);
 
     if (!resource) {
-        throw new Error("'resource' is required for delete button.");
+        throw new Error(`'${route}' not found on resources."`);
     }
 
     return resource;

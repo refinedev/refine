@@ -37,7 +37,10 @@ export const Edit: React.FC<EditProps> = ({
         params: { resourceName: routeResourceName, id },
     } = (match as unknown) as MatchRoute;
 
+    console.log("routeResourceName", routeResourceName);
+
     const resource = useResourceWithRoute(routeResourceName);
+    console.log("routeResourceName", resource);
 
     const { data, isLoading } = useOne(resource.name, id);
 

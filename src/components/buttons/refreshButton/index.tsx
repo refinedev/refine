@@ -3,12 +3,7 @@ import { Button, ButtonProps } from "antd";
 import { RedoOutlined } from "@ant-design/icons";
 import { useRouteMatch } from "react-router-dom";
 
-import {
-    useOne,
-    useResource,
-    useResourceWithRoute,
-    useTranslate,
-} from "@hooks";
+import { useOne, useResourceWithRoute, useTranslate } from "@hooks";
 import { MatchRoute } from "@interfaces";
 
 type RefreshButtonProps = ButtonProps & {

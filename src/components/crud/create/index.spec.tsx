@@ -9,7 +9,8 @@ describe("Create", () => {
         const { container } = render(<Create resourceName="posts" />, {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
-                resources: [{ name: "posts" }],
+                resources: [{ name: "posts", route: "posts" }],
+                routerInitialEntries: ["/resources/posts/create"],
             }),
         });
 

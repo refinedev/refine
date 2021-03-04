@@ -3,7 +3,7 @@ import { Button, ButtonProps } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
-import { useResource, useTranslate } from "@hooks";
+import { useTranslate } from "@hooks";
 import { MatchRoute } from "@interfaces";
 
 type ShowButtonProps = ButtonProps & {

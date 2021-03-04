@@ -12,7 +12,7 @@ const renderShow = (show: ReactNode) => {
     return render(<Route path="/resources/posts/show/:id">{show}</Route>, {
         wrapper: TestWrapper({
             dataProvider: MockJSONServer,
-            resources: [{ name: "posts" }],
+            resources: [{ name: "posts", route: "posts" }],
             routerInitialEntries: ["/resources/posts/show/1"],
         }),
     });
