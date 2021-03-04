@@ -24,6 +24,8 @@ import {
     useApiUrl,
     useFileUploadState,
     useTranslate,
+    Button,
+    message,
 } from "readmin";
 
 import { ShowAside } from "../show";
@@ -116,167 +118,238 @@ export const PostList = (props: any) => {
     );
 };
 
-export const PostCreate = (props: any) => {
+const DescriptionForm = () => {
+    const translate = useTranslate();
+
+    return (
+        <Form>
+            <Form.Item
+                label={translate("common:resources.posts.fields.title")}
+                name="title"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+            <Form.Item
+                label={translate("common:resources.posts.fields.url")}
+                name="slug"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+            <Form.Item
+                label={translate("common:resources.posts.fields.content")}
+                name="content"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Markdown />
+            </Form.Item>
+        </Form>
+    );
+};
+
+const InformationsForm = () => {
+    const translate = useTranslate();
+
+    return (
+        <Form>
+            <Form.Item
+                label={translate("common:resources.posts.fields.status")}
+                name="status"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Select
+                    defaultValue="active"
+                    options={[
+                        {
+                            label: "Active",
+                            value: "active",
+                        },
+                        {
+                            label: "Draft",
+                            value: "draft",
+                        },
+                    ]}
+                />
+            </Form.Item>
+            <Form.Item
+                label={translate("common:resources.posts.fields.category")}
+                name="categoryId"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Reference
+                    reference="categories"
+                    optionText="title"
+                    sort={{
+                        field: "title",
+                        order: "asc",
+                    }}
+                >
+                    <Select showSearch />
+                </Reference>
+            </Form.Item>
+        </Form>
+    );
+};
+
+const DetailsForm = () => {
+    const translate = useTranslate();
+
+    return (
+        <Form>
+            <Form.Item
+                label={translate("common:resources.posts.fields.user")}
+                name="userId"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+                help="Autocomplete (search user email)"
+            >
+                <Reference reference="users" optionText="email">
+                    <Select showSearch />
+                </Reference>
+            </Form.Item>
+            <Form.Item
+                label={translate("common:resources.posts.fields.tags")}
+                name="tags"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Reference reference="tags" optionText="title">
+                    <Select mode="multiple" />
+                </Reference>
+            </Form.Item>
+        </Form>
+    );
+};
+
+const ImageForm = () => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
 
-    const { isLoading, onChange } = useFileUploadState();
+    const { onChange } = useFileUploadState();
 
     return (
-        <Create {...props} saveButtonProps={{ disabled: isLoading }}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Form>
+            <Form.Item label={translate("common:resources.posts.fields.image")}>
                 <Form.Item
-                    label={translate("common:resources.posts.fields.title")}
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
+                    name="image"
+                    valuePropName="fileList"
+                    getValueFromEvent={normalizeFile}
+                    noStyle
                 >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label={translate("common:resources.posts.fields.url")}
-                    name="slug"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label={translate("common:resources.posts.fields.content")}
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input.TextArea />
-                </Form.Item>
-                <Form.Item
-                    label={translate("common:resources.posts.fields.status")}
-                    name="status"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select
-                        defaultValue="active"
-                        options={[
-                            {
-                                label: translate(
-                                    "common:resources.posts.forms.active",
-                                ),
-                                value: "active",
-                            },
-                            {
-                                label: translate(
-                                    "common:resources.posts.forms.draft",
-                                ),
-                                value: "draft",
-                            },
-                        ]}
-                    />
-                </Form.Item>
-                <Form.Item
-                    label={translate("common:resources.posts.fields.category")}
-                    name="categoryId"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Reference
-                        reference="categories"
-                        optionText="title"
-                        sort={{
-                            field: "title",
-                            order: "asc",
-                        }}
+                    <Upload.Dragger
+                        name="file"
+                        action={`${apiUrl}/upload`}
+                        listType="picture"
+                        maxCount={5}
+                        multiple
+                        onChange={onChange}
                     >
-                        <Select />
-                    </Reference>
+                        <p className="ant-upload-text">
+                            Click or drag file to this area to upload
+                        </p>
+                        <p className="ant-upload-hint">
+                            Support for a single upload.
+                        </p>
+                    </Upload.Dragger>
                 </Form.Item>
-                <Form.Item
-                    label={translate("common:resources.posts.fields.user")}
-                    name="userId"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                    help={translate(
-                        "common:resources.posts.forms.autocomplete",
-                    )}
-                >
-                    <Reference
-                        reference="users"
-                        optionText="email"
-                        sort={{
-                            field: "email",
-                            order: "asc",
-                        }}
-                    >
-                        <Select showSearch />
-                    </Reference>
-                </Form.Item>
-                <Form.Item
-                    label={translate("common:resources.posts.fields.tags")}
-                    name="tags"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Reference reference="tags" optionText="title">
-                        <Select mode="multiple" />
-                    </Reference>
-                </Form.Item>
+            </Form.Item>
+        </Form>
+    );
+};
 
-                <Form.Item
-                    label={translate("common:resources.posts.fields.image")}
-                >
-                    <Form.Item
-                        name="image"
-                        valuePropName="fileList"
-                        getValueFromEvent={normalizeFile}
-                        noStyle
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Upload.Dragger
-                            name="file"
-                            action={`${apiUrl}/upload`}
-                            listType="picture"
-                            maxCount={5}
-                            multiple
-                            onChange={onChange}
+export const PostCreate = (props: any) => {
+    const { isLoading } = useFileUploadState();
+
+    const { Step } = Steps;
+
+    const [current, setCurrent] = React.useState(0);
+
+    const steps = [
+        {
+            title: "Description",
+            content: <DescriptionForm />,
+        },
+        {
+            title: "Informations",
+            content: <InformationsForm />,
+        },
+        {
+            title: "Details",
+            content: <DetailsForm />,
+        },
+        {
+            title: "Image",
+            content: <ImageForm />,
+        },
+    ];
+
+    return (
+        <Create
+            {...props}
+            saveButtonProps={{ disabled: isLoading }}
+            actionButtons={
+                <>
+                    {current > 0 && (
+                        <Button
+                            style={{ margin: "0 8px" }}
+                            onClick={() => setCurrent(current - 1)}
                         >
-                            <p className="ant-upload-text">
-                                {translate(
-                                    "common:resources.posts.forms.uploadText",
-                                )}
-                            </p>
-                            <p className="ant-upload-hint">
-                                {translate(
-                                    "common:resources.posts.forms.uploadHintText",
-                                )}
-                            </p>
-                        </Upload.Dragger>
-                    </Form.Item>
-                </Form.Item>
+                            Previous
+                        </Button>
+                    )}
+                    {current < steps.length - 1 && (
+                        <Button onClick={() => setCurrent(current + 1)}>
+                            Next
+                        </Button>
+                    )}
+                    {current === steps.length - 1 && (
+                        <Button
+                            htmlType="submit"
+                            type="primary"
+                            onClick={() =>
+                                message.success("Processing complete!")
+                            }
+                        >
+                            Save
+                        </Button>
+                    )}
+                </>
+            }
+        >
+            <Form wrapperCol={{ span: 14 }} layout="vertical">
+                <Steps current={current}>
+                    {steps.map((item) => (
+                        <Step key={item.title} title={item.title} />
+                    ))}
+                </Steps>
+                <div style={{ paddingTop: 36 }}>{steps[current].content}</div>
             </Form>
         </Create>
     );
