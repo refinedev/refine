@@ -4,3 +4,4 @@ export * from "./resource";
 export * from "./useNotification";
 export * from "./useFileUploadState";
 export * from "./translate";
+export * from "./admin";

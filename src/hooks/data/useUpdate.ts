@@ -13,6 +13,7 @@ import {
     GetListResponse,
     MutationMode,
 } from "@interfaces";
+import { useMutationMode } from "@hooks";
 
 type UpdateContext = {
     previousListQueries: {
@@ -36,12 +37,15 @@ type UseUpdateReturnType<
 
 export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
     resource: string,
-    mutationMode: MutationMode = "pessimistic",
+    mutationModeProp: MutationMode,
     onCancel?: (cancelMutation: () => void) => void,
 ): UseUpdateReturnType<TParams> => {
     const queryClient = useQueryClient();
     // const notification = useNotification();
     const { update } = useContext<IDataContext>(DataContext);
+    const { mutationMode: mutationModeContext } = useMutationMode();
+
+    const mutationMode = mutationModeProp ?? mutationModeContext;
 
     if (!resource) {
         throw new Error("'resource' is required for useUpdate hook.");

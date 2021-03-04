@@ -10,8 +10,9 @@ import {
     defaultProvider,
     TranslationContextProvider,
 } from "@contexts/translation";
-import { RouteProvider, ReadyPage as DefaultReadyPage } from "@components";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
+import { AdminContextProvider } from "@contexts/admin";
+import { RouteProvider, ReadyPage as DefaultReadyPage } from "@components";
 import { OptionalComponent } from "@definitions";
 import { IDataContext, IAuthContext, I18nProvider } from "@interfaces";
 
@@ -68,16 +69,18 @@ export const Admin: React.FC<AdminProps> = ({
                 <DataContextProvider {...dataProvider}>
                     <ResourceContextProvider resources={resources}>
                         <TranslationContextProvider i18nProvider={i18nProvider}>
-                            <Router>
-                                <RouteProvider
-                                    resources={children}
-                                    catchAll={catchAll}
-                                    title={title}
-                                    dashboard={dashboard}
-                                    loginPage={loginPage}
-                                    ready={ready}
-                                />
-                            </Router>
+                            <AdminContextProvider mutationMode="pessimistic">
+                                <Router>
+                                    <RouteProvider
+                                        resources={children}
+                                        catchAll={catchAll}
+                                        title={title}
+                                        dashboard={dashboard}
+                                        loginPage={loginPage}
+                                        ready={ready}
+                                    />
+                                </Router>
+                            </AdminContextProvider>
                         </TranslationContextProvider>
                     </ResourceContextProvider>
                 </DataContextProvider>

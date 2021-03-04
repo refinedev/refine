@@ -4,7 +4,13 @@ import { Form, Card, Button, Row, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
-import { useOne, useUpdate, useTranslate, useNotification } from "@hooks";
+import {
+    useOne,
+    useUpdate,
+    useTranslate,
+    useNotification,
+    useMutationMode,
+} from "@hooks";
 import { BaseRecord, MutationMode } from "@interfaces";
 import { DeleteButton, RefreshButton, ListButton } from "@components";
 
@@ -21,11 +27,14 @@ export const Edit: React.FC<EditProps> = ({
     title,
     actionButtons,
     saveButtonProps,
-    mutationMode = "pessimistic",
+    mutationMode: mutationModeProp,
     children,
 }) => {
     const history = useHistory();
     const notification = useNotification();
+    const { mutationMode: mutationModeContext } = useMutationMode();
+
+    const mutationMode = mutationModeProp ?? mutationModeContext;
 
     const { id } = useParams<Record<string, string>>();
 
