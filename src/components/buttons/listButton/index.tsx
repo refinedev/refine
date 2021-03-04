@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { BarsOutlined } from "@ant-design/icons";
-import { useHistory, useRouteMatch } from "react-router-dom";
+import { useHistory, useParams, useRouteMatch } from "react-router-dom";
 
-import { MatchRoute } from "@interfaces";
+import { MatchRoute, ResourceRouterParams } from "@interfaces";
 import humanizeString from "humanize-string";
 import { useTranslate } from "@hooks";
 
@@ -18,13 +18,7 @@ export const ListButton: FC<ListButtonProps> = ({
     const history = useHistory();
     const translate = useTranslate();
 
-    const match = useRouteMatch({
-        path: ["/resources/:resourceName", "/*"],
-    });
-
-    const {
-        params: { resourceName: routeResourceName },
-    } = (match as unknown) as MatchRoute;
+    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const resourceName = propResourceName ?? routeResourceName;
 

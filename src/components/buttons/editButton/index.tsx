@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { EditOutlined } from "@ant-design/icons";
-import { useHistory, useRouteMatch } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import { useTranslate } from "@hooks";
-import { MatchRoute } from "@interfaces";
+import { ResourceRouterParams } from "@interfaces";
 
 type EditButtonProps = ButtonProps & {
     resourceName?: string;
@@ -19,17 +19,10 @@ export const EditButton: FC<EditButtonProps> = ({
     const history = useHistory();
     const translate = useTranslate();
 
-    const match = useRouteMatch({
-        path: [
-            "/resources/:resourceName/:action/:id",
-            "/resources/:resourceName",
-            "/*",
-        ],
-    });
-
     const {
-        params: { resourceName: routeResourceName, id: idFromRoute },
-    } = (match as unknown) as MatchRoute;
+        resource: routeResourceName,
+        id: idFromRoute,
+    } = useParams<ResourceRouterParams>();
 
     const resourceName = propResourceName ?? routeResourceName;
 

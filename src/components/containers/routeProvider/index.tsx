@@ -59,7 +59,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (CreateComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/${routeName}/create`,
+                path: `/resources/:resource(${routeName})/create`,
                 component: () => {
                     return <CreateComponent canEdit={canEdit} />;
                 },
@@ -69,7 +69,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (EditComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/${routeName}/edit/:id`,
+                path: `/resources/:resource(${routeName})/edit/:id`,
                 component: () => <EditComponent />,
             });
         }
@@ -77,7 +77,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (ShowComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/${routeName}/show/:id`,
+                path: `/resources/:resource(${routeName})/show/:id`,
                 component: () => (
                     <ShowComponent
                         canCreate={canCreate}
@@ -91,7 +91,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (ListComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/${routeName}`,
+                path: `/resources/:resource(${routeName})`,
                 component: () => (
                     <ListComponent
                         canCreate={canCreate}

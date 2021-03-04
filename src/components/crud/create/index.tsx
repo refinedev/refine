@@ -1,17 +1,24 @@
 import React from "react";
-import { useHistory, useRouteMatch } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Card, Button, Form, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
-import { useCreate, useResourceWithRoute, useTranslate } from "@hooks";
-import { BaseRecord, MatchRoute } from "@interfaces";
+import {
+    useCreate,
+    useResourceWithRoute,
+    useTranslate,
+    useNotification,
+} from "@hooks";
+import { BaseRecord, ResourceRouterParams } from "@interfaces";
 
 export interface CreateProps {
     canEdit?: boolean;
     title?: string;
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
+    onSuccess?: (data: any) => void;
+    onError?: (error: any) => void;
 }
 
 export const Create: React.FC<CreateProps> = ({
@@ -20,22 +27,20 @@ export const Create: React.FC<CreateProps> = ({
     actionButtons,
     saveButtonProps,
     children,
+    onSuccess,
+    onError,
 }) => {
     const history = useHistory();
 
-    const match = useRouteMatch({
-        path: ["/resources/:resourceName", "/*"],
-    });
-
-    const {
-        params: { resourceName: routeResourceName },
-    } = (match as unknown) as MatchRoute;
+    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const resource = useResourceWithRoute(routeResourceName);
 
     const [form] = Form.useForm();
 
     const { mutate, isLoading } = useCreate(resource.name);
+
+    const notification = useNotification();
 
     const translate = useTranslate();
 
@@ -44,6 +49,16 @@ export const Create: React.FC<CreateProps> = ({
             { values },
             {
                 onSuccess: (data) => {
+                    if (onSuccess) {
+                        onSuccess(data);
+                        return;
+                    }
+
+                    notification.success({
+                        message: "Successful",
+                        description: `New ${resource.name} created!`,
+                    });
+
                     if (canEdit) {
                         return history.push(
                             `/resources/${resource.route}/edit/${data.data.id}`,
@@ -51,6 +66,17 @@ export const Create: React.FC<CreateProps> = ({
                     }
 
                     return history.push(`/resources/${resource.route}`);
+                },
+                onError: (error: any) => {
+                    if (onError) {
+                        onError(error);
+                        return;
+                    }
+
+                    notification.error({
+                        message: `There was an error creating it ${resource.name}!`,
+                        description: error.message,
+                    });
                 },
             },
         );

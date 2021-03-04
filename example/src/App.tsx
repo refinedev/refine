@@ -9,7 +9,12 @@ import {
     PostShow,
 } from "./components/pages/post";
 import { CategoryList, CategoryCreate } from "./components/pages/category";
-import { UserList, UserShow } from "./components/pages/user";
+import {
+    UserList,
+    UserShow,
+    UserEdit,
+    UserCreate,
+} from "./components/pages/user";
 import { TagList, TagCreate, TagEdit } from "./components/pages/tag";
 import { ImagesList } from "./components/pages/images";
 import { FilesList } from "./components/pages/files";
@@ -96,6 +101,8 @@ function App() {
             <Resource
                 name="users"
                 list={UserList}
+                edit={UserEdit}
+                create={UserCreate}
                 show={UserShow}
                 icon={<Icons.UserOutlined />}
             />

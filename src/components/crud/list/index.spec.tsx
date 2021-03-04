@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import {
     render,
@@ -10,37 +10,35 @@ import {
 import { Table, Column } from "@components";
 
 import { List } from "./index";
+import { Route } from "react-router-dom";
 
+const renderList = (list: ReactNode) => {
+    return render(<Route path="/resources/:resource">{list}</Route>, {
+        wrapper: TestWrapper({
+            dataProvider: MockJSONServer,
+            resources: [{ name: "posts", route: "posts" }],
+            routerInitialEntries: ["/resources/posts"],
+        }),
+    });
+};
 describe("<List/>", () => {
     describe("JSON Rest Server", () => {
         it("mounts with table", async () => {
-            const { getByText } = render(
+            const { getByText } = renderList(
                 <List key="posts" resourceName="posts">
                     <Table rowKey="id" />
                 </List>,
-                {
-                    wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [{ name: "posts", route: "posts" }],
-                    }),
-                },
             );
 
             await waitForElementToBeRemoved(() => getByText("No Data"));
         });
         it("renders given data", async () => {
-            const { container } = render(
+            const { container } = renderList(
                 <List key="posts" resourceName="posts">
                     <Table rowKey="id">
                         <Column key="title" title="Title" dataIndex="title" />
                     </Table>
                 </List>,
-                {
-                    wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [{ name: "posts" }],
-                    }),
-                },
             );
 
             expect(container).toMatchSnapshot();
@@ -51,14 +49,14 @@ describe("<List/>", () => {
                 return <p>Aside</p>;
             };
 
-            const { getByText } = render(
+            const { getByText } = renderList(
                 <List aside={asideComponent} resourceName="posts"></List>,
             );
             getByText("Aside");
         });
 
         it("should render optional title with title prop", async () => {
-            const { getByText } = render(
+            const { getByText } = renderList(
                 <List resourceName="posts" title="New Title"></List>,
             );
             getByText("New Title");

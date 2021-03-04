@@ -18,6 +18,7 @@ export interface TableProps extends AntdTableProps<any> {
     canEdit?: boolean;
     canDelete?: boolean;
     canShow?: boolean;
+    filter?: { [key: string]: number[] | string[] };
 }
 
 export const Table: React.FC<TableProps> = ({
@@ -27,10 +28,13 @@ export const Table: React.FC<TableProps> = ({
     canDelete,
     canShow,
     children,
+    filter,
     ...rest
 }) => {
     const defaultCurrent = 1;
     const defaultPageSize = 10;
+
+    const permanentFilter = filter;
 
     if (!resourceName) {
         throw new Error(`resource not found!`);
@@ -50,7 +54,7 @@ export const Table: React.FC<TableProps> = ({
 
     const { data, isFetching, refetch } = useList(resourceName, {
         pagination: { current, pageSize },
-        filters,
+        filters: { ...permanentFilter, ...filters },
         sort,
     });
 
@@ -115,6 +119,7 @@ export const Table: React.FC<TableProps> = ({
     return (
         <>
             <AntdTable
+                data-testid="ant-tab"
                 style={{ width: "100%" }}
                 dataSource={data?.data}
                 loading={isFetching}

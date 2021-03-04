@@ -1,9 +1,9 @@
 import React, { createElement, FC } from "react";
-import { useParams, useHistory, useRouteMatch } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Card, CardProps, Col, Row, Space } from "antd";
 import pluralize from "pluralize";
 
-import { BaseRecord, MatchRoute } from "@interfaces";
+import { BaseRecord, ResourceRouterParams } from "@interfaces";
 import { useOne, useResourceWithRoute } from "@hooks";
 import {
     EditButton,
@@ -29,21 +29,14 @@ export const Show: React.FC<ShowProps> = ({
     children,
     ...rest
 }) => {
-    const match = useRouteMatch({
-        path: [
-            "/resources/:resourceName/:action/:id",
-            "/resources/:resourceName",
-            "/*",
-        ],
-    });
-
     const {
-        params: { resourceName: routeResourceName, id },
-    } = (match as unknown) as MatchRoute;
+        resource: routeResourceName,
+        id: idFromRoute,
+    } = useParams<ResourceRouterParams>();
 
     const resource = useResourceWithRoute(routeResourceName);
 
-    const { data, isLoading } = useOne(resource.name, id);
+    const { data, isLoading } = useOne(resource.name, idFromRoute);
 
     const record = data?.data;
 

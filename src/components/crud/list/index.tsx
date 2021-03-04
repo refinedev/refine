@@ -1,13 +1,13 @@
 import React from "react";
 import { Card, Row, Col } from "antd";
 import humanizeString from "humanize-string";
+import { useParams } from "react-router-dom";
 
 import { TableProps } from "@components/table";
 import { useResourceWithRoute, useTranslate } from "@hooks";
 import { OptionalComponent } from "@definitions";
 import { CreateButton } from "@components";
-import { useRouteMatch } from "react-router-dom";
-import { MatchRoute } from "@interfaces";
+import { ResourceRouterParams } from "@interfaces";
 
 export interface ListProps {
     resourceName: string;
@@ -28,13 +28,7 @@ export const List: React.FC<ListProps> = ({
     title,
     children,
 }) => {
-    const match = useRouteMatch({
-        path: ["/resources/:resourceName", "/*"],
-    });
-
-    const {
-        params: { resourceName: routeResourceName },
-    } = (match as unknown) as MatchRoute;
+    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const resource = useResourceWithRoute(routeResourceName);
 

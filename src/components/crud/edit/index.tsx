@@ -4,14 +4,22 @@ import { Form, Card, Button, Row, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
-import { useOne, useUpdate, useTranslate, useResourceWithRoute } from "@hooks";
-import { BaseRecord, MatchRoute } from "@interfaces";
+import {
+    useOne,
+    useUpdate,
+    useTranslate,
+    useResourceWithRoute,
+    useNotification,
+} from "@hooks";
+import { BaseRecord, ResourceRouterParams } from "@interfaces";
 import { DeleteButton, RefreshButton, ListButton } from "@components";
 
 export interface EditProps {
     title?: string;
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
+    onError?: () => void;
+    onSuccess?: () => void;
 }
 
 export const Edit: React.FC<EditProps> = ({
@@ -19,26 +27,21 @@ export const Edit: React.FC<EditProps> = ({
     actionButtons,
     saveButtonProps,
     children,
+    onSuccess,
+    onError,
 }) => {
     const history = useHistory();
 
     const [form] = Form.useForm();
 
-    const match = useRouteMatch({
-        path: [
-            "/resources/:resourceName/:action/:id",
-            "/resources/:resourceName",
-            "/*",
-        ],
-    });
-
     const {
-        params: { resourceName: routeResourceName, id },
-    } = (match as unknown) as MatchRoute;
+        resource: routeResourceName,
+        id: idFromRoute,
+    } = useParams<ResourceRouterParams>();
 
     const resource = useResourceWithRoute(routeResourceName);
 
-    const { data, isLoading } = useOne(resource.name, id);
+    const { data, isLoading } = useOne(resource.name, idFromRoute);
 
     React.useEffect(() => {
         form.setFieldsValue({
@@ -48,13 +51,33 @@ export const Edit: React.FC<EditProps> = ({
 
     const { mutate } = useUpdate(resource.name);
     const translate = useTranslate();
+    const notification = useNotification();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         mutate(
-            { id, values },
+            { id: idFromRoute, values },
             {
                 onSuccess: () => {
+                    if (onSuccess) {
+                        return onSuccess();
+                    }
+
+                    notification.success({
+                        message: "Successful",
+                        description: `Id:$ {id} ${resource.name} edited`,
+                    });
+
                     return history.push(`/resources/${resource.route}`);
+                },
+                onError: (err: any) => {
+                    if (onError) {
+                        return onError();
+                    }
+
+                    notification.error({
+                        message: `There was an error updating it ${resource.name}!`,
+                        description: err.message,
+                    });
                 },
             },
         );
