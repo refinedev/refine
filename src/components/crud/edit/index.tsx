@@ -13,8 +13,8 @@ export interface EditProps {
     title?: string;
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
-    onErrorActions?: () => void;
-    onSuccessActions?: () => void;
+    onError?: () => void;
+    onSuccess?: () => void;
 }
 
 export const Edit: React.FC<EditProps> = ({
@@ -23,8 +23,8 @@ export const Edit: React.FC<EditProps> = ({
     actionButtons,
     saveButtonProps,
     children,
-    onSuccessActions,
-    onErrorActions,
+    onSuccess,
+    onError,
 }) => {
     const history = useHistory();
     const { id } = useParams<Record<string, string>>();
@@ -48,8 +48,8 @@ export const Edit: React.FC<EditProps> = ({
             { id, values },
             {
                 onSuccess: () => {
-                    if (onSuccessActions) {
-                        return onSuccessActions();
+                    if (onSuccess) {
+                        return onSuccess();
                     }
                     notification.success({
                         message: "Successful",
@@ -58,8 +58,8 @@ export const Edit: React.FC<EditProps> = ({
                     return history.push(`/resources/${resourceName}`);
                 },
                 onError: (err: any) => {
-                    if (onErrorActions) {
-                        return onErrorActions();
+                    if (onError) {
+                        return onError();
                     }
                     notification.error({
                         message: "There is a problem",
