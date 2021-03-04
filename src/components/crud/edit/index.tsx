@@ -8,7 +8,7 @@ import {
     useOne,
     useUpdate,
     useTranslate,
-    useNotification,
+    useCancelNotification,
     useMutationMode,
 } from "@hooks";
 import { BaseRecord, MutationMode } from "@interfaces";
@@ -31,7 +31,7 @@ export const Edit: React.FC<EditProps> = ({
     children,
 }) => {
     const history = useHistory();
-    const notification = useNotification();
+    const cancelNotification = useCancelNotification();
     const { mutationMode: mutationModeContext } = useMutationMode();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
@@ -51,23 +51,7 @@ export const Edit: React.FC<EditProps> = ({
     const { mutate } = useUpdate(
         resourceName,
         mutationMode,
-        (cancelMutation) => {
-            notification.info({
-                description: "Undo",
-                message: "You have 5 seconds to undo",
-                btn: (
-                    <Button
-                        onClick={() => {
-                            cancelMutation();
-                            notification.close("undo");
-                        }}
-                    >
-                        Undo
-                    </Button>
-                ),
-                key: "undo",
-            });
-        },
+        cancelNotification,
     );
     const translate = useTranslate();
 
@@ -116,7 +100,7 @@ export const Edit: React.FC<EditProps> = ({
                 >
                     {actionButtons ?? (
                         <>
-                            <DeleteButton />
+                            <DeleteButton mutationMode="undoable" />
                             <Button
                                 htmlType="submit"
                                 disabled={isLoading}

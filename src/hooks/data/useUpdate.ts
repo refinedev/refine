@@ -13,7 +13,7 @@ import {
     GetListResponse,
     MutationMode,
 } from "@interfaces";
-import { useMutationMode } from "@hooks";
+import { useMutationMode, useListResourceQueries } from "@hooks";
 
 type UpdateContext = {
     previousListQueries: {
@@ -31,17 +31,16 @@ type UseUpdateReturnType<
 > = UseMutationResult<
     UpdateResponse,
     unknown,
-    { id: string; values: TParams },
+    UpdateParams<TParams>,
     UpdateContext
 >;
 
 export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
     resource: string,
-    mutationModeProp: MutationMode,
+    mutationModeProp?: MutationMode,
     onCancel?: (cancelMutation: () => void) => void,
 ): UseUpdateReturnType<TParams> => {
     const queryClient = useQueryClient();
-    // const notification = useNotification();
     const { update } = useContext<IDataContext>(DataContext);
     const { mutationMode: mutationModeContext } = useMutationMode();
 
@@ -53,13 +52,16 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
 
     const listResourceQueries = useListResourceQueries(resource);
 
-    const mutation = useMutation<
+    const mutation = useMutation(
+        /* <
         UpdateResponse,
         unknown,
         UpdateParams<TParams>,
         UpdateContext
-    >(
-        ({ id, values }) => {
+    > */ ({
+            id,
+            values,
+        }: UpdateParams<TParams>) => {
             if (!(mutationMode === "undoable")) {
                 return update<TParams>(resource, id, values);
             }
@@ -121,7 +123,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                   }
                 : undefined,
             onError: !(mutationMode === "pessimistic")
-                ? (err, variables, context) => {
+                ? (err, variables, context: UpdateContext | undefined) => {
                       if (context) {
                           for (const query of context.previousListQueries) {
                               queryClient.setQueryData(
@@ -143,15 +145,4 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
     );
 
     return mutation;
-};
-
-const useListResourceQueries = (resource: string) => {
-    const queryClient = useQueryClient();
-
-    const data = queryClient.getQueryCache();
-    const listResourceQueries = data.getAll().filter((query) => {
-        return query.queryKey.includes(`resource/list/${resource}`);
-    });
-
-    return listResourceQueries;
 };
