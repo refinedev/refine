@@ -54,7 +54,7 @@ export const Table: React.FC<TableProps> = ({
 
     const { data, isFetching, refetch } = useList(resourceName, {
         pagination: { current, pageSize },
-        filters: { ...filters, ...permanentFilter },
+        filters: { ...permanentFilter, ...filters },
         sort,
     });
 
