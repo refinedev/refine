@@ -5,6 +5,7 @@ import { useHistory, useRouteMatch } from "react-router-dom";
 
 import { MatchRoute } from "@interfaces";
 import humanizeString from "humanize-string";
+import { useTranslate } from "@hooks";
 
 type ListButtonProps = ButtonProps & {
     resourceName?: string;
@@ -15,6 +16,7 @@ export const ListButton: FC<ListButtonProps> = ({
     ...rest
 }) => {
     const history = useHistory();
+    const translate = useTranslate();
 
     const match = useRouteMatch({
         path: ["/resources/:resourceName", "/*"],
@@ -33,7 +35,10 @@ export const ListButton: FC<ListButtonProps> = ({
             icon={<BarsOutlined />}
             {...rest}
         >
-            {humanizeString(resourceName)}
+            {translate(
+                `common.resources.${resourceName}.title`,
+                humanizeString(resourceName),
+            )}
         </Button>
     );
 };

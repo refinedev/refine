@@ -10,9 +10,8 @@ import {
     defaultProvider,
     TranslationContextProvider,
 } from "@contexts/translation";
-import { RouteProvider } from "@containers/routeProvider";
+import { RouteProvider, ReadyPage as DefaultReadyPage } from "@components";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
-import { ReadyPage as DefaultReadyPage } from "@pages";
 import { OptionalComponent } from "@definitions";
 import { IDataContext, IAuthContext, I18nProvider } from "@interfaces";
 

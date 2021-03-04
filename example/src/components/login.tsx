@@ -1,5 +1,14 @@
 import React from "react";
-import { Row, Col, Layout, Card, Typography, Form, Input, Button } from "antd";
+import {
+    Row,
+    Col,
+    AntdLayout,
+    Card,
+    Typography,
+    Form,
+    Input,
+    Button,
+} from "readmin";
 
 import { useLogin } from "readmin";
 
@@ -19,7 +28,7 @@ export const LoginPage: React.FC = () => {
     };
 
     return (
-        <Layout>
+        <AntdLayout>
             <Row
                 justify="center"
                 style={{
@@ -67,6 +76,6 @@ export const LoginPage: React.FC = () => {
                     </Card>
                 </Col>
             </Row>
-        </Layout>
+        </AntdLayout>
     );
 };

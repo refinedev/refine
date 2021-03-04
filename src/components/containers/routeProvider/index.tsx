@@ -2,7 +2,7 @@
 import React, { useContext, ReactNode } from "react";
 import { Switch, Route, RouteProps, Redirect } from "react-router-dom";
 import { Layout, ErrorComponent } from "@components";
-import { LoginPage as DefaultLoginPage } from "@pages";
+import { LoginPage as DefaultLoginPage } from "@components";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "@interfaces";
 import { OptionalComponent } from "@definitions";

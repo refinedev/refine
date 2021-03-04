@@ -10,6 +10,7 @@
         "categories": {
             "Categories": "Categories",
             "title": "Categories",
+            "Create": "Create category",
             "fields": {
                 "id": "Id",
                 "title": "Title"
@@ -43,6 +44,7 @@
         },
         "posts": {
             "Posts": "Posts",
+            "Create": "Create post",
             "fields": {
                 "id": "Id",
                 "title": "Title",
@@ -54,6 +56,13 @@
                 "user": "User",
                 "tags": "Tags",
                 "image": "Image"
+            },
+            "forms": {
+                "active": "Active",
+                "draft": "Draft",
+                "autocomplete": "Autocomplete (search user email)",
+                "uploadText": "Click or drag file to this area to upload",
+                "uploadHintText": "Support for a single upload"
             }
         },
         "tags": {
@@ -62,10 +71,12 @@
                 "id": "Id",
                 "title": "Title",
                 "image": "Image"
-            }
+            },
+            "reload": "Reload"
         },
         "users": {
             "Users": "Users",
+            "Create": "Create tag",
             "fields": {
                 "id": "Id",
                 "status": "Status",
@@ -86,6 +97,16 @@
         "cancel": "Cancel",
         "confirm": "Are you sure?",
         "filter": "Filter",
-        "clear": "Clear"
+        "clear": "Clear",
+        "refresh": "Refresh",
+        "show": "Show"
+    },
+    "table": {
+        "actions": "Actions"
+    },
+    "aside": {
+        "title": "Users List Details",
+        "more": "More",
+        "content": "You can view personal data of users registered in your system in the user table."
     }
 }

@@ -1,6 +1,9 @@
 import * as React from "react";
+
 import {
     List,
+    Edit,
+    Create,
     Table,
     Column,
     EmailField,
@@ -10,7 +13,11 @@ import {
     Show,
     ShowTab,
     Tab,
+    Form,
+    Input,
     TextField,
+    Tabs,
+    DatePicker,
     useTranslate,
 } from "readmin";
 
@@ -57,7 +64,7 @@ export const UserList = (props: any) => {
                 />
                 <Column
                     dataIndex="status"
-                    title="Status"
+                    title={translate("common:resources.users.fields.status")}
                     key="boolean"
                     render={(value) => <BooleanField value={value} />}
                 />
@@ -69,6 +76,152 @@ export const UserList = (props: any) => {
                 />
             </Table>
         </List>
+    );
+};
+
+export const UserEdit = (props: any) => {
+    const translate = useTranslate();
+
+    const { TabPane } = Tabs;
+
+    const dateFormat = "DD/MM/YYYY";
+
+    return (
+        <Edit {...props}>
+            <Form wrapperCol={{ span: 14 }} layout="vertical">
+                <Tabs>
+                    <TabPane tab="Summary" key="summary">
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.firstName",
+                            )}
+                            name="firstName"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.lastName",
+                            )}
+                            name="lastName"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </TabPane>
+                    <TabPane tab="Detail" key="detail">
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.email",
+                            )}
+                            name="email"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.birthday",
+                            )}
+                            name="birthday"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <DatePicker format={dateFormat} />
+                        </Form.Item>
+                    </TabPane>
+                </Tabs>
+            </Form>
+        </Edit>
+    );
+};
+
+export const UserCreate = (props: any) => {
+    const translate = useTranslate();
+
+    const { TabPane } = Tabs;
+
+    const dateFormat = "DD/MM/YYYY";
+
+    return (
+        <Create {...props}>
+            <Form wrapperCol={{ span: 14 }} layout="vertical">
+                <Tabs>
+                    <TabPane tab="Summary" key="summary">
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.firstName",
+                            )}
+                            name="firstName"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.lastName",
+                            )}
+                            name="lastName"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </TabPane>
+                    <TabPane tab="Detail" key="detail">
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.email",
+                            )}
+                            name="email"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.birthday",
+                            )}
+                            name="birthday"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <DatePicker format={dateFormat} />
+                        </Form.Item>
+                    </TabPane>
+                </Tabs>
+            </Form>
+        </Create>
     );
 };
 
