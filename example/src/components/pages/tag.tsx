@@ -102,20 +102,29 @@ export const TagList = (props: any) => {
 
 export const TagCreate = (props: any) => {
     const translate = useTranslate();
+
+    const { Panel } = Collapse;
+
     return (
         <Create {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
-                <Form.Item
-                    label={translate("common:resources.tags.fields.image")}
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
+                <Collapse accordion defaultActiveKey={["1"]}>
+                    <Panel header="Detail" key="1">
+                        <Form.Item
+                            label={translate(
+                                "common:resources.tags.fields.title",
+                            )}
+                            name="title"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </Panel>
+                </Collapse>
             </Form>
         </Create>
     );
@@ -129,7 +138,7 @@ export const TagEdit = (props: any) => {
     return (
         <Edit {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
-                <Collapse accordion>
+                <Collapse accordion defaultActiveKey={["1"]}>
                     <Panel header="Detail" key="1">
                         <Form.Item
                             label={translate(
