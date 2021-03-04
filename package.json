@@ -89,6 +89,7 @@
         "gql-query-builder": "^3.5.5",
         "graphql": "^15.5.0",
         "graphql-request": "^3.4.0",
+        "graphql-tag": "^2.11.0",
         "humanize-string": "^2.1.0",
         "i18next": "^19.8.9",
         "lodash": "^4.17.21",

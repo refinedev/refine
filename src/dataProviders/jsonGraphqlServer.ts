@@ -1,19 +1,23 @@
 import axios from "axios";
 import { stringify } from "query-string";
 import { GraphQLClient } from "graphql-request";
-import * as gql from "gql-query-builder";
+import * as gqlBuilder from "gql-query-builder";
 import IQueryBuilderOptions from "gql-query-builder/build/IQueryBuilderOptions";
 
 import { BaseRecord, IDataContext } from "@interfaces";
 import { generateFieldsArray } from "@definitions/graphql";
 
+import introspection from "./graphql/introspection";
+
 const JsonGraphqlServer = (apiUrl: string): IDataContext => {
     const client = new GraphQLClient("http://localhost:3000");
+
+    introspection(client).then((data) => console.log(data));
 
     const query = async (
         options: IQueryBuilderOptions | IQueryBuilderOptions[],
     ) => {
-        const qb = gql.query(options);
+        const qb = gqlBuilder.query(options);
 
         return client.request(qb.query, qb.variables);
     };
@@ -21,7 +25,7 @@ const JsonGraphqlServer = (apiUrl: string): IDataContext => {
     const mutation = async (
         options: IQueryBuilderOptions | IQueryBuilderOptions[],
     ) => {
-        const qb = gql.mutation(options);
+        const qb = gqlBuilder.mutation(options);
 
         return client.request(qb.query, qb.variables);
     };
