@@ -38,6 +38,9 @@ export const PostList = (props: any) => {
                     position: ["bottomCenter"],
                     size: "small",
                 }}
+                filter={{
+                    categoryId: [37, 20],
+                }}
             >
                 <Column
                     dataIndex="id"
