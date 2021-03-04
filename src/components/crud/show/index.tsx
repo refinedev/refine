@@ -13,7 +13,6 @@ import {
 } from "@components";
 
 export type ShowProps = CardProps & {
-    resourceName: string;
     aside?: FC<{ record?: BaseRecord }>;
     component?: FC<{ record?: BaseRecord }>;
     canEdit?: boolean;

@@ -4,16 +4,10 @@ import { Card, Button, Form, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
-import {
-    useCreate,
-    useResource,
-    useResourceWithRoute,
-    useTranslate,
-} from "@hooks";
+import { useCreate, useResourceWithRoute, useTranslate } from "@hooks";
 import { BaseRecord, MatchRoute } from "@interfaces";
 
 export interface CreateProps {
-    resourceName: string;
     canEdit?: boolean;
     title?: string;
     actionButtons?: React.ReactNode;

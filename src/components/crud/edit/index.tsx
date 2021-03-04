@@ -9,7 +9,6 @@ import { BaseRecord, MatchRoute } from "@interfaces";
 import { DeleteButton, RefreshButton, ListButton } from "@components";
 
 export interface EditProps {
-    resourceName: string;
     title?: string;
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
@@ -37,10 +36,7 @@ export const Edit: React.FC<EditProps> = ({
         params: { resourceName: routeResourceName, id },
     } = (match as unknown) as MatchRoute;
 
-    console.log("routeResourceName", routeResourceName);
-
     const resource = useResourceWithRoute(routeResourceName);
-    console.log("routeResourceName", resource);
 
     const { data, isLoading } = useOne(resource.name, id);
 
