@@ -9,10 +9,10 @@ import { TextField } from "@components";
 import { Show, ShowSimple } from "./index";
 
 const renderShow = (show: ReactNode) => {
-    return render(<Route path="/resources/posts/show/:id">{show}</Route>, {
+    return render(<Route path="/resources/:resource/show/:id">{show}</Route>, {
         wrapper: TestWrapper({
             dataProvider: MockJSONServer,
-            resources: [{ name: "posts" }],
+            resources: [{ name: "posts", route: "posts" }],
             routerInitialEntries: ["/resources/posts/show/1"],
         }),
     });
@@ -21,7 +21,7 @@ describe("<Show/>", () => {
     describe("JSON Rest Server", () => {
         it("renders ShowSimple with data", async () => {
             const { findByTestId, findByText } = renderShow(
-                <Show key="posts" resourceName="posts">
+                <Show key="posts">
                     <ShowSimple data-testid="showsimple">
                         <TextField renderRecordKey="id" />
                         <TextField renderRecordKey="slug" />
@@ -36,7 +36,7 @@ describe("<Show/>", () => {
 
     it("renders list, refresh, delete, edit buttons", async () => {
         const { findByText } = renderShow(
-            <Show key="posts" resourceName="posts" canDelete canEdit>
+            <Show key="posts" canDelete canEdit>
                 <ShowSimple data-testid="showsimple">
                     <TextField renderRecordKey="id" />
                     <TextField renderRecordKey="slug" />
@@ -53,7 +53,6 @@ describe("<Show/>", () => {
         const { findByText } = renderShow(
             <Show
                 key="posts"
-                resourceName="posts"
                 actionButtons={
                     <>
                         <Button>New Save Button</Button>

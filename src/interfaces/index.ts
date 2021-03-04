@@ -15,3 +15,6 @@ export * from "@interfaces/field";
 
 // match
 export * from "@interfaces/match";
+
+// resourceRouterParams
+export * from "@interfaces/resourceRouterParams";
