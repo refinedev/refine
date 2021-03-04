@@ -3,7 +3,12 @@ import { Button, ButtonProps } from "antd";
 import { RedoOutlined } from "@ant-design/icons";
 import { useRouteMatch } from "react-router-dom";
 
-import { useOne, useTranslate } from "@hooks";
+import {
+    useOne,
+    useResource,
+    useResourceWithRoute,
+    useTranslate,
+} from "@hooks";
 import { MatchRoute } from "@interfaces";
 
 type RefreshButtonProps = ButtonProps & {
@@ -12,7 +17,7 @@ type RefreshButtonProps = ButtonProps & {
 };
 
 export const RefreshButton: FC<RefreshButtonProps> = ({
-    resourceName,
+    resourceName: propResourceName,
     recordItemId,
     ...rest
 }) => {
@@ -29,8 +34,12 @@ export const RefreshButton: FC<RefreshButtonProps> = ({
         params: { resourceName: routeResourceName, id: idFromRoute },
     } = (match as unknown) as MatchRoute;
 
+    const resourceName = propResourceName ?? routeResourceName;
+
+    const resource = useResourceWithRoute(resourceName);
+
     const { refetch, isFetching } = useOne(
-        resourceName ?? routeResourceName,
+        resource.name,
         `${recordItemId ?? idFromRoute}`,
         { enabled: false },
     );

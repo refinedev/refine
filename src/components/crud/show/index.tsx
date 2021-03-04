@@ -1,10 +1,10 @@
 import React, { createElement, FC } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, useRouteMatch } from "react-router-dom";
 import { Card, CardProps, Col, Row, Space } from "antd";
 import pluralize from "pluralize";
 
-import { BaseRecord } from "@interfaces";
-import { useOne } from "@hooks";
+import { BaseRecord, MatchRoute } from "@interfaces";
+import { useOne, useResourceWithRoute } from "@hooks";
 import {
     EditButton,
     DeleteButton,
@@ -22,7 +22,6 @@ export type ShowProps = CardProps & {
 };
 
 export const Show: React.FC<ShowProps> = ({
-    resourceName,
     aside,
     component,
     canEdit,
@@ -31,16 +30,28 @@ export const Show: React.FC<ShowProps> = ({
     children,
     ...rest
 }) => {
-    const { id } = useParams<Record<string, string>>();
+    const match = useRouteMatch({
+        path: [
+            "/resources/:resourceName/:action/:id",
+            "/resources/:resourceName",
+            "/*",
+        ],
+    });
 
-    const { data, isLoading } = useOne(resourceName, id);
+    const {
+        params: { resourceName: routeResourceName, id },
+    } = (match as unknown) as MatchRoute;
+
+    const resource = useResourceWithRoute(routeResourceName);
+
+    const { data, isLoading } = useOne(resource.name, id);
 
     const record = data?.data;
 
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {
-                resourceName,
+                resourceName: resource.name,
                 record,
             });
         }
@@ -60,7 +71,7 @@ export const Show: React.FC<ShowProps> = ({
                     )
                 ) : (
                     <Card
-                        title={`Show ${pluralize.singular(resourceName)}`}
+                        title={`Show ${pluralize.singular(resource.name)}`}
                         loading={isLoading}
                         extra={
                             <Row>

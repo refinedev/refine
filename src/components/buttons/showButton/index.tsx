@@ -3,7 +3,7 @@ import { Button, ButtonProps } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
-import { useTranslate } from "@hooks";
+import { useResource, useTranslate } from "@hooks";
 import { MatchRoute } from "@interfaces";
 
 type ShowButtonProps = ButtonProps & {
@@ -12,7 +12,7 @@ type ShowButtonProps = ButtonProps & {
 };
 
 export const ShowButton: FC<ShowButtonProps> = ({
-    resourceName,
+    resourceName: propResourceName,
     recordItemId,
     ...rest
 }) => {
@@ -31,11 +31,13 @@ export const ShowButton: FC<ShowButtonProps> = ({
         params: { resourceName: routeResourceName, id: idFromRoute },
     } = (match as unknown) as MatchRoute;
 
+    const resourceName = propResourceName ?? routeResourceName;
+
     return (
         <Button
             onClick={(): void =>
                 history.push(
-                    `/resources/${resourceName ?? routeResourceName}/show/${
+                    `/resources/${resourceName}/show/${
                         recordItemId ?? idFromRoute
                     }`,
                 )

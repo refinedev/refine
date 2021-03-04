@@ -1,5 +1,17 @@
 import * as React from "react";
-import { List, Table, Column, TextField, useTranslate } from "readmin";
+import {
+    List,
+    Table,
+    Column,
+    TextField,
+    useTranslate,
+    Create,
+    Form,
+    Input,
+    Edit,
+    Show,
+    ShowSimple,
+} from "readmin";
 
 export const PostLightList = (props: any) => {
     const translate = useTranslate();
@@ -42,5 +54,59 @@ export const PostLightList = (props: any) => {
                 />
             </Table>
         </List>
+    );
+};
+
+export const PostLightCreate = (props: any) => {
+    const translate = useTranslate();
+
+    return (
+        <Create {...props}>
+            <Form wrapperCol={{ span: 14 }} layout="vertical">
+                <Form.Item
+                    label={translate("common:resources.posts.fields.title")}
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+            </Form>
+        </Create>
+    );
+};
+
+export const PostLightEdit = (props: any) => {
+    const translate = useTranslate();
+
+    return (
+        <Edit {...props}>
+            <Form wrapperCol={{ span: 14 }} layout="vertical">
+                <Form.Item
+                    label={translate("common:resources.posts.fields.title")}
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+            </Form>
+        </Edit>
+    );
+};
+
+export const PostLightShow = (props: any) => {
+    return (
+        <Show {...props}>
+            <ShowSimple title="Post Title">
+                <TextField renderRecordKey="title" />
+            </ShowSimple>
+        </Show>
     );
 };

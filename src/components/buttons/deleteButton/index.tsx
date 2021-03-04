@@ -3,7 +3,12 @@ import { Button, ButtonProps, Popconfirm } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
-import { useDelete, useTranslate } from "@hooks";
+import {
+    useDelete,
+    useResource,
+    useResourceWithRoute,
+    useTranslate,
+} from "@hooks";
 import { MatchRoute, DeleteOneResponse } from "@interfaces";
 
 type DeleteButtonProps = ButtonProps & {
@@ -19,6 +24,7 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
     ...rest
 }) => {
     const history = useHistory();
+
     const translate = useTranslate();
 
     const match = useRouteMatch({
@@ -35,7 +41,9 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
 
     const resourceName = propResourceName ?? routeResourceName;
 
-    const { mutateAsync, isLoading } = useDelete(resourceName);
+    const resource = useResourceWithRoute(resourceName);
+
+    const { mutateAsync, isLoading } = useDelete(resource.name);
 
     return (
         <Popconfirm

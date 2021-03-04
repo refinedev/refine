@@ -1,11 +1,16 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 import { Card, Button, Form, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
-import { useCreate, useTranslate } from "@hooks";
-import { BaseRecord } from "@interfaces";
+import {
+    useCreate,
+    useResource,
+    useResourceWithRoute,
+    useTranslate,
+} from "@hooks";
+import { BaseRecord, MatchRoute } from "@interfaces";
 
 export interface CreateProps {
     resourceName: string;
@@ -16,7 +21,6 @@ export interface CreateProps {
 }
 
 export const Create: React.FC<CreateProps> = ({
-    resourceName,
     canEdit,
     title,
     actionButtons,
@@ -24,9 +28,20 @@ export const Create: React.FC<CreateProps> = ({
     children,
 }) => {
     const history = useHistory();
+
+    const match = useRouteMatch({
+        path: ["/resources/:resourceName", "/*"],
+    });
+
+    const {
+        params: { resourceName: routeResourceName },
+    } = (match as unknown) as MatchRoute;
+
+    const resource = useResourceWithRoute(routeResourceName);
+
     const [form] = Form.useForm();
 
-    const { mutate, isLoading } = useCreate(resourceName);
+    const { mutate, isLoading } = useCreate(resource.name);
 
     const translate = useTranslate();
 
@@ -37,11 +52,11 @@ export const Create: React.FC<CreateProps> = ({
                 onSuccess: (data) => {
                     if (canEdit) {
                         return history.push(
-                            `/resources/${resourceName}/edit/${data.data.id}`,
+                            `/resources/${resource.route}/edit/${data.data.id}`,
                         );
                     }
 
-                    return history.push(`/resources/${resourceName}`);
+                    return history.push(`/resources/${resource.route}`);
                 },
             },
         );
@@ -50,7 +65,7 @@ export const Create: React.FC<CreateProps> = ({
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {
-                resourceName,
+                resourceName: resource.name,
                 onFinish,
                 form,
             });
@@ -63,8 +78,8 @@ export const Create: React.FC<CreateProps> = ({
             title={
                 title ??
                 translate(
-                    `common:resources.${resourceName}.Create`,
-                    `Create ${pluralize.singular(resourceName)}`,
+                    `common:resources.${resource.name}.Create`,
+                    `Create ${pluralize.singular(resource.name)}`,
                 )
             }
             actions={[

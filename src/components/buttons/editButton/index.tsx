@@ -12,7 +12,7 @@ type EditButtonProps = ButtonProps & {
 };
 
 export const EditButton: FC<EditButtonProps> = ({
-    resourceName,
+    resourceName: propResourceName,
     recordItemId,
     ...rest
 }) => {
@@ -31,11 +31,13 @@ export const EditButton: FC<EditButtonProps> = ({
         params: { resourceName: routeResourceName, id: idFromRoute },
     } = (match as unknown) as MatchRoute;
 
+    const resourceName = propResourceName ?? routeResourceName;
+
     return (
         <Button
             onClick={(): void => {
                 history.push(
-                    `/resources/${resourceName ?? routeResourceName}/edit/${
+                    `/resources/${resourceName}/edit/${
                         recordItemId ?? idFromRoute
                     }`,
                 );
