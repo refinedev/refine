@@ -63,6 +63,7 @@ function App() {
             dashboard={DashboardPage}
             ready={ReadyPage}
             i18nProvider={i18nProvider}
+            mutationMode="undoable"
         >
             <Resource
                 name="posts"

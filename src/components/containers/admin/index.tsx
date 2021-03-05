@@ -15,6 +15,7 @@ import { AdminContextProvider } from "@contexts/admin";
 import { RouteProvider, ReadyPage as DefaultReadyPage } from "@components";
 import { OptionalComponent } from "@definitions";
 import { IDataContext, IAuthContext, I18nProvider } from "@interfaces";
+import { MutationMode } from "../../../interfaces"
 
 export interface AdminProps {
     authProvider: IAuthContext;
@@ -25,6 +26,7 @@ export interface AdminProps {
     loginPage?: React.FC | false;
     dashboard?: React.FC;
     ready?: React.FC;
+    mutationMode?: MutationMode;
 }
 
 export const Admin: React.FC<AdminProps> = ({
@@ -37,6 +39,7 @@ export const Admin: React.FC<AdminProps> = ({
     catchAll,
     children,
     i18nProvider = defaultProvider.i18nProvider,
+    mutationMode,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -69,7 +72,7 @@ export const Admin: React.FC<AdminProps> = ({
                 <DataContextProvider {...dataProvider}>
                     <ResourceContextProvider resources={resources}>
                         <TranslationContextProvider i18nProvider={i18nProvider}>
-                            <AdminContextProvider mutationMode="pessimistic">
+                            <AdminContextProvider mutationMode={mutationMode ?? "pessimistic"}>
                                 <Router>
                                     <RouteProvider
                                         resources={children}

@@ -290,7 +290,7 @@ export const PostEdit = (props: any) => {
     return (
         <Edit
             {...props}
-            mutationMode="undoable"
+            mutationMode="optimistic"
             saveButtonProps={{ disabled: isLoading }}
         >
             <Form wrapperCol={{ span: 14 }} layout="vertical">
