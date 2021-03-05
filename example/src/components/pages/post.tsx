@@ -292,7 +292,11 @@ export const PostEdit = (props: any) => {
     const { isLoading, onChange } = useFileUploadState();
 
     return (
-        <Edit {...props} saveButtonProps={{ disabled: isLoading }}>
+        <Edit
+            {...props}
+            mutationMode="optimistic"
+            saveButtonProps={{ disabled: isLoading }}
+        >
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}

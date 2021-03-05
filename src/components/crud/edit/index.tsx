@@ -4,12 +4,14 @@ import { Form, Card, Button, Row, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
+import { MutationMode } from "../../../interfaces";
 import {
     useOne,
     useUpdate,
     useTranslate,
     useResourceWithRoute,
     useNotification,
+    useMutationMode,
 } from "@hooks";
 import { BaseRecord, ResourceRouterParams } from "@interfaces";
 import { DeleteButton, RefreshButton, ListButton } from "@components";
@@ -18,6 +20,7 @@ export interface EditProps {
     title?: string;
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
+    mutationMode?: MutationMode;
     onError?: () => void;
     onSuccess?: () => void;
 }
@@ -26,11 +29,17 @@ export const Edit: React.FC<EditProps> = ({
     title,
     actionButtons,
     saveButtonProps,
+    mutationMode: mutationModeProp,
     children,
     onSuccess,
     onError,
 }) => {
     const history = useHistory();
+    const { mutationMode: mutationModeContext } = useMutationMode();
+
+    const mutationMode = mutationModeProp ?? mutationModeContext;
+
+    const { id } = useParams<Record<string, string>>();
 
     const [form] = Form.useForm();
 
@@ -49,7 +58,7 @@ export const Edit: React.FC<EditProps> = ({
         });
     }, [data]);
 
-    const { mutate } = useUpdate(resource.name);
+    const { mutate } = useUpdate(resource.name, mutationMode);
     const translate = useTranslate();
     const notification = useNotification();
 
@@ -67,7 +76,9 @@ export const Edit: React.FC<EditProps> = ({
                         description: `Id:$ {id} ${resource.name} edited`,
                     });
 
-                    return history.push(`/resources/${resource.route}`);
+                    if (mutationMode === "pessimistic") {
+                        return history.push(`/resources/${resource.route}`);
+                    }
                 },
                 onError: (err: any) => {
                     if (onError) {
@@ -81,6 +92,8 @@ export const Edit: React.FC<EditProps> = ({
                 },
             },
         );
+        !(mutationMode === "pessimistic") &&
+            history.push(`/resources/${resource.route}`);
     };
 
     const childrenWithProps = React.Children.map(children, (child) => {
@@ -112,7 +125,7 @@ export const Edit: React.FC<EditProps> = ({
                 >
                     {actionButtons ?? (
                         <>
-                            <DeleteButton />
+                            <DeleteButton mutationMode={mutationMode} />
                             <Button
                                 htmlType="submit"
                                 disabled={isLoading}

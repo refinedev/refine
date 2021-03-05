@@ -10,10 +10,12 @@ import {
     defaultProvider,
     TranslationContextProvider,
 } from "@contexts/translation";
-import { RouteProvider, ReadyPage as DefaultReadyPage } from "@components";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
+import { AdminContextProvider } from "@contexts/admin";
+import { RouteProvider, ReadyPage as DefaultReadyPage } from "@components";
 import { OptionalComponent } from "@definitions";
 import { IDataContext, IAuthContext, I18nProvider } from "@interfaces";
+import { MutationMode } from "../../../interfaces";
 
 export interface AdminProps {
     authProvider: IAuthContext;
@@ -24,6 +26,7 @@ export interface AdminProps {
     loginPage?: React.FC | false;
     dashboard?: React.FC;
     ready?: React.FC;
+    mutationMode?: MutationMode;
 }
 
 export const Admin: React.FC<AdminProps> = ({
@@ -36,6 +39,7 @@ export const Admin: React.FC<AdminProps> = ({
     catchAll,
     children,
     i18nProvider = defaultProvider.i18nProvider,
+    mutationMode,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -69,16 +73,20 @@ export const Admin: React.FC<AdminProps> = ({
                 <DataContextProvider {...dataProvider}>
                     <ResourceContextProvider resources={resources}>
                         <TranslationContextProvider i18nProvider={i18nProvider}>
-                            <Router>
-                                <RouteProvider
-                                    resources={children}
-                                    catchAll={catchAll}
-                                    title={title}
-                                    dashboard={dashboard}
-                                    loginPage={loginPage}
-                                    ready={ready}
-                                />
-                            </Router>
+                            <AdminContextProvider
+                                mutationMode={mutationMode ?? "pessimistic"}
+                            >
+                                <Router>
+                                    <RouteProvider
+                                        resources={children}
+                                        catchAll={catchAll}
+                                        title={title}
+                                        dashboard={dashboard}
+                                        loginPage={loginPage}
+                                        ready={ready}
+                                    />
+                                </Router>
+                            </AdminContextProvider>
                         </TranslationContextProvider>
                     </ResourceContextProvider>
                 </DataContextProvider>
