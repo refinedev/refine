@@ -64,6 +64,7 @@ exports[`<List/> JSON Rest Server renders given data 1`] = `
               >
                 <div
                   class="ant-table"
+                  data-testid="ant-tab"
                 >
                   <div
                     class="ant-table-container"

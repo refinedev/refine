@@ -7,5 +7,6 @@ export interface IResourceContext {
 export interface IResourceItem {
     name: string;
     label?: string;
+    route?: string;
     icon?: ReactNode;
 }
