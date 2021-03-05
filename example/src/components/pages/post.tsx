@@ -338,6 +338,7 @@ export const PostCreate = (props: any) => {
                             onClick={() => {
                                 submit().then((result) => {
                                     if (result === "ok") {
+                                        /* To do "add hook" */
                                         history.push(`/resources/posts`);
                                     }
                                 });
