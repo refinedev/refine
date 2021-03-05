@@ -40,11 +40,13 @@ const mapVariables = (
     if (query && query.args) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         query.args.map((arg: any) => {
-            variables[arg.name] = {
-                value: params[arg.name] || undefined,
-                required: arg.type.kind === "NON_NULL",
-                type: arg.type.ofType.name,
-            };
+            if (arg && arg.name) {
+                variables[arg.name] = {
+                    value: params[arg.name] || undefined,
+                    required: arg.type.kind === "NON_NULL",
+                    type: arg.type.name,
+                };
+            }
         });
     }
 

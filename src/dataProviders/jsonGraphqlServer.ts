@@ -10,7 +10,6 @@ import {
     mutation,
     mapVariables,
 } from "./graphql/utility";
-import { queries } from "@testing-library/dom";
 
 const JsonGraphqlServer = (
     client: GraphQLClient,
@@ -93,9 +92,25 @@ const JsonGraphqlServer = (
         },
 
         update: async (resource, id, params) => {
-            const url = `xx`;
+            const operation = createOperationName(resource, "update");
 
-            const { data } = await axios.put(url, params);
+            const { queries } = introspection;
+            const variables = mapVariables(queries, operation, params);
+
+            const response = await mutation(client, {
+                operation,
+                variables: {
+                    ...variables,
+                    id: {
+                        required: true,
+                        value: Number(id),
+                        type: "ID",
+                    },
+                },
+                fields: Object.keys(variables),
+            });
+
+            const data = response[operation];
 
             return {
                 data,
