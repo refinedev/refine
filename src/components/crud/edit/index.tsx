@@ -54,6 +54,7 @@ export const Edit: React.FC<EditProps> = ({
     const notification = useNotification();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
+        console.log("values", values);
         mutate(
             { id: idFromRoute, values },
             {
@@ -64,7 +65,7 @@ export const Edit: React.FC<EditProps> = ({
 
                     notification.success({
                         message: "Successful",
-                        description: `Id:$ {id} ${resource.name} edited`,
+                        description: `Id:${idFromRoute} ${resource.name} edited`,
                     });
 
                     return history.push(`/resources/${resource.route}`);
@@ -93,7 +94,6 @@ export const Edit: React.FC<EditProps> = ({
         }
         return child;
     });
-
     return (
         <Card
             title={title ?? `Edit ${pluralize.singular(resource.name)}`}
