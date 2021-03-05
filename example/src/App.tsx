@@ -21,12 +21,18 @@ import { FilesList } from "./components/pages/files";
 import { DashboardPage } from "./components/pages/dashboard";
 import { ReadyPage } from "./components/ready";
 import { LoginPage } from "./components/login";
+import { LandingList } from "./components/pages/landing";
 import {
     PostLightCreate,
     PostLightEdit,
     PostLightList,
     PostLightShow,
 } from "./components/pages/post-light";
+import {
+    LandingEdit,
+    LandingCreate,
+    LandingShow,
+} from "./components/pages/landing";
 
 function App() {
     const authProvider: AuthProvider = {
@@ -116,6 +122,13 @@ function App() {
             />
             <Resource name="images" list={ImagesList} />
             <Resource name="files" list={FilesList} />
+            <Resource
+                name="landing"
+                create={LandingCreate}
+                edit={LandingEdit}
+                list={LandingList}
+                show={LandingShow}
+            />
         </Admin>
     );
 }

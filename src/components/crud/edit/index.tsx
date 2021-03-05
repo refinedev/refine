@@ -73,7 +73,7 @@ export const Edit: React.FC<EditProps> = ({
 
                     notification.success({
                         message: "Successful",
-                        description: `Id:$ {id} ${resource.name} edited`,
+                        description: `Id:${idFromRoute} ${resource.name} edited`,
                     });
 
                     if (mutationMode === "pessimistic") {
@@ -106,7 +106,6 @@ export const Edit: React.FC<EditProps> = ({
         }
         return child;
     });
-
     return (
         <Card
             title={title ?? `Edit ${pluralize.singular(resource.name)}`}
