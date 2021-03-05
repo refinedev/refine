@@ -54,7 +54,6 @@ export const Edit: React.FC<EditProps> = ({
     const notification = useNotification();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
-        console.log("values", values);
         mutate(
             { id: idFromRoute, values },
             {

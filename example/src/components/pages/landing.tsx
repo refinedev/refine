@@ -1,4 +1,6 @@
 import * as React from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import {
     List,
     Table,
@@ -10,17 +12,10 @@ import {
     TextField,
     Input,
     ShowSimple,
-    Markdown,
-    MarkdownField,
-    normalizeFile,
-    useApiUrl,
     useFileUploadState,
     useTranslate,
-    useNotification,
-    Richtext,
+    RichtextField,
 } from "readmin";
-
-import { ShowAside } from "../show";
 
 export const LandingList = (props: any) => {
     const translate = useTranslate();
@@ -74,16 +69,25 @@ export const LandingCreate = (props: any) => {
                 >
                     <Input />
                 </Form.Item>
+                <Form.Item
+                    label={translate("common:resources.posts.fields.content")}
+                    name="content"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <ReactQuill theme="snow" />
+                </Form.Item>
             </Form>
         </Create>
     );
 };
 
 export const LandingEdit = (props: any) => {
-    const apiUrl = useApiUrl();
     const translate = useTranslate();
-
-    const { isLoading, onChange } = useFileUploadState();
+    const { isLoading } = useFileUploadState();
 
     return (
         <Edit {...props} saveButtonProps={{ disabled: isLoading }}>
@@ -108,7 +112,7 @@ export const LandingEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <Richtext />
+                    <ReactQuill theme="snow" />
                 </Form.Item>
             </Form>
         </Edit>
@@ -117,11 +121,11 @@ export const LandingEdit = (props: any) => {
 
 export const LandingShow = (props: any) => {
     return (
-        <Show {...props} aside={ShowAside}>
+        <Show {...props}>
             <ShowSimple title="Landing Title">
                 <TextField renderRecordKey="id" />
                 <TextField renderRecordKey="title" />
-                <MarkdownField renderRecordKey="content" />
+                <RichtextField renderRecordKey="content" />
             </ShowSimple>
         </Show>
     );
