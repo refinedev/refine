@@ -7,15 +7,8 @@ import {
     Edit,
     Show,
     Form,
-    Reference,
-    ReferenceField,
     TextField,
-    TagField,
-    FilterDropdown,
-    Select,
-    Radio,
     Input,
-    Upload,
     ShowSimple,
     Markdown,
     MarkdownField,
@@ -24,6 +17,7 @@ import {
     useFileUploadState,
     useTranslate,
     useNotification,
+    Richtext,
 } from "readmin";
 
 import { ShowAside } from "../show";
@@ -63,6 +57,28 @@ export const LandingList = (props: any) => {
     );
 };
 
+export const LandingCreate = (props: any) => {
+    const translate = useTranslate();
+
+    return (
+        <Create {...props}>
+            <Form wrapperCol={{ span: 14 }} layout="vertical">
+                <Form.Item
+                    label={translate("common:resources.posts.fields.title")}
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+            </Form>
+        </Create>
+    );
+};
+
 export const LandingEdit = (props: any) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
@@ -83,21 +99,30 @@ export const LandingEdit = (props: any) => {
                 >
                     <Input />
                 </Form.Item>
+                <Form.Item
+                    label={translate("common:resources.posts.fields.content")}
+                    name="content"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Richtext />
+                </Form.Item>
             </Form>
         </Edit>
     );
 };
 
-/* export const PostShow = (props: any) => {
+export const LandingShow = (props: any) => {
     return (
         <Show {...props} aside={ShowAside}>
-            <ShowSimple title="Post Title">
+            <ShowSimple title="Landing Title">
                 <TextField renderRecordKey="id" />
                 <TextField renderRecordKey="title" />
-                <TextField renderRecordKey="userId" />
                 <MarkdownField renderRecordKey="content" />
             </ShowSimple>
         </Show>
     );
 };
- */

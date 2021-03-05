@@ -28,6 +28,11 @@ import {
     PostLightList,
     PostLightShow,
 } from "./components/pages/post-light";
+import {
+    LandingEdit,
+    LandingCreate,
+    LandingShow,
+} from "./components/pages/landing";
 
 function App() {
     const authProvider: AuthProvider = {
@@ -116,7 +121,13 @@ function App() {
             />
             <Resource name="images" list={ImagesList} />
             <Resource name="files" list={FilesList} />
-            <Resource name="landing" list={LandingList} />
+            <Resource
+                name="landing"
+                create={LandingCreate}
+                edit={LandingEdit}
+                list={LandingList}
+                show={LandingShow}
+            />
         </Admin>
     );
 }

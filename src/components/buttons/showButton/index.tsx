@@ -39,7 +39,7 @@ export const ShowButton: FC<ShowButtonProps> = ({
             icon={<EyeOutlined />}
             {...rest}
         >
-            {translate("common:buttons.refresh", "Refresh")}
+            {translate("common:buttons.show", "Show")}
         </Button>
     );
 };
