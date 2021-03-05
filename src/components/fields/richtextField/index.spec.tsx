@@ -7,7 +7,6 @@ describe("RichtextField", () => {
     it("renders content", () => {
         const { getByText } = render(<RichtextField value={`<b>test<b>`} />);
 
-        console.log("get", getByText("test"));
         expect(getByText("test"));
     });
 });
