@@ -317,12 +317,16 @@ export const PostCreate = (props: any) => {
                 <>
                     {current > 0 && (
                         <Button onClick={() => gotoStep(current - 1)}>
-                            Prev
+                            {translate(
+                                "common:resources.posts.forms.prevButton",
+                            )}
                         </Button>
                     )}
                     {current < formList.length - 1 && (
                         <Button onClick={() => gotoStep(current + 1)}>
-                            Next
+                            {translate(
+                                "common:resources.posts.forms.nextButton",
+                            )}
                         </Button>
                     )}
                     {current === formList.length - 1 && (
