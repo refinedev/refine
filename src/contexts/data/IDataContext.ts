@@ -66,25 +66,22 @@ export interface IDataContext {
         },
         fields?: string[],
     ) => Promise<GetListResponse>;
-    getMany: <TData extends BaseRecord = BaseRecord>(
-        resource: string,
-        ids: Identifier[],
-    ) => Promise<GetManyResponse<TData>>;
-    getOne: <TData extends BaseRecord = BaseRecord>(
+    getMany: (resource: string, ids: Identifier[]) => Promise<GetManyResponse>;
+    getOne: (
         resource: string,
         id: Identifier,
         fields?: string[],
     ) => Promise<GetOneResponse>;
     create: (resource: string, params: Params) => Promise<CreateResponse>;
-    update: <TParams extends BaseRecord = BaseRecord>(
+    update: (
         resource: string,
         id: Identifier,
-        params: TParams,
+        params: Params,
     ) => Promise<UpdateResponse>;
-    updateMany: <TParams extends BaseRecord = BaseRecord>(
+    updateMany: (
         resource: string,
         ids: Identifier[],
-        params: TParams,
+        params: Params,
     ) => Promise<UpdateManyResponse>;
     deleteOne: (resource: string, id: Identifier) => Promise<DeleteOneResponse>;
     deleteMany: (

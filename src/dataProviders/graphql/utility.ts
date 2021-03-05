@@ -25,6 +25,8 @@ const createOperationName = (resourceName: string, action: Actions): string => {
             return `all${resourceName}`;
         case "metaData":
             return `_all${resourceName}Meta`;
+        case "deleteOne":
+            return `remove${singular(resourceName)}`;
     }
     return singular(resourceName);
 };

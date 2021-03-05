@@ -65,10 +65,14 @@ const JsonGraphqlServer = (
             };
         },
 
+        // Not support
         getMany: async (resource, ids) => {
-            const { data } = await axios.get(`xx`);
             return {
-                data,
+                data: [
+                    {
+                        id: 1,
+                    },
+                ],
             };
         },
 
@@ -117,14 +121,15 @@ const JsonGraphqlServer = (
             };
         },
 
+        // Not support
         updateMany: async (resource, ids, params) => {
-            const response = await Promise.all(
-                ids.map(async (id) => {
-                    const { data } = await axios.put(`xx`, params);
-                    return data;
-                }),
-            );
-            return { data: response };
+            return {
+                data: [
+                    {
+                        id: 1,
+                    },
+                ],
+            };
         },
 
         getOne: async (resource, id, fields) => {
@@ -151,23 +156,36 @@ const JsonGraphqlServer = (
         },
 
         deleteOne: async (resource, id) => {
-            const url = `**`;
+            const operation = createOperationName(resource, "deleteOne");
 
-            const { data } = await axios.delete(url);
+            await mutation(client, {
+                operation,
+                variables: {
+                    id: {
+                        required: true,
+                        value: Number(id),
+                        type: "ID",
+                    },
+                },
+            });
 
+            // return boolean
             return {
-                data,
+                data: {
+                    id: 1,
+                },
             };
         },
 
+        // Not support
         deleteMany: async (resource, ids) => {
-            const response = await Promise.all(
-                ids.map(async (id) => {
-                    const { data } = await axios.delete(`**`);
-                    return data;
-                }),
-            );
-            return { data: response };
+            return {
+                data: [
+                    {
+                        id: 1,
+                    },
+                ],
+            };
         },
     };
 };
