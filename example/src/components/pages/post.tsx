@@ -1,4 +1,8 @@
 import * as React from "react";
+import { useHistory } from "react-router-dom";
+import { useStepsForm } from "sunflower-antd";
+import { SaveOutlined } from "@ant-design/icons";
+
 import {
     List,
     Table,
@@ -25,7 +29,6 @@ import {
     useFileUploadState,
     useTranslate,
     Button,
-    message,
 } from "readmin";
 
 import { ShowAside } from "../show";
@@ -118,11 +121,55 @@ export const PostList = (props: any) => {
     );
 };
 
-const DescriptionForm = () => {
+export const PostCreate = (props: any) => {
+    const { Step } = Steps;
+
+    const {
+        form,
+        current,
+        gotoStep,
+        stepsProps,
+        formProps,
+        submit,
+        formLoading,
+    } = useStepsForm({
+        async submit(values) {
+            const {
+                title,
+                slug,
+                content,
+                status,
+                categoryId,
+                userId,
+                tags,
+                image,
+            } = values;
+            console.log(
+                title,
+                slug,
+                content,
+                status,
+                categoryId,
+                userId,
+                tags,
+                image,
+            );
+            await new Promise((r) => setTimeout(r, 1000));
+            return "ok";
+        },
+        total: 4,
+    });
+
+    const history = useHistory();
+
+    const apiUrl = useApiUrl();
+
     const translate = useTranslate();
 
-    return (
-        <Form>
+    const { isLoading, onChange } = useFileUploadState();
+
+    const formList = [
+        <>
             <Form.Item
                 label={translate("common:resources.posts.fields.title")}
                 name="title"
@@ -156,15 +203,9 @@ const DescriptionForm = () => {
             >
                 <Markdown />
             </Form.Item>
-        </Form>
-    );
-};
+        </>,
 
-const InformationsForm = () => {
-    const translate = useTranslate();
-
-    return (
-        <Form>
+        <>
             <Form.Item
                 label={translate("common:resources.posts.fields.status")}
                 name="status"
@@ -208,15 +249,9 @@ const InformationsForm = () => {
                     <Select showSearch />
                 </Reference>
             </Form.Item>
-        </Form>
-    );
-};
+        </>,
 
-const DetailsForm = () => {
-    const translate = useTranslate();
-
-    return (
-        <Form>
+        <>
             <Form.Item
                 label={translate("common:resources.posts.fields.user")}
                 name="userId"
@@ -244,18 +279,9 @@ const DetailsForm = () => {
                     <Select mode="multiple" />
                 </Reference>
             </Form.Item>
-        </Form>
-    );
-};
+        </>,
 
-const ImageForm = () => {
-    const apiUrl = useApiUrl();
-    const translate = useTranslate();
-
-    const { onChange } = useFileUploadState();
-
-    return (
-        <Form>
+        <>
             <Form.Item label={translate("common:resources.posts.fields.image")}>
                 <Form.Item
                     name="image"
@@ -280,34 +306,7 @@ const ImageForm = () => {
                     </Upload.Dragger>
                 </Form.Item>
             </Form.Item>
-        </Form>
-    );
-};
-
-export const PostCreate = (props: any) => {
-    const { isLoading } = useFileUploadState();
-
-    const { Step } = Steps;
-
-    const [current, setCurrent] = React.useState(0);
-
-    const steps = [
-        {
-            title: "Description",
-            content: <DescriptionForm />,
-        },
-        {
-            title: "Informations",
-            content: <InformationsForm />,
-        },
-        {
-            title: "Details",
-            content: <DetailsForm />,
-        },
-        {
-            title: "Image",
-            content: <ImageForm />,
-        },
+        </>,
     ];
 
     return (
@@ -317,40 +316,51 @@ export const PostCreate = (props: any) => {
             actionButtons={
                 <>
                     {current > 0 && (
-                        <Button
-                            style={{ margin: "0 8px" }}
-                            onClick={() => setCurrent(current - 1)}
-                        >
-                            Previous
+                        <Button onClick={() => gotoStep(current - 1)}>
+                            Prev
                         </Button>
                     )}
-                    {current < steps.length - 1 && (
-                        <Button onClick={() => setCurrent(current + 1)}>
+                    {current < formList.length - 1 && (
+                        <Button onClick={() => gotoStep(current + 1)}>
                             Next
                         </Button>
                     )}
-                    {current === steps.length - 1 && (
+                    {current === formList.length - 1 && (
                         <Button
-                            htmlType="submit"
+                            style={{ marginRight: 10 }}
                             type="primary"
-                            onClick={() =>
-                                message.success("Processing complete!")
-                            }
+                            icon={<SaveOutlined />}
+                            loading={formLoading}
+                            onClick={() => {
+                                submit().then((result) => {
+                                    if (result === "ok") {
+                                        history.push(`/resources/posts`);
+                                    }
+                                });
+                            }}
                         >
-                            Save
+                            {translate("common:buttons.save", "Save")}
                         </Button>
                     )}
                 </>
             }
         >
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
-                <Steps current={current}>
-                    {steps.map((item) => (
-                        <Step key={item.title} title={item.title} />
-                    ))}
-                </Steps>
-                <div style={{ paddingTop: 36 }}>{steps[current].content}</div>
-            </Form>
+            <Steps {...stepsProps}>
+                <Step title="Description" />
+                <Step title="Informations" />
+                <Step title="Details" />
+                <Step title="Image" />
+            </Steps>
+
+            <div style={{ marginTop: 60 }}>
+                <Form
+                    {...formProps}
+                    wrapperCol={{ span: 14 }}
+                    layout="vertical"
+                >
+                    {formList[current]}
+                </Form>
+            </div>
         </Create>
     );
 };
