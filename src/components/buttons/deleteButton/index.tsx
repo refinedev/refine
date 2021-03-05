@@ -3,12 +3,7 @@ import { Button, ButtonProps, Popconfirm } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
-import {
-    useDelete,
-    useTranslate,
-    useMutationMode,
-    useCancelNotification,
-} from "@hooks";
+import { useDelete, useTranslate, useMutationMode } from "@hooks";
 import { MatchRoute, DeleteOneResponse, MutationMode } from "@interfaces";
 
 type DeleteButtonProps = ButtonProps & {
@@ -28,7 +23,6 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
     const history = useHistory();
     const translate = useTranslate();
     const { mutationMode: mutationModeContext } = useMutationMode();
-    const cancelNotification = useCancelNotification();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
@@ -46,11 +40,7 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
 
     const resourceName = propResourceName ?? routeResourceName;
 
-    const { mutateAsync, isLoading } = useDelete(
-        resourceName,
-        mutationMode,
-        cancelNotification,
-    );
+    const { mutateAsync, isLoading } = useDelete(resourceName, mutationMode);
 
     return (
         <Popconfirm

@@ -17,4 +17,4 @@ export * from "@interfaces/field";
 export * from "@interfaces/match";
 
 // mutationMode
-export { MutationMode } from "./mutationMode";
+export * from "./mutationMode";

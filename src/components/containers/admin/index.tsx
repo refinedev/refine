@@ -15,7 +15,7 @@ import { AdminContextProvider } from "@contexts/admin";
 import { RouteProvider, ReadyPage as DefaultReadyPage } from "@components";
 import { OptionalComponent } from "@definitions";
 import { IDataContext, IAuthContext, I18nProvider } from "@interfaces";
-import { MutationMode } from "../../../interfaces"
+import { MutationMode } from "../../../interfaces";
 
 export interface AdminProps {
     authProvider: IAuthContext;
@@ -72,7 +72,9 @@ export const Admin: React.FC<AdminProps> = ({
                 <DataContextProvider {...dataProvider}>
                     <ResourceContextProvider resources={resources}>
                         <TranslationContextProvider i18nProvider={i18nProvider}>
-                            <AdminContextProvider mutationMode={mutationMode ?? "pessimistic"}>
+                            <AdminContextProvider
+                                mutationMode={mutationMode ?? "pessimistic"}
+                            >
                                 <Router>
                                     <RouteProvider
                                         resources={children}

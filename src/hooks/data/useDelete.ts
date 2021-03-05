@@ -1,10 +1,5 @@
 import { useContext } from "react";
-import {
-    useQueryClient,
-    useMutation,
-    UseMutationResult,
-    QueryKey,
-} from "react-query";
+import { useQueryClient, useMutation, UseMutationResult } from "react-query";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -12,27 +7,25 @@ import {
     IDataContext,
     MutationMode,
     GetListResponse,
-    BaseRecord,
+    ListQuery,
+    Context as DeleteContext,
 } from "@interfaces";
 
-import { useMutationMode, useListResourceQueries } from "@hooks";
+import {
+    useMutationMode,
+    useListResourceQueries,
+    useCancelNotification,
+} from "@hooks";
 
 type DeleteParams = {
     id: string | number;
-};
-
-type DeleteContext = {
-    previousListQueries: {
-        query: GetListResponse<BaseRecord>;
-        queryKey: QueryKey;
-    }[];
 };
 
 type UseDeleteReturnType = UseMutationResult<
     DeleteOneResponse,
     unknown,
     DeleteParams,
-    DeleteContext /* | undefined */
+    DeleteContext
 >;
 
 export const useDelete = (
@@ -43,6 +36,7 @@ export const useDelete = (
     const queryClient = useQueryClient();
     const { deleteOne } = useContext<IDataContext>(DataContext);
     const { mutationMode: mutationModeContext } = useMutationMode();
+    const cancelNotification = useCancelNotification();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
@@ -52,10 +46,13 @@ export const useDelete = (
 
     const listResourceQueries = useListResourceQueries(resource);
 
-    const mutation = useMutation(
-        /* <DeleteOneResponse, unknown, DeleteParams, DeleteContext> */ ({
-            id,
-        }: DeleteParams) => {
+    const mutation = useMutation<
+        DeleteOneResponse,
+        unknown,
+        DeleteParams,
+        DeleteContext
+    >(
+        ({ id }) => {
             if (!(mutationMode === "undoable")) {
                 return deleteOne(resource, id);
             }
@@ -66,23 +63,24 @@ export const useDelete = (
                         resolve(deleteOne(resource, id));
                     }, 5000);
 
-                    onCancel &&
-                        onCancel(() => {
-                            clearTimeout(updateTimeout);
-                            reject("mutation cancelled");
-                        });
+                    const cancelMutation = () => {
+                        clearTimeout(updateTimeout);
+                        reject("mutation cancelled");
+                    };
+
+                    if (onCancel) {
+                        onCancel(cancelMutation);
+                    } else {
+                        cancelNotification(cancelMutation);
+                    }
                 },
             );
             return updatePromise;
         },
         {
             onMutate: async (deleteParams) => {
+                const previousListQueries: ListQuery[] = [];
                 if (!(mutationMode === "pessimistic")) {
-                    const previousListQueries: {
-                        query: GetListResponse<BaseRecord>;
-                        queryKey: QueryKey;
-                    }[] = [];
-
                     for (const listQuery of listResourceQueries) {
                         const { queryKey } = listQuery;
 
@@ -113,11 +111,10 @@ export const useDelete = (
                             });
                         }
                     }
-                    return { previousListQueries: previousListQueries };
                 }
-                return;
+                return { previousListQueries: previousListQueries };
             },
-            onError: (err, variables, context: any) => {
+            onError: (err, variables, context) => {
                 if (!(mutationMode === "pessimistic")) {
                     if (context) {
                         for (const query of context.previousListQueries) {

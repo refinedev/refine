@@ -1,10 +1,5 @@
 import { useContext } from "react";
-import {
-    QueryKey,
-    useMutation,
-    UseMutationResult,
-    useQueryClient,
-} from "react-query";
+import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 import { DataContext } from "@contexts/data";
 import {
     BaseRecord,
@@ -12,15 +7,14 @@ import {
     UpdateResponse,
     GetListResponse,
     MutationMode,
+    ListQuery,
+    Context as UpdateContext,
 } from "@interfaces";
-import { useMutationMode, useListResourceQueries } from "@hooks";
-
-type UpdateContext = {
-    previousListQueries: {
-        query: GetListResponse<BaseRecord>;
-        queryKey: QueryKey;
-    }[];
-};
+import {
+    useMutationMode,
+    useListResourceQueries,
+    useCancelNotification,
+} from "@hooks";
 
 type UpdateParams<TParams> = {
     id: string;
@@ -43,6 +37,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
     const queryClient = useQueryClient();
     const { update } = useContext<IDataContext>(DataContext);
     const { mutationMode: mutationModeContext } = useMutationMode();
+    const cancelNotification = useCancelNotification();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
@@ -52,16 +47,13 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
 
     const listResourceQueries = useListResourceQueries(resource);
 
-    const mutation = useMutation(
-        /* <
+    const mutation = useMutation<
         UpdateResponse,
         unknown,
         UpdateParams<TParams>,
         UpdateContext
-    > */ ({
-            id,
-            values,
-        }: UpdateParams<TParams>) => {
+    >(
+        ({ id, values }) => {
             if (!(mutationMode === "undoable")) {
                 return update<TParams>(resource, id, values);
             }
@@ -72,75 +64,78 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                         resolve(update<TParams>(resource, id, values));
                     }, 5000);
 
-                    onCancel &&
-                        onCancel(() => {
-                            clearTimeout(updateTimeout);
-                            reject("mutation cancelled");
-                        });
+                    const cancelMutation = () => {
+                        clearTimeout(updateTimeout);
+                        reject("mutation cancelled");
+                    };
+
+                    if (onCancel) {
+                        onCancel(cancelMutation);
+                    } else {
+                        cancelNotification(cancelMutation);
+                    }
                 },
             );
             return updatePromise;
         },
         {
-            onMutate: !(mutationMode === "pessimistic")
-                ? async (formValue) => {
-                      const previousListQueries: {
-                          query: GetListResponse<BaseRecord>;
-                          queryKey: QueryKey;
-                      }[] = [];
+            onMutate: async (formValue) => {
+                const previousListQueries: ListQuery[] = [];
 
-                      for (const listQuery of listResourceQueries) {
-                          const { queryKey } = listQuery;
+                if (!(mutationMode === "pessimistic")) {
+                    for (const listQuery of listResourceQueries) {
+                        const { queryKey } = listQuery;
 
-                          await queryClient.cancelQueries(queryKey);
+                        await queryClient.cancelQueries(queryKey);
 
-                          const previousListQuery = queryClient.getQueryData<GetListResponse>(
-                              queryKey,
-                          );
+                        const previousListQuery = queryClient.getQueryData<GetListResponse>(
+                            queryKey,
+                        );
 
-                          if (previousListQuery)
-                              previousListQueries.push({
-                                  query: previousListQuery,
-                                  queryKey,
-                              });
+                        if (previousListQuery) {
+                            previousListQueries.push({
+                                query: previousListQuery,
+                                queryKey,
+                            });
 
-                          const { data } = previousListQuery ?? {};
+                            const { data } = previousListQuery;
 
-                          queryClient.setQueryData(queryKey, {
-                              ...previousListQuery,
-                              data: (data ?? []).map((record) => {
-                                  if (record.id.toString() === formValue.id) {
-                                      return {
-                                          ...formValue.values,
-                                          id: formValue.id,
-                                      };
-                                  }
-                                  return record;
-                              }),
-                          });
-                      }
-                      return { previousListQueries: previousListQueries };
-                  }
-                : undefined,
-            onError: !(mutationMode === "pessimistic")
-                ? (err, variables, context: UpdateContext | undefined) => {
-                      if (context) {
-                          for (const query of context.previousListQueries) {
-                              queryClient.setQueryData(
-                                  query.queryKey,
-                                  query.query,
-                              );
-                          }
-                      }
-                  }
-                : undefined,
-            onSettled: !(mutationMode === "pessimistic")
-                ? () => {
-                      for (const query of listResourceQueries) {
-                          queryClient.invalidateQueries(query.queryKey);
-                      }
-                  }
-                : undefined,
+                            queryClient.setQueryData(queryKey, {
+                                ...previousListQuery,
+                                data: data.map((record) => {
+                                    if (record.id.toString() === formValue.id) {
+                                        return {
+                                            ...formValue.values,
+                                            id: formValue.id,
+                                        };
+                                    }
+                                    return record;
+                                }),
+                            });
+                        }
+                    }
+                }
+                return { previousListQueries: previousListQueries };
+            },
+            onError: (err, variables, context) => {
+                if (!(mutationMode === "pessimistic")) {
+                    if (context) {
+                        for (const query of context.previousListQueries) {
+                            queryClient.setQueryData(
+                                query.queryKey,
+                                query.query,
+                            );
+                        }
+                    }
+                }
+            },
+            onSettled: () => {
+                if (!(mutationMode === "pessimistic")) {
+                    for (const query of listResourceQueries) {
+                        queryClient.invalidateQueries(query.queryKey);
+                    }
+                }
+            },
         },
     );
 

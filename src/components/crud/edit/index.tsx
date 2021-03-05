@@ -4,14 +4,9 @@ import { Form, Card, Button, Row, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
-import {
-    useOne,
-    useUpdate,
-    useTranslate,
-    useCancelNotification,
-    useMutationMode,
-} from "@hooks";
-import { BaseRecord, MutationMode } from "@interfaces";
+import { useOne, useUpdate, useTranslate, useMutationMode } from "@hooks";
+import { BaseRecord } from "@interfaces";
+import { MutationMode } from "../../../interfaces";
 import { DeleteButton, RefreshButton, ListButton } from "@components";
 
 export interface EditProps {
@@ -31,7 +26,6 @@ export const Edit: React.FC<EditProps> = ({
     children,
 }) => {
     const history = useHistory();
-    const cancelNotification = useCancelNotification();
     const { mutationMode: mutationModeContext } = useMutationMode();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
@@ -48,23 +42,18 @@ export const Edit: React.FC<EditProps> = ({
         });
     }, [data]);
 
-    const { mutate } = useUpdate(
-        resourceName,
-        mutationMode,
-        cancelNotification,
-    );
+    const { mutate } = useUpdate(resourceName, mutationMode);
     const translate = useTranslate();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         mutate(
             { id, values },
             {
-                onSuccess:
-                    mutationMode === "pessimistic"
-                        ? () => {
-                              return history.push(`/resources/${resourceName}`);
-                          }
-                        : undefined,
+                onSuccess: () => {
+                    if (mutationMode === "pessimistic") {
+                        return history.push(`/resources/${resourceName}`);
+                    }
+                },
             },
         );
         !(mutationMode === "pessimistic") &&
@@ -100,7 +89,7 @@ export const Edit: React.FC<EditProps> = ({
                 >
                     {actionButtons ?? (
                         <>
-                            <DeleteButton mutationMode="undoable" />
+                            <DeleteButton mutationMode={mutationMode} />
                             <Button
                                 htmlType="submit"
                                 disabled={isLoading}
