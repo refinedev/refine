@@ -4,12 +4,19 @@ import { GraphQLClient } from "graphql-request";
 import { BaseRecord, IDataContext } from "@interfaces";
 import { generateFieldsArray } from "@definitions/graphql";
 
-import { createOperationName, query, mutation } from "./graphql/utility";
+import {
+    createOperationName,
+    query,
+    mutation,
+    mapVariables,
+} from "./graphql/utility";
+import { queries } from "@testing-library/dom";
 
 const JsonGraphqlServer = (
     client: GraphQLClient,
     introspection: any,
 ): IDataContext => {
+    console.log("introspection", introspection);
     return {
         getList: async (resource, params) => {
             // pagination
@@ -67,35 +74,21 @@ const JsonGraphqlServer = (
         },
 
         create: async (resource, params) => {
-            // const operation = `create${singular(resource)}`;
+            const operation = createOperationName(resource, "create");
 
-            // const vars = introspection.queries.find(
-            //     (item: any) => item.name === operation,
-            // );
+            const { queries } = introspection;
+            const variables = mapVariables(queries, operation, params);
 
-            // const variables: any = {};
-            // vars.args.map((arg: any) => {
-            //     variables[arg.name] = {
-            //         value: params[arg.name],
-            //         required: arg.type.kind === "NON_NULL",
-            //         type: arg.type.ofType.name,
-            //     };
-            // });
+            const response = await mutation(client, {
+                operation,
+                variables,
+                fields: Object.keys(variables),
+            });
 
-            // await mutation({
-            //     operation,
-            //     variables,
-            //     fields: Object.keys(variables),
-            // });
-
-            // const url = `xx`;
-
-            // const { data } = await axios.post("**");
+            const data = response[operation];
 
             return {
-                data: {
-                    id: 1,
-                },
+                data,
             };
         },
 
@@ -120,30 +113,25 @@ const JsonGraphqlServer = (
         },
 
         getOne: async (resource, id, fields) => {
-            // const responseData = await query({
-            //     operation: "Post",
-            //     variables: {
-            //         id: {
-            //             value: 1,
-            //             required: true,
-            //             type: "ID",
-            //         },
-            //     },
-            //     fields,
-            // });
-            // console.log(responseData);
+            const operation = createOperationName(resource, "getOne");
 
-            // const url = `**`;
-
-            // const { data } = await axios.get(url);
-
-            // return {
-            //     data,
-            // };
-            return {
-                data: {
-                    id: 1,
+            const response = await query(client, {
+                operation,
+                fields,
+                // TODO: fix variables types
+                variables: {
+                    id: {
+                        required: true,
+                        value: Number(id),
+                        type: "ID",
+                    },
                 },
+            });
+
+            const data = response[operation];
+
+            return {
+                data,
             };
         },
 

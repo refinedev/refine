@@ -28,7 +28,14 @@ export const Edit: React.FC<EditProps> = ({
     const [form] = Form.useForm();
 
     // get fields for graphql
-    const fields = Object.keys(form.getFieldsValue());
+    const fields: string[] = [];
+    React.Children.map(children, (form) => {
+        if (React.isValidElement(form)) {
+            form.props.children.map((item: any) => {
+                fields.push(item.props.name);
+            });
+        }
+    });
 
     const { data, isLoading } = useOne(resourceName, id, fields);
 

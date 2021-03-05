@@ -120,6 +120,17 @@ export const PostEdit = (props: any) => {
         <Edit {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
+                    label="Id"
+                    name="id"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <InputNumber />
+                </Form.Item>
+                <Form.Item
                     label="Title"
                     name="title"
                     rules={[
@@ -129,6 +140,28 @@ export const PostEdit = (props: any) => {
                     ]}
                 >
                     <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Views"
+                    name="views"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <InputNumber />
+                </Form.Item>
+                <Form.Item
+                    label="UserId"
+                    name="user_id"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <InputNumber />
                 </Form.Item>
             </Form>
         </Edit>
