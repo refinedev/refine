@@ -1,6 +1,15 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 
-import { Admin, Resource, AuthProvider, JsonGraphqlServer } from "readmin";
+import {
+    Admin,
+    Resource,
+    AuthProvider,
+    JsonGraphqlServer,
+    createClient,
+    introspectionQuery,
+} from "readmin";
 import { PostList, PostCreate, PostEdit } from "./components/pages/post";
 
 function App() {
@@ -32,10 +41,24 @@ function App() {
             }),
     };
 
+    const client = createClient("http://localhost:3000");
+
+    const [introspection, setIntrospection] = useState(null);
+
+    useEffect(() => {
+        introspectionQuery(client).then((response: any) =>
+            setIntrospection(response),
+        );
+    }, []);
+
+    if (!introspection) {
+        return <span>loading...</span>;
+    }
+
     return (
         <Admin
             authProvider={authProvider}
-            dataProvider={JsonGraphqlServer("/api")}
+            dataProvider={JsonGraphqlServer(client, introspection)}
         >
             <Resource
                 name="Posts"

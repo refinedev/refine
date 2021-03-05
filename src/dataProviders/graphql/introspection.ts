@@ -2,7 +2,7 @@ import { getIntrospectionQuery, IntrospectionQuery } from "graphql";
 import { GraphQLClient } from "graphql-request";
 import gql from "graphql-tag";
 
-export default async (client: GraphQLClient) => {
+const introspectionQuery = async (client: GraphQLClient) => {
     const introspectionRequest: Promise<IntrospectionQuery> = client.request(
         gql`
             ${getIntrospectionQuery()}
@@ -33,3 +33,5 @@ export default async (client: GraphQLClient) => {
         types,
     };
 };
+
+export { introspectionQuery };

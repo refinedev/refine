@@ -1,6 +1,8 @@
 import JsonServer from "./dataProviders/jsonServer";
 import JsonGraphqlServer from "./dataProviders/jsonGraphqlServer";
 
+export * from "./dataProviders/graphql";
+
 export { JsonServer, JsonGraphqlServer };
 
 export * from "./components";

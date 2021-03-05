@@ -26,8 +26,8 @@ export interface GetListResponse<TData extends BaseRecord = BaseRecord> {
     total: number;
 }
 
-export interface CreateResponse<TData extends BaseRecord = BaseRecord> {
-    data: TData;
+export interface CreateResponse {
+    data: BaseRecord;
 }
 
 export interface UpdateResponse {
@@ -38,8 +38,8 @@ export interface UpdateManyResponse {
     data: BaseRecord[];
 }
 
-export interface GetOneResponse<TData extends BaseRecord = BaseRecord> {
-    data: TData;
+export interface GetOneResponse {
+    data: BaseRecord;
 }
 
 export interface GetManyResponse<TData extends BaseRecord = BaseRecord> {
@@ -74,11 +74,8 @@ export interface IDataContext {
         resource: string,
         id: Identifier,
         fields?: string[],
-    ) => Promise<GetOneResponse<TData>>;
-    create: <TData extends BaseRecord = BaseRecord>(
-        resource: string,
-        params: Params,
-    ) => Promise<CreateResponse<TData>>;
+    ) => Promise<GetOneResponse>;
+    create: (resource: string, params: Params) => Promise<CreateResponse>;
     update: <TParams extends BaseRecord = BaseRecord>(
         resource: string,
         id: Identifier,
@@ -94,5 +91,5 @@ export interface IDataContext {
         resource: string,
         ids: Identifier[],
     ) => Promise<DeleteManyResponse>;
-    getApiUrl: () => string;
+    getApiUrl?: () => string;
 }

@@ -1,42 +1,17 @@
 import axios from "axios";
-import { stringify } from "query-string";
 import { GraphQLClient } from "graphql-request";
-import * as gqlBuilder from "gql-query-builder";
-import IQueryBuilderOptions from "gql-query-builder/build/IQueryBuilderOptions";
 
 import { BaseRecord, IDataContext } from "@interfaces";
 import { generateFieldsArray } from "@definitions/graphql";
 
-import introspection from "./graphql/introspection";
+import { createOperationName, query, mutation } from "./graphql/utility";
 
-const JsonGraphqlServer = (apiUrl: string): IDataContext => {
-    const client = new GraphQLClient("http://localhost:3000");
-
-    introspection(client).then((data) => console.log(data));
-
-    const query = async (
-        options: IQueryBuilderOptions | IQueryBuilderOptions[],
-    ) => {
-        const qb = gqlBuilder.query(options);
-
-        return client.request(qb.query, qb.variables);
-    };
-
-    const mutation = async (
-        options: IQueryBuilderOptions | IQueryBuilderOptions[],
-    ) => {
-        const qb = gqlBuilder.mutation(options);
-
-        return client.request(qb.query, qb.variables);
-    };
-
+const JsonGraphqlServer = (
+    client: GraphQLClient,
+    introspection: any,
+): IDataContext => {
     return {
         getList: async (resource, params) => {
-            const operation = `all${resource}`;
-
-            // search
-            // const q = params.search;
-
             // pagination
             const page = params.pagination?.current || 1;
             const perPage = params.pagination?.pageSize || 10;
@@ -58,8 +33,9 @@ const JsonGraphqlServer = (apiUrl: string): IDataContext => {
             let data: BaseRecord[] = [];
             let total = 0;
 
-            const responseData = await query({
-                operation,
+            const dataOperationName = createOperationName(resource, "getList");
+            const responseData = await query(client, {
+                operation: dataOperationName,
                 fields,
                 variables: {
                     sortField,
@@ -68,13 +44,14 @@ const JsonGraphqlServer = (apiUrl: string): IDataContext => {
                     perPage,
                 },
             });
-            data = responseData["allPosts"];
+            data = responseData[dataOperationName];
 
-            const responseMetaData = await query({
-                operation: `_${operation}Meta`,
+            const metaOperationName = createOperationName(resource, "metaData");
+            const responseMetaData = await query(client, {
+                operation: metaOperationName,
                 fields: ["count"],
             });
-            total = responseMetaData["_allPostsMeta"].count;
+            total = responseMetaData[metaOperationName].count;
 
             return {
                 data,
@@ -83,32 +60,47 @@ const JsonGraphqlServer = (apiUrl: string): IDataContext => {
         },
 
         getMany: async (resource, ids) => {
-            const { data } = await axios.get(
-                `${apiUrl}/${resource}?${stringify({ id: ids })}`,
-            );
+            const { data } = await axios.get(`xx`);
             return {
                 data,
             };
         },
 
         create: async (resource, params) => {
-            await mutation({
-                operation: "createPost",
-                // eslint-disable-next-line @typescript-eslint/camelcase
-                variables: { id: 0, views: 99, user_id: 1, ...params },
-            });
+            // const operation = `create${singular(resource)}`;
 
-            const url = `${apiUrl}/${resource}`;
+            // const vars = introspection.queries.find(
+            //     (item: any) => item.name === operation,
+            // );
 
-            const { data } = await axios.post(url, params);
+            // const variables: any = {};
+            // vars.args.map((arg: any) => {
+            //     variables[arg.name] = {
+            //         value: params[arg.name],
+            //         required: arg.type.kind === "NON_NULL",
+            //         type: arg.type.ofType.name,
+            //     };
+            // });
+
+            // await mutation({
+            //     operation,
+            //     variables,
+            //     fields: Object.keys(variables),
+            // });
+
+            // const url = `xx`;
+
+            // const { data } = await axios.post("**");
 
             return {
-                data,
+                data: {
+                    id: 1,
+                },
             };
         },
 
         update: async (resource, id, params) => {
-            const url = `${apiUrl}/${resource}/${id}`;
+            const url = `xx`;
 
             const { data } = await axios.put(url, params);
 
@@ -120,10 +112,7 @@ const JsonGraphqlServer = (apiUrl: string): IDataContext => {
         updateMany: async (resource, ids, params) => {
             const response = await Promise.all(
                 ids.map(async (id) => {
-                    const { data } = await axios.put(
-                        `${apiUrl}/${resource}/${id}`,
-                        params,
-                    );
+                    const { data } = await axios.put(`xx`, params);
                     return data;
                 }),
             );
@@ -131,30 +120,35 @@ const JsonGraphqlServer = (apiUrl: string): IDataContext => {
         },
 
         getOne: async (resource, id, fields) => {
-            const responseData = await query({
-                operation: "Post",
-                variables: {
-                    id: {
-                        value: 1,
-                        required: true,
-                        type: "ID",
-                    },
-                },
-                fields,
-            });
-            console.log(responseData);
+            // const responseData = await query({
+            //     operation: "Post",
+            //     variables: {
+            //         id: {
+            //             value: 1,
+            //             required: true,
+            //             type: "ID",
+            //         },
+            //     },
+            //     fields,
+            // });
+            // console.log(responseData);
 
-            const url = `${apiUrl}/${resource}/${id}`;
+            // const url = `**`;
 
-            const { data } = await axios.get(url);
+            // const { data } = await axios.get(url);
 
+            // return {
+            //     data,
+            // };
             return {
-                data,
+                data: {
+                    id: 1,
+                },
             };
         },
 
         deleteOne: async (resource, id) => {
-            const url = `${apiUrl}/${resource}/${id}`;
+            const url = `**`;
 
             const { data } = await axios.delete(url);
 
@@ -166,17 +160,11 @@ const JsonGraphqlServer = (apiUrl: string): IDataContext => {
         deleteMany: async (resource, ids) => {
             const response = await Promise.all(
                 ids.map(async (id) => {
-                    const { data } = await axios.delete(
-                        `${apiUrl}/${resource}/${id}`,
-                    );
+                    const { data } = await axios.delete(`**`);
                     return data;
                 }),
             );
             return { data: response };
-        },
-
-        getApiUrl: () => {
-            return apiUrl;
         },
     };
 };
