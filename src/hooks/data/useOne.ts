@@ -12,7 +12,7 @@ export const useOne = <TData extends BaseRecord = BaseRecord>(
     const { getOne } = useContext<IDataContext>(DataContext);
 
     const queryResponse = useQuery<GetOneResponse<TData>>(
-        `resource/getOne/${resource}`,
+        [`resource/getOne/${resource}`, { id }],
         () => getOne<TData>(resource, id),
         options,
     );

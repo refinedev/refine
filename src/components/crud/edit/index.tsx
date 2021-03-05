@@ -1,29 +1,38 @@
 import React from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, useRouteMatch } from "react-router-dom";
 import { Form, Card, Button, Row, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
-import { useOne, useUpdate, useTranslate, useMutationMode } from "@hooks";
-import { BaseRecord } from "@interfaces";
 import { MutationMode } from "../../../interfaces";
+import {
+    useOne,
+    useUpdate,
+    useTranslate,
+    useResourceWithRoute,
+    useNotification,
+    useMutationMode,
+} from "@hooks";
+import { BaseRecord, ResourceRouterParams } from "@interfaces";
 import { DeleteButton, RefreshButton, ListButton } from "@components";
 
 export interface EditProps {
-    resourceName: string;
     title?: string;
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
     mutationMode?: MutationMode;
+    onError?: () => void;
+    onSuccess?: () => void;
 }
 
 export const Edit: React.FC<EditProps> = ({
-    resourceName,
     title,
     actionButtons,
     saveButtonProps,
     mutationMode: mutationModeProp,
     children,
+    onSuccess,
+    onError,
 }) => {
     const history = useHistory();
     const { mutationMode: mutationModeContext } = useMutationMode();
@@ -34,7 +43,14 @@ export const Edit: React.FC<EditProps> = ({
 
     const [form] = Form.useForm();
 
-    const { data, isLoading } = useOne(resourceName, id);
+    const {
+        resource: routeResourceName,
+        id: idFromRoute,
+    } = useParams<ResourceRouterParams>();
+
+    const resource = useResourceWithRoute(routeResourceName);
+
+    const { data, isLoading } = useOne(resource.name, idFromRoute);
 
     React.useEffect(() => {
         form.setFieldsValue({
@@ -42,28 +58,48 @@ export const Edit: React.FC<EditProps> = ({
         });
     }, [data]);
 
-    const { mutate } = useUpdate(resourceName, mutationMode);
+    const { mutate } = useUpdate(resource.name, mutationMode);
     const translate = useTranslate();
+    const notification = useNotification();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         mutate(
-            { id, values },
+            { id: idFromRoute, values },
             {
                 onSuccess: () => {
-                    if (mutationMode === "pessimistic") {
-                        return history.push(`/resources/${resourceName}`);
+                    if (onSuccess) {
+                        return onSuccess();
                     }
+
+                    notification.success({
+                        message: "Successful",
+                        description: `Id:$ {id} ${resource.name} edited`,
+                    });
+
+                    if (mutationMode === "pessimistic") {
+                        return history.push(`/resources/${resource.route}`);
+                    }
+                },
+                onError: (err: any) => {
+                    if (onError) {
+                        return onError();
+                    }
+
+                    notification.error({
+                        message: `There was an error updating it ${resource.name}!`,
+                        description: err.message,
+                    });
                 },
             },
         );
         !(mutationMode === "pessimistic") &&
-            history.push(`/resources/${resourceName}`);
+            history.push(`/resources/${resource.route}`);
     };
 
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {
-                resourceName,
+                resourceName: resource.name,
                 form,
                 onFinish,
             });
@@ -73,12 +109,12 @@ export const Edit: React.FC<EditProps> = ({
 
     return (
         <Card
-            title={title ?? `Edit ${pluralize.singular(resourceName)}`}
+            title={title ?? `Edit ${pluralize.singular(resource.name)}`}
             extra={
                 <Row>
                     <Space>
-                        <ListButton resourceName={resourceName} />
-                        <RefreshButton resourceName={resourceName} />
+                        <ListButton />
+                        <RefreshButton />
                     </Space>
                 </Row>
             }

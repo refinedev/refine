@@ -1,7 +1,8 @@
 import React, { ReactNode } from "react";
 
 export interface OptionsProps {
-    label: string;
+    label?: string;
+    route?: string;
 }
 export interface ResourceProps {
     name: string;

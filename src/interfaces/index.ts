@@ -18,3 +18,6 @@ export * from "@interfaces/match";
 
 // mutationMode
 export * from "./mutationMode";
+
+// resourceRouterParams
+export * from "@interfaces/resourceRouterParams";

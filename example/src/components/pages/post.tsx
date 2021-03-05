@@ -23,6 +23,7 @@ import {
     useApiUrl,
     useFileUploadState,
     useTranslate,
+    useNotification,
 } from "readmin";
 
 import { ShowAside } from "../show";
@@ -37,6 +38,9 @@ export const PostList = (props: any) => {
                     pageSize: 20,
                     position: ["bottomCenter"],
                     size: "small",
+                }}
+                filter={{
+                    categoryId: [37, 20],
                 }}
             >
                 <Column

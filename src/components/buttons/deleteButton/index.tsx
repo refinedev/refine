@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import { Button, ButtonProps, Popconfirm } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
-import { useHistory, useRouteMatch } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
-import { useDelete, useTranslate, useMutationMode } from "@hooks";
-import { MatchRoute, DeleteOneResponse, MutationMode } from "@interfaces";
+import { useDelete, useResourceWithRoute, useTranslate, useMutationMode } from "@hooks";
+import { DeleteOneResponse, ResourceRouterParams, MutationMode } from "@interfaces";
 
 type DeleteButtonProps = ButtonProps & {
     resourceName?: string;
@@ -26,21 +26,16 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
-    const match = useRouteMatch({
-        path: [
-            "/resources/:resourceName/:action/:id",
-            "/resources/:resourceName",
-            "/*",
-        ],
-    });
-
     const {
-        params: { resourceName: routeResourceName, id: idFromRoute },
-    } = (match as unknown) as MatchRoute;
+        resource: routeResourceName,
+        id: idFromRoute,
+    } = useParams<ResourceRouterParams>();
 
     const resourceName = propResourceName ?? routeResourceName;
 
-    const { mutateAsync, isLoading } = useDelete(resourceName, mutationMode);
+    const resource = useResourceWithRoute(resourceName);
+
+    const { mutateAsync, isLoading } = useDelete(resource.name, mutationMode);
 
     return (
         <Popconfirm

@@ -9,13 +9,24 @@ import {
     PostShow,
 } from "./components/pages/post";
 import { CategoryList, CategoryCreate } from "./components/pages/category";
-import { UserList, UserShow } from "./components/pages/user";
+import {
+    UserList,
+    UserShow,
+    UserEdit,
+    UserCreate,
+} from "./components/pages/user";
 import { TagList, TagCreate, TagEdit } from "./components/pages/tag";
 import { ImagesList } from "./components/pages/images";
 import { FilesList } from "./components/pages/files";
 import { DashboardPage } from "./components/pages/dashboard";
 import { ReadyPage } from "./components/ready";
 import { LoginPage } from "./components/login";
+import {
+    PostLightCreate,
+    PostLightEdit,
+    PostLightList,
+    PostLightShow,
+} from "./components/pages/post-light";
 
 function App() {
     const authProvider: AuthProvider = {
@@ -74,6 +85,15 @@ function App() {
                 canDelete
             />
             <Resource
+                name="posts"
+                list={PostLightList}
+                create={PostLightCreate}
+                edit={PostLightEdit}
+                show={PostLightShow}
+                options={{ label: "Post Light", route: "post-light" }}
+                canDelete
+            />
+            <Resource
                 name="categories"
                 list={CategoryList}
                 create={CategoryCreate}
@@ -82,6 +102,8 @@ function App() {
             <Resource
                 name="users"
                 list={UserList}
+                edit={UserEdit}
+                create={UserCreate}
                 show={UserShow}
                 icon={<Icons.UserOutlined />}
             />

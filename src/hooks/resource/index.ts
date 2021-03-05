@@ -1,1 +1,2 @@
-export { useResource } from "./useResource";
+export * from "./useResource";
+export * from "./useResourceWithRoute";
