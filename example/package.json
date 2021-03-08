@@ -16,6 +16,7 @@
     "react": "file:../node_modules/react",
     "react-dom": "file:../node_modules/react-dom",
     "react-mde": "^11.0.6",
+    "react-quill": "^1.3.5",
     "react-scripts": "4.0.2",
     "readmin": "file:../.",
     "showdown": "^1.9.1",

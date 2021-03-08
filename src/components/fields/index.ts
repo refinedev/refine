@@ -9,3 +9,4 @@ export { FileField } from "./fileField";
 export { UrlField } from "./urlField";
 export { NumberField } from "./numberField";
 export { MarkdownField } from "./markdownField";
+export { RichtextField } from "./richtextField";
