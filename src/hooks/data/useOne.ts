@@ -13,7 +13,7 @@ export const useOne = (
     const { getOne } = useContext<IDataContext>(DataContext);
 
     const queryResponse = useQuery<GetOneResponse>(
-        `resource/getOne/${resource}`,
+        [`resource/getOne/${resource}`, { id }],
         () => getOne(resource, id, fields),
         options,
     );

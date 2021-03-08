@@ -35,7 +35,17 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
 
     const routes: IRoutesProps[] = [];
     const RouteHandler = (val: React.ReactElement): void => {
-        const { list, name, create, edit, show, canDelete } = val.props;
+        const {
+            list,
+            name,
+            create,
+            edit,
+            show,
+            canDelete,
+            options,
+        } = val.props;
+
+        const routeName = options?.route ?? name;
 
         const ListComponent = list;
         const CreateComponent = create;
@@ -49,14 +59,9 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (CreateComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/${name}/create`,
+                path: `/resources/:resource(${routeName})/create`,
                 component: () => {
-                    return (
-                        <CreateComponent
-                            resourceName={name}
-                            canEdit={canEdit}
-                        />
-                    );
+                    return <CreateComponent canEdit={canEdit} />;
                 },
             });
         }
@@ -64,18 +69,17 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (EditComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/${name}/edit/:id`,
-                component: () => <EditComponent resourceName={name} />,
+                path: `/resources/:resource(${routeName})/edit/:id`,
+                component: () => <EditComponent />,
             });
         }
 
         if (ShowComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/${name}/show/:id`,
+                path: `/resources/:resource(${routeName})/show/:id`,
                 component: () => (
                     <ShowComponent
-                        resourceName={name}
                         canCreate={canCreate}
                         canEdit={canEdit}
                         canDelete={canDelete}
@@ -87,10 +91,9 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (ListComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/${name}`,
+                path: `/resources/:resource(${routeName})`,
                 component: () => (
                     <ListComponent
-                        resourceName={name}
                         canCreate={canCreate}
                         canEdit={canEdit}
                         canDelete={canDelete}
