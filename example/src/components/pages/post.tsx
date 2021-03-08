@@ -17,14 +17,15 @@ import {
     Input,
     Upload,
     ShowSimple,
-    Markdown,
     MarkdownField,
     normalizeFile,
     useApiUrl,
     useFileUploadState,
     useTranslate,
-    useNotification,
 } from "readmin";
+
+import ReactMde from "react-mde";
+import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { ShowAside } from "../show";
 
@@ -159,7 +160,7 @@ export const PostCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <Input.TextArea />
+                    <ReactMde />
                 </Form.Item>
                 <Form.Item
                     label={translate("common:resources.posts.fields.status")}
@@ -329,7 +330,7 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <Markdown />
+                    <ReactMde />
                 </Form.Item>
                 <Form.Item
                     label={translate("common:resources.posts.fields.status")}
