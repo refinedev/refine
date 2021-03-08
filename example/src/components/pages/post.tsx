@@ -29,7 +29,7 @@ import {
     useFileUploadState,
     useTranslate,
     Button,
-    useNotification,
+    useCreate,
 } from "readmin";
 
 import { ShowAside } from "../show";
@@ -127,9 +127,19 @@ export const PostList = (props: any) => {
 
 export const PostCreate = (props: any) => {
     const { Step } = Steps;
+    const history = useHistory();
+
+    const { mutate } = useCreate("posts");
+
+    const onSuccess = () => {
+        history.push(`/resources/posts`);
+    };
+
+    const onError = () => {
+        console.log("error");
+    };
 
     const {
-        form,
         current,
         gotoStep,
         stepsProps,
@@ -137,34 +147,17 @@ export const PostCreate = (props: any) => {
         submit,
         formLoading,
     } = useStepsForm({
-        async submit(values) {
-            const {
-                title,
-                slug,
-                content,
-                status,
-                categoryId,
-                userId,
-                tags,
-                image,
-            } = values;
-            console.log(
-                title,
-                slug,
-                content,
-                status,
-                categoryId,
-                userId,
-                tags,
-                image,
+        submit(values) {
+            mutate(
+                { values },
+                {
+                    onSuccess: onSuccess,
+                    onError: onError,
+                },
             );
-            await new Promise((r) => setTimeout(r, 1000));
-            return "ok";
         },
         total: 4,
     });
-
-    const history = useHistory();
 
     const apiUrl = useApiUrl();
 
@@ -339,14 +332,7 @@ export const PostCreate = (props: any) => {
                             type="primary"
                             icon={<SaveOutlined />}
                             loading={formLoading}
-                            onClick={() => {
-                                submit().then((result) => {
-                                    if (result === "ok") {
-                                        /* To do "add hook" */
-                                        history.push(`/resources/posts`);
-                                    }
-                                });
-                            }}
+                            onClick={() => submit()}
                         >
                             {translate("common:buttons.save", "Save")}
                         </Button>
