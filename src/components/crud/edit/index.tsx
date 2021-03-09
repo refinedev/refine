@@ -23,6 +23,7 @@ export interface EditProps {
     mutationMode?: MutationMode;
     onError?: () => void;
     onSuccess?: () => void;
+    submitOnEnter?: boolean;
 }
 
 export const Edit: React.FC<EditProps> = ({
@@ -33,6 +34,7 @@ export const Edit: React.FC<EditProps> = ({
     children,
     onSuccess,
     onError,
+    submitOnEnter = true,
 }) => {
     const history = useHistory();
     const { mutationMode: mutationModeContext } = useMutationMode();
@@ -102,6 +104,11 @@ export const Edit: React.FC<EditProps> = ({
                 resourceName: resource.name,
                 form,
                 onFinish,
+                onKeyUp: (event: any) => {
+                    if (submitOnEnter && event.keyCode === 13) {
+                        form.submit();
+                    }
+                },
             });
         }
         return child;
