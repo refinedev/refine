@@ -19,6 +19,7 @@ export interface CreateProps {
     saveButtonProps?: ButtonProps;
     onSuccess?: (data: any) => void;
     onError?: (error: any) => void;
+    submitOnEnter?: boolean;
 }
 
 export const Create: React.FC<CreateProps> = ({
@@ -29,6 +30,7 @@ export const Create: React.FC<CreateProps> = ({
     children,
     onSuccess,
     onError,
+    submitOnEnter = true,
 }) => {
     const history = useHistory();
 
@@ -88,6 +90,11 @@ export const Create: React.FC<CreateProps> = ({
                 resourceName: resource.name,
                 onFinish,
                 form,
+                onKeyUp: (event: any) => {
+                    if (submitOnEnter && event.keyCode === 13) {
+                        form.submit();
+                    }
+                },
             });
         }
         return child;
