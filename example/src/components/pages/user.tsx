@@ -160,7 +160,7 @@ export const UserCreate = (props: any) => {
     const dateFormat = "DD/MM/YYYY";
 
     return (
-        <Create {...props} submitOnEnter={false}>
+        <Create {...props}>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <Tabs>
                     <TabPane tab="Summary" key="summary">

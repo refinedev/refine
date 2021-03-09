@@ -30,7 +30,7 @@ export const Create: React.FC<CreateProps> = ({
     children,
     onSuccess,
     onError,
-    submitOnEnter,
+    submitOnEnter = true,
 }) => {
     const history = useHistory();
 
@@ -90,6 +90,11 @@ export const Create: React.FC<CreateProps> = ({
                 resourceName: resource.name,
                 onFinish,
                 form,
+                onKeyUp: (event: any) => {
+                    if (submitOnEnter && event.keyCode === 13) {
+                        form.submit();
+                    }
+                },
             });
         }
         return child;
@@ -117,11 +122,7 @@ export const Create: React.FC<CreateProps> = ({
                             disabled={isLoading}
                             type="primary"
                             icon={<SaveOutlined />}
-                            onClick={(e): void =>
-                                submitOnEnter
-                                    ? form.submit()
-                                    : e.preventDefault()
-                            }
+                            onClick={(): void => form.submit()}
                             {...saveButtonProps}
                         >
                             {translate("common:buttons.save", "Save")}
