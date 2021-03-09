@@ -125,7 +125,9 @@ export const PostList = (props: any) => {
 export const PostCreate = (props: any) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
-    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+        "write",
+    );
     const { isLoading, onChange } = useFileUploadState();
 
     return (
@@ -297,7 +299,9 @@ export const PostCreate = (props: any) => {
 export const PostEdit = (props: any) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
-    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+        "write",
+    );
     const { isLoading, onChange } = useFileUploadState();
 
     return (
