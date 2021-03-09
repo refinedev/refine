@@ -297,7 +297,7 @@ export const PostCreate = (props: any) => {
 export const PostEdit = (props: any) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
-    const [selectedTab, setSelectedTab] = React.useState<any>("write");
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">("write");
     const { isLoading, onChange } = useFileUploadState();
 
     return (
