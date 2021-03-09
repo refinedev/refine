@@ -100,8 +100,6 @@ export const Create: React.FC<CreateProps> = ({
         return child;
     });
 
-    const type = submitOnEnter ? "submit" : "button";
-
     return (
         <Card
             title={
@@ -118,7 +116,7 @@ export const Create: React.FC<CreateProps> = ({
                 >
                     {actionButtons ?? (
                         <Button
-                            htmlType={type}
+                            htmlType="submit"
                             disabled={isLoading}
                             type="primary"
                             icon={<SaveOutlined />}
