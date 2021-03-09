@@ -2,6 +2,7 @@ import * as React from "react";
 import {
     List,
     Table,
+    EditableTable,
     Column,
     Create,
     Edit,
@@ -23,16 +24,18 @@ import {
     useApiUrl,
     useFileUploadState,
     useTranslate,
-    useNotification,
 } from "readmin";
 
 import { ShowAside } from "../show";
 
 export const PostList = (props: any) => {
     const translate = useTranslate();
+
+    // const [form] = Form.useForm();
+
     return (
         <List {...props}>
-            <Table
+            <EditableTable
                 rowKey="id"
                 pagination={{
                     pageSize: 20,
@@ -42,7 +45,17 @@ export const PostList = (props: any) => {
                 filter={{
                     categoryId: [37, 20],
                 }}
+                // components={{
+                //     body: {
+                //         row: (props: any) => <Form form={form}>{props.children}</Form>
+                //     }
+                // }}
             >
+                {/* <Form form={form} onFieldsChange={(changedFields, allFields) => {
+                    console.log("changedFields: ", changedFields)
+                    console.log("allFields: ", allFields)
+                }}> */}
+
                 <Column
                     dataIndex="id"
                     title={translate("common:resources.posts.fields.id")}
@@ -51,17 +64,24 @@ export const PostList = (props: any) => {
                         multiple: 3,
                     }}
                     defaultSortOrder="descend"
+                    // onCell={(data, index) => ({ data, index })}
                 />
                 <Column
                     dataIndex="title"
                     title={translate("common:resources.posts.fields.title")}
                     key="title"
-                    render={(value) => <TextField value={value} />}
+                    render={(value) => (
+                        <Form.Item name="title" initialValue={value}>
+                            <Input /* value={value} */ />
+                        </Form.Item>
+                    )}
                     sorter={{
                         multiple: 1,
                     }}
                 />
-                <Column
+                {/* </Form> */}
+
+                {/* <Column
                     dataIndex="slug"
                     title={translate("common:resources.posts.fields.slug")}
                     key="slug"
@@ -113,8 +133,8 @@ export const PostList = (props: any) => {
                         </FilterDropdown>
                     )}
                     defaultFilteredValue={["active"]}
-                />
-            </Table>
+                /> */}
+            </EditableTable>
         </List>
     );
 };
