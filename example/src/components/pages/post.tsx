@@ -125,7 +125,7 @@ export const PostList = (props: any) => {
 export const PostCreate = (props: any) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
-    const [selectedTab, setSelectedTab] = React.useState<any>("write");
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">("write");
     const { isLoading, onChange } = useFileUploadState();
 
     return (
