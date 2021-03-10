@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, useParams, useRouteMatch } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Form, Card, Button, Row, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
@@ -36,12 +36,12 @@ export const Edit: React.FC<EditProps> = ({
     onError,
     submitOnEnter = true,
 }) => {
-    const history = useHistory();
+    // const history = useHistory();
     const { mutationMode: mutationModeContext } = useMutationMode();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
-    const [form] = Form.useForm();
+    // const [form] = Form.useForm();
 
     const {
         resource: routeResourceName,
@@ -51,67 +51,70 @@ export const Edit: React.FC<EditProps> = ({
 
     const resource = useResourceWithRoute(routeResourceName);
 
-    const { data, isLoading } = useOne(resource.name, idFromRoute);
+    // const { data, isLoading } = useOne(resource.name, idFromRoute);
 
-    React.useEffect(() => {
-        form.setFieldsValue({
-            ...data?.data,
-        });
-    }, [data]);
+    // React.useEffect(() => {
+    //     form.setFieldsValue({
+    //         ...data?.data,
+    //     });
+    // }, [data]);
 
-    const { mutate } = useUpdate(resource.name, mutationMode);
+    // const { mutate } = useUpdate(resource.name, mutationMode);
     const translate = useTranslate();
-    const notification = useNotification();
+    // const notification = useNotification();
 
-    const onFinish = async (values: BaseRecord): Promise<void> => {
-        mutate(
-            { id: idFromRoute, values },
-            {
-                onSuccess: () => {
-                    if (onSuccess) {
-                        return onSuccess();
-                    }
+    // const onFinish = async (values: BaseRecord): Promise<void> => {
+    //     mutate(
+    //         { id: idFromRoute, values },
+    //         {
+    //             onSuccess: () => {
+    //                 if (onSuccess) {
+    //                     return onSuccess();
+    //                 }
 
-                    notification.success({
-                        message: "Successful",
-                        description: `Id:${idFromRoute} ${resource.name} edited`,
-                    });
+    //                 notification.success({
+    //                     message: "Successful",
+    //                     description: `Id:${idFromRoute} ${resource.name} edited`,
+    //                 });
 
-                    if (mutationMode === "pessimistic") {
-                        return history.push(`/resources/${resource.route}`);
-                    }
-                },
-                onError: (err: any) => {
-                    if (onError) {
-                        return onError();
-                    }
+    //                 if (mutationMode === "pessimistic") {
+    //                     return history.push(`/resources/${resource.route}`);
+    //                 }
+    //             },
+    //             onError: (err: any) => {
+    //                 if (onError) {
+    //                     return onError();
+    //                 }
 
-                    notification.error({
-                        message: `There was an error updating it ${resource.name}!`,
-                        description: err.message,
-                    });
-                },
-            },
-        );
-        !(mutationMode === "pessimistic") &&
-            history.push(`/resources/${resource.route}`);
-    };
+    //                 notification.error({
+    //                     message: `There was an error updating it ${resource.name}!`,
+    //                     description: err.message,
+    //                 });
+    //             },
+    //         },
+    //     );
+    //     !(mutationMode === "pessimistic") &&
+    //         history.push(`/resources/${resource.route}`);
+    // };
 
-    const childrenWithProps = React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-            return React.cloneElement(child, {
-                resourceName: resource.name,
-                form,
-                onFinish,
-                onKeyUp: (event: any) => {
-                    if (submitOnEnter && event.keyCode === 13) {
-                        form.submit();
-                    }
-                },
-            });
-        }
-        return child;
-    });
+    // const childrenWithProps = React.Children.map(children, (child) => {
+    //     if (React.isValidElement(child)) {
+    //         return React.cloneElement(child, {
+    //             resourceName: resource.name,
+    //             form,
+    //             onFinish,
+    //             onKeyUp: (event: any) => {
+    //                 if (submitOnEnter && event.keyCode === 13) {
+    //                     form.submit();
+    //                 }
+    //             },
+    //         });
+    //     }
+    //     return child;
+    // });
+
+    console.log("edit savebuttonprops: ", saveButtonProps)
+
     return (
         <Card
             title={title ?? `Edit ${pluralize.singular(resource.name)}`}
@@ -133,10 +136,10 @@ export const Edit: React.FC<EditProps> = ({
                             <DeleteButton mutationMode={mutationMode} />
                             <Button
                                 htmlType="submit"
-                                disabled={isLoading}
+                                // disabled={isLoading}
                                 type="primary"
                                 icon={<SaveOutlined />}
-                                onClick={(): void => form.submit()}
+                                // onClick={(): void => form.submit()}
                                 {...saveButtonProps}
                             >
                                 {translate("common:buttons.save", "Save")}
@@ -146,7 +149,7 @@ export const Edit: React.FC<EditProps> = ({
                 </Space>,
             ]}
         >
-            {childrenWithProps}
+            {children}
         </Card>
     );
 };

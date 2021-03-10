@@ -27,6 +27,7 @@ import {
     EditButton,
     DeleteButton,
     ShowButton,
+    useForm,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -52,8 +53,6 @@ export const PostList = (props: any) => {
             status: ["active"],
         },
     });
-
-    console.log("Postlist datasource: ", tableProps);
 
     return (
         <List {...props}>
@@ -344,13 +343,20 @@ export const PostEdit = (props: any) => {
     );
     const { isLoading, onChange } = useFileUploadState();
 
+    const {formProps, submit, isLoadingData, onFinish, form} = useForm({})
+
+    console.log("postedit useform formprops: ", formProps)
+
     return (
         <Edit
             {...props}
-            mutationMode="optimistic"
-            saveButtonProps={{ disabled: isLoading }}
+            // mutationMode="optimistic"
+            saveButtonProps={{
+                disabled: isLoading || isLoadingData,
+                onClick: () => {form.submit()}
+            }}
         >
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+            <Form {...formProps} onFinish={onFinish} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
                     name="title"
