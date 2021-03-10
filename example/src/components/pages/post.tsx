@@ -16,7 +16,6 @@ import {
     Input,
     Upload,
     ShowSimple,
-    Markdown,
     MarkdownField,
     normalizeFile,
     useApiUrl,
@@ -29,6 +28,11 @@ import {
     DeleteButton,
     ShowButton,
 } from "readmin";
+
+import ReactMarkdown from "react-markdown";
+import ReactMde from "react-mde";
+
+import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { ShowAside } from "../show";
 
@@ -161,7 +165,9 @@ export const PostList = (props: any) => {
 export const PostCreate = (props: any) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
-
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+        "write",
+    );
     const { isLoading, onChange } = useFileUploadState();
 
     return (
@@ -198,7 +204,13 @@ export const PostCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <Input.TextArea />
+                    <ReactMde
+                        selectedTab={selectedTab}
+                        onTabChange={setSelectedTab}
+                        generateMarkdownPreview={(markdown) =>
+                            Promise.resolve(<ReactMarkdown source={markdown} />)
+                        }
+                    />
                 </Form.Item>
                 <Form.Item
                     label={translate("common:resources.posts.fields.status")}
@@ -327,7 +339,9 @@ export const PostCreate = (props: any) => {
 export const PostEdit = (props: any) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
-
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+        "write",
+    );
     const { isLoading, onChange } = useFileUploadState();
 
     return (
@@ -368,7 +382,13 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <Markdown />
+                    <ReactMde
+                        selectedTab={selectedTab}
+                        onTabChange={setSelectedTab}
+                        generateMarkdownPreview={(markdown) =>
+                            Promise.resolve(<ReactMarkdown source={markdown} />)
+                        }
+                    />
                 </Form.Item>
                 <Form.Item
                     label={translate("common:resources.posts.fields.status")}
