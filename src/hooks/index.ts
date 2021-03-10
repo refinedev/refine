@@ -6,3 +6,4 @@ export * from "./useFileUploadState";
 export * from "./useListResourceQueries";
 export * from "./translate";
 export * from "./admin";
+export * from "./table";

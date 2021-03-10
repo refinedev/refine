@@ -1,7 +1,6 @@
 import * as React from "react";
 import {
     List,
-    Table,
     Column,
     Create,
     Edit,
@@ -23,24 +22,44 @@ import {
     useApiUrl,
     useFileUploadState,
     useTranslate,
-    useNotification,
+    AntdTable,
+    useTable,
+    Space,
+    EditButton,
+    DeleteButton,
+    ShowButton,
 } from "readmin";
 
 import { ShowAside } from "../show";
 
 export const PostList = (props: any) => {
     const translate = useTranslate();
+    const { tableProps } = useTable({
+        // permanentFilter: {
+        //     categoryId: [37, 20]
+        // },
+        initialSorter: [
+            {
+                field: "id",
+                order: "descend",
+            },
+        ],
+        initialFilter: {
+            status: ["active"],
+        },
+    });
+
+    console.log("Postlist datasource: ", tableProps);
+
     return (
         <List {...props}>
-            <Table
+            <AntdTable
+                {...tableProps}
                 rowKey="id"
                 pagination={{
-                    pageSize: 20,
+                    ...tableProps.pagination,
                     position: ["bottomCenter"],
                     size: "small",
-                }}
-                filter={{
-                    categoryId: [37, 20],
                 }}
             >
                 <Column
@@ -114,7 +133,27 @@ export const PostList = (props: any) => {
                     )}
                     defaultFilteredValue={["active"]}
                 />
-            </Table>
+                <Column
+                    title={translate("common:table.actions", "Actions")}
+                    dataIndex="actions"
+                    key="actions"
+                    render={(
+                        _text: string | number,
+                        record: {
+                            id: string | number;
+                        },
+                    ): React.ReactNode => (
+                        <Space>
+                            <EditButton size="small" recordItemId={record.id} />
+                            <DeleteButton
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <ShowButton size="small" recordItemId={record.id} />
+                        </Space>
+                    )}
+                />
+            </AntdTable>
         </List>
     );
 };
