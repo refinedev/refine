@@ -11,14 +11,20 @@ import {
     Input,
     Button,
     Collapse,
-    AntdTable,
     useTranslate,
+    useTable,
+    EditButton,
+    DeleteButton,
+    Space,
 } from "readmin";
 
 export const TagList = (props: any) => {
     const translate = useTranslate();
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [loading, setLoading] = useState(false);
+    const { tableProps } = useTable({
+        initialPageSize: 20,
+    });
 
     const start = () => {
         setLoading(true);
@@ -37,9 +43,9 @@ export const TagList = (props: any) => {
         selectedRowKeys,
         onChange: onSelectChange,
         selections: [
-            AntdTable.SELECTION_ALL,
-            AntdTable.SELECTION_INVERT,
-            AntdTable.SELECTION_NONE,
+            Table.SELECTION_ALL,
+            Table.SELECTION_INVERT,
+            Table.SELECTION_NONE,
         ],
     };
 
@@ -63,10 +69,11 @@ export const TagList = (props: any) => {
                 </span>
             </div>
             <Table
+                {...tableProps}
                 rowSelection={rowSelection}
                 rowKey="id"
                 pagination={{
-                    pageSize: 20,
+                    ...tableProps.pagination,
                     position: ["bottomCenter"],
                     size: "small",
                 }}
@@ -93,6 +100,25 @@ export const TagList = (props: any) => {
                                 width={200}
                             />
                         </ReferenceField>
+                    )}
+                />
+                <Column
+                    title={translate("common:table.actions", "Actions")}
+                    dataIndex="actions"
+                    key="actions"
+                    render={(
+                        _text: string | number,
+                        record: {
+                            id: string | number;
+                        },
+                    ): React.ReactNode => (
+                        <Space>
+                            <EditButton size="small" recordItemId={record.id} />
+                            <DeleteButton
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                        </Space>
                     )}
                 />
             </Table>

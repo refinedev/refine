@@ -21,7 +21,7 @@ import {
     useApiUrl,
     useFileUploadState,
     useTranslate,
-    AntdTable,
+    Table,
     useTable,
     Space,
     EditButton,
@@ -57,7 +57,7 @@ export const PostList = (props: any) => {
 
     return (
         <List {...props}>
-            <AntdTable
+            <Table
                 {...tableProps}
                 rowKey="id"
                 pagination={{
@@ -157,7 +157,7 @@ export const PostList = (props: any) => {
                         </Space>
                     )}
                 />
-            </AntdTable>
+            </Table>
         </List>
     );
 };
