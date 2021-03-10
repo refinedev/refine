@@ -41,13 +41,12 @@ export const Edit: React.FC<EditProps> = ({
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
-    const { id } = useParams<Record<string, string>>();
-
     const [form] = Form.useForm();
 
     const {
         resource: routeResourceName,
         id: idFromRoute,
+        action,
     } = useParams<ResourceRouterParams>();
 
     const resource = useResourceWithRoute(routeResourceName);
