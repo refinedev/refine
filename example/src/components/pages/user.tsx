@@ -19,18 +19,27 @@ import {
     Tabs,
     DatePicker,
     useTranslate,
+    useTable,
+    EditButton,
+    DeleteButton,
+    ShowButton,
+    Space,
 } from "readmin";
 
 import { Aside } from "../aside";
 
 export const UserList = (props: any) => {
     const translate = useTranslate();
+    const { tableProps } = useTable({
+        initialPageSize: 20,
+    });
     return (
         <List {...props} aside={Aside}>
             <Table
+                {...tableProps}
                 rowKey="id"
                 pagination={{
-                    pageSize: 20,
+                    ...tableProps.pagination,
                     position: ["bottomCenter"],
                     size: "small",
                 }}
@@ -73,6 +82,26 @@ export const UserList = (props: any) => {
                     dataIndex="birthday"
                     title={translate("common:resources.users.fields.birthday")}
                     render={(value) => <DateField value={value} />}
+                />
+                <Column
+                    title={translate("common:table.actions", "Actions")}
+                    dataIndex="actions"
+                    key="actions"
+                    render={(
+                        _text: string | number,
+                        record: {
+                            id: string | number;
+                        },
+                    ): React.ReactNode => (
+                        <Space>
+                            <EditButton size="small" recordItemId={record.id} />
+                            <DeleteButton
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <ShowButton size="small" recordItemId={record.id} />
+                        </Space>
+                    )}
                 />
             </Table>
         </List>

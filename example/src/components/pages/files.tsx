@@ -6,15 +6,20 @@ import {
     FileField,
     UrlField,
     useTranslate,
+    useTable,
 } from "readmin";
 
 export const FilesList = (props: any) => {
     const translate = useTranslate();
+    const { tableProps } = useTable({
+        initialPageSize: 20,
+    });
     return (
         <List {...props}>
             <Table
+                {...tableProps}
                 pagination={{
-                    pageSize: 20,
+                    ...tableProps.pagination,
                     position: ["bottomCenter"],
                     size: "small",
                 }}

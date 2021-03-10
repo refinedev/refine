@@ -11,16 +11,25 @@ import {
     Edit,
     Show,
     ShowSimple,
+    useTable,
+    EditButton,
+    DeleteButton,
+    ShowButton,
+    Space,
 } from "readmin";
 
 export const PostLightList = (props: any) => {
     const translate = useTranslate();
+    const { tableProps } = useTable({
+        initialPageSize: 20,
+    });
     return (
         <List {...props}>
             <Table
+                {...tableProps}
                 rowKey="id"
                 pagination={{
-                    pageSize: 20,
+                    ...tableProps.pagination,
                     position: ["bottomCenter"],
                     size: "small",
                 }}
@@ -51,6 +60,26 @@ export const PostLightList = (props: any) => {
                     sorter={{
                         multiple: 2,
                     }}
+                />
+                <Column
+                    title={translate("common:table.actions", "Actions")}
+                    dataIndex="actions"
+                    key="actions"
+                    render={(
+                        _text: string | number,
+                        record: {
+                            id: string | number;
+                        },
+                    ): React.ReactNode => (
+                        <Space>
+                            <EditButton size="small" recordItemId={record.id} />
+                            <DeleteButton
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <ShowButton size="small" recordItemId={record.id} />
+                        </Space>
+                    )}
                 />
             </Table>
         </List>

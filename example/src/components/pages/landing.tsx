@@ -15,16 +15,25 @@ import {
     useFileUploadState,
     useTranslate,
     RichtextField,
+    useTable,
+    EditButton,
+    ShowButton,
+    Space,
 } from "readmin";
 
 export const LandingList = (props: any) => {
     const translate = useTranslate();
+    const { tableProps } = useTable({
+        initialPageSize: 20,
+    });
+
     return (
         <List {...props}>
             <Table
+                {...tableProps}
                 rowKey="id"
                 pagination={{
-                    pageSize: 20,
+                    ...tableProps.pagination,
                     position: ["bottomCenter"],
                     size: "small",
                 }}
@@ -46,6 +55,22 @@ export const LandingList = (props: any) => {
                     sorter={{
                         multiple: 1,
                     }}
+                />
+                <Column
+                    title={translate("common:table.actions", "Actions")}
+                    dataIndex="actions"
+                    key="actions"
+                    render={(
+                        _text: string | number,
+                        record: {
+                            id: string | number;
+                        },
+                    ): React.ReactNode => (
+                        <Space>
+                            <EditButton size="small" recordItemId={record.id} />
+                            <ShowButton size="small" recordItemId={record.id} />
+                        </Space>
+                    )}
                 />
             </Table>
         </List>

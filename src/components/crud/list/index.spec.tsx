@@ -1,13 +1,9 @@
 import React, { ReactNode } from "react";
 
-import {
-    render,
-    TestWrapper,
-    MockJSONServer,
-    waitForElementToBeRemoved,
-} from "@test";
+import { render, TestWrapper, MockJSONServer } from "@test";
 
-import { Table, Column } from "@components";
+import { Column } from "@components";
+import { Table } from "antd";
 
 import { List } from "./index";
 import { Route } from "react-router-dom";
@@ -30,7 +26,7 @@ describe("<List/>", () => {
                 </List>,
             );
 
-            await waitForElementToBeRemoved(() => getByText("No Data"));
+            getByText("No Data");
         });
         it("renders given data", async () => {
             const { container } = renderList(

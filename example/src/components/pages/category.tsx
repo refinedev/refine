@@ -8,16 +8,23 @@ import {
     Column,
     Input,
     useTranslate,
+    useTable,
+    DeleteButton,
+    Space,
 } from "readmin";
 
 export const CategoryList = (props: { resourceName: string }) => {
     const translate = useTranslate();
+    const { tableProps } = useTable({
+        initialPageSize: 10,
+    });
     return (
         <List {...props}>
             <Table
+                {...tableProps}
                 rowKey="id"
                 pagination={{
-                    pageSize: 20,
+                    ...tableProps.pagination,
                     position: ["bottomCenter"],
                     size: "small",
                 }}
@@ -32,6 +39,24 @@ export const CategoryList = (props: { resourceName: string }) => {
                     dataIndex="title"
                     title={translate(
                         "common:resources.categories.fields.title",
+                    )}
+                />
+                <Column
+                    title={translate("common:table.actions", "Actions")}
+                    dataIndex="actions"
+                    key="actions"
+                    render={(
+                        _text: string | number,
+                        record: {
+                            id: string | number;
+                        },
+                    ): React.ReactNode => (
+                        <Space>
+                            <DeleteButton
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                        </Space>
                     )}
                 />
             </Table>

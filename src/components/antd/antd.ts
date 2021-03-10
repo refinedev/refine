@@ -163,13 +163,13 @@ export type { SwitchProps } from "antd/lib/switch";
 export { default as Switch } from "antd/lib/switch";
 
 export type {
-    TableProps as AntdTableProps,
+    TableProps,
     TablePaginationConfig,
     ColumnGroupType as TableColumnGroupType,
     ColumnType as TableColumnType,
     ColumnProps as TableColumnProps,
 } from "antd/lib/table";
-export { default as AntdTable } from "antd/lib/table";
+export { default as Table } from "antd/lib/table";
 
 export type { TransferProps } from "antd/lib/transfer";
 export { default as Transfer } from "antd/lib/transfer";
