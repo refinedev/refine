@@ -40,7 +40,7 @@ export const Create: React.FC<CreateProps> = ({
 
     const [form] = Form.useForm();
 
-    const { mutate, isLoading } = useCreate(resource.name);
+    const { mutate, isLoading } = useCreate();
 
     const notification = useNotification();
 
@@ -48,7 +48,7 @@ export const Create: React.FC<CreateProps> = ({
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         mutate(
-            { values },
+            { values, resource: resource.name },
             {
                 onSuccess: (data) => {
                     if (onSuccess) {
