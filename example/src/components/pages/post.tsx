@@ -28,6 +28,8 @@ import {
     DeleteButton,
     ShowButton,
     useForm,
+    useCreateForm,
+    useEditForm,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -162,6 +164,7 @@ export const PostList = (props: any) => {
 };
 
 export const PostCreate = (props: any) => {
+    const { canEdit } = props;
     const apiUrl = useApiUrl();
     const translate = useTranslate();
     const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
@@ -169,15 +172,25 @@ export const PostCreate = (props: any) => {
     );
     const { isLoading, onChange } = useFileUploadState();
 
+    const { formProps, isLoading: isLoadingCreate, form } = useCreateForm({});
+
     return (
-        <Create {...props} saveButtonProps={{ disabled: isLoading }}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Create
+            {...props}
+            saveButtonProps={{
+                disabled: isLoading || isLoadingCreate,
+                onClick: () => {
+                    form.submit();
+                },
+            }}
+        >
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
                     name="title"
                     rules={[
                         {
-                            required: true,
+                            // required: true,
                         },
                     ]}
                 >
@@ -188,7 +201,7 @@ export const PostCreate = (props: any) => {
                     name="slug"
                     rules={[
                         {
-                            required: true,
+                            // required: true,
                         },
                     ]}
                 >
@@ -199,7 +212,7 @@ export const PostCreate = (props: any) => {
                     name="content"
                     rules={[
                         {
-                            required: true,
+                            // required: true,
                         },
                     ]}
                 >
@@ -216,7 +229,7 @@ export const PostCreate = (props: any) => {
                     name="status"
                     rules={[
                         {
-                            required: true,
+                            // required: true,
                         },
                     ]}
                 >
@@ -243,7 +256,7 @@ export const PostCreate = (props: any) => {
                     name="categoryId"
                     rules={[
                         {
-                            required: true,
+                            // required: true,
                         },
                     ]}
                 >
@@ -263,7 +276,7 @@ export const PostCreate = (props: any) => {
                     name="userId"
                     rules={[
                         {
-                            required: true,
+                            // required: true,
                         },
                     ]}
                     help={translate(
@@ -286,7 +299,7 @@ export const PostCreate = (props: any) => {
                     name="tags"
                     rules={[
                         {
-                            required: true,
+                            // required: true,
                         },
                     ]}
                 >
@@ -305,7 +318,7 @@ export const PostCreate = (props: any) => {
                         noStyle
                         rules={[
                             {
-                                required: true,
+                                // required: true,
                             },
                         ]}
                     >
@@ -343,20 +356,22 @@ export const PostEdit = (props: any) => {
     );
     const { isLoading, onChange } = useFileUploadState();
 
-    const {formProps, submit, isLoadingData, onFinish, form} = useForm({})
+    const { formProps, isLoading: isLoadingFormData, form } = useForm({});
 
-    console.log("postedit useform formprops: ", formProps)
+    console.log("postedit useform formprops: ", formProps);
 
     return (
         <Edit
             {...props}
             // mutationMode="optimistic"
             saveButtonProps={{
-                disabled: isLoading || isLoadingData,
-                onClick: () => {form.submit()}
+                disabled: isLoading || isLoadingFormData,
+                onClick: () => {
+                    form.submit();
+                },
             }}
         >
-            <Form {...formProps} onFinish={onFinish} wrapperCol={{ span: 14 }} layout="vertical">
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
                     name="title"
