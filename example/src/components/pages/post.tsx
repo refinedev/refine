@@ -190,7 +190,7 @@ export const PostCreate = (props: any) => {
                     name="title"
                     rules={[
                         {
-                            // required: true,
+                            required: true,
                         },
                     ]}
                 >
@@ -201,7 +201,7 @@ export const PostCreate = (props: any) => {
                     name="slug"
                     rules={[
                         {
-                            // required: true,
+                            required: true,
                         },
                     ]}
                 >
@@ -212,7 +212,7 @@ export const PostCreate = (props: any) => {
                     name="content"
                     rules={[
                         {
-                            // required: true,
+                            required: true,
                         },
                     ]}
                 >
@@ -229,7 +229,7 @@ export const PostCreate = (props: any) => {
                     name="status"
                     rules={[
                         {
-                            // required: true,
+                            required: true,
                         },
                     ]}
                 >
@@ -256,7 +256,7 @@ export const PostCreate = (props: any) => {
                     name="categoryId"
                     rules={[
                         {
-                            // required: true,
+                            required: true,
                         },
                     ]}
                 >
@@ -276,7 +276,7 @@ export const PostCreate = (props: any) => {
                     name="userId"
                     rules={[
                         {
-                            // required: true,
+                            required: true,
                         },
                     ]}
                     help={translate(
@@ -299,7 +299,7 @@ export const PostCreate = (props: any) => {
                     name="tags"
                     rules={[
                         {
-                            // required: true,
+                            required: true,
                         },
                     ]}
                 >
@@ -318,7 +318,7 @@ export const PostCreate = (props: any) => {
                         noStyle
                         rules={[
                             {
-                                // required: true,
+                                required: true,
                             },
                         ]}
                     >
