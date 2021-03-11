@@ -162,7 +162,6 @@ export const PostList = (props: any) => {
 };
 
 export const PostCreate = (props: any) => {
-    const { canEdit } = props;
     const apiUrl = useApiUrl();
     const translate = useTranslate();
     const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
@@ -171,7 +170,7 @@ export const PostCreate = (props: any) => {
     const { isLoading, onChange } = useFileUploadState();
 
     const { formProps, isLoading: isLoadingCreate, form } = useForm({
-        canEdit,
+        ...props,
     });
 
     return (
