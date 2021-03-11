@@ -5,9 +5,11 @@ import { useEditForm, useEditFormProps } from "./useEditForm";
 
 import { ResourceRouterParams } from "@interfaces";
 
-type useFormProps = useCreateFormProps | useEditFormProps;
+type useFormProps = (
+    props: useCreateFormProps | useEditFormProps,
+) => Partial<ReturnType<typeof useEditForm> & ReturnType<typeof useCreateForm>>;
 
-export const useForm = (props: useFormProps): any => {
+export const useForm: useFormProps = (props) => {
     const editForm = useEditForm(props as useEditFormProps);
 
     const createForm = useCreateForm(props as useCreateFormProps);

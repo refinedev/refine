@@ -28,8 +28,6 @@ import {
     DeleteButton,
     ShowButton,
     useForm,
-    useCreateForm,
-    useEditForm,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -172,7 +170,9 @@ export const PostCreate = (props: any) => {
     );
     const { isLoading, onChange } = useFileUploadState();
 
-    const { formProps, isLoading: isLoadingCreate, form } = useCreateForm({});
+    const { formProps, isLoading: isLoadingCreate, form } = useForm({
+        canEdit,
+    });
 
     return (
         <Create
@@ -357,8 +357,6 @@ export const PostEdit = (props: any) => {
     const { isLoading, onChange } = useFileUploadState();
 
     const { formProps, isLoading: isLoadingFormData, form } = useForm({});
-
-    console.log("postedit useform formprops: ", formProps);
 
     return (
         <Edit

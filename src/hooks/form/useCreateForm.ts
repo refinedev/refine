@@ -9,8 +9,8 @@ import { BaseRecord, ResourceRouterParams } from "@interfaces";
 import { MutationMode } from "../../interfaces";
 
 export type useCreateFormProps = {
-    onMutationSuccess?: (data: any) => void; // mutation onSuccess'i ne alıyosa onları almalı
-    onMutationError?: (error: any) => void; // onSuccess ile aynı şekilde
+    onMutationSuccess?: (data: any, variables: any, context: any) => void;
+    onMutationError?: (error: any, variables: any, context: any) => void;
     mutationModeProp?: MutationMode;
     canEdit?: boolean;
     submitOnEnter?: boolean;
@@ -42,9 +42,9 @@ export const useCreateForm = ({
         mutate(
             { values },
             {
-                onSuccess: (data) => {
+                onSuccess: (data, ...rest) => {
                     if (onMutationSuccess) {
-                        onMutationSuccess(data);
+                        onMutationSuccess(data, ...rest);
                         return;
                     }
 
@@ -61,9 +61,9 @@ export const useCreateForm = ({
 
                     return history.push(`/resources/${resource.route}`);
                 },
-                onError: (error: any) => {
+                onError: (error: any, ...rest) => {
                     if (onMutationError) {
-                        onMutationError(error);
+                        onMutationError(error, ...rest);
                         return;
                     }
 
@@ -77,7 +77,6 @@ export const useCreateForm = ({
     };
 
     const onKeyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
-        console.log("usecreaform onkeyup event: ", event);
         if (submitOnEnter && event.key === "Enter") {
             form.submit();
         }

@@ -15,8 +15,8 @@ import { BaseRecord, ResourceRouterParams } from "@interfaces";
 import { MutationMode } from "../../interfaces";
 
 export type useEditFormProps = {
-    onMutationSuccess?: () => void; // mutation onSuccess'i ne alıyosa onları almalı
-    onMutationError?: () => void; // onSuccess ile aynı şekilde
+    onMutationSuccess?: (data: any, variables: any, context: any) => void;
+    onMutationError?: (error: any, variables: any, context: any) => void;
     mutationModeProp?: MutationMode;
     submitOnEnter?: boolean;
 };
@@ -41,11 +41,16 @@ export const useEditForm = ({
     const {
         resource: routeResourceName,
         id: idFromRoute,
+        action,
     } = useParams<ResourceRouterParams>();
+
+    const isEdit = action === "edit";
 
     const resource = useResourceWithRoute(routeResourceName);
 
-    const { data, isLoading } = useOne(resource.name, idFromRoute);
+    const { data, isLoading } = useOne(resource.name, idFromRoute, {
+        enabled: isEdit,
+    });
 
     React.useEffect(() => {
         form.setFieldsValue({
@@ -60,9 +65,9 @@ export const useEditForm = ({
         mutate(
             { id: idFromRoute, values },
             {
-                onSuccess: () => {
+                onSuccess: (...args) => {
                     if (onMutationSuccess) {
-                        return onMutationSuccess();
+                        return onMutationSuccess(...args);
                     }
 
                     notification.success({
@@ -74,14 +79,14 @@ export const useEditForm = ({
                         return history.push(`/resources/${resource.route}`);
                     }
                 },
-                onError: (err: any) => {
+                onError: (error: any, ...rest) => {
                     if (onMutationError) {
-                        return onMutationError();
+                        return onMutationError(error, ...rest);
                     }
 
                     notification.error({
                         message: `There was an error updating it ${resource.name}!`,
-                        description: err.message,
+                        description: error.message,
                     });
                 },
             },
