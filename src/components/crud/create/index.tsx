@@ -94,7 +94,7 @@ export const Create: React.FC<CreateProps> = ({
         );
     };
 
-    const onChangeValue = (changeValues: any) => {
+    const onChangeValue = (changeValues: object) => {
         return changeValues;
     };
 

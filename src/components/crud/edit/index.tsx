@@ -108,7 +108,7 @@ export const Edit: React.FC<EditProps> = ({
             history.push(`/resources/${resource.route}`);
     };
 
-    const onChangeValue = (changeValues: any) => {
+    const onChangeValue = (changeValues: object) => {
         return changeValues;
     };
 
