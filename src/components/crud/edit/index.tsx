@@ -12,6 +12,7 @@ import {
     useResourceWithRoute,
     useNotification,
     useMutationMode,
+    useWarnAboutChange,
 } from "@hooks";
 import { BaseRecord, ResourceRouterParams } from "@interfaces";
 import { DeleteButton, RefreshButton, ListButton } from "@components";
@@ -36,12 +37,19 @@ export const Edit: React.FC<EditProps> = ({
     onSuccess,
     onError,
     submitOnEnter = true,
-    warnWhenUnsavedChanges = false,
+    warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
 }) => {
     const history = useHistory();
     const { mutationMode: mutationModeContext } = useMutationMode();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
+
+    const {
+        warnWhenUnsavedChanges: warnWhenUnsavedChangesContent,
+    } = useWarnAboutChange();
+
+    const warnWhenUnsavedChanges =
+        warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContent;
 
     const { id } = useParams<Record<string, string>>();
 

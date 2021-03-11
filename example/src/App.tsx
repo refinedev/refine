@@ -81,6 +81,7 @@ function App() {
             ready={ReadyPage}
             i18nProvider={i18nProvider}
             mutationMode="undoable"
+            warnWhenUnsavedChanges={false}
         >
             <Resource
                 name="posts"

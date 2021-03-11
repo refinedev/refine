@@ -27,6 +27,7 @@ export interface AdminProps {
     dashboard?: React.FC;
     ready?: React.FC;
     mutationMode?: MutationMode;
+    warnWhenUnsavedChanges?: boolean;
 }
 
 export const Admin: React.FC<AdminProps> = ({
@@ -40,6 +41,7 @@ export const Admin: React.FC<AdminProps> = ({
     children,
     i18nProvider = defaultProvider.i18nProvider,
     mutationMode,
+    warnWhenUnsavedChanges = false,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -75,6 +77,7 @@ export const Admin: React.FC<AdminProps> = ({
                         <TranslationContextProvider i18nProvider={i18nProvider}>
                             <AdminContextProvider
                                 mutationMode={mutationMode ?? "pessimistic"}
+                                warnWhenUnsavedChanges={warnWhenUnsavedChanges}
                             >
                                 <Router>
                                     <RouteProvider

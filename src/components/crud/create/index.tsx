@@ -9,6 +9,7 @@ import {
     useResourceWithRoute,
     useTranslate,
     useNotification,
+    useWarnAboutChange,
 } from "@hooks";
 import { BaseRecord, ResourceRouterParams } from "@interfaces";
 
@@ -32,7 +33,7 @@ export const Create: React.FC<CreateProps> = ({
     onSuccess,
     onError,
     submitOnEnter = true,
-    warnWhenUnsavedChanges = false,
+    warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
 }) => {
     const history = useHistory();
 
@@ -47,6 +48,13 @@ export const Create: React.FC<CreateProps> = ({
     const notification = useNotification();
 
     const translate = useTranslate();
+
+    const {
+        warnWhenUnsavedChanges: warnWhenUnsavedChangesContent,
+    } = useWarnAboutChange();
+
+    const warnWhenUnsavedChanges =
+        warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContent;
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         mutate(
