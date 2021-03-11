@@ -50,11 +50,11 @@ export const Create: React.FC<CreateProps> = ({
     const translate = useTranslate();
 
     const {
-        warnWhenUnsavedChanges: warnWhenUnsavedChangesContent,
+        warnWhenUnsavedChanges: warnWhenUnsavedChangesContext,
     } = useWarnAboutChange();
 
     const warnWhenUnsavedChanges =
-        warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContent;
+        warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContext;
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         mutate(

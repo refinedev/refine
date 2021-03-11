@@ -45,11 +45,11 @@ export const Edit: React.FC<EditProps> = ({
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
     const {
-        warnWhenUnsavedChanges: warnWhenUnsavedChangesContent,
+        warnWhenUnsavedChanges: warnWhenUnsavedChangesContext,
     } = useWarnAboutChange();
 
     const warnWhenUnsavedChanges =
-        warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContent;
+        warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContext;
 
     const { id } = useParams<Record<string, string>>();
 

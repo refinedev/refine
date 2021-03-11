@@ -40,7 +40,7 @@ export const Admin: React.FC<AdminProps> = ({
     catchAll,
     children,
     i18nProvider = defaultProvider.i18nProvider,
-    mutationMode,
+    mutationMode = "pessimistic",
     warnWhenUnsavedChanges = false,
 }) => {
     const queryClient = new QueryClient({
@@ -76,7 +76,7 @@ export const Admin: React.FC<AdminProps> = ({
                     <ResourceContextProvider resources={resources}>
                         <TranslationContextProvider i18nProvider={i18nProvider}>
                             <AdminContextProvider
-                                mutationMode={mutationMode ?? "pessimistic"}
+                                mutationMode={mutationMode}
                                 warnWhenUnsavedChanges={warnWhenUnsavedChanges}
                             >
                                 <Router>
