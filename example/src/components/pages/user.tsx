@@ -87,7 +87,7 @@ export const UserEdit = (props: any) => {
     const dateFormat = "DD/MM/YYYY";
 
     return (
-        <Edit {...props}>
+        <Edit {...props} warnWhenUnsavedChanges>
             <Form wrapperCol={{ span: 14 }} layout="vertical">
                 <Tabs>
                     <TabPane tab="Summary" key="summary">

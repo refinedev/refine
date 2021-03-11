@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, useParams, useRouteMatch } from "react-router-dom";
+import { useHistory, useParams, Prompt } from "react-router-dom";
 import { Form, Card, Button, Row, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
@@ -24,6 +24,7 @@ export interface EditProps {
     onError?: () => void;
     onSuccess?: () => void;
     submitOnEnter?: boolean;
+    warnWhenUnsavedChanges?: boolean;
 }
 
 export const Edit: React.FC<EditProps> = ({
@@ -35,6 +36,7 @@ export const Edit: React.FC<EditProps> = ({
     onSuccess,
     onError,
     submitOnEnter = true,
+    warnWhenUnsavedChanges = false,
 }) => {
     const history = useHistory();
     const { mutationMode: mutationModeContext } = useMutationMode();
@@ -98,6 +100,10 @@ export const Edit: React.FC<EditProps> = ({
             history.push(`/resources/${resource.route}`);
     };
 
+    const onChangeValue = (changeValues: any) => {
+        return changeValues;
+    };
+
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {
@@ -109,6 +115,7 @@ export const Edit: React.FC<EditProps> = ({
                         form.submit();
                     }
                 },
+                onValuesChange: onChangeValue,
             });
         }
         return child;
@@ -147,7 +154,15 @@ export const Edit: React.FC<EditProps> = ({
                 </Space>,
             ]}
         >
-            {childrenWithProps}
+            <>
+                {warnWhenUnsavedChanges && (
+                    <Prompt
+                        when={!!onChangeValue}
+                        message="Are you sure you want to leave? You have with unsaved changes."
+                    />
+                )}
+                {childrenWithProps}
+            </>
         </Card>
     );
 };
