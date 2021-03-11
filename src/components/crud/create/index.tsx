@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Prompt } from "react-router-dom";
 import { Card, Button, Form, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
@@ -20,6 +20,7 @@ export interface CreateProps {
     onSuccess?: (data: any) => void;
     onError?: (error: any) => void;
     submitOnEnter?: boolean;
+    warnWhenUnsavedChanges?: boolean;
 }
 
 export const Create: React.FC<CreateProps> = ({
@@ -31,6 +32,7 @@ export const Create: React.FC<CreateProps> = ({
     onSuccess,
     onError,
     submitOnEnter = true,
+    warnWhenUnsavedChanges = false,
 }) => {
     const history = useHistory();
 
@@ -84,6 +86,10 @@ export const Create: React.FC<CreateProps> = ({
         );
     };
 
+    const onChangeValue = (changeValues: any) => {
+        return changeValues;
+    };
+
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {
@@ -95,6 +101,7 @@ export const Create: React.FC<CreateProps> = ({
                         form.submit();
                     }
                 },
+                onValuesChange: onChangeValue,
             });
         }
         return child;
@@ -129,7 +136,15 @@ export const Create: React.FC<CreateProps> = ({
                 </Space>,
             ]}
         >
-            {childrenWithProps}
+            <>
+                {warnWhenUnsavedChanges && (
+                    <Prompt
+                        when={!!onChangeValue}
+                        message="Are you sure you want to leave? You have with unsaved changes."
+                    />
+                )}
+                {childrenWithProps}
+            </>
         </Card>
     );
 };
