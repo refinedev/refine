@@ -56,6 +56,10 @@ export const Admin: React.FC<AdminProps> = ({
             label: child.props.options?.label,
             icon: child.props.icon,
             route: child.props.options?.route ?? child.props.name,
+            canCreate: !!child.props.create,
+            canEdit: !!child.props.edit,
+            canShow: !!child.props.show,
+            canDelete: child.props.canDelete,
         });
     });
 

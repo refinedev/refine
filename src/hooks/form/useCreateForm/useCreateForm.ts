@@ -12,13 +12,11 @@ export type useCreateFormProps = {
     onMutationSuccess?: (data: any, variables: any, context: any) => void;
     onMutationError?: (error: any, variables: any, context: any) => void;
     mutationModeProp?: MutationMode;
-    canEdit?: boolean;
     submitOnEnter?: boolean;
 };
 export const useCreateForm = ({
     onMutationSuccess,
     onMutationError,
-    canEdit,
     submitOnEnter = true,
 }: useCreateFormProps) => {
     const [formAnt] = Form.useForm();
@@ -53,7 +51,7 @@ export const useCreateForm = ({
                         description: `New ${resource.name} created!`,
                     });
 
-                    if (canEdit) {
+                    if (resource.canEdit) {
                         return history.push(
                             `/resources/${resource.route}/edit/${data.data.id}`,
                         );
