@@ -128,7 +128,7 @@ export const useEditForm = ({
         isLoading,
         editProps: {
             saveButtonProps,
-            warnWhen: isFormChanged,
+            warnWhen: warnWhenUnsavedChanges ? isFormChanged : false,
         },
     };
 };

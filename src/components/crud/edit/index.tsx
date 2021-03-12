@@ -81,12 +81,10 @@ export const Edit: React.FC<EditProps> = ({
             ]}
         >
             <>
-                {warnWhenUnsavedChanges && (
-                    <Prompt
-                        when={warnWhen}
-                        message="Are you sure you want to leave? You have with unsaved changes."
-                    />
-                )}
+                <Prompt
+                    when={warnWhen}
+                    message="Are you sure you want to leave? You have with unsaved changes."
+                />
                 {children}
             </>
         </Card>
