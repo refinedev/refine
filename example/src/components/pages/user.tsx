@@ -189,7 +189,7 @@ export const UserEdit = (props: any) => {
 
 export const UserCreate = (props: any) => {
     const translate = useTranslate();
-    const { formProps, saveButtonProps } = useForm({});
+    const { formProps, createProps } = useForm({});
 
     const { TabPane } = Tabs;
 
@@ -198,8 +198,8 @@ export const UserCreate = (props: any) => {
     return (
         <Create
             {...props}
+            {...createProps}
             submitOnEnter={false}
-            saveButtonProps={saveButtonProps}
             warnWhenUnsavedChanges
         >
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">

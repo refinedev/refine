@@ -12,6 +12,7 @@ export interface CreateProps {
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
     warnWhenUnsavedChanges?: boolean;
+    warnWhen?: boolean;
 }
 
 export const Create: React.FC<CreateProps> = ({
@@ -19,6 +20,7 @@ export const Create: React.FC<CreateProps> = ({
     actionButtons,
     saveButtonProps,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
+    warnWhen,
     children,
 }) => {
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
@@ -64,7 +66,7 @@ export const Create: React.FC<CreateProps> = ({
             <>
                 {warnWhenUnsavedChanges && (
                     <Prompt
-                        when={true}
+                        when={warnWhen}
                         message="Are you sure you want to leave? You have with unsaved changes."
                     />
                 )}
