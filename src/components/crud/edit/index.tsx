@@ -1,11 +1,16 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Prompt } from "react-router-dom";
 import { Card, Button, Row, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
 import { MutationMode } from "../../../interfaces";
-import { useTranslate, useResourceWithRoute, useMutationMode } from "@hooks";
+import {
+    useTranslate,
+    useResourceWithRoute,
+    useMutationMode,
+    useWarnAboutChange,
+} from "@hooks";
 import { ResourceRouterParams } from "@interfaces";
 import { DeleteButton, RefreshButton, ListButton } from "@components";
 
@@ -14,6 +19,7 @@ export interface EditProps {
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
     mutationMode?: MutationMode;
+    warnWhenUnsavedChanges?: boolean;
 }
 
 export const Edit: React.FC<EditProps> = ({
@@ -21,11 +27,19 @@ export const Edit: React.FC<EditProps> = ({
     actionButtons,
     saveButtonProps,
     mutationMode: mutationModeProp,
+    warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     children,
 }) => {
     const { mutationMode: mutationModeContext } = useMutationMode();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
+
+    const {
+        warnWhenUnsavedChanges: warnWhenUnsavedChangesContext,
+    } = useWarnAboutChange();
+
+    const warnWhenUnsavedChanges =
+        warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContext;
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
@@ -64,7 +78,15 @@ export const Edit: React.FC<EditProps> = ({
                 </Space>,
             ]}
         >
-            {children}
+            <>
+                {warnWhenUnsavedChanges && (
+                    <Prompt
+                        when={true}
+                        message="Are you sure you want to leave? You have with unsaved changes."
+                    />
+                )}
+                {children}
+            </>
         </Card>
     );
 };

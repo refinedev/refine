@@ -101,12 +101,17 @@ export const useEditForm = ({
         }
     };
 
+    const onChangeValue = (changeValues: object) => {
+        return changeValues;
+    };
+
     return {
         ...formSF,
         formProps: {
             ...formSF.formProps,
             onFinish,
             onKeyUp,
+            onChangeValue,
         },
         isLoading,
         saveButtonProps: {

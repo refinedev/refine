@@ -118,7 +118,11 @@ export const UserEdit = (props: any) => {
     const dateFormat = "DD/MM/YYYY";
 
     return (
-        <Edit {...props} saveButtonProps={saveButtonProps}>
+        <Edit
+            {...props}
+            saveButtonProps={saveButtonProps}
+            warnWhenUnsavedChanges
+        >
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Tabs>
                     <TabPane tab="Summary" key="summary">
@@ -196,6 +200,7 @@ export const UserCreate = (props: any) => {
             {...props}
             submitOnEnter={false}
             saveButtonProps={saveButtonProps}
+            warnWhenUnsavedChanges
         >
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Tabs>
