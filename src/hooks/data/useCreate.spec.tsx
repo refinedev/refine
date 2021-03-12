@@ -6,8 +6,6 @@ import { useCreate } from "./useCreate";
 
 describe("useCreate Hook", () => {
     it("with rest json server", async () => {
-        const testFunc = jest.fn();
-
         const { result, waitForNextUpdate } = renderHook(() => useCreate(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
@@ -15,12 +13,7 @@ describe("useCreate Hook", () => {
             }),
         });
 
-        result.current.mutate(
-            { resource: "posts", values: { id: 1 } },
-            {
-                onSuccess: testFunc,
-            },
-        );
+        result.current.mutate({ resource: "posts", values: { id: 1 } });
         await waitForNextUpdate();
 
         expect(result.current.isLoading).toBeTruthy();
