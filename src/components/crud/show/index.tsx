@@ -36,7 +36,9 @@ export const Show: React.FC<ShowProps> = ({
 
     const resource = useResourceWithRoute(routeResourceName);
 
-    const { data, isLoading } = useOne(resource.name, idFromRoute);
+    const useOneResource = useOne();
+
+    const { data, isLoading } = useOneResource(resource.name, idFromRoute);
 
     const record = data?.data;
 

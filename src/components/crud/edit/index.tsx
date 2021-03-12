@@ -52,7 +52,9 @@ export const Edit: React.FC<EditProps> = ({
 
     const resource = useResourceWithRoute(routeResourceName);
 
-    const { data, isLoading } = useOne(resource.name, idFromRoute);
+    const useOneResource = useOne();
+
+    const { data, isLoading } = useOneResource(resource.name, idFromRoute);
 
     React.useEffect(() => {
         form.setFieldsValue({
