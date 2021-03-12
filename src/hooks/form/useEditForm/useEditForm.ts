@@ -12,7 +12,7 @@ import {
 } from "@hooks";
 
 import { BaseRecord, ResourceRouterParams } from "@interfaces";
-import { MutationMode } from "../../interfaces";
+import { MutationMode } from "../../../interfaces";
 
 export type useEditFormProps = {
     onMutationSuccess?: (data: any, variables: any, context: any) => void;

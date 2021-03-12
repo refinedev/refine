@@ -6,7 +6,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { useResourceWithRoute, useCreate, useNotification } from "@hooks";
 
 import { BaseRecord, ResourceRouterParams } from "@interfaces";
-import { MutationMode } from "../../interfaces";
+import { MutationMode } from "../../../interfaces";
 
 export type useCreateFormProps = {
     onMutationSuccess?: (data: any, variables: any, context: any) => void;
