@@ -20,6 +20,7 @@ export interface EditProps {
     saveButtonProps?: ButtonProps;
     mutationMode?: MutationMode;
     warnWhenUnsavedChanges?: boolean;
+    warnWhen?: boolean;
 }
 
 export const Edit: React.FC<EditProps> = ({
@@ -28,6 +29,7 @@ export const Edit: React.FC<EditProps> = ({
     saveButtonProps,
     mutationMode: mutationModeProp,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
+    warnWhen,
     children,
 }) => {
     const { mutationMode: mutationModeContext } = useMutationMode();
@@ -81,7 +83,7 @@ export const Edit: React.FC<EditProps> = ({
             <>
                 {warnWhenUnsavedChanges && (
                     <Prompt
-                        when={true}
+                        when={warnWhen}
                         message="Are you sure you want to leave? You have with unsaved changes."
                     />
                 )}

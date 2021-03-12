@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm as useFormSF } from "sunflower-antd";
 import { Form } from "antd";
 import { useHistory, useParams } from "react-router-dom";
@@ -26,6 +26,8 @@ export const useEditForm = ({
     mutationModeProp,
     submitOnEnter = true,
 }: useEditFormProps) => {
+    const [isFormChanged, setIsFormChanged] = useState(false);
+
     const [formAnt] = Form.useForm();
     const formSF = useFormSF({
         form: formAnt,
@@ -101,8 +103,18 @@ export const useEditForm = ({
         }
     };
 
-    const onChangeValue = (changeValues: object) => {
+    const onValuesChange = (changeValues: object) => {
+        if (changeValues) {
+            setIsFormChanged(true);
+        }
         return changeValues;
+    };
+
+    const saveButtonProps = {
+        disabled: isLoading,
+        onClick: () => {
+            form.submit();
+        },
     };
 
     return {
@@ -111,14 +123,12 @@ export const useEditForm = ({
             ...formSF.formProps,
             onFinish,
             onKeyUp,
-            onChangeValue,
+            onValuesChange,
         },
         isLoading,
-        saveButtonProps: {
-            disabled: isLoading,
-            onClick: () => {
-                form.submit();
-            },
+        editProps: {
+            saveButtonProps,
+            warnWhen: isFormChanged,
         },
     };
 };

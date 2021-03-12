@@ -352,18 +352,14 @@ export const PostEdit = (props: any) => {
     );
     const { isLoading, onChange } = useFileUploadState();
 
-    const {
-        formProps,
-        isLoading: isLoadingFormData,
-        saveButtonProps,
-    } = useForm({});
+    const { formProps, isLoading: isLoadingFormData, editProps } = useForm({});
 
     return (
         <Edit
             {...props}
             // mutationMode="optimistic"
             saveButtonProps={{
-                ...saveButtonProps,
+                ...editProps?.saveButtonProps,
                 disabled: isLoading || isLoadingFormData,
             }}
         >

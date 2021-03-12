@@ -118,11 +118,7 @@ export const LandingCreate = (props: any) => {
 export const LandingEdit = (props: any) => {
     const translate = useTranslate();
     const { isLoading } = useFileUploadState();
-    const {
-        formProps,
-        isLoading: isLoadingFormData,
-        saveButtonProps,
-    } = useForm({
+    const { formProps, isLoading: isLoadingFormData, editProps } = useForm({
         submitOnEnter: false,
     });
 
@@ -130,7 +126,7 @@ export const LandingEdit = (props: any) => {
         <Edit
             {...props}
             saveButtonProps={{
-                ...saveButtonProps,
+                ...editProps?.saveButtonProps,
                 disabled: isLoading || isLoadingFormData,
             }}
         >

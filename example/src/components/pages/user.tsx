@@ -111,18 +111,14 @@ export const UserList = (props: any) => {
 
 export const UserEdit = (props: any) => {
     const translate = useTranslate();
-    const { formProps, saveButtonProps } = useForm({});
+    const { formProps, editProps } = useForm({});
 
     const { TabPane } = Tabs;
 
     const dateFormat = "DD/MM/YYYY";
 
     return (
-        <Edit
-            {...props}
-            saveButtonProps={saveButtonProps}
-            warnWhenUnsavedChanges
-        >
+        <Edit {...props} {...editProps} warnWhenUnsavedChanges>
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Tabs>
                     <TabPane tab="Summary" key="summary">
