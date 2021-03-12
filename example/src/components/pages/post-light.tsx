@@ -16,6 +16,7 @@ import {
     DeleteButton,
     ShowButton,
     Space,
+    useForm,
 } from "readmin";
 
 export const PostLightList = (props: any) => {
@@ -89,9 +90,11 @@ export const PostLightList = (props: any) => {
 export const PostLightCreate = (props: any) => {
     const translate = useTranslate();
 
+    const { formProps, saveButtonProps } = useForm({});
+
     return (
-        <Create {...props}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Create {...props} saveButtonProps={saveButtonProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
                     name="title"
@@ -111,9 +114,11 @@ export const PostLightCreate = (props: any) => {
 export const PostLightEdit = (props: any) => {
     const translate = useTranslate();
 
+    const { formProps, saveButtonProps } = useForm({});
+
     return (
-        <Edit {...props}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Edit {...props} saveButtonProps={saveButtonProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
                     name="title"

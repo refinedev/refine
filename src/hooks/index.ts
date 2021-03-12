@@ -7,3 +7,4 @@ export * from "./useListResourceQueries";
 export * from "./translate";
 export * from "./admin";
 export * from "./table";
+export * from "./form";

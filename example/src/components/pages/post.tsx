@@ -27,6 +27,7 @@ import {
     EditButton,
     DeleteButton,
     ShowButton,
+    useForm,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -52,8 +53,6 @@ export const PostList = (props: any) => {
             status: ["active"],
         },
     });
-
-    console.log("Postlist datasource: ", tableProps);
 
     return (
         <List {...props}>
@@ -170,9 +169,19 @@ export const PostCreate = (props: any) => {
     );
     const { isLoading, onChange } = useFileUploadState();
 
+    const { formProps, isLoading: isLoadingForm, saveButtonProps } = useForm(
+        {},
+    );
+
     return (
-        <Create {...props} saveButtonProps={{ disabled: isLoading }}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Create
+            {...props}
+            saveButtonProps={{
+                ...saveButtonProps,
+                disabled: isLoading || isLoadingForm,
+            }}
+        >
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
                     name="title"
@@ -344,13 +353,22 @@ export const PostEdit = (props: any) => {
     );
     const { isLoading, onChange } = useFileUploadState();
 
+    const {
+        formProps,
+        isLoading: isLoadingFormData,
+        saveButtonProps,
+    } = useForm({});
+
     return (
         <Edit
             {...props}
-            mutationMode="optimistic"
-            saveButtonProps={{ disabled: isLoading }}
+            // mutationMode="optimistic"
+            saveButtonProps={{
+                ...saveButtonProps,
+                disabled: isLoading || isLoadingFormData,
+            }}
         >
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
                     name="title"
