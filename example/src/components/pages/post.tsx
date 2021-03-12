@@ -169,15 +169,14 @@ export const PostCreate = (props: any) => {
     );
     const { isLoading, onChange } = useFileUploadState();
 
-    const { formProps, isLoading: isLoadingForm, saveButtonProps } = useForm(
-        {},
-    );
+    const { formProps, isLoading: isLoadingForm, createProps } = useForm({});
 
     return (
         <Create
             {...props}
+            {...createProps}
             saveButtonProps={{
-                ...saveButtonProps,
+                ...createProps?.saveButtonProps,
                 disabled: isLoading || isLoadingForm,
             }}
         >

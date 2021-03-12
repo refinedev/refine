@@ -90,10 +90,10 @@ export const PostLightList = (props: any) => {
 export const PostLightCreate = (props: any) => {
     const translate = useTranslate();
 
-    const { formProps, saveButtonProps } = useForm({});
+    const { formProps, createProps } = useForm({});
 
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
+        <Create {...props} {...createProps}>
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}

@@ -129,12 +129,12 @@ export const TagList = (props: any) => {
 
 export const TagCreate = (props: any) => {
     const translate = useTranslate();
-    const { formProps, saveButtonProps } = useForm({});
+    const { formProps, createProps } = useForm({});
 
     const { Panel } = Collapse;
 
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
+        <Create {...props} {...createProps}>
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Collapse accordion defaultActiveKey={["1"]}>
                     <Panel header="Detail" key="1">

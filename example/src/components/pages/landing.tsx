@@ -81,12 +81,12 @@ export const LandingList = (props: any) => {
 export const LandingCreate = (props: any) => {
     const translate = useTranslate();
 
-    const { formProps, saveButtonProps } = useForm({
+    const { formProps, createProps } = useForm({
         submitOnEnter: false,
     });
 
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
+        <Create {...props} {...createProps}>
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}

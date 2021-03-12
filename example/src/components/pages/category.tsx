@@ -68,10 +68,10 @@ export const CategoryList = (props: { resourceName: string }) => {
 export const CategoryCreate = (props: any) => {
     const translate = useTranslate();
 
-    const { formProps, saveButtonProps } = useForm({});
+    const { formProps, createProps } = useForm({});
 
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
+        <Create {...props} {...createProps}>
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.categories.forms.title")}
