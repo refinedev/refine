@@ -88,5 +88,11 @@ export const useCreateForm = ({
             onKeyUp,
         },
         isLoading,
+        saveButtonProps: {
+            disabled: isLoading,
+            onClick: () => {
+                form.submit();
+            },
+        },
     };
 };

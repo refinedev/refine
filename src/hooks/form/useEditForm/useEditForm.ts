@@ -109,5 +109,11 @@ export const useEditForm = ({
             onKeyUp,
         },
         isLoading,
+        saveButtonProps: {
+            disabled: isLoading,
+            onClick: () => {
+                form.submit();
+            },
+        },
     };
 };

@@ -169,16 +169,16 @@ export const PostCreate = (props: any) => {
     );
     const { isLoading, onChange } = useFileUploadState();
 
-    const { formProps, isLoading: isLoadingCreate, form } = useForm({});
+    const { formProps, isLoading: isLoadingCreate, saveButtonProps } = useForm(
+        {},
+    );
 
     return (
         <Create
             {...props}
             saveButtonProps={{
+                ...saveButtonProps,
                 disabled: isLoading || isLoadingCreate,
-                onClick: () => {
-                    form.submit();
-                },
             }}
         >
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
@@ -353,17 +353,19 @@ export const PostEdit = (props: any) => {
     );
     const { isLoading, onChange } = useFileUploadState();
 
-    const { formProps, isLoading: isLoadingFormData, form } = useForm({});
+    const {
+        formProps,
+        isLoading: isLoadingFormData,
+        saveButtonProps,
+    } = useForm({});
 
     return (
         <Edit
             {...props}
             // mutationMode="optimistic"
             saveButtonProps={{
+                ...saveButtonProps,
                 disabled: isLoading || isLoadingFormData,
-                onClick: () => {
-                    form.submit();
-                },
             }}
         >
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
