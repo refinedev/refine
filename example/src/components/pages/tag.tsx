@@ -16,6 +16,7 @@ import {
     EditButton,
     DeleteButton,
     Space,
+    useForm,
 } from "readmin";
 
 export const TagList = (props: any) => {
@@ -128,12 +129,13 @@ export const TagList = (props: any) => {
 
 export const TagCreate = (props: any) => {
     const translate = useTranslate();
+    const { formProps, saveButtonProps } = useForm({});
 
     const { Panel } = Collapse;
 
     return (
-        <Create {...props}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Create {...props} saveButtonProps={saveButtonProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Collapse accordion defaultActiveKey={["1"]}>
                     <Panel header="Detail" key="1">
                         <Form.Item
@@ -158,12 +160,13 @@ export const TagCreate = (props: any) => {
 
 export const TagEdit = (props: any) => {
     const translate = useTranslate();
+    const { formProps, saveButtonProps } = useForm({});
 
     const { Panel } = Collapse;
 
     return (
-        <Edit {...props}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Edit {...props} saveButtonProps={saveButtonProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Collapse accordion defaultActiveKey={["1"]}>
                     <Panel header="Detail" key="1">
                         <Form.Item
