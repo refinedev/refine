@@ -81,4 +81,10 @@ export const createMockServer = (): SetupServerApi =>
                 );
             },
         ),
+        rest.post(
+            "https://readmin-fake-rest.pankod.com/posts",
+            (_req, res, ctx) => {
+                return res(ctx.json(posts[0]));
+            },
+        ),
     );
