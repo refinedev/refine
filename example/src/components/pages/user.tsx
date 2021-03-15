@@ -19,18 +19,28 @@ import {
     Tabs,
     DatePicker,
     useTranslate,
+    useTable,
+    EditButton,
+    DeleteButton,
+    ShowButton,
+    Space,
+    useForm,
 } from "readmin";
 
 import { Aside } from "../aside";
 
 export const UserList = (props: any) => {
     const translate = useTranslate();
+    const { tableProps } = useTable({
+        initialPageSize: 20,
+    });
     return (
         <List {...props} aside={Aside}>
             <Table
+                {...tableProps}
                 rowKey="id"
                 pagination={{
-                    pageSize: 20,
+                    ...tableProps.pagination,
                     position: ["bottomCenter"],
                     size: "small",
                 }}
@@ -74,6 +84,26 @@ export const UserList = (props: any) => {
                     title={translate("common:resources.users.fields.birthday")}
                     render={(value) => <DateField value={value} />}
                 />
+                <Column
+                    title={translate("common:table.actions", "Actions")}
+                    dataIndex="actions"
+                    key="actions"
+                    render={(
+                        _text: string | number,
+                        record: {
+                            id: string | number;
+                        },
+                    ): React.ReactNode => (
+                        <Space>
+                            <EditButton size="small" recordItemId={record.id} />
+                            <DeleteButton
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <ShowButton size="small" recordItemId={record.id} />
+                        </Space>
+                    )}
+                />
             </Table>
         </List>
     );
@@ -81,14 +111,17 @@ export const UserList = (props: any) => {
 
 export const UserEdit = (props: any) => {
     const translate = useTranslate();
+    const { formProps, editProps } = useForm({
+        warnWhenUnsavedChanges: true,
+    });
 
     const { TabPane } = Tabs;
 
     const dateFormat = "DD/MM/YYYY";
 
     return (
-        <Edit {...props}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Edit {...props} {...editProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Tabs>
                     <TabPane tab="Summary" key="summary">
                         <Form.Item
@@ -154,14 +187,17 @@ export const UserEdit = (props: any) => {
 
 export const UserCreate = (props: any) => {
     const translate = useTranslate();
+    const { formProps, createProps } = useForm({
+        warnWhenUnsavedChanges: true,
+    });
 
     const { TabPane } = Tabs;
 
     const dateFormat = "DD/MM/YYYY";
 
     return (
-        <Create {...props}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Create {...props} {...createProps} submitOnEnter={false}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Tabs>
                     <TabPane tab="Summary" key="summary">
                         <Form.Item

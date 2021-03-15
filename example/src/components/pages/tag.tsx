@@ -11,14 +11,21 @@ import {
     Input,
     Button,
     Collapse,
-    AntdTable,
     useTranslate,
+    useTable,
+    EditButton,
+    DeleteButton,
+    Space,
+    useForm,
 } from "readmin";
 
 export const TagList = (props: any) => {
     const translate = useTranslate();
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [loading, setLoading] = useState(false);
+    const { tableProps } = useTable({
+        initialPageSize: 20,
+    });
 
     const start = () => {
         setLoading(true);
@@ -37,9 +44,9 @@ export const TagList = (props: any) => {
         selectedRowKeys,
         onChange: onSelectChange,
         selections: [
-            AntdTable.SELECTION_ALL,
-            AntdTable.SELECTION_INVERT,
-            AntdTable.SELECTION_NONE,
+            Table.SELECTION_ALL,
+            Table.SELECTION_INVERT,
+            Table.SELECTION_NONE,
         ],
     };
 
@@ -63,10 +70,11 @@ export const TagList = (props: any) => {
                 </span>
             </div>
             <Table
+                {...tableProps}
                 rowSelection={rowSelection}
                 rowKey="id"
                 pagination={{
-                    pageSize: 20,
+                    ...tableProps.pagination,
                     position: ["bottomCenter"],
                     size: "small",
                 }}
@@ -95,6 +103,25 @@ export const TagList = (props: any) => {
                         </ReferenceField>
                     )}
                 />
+                <Column
+                    title={translate("common:table.actions", "Actions")}
+                    dataIndex="actions"
+                    key="actions"
+                    render={(
+                        _text: string | number,
+                        record: {
+                            id: string | number;
+                        },
+                    ): React.ReactNode => (
+                        <Space>
+                            <EditButton size="small" recordItemId={record.id} />
+                            <DeleteButton
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                        </Space>
+                    )}
+                />
             </Table>
         </List>
     );
@@ -102,12 +129,13 @@ export const TagList = (props: any) => {
 
 export const TagCreate = (props: any) => {
     const translate = useTranslate();
+    const { formProps, createProps } = useForm({});
 
     const { Panel } = Collapse;
 
     return (
-        <Create {...props}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Create {...props} {...createProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Collapse accordion defaultActiveKey={["1"]}>
                     <Panel header="Detail" key="1">
                         <Form.Item
@@ -132,12 +160,13 @@ export const TagCreate = (props: any) => {
 
 export const TagEdit = (props: any) => {
     const translate = useTranslate();
+    const { formProps, editProps } = useForm({});
 
     const { Panel } = Collapse;
 
     return (
-        <Edit {...props}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Edit {...props} {...editProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Collapse accordion defaultActiveKey={["1"]}>
                     <Panel header="Detail" key="1">
                         <Form.Item

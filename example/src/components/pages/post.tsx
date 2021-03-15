@@ -1,8 +1,6 @@
 import * as React from "react";
 import {
     List,
-    Table,
-    EditableTable,
     Column,
     Create,
     Edit,
@@ -18,38 +16,54 @@ import {
     Input,
     Upload,
     ShowSimple,
-    Markdown,
     MarkdownField,
     normalizeFile,
     useApiUrl,
     useFileUploadState,
     useTranslate,
+    Table,
+    useTable,
+    Space,
+    EditButton,
+    DeleteButton,
+    ShowButton,
+    useForm,
 } from "readmin";
+
+import ReactMarkdown from "react-markdown";
+import ReactMde from "react-mde";
+
+import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { ShowAside } from "../show";
 
 export const PostList = (props: any) => {
     const translate = useTranslate();
-
-    // const [form] = Form.useForm();
+    const { tableProps } = useTable({
+        // permanentFilter: {
+        //     categoryId: [37, 20]
+        // },
+        initialSorter: [
+            {
+                field: "id",
+                order: "descend",
+            },
+        ],
+        initialFilter: {
+            status: ["active"],
+        },
+    });
 
     return (
         <List {...props}>
-            <EditableTable
+            <Table
+                {...tableProps}
                 rowKey="id"
                 pagination={{
-                    pageSize: 20,
+                    ...tableProps.pagination,
                     position: ["bottomCenter"],
                     size: "small",
                 }}
-                filter={{
-                    categoryId: [37, 20],
-                }}
-                // components={{
-                //     body: {
-                //         row: (props: any) => <Form form={form}>{props.children}</Form>
-                //     }
-                // }}
             >
                 {/* <Form form={form} onFieldsChange={(changedFields, allFields) => {
                     console.log("changedFields: ", changedFields)
@@ -81,7 +95,7 @@ export const PostList = (props: any) => {
                 />
                 {/* </Form> */}
 
-                {/* <Column
+                <Column
                     dataIndex="slug"
                     title={translate("common:resources.posts.fields.slug")}
                     key="slug"
@@ -133,8 +147,28 @@ export const PostList = (props: any) => {
                         </FilterDropdown>
                     )}
                     defaultFilteredValue={["active"]}
-                /> */}
-            </EditableTable>
+                />
+                <Column
+                    title={translate("common:table.actions", "Actions")}
+                    dataIndex="actions"
+                    key="actions"
+                    render={(
+                        _text: string | number,
+                        record: {
+                            id: string | number;
+                        },
+                    ): React.ReactNode => (
+                        <Space>
+                            <EditButton size="small" recordItemId={record.id} />
+                            <DeleteButton
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <ShowButton size="small" recordItemId={record.id} />
+                        </Space>
+                    )}
+                />
+            </Table>
         </List>
     );
 };
@@ -142,12 +176,23 @@ export const PostList = (props: any) => {
 export const PostCreate = (props: any) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
-
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+        "write",
+    );
     const { isLoading, onChange } = useFileUploadState();
 
+    const { formProps, isLoading: isLoadingForm, createProps } = useForm({});
+
     return (
-        <Create {...props} saveButtonProps={{ disabled: isLoading }}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Create
+            {...props}
+            {...createProps}
+            saveButtonProps={{
+                ...createProps?.saveButtonProps,
+                disabled: isLoading || isLoadingForm,
+            }}
+        >
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
                     name="title"
@@ -179,7 +224,13 @@ export const PostCreate = (props: any) => {
                         },
                     ]}
                 >
-                    <Input.TextArea />
+                    <ReactMde
+                        selectedTab={selectedTab}
+                        onTabChange={setSelectedTab}
+                        generateMarkdownPreview={(markdown) =>
+                            Promise.resolve(<ReactMarkdown source={markdown} />)
+                        }
+                    />
                 </Form.Item>
                 <Form.Item
                     label={translate("common:resources.posts.fields.status")}
@@ -308,16 +359,23 @@ export const PostCreate = (props: any) => {
 export const PostEdit = (props: any) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
-
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+        "write",
+    );
     const { isLoading, onChange } = useFileUploadState();
+
+    const { formProps, isLoading: isLoadingFormData, editProps } = useForm({});
 
     return (
         <Edit
             {...props}
-            mutationMode="optimistic"
-            saveButtonProps={{ disabled: isLoading }}
+            // mutationMode="optimistic"
+            saveButtonProps={{
+                ...editProps?.saveButtonProps,
+                disabled: isLoading || isLoadingFormData,
+            }}
         >
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
                     name="title"
@@ -349,7 +407,13 @@ export const PostEdit = (props: any) => {
                         },
                     ]}
                 >
-                    <Markdown />
+                    <ReactMde
+                        selectedTab={selectedTab}
+                        onTabChange={setSelectedTab}
+                        generateMarkdownPreview={(markdown) =>
+                            Promise.resolve(<ReactMarkdown source={markdown} />)
+                        }
+                    />
                 </Form.Item>
                 <Form.Item
                     label={translate("common:resources.posts.fields.status")}
