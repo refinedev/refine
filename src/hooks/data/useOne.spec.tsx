@@ -6,18 +6,12 @@ import { useOne } from "./useOne";
 
 describe("useOne Hook", () => {
     it("with rest json server", async () => {
-        const { result, waitFor } = renderHook(
-            () => {
-                const useOneResource = useOne();
-                return useOneResource("posts", "1");
-            },
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
+        const { result, waitFor } = renderHook(() => useOne("posts", "1"), {
+            wrapper: TestWrapper({
+                dataProvider: MockJSONServer,
+                resources: [{ name: "posts" }],
+            }),
+        });
 
         await waitFor(() => {
             return result.current.isSuccess;
