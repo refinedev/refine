@@ -11,16 +11,26 @@ import {
     Edit,
     Show,
     ShowSimple,
+    useTable,
+    EditButton,
+    DeleteButton,
+    ShowButton,
+    Space,
+    useForm,
 } from "readmin";
 
 export const PostLightList = (props: any) => {
     const translate = useTranslate();
+    const { tableProps } = useTable({
+        initialPageSize: 20,
+    });
     return (
         <List {...props}>
             <Table
+                {...tableProps}
                 rowKey="id"
                 pagination={{
-                    pageSize: 20,
+                    ...tableProps.pagination,
                     position: ["bottomCenter"],
                     size: "small",
                 }}
@@ -52,6 +62,26 @@ export const PostLightList = (props: any) => {
                         multiple: 2,
                     }}
                 />
+                <Column
+                    title={translate("common:table.actions", "Actions")}
+                    dataIndex="actions"
+                    key="actions"
+                    render={(
+                        _text: string | number,
+                        record: {
+                            id: string | number;
+                        },
+                    ): React.ReactNode => (
+                        <Space>
+                            <EditButton size="small" recordItemId={record.id} />
+                            <DeleteButton
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <ShowButton size="small" recordItemId={record.id} />
+                        </Space>
+                    )}
+                />
             </Table>
         </List>
     );
@@ -60,9 +90,11 @@ export const PostLightList = (props: any) => {
 export const PostLightCreate = (props: any) => {
     const translate = useTranslate();
 
+    const { formProps, createProps } = useForm({});
+
     return (
-        <Create {...props}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Create {...props} {...createProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
                     name="title"
@@ -82,9 +114,11 @@ export const PostLightCreate = (props: any) => {
 export const PostLightEdit = (props: any) => {
     const translate = useTranslate();
 
+    const { formProps, editProps } = useForm({});
+
     return (
-        <Edit {...props}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Edit {...props} {...editProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
                     name="title"

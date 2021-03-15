@@ -4,7 +4,8 @@ import { render, TestWrapper, MockJSONServer } from "@test";
 
 import { Resource } from "./index";
 import { List } from "@components/crud";
-import { Table, Column } from "@components";
+import { Column } from "@components";
+import { Table } from "antd";
 
 describe("<Resource />", () => {
     const PostList = ({ resourceName }: { resourceName: string }) => {
@@ -16,7 +17,7 @@ describe("<Resource />", () => {
             </List>
         );
     };
-    it("renders with data", async () => {
+    it("renders with List", async () => {
         const { container } = render(
             <Resource name="posts" list={PostList} />,
             {

@@ -5,7 +5,6 @@ import { SaveOutlined } from "@ant-design/icons";
 
 import {
     List,
-    Table,
     Column,
     Create,
     Edit,
@@ -22,7 +21,6 @@ import {
     Input,
     Upload,
     ShowSimple,
-    Markdown,
     MarkdownField,
     normalizeFile,
     useApiUrl,
@@ -30,23 +28,48 @@ import {
     useTranslate,
     Button,
     useCreate,
+    Table,
+    useTable,
+    Space,
+    EditButton,
+    DeleteButton,
+    ShowButton,
+    useForm,
 } from "readmin";
+
+import ReactMarkdown from "react-markdown";
+import ReactMde from "react-mde";
+
+import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { ShowAside } from "../show";
 
 export const PostList = (props: any) => {
     const translate = useTranslate();
+    const { tableProps } = useTable({
+        // permanentFilter: {
+        //     categoryId: [37, 20]
+        // },
+        initialSorter: [
+            {
+                field: "id",
+                order: "descend",
+            },
+        ],
+        initialFilter: {
+            status: ["active"],
+        },
+    });
+
     return (
         <List {...props}>
             <Table
+                {...tableProps}
                 rowKey="id"
                 pagination={{
-                    pageSize: 20,
+                    ...tableProps.pagination,
                     position: ["bottomCenter"],
                     size: "small",
-                }}
-                filter={{
-                    categoryId: [37, 20],
                 }}
             >
                 <Column
@@ -120,6 +143,26 @@ export const PostList = (props: any) => {
                     )}
                     defaultFilteredValue={["active"]}
                 />
+                <Column
+                    title={translate("common:table.actions", "Actions")}
+                    dataIndex="actions"
+                    key="actions"
+                    render={(
+                        _text: string | number,
+                        record: {
+                            id: string | number;
+                        },
+                    ): React.ReactNode => (
+                        <Space>
+                            <EditButton size="small" recordItemId={record.id} />
+                            <DeleteButton
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <ShowButton size="small" recordItemId={record.id} />
+                        </Space>
+                    )}
+                />
             </Table>
         </List>
     );
@@ -128,6 +171,16 @@ export const PostList = (props: any) => {
 export const PostCreate = (props: any) => {
     const { Step } = Steps;
     const history = useHistory();
+
+    const apiUrl = useApiUrl();
+    const translate = useTranslate();
+
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+        "write",
+    );
+    const { isLoading, onChange } = useFileUploadState();
+
+    const { isLoading: isLoadingForm } = useForm({});
 
     const { mutate } = useCreate("posts");
 
@@ -143,9 +196,9 @@ export const PostCreate = (props: any) => {
         current,
         gotoStep,
         stepsProps,
-        formProps,
         submit,
         formLoading,
+        formProps,
     } = useStepsForm({
         submit(values) {
             mutate(
@@ -158,12 +211,6 @@ export const PostCreate = (props: any) => {
         },
         total: 4,
     });
-
-    const apiUrl = useApiUrl();
-
-    const translate = useTranslate();
-
-    const { isLoading, onChange } = useFileUploadState();
 
     const formList = [
         <>
@@ -198,7 +245,13 @@ export const PostCreate = (props: any) => {
                     },
                 ]}
             >
-                <Markdown />
+                <ReactMde
+                    selectedTab={selectedTab}
+                    onTabChange={setSelectedTab}
+                    generateMarkdownPreview={(markdown) =>
+                        Promise.resolve(<ReactMarkdown source={markdown} />)
+                    }
+                />
             </Form.Item>
         </>,
 
@@ -309,7 +362,11 @@ export const PostCreate = (props: any) => {
     return (
         <Create
             {...props}
-            saveButtonProps={{ disabled: isLoading }}
+            // {...createProps}
+            // saveButtonProps={{
+            //     ...createProps?.saveButtonProps,
+            //     disabled: isLoading || isLoadingForm,
+            // }}
             actionButtons={
                 <>
                     {current > 0 && (
@@ -361,11 +418,17 @@ export const PostCreate = (props: any) => {
 };
 
 export const PostEdit = (props: any) => {
+    const { Step } = Steps;
+
     const apiUrl = useApiUrl();
     const translate = useTranslate();
 
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+        "write",
+    );
     const { isLoading, onChange } = useFileUploadState();
-    const { Step } = Steps;
+
+    const { formProps, isLoading: isLoadingFormData, editProps } = useForm({});
 
     const [current, setCurrent] = React.useState(0);
 
@@ -407,7 +470,15 @@ export const PostEdit = (props: any) => {
                             },
                         ]}
                     >
-                        <Markdown />
+                        <ReactMde
+                            selectedTab={selectedTab}
+                            onTabChange={setSelectedTab}
+                            generateMarkdownPreview={(markdown) =>
+                                Promise.resolve(
+                                    <ReactMarkdown source={markdown} />,
+                                )
+                            }
+                        />
                     </Form.Item>
                 </>
             ),
@@ -538,8 +609,15 @@ export const PostEdit = (props: any) => {
     };
 
     return (
-        <Edit {...props} saveButtonProps={{ disabled: isLoading }}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Edit
+            {...props}
+            // mutationMode="optimistic"
+            saveButtonProps={{
+                ...editProps?.saveButtonProps,
+                disabled: isLoading || isLoadingFormData,
+            }}
+        >
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Steps current={current} onChange={onChangeCurrent}>
                     {steps.map((item) => (
                         <Step key={item.title} title={item.title} />

@@ -6,16 +6,21 @@ import {
     ImageField,
     NumberField,
     useTranslate,
+    useTable,
 } from "readmin";
 
 export const ImagesList = (props: any) => {
     const translate = useTranslate();
+    const { tableProps } = useTable({
+        initialPageSize: 20,
+    });
     return (
         <List {...props}>
             <Table
+                {...tableProps}
                 rowKey="id"
                 pagination={{
-                    pageSize: 20,
+                    ...tableProps.pagination,
                     position: ["bottomCenter"],
                     size: "small",
                 }}

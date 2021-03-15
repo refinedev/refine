@@ -15,16 +15,26 @@ import {
     useFileUploadState,
     useTranslate,
     RichtextField,
+    useTable,
+    EditButton,
+    ShowButton,
+    Space,
+    useForm,
 } from "readmin";
 
 export const LandingList = (props: any) => {
     const translate = useTranslate();
+    const { tableProps } = useTable({
+        initialPageSize: 20,
+    });
+
     return (
         <List {...props}>
             <Table
+                {...tableProps}
                 rowKey="id"
                 pagination={{
-                    pageSize: 20,
+                    ...tableProps.pagination,
                     position: ["bottomCenter"],
                     size: "small",
                 }}
@@ -47,6 +57,22 @@ export const LandingList = (props: any) => {
                         multiple: 1,
                     }}
                 />
+                <Column
+                    title={translate("common:table.actions", "Actions")}
+                    dataIndex="actions"
+                    key="actions"
+                    render={(
+                        _text: string | number,
+                        record: {
+                            id: string | number;
+                        },
+                    ): React.ReactNode => (
+                        <Space>
+                            <EditButton size="small" recordItemId={record.id} />
+                            <ShowButton size="small" recordItemId={record.id} />
+                        </Space>
+                    )}
+                />
             </Table>
         </List>
     );
@@ -55,9 +81,13 @@ export const LandingList = (props: any) => {
 export const LandingCreate = (props: any) => {
     const translate = useTranslate();
 
+    const { formProps, createProps } = useForm({
+        submitOnEnter: false,
+    });
+
     return (
-        <Create {...props}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Create {...props} {...createProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
                     name="title"
@@ -88,10 +118,19 @@ export const LandingCreate = (props: any) => {
 export const LandingEdit = (props: any) => {
     const translate = useTranslate();
     const { isLoading } = useFileUploadState();
+    const { formProps, isLoading: isLoadingFormData, editProps } = useForm({
+        submitOnEnter: false,
+    });
 
     return (
-        <Edit {...props} saveButtonProps={{ disabled: isLoading }}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Edit
+            {...props}
+            saveButtonProps={{
+                ...editProps?.saveButtonProps,
+                disabled: isLoading || isLoadingFormData,
+            }}
+        >
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
                     name="title"
@@ -111,6 +150,7 @@ export const LandingEdit = (props: any) => {
                             required: true,
                         },
                     ]}
+                    initialValue=""
                 >
                     <ReactQuill theme="snow" />
                 </Form.Item>

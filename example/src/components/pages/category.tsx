@@ -8,16 +8,24 @@ import {
     Column,
     Input,
     useTranslate,
+    useTable,
+    DeleteButton,
+    Space,
+    useForm,
 } from "readmin";
 
 export const CategoryList = (props: { resourceName: string }) => {
     const translate = useTranslate();
+    const { tableProps } = useTable({
+        initialPageSize: 10,
+    });
     return (
         <List {...props}>
             <Table
+                {...tableProps}
                 rowKey="id"
                 pagination={{
-                    pageSize: 20,
+                    ...tableProps.pagination,
                     position: ["bottomCenter"],
                     size: "small",
                 }}
@@ -34,6 +42,24 @@ export const CategoryList = (props: { resourceName: string }) => {
                         "common:resources.categories.fields.title",
                     )}
                 />
+                <Column
+                    title={translate("common:table.actions", "Actions")}
+                    dataIndex="actions"
+                    key="actions"
+                    render={(
+                        _text: string | number,
+                        record: {
+                            id: string | number;
+                        },
+                    ): React.ReactNode => (
+                        <Space>
+                            <DeleteButton
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                        </Space>
+                    )}
+                />
             </Table>
         </List>
     );
@@ -41,9 +67,12 @@ export const CategoryList = (props: { resourceName: string }) => {
 
 export const CategoryCreate = (props: any) => {
     const translate = useTranslate();
+
+    const { formProps, createProps } = useForm({});
+
     return (
-        <Create {...props}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Create {...props} {...createProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.categories.forms.title")}
                     name="title"
@@ -62,9 +91,12 @@ export const CategoryCreate = (props: any) => {
 
 export const CategoryEdit = (props: any) => {
     const translate = useTranslate();
+
+    const { formProps, editProps } = useForm({});
+
     return (
-        <Edit {...props}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Edit {...props} {...editProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.categories.forms.title")}
                     name="title"

@@ -2,7 +2,6 @@
 import * as Icons from "@ant-design/icons";
 
 export * from "./fields";
-export * from "./input";
 export * from "./table";
 export * from "./crud";
 export * from "./buttons";
