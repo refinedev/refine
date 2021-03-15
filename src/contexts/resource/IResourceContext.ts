@@ -9,4 +9,8 @@ export interface IResourceItem {
     label?: string;
     route?: string;
     icon?: ReactNode;
+    canCreate?: boolean;
+    canEdit?: boolean;
+    canShow?: boolean;
+    canDelete?: boolean;
 }

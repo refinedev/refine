@@ -11,6 +11,7 @@ import {
     useTable,
     DeleteButton,
     Space,
+    useForm,
 } from "readmin";
 
 export const CategoryList = (props: { resourceName: string }) => {
@@ -66,9 +67,12 @@ export const CategoryList = (props: { resourceName: string }) => {
 
 export const CategoryCreate = (props: any) => {
     const translate = useTranslate();
+
+    const { formProps, createProps } = useForm({});
+
     return (
-        <Create {...props}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Create {...props} {...createProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.categories.forms.title")}
                     name="title"
@@ -87,9 +91,12 @@ export const CategoryCreate = (props: any) => {
 
 export const CategoryEdit = (props: any) => {
     const translate = useTranslate();
+
+    const { formProps, editProps } = useForm({});
+
     return (
-        <Edit {...props}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Edit {...props} {...editProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.categories.forms.title")}
                     name="title"

@@ -19,6 +19,7 @@ import {
     EditButton,
     ShowButton,
     Space,
+    useForm,
 } from "readmin";
 
 export const LandingList = (props: any) => {
@@ -80,9 +81,13 @@ export const LandingList = (props: any) => {
 export const LandingCreate = (props: any) => {
     const translate = useTranslate();
 
+    const { formProps, createProps } = useForm({
+        submitOnEnter: false,
+    });
+
     return (
-        <Create {...props}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Create {...props} {...createProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
                     name="title"
@@ -113,10 +118,19 @@ export const LandingCreate = (props: any) => {
 export const LandingEdit = (props: any) => {
     const translate = useTranslate();
     const { isLoading } = useFileUploadState();
+    const { formProps, isLoading: isLoadingFormData, editProps } = useForm({
+        submitOnEnter: false,
+    });
 
     return (
-        <Edit {...props} saveButtonProps={{ disabled: isLoading }}>
-            <Form wrapperCol={{ span: 14 }} layout="vertical">
+        <Edit
+            {...props}
+            saveButtonProps={{
+                ...editProps?.saveButtonProps,
+                disabled: isLoading || isLoadingFormData,
+            }}
+        >
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
                     name="title"
@@ -136,6 +150,7 @@ export const LandingEdit = (props: any) => {
                             required: true,
                         },
                     ]}
+                    initialValue=""
                 >
                     <ReactQuill theme="snow" />
                 </Form.Item>
