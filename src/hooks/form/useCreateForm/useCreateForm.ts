@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { AdminContext } from "@contexts/admin";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm as useFormSF } from "sunflower-antd";
 import { Form } from "antd";
 import { useHistory, useParams } from "react-router-dom";
@@ -26,8 +27,6 @@ export const useCreateForm = ({
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
 }: useCreateFormProps) => {
-    const [isFormChanged, setIsFormChanged] = useState(false);
-
     const [formAnt] = Form.useForm();
     const formSF = useFormSF({
         form: formAnt,
@@ -35,6 +34,7 @@ export const useCreateForm = ({
 
     const {
         warnWhenUnsavedChanges: warnWhenUnsavedChangesContext,
+        setWarnWhen,
     } = useWarnAboutChange();
 
     const warnWhenUnsavedChanges =
@@ -53,6 +53,7 @@ export const useCreateForm = ({
     const notification = useNotification();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
+        setWarnWhen(false);
         mutate(
             { values },
             {
@@ -97,8 +98,8 @@ export const useCreateForm = ({
     };
 
     const onValuesChange = (changeValues: object) => {
-        if (changeValues) {
-            setIsFormChanged(true);
+        if (changeValues && warnWhenUnsavedChanges) {
+            setWarnWhen(true);
         }
         return changeValues;
     };
@@ -119,10 +120,6 @@ export const useCreateForm = ({
             onValuesChange,
         },
         isLoading,
-        isFormChanged,
-        createProps: {
-            saveButtonProps,
-            warnWhen: warnWhenUnsavedChanges ? isFormChanged : false,
-        },
+        saveButtonProps,
     };
 };

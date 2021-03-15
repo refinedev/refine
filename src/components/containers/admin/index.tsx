@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import React, { ReactNode, useState } from "react";
+import { BrowserRouter as Router, Prompt, useLocation } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "antd/dist/antd.css";
@@ -82,6 +82,9 @@ export const Admin: React.FC<AdminProps> = ({
                             <AdminContextProvider
                                 mutationMode={mutationMode}
                                 warnWhenUnsavedChanges={warnWhenUnsavedChanges}
+                                warnWhen={false}
+                                // eslint-disable-next-line @typescript-eslint/no-empty-function
+                                setWarnWhen={() => {}}
                             >
                                 <Router>
                                     <RouteProvider

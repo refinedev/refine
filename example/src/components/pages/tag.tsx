@@ -129,12 +129,12 @@ export const TagList = (props: any) => {
 
 export const TagCreate = (props: any) => {
     const translate = useTranslate();
-    const { formProps, createProps } = useForm({});
+    const { formProps, saveButtonProps } = useForm({});
 
     const { Panel } = Collapse;
 
     return (
-        <Create {...props} {...createProps}>
+        <Create {...props} saveButtonProps={saveButtonProps}>
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Collapse accordion defaultActiveKey={["1"]}>
                     <Panel header="Detail" key="1">
@@ -160,12 +160,12 @@ export const TagCreate = (props: any) => {
 
 export const TagEdit = (props: any) => {
     const translate = useTranslate();
-    const { formProps, editProps } = useForm({});
+    const { formProps, saveButtonProps } = useForm({});
 
     const { Panel } = Collapse;
 
     return (
-        <Edit {...props} {...editProps}>
+        <Edit {...props} saveButtonProps={saveButtonProps}>
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Collapse accordion defaultActiveKey={["1"]}>
                     <Panel header="Detail" key="1">
