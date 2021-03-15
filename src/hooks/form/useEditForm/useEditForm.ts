@@ -9,6 +9,7 @@ import {
     useOne,
     useUpdate,
     useNotification,
+    useWarnAboutChange,
 } from "@hooks";
 
 import { BaseRecord, ResourceRouterParams } from "@interfaces";
@@ -19,12 +20,14 @@ export type useEditFormProps = {
     onMutationError?: (error: any, variables: any, context: any) => void;
     mutationModeProp?: MutationMode;
     submitOnEnter?: boolean;
+    warnWhenUnsavedChanges?: boolean;
 };
 export const useEditForm = ({
     onMutationSuccess,
     onMutationError,
     mutationModeProp,
     submitOnEnter = true,
+    warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
 }: useEditFormProps) => {
     const [isFormChanged, setIsFormChanged] = useState(false);
 
@@ -34,6 +37,13 @@ export const useEditForm = ({
     });
 
     const { form } = formSF;
+
+    const {
+        warnWhenUnsavedChanges: warnWhenUnsavedChangesContext,
+    } = useWarnAboutChange();
+
+    const warnWhenUnsavedChanges =
+        warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContext;
 
     const history = useHistory();
     const { mutationMode: mutationModeContext } = useMutationMode();

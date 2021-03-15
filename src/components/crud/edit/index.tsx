@@ -5,12 +5,7 @@ import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
 import { MutationMode } from "../../../interfaces";
-import {
-    useTranslate,
-    useResourceWithRoute,
-    useMutationMode,
-    useWarnAboutChange,
-} from "@hooks";
+import { useTranslate, useResourceWithRoute, useMutationMode } from "@hooks";
 import { ResourceRouterParams } from "@interfaces";
 import { DeleteButton, RefreshButton, ListButton } from "@components";
 
@@ -19,7 +14,6 @@ export interface EditProps {
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
     mutationMode?: MutationMode;
-    warnWhenUnsavedChanges?: boolean;
     warnWhen?: boolean;
 }
 
@@ -28,20 +22,12 @@ export const Edit: React.FC<EditProps> = ({
     actionButtons,
     saveButtonProps,
     mutationMode: mutationModeProp,
-    warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     warnWhen,
     children,
 }) => {
     const { mutationMode: mutationModeContext } = useMutationMode();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
-
-    const {
-        warnWhenUnsavedChanges: warnWhenUnsavedChangesContext,
-    } = useWarnAboutChange();
-
-    const warnWhenUnsavedChanges =
-        warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContext;
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 

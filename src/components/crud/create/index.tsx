@@ -4,14 +4,13 @@ import { Card, Button, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
-import { useResourceWithRoute, useTranslate, useWarnAboutChange } from "@hooks";
+import { useResourceWithRoute, useTranslate } from "@hooks";
 import { ResourceRouterParams } from "@interfaces";
 
 export interface CreateProps {
     title?: string;
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
-    warnWhenUnsavedChanges?: boolean;
     warnWhen?: boolean;
 }
 
@@ -19,20 +18,12 @@ export const Create: React.FC<CreateProps> = ({
     title,
     actionButtons,
     saveButtonProps,
-    warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     warnWhen,
     children,
 }) => {
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const resource = useResourceWithRoute(routeResourceName);
-
-    const {
-        warnWhenUnsavedChanges: warnWhenUnsavedChangesContext,
-    } = useWarnAboutChange();
-
-    const warnWhenUnsavedChanges =
-        warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContext;
 
     const translate = useTranslate();
 
@@ -64,12 +55,10 @@ export const Create: React.FC<CreateProps> = ({
             ]}
         >
             <>
-                {warnWhenUnsavedChanges && (
-                    <Prompt
-                        when={warnWhen}
-                        message="Are you sure you want to leave? You have with unsaved changes."
-                    />
-                )}
+                <Prompt
+                    when={warnWhen}
+                    message="Are you sure you want to leave? You have with unsaved changes."
+                />
                 {children}
             </>
         </Card>

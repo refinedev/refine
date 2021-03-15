@@ -3,7 +3,12 @@ import { useForm as useFormSF } from "sunflower-antd";
 import { Form } from "antd";
 import { useHistory, useParams } from "react-router-dom";
 
-import { useResourceWithRoute, useCreate, useNotification } from "@hooks";
+import {
+    useResourceWithRoute,
+    useCreate,
+    useNotification,
+    useWarnAboutChange,
+} from "@hooks";
 
 import { BaseRecord, ResourceRouterParams } from "@interfaces";
 import { MutationMode } from "../../../interfaces";
@@ -13,11 +18,13 @@ export type useCreateFormProps = {
     onMutationError?: (error: any, variables: any, context: any) => void;
     mutationModeProp?: MutationMode;
     submitOnEnter?: boolean;
+    warnWhenUnsavedChanges?: boolean;
 };
 export const useCreateForm = ({
     onMutationSuccess,
     onMutationError,
     submitOnEnter = true,
+    warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
 }: useCreateFormProps) => {
     const [isFormChanged, setIsFormChanged] = useState(false);
 
@@ -25,6 +32,13 @@ export const useCreateForm = ({
     const formSF = useFormSF({
         form: formAnt,
     });
+
+    const {
+        warnWhenUnsavedChanges: warnWhenUnsavedChangesContext,
+    } = useWarnAboutChange();
+
+    const warnWhenUnsavedChanges =
+        warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContext;
 
     const history = useHistory();
 
@@ -108,7 +122,7 @@ export const useCreateForm = ({
         isFormChanged,
         createProps: {
             saveButtonProps,
-            warnWhen: isFormChanged,
+            warnWhen: warnWhenUnsavedChanges ? isFormChanged : false,
         },
     };
 };
