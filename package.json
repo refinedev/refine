@@ -16,7 +16,7 @@
         "test": "tsdx test --passWithNoTests --runInBand",
         "test:watch": "tsdx test --watch",
         "test:coverage": "tsdx test --coverage",
-        "lint": "tsdx lint src test example",
+        "lint": "tsdx lint",
         "prepare": "tsdx build",
         "size": "size-limit",
         "analyze": "size-limit --why"
