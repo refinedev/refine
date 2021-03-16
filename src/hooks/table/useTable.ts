@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFormTable } from "sunflower-antd";
-import { TablePaginationConfig } from "antd/lib/table";
+import { TablePaginationConfig, TableProps } from "antd/lib/table";
 
 import { useResourceWithRoute, useList } from "@hooks";
 
@@ -15,13 +15,19 @@ type useTableProps = {
     initialFilter?: Filters;
 };
 
+type useTable = {
+    tableProps: TableProps<any>;
+    sorter?: Sort;
+    filters?: Filters;
+};
+
 export const useTable = ({
     permanentFilter,
     initialCurrent,
     initialPageSize,
     initialSorter,
     initialFilter,
-}: useTableProps): any => {
+}: useTableProps): useTable => {
     const defaultCurrent = 1;
     const defaultPageSize = 10;
 
@@ -69,5 +75,7 @@ export const useTable = ({
                 total: data?.total,
             },
         },
+        sorter,
+        filters,
     };
 };

@@ -11,6 +11,7 @@ import { ResourceRouterParams } from "@interfaces";
 export interface ListProps {
     resourceName: string;
     canCreate?: boolean;
+    actionButtons?: React.FC;
     aside?: React.FC;
     title?: string;
     canExport?: boolean;
@@ -20,13 +21,23 @@ export const List: React.FC<ListProps> = ({
     canCreate,
     aside,
     title,
-    canExport,
+    actionButtons,
     children,
 }) => {
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const resource = useResourceWithRoute(routeResourceName);
     const translate = useTranslate();
+
+    const defaultExtra = canCreate && <CreateButton size="middle" />;
+
+    const renderExtra = () => {
+        if (actionButtons) {
+            return actionButtons;
+        }
+
+        return defaultExtra;
+    };
 
     return (
         <Row gutter={[16, 16]}>
@@ -40,12 +51,7 @@ export const List: React.FC<ListProps> = ({
                             humanizeString(resource.name),
                         )
                     }
-                    extra={
-                        <Space direction="horizontal">
-                            {canExport && <ExportButton size="middle" />}
-                            {canCreate && <CreateButton size="middle" />}
-                        </Space>
-                    }
+                    extra={renderExtra()}
                 >
                     {children}
                 </Card>
