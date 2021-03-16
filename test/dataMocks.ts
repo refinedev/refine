@@ -93,4 +93,11 @@ export const createMockServer = (): SetupServerApi =>
                 return res(ctx.json(posts));
             },
         ),
+        rest.put(
+            "https://readmin-fake-rest.pankod.com/posts/1",
+            (_req, res, ctx) => {
+                const { title } = _req.body as { title: string };
+                return res(ctx.json({ ...posts[0], title }));
+            },
+        ),
     );
