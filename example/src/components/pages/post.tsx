@@ -55,7 +55,7 @@ export const PostList = (props: any) => {
     });
 
     return (
-        <List {...props}>
+        <List {...props} canExport>
             <Table
                 {...tableProps}
                 rowKey="id"

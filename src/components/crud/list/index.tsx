@@ -1,11 +1,11 @@
 import React from "react";
-import { Card, Row, Col } from "antd";
+import { Card, Row, Col, Space } from "antd";
 import humanizeString from "humanize-string";
 import { useParams } from "react-router-dom";
 
 import { useResourceWithRoute, useTranslate } from "@hooks";
 import { OptionalComponent } from "@definitions";
-import { CreateButton } from "@components";
+import { CreateButton, ExportButton } from "@components";
 import { ResourceRouterParams } from "@interfaces";
 
 export interface ListProps {
@@ -13,12 +13,14 @@ export interface ListProps {
     canCreate?: boolean;
     aside?: React.FC;
     title?: string;
+    canExport?: boolean;
 }
 
 export const List: React.FC<ListProps> = ({
     canCreate,
     aside,
     title,
+    canExport,
     children,
 }) => {
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
@@ -38,7 +40,12 @@ export const List: React.FC<ListProps> = ({
                             humanizeString(resource.name),
                         )
                     }
-                    extra={canCreate && <CreateButton size="middle" />}
+                    extra={
+                        <Space direction="horizontal">
+                            {canExport && <ExportButton size="middle" />}
+                            {canCreate && <CreateButton size="middle" />}
+                        </Space>
+                    }
                 >
                     {children}
                 </Card>
