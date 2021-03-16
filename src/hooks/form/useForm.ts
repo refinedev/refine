@@ -17,11 +17,10 @@ export const useForm: useFormProps = (props) => {
     const { action } = useParams<ResourceRouterParams>();
 
     switch (action) {
-        case "create":
-            return createForm;
         case "edit":
             return editForm;
+        case "create":
         default:
-            return {};
+            return createForm;
     }
 };
