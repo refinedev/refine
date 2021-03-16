@@ -21,7 +21,7 @@ export const useTable = ({
     initialPageSize,
     initialSorter,
     initialFilter,
-}: useTableProps): any => {
+}: useTableProps) => {
     const defaultCurrent = 1;
     const defaultPageSize = 10;
 
@@ -69,5 +69,6 @@ export const useTable = ({
                 total: data?.total,
             },
         },
+        refetch,
     };
 };

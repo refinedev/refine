@@ -23,11 +23,13 @@ import {
     useTranslate,
     Table,
     useTable,
+    useForm,
+    useEditForm,
     Space,
     EditButton,
     DeleteButton,
     ShowButton,
-    useForm,
+    Button,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -39,11 +41,12 @@ import { ShowAside } from "../show";
 
 export const PostList = (props: any) => {
     const translate = useTranslate();
-    const { tableProps } = useTable({
+
+    const { tableProps, refetch } = useTable({
         // permanentFilter: {
         //     categoryId: [37, 20]
         // },
-        initialSorter: [
+        /* initialSorter: [
             {
                 field: "id",
                 order: "descend",
@@ -51,124 +54,238 @@ export const PostList = (props: any) => {
         ],
         initialFilter: {
             status: ["active"],
+        }, */
+    });
+
+    const { formProps, form, editId, setEditId } = useEditForm({
+        mutationModeProp: "optimistic",
+        onMutationSuccess: () => {
+            refetch();
         },
     });
 
     return (
         <List {...props}>
-            <Table
-                {...tableProps}
-                rowKey="id"
-                pagination={{
-                    ...tableProps.pagination,
-                    position: ["bottomCenter"],
-                    size: "small",
-                }}
-            >
-                {/* <Form form={form} onFieldsChange={(changedFields, allFields) => {
-                    console.log("changedFields: ", changedFields)
-                    console.log("allFields: ", allFields)
-                }}> */}
-
-                <Column
-                    dataIndex="id"
-                    title={translate("common:resources.posts.fields.id")}
-                    key="id"
-                    sorter={{
-                        multiple: 3,
+            <Form {...formProps}>
+                <Table
+                    {...tableProps}
+                    rowKey="id"
+                    pagination={{
+                        ...tableProps.pagination,
+                        position: ["bottomCenter"],
+                        size: "small",
                     }}
-                    defaultSortOrder="descend"
-                    // onCell={(data, index) => ({ data, index })}
-                />
-                <Column
-                    dataIndex="title"
-                    title={translate("common:resources.posts.fields.title")}
-                    key="title"
-                    render={(value) => (
-                        <Form.Item name="title" initialValue={value}>
-                            <Input /* value={value} */ />
-                        </Form.Item>
-                    )}
-                    sorter={{
-                        multiple: 1,
-                    }}
-                />
-                {/* </Form> */}
-
-                <Column
-                    dataIndex="slug"
-                    title={translate("common:resources.posts.fields.slug")}
-                    key="slug"
-                    render={(value) => <TextField value={value} />}
-                    sorter={{
-                        multiple: 2,
-                    }}
-                />
-                <Column
-                    dataIndex="categoryId"
-                    title={translate("common:resources.posts.fields.category")}
-                    key="categoryId"
-                    render={(value) => (
-                        <ReferenceField resource="categories" value={value}>
-                            <TextField renderRecordKey="title" />
-                        </ReferenceField>
-                    )}
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Reference
-                                reference="categories"
-                                optionText="title"
-                                sort={{
-                                    field: "title",
-                                    order: "asc",
-                                }}
-                            >
-                                <Select
-                                    style={{ minWidth: 200 }}
-                                    showSearch
-                                    mode="multiple"
-                                    placeholder="Select Category"
+                >
+                    <Column
+                        dataIndex="id"
+                        title={translate("common:resources.posts.fields.id")}
+                        key="id"
+                        sorter={{
+                            multiple: 3,
+                        }}
+                        defaultSortOrder="descend"
+                    />
+                    <Column
+                        dataIndex="title"
+                        title={translate("common:resources.posts.fields.title")}
+                        key="title"
+                        render={(value, record) => {
+                            if (record.id === editId) {
+                                return (
+                                    <Form.Item
+                                        name="title"
+                                        style={{ margin: 0 }}
+                                    >
+                                        <Input />
+                                    </Form.Item>
+                                );
+                            }
+                            return <TextField value={value} />;
+                        }}
+                        sorter={{
+                            multiple: 1,
+                        }}
+                    />
+                    <Column
+                        dataIndex="slug"
+                        title={translate("common:resources.posts.fields.slug")}
+                        key="slug"
+                        render={(value, record) => {
+                            if (record.id === editId) {
+                                return (
+                                    <Form.Item
+                                        name="slug"
+                                        style={{ margin: 0 }}
+                                    >
+                                        <Input />
+                                    </Form.Item>
+                                );
+                            }
+                            return <TextField value={value} />;
+                        }}
+                        sorter={{
+                            multiple: 2,
+                        }}
+                    />
+                    <Column
+                        dataIndex="categoryId"
+                        title={translate(
+                            "common:resources.posts.fields.category",
+                        )}
+                        key="categoryId"
+                        render={(value, record) => {
+                            if (record.id === editId) {
+                                return (
+                                    <Form.Item
+                                        name="categoryId"
+                                        style={{ margin: 0 }}
+                                    >
+                                        <Reference
+                                            reference="categories"
+                                            optionText="title"
+                                            sort={{
+                                                field: "title",
+                                                order: "asc",
+                                            }}
+                                        >
+                                            <Select showSearch />
+                                        </Reference>
+                                    </Form.Item>
+                                );
+                            }
+                            return (
+                                <ReferenceField
+                                    resource="categories"
+                                    value={value}
+                                >
+                                    <TextField renderRecordKey="title" />
+                                </ReferenceField>
+                            );
+                        }}
+                        filterDropdown={(props) => (
+                            <FilterDropdown {...props}>
+                                <Reference
+                                    reference="categories"
+                                    optionText="title"
+                                    sort={{
+                                        field: "title",
+                                        order: "asc",
+                                    }}
+                                >
+                                    <Select
+                                        style={{ minWidth: 200 }}
+                                        showSearch
+                                        mode="multiple"
+                                        placeholder="Select Category"
+                                    />
+                                </Reference>
+                            </FilterDropdown>
+                        )}
+                    />
+                    <Column
+                        dataIndex="status"
+                        title={translate(
+                            "common:resources.posts.fields.status",
+                        )}
+                        key="status"
+                        render={(value, record) => {
+                            if (record.id === editId) {
+                                return (
+                                    <Form.Item
+                                        name="status"
+                                        style={{ margin: 0 }}
+                                    >
+                                        <Select
+                                            defaultValue="active"
+                                            options={[
+                                                {
+                                                    label: "Active",
+                                                    value: "active",
+                                                },
+                                                {
+                                                    label: "Draft",
+                                                    value: "draft",
+                                                },
+                                            ]}
+                                        />
+                                    </Form.Item>
+                                );
+                            }
+                            return <TagField value={value} />;
+                        }}
+                        filterDropdown={(props) => (
+                            <FilterDropdown {...props}>
+                                <Radio.Group>
+                                    <Radio value="active">Active</Radio>
+                                    <Radio value="draft">Draft</Radio>
+                                </Radio.Group>
+                            </FilterDropdown>
+                        )}
+                        defaultFilteredValue={["active"]}
+                    />
+                    <Column
+                        title="Operation"
+                        dataIndex="operation"
+                        key="operation"
+                        render={(_, record) => {
+                            if (record.id === editId) {
+                                return (
+                                    <Space>
+                                        <Button
+                                            onClick={() => {
+                                                form.submit();
+                                            }}
+                                        >
+                                            Save
+                                        </Button>
+                                        <Button
+                                            onClick={() => setEditId(undefined)}
+                                        >
+                                            Cancel
+                                        </Button>
+                                    </Space>
+                                );
+                            }
+                            return (
+                                <Button
+                                    onClick={() => {
+                                        console.log("form: ", form);
+                                        setEditId(record.id);
+                                    }}
+                                >
+                                    Edit
+                                </Button>
+                            );
+                        }}
+                    />
+                    <Column
+                        title={translate("common:table.actions", "Actions")}
+                        dataIndex="actions"
+                        key="actions"
+                        render={(
+                            _text: string | number,
+                            record: {
+                                id: string | number;
+                            },
+                        ): React.ReactNode => (
+                            <Space>
+                                <EditButton
+                                    size="small"
+                                    recordItemId={record.id}
                                 />
-                            </Reference>
-                        </FilterDropdown>
-                    )}
-                />
-                <Column
-                    dataIndex="status"
-                    title={translate("common:resources.posts.fields.status")}
-                    key="status"
-                    render={(value) => <TagField value={value} />}
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Radio.Group>
-                                <Radio value="active">Active</Radio>
-                                <Radio value="draft">Draft</Radio>
-                            </Radio.Group>
-                        </FilterDropdown>
-                    )}
-                    defaultFilteredValue={["active"]}
-                />
-                <Column
-                    title={translate("common:table.actions", "Actions")}
-                    dataIndex="actions"
-                    key="actions"
-                    render={(
-                        _text: string | number,
-                        record: {
-                            id: string | number;
-                        },
-                    ): React.ReactNode => (
-                        <Space>
-                            <EditButton size="small" recordItemId={record.id} />
-                            <DeleteButton
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <ShowButton size="small" recordItemId={record.id} />
-                        </Space>
-                    )}
-                />
-            </Table>
+                                <DeleteButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                                <ShowButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                            </Space>
+                        )}
+                    />
+                </Table>
+            </Form>
         </List>
     );
 };
