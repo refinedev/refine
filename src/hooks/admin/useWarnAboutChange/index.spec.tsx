@@ -14,5 +14,7 @@ describe("useWarnAboutChange Hook", () => {
         });
 
         expect(result.current.warnWhenUnsavedChanges).toEqual(false);
+        expect(result.current.setWarnWhen).toBeDefined();
+        expect(result.current.warnWhen).toEqual(false);
     });
 });

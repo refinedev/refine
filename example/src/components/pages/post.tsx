@@ -179,7 +179,7 @@ export const PostCreate = (props: any) => {
     const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
         "write",
     );
-    const { isLoading, onChange } = useFileUploadState();
+    const { onChange } = useFileUploadState();
 
     const {
         current,
@@ -407,7 +407,7 @@ export const PostEdit = (props: any) => {
     const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
         "write",
     );
-    const { isLoading, onChange } = useFileUploadState();
+    const { onChange } = useFileUploadState();
 
     const formList = [
         <>

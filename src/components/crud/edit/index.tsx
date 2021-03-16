@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, Prompt } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Card, Button, Row, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
@@ -14,7 +14,6 @@ export interface EditProps {
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
     mutationMode?: MutationMode;
-    warnWhen?: boolean;
 }
 
 export const Edit: React.FC<EditProps> = ({
@@ -22,7 +21,6 @@ export const Edit: React.FC<EditProps> = ({
     actionButtons,
     saveButtonProps,
     mutationMode: mutationModeProp,
-    warnWhen,
     children,
 }) => {
     const { mutationMode: mutationModeContext } = useMutationMode();
@@ -54,10 +52,10 @@ export const Edit: React.FC<EditProps> = ({
                         <>
                             <DeleteButton mutationMode={mutationMode} />
                             <Button
+                                {...saveButtonProps}
                                 htmlType="submit"
                                 type="primary"
                                 icon={<SaveOutlined />}
-                                {...saveButtonProps}
                             >
                                 {translate("common:buttons.save", "Save")}
                             </Button>
@@ -66,13 +64,7 @@ export const Edit: React.FC<EditProps> = ({
                 </Space>,
             ]}
         >
-            <>
-                <Prompt
-                    when={warnWhen}
-                    message="Are you sure you want to leave? You have with unsaved changes."
-                />
-                {children}
-            </>
+            {children}
         </Card>
     );
 };
