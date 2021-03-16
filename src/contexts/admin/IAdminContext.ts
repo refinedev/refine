@@ -6,3 +6,8 @@ export interface IAdminContext {
     warnWhen: boolean;
     setWarnWhen: (value: boolean) => void;
 }
+
+export interface IAdminContextProvider {
+    mutationMode: MutationMode;
+    warnWhenUnsavedChanges: boolean;
+}

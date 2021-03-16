@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { IAdminContext } from "./IAdminContext";
+import { IAdminContext, IAdminContextProvider } from "./IAdminContext";
 
 export const AdminContext = React.createContext<IAdminContext>({
     mutationMode: "pessimistic",
@@ -9,7 +9,7 @@ export const AdminContext = React.createContext<IAdminContext>({
     setWarnWhen: (value: boolean) => value,
 });
 
-export const AdminContextProvider: React.FC<IAdminContext> = ({
+export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
     mutationMode,
     warnWhenUnsavedChanges,
     children,

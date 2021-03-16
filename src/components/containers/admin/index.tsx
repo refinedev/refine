@@ -82,9 +82,6 @@ export const Admin: React.FC<AdminProps> = ({
                             <AdminContextProvider
                                 mutationMode={mutationMode}
                                 warnWhenUnsavedChanges={warnWhenUnsavedChanges}
-                                warnWhen={false}
-                                // eslint-disable-next-line @typescript-eslint/no-empty-function
-                                setWarnWhen={() => {}}
                             >
                                 <Router>
                                     <RouteProvider
