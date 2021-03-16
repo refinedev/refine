@@ -1,16 +1,20 @@
-import { useStepsForm as useStepsFormSF } from "sunflower-antd";
+import {
+    useStepsForm as useStepsFormSF,
+    UseStepsFormConfig,
+} from "sunflower-antd";
 
-import { Form } from "antd";
+import { useForm, useEditFormProps, useCreateFormProps } from "@hooks";
 
-import { useForm } from "@hooks";
-import { useEditForm } from "../useEditForm";
+export type useStepsFormProps = (
+    props: (useCreateFormProps | useEditFormProps) & UseStepsFormConfig,
+) => ReturnType<typeof useStepsFormSF>;
 
-type useStepsProps = {};
-
-export const useStepsForm = () => {
-    const form = useForm({});
+export const useStepsForm: useStepsFormProps = (props /* config */) => {
+    console.log("props: ", props);
+    const form = useForm({ ...props });
 
     const stepsPropsSunflower = useStepsFormSF({
+        ...props,
         form: form.form,
         submit: (values) => {
             form.formProps?.onFinish(values as any);

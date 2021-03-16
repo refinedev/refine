@@ -1,1 +1,1 @@
-export { useStepsForm } from "./useStepsForm";
+export { useStepsForm, useStepsFormProps } from "./useStepsForm";
