@@ -181,18 +181,13 @@ export const PostCreate = (props: any) => {
     );
     const { isLoading, onChange } = useFileUploadState();
 
-    const { isLoading: isLoadingForm, createProps } = useForm({});
-
-    // console.log("form", form.submit);
-
     const {
         current,
         gotoStep,
         stepsProps,
-        // submit,
+        submit,
         formLoading,
         formProps,
-        form,
     } = useStepsForm();
 
     const formList = [
@@ -345,22 +340,25 @@ export const PostCreate = (props: any) => {
     return (
         <Create
             {...props}
-            {...createProps}
-            // saveButtonProps={{
-            //     ...createProps?.saveButtonProps,
-            //     disabled: isLoading || isLoadingForm,
-            // }}
             actionButtons={
                 <>
                     {current > 0 && (
-                        <Button onClick={() => gotoStep(current - 1)}>
+                        <Button
+                            onClick={() => {
+                                gotoStep(current - 1);
+                            }}
+                        >
                             {translate(
                                 "common:resources.posts.forms.prevButton",
                             )}
                         </Button>
                     )}
                     {current < formList.length - 1 && (
-                        <Button onClick={() => gotoStep(current + 1)}>
+                        <Button
+                            onClick={() => {
+                                gotoStep(current + 1);
+                            }}
+                        >
                             {translate(
                                 "common:resources.posts.forms.nextButton",
                             )}
@@ -372,7 +370,7 @@ export const PostCreate = (props: any) => {
                             type="primary"
                             icon={<SaveOutlined />}
                             loading={formLoading}
-                            onClick={() => form.submit()}
+                            onClick={() => submit()}
                         >
                             {translate("common:buttons.save", "Save")}
                         </Button>
@@ -410,8 +408,6 @@ export const PostEdit = (props: any) => {
         "write",
     );
     const { isLoading, onChange } = useFileUploadState();
-
-    const { isLoading: isLoadingFormData, editProps } = useForm({});
 
     const formList = [
         <>
@@ -564,19 +560,14 @@ export const PostEdit = (props: any) => {
         current,
         gotoStep,
         stepsProps,
-        // submit,
+        submit,
         formLoading,
         formProps,
-        form,
     } = useStepsForm();
 
     return (
         <Edit
             {...props}
-            saveButtonProps={{
-                ...editProps?.saveButtonProps,
-                disabled: isLoading || isLoadingFormData,
-            }}
             actionButtons={
                 <>
                     {current > 0 && (
@@ -599,7 +590,7 @@ export const PostEdit = (props: any) => {
                             type="primary"
                             icon={<SaveOutlined />}
                             loading={formLoading}
-                            onClick={() => form.submit()}
+                            onClick={() => submit()}
                         >
                             {translate("common:buttons.save", "Save")}
                         </Button>
