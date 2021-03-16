@@ -17,6 +17,7 @@
         "test:watch": "tsdx test --watch",
         "test:coverage": "tsdx test --coverage",
         "lint": "tsdx lint",
+        "lint:fix": "npm run lint -- src test example --quiet --fix --allow-empty",
         "prepare": "tsdx build",
         "size": "size-limit",
         "analyze": "size-limit --why"
@@ -26,7 +27,7 @@
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx}": [
-            "npm run lint -- --quiet --fix --allow-empty"
+            "npm run lint:fix"
         ]
     },
     "husky": {
