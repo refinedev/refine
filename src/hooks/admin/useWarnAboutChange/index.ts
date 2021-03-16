@@ -3,7 +3,9 @@ import { useContext } from "react";
 import { AdminContext } from "@contexts/admin";
 
 export const useWarnAboutChange = () => {
-    const { warnWhenUnsavedChanges } = useContext(AdminContext);
+    const { warnWhenUnsavedChanges, warnWhen, setWarnWhen } = useContext(
+        AdminContext,
+    );
 
-    return { warnWhenUnsavedChanges };
+    return { warnWhenUnsavedChanges, warnWhen, setWarnWhen };
 };

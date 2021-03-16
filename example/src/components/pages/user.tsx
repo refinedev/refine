@@ -111,7 +111,7 @@ export const UserList = (props: any) => {
 
 export const UserEdit = (props: any) => {
     const translate = useTranslate();
-    const { formProps, editProps } = useForm({
+    const { formProps, saveButtonProps } = useForm({
         warnWhenUnsavedChanges: true,
     });
 
@@ -120,7 +120,7 @@ export const UserEdit = (props: any) => {
     const dateFormat = "DD/MM/YYYY";
 
     return (
-        <Edit {...props} {...editProps}>
+        <Edit {...props} saveButtonProps={saveButtonProps}>
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Tabs>
                     <TabPane tab="Summary" key="summary">
@@ -187,7 +187,7 @@ export const UserEdit = (props: any) => {
 
 export const UserCreate = (props: any) => {
     const translate = useTranslate();
-    const { formProps, createProps } = useForm({
+    const { formProps, saveButtonProps } = useForm({
         warnWhenUnsavedChanges: true,
     });
 
@@ -196,7 +196,11 @@ export const UserCreate = (props: any) => {
     const dateFormat = "DD/MM/YYYY";
 
     return (
-        <Create {...props} {...createProps} submitOnEnter={false}>
+        <Create
+            {...props}
+            saveButtonProps={saveButtonProps}
+            submitOnEnter={false}
+        >
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Tabs>
                     <TabPane tab="Summary" key="summary">

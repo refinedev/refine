@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, Prompt } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Card, Button, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
@@ -11,14 +11,12 @@ export interface CreateProps {
     title?: string;
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
-    warnWhen?: boolean;
 }
 
 export const Create: React.FC<CreateProps> = ({
     title,
     actionButtons,
     saveButtonProps,
-    warnWhen,
     children,
 }) => {
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
@@ -43,10 +41,10 @@ export const Create: React.FC<CreateProps> = ({
                 >
                     {actionButtons ?? (
                         <Button
+                            {...saveButtonProps}
                             htmlType="submit"
                             type="primary"
                             icon={<SaveOutlined />}
-                            {...saveButtonProps}
                         >
                             {translate("common:buttons.save", "Save")}
                         </Button>
@@ -54,13 +52,7 @@ export const Create: React.FC<CreateProps> = ({
                 </Space>,
             ]}
         >
-            <>
-                <Prompt
-                    when={warnWhen}
-                    message="Are you sure you want to leave? You have with unsaved changes."
-                />
-                {children}
-            </>
+            {children}
         </Card>
     );
 };

@@ -81,12 +81,12 @@ export const LandingList = (props: any) => {
 export const LandingCreate = (props: any) => {
     const translate = useTranslate();
 
-    const { formProps, createProps } = useForm({
+    const { formProps, saveButtonProps } = useForm({
         submitOnEnter: false,
     });
 
     return (
-        <Create {...props} {...createProps}>
+        <Create {...props} saveButtonProps={saveButtonProps}>
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label={translate("common:resources.posts.fields.title")}
@@ -118,7 +118,11 @@ export const LandingCreate = (props: any) => {
 export const LandingEdit = (props: any) => {
     const translate = useTranslate();
     const { isLoading } = useFileUploadState();
-    const { formProps, isLoading: isLoadingFormData, editProps } = useForm({
+    const {
+        formProps,
+        isLoading: isLoadingFormData,
+        saveButtonProps,
+    } = useForm({
         submitOnEnter: false,
     });
 
@@ -126,7 +130,7 @@ export const LandingEdit = (props: any) => {
         <Edit
             {...props}
             saveButtonProps={{
-                ...editProps?.saveButtonProps,
+                ...saveButtonProps,
                 disabled: isLoading || isLoadingFormData,
             }}
         >

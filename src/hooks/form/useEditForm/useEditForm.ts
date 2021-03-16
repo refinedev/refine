@@ -29,8 +29,6 @@ export const useEditForm = ({
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
 }: useEditFormProps) => {
-    const [isFormChanged, setIsFormChanged] = useState(false);
-
     const [formAnt] = Form.useForm();
     const formSF = useFormSF({
         form: formAnt,
@@ -40,6 +38,7 @@ export const useEditForm = ({
 
     const {
         warnWhenUnsavedChanges: warnWhenUnsavedChangesContext,
+        setWarnWhen,
     } = useWarnAboutChange();
 
     const warnWhenUnsavedChanges =
@@ -74,6 +73,7 @@ export const useEditForm = ({
     const notification = useNotification();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
+        setWarnWhen(false);
         mutate(
             { id: idFromRoute, values },
             {
@@ -114,8 +114,8 @@ export const useEditForm = ({
     };
 
     const onValuesChange = (changeValues: object) => {
-        if (changeValues) {
-            setIsFormChanged(true);
+        if (changeValues && warnWhenUnsavedChanges) {
+            setWarnWhen(true);
         }
         return changeValues;
     };
@@ -136,9 +136,6 @@ export const useEditForm = ({
             onValuesChange,
         },
         isLoading,
-        editProps: {
-            saveButtonProps,
-            warnWhen: warnWhenUnsavedChanges ? isFormChanged : false,
-        },
+        saveButtonProps,
     };
 };
