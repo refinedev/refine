@@ -41,6 +41,7 @@ export const useEditForm = ({
 
     const {
         warnWhenUnsavedChanges: warnWhenUnsavedChangesContext,
+        setWarnWhen,
     } = useWarnAboutChange();
 
     const warnWhenUnsavedChanges =
@@ -77,6 +78,7 @@ export const useEditForm = ({
     const notification = useNotification();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
+        setWarnWhen(false);
         mutate(
             { id, values },
             {
@@ -118,8 +120,8 @@ export const useEditForm = ({
     };
 
     const onValuesChange = (changeValues: object) => {
-        if (changeValues) {
-            setIsFormChanged(true);
+        if (changeValues && warnWhenUnsavedChanges) {
+            setWarnWhen(true);
         }
         return changeValues;
     };
@@ -146,5 +148,6 @@ export const useEditForm = ({
         },
         editId,
         setEditId,
+        saveButtonProps,
     };
 };

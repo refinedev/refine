@@ -6,12 +6,19 @@ import {
     UnorderedListOutlined,
 } from "@ant-design/icons";
 import { MenuClickEventHandler } from "rc-menu/lib/interface";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, Prompt, useHistory, useLocation } from "react-router-dom";
 import humanizeString from "humanize-string";
 
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "@interfaces";
-import { useGetLocale, useResource, useSetLocale, useTranslate } from "@hooks";
+import {
+    useGetLocale,
+    useResource,
+    useSetLocale,
+    useTranslate,
+    useWarnAboutChange,
+} from "@hooks";
+import { AdminContext } from "@contexts/admin";
 
 export interface LayoutProps {
     title?: ReactNode;
@@ -34,10 +41,14 @@ export const Layout: React.FC<LayoutProps> = ({
     const setLocale = useSetLocale();
     const translate = useTranslate();
 
+    const { warnWhen, setWarnWhen } = useWarnAboutChange();
+
     const selectedKey = React.useMemo(() => {
         const selectedResource = resources.find((el) =>
             location.pathname.startsWith(`/resources/${el.route}`),
         );
+
+        setWarnWhen(false);
         return `/resources/${selectedResource?.route ?? ""}`;
     }, [location]);
 
@@ -134,6 +145,10 @@ export const Layout: React.FC<LayoutProps> = ({
                     </div>
                 </AntLayout.Content>
             </AntLayout>
+            <Prompt
+                when={warnWhen}
+                message="Are you sure you want to leave? You have with unsaved changes."
+            />
         </AntLayout>
     );
 };

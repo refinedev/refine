@@ -57,7 +57,6 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
             if (!(mutationMode === "undoable")) {
                 return update<TParams>(resource, id, values);
             }
-
             const updatePromise = new Promise<UpdateResponse>(
                 (resolve, reject) => {
                     const updateTimeout = setTimeout(() => {

@@ -10,18 +10,20 @@ type UseCreateReturnType<
     CreateResponse,
     unknown,
     {
+        resource: string;
         values: TParams;
     },
     unknown
 >;
 
-export const useCreate = <TParams extends BaseRecord = BaseRecord>(
-    resource: string,
-): UseCreateReturnType<TParams> => {
+export const useCreate = <
+    TParams extends BaseRecord = BaseRecord
+>(): UseCreateReturnType<TParams> => {
     const { create } = useContext<IDataContext>(DataContext);
 
-    const mutation = useMutation(({ values }: { values: TParams }) =>
-        create<TParams>(resource, values),
+    const mutation = useMutation(
+        ({ resource, values }: { resource: string; values: TParams }) =>
+            create<TParams>(resource, values),
     );
 
     return mutation;
