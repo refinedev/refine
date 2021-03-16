@@ -81,4 +81,36 @@ export const createMockServer = (): SetupServerApi =>
                 );
             },
         ),
+        rest.post(
+            "https://readmin-fake-rest.pankod.com/posts",
+            (_req, res, ctx) => {
+                return res(ctx.json(posts[0]));
+            },
+        ),
+        rest.get(
+            "https://readmin-fake-rest.pankod.com/posts?id=1&id=2",
+            (_req, res, ctx) => {
+                return res(ctx.json(posts));
+            },
+        ),
+        rest.put(
+            "https://readmin-fake-rest.pankod.com/posts/1",
+            (_req, res, ctx) => {
+                const { title } = _req.body as { title: string };
+                return res(ctx.json({ ...posts[0], title }));
+            },
+        ),
+        rest.put(
+            "https://readmin-fake-rest.pankod.com/posts/2",
+            (_req, res, ctx) => {
+                const { title } = _req.body as { title: string };
+                return res(ctx.json({ ...posts[0], title }));
+            },
+        ),
+        rest.delete(
+            "https://readmin-fake-rest.pankod.com/posts/1",
+            (_req, res, ctx) => {
+                return res(ctx.json({ isDeleted: true }));
+            },
+        ),
     );

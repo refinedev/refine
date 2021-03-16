@@ -48,14 +48,14 @@ export const useCreateForm = ({
 
     const resource = useResourceWithRoute(routeResourceName);
 
-    const { mutate, isLoading } = useCreate(resource.name);
+    const { mutate, isLoading } = useCreate();
 
     const notification = useNotification();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         setWarnWhen(false);
         mutate(
-            { values },
+            { values, resource: resource.name },
             {
                 onSuccess: (data, ...rest) => {
                     if (onMutationSuccess) {
