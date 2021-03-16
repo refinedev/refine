@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
-import { useStepsForm } from "sunflower-antd";
 import { SaveOutlined } from "@ant-design/icons";
+// import { useStepsForm } from "sunflower-antd";
 
 import {
     List,
@@ -35,6 +35,7 @@ import {
     DeleteButton,
     ShowButton,
     useForm,
+    useStepsForm,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -180,37 +181,19 @@ export const PostCreate = (props: any) => {
     );
     const { isLoading, onChange } = useFileUploadState();
 
-    const { isLoading: isLoadingForm } = useForm({});
+    const { isLoading: isLoadingForm, createProps } = useForm({});
 
-    const { mutate } = useCreate("posts");
-
-    const onSuccess = () => {
-        history.push(`/resources/posts`);
-    };
-
-    const onError = () => {
-        console.log("error");
-    };
+    // console.log("form", form.submit);
 
     const {
         current,
         gotoStep,
         stepsProps,
-        submit,
+        // submit,
         formLoading,
         formProps,
-    } = useStepsForm({
-        submit(values) {
-            mutate(
-                { values },
-                {
-                    onSuccess: onSuccess,
-                    onError: onError,
-                },
-            );
-        },
-        total: 4,
-    });
+        form,
+    } = useStepsForm();
 
     const formList = [
         <>
@@ -362,7 +345,7 @@ export const PostCreate = (props: any) => {
     return (
         <Create
             {...props}
-            // {...createProps}
+            {...createProps}
             // saveButtonProps={{
             //     ...createProps?.saveButtonProps,
             //     disabled: isLoading || isLoadingForm,
@@ -389,7 +372,7 @@ export const PostCreate = (props: any) => {
                             type="primary"
                             icon={<SaveOutlined />}
                             loading={formLoading}
-                            onClick={() => submit()}
+                            onClick={() => form.submit()}
                         >
                             {translate("common:buttons.save", "Save")}
                         </Button>
@@ -428,203 +411,218 @@ export const PostEdit = (props: any) => {
     );
     const { isLoading, onChange } = useFileUploadState();
 
-    const { formProps, isLoading: isLoadingFormData, editProps } = useForm({});
+    const { isLoading: isLoadingFormData, editProps } = useForm({});
 
-    const [current, setCurrent] = React.useState(0);
+    const formList = [
+        <>
+            <Form.Item
+                label={translate("common:resources.posts.fields.title")}
+                name="title"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+            <Form.Item
+                label={translate("common:resources.posts.fields.url")}
+                name="slug"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+            <Form.Item
+                label={translate("common:resources.posts.fields.content")}
+                name="content"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <ReactMde
+                    selectedTab={selectedTab}
+                    onTabChange={setSelectedTab}
+                    generateMarkdownPreview={(markdown) =>
+                        Promise.resolve(<ReactMarkdown source={markdown} />)
+                    }
+                />
+            </Form.Item>
+        </>,
 
-    const steps = [
-        {
-            title: "Description",
-            content: (
-                <>
-                    <Form.Item
-                        label={translate("common:resources.posts.fields.title")}
-                        name="title"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Input />
-                    </Form.Item>
-                    <Form.Item
-                        label={translate("common:resources.posts.fields.url")}
-                        name="slug"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Input />
-                    </Form.Item>
-                    <Form.Item
-                        label={translate(
-                            "common:resources.posts.fields.content",
-                        )}
-                        name="content"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <ReactMde
-                            selectedTab={selectedTab}
-                            onTabChange={setSelectedTab}
-                            generateMarkdownPreview={(markdown) =>
-                                Promise.resolve(
-                                    <ReactMarkdown source={markdown} />,
-                                )
-                            }
-                        />
-                    </Form.Item>
-                </>
-            ),
-        },
-        {
-            title: "Informations",
-            content: (
-                <>
-                    <Form.Item
-                        label={translate(
-                            "common:resources.posts.fields.status",
-                        )}
-                        name="status"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Select
-                            defaultValue="active"
-                            options={[
-                                {
-                                    label: "Active",
-                                    value: "active",
-                                },
-                                {
-                                    label: "Draft",
-                                    value: "draft",
-                                },
-                            ]}
-                        />
-                    </Form.Item>
-                    <Form.Item
-                        label={translate(
-                            "common:resources.posts.fields.category",
-                        )}
-                        name="categoryId"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Reference
-                            reference="categories"
-                            optionText="title"
-                            sort={{
-                                field: "title",
-                                order: "asc",
-                            }}
-                        >
-                            <Select showSearch />
-                        </Reference>
-                    </Form.Item>
-                </>
-            ),
-        },
-        {
-            title: "Details",
-            content: (
-                <>
-                    <Form.Item
-                        label={translate("common:resources.posts.fields.user")}
-                        name="userId"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                        help="Autocomplete (search user email)"
-                    >
-                        <Reference reference="users" optionText="email">
-                            <Select showSearch />
-                        </Reference>
-                    </Form.Item>
-                    <Form.Item
-                        label={translate("common:resources.posts.fields.tags")}
-                        name="tags"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Reference reference="tags" optionText="title">
-                            <Select mode="multiple" />
-                        </Reference>
-                    </Form.Item>
-                </>
-            ),
-        },
-        {
-            title: "Image",
-            content: (
-                <Form.Item
-                    label={translate("common:resources.posts.fields.image")}
+        <>
+            <Form.Item
+                label={translate("common:resources.posts.fields.status")}
+                name="status"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Select
+                    defaultValue="active"
+                    options={[
+                        {
+                            label: "Active",
+                            value: "active",
+                        },
+                        {
+                            label: "Draft",
+                            value: "draft",
+                        },
+                    ]}
+                />
+            </Form.Item>
+            <Form.Item
+                label={translate("common:resources.posts.fields.category")}
+                name="categoryId"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Reference
+                    reference="categories"
+                    optionText="title"
+                    sort={{
+                        field: "title",
+                        order: "asc",
+                    }}
                 >
-                    <Form.Item
-                        name="image"
-                        valuePropName="fileList"
-                        getValueFromEvent={normalizeFile}
-                        noStyle
+                    <Select showSearch />
+                </Reference>
+            </Form.Item>
+        </>,
+
+        <>
+            <Form.Item
+                label={translate("common:resources.posts.fields.user")}
+                name="userId"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+                help="Autocomplete (search user email)"
+            >
+                <Reference reference="users" optionText="email">
+                    <Select showSearch />
+                </Reference>
+            </Form.Item>
+            <Form.Item
+                label={translate("common:resources.posts.fields.tags")}
+                name="tags"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Reference reference="tags" optionText="title">
+                    <Select mode="multiple" />
+                </Reference>
+            </Form.Item>
+        </>,
+
+        <>
+            <Form.Item label={translate("common:resources.posts.fields.image")}>
+                <Form.Item
+                    name="image"
+                    valuePropName="fileList"
+                    getValueFromEvent={normalizeFile}
+                    noStyle
+                >
+                    <Upload.Dragger
+                        name="file"
+                        action={`${apiUrl}/upload`}
+                        listType="picture"
+                        maxCount={5}
+                        multiple
+                        onChange={onChange}
                     >
-                        <Upload.Dragger
-                            name="file"
-                            action={`${apiUrl}/upload`}
-                            listType="picture"
-                            maxCount={5}
-                            multiple
-                            onChange={onChange}
-                        >
-                            <p className="ant-upload-text">
-                                Click or drag file to this area to upload
-                            </p>
-                            <p className="ant-upload-hint">
-                                Support for a single upload.
-                            </p>
-                        </Upload.Dragger>
-                    </Form.Item>
+                        <p className="ant-upload-text">
+                            Click or drag file to this area to upload
+                        </p>
+                        <p className="ant-upload-hint">
+                            Support for a single upload.
+                        </p>
+                    </Upload.Dragger>
                 </Form.Item>
-            ),
-        },
+            </Form.Item>
+        </>,
     ];
 
-    const onChangeCurrent = (current: any) => {
-        setCurrent(current);
-    };
+    const {
+        current,
+        gotoStep,
+        stepsProps,
+        // submit,
+        formLoading,
+        formProps,
+        form,
+    } = useStepsForm();
 
     return (
         <Edit
             {...props}
-            // mutationMode="optimistic"
             saveButtonProps={{
                 ...editProps?.saveButtonProps,
                 disabled: isLoading || isLoadingFormData,
             }}
+            actionButtons={
+                <>
+                    {current > 0 && (
+                        <Button onClick={() => gotoStep(current - 1)}>
+                            {translate(
+                                "common:resources.posts.forms.prevButton",
+                            )}
+                        </Button>
+                    )}
+                    {current < formList.length - 1 && (
+                        <Button onClick={() => gotoStep(current + 1)}>
+                            {translate(
+                                "common:resources.posts.forms.nextButton",
+                            )}
+                        </Button>
+                    )}
+                    {current === formList.length - 1 && (
+                        <Button
+                            style={{ marginRight: 10 }}
+                            type="primary"
+                            icon={<SaveOutlined />}
+                            loading={formLoading}
+                            onClick={() => form.submit()}
+                        >
+                            {translate("common:buttons.save", "Save")}
+                        </Button>
+                    )}
+                </>
+            }
         >
-            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
-                <Steps current={current} onChange={onChangeCurrent}>
-                    {steps.map((item) => (
-                        <Step key={item.title} title={item.title} />
-                    ))}
-                </Steps>
-                <div style={{ paddingTop: 36 }}>{steps[current].content}</div>
-            </Form>
+            <Steps {...stepsProps}>
+                <Step title="Description" />
+                <Step title="Informations" />
+                <Step title="Details" />
+                <Step title="Image" />
+            </Steps>
+
+            <div style={{ marginTop: 60 }}>
+                <Form
+                    {...formProps}
+                    wrapperCol={{ span: 14 }}
+                    layout="vertical"
+                >
+                    {formList[current]}
+                </Form>
+            </div>
         </Edit>
     );
 };
