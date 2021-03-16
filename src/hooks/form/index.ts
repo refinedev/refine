@@ -1,4 +1,4 @@
 export { useForm } from "./useForm";
-export { useCreateForm } from "./useCreateForm";
-export { useEditForm } from "./useEditForm";
+export { useCreateForm, useCreateFormProps } from "./useCreateForm";
+export { useEditForm, useEditFormProps } from "./useEditForm";
 export { useStepsForm } from "./useStepsForm";
