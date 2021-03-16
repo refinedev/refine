@@ -100,4 +100,17 @@ export const createMockServer = (): SetupServerApi =>
                 return res(ctx.json({ ...posts[0], title }));
             },
         ),
+        rest.put(
+            "https://readmin-fake-rest.pankod.com/posts/2",
+            (_req, res, ctx) => {
+                const { title } = _req.body as { title: string };
+                return res(ctx.json({ ...posts[0], title }));
+            },
+        ),
+        rest.delete(
+            "https://readmin-fake-rest.pankod.com/posts/1",
+            (_req, res, ctx) => {
+                return res(ctx.json({ isDeleted: true }));
+            },
+        ),
     );
