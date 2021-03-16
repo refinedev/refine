@@ -44,7 +44,7 @@ describe("useUpdate Hook", () => {
 
         result.current.mutate({
             id: "1",
-            values: { id: "1", title: "test" },
+            values: { id: "1", title: "optimistic test" },
         });
         await waitForNextUpdate();
 
@@ -55,6 +55,6 @@ describe("useUpdate Hook", () => {
         const { isSuccess, data } = result.current;
 
         expect(isSuccess).toBeTruthy();
-        expect(data?.data.title).toBe("test");
+        expect(data?.data.title).toBe("optimistic test");
     });
 });
