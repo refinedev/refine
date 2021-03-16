@@ -249,7 +249,6 @@ export const PostList = (props: any) => {
                             return (
                                 <Button
                                     onClick={() => {
-                                        console.log("form: ", form);
                                         setEditId(record.id);
                                     }}
                                 >
