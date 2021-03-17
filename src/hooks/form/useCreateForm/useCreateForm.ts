@@ -26,7 +26,7 @@ export const useCreateForm = ({
     onMutationError,
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
-    redirect,
+    redirect = "edit",
 }: useCreateFormProps) => {
     const [formAnt] = Form.useForm();
     const formSF = useFormSF({
@@ -81,13 +81,6 @@ export const useCreateForm = ({
                             );
                         }
 
-                        return history.push(`/resources/${resource.route}`);
-                    } else if (redirect === undefined) {
-                        if (resource.canEdit) {
-                            return history.push(
-                                `/resources/${resource.route}/edit/${data.data.id}`,
-                            );
-                        }
                         return history.push(`/resources/${resource.route}`);
                     } else {
                         return;

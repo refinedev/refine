@@ -29,7 +29,7 @@ export const useEditForm = ({
     mutationModeProp,
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
-    redirect,
+    redirect = "list",
 }: useEditFormProps) => {
     const [formAnt] = Form.useForm();
     const formSF = useFormSF({
@@ -90,21 +90,14 @@ export const useEditForm = ({
                     });
 
                     if (mutationMode === "pessimistic") {
-                        if (redirect === "show") {
-                            if (resource.canShow) {
+                        if (redirect) {
+                            if (resource.canShow && redirect === "show") {
                                 return history.push(
                                     `/resources/${resource.route}/show/${idFromRoute}`,
                                 );
-                            } else {
-                                return history.push(
-                                    `/resources/${resource.route}`,
-                                );
                             }
-                        }
-                        if (redirect === undefined || redirect === "list") {
                             return history.push(`/resources/${resource.route}`);
-                        }
-                        if (!redirect) {
+                        } else {
                             return;
                         }
                     }
@@ -122,19 +115,14 @@ export const useEditForm = ({
             },
         );
         if (mutationMode !== "pessimistic") {
-            if (redirect === "show") {
-                if (resource.canShow) {
+            if (redirect) {
+                if (resource.canShow && redirect === "show") {
                     return history.push(
                         `/resources/${resource.route}/show/${idFromRoute}`,
                     );
-                } else {
-                    return history.push(`/resources/${resource.route}`);
                 }
-            }
-            if (redirect === undefined || redirect === "list") {
                 return history.push(`/resources/${resource.route}`);
-            }
-            if (!redirect) {
+            } else {
                 return;
             }
         }
