@@ -188,7 +188,7 @@ export const PostCreate = (props: any) => {
         submit,
         formLoading,
         formProps,
-    } = useStepsForm({});
+    } = useStepsForm({ warnWhenUnsavedChanges: true });
 
     const formList = [
         <>
@@ -564,7 +564,6 @@ export const PostEdit = (props: any) => {
         formLoading,
         formProps,
     } = useStepsForm({
-        defaultCurrent: 2,
         warnWhenUnsavedChanges: true,
     });
 

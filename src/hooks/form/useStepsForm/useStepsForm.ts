@@ -9,8 +9,7 @@ export type useStepsFormProps = (
     props: (useCreateFormProps | useEditFormProps) & UseStepsFormConfig,
 ) => ReturnType<typeof useStepsFormSF>;
 
-export const useStepsForm: useStepsFormProps = (props /* config */) => {
-    console.log("props: ", props);
+export const useStepsForm: useStepsFormProps = (props) => {
     const form = useForm({ ...props });
 
     const stepsPropsSunflower = useStepsFormSF({
@@ -23,5 +22,10 @@ export const useStepsForm: useStepsFormProps = (props /* config */) => {
 
     return {
         ...stepsPropsSunflower,
+        formProps: {
+            ...stepsPropsSunflower.formProps,
+            onValuesChange: form.formProps?.onValuesChange,
+            onKeyUp: form.formProps?.onKeyUp,
+        },
     };
 };
