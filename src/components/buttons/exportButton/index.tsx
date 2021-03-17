@@ -47,6 +47,9 @@ export const ExportButton: FC<ExportButtonProps> = ({
 
     const fetchData = async () => {
         setLoading(true);
+        setFileReady(false);
+        setExportData([]);
+
         const allData: BaseRecord[] = [];
 
         for (let index = 1; index < 9999; index++) {
