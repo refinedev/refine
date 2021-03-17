@@ -43,7 +43,7 @@ export const PostList = (props: any) => {
 
     const { tableProps } = useTable({
         permanentFilter: {
-            categoryId: [37, 20]
+            categoryId: [37, 20],
         },
         initialSorter: [
             {
@@ -58,117 +58,107 @@ export const PostList = (props: any) => {
 
     return (
         <List {...props}>
-                <Table
-                    {...tableProps}
-                    rowKey="id"
-                    pagination={{
-                        ...tableProps.pagination,
-                        position: ["bottomCenter"],
-                        size: "small",
+            <Table
+                {...tableProps}
+                rowKey="id"
+                pagination={{
+                    ...tableProps.pagination,
+                    position: ["bottomCenter"],
+                    size: "small",
+                }}
+            >
+                <Column
+                    dataIndex="id"
+                    title={translate("common:resources.posts.fields.id")}
+                    key="id"
+                    sorter={{
+                        multiple: 3,
                     }}
-                >
-                    <Column
-                        dataIndex="id"
-                        title={translate("common:resources.posts.fields.id")}
-                        key="id"
-                        sorter={{
-                            multiple: 3,
-                        }}
-                        defaultSortOrder="descend"
-                    />
-                    <Column
-                        dataIndex="title"
-                        title={translate("common:resources.posts.fields.title")}
-                        key="title"
-                        render={(value) => <TextField value={value} />}
-                        sorter={{
-                            multiple: 1,
-                        }}
-                    />
-                    <Column
-                        dataIndex="slug"
-                        title={translate("common:resources.posts.fields.slug")}
-                        key="slug"
-                        render={(value) => <TextField value={value} />}
-                        sorter={{
-                            multiple: 2,
-                        }}
-                    />
-                    <Column
-                        dataIndex="categoryId"
-                        title={translate(
-                            "common:resources.posts.fields.category",
-                        )}
-                        key="categoryId"
-                        render={(value) => (
-                            <ReferenceField resource="categories" value={value}>
-                                <TextField renderRecordKey="title" />
-                            </ReferenceField>
-                        )}
-                        filterDropdown={(props) => (
-                            <FilterDropdown {...props}>
-                                <Reference
-                                    reference="categories"
-                                    optionText="title"
-                                    sort={{
-                                        field: "title",
-                                        order: "asc",
-                                    }}
-                                >
-                                    <Select
-                                        style={{ minWidth: 200 }}
-                                        showSearch
-                                        mode="multiple"
-                                        placeholder="Select Category"
-                                    />
-                                </Reference>
-                            </FilterDropdown>
-                        )}
-                    />
-                    <Column
-                        dataIndex="status"
-                        title={translate(
-                            "common:resources.posts.fields.status",
-                        )}
-                        key="status"
-                        render={(value) => <TagField value={value} />}
-                        filterDropdown={(props) => (
-                            <FilterDropdown {...props}>
-                                <Radio.Group>
-                                    <Radio value="active">Active</Radio>
-                                    <Radio value="draft">Draft</Radio>
-                                </Radio.Group>
-                            </FilterDropdown>
-                        )}
-                        defaultFilteredValue={["active"]}
-                    />
-                    <Column
-                        title={translate("common:table.actions", "Actions")}
-                        dataIndex="actions"
-                        key="actions"
-                        render={(
-                            _text: string | number,
-                            record: {
-                                id: string | number;
-                            },
-                        ): React.ReactNode => (
-                            <Space>
-                                <EditButton
-                                    size="small"
-                                    recordItemId={record.id}
+                    defaultSortOrder="descend"
+                />
+                <Column
+                    dataIndex="title"
+                    title={translate("common:resources.posts.fields.title")}
+                    key="title"
+                    render={(value) => <TextField value={value} />}
+                    sorter={{
+                        multiple: 1,
+                    }}
+                />
+                <Column
+                    dataIndex="slug"
+                    title={translate("common:resources.posts.fields.slug")}
+                    key="slug"
+                    render={(value) => <TextField value={value} />}
+                    sorter={{
+                        multiple: 2,
+                    }}
+                />
+                <Column
+                    dataIndex="categoryId"
+                    title={translate("common:resources.posts.fields.category")}
+                    key="categoryId"
+                    render={(value) => (
+                        <ReferenceField resource="categories" value={value}>
+                            <TextField renderRecordKey="title" />
+                        </ReferenceField>
+                    )}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Reference
+                                reference="categories"
+                                optionText="title"
+                                sort={{
+                                    field: "title",
+                                    order: "asc",
+                                }}
+                            >
+                                <Select
+                                    style={{ minWidth: 200 }}
+                                    showSearch
+                                    mode="multiple"
+                                    placeholder="Select Category"
                                 />
-                                <DeleteButton
-                                    size="small"
-                                    recordItemId={record.id}
-                                />
-                                <ShowButton
-                                    size="small"
-                                    recordItemId={record.id}
-                                />
-                            </Space>
-                        )}
-                    />
-                </Table>
+                            </Reference>
+                        </FilterDropdown>
+                    )}
+                />
+                <Column
+                    dataIndex="status"
+                    title={translate("common:resources.posts.fields.status")}
+                    key="status"
+                    render={(value) => <TagField value={value} />}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Radio.Group>
+                                <Radio value="active">Active</Radio>
+                                <Radio value="draft">Draft</Radio>
+                            </Radio.Group>
+                        </FilterDropdown>
+                    )}
+                    defaultFilteredValue={["active"]}
+                />
+                <Column
+                    title={translate("common:table.actions", "Actions")}
+                    dataIndex="actions"
+                    key="actions"
+                    render={(
+                        _text: string | number,
+                        record: {
+                            id: string | number;
+                        },
+                    ): React.ReactNode => (
+                        <Space>
+                            <EditButton size="small" recordItemId={record.id} />
+                            <DeleteButton
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <ShowButton size="small" recordItemId={record.id} />
+                        </Space>
+                    )}
+                />
+            </Table>
         </List>
     );
 };

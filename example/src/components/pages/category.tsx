@@ -30,7 +30,7 @@ export const CategoryList = (props: { resourceName: string }) => {
     } = useEditableTable({
         mutationModeProp: "undoable",
         initialPageSize: 10,
-    })
+    });
     return (
         <List {...props}>
             <Form {...formProps}>
@@ -44,15 +44,18 @@ export const CategoryList = (props: { resourceName: string }) => {
                     }}
                     onRow={(record) => ({
                         onClick: (event: any) => {
-                            if(event.target.nodeName === "TD"){
-                                setEditId(record.id)}
+                            if (event.target.nodeName === "TD") {
+                                setEditId(record.id);
                             }
+                        },
                     })}
                 >
                     <Column
                         key="id"
                         dataIndex="id"
-                        title={translate("common:resources.categories.fields.id")}
+                        title={translate(
+                            "common:resources.categories.fields.id",
+                        )}
                     />
                     <Column
                         key="title"
