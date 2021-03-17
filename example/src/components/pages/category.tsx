@@ -19,7 +19,7 @@ import {
 
 export const CategoryList = (props: { resourceName: string }) => {
     const translate = useTranslate();
-    const { tableProps, formProps, form, editId, setEditId } = useEditableTable({
+    const { tableProps, formProps, isEditing, setEditId, saveButtonProps, editButtonProps, cancelButtonProps } = useEditableTable({
         mutationModeProp: "undoable",
         initialPageSize: 10,
     })
@@ -47,7 +47,7 @@ export const CategoryList = (props: { resourceName: string }) => {
                             "common:resources.categories.fields.title",
                         )}
                         render={(value, record) => {
-                            if (record.id === editId) {
+                            if (isEditing(record.id)) {
                                 return (
                                     <Form.Item
                                         name="title"
@@ -70,19 +70,17 @@ export const CategoryList = (props: { resourceName: string }) => {
                                 id: string | number;
                             },
                         ): React.ReactNode => {
-                            if (record.id === editId) {
+                            if (isEditing(record.id)) {
                                 return (
                                     <Space>
                                         <Button
-                                            onClick={() => {
-                                                form.submit();
-                                            }}
+                                            {...saveButtonProps}
                                             size="small"
                                         >
                                             Save
                                         </Button>
                                         <Button
-                                            onClick={() => setEditId(undefined)}
+                                            {...cancelButtonProps}
                                             size="small"
                                         >
                                             Cancel
@@ -93,9 +91,7 @@ export const CategoryList = (props: { resourceName: string }) => {
                             return (
                                 <Space>
                                     <EditButton
-                                        onClick={() => {
-                                            setEditId(record.id);
-                                        }}
+                                        {...editButtonProps(record.id)}
                                         size="small"
                                     />
                                     <DeleteButton
