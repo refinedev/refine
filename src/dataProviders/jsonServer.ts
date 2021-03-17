@@ -99,6 +99,7 @@ const JsonServer = (apiUrl: string): IDataContext => ({
                 return data;
             }),
         );
+
         return { data: response };
     },
 
