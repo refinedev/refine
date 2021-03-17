@@ -22,13 +22,13 @@ import {
     useFileUploadState,
     useTranslate,
     Table,
+    useTable,
     useForm,
-    useEditableTable,
+    useEditForm,
     Space,
     EditButton,
     DeleteButton,
     ShowButton,
-    Button,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -41,13 +41,23 @@ import { ShowAside } from "../show";
 export const PostList = (props: any) => {
     const translate = useTranslate();
 
-    const {tableProps, formProps, form, editId, setEditId} = useEditableTable({
-        mutationModeProp: "undoable",
-    })
+    const { tableProps } = useTable({
+        permanentFilter: {
+            categoryId: [37, 20]
+        },
+        initialSorter: [
+            {
+                field: "id",
+                order: "descend",
+            },
+        ],
+        initialFilter: {
+            status: ["active"],
+        },
+    });
 
     return (
         <List {...props}>
-            <Form {...formProps}>
                 <Table
                     {...tableProps}
                     rowKey="id"
@@ -70,19 +80,7 @@ export const PostList = (props: any) => {
                         dataIndex="title"
                         title={translate("common:resources.posts.fields.title")}
                         key="title"
-                        render={(value, record) => {
-                            if (record.id === editId) {
-                                return (
-                                    <Form.Item
-                                        name="title"
-                                        style={{ margin: 0 }}
-                                    >
-                                        <Input />
-                                    </Form.Item>
-                                );
-                            }
-                            return <TextField value={value} />;
-                        }}
+                        render={(value) => <TextField value={value} />}
                         sorter={{
                             multiple: 1,
                         }}
@@ -91,19 +89,7 @@ export const PostList = (props: any) => {
                         dataIndex="slug"
                         title={translate("common:resources.posts.fields.slug")}
                         key="slug"
-                        render={(value, record) => {
-                            if (record.id === editId) {
-                                return (
-                                    <Form.Item
-                                        name="slug"
-                                        style={{ margin: 0 }}
-                                    >
-                                        <Input />
-                                    </Form.Item>
-                                );
-                            }
-                            return <TextField value={value} />;
-                        }}
+                        render={(value) => <TextField value={value} />}
                         sorter={{
                             multiple: 2,
                         }}
@@ -114,35 +100,11 @@ export const PostList = (props: any) => {
                             "common:resources.posts.fields.category",
                         )}
                         key="categoryId"
-                        render={(value, record) => {
-                            if (record.id === editId) {
-                                return (
-                                    <Form.Item
-                                        name="categoryId"
-                                        style={{ margin: 0 }}
-                                    >
-                                        <Reference
-                                            reference="categories"
-                                            optionText="title"
-                                            sort={{
-                                                field: "title",
-                                                order: "asc",
-                                            }}
-                                        >
-                                            <Select showSearch />
-                                        </Reference>
-                                    </Form.Item>
-                                );
-                            }
-                            return (
-                                <ReferenceField
-                                    resource="categories"
-                                    value={value}
-                                >
-                                    <TextField renderRecordKey="title" />
-                                </ReferenceField>
-                            );
-                        }}
+                        render={(value) => (
+                            <ReferenceField resource="categories" value={value}>
+                                <TextField renderRecordKey="title" />
+                            </ReferenceField>
+                        )}
                         filterDropdown={(props) => (
                             <FilterDropdown {...props}>
                                 <Reference
@@ -169,31 +131,7 @@ export const PostList = (props: any) => {
                             "common:resources.posts.fields.status",
                         )}
                         key="status"
-                        render={(value, record) => {
-                            if (record.id === editId) {
-                                return (
-                                    <Form.Item
-                                        name="status"
-                                        style={{ margin: 0 }}
-                                    >
-                                        <Select
-                                            defaultValue="active"
-                                            options={[
-                                                {
-                                                    label: "Active",
-                                                    value: "active",
-                                                },
-                                                {
-                                                    label: "Draft",
-                                                    value: "draft",
-                                                },
-                                            ]}
-                                        />
-                                    </Form.Item>
-                                );
-                            }
-                            return <TagField value={value} />;
-                        }}
+                        render={(value) => <TagField value={value} />}
                         filterDropdown={(props) => (
                             <FilterDropdown {...props}>
                                 <Radio.Group>
@@ -203,40 +141,6 @@ export const PostList = (props: any) => {
                             </FilterDropdown>
                         )}
                         defaultFilteredValue={["active"]}
-                    />
-                    <Column
-                        title="Operation"
-                        dataIndex="operation"
-                        key="operation"
-                        render={(_, record) => {
-                            if (record.id === editId) {
-                                return (
-                                    <Space>
-                                        <Button
-                                            onClick={() => {
-                                                form.submit();
-                                            }}
-                                        >
-                                            Save
-                                        </Button>
-                                        <Button
-                                            onClick={() => setEditId(undefined)}
-                                        >
-                                            Cancel
-                                        </Button>
-                                    </Space>
-                                );
-                            }
-                            return (
-                                <Button
-                                    onClick={() => {
-                                        setEditId(record.id);
-                                    }}
-                                >
-                                    Edit
-                                </Button>
-                            );
-                        }}
                     />
                     <Column
                         title={translate("common:table.actions", "Actions")}
@@ -265,7 +169,6 @@ export const PostList = (props: any) => {
                         )}
                     />
                 </Table>
-            </Form>
         </List>
     );
 };

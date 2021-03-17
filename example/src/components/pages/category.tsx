@@ -8,59 +8,106 @@ import {
     Column,
     Input,
     useTranslate,
-    useTable,
     DeleteButton,
+    Button,
+    EditButton,
     Space,
     useForm,
+    useEditableTable,
+    TextField,
 } from "readmin";
 
 export const CategoryList = (props: { resourceName: string }) => {
     const translate = useTranslate();
-    const { tableProps } = useTable({
+    const { tableProps, formProps, form, editId, setEditId } = useEditableTable({
+        mutationModeProp: "undoable",
         initialPageSize: 10,
-    });
+    })
     return (
         <List {...props}>
-            <Table
-                {...tableProps}
-                rowKey="id"
-                pagination={{
-                    ...tableProps.pagination,
-                    position: ["bottomCenter"],
-                    size: "small",
-                }}
-            >
-                <Column
-                    key="id"
-                    dataIndex="id"
-                    title={translate("common:resources.categories.fields.id")}
-                />
-                <Column
-                    key="title"
-                    dataIndex="title"
-                    title={translate(
-                        "common:resources.categories.fields.title",
-                    )}
-                />
-                <Column
-                    title={translate("common:table.actions", "Actions")}
-                    dataIndex="actions"
-                    key="actions"
-                    render={(
-                        _text: string | number,
-                        record: {
-                            id: string | number;
-                        },
-                    ): React.ReactNode => (
-                        <Space>
-                            <DeleteButton
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
+            <Form {...formProps}>
+                <Table
+                    {...tableProps}
+                    rowKey="id"
+                    pagination={{
+                        ...tableProps.pagination,
+                        position: ["bottomCenter"],
+                        size: "small",
+                    }}
+                >
+                    <Column
+                        key="id"
+                        dataIndex="id"
+                        title={translate("common:resources.categories.fields.id")}
+                    />
+                    <Column
+                        key="title"
+                        dataIndex="title"
+                        title={translate(
+                            "common:resources.categories.fields.title",
+                        )}
+                        render={(value, record) => {
+                            if (record.id === editId) {
+                                return (
+                                    <Form.Item
+                                        name="title"
+                                        style={{ margin: 0 }}
+                                    >
+                                        <Input />
+                                    </Form.Item>
+                                );
+                            }
+                            return <TextField value={value} />;
+                        }}
+                    />
+                    <Column
+                        title={translate("common:table.actions", "Actions")}
+                        dataIndex="actions"
+                        key="actions"
+                        render={(
+                            _text: string | number,
+                            record: {
+                                id: string | number;
+                            },
+                        ): React.ReactNode => {
+                            if (record.id === editId) {
+                                return (
+                                    <Space>
+                                        <Button
+                                            onClick={() => {
+                                                form.submit();
+                                            }}
+                                            size="small"
+                                        >
+                                            Save
+                                        </Button>
+                                        <Button
+                                            onClick={() => setEditId(undefined)}
+                                            size="small"
+                                        >
+                                            Cancel
+                                        </Button>
+                                    </Space>
+                                );
+                            }
+                            return (
+                                <Space>
+                                    <EditButton
+                                        onClick={() => {
+                                            setEditId(record.id);
+                                        }}
+                                        size="small"
+                                    />
+                                    <DeleteButton
+                                        size="small"
+                                        recordItemId={record.id}
+                                    />
+                                </Space>
+                            );
+                        }}
+                    />
+                </Table>
+            </Form>
         </List>
     );
 };
