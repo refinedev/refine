@@ -27,15 +27,12 @@ import {
     useFileUploadState,
     useTranslate,
     Button,
-    useCreate,
     Table,
     useTable,
-    useForm,
     Space,
     EditButton,
     DeleteButton,
     ShowButton,
-    useForm,
     useStepsForm,
     CreateButton,
     ExportButton,
@@ -195,7 +192,6 @@ export const PostList = (props: any) => {
 
 export const PostCreate = (props: any) => {
     const { Step } = Steps;
-    const history = useHistory();
 
     const apiUrl = useApiUrl();
     const translate = useTranslate();
