@@ -29,7 +29,6 @@ export const useEditForm = ({
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
 }: useEditFormProps) => {
-    const [isFormChanged, setIsFormChanged] = useState(false);
     const [editId, setEditId] = React.useState<string | number>();
 
     const [formAnt] = Form.useForm();
@@ -142,10 +141,6 @@ export const useEditForm = ({
             onValuesChange,
         },
         isLoading,
-        editProps: {
-            saveButtonProps,
-            warnWhen: warnWhenUnsavedChanges ? isFormChanged : false,
-        },
         editId,
         setEditId,
         saveButtonProps,
