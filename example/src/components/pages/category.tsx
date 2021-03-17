@@ -19,7 +19,14 @@ import {
 
 export const CategoryList = (props: { resourceName: string }) => {
     const translate = useTranslate();
-    const { tableProps, formProps, isEditing, setEditId, saveButtonProps, editButtonProps, cancelButtonProps } = useEditableTable({
+    const {
+        tableProps,
+        formProps,
+        isEditing,
+        saveEditButtonProps,
+        editButtonProps,
+        cancelButtonProps,
+    } = useEditableTable({
         mutationModeProp: "undoable",
         initialPageSize: 10,
     })
@@ -74,7 +81,7 @@ export const CategoryList = (props: { resourceName: string }) => {
                                 return (
                                     <Space>
                                         <Button
-                                            {...saveButtonProps}
+                                            {...saveEditButtonProps}
                                             size="small"
                                         >
                                             Save

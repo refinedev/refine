@@ -1,12 +1,16 @@
 import {useTable, useEditForm} from "@hooks"
+import {useTableProps} from "../useTable"
+import {useEditFormProps} from "../../form/useEditForm"
 
-export const useEditableTable = (props: any) => {
+type useEditableTableProps = useTableProps & useEditFormProps
+
+export const useEditableTable = (props: useEditableTableProps) => {
     const table = useTable({...props})
     const edit = useEditForm({...props})
 
     const {form, editId, setEditId} = edit
 
-    const saveButtonProps = {
+    const saveEditButtonProps = {
         onClick: () => form.submit()
     }
 
@@ -25,7 +29,7 @@ export const useEditableTable = (props: any) => {
     return {
         ...table,
         ...edit,
-        saveButtonProps,
+        saveEditButtonProps,
         cancelButtonProps,
         editButtonProps,
         isEditing,
