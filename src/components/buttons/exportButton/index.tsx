@@ -58,15 +58,18 @@ export const ExportButton: FC<ExportButtonProps> = ({
 
         const rawData: BaseRecord[] = [];
 
-        for (let index = 1; index < 9999; index++) {
+        let current = 1;
+        while (true) {
             const { data } = await getList(resource, {
                 filters,
                 sort: sorter,
                 pagination: {
-                    current: index,
+                    current,
                     pageSize,
                 },
             });
+
+            current++;
 
             if (data.length > 0) {
                 rawData.push(...data);
