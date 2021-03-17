@@ -48,7 +48,7 @@ export const PostList = (props: any) => {
         initialSorter: [
             {
                 field: "id",
-                order: "asc",
+                order: "descend",
             },
         ],
         initialFilter: {
