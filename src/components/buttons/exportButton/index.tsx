@@ -59,8 +59,8 @@ export const ExportButton: FC<ExportButtonProps> = ({
         const rawData: BaseRecord[] = [];
 
         let current = 1;
-        // eslint-disable-next-line no-constant-condition
-        while (true) {
+        let preparingData = true;
+        while (preparingData) {
             const { data } = await getList(resource, {
                 filters,
                 sort: sorter,
@@ -77,13 +77,13 @@ export const ExportButton: FC<ExportButtonProps> = ({
 
                 if (maxItemCount && rawData.length >= maxItemCount) {
                     rawData.slice(0, maxItemCount);
-                    break;
+                    preparingData = false;
                 }
 
                 continue;
             }
 
-            break;
+            preparingData = false;
         }
 
         setExportData(callbackfn ? rawData.map(callbackfn) : rawData);
