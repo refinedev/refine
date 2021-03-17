@@ -22,9 +22,8 @@ import {
     useFileUploadState,
     useTranslate,
     Table,
-    useTable,
     useForm,
-    useEditForm,
+    useEditableTable,
     Space,
     EditButton,
     DeleteButton,
@@ -42,24 +41,9 @@ import { ShowAside } from "../show";
 export const PostList = (props: any) => {
     const translate = useTranslate();
 
-    const { tableProps } = useTable({
-        // permanentFilter: {
-        //     categoryId: [37, 20]
-        // },
-        /* initialSorter: [
-            {
-                field: "id",
-                order: "descend",
-            },
-        ],
-        initialFilter: {
-            status: ["active"],
-        }, */
-    });
-
-    const { formProps, form, editId, setEditId } = useEditForm({
+    const {tableProps, formProps, form, editId, setEditId} = useEditableTable({
         mutationModeProp: "undoable",
-    });
+    })
 
     return (
         <List {...props}>
