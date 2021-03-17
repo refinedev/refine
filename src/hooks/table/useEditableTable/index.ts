@@ -1,1 +1,1 @@
-export {useEditableTable} from "./useEditableTable"
+export { useEditableTable } from "./useEditableTable";

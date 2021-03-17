@@ -1,30 +1,30 @@
-import {useTable, useEditForm} from "@hooks"
-import {useTableProps} from "../useTable"
-import {useEditFormProps} from "../../form/useEditForm"
+import { useTable, useEditForm } from "@hooks";
+import { useTableProps } from "../useTable";
+import { useEditFormProps } from "../../form/useEditForm";
 
-type useEditableTableProps = useTableProps & useEditFormProps
+type useEditableTableProps = useTableProps & useEditFormProps;
 
 export const useEditableTable = (props: useEditableTableProps) => {
-    const table = useTable({...props})
-    const edit = useEditForm({...props})
+    const table = useTable({ ...props });
+    const edit = useEditForm({ ...props });
 
-    const {form, editId, setEditId} = edit
+    const { form, editId, setEditId } = edit;
 
     const saveEditButtonProps = {
-        onClick: () => form.submit()
-    }
+        onClick: () => form.submit(),
+    };
 
     const cancelButtonProps = {
-        onClick: () => setEditId(undefined)
-    }
+        onClick: () => setEditId(undefined),
+    };
 
     const editButtonProps = (id: string | number) => {
         return {
-            onClick: () => setEditId(id)
-        }
-    }
+            onClick: () => setEditId(id),
+        };
+    };
 
-    const isEditing = (id: string | number) => id === editId
+    const isEditing = (id: string | number) => id === editId;
 
     return {
         ...table,
@@ -33,5 +33,5 @@ export const useEditableTable = (props: useEditableTableProps) => {
         cancelButtonProps,
         editButtonProps,
         isEditing,
-    }
-}
+    };
+};
