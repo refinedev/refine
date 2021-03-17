@@ -369,7 +369,7 @@ export const PostCreate = (props: any) => {
                             style={{ marginRight: 10 }}
                             type="primary"
                             icon={<SaveOutlined />}
-                            loading={formLoading}
+                            loading={isLoading || formLoading}
                             onClick={() => submit()}
                         >
                             {translate("common:buttons.save", "Save")}
