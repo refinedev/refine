@@ -357,7 +357,7 @@ export const PostEdit = (props: any) => {
         formProps,
         isLoading: isLoadingFormData,
         saveButtonProps,
-    } = useForm({});
+    } = useForm({ redirect: false });
 
     return (
         <Edit

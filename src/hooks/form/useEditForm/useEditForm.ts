@@ -21,6 +21,7 @@ export type useEditFormProps = {
     mutationModeProp?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
+    redirect?: "show" | "list" | "edit" | false;
 };
 export const useEditForm = ({
     onMutationSuccess,
@@ -28,6 +29,7 @@ export const useEditForm = ({
     mutationModeProp,
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
+    redirect,
 }: useEditFormProps) => {
     const [formAnt] = Form.useForm();
     const formSF = useFormSF({
@@ -88,7 +90,23 @@ export const useEditForm = ({
                     });
 
                     if (mutationMode === "pessimistic") {
-                        return history.push(`/resources/${resource.route}`);
+                        if (redirect === "show") {
+                            if (resource.canShow) {
+                                return history.push(
+                                    `/resources/${resource.route}/show/${idFromRoute}`,
+                                );
+                            } else {
+                                return history.push(
+                                    `/resources/${resource.route}`,
+                                );
+                            }
+                        }
+                        if (redirect === undefined || redirect === "list") {
+                            return history.push(`/resources/${resource.route}`);
+                        }
+                        if (!redirect) {
+                            return;
+                        }
                     }
                 },
                 onError: (error: any, ...rest) => {
@@ -103,8 +121,23 @@ export const useEditForm = ({
                 },
             },
         );
-        !(mutationMode === "pessimistic") &&
-            history.push(`/resources/${resource.route}`);
+        if (mutationMode !== "pessimistic") {
+            if (redirect === "show") {
+                if (resource.canShow) {
+                    return history.push(
+                        `/resources/${resource.route}/show/${idFromRoute}`,
+                    );
+                } else {
+                    return history.push(`/resources/${resource.route}`);
+                }
+            }
+            if (redirect === undefined || redirect === "list") {
+                return history.push(`/resources/${resource.route}`);
+            }
+            if (!redirect) {
+                return;
+            }
+        }
     };
 
     const onKeyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
