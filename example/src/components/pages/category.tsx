@@ -26,6 +26,7 @@ export const CategoryList = (props: { resourceName: string }) => {
         saveEditButtonProps,
         editButtonProps,
         cancelButtonProps,
+        setEditId,
     } = useEditableTable({
         mutationModeProp: "undoable",
         initialPageSize: 10,
@@ -41,6 +42,12 @@ export const CategoryList = (props: { resourceName: string }) => {
                         position: ["bottomCenter"],
                         size: "small",
                     }}
+                    onRow={(record) => ({
+                        onClick: (event: any) => {
+                            if(event.target.nodeName === "TD"){
+                                setEditId(record.id)}
+                            }
+                    })}
                 >
                     <Column
                         key="id"

@@ -8,10 +8,11 @@ export const useEditableTable = (props: useEditableTableProps) => {
     const table = useTable({ ...props });
     const edit = useEditForm({ ...props });
 
-    const { form, editId, setEditId } = edit;
+    const { form, editId, setEditId, isLoading } = edit;
 
     const saveEditButtonProps = {
         onClick: () => form.submit(),
+        disabled: isLoading,
     };
 
     const cancelButtonProps = {
