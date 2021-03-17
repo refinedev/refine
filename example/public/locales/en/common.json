@@ -62,7 +62,9 @@
                 "draft": "Draft",
                 "autocomplete": "Autocomplete (search user email)",
                 "uploadText": "Click or drag file to this area to upload",
-                "uploadHintText": "Support for a single upload"
+                "uploadHintText": "Support for a single upload",
+                "nextButton": "Next",
+                "prevButton": "Prev"
             }
         },
         "tags": {
