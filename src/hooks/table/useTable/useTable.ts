@@ -7,7 +7,7 @@ import { useResourceWithRoute, useList } from "@hooks";
 
 import { Filters, Sort, ResourceRouterParams } from "@interfaces";
 
-type useTableProps = {
+export type useTableProps = {
     permanentFilter?: { [key: string]: number[] | string[] };
     initialCurrent?: number;
     initialPageSize?: number;
