@@ -14,18 +14,22 @@ import {
 import { BaseRecord, ResourceRouterParams } from "@interfaces";
 import { MutationMode } from "../../../interfaces";
 
+type RedirectProps = "show" | "list" | "edit" | false;
+
 export type useCreateFormProps = {
     onMutationSuccess?: (data: any, variables: any, context: any) => void;
     onMutationError?: (error: any, variables: any, context: any) => void;
     mutationModeProp?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
+    redirect?: RedirectProps;
 };
 export const useCreateForm = ({
     onMutationSuccess,
     onMutationError,
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
+    redirect,
 }: useCreateFormProps) => {
     const [formAnt] = Form.useForm();
     const formSF = useFormSF({
@@ -68,13 +72,29 @@ export const useCreateForm = ({
                         description: `New ${resource.name} created!`,
                     });
 
-                    if (resource.canEdit) {
-                        return history.push(
-                            `/resources/${resource.route}/edit/${data.data.id}`,
-                        );
-                    }
+                    if (redirect) {
+                        if (resource.canEdit && redirect === "edit") {
+                            return history.push(
+                                `/resources/${resource.route}/edit/${data.data.id}`,
+                            );
+                        }
+                        if (resource.canShow && redirect === "show") {
+                            return history.push(
+                                `/resources/${resource.route}/show/${data.data.id}`,
+                            );
+                        }
 
-                    return history.push(`/resources/${resource.route}`);
+                        return history.push(`/resources/${resource.route}`);
+                    } else if (redirect === undefined) {
+                        if (resource.canEdit) {
+                            return history.push(
+                                `/resources/${resource.route}/edit/${data.data.id}`,
+                            );
+                        }
+                        return history.push(`/resources/${resource.route}`);
+                    } else {
+                        return;
+                    }
                 },
                 onError: (error: any, ...rest) => {
                     if (onMutationError) {

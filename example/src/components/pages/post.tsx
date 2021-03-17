@@ -169,9 +169,9 @@ export const PostCreate = (props: any) => {
     );
     const { isLoading, onChange } = useFileUploadState();
 
-    const { formProps, isLoading: isLoadingForm, saveButtonProps } = useForm(
-        {},
-    );
+    const { formProps, isLoading: isLoadingForm, saveButtonProps } = useForm({
+        redirect: "show",
+    });
 
     return (
         <Create
