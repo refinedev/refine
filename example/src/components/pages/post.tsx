@@ -36,6 +36,8 @@ import {
     ShowButton,
     useForm,
     useStepsForm,
+    CreateButton,
+    ExportButton,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -47,7 +49,7 @@ import { ShowAside } from "../show";
 
 export const PostList = (props: any) => {
     const translate = useTranslate();
-    const { tableProps } = useTable({
+    const { tableProps, sorter, filters } = useTable({
         // permanentFilter: {
         //     categoryId: [37, 20]
         // },
@@ -62,8 +64,29 @@ export const PostList = (props: any) => {
         },
     });
 
+    const actions = (
+        <Space direction="horizontal">
+            <ExportButton
+                sorter={sorter}
+                filters={filters}
+                pageSize={100}
+                maxItemCount={300}
+                mapData={(item) => {
+                    return {
+                        id: item.id,
+                        title: item.title,
+                        slug: item.slug,
+                        content: item.content,
+                        status: item.status,
+                    };
+                }}
+            />
+            <CreateButton />
+        </Space>
+    );
+
     return (
-        <List {...props}>
+        <List {...props} actionButtons={actions}>
             <Table
                 {...tableProps}
                 rowKey="id"
