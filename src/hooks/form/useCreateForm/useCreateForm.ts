@@ -1,5 +1,4 @@
-import { AdminContext } from "@contexts/admin";
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { useForm as useFormSF } from "sunflower-antd";
 import { Form } from "antd";
 import { useHistory, useParams } from "react-router-dom";
@@ -14,15 +13,13 @@ import {
 import { BaseRecord, ResourceRouterParams } from "@interfaces";
 import { MutationMode } from "../../../interfaces";
 
-type RedirectProps = "show" | "list" | "edit" | false;
-
 export type useCreateFormProps = {
     onMutationSuccess?: (data: any, variables: any, context: any) => void;
     onMutationError?: (error: any, variables: any, context: any) => void;
     mutationModeProp?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
-    redirect?: RedirectProps;
+    redirect?: "show" | "list" | "edit" | false;
 };
 export const useCreateForm = ({
     onMutationSuccess,
