@@ -42,7 +42,7 @@ import { ShowAside } from "../show";
 export const PostList = (props: any) => {
     const translate = useTranslate();
 
-    const { tableProps, refetch } = useTable({
+    const { tableProps } = useTable({
         // permanentFilter: {
         //     categoryId: [37, 20]
         // },
@@ -58,10 +58,7 @@ export const PostList = (props: any) => {
     });
 
     const { formProps, form, editId, setEditId } = useEditForm({
-        mutationModeProp: "optimistic",
-        onMutationSuccess: () => {
-            refetch();
-        },
+        mutationModeProp: "undoable",
     });
 
     return (
