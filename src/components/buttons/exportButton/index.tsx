@@ -3,6 +3,7 @@ import { Button, ButtonProps } from "antd";
 import { ExportOutlined } from "@ant-design/icons";
 import { useParams } from "react-router-dom";
 import { CSVDownload } from "react-csv";
+import dayjs from "dayjs";
 
 import { useTranslate } from "@hooks";
 import {
@@ -13,7 +14,6 @@ import {
     BaseRecord,
 } from "@interfaces";
 import { DataContext } from "@contexts/data";
-import dayjs from "dayjs";
 
 type ExportButtonProps = ButtonProps & {
     resourceName?: string;
@@ -21,6 +21,11 @@ type ExportButtonProps = ButtonProps & {
     filters?: Filters;
     maxItemCount?: number;
     pageSize?: number;
+    callbackfn?(
+        value: BaseRecord,
+        index: number,
+        array: BaseRecord[],
+    ): BaseRecord;
 };
 
 export const ExportButton: FC<ExportButtonProps> = ({
@@ -29,6 +34,7 @@ export const ExportButton: FC<ExportButtonProps> = ({
     filters,
     maxItemCount,
     pageSize = 20,
+    callbackfn,
     ...rest
 }) => {
     const translate = useTranslate();
@@ -50,7 +56,7 @@ export const ExportButton: FC<ExportButtonProps> = ({
         setFileReady(false);
         setExportData([]);
 
-        const allData: BaseRecord[] = [];
+        const rawData: BaseRecord[] = [];
 
         for (let index = 1; index < 9999; index++) {
             const { data } = await getList(resource, {
@@ -63,10 +69,10 @@ export const ExportButton: FC<ExportButtonProps> = ({
             });
 
             if (data.length > 0) {
-                allData.push(...data);
+                rawData.push(...data);
 
-                if (maxItemCount && allData.length >= maxItemCount) {
-                    allData.slice(0, maxItemCount);
+                if (maxItemCount && rawData.length >= maxItemCount) {
+                    rawData.slice(0, maxItemCount);
                     break;
                 }
 
@@ -76,7 +82,7 @@ export const ExportButton: FC<ExportButtonProps> = ({
             break;
         }
 
-        setExportData(allData);
+        setExportData(callbackfn ? rawData.map(callbackfn) : rawData);
         setFileReady(true);
         setLoading(false);
     };
