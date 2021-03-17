@@ -179,7 +179,7 @@ export const PostCreate = (props: any) => {
     const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
         "write",
     );
-    const { onChange } = useFileUploadState();
+    const { isLoading, onChange } = useFileUploadState();
 
     const {
         current,
