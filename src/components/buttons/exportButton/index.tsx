@@ -59,6 +59,7 @@ export const ExportButton: FC<ExportButtonProps> = ({
         const rawData: BaseRecord[] = [];
 
         let current = 1;
+        // eslint-disable-next-line no-constant-condition
         while (true) {
             const { data } = await getList(resource, {
                 filters,
