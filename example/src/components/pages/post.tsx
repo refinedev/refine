@@ -63,7 +63,7 @@ export const PostList = (props: any) => {
                 filters={filters}
                 pageSize={100}
                 maxItemCount={300}
-                callbackfn={(item) => {
+                mapData={(item) => {
                     return {
                         id: item.id,
                         title: item.title,

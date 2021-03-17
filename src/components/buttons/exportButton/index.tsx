@@ -1,9 +1,8 @@
-import React, { FC, useContext, useState } from "react";
+import React, { FC, useContext, useState, MouseEventHandler } from "react";
 import { Button, ButtonProps } from "antd";
 import { ExportOutlined } from "@ant-design/icons";
 import { useParams } from "react-router-dom";
 import { CSVDownload } from "react-csv";
-import dayjs from "dayjs";
 
 import { useTranslate } from "@hooks";
 import {
@@ -14,6 +13,7 @@ import {
     BaseRecord,
 } from "@interfaces";
 import { DataContext } from "@contexts/data";
+import { CSVDownloadProps } from "./csvDownload.interface";
 
 type ExportButtonProps = ButtonProps & {
     resourceName?: string;
@@ -21,11 +21,8 @@ type ExportButtonProps = ButtonProps & {
     filters?: Filters;
     maxItemCount?: number;
     pageSize?: number;
-    callbackfn?(
-        value: BaseRecord,
-        index: number,
-        array: BaseRecord[],
-    ): BaseRecord;
+    mapData?(value: BaseRecord, index: number, array: BaseRecord[]): BaseRecord;
+    csvProps?: CSVDownloadProps;
 };
 
 export const ExportButton: FC<ExportButtonProps> = ({
@@ -34,7 +31,8 @@ export const ExportButton: FC<ExportButtonProps> = ({
     filters,
     maxItemCount,
     pageSize = 20,
-    callbackfn,
+    mapData,
+    csvProps,
     ...rest
 }) => {
     const translate = useTranslate();
@@ -86,20 +84,14 @@ export const ExportButton: FC<ExportButtonProps> = ({
             preparingData = false;
         }
 
-        setExportData(callbackfn ? rawData.map(callbackfn) : rawData);
+        setExportData(mapData ? rawData.map(mapData) : rawData);
         setFileReady(true);
         setLoading(false);
     };
 
     const downloadFile = () => {
         if (fileReady) {
-            return (
-                <CSVDownload
-                    data={exportData}
-                    filename={`${resource}-${dayjs().format()}.csv`}
-                    target="_blank"
-                />
-            );
+            return <CSVDownload {...csvProps} data={exportData} />;
         }
 
         return;
