@@ -48,7 +48,7 @@ export const PostList = (props: any) => {
         initialSorter: [
             {
                 field: "id",
-                order: "descend",
+                order: "asc",
             },
         ],
         initialFilter: {
@@ -62,7 +62,7 @@ export const PostList = (props: any) => {
                 sorter={sorter}
                 filters={filters}
                 pageSize={100}
-                maxItemCount={900}
+                maxItemCount={300}
             />
             <CreateButton />
         </Space>
