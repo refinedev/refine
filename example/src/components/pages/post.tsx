@@ -430,7 +430,7 @@ export const PostEdit = (props: any) => {
     const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
         "write",
     );
-    const { onChange } = useFileUploadState();
+    const { onChange, isLoading } = useFileUploadState();
 
     const formList = [
         <>
@@ -614,7 +614,7 @@ export const PostEdit = (props: any) => {
                             style={{ marginRight: 10 }}
                             type="primary"
                             icon={<SaveOutlined />}
-                            loading={formLoading}
+                            loading={isLoading || formLoading}
                             onClick={() => submit()}
                         >
                             {translate("common:buttons.save", "Save")}
