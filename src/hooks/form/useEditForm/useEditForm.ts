@@ -74,6 +74,19 @@ export const useEditForm = ({
     const { mutate } = useUpdate(resource.name, mutationMode);
     const notification = useNotification();
 
+    const redirectionAfterSubmission = () => {
+        if (redirect) {
+            if (resource.canShow && redirect === "show") {
+                return history.push(
+                    `/resources/${resource.route}/show/${idFromRoute}`,
+                );
+            }
+            return history.push(`/resources/${resource.route}`);
+        } else {
+            return;
+        }
+    };
+
     const onFinish = async (values: BaseRecord): Promise<void> => {
         setWarnWhen(false);
         mutate(
@@ -90,16 +103,7 @@ export const useEditForm = ({
                     });
 
                     if (mutationMode === "pessimistic") {
-                        if (redirect) {
-                            if (resource.canShow && redirect === "show") {
-                                return history.push(
-                                    `/resources/${resource.route}/show/${idFromRoute}`,
-                                );
-                            }
-                            return history.push(`/resources/${resource.route}`);
-                        } else {
-                            return;
-                        }
+                        redirectionAfterSubmission();
                     }
                 },
                 onError: (error: any, ...rest) => {
@@ -114,18 +118,7 @@ export const useEditForm = ({
                 },
             },
         );
-        if (mutationMode !== "pessimistic") {
-            if (redirect) {
-                if (resource.canShow && redirect === "show") {
-                    return history.push(
-                        `/resources/${resource.route}/show/${idFromRoute}`,
-                    );
-                }
-                return history.push(`/resources/${resource.route}`);
-            } else {
-                return;
-            }
-        }
+        !(mutationMode === "pessimistic") && redirectionAfterSubmission();
     };
 
     const onKeyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
