@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm as useFormSF } from "sunflower-antd";
 import { Form } from "antd";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import {
     useResourceWithRoute,
@@ -12,6 +12,7 @@ import {
 
 import { BaseRecord, ResourceRouterParams } from "@interfaces";
 import { MutationMode } from "../../../interfaces";
+import { redirectionAfterSubmission } from "@definitions/redirectionAfterSubmission";
 
 export type useCreateFormProps = {
     onMutationSuccess?: (data: any, variables: any, context: any) => void;
@@ -41,8 +42,6 @@ export const useCreateForm = ({
     const warnWhenUnsavedChanges =
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContext;
 
-    const history = useHistory();
-
     const { form } = formSF;
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
@@ -52,6 +51,8 @@ export const useCreateForm = ({
     const { mutate, isLoading } = useCreate();
 
     const notification = useNotification();
+
+    const handleSubmitWithRedirect = redirectionAfterSubmission();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         setWarnWhen(false);
@@ -69,22 +70,13 @@ export const useCreateForm = ({
                         description: `New ${resource.name} created!`,
                     });
 
-                    if (redirect) {
-                        if (resource.canEdit && redirect === "edit") {
-                            return history.push(
-                                `/resources/${resource.route}/edit/${data.data.id}`,
-                            );
-                        }
-                        if (resource.canShow && redirect === "show") {
-                            return history.push(
-                                `/resources/${resource.route}/show/${data.data.id}`,
-                            );
-                        }
+                    const idFromRoute = data.data.id;
 
-                        return history.push(`/resources/${resource.route}`);
-                    } else {
-                        return;
-                    }
+                    handleSubmitWithRedirect({
+                        redirect,
+                        resource,
+                        idFromRoute,
+                    });
                 },
                 onError: (error: any, ...rest) => {
                     if (onMutationError) {
