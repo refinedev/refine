@@ -1,4 +1,4 @@
-import { UploadFile } from "antd/lib/upload/interface";
+import { RcFile, UploadFile } from "antd/lib/upload/interface";
 
 interface UploadResponse {
     fileUrl: string;
@@ -23,3 +23,30 @@ export const normalizeFile = (event: Event) => {
         return { uid, name, url, type, size, percent, status };
     });
 };
+
+export interface Base64File {
+    uid: string;
+    name: string;
+    type: string;
+    base64String: string;
+}
+
+export function file2Base64(file: RcFile): Promise<Base64File> {
+    const { uid, name, type } = file;
+
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            const base64String = reader.result as string;
+
+            return resolve({
+                uid,
+                name,
+                type,
+                base64String,
+            });
+        };
+        reader.onerror = (error) => reject(error);
+    });
+}
