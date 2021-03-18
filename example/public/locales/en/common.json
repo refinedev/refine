@@ -84,7 +84,8 @@
                 "firstName": "First Name",
                 "lastName": "Last Name",
                 "email": "Email",
-                "birthday": "Birthday"
+                "birthday": "Birthday",
+                "avatar": "Avatar"
             }
         }
     },

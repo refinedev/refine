@@ -1,4 +1,5 @@
 import * as React from "react";
+import { RcFile } from "antd/lib/upload";
 
 import {
     List,
@@ -25,6 +26,9 @@ import {
     ShowButton,
     Space,
     useForm,
+    Upload,
+    Base64File,
+    file2Base64,
 } from "readmin";
 
 import { Aside } from "../aside";
@@ -187,13 +191,35 @@ export const UserEdit = (props: any) => {
 
 export const UserCreate = (props: any) => {
     const translate = useTranslate();
-    const { formProps, saveButtonProps } = useForm({
+    const { formProps, saveButtonProps, form } = useForm({
         warnWhenUnsavedChanges: true,
     });
 
     const { TabPane } = Tabs;
 
     const dateFormat = "DD/MM/YYYY";
+
+    const [fileList, setFileList] = React.useState<RcFile[]>([]);
+
+    const beforeUpload = (file: RcFile) => {
+        setFileList([...fileList, file]);
+        return false;
+    };
+
+    React.useEffect(() => {
+        (async () => {
+            const base64Files: Base64File[] = [];
+            for (const file of fileList) {
+                base64Files.push(await file2Base64(file));
+            }
+
+            if (form) {
+                form.setFieldsValue({
+                    image: base64Files,
+                });
+            }
+        })();
+    }, [fileList]);
 
     return (
         <Create
@@ -257,6 +283,40 @@ export const UserCreate = (props: any) => {
                             ]}
                         >
                             <DatePicker format={dateFormat} />
+                        </Form.Item>
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.avatar",
+                            )}
+                        >
+                            <Form.Item
+                                name="image"
+                                noStyle
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <Upload.Dragger
+                                    beforeUpload={beforeUpload}
+                                    listType="picture"
+                                    maxCount={1}
+                                    fileList={fileList}
+                                    multiple
+                                >
+                                    <p className="ant-upload-text">
+                                        {translate(
+                                            "common:resources.users.forms.uploadText",
+                                        )}
+                                    </p>
+                                    <p className="ant-upload-hint">
+                                        {translate(
+                                            "common:resources.users.forms.uploadHintText",
+                                        )}
+                                    </p>
+                                </Upload.Dragger>
+                            </Form.Item>
                         </Form.Item>
                     </TabPane>
                 </Tabs>
