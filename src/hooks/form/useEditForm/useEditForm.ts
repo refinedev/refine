@@ -29,6 +29,8 @@ export const useEditForm = ({
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
 }: useEditFormProps) => {
+    const [editId, setEditId] = React.useState<string | number>();
+
     const [formAnt] = Form.useForm();
     const formSF = useFormSF({
         form: formAnt,
@@ -55,11 +57,13 @@ export const useEditForm = ({
         action,
     } = useParams<ResourceRouterParams>();
 
-    const isEdit = action === "edit";
+    const isEdit = !!editId || action === "edit";
 
     const resource = useResourceWithRoute(routeResourceName);
 
-    const { data, isLoading } = useOne(resource.name, idFromRoute, {
+    const id = editId?.toString() ?? idFromRoute;
+
+    const { data, isLoading } = useOne(resource.name, id, {
         enabled: isEdit,
     });
 
@@ -75,7 +79,7 @@ export const useEditForm = ({
     const onFinish = async (values: BaseRecord): Promise<void> => {
         setWarnWhen(false);
         mutate(
-            { id: idFromRoute, values },
+            { id, values },
             {
                 onSuccess: (...args) => {
                     if (onMutationSuccess) {
@@ -84,7 +88,7 @@ export const useEditForm = ({
 
                     notification.success({
                         message: "Successful",
-                        description: `Id:${idFromRoute} ${resource.name} edited`,
+                        description: `Id:${id} ${resource.name} edited`,
                     });
 
                     if (mutationMode === "pessimistic") {
@@ -96,13 +100,16 @@ export const useEditForm = ({
                         return onMutationError(error, ...rest);
                     }
 
-                    notification.error({
-                        message: `There was an error updating it ${resource.name}!`,
-                        description: error.message,
-                    });
+                    if (error !== "mutation cancelled") {
+                        notification.error({
+                            message: `There was an error updating it ${resource.name}!`,
+                            description: error.message,
+                        });
+                    }
                 },
             },
         );
+        setEditId(undefined);
         !(mutationMode === "pessimistic") &&
             history.push(`/resources/${resource.route}`);
     };
@@ -136,6 +143,8 @@ export const useEditForm = ({
             onValuesChange,
         },
         isLoading,
+        editId,
+        setEditId,
         saveButtonProps,
     };
 };
