@@ -10,11 +10,15 @@ import {
     useUpdate,
     useNotification,
     useWarnAboutChange,
+    useRedirectionAfterSubmission,
 } from "@hooks";
 
-import { BaseRecord, ResourceRouterParams } from "@interfaces";
+import {
+    BaseRecord,
+    ResourceRouterParams,
+    RedirectionTypes,
+} from "@interfaces";
 import { MutationMode } from "../../../interfaces";
-import { redirectionAfterSubmission } from "@definitions/redirectionAfterSubmission";
 
 export type useEditFormProps = {
     onMutationSuccess?: (data: any, variables: any, context: any) => void;
@@ -22,7 +26,7 @@ export type useEditFormProps = {
     mutationModeProp?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
-    redirect?: "show" | "list" | "edit" | false;
+    redirect?: RedirectionTypes;
 };
 export const useEditForm = ({
     onMutationSuccess,
@@ -74,7 +78,7 @@ export const useEditForm = ({
     const { mutate } = useUpdate(resource.name, mutationMode);
     const notification = useNotification();
 
-    const handleSubmitWithRedirect = redirectionAfterSubmission();
+    const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         setWarnWhen(false);
