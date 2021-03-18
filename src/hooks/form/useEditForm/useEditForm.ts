@@ -86,41 +86,45 @@ export const useEditForm = ({
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         setWarnWhen(false);
-        mutate(
-            { id, values },
-            {
-                onSuccess: (...args) => {
-                    if (onMutationSuccess) {
-                        return onMutationSuccess(...args);
-                    }
+        // Required to make onSuccess vs callbacks to work if component unmounts i.e. on route change
+        setTimeout(() => {
+            mutate(
+                { id, values },
+                {
+                    onSuccess: (...args) => {
+                        if (onMutationSuccess) {
+                            return onMutationSuccess(...args);
+                        }
 
-                    notification.success({
-                        message: "Successful",
-                        description: `Id:${id} ${resource.name} edited`,
-                    });
-
-                    if (mutationMode === "pessimistic") {
-                        handleSubmitWithRedirect({
-                            redirect,
-                            resource,
-                            idFromRoute,
+                        notification.success({
+                            message: "Successful",
+                            description: `Id:${id} ${resource.name} edited`,
                         });
-                    }
-                },
-                onError: (error: any, ...rest) => {
-                    if (onMutationError) {
-                        return onMutationError(error, ...rest);
-                    }
 
-                    if (error !== "mutation cancelled") {
-                        notification.error({
-                            message: `There was an error updating it ${resource.name}!`,
-                            description: error.message,
-                        });
-                    }
+                        if (mutationMode === "pessimistic") {
+                            handleSubmitWithRedirect({
+                                redirect,
+                                resource,
+                                idFromRoute,
+                            });
+                        }
+                    },
+                    onError: (error: any, ...rest) => {
+                        if (onMutationError) {
+                            return onMutationError(error, ...rest);
+                        }
+
+                        if (error !== "mutation cancelled") {
+                            notification.error({
+                                message: `There was an error updating it ${resource.name}!`,
+                                description: error.message,
+                            });
+                        }
+                    },
                 },
-            },
-        );
+            );
+        });
+
         setEditId(undefined);
         !(mutationMode === "pessimistic") &&
             handleSubmitWithRedirect({
