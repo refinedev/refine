@@ -15,6 +15,7 @@ export interface EditProps {
     saveButtonProps?: ButtonProps;
     mutationMode?: MutationMode;
     recordItemId?: string | number;
+    onModalClose?: () => void;
 }
 
 export const Edit: React.FC<EditProps> = ({
@@ -24,6 +25,7 @@ export const Edit: React.FC<EditProps> = ({
     mutationMode: mutationModeProp,
     recordItemId,
     children,
+    onModalClose,
 }) => {
     const { mutationMode: mutationModeContext } = useMutationMode();
 
@@ -40,8 +42,8 @@ export const Edit: React.FC<EditProps> = ({
             extra={
                 <Row>
                     <Space>
-                        <ListButton />
-                        <RefreshButton />
+                        {!recordItemId && <ListButton />}
+                        <RefreshButton recordItemId={recordItemId} />
                     </Space>
                 </Row>
             }
@@ -53,6 +55,7 @@ export const Edit: React.FC<EditProps> = ({
                     {actionButtons ?? (
                         <>
                             <DeleteButton
+                                onModalClose={onModalClose}
                                 recordItemId={recordItemId}
                                 mutationMode={mutationMode}
                             />

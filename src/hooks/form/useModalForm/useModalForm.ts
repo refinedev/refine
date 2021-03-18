@@ -35,6 +35,13 @@ export const useModalForm = ({ action }: useModalFormProps) => {
             onValuesChange: formProps?.onValuesChange,
             onKeyUp: formProps?.onKeyUp,
         },
+        modalProps: {
+            ...sunflowerUseModal.modalProps,
+            width: "1000px",
+            bodyStyle: {
+                paddingTop: "55px",
+            },
+        },
         isLoading: isLoading,
         saveButtonProps: saveButtonPropsSF,
     };
