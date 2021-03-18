@@ -21,7 +21,12 @@ import { FilesList } from "./components/pages/files";
 import { DashboardPage } from "./components/pages/dashboard";
 import { ReadyPage } from "./components/ready";
 import { LoginPage } from "./components/login";
-import { LandingList, LandingShow } from "./components/pages/landing";
+import {
+    LandingCreate,
+    LandingEdit,
+    LandingList,
+    LandingShow,
+} from "./components/pages/landing";
 import {
     PostLightCreate,
     PostLightEdit,
@@ -117,7 +122,13 @@ function App() {
             />
             <Resource name="images" list={ImagesList} />
             <Resource name="files" list={FilesList} />
-            <Resource name="landing" list={LandingList} show={LandingShow} />
+            <Resource
+                name="landing"
+                list={LandingList}
+                show={LandingShow}
+                create={LandingCreate}
+                edit={LandingEdit}
+            />
         </Admin>
     );
 }

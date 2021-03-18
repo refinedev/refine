@@ -30,7 +30,6 @@ export const PostLightList = (props: any) => {
     const {
         modalProps,
         formProps,
-        isLoading: isLoadingFormData,
         saveButtonProps,
         show,
         close,
