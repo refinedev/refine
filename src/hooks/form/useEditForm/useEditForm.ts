@@ -102,10 +102,12 @@ export const useEditForm = ({
                             return onMutationError(error, ...rest);
                         }
 
-                        notification.error({
-                            message: `There was an error updating it ${resource.name}!`,
-                            description: error.message,
-                        });
+                        if (error !== "mutation cancelled") {
+                            notification.error({
+                                message: `There was an error updating it ${resource.name}!`,
+                                description: error.message,
+                            });
+                        }
                     },
                 },
             );
