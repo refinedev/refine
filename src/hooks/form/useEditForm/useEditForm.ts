@@ -81,7 +81,7 @@ export const useEditForm = ({
         // Required to make onSuccess vs callbacks to work if component unmounts i.e. on route change
         setTimeout(() => {
             mutate(
-                { id: idFromRoute, values },
+                { id, values },
                 {
                     onSuccess: (...args) => {
                         if (onMutationSuccess) {
@@ -90,7 +90,7 @@ export const useEditForm = ({
 
                         notification.success({
                             message: "Successful",
-                            description: `Id:${idFromRoute} ${resource.name} edited`,
+                            description: `Id:${id} ${resource.name} edited`,
                         });
 
                         if (mutationMode === "pessimistic") {
@@ -112,7 +112,7 @@ export const useEditForm = ({
                 },
             );
         });
-        setEditId(undefined)
+        setEditId(undefined);
         !(mutationMode === "pessimistic") &&
             history.push(`/resources/${resource.route}`);
     };
