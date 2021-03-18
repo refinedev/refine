@@ -33,6 +33,7 @@ export const PostLightList = (props: any) => {
         isLoading: isLoadingFormData,
         saveButtonProps,
         show,
+        close,
     } = useModalForm({ action: "edit" });
 
     const {
@@ -115,10 +116,11 @@ export const PostLightList = (props: any) => {
                     />
                 </Table>
             </List>
-            <Modal {...modalProps}>
+            <Modal {...modalProps} footer={null}>
                 <Edit
                     {...props}
                     recordItemId={itemId}
+                    onModalClose={close}
                     saveButtonProps={saveButtonProps}
                 >
                     <Form
@@ -142,7 +144,7 @@ export const PostLightList = (props: any) => {
                     </Form>
                 </Edit>
             </Modal>
-            <Modal {...createModalProps}>
+            <Modal {...createModalProps} footer={null}>
                 <Create {...props} saveButtonProps={createSaveButtonProps}>
                     <Form
                         {...createFormProps}

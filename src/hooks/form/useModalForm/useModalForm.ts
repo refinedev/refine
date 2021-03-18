@@ -11,8 +11,18 @@ export const useModalForm = ({ action }: useModalFormProps) => {
 
     const sunflowerUseModal = useModalFormSF({
         form: form,
-        submit: (values) => formProps?.onFinish(values as any),
+        submit: (values) => {
+            formProps?.onFinish(values as any);
+        },
     });
+
+    const saveButtonPropsSF = {
+        disabled: isLoading,
+        onClick: () => {
+            form.submit();
+            sunflowerUseModal.close();
+        },
+    };
 
     return {
         ...sunflowerUseModal,
@@ -26,6 +36,6 @@ export const useModalForm = ({ action }: useModalFormProps) => {
             onKeyUp: formProps?.onKeyUp,
         },
         isLoading: isLoading,
-        saveButtonProps: saveButtonProps,
+        saveButtonProps: saveButtonPropsSF,
     };
 };

@@ -20,6 +20,7 @@ type DeleteButtonProps = ButtonProps & {
     recordItemId?: string | number;
     onSuccess?: (value: DeleteOneResponse) => void;
     mutationMode?: MutationMode;
+    onModalClose?: () => void;
 };
 
 export const DeleteButton: FC<DeleteButtonProps> = ({
@@ -27,6 +28,7 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
     recordItemId,
     onSuccess,
     mutationMode: mutationModeProp,
+    onModalClose,
     ...rest
 }) => {
     const history = useHistory();
@@ -59,6 +61,8 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
                         onSuccess
                             ? onSuccess(value)
                             : history.push(`/resources/${resourceName}`);
+
+                        onModalClose && onModalClose();
                     },
                 );
             }}
