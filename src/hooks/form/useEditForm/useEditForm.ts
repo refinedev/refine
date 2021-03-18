@@ -21,8 +21,6 @@ export type useEditFormProps = {
     mutationModeProp?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
-    action?: "edit" | "create" | "show";
-    /* id?: string, */
 };
 export const useEditForm = ({
     onMutationSuccess,
@@ -30,7 +28,6 @@ export const useEditForm = ({
     mutationModeProp,
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
-    action: modalAction,
 }: useEditFormProps) => {
     const [editId, setEditId] = React.useState<string | number>();
     const [formAnt] = Form.useForm();
