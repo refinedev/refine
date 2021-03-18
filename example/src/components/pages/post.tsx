@@ -1,7 +1,5 @@
 import * as React from "react";
-import { useHistory } from "react-router-dom";
 import { SaveOutlined } from "@ant-design/icons";
-// import { useStepsForm } from "sunflower-antd";
 
 import {
     List,
@@ -27,14 +25,12 @@ import {
     useFileUploadState,
     useTranslate,
     Button,
-    useCreate,
     Table,
     useTable,
     Space,
     EditButton,
     DeleteButton,
     ShowButton,
-    useForm,
     useStepsForm,
     CreateButton,
     ExportButton,
@@ -194,7 +190,6 @@ export const PostList = (props: any) => {
 
 export const PostCreate = (props: any) => {
     const { Step } = Steps;
-    const history = useHistory();
 
     const apiUrl = useApiUrl();
     const translate = useTranslate();
@@ -432,6 +427,18 @@ export const PostEdit = (props: any) => {
     );
     const { onChange, isLoading } = useFileUploadState();
 
+    const {
+        current,
+        gotoStep,
+        stepsProps,
+        submit,
+        formLoading,
+        formProps,
+    } = useStepsForm({
+        warnWhenUnsavedChanges: true,
+        redirect: "show",
+    });
+
     const formList = [
         <>
             <Form.Item
@@ -578,17 +585,6 @@ export const PostEdit = (props: any) => {
             </Form.Item>
         </>,
     ];
-
-    const {
-        current,
-        gotoStep,
-        stepsProps,
-        submit,
-        formLoading,
-        formProps,
-    } = useStepsForm({
-        warnWhenUnsavedChanges: true,
-    });
 
     return (
         <Edit

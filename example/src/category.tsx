@@ -2,7 +2,6 @@ import React from "react";
 import { List, Table, Column, Create, Edit, Form, Input } from "readmin";
 
 export const CategoryList = (props: any) => {
-    console.log("props", props);
     return (
         <List {...props}>
             <Table

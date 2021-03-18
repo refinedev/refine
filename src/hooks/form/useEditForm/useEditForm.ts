@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm as useFormSF } from "sunflower-antd";
 import { Form } from "antd";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import {
     useMutationMode,
@@ -10,9 +10,14 @@ import {
     useUpdate,
     useNotification,
     useWarnAboutChange,
+    useRedirectionAfterSubmission,
 } from "@hooks";
 
-import { BaseRecord, ResourceRouterParams } from "@interfaces";
+import {
+    BaseRecord,
+    ResourceRouterParams,
+    RedirectionTypes,
+} from "@interfaces";
 import { MutationMode } from "../../../interfaces";
 
 export type useEditFormProps = {
@@ -21,6 +26,7 @@ export type useEditFormProps = {
     mutationModeProp?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
+    redirect?: RedirectionTypes;
 };
 export const useEditForm = ({
     onMutationSuccess,
@@ -28,7 +34,10 @@ export const useEditForm = ({
     mutationModeProp,
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
+    redirect = "list",
 }: useEditFormProps) => {
+    const [editId, setEditId] = React.useState<string | number>();
+
     const [formAnt] = Form.useForm();
     const formSF = useFormSF({
         form: formAnt,
@@ -44,7 +53,6 @@ export const useEditForm = ({
     const warnWhenUnsavedChanges =
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContext;
 
-    const history = useHistory();
     const { mutationMode: mutationModeContext } = useMutationMode();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
@@ -55,11 +63,13 @@ export const useEditForm = ({
         action,
     } = useParams<ResourceRouterParams>();
 
-    const isEdit = action === "edit";
+    const isEdit = !!editId || action === "edit";
 
     const resource = useResourceWithRoute(routeResourceName);
 
-    const { data, isLoading } = useOne(resource.name, idFromRoute, {
+    const id = editId?.toString() ?? idFromRoute;
+
+    const { data, isLoading } = useOne(resource.name, id, {
         enabled: isEdit,
     });
 
@@ -71,6 +81,8 @@ export const useEditForm = ({
 
     const { mutate } = useUpdate(resource.name, mutationMode);
     const notification = useNotification();
+
+    const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         setWarnWhen(false);
@@ -90,7 +102,11 @@ export const useEditForm = ({
                         });
 
                         if (mutationMode === "pessimistic") {
-                            return history.push(`/resources/${resource.route}`);
+                            handleSubmitWithRedirect({
+                                redirect,
+                                resource,
+                                idFromRoute,
+                            });
                         }
                     },
                     onError: (error: any, ...rest) => {
@@ -98,16 +114,24 @@ export const useEditForm = ({
                             return onMutationError(error, ...rest);
                         }
 
-                        notification.error({
-                            message: `There was an error updating it ${resource.name}!`,
-                            description: error.message,
-                        });
+                        if (error !== "mutation cancelled") {
+                            notification.error({
+                                message: `There was an error updating it ${resource.name}!`,
+                                description: error.message,
+                            });
+                        }
                     },
                 },
             );
         });
+
+        setEditId(undefined);
         !(mutationMode === "pessimistic") &&
-            history.push(`/resources/${resource.route}`);
+            handleSubmitWithRedirect({
+                redirect,
+                resource,
+                idFromRoute,
+            });
     };
 
     const onKeyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
@@ -139,6 +163,8 @@ export const useEditForm = ({
             onValuesChange,
         },
         isLoading,
+        editId,
+        setEditId,
         saveButtonProps,
     };
 };
