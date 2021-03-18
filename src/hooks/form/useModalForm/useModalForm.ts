@@ -4,7 +4,6 @@ import { useForm } from "@hooks";
 type useModalFormProps = {
     action: "show" | "edit" | "create";
 };
-// export const useModalForm = (action) => {
 export const useModalForm = ({ action }: useModalFormProps) => {
     const { form, formProps, setEditId, isLoading, saveButtonProps } = useForm({
         action,
@@ -14,8 +13,6 @@ export const useModalForm = ({ action }: useModalFormProps) => {
         form: form,
         submit: (values) => formProps?.onFinish(values as any),
     });
-
-    console.log("form", form);
 
     return {
         ...sunflowerUseModal,
