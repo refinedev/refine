@@ -29,6 +29,8 @@ export const useEditForm = ({
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
 }: useEditFormProps) => {
+    const [editId, setEditId] = React.useState<string | number>();
+
     const [formAnt] = Form.useForm();
     const formSF = useFormSF({
         form: formAnt,
@@ -55,11 +57,13 @@ export const useEditForm = ({
         action,
     } = useParams<ResourceRouterParams>();
 
-    const isEdit = action === "edit";
+    const isEdit = !!editId || action === "edit";
 
     const resource = useResourceWithRoute(routeResourceName);
 
-    const { data, isLoading } = useOne(resource.name, idFromRoute, {
+    const id = editId?.toString() ?? idFromRoute;
+
+    const { data, isLoading } = useOne(resource.name, id, {
         enabled: isEdit,
     });
 
@@ -106,6 +110,7 @@ export const useEditForm = ({
                 },
             );
         });
+        setEditId(undefined)
         !(mutationMode === "pessimistic") &&
             history.push(`/resources/${resource.route}`);
     };
@@ -139,6 +144,8 @@ export const useEditForm = ({
             onValuesChange,
         },
         isLoading,
+        editId,
+        setEditId,
         saveButtonProps,
     };
 };

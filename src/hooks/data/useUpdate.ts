@@ -129,10 +129,8 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                 }
             },
             onSettled: () => {
-                if (!(mutationMode === "pessimistic")) {
-                    for (const query of listResourceQueries) {
-                        queryClient.invalidateQueries(query.queryKey);
-                    }
+                for (const query of listResourceQueries) {
+                    queryClient.invalidateQueries(query.queryKey);
                 }
             },
         },
