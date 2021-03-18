@@ -21,3 +21,6 @@ export * from "./mutationMode";
 
 // resourceRouterParams
 export * from "@interfaces/resourceRouterParams";
+
+// redirection
+export * from "@interfaces/redirectionTypes";
