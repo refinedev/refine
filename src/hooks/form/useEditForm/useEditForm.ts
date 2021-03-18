@@ -21,6 +21,8 @@ export type useEditFormProps = {
     mutationModeProp?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
+    action?: "edit" | "create" | "show";
+    /* id?: string, */
 };
 export const useEditForm = ({
     onMutationSuccess,
@@ -28,7 +30,9 @@ export const useEditForm = ({
     mutationModeProp,
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
+    action: modalAction,
 }: useEditFormProps) => {
+    const [editId, setEditId] = React.useState<string | number>();
     const [formAnt] = Form.useForm();
     const formSF = useFormSF({
         form: formAnt,
@@ -55,11 +59,12 @@ export const useEditForm = ({
         action,
     } = useParams<ResourceRouterParams>();
 
-    const isEdit = action === "edit";
+    const isEdit = !!editId || action === "edit";
 
     const resource = useResourceWithRoute(routeResourceName);
 
-    const { data, isLoading } = useOne(resource.name, idFromRoute, {
+    const id = editId?.toString() ?? idFromRoute;
+    const { data, isLoading } = useOne(resource.name, id, {
         enabled: isEdit,
     });
 
@@ -75,7 +80,7 @@ export const useEditForm = ({
     const onFinish = async (values: BaseRecord): Promise<void> => {
         setWarnWhen(false);
         mutate(
-            { id: idFromRoute, values },
+            { id, values },
             {
                 onSuccess: (...args) => {
                     if (onMutationSuccess) {
@@ -84,7 +89,7 @@ export const useEditForm = ({
 
                     notification.success({
                         message: "Successful",
-                        description: `Id:${idFromRoute} ${resource.name} edited`,
+                        description: `Id:${id} ${resource.name} edited`,
                     });
 
                     if (mutationMode === "pessimistic") {
@@ -137,5 +142,7 @@ export const useEditForm = ({
         },
         isLoading,
         saveButtonProps,
+        editId,
+        setEditId,
     };
 };

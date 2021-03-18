@@ -14,6 +14,7 @@ export interface EditProps {
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
     mutationMode?: MutationMode;
+    recordItemId?: string | number;
 }
 
 export const Edit: React.FC<EditProps> = ({
@@ -21,6 +22,7 @@ export const Edit: React.FC<EditProps> = ({
     actionButtons,
     saveButtonProps,
     mutationMode: mutationModeProp,
+    recordItemId,
     children,
 }) => {
     const { mutationMode: mutationModeContext } = useMutationMode();
@@ -50,7 +52,10 @@ export const Edit: React.FC<EditProps> = ({
                 >
                     {actionButtons ?? (
                         <>
-                            <DeleteButton mutationMode={mutationMode} />
+                            <DeleteButton
+                                recordItemId={recordItemId}
+                                mutationMode={mutationMode}
+                            />
                             <Button
                                 {...saveButtonProps}
                                 htmlType="submit"

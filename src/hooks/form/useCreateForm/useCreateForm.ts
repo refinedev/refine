@@ -20,6 +20,7 @@ export type useCreateFormProps = {
     mutationModeProp?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
+    action?: "edit" | "create" | "show";
 };
 export const useCreateForm = ({
     onMutationSuccess,
@@ -27,6 +28,7 @@ export const useCreateForm = ({
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
 }: useCreateFormProps) => {
+    const [editId, setEditId] = React.useState<string | number>();
     const [formAnt] = Form.useForm();
     const formSF = useFormSF({
         form: formAnt,
@@ -121,5 +123,7 @@ export const useCreateForm = ({
         },
         isLoading,
         saveButtonProps,
+        editId,
+        setEditId,
     };
 };
