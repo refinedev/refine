@@ -74,35 +74,38 @@ export const useEditForm = ({
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         setWarnWhen(false);
-        mutate(
-            { id: idFromRoute, values },
-            {
-                onSuccess: (...args) => {
-                    if (onMutationSuccess) {
-                        return onMutationSuccess(...args);
-                    }
+        // Required to make onSuccess vs callbacks to work if component unmounts i.e. on route change
+        setTimeout(() => {
+            mutate(
+                { id: idFromRoute, values },
+                {
+                    onSuccess: (...args) => {
+                        if (onMutationSuccess) {
+                            return onMutationSuccess(...args);
+                        }
 
-                    notification.success({
-                        message: "Successful",
-                        description: `Id:${idFromRoute} ${resource.name} edited`,
-                    });
+                        notification.success({
+                            message: "Successful",
+                            description: `Id:${idFromRoute} ${resource.name} edited`,
+                        });
 
-                    if (mutationMode === "pessimistic") {
-                        return history.push(`/resources/${resource.route}`);
-                    }
+                        if (mutationMode === "pessimistic") {
+                            return history.push(`/resources/${resource.route}`);
+                        }
+                    },
+                    onError: (error: any, ...rest) => {
+                        if (onMutationError) {
+                            return onMutationError(error, ...rest);
+                        }
+
+                        notification.error({
+                            message: `There was an error updating it ${resource.name}!`,
+                            description: error.message,
+                        });
+                    },
                 },
-                onError: (error: any, ...rest) => {
-                    if (onMutationError) {
-                        return onMutationError(error, ...rest);
-                    }
-
-                    notification.error({
-                        message: `There was an error updating it ${resource.name}!`,
-                        description: error.message,
-                    });
-                },
-            },
-        );
+            );
+        });
         !(mutationMode === "pessimistic") &&
             history.push(`/resources/${resource.route}`);
     };
