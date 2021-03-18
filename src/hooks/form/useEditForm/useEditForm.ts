@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm as useFormSF } from "sunflower-antd";
 import { Form } from "antd";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import {
     useMutationMode,
@@ -10,9 +10,14 @@ import {
     useUpdate,
     useNotification,
     useWarnAboutChange,
+    useRedirectionAfterSubmission,
 } from "@hooks";
 
-import { BaseRecord, ResourceRouterParams } from "@interfaces";
+import {
+    BaseRecord,
+    ResourceRouterParams,
+    RedirectionTypes,
+} from "@interfaces";
 import { MutationMode } from "../../../interfaces";
 
 export type useEditFormProps = {
@@ -21,6 +26,7 @@ export type useEditFormProps = {
     mutationModeProp?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
+    redirect?: RedirectionTypes;
 };
 export const useEditForm = ({
     onMutationSuccess,
@@ -28,6 +34,7 @@ export const useEditForm = ({
     mutationModeProp,
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
+    redirect = "list",
 }: useEditFormProps) => {
     const [editId, setEditId] = React.useState<string | number>();
 
@@ -46,7 +53,6 @@ export const useEditForm = ({
     const warnWhenUnsavedChanges =
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContext;
 
-    const history = useHistory();
     const { mutationMode: mutationModeContext } = useMutationMode();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
@@ -76,6 +82,8 @@ export const useEditForm = ({
     const { mutate } = useUpdate(resource.name, mutationMode);
     const notification = useNotification();
 
+    const handleSubmitWithRedirect = useRedirectionAfterSubmission();
+
     const onFinish = async (values: BaseRecord): Promise<void> => {
         setWarnWhen(false);
         mutate(
@@ -92,7 +100,11 @@ export const useEditForm = ({
                     });
 
                     if (mutationMode === "pessimistic") {
-                        return history.push(`/resources/${resource.route}`);
+                        handleSubmitWithRedirect({
+                            redirect,
+                            resource,
+                            idFromRoute,
+                        });
                     }
                 },
                 onError: (error: any, ...rest) => {
@@ -111,7 +123,11 @@ export const useEditForm = ({
         );
         setEditId(undefined);
         !(mutationMode === "pessimistic") &&
-            history.push(`/resources/${resource.route}`);
+            handleSubmitWithRedirect({
+                redirect,
+                resource,
+                idFromRoute,
+            });
     };
 
     const onKeyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {

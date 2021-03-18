@@ -1,7 +1,5 @@
 import * as React from "react";
-import { useHistory } from "react-router-dom";
 import { SaveOutlined } from "@ant-design/icons";
-// import { useStepsForm } from "sunflower-antd";
 
 import {
     List,
@@ -429,6 +427,18 @@ export const PostEdit = (props: any) => {
     );
     const { onChange, isLoading } = useFileUploadState();
 
+    const {
+        current,
+        gotoStep,
+        stepsProps,
+        submit,
+        formLoading,
+        formProps,
+    } = useStepsForm({
+        warnWhenUnsavedChanges: true,
+        redirect: "show",
+    });
+
     const formList = [
         <>
             <Form.Item
@@ -575,17 +585,6 @@ export const PostEdit = (props: any) => {
             </Form.Item>
         </>,
     ];
-
-    const {
-        current,
-        gotoStep,
-        stepsProps,
-        submit,
-        formLoading,
-        formProps,
-    } = useStepsForm({
-        warnWhenUnsavedChanges: true,
-    });
 
     return (
         <Edit
