@@ -13,6 +13,7 @@ export interface ListProps {
     canCreate?: boolean;
     aside?: React.FC;
     title?: string;
+    isModalShown?: () => void;
 }
 
 export const List: React.FC<ListProps> = ({
@@ -20,6 +21,7 @@ export const List: React.FC<ListProps> = ({
     aside,
     title,
     children,
+    isModalShown,
 }) => {
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
@@ -38,7 +40,14 @@ export const List: React.FC<ListProps> = ({
                             humanizeString(resource.name),
                         )
                     }
-                    extra={canCreate && <CreateButton size="middle" />}
+                    extra={
+                        canCreate && (
+                            <CreateButton
+                                size="middle"
+                                isModalShown={isModalShown}
+                            />
+                        )
+                    }
                 >
                     {children}
                 </Card>
