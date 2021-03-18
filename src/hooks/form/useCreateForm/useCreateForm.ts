@@ -1,17 +1,21 @@
-import { AdminContext } from "@contexts/admin";
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { useForm as useFormSF } from "sunflower-antd";
 import { Form, FormInstance } from "antd";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import {
     useResourceWithRoute,
     useCreate,
     useNotification,
     useWarnAboutChange,
+    useRedirectionAfterSubmission,
 } from "@hooks";
 
-import { BaseRecord, ResourceRouterParams } from "@interfaces";
+import {
+    BaseRecord,
+    ResourceRouterParams,
+    RedirectionTypes,
+} from "@interfaces";
 import { MutationMode } from "../../../interfaces";
 
 export type useCreateFormProps = {
@@ -20,12 +24,14 @@ export type useCreateFormProps = {
     mutationModeProp?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
+    redirect?: RedirectionTypes;
 };
 export const useCreateForm = ({
     onMutationSuccess,
     onMutationError,
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
+    redirect = "edit",
 }: useCreateFormProps) => {
     const [formAnt] = Form.useForm();
     const formSF = useFormSF({
@@ -40,8 +46,6 @@ export const useCreateForm = ({
     const warnWhenUnsavedChanges =
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContext;
 
-    const history = useHistory();
-
     const { form } = formSF;
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
@@ -51,6 +55,8 @@ export const useCreateForm = ({
     const { mutate, isLoading } = useCreate();
 
     const notification = useNotification();
+
+    const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         setWarnWhen(false);
@@ -68,13 +74,13 @@ export const useCreateForm = ({
                         description: `New ${resource.name} created!`,
                     });
 
-                    if (resource.canEdit) {
-                        return history.push(
-                            `/resources/${resource.route}/edit/${data.data.id}`,
-                        );
-                    }
+                    const idFromRoute = data.data.id;
 
-                    return history.push(`/resources/${resource.route}`);
+                    handleSubmitWithRedirect({
+                        redirect,
+                        resource,
+                        idFromRoute,
+                    });
                 },
                 onError: (error: any, ...rest) => {
                     if (onMutationError) {
