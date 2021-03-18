@@ -22,11 +22,11 @@ export const CreateButton: FC<CreateButtonProps> = ({
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const onButtonClick = () => {
-        if (isModalShown) {
-            isModalShown();
-            return;
-        }
-        history.push(`/resources/${resourceName ?? routeResourceName}/create`);
+        isModalShown
+            ? isModalShown()
+            : history.push(
+                  `/resources/${resourceName ?? routeResourceName}/create`,
+              );
     };
 
     return (
