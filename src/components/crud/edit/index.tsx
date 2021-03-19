@@ -20,7 +20,7 @@ export interface EditProps {
     saveButtonProps?: ButtonProps;
     mutationMode?: MutationMode;
     recordItemId?: string | number;
-    deleteButtonProps: DeleteButtonProps;
+    deleteButtonProps?: DeleteButtonProps;
 }
 
 export const Edit: React.FC<EditProps> = ({

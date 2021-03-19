@@ -5,7 +5,14 @@ type useModalFormProps = {
     action: "show" | "edit" | "create";
 };
 export const useModalForm = ({ action }: useModalFormProps) => {
-    const { form, formProps, setEditId, editId, isLoading } = useForm({
+    const {
+        form,
+        formProps,
+        setEditId,
+        editId,
+        isLoading,
+        isLoadingMutate,
+    } = useForm({
         action,
     });
 
@@ -22,6 +29,7 @@ export const useModalForm = ({ action }: useModalFormProps) => {
             form.submit();
             sunflowerUseModal.close();
         },
+        loading: isLoadingMutate,
     };
 
     const deleteButtonProps = {

@@ -79,7 +79,10 @@ export const useEditForm = ({
         });
     }, [data]);
 
-    const { mutate } = useUpdate(resource.name, mutationMode);
+    const { mutate, isLoading: isLoadingMutate } = useUpdate(
+        resource.name,
+        mutationMode,
+    );
     const notification = useNotification();
 
     const handleSubmitWithRedirect = useRedirectionAfterSubmission();
@@ -153,6 +156,7 @@ export const useEditForm = ({
         onClick: () => {
             form.submit();
         },
+        loading: isLoadingMutate,
     };
 
     return {
@@ -167,5 +171,6 @@ export const useEditForm = ({
         editId,
         setEditId,
         saveButtonProps,
+        isLoadingMutate,
     };
 };
