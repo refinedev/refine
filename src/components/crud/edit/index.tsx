@@ -7,7 +7,12 @@ import { SaveOutlined } from "@ant-design/icons";
 import { MutationMode } from "../../../interfaces";
 import { useTranslate, useResourceWithRoute, useMutationMode } from "@hooks";
 import { ResourceRouterParams } from "@interfaces";
-import { DeleteButton, RefreshButton, ListButton } from "@components";
+import {
+    DeleteButton,
+    RefreshButton,
+    ListButton,
+    DeleteButtonProps,
+} from "@components";
 
 export interface EditProps {
     title?: string;
@@ -15,7 +20,7 @@ export interface EditProps {
     saveButtonProps?: ButtonProps;
     mutationMode?: MutationMode;
     recordItemId?: string | number;
-    onModalClose?: () => void;
+    deleteButtonProps: DeleteButtonProps;
 }
 
 export const Edit: React.FC<EditProps> = ({
@@ -25,7 +30,7 @@ export const Edit: React.FC<EditProps> = ({
     mutationMode: mutationModeProp,
     recordItemId,
     children,
-    onModalClose,
+    deleteButtonProps,
 }) => {
     const { mutationMode: mutationModeContext } = useMutationMode();
 
@@ -55,8 +60,7 @@ export const Edit: React.FC<EditProps> = ({
                     {actionButtons ?? (
                         <>
                             <DeleteButton
-                                onModalClose={onModalClose}
-                                recordItemId={recordItemId}
+                                {...deleteButtonProps}
                                 mutationMode={mutationMode}
                             />
                             <Button
