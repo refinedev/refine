@@ -32,7 +32,7 @@ export const PostLightList = (props: any) => {
         formProps,
         saveButtonProps,
         show,
-        close,
+        deleteButtonProps,
     } = useModalForm({ action: "edit" });
 
     const {
@@ -41,8 +41,6 @@ export const PostLightList = (props: any) => {
         saveButtonProps: createSaveButtonProps,
         show: createModalShow,
     } = useModalForm({ action: "create" });
-
-    const [itemId, setItemId] = React.useState<string | number>();
 
     return (
         <>
@@ -97,7 +95,6 @@ export const PostLightList = (props: any) => {
                                 <EditButton
                                     onClick={() => {
                                         show(record.id);
-                                        setItemId(record.id);
                                     }}
                                     size="small"
                                     recordItemId={record.id}
@@ -118,8 +115,7 @@ export const PostLightList = (props: any) => {
             <Modal {...modalProps} footer={null}>
                 <Edit
                     {...props}
-                    recordItemId={itemId}
-                    onModalClose={close}
+                    deleteButtonProps={deleteButtonProps}
                     saveButtonProps={saveButtonProps}
                 >
                     <Form

@@ -80,7 +80,7 @@ function App() {
             dashboard={DashboardPage}
             ready={ReadyPage}
             i18nProvider={i18nProvider}
-            mutationMode="undoable"
+            mutationMode="pessimistic"
         >
             <Resource
                 name="posts"
