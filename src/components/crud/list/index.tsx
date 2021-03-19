@@ -1,25 +1,28 @@
 import React from "react";
-import { Card, Row, Col } from "antd";
+import { Card, Row, Col, Space } from "antd";
 import humanizeString from "humanize-string";
 import { useParams } from "react-router-dom";
 
 import { useResourceWithRoute, useTranslate } from "@hooks";
 import { OptionalComponent } from "@definitions";
-import { CreateButton } from "@components";
+import { CreateButton, ExportButton } from "@components";
 import { ResourceRouterParams } from "@interfaces";
 
 export interface ListProps {
     resourceName: string;
     canCreate?: boolean;
+    actionButtons?: React.FC;
     aside?: React.FC;
     title?: string;
     isModalShown?: () => void;
+    canExport?: boolean;
 }
 
 export const List: React.FC<ListProps> = ({
     canCreate,
     aside,
     title,
+    actionButtons,
     children,
     isModalShown,
 }) => {
@@ -27,6 +30,18 @@ export const List: React.FC<ListProps> = ({
 
     const resource = useResourceWithRoute(routeResourceName);
     const translate = useTranslate();
+
+    const defaultExtra = canCreate && (
+        <CreateButton size="middle" isModalShown={isModalShown} />
+    );
+
+    const renderExtra = () => {
+        if (actionButtons) {
+            return actionButtons;
+        }
+
+        return defaultExtra;
+    };
 
     return (
         <Row gutter={[16, 16]}>
@@ -40,14 +55,7 @@ export const List: React.FC<ListProps> = ({
                             humanizeString(resource.name),
                         )
                     }
-                    extra={
-                        canCreate && (
-                            <CreateButton
-                                size="middle"
-                                isModalShown={isModalShown}
-                            />
-                        )
-                    }
+                    extra={renderExtra()}
                 >
                     {children}
                 </Card>

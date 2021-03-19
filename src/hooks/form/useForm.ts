@@ -27,6 +27,6 @@ export const useForm: useFormProps = (props) => {
         case "edit":
             return editForm;
         default:
-            return {};
+            return createForm;
     }
 };

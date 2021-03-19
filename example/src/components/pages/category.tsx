@@ -8,59 +8,119 @@ import {
     Column,
     Input,
     useTranslate,
-    useTable,
     DeleteButton,
+    Button,
+    EditButton,
     Space,
     useForm,
+    useEditableTable,
+    TextField,
 } from "readmin";
 
 export const CategoryList = (props: { resourceName: string }) => {
     const translate = useTranslate();
-    const { tableProps } = useTable({
+    const {
+        tableProps,
+        formProps,
+        isEditing,
+        saveEditButtonProps,
+        editButtonProps,
+        cancelButtonProps,
+        setEditId,
+    } = useEditableTable({
+        mutationModeProp: "undoable",
         initialPageSize: 10,
     });
     return (
         <List {...props}>
-            <Table
-                {...tableProps}
-                rowKey="id"
-                pagination={{
-                    ...tableProps.pagination,
-                    position: ["bottomCenter"],
-                    size: "small",
-                }}
-            >
-                <Column
-                    key="id"
-                    dataIndex="id"
-                    title={translate("common:resources.categories.fields.id")}
-                />
-                <Column
-                    key="title"
-                    dataIndex="title"
-                    title={translate(
-                        "common:resources.categories.fields.title",
-                    )}
-                />
-                <Column
-                    title={translate("common:table.actions", "Actions")}
-                    dataIndex="actions"
-                    key="actions"
-                    render={(
-                        _text: string | number,
-                        record: {
-                            id: string | number;
+            <Form {...formProps}>
+                <Table
+                    {...tableProps}
+                    rowKey="id"
+                    pagination={{
+                        ...tableProps.pagination,
+                        position: ["bottomCenter"],
+                        size: "small",
+                    }}
+                    onRow={(record) => ({
+                        onClick: (event: any) => {
+                            if (event.target.nodeName === "TD") {
+                                setEditId(record.id);
+                            }
                         },
-                    ): React.ReactNode => (
-                        <Space>
-                            <DeleteButton
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
+                    })}
+                >
+                    <Column
+                        key="id"
+                        dataIndex="id"
+                        title={translate(
+                            "common:resources.categories.fields.id",
+                        )}
+                    />
+                    <Column
+                        key="title"
+                        dataIndex="title"
+                        title={translate(
+                            "common:resources.categories.fields.title",
+                        )}
+                        render={(value, record) => {
+                            if (isEditing(record.id)) {
+                                return (
+                                    <Form.Item
+                                        name="title"
+                                        style={{ margin: 0 }}
+                                    >
+                                        <Input />
+                                    </Form.Item>
+                                );
+                            }
+                            return <TextField value={value} />;
+                        }}
+                    />
+                    <Column
+                        title={translate("common:table.actions", "Actions")}
+                        dataIndex="actions"
+                        key="actions"
+                        render={(
+                            _text: string | number,
+                            record: {
+                                id: string | number;
+                            },
+                        ): React.ReactNode => {
+                            if (isEditing(record.id)) {
+                                return (
+                                    <Space>
+                                        <Button
+                                            {...saveEditButtonProps}
+                                            size="small"
+                                        >
+                                            Save
+                                        </Button>
+                                        <Button
+                                            {...cancelButtonProps}
+                                            size="small"
+                                        >
+                                            Cancel
+                                        </Button>
+                                    </Space>
+                                );
+                            }
+                            return (
+                                <Space>
+                                    <EditButton
+                                        {...editButtonProps(record.id)}
+                                        size="small"
+                                    />
+                                    <DeleteButton
+                                        size="small"
+                                        recordItemId={record.id}
+                                    />
+                                </Space>
+                            );
+                        }}
+                    />
+                </Table>
+            </Form>
         </List>
     );
 };
