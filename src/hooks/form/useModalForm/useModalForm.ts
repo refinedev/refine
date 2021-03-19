@@ -5,7 +5,7 @@ type useModalFormProps = {
     action: "show" | "edit" | "create";
 };
 export const useModalForm = ({ action }: useModalFormProps) => {
-    const { form, formProps, setEditId, isLoading, saveButtonProps } = useForm({
+    const { form, formProps, setEditId, isLoading } = useForm({
         action,
     });
 
