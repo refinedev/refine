@@ -20,6 +20,12 @@ import {
 } from "@interfaces";
 import { MutationMode } from "../../../interfaces";
 
+type SaveButtonProps = {
+    disabled: boolean;
+    onClick: () => void;
+    loading?: boolean;
+};
+
 export type useEditFormProps = {
     onMutationSuccess?: (data: any, variables: any, context: any) => void;
     onMutationError?: (error: any, variables: any, context: any) => void;
@@ -157,7 +163,7 @@ export const useEditForm = ({
             form.submit();
         },
         loading: isLoadingMutate,
-    };
+    } as SaveButtonProps;
 
     return {
         ...formSF,
