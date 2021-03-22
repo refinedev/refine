@@ -2,10 +2,12 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
+import qs, { StringifyOptions } from "query-string";
 
 import { useResourceWithRoute, useList } from "@hooks";
 
 import { Filters, Sort, ResourceRouterParams } from "@interfaces";
+import { SorterResult } from "antd/lib/table/interface";
 
 export type useTableProps = {
     permanentFilter?: { [key: string]: number[] | string[] };
@@ -60,6 +62,35 @@ export const useTable = ({
         setSorter(sorter);
 
         tablePropsSunflower.onChange(pagination, filters, sorter);
+
+        // synchronize with url
+        const options: StringifyOptions = {
+            arrayFormat: "bracket",
+            skipNull: false,
+        };
+        const qsFilters = qs.stringify(filters, options);
+        let qsSorter = "";
+
+        if (Array.isArray(sorter)) {
+            const sortItems = sorter.map((item) => {
+                const { field, order } = item;
+                if (field && order) {
+                    return {
+                        [field as string]: order,
+                    };
+                }
+                return;
+            });
+            qsSorter = qs.stringify(Object.assign({}, ...sortItems), options);
+        } else {
+            qsSorter = qs.stringify(
+                { [sorter.field as string]: sorter.order },
+                options,
+            );
+        }
+
+        console.log("filters", qsFilters);
+        console.log("sorter", qsSorter);
 
         refetch();
     };
