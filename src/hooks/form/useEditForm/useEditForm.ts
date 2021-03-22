@@ -20,6 +20,12 @@ import {
 } from "@interfaces";
 import { MutationMode } from "../../../interfaces";
 
+type SaveButtonProps = {
+    disabled: boolean;
+    onClick: () => void;
+    loading?: boolean;
+};
+
 export type useEditFormProps = {
     onMutationSuccess?: (data: any, variables: any, context: any) => void;
     onMutationError?: (error: any, variables: any, context: any) => void;
@@ -79,13 +85,17 @@ export const useEditForm = ({
         });
     }, [data]);
 
-    const { mutate } = useUpdate(resource.name, mutationMode);
+    const { mutate, isLoading: isLoadingMutate } = useUpdate(
+        resource.name,
+        mutationMode,
+    );
     const notification = useNotification();
 
     const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         setWarnWhen(false);
+
         // Required to make onSuccess vs callbacks to work if component unmounts i.e. on route change
         setTimeout(() => {
             mutate(
@@ -152,7 +162,8 @@ export const useEditForm = ({
         onClick: () => {
             form.submit();
         },
-    };
+        loading: isLoadingMutate,
+    } as SaveButtonProps;
 
     return {
         ...formSF,
@@ -166,5 +177,6 @@ export const useEditForm = ({
         editId,
         setEditId,
         saveButtonProps,
+        isLoadingMutate,
     };
 };
