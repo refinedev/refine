@@ -33,7 +33,10 @@ export const PostLightList = (props: any) => {
         saveButtonProps,
         show,
         deleteButtonProps,
-    } = useModalForm({ action: "edit" });
+    } = useModalForm({
+        action: "edit",
+        mutationMode: "undoable",
+    });
 
     const {
         modalProps: createModalProps,

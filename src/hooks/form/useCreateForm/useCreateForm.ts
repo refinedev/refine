@@ -58,7 +58,7 @@ export const useCreateForm = ({
 
     const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 
-    const onFinish = async (values: BaseRecord): Promise<void> => {
+    const onFinish = (values: BaseRecord) => {
         setWarnWhen(false);
         mutate(
             { values, resource: resource.name },

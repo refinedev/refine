@@ -85,15 +85,17 @@ export const useEditForm = ({
         });
     }, [data]);
 
-    const { mutate, isLoading: isLoadingMutate } = useUpdate(
-        resource.name,
-        mutationMode,
-    );
+    const {
+        mutate,
+        isLoading: isLoadingMutation,
+        isSuccess: isSuccessMutation,
+        reset: resetMutation,
+    } = useUpdate(resource.name, mutationMode);
     const notification = useNotification();
 
     const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 
-    const onFinish = async (values: BaseRecord): Promise<void> => {
+    const onFinish = (values: BaseRecord) => {
         setWarnWhen(false);
 
         // Required to make onSuccess vs callbacks to work if component unmounts i.e. on route change
@@ -157,13 +159,13 @@ export const useEditForm = ({
         return changeValues;
     };
 
-    const saveButtonProps = {
+    const saveButtonProps: SaveButtonProps = {
         disabled: isLoading,
         onClick: () => {
             form.submit();
         },
-        loading: isLoadingMutate,
-    } as SaveButtonProps;
+        loading: isLoadingMutation,
+    };
 
     return {
         ...formSF,
@@ -177,6 +179,8 @@ export const useEditForm = ({
         editId,
         setEditId,
         saveButtonProps,
-        isLoadingMutate,
+        isLoadingMutation,
+        isSuccessMutation,
+        resetMutation,
     };
 };
