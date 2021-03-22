@@ -1,5 +1,5 @@
 import * as React from "react";
-import { RcFile } from "antd/lib/upload";
+import { RcFile, UploadChangeParam } from "antd/lib/upload";
 
 import {
     List,
@@ -27,11 +27,14 @@ import {
     Space,
     useForm,
     Upload,
-    Base64File,
+    UploadFileWithBase64,
     file2Base64,
+    normalizeFile,
 } from "readmin";
 
 import { Aside } from "../aside";
+import { UploadFile } from "antd/lib/upload/interface";
+import { useEffect } from "react";
 
 export const UserList = (props: any) => {
     const translate = useTranslate();
@@ -47,6 +50,9 @@ export const UserList = (props: any) => {
                     ...tableProps.pagination,
                     position: ["bottomCenter"],
                     size: "small",
+                }}
+                scroll={{
+                    x: true,
                 }}
             >
                 <Column
@@ -115,13 +121,47 @@ export const UserList = (props: any) => {
 
 export const UserEdit = (props: any) => {
     const translate = useTranslate();
-    const { formProps, saveButtonProps } = useForm({
+    const { formProps, saveButtonProps, getDataQueryResult, form } = useForm({
         warnWhenUnsavedChanges: true,
     });
 
     const { TabPane } = Tabs;
 
     const dateFormat = "DD/MM/YYYY";
+
+    const [fileList, setFileList] = React.useState<UploadFile[]>([]);
+    if (getDataQueryResult) {
+        const { status, data } = getDataQueryResult;
+
+        useEffect(() => {
+            if (status === "success") {
+                setFileList(data.data.avatar);
+            }
+        }, [status]);
+    }
+
+    const beforeUpload = (file: RcFile) => {
+        setFileList([...fileList, file]);
+        return false;
+    };
+
+    React.useEffect(() => {
+        (async () => {
+            const uploadedFiles: UploadFileWithBase64[] = [];
+            for (const file of fileList) {
+                if (file instanceof Blob) {
+                    uploadedFiles.push(await file2Base64(file));
+                } else {
+                    uploadedFiles.push(file);
+                }
+            }
+
+            form &&
+                form.setFieldsValue({
+                    avatar: uploadedFiles,
+                });
+        })();
+    }, [fileList]);
 
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>
@@ -182,6 +222,42 @@ export const UserEdit = (props: any) => {
                         >
                             <DatePicker format={dateFormat} />
                         </Form.Item>
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.avatar",
+                            )}
+                        >
+                            <Form.Item
+                                name="avatar"
+                                valuePropName="fileList"
+                                getValueFromEvent={normalizeFile}
+                                noStyle
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <Upload.Dragger
+                                    beforeUpload={beforeUpload}
+                                    listType="picture"
+                                    maxCount={3}
+                                    fileList={fileList}
+                                    multiple
+                                >
+                                    <p className="ant-upload-text">
+                                        {translate(
+                                            "common:resources.users.forms.uploadText",
+                                        )}
+                                    </p>
+                                    <p className="ant-upload-hint">
+                                        {translate(
+                                            "common:resources.users.forms.uploadHintText",
+                                        )}
+                                    </p>
+                                </Upload.Dragger>
+                            </Form.Item>
+                        </Form.Item>
                     </TabPane>
                 </Tabs>
             </Form>
@@ -199,7 +275,7 @@ export const UserCreate = (props: any) => {
 
     const dateFormat = "DD/MM/YYYY";
 
-    const [fileList, setFileList] = React.useState<RcFile[]>([]);
+    const [fileList, setFileList] = React.useState<UploadFile[]>([]);
 
     const beforeUpload = (file: RcFile) => {
         setFileList([...fileList, file]);
@@ -208,16 +284,19 @@ export const UserCreate = (props: any) => {
 
     React.useEffect(() => {
         (async () => {
-            const base64Files: Base64File[] = [];
+            const uploadedFiles: UploadFileWithBase64[] = [];
             for (const file of fileList) {
-                base64Files.push(await file2Base64(file));
+                if (file instanceof Blob) {
+                    uploadedFiles.push(await file2Base64(file));
+                } else {
+                    uploadedFiles.push(file);
+                }
             }
 
-            if (form) {
+            form &&
                 form.setFieldsValue({
-                    image: base64Files,
+                    avatar: uploadedFiles,
                 });
-            }
         })();
     }, [fileList]);
 
@@ -290,7 +369,9 @@ export const UserCreate = (props: any) => {
                             )}
                         >
                             <Form.Item
-                                name="image"
+                                name="avatar"
+                                valuePropName="fileList"
+                                getValueFromEvent={normalizeFile}
                                 noStyle
                                 rules={[
                                     {
@@ -301,7 +382,7 @@ export const UserCreate = (props: any) => {
                                 <Upload.Dragger
                                     beforeUpload={beforeUpload}
                                     listType="picture"
-                                    maxCount={1}
+                                    maxCount={3}
                                     fileList={fileList}
                                     multiple
                                 >

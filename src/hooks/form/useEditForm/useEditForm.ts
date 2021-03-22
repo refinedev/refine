@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm as useFormSF } from "sunflower-antd";
 import { Form, FormInstance } from "antd";
 import { useHistory, useParams } from "react-router-dom";
@@ -12,8 +12,9 @@ import {
     useWarnAboutChange,
 } from "@hooks";
 
-import { BaseRecord, ResourceRouterParams } from "@interfaces";
+import { BaseRecord, GetOneResponse, ResourceRouterParams } from "@interfaces";
 import { MutationMode } from "../../../interfaces";
+import { QueryObserverResult } from "react-query";
 
 export type useEditFormProps = {
     onMutationSuccess?: (data: any, variables: any, context: any) => void;
@@ -59,9 +60,11 @@ export const useEditForm = ({
 
     const resource = useResourceWithRoute(routeResourceName);
 
-    const { data, isLoading } = useOne(resource.name, idFromRoute, {
+    const getDataQueryResult = useOne(resource.name, idFromRoute, {
         enabled: isEdit,
     });
+
+    const { data, isLoading } = getDataQueryResult;
 
     React.useEffect(() => {
         form.setFieldsValue({
@@ -135,8 +138,11 @@ export const useEditForm = ({
             onKeyUp,
             onValuesChange,
         },
-        isLoading,
+        isLoading, // TODO: Delete and use getDataQueryResult.
         saveButtonProps,
         form: formSF.form as FormInstance,
+        getDataQueryResult: getDataQueryResult as QueryObserverResult<
+            GetOneResponse<BaseRecord>
+        >,
     };
 };

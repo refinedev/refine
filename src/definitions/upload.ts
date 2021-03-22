@@ -24,29 +24,31 @@ export const normalizeFile = (event: Event) => {
     });
 };
 
-export interface Base64File {
-    uid: string;
-    name: string;
-    type: string;
-    base64String: string;
+export interface UploadFileWithBase64 extends UploadFile {
+    base64String?: string;
 }
 
-export function file2Base64(file: RcFile): Promise<Base64File> {
-    const { uid, name, type } = file;
-
+export function file2Base64(file: UploadFile): Promise<UploadFileWithBase64> {
+    const { uid, name, size, type, lastModified, lastModifiedDate } = file;
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            const base64String = reader.result as string;
 
-            return resolve({
-                uid,
-                name,
-                type,
-                base64String,
-            });
-        };
+        if (file instanceof Blob) {
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                return resolve({
+                    ...file,
+                    uid,
+                    name,
+                    size,
+                    type,
+                    lastModified,
+                    lastModifiedDate,
+                    base64String: reader.result as string,
+                });
+            };
+        }
+
         reader.onerror = (error) => reject(error);
     });
 }
