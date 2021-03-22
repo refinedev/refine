@@ -77,13 +77,17 @@ export const useEditForm = ({
 
     const { data, isLoading } = useOne(resource.name, id, {
         enabled: isEdit,
+        cacheTime: 0,
     });
 
     React.useEffect(() => {
         form.setFieldsValue({
             ...data?.data,
         });
-    }, [data]);
+        return () => {
+            form.resetFields();
+        };
+    }, [data, id]);
 
     const {
         mutate,

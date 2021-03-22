@@ -33,9 +33,10 @@ export const PostLightList = (props: any) => {
         saveButtonProps,
         show,
         deleteButtonProps,
+        editId,
     } = useModalForm({
         action: "edit",
-        mutationMode: "undoable",
+        mutationMode: "optimistic",
     });
 
     const {
@@ -118,6 +119,7 @@ export const PostLightList = (props: any) => {
             <Modal {...modalProps} footer={null}>
                 <Edit
                     {...props}
+                    recordItemId={editId}
                     deleteButtonProps={deleteButtonProps}
                     saveButtonProps={saveButtonProps}
                 >

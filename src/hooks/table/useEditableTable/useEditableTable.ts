@@ -26,12 +26,6 @@ export const useEditableTable = (props: useEditableTableProps) => {
         };
     };
 
-    useEffect(() => {
-        return () => {
-            form.resetFields();
-        };
-    }, [editId]);
-
     const isEditing = (id: string | number) => id === editId;
 
     return {
