@@ -1,5 +1,4 @@
 import * as React from "react";
-import { RcFile, UploadChangeParam } from "antd/lib/upload";
 
 import {
     List,
@@ -129,14 +128,12 @@ export const UserEdit = (props: any) => {
     const dateFormat = "DD/MM/YYYY";
 
     const [avatar, setAvatar] = React.useState<UploadFile[]>([]);
-    if (getDataQueryResult) {
-        const { data, status } = getDataQueryResult;
-        React.useEffect(() => {
-            if (status === "success") {
-                setAvatar(data.data.avatar);
-            }
-        }, [status]);
-    }
+    React.useEffect(() => {
+        if (getDataQueryResult && getDataQueryResult.status === "success") {
+            const { data } = getDataQueryResult;
+            setAvatar(data.data.avatar);
+        }
+    }, [getDataQueryResult?.status]);
 
     const { beforeUpload, fileList, uploadedFiles } = useBase64Upload(avatar);
     useEffect(() => {
