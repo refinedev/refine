@@ -221,7 +221,7 @@ export const UserEdit = (props: any) => {
                                 <Upload.Dragger
                                     beforeUpload={beforeUpload}
                                     listType="picture"
-                                    maxCount={3}
+                                    maxCount={1}
                                     fileList={fileList}
                                     multiple
                                 >
@@ -346,7 +346,7 @@ export const UserCreate = (props: any) => {
                                 <Upload.Dragger
                                     beforeUpload={beforeUpload}
                                     listType="picture"
-                                    maxCount={3}
+                                    maxCount={1}
                                     fileList={fileList}
                                     multiple
                                 >
