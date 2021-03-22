@@ -5,9 +5,7 @@ import { TablePaginationConfig, TableProps } from "antd/lib/table";
 import qs, { StringifyOptions } from "query-string";
 
 import { useResourceWithRoute, useList } from "@hooks";
-
 import { Filters, Sort, ResourceRouterParams } from "@interfaces";
-import { SorterResult } from "antd/lib/table/interface";
 
 export type useTableProps = {
     permanentFilter?: { [key: string]: number[] | string[] };
