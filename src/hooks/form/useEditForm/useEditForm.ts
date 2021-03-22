@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm as useFormSF } from "sunflower-antd";
 import { Form, FormInstance } from "antd";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import {
     useMutationMode,
@@ -10,11 +10,23 @@ import {
     useUpdate,
     useNotification,
     useWarnAboutChange,
+    useRedirectionAfterSubmission,
 } from "@hooks";
 
-import { BaseRecord, GetOneResponse, ResourceRouterParams } from "@interfaces";
+import {
+    BaseRecord,
+    ResourceRouterParams,
+    RedirectionTypes,
+    GetOneResponse,
+} from "@interfaces";
 import { MutationMode } from "../../../interfaces";
 import { QueryObserverResult } from "react-query";
+
+type SaveButtonProps = {
+    disabled: boolean;
+    onClick: () => void;
+    loading?: boolean;
+};
 
 export type useEditFormProps = {
     onMutationSuccess?: (data: any, variables: any, context: any) => void;
@@ -22,6 +34,7 @@ export type useEditFormProps = {
     mutationModeProp?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
+    redirect?: RedirectionTypes;
 };
 export const useEditForm = ({
     onMutationSuccess,
@@ -29,7 +42,10 @@ export const useEditForm = ({
     mutationModeProp,
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
+    redirect = "list",
 }: useEditFormProps) => {
+    const [editId, setEditId] = React.useState<string | number>();
+
     const [formAnt] = Form.useForm();
     const formSF = useFormSF({
         form: formAnt,
@@ -45,7 +61,6 @@ export const useEditForm = ({
     const warnWhenUnsavedChanges =
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContext;
 
-    const history = useHistory();
     const { mutationMode: mutationModeContext } = useMutationMode();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
@@ -56,11 +71,12 @@ export const useEditForm = ({
         action,
     } = useParams<ResourceRouterParams>();
 
-    const isEdit = action === "edit";
+    const isEdit = !!editId || action === "edit";
 
     const resource = useResourceWithRoute(routeResourceName);
 
-    const getDataQueryResult = useOne(resource.name, idFromRoute, {
+    const id = editId?.toString() ?? idFromRoute;
+    const getDataQueryResult = useOne(resource.name, id, {
         enabled: isEdit,
     });
 
@@ -72,42 +88,63 @@ export const useEditForm = ({
         });
     }, [data]);
 
-    const { mutate } = useUpdate(resource.name, mutationMode);
+    const { mutate, isLoading: isLoadingMutate } = useUpdate(
+        resource.name,
+        mutationMode,
+    );
     const notification = useNotification();
+
+    const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         setWarnWhen(false);
-        mutate(
-            { id: idFromRoute, values },
-            {
-                onSuccess: (...args) => {
-                    if (onMutationSuccess) {
-                        return onMutationSuccess(...args);
-                    }
 
-                    notification.success({
-                        message: "Successful",
-                        description: `Id:${idFromRoute} ${resource.name} edited`,
-                    });
+        // Required to make onSuccess vs callbacks to work if component unmounts i.e. on route change
+        setTimeout(() => {
+            mutate(
+                { id, values },
+                {
+                    onSuccess: (...args) => {
+                        if (onMutationSuccess) {
+                            return onMutationSuccess(...args);
+                        }
 
-                    if (mutationMode === "pessimistic") {
-                        return history.push(`/resources/${resource.route}`);
-                    }
+                        notification.success({
+                            message: "Successful",
+                            description: `Id:${id} ${resource.name} edited`,
+                        });
+
+                        if (mutationMode === "pessimistic") {
+                            handleSubmitWithRedirect({
+                                redirect,
+                                resource,
+                                idFromRoute,
+                            });
+                        }
+                    },
+                    onError: (error: any, ...rest) => {
+                        if (onMutationError) {
+                            return onMutationError(error, ...rest);
+                        }
+
+                        if (error !== "mutation cancelled") {
+                            notification.error({
+                                message: `There was an error updating it ${resource.name}!`,
+                                description: error.message,
+                            });
+                        }
+                    },
                 },
-                onError: (error: any, ...rest) => {
-                    if (onMutationError) {
-                        return onMutationError(error, ...rest);
-                    }
+            );
+        });
 
-                    notification.error({
-                        message: `There was an error updating it ${resource.name}!`,
-                        description: error.message,
-                    });
-                },
-            },
-        );
+        setEditId(undefined);
         !(mutationMode === "pessimistic") &&
-            history.push(`/resources/${resource.route}`);
+            handleSubmitWithRedirect({
+                redirect,
+                resource,
+                idFromRoute,
+            });
     };
 
     const onKeyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
@@ -128,7 +165,8 @@ export const useEditForm = ({
         onClick: () => {
             form.submit();
         },
-    };
+        loading: isLoadingMutate,
+    } as SaveButtonProps;
 
     return {
         ...formSF,
@@ -138,8 +176,11 @@ export const useEditForm = ({
             onKeyUp,
             onValuesChange,
         },
-        isLoading, // TODO: Delete and use getDataQueryResult.
+        isLoading,
+        editId,
+        setEditId,
         saveButtonProps,
+        isLoadingMutate,
         form: formSF.form as FormInstance,
         getDataQueryResult: getDataQueryResult as QueryObserverResult<
             GetOneResponse<BaseRecord>

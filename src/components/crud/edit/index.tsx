@@ -7,13 +7,20 @@ import { SaveOutlined } from "@ant-design/icons";
 import { MutationMode } from "../../../interfaces";
 import { useTranslate, useResourceWithRoute, useMutationMode } from "@hooks";
 import { ResourceRouterParams } from "@interfaces";
-import { DeleteButton, RefreshButton, ListButton } from "@components";
+import {
+    DeleteButton,
+    RefreshButton,
+    ListButton,
+    DeleteButtonProps,
+} from "@components";
 
 export interface EditProps {
     title?: string;
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
     mutationMode?: MutationMode;
+    recordItemId?: string | number;
+    deleteButtonProps?: DeleteButtonProps;
 }
 
 export const Edit: React.FC<EditProps> = ({
@@ -21,7 +28,9 @@ export const Edit: React.FC<EditProps> = ({
     actionButtons,
     saveButtonProps,
     mutationMode: mutationModeProp,
+    recordItemId,
     children,
+    deleteButtonProps,
 }) => {
     const { mutationMode: mutationModeContext } = useMutationMode();
 
@@ -38,8 +47,8 @@ export const Edit: React.FC<EditProps> = ({
             extra={
                 <Row>
                     <Space>
-                        <ListButton />
-                        <RefreshButton />
+                        {!recordItemId && <ListButton />}
+                        <RefreshButton recordItemId={recordItemId} />
                     </Space>
                 </Row>
             }
@@ -50,7 +59,10 @@ export const Edit: React.FC<EditProps> = ({
                 >
                     {actionButtons ?? (
                         <>
-                            <DeleteButton mutationMode={mutationMode} />
+                            <DeleteButton
+                                {...deleteButtonProps}
+                                mutationMode={mutationMode}
+                            />
                             <Button
                                 {...saveButtonProps}
                                 htmlType="submit"

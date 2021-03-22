@@ -15,7 +15,7 @@ import {
     MutationMode,
 } from "@interfaces";
 
-type DeleteButtonProps = ButtonProps & {
+export type DeleteButtonProps = ButtonProps & {
     resourceName?: string;
     recordItemId?: string | number;
     onSuccess?: (value: DeleteOneResponse) => void;
