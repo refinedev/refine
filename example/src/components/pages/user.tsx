@@ -27,9 +27,8 @@ import {
     Space,
     useForm,
     Upload,
-    UploadFileWithBase64,
-    file2Base64,
     normalizeFile,
+    useBase64Upload,
 } from "readmin";
 
 import { Aside } from "../aside";
@@ -129,39 +128,23 @@ export const UserEdit = (props: any) => {
 
     const dateFormat = "DD/MM/YYYY";
 
-    const [fileList, setFileList] = React.useState<UploadFile[]>([]);
+    const [avatar, setAvatar] = React.useState<UploadFile[]>([]);
     if (getDataQueryResult) {
-        const { status, data } = getDataQueryResult;
-
-        useEffect(() => {
+        const { data, status } = getDataQueryResult;
+        React.useEffect(() => {
             if (status === "success") {
-                setFileList(data.data.avatar);
+                setAvatar(data.data.avatar);
             }
         }, [status]);
     }
 
-    const beforeUpload = (file: RcFile) => {
-        setFileList([...fileList, file]);
-        return false;
-    };
-
-    React.useEffect(() => {
-        (async () => {
-            const uploadedFiles: UploadFileWithBase64[] = [];
-            for (const file of fileList) {
-                if (file instanceof Blob) {
-                    uploadedFiles.push(await file2Base64(file));
-                } else {
-                    uploadedFiles.push(file);
-                }
-            }
-
-            form &&
-                form.setFieldsValue({
-                    avatar: uploadedFiles,
-                });
-        })();
-    }, [fileList]);
+    const { beforeUpload, fileList, uploadedFiles } = useBase64Upload(avatar);
+    useEffect(() => {
+        form &&
+            form.setFieldsValue({
+                avatar: uploadedFiles,
+            });
+    }, [uploadedFiles]);
 
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>
@@ -275,30 +258,14 @@ export const UserCreate = (props: any) => {
 
     const dateFormat = "DD/MM/YYYY";
 
-    const [fileList, setFileList] = React.useState<UploadFile[]>([]);
-
-    const beforeUpload = (file: RcFile) => {
-        setFileList([...fileList, file]);
-        return false;
-    };
-
-    React.useEffect(() => {
-        (async () => {
-            const uploadedFiles: UploadFileWithBase64[] = [];
-            for (const file of fileList) {
-                if (file instanceof Blob) {
-                    uploadedFiles.push(await file2Base64(file));
-                } else {
-                    uploadedFiles.push(file);
-                }
-            }
-
-            form &&
-                form.setFieldsValue({
-                    avatar: uploadedFiles,
-                });
-        })();
-    }, [fileList]);
+    const [avatar] = React.useState<UploadFile[]>([]);
+    const { beforeUpload, fileList, uploadedFiles } = useBase64Upload(avatar);
+    useEffect(() => {
+        form &&
+            form.setFieldsValue({
+                avatar: uploadedFiles,
+            });
+    }, [uploadedFiles]);
 
     return (
         <Create

@@ -26,7 +26,7 @@ export const useModalForm = ({ action }: useModalFormProps) => {
     const saveButtonPropsSF = {
         disabled: isLoading,
         onClick: () => {
-            form.submit();
+            form?.submit();
             sunflowerUseModal.close();
         },
         loading: isLoadingMutate,
