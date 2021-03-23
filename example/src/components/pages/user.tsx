@@ -221,8 +221,8 @@ export const UserEdit = (props: any) => {
                                 <Upload.Dragger
                                     beforeUpload={beforeUpload}
                                     listType="picture"
-                                    maxCount={1}
-                                    fileList={fileList}
+                                    maxCount={5}
+                                    defaultFileList={fileList}
                                     multiple
                                 >
                                     <p className="ant-upload-text">

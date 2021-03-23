@@ -21,17 +21,16 @@ export const useBase64Upload = (formData: UploadFile[]) => {
     }, [formData]);
 
     React.useEffect(() => {
+        const files = [];
         (async () => {
             for (const file of fileList) {
                 if (file instanceof Blob) {
-                    setUploadedFiles([
-                        ...uploadedFiles,
-                        await file2Base64(file),
-                    ]);
+                    files.push(await file2Base64(file));
                 } else {
-                    setUploadedFiles([...uploadedFiles, file]);
+                    files.push(file);
                 }
             }
+            setUploadedFiles(files);
         })();
     }, [fileList]);
 
