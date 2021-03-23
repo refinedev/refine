@@ -11,13 +11,24 @@ export const useBase64Upload = (formData: UploadFile[]) => {
 
     const beforeUpload = (file: RcFile): boolean => {
         setFileList([...fileList, file]);
+
         return false;
     };
 
+    const onRemove = (file: UploadFile) => {
+        const index = fileList.indexOf(file);
+        const newFileList = fileList.slice();
+        newFileList.splice(index, 1);
+
+        setFileList(newFileList);
+    };
+
+    // React.useEffect(() => {
+    //     setUploadedFiles([]);
+    // }, []);
+
     React.useEffect(() => {
-        if (formData) {
-            setFileList(formData);
-        }
+        setFileList(formData);
     }, [formData]);
 
     React.useEffect(() => {
@@ -38,5 +49,6 @@ export const useBase64Upload = (formData: UploadFile[]) => {
         uploadedFiles,
         beforeUpload,
         fileList,
+        onRemove,
     };
 };

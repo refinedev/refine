@@ -135,7 +135,9 @@ export const UserEdit = (props: any) => {
         }
     }, [getDataQueryResult?.status]);
 
-    const { beforeUpload, fileList, uploadedFiles } = useBase64Upload(avatar);
+    const { beforeUpload, fileList, uploadedFiles, onRemove } = useBase64Upload(
+        avatar,
+    );
     useEffect(() => {
         form &&
             form.setFieldsValue({
@@ -223,6 +225,7 @@ export const UserEdit = (props: any) => {
                                     listType="picture"
                                     maxCount={5}
                                     defaultFileList={fileList}
+                                    onRemove={onRemove}
                                     multiple
                                 >
                                     <p className="ant-upload-text">
