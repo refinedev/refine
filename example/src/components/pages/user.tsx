@@ -225,14 +225,10 @@ export const UserEdit = (props: any) => {
                                     {...uploadProps}
                                 >
                                     <p className="ant-upload-text">
-                                        {translate(
-                                            "common:resources.users.forms.uploadText",
-                                        )}
+                                        {translate("common:upload.title")}
                                     </p>
                                     <p className="ant-upload-hint">
-                                        {translate(
-                                            "common:resources.users.forms.uploadHintText",
-                                        )}
+                                        {translate("common:upload.description")}
                                     </p>
                                 </Upload.Dragger>
                             </Form.Item>
@@ -353,14 +349,10 @@ export const UserCreate = (props: any) => {
                                     multiple
                                 >
                                     <p className="ant-upload-text">
-                                        {translate(
-                                            "common:resources.users.forms.uploadText",
-                                        )}
+                                        {translate("common:upload.title")}
                                     </p>
                                     <p className="ant-upload-hint">
-                                        {translate(
-                                            "common:resources.users.forms.uploadHintText",
-                                        )}
+                                        {translate("common:upload.description")}
                                     </p>
                                 </Upload.Dragger>
                             </Form.Item>
