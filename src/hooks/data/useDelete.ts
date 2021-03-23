@@ -9,12 +9,15 @@ import {
     GetListResponse,
     ListQuery,
     Context as DeleteContext,
+    IGetOneResponse,
+    GetOneQuery,
 } from "@interfaces";
 
 import {
     useMutationMode,
     useListResourceQueries,
     useCancelNotification,
+    useGetOneQueries,
 } from "@hooks";
 
 type DeleteParams = {
@@ -45,6 +48,7 @@ export const useDelete = (
     }
 
     const listResourceQueries = useListResourceQueries(resource);
+    const getOneQueries = useGetOneQueries(resource);
 
     const mutation = useMutation<
         DeleteOneResponse,
@@ -80,6 +84,8 @@ export const useDelete = (
         {
             onMutate: async (deleteParams) => {
                 const previousListQueries: ListQuery[] = [];
+                const previousGetOneQueries: GetOneQuery[] = [];
+
                 if (!(mutationMode === "pessimistic")) {
                     for (const listQuery of listResourceQueries) {
                         const { queryKey } = listQuery;
@@ -111,8 +117,38 @@ export const useDelete = (
                             });
                         }
                     }
+
+                    const getOneQueriesWithId = getOneQueries.filter(
+                        (query) => {
+                            return (
+                                (query.queryKey[1] as any).id ===
+                                deleteParams.id.toString()
+                            );
+                        },
+                    );
+
+                    for (const getOneQuery of getOneQueriesWithId) {
+                        const { queryKey } = getOneQuery;
+                        await queryClient.cancelQueries(queryKey);
+
+                        const previousGetOneQuery = queryClient.getQueryData<IGetOneResponse>(
+                            queryKey,
+                        );
+
+                        if (previousGetOneQuery) {
+                            previousGetOneQueries.push({
+                                query: previousGetOneQuery,
+                                queryKey,
+                            });
+
+                            queryClient.removeQueries(queryKey);
+                        }
+                    }
                 }
-                return { previousListQueries: previousListQueries };
+                return {
+                    previousListQueries: previousListQueries,
+                    previousGetOneQueries: previousGetOneQueries,
+                };
             },
             onError: (err, variables, context) => {
                 if (!(mutationMode === "pessimistic")) {
@@ -123,11 +159,27 @@ export const useDelete = (
                                 query.query,
                             );
                         }
+                        if (context.previousGetOneQueries) {
+                            for (const query of context.previousGetOneQueries) {
+                                queryClient.setQueryData(
+                                    query.queryKey,
+                                    query.query,
+                                );
+                            }
+                        }
                     }
                 }
             },
-            onSettled: () => {
+            onSettled: (_data, _error, variables) => {
                 for (const query of listResourceQueries) {
+                    queryClient.invalidateQueries(query.queryKey);
+                }
+
+                const getOneQueriesWithId = getOneQueries.filter((query) => {
+                    return (query.queryKey[1] as any).id === variables.id;
+                });
+
+                for (const query of getOneQueriesWithId) {
                     queryClient.invalidateQueries(query.queryKey);
                 }
             },

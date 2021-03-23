@@ -16,5 +16,5 @@ export type GetOneQuery = {
 };
 export type Context = {
     previousListQueries: ListQuery[];
-    previousGetOneQueries: GetOneQuery[];
+    previousGetOneQueries?: GetOneQuery[];
 };
