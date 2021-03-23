@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
 import qs, { StringifyOptions } from "query-string";
@@ -29,8 +29,11 @@ export const useTable = ({
     initialSorter,
     initialFilter,
 }: useTableProps): useTable => {
-    const defaultCurrent = 1;
-    const defaultPageSize = 10;
+    const { search } = useLocation();
+    const queryParams = new URLSearchParams(search);
+
+    const defaultCurrent = Number(queryParams.get("current") || 1);
+    const defaultPageSize = Number(queryParams.get("pageSize") || 10);
 
     const { tableProps: tablePropsSunflower } = useFormTable({
         defaultCurrent: initialCurrent ?? defaultCurrent,
@@ -47,7 +50,7 @@ export const useTable = ({
 
     const { current, pageSize } = tablePropsSunflower.pagination;
 
-    const { data, isFetching, refetch } = useList(resource.name, {
+    const { data, isFetching } = useList(resource.name, {
         pagination: { current, pageSize },
         filters: { ...permanentFilter, ...filters },
         sort: sorter,
@@ -84,7 +87,7 @@ export const useTable = ({
         const qsSortOrders = qs.stringify({ order: sortOrders }, options);
 
         return history.push(
-            `/resources/${resource.name}?current=${current}&pageSize=${pageSize}&${qsFilters}&${qsSortFields}&${qsSortOrders}`,
+            `/resources/${resource.name}?current=${pagination.current}&pageSize=${pagination.pageSize}&${qsFilters}&${qsSortFields}&${qsSortOrders}`,
         );
 
         // refetch();
