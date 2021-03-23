@@ -159,6 +159,14 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                                 query.query,
                             );
                         }
+                        if (context.previousGetOneQueries) {
+                            for (const query of context.previousGetOneQueries) {
+                                queryClient.setQueryData(
+                                    query.queryKey,
+                                    query.query,
+                                );
+                            }
+                        }
                     }
                 }
             },
