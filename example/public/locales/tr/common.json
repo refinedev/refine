@@ -88,7 +88,8 @@
                 "firstName": "Ad",
                 "lastName": "Soyad",
                 "email": "E-Posta",
-                "birthday": "Doğum Günü"
+                "birthday": "Doğum Günü",
+                "avatar": "Profil Resmi"
             }
         }
     },
@@ -114,7 +115,7 @@
         "content": "Sisteminize kayıtlı kullanıcıların kişisel verilerini kullanıcı tablosunda görüntüleyebilirsiniz."
     },
     "upload": {
-        "title": "Click or drag file to this area to upload",
-        "description": "Support for a single or bulk upload."
+        "title": "Yüklemek için dosyayı bu alana tıklayın veya sürükleyin",
+        "description": "Tek veya toplu yükleme desteği."
     }
 }
