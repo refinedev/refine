@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
 import qs, { StringifyOptions } from "query-string";
+import { useHistory } from "react-router-dom";
 
 import { useResourceWithRoute, useList } from "@hooks";
 import { Filters, Sort, ResourceRouterParams } from "@interfaces";
@@ -37,6 +38,7 @@ export const useTable = ({
     });
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
+    const history = useHistory();
 
     const resource = useResourceWithRoute(routeResourceName);
 
@@ -67,30 +69,25 @@ export const useTable = ({
             skipNull: false,
         };
         const qsFilters = qs.stringify(filters, options);
-        let qsSorter = "";
+        let sortFields;
+        let sortOrders;
 
         if (Array.isArray(sorter)) {
-            const sortItems = sorter.map((item) => {
-                const { field, order } = item;
-                if (field && order) {
-                    return {
-                        [field as string]: order,
-                    };
-                }
-                return;
-            });
-            qsSorter = qs.stringify(Object.assign({}, ...sortItems), options);
+            sortFields = sorter.map((item) => item.field);
+            sortOrders = sorter.map((item) => item.order);
         } else {
-            qsSorter = qs.stringify(
-                { [sorter.field as string]: sorter.order },
-                options,
-            );
+            sortFields = sorter.field;
+            sortOrders = sorter.order;
         }
 
-        console.log("filters", qsFilters);
-        console.log("sorter", qsSorter);
+        const qsSortFields = qs.stringify({ sort: sortFields }, options);
+        const qsSortOrders = qs.stringify({ order: sortOrders }, options);
 
-        refetch();
+        return history.push(
+            `/resources/${resource.name}?current=${current}&pageSize=${pageSize}&${qsFilters}&${qsSortFields}&${qsSortOrders}`,
+        );
+
+        // refetch();
     };
 
     return {
