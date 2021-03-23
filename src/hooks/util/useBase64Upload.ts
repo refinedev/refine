@@ -3,14 +3,17 @@ import { RcFile, UploadFile } from "antd/lib/upload/interface";
 
 import { file2Base64, UploadFileWithBase64 } from "@definitions/upload";
 
-export const useBase64Upload = (formData: UploadFile[]) => {
+export const useBase64Upload = (formData: UploadFile[], maxCount = 1) => {
     const [uploadedFiles, setUploadedFiles] = React.useState<
         UploadFileWithBase64[]
     >([]);
     const [fileList, setFileList] = React.useState<UploadFile[]>([]);
 
     const beforeUpload = (file: RcFile): boolean => {
-        setFileList([...fileList, file]);
+        const totalFiles = fileList.length;
+        if (totalFiles < maxCount) {
+            setFileList([...fileList, file]);
+        }
 
         return false;
     };
@@ -22,10 +25,6 @@ export const useBase64Upload = (formData: UploadFile[]) => {
 
         setFileList(newFileList);
     };
-
-    // React.useEffect(() => {
-    //     setUploadedFiles([]);
-    // }, []);
 
     React.useEffect(() => {
         setFileList(formData);
@@ -50,5 +49,6 @@ export const useBase64Upload = (formData: UploadFile[]) => {
         beforeUpload,
         fileList,
         onRemove,
+        maxCount,
     };
 };

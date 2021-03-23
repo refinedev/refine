@@ -128,16 +128,15 @@ export const UserEdit = (props: any) => {
     const dateFormat = "DD/MM/YYYY";
 
     const [avatar, setAvatar] = React.useState<UploadFile[]>([]);
+
     React.useEffect(() => {
-        if (getDataQueryResult && getDataQueryResult.status === "success") {
+        if (getDataQueryResult && getDataQueryResult.data) {
             const { data } = getDataQueryResult;
             setAvatar(data.data.avatar);
         }
-    }, [getDataQueryResult?.status]);
+    }, [getDataQueryResult]);
 
-    const { beforeUpload, fileList, uploadedFiles, onRemove } = useBase64Upload(
-        avatar,
-    );
+    const { uploadedFiles, ...uploadProps } = useBase64Upload(avatar, 3);
     useEffect(() => {
         form &&
             form.setFieldsValue({
@@ -221,12 +220,9 @@ export const UserEdit = (props: any) => {
                                 ]}
                             >
                                 <Upload.Dragger
-                                    beforeUpload={beforeUpload}
                                     listType="picture"
-                                    maxCount={5}
-                                    defaultFileList={fileList}
-                                    onRemove={onRemove}
                                     multiple
+                                    {...uploadProps}
                                 >
                                     <p className="ant-upload-text">
                                         {translate(
@@ -259,7 +255,10 @@ export const UserCreate = (props: any) => {
     const dateFormat = "DD/MM/YYYY";
 
     const [avatar] = React.useState<UploadFile[]>([]);
-    const { beforeUpload, fileList, uploadedFiles } = useBase64Upload(avatar);
+    const { beforeUpload, fileList, uploadedFiles } = useBase64Upload(
+        avatar,
+        3,
+    );
     useEffect(() => {
         form &&
             form.setFieldsValue({
