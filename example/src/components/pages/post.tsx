@@ -344,10 +344,10 @@ export const PostCreate = (props: any) => {
                         onChange={onChange}
                     >
                         <p className="ant-upload-text">
-                            Click or drag file to this area to upload
+                            {translate("common:upload.title")}
                         </p>
                         <p className="ant-upload-hint">
-                            Support for a single upload.
+                            {translate("common:upload.description")}
                         </p>
                     </Upload.Dragger>
                 </Form.Item>
@@ -575,10 +575,10 @@ export const PostEdit = (props: any) => {
                         onChange={onChange}
                     >
                         <p className="ant-upload-text">
-                            Click or drag file to this area to upload
+                            {translate("common:upload.title")}
                         </p>
                         <p className="ant-upload-hint">
-                            Support for a single upload.
+                            {translate("common:upload.description")}
                         </p>
                     </Upload.Dragger>
                 </Form.Item>

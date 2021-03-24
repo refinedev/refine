@@ -86,7 +86,8 @@
                 "firstName": "First Name",
                 "lastName": "Last Name",
                 "email": "Email",
-                "birthday": "Birthday"
+                "birthday": "Birthday",
+                "avatar": "Avatar"
             }
         }
     },
@@ -110,5 +111,9 @@
         "title": "Users List Details",
         "more": "More",
         "content": "You can view personal data of users registered in your system in the user table."
+    },
+    "upload": {
+        "title": "Click or drag file to this area to upload",
+        "description": "Support for a single or bulk upload."
     }
 }

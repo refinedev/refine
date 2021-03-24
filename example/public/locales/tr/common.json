@@ -63,8 +63,6 @@
                 "active": "Aktif",
                 "draft": "Taslak",
                 "autocomplete": "Otomatik tamamlama(Kullanıcı email arayın)",
-                "uploadText": "Tıklayın ya da yüklemek istediğiniz dosyayı bu alana sürükleyin",
-                "uploadHintText": "Aynı anda tek dosya yüklenebilir",
                 "nextButton": "Sonraki",
                 "prevButton": "Önceki"
             }
@@ -90,7 +88,8 @@
                 "firstName": "Ad",
                 "lastName": "Soyad",
                 "email": "E-Posta",
-                "birthday": "Doğum Günü"
+                "birthday": "Doğum Günü",
+                "avatar": "Profil Resmi"
             }
         }
     },
@@ -114,5 +113,9 @@
         "title": "Kullanıcı listesi detayları",
         "more": "Daha fazla",
         "content": "Sisteminize kayıtlı kullanıcıların kişisel verilerini kullanıcı tablosunda görüntüleyebilirsiniz."
+    },
+    "upload": {
+        "title": "Yüklemek için dosyayı bu alana tıklayın veya sürükleyin",
+        "description": "Tek veya toplu yükleme desteği."
     }
 }
