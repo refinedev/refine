@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
-import qs, { StringifyOptions } from "query-string";
 import { useHistory } from "react-router-dom";
 
 import { useResourceWithRoute, useList } from "@hooks";
 import { Filters, Sort, ResourceRouterParams } from "@interfaces";
+import { stringifyTableParams, parseTableParams } from "@definitions/table";
 
 export type useTableProps = {
     permanentFilter?: { [key: string]: number[] | string[] };
@@ -30,10 +30,21 @@ export const useTable = ({
     initialFilter,
 }: useTableProps): useTable => {
     const { search } = useLocation();
-    const queryParams = new URLSearchParams(search);
 
-    const defaultCurrent = Number(queryParams.get("current") || 1);
-    const defaultPageSize = Number(queryParams.get("pageSize") || 10);
+    // synchronize with url
+    const {
+        parsedCurrent,
+        parsedPageSize,
+        parsedSorter,
+        parsedFilters,
+    } = parseTableParams({
+        initialSorter,
+        initialFilter,
+        url: search,
+    });
+
+    const defaultCurrent = parsedCurrent || 1;
+    const defaultPageSize = parsedPageSize || 10;
 
     const { tableProps: tablePropsSunflower } = useFormTable({
         defaultCurrent: initialCurrent ?? defaultCurrent,
@@ -45,8 +56,8 @@ export const useTable = ({
 
     const resource = useResourceWithRoute(routeResourceName);
 
-    const [sorter, setSorter] = useState<Sort | undefined>(initialSorter);
-    const [filters, setFilters] = useState<Filters | undefined>(initialFilter);
+    const [sorter, setSorter] = useState<Sort | undefined>(parsedSorter);
+    const [filters, setFilters] = useState<Filters | undefined>(parsedFilters);
 
     const { current, pageSize } = tablePropsSunflower.pagination;
 
@@ -67,30 +78,11 @@ export const useTable = ({
         tablePropsSunflower.onChange(pagination, filters, sorter);
 
         // synchronize with url
-        const options: StringifyOptions = {
-            arrayFormat: "bracket",
-            skipNull: false,
-        };
-        const qsFilters = qs.stringify(filters, options);
-        let sortFields;
-        let sortOrders;
-
-        if (Array.isArray(sorter)) {
-            sortFields = sorter.map((item) => item.field);
-            sortOrders = sorter.map((item) => item.order);
-        } else {
-            sortFields = sorter.field;
-            sortOrders = sorter.order;
-        }
-
-        const qsSortFields = qs.stringify({ sort: sortFields }, options);
-        const qsSortOrders = qs.stringify({ order: sortOrders }, options);
+        const stringifyParams = stringifyTableParams({ sorter, filters });
 
         return history.push(
-            `/resources/${resource.name}?current=${pagination.current}&pageSize=${pagination.pageSize}&${qsFilters}&${qsSortFields}&${qsSortOrders}`,
+            `/resources/${resource.name}?current=${pagination.current}&pageSize=${pagination.pageSize}&${stringifyParams}`,
         );
-
-        // refetch();
     };
 
     return {
