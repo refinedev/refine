@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import { useResourceWithRoute, useList } from "@hooks";
 import { Filters, Sort, ResourceRouterParams } from "@interfaces";
 import { stringifyTableParams, parseTableParams } from "@definitions/table";
+import { useSyncWithLocation } from "@hooks/admin";
 
 export type useTableProps = {
     permanentFilter?: { [key: string]: number[] | string[] };
@@ -29,22 +30,31 @@ export const useTable = ({
     initialSorter,
     initialFilter,
 }: useTableProps): useTable => {
+    const { syncWithLocation } = useSyncWithLocation();
     const { search } = useLocation();
 
-    // synchronize with url
-    const {
-        parsedCurrent,
-        parsedPageSize,
-        parsedSorter,
-        parsedFilters,
-    } = parseTableParams({
-        initialSorter,
-        initialFilter,
-        url: search,
-    });
+    let defaultCurrent = 1;
+    let defaultPageSize = 10;
+    let defaultSorter = initialSorter;
+    let defaultFilter = initialFilter;
 
-    const defaultCurrent = parsedCurrent || 1;
-    const defaultPageSize = parsedPageSize || 10;
+    if (syncWithLocation) {
+        const {
+            parsedCurrent,
+            parsedPageSize,
+            parsedSorter,
+            parsedFilters,
+        } = parseTableParams({
+            initialSorter,
+            initialFilter,
+            url: search,
+        });
+
+        defaultCurrent = parsedCurrent || defaultCurrent;
+        defaultPageSize = parsedPageSize || defaultPageSize;
+        defaultSorter = parsedSorter || defaultSorter;
+        defaultFilter = parsedFilters || defaultFilter;
+    }
 
     const { tableProps: tablePropsSunflower } = useFormTable({
         defaultCurrent: initialCurrent ?? defaultCurrent,
@@ -56,12 +66,12 @@ export const useTable = ({
 
     const resource = useResourceWithRoute(routeResourceName);
 
-    const [sorter, setSorter] = useState<Sort | undefined>(parsedSorter);
-    const [filters, setFilters] = useState<Filters | undefined>(parsedFilters);
+    const [sorter, setSorter] = useState<Sort | undefined>(defaultSorter);
+    const [filters, setFilters] = useState<Filters | undefined>(defaultFilter);
 
     const { current, pageSize } = tablePropsSunflower.pagination;
 
-    const { data, isFetching } = useList(resource.name, {
+    const { data, isFetching, refetch } = useList(resource.name, {
         pagination: { current, pageSize },
         filters: { ...permanentFilter, ...filters },
         sort: sorter,
@@ -78,11 +88,15 @@ export const useTable = ({
         tablePropsSunflower.onChange(pagination, filters, sorter);
 
         // synchronize with url
-        const stringifyParams = stringifyTableParams({ sorter, filters });
+        if (syncWithLocation) {
+            const stringifyParams = stringifyTableParams({ sorter, filters });
 
-        return history.push(
-            `/resources/${resource.name}?current=${pagination.current}&pageSize=${pagination.pageSize}&${stringifyParams}`,
-        );
+            return history.push(
+                `/resources/${resource.name}?current=${pagination.current}&pageSize=${pagination.pageSize}&${stringifyParams}`,
+            );
+        }
+
+        refetch();
     };
 
     return {
