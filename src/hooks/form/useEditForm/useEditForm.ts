@@ -166,11 +166,11 @@ export const useEditForm = ({
     };
 
     const saveButtonProps: SaveButtonProps = {
-        disabled: isLoading,
+        disabled: isLoading || isFetching,
         onClick: () => {
             form.submit();
         },
-        loading: isLoadingMutation,
+        loading: isLoadingMutation || isFetching,
     };
 
     return {
@@ -182,6 +182,7 @@ export const useEditForm = ({
             onValuesChange,
         },
         isLoading, // TODO: Delete and use getDataQueryResult.
+        isFetching,
         editId,
         setEditId,
         saveButtonProps,

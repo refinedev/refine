@@ -25,6 +25,7 @@ export const useModalForm = ({
         setEditId,
         editId,
         isLoading,
+        isFetching,
         isLoadingMutation,
         isSuccessMutation,
         resetMutation,
@@ -59,7 +60,7 @@ export const useModalForm = ({
     }, [isSuccessMutation, isLoadingMutation]);
 
     const saveButtonPropsSF = {
-        disabled: isLoading,
+        disabled: isLoading || isFetching,
         onClick: () => {
             modalForm.submit();
 
@@ -67,7 +68,7 @@ export const useModalForm = ({
                 close();
             }
         },
-        loading: isLoadingMutation,
+        loading: isLoadingMutation || isFetching,
     };
 
     const deleteButtonProps = {
@@ -95,6 +96,7 @@ export const useModalForm = ({
             },
         },
         isLoading: isLoading,
+        isFetching,
         saveButtonProps: saveButtonPropsSF,
         editId,
         deleteButtonProps,

@@ -35,6 +35,7 @@ export const LandingList = (props: any) => {
         modalProps,
         formProps,
         isLoading: isLoadingFormData,
+        isFetching,
         saveButtonProps,
         show,
         close,
@@ -109,7 +110,7 @@ export const LandingList = (props: any) => {
                     onModalClose={close}
                     saveButtonProps={{
                         ...saveButtonProps,
-                        disabled: isLoading || isLoadingFormData,
+                        disabled: isLoading || isLoadingFormData || isFetching,
                     }}
                 >
                     <Form
@@ -194,6 +195,7 @@ export const LandingEdit = (props: any) => {
     const {
         formProps,
         isLoading: isLoadingFormData,
+        isFetching,
         saveButtonProps,
     } = useForm({
         submitOnEnter: false,
@@ -204,7 +206,7 @@ export const LandingEdit = (props: any) => {
             {...props}
             saveButtonProps={{
                 ...saveButtonProps,
-                disabled: isLoading || isLoadingFormData,
+                disabled: isLoading || isLoadingFormData || isFetching,
             }}
         >
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
