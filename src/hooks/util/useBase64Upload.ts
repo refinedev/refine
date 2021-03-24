@@ -11,9 +11,16 @@ export const useBase64Upload = (formData: UploadFile[], maxCount = 1) => {
 
     const beforeUpload = (_file: RcFile, files: RcFile[]): boolean => {
         const totalFiles = fileList.length;
-        if (totalFiles < maxCount) {
-            setFileList([...fileList, ...files]);
+        const filesCount = files.length;
+
+        if (totalFiles + filesCount > maxCount) {
+            const excessFileCount = totalFiles + filesCount - maxCount;
+            // convert negative
+            const deleteItemCount = excessFileCount - excessFileCount * 2;
+            files.splice(deleteItemCount);
         }
+
+        setFileList([...fileList, ...files]);
 
         return false;
     };
