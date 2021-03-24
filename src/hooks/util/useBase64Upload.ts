@@ -4,13 +4,14 @@ import { RcFile, UploadFile } from "antd/lib/upload/interface";
 import { file2Base64, UploadFileWithBase64 } from "@definitions/upload";
 
 interface Base64UploadParams {
-    formData: UploadFile[];
+    formData?: UploadFile[];
     maxCount: number;
 }
 
-export const useBase64Upload = (params: Base64UploadParams) => {
-    const { formData, maxCount } = params;
-
+export const useBase64Upload = ({
+    formData = [],
+    maxCount,
+}: Base64UploadParams) => {
     const [uploadedFiles, setUploadedFiles] = React.useState<
         UploadFileWithBase64[]
     >([]);
@@ -37,7 +38,9 @@ export const useBase64Upload = (params: Base64UploadParams) => {
     };
 
     React.useEffect(() => {
-        setFileList(formData);
+        if (formData.length > 0) {
+            setFileList(formData);
+        }
     }, [formData]);
 
     React.useEffect(() => {
