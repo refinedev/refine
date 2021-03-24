@@ -19,13 +19,7 @@ export const useBase64Upload = (formData: UploadFile[], maxCount = 1) => {
     };
 
     const onRemove = (file: UploadFile) => {
-        const newFileList = [...fileList];
-        console.log("newFileList", newFileList);
-        const index = newFileList.indexOf(file);
-        console.log("index", index);
-        newFileList.splice(index, 1);
-
-        setFileList(newFileList);
+        setFileList(fileList.filter((item) => item.uid !== file.uid));
     };
 
     React.useEffect(() => {
