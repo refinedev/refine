@@ -11,6 +11,7 @@ import {
     Context as DeleteContext,
     IGetOneResponse,
     GetOneQuery,
+    BaseRecord,
 } from "@interfaces";
 
 import {
@@ -18,6 +19,7 @@ import {
     useListResourceQueries,
     useCancelNotification,
     useGetOneQueries,
+    useCacheQueries,
 } from "@hooks";
 
 type DeleteParams = {
@@ -47,8 +49,7 @@ export const useDelete = (
         throw new Error("'resource' is required for useDelete hook.");
     }
 
-    const listResourceQueries = useListResourceQueries(resource);
-    const getOneQueries = useGetOneQueries(resource);
+    const getAllQueries = useCacheQueries(resource);
 
     const mutation = useMutation<
         DeleteOneResponse,
@@ -83,31 +84,34 @@ export const useDelete = (
         },
         {
             onMutate: async (deleteParams) => {
-                const previousListQueries: ListQuery[] = [];
-                const previousGetOneQueries: GetOneQuery[] = [];
+                const previousQueries: any = [];
 
-                if (!(mutationMode === "pessimistic")) {
-                    for (const listQuery of listResourceQueries) {
-                        const { queryKey } = listQuery;
+                const allQueries = getAllQueries(deleteParams.id.toString());
 
-                        await queryClient.cancelQueries(queryKey);
+                for (const queryItem of allQueries) {
+                    const { queryKey } = queryItem;
+                    await queryClient.cancelQueries(queryKey);
 
-                        const previousListQuery = queryClient.getQueryData<GetListResponse>(
+                    const previousQuery = queryClient.getQueryData<
+                        GetListResponse | IGetOneResponse
+                    >(queryKey);
+
+                    if (previousQuery) {
+                        previousQueries.push({
+                            query: previousQuery,
                             queryKey,
-                        );
+                        });
 
-                        if (previousListQuery) {
-                            previousListQueries.push({
-                                query: previousListQuery,
-                                queryKey,
-                            });
-
-                            const { data, total } = previousListQuery;
+                        if (queryKey.includes(`resource/list/${resource}`)) {
+                            const {
+                                data,
+                                total,
+                            } = previousQuery as GetListResponse;
 
                             queryClient.setQueryData(queryKey, {
-                                ...previousListQuery,
+                                ...previousQuery,
                                 data: (data ?? []).filter(
-                                    (record) =>
+                                    (record: BaseRecord) =>
                                         !(
                                             record.id.toString() ===
                                             deleteParams.id.toString()
@@ -115,71 +119,26 @@ export const useDelete = (
                                 ),
                                 total: total - 1,
                             });
-                        }
-                    }
-
-                    const getOneQueriesWithId = getOneQueries.filter(
-                        (query) => {
-                            return (
-                                (query.queryKey[1] as any).id ===
-                                deleteParams.id.toString()
-                            );
-                        },
-                    );
-
-                    for (const getOneQuery of getOneQueriesWithId) {
-                        const { queryKey } = getOneQuery;
-                        await queryClient.cancelQueries(queryKey);
-
-                        const previousGetOneQuery = queryClient.getQueryData<IGetOneResponse>(
-                            queryKey,
-                        );
-
-                        if (previousGetOneQuery) {
-                            previousGetOneQueries.push({
-                                query: previousGetOneQuery,
-                                queryKey,
-                            });
-
+                        } else {
                             queryClient.removeQueries(queryKey);
                         }
                     }
                 }
+
                 return {
-                    previousListQueries: previousListQueries,
-                    previousGetOneQueries: previousGetOneQueries,
+                    previousQueries: previousQueries,
                 };
             },
             onError: (err, variables, context) => {
-                if (!(mutationMode === "pessimistic")) {
-                    if (context) {
-                        for (const query of context.previousListQueries) {
-                            queryClient.setQueryData(
-                                query.queryKey,
-                                query.query,
-                            );
-                        }
-                        if (context.previousGetOneQueries) {
-                            for (const query of context.previousGetOneQueries) {
-                                queryClient.setQueryData(
-                                    query.queryKey,
-                                    query.query,
-                                );
-                            }
-                        }
+                if (context) {
+                    for (const query of context.previousQueries) {
+                        queryClient.setQueryData(query.queryKey, query.query);
                     }
                 }
             },
             onSettled: (_data, _error, variables) => {
-                for (const query of listResourceQueries) {
-                    queryClient.invalidateQueries(query.queryKey);
-                }
-
-                const getOneQueriesWithId = getOneQueries.filter((query) => {
-                    return (query.queryKey[1] as any).id === variables.id;
-                });
-
-                for (const query of getOneQueriesWithId) {
+                const allQueries = getAllQueries(variables.id.toString());
+                for (const query of allQueries) {
                     queryClient.invalidateQueries(query.queryKey);
                 }
             },

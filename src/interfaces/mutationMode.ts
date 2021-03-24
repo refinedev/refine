@@ -15,6 +15,5 @@ export type GetOneQuery = {
     queryKey: QueryKey;
 };
 export type Context = {
-    previousListQueries: ListQuery[];
-    previousGetOneQueries?: GetOneQuery[];
+    previousQueries: (ListQuery | GetOneQuery)[];
 };
