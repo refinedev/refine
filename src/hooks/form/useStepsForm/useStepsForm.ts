@@ -3,7 +3,9 @@ import {
     UseStepsFormConfig,
 } from "sunflower-antd";
 
-import { useForm, useEditFormProps, useCreateFormProps } from "@hooks";
+import { useForm } from "@hooks";
+
+import { useEditFormProps, useCreateFormProps } from "..";
 
 export type useStepsFormProps = (
     props: (useCreateFormProps | useEditFormProps) & UseStepsFormConfig,

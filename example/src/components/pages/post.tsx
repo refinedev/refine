@@ -206,7 +206,14 @@ export const PostCreate = (props: any) => {
         submit,
         formLoading,
         formProps,
-    } = useStepsForm({ warnWhenUnsavedChanges: true });
+    } = useStepsForm({
+        warnWhenUnsavedChanges: true,
+        defaultFormValues: () => {
+            return {
+                status: "active",
+            };
+        },
+    });
 
     const formList = [
         <>
@@ -262,7 +269,6 @@ export const PostCreate = (props: any) => {
                 ]}
             >
                 <Select
-                    defaultValue="active"
                     options={[
                         {
                             label: "Active",
