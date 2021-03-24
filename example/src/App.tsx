@@ -1,5 +1,12 @@
 import React from "react";
-import { Admin, Resource, AuthProvider, JsonServer, Icons } from "readmin";
+import {
+    Admin,
+    Resource,
+    AuthProvider,
+    JsonServer,
+    Icons,
+    Authenticated,
+} from "readmin";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -73,7 +80,15 @@ function App() {
     };
 
     const CustomPage = () => {
-        return <div>custom page</div>;
+        return <div>anon and authenticated custom page</div>;
+    };
+
+    const AuthenticatedCustomPage = () => {
+        return (
+            <Authenticated>
+                <div>authenticated custom page</div>
+            </Authenticated>
+        );
     };
 
     return (
@@ -90,6 +105,11 @@ function App() {
                     exact: true,
                     component: CustomPage,
                     path: "/custom",
+                },
+                {
+                    exact: true,
+                    component: AuthenticatedCustomPage,
+                    path: "/customauth",
                 },
             ]}
         >
