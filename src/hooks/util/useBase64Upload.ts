@@ -9,18 +9,20 @@ export const useBase64Upload = (formData: UploadFile[], maxCount = 1) => {
     >([]);
     const [fileList, setFileList] = React.useState<UploadFile[]>([]);
 
-    const beforeUpload = (file: RcFile): boolean => {
+    const beforeUpload = (_file: RcFile, files: RcFile[]): boolean => {
         const totalFiles = fileList.length;
         if (totalFiles < maxCount) {
-            setFileList([...fileList, file]);
+            setFileList([...fileList, ...files]);
         }
 
         return false;
     };
 
     const onRemove = (file: UploadFile) => {
-        const index = fileList.indexOf(file);
-        const newFileList = fileList.slice();
+        const newFileList = [...fileList];
+        console.log("newFileList", newFileList);
+        const index = newFileList.indexOf(file);
+        console.log("index", index);
         newFileList.splice(index, 1);
 
         setFileList(newFileList);
