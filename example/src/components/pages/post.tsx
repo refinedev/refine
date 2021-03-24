@@ -34,6 +34,7 @@ import {
     useStepsForm,
     CreateButton,
     ExportButton,
+    getDefaultSortOrder,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -99,7 +100,7 @@ export const PostList = (props: any) => {
                     sorter={{
                         multiple: 3,
                     }}
-                    defaultSortOrder="descend"
+                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
                 />
                 <Column
                     dataIndex="title"
@@ -109,6 +110,7 @@ export const PostList = (props: any) => {
                     sorter={{
                         multiple: 1,
                     }}
+                    defaultSortOrder={getDefaultSortOrder("title", sorter)}
                 />
                 <Column
                     dataIndex="slug"
@@ -118,6 +120,7 @@ export const PostList = (props: any) => {
                     sorter={{
                         multiple: 2,
                     }}
+                    defaultSortOrder={getDefaultSortOrder("slug", sorter)}
                 />
                 <Column
                     dataIndex="categoryId"

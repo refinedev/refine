@@ -18,8 +18,8 @@ export type useTableProps = {
 
 type useTable = {
     tableProps: TableProps<any>;
-    sorter?: Sort;
-    filters?: Filters;
+    sorter: Sort;
+    filters: Filters;
 };
 
 export const useTable = ({
@@ -96,7 +96,7 @@ export const useTable = ({
                 total: data?.total,
             },
         },
-        sorter,
-        filters,
+        sorter: sorter as Sort,
+        filters: filters as Filters,
     };
 };

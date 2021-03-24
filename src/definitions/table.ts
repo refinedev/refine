@@ -49,8 +49,8 @@ export const parseTableParams = (params: {
     return {
         parsedCurrent: current && Number(current),
         parsedPageSize: pageSize && Number(pageSize),
-        parsedSorter: merge(parsedSorter, initialSorter),
-        parsedFilters: merge(filters, initialFilter) as Filters,
+        parsedSorter: merge(initialSorter, parsedSorter),
+        parsedFilters: merge(initialFilter, filters) as Filters,
     };
 };
 
@@ -77,4 +77,25 @@ export const stringifyTableParams = (params: {
     const qsSortOrders = qs.stringify({ order: sortOrders }, options);
 
     return `${qsFilters}&${qsSortFields}&${qsSortOrders}`;
+};
+
+export const getDefaultSortOrder = (
+    columnName: string,
+    sorter: Sort,
+): SortOrder | undefined => {
+    if (Array.isArray(sorter)) {
+        const sortItem = sorter.find((item) => item.field === columnName);
+
+        if (sortItem) {
+            return sortItem.order;
+        }
+
+        return;
+    }
+
+    if (sorter.field === columnName) {
+        return sorter.order || undefined;
+    }
+
+    return;
 };
