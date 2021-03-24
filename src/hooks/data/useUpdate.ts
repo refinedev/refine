@@ -37,7 +37,8 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
     const queryClient = useQueryClient();
     const { update } = useContext<IDataContext>(DataContext);
     const { mutationMode: mutationModeContext } = useMutationMode();
-    const cancelNotification = useCancelNotification();
+
+    const { addNotification } = useCancelNotification();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
@@ -64,6 +65,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                     }, 5000);
 
                     const cancelMutation = () => {
+                        console.log("cancel mutation fired");
                         clearTimeout(updateTimeout);
                         reject("mutation cancelled");
                     };
@@ -71,7 +73,8 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                     if (onCancel) {
                         onCancel(cancelMutation);
                     } else {
-                        cancelNotification(cancelMutation);
+                        addNotification &&
+                            addNotification(cancelMutation, id, resource);
                     }
                 },
             );

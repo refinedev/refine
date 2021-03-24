@@ -16,6 +16,7 @@ import { RouteProvider, ReadyPage as DefaultReadyPage } from "@components";
 import { OptionalComponent } from "@definitions";
 import { IDataContext, IAuthContext, I18nProvider } from "@interfaces";
 import { MutationMode } from "../../../interfaces";
+import { NotificationContextProvider } from "@contexts/notification";
 
 export interface AdminProps {
     authProvider: IAuthContext;
@@ -79,21 +80,25 @@ export const Admin: React.FC<AdminProps> = ({
                 <DataContextProvider {...dataProvider}>
                     <ResourceContextProvider resources={resources}>
                         <TranslationContextProvider i18nProvider={i18nProvider}>
-                            <AdminContextProvider
-                                mutationMode={mutationMode}
-                                warnWhenUnsavedChanges={warnWhenUnsavedChanges}
-                            >
-                                <Router>
-                                    <RouteProvider
-                                        resources={children}
-                                        catchAll={catchAll}
-                                        title={title}
-                                        dashboard={dashboard}
-                                        loginPage={loginPage}
-                                        ready={ready}
-                                    />
-                                </Router>
-                            </AdminContextProvider>
+                            <NotificationContextProvider>
+                                <AdminContextProvider
+                                    mutationMode={mutationMode}
+                                    warnWhenUnsavedChanges={
+                                        warnWhenUnsavedChanges
+                                    }
+                                >
+                                    <Router>
+                                        <RouteProvider
+                                            resources={children}
+                                            catchAll={catchAll}
+                                            title={title}
+                                            dashboard={dashboard}
+                                            loginPage={loginPage}
+                                            ready={ready}
+                                        />
+                                    </Router>
+                                </AdminContextProvider>
+                            </NotificationContextProvider>
                         </TranslationContextProvider>
                     </ResourceContextProvider>
                 </DataContextProvider>
