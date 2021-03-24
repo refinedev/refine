@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route, RouteProps } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "antd/dist/antd.css";
@@ -28,6 +28,7 @@ export interface AdminProps {
     ready?: React.FC;
     mutationMode?: MutationMode;
     warnWhenUnsavedChanges?: boolean;
+    routes?: RouteProps[];
 }
 
 export const Admin: React.FC<AdminProps> = ({
@@ -42,6 +43,7 @@ export const Admin: React.FC<AdminProps> = ({
     i18nProvider = defaultProvider.i18nProvider,
     mutationMode = "pessimistic",
     warnWhenUnsavedChanges = false,
+    routes = [],
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -62,6 +64,10 @@ export const Admin: React.FC<AdminProps> = ({
             canEdit: !!child.props.edit,
             canShow: !!child.props.show,
             canDelete: child.props.canDelete,
+            create: child.props.create,
+            show: child.props.show,
+            list: child.props.list,
+            edit: child.props.edit,
         });
     });
 
@@ -85,12 +91,13 @@ export const Admin: React.FC<AdminProps> = ({
                             >
                                 <Router>
                                     <RouteProvider
-                                        resources={children}
+                                        resources={resources}
                                         catchAll={catchAll}
                                         title={title}
                                         dashboard={dashboard}
                                         loginPage={loginPage}
                                         ready={ready}
+                                        customRoutes={routes}
                                     />
                                 </Router>
                             </AdminContextProvider>

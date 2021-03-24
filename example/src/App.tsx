@@ -72,6 +72,10 @@ function App() {
         getLocale: () => i18n.language,
     };
 
+    const CustomPage = () => {
+        return <div>custom page</div>;
+    };
+
     return (
         <Admin
             authProvider={authProvider}
@@ -81,6 +85,13 @@ function App() {
             ready={ReadyPage}
             i18nProvider={i18nProvider}
             mutationMode="pessimistic"
+            routes={[
+                {
+                    exact: true,
+                    component: CustomPage,
+                    path: "/custom",
+                },
+            ]}
         >
             <Resource
                 name="posts"

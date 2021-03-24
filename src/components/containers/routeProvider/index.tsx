@@ -6,14 +6,16 @@ import { LoginPage as DefaultLoginPage } from "@components";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "@interfaces";
 import { OptionalComponent } from "@definitions";
+import { IResourceItem } from "@contexts/resource";
 
 export interface RouteProviderProps {
     title?: ReactNode;
-    resources: React.ReactNode;
+    resources: IResourceItem[];
     catchAll?: React.ReactNode;
     dashboard?: React.ElementType;
     loginPage?: React.FC | false;
     ready?: React.FC;
+    customRoutes: RouteProps[];
 }
 
 type IRoutesProps = RouteProps & { routes?: RouteProps[] };
@@ -24,28 +26,17 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     catchAll,
     dashboard,
     loginPage,
+    customRoutes,
 }) => {
     const { isAuthenticated, checkAuth } = useContext<IAuthContext>(
         AuthContext,
     );
 
-    const resourcesArray: string[] = [];
-
     checkAuth({});
 
     const routes: IRoutesProps[] = [];
-    const RouteHandler = (val: React.ReactElement): void => {
-        const {
-            list,
-            name,
-            create,
-            edit,
-            show,
-            canDelete,
-            options,
-        } = val.props;
-
-        const routeName = options?.route ?? name;
+    const RouteHandler = (val: IResourceItem): void => {
+        const { list, create, edit, show, canDelete, route } = val;
 
         const ListComponent = list;
         const CreateComponent = create;
@@ -59,7 +50,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (CreateComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/:resource(${routeName})/:action(create)`,
+                path: `/resources/:resource(${route})/:action(create)`,
                 component: () => {
                     return <CreateComponent canEdit={canEdit} />;
                 },
@@ -69,7 +60,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (EditComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/:resource(${routeName})/:action(edit)/:id`,
+                path: `/resources/:resource(${route})/:action(edit)/:id`,
                 component: () => <EditComponent />,
             });
         }
@@ -77,7 +68,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (ShowComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/:resource(${routeName})/:action(show)/:id`,
+                path: `/resources/:resource(${route})/:action(show)/:id`,
                 component: () => (
                     <ShowComponent
                         canCreate={canCreate}
@@ -91,7 +82,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (ListComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/:resource(${routeName})`,
+                path: `/resources/:resource(${route})`,
                 component: () => (
                     <ListComponent
                         canCreate={canCreate}
@@ -106,9 +97,8 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         return;
     };
 
-    React.Children.map(resources, (child: any) => {
-        resourcesArray.push(child.props.name);
-        RouteHandler(child);
+    resources.map((item) => {
+        RouteHandler(item);
     });
 
     const RouteWithSubRoutes = (route: any) => {
@@ -131,11 +121,11 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
                         dashboard ? (
                             React.createElement(dashboard, null)
                         ) : (
-                            <Redirect to={`/resources/${resourcesArray[0]}`} />
+                            <Redirect to={`/resources/${resources[0].route}`} />
                         )
                     }
                 />
-                {routes.map((route, i) => (
+                {[...routes, ...customRoutes].map((route, i) => (
                     <RouteWithSubRoutes key={i} {...route} />
                 ))}
                 <Route>{catchAll ?? <ErrorComponent />}</Route>
@@ -154,6 +144,9 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
                     </OptionalComponent>
                 )}
             />
+            {customRoutes.map((route, i) => (
+                <RouteWithSubRoutes key={i} {...route} />
+            ))}
             <Route>{catchAll ?? <ErrorComponent />}</Route>
         </Switch>
     );
