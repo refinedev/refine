@@ -136,7 +136,10 @@ export const UserEdit = (props: any) => {
         }
     }, [getDataQueryResult]);
 
-    const { uploadedFiles, ...uploadProps } = useBase64Upload(avatar, 3);
+    const { uploadedFiles, ...uploadProps } = useBase64Upload({
+        formData: avatar,
+        maxCount: 3,
+    });
     useEffect(() => {
         form &&
             form.setFieldsValue({
@@ -251,10 +254,10 @@ export const UserCreate = (props: any) => {
     const dateFormat = "DD/MM/YYYY";
 
     const [avatar] = React.useState<UploadFile[]>([]);
-    const { beforeUpload, fileList, uploadedFiles } = useBase64Upload(
-        avatar,
-        3,
-    );
+    const { beforeUpload, fileList, uploadedFiles } = useBase64Upload({
+        formData: avatar,
+        maxCount: 3,
+    });
     useEffect(() => {
         form &&
             form.setFieldsValue({
