@@ -2,10 +2,7 @@ import {
     useModalForm as useModalFormSF,
     UseModalFormConfig as UseModalFormConfigSF,
 } from "sunflower-antd";
-import {
-    useForm,
-    useMutationMode,
-} from "@hooks";
+import { useForm, useMutationMode } from "@hooks";
 import { useEffect } from "react";
 import { MutationMode } from "../../../interfaces";
 import { useEditFormProps } from "../useEditForm";
