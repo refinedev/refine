@@ -1,14 +1,15 @@
-import { GetListResponse, BaseRecord } from "@interfaces";
+import { GetListResponse, GetOneResponse } from "@interfaces";
 import { QueryKey } from "react-query";
 
 export type MutationMode = "pessimistic" | "optimistic" | "undoable";
 
-export type ListResponse = GetListResponse<BaseRecord>;
+export type QueryResponse = GetListResponse | GetOneResponse;
 
-export type ListQuery = {
-    query: ListResponse;
-    queryKey: QueryKey;
-};
 export type Context = {
-    previousListQueries: ListQuery[];
+    previousQueries: ContextQuery[];
+};
+
+export type ContextQuery = {
+    query: QueryResponse;
+    queryKey: QueryKey;
 };

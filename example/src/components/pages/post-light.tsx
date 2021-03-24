@@ -33,7 +33,11 @@ export const PostLightList = (props: any) => {
         saveButtonProps,
         show,
         deleteButtonProps,
-    } = useModalForm({ action: "edit" });
+        editId,
+    } = useModalForm({
+        action: "edit",
+        mutationMode: "optimistic",
+    });
 
     const {
         modalProps: createModalProps,
@@ -102,6 +106,7 @@ export const PostLightList = (props: any) => {
                                 <DeleteButton
                                     size="small"
                                     recordItemId={record.id}
+                                    mutationMode="optimistic"
                                 />
                                 <ShowButton
                                     size="small"
@@ -115,6 +120,7 @@ export const PostLightList = (props: any) => {
             <Modal {...modalProps} footer={null}>
                 <Edit
                     {...props}
+                    recordItemId={editId}
                     deleteButtonProps={deleteButtonProps}
                     saveButtonProps={saveButtonProps}
                 >

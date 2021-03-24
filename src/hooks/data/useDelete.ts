@@ -7,14 +7,16 @@ import {
     IDataContext,
     MutationMode,
     GetListResponse,
-    ListQuery,
+    QueryResponse,
     Context as DeleteContext,
+    BaseRecord,
+    ContextQuery,
 } from "@interfaces";
 
 import {
     useMutationMode,
-    useListResourceQueries,
     useCancelNotification,
+    useCacheQueries,
 } from "@hooks";
 
 type DeleteParams = {
@@ -44,7 +46,7 @@ export const useDelete = (
         throw new Error("'resource' is required for useDelete hook.");
     }
 
-    const listResourceQueries = useListResourceQueries(resource);
+    const getAllQueries = useCacheQueries(resource);
 
     const mutation = useMutation<
         DeleteOneResponse,
@@ -79,29 +81,34 @@ export const useDelete = (
         },
         {
             onMutate: async (deleteParams) => {
-                const previousListQueries: ListQuery[] = [];
-                if (!(mutationMode === "pessimistic")) {
-                    for (const listQuery of listResourceQueries) {
-                        const { queryKey } = listQuery;
+                const previousQueries: ContextQuery[] = [];
 
-                        await queryClient.cancelQueries(queryKey);
+                const allQueries = getAllQueries(deleteParams.id.toString());
 
-                        const previousListQuery = queryClient.getQueryData<GetListResponse>(
+                for (const queryItem of allQueries) {
+                    const { queryKey } = queryItem;
+                    await queryClient.cancelQueries(queryKey);
+
+                    const previousQuery = queryClient.getQueryData<QueryResponse>(
+                        queryKey,
+                    );
+
+                    if (previousQuery) {
+                        previousQueries.push({
+                            query: previousQuery,
                             queryKey,
-                        );
+                        });
 
-                        if (previousListQuery) {
-                            previousListQueries.push({
-                                query: previousListQuery,
-                                queryKey,
-                            });
-
-                            const { data, total } = previousListQuery;
+                        if (queryKey.includes(`resource/list/${resource}`)) {
+                            const {
+                                data,
+                                total,
+                            } = previousQuery as GetListResponse;
 
                             queryClient.setQueryData(queryKey, {
-                                ...previousListQuery,
+                                ...previousQuery,
                                 data: (data ?? []).filter(
-                                    (record) =>
+                                    (record: BaseRecord) =>
                                         !(
                                             record.id.toString() ===
                                             deleteParams.id.toString()
@@ -109,25 +116,26 @@ export const useDelete = (
                                 ),
                                 total: total - 1,
                             });
+                        } else {
+                            queryClient.removeQueries(queryKey);
                         }
                     }
                 }
-                return { previousListQueries: previousListQueries };
+
+                return {
+                    previousQueries: previousQueries,
+                };
             },
-            onError: (err, variables, context) => {
-                if (!(mutationMode === "pessimistic")) {
-                    if (context) {
-                        for (const query of context.previousListQueries) {
-                            queryClient.setQueryData(
-                                query.queryKey,
-                                query.query,
-                            );
-                        }
+            onError: (_err, _variables, context) => {
+                if (context) {
+                    for (const query of context.previousQueries) {
+                        queryClient.setQueryData(query.queryKey, query.query);
                     }
                 }
             },
-            onSettled: () => {
-                for (const query of listResourceQueries) {
+            onSettled: (_data, _error, variables) => {
+                const allQueries = getAllQueries(variables.id.toString());
+                for (const query of allQueries) {
                     queryClient.invalidateQueries(query.queryKey);
                 }
             },

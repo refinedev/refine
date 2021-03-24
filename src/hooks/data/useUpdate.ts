@@ -6,14 +6,15 @@ import {
     IDataContext,
     UpdateResponse,
     GetListResponse,
+    QueryResponse,
     MutationMode,
-    ListQuery,
     Context as UpdateContext,
+    ContextQuery,
 } from "@interfaces";
 import {
     useMutationMode,
-    useListResourceQueries,
     useCancelNotification,
+    useCacheQueries,
 } from "@hooks";
 
 type UpdateParams<TParams> = {
@@ -45,7 +46,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
         throw new Error("'resource' is required for useUpdate hook.");
     }
 
-    const listResourceQueries = useListResourceQueries(resource);
+    const getAllQueries = useCacheQueries(resource);
 
     const mutation = useMutation<
         UpdateResponse,
@@ -78,58 +79,65 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
             return updatePromise;
         },
         {
-            onMutate: async (formValue) => {
-                const previousListQueries: ListQuery[] = [];
+            onMutate: async (variables) => {
+                const previousQueries: ContextQuery[] = [];
 
-                if (!(mutationMode === "pessimistic")) {
-                    for (const listQuery of listResourceQueries) {
-                        const { queryKey } = listQuery;
+                const allQueries = getAllQueries(variables.id);
 
-                        await queryClient.cancelQueries(queryKey);
+                for (const queryItem of allQueries) {
+                    const { queryKey } = queryItem;
+                    await queryClient.cancelQueries(queryKey);
 
-                        const previousListQuery = queryClient.getQueryData<GetListResponse>(
+                    const previousQuery = queryClient.getQueryData<QueryResponse>(
+                        queryKey,
+                    );
+
+                    if (previousQuery) {
+                        previousQueries.push({
+                            query: previousQuery,
                             queryKey,
-                        );
+                        });
 
-                        if (previousListQuery) {
-                            previousListQueries.push({
-                                query: previousListQuery,
-                                queryKey,
-                            });
-
-                            const { data } = previousListQuery;
+                        if (queryKey.includes(`resource/list/${resource}`)) {
+                            const { data } = previousQuery;
 
                             queryClient.setQueryData(queryKey, {
-                                ...previousListQuery,
-                                data: data.map((record) => {
-                                    if (record.id.toString() === formValue.id) {
+                                ...previousQuery,
+                                data: data.map((record: BaseRecord) => {
+                                    if (record.id.toString() === variables.id) {
                                         return {
-                                            ...formValue.values,
-                                            id: formValue.id,
+                                            ...variables.values,
+                                            id: variables.id,
                                         };
                                     }
                                     return record;
                                 }),
                             });
+                        } else {
+                            queryClient.setQueryData(queryKey, {
+                                data: {
+                                    ...previousQuery.data,
+                                    ...variables.values,
+                                },
+                            });
                         }
                     }
                 }
-                return { previousListQueries: previousListQueries };
+
+                return {
+                    previousQueries: previousQueries,
+                };
             },
-            onError: (err, variables, context) => {
-                if (!(mutationMode === "pessimistic")) {
-                    if (context) {
-                        for (const query of context.previousListQueries) {
-                            queryClient.setQueryData(
-                                query.queryKey,
-                                query.query,
-                            );
-                        }
+            onError: (_err, _variables, context) => {
+                if (context) {
+                    for (const query of context.previousQueries) {
+                        queryClient.setQueryData(query.queryKey, query.query);
                     }
                 }
             },
-            onSettled: () => {
-                for (const query of listResourceQueries) {
+            onSettled: (_data, _error, variables) => {
+                const allQueries = getAllQueries(variables.id);
+                for (const query of allQueries) {
                     queryClient.invalidateQueries(query.queryKey);
                 }
             },
