@@ -7,18 +7,15 @@ import {
     IDataContext,
     MutationMode,
     GetListResponse,
-    ListQuery,
+    QueryResponse,
     Context as DeleteContext,
-    IGetOneResponse,
-    GetOneQuery,
     BaseRecord,
+    ContextQuery,
 } from "@interfaces";
 
 import {
     useMutationMode,
-    useListResourceQueries,
     useCancelNotification,
-    useGetOneQueries,
     useCacheQueries,
 } from "@hooks";
 
@@ -84,7 +81,7 @@ export const useDelete = (
         },
         {
             onMutate: async (deleteParams) => {
-                const previousQueries: any = [];
+                const previousQueries: ContextQuery[] = [];
 
                 const allQueries = getAllQueries(deleteParams.id.toString());
 
@@ -92,9 +89,9 @@ export const useDelete = (
                     const { queryKey } = queryItem;
                     await queryClient.cancelQueries(queryKey);
 
-                    const previousQuery = queryClient.getQueryData<
-                        GetListResponse | IGetOneResponse
-                    >(queryKey);
+                    const previousQuery = queryClient.getQueryData<QueryResponse>(
+                        queryKey,
+                    );
 
                     if (previousQuery) {
                         previousQueries.push({
@@ -129,7 +126,7 @@ export const useDelete = (
                     previousQueries: previousQueries,
                 };
             },
-            onError: (err, variables, context) => {
+            onError: (_err, _variables, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);

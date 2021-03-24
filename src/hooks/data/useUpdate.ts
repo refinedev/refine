@@ -6,9 +6,10 @@ import {
     IDataContext,
     UpdateResponse,
     GetListResponse,
+    QueryResponse,
     MutationMode,
     Context as UpdateContext,
-    IGetOneResponse,
+    ContextQuery,
 } from "@interfaces";
 import {
     useMutationMode,
@@ -78,18 +79,18 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
             return updatePromise;
         },
         {
-            onMutate: async (formValue) => {
-                const previousQueries: any = [];
+            onMutate: async (variables) => {
+                const previousQueries: ContextQuery[] = [];
 
-                const allQueries = getAllQueries(formValue.id);
+                const allQueries = getAllQueries(variables.id);
 
                 for (const queryItem of allQueries) {
                     const { queryKey } = queryItem;
                     await queryClient.cancelQueries(queryKey);
 
-                    const previousQuery = queryClient.getQueryData<
-                        GetListResponse | IGetOneResponse
-                    >(queryKey);
+                    const previousQuery = queryClient.getQueryData<QueryResponse>(
+                        queryKey,
+                    );
 
                     if (previousQuery) {
                         previousQueries.push({
@@ -103,10 +104,10 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                             queryClient.setQueryData(queryKey, {
                                 ...previousQuery,
                                 data: data.map((record: BaseRecord) => {
-                                    if (record.id.toString() === formValue.id) {
+                                    if (record.id.toString() === variables.id) {
                                         return {
-                                            ...formValue.values,
-                                            id: formValue.id,
+                                            ...variables.values,
+                                            id: variables.id,
                                         };
                                     }
                                     return record;
@@ -116,7 +117,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                             queryClient.setQueryData(queryKey, {
                                 data: {
                                     ...previousQuery.data,
-                                    ...formValue.values,
+                                    ...variables.values,
                                 },
                             });
                         }
@@ -127,7 +128,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                     previousQueries: previousQueries,
                 };
             },
-            onError: (err, variables, context) => {
+            onError: (_err, _variables, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
