@@ -117,5 +117,6 @@
     "upload": {
         "title": "Yüklemek için dosyayı bu alana tıklayın veya sürükleyin",
         "description": "Tek veya toplu yükleme desteği."
-    }
+    },
+    "warnWhenUnsavedChanges": "Kaydedilmemiş değişiklikleriniz var. Ayrılmak istediğinizden emin misiniz?"
 }
