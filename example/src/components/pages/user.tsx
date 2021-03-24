@@ -253,7 +253,7 @@ export const UserCreate = (props: any) => {
 
     const dateFormat = "DD/MM/YYYY";
 
-    const { beforeUpload, fileList, uploadedFiles } = useBase64Upload({
+    const { uploadedFiles, ...uploadProps } = useBase64Upload({
         maxCount: 3,
     });
     useEffect(() => {
@@ -343,11 +343,9 @@ export const UserCreate = (props: any) => {
                                 ]}
                             >
                                 <Upload.Dragger
-                                    beforeUpload={beforeUpload}
                                     listType="picture"
-                                    maxCount={1}
-                                    fileList={fileList}
                                     multiple
+                                    {...uploadProps}
                                 >
                                     <p className="ant-upload-text">
                                         {translate("common:upload.title")}
