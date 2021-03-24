@@ -7,16 +7,13 @@ import {
     UpdateResponse,
     GetListResponse,
     MutationMode,
-    ListQuery,
-    GetOneQuery,
     Context as UpdateContext,
     IGetOneResponse,
 } from "@interfaces";
 import {
     useMutationMode,
-    useListResourceQueries,
-    useGetOneQueries,
     useCancelNotification,
+    useCacheQueries,
 } from "@hooks";
 
 type UpdateParams<TParams> = {
@@ -48,8 +45,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
         throw new Error("'resource' is required for useUpdate hook.");
     }
 
-    const listResourceQueries = useListResourceQueries(resource);
-    const getOneQueries = useGetOneQueries(resource);
+    const getAllQueries = useCacheQueries(resource);
 
     const mutation = useMutation<
         UpdateResponse,
@@ -83,103 +79,64 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
         },
         {
             onMutate: async (formValue) => {
-                const previousListQueries: ListQuery[] = [];
-                const previousGetOneQueries: GetOneQuery[] = [];
+                const previousQueries: any = [];
 
-                for (const listQuery of listResourceQueries) {
-                    const { queryKey } = listQuery;
+                const allQueries = getAllQueries(formValue.id);
 
+                for (const queryItem of allQueries) {
+                    const { queryKey } = queryItem;
                     await queryClient.cancelQueries(queryKey);
 
-                    const previousListQuery = queryClient.getQueryData<GetListResponse>(
-                        queryKey,
-                    );
+                    const previousQuery = queryClient.getQueryData<
+                        GetListResponse | IGetOneResponse
+                    >(queryKey);
 
-                    if (previousListQuery) {
-                        previousListQueries.push({
-                            query: previousListQuery,
+                    if (previousQuery) {
+                        previousQueries.push({
+                            query: previousQuery,
                             queryKey,
                         });
 
-                        const { data } = previousListQuery;
+                        if (queryKey.includes(`resource/list/${resource}`)) {
+                            const { data } = previousQuery;
 
-                        queryClient.setQueryData(queryKey, {
-                            ...previousListQuery,
-                            data: data.map((record) => {
-                                if (record.id.toString() === formValue.id) {
-                                    return {
-                                        ...formValue.values,
-                                        id: formValue.id,
-                                    };
-                                }
-                                return record;
-                            }),
-                        });
+                            queryClient.setQueryData(queryKey, {
+                                ...previousQuery,
+                                data: data.map((record: BaseRecord) => {
+                                    if (record.id.toString() === formValue.id) {
+                                        return {
+                                            ...formValue.values,
+                                            id: formValue.id,
+                                        };
+                                    }
+                                    return record;
+                                }),
+                            });
+                        } else {
+                            queryClient.setQueryData(queryKey, {
+                                data: {
+                                    ...previousQuery.data,
+                                    ...formValue.values,
+                                },
+                            });
+                        }
                     }
                 }
 
-                const getOneQueriesWithId = getOneQueries.filter((query) => {
-                    return (query.queryKey[1] as any).id === formValue.id;
-                });
-
-                for (const getOneQuery of getOneQueriesWithId) {
-                    const { queryKey } = getOneQuery;
-
-                    await queryClient.cancelQueries(queryKey);
-
-                    const previousGetOneQuery = queryClient.getQueryData<IGetOneResponse>(
-                        queryKey,
-                    );
-
-                    if (previousGetOneQuery) {
-                        previousGetOneQueries.push({
-                            query: previousGetOneQuery,
-                            queryKey,
-                        });
-
-                        queryClient.setQueryData(queryKey, {
-                            data: {
-                                ...previousGetOneQuery.data,
-                                ...formValue.values,
-                            },
-                        });
-                    }
-                }
                 return {
-                    previousListQueries: previousListQueries,
-                    previousGetOneQueries: previousGetOneQueries,
+                    previousQueries: previousQueries,
                 };
             },
             onError: (err, variables, context) => {
-                if (!(mutationMode === "pessimistic")) {
-                    if (context) {
-                        for (const query of context.previousListQueries) {
-                            queryClient.setQueryData(
-                                query.queryKey,
-                                query.query,
-                            );
-                        }
-                        if (context.previousGetOneQueries) {
-                            for (const query of context.previousGetOneQueries) {
-                                queryClient.setQueryData(
-                                    query.queryKey,
-                                    query.query,
-                                );
-                            }
-                        }
+                if (context) {
+                    for (const query of context.previousQueries) {
+                        queryClient.setQueryData(query.queryKey, query.query);
                     }
                 }
             },
             onSettled: (_data, _error, variables) => {
-                for (const query of listResourceQueries) {
-                    queryClient.invalidateQueries(query.queryKey);
-                }
-
-                const getOneQueriesWithId = getOneQueries.filter((query) => {
-                    return (query.queryKey[1] as any).id === variables.id;
-                });
-
-                for (const query of getOneQueriesWithId) {
+                const allQueries = getAllQueries(variables.id);
+                for (const query of allQueries) {
                     queryClient.invalidateQueries(query.queryKey);
                 }
             },
