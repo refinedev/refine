@@ -93,31 +93,33 @@ export const useDelete = (
                         queryKey,
                     );
 
-                    if (previousQuery) {
-                        previousQueries.push({
-                            query: previousQuery,
-                            queryKey,
-                        });
-
-                        if (queryKey.includes(`resource/list/${resource}`)) {
-                            const {
-                                data,
-                                total,
-                            } = previousQuery as GetListResponse;
-
-                            queryClient.setQueryData(queryKey, {
-                                ...previousQuery,
-                                data: (data ?? []).filter(
-                                    (record: BaseRecord) =>
-                                        !(
-                                            record.id.toString() ===
-                                            deleteParams.id.toString()
-                                        ),
-                                ),
-                                total: total - 1,
+                    if (!(mutationMode === "pessimistic")) {
+                        if (previousQuery) {
+                            previousQueries.push({
+                                query: previousQuery,
+                                queryKey,
                             });
-                        } else {
-                            queryClient.removeQueries(queryKey);
+
+                            if (queryKey.includes(`resource/list/${resource}`)) {
+                                const {
+                                    data,
+                                    total,
+                                } = previousQuery as GetListResponse;
+
+                                queryClient.setQueryData(queryKey, {
+                                    ...previousQuery,
+                                    data: (data ?? []).filter(
+                                        (record: BaseRecord) =>
+                                            !(
+                                                record.id.toString() ===
+                                                deleteParams.id.toString()
+                                            ),
+                                    ),
+                                    total: total - 1,
+                                });
+                            } else {
+                                queryClient.removeQueries(queryKey);
+                            }
                         }
                     }
                 }

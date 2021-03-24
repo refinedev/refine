@@ -23,12 +23,12 @@ type UpdateParams<TParams> = {
 };
 type UseUpdateReturnType<
     TParams extends BaseRecord = BaseRecord
-> = UseMutationResult<
-    UpdateResponse,
-    unknown,
-    UpdateParams<TParams>,
-    UpdateContext
->;
+    > = UseMutationResult<
+        UpdateResponse,
+        unknown,
+        UpdateParams<TParams>,
+        UpdateContext
+    >;
 
 export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
     resource: string,
@@ -92,34 +92,36 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                         queryKey,
                     );
 
-                    if (previousQuery) {
-                        previousQueries.push({
-                            query: previousQuery,
-                            queryKey,
-                        });
-
-                        if (queryKey.includes(`resource/list/${resource}`)) {
-                            const { data } = previousQuery;
-
-                            queryClient.setQueryData(queryKey, {
-                                ...previousQuery,
-                                data: data.map((record: BaseRecord) => {
-                                    if (record.id.toString() === variables.id) {
-                                        return {
-                                            ...variables.values,
-                                            id: variables.id,
-                                        };
-                                    }
-                                    return record;
-                                }),
+                    if (!(mutationMode === "pessimistic")) {
+                        if (previousQuery) {
+                            previousQueries.push({
+                                query: previousQuery,
+                                queryKey,
                             });
-                        } else {
-                            queryClient.setQueryData(queryKey, {
-                                data: {
-                                    ...previousQuery.data,
-                                    ...variables.values,
-                                },
-                            });
+
+                            if (queryKey.includes(`resource/list/${resource}`)) {
+                                const { data } = previousQuery;
+
+                                queryClient.setQueryData(queryKey, {
+                                    ...previousQuery,
+                                    data: data.map((record: BaseRecord) => {
+                                        if (record.id.toString() === variables.id) {
+                                            return {
+                                                ...variables.values,
+                                                id: variables.id,
+                                            };
+                                        }
+                                        return record;
+                                    }),
+                                });
+                            } else {
+                                queryClient.setQueryData(queryKey, {
+                                    data: {
+                                        ...previousQuery.data,
+                                        ...variables.values,
+                                    },
+                                });
+                            }
                         }
                     }
                 }
