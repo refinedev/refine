@@ -39,7 +39,11 @@ export const LandingList = (props: any) => {
         show,
         close,
         editId,
-    } = useModalForm({ action: "edit" });
+    } = useModalForm({
+        action: "edit",
+        mutationMode: "undoable",
+        warnWhenUnsavedChanges: true,
+    });
 
     return (
         <>

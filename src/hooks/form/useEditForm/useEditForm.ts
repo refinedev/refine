@@ -75,7 +75,7 @@ export const useEditForm = ({
 
     const id = editId?.toString() ?? idFromRoute;
 
-    const { data, isLoading } = useOne(resource.name, id, {
+    const { data, isLoading, isFetching } = useOne(resource.name, id, {
         enabled: isEdit,
     });
 
@@ -86,7 +86,7 @@ export const useEditForm = ({
         return () => {
             form.resetFields();
         };
-    }, [data, id]);
+    }, [data, id, isFetching]);
 
     const {
         mutate,

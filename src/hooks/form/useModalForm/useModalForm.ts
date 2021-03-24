@@ -1,15 +1,26 @@
-import { useModalForm as useModalFormSF } from "sunflower-antd";
-import { useForm, useMutationMode } from "@hooks";
+import {
+    useModalForm as useModalFormSF,
+    UseModalFormConfig as UseModalFormConfigSF,
+} from "sunflower-antd";
+import {
+    useForm,
+    useMutationMode /* useEditFormProps, useCreateFormProps */,
+} from "@hooks";
 import { useEffect } from "react";
 import { MutationMode } from "../../../interfaces";
+import { useEditFormProps } from "../useEditForm";
+import { useCreateFormProps } from "../useCreateForm";
 
-type useModalFormProps = {
+type useModalFormConfig = {
     action: "show" | "edit" | "create";
     mutationMode?: MutationMode;
 };
+export type useModalFormProps = (useEditFormProps | useCreateFormProps) &
+    UseModalFormConfigSF &
+    useModalFormConfig;
 export const useModalForm = ({
-    action,
     mutationMode: mutationModeProp,
+    ...rest
 }: useModalFormProps) => {
     const {
         form,
@@ -21,11 +32,12 @@ export const useModalForm = ({
         isSuccessMutation,
         resetMutation,
     } = useForm({
-        action,
+        ...rest,
         mutationModeProp,
     });
 
     const sunflowerUseModal = useModalFormSF({
+        ...rest,
         form: form,
     });
 
