@@ -19,3 +19,18 @@ export const useGetOneQueries = (resource: string) => {
 
     return getOneQueries;
 };
+
+export const useCacheQueries = (resource: string) => {
+    const listQuery = useListResourceQueries(resource);
+    const getOneQuery = useGetOneQueries(resource);
+
+    return (id?: string) => {
+        if (id) {
+            const getOneQueriesWithId = getOneQuery.filter((query) => {
+                return (query.queryKey[1] as any).id === id;
+            });
+            return [...listQuery, ...getOneQueriesWithId];
+        }
+        return [...listQuery, ...getOneQuery];
+    };
+};
