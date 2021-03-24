@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm as useFormSF } from "sunflower-antd";
-import { Form } from "antd";
+import { Form, FormInstance } from "antd";
 import { useParams } from "react-router-dom";
 
 import {
@@ -127,5 +127,6 @@ export const useCreateForm = ({
         },
         isLoading,
         saveButtonProps,
+        form: formSF.form as FormInstance,
     };
 };

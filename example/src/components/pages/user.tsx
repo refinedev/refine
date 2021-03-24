@@ -25,9 +25,14 @@ import {
     ShowButton,
     Space,
     useForm,
+    Upload,
+    normalizeFile,
+    useBase64Upload,
 } from "readmin";
 
 import { Aside } from "../aside";
+import { UploadFile } from "antd/lib/upload/interface";
+import { useEffect } from "react";
 
 export const UserList = (props: any) => {
     const translate = useTranslate();
@@ -43,6 +48,9 @@ export const UserList = (props: any) => {
                     ...tableProps.pagination,
                     position: ["bottomCenter"],
                     size: "small",
+                }}
+                scroll={{
+                    x: true,
                 }}
             >
                 <Column
@@ -111,13 +119,33 @@ export const UserList = (props: any) => {
 
 export const UserEdit = (props: any) => {
     const translate = useTranslate();
-    const { formProps, saveButtonProps } = useForm({
+    const { formProps, saveButtonProps, getDataQueryResult, form } = useForm({
         warnWhenUnsavedChanges: true,
     });
 
     const { TabPane } = Tabs;
 
     const dateFormat = "DD/MM/YYYY";
+
+    const [avatar, setAvatar] = React.useState<UploadFile[]>([]);
+
+    React.useEffect(() => {
+        if (getDataQueryResult && getDataQueryResult.data) {
+            const { data } = getDataQueryResult;
+            setAvatar(data.data.avatar);
+        }
+    }, [getDataQueryResult]);
+
+    const { uploadedFiles, ...uploadProps } = useBase64Upload({
+        formData: avatar,
+        maxCount: 3,
+    });
+    useEffect(() => {
+        form &&
+            form.setFieldsValue({
+                avatar: uploadedFiles,
+            });
+    }, [uploadedFiles]);
 
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>
@@ -178,6 +206,36 @@ export const UserEdit = (props: any) => {
                         >
                             <DatePicker format={dateFormat} />
                         </Form.Item>
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.avatar",
+                            )}
+                        >
+                            <Form.Item
+                                name="avatar"
+                                valuePropName="fileList"
+                                getValueFromEvent={normalizeFile}
+                                noStyle
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <Upload.Dragger
+                                    listType="picture"
+                                    multiple
+                                    {...uploadProps}
+                                >
+                                    <p className="ant-upload-text">
+                                        {translate("common:upload.title")}
+                                    </p>
+                                    <p className="ant-upload-hint">
+                                        {translate("common:upload.description")}
+                                    </p>
+                                </Upload.Dragger>
+                            </Form.Item>
+                        </Form.Item>
                     </TabPane>
                 </Tabs>
             </Form>
@@ -187,13 +245,23 @@ export const UserEdit = (props: any) => {
 
 export const UserCreate = (props: any) => {
     const translate = useTranslate();
-    const { formProps, saveButtonProps } = useForm({
+    const { formProps, saveButtonProps, form } = useForm({
         warnWhenUnsavedChanges: true,
     });
 
     const { TabPane } = Tabs;
 
     const dateFormat = "DD/MM/YYYY";
+
+    const { uploadedFiles, ...uploadProps } = useBase64Upload({
+        maxCount: 3,
+    });
+    useEffect(() => {
+        form &&
+            form.setFieldsValue({
+                avatar: uploadedFiles,
+            });
+    }, [uploadedFiles]);
 
     return (
         <Create
@@ -257,6 +325,36 @@ export const UserCreate = (props: any) => {
                             ]}
                         >
                             <DatePicker format={dateFormat} />
+                        </Form.Item>
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.avatar",
+                            )}
+                        >
+                            <Form.Item
+                                name="avatar"
+                                valuePropName="fileList"
+                                getValueFromEvent={normalizeFile}
+                                noStyle
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <Upload.Dragger
+                                    listType="picture"
+                                    multiple
+                                    {...uploadProps}
+                                >
+                                    <p className="ant-upload-text">
+                                        {translate("common:upload.title")}
+                                    </p>
+                                    <p className="ant-upload-hint">
+                                        {translate("common:upload.description")}
+                                    </p>
+                                </Upload.Dragger>
+                            </Form.Item>
                         </Form.Item>
                     </TabPane>
                 </Tabs>
