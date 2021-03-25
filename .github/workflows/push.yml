@@ -20,6 +20,6 @@ jobs:
     - name: npm install, build, and test
       run: |
         npm install
-        npm run lint -- src test example
+        npm run lint
         npm test
 
