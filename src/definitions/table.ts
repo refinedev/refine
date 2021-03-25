@@ -7,7 +7,7 @@ import merge from "lodash/merge";
 const queryStringOptions = (): StringifyOptions => {
     return {
         arrayFormat: "bracket",
-        skipNull: false,
+        skipNull: true,
     };
 };
 
