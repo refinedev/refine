@@ -6,7 +6,11 @@ import { useHistory } from "react-router-dom";
 
 import { useResourceWithRoute, useList } from "@hooks";
 import { Filters, Sort, ResourceRouterParams } from "@interfaces";
-import { stringifyTableParams, parseTableParams } from "@definitions/table";
+import {
+    stringifyTableParams,
+    parseTableParams,
+    merge,
+} from "@definitions/table";
 import { useSyncWithLocation } from "@hooks/admin";
 
 export type useTableProps = {
@@ -73,7 +77,7 @@ export const useTable = ({
 
     const { data, isFetching, refetch } = useList(resource.name, {
         pagination: { current, pageSize },
-        filters: { ...permanentFilter, ...filters },
+        filters: merge(permanentFilter, filters),
         sort: sorter,
     });
 
