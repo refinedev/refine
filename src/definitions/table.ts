@@ -16,7 +16,7 @@ const queryStringOptions = (): StringifyOptions => {
     };
 };
 
-export const merge = (object: unknown, source: unknown) => {
+export const merge = (object: any, source: any) => {
     return mergeWith(object, source, (val, src): any => {
         if (isArray(val)) {
             return val.concat(src);
