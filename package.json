@@ -13,7 +13,7 @@
         "build": "lerna run build"
     },
     "lint-staged": {
-        "*.{js,jsx,ts,tsx}": [
+        "**/*.{js,jsx,ts,tsx}": [
             "npm run lint:fix"
         ]
     },
