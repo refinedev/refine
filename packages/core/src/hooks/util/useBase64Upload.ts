@@ -28,6 +28,8 @@ export const useBase64Upload = ({
             files.splice(deleteItemCount);
         }
 
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
         setFileList([...fileList, ...files]);
 
         return false;

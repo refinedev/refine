@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "module": "esnext",
+      "lib": ["dom", "esnext", "DOM.Iterable"],
+      "importHelpers": true,
+      "declaration": true,
+      "sourceMap": true,   
+      "strict": true,
+      "noImplicitReturns": true,
+      "noFallthroughCasesInSwitch": true,
+      "moduleResolution": "node",
+      "jsx": "react",
+      "esModuleInterop": true,
+      "noEmit": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+    }
+  }

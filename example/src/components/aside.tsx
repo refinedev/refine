@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardProps } from "antd";
+import { Card, CardProps } from "readmin";
 
 import { useTranslate } from "readmin";
 
