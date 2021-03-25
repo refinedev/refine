@@ -13,13 +13,13 @@
         "build": "lerna run build"
     },
     "lint-staged": {
-        "*/**/*.{js,jsx,ts,tsx}": [
+        "*.{js,jsx,ts,tsx}": [
             "npm run lint:fix"
         ]
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged"
+            "pre-commit": "npm run lint:fix"
         }
     },
     "prettier": {
