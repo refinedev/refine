@@ -60,7 +60,7 @@ export const useModalForm = ({
     }, [isSuccessMutation, isLoadingMutation]);
 
     const saveButtonPropsSF = {
-        disabled: isLoading || isFetching,
+        disabled: isLoading,
         onClick: () => {
             modalForm.submit();
 
