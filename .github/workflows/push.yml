@@ -21,5 +21,6 @@ jobs:
       run: |
         npm install
         npm run lint
+        npm run lerna bootstrap
         npm test
 
