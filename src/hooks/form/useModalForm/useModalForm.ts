@@ -2,8 +2,14 @@ import {
     useModalForm as useModalFormSF,
     UseModalFormConfig as UseModalFormConfigSF,
 } from "sunflower-antd";
-import { useForm, useMutationMode } from "@hooks";
 import { useEffect } from "react";
+
+import {
+    useForm,
+    useMutationMode,
+    useTranslate,
+    useWarnAboutChange,
+} from "@hooks";
 import { MutationMode } from "../../../interfaces";
 import { useEditFormProps } from "../useEditForm";
 import { useCreateFormProps } from "../useCreateForm";
@@ -33,6 +39,9 @@ export const useModalForm = ({
         mutationModeProp,
     });
 
+    const translate = useTranslate();
+
+    const { warnWhen, setWarnWhen } = useWarnAboutChange();
     const sunflowerUseModal = useModalFormSF({
         ...rest,
         form: form,
@@ -81,6 +90,7 @@ export const useModalForm = ({
             setEditId && setEditId(id);
             sunflowerUseModal.show();
         },
+
         formProps: {
             ...modalFormProps,
             onValuesChange: formProps?.onValuesChange,
@@ -92,6 +102,23 @@ export const useModalForm = ({
             width: "1000px",
             bodyStyle: {
                 paddingTop: "55px",
+            },
+            onCancel: () => {
+                if (warnWhen) {
+                    const warnWhenConfirm = window.confirm(
+                        translate(
+                            "common:warnWhenUnsavedChanges",
+                            "Are you sure you want to leave? You have with unsaved changes.",
+                        ),
+                    );
+
+                    if (warnWhenConfirm) {
+                        setWarnWhen(false);
+                    } else {
+                        return;
+                    }
+                }
+                sunflowerUseModal.close();
             },
         },
         isLoading: isLoading,

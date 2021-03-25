@@ -115,5 +115,6 @@
     "upload": {
         "title": "Click or drag file to this area to upload",
         "description": "Support for a single or bulk upload."
-    }
+    },
+    "warnWhenUnsavedChanges": "Are you sure you want to leave? You have with unsaved changes."
 }

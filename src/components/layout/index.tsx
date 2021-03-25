@@ -147,7 +147,10 @@ export const Layout: React.FC<LayoutProps> = ({
             </AntLayout>
             <Prompt
                 when={warnWhen}
-                message="Are you sure you want to leave? You have with unsaved changes."
+                message={translate(
+                    "common:warnWhenUnsavedChanges",
+                    "Are you sure you want to leave? You have with unsaved changes.",
+                )}
             />
         </AntLayout>
     );
