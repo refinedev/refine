@@ -89,10 +89,14 @@ export const useTable = ({
 
         // synchronize with url
         if (syncWithLocation) {
-            const stringifyParams = stringifyTableParams({ sorter, filters });
+            const stringifyParams = stringifyTableParams({
+                pagination,
+                sorter,
+                filters,
+            });
 
             return history.push(
-                `/resources/${resource.name}?current=${pagination.current}&pageSize=${pagination.pageSize}&${stringifyParams}`,
+                `/resources/${resource.name}?${stringifyParams}`,
             );
         }
 

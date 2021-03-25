@@ -1,7 +1,11 @@
 import qs, { StringifyOptions } from "query-string";
 
 import { Sort, Filters } from "@interfaces";
-import { SorterResult, SortOrder } from "antd/lib/table/interface";
+import {
+    SorterResult,
+    SortOrder,
+    TablePaginationConfig,
+} from "antd/lib/table/interface";
 import merge from "lodash/merge";
 
 const queryStringOptions = (): StringifyOptions => {
@@ -55,10 +59,11 @@ export const parseTableParams = (params: {
 };
 
 export const stringifyTableParams = (params: {
+    pagination: TablePaginationConfig;
     sorter: Sort;
     filters: Filters;
 }): string => {
-    const { sorter, filters } = params;
+    const { pagination, sorter, filters } = params;
     const options = queryStringOptions();
 
     const qsFilters = qs.stringify(filters, options);
@@ -76,7 +81,7 @@ export const stringifyTableParams = (params: {
     const qsSortFields = qs.stringify({ sort: sortFields }, options);
     const qsSortOrders = qs.stringify({ order: sortOrders }, options);
 
-    return `${qsFilters}&${qsSortFields}&${qsSortOrders}`;
+    return `current=${pagination.current}&pageSize=${pagination.pageSize}&${qsFilters}&${qsSortFields}&${qsSortOrders}`;
 };
 
 export const getDefaultSortOrder = (
