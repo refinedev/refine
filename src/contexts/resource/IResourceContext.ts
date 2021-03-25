@@ -13,4 +13,18 @@ export interface IResourceItem {
     canEdit?: boolean;
     canShow?: boolean;
     canDelete?: boolean;
+
+    list?: React.FunctionComponent<{
+        canCreate: boolean;
+        canEdit: boolean;
+        canDelete?: boolean;
+        canShow: boolean;
+    }>;
+    create?: React.FunctionComponent<{ canEdit: boolean }>;
+    edit?: React.FunctionComponent;
+    show?: React.FunctionComponent<{
+        canCreate: boolean;
+        canEdit: boolean;
+        canDelete?: boolean;
+    }>;
 }

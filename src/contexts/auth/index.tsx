@@ -53,9 +53,7 @@ export const AuthContextProvider: React.FC<IAuthContext> = ({
             setAuthenticated(true);
         } catch (error) {
             setAuthenticated(false);
-            if (error) {
-                throw error;
-            }
+            throw error;
         }
     };
 
