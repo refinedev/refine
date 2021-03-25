@@ -1,7 +1,7 @@
-export { CreateButton } from "./createButton";
-export { EditButton } from "./editButton";
-export { DeleteButton, DeleteButtonProps } from "./deleteButton";
-export { RefreshButton } from "./refreshButton";
-export { ShowButton } from "./showButton";
-export { ListButton } from "./listButton";
-export { ExportButton } from "./exportButton";
+export { CreateButton } from "./create";
+export { EditButton } from "./edit";
+export { DeleteButton, DeleteButtonProps } from "./delete";
+export { RefreshButton } from "./refresh";
+export { ShowButton } from "./show";
+export { ListButton } from "./list";
+export { ExportButton } from "./export";
