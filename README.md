@@ -7,22 +7,21 @@
 ## Install
 
 ```bash
-npm install --save readmin
+npm install
 ```
 
-## Usage
+## Development
 
-```tsx
-import React, { Component } from 'react'
+```bash
+npm run lerna bootstrap
+npm run lerna start
+```
 
-import MyComponent from 'readmin'
-import 'readmin/dist/index.css'
+## Run Example
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
-}
+```bash
+cd example
+npm run start
 ```
 
 ## License

@@ -1,0 +1,70 @@
+{
+    "name": "readmin-core",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/index.js",
+    "module": "dist/react.esm.js",
+    "typings": "dist/index.d.ts",
+    "scripts": {
+        "start": "tsdx watch --tsconfig tsconfig.json --verbose --noClean",
+        "build": "tsdx build --tsconfig tsconfig.json",
+        "test": "tsdx test --passWithNoTests --runInBand",
+        "lint": "tsdx lint",
+        "lint:fix": "tsdx lint --quiet --fix --allow-empty"
+    },
+    "peerDependencies": {
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2"
+    },
+    "size-limit": [
+        {
+            "path": "dist/tsdx.cjs.production.min.js",
+            "limit": "10 KB"
+        },
+        {
+            "path": "dist/tsdx.esm.js",
+            "limit": "10 KB"
+        }
+    ],
+    "devDependencies": {
+        "@babel/core": "^7.12.13",
+        "@size-limit/preset-small-lib": "^4.9.2",
+        "@testing-library/jest-dom": "^4.2.4",
+        "@testing-library/react": "^9.5.0",
+        "@testing-library/react-hooks": "^5.0.3",
+        "@testing-library/user-event": "^7.2.1",
+        "@types/lodash": "^4.14.168",
+        "@types/pluralize": "^0.0.29",
+        "@types/react": "^17.0.1",
+        "@types/react-csv": "^1.1.1",
+        "@types/react-dom": "^17.0.0",
+        "@types/react-router-dom": "^5.1.7",
+        "@types/testing-library__jest-dom": "^5.9.5",
+        "babel-plugin-module-resolver": "^4.1.0",
+        "identity-obj-proxy": "^3.0.0",
+        "msw": "^0.26.2",
+        "size-limit": "^4.9.2",
+        "tsdx": "^0.14.1",
+        "tslib": "^2.1.0",
+        "typescript": "^3.9.8"
+    },
+    "dependencies": {
+        "@ant-design/icons": "^4.5.0",
+        "antd": "^4.12.2",
+        "axios": "^0.21.1",
+        "dayjs": "^1.10.4",
+        "humanize-string": "^2.1.0",
+        "lodash": "^4.17.21",
+        "pluralize": "^8.0.0",
+        "prettier": "^2.2.1",
+        "query-string": "^6.14.0",
+        "react-csv": "^2.0.3",
+        "react-markdown": "^5.0.3",
+        "react-query": "^3.8.2",
+        "react-router-dom": "^5.2.0",
+        "remark-gfm": "^1.0.0",
+        "sunflower-antd": "^1.0.0-beta.3"
+    },
+    "author": "Pankod",
+    "license": "MIT"
+}
