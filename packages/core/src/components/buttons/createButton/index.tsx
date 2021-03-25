@@ -7,13 +7,13 @@ import { useTranslate } from "@hooks";
 import { ResourceRouterParams } from "@interfaces";
 
 type CreateButtonProps = ButtonProps & {
-    resourceName?: string;
-    isModalShown?: () => void;
+                    resourceName?: string;
+                    isModalShown?: () => void;
 };
 
 export const CreateButton: FC<CreateButtonProps> = ({
-                            resourceName,
-                            isModalShown,
+    resourceName,
+    isModalShown,
     ...rest
 }) => {
     const history = useHistory();

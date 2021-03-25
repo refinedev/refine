@@ -9,7 +9,8 @@
         "start": "tsdx watch --tsconfig tsconfig.json --verbose --noClean",
         "build": "tsdx build --tsconfig tsconfig.json",
         "test": "tsdx test --passWithNoTests --runInBand",
-        "lint": "tsdx lint"
+        "lint": "tsdx lint",
+        "lint:fix": "tsdx lint --quiet --fix --allow-empty"
     },
     "peerDependencies": {
         "react": "^17.0.2",

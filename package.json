@@ -9,7 +9,7 @@
         "start": "lerna run start --stream --parallel",
         "test": "lerna run test --",
         "lint": "lerna run lint",
-        "lint:fix": "lerna run lint -- -- packages example --quiet --fix --allow-empty",
+        "lint:fix": "lerna run lint:fix",
         "build": "lerna run build"
     },
     "lint-staged": {
