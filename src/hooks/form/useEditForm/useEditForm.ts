@@ -76,6 +76,7 @@ export const useEditForm = ({
     const resource = useResourceWithRoute(routeResourceName);
 
     const id = editId?.toString() ?? idFromRoute;
+
     const getDataQueryResult = useOne(resource.name, id, {
         enabled: isEdit,
     });
@@ -120,6 +121,7 @@ export const useEditForm = ({
                         });
 
                         if (mutationMode === "pessimistic") {
+                            setEditId(undefined);
                             handleSubmitWithRedirect({
                                 redirect,
                                 resource,
@@ -143,13 +145,14 @@ export const useEditForm = ({
             );
         });
 
-        setEditId(undefined);
-        !(mutationMode === "pessimistic") &&
+        if (!(mutationMode === "pessimistic")) {
+            setEditId(undefined);
             handleSubmitWithRedirect({
                 redirect,
                 resource,
                 idFromRoute,
             });
+        }
     };
 
     const onKeyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {

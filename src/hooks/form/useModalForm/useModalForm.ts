@@ -73,7 +73,10 @@ export const useModalForm = ({
 
     const deleteButtonProps = {
         recordItemId: editId,
-        onSuccess: sunflowerUseModal.close,
+        onSuccess: () => {
+            setEditId?.(undefined);
+            sunflowerUseModal.close();
+        },
     };
 
     return {

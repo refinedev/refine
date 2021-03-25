@@ -23,12 +23,12 @@ type UpdateParams<TParams> = {
 };
 type UseUpdateReturnType<
     TParams extends BaseRecord = BaseRecord
-    > = UseMutationResult<
-        UpdateResponse,
-        unknown,
-        UpdateParams<TParams>,
-        UpdateContext
-    >;
+> = UseMutationResult<
+    UpdateResponse,
+    unknown,
+    UpdateParams<TParams>,
+    UpdateContext
+>;
 
 export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
     resource: string,
@@ -99,13 +99,18 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                                 queryKey,
                             });
 
-                            if (queryKey.includes(`resource/list/${resource}`)) {
+                            if (
+                                queryKey.includes(`resource/list/${resource}`)
+                            ) {
                                 const { data } = previousQuery;
 
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: data.map((record: BaseRecord) => {
-                                        if (record.id.toString() === variables.id) {
+                                        if (
+                                            record.id.toString() ===
+                                            variables.id
+                                        ) {
                                             return {
                                                 ...variables.values,
                                                 id: variables.id,

@@ -100,7 +100,9 @@ export const useDelete = (
                                 queryKey,
                             });
 
-                            if (queryKey.includes(`resource/list/${resource}`)) {
+                            if (
+                                queryKey.includes(`resource/list/${resource}`)
+                            ) {
                                 const {
                                     data,
                                     total,
@@ -135,10 +137,24 @@ export const useDelete = (
                     }
                 }
             },
+            onSuccess: (_data, variables, _context) => {
+                const allQueries = getAllQueries(variables.id.toString());
+                for (const query of allQueries) {
+                    if (
+                        query.queryKey.includes(`resource/getOne/${resource}`)
+                    ) {
+                        queryClient.removeQueries(query.queryKey);
+                    }
+                }
+            },
             onSettled: (_data, _error, variables) => {
                 const allQueries = getAllQueries(variables.id.toString());
                 for (const query of allQueries) {
-                    queryClient.invalidateQueries(query.queryKey);
+                    if (
+                        !query.queryKey.includes(`resource/getOne/${resource}`)
+                    ) {
+                        queryClient.invalidateQueries(query.queryKey);
+                    }
                 }
             },
         },
