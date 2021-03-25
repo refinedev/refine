@@ -1,47 +1,12 @@
 {
-    "include": ["src", "types"],
+    "extends": "./tsconfig.build.json",
+    "include": ["packages", "example"],
     "compilerOptions": {
-        "module": "esnext",
-        "lib": ["dom", "esnext", "DOM.Iterable"],
-        "importHelpers": true,
-        "declaration": true,
-        "sourceMap": true,
-        "rootDir": "./src",
-        "strict": true,
-        "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true,
-        "moduleResolution": "node",
-        "jsx": "react",
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true,
-        "noEmit": true,
-        "baseUrl": ".",
-        "paths": {
-            "@components/*": ["src/components/*"],
-            "@components": ["src/components"],
-            "@containers/*": ["src/containers/*"],
-            "@containers": ["src/containers"],
-            "@pages/*": ["src/pages/*"],
-            "@pages": ["src/pages"],
-            "@interfaces/*": ["src/interfaces/*"],
-            "@interfaces": ["src/interfaces"],
-            "@contexts/*": ["src/contexts/*"],
-            "@contexts": ["src/contexts"],
-            "@dataProviders/*": ["src/dataProviders/*"],
-            "@dataProviders": ["src/dataProviders"],
-            "@hooks/*": ["src/hooks/*"],
-            "@hooks": ["src/hooks"],
-            "@test/*": ["test/*"],
-            "@test": [
-                "test"
-            ],
-            "@definitions/*": [
-                "src/definitions/*"
-            ],
-            "@definitions": [
-                "src/definitions"
-            ]
-        }
+      "allowJs": false,
+      "baseUrl": ".",
+      "typeRoots": ["./node_modules/@types", "./types"],
+      "paths": {
+        "readmin-core": ["packages/core/src"]
+      }
     }
-}
+  }

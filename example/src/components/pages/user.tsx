@@ -31,7 +31,6 @@ import {
 } from "readmin";
 
 import { Aside } from "../aside";
-import { UploadFile } from "antd/lib/upload/interface";
 import { useEffect } from "react";
 
 export const UserList = (props: any) => {
@@ -127,7 +126,7 @@ export const UserEdit = (props: any) => {
 
     const dateFormat = "DD/MM/YYYY";
 
-    const [avatar, setAvatar] = React.useState<UploadFile[]>([]);
+    const [avatar, setAvatar] = React.useState<any[]>([]);
 
     React.useEffect(() => {
         if (getDataQueryResult && getDataQueryResult.data) {

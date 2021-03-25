@@ -38,8 +38,12 @@ export const LandingList = (props: any) => {
         saveButtonProps,
         show,
         close,
-    } = useModalForm({ action: "edit" });
-    const [itemId, setItemId] = React.useState<string | number>();
+        editId,
+    } = useModalForm({
+        action: "edit",
+        mutationMode: "undoable",
+        warnWhenUnsavedChanges: true,
+    });
 
     return (
         <>
@@ -86,7 +90,6 @@ export const LandingList = (props: any) => {
                                     size="small"
                                     onClick={() => {
                                         show(record.id);
-                                        setItemId(record.id);
                                     }}
                                     recordItemId={record.id}
                                 />
@@ -102,7 +105,7 @@ export const LandingList = (props: any) => {
             <Modal {...modalProps} footer={null}>
                 <Edit
                     {...props}
-                    recordItemId={itemId}
+                    recordItemId={editId}
                     onModalClose={close}
                     saveButtonProps={{
                         ...saveButtonProps,

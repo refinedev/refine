@@ -1,5 +1,4 @@
 import * as React from "react";
-import { SaveOutlined } from "@ant-design/icons";
 
 import {
     List,
@@ -35,6 +34,7 @@ import {
     CreateButton,
     ExportButton,
     getDefaultSortOrder,
+    Icons,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -209,7 +209,14 @@ export const PostCreate = (props: any) => {
         submit,
         formLoading,
         formProps,
-    } = useStepsForm({ warnWhenUnsavedChanges: true });
+    } = useStepsForm({
+        warnWhenUnsavedChanges: true,
+        defaultFormValues: () => {
+            return {
+                status: "active",
+            };
+        },
+    });
 
     const formList = [
         <>
@@ -265,7 +272,6 @@ export const PostCreate = (props: any) => {
                 ]}
             >
                 <Select
-                    defaultValue="active"
                     options={[
                         {
                             label: "Active",
@@ -389,7 +395,7 @@ export const PostCreate = (props: any) => {
                         <Button
                             style={{ marginRight: 10 }}
                             type="primary"
-                            icon={<SaveOutlined />}
+                            icon={<Icons.SaveOutlined />}
                             loading={isLoading || formLoading}
                             onClick={() => submit()}
                         >
@@ -612,7 +618,7 @@ export const PostEdit = (props: any) => {
                         <Button
                             style={{ marginRight: 10 }}
                             type="primary"
-                            icon={<SaveOutlined />}
+                            icon={<Icons.SaveOutlined />}
                             loading={isLoading || formLoading}
                             onClick={() => submit()}
                         >
