@@ -12,8 +12,8 @@ type CreateButtonProps = ButtonProps & {
 };
 
 export const CreateButton: FC<CreateButtonProps> = ({
-    resourceName,
-    isModalShown,
+                            resourceName,
+                            isModalShown,
     ...rest
 }) => {
     const history = useHistory();
