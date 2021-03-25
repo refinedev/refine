@@ -8,13 +8,13 @@
         "lerna": "lerna",
         "start": "lerna run start --stream --parallel",
         "test": "lerna run test --",
-        "lint": "lerna run lint",
-        "lint:fix": "lerna run lint:fix",
+        "lint": "tsdx lint packages example",
+        "lint:fix": "npm run lint -- packages example --quiet --fix --allow-empty",
         "build": "lerna run build"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx}": [
-            "lerna run lint:fix --"
+            "npm run lint:fix"
         ]
     },
     "husky": {
