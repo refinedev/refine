@@ -40,9 +40,10 @@ export const LandingList = (props: any) => {
         show,
         close,
         editId,
+        deleteButtonProps,
     } = useModalForm({
         action: "edit",
-        mutationMode: "undoable",
+        mutationMode: "optimistic",
         warnWhenUnsavedChanges: true,
     });
 
@@ -112,6 +113,7 @@ export const LandingList = (props: any) => {
                         ...saveButtonProps,
                         disabled: isLoading || isLoadingFormData || isFetching,
                     }}
+                    deleteButtonProps={deleteButtonProps}
                 >
                     <Form
                         {...formProps}

@@ -64,7 +64,7 @@ export const Show: React.FC<ShowProps> = ({
                 ) : (
                     <Card
                         title={`Show ${pluralize.singular(resource.name)}`}
-                        loading={isLoading}
+                        loading={isLoading || isFetching}
                         extra={
                             <Row>
                                 <Space key="extra-buttons">
