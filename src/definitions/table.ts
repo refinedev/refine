@@ -6,13 +6,22 @@ import {
     SortOrder,
     TablePaginationConfig,
 } from "antd/lib/table/interface";
-import merge from "lodash/merge";
+import mergeWith from "lodash/mergeWith";
+import isArray from "lodash/isArray";
 
 const queryStringOptions = (): StringifyOptions => {
     return {
         arrayFormat: "bracket",
         skipNull: true,
     };
+};
+
+export const merge = (object: unknown, source: unknown) => {
+    return mergeWith(object, source, (val, src): any => {
+        if (isArray(val)) {
+            return val.concat(src);
+        }
+    });
 };
 
 export const parseTableParams = (params: {
