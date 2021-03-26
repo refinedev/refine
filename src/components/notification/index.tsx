@@ -34,7 +34,13 @@ export const Notification: React.FC<{
     const cancelNotification = () => {
         const newNotifications = notifications
             .map((notificationItem: INotification) => {
-                if (notificationItem.isRunning === "new") {
+                if (notificationItem.isRunning === true) {
+                    if (notificationItem.seconds === 0) {
+                        successNotification(
+                            notificationItem.id,
+                            notificationItem.resource,
+                        );
+                    }
                     const message = (
                         <span style={{ marginLeft: 20 }}>
                             You have 5 seconds to undo
@@ -77,15 +83,10 @@ export const Notification: React.FC<{
                             );
                         },
                     });
-
-                    return {
-                        ...notificationItem,
-                        isRunning: "running",
-                    };
                 }
                 return notificationItem;
             })
-            .filter((item) => item.isRunning !== "ran");
+            .filter((item) => item.isRunning !== false);
 
         notificationDispatch({
             type: ActionTypes.UPDATE_ALL,

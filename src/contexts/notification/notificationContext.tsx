@@ -20,20 +20,9 @@ export const notificationReducer = (state: INotification[], action: any) => {
                 ...state,
                 {
                     ...action.payload,
-                    isRunning: "new",
+                    isRunning: true,
                 },
             ];
-        case ActionTypes.TOGGLE_FALSE:
-            return state.map((notificationItem: INotification) => {
-                if (notificationItem.id === action.payload.id) {
-                    return {
-                        ...notificationItem,
-                        isRunning: "ran",
-                    };
-                } else {
-                    return notificationItem;
-                }
-            });
         case ActionTypes.REMOVE:
             return state.filter(
                 (notificationItem: INotification) =>

@@ -3,5 +3,5 @@ export interface INotification {
     resource: string;
     cancelMutation: () => void;
     seconds: number;
-    isRunning: "new" | "running" | "ran";
+    isRunning: boolean;
 }
