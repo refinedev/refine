@@ -1,7 +1,10 @@
 export interface INotificationContext {
-    addNotification: (
-        cancelMutation: () => void,
-        id: string,
-        resource: string,
-    ) => void;
+    notifications: {
+        id: string;
+        resource: string;
+        cancelMutation: () => void;
+        seconds: number;
+        isRunning: "new" | "running" | "ran";
+    }[];
+    notificationDispatch: React.Dispatch<any>;
 }
