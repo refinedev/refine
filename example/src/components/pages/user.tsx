@@ -5,7 +5,6 @@ import {
     Edit,
     Create,
     Table,
-    Column,
     EmailField,
     TagField,
     BooleanField,
@@ -52,46 +51,46 @@ export const UserList = (props: any) => {
                     x: true,
                 }}
             >
-                <Column
+                <Table.Column
                     key="id"
                     dataIndex="id"
                     title={translate("common:resources.users.fields.id")}
                 />
-                <Column
+                <Table.Column
                     key="firstName"
                     dataIndex="firstName"
                     title={translate("common:resources.users.fields.firstName")}
                 />
-                <Column
+                <Table.Column
                     key="lastName"
                     dataIndex="lastName"
                     title={translate("common:resources.users.fields.lastName")}
                 />
-                <Column
+                <Table.Column
                     dataIndex="status"
                     title={translate("common:resources.users.fields.status")}
                     key="status"
                     render={(value) => <TagField value={value} />}
                 />
-                <Column
+                <Table.Column
                     key="email"
                     dataIndex="email"
                     title={translate("common:resources.users.fields.email")}
                     render={(value) => <EmailField value={value} />}
                 />
-                <Column
+                <Table.Column
                     dataIndex="status"
                     title={translate("common:resources.users.fields.status")}
                     key="boolean"
                     render={(value) => <BooleanField value={value} />}
                 />
-                <Column
+                <Table.Column
                     key="birthday"
                     dataIndex="birthday"
                     title={translate("common:resources.users.fields.birthday")}
                     render={(value) => <DateField value={value} />}
                 />
-                <Column
+                <Table.Column
                     title={translate("common:table.actions", "Actions")}
                     dataIndex="actions"
                     key="actions"
