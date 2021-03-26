@@ -15,6 +15,7 @@ import {
     useListResourceQueries,
     useCancelNotification,
 } from "@hooks";
+import { ADD } from "@contexts/notification";
 
 type UpdateParams<TParams> = {
     id: string;
@@ -38,7 +39,11 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
     const { update } = useContext<IDataContext>(DataContext);
     const { mutationMode: mutationModeContext } = useMutationMode();
 
-    const { addNotification } = useCancelNotification();
+    const { notificationDispatch } = useCancelNotification();
+
+    // const { notificationDispatch } = useNotificationContext();
+
+    console.log("useUpdate render");
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
@@ -73,8 +78,15 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                     if (onCancel) {
                         onCancel(cancelMutation);
                     } else {
-                        addNotification &&
-                            addNotification(cancelMutation, id, resource);
+                        notificationDispatch({
+                            type: ADD,
+                            payload: {
+                                id: id,
+                                resource: resource,
+                                cancelMutation: cancelMutation,
+                                seconds: 5,
+                            },
+                        });
                     }
                 },
             );

@@ -4,9 +4,10 @@ import { NotificationContext } from "@contexts/notification";
 import { INotificationContext } from "@interfaces";
 
 export const useCancelNotification = () => {
-    const { addNotification } = useContext<INotificationContext>(
-        NotificationContext,
-    );
+    const {
+        notifications,
+        notificationDispatch,
+    } = useContext<INotificationContext>(NotificationContext);
 
-    return { addNotification };
+    return { notifications, notificationDispatch };
 };

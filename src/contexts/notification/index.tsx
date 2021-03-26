@@ -1,123 +1,67 @@
-import React, { useCallback, useEffect, useState, useRef } from "react";
-import { useInterval, useBoolean } from "react-use";
-import { Button, Progress } from "antd";
+import React, { useReducer } from "react";
+import { createPortal } from "react-dom";
 
-import { useNotification } from "@hooks";
+import { Notification } from "@components";
+
 import { INotificationContext } from "./INotificationContext";
 
 export const NotificationContext = React.createContext<INotificationContext>({
-    addNotification: () => {},
+    notifications: [],
+    notificationDispatch: () => false,
 });
 
-export const NotificationContextProvider: React.FC<INotificationContext> = ({
-    children,
-}) => {
-    const [seconds, setSeconds] = useState(5);
-    const [isRunning, toggleIsRunning] = useBoolean(false);
+const initialState: any = [];
 
-    const [id, setId] = useState("");
-    const [resource, setResource] = useState("");
-    const cancelMutationRef = useRef<() => void>();
+export const ADD = "ADD";
+export const REMOVE = "REMOVE";
+export const TOGGLE_FALSE = "TOGGLE_FALSE";
+export const UPDATE_ALL = "UPDATE_ALL";
 
-    const notification = useNotification();
+export const notificationReducer = (state: any, action: any) => {
+    switch (action.type) {
+        case ADD:
+            return [
+                ...state,
+                {
+                    ...action.payload,
+                    isRunning: "new",
+                },
+            ];
+        case TOGGLE_FALSE:
+            return state.map((notif: any) => {
+                if (notif.id === action.payload.id) {
+                    return {
+                        ...notif,
+                        isRunning: "ran",
+                    };
+                } else {
+                    return notif;
+                }
+            });
+        case REMOVE:
+            return state.filter((t: any) => t.id !== action.payload.id);
+        case UPDATE_ALL:
+            return action.payload;
+        default:
+            return state;
+    }
+};
 
-    useInterval(
-        () => {
-            setSeconds(seconds - 1);
-        },
-        isRunning ? 1000 : null,
+export const NotificationContextProvider = (props: any) => {
+    const [notifications, notificationDispatch] = useReducer(
+        notificationReducer,
+        initialState,
     );
 
-    const cancelNotification = () => {
-        if (isRunning) {
-            if (seconds === 0) {
-                const message = (
-                    <span style={{ marginLeft: 20 }}>Successful</span>
-                );
-
-                const description = (
-                    <span style={{ marginLeft: 20 }}>
-                        Id: {`${id} ${resource}`} edited
-                    </span>
-                );
-
-                notification.open({
-                    // key: `${idRef.current}-${resourceRef.current}-undo`,
-                    key: "undo",
-                    icon: <Progress type="circle" percent={100} width={50} />,
-                    message,
-                    description,
-                });
-                toggleIsRunning(false);
-
-                return;
-            }
-
-            const message = (
-                <span style={{ marginLeft: 20 }}>
-                    You have 5 seconds to undo
-                </span>
-            );
-
-            notification.info({
-                key: "undo",
-                icon: (
-                    <Progress
-                        type="circle"
-                        percent={seconds * 20}
-                        format={(seconds) => seconds && `${seconds / 20}`}
-                        width={50}
-                        strokeColor="#1890ff"
-                        style={{ color: "red" }}
-                    />
-                ),
-                message,
-                btn: (
-                    <Button
-                        onClick={() => {
-                            if (cancelMutationRef.current) {
-                                cancelMutationRef.current();
-                            }
-                            toggleIsRunning(false);
-                            setSeconds(0);
-                            notification.close("undo");
-                        }}
-                    >
-                        Undo
-                    </Button>
-                ),
-                duration: 5,
-            });
-        }
-    };
-
-    const addNotification = (
-        cancelMutation: () => void,
-        id: string,
-        resource: string,
-    ) => {
-        setSeconds(5);
-        toggleIsRunning(true);
-        setId(id);
-        setResource(resource);
-        cancelMutationRef.current = cancelMutation;
-    };
-
-    useEffect(() => {
-        cancelNotification();
-    }, [seconds, isRunning]);
+    const notificationData = { notifications, notificationDispatch };
 
     return (
-        <NotificationContext.Provider
-            value={{
-                addNotification: useCallback(
-                    (cancelMutation, id, resource) =>
-                        addNotification(cancelMutation, id, resource),
-                    [],
-                ),
-            }}
-        >
-            {children}
+        <NotificationContext.Provider value={notificationData}>
+            {props.children}
+            {createPortal(
+                <Notification notifications={notifications} />,
+                document.body,
+            )}
         </NotificationContext.Provider>
     );
 };
