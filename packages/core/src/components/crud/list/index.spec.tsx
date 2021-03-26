@@ -2,7 +2,6 @@ import React, { ReactNode } from "react";
 
 import { render, TestWrapper, MockJSONServer } from "@test";
 
-import { Column } from "@components";
 import { Table } from "antd";
 
 import { List } from "./index";
@@ -32,7 +31,11 @@ describe("<List/>", () => {
             const { container } = renderList(
                 <List key="posts" resourceName="posts">
                     <Table rowKey="id">
-                        <Column key="title" title="Title" dataIndex="title" />
+                        <Table.Column
+                            key="title"
+                            title="Title"
+                            dataIndex="title"
+                        />
                     </Table>
                 </List>,
             );

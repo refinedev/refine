@@ -2,7 +2,6 @@ import * as React from "react";
 
 import {
     List,
-    Column,
     Create,
     Edit,
     Show,
@@ -92,7 +91,7 @@ export const PostList = (props: any) => {
                     size: "small",
                 }}
             >
-                <Column
+                <Table.Column
                     dataIndex="id"
                     title={translate("common:resources.posts.fields.id")}
                     key="id"
@@ -101,7 +100,7 @@ export const PostList = (props: any) => {
                     }}
                     defaultSortOrder="descend"
                 />
-                <Column
+                <Table.Column
                     dataIndex="title"
                     title={translate("common:resources.posts.fields.title")}
                     key="title"
@@ -110,7 +109,7 @@ export const PostList = (props: any) => {
                         multiple: 1,
                     }}
                 />
-                <Column
+                <Table.Column
                     dataIndex="slug"
                     title={translate("common:resources.posts.fields.slug")}
                     key="slug"
@@ -119,7 +118,7 @@ export const PostList = (props: any) => {
                         multiple: 2,
                     }}
                 />
-                <Column
+                <Table.Column
                     dataIndex="categoryId"
                     title={translate("common:resources.posts.fields.category")}
                     key="categoryId"
@@ -148,7 +147,7 @@ export const PostList = (props: any) => {
                         </FilterDropdown>
                     )}
                 />
-                <Column
+                <Table.Column
                     dataIndex="status"
                     title={translate("common:resources.posts.fields.status")}
                     key="status"
@@ -163,7 +162,7 @@ export const PostList = (props: any) => {
                     )}
                     defaultFilteredValue={["active"]}
                 />
-                <Column
+                <Table.Column
                     title={translate("common:table.actions", "Actions")}
                     dataIndex="actions"
                     key="actions"
