@@ -8,13 +8,13 @@
         "lerna": "lerna",
         "start": "lerna run start --stream --parallel",
         "test": "lerna run test --",
-        "lint": "lerna run lint",
-        "lint:fix": "lerna run lint:fix",
+        "lint": "tsdx lint packages example",
+        "lint:fix": "npm run lint -- packages example --quiet --fix --allow-empty",
         "build": "lerna run build"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx}": [
-            "lerna run lint:fix --"
+            "npm run lint:fix"
         ]
     },
     "husky": {
@@ -40,6 +40,7 @@
         "husky": "^4.3.8",
         "lerna": "^4.0.0",
         "lint-staged": "^10.5.4",
+        "prettier": "^2.2.1",
         "react": "^17.0.2",
         "react-dom": "^17.0.1",
         "tsdx": "^0.14.1",

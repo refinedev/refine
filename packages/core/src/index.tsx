@@ -14,3 +14,4 @@ export {
 } from "./interfaces";
 
 export * from "./definitions/upload";
+export { getDefaultSortOrder } from "./definitions/table";

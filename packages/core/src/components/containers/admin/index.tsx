@@ -27,6 +27,7 @@ export interface AdminProps {
     dashboard?: React.FC;
     ready?: React.FC;
     mutationMode?: MutationMode;
+    syncWithLocation?: boolean;
     warnWhenUnsavedChanges?: boolean;
     routes?: RouteProps[];
 }
@@ -42,6 +43,7 @@ export const Admin: React.FC<AdminProps> = ({
     children,
     i18nProvider = defaultProvider.i18nProvider,
     mutationMode = "pessimistic",
+    syncWithLocation = false,
     warnWhenUnsavedChanges = false,
     routes = [],
 }) => {
@@ -88,6 +90,7 @@ export const Admin: React.FC<AdminProps> = ({
                             <AdminContextProvider
                                 mutationMode={mutationMode}
                                 warnWhenUnsavedChanges={warnWhenUnsavedChanges}
+                                syncWithLocation={syncWithLocation}
                             >
                                 <Router>
                                     <RouteProvider

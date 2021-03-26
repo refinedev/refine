@@ -29,7 +29,6 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
     mutationMode: mutationModeProp,
     ...rest
 }) => {
-    const history = useHistory();
     const translate = useTranslate();
     const { mutationMode: mutationModeContext } = useMutationMode();
 
@@ -56,9 +55,7 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
             onConfirm={(): void => {
                 mutateAsync({ id: recordItemId ?? idFromRoute }).then(
                     (value) => {
-                        onSuccess
-                            ? onSuccess(value)
-                            : history.push(`/resources/${resourceName}`);
+                        onSuccess && onSuccess(value);
                     },
                 );
             }}
