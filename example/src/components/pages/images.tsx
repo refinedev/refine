@@ -2,7 +2,6 @@ import * as React from "react";
 import {
     List,
     Table,
-    Column,
     ImageField,
     NumberField,
     useTranslate,
@@ -25,12 +24,12 @@ export const ImagesList = (props: any) => {
                     size: "small",
                 }}
             >
-                <Column
+                <Table.Column
                     key="id"
                     title={translate("common:resources.images.fields.id")}
                     dataIndex="id"
                 />
-                <Column
+                <Table.Column
                     key="url"
                     title={translate("common:resources.images.fields.image")}
                     dataIndex="url"
@@ -46,7 +45,7 @@ export const ImagesList = (props: any) => {
                         />
                     )}
                 />
-                <Column
+                <Table.Column
                     key="price"
                     title={translate("common:resources.images.fields.price")}
                     dataIndex="price"

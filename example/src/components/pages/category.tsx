@@ -5,7 +5,6 @@ import {
     Create,
     Edit,
     Form,
-    Column,
     Input,
     useTranslate,
     DeleteButton,
@@ -50,21 +49,21 @@ export const CategoryList = (props: { resourceName: string }) => {
                         },
                     })}
                 >
-                    <Column
+                    <Table.Column
                         key="id"
                         dataIndex="id"
                         title={translate(
                             "common:resources.categories.fields.id",
                         )}
                     />
-                    <Column
+                    <Table.Column
                         key="title"
                         dataIndex="title"
                         title={translate(
                             "common:resources.categories.fields.title",
                         )}
-                        render={(value, record) => {
-                            if (isEditing(record.id)) {
+                        render={(value, data: any) => {
+                            if (isEditing(data.id)) {
                                 return (
                                     <Form.Item
                                         name="title"
@@ -77,7 +76,7 @@ export const CategoryList = (props: { resourceName: string }) => {
                             return <TextField value={value} />;
                         }}
                     />
-                    <Column
+                    <Table.Column
                         title={translate("common:table.actions", "Actions")}
                         dataIndex="actions"
                         key="actions"

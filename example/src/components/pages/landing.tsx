@@ -4,7 +4,6 @@ import "react-quill/dist/quill.snow.css";
 import {
     List,
     Table,
-    Column,
     Create,
     Edit,
     Show,
@@ -59,7 +58,7 @@ export const LandingList = (props: any) => {
                         size: "small",
                     }}
                 >
-                    <Column
+                    <Table.Column
                         dataIndex="id"
                         title={translate("common:resources.posts.fields.id")}
                         key="id"
@@ -68,7 +67,7 @@ export const LandingList = (props: any) => {
                         }}
                         defaultSortOrder="descend"
                     />
-                    <Column
+                    <Table.Column
                         dataIndex="title"
                         title={translate("common:resources.posts.fields.title")}
                         key="title"
@@ -77,7 +76,7 @@ export const LandingList = (props: any) => {
                             multiple: 1,
                         }}
                     />
-                    <Column
+                    <Table.Column
                         title={translate("common:table.actions", "Actions")}
                         dataIndex="actions"
                         key="actions"
