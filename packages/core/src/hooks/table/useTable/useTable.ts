@@ -107,7 +107,7 @@ export const useTable = ({
             });
 
             return history.push(
-                `/resources/${resource.name}?${stringifyParams}`,
+                `/resources/${resource.route}?${stringifyParams}`,
             );
         }
 
