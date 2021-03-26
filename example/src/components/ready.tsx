@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Row, Col, Typography } from "antd";
+import { Row, Col, Typography } from "readmin";
 
 const styles: { [key: string]: React.CSSProperties } = {
     root: {

@@ -5,7 +5,6 @@ import {
     Edit,
     Create,
     Table,
-    Column,
     EmailField,
     TagField,
     BooleanField,
@@ -25,9 +24,13 @@ import {
     ShowButton,
     Space,
     useForm,
+    Upload,
+    normalizeFile,
+    useBase64Upload,
 } from "readmin";
 
 import { Aside } from "../aside";
+import { useEffect } from "react";
 
 export const UserList = (props: any) => {
     const translate = useTranslate();
@@ -44,47 +47,50 @@ export const UserList = (props: any) => {
                     position: ["bottomCenter"],
                     size: "small",
                 }}
+                scroll={{
+                    x: true,
+                }}
             >
-                <Column
+                <Table.Column
                     key="id"
                     dataIndex="id"
                     title={translate("common:resources.users.fields.id")}
                 />
-                <Column
+                <Table.Column
                     key="firstName"
                     dataIndex="firstName"
                     title={translate("common:resources.users.fields.firstName")}
                 />
-                <Column
+                <Table.Column
                     key="lastName"
                     dataIndex="lastName"
                     title={translate("common:resources.users.fields.lastName")}
                 />
-                <Column
+                <Table.Column
                     dataIndex="status"
                     title={translate("common:resources.users.fields.status")}
                     key="status"
                     render={(value) => <TagField value={value} />}
                 />
-                <Column
+                <Table.Column
                     key="email"
                     dataIndex="email"
                     title={translate("common:resources.users.fields.email")}
                     render={(value) => <EmailField value={value} />}
                 />
-                <Column
+                <Table.Column
                     dataIndex="status"
                     title={translate("common:resources.users.fields.status")}
                     key="boolean"
                     render={(value) => <BooleanField value={value} />}
                 />
-                <Column
+                <Table.Column
                     key="birthday"
                     dataIndex="birthday"
                     title={translate("common:resources.users.fields.birthday")}
                     render={(value) => <DateField value={value} />}
                 />
-                <Column
+                <Table.Column
                     title={translate("common:table.actions", "Actions")}
                     dataIndex="actions"
                     key="actions"
@@ -111,13 +117,33 @@ export const UserList = (props: any) => {
 
 export const UserEdit = (props: any) => {
     const translate = useTranslate();
-    const { formProps, saveButtonProps } = useForm({
+    const { formProps, saveButtonProps, getDataQueryResult, form } = useForm({
         warnWhenUnsavedChanges: true,
     });
 
     const { TabPane } = Tabs;
 
     const dateFormat = "DD/MM/YYYY";
+
+    const [avatar, setAvatar] = React.useState<any[]>([]);
+
+    React.useEffect(() => {
+        if (getDataQueryResult && getDataQueryResult.data) {
+            const { data } = getDataQueryResult;
+            setAvatar(data.data.avatar);
+        }
+    }, [getDataQueryResult]);
+
+    const { uploadedFiles, ...uploadProps } = useBase64Upload({
+        formData: avatar,
+        maxCount: 3,
+    });
+    useEffect(() => {
+        form &&
+            form.setFieldsValue({
+                avatar: uploadedFiles,
+            });
+    }, [uploadedFiles]);
 
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>
@@ -178,6 +204,36 @@ export const UserEdit = (props: any) => {
                         >
                             <DatePicker format={dateFormat} />
                         </Form.Item>
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.avatar",
+                            )}
+                        >
+                            <Form.Item
+                                name="avatar"
+                                valuePropName="fileList"
+                                getValueFromEvent={normalizeFile}
+                                noStyle
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <Upload.Dragger
+                                    listType="picture"
+                                    multiple
+                                    {...uploadProps}
+                                >
+                                    <p className="ant-upload-text">
+                                        {translate("common:upload.title")}
+                                    </p>
+                                    <p className="ant-upload-hint">
+                                        {translate("common:upload.description")}
+                                    </p>
+                                </Upload.Dragger>
+                            </Form.Item>
+                        </Form.Item>
                     </TabPane>
                 </Tabs>
             </Form>
@@ -187,13 +243,23 @@ export const UserEdit = (props: any) => {
 
 export const UserCreate = (props: any) => {
     const translate = useTranslate();
-    const { formProps, saveButtonProps } = useForm({
+    const { formProps, saveButtonProps, form } = useForm({
         warnWhenUnsavedChanges: true,
     });
 
     const { TabPane } = Tabs;
 
     const dateFormat = "DD/MM/YYYY";
+
+    const { uploadedFiles, ...uploadProps } = useBase64Upload({
+        maxCount: 3,
+    });
+    useEffect(() => {
+        form &&
+            form.setFieldsValue({
+                avatar: uploadedFiles,
+            });
+    }, [uploadedFiles]);
 
     return (
         <Create
@@ -257,6 +323,36 @@ export const UserCreate = (props: any) => {
                             ]}
                         >
                             <DatePicker format={dateFormat} />
+                        </Form.Item>
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.avatar",
+                            )}
+                        >
+                            <Form.Item
+                                name="avatar"
+                                valuePropName="fileList"
+                                getValueFromEvent={normalizeFile}
+                                noStyle
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <Upload.Dragger
+                                    listType="picture"
+                                    multiple
+                                    {...uploadProps}
+                                >
+                                    <p className="ant-upload-text">
+                                        {translate("common:upload.title")}
+                                    </p>
+                                    <p className="ant-upload-hint">
+                                        {translate("common:upload.description")}
+                                    </p>
+                                </Upload.Dragger>
+                            </Form.Item>
                         </Form.Item>
                     </TabPane>
                 </Tabs>

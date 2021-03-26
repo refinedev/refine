@@ -1,5 +1,12 @@
 import React from "react";
-import { Admin, Resource, AuthProvider, JsonServer, Icons } from "readmin";
+import {
+    Admin,
+    Resource,
+    AuthProvider,
+    JsonServer,
+    Icons,
+    Authenticated,
+} from "readmin";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -21,18 +28,18 @@ import { FilesList } from "./components/pages/files";
 import { DashboardPage } from "./components/pages/dashboard";
 import { ReadyPage } from "./components/ready";
 import { LoginPage } from "./components/login";
-import { LandingList } from "./components/pages/landing";
+import {
+    LandingCreate,
+    LandingEdit,
+    LandingList,
+    LandingShow,
+} from "./components/pages/landing";
 import {
     PostLightCreate,
     PostLightEdit,
     PostLightList,
     PostLightShow,
 } from "./components/pages/post-light";
-import {
-    LandingEdit,
-    LandingCreate,
-    LandingShow,
-} from "./components/pages/landing";
 
 function App() {
     const authProvider: AuthProvider = {
@@ -72,6 +79,18 @@ function App() {
         getLocale: () => i18n.language,
     };
 
+    const CustomPage = () => {
+        return <div>anon and authenticated custom page</div>;
+    };
+
+    const AuthenticatedCustomPage = () => {
+        return (
+            <Authenticated>
+                <div>authenticated custom page</div>
+            </Authenticated>
+        );
+    };
+
     return (
         <Admin
             authProvider={authProvider}
@@ -80,7 +99,20 @@ function App() {
             dashboard={DashboardPage}
             ready={ReadyPage}
             i18nProvider={i18nProvider}
-            mutationMode="undoable"
+            mutationMode="pessimistic"
+            syncWithLocation
+            routes={[
+                {
+                    exact: true,
+                    component: CustomPage,
+                    path: "/custom",
+                },
+                {
+                    exact: true,
+                    component: AuthenticatedCustomPage,
+                    path: "/customauth",
+                },
+            ]}
         >
             <Resource
                 name="posts"
@@ -124,10 +156,10 @@ function App() {
             <Resource name="files" list={FilesList} />
             <Resource
                 name="landing"
-                create={LandingCreate}
-                edit={LandingEdit}
                 list={LandingList}
                 show={LandingShow}
+                create={LandingCreate}
+                edit={LandingEdit}
             />
         </Admin>
     );

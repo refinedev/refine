@@ -1,9 +1,7 @@
 import * as React from "react";
-import { SaveOutlined } from "@ant-design/icons";
 
 import {
     List,
-    Column,
     Create,
     Edit,
     Show,
@@ -34,6 +32,8 @@ import {
     useStepsForm,
     CreateButton,
     ExportButton,
+    getDefaultSortOrder,
+    Icons,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -47,7 +47,7 @@ export const PostList = (props: any) => {
     const translate = useTranslate();
     const { tableProps, sorter, filters } = useTable({
         // permanentFilter: {
-        //     categoryId: [37, 20]
+        //     categoryId: [50, 49],
         // },
         initialSorter: [
             {
@@ -58,6 +58,7 @@ export const PostList = (props: any) => {
         initialFilter: {
             status: ["active"],
         },
+        syncWithLocation: true,
     });
 
     const actions = (
@@ -92,16 +93,16 @@ export const PostList = (props: any) => {
                     size: "small",
                 }}
             >
-                <Column
+                <Table.Column
                     dataIndex="id"
                     title={translate("common:resources.posts.fields.id")}
                     key="id"
                     sorter={{
                         multiple: 3,
                     }}
-                    defaultSortOrder="descend"
+                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
                 />
-                <Column
+                <Table.Column
                     dataIndex="title"
                     title={translate("common:resources.posts.fields.title")}
                     key="title"
@@ -109,8 +110,9 @@ export const PostList = (props: any) => {
                     sorter={{
                         multiple: 1,
                     }}
+                    defaultSortOrder={getDefaultSortOrder("title", sorter)}
                 />
-                <Column
+                <Table.Column
                     dataIndex="slug"
                     title={translate("common:resources.posts.fields.slug")}
                     key="slug"
@@ -118,8 +120,9 @@ export const PostList = (props: any) => {
                     sorter={{
                         multiple: 2,
                     }}
+                    defaultSortOrder={getDefaultSortOrder("slug", sorter)}
                 />
-                <Column
+                <Table.Column
                     dataIndex="categoryId"
                     title={translate("common:resources.posts.fields.category")}
                     key="categoryId"
@@ -148,7 +151,7 @@ export const PostList = (props: any) => {
                         </FilterDropdown>
                     )}
                 />
-                <Column
+                <Table.Column
                     dataIndex="status"
                     title={translate("common:resources.posts.fields.status")}
                     key="status"
@@ -163,7 +166,7 @@ export const PostList = (props: any) => {
                     )}
                     defaultFilteredValue={["active"]}
                 />
-                <Column
+                <Table.Column
                     title={translate("common:table.actions", "Actions")}
                     dataIndex="actions"
                     key="actions"
@@ -206,7 +209,14 @@ export const PostCreate = (props: any) => {
         submit,
         formLoading,
         formProps,
-    } = useStepsForm({ warnWhenUnsavedChanges: true });
+    } = useStepsForm({
+        warnWhenUnsavedChanges: true,
+        defaultFormValues: () => {
+            return {
+                status: "active",
+            };
+        },
+    });
 
     const formList = [
         <>
@@ -262,7 +272,6 @@ export const PostCreate = (props: any) => {
                 ]}
             >
                 <Select
-                    defaultValue="active"
                     options={[
                         {
                             label: "Active",
@@ -344,10 +353,10 @@ export const PostCreate = (props: any) => {
                         onChange={onChange}
                     >
                         <p className="ant-upload-text">
-                            Click or drag file to this area to upload
+                            {translate("common:upload.title")}
                         </p>
                         <p className="ant-upload-hint">
-                            Support for a single upload.
+                            {translate("common:upload.description")}
                         </p>
                     </Upload.Dragger>
                 </Form.Item>
@@ -386,7 +395,7 @@ export const PostCreate = (props: any) => {
                         <Button
                             style={{ marginRight: 10 }}
                             type="primary"
-                            icon={<SaveOutlined />}
+                            icon={<Icons.SaveOutlined />}
                             loading={isLoading || formLoading}
                             onClick={() => submit()}
                         >
@@ -434,6 +443,7 @@ export const PostEdit = (props: any) => {
         submit,
         formLoading,
         formProps,
+        isFetching,
     } = useStepsForm({
         warnWhenUnsavedChanges: true,
         redirect: "show",
@@ -575,10 +585,10 @@ export const PostEdit = (props: any) => {
                         onChange={onChange}
                     >
                         <p className="ant-upload-text">
-                            Click or drag file to this area to upload
+                            {translate("common:upload.title")}
                         </p>
                         <p className="ant-upload-hint">
-                            Support for a single upload.
+                            {translate("common:upload.description")}
                         </p>
                     </Upload.Dragger>
                 </Form.Item>
@@ -609,9 +619,10 @@ export const PostEdit = (props: any) => {
                         <Button
                             style={{ marginRight: 10 }}
                             type="primary"
-                            icon={<SaveOutlined />}
+                            icon={<Icons.SaveOutlined />}
                             loading={isLoading || formLoading}
                             onClick={() => submit()}
+                            disabled={isFetching}
                         >
                             {translate("common:buttons.save", "Save")}
                         </Button>

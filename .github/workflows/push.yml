@@ -20,6 +20,7 @@ jobs:
     - name: npm install, build, and test
       run: |
         npm install
-        npm run lint -- src test example
+        npm run lerna bootstrap
+        npm run lint
         npm test
 

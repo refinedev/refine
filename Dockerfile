@@ -10,6 +10,8 @@ RUN npm install
 
 COPY . /opt/app
 
+RUN npm run lerna bootstrap
+
 RUN npm run build
 
 #Example 
