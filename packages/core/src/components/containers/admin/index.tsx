@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { BrowserRouter as Router, Route, RouteProps } from "react-router-dom";
+import { BrowserRouter as Router, RouteProps } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "antd/dist/antd.css";
@@ -91,7 +91,9 @@ export const Admin: React.FC<AdminProps> = ({
                             <NotificationContextProvider>
                                 <AdminContextProvider
                                     mutationMode={mutationMode}
-                                    warnWhenUnsavedChanges={warnWhenUnsavedChanges}
+                                    warnWhenUnsavedChanges={
+                                        warnWhenUnsavedChanges
+                                    }
                                     syncWithLocation={syncWithLocation}
                                 >
                                     <Router>
@@ -105,7 +107,7 @@ export const Admin: React.FC<AdminProps> = ({
                                             customRoutes={routes}
                                         />
                                     </Router>
-                            </AdminContextProvider>
+                                </AdminContextProvider>
                             </NotificationContextProvider>
                         </TranslationContextProvider>
                     </ResourceContextProvider>
