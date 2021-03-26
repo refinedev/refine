@@ -47,9 +47,9 @@ import { ShowAside } from "../show";
 export const PostList = (props: any) => {
     const translate = useTranslate();
     const { tableProps, sorter, filters } = useTable({
-        permanentFilter: {
-            categoryId: [50, 49],
-        },
+        // permanentFilter: {
+        //     categoryId: [50, 49],
+        // },
         initialSorter: [
             {
                 field: "id",
