@@ -98,9 +98,6 @@ export const useTable = ({
 
         tablePropsSunflower.onChange(pagination, filters, sorter);
 
-        // scroll to top
-        window.scrollTo(0, 0);
-
         // synchronize with url
         if (syncWithLocation) {
             const stringifyParams = stringifyTableParams({
