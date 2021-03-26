@@ -18,11 +18,13 @@ import {
     useForm,
     Modal,
     useModalForm,
+    ExportButton,
+    CreateButton,
 } from "readmin";
 
 export const PostLightList = (props: any) => {
     const translate = useTranslate();
-    const { tableProps } = useTable({
+    const { tableProps, sorter, filters } = useTable({
         initialPageSize: 20,
     });
 
@@ -45,9 +47,32 @@ export const PostLightList = (props: any) => {
         show: createModalShow,
     } = useModalForm({ action: "create" });
 
+    const actions = (
+        <Space direction="horizontal">
+            <ExportButton
+                sorter={sorter}
+                filters={filters}
+                pageSize={100}
+                maxItemCount={300}
+                mapData={(item) => {
+                    return {
+                        id: item.id,
+                        title: item.title,
+                        slug: item.slug,
+                    };
+                }}
+            />
+            <CreateButton />
+        </Space>
+    );
+
     return (
         <>
-            <List {...props} isModalShown={createModalShow}>
+            <List
+                {...props}
+                isModalShown={createModalShow}
+                actionButtons={actions}
+            >
                 <Table
                     {...tableProps}
                     rowKey="id"
