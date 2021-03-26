@@ -100,7 +100,7 @@ function App() {
             ready={ReadyPage}
             i18nProvider={i18nProvider}
             mutationMode="pessimistic"
-            syncWithLocation
+            syncWithLocation={false}
             routes={[
                 {
                     exact: true,
