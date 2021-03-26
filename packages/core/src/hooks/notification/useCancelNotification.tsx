@@ -1,24 +1,13 @@
-import React from "react";
-import { useNotification } from "@hooks";
-import { Button } from "antd";
+import { useContext } from "react";
+
+import { NotificationContext } from "@contexts/notification";
+import { INotificationContext } from "@interfaces";
 
 export const useCancelNotification = () => {
-    const notification = useNotification();
+    const {
+        notifications,
+        notificationDispatch,
+    } = useContext<INotificationContext>(NotificationContext);
 
-    return (cancelMutation: () => void) => {
-        notification.info({
-            message: "You have 5 seconds to undo",
-            btn: (
-                <Button
-                    onClick={() => {
-                        cancelMutation();
-                        notification.close("undo");
-                    }}
-                >
-                    Undo
-                </Button>
-            ),
-            key: "undo",
-        });
-    };
+    return { notifications, notificationDispatch };
 };

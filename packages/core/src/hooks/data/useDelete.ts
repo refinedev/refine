@@ -15,7 +15,7 @@ import {
 
 import {
     useMutationMode,
-    useCancelNotification,
+    // useCancelNotification,
     useCacheQueries,
 } from "@hooks";
 
@@ -38,7 +38,7 @@ export const useDelete = (
     const queryClient = useQueryClient();
     const { deleteOne } = useContext<IDataContext>(DataContext);
     const { mutationMode: mutationModeContext } = useMutationMode();
-    const cancelNotification = useCancelNotification();
+    // const cancelNotification = useCancelNotification();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
@@ -73,7 +73,7 @@ export const useDelete = (
                     if (onCancel) {
                         onCancel(cancelMutation);
                     } else {
-                        cancelNotification(cancelMutation);
+                        // cancelNotification(cancelMutation);
                     }
                 },
             );
