@@ -7,18 +7,17 @@ import { useForm } from "@hooks";
 
 import { useEditFormProps, useCreateFormProps } from "..";
 
-export type useStepsFormProps = (
-    props: (useCreateFormProps | useEditFormProps) & UseStepsFormConfig,
-) => ReturnType<typeof useStepsFormSF>;
+export type useStepsFormProps = (useCreateFormProps | useEditFormProps) &
+    UseStepsFormConfig;
 
-export const useStepsForm: useStepsFormProps = (props) => {
-    const form = useForm({ ...props });
+export const useStepsForm = (props: useStepsFormProps) => {
+    const { form, formProps, isFetching } = useForm({ ...props });
 
     const stepsPropsSunflower = useStepsFormSF({
         ...props,
-        form: form.form,
+        form: form,
         submit: (values) => {
-            form.formProps?.onFinish(values as any);
+            formProps?.onFinish(values as any);
         },
     });
 
@@ -26,8 +25,9 @@ export const useStepsForm: useStepsFormProps = (props) => {
         ...stepsPropsSunflower,
         formProps: {
             ...stepsPropsSunflower.formProps,
-            onValuesChange: form.formProps?.onValuesChange,
-            onKeyUp: form.formProps?.onKeyUp,
+            onValuesChange: formProps?.onValuesChange,
+            onKeyUp: formProps?.onKeyUp,
         },
+        isFetching,
     };
 };

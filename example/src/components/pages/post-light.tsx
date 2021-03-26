@@ -106,7 +106,7 @@ export const PostLightList = (props: any) => {
                                 <DeleteButton
                                     size="small"
                                     recordItemId={record.id}
-                                    mutationMode="optimistic"
+                                    mutationMode="undoable"
                                 />
                                 <ShowButton
                                     size="small"
