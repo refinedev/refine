@@ -5,7 +5,6 @@ import {
     Create,
     Edit,
     Form,
-    Column,
     ImageField,
     ReferenceField,
     Input,
@@ -79,17 +78,17 @@ export const TagList = (props: any) => {
                     size: "small",
                 }}
             >
-                <Column
+                <Table.Column
                     key="id"
                     dataIndex="id"
                     title={translate("common:resources.tags.fields.id")}
                 />
-                <Column
+                <Table.Column
                     key="title"
                     dataIndex="title"
                     title={translate("common:resources.tags.fields.title")}
                 />
-                <Column
+                <Table.Column
                     key="id"
                     dataIndex="id"
                     title={translate("common:resources.tags.fields.image")}
@@ -103,7 +102,7 @@ export const TagList = (props: any) => {
                         </ReferenceField>
                     )}
                 />
-                <Column
+                <Table.Column
                     title={translate("common:table.actions", "Actions")}
                     dataIndex="actions"
                     key="actions"

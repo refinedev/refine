@@ -2,7 +2,6 @@ import * as React from "react";
 import {
     List,
     Table,
-    Column,
     TextField,
     useTranslate,
     Create,
@@ -58,7 +57,7 @@ export const PostLightList = (props: any) => {
                         size: "small",
                     }}
                 >
-                    <Column
+                    <Table.Column
                         dataIndex="id"
                         title={translate("common:resources.posts.fields.id")}
                         key="id"
@@ -67,7 +66,7 @@ export const PostLightList = (props: any) => {
                         }}
                         defaultSortOrder="descend"
                     />
-                    <Column
+                    <Table.Column
                         dataIndex="title"
                         title={translate("common:resources.posts.fields.title")}
                         key="title"
@@ -76,7 +75,7 @@ export const PostLightList = (props: any) => {
                             multiple: 1,
                         }}
                     />
-                    <Column
+                    <Table.Column
                         dataIndex="slug"
                         title={translate("common:resources.posts.fields.slug")}
                         key="slug"
@@ -85,7 +84,7 @@ export const PostLightList = (props: any) => {
                             multiple: 2,
                         }}
                     />
-                    <Column
+                    <Table.Column
                         title={translate("common:table.actions", "Actions")}
                         dataIndex="actions"
                         key="actions"

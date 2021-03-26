@@ -2,7 +2,6 @@ import * as React from "react";
 import {
     List,
     Table,
-    Column,
     FileField,
     UrlField,
     useTranslate,
@@ -24,12 +23,12 @@ export const FilesList = (props: any) => {
                     size: "small",
                 }}
             >
-                <Column
+                <Table.Column
                     key="id"
                     dataIndex="id"
                     title={translate("common:resources.files.fields.id")}
                 />
-                <Column
+                <Table.Column
                     key="url"
                     dataIndex="url"
                     title={translate("common:resources.files.fields.url")}
@@ -42,7 +41,7 @@ export const FilesList = (props: any) => {
                         />
                     )}
                 />
-                <Column
+                <Table.Column
                     key="url"
                     dataIndex="url"
                     title={translate("common:resources.files.fields.image")}
@@ -58,7 +57,7 @@ export const FilesList = (props: any) => {
                     )}
                 />
 
-                <Column
+                <Table.Column
                     key="files"
                     dataIndex="files"
                     title={translate("resources.files.forms.imageFiles")}
@@ -75,7 +74,7 @@ export const FilesList = (props: any) => {
                         );
                     }}
                 />
-                <Column
+                <Table.Column
                     key="url"
                     dataIndex="url"
                     title="Test UrlField"

@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Card, Button, Row, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
@@ -32,6 +32,7 @@ export const Edit: React.FC<EditProps> = ({
     children,
     deleteButtonProps,
 }) => {
+    const history = useHistory();
     const { mutationMode: mutationModeContext } = useMutationMode();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
@@ -62,6 +63,11 @@ export const Edit: React.FC<EditProps> = ({
                             <DeleteButton
                                 {...deleteButtonProps}
                                 mutationMode={mutationMode}
+                                onSuccess={() => {
+                                    return history.push(
+                                        `/resources/${resource.name}`,
+                                    );
+                                }}
                             />
                             <Button
                                 {...saveButtonProps}
