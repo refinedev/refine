@@ -58,6 +58,7 @@ export const PostList = (props: any) => {
         initialFilter: {
             status: ["active"],
         },
+        syncWithLocation: true,
     });
 
     const actions = (

@@ -19,6 +19,7 @@ export type useTableProps = {
     initialPageSize?: number;
     initialSorter?: Sort;
     initialFilter?: Filters;
+    syncWithLocation?: boolean;
 };
 
 type useTable = {
@@ -33,8 +34,14 @@ export const useTable = ({
     initialPageSize,
     initialSorter,
     initialFilter,
+    syncWithLocation = false,
 }: useTableProps): useTable => {
-    const { syncWithLocation } = useSyncWithLocation();
+    const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
+
+    if (syncWithLocationContext) {
+        syncWithLocation = true;
+    }
+
     const { search } = useLocation();
 
     let defaultCurrent = 1;
