@@ -4,7 +4,6 @@ import { render, TestWrapper, MockJSONServer } from "@test";
 
 import { Resource } from "./index";
 import { List } from "@components/crud";
-import { Column } from "@components";
 import { Table } from "antd";
 
 describe("<Resource />", () => {
@@ -12,7 +11,7 @@ describe("<Resource />", () => {
         return (
             <List resourceName={resourceName}>
                 <Table rowKey="id">
-                    <Column key="title" title="Title" dataIndex="title" />
+                    <Table.Column key="title" title="Title" dataIndex="title" />
                 </Table>
             </List>
         );
