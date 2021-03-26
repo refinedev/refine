@@ -30,8 +30,8 @@ type useTable = {
 
 export const useTable = ({
     permanentFilter,
-    initialCurrent,
-    initialPageSize,
+    initialCurrent = 1,
+    initialPageSize = 10,
     initialSorter,
     initialFilter,
     syncWithLocation = false,
@@ -44,8 +44,8 @@ export const useTable = ({
 
     const { search } = useLocation();
 
-    let defaultCurrent = 1;
-    let defaultPageSize = 10;
+    let defaultCurrent = initialCurrent;
+    let defaultPageSize = initialPageSize;
     let defaultSorter = initialSorter;
     let defaultFilter = initialFilter;
 
@@ -68,8 +68,8 @@ export const useTable = ({
     }
 
     const { tableProps: tablePropsSunflower } = useFormTable({
-        defaultCurrent: initialCurrent ?? defaultCurrent,
-        defaultPageSize: initialPageSize ?? defaultPageSize,
+        defaultCurrent: initialCurrent,
+        defaultPageSize: initialPageSize,
     });
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
@@ -80,10 +80,14 @@ export const useTable = ({
     const [sorter, setSorter] = useState<Sort | undefined>(defaultSorter);
     const [filters, setFilters] = useState<Filters | undefined>(defaultFilter);
 
-    const { current, pageSize } = tablePropsSunflower.pagination;
+    const {
+        current,
+        pageSize,
+        defaultCurrent: defaultCurrentSF,
+    } = tablePropsSunflower.pagination;
 
     const { data, isFetching, refetch } = useList(resource.name, {
-        pagination: { current, pageSize },
+        pagination: { current: current ?? defaultCurrentSF, pageSize },
         filters: merge(permanentFilter, filters),
         sort: sorter,
     });
