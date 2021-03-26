@@ -86,7 +86,7 @@ export const useEditForm = ({
 
     const onFinish = async (values: BaseRecord): Promise<void> => {
         setWarnWhen(false);
-        console.log("useEditForm Values:", values);
+
         // Required to make onSuccess vs callbacks to work if component unmounts i.e. on route change
         setTimeout(() => {
             mutate(

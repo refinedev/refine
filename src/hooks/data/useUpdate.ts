@@ -66,7 +66,6 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                     }, 5000);
 
                     const cancelMutation = () => {
-                        console.log("cancel mutation fired");
                         clearTimeout(updateTimeout);
                         reject("mutation cancelled");
                     };
