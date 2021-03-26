@@ -29,7 +29,6 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
     mutationMode: mutationModeProp,
     ...rest
 }) => {
-    const history = useHistory();
     const translate = useTranslate();
     const { mutationMode: mutationModeContext } = useMutationMode();
 
