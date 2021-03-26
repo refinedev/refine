@@ -90,7 +90,17 @@ export const stringifyTableParams = (params: {
     const qsSortFields = qs.stringify({ sort: sortFields }, options);
     const qsSortOrders = qs.stringify({ order: sortOrders }, options);
 
-    return `current=${pagination.current}&pageSize=${pagination.pageSize}&${qsFilters}&${qsSortFields}&${qsSortOrders}`;
+    let queryString = `current=${pagination.current}&pageSize=${pagination.pageSize}`;
+
+    if (qsFilters) {
+        queryString = `${queryString}&${qsFilters}`;
+    }
+
+    if (qsSortFields && qsSortOrders) {
+        queryString = `${queryString}&${qsSortFields}&${qsSortOrders}`;
+    }
+
+    return queryString;
 };
 
 export const getDefaultSortOrder = (
