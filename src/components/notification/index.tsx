@@ -1,36 +1,11 @@
 import React, { useEffect } from "react";
-import { useInterval } from "react-use";
 import { Button, Progress } from "antd";
 
 import { ActionTypes } from "@contexts/notification";
 import { useCancelNotification, useNotification } from "@hooks";
 import { INotification } from "@interfaces";
 
-export const NotificationProgress: React.FC<{ duration: number }> = ({
-    duration,
-}) => {
-    const [seconds, setSeconds] = React.useState(duration);
-
-    useInterval(
-        () => {
-            setSeconds((s) => s - 1);
-        },
-        seconds === 0 ? null : 1000,
-    );
-
-    return (
-        <Progress
-            type="circle"
-            percent={seconds * (100 / duration)}
-            format={(seconds) =>
-                seconds && `${Math.round(seconds / (100 / duration))}`
-            }
-            width={50}
-            strokeColor="#1890ff"
-            style={{ color: "red" }}
-        />
-    );
-};
+import { NotificationProgress } from "./notificationProgress";
 
 export const Notification: React.FC<{
     notifications: INotification[];
@@ -38,8 +13,6 @@ export const Notification: React.FC<{
     const notification = useNotification();
 
     const { notificationDispatch } = useCancelNotification();
-
-    console.log("notifications", notifications);
 
     const successNotification = (id: string, resource: string) => {
         const message = <span style={{ marginLeft: 20 }}>Successful</span>;
@@ -110,8 +83,6 @@ export const Notification: React.FC<{
                 return t;
             })
             .filter((item) => item.isRunning !== "ran");
-        //newNotifications.filter((item) => item.isRunning !== "ran");
-        // .filter((notif: any) => notif.isRunning !== "ran");
 
         notificationDispatch({
             type: ActionTypes.UPDATE_ALL,
