@@ -3,23 +3,19 @@ import { createPortal } from "react-dom";
 
 import { Notification } from "@components";
 
-import { INotificationContext } from "./INotificationContext";
+import { INotification, INotificationContext } from "@interfaces";
+import { ActionTypes } from "./actionTypes";
 
 export const NotificationContext = React.createContext<INotificationContext>({
     notifications: [],
     notificationDispatch: () => false,
 });
 
-const initialState: any = [];
+const initialState: INotification[] = [];
 
-export const ADD = "ADD";
-export const REMOVE = "REMOVE";
-export const TOGGLE_FALSE = "TOGGLE_FALSE";
-export const UPDATE_ALL = "UPDATE_ALL";
-
-export const notificationReducer = (state: any, action: any) => {
+export const notificationReducer = (state: INotification[], action: any) => {
     switch (action.type) {
-        case ADD:
+        case ActionTypes.ADD:
             return [
                 ...state,
                 {
@@ -27,8 +23,8 @@ export const notificationReducer = (state: any, action: any) => {
                     isRunning: "new",
                 },
             ];
-        case TOGGLE_FALSE:
-            return state.map((notif: any) => {
+        case ActionTypes.TOGGLE_FALSE:
+            return state.map((notif: INotification) => {
                 if (notif.id === action.payload.id) {
                     return {
                         ...notif,
@@ -38,9 +34,11 @@ export const notificationReducer = (state: any, action: any) => {
                     return notif;
                 }
             });
-        case REMOVE:
-            return state.filter((t: any) => t.id !== action.payload.id);
-        case UPDATE_ALL:
+        case ActionTypes.REMOVE:
+            return state.filter(
+                (t: INotification) => t.id !== action.payload.id,
+            );
+        case ActionTypes.UPDATE_ALL:
             return action.payload;
         default:
             return state;

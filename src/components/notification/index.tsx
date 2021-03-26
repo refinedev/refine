@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useInterval } from "react-use";
 import { Button, Progress } from "antd";
 
-import { REMOVE, UPDATE_ALL } from "@contexts/notification";
+import { ActionTypes } from "@contexts/notification";
 import { useCancelNotification, useNotification } from "@hooks";
-import { INotificationContext } from "@interfaces";
+import { INotification } from "@interfaces";
 
 export const NotificationProgress: React.FC<{ duration: number }> = ({
     duration,
@@ -32,16 +32,16 @@ export const NotificationProgress: React.FC<{ duration: number }> = ({
     );
 };
 
-export const Notification: React.FC<{ notifications: any }> = ({
-    notifications,
-}) => {
+export const Notification: React.FC<{
+    notifications: INotification[];
+}> = ({ notifications }) => {
     const notification = useNotification();
 
     const { notificationDispatch } = useCancelNotification();
 
     console.log("notifications", notifications);
 
-    const successNotification = (id: number, resource: string) => {
+    const successNotification = (id: string, resource: string) => {
         const message = <span style={{ marginLeft: 20 }}>Successful</span>;
 
         const description = (
@@ -60,7 +60,7 @@ export const Notification: React.FC<{ notifications: any }> = ({
 
     const cancelNotification = () => {
         const newNotifications = notifications
-            .map((t: any) => {
+            .map((t: INotification) => {
                 if (t.isRunning === "new") {
                     const message = (
                         <span style={{ marginLeft: 20 }}>
@@ -80,7 +80,7 @@ export const Notification: React.FC<{ notifications: any }> = ({
                             <Button
                                 onClick={() => {
                                     notificationDispatch({
-                                        type: REMOVE,
+                                        type: ActionTypes.REMOVE,
                                         payload: { id: t.id },
                                     });
                                     t.cancelMutation();
@@ -95,7 +95,7 @@ export const Notification: React.FC<{ notifications: any }> = ({
                         duration: t.seconds,
                         onClose: () => {
                             notificationDispatch({
-                                type: REMOVE,
+                                type: ActionTypes.REMOVE,
                                 payload: { id: t.id },
                             });
                             successNotification(t.id, t.resource);
@@ -109,9 +109,14 @@ export const Notification: React.FC<{ notifications: any }> = ({
                 }
                 return t;
             })
-            .filter((notif: any) => notif.isRunning !== "ran");
+            .filter((item) => item.isRunning !== "ran");
+        //newNotifications.filter((item) => item.isRunning !== "ran");
+        // .filter((notif: any) => notif.isRunning !== "ran");
 
-        notificationDispatch({ type: UPDATE_ALL, payload: newNotifications });
+        notificationDispatch({
+            type: ActionTypes.UPDATE_ALL,
+            payload: newNotifications,
+        });
     };
 
     useEffect(() => {

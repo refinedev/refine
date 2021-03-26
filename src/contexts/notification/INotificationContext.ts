@@ -1,10 +1,6 @@
+import { INotification } from "@interfaces";
+
 export interface INotificationContext {
-    notifications: {
-        id: string;
-        resource: string;
-        cancelMutation: () => void;
-        seconds: number;
-        isRunning: "new" | "running" | "ran";
-    }[];
+    notifications: INotification[];
     notificationDispatch: React.Dispatch<any>;
 }

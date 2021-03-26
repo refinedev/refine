@@ -14,6 +14,9 @@ export * from "@contexts/translation/ITranslationContext";
 // field
 export * from "@interfaces/field";
 
+// field
+export * from "@interfaces/notification";
+
 // match
 export * from "@interfaces/match";
 

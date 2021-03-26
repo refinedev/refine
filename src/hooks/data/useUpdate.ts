@@ -15,7 +15,7 @@ import {
     useListResourceQueries,
     useCancelNotification,
 } from "@hooks";
-import { ADD } from "@contexts/notification";
+import { ActionTypes } from "@contexts/notification";
 
 type UpdateParams<TParams> = {
     id: string;
@@ -79,7 +79,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                         onCancel(cancelMutation);
                     } else {
                         notificationDispatch({
-                            type: ADD,
+                            type: ActionTypes.ADD,
                             payload: {
                                 id: id,
                                 resource: resource,
