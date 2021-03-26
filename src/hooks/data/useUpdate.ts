@@ -41,10 +41,6 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
 
     const { notificationDispatch } = useCancelNotification();
 
-    // const { notificationDispatch } = useNotificationContext();
-
-    console.log("useUpdate render");
-
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
     if (!resource) {

@@ -33,8 +33,8 @@ export const Notification: React.FC<{
 
     const cancelNotification = () => {
         const newNotifications = notifications
-            .map((t: INotification) => {
-                if (t.isRunning === "new") {
+            .map((notificationItem: INotification) => {
+                if (notificationItem.isRunning === "new") {
                     const message = (
                         <span style={{ marginLeft: 20 }}>
                             You have 5 seconds to undo
@@ -42,10 +42,10 @@ export const Notification: React.FC<{
                     );
 
                     notification.info({
-                        key: `${t.id}-${t.resource}-undo`,
+                        key: `${notificationItem.id}-${notificationItem.resource}-undo`,
                         icon: (
                             <NotificationProgress
-                                duration={t.seconds as number}
+                                duration={notificationItem.seconds as number}
                             />
                         ),
                         message,
@@ -54,33 +54,36 @@ export const Notification: React.FC<{
                                 onClick={() => {
                                     notificationDispatch({
                                         type: ActionTypes.REMOVE,
-                                        payload: { id: t.id },
+                                        payload: { id: notificationItem.id },
                                     });
-                                    t.cancelMutation();
+                                    notificationItem.cancelMutation();
                                     notification.close(
-                                        `${t.id}-${t.resource}-undo`,
+                                        `${notificationItem.id}-${notificationItem.resource}-undo`,
                                     );
                                 }}
                             >
                                 Undo
                             </Button>
                         ),
-                        duration: t.seconds,
+                        duration: notificationItem.seconds,
                         onClose: () => {
                             notificationDispatch({
                                 type: ActionTypes.REMOVE,
-                                payload: { id: t.id },
+                                payload: { id: notificationItem.id },
                             });
-                            successNotification(t.id, t.resource);
+                            successNotification(
+                                notificationItem.id,
+                                notificationItem.resource,
+                            );
                         },
                     });
 
                     return {
-                        ...t,
+                        ...notificationItem,
                         isRunning: "running",
                     };
                 }
-                return t;
+                return notificationItem;
             })
             .filter((item) => item.isRunning !== "ran");
 

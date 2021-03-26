@@ -24,19 +24,20 @@ export const notificationReducer = (state: INotification[], action: any) => {
                 },
             ];
         case ActionTypes.TOGGLE_FALSE:
-            return state.map((notif: INotification) => {
-                if (notif.id === action.payload.id) {
+            return state.map((notificationItem: INotification) => {
+                if (notificationItem.id === action.payload.id) {
                     return {
-                        ...notif,
+                        ...notificationItem,
                         isRunning: "ran",
                     };
                 } else {
-                    return notif;
+                    return notificationItem;
                 }
             });
         case ActionTypes.REMOVE:
             return state.filter(
-                (t: INotification) => t.id !== action.payload.id,
+                (notificationItem: INotification) =>
+                    notificationItem.id !== action.payload.id,
             );
         case ActionTypes.UPDATE_ALL:
             return action.payload;
