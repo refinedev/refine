@@ -31,6 +31,7 @@ export const useModalForm = ({
         setEditId,
         editId,
         isLoading,
+        isFetching,
         isLoadingMutation,
         isSuccessMutation,
         resetMutation,
@@ -76,12 +77,15 @@ export const useModalForm = ({
                 close();
             }
         },
-        loading: isLoadingMutation,
+        loading: isLoadingMutation || isFetching,
     };
 
     const deleteButtonProps = {
         recordItemId: editId,
-        onSuccess: sunflowerUseModal.close,
+        onSuccess: () => {
+            setEditId?.(undefined);
+            sunflowerUseModal.close();
+        },
     };
 
     return {
@@ -122,6 +126,7 @@ export const useModalForm = ({
             },
         },
         isLoading: isLoading,
+        isFetching,
         saveButtonProps: saveButtonPropsSF,
         editId,
         deleteButtonProps,

@@ -36,7 +36,7 @@ export const Show: React.FC<ShowProps> = ({
 
     const resource = useResourceWithRoute(routeResourceName);
 
-    const { data, isLoading } = useOne(resource.name, idFromRoute);
+    const { data, isLoading, isFetching } = useOne(resource.name, idFromRoute);
 
     const record = data?.data;
 
@@ -64,15 +64,23 @@ export const Show: React.FC<ShowProps> = ({
                 ) : (
                     <Card
                         title={`Show ${pluralize.singular(resource.name)}`}
-                        loading={isLoading}
+                        loading={isLoading || isFetching}
                         extra={
                             <Row>
                                 <Space key="extra-buttons">
                                     {actionButtons ?? (
                                         <>
                                             <ListButton />
-                                            {canEdit && <EditButton />}
-                                            {canDelete && <DeleteButton />}
+                                            {canEdit && (
+                                                <EditButton
+                                                    disabled={isFetching}
+                                                />
+                                            )}
+                                            {canDelete && (
+                                                <DeleteButton
+                                                    disabled={isFetching}
+                                                />
+                                            )}
                                             <RefreshButton />
                                         </>
                                     )}

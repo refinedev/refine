@@ -93,31 +93,35 @@ export const useDelete = (
                         queryKey,
                     );
 
-                    if (previousQuery) {
-                        previousQueries.push({
-                            query: previousQuery,
-                            queryKey,
-                        });
-
-                        if (queryKey.includes(`resource/list/${resource}`)) {
-                            const {
-                                data,
-                                total,
-                            } = previousQuery as GetListResponse;
-
-                            queryClient.setQueryData(queryKey, {
-                                ...previousQuery,
-                                data: (data ?? []).filter(
-                                    (record: BaseRecord) =>
-                                        !(
-                                            record.id.toString() ===
-                                            deleteParams.id.toString()
-                                        ),
-                                ),
-                                total: total - 1,
+                    if (!(mutationMode === "pessimistic")) {
+                        if (previousQuery) {
+                            previousQueries.push({
+                                query: previousQuery,
+                                queryKey,
                             });
-                        } else {
-                            queryClient.removeQueries(queryKey);
+
+                            if (
+                                queryKey.includes(`resource/list/${resource}`)
+                            ) {
+                                const {
+                                    data,
+                                    total,
+                                } = previousQuery as GetListResponse;
+
+                                queryClient.setQueryData(queryKey, {
+                                    ...previousQuery,
+                                    data: (data ?? []).filter(
+                                        (record: BaseRecord) =>
+                                            !(
+                                                record.id.toString() ===
+                                                deleteParams.id.toString()
+                                            ),
+                                    ),
+                                    total: total - 1,
+                                });
+                            } else {
+                                queryClient.removeQueries(queryKey);
+                            }
                         }
                     }
                 }
@@ -133,10 +137,24 @@ export const useDelete = (
                     }
                 }
             },
+            onSuccess: (_data, variables, _context) => {
+                const allQueries = getAllQueries(variables.id.toString());
+                for (const query of allQueries) {
+                    if (
+                        query.queryKey.includes(`resource/getOne/${resource}`)
+                    ) {
+                        queryClient.removeQueries(query.queryKey);
+                    }
+                }
+            },
             onSettled: (_data, _error, variables) => {
                 const allQueries = getAllQueries(variables.id.toString());
                 for (const query of allQueries) {
-                    queryClient.invalidateQueries(query.queryKey);
+                    if (
+                        !query.queryKey.includes(`resource/getOne/${resource}`)
+                    ) {
+                        queryClient.invalidateQueries(query.queryKey);
+                    }
                 }
             },
         },
