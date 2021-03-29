@@ -19,7 +19,6 @@
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
-  "peerDependencies": {},
   "name": "readmin-json-server",
   "author": "Pankod",
   "module": "dist/readmin-json-server.esm.js",
@@ -44,6 +43,6 @@
   "dependencies": {
     "axios": "^0.21.1",
     "query-string": "^7.0.0",
-    "readmin-core": "file:../readmin"
+    "readmin": "^1.0.0"
   }
 }

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { stringify } from 'query-string';
-import { DataProvider } from 'readmin-core';
+import { DataProvider } from 'readmin';
 
 const JsonServer = (apiUrl: string): DataProvider => ({
     getList: async (resource, params) => {
