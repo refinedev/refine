@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useMutation, UseMutationResult } from "react-query";
 
 import { DataContext } from "@contexts/data";
-import { CreateResponse, IDataContext, BaseRecord } from "@interfaces";
+import { CreateResponse, IDataContext, BaseRecord } from "../../interfaces";
 
 type UseCreateReturnType<
     TParams extends BaseRecord = BaseRecord

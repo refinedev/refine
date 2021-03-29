@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Tabs, TabsProps } from "antd";
 
-import { BaseRecord } from "@interfaces";
+import { BaseRecord } from "../../../../interfaces";
 
 type ShowTabProps = TabsProps & {
     record?: BaseRecord;

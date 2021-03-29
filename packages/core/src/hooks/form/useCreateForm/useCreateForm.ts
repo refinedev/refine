@@ -12,12 +12,12 @@ import {
 } from "@hooks";
 
 import {
+    MutationMode,
+    FormSF,
     BaseRecord,
     ResourceRouterParams,
     RedirectionTypes,
-    FormSF,
-} from "@interfaces";
-import { MutationMode } from "../../../interfaces";
+} from "../../../interfaces";
 
 export type useCreateFormProps = {
     onMutationSuccess?: (data: any, variables: any, context: any) => void;

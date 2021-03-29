@@ -9,7 +9,7 @@ import {
     Filters,
     Pagination,
     BaseRecord,
-} from "@interfaces";
+} from "../../interfaces";
 
 interface UseListConfig {
     pagination?: Pagination;

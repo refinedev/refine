@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useCreateForm, useCreateFormProps } from "./useCreateForm";
 import { useEditForm, useEditFormProps } from "./useEditForm";
 
-import { ResourceRouterParams } from "@interfaces";
+import { ResourceRouterParams } from "../../interfaces";
 
 export type ActionParams = {
     action?: "show" | "edit" | "create";

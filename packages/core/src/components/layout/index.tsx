@@ -10,7 +10,7 @@ import { Link, Prompt, useHistory, useLocation } from "react-router-dom";
 import humanizeString from "humanize-string";
 
 import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "@interfaces";
+import { IAuthContext } from "../../interfaces";
 import {
     useGetLocale,
     useResource,

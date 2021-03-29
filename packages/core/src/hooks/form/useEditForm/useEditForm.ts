@@ -14,13 +14,14 @@ import {
 } from "@hooks";
 
 import {
+    MutationMode,
+    FormSF,
     BaseRecord,
     ResourceRouterParams,
     RedirectionTypes,
     GetOneResponse,
-    FormSF,
-} from "@interfaces";
-import { MutationMode } from "../../../interfaces";
+} from "../../../interfaces";
+
 import { QueryObserverResult } from "react-query";
 
 type SaveButtonProps = {

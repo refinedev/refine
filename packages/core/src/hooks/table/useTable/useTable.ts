@@ -5,7 +5,7 @@ import { TablePaginationConfig, TableProps } from "antd/lib/table";
 import { useHistory } from "react-router-dom";
 
 import { useResourceWithRoute, useList } from "@hooks";
-import { Filters, Sort, ResourceRouterParams } from "@interfaces";
+import { Filters, Sort, ResourceRouterParams } from "../../../interfaces";
 import {
     stringifyTableParams,
     parseTableParams,

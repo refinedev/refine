@@ -4,7 +4,7 @@ import { EditOutlined } from "@ant-design/icons";
 import { useHistory, useParams } from "react-router-dom";
 
 import { useTranslate } from "@hooks";
-import { ResourceRouterParams } from "@interfaces";
+import { ResourceRouterParams } from "../../../interfaces";
 
 type EditButtonProps = ButtonProps & {
     resourceName?: string;

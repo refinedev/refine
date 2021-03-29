@@ -1,6 +1,6 @@
 import qs, { StringifyOptions } from "query-string";
 
-import { Sort, Filters } from "@interfaces";
+import { Sort, Filters } from "../../interfaces";
 import {
     SorterResult,
     SortOrder,

@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 
 import { useNotification, useTranslate } from "@hooks";
 import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "@interfaces";
+import { IAuthContext } from "../../../interfaces";
 
 export interface ILoginForm {
     username: string;

@@ -1,4 +1,4 @@
-import { IAuthUserReducer } from "@interfaces";
+import { IAuthUserReducer } from "../interfaces";
 import { IResourceReducer } from "./reducers/resource/resource";
 
 export interface IState {

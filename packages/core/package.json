@@ -6,7 +6,7 @@
     "module": "dist/react.esm.js",
     "typings": "dist/index.d.ts",
     "scripts": {
-        "start": "tsdx watch --tsconfig tsconfig.json --verbose --noClean",
+        "start": "tsdx watch --tsconfig tsconfig.json --verbose",
         "build": "tsdx build --tsconfig tsconfig.json",
         "test": "tsdx test --passWithNoTests --runInBand",
         "lint": "tsdx lint",

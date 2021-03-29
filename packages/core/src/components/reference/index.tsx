@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Sort } from "@interfaces";
+import { Sort } from "../../interfaces";
 import { useList } from "@hooks";
 
 export interface ReferenceProps {

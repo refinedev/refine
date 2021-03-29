@@ -13,7 +13,7 @@ import {
     DeleteOneResponse,
     ResourceRouterParams,
     MutationMode,
-} from "@interfaces";
+} from "../../../interfaces";
 
 export type DeleteButtonProps = ButtonProps & {
     resourceName?: string;

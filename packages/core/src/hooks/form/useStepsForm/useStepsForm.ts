@@ -4,7 +4,7 @@ import {
 } from "sunflower-antd";
 
 import { useForm } from "@hooks";
-import { StepsFormSF } from "@interfaces";
+import { StepsFormSF } from "../../../interfaces";
 
 import { useEditFormProps, useCreateFormProps } from "..";
 

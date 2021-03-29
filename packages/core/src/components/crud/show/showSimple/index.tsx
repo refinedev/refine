@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Card, CardProps, Col, Typography } from "antd";
 import humanizeString from "humanize-string";
 
-import { BaseRecord } from "@interfaces";
+import { BaseRecord } from "../../../../interfaces";
 
 const { Title } = Typography;
 
