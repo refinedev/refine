@@ -1,19 +1,31 @@
-import React, { useState } from "react";
-import { useInterval } from "react-use";
-
+import React, { useEffect, useState } from "react";
 import { Progress } from "antd";
 
-export const NotificationProgress: React.FC<{ duration: number }> = ({
-    duration,
-}) => {
-    const [seconds, setSeconds] = useState(duration);
+import { ActionTypes } from "@contexts/notification";
+import { INotification } from "@interfaces/notification";
 
-    useInterval(
-        () => {
-            setSeconds((s) => s - 1);
-        },
-        seconds === 0 ? null : 1000,
-    );
+export const NotificationProgress: React.FC<{
+    notificationItem: INotification;
+    dispatch: any;
+}> = ({ notificationItem, dispatch }) => {
+    const [duration] = useState(notificationItem.seconds);
+    const seconds = notificationItem.seconds;
+
+    useEffect(() => {
+        if (seconds > 0) {
+            setTimeout(() => {
+                dispatch({
+                    type: ActionTypes.DECREASE_NOTIFICATION_SECOND,
+                    payload: {
+                        id: notificationItem.id,
+                        seconds: notificationItem.seconds,
+                    },
+                });
+            }, 1000);
+        } else {
+            return;
+        }
+    }, [seconds]);
 
     return (
         <Progress
@@ -24,7 +36,6 @@ export const NotificationProgress: React.FC<{ duration: number }> = ({
             }
             width={50}
             strokeColor="#1890ff"
-            style={{ color: "red" }}
         />
     );
 };

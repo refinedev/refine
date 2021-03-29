@@ -23,80 +23,77 @@ export const Notification: React.FC<{
             </span>
         );
 
+        notificationDispatch({
+            type: ActionTypes.REMOVE,
+            payload: { id: id },
+        });
+
         notification.open({
             key: `${id}-${resource}-undo`,
             icon: <Progress type="circle" percent={100} width={50} />,
             message,
             description,
+            duration: 3,
         });
     };
 
     const cancelNotification = () => {
-        const newNotifications = notifications
-            .map((notificationItem: INotification) => {
-                if (notificationItem.isRunning === true) {
-                    if (notificationItem.seconds === 0) {
-                        successNotification(
-                            notificationItem.id,
-                            notificationItem.resource,
-                        );
-                    }
-                    const message = (
-                        <span style={{ marginLeft: 20 }}>
-                            You have 5 seconds to undo
-                        </span>
+        notifications.forEach((notificationItem: INotification) => {
+            if (notificationItem.isRunning === true) {
+                if (notificationItem.seconds === 0) {
+                    successNotification(
+                        notificationItem.id,
+                        notificationItem.resource,
                     );
 
-                    notification.info({
-                        key: `${notificationItem.id}-${notificationItem.resource}-undo`,
-                        icon: (
-                            <NotificationProgress
-                                duration={notificationItem.seconds as number}
-                            />
-                        ),
-                        message,
-                        btn: (
-                            <Button
-                                onClick={() => {
-                                    notificationDispatch({
-                                        type: ActionTypes.REMOVE,
-                                        payload: { id: notificationItem.id },
-                                    });
-                                    notificationItem.cancelMutation();
-                                    notification.close(
-                                        `${notificationItem.id}-${notificationItem.resource}-undo`,
-                                    );
-                                }}
-                            >
-                                Undo
-                            </Button>
-                        ),
-                        duration: notificationItem.seconds,
-                        onClose: () => {
-                            notificationDispatch({
-                                type: ActionTypes.REMOVE,
-                                payload: { id: notificationItem.id },
-                            });
-                            successNotification(
-                                notificationItem.id,
-                                notificationItem.resource,
-                            );
-                        },
-                    });
+                    return;
                 }
-                return notificationItem;
-            })
-            .filter((item) => item.isRunning !== false);
+                const message = (
+                    <span style={{ marginLeft: 20 }}>
+                        You have 5 seconds to undo
+                    </span>
+                );
 
-        notificationDispatch({
-            type: ActionTypes.UPDATE_ALL,
-            payload: newNotifications,
+                notification.open({
+                    key: `${notificationItem.id}-${notificationItem.resource}-undo`,
+                    icon: (
+                        <NotificationProgress
+                            dispatch={notificationDispatch}
+                            notificationItem={notificationItem}
+                        />
+                    ),
+                    message,
+                    btn: (
+                        <Button
+                            onClick={() => {
+                                notificationDispatch({
+                                    type: ActionTypes.REMOVE,
+                                    payload: { id: notificationItem.id },
+                                });
+                                notificationItem.cancelMutation();
+                                notification.close(
+                                    `${notificationItem.id}-${notificationItem.resource}-undo`,
+                                );
+                            }}
+                        >
+                            Undo
+                        </Button>
+                    ),
+                    duration: 0,
+                    onClose: () => {
+                        notificationDispatch({
+                            type: ActionTypes.REMOVE,
+                            payload: { id: notificationItem.id },
+                        });
+                    },
+                });
+            }
         });
     };
 
     useEffect(() => {
         cancelNotification();
-    }, [notifications.length]);
+    }, [notifications]);
 
     return null;
 };

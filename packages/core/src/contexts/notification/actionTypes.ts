@@ -1,5 +1,5 @@
 export enum ActionTypes {
     ADD = "ADD",
     REMOVE = "REMOVE",
-    UPDATE_ALL = "UPDATE_ALL",
+    DECREASE_NOTIFICATION_SECOND = "DECREASE_NOTIFICATION_SECOND",
 }

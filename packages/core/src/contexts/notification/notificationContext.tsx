@@ -28,8 +28,16 @@ export const notificationReducer = (state: INotification[], action: any) => {
                 (notificationItem: INotification) =>
                     notificationItem.id !== action.payload.id,
             );
-        case ActionTypes.UPDATE_ALL:
-            return action.payload;
+        case ActionTypes.DECREASE_NOTIFICATION_SECOND:
+            return state.map((notificationItem: INotification) => {
+                if (notificationItem.id === action.payload.id) {
+                    return {
+                        ...notificationItem,
+                        seconds: action.payload.seconds - 1,
+                    };
+                }
+                return notificationItem;
+            });
         default:
             return state;
     }
