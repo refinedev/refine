@@ -31,9 +31,8 @@
         "printWidth": 80,
         "tabWidth": 4
     },
-    "name": "readmin",
+    "name": "readmin-repo",
     "author": "Pankod",
-    "module": "dist/tsdx.esm.js",
     "devDependencies": {
         "@types/react": "^17.0.1",
         "@types/react-dom": "^17.0.0",
