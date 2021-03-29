@@ -1,7 +1,6 @@
 import { useTable, useEditForm } from "@hooks";
 import { useTableProps } from "../useTable";
 import { useEditFormProps } from "../../form/useEditForm";
-import { useEffect } from "react";
 
 type useEditableTableProps = useTableProps & useEditFormProps;
 
