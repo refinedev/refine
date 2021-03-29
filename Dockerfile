@@ -12,8 +12,6 @@ COPY . /opt/app
 
 RUN npm run bootstrap
 
-RUN npm run build
-
 #Example 
 WORKDIR /opt/app/example
 
