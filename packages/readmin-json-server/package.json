@@ -55,6 +55,6 @@
   "dependencies": {
     "axios": "^0.21.1",
     "query-string": "^7.0.0",
-    "readmin-core": "file:../core"
+    "readmin-core": "file:../readmin"
   }
 }
