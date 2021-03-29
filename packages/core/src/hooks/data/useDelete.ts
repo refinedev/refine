@@ -1,7 +1,13 @@
 import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
 
+import {
+    useMutationMode,
+    useCancelNotification,
+    useCacheQueries,
+} from "@hooks";
 import { DataContext } from "@contexts/data";
+import { ActionTypes } from "@contexts/notification";
 import {
     DeleteOneResponse,
     IDataContext,
@@ -12,12 +18,6 @@ import {
     BaseRecord,
     ContextQuery,
 } from "@interfaces";
-
-import {
-    useMutationMode,
-    // useCancelNotification,
-    useCacheQueries,
-} from "@hooks";
 
 type DeleteParams = {
     id: string | number;
@@ -38,7 +38,7 @@ export const useDelete = (
     const queryClient = useQueryClient();
     const { deleteOne } = useContext<IDataContext>(DataContext);
     const { mutationMode: mutationModeContext } = useMutationMode();
-    // const cancelNotification = useCancelNotification();
+    const { notificationDispatch } = useCancelNotification();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
@@ -73,7 +73,10 @@ export const useDelete = (
                     if (onCancel) {
                         onCancel(cancelMutation);
                     } else {
-                        // cancelNotification(cancelMutation);
+                        notificationDispatch({
+                            type: ActionTypes.REMOVE,
+                            payload: { id: id },
+                        });
                     }
                 },
             );
