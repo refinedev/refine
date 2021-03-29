@@ -1,26 +1,26 @@
 // reducers
-export * from "@interfaces/reducers/auth/user";
-export * from "@interfaces/reducers/resource/resource";
+export * from "../interfaces/reducers/auth/user";
+export * from "../interfaces/reducers/resource/resource";
 
 // redux state
-export * from "@interfaces/istate";
+export * from "../interfaces/istate";
 
 // contexts
-export * from "@contexts/data/IDataContext";
-export * from "@contexts/auth/IAuthContext";
-export * from "@contexts/translation/ITranslationContext";
+export * from "../contexts/data/IDataContext";
+export * from "../contexts/auth/IAuthContext";
+export * from "../contexts/translation/ITranslationContext";
 
 // field
-export * from "@interfaces/field";
+export * from "../interfaces/field";
 
 // match
-export * from "@interfaces/match";
+export * from "../interfaces/match";
 
 // mutationMode
 export * from "./mutationMode";
 
 // resourceRouterParams
-export * from "@interfaces/resourceRouterParams";
+export * from "../interfaces/resourceRouterParams";
 
 // redirection
-export * from "@interfaces/redirectionTypes";
+export * from "../interfaces/redirectionTypes";

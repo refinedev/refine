@@ -64,10 +64,7 @@ export interface IDataContext {
         resource: string,
         ids: Identifier[],
     ) => Promise<GetManyResponse<TData>>;
-    getOne: <TData extends BaseRecord = BaseRecord>(
-        resource: string,
-        id: Identifier,
-    ) => Promise<GetOneResponse<TData>>;
+    getOne: (resource: string, id: Identifier) => Promise<GetOneResponse>;
     create: <TParams extends BaseRecord = BaseRecord>(
         resource: string,
         params: TParams,

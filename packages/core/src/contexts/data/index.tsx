@@ -1,13 +1,23 @@
 import React from "react";
 
-import jsonServerDataProvider from "@dataProviders/jsonServer";
-
 import { IDataContext } from "@interfaces";
 
-const defaultApiUrl = "https://readmin-fake-rest.pankod.com";
+const defaultDataProvider = (): IDataContext => {
+    return {
+        create: () => Promise.resolve({ data: { id: 1 } }),
+        deleteOne: () => Promise.resolve({ data: { id: 1 } }),
+        deleteMany: () => Promise.resolve({ data: [] }),
+        getList: () => Promise.resolve({ data: [], total: 0 }),
+        getMany: () => Promise.resolve({ data: [] }),
+        getOne: () => Promise.resolve({ data: { id: 1 } }),
+        update: () => Promise.resolve({ data: { id: 1 } }),
+        updateMany: () => Promise.resolve({ data: [] }),
+        getApiUrl: () => "",
+    };
+};
 
 export const DataContext = React.createContext<IDataContext>(
-    jsonServerDataProvider(defaultApiUrl),
+    defaultDataProvider(),
 );
 
 export const DataContextProvider: React.FC<IDataContext> = ({
