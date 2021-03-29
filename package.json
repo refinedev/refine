@@ -4,7 +4,6 @@
     "engines": {
         "node": ">=10"
     },
-    "private": true,
     "scripts": {
         "lerna": "lerna",
         "bootstrap": "cd packages/readmin && npm i && npm run build && cd ../.. && npm run lerna bootstrap",
