@@ -11,5 +11,9 @@
       "./node_modules/@types",
       "./types"
     ]
+  },
+  "paths": {
+    "readmin": ["packages/readmin/src"],
+    "readmin-json-server": ["packages/readmin-json-server/src"]
   }
 }
