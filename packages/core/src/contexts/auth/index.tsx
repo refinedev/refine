@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { IAuthContext } from "@interfaces";
+import { IAuthContext } from "../../interfaces";
 
 const defaultProvider: IAuthContext = {
     login: () => Promise.resolve(),

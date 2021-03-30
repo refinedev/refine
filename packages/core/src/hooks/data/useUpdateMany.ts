@@ -7,7 +7,7 @@ import {
     Identifier,
     BaseRecord,
     UpdateManyResponse,
-} from "@interfaces";
+} from "../../interfaces";
 
 type UseUpdateManyReturnType<
     T extends BaseRecord = BaseRecord

@@ -7,7 +7,7 @@ import {
     BaseRecord,
     Identifier,
     GetManyResponse,
-} from "@interfaces";
+} from "../../interfaces";
 
 export const useMany = <TData extends BaseRecord = BaseRecord>(
     resource: string,

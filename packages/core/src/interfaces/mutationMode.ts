@@ -1,4 +1,4 @@
-import { GetListResponse, GetOneResponse } from "@interfaces";
+import { GetListResponse, GetOneResponse } from "../interfaces";
 import { QueryKey } from "react-query";
 
 export type MutationMode = "pessimistic" | "optimistic" | "undoable";

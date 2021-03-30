@@ -11,7 +11,7 @@ import {
     Filters,
     IDataContext,
     BaseRecord,
-} from "@interfaces";
+} from "../../../interfaces";
 import { DataContext } from "@contexts/data";
 import { CSVDownloadProps } from "./csvDownload.interface";
 

@@ -5,7 +5,7 @@ import pluralize from "pluralize";
 import { SaveOutlined } from "@ant-design/icons";
 
 import { useResourceWithRoute, useTranslate } from "@hooks";
-import { ResourceRouterParams } from "@interfaces";
+import { ResourceRouterParams } from "../../../interfaces";
 
 export interface CreateProps {
     title?: string;

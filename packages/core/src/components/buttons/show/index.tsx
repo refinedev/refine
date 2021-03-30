@@ -4,7 +4,7 @@ import { EyeOutlined } from "@ant-design/icons";
 import { useHistory, useParams } from "react-router-dom";
 
 import { useTranslate } from "@hooks";
-import { ResourceRouterParams } from "@interfaces";
+import { ResourceRouterParams } from "../../../interfaces";
 
 type ShowButtonProps = ButtonProps & {
     resourceName?: string;

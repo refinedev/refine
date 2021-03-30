@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { useResourceWithRoute, useTranslate } from "@hooks";
 import { OptionalComponent } from "@definitions";
 import { CreateButton } from "@components";
-import { ResourceRouterParams } from "@interfaces";
+import { ResourceRouterParams } from "../../../interfaces";
 
 export interface ListProps {
     resourceName: string;

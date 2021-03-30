@@ -26,12 +26,6 @@
             "@pages": [
                 "src/pages"
             ],
-            "@interfaces/*": [
-                "src/interfaces/*"
-            ],
-            "@interfaces": [
-                "src/interfaces"
-            ],
             "@contexts/*": [
                 "src/contexts/*"
             ],

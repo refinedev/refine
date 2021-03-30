@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Card, CardProps, Col, Row, Space } from "antd";
 import pluralize from "pluralize";
 
-import { BaseRecord, ResourceRouterParams } from "@interfaces";
+import { BaseRecord, ResourceRouterParams } from "../../../interfaces";
 import { useOne, useResourceWithRoute } from "@hooks";
 import {
     EditButton,
