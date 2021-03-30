@@ -117,10 +117,12 @@ export const useEditForm = ({
                             return onMutationSuccess(...args);
                         }
 
-                        notification.success({
-                            message: "Successful",
-                            description: `Id:${id} ${resource.name} edited`,
-                        });
+                        if (mutationMode !== "undoable") {
+                            notification.success({
+                                message: "Successful",
+                                description: `Id:${id} ${resource.name} edited`,
+                            });
+                        }
 
                         if (mutationMode === "pessimistic") {
                             setEditId(undefined);

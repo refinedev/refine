@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 import { DataContext } from "@contexts/data";
+import { ActionTypes } from "@contexts/notification";
 import {
     BaseRecord,
     IDataContext,
     UpdateResponse,
-    GetListResponse,
     QueryResponse,
     MutationMode,
     Context as UpdateContext,
@@ -38,7 +38,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
     const queryClient = useQueryClient();
     const { update } = useContext<IDataContext>(DataContext);
     const { mutationMode: mutationModeContext } = useMutationMode();
-    const cancelNotification = useCancelNotification();
+    const { notificationDispatch } = useCancelNotification();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
@@ -72,7 +72,15 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                     if (onCancel) {
                         onCancel(cancelMutation);
                     } else {
-                        cancelNotification(cancelMutation);
+                        notificationDispatch({
+                            type: ActionTypes.ADD,
+                            payload: {
+                                id: id,
+                                resource: resource,
+                                cancelMutation: cancelMutation,
+                                seconds: 5,
+                            },
+                        });
                     }
                 },
             );

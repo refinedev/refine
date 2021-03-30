@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { BrowserRouter as Router, Route, RouteProps } from "react-router-dom";
+import { BrowserRouter as Router, RouteProps } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "antd/dist/antd.css";
@@ -12,6 +12,7 @@ import {
 } from "@contexts/translation";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { AdminContextProvider } from "@contexts/admin";
+import { NotificationContextProvider } from "@contexts/notification";
 import { RouteProvider, ReadyPage as DefaultReadyPage } from "@components";
 import { OptionalComponent } from "@definitions";
 import {
@@ -91,23 +92,27 @@ export const Admin: React.FC<AdminProps> = ({
                 <DataContextProvider {...dataProvider}>
                     <ResourceContextProvider resources={resources}>
                         <TranslationContextProvider i18nProvider={i18nProvider}>
-                            <AdminContextProvider
-                                mutationMode={mutationMode}
-                                warnWhenUnsavedChanges={warnWhenUnsavedChanges}
-                                syncWithLocation={syncWithLocation}
-                            >
-                                <Router>
-                                    <RouteProvider
-                                        resources={resources}
-                                        catchAll={catchAll}
-                                        title={title}
-                                        dashboard={dashboard}
-                                        loginPage={loginPage}
-                                        ready={ready}
-                                        customRoutes={routes}
-                                    />
-                                </Router>
-                            </AdminContextProvider>
+                            <NotificationContextProvider>
+                                <AdminContextProvider
+                                    mutationMode={mutationMode}
+                                    warnWhenUnsavedChanges={
+                                        warnWhenUnsavedChanges
+                                    }
+                                    syncWithLocation={syncWithLocation}
+                                >
+                                    <Router>
+                                        <RouteProvider
+                                            resources={resources}
+                                            catchAll={catchAll}
+                                            title={title}
+                                            dashboard={dashboard}
+                                            loginPage={loginPage}
+                                            ready={ready}
+                                            customRoutes={routes}
+                                        />
+                                    </Router>
+                                </AdminContextProvider>
+                            </NotificationContextProvider>
                         </TranslationContextProvider>
                     </ResourceContextProvider>
                 </DataContextProvider>
