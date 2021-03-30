@@ -1,3 +1,6 @@
 node_modules
 example/node_modules
 example/package-lock.json
+packages/core/node_modules
+packages/json-server/node_modules
+
