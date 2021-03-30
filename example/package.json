@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@craco/craco": "^6.1.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -22,7 +21,11 @@
     "react-scripts": "4.0.2",
     "showdown": "^1.9.1",
     "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "readmin": "../packages/core",
+    "readmin-json-server": "../packages/json-server",
+    "react": "../node_modules/react",
+    "react-dom": "../node_modules/react-dom"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -44,7 +47,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
-    "@types/showdown": "^1.9.3",
-    "craco-alias": "^2.2.0"
+    "@types/showdown": "^1.9.3"
   }
 }
