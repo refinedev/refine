@@ -22,7 +22,7 @@ import {
 export type useCreateFormProps = {
     onMutationSuccess?: (data: any, variables: any, context: any) => void;
     onMutationError?: (error: any, variables: any, context: any) => void;
-    mutationModeProp?: MutationMode;
+    mutationMode?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
     redirect?: RedirectionTypes;
@@ -126,7 +126,7 @@ export const useCreateForm = ({
             onKeyUp,
             onValuesChange,
         },
-        isLoading,
         saveButtonProps,
+        formLoading: isLoading,
     };
 };

@@ -22,12 +22,12 @@ export const CategoryList = (props: { resourceName: string }) => {
         tableProps,
         formProps,
         isEditing,
-        saveEditButtonProps,
+        saveButtonProps,
         editButtonProps,
         cancelButtonProps,
         setEditId,
     } = useEditableTable({
-        mutationModeProp: "undoable",
+        mutationMode: "undoable",
         initialPageSize: 10,
     });
     return (
@@ -90,7 +90,7 @@ export const CategoryList = (props: { resourceName: string }) => {
                                 return (
                                     <Space>
                                         <Button
-                                            {...saveEditButtonProps}
+                                            {...saveButtonProps}
                                             size="small"
                                         >
                                             Save

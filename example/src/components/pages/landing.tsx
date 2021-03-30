@@ -33,16 +33,15 @@ export const LandingList = (props: any) => {
     const {
         modalProps,
         formProps,
-        isLoading: isLoadingFormData,
-        isFetching,
         saveButtonProps,
         show,
         close,
         editId,
         deleteButtonProps,
+        formLoading,
     } = useModalForm({
         action: "edit",
-        mutationMode: "optimistic",
+        mutationMode: "pessimistic",
         warnWhenUnsavedChanges: true,
     });
 
@@ -110,7 +109,7 @@ export const LandingList = (props: any) => {
                     onModalClose={close}
                     saveButtonProps={{
                         ...saveButtonProps,
-                        disabled: isLoading || isLoadingFormData || isFetching,
+                        disabled: isLoading || formLoading,
                     }}
                     deleteButtonProps={deleteButtonProps}
                 >
@@ -193,12 +192,7 @@ export const LandingCreate = (props: any) => {
 export const LandingEdit = (props: any) => {
     const translate = useTranslate();
     const { isLoading } = useFileUploadState();
-    const {
-        formProps,
-        isLoading: isLoadingFormData,
-        isFetching,
-        saveButtonProps,
-    } = useForm({
+    const { formProps, saveButtonProps, formLoading } = useForm({
         submitOnEnter: false,
     });
 
@@ -207,7 +201,7 @@ export const LandingEdit = (props: any) => {
             {...props}
             saveButtonProps={{
                 ...saveButtonProps,
-                disabled: isLoading || isLoadingFormData || isFetching,
+                disabled: isLoading || formLoading,
             }}
         >
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">

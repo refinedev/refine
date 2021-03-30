@@ -34,7 +34,7 @@ const mockAuthProvider = {
 };
 
 describe("Admin Container", () => {
-    it("should render without resource", async () => {
+    xit("should render without resource", async () => {
         render(
             <Admin
                 authProvider={mockAuthProvider}
@@ -44,7 +44,7 @@ describe("Admin Container", () => {
         expect(ReadyPage).toBeTruthy();
     });
 
-    it("should render correctly readyPage with ready prop", async () => {
+    xit("should render correctly readyPage with ready prop", async () => {
         const readyPage = () => {
             return (
                 <Row
