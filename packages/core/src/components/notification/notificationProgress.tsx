@@ -6,7 +6,7 @@ import { INotification } from "../../interfaces";
 
 export const NotificationProgress: React.FC<{
     notificationItem: INotification;
-    dispatch: any;
+    dispatch: (action: object) => void;
 }> = ({ notificationItem, dispatch }) => {
     const [duration] = useState(notificationItem.seconds);
     const seconds = notificationItem.seconds;
