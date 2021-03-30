@@ -29,11 +29,11 @@ import {
     EditButton,
     DeleteButton,
     ShowButton,
+    SaveButton,
     useStepsForm,
     CreateButton,
     ExportButton,
     getDefaultSortOrder,
-    Icons,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -392,15 +392,11 @@ export const PostCreate = (props: any) => {
                         </Button>
                     )}
                     {current === formList.length - 1 && (
-                        <Button
+                        <SaveButton
                             style={{ marginRight: 10 }}
-                            type="primary"
-                            icon={<Icons.SaveOutlined />}
                             loading={isLoading || formLoading}
                             onClick={() => submit()}
-                        >
-                            {translate("common:buttons.save", "Save")}
-                        </Button>
+                        />
                     )}
                 </>
             }
@@ -616,16 +612,12 @@ export const PostEdit = (props: any) => {
                         </Button>
                     )}
                     {current === formList.length - 1 && (
-                        <Button
+                        <SaveButton
                             style={{ marginRight: 10 }}
-                            type="primary"
-                            icon={<Icons.SaveOutlined />}
                             loading={isLoading || formLoading}
                             onClick={() => submit()}
                             disabled={formLoading}
-                        >
-                            {translate("common:buttons.save", "Save")}
-                        </Button>
+                        />
                     )}
                 </>
             }
