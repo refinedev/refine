@@ -33,7 +33,7 @@ type SaveButtonProps = {
 export type useEditFormProps = {
     onMutationSuccess?: (data: any, variables: any, context: any) => void;
     onMutationError?: (error: any, variables: any, context: any) => void;
-    mutationModeProp?: MutationMode;
+    mutationMode?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
     redirect?: RedirectionTypes;
@@ -42,7 +42,7 @@ export type useEditFormProps = {
 export const useEditForm = ({
     onMutationSuccess,
     onMutationError,
-    mutationModeProp,
+    mutationMode: mutationModeProp,
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect = "list",
@@ -73,18 +73,17 @@ export const useEditForm = ({
         id: idFromRoute,
         action,
     } = useParams<ResourceRouterParams>();
-
     const isEdit = !!editId || action === "edit";
 
     const resource = useResourceWithRoute(routeResourceName);
 
     const id = editId?.toString() ?? idFromRoute;
 
-    const getDataQueryResult = useOne(resource.name, id, {
+    const queryResult = useOne(resource.name, id, {
         enabled: isEdit,
     });
 
-    const { data, isLoading, isFetching } = getDataQueryResult;
+    const { data, isFetching } = queryResult;
 
     React.useEffect(() => {
         form.setFieldsValue({
@@ -95,12 +94,12 @@ export const useEditForm = ({
         };
     }, [data, id, isFetching]);
 
-    const {
-        mutate,
-        isLoading: isLoadingMutation,
-        isSuccess: isSuccessMutation,
-        reset: resetMutation,
-    } = useUpdate(resource.name, mutationMode);
+    const mutationResult = useUpdate(resource.name, mutationMode);
+
+    const { mutate, isLoading: isLoadingMutation } = mutationResult;
+
+    const formLoading = isFetching || isLoadingMutation;
+
     const notification = useNotification();
 
     const handleSubmitWithRedirect = useRedirectionAfterSubmission();
@@ -172,11 +171,11 @@ export const useEditForm = ({
     };
 
     const saveButtonProps: SaveButtonProps = {
-        disabled: isLoading || isFetching,
+        disabled: formLoading,
         onClick: () => {
             form.submit();
         },
-        loading: isLoadingMutation || isFetching,
+        loading: formLoading,
     };
 
     return {
@@ -187,16 +186,13 @@ export const useEditForm = ({
             onKeyUp,
             onValuesChange,
         },
-        isLoading, // TODO: Delete and use getDataQueryResult.
-        isFetching,
         editId,
         setEditId,
         saveButtonProps,
-        isLoadingMutation,
-        isSuccessMutation,
-        resetMutation,
-        getDataQueryResult: getDataQueryResult as QueryObserverResult<
+        queryResult: queryResult as QueryObserverResult<
             GetOneResponse<BaseRecord>
         >,
+        mutationResult,
+        formLoading,
     };
 };

@@ -10,13 +10,12 @@ import {
     useTranslate,
     useWarnAboutChange,
 } from "@hooks";
-import { MutationMode, ModalFormSF } from "../../../interfaces";
+import { ModalFormSF } from "../../../interfaces";
 import { useEditFormProps } from "../useEditForm";
 import { useCreateFormProps } from "../useCreateForm";
 
 type useModalFormConfig = {
     action: "show" | "edit" | "create";
-    mutationMode?: MutationMode;
 };
 export type useModalFormProps = (useEditFormProps | useCreateFormProps) &
     UseModalFormConfigSF &
@@ -25,20 +24,19 @@ export const useModalForm = ({
     mutationMode: mutationModeProp,
     ...rest
 }: useModalFormProps) => {
+    const useFormProps = useForm({
+        ...rest,
+        mutationMode: mutationModeProp,
+    });
+
     const {
         form,
         formProps,
         setEditId,
         editId,
-        isLoading,
-        isFetching,
-        isLoadingMutation,
-        isSuccessMutation,
-        resetMutation,
-    } = useForm({
-        ...rest,
-        mutationModeProp,
-    });
+        formLoading,
+        mutationResult,
+    } = useFormProps;
 
     const translate = useTranslate();
 
@@ -59,6 +57,12 @@ export const useModalForm = ({
     const { mutationMode: mutationModeContext } = useMutationMode();
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
+    const {
+        isLoading: isLoadingMutation,
+        isSuccess: isSuccessMutation,
+        reset: resetMutation,
+    } = mutationResult ?? {};
+
     useEffect(() => {
         if (visible && mutationMode === "pessimistic") {
             if (isSuccessMutation && !isLoadingMutation) {
@@ -69,7 +73,7 @@ export const useModalForm = ({
     }, [isSuccessMutation, isLoadingMutation]);
 
     const saveButtonPropsSF = {
-        disabled: isLoading,
+        disabled: formLoading,
         onClick: () => {
             modalForm.submit();
 
@@ -77,7 +81,7 @@ export const useModalForm = ({
                 close();
             }
         },
-        loading: isLoadingMutation || isFetching,
+        loading: formLoading,
     };
 
     const deleteButtonProps = {
@@ -89,6 +93,7 @@ export const useModalForm = ({
     };
 
     return {
+        ...useFormProps,
         ...sunflowerUseModal,
         show: (id: string | number) => {
             setEditId && setEditId(id);
@@ -125,10 +130,8 @@ export const useModalForm = ({
                 sunflowerUseModal.close();
             },
         },
-        isLoading: isLoading,
-        isFetching,
         saveButtonProps: saveButtonPropsSF,
-        editId,
         deleteButtonProps,
+        formLoading,
     };
 };

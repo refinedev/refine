@@ -41,7 +41,7 @@ describe("useEditableTable Hook", () => {
         });
 
         await waitFor(() => {
-            return !result.current.isLoading;
+            return !result.current.formLoading;
         });
 
         expect(result.current.form.getFieldValue("title")).toEqual(
