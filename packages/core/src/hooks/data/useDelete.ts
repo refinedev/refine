@@ -113,7 +113,7 @@ export const useDelete = (
                                     data: (data ?? []).filter(
                                         (record: BaseRecord) =>
                                             !(
-                                                record.id.toString() ===
+                                                record.id!.toString() ===
                                                 deleteParams.id.toString()
                                             ),
                                     ),

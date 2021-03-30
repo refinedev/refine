@@ -75,7 +75,7 @@ export const useCreateForm = ({
                         description: `New ${resource.name} created!`,
                     });
 
-                    const idFromRoute = data.data.id;
+                    const idFromRoute = data.data.id!;
 
                     handleSubmitWithRedirect({
                         redirect,
