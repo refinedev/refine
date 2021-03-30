@@ -80,7 +80,7 @@ export const Notification: React.FC<{
                         </Button>
                     ),
                     duration: 0,
-                    closeIcon: null,
+                    closeIcon: <></>,
                 });
             }
         });
