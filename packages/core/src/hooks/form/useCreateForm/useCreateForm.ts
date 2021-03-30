@@ -126,7 +126,7 @@ export const useCreateForm = ({
             onKeyUp,
             onValuesChange,
         },
-        isLoading,
         saveButtonProps,
+        formLoading: isLoading,
     };
 };

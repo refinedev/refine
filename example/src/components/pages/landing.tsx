@@ -33,16 +33,15 @@ export const LandingList = (props: any) => {
     const {
         modalProps,
         formProps,
-        isLoading: isLoadingFormData,
-        isFetching,
         saveButtonProps,
         show,
         close,
         editId,
         deleteButtonProps,
+        formLoading,
     } = useModalForm({
         action: "edit",
-        mutationMode: "optimistic",
+        mutationMode: "pessimistic",
         warnWhenUnsavedChanges: true,
     });
 
@@ -110,7 +109,7 @@ export const LandingList = (props: any) => {
                     onModalClose={close}
                     saveButtonProps={{
                         ...saveButtonProps,
-                        disabled: isLoading || isLoadingFormData || isFetching,
+                        disabled: isLoading || formLoading,
                     }}
                     deleteButtonProps={deleteButtonProps}
                 >

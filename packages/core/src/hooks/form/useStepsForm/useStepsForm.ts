@@ -12,7 +12,7 @@ export type useStepsFormProps = (useCreateFormProps | useEditFormProps) &
     UseStepsFormConfig;
 
 export const useStepsForm = (props: useStepsFormProps) => {
-    const { form, formProps, isFetching } = useForm({ ...props });
+    const { form, formProps, formLoading } = useForm({ ...props });
 
     const stepsPropsSunflower: StepsFormSF = useStepsFormSF({
         ...props,
@@ -29,6 +29,6 @@ export const useStepsForm = (props: useStepsFormProps) => {
             onValuesChange: formProps?.onValuesChange,
             onKeyUp: formProps?.onKeyUp,
         },
-        isFetching,
+        formLoading,
     };
 };

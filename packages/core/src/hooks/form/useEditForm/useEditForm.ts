@@ -73,7 +73,6 @@ export const useEditForm = ({
         id: idFromRoute,
         action,
     } = useParams<ResourceRouterParams>();
-
     const isEdit = !!editId || action === "edit";
 
     const resource = useResourceWithRoute(routeResourceName);
@@ -104,6 +103,8 @@ export const useEditForm = ({
     const notification = useNotification();
 
     const handleSubmitWithRedirect = useRedirectionAfterSubmission();
+
+    const formLoading = isFetching || isLoadingMutation;
 
     const onFinish = (values: BaseRecord) => {
         setWarnWhen(false);
@@ -172,11 +173,11 @@ export const useEditForm = ({
     };
 
     const saveButtonProps: SaveButtonProps = {
-        disabled: isLoading || isFetching,
+        disabled: formLoading,
         onClick: () => {
             form.submit();
         },
-        loading: isLoadingMutation || isFetching,
+        loading: formLoading,
     };
 
     return {
@@ -198,5 +199,6 @@ export const useEditForm = ({
         getDataQueryResult: getDataQueryResult as QueryObserverResult<
             GetOneResponse<BaseRecord>
         >,
+        formLoading,
     };
 };

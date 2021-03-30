@@ -35,6 +35,7 @@ export const useModalForm = ({
         isLoadingMutation,
         isSuccessMutation,
         resetMutation,
+        formLoading,
     } = useForm({
         ...rest,
         mutationModeProp,
@@ -69,7 +70,7 @@ export const useModalForm = ({
     }, [isSuccessMutation, isLoadingMutation]);
 
     const saveButtonPropsSF = {
-        disabled: isLoading,
+        disabled: formLoading,
         onClick: () => {
             modalForm.submit();
 
@@ -77,7 +78,7 @@ export const useModalForm = ({
                 close();
             }
         },
-        loading: isLoadingMutation || isFetching,
+        loading: formLoading,
     };
 
     const deleteButtonProps = {
@@ -130,5 +131,6 @@ export const useModalForm = ({
         saveButtonProps: saveButtonPropsSF,
         editId,
         deleteButtonProps,
+        formLoading,
     };
 };

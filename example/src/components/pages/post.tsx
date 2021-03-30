@@ -443,10 +443,10 @@ export const PostEdit = (props: any) => {
         submit,
         formLoading,
         formProps,
-        isFetching,
     } = useStepsForm({
         warnWhenUnsavedChanges: true,
         redirect: "show",
+        mutationModeProp: "pessimistic",
     });
 
     const formList = [
@@ -622,7 +622,7 @@ export const PostEdit = (props: any) => {
                             icon={<Icons.SaveOutlined />}
                             loading={isLoading || formLoading}
                             onClick={() => submit()}
-                            disabled={isFetching}
+                            disabled={formLoading}
                         >
                             {translate("common:buttons.save", "Save")}
                         </Button>
