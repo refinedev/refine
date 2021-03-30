@@ -4,15 +4,15 @@ WORKDIR /opt/app
 
 ENV NODE_ENV development
 
-COPY package.json ./
-COPY yarn.lock ./
+COPY package*.json ./
 
-RUN yarn install
+RUN npm install
+RUN npm run lerna bootstrap
 
 COPY . /opt/app
 
 #Example 
-WORKDIR /opt/app/example-parcel
+WORKDIR /opt/app/example
 
 RUN yarn install
 
