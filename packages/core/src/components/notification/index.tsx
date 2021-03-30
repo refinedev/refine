@@ -3,7 +3,7 @@ import { Button, Progress } from "antd";
 
 import { ActionTypes } from "@contexts/notification";
 import { useCancelNotification, useNotification } from "@hooks";
-import { INotification } from "@interfaces";
+import { INotification } from "../../interfaces";
 
 import { NotificationProgress } from "./notificationProgress";
 

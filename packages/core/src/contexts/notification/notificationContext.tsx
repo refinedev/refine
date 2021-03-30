@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 
 import { Notification } from "@components";
 
-import { INotification, INotificationContext } from "@interfaces";
+import { INotification, INotificationContext } from "../../interfaces";
 import { ActionTypes } from "./actionTypes";
 
 export const NotificationContext = React.createContext<INotificationContext>({

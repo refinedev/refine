@@ -1,4 +1,4 @@
-import { INotification } from "@interfaces";
+import { INotification } from "../../interfaces";
 
 export interface INotificationContext {
     notifications: INotification[];

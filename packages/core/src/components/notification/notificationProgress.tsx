@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Progress } from "antd";
 
 import { ActionTypes } from "@contexts/notification";
-import { INotification } from "@interfaces/notification";
+import { INotification } from "../../interfaces";
 
 export const NotificationProgress: React.FC<{
     notificationItem: INotification;
