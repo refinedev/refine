@@ -1,7 +1,7 @@
 import React from "react";
 import get from "lodash/get";
 
-import { RenderFieldProps } from "@interfaces";
+import { RenderFieldProps } from "../../interfaces";
 
 export const renderFieldRecord = ({
     value,

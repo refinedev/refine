@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm as useFormSF } from "sunflower-antd";
-import { Form, FormInstance } from "antd";
+import { Form } from "antd";
 import { useParams } from "react-router-dom";
 
 import {
@@ -14,12 +14,14 @@ import {
 } from "@hooks";
 
 import {
+    MutationMode,
+    FormSF,
     BaseRecord,
     ResourceRouterParams,
     RedirectionTypes,
     GetOneResponse,
-} from "@interfaces";
-import { MutationMode } from "../../../interfaces";
+} from "../../../interfaces";
+
 import { QueryObserverResult } from "react-query";
 
 type SaveButtonProps = {
@@ -36,6 +38,7 @@ export type useEditFormProps = {
     warnWhenUnsavedChanges?: boolean;
     redirect?: RedirectionTypes;
 };
+
 export const useEditForm = ({
     onMutationSuccess,
     onMutationError,
@@ -47,7 +50,7 @@ export const useEditForm = ({
     const [editId, setEditId] = React.useState<string | number>();
 
     const [formAnt] = Form.useForm();
-    const formSF = useFormSF({
+    const formSF: FormSF = useFormSF({
         form: formAnt,
     });
 
@@ -194,7 +197,6 @@ export const useEditForm = ({
         isLoadingMutation,
         isSuccessMutation,
         resetMutation,
-        form: formSF.form as FormInstance,
         getDataQueryResult: getDataQueryResult as QueryObserverResult<
             GetOneResponse<BaseRecord>
         >,

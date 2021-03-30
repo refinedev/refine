@@ -78,7 +78,7 @@ jobs:
           url: 'https://${{ steps.substring-pr-branch-name.outputs.substring }}-readmin.pankod.com'
       - uses: tzkhan/pr-update-action@v2
         with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          repo-token: "${{ secrets.PANKOD_BOT_TOKEN }}"
           base-branch-regex: '[a-z\d-_.\\/]+'
           head-branch-regex: '[a-z\d-_.\\/]+'
           body-template: |

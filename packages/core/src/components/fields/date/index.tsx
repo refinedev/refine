@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
 
-import { BaseFieldProps } from "@interfaces";
+import { BaseFieldProps } from "../../../interfaces";
 import { renderFieldRecord } from "@definitions";
 
 dayjs.extend(LocalizedFormat);

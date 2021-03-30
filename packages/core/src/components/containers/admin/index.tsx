@@ -12,11 +12,15 @@ import {
 } from "@contexts/translation";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { AdminContextProvider } from "@contexts/admin";
+import { NotificationContextProvider } from "@contexts/notification";
 import { RouteProvider, ReadyPage as DefaultReadyPage } from "@components";
 import { OptionalComponent } from "@definitions";
-import { IDataContext, IAuthContext, I18nProvider } from "@interfaces";
-import { MutationMode } from "../../../interfaces";
-import { NotificationContextProvider } from "@contexts/notification";
+import {
+    MutationMode,
+    IDataContext,
+    IAuthContext,
+    I18nProvider,
+} from "../../../interfaces";
 
 export interface AdminProps {
     authProvider: IAuthContext;

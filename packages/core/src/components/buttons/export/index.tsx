@@ -1,17 +1,17 @@
-import React, { FC, useContext, useState, MouseEventHandler } from "react";
+import React, { FC, useContext, useState } from "react";
 import { Button, ButtonProps } from "antd";
 import { ExportOutlined } from "@ant-design/icons";
 import { useParams } from "react-router-dom";
 import { CSVDownload } from "react-csv";
 
-import { useTranslate } from "@hooks";
+import { useResourceWithRoute, useTranslate } from "@hooks";
 import {
     ResourceRouterParams,
     Sort,
     Filters,
     IDataContext,
     BaseRecord,
-} from "@interfaces";
+} from "../../../interfaces";
 import { DataContext } from "@contexts/data";
 import { CSVDownloadProps } from "./csvDownload.interface";
 
@@ -41,7 +41,8 @@ export const ExportButton: FC<ExportButtonProps> = ({
     const [fileReady, setFileReady] = useState(false);
     const [exportData, setExportData] = useState<BaseRecord[]>([]);
 
-    let { resource } = useParams<ResourceRouterParams>();
+    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
+    let { name: resource } = useResourceWithRoute(routeResourceName);
 
     if (resourceName) {
         resource = resourceName;

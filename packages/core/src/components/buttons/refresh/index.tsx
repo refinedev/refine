@@ -4,7 +4,7 @@ import { RedoOutlined } from "@ant-design/icons";
 import { useParams } from "react-router-dom";
 
 import { useOne, useResourceWithRoute, useTranslate } from "@hooks";
-import { ResourceRouterParams } from "@interfaces";
+import { ResourceRouterParams } from "../../../interfaces";
 
 type RefreshButtonProps = ButtonProps & {
     resourceName?: string;

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { stringify } from "query-string";
 
-import { IDataContext } from "@interfaces";
+import { IDataContext } from "../interfaces";
 
 const JsonServer = (apiUrl: string): IDataContext => ({
     getList: async (resource, params) => {

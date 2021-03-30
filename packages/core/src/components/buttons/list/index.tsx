@@ -3,7 +3,7 @@ import { Button, ButtonProps } from "antd";
 import { BarsOutlined } from "@ant-design/icons";
 import { useHistory, useParams, useRouteMatch } from "react-router-dom";
 
-import { MatchRoute, ResourceRouterParams } from "@interfaces";
+import { MatchRoute, ResourceRouterParams } from "../../../interfaces";
 import humanizeString from "humanize-string";
 import { useTranslate } from "@hooks";
 

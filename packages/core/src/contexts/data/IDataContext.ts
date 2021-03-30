@@ -1,12 +1,6 @@
 import { SorterResult } from "antd/lib/table/interface";
 
-export type Identifier = string | number;
-
-export interface BaseRecord {
-    id: Identifier;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    [key: string]: any;
-}
+import { BaseRecord, Identifier } from "../../interfaces";
 
 export interface Pagination {
     current?: number;

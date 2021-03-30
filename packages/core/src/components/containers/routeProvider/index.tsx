@@ -4,7 +4,7 @@ import { Switch, Route, RouteProps, Redirect } from "react-router-dom";
 import { Layout, ErrorComponent } from "@components";
 import { LoginPage as DefaultLoginPage } from "@components";
 import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "@interfaces";
+import { IAuthContext } from "../../../interfaces";
 import { OptionalComponent } from "@definitions";
 import { IResourceItem } from "@contexts/resource";
 

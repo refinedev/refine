@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ITranslationContext } from "@interfaces";
+import { ITranslationContext } from "../../interfaces";
 
 export const defaultProvider: ITranslationContext = {
     i18nProvider: {

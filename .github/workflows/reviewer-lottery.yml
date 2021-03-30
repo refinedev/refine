@@ -10,4 +10,4 @@ jobs:
     - uses: actions/checkout@v1
     - uses: uesteibar/reviewer-lottery@v1
       with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ secrets.PANKOD_BOT_TOKEN }}

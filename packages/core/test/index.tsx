@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
-import { IDataContext, IAuthContext, I18nProvider } from "@interfaces";
+import { IDataContext, IAuthContext, I18nProvider } from "../src/interfaces";
 import { MemoryRouter } from "react-router-dom";
 import {
     defaultProvider,

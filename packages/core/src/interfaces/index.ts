@@ -1,30 +1,41 @@
 // reducers
-export * from "@interfaces/reducers/auth/user";
-export * from "@interfaces/reducers/resource/resource";
+export * from "./reducers/auth/user";
+export * from "./reducers/resource/resource";
 
 // redux state
-export * from "@interfaces/istate";
+export * from "./istate";
 
 // contexts
-export * from "@contexts/data/IDataContext";
-export * from "@contexts/auth/IAuthContext";
-export * from "@contexts/notification/INotificationContext";
-export * from "@contexts/translation/ITranslationContext";
+export * from "../contexts/data/IDataContext";
+export * from "../contexts/auth/IAuthContext";
+export * from "../contexts/translation/ITranslationContext";
+export * from "../contexts/notification/INotificationContext";
 
 // field
-export * from "@interfaces/field";
+export * from "./field";
 
-// field
-export * from "@interfaces/notification";
+// notification
+export * from "./notification";
 
 // match
-export * from "@interfaces/match";
+export * from "./match";
 
 // mutationMode
 export * from "./mutationMode";
 
 // resourceRouterParams
-export * from "@interfaces/resourceRouterParams";
+export * from "./resourceRouterParams";
 
 // redirection
-export * from "@interfaces/redirectionTypes";
+export * from "./redirectionTypes";
+
+// sunflower forms
+export * from "./form";
+
+export type Identifier = string | number;
+
+export type BaseRecord = {
+    id: Identifier;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [key: string]: any;
+};

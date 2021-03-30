@@ -1,4 +1,4 @@
-import { MutationMode } from "@interfaces";
+import { MutationMode } from "../../interfaces";
 
 export interface IAdminContext {
     mutationMode: MutationMode;

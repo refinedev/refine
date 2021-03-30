@@ -17,7 +17,7 @@ import {
     Context as DeleteContext,
     BaseRecord,
     ContextQuery,
-} from "@interfaces";
+} from "../../interfaces";
 
 type DeleteParams = {
     id: string | number;

@@ -2,7 +2,7 @@ import React from "react";
 
 import jsonServerDataProvider from "@dataProviders/jsonServer";
 
-import { IDataContext } from "@interfaces";
+import { IDataContext } from "../../interfaces";
 
 const defaultApiUrl = "https://readmin-fake-rest.pankod.com";
 

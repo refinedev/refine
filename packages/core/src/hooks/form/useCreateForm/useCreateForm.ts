@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm as useFormSF } from "sunflower-antd";
-import { Form, FormInstance } from "antd";
+import { Form } from "antd";
 import { useParams } from "react-router-dom";
 
 import {
@@ -12,11 +12,12 @@ import {
 } from "@hooks";
 
 import {
+    MutationMode,
+    FormSF,
     BaseRecord,
     ResourceRouterParams,
     RedirectionTypes,
-} from "@interfaces";
-import { MutationMode } from "../../../interfaces";
+} from "../../../interfaces";
 
 export type useCreateFormProps = {
     onMutationSuccess?: (data: any, variables: any, context: any) => void;
@@ -34,7 +35,7 @@ export const useCreateForm = ({
     redirect = "edit",
 }: useCreateFormProps) => {
     const [formAnt] = Form.useForm();
-    const formSF = useFormSF({
+    const formSF: FormSF = useFormSF({
         form: formAnt,
     });
 
@@ -127,6 +128,5 @@ export const useCreateForm = ({
         },
         isLoading,
         saveButtonProps,
-        form: formSF.form as FormInstance,
     };
 };
