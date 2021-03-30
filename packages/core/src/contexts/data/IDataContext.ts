@@ -45,7 +45,7 @@ export interface DeleteManyResponse {
 }
 
 export interface IDataContext {
-    getList: <TData extends BaseRecord = BaseRecord>(
+    getList: (
         resource: string,
         params: {
             pagination?: Pagination;
@@ -53,11 +53,11 @@ export interface IDataContext {
             sort?: Sort;
             filters?: Filters;
         },
-    ) => Promise<GetListResponse<TData>>;
-    getMany: <TData extends BaseRecord = BaseRecord>(
+    ) => Promise<GetListResponse<BaseRecord>>;
+    getMany: (
         resource: string,
         ids: Identifier[],
-    ) => Promise<GetManyResponse<TData>>;
+    ) => Promise<GetManyResponse<BaseRecord>>;
     getOne: (resource: string, id: Identifier) => Promise<GetOneResponse>;
     create: <TParams extends BaseRecord = BaseRecord>(
         resource: string,

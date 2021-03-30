@@ -2,7 +2,8 @@ import React from "react";
 import { renderHook } from "@testing-library/react-hooks";
 import { Route } from "react-router-dom";
 
-import { MockJSONServer, TestWrapper, categories } from "@test";
+import { MockJSONServer, TestWrapper } from "@test";
+import { posts } from "@test/dataMocks";
 
 import { useEditableTable } from "./useEditableTable";
 import { act } from "react-dom/test-utils";
@@ -32,12 +33,12 @@ describe("useEditableTable Hook", () => {
             tableProps: { dataSource },
         } = result.current;
 
-        expect(dataSource).toHaveLength(4);
+        expect(dataSource).toHaveLength(2);
 
-        const exampleCategory = categories[0];
+        const examplePost = posts[0];
 
         act(() => {
-            result.current.editButtonProps(exampleCategory.id).onClick();
+            result.current.editButtonProps(examplePost.id).onClick();
         });
 
         await waitFor(() => {
@@ -45,7 +46,7 @@ describe("useEditableTable Hook", () => {
         });
 
         expect(result.current.form.getFieldValue("title")).toEqual(
-            exampleCategory.title,
+            examplePost.title,
         );
     });
 });

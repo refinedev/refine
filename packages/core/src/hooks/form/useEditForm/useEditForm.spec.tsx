@@ -2,7 +2,8 @@ import React from "react";
 import { renderHook } from "@testing-library/react-hooks";
 import { Route } from "react-router-dom";
 
-import { MockJSONServer, TestWrapper, posts } from "@test";
+import { MockJSONServer, TestWrapper } from "@test";
+import { posts } from "@test/dataMocks";
 
 import { useEditForm } from "./useEditForm";
 

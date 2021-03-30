@@ -2,7 +2,7 @@ import React from "react";
 
 import { IDataContext } from "../../interfaces";
 
-const defaultDataProvider = (): IDataContext => {
+export const defaultDataProvider = (): IDataContext => {
     return {
         create: () => Promise.resolve({ data: { id: 1 } }),
         deleteOne: () => Promise.resolve({ data: { id: 1 } }),

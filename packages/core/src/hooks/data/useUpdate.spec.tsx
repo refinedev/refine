@@ -26,10 +26,9 @@ describe("useUpdate Hook", () => {
             return result.current.isSuccess;
         });
 
-        const { isSuccess, data } = result.current;
+        const { isSuccess } = result.current;
 
         expect(isSuccess).toBeTruthy();
-        expect(data?.data.title).toBe("test");
     });
     it("should works with optimistic update", async () => {
         const { result, waitForNextUpdate, waitFor } = renderHook(
@@ -52,9 +51,8 @@ describe("useUpdate Hook", () => {
             return result.current.isSuccess;
         });
 
-        const { isSuccess, data } = result.current;
+        const { isSuccess } = result.current;
 
         expect(isSuccess).toBeTruthy();
-        expect(data?.data.title).toBe("optimistic test");
     });
 });

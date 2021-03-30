@@ -1,7 +1,4 @@
-import { rest } from "msw";
-import { setupServer, SetupServerApi } from "msw/node";
-
-import JsonServer from "@dataProviders/jsonServer";
+import { IDataContext } from "../src/interfaces";
 
 export const posts = [
     {
@@ -29,97 +26,18 @@ export const posts = [
     },
 ];
 
-export const categories = [
-    {
-        id: 8,
-        title: "Account",
-    },
-    {
-        id: 39,
-        title: "Account Division Pci",
-    },
-    {
-        id: 22,
-        title: "Alarm Designer Enable",
-    },
-    {
-        id: 28,
-        title: "Analyst Com",
-    },
-];
+const MockDataProvider = (): IDataContext => {
+    return {
+        create: () => Promise.resolve({ data: posts[0] }),
+        deleteOne: () => Promise.resolve({ data: posts[0] }),
+        deleteMany: () => Promise.resolve({ data: [] }),
+        getList: () => Promise.resolve({ data: posts, total: 2 }),
+        getMany: () => Promise.resolve({ data: [...posts] }),
+        getOne: () => Promise.resolve({ data: posts[0] }),
+        update: () => Promise.resolve({ data: posts[0] }),
+        updateMany: () => Promise.resolve({ data: [] }),
+        getApiUrl: () => "https://readmin-fake-rest.pankod.com",
+    };
+};
 
-export const MockJSONServer = JsonServer(
-    "https://readmin-fake-rest.pankod.com",
-);
-
-export const createMockServer = (): SetupServerApi =>
-    setupServer(
-        rest.get(
-            "https://readmin-fake-rest.pankod.com/posts",
-            (_req, res, ctx) => {
-                return res(
-                    ctx.json(posts),
-                    ctx.set("x-total-count", posts.length.toString()),
-                );
-            },
-        ),
-        rest.get(
-            "https://readmin-fake-rest.pankod.com/posts/1",
-            (_req, res, ctx) => {
-                return res(
-                    ctx.json(posts[0]),
-                    ctx.set("x-total-count", posts.length.toString()),
-                );
-            },
-        ),
-        rest.get(
-            "https://readmin-fake-rest.pankod.com/categories",
-            (_req, res, ctx) => {
-                return res(
-                    ctx.json(categories),
-                    ctx.set("x-total-count", categories.length.toString()),
-                );
-            },
-        ),
-        rest.get(
-            "https://readmin-fake-rest.pankod.com/categories/8",
-            (_req, res, ctx) => {
-                return res(
-                    ctx.json(categories[0]),
-                    ctx.set("x-total-count", categories.length.toString()),
-                );
-            },
-        ),
-        rest.post(
-            "https://readmin-fake-rest.pankod.com/posts",
-            (_req, res, ctx) => {
-                return res(ctx.json(posts[0]));
-            },
-        ),
-        rest.get(
-            "https://readmin-fake-rest.pankod.com/posts?id=1&id=2",
-            (_req, res, ctx) => {
-                return res(ctx.json(posts));
-            },
-        ),
-        rest.put(
-            "https://readmin-fake-rest.pankod.com/posts/1",
-            (_req, res, ctx) => {
-                const { title } = _req.body as { title: string };
-                return res(ctx.json({ ...posts[0], title }));
-            },
-        ),
-        rest.put(
-            "https://readmin-fake-rest.pankod.com/posts/2",
-            (_req, res, ctx) => {
-                const { title } = _req.body as { title: string };
-                return res(ctx.json({ ...posts[0], title }));
-            },
-        ),
-        rest.delete(
-            "https://readmin-fake-rest.pankod.com/posts/1",
-            (_req, res, ctx) => {
-                return res(ctx.json({ isDeleted: true }));
-            },
-        ),
-    );
+export const MockJSONServer = MockDataProvider();

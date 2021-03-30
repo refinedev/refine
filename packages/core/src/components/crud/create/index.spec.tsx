@@ -22,7 +22,7 @@ describe("Create", () => {
     });
 
     it("should render default save button successfuly", async () => {
-        const { container, getByText, debug } = renderCreate(<Create></Create>);
+        const { container, getByText } = renderCreate(<Create></Create>);
         expect(container.querySelector("button")).toBeTruthy();
         getByText("Save");
     });
