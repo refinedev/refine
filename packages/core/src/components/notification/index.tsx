@@ -80,12 +80,7 @@ export const Notification: React.FC<{
                         </Button>
                     ),
                     duration: 0,
-                    onClose: () => {
-                        notificationDispatch({
-                            type: ActionTypes.REMOVE,
-                            payload: { id: notificationItem.id },
-                        });
-                    },
+                    closeIcon: null,
                 });
             }
         });
