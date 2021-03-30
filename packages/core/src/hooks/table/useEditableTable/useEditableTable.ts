@@ -10,7 +10,7 @@ export const useEditableTable = (props: useEditableTableProps) => {
 
     const { form, editId, setEditId, formLoading } = edit;
 
-    const saveEditButtonProps = {
+    const saveButtonProps = {
         onClick: () => form.submit(),
         disabled: formLoading,
     };
@@ -30,7 +30,7 @@ export const useEditableTable = (props: useEditableTableProps) => {
     return {
         ...table,
         ...edit,
-        saveEditButtonProps,
+        saveButtonProps,
         cancelButtonProps,
         editButtonProps,
         isEditing,
