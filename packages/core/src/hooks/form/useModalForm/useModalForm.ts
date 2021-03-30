@@ -10,13 +10,12 @@ import {
     useTranslate,
     useWarnAboutChange,
 } from "@hooks";
-import { MutationMode, ModalFormSF } from "../../../interfaces";
+import { ModalFormSF } from "../../../interfaces";
 import { useEditFormProps } from "../useEditForm";
 import { useCreateFormProps } from "../useCreateForm";
 
 type useModalFormConfig = {
     action: "show" | "edit" | "create";
-    mutationMode?: MutationMode;
 };
 export type useModalFormProps = (useEditFormProps | useCreateFormProps) &
     UseModalFormConfigSF &
@@ -27,7 +26,7 @@ export const useModalForm = ({
 }: useModalFormProps) => {
     const useFormProps = useForm({
         ...rest,
-        mutationModeProp,
+        mutationMode: mutationModeProp,
     });
 
     const {
@@ -35,7 +34,6 @@ export const useModalForm = ({
         formProps,
         setEditId,
         editId,
-
         formLoading,
         mutationResult,
     } = useFormProps;
