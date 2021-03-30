@@ -37,15 +37,11 @@
     "nock": "^13.0.11",
     "size-limit": "^4.10.1",
     "tsdx": "^0.14.1",
-    "tslib": "^2.1.0",
-    "typescript": "^4.2.3",
-    "readmin": "^1.0.0"
+    "tslib": "^2.1.0"
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "query-string": "^7.0.0"
-  },
-  "peerDependencies": {
+    "query-string": "^7.0.0",
     "readmin": "^1.0.0"
   }
 }

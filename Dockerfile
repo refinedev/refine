@@ -1,26 +1,24 @@
-FROM node:12-alpine
+FROM node:14-alpine
 
 WORKDIR /opt/app
 
 ENV NODE_ENV development
 
-COPY package*.json ./
+COPY package.json ./
+COPY yarn.lock ./
 
-RUN npm install
+RUN yarn install
 
 COPY . /opt/app
 
-RUN npm run bootstrap
-
 #Example 
-WORKDIR /opt/app/example
+WORKDIR /opt/app/example-parcel
 
-RUN npm install
+RUN yarn install
 
 RUN npm run build
 
-
-FROM node:12-alpine
+FROM node:14-alpine
 
 COPY --from=0 /opt/app/example/build /opt/app
 WORKDIR /opt/app/

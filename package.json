@@ -1,12 +1,12 @@
 {
     "version": "0.1.0",
     "license": "MIT",
+    "private": true,
     "engines": {
         "node": ">=10"
     },
     "scripts": {
         "lerna": "lerna",
-        "bootstrap": "cd packages/core && npm i && npm run build && cd ../.. && npm run lerna bootstrap",
         "start": "lerna run start --stream --parallel",
         "test": "lerna run test --",
         "lint": "tsdx lint packages example",

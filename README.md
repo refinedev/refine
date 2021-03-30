@@ -7,21 +7,21 @@
 ## Install
 
 ```bash
-npm install
+yarn install
 ```
 
 ## Development
 
 ```bash
-npm run lerna bootstrap
-npm run start
+yarn start
 ```
 
 ## Run Example
 
 ```bash
 cd example
-npm run start
+yarn install
+yarn start
 ```
 
 ## License
