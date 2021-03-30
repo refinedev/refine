@@ -74,8 +74,13 @@ export const useDelete = (
                         onCancel(cancelMutation);
                     } else {
                         notificationDispatch({
-                            type: ActionTypes.REMOVE,
-                            payload: { id: id },
+                            type: ActionTypes.ADD,
+                            payload: {
+                                id: id,
+                                resource: resource,
+                                cancelMutation: cancelMutation,
+                                seconds: 5,
+                            },
                         });
                     }
                 },
