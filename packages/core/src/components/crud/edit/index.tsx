@@ -1,17 +1,16 @@
 import React from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { Card, Button, Row, Space, ButtonProps } from "antd";
+import { Card, Row, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
-import { SaveOutlined } from "@ant-design/icons";
 
-import { MutationMode } from "../../../interfaces";
+import { MutationMode, ResourceRouterParams } from "../../../interfaces";
 import { useTranslate, useResourceWithRoute, useMutationMode } from "@hooks";
-import { ResourceRouterParams } from "../../../interfaces";
 import {
     DeleteButton,
     RefreshButton,
     ListButton,
     DeleteButtonProps,
+    SaveButton,
 } from "@components";
 
 export interface EditProps {
@@ -69,14 +68,7 @@ export const Edit: React.FC<EditProps> = ({
                                     );
                                 }}
                             />
-                            <Button
-                                {...saveButtonProps}
-                                htmlType="submit"
-                                type="primary"
-                                icon={<SaveOutlined />}
-                            >
-                                {translate("common:buttons.save", "Save")}
-                            </Button>
+                            <SaveButton {...saveButtonProps} />
                         </>
                     )}
                 </Space>,
