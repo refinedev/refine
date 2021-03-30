@@ -94,17 +94,15 @@ export const useEditForm = ({
         };
     }, [data, id, isFetching]);
 
-    const {
-        mutate,
-        isLoading: isLoadingMutation,
-        isSuccess: isSuccessMutation,
-        reset: resetMutation,
-    } = useUpdate(resource.name, mutationMode);
+    const mutationResult = useUpdate(resource.name, mutationMode);
+
+    const { mutate, isLoading: isLoadingMutation } = mutationResult;
+
+    const formLoading = isFetching || isLoadingMutation;
+
     const notification = useNotification();
 
     const handleSubmitWithRedirect = useRedirectionAfterSubmission();
-
-    const formLoading = isFetching || isLoadingMutation;
 
     const onFinish = (values: BaseRecord) => {
         setWarnWhen(false);
@@ -191,12 +189,10 @@ export const useEditForm = ({
         editId,
         setEditId,
         saveButtonProps,
-        isLoadingMutation,
-        isSuccessMutation,
-        resetMutation,
         queryResult: queryResult as QueryObserverResult<
             GetOneResponse<BaseRecord>
         >,
+        mutationResult,
         formLoading,
     };
 };

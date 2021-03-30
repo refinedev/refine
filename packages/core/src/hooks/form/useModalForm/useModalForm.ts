@@ -25,20 +25,20 @@ export const useModalForm = ({
     mutationMode: mutationModeProp,
     ...rest
 }: useModalFormProps) => {
+    const useFormProps = useForm({
+        ...rest,
+        mutationModeProp,
+    });
+
     const {
         form,
         formProps,
         setEditId,
         editId,
-        isLoadingMutation,
-        isSuccessMutation,
-        resetMutation,
+
         formLoading,
-        queryResult,
-    } = useForm({
-        ...rest,
-        mutationModeProp,
-    });
+        mutationResult,
+    } = useFormProps;
 
     const translate = useTranslate();
 
@@ -58,6 +58,12 @@ export const useModalForm = ({
 
     const { mutationMode: mutationModeContext } = useMutationMode();
     const mutationMode = mutationModeProp ?? mutationModeContext;
+
+    const {
+        isLoading: isLoadingMutation,
+        isSuccess: isSuccessMutation,
+        reset: resetMutation,
+    } = mutationResult ?? {};
 
     useEffect(() => {
         if (visible && mutationMode === "pessimistic") {
@@ -89,6 +95,7 @@ export const useModalForm = ({
     };
 
     return {
+        ...useFormProps,
         ...sunflowerUseModal,
         show: (id: string | number) => {
             setEditId && setEditId(id);
@@ -126,9 +133,7 @@ export const useModalForm = ({
             },
         },
         saveButtonProps: saveButtonPropsSF,
-        editId,
         deleteButtonProps,
         formLoading,
-        queryResult,
     };
 };
