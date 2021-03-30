@@ -6,7 +6,7 @@
     },
     "scripts": {
         "lerna": "lerna",
-        "bootstrap": "cd packages/readmin && npm i && npm run build && cd ../.. && npm run lerna bootstrap",
+        "bootstrap": "cd packages/core && npm i && npm run build && cd ../.. && npm run lerna bootstrap",
         "start": "lerna run start --stream --parallel",
         "test": "lerna run test --",
         "lint": "tsdx lint packages example",
