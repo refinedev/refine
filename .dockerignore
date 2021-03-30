@@ -1,9 +1,12 @@
 node_modules
+example/build
 example/node_modules
 example/package-lock.json
 
+packages/core/dist
 packages/core/node_modules
 packages/core/package-lock.json
 
+packages/json-server/dist
 packages/json-server/node_modules
 packages/json-server/package-lock.json
