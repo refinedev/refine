@@ -33,7 +33,7 @@ type SaveButtonProps = {
 export type useEditFormProps = {
     onMutationSuccess?: (data: any, variables: any, context: any) => void;
     onMutationError?: (error: any, variables: any, context: any) => void;
-    mutationModeProp?: MutationMode;
+    mutationMode?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
     redirect?: RedirectionTypes;
@@ -42,7 +42,7 @@ export type useEditFormProps = {
 export const useEditForm = ({
     onMutationSuccess,
     onMutationError,
-    mutationModeProp,
+    mutationMode: mutationModeProp,
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect = "list",
