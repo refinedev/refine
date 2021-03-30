@@ -446,7 +446,7 @@ export const PostEdit = (props: any) => {
     } = useStepsForm({
         warnWhenUnsavedChanges: true,
         redirect: "show",
-        mutationModeProp: "pessimistic",
+        mutationMode: "pessimistic",
     });
 
     const formList = [
