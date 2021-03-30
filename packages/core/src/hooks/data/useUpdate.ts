@@ -108,7 +108,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                                     ...previousQuery,
                                     data: data.map((record: BaseRecord) => {
                                         if (
-                                            record.id.toString() ===
+                                            record.id!.toString() ===
                                             variables.id
                                         ) {
                                             return {
