@@ -7,9 +7,10 @@ ENV NODE_ENV development
 COPY package*.json ./
 
 RUN npm install
-RUN npm run lerna bootstrap
 
 COPY . /opt/app
+
+RUN npm run lerna bootstrap
 
 #Example 
 WORKDIR /opt/app/example
