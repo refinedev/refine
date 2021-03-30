@@ -1,5 +1,9 @@
 node_modules
 example/node_modules
-packages/core/node_modules
-packages/json-server/node_modules
+example/package-lock.json
 
+packages/core/node_modules
+packages/core/package-lock.json
+
+packages/json-server/node_modules
+packages/json-server/package-lock.json
