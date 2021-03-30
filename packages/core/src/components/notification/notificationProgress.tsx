@@ -23,9 +23,11 @@ export const NotificationProgress: React.FC<{
                     },
                 });
             }, 1000);
-        } else {
-            clearTimeout(countDownTimer);
         }
+
+        return () => {
+            clearTimeout(countDownTimer);
+        };
     }, [seconds]);
 
     return (
@@ -37,6 +39,7 @@ export const NotificationProgress: React.FC<{
             }
             width={50}
             strokeColor="#1890ff"
+            status="normal"
         />
     );
 };
