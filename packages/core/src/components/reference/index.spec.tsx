@@ -3,7 +3,7 @@ import React from "react";
 import { render, TestWrapper, MockJSONServer } from "@test";
 
 import { Reference } from "./index";
-import { categories } from "@test/dataMocks";
+import { posts } from "@test/dataMocks";
 
 const TestComponent = (props: any) => {
     if (!props?.options || props?.options.length === 0) return null;
@@ -36,7 +36,7 @@ describe("<ReferenceInput/>", () => {
             );
             const options = await findAllByTestId("option-item");
 
-            const expected = categories.map((el) => el.title);
+            const expected = posts.map((el) => el.title);
             const retrieved = options.map((el) => el.innerHTML);
 
             expect(retrieved).toMatchObject(expected);

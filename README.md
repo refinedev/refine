@@ -14,14 +14,14 @@ npm install
 
 ```bash
 npm run lerna bootstrap
-npm run start
 ```
 
 ## Run Example
 
 ```bash
 cd example
-npm run start
+yarn install
+yarn start
 ```
 
 ## License

@@ -2,5 +2,7 @@
   "packages": [
     "packages/*"
   ],
+  "registry": "https://registry.npmjs.org/",
+  "npmClient": "npm",
   "version": "0.0.0"
 }

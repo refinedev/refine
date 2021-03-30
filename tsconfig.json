@@ -1,12 +1,15 @@
 {
-    "extends": "./tsconfig.build.json",
-    "include": ["packages", "example"],
-    "compilerOptions": {
-      "allowJs": false,
-      "baseUrl": ".",
-      "typeRoots": ["./node_modules/@types", "./types"],
-      "paths": {
-        "readmin-core": ["packages/core/src"]
-      }
-    }
+  "extends": "./tsconfig.build.json",
+  "include": [
+    "packages",
+    "example"
+  ],
+  "compilerOptions": {
+    "allowJs": false,
+    "baseUrl": ".",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
+    ]
   }
+}

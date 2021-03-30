@@ -6,10 +6,7 @@ import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { IDataContext, IAuthContext, I18nProvider } from "../src/interfaces";
 import { MemoryRouter } from "react-router-dom";
-import {
-    defaultProvider,
-    TranslationContextProvider,
-} from "@contexts/translation";
+import { TranslationContextProvider } from "@contexts/translation";
 
 const queryClient = new QueryClient();
 
@@ -70,7 +67,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     };
 };
 
-export * from "./dataMocks";
+export { MockJSONServer } from "./dataMocks";
 
 // re-export everything
 export * from "@testing-library/react";

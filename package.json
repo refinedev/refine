@@ -1,16 +1,18 @@
 {
     "version": "0.1.0",
     "license": "MIT",
+    "private": true,
     "engines": {
         "node": ">=10"
     },
     "scripts": {
         "lerna": "lerna",
         "start": "lerna run start --stream --parallel",
-        "test": "lerna run test --",
+        "test": "lerna run test",
         "lint": "tsdx lint packages example",
         "lint:fix": "npm run lint -- packages example --quiet --fix --allow-empty",
-        "build": "lerna run build"
+        "build": "lerna run build",
+        "bootstrap:docker": "lerna bootstrap -- --production --no-optional"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx}": [
@@ -30,9 +32,8 @@
         "printWidth": 80,
         "tabWidth": 4
     },
-    "name": "readmin",
+    "name": "readmin-repo",
     "author": "Pankod",
-    "module": "dist/tsdx.esm.js",
     "devDependencies": {
         "@types/react": "^17.0.1",
         "@types/react-dom": "^17.0.0",
@@ -45,8 +46,5 @@
         "react-dom": "^17.0.1",
         "tsdx": "^0.14.1",
         "typescript": "^3.9.8"
-    },
-    "workspaces": [
-        "packages/*"
-    ]
+    }
 }

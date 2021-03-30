@@ -2,18 +2,18 @@ import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
 
 import { DataContext } from "@contexts/data";
-import { GetOneResponse, BaseRecord, IDataContext } from "../../interfaces";
+import { GetOneResponse, IDataContext } from "../../interfaces";
 
-export const useOne = <TData extends BaseRecord = BaseRecord>(
+export const useOne = (
     resource: string,
     id: string,
-    options?: UseQueryOptions<GetOneResponse<TData>>,
-): QueryObserverResult<GetOneResponse<TData>> => {
+    options?: UseQueryOptions<GetOneResponse>,
+): QueryObserverResult<GetOneResponse> => {
     const { getOne } = useContext<IDataContext>(DataContext);
 
-    const queryResponse = useQuery<GetOneResponse<TData>>(
+    const queryResponse = useQuery<GetOneResponse>(
         [`resource/getOne/${resource}`, { id }],
-        () => getOne<TData>(resource, id),
+        () => getOne(resource, id),
         options,
     );
 
