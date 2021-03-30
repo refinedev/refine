@@ -7,13 +7,13 @@
 ## Install
 
 ```bash
-yarn install
+npm install
 ```
 
 ## Development
 
 ```bash
-yarn start
+npm run lerna bootstrap
 ```
 
 ## Run Example
