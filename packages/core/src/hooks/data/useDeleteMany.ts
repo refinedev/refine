@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
 
 import { DataContext } from "@contexts/data";
-import { DeleteManyResponse, IDataContext } from "@interfaces";
+import { DeleteManyResponse, IDataContext } from "../../interfaces";
 
 type UseDeleteManyReturnType = UseMutationResult<
     DeleteManyResponse,

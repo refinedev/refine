@@ -11,7 +11,7 @@ import {
     Context as DeleteContext,
     BaseRecord,
     ContextQuery,
-} from "@interfaces";
+} from "../../interfaces";
 
 import {
     useMutationMode,

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "@interfaces";
+import { IAuthContext } from "../../interfaces";
 
 /**
  * @example

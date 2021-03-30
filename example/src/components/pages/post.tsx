@@ -138,7 +138,7 @@ export const PostList = (props: any) => {
                                 optionText="title"
                                 sort={{
                                     field: "title",
-                                    order: "asc",
+                                    order: "ascend",
                                 }}
                             >
                                 <Select
@@ -298,7 +298,7 @@ export const PostCreate = (props: any) => {
                     optionText="title"
                     sort={{
                         field: "title",
-                        order: "asc",
+                        order: "ascend",
                     }}
                 >
                     <Select showSearch />
@@ -530,7 +530,7 @@ export const PostEdit = (props: any) => {
                     optionText="title"
                     sort={{
                         field: "title",
-                        order: "asc",
+                        order: "ascend",
                     }}
                 >
                     <Select showSearch />

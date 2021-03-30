@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 
 import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "@interfaces";
+import { IAuthContext } from "../../interfaces";
 
 /**
  * @example

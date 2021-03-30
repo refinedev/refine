@@ -1,6 +1,6 @@
 import React from "react";
 
-import { IDataContext } from "@interfaces";
+import { IDataContext } from "../../interfaces";
 
 const defaultDataProvider = (): IDataContext => {
     return {

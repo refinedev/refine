@@ -4,6 +4,7 @@ import {
 } from "sunflower-antd";
 
 import { useForm } from "@hooks";
+import { StepsFormSF } from "../../../interfaces";
 
 import { useEditFormProps, useCreateFormProps } from "..";
 
@@ -13,7 +14,7 @@ export type useStepsFormProps = (useCreateFormProps | useEditFormProps) &
 export const useStepsForm = (props: useStepsFormProps) => {
     const { form, formProps, isFetching } = useForm({ ...props });
 
-    const stepsPropsSunflower = useStepsFormSF({
+    const stepsPropsSunflower: StepsFormSF = useStepsFormSF({
         ...props,
         form: form,
         submit: (values) => {

@@ -10,7 +10,7 @@ import {
     MutationMode,
     Context as UpdateContext,
     ContextQuery,
-} from "@interfaces";
+} from "../../interfaces";
 import {
     useMutationMode,
     useCancelNotification,

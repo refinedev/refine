@@ -6,7 +6,7 @@ import { SaveOutlined } from "@ant-design/icons";
 
 import { MutationMode } from "../../../interfaces";
 import { useTranslate, useResourceWithRoute, useMutationMode } from "@hooks";
-import { ResourceRouterParams } from "@interfaces";
+import { ResourceRouterParams } from "../../../interfaces";
 import {
     DeleteButton,
     RefreshButton,

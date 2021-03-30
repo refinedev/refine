@@ -10,7 +10,7 @@ import {
     useTranslate,
     useWarnAboutChange,
 } from "@hooks";
-import { MutationMode } from "../../../interfaces";
+import { MutationMode, ModalFormSF } from "../../../interfaces";
 import { useEditFormProps } from "../useEditForm";
 import { useCreateFormProps } from "../useCreateForm";
 
@@ -43,7 +43,7 @@ export const useModalForm = ({
     const translate = useTranslate();
 
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
-    const sunflowerUseModal = useModalFormSF({
+    const sunflowerUseModal: ModalFormSF = useModalFormSF({
         ...rest,
         form: form,
     });

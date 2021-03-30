@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { Typography } from "antd";
 
 import { DataContext } from "@contexts/data";
-import { GetOneResponse, IDataContext } from "@interfaces";
+import { GetOneResponse, IDataContext } from "../../../interfaces";
 import { renderFieldRecord } from "@definitions";
 import { BaseFieldProps } from "../../../interfaces/field";
 

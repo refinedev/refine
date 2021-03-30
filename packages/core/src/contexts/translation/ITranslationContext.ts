@@ -2,7 +2,7 @@ export type Translate = (key: string, options?: any) => string;
 
 export interface I18nProvider {
     translate: Translate;
-    changeLocale: (locale: string, options?: any) => Promise<void>;
+    changeLocale: (locale: string, options?: any) => Promise<any>;
     getLocale: () => string;
 }
 
