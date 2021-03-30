@@ -10,7 +10,7 @@ RUN npm install
 
 COPY . /opt/app
 
-RUN npm run lerna bootstrap
+RUN npm run bootstrap:docker
 
 #Example 
 WORKDIR /opt/app/example

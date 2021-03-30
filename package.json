@@ -11,7 +11,8 @@
         "test": "lerna run test",
         "lint": "tsdx lint packages example",
         "lint:fix": "npm run lint -- packages example --quiet --fix --allow-empty",
-        "build": "lerna run build"
+        "build": "lerna run build",
+        "bootstrap:docker": "lerna bootstrap -- --production --no-optional"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx}": [
