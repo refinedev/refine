@@ -117,7 +117,7 @@ export const UserList = (props: any) => {
 
 export const UserEdit = (props: any) => {
     const translate = useTranslate();
-    const { formProps, saveButtonProps, getDataQueryResult, form } = useForm({
+    const { formProps, saveButtonProps, queryResult, form } = useForm({
         warnWhenUnsavedChanges: true,
     });
 
@@ -128,11 +128,11 @@ export const UserEdit = (props: any) => {
     const [avatar, setAvatar] = React.useState<any[]>([]);
 
     React.useEffect(() => {
-        if (getDataQueryResult && getDataQueryResult.data) {
-            const { data } = getDataQueryResult;
+        if (queryResult && queryResult.data) {
+            const { data } = queryResult;
             setAvatar(data.data.avatar);
         }
-    }, [getDataQueryResult]);
+    }, [queryResult]);
 
     const { uploadedFiles, ...uploadProps } = useBase64Upload({
         formData: avatar,

@@ -12,7 +12,8 @@ export type useStepsFormProps = (useCreateFormProps | useEditFormProps) &
     UseStepsFormConfig;
 
 export const useStepsForm = (props: useStepsFormProps) => {
-    const { form, formProps, formLoading } = useForm({ ...props });
+    const useFormProps = useForm({ ...props });
+    const { form, formProps, formLoading } = useFormProps;
 
     const stepsPropsSunflower: StepsFormSF = useStepsFormSF({
         ...props,
@@ -23,6 +24,7 @@ export const useStepsForm = (props: useStepsFormProps) => {
     });
 
     return {
+        ...useFormProps,
         ...stepsPropsSunflower,
         formProps: {
             ...stepsPropsSunflower.formProps,

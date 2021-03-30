@@ -79,11 +79,11 @@ export const useEditForm = ({
 
     const id = editId?.toString() ?? idFromRoute;
 
-    const getDataQueryResult = useOne(resource.name, id, {
+    const queryResult = useOne(resource.name, id, {
         enabled: isEdit,
     });
 
-    const { data, isLoading, isFetching } = getDataQueryResult;
+    const { data, isFetching } = queryResult;
 
     React.useEffect(() => {
         form.setFieldsValue({
@@ -188,15 +188,13 @@ export const useEditForm = ({
             onKeyUp,
             onValuesChange,
         },
-        isLoading, // TODO: Delete and use getDataQueryResult.
-        isFetching,
         editId,
         setEditId,
         saveButtonProps,
         isLoadingMutation,
         isSuccessMutation,
         resetMutation,
-        getDataQueryResult: getDataQueryResult as QueryObserverResult<
+        queryResult: queryResult as QueryObserverResult<
             GetOneResponse<BaseRecord>
         >,
         formLoading,

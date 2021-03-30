@@ -30,12 +30,11 @@ export const useModalForm = ({
         formProps,
         setEditId,
         editId,
-        isLoading,
-        isFetching,
         isLoadingMutation,
         isSuccessMutation,
         resetMutation,
         formLoading,
+        queryResult,
     } = useForm({
         ...rest,
         mutationModeProp,
@@ -126,11 +125,10 @@ export const useModalForm = ({
                 sunflowerUseModal.close();
             },
         },
-        isLoading: isLoading,
-        isFetching,
         saveButtonProps: saveButtonPropsSF,
         editId,
         deleteButtonProps,
         formLoading,
+        queryResult,
     };
 };
