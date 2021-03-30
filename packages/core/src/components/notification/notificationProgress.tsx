@@ -10,10 +10,11 @@ export const NotificationProgress: React.FC<{
 }> = ({ notificationItem, dispatch }) => {
     const [duration] = useState(notificationItem.seconds);
     const seconds = notificationItem.seconds;
+    let countDownTimer: ReturnType<typeof setTimeout>;
 
     useEffect(() => {
         if (seconds > 0) {
-            setTimeout(() => {
+            countDownTimer = setTimeout(() => {
                 dispatch({
                     type: ActionTypes.DECREASE_NOTIFICATION_SECOND,
                     payload: {
@@ -23,7 +24,7 @@ export const NotificationProgress: React.FC<{
                 });
             }, 1000);
         } else {
-            return;
+            clearTimeout(countDownTimer);
         }
     }, [seconds]);
 
