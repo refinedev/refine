@@ -8,11 +8,22 @@ on:
       - reopened
 
 jobs:
+  test-coverage:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - uses: actions/checkout@v1
+      - uses: artiomtr/jest-coverage-report-action@v1.0
+        with:
+            github_token: ${{ secrets.PANKOD_BOT_TOKEN }}
+            test_script: npm run test:coverage
   example-web:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10.x]
+        node-version: [14.x]
 
     steps:
       - name: Workflow run cleanup action

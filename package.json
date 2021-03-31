@@ -9,6 +9,7 @@
         "lerna": "lerna",
         "start": "lerna run start --stream --parallel",
         "test": "lerna run test",
+        "test:coverage": "lerna run test:coverage --stream --parallel",
         "lint": "tsdx lint packages example",
         "lint:fix": "npm run lint -- packages example --quiet --fix --allow-empty",
         "build": "lerna run build",
