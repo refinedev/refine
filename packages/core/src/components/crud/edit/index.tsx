@@ -60,13 +60,13 @@ export const Edit: React.FC<EditProps> = ({
                     {actionButtons ?? (
                         <>
                             <DeleteButton
-                                {...deleteButtonProps}
                                 mutationMode={mutationMode}
                                 onSuccess={() => {
                                     return history.push(
-                                        `/resources/${resource.name}`,
+                                        `/resources/${resource.route}`,
                                     );
                                 }}
+                                {...deleteButtonProps}
                             />
                             <SaveButton {...saveButtonProps} />
                         </>
