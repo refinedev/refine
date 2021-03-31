@@ -64,7 +64,7 @@ export const FilesList = (props: any) => {
                     render={(value, record) => {
                         return (
                             <FileField
-                                record={record}
+                                record={record as any}
                                 value={value}
                                 src="url"
                                 title="title"
