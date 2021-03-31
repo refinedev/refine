@@ -9,7 +9,7 @@
         "lerna": "lerna",
         "start": "lerna run start --stream --parallel",
         "test": "npm run lerna test",
-        "test:coverage": "jest --runInBand --silent --ci --coverage --coverageReporters=\"text\" --coverageReporters=\"text-summary\"",
+        "test:coverage": "jest --runInBand --silent --ci --coverage",
         "lint": "tsdx lint packages example",
         "lint:fix": "npm run lint -- packages example --quiet --fix --allow-empty",
         "build": "lerna run build",
