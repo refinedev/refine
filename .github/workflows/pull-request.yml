@@ -19,9 +19,9 @@ jobs:
         run: |
           npm install
           npm run lerna bootstrap
-      - uses: dkershner6/jest-coverage-commenter-action@0.1.1
+      - uses: mattallty/jest-github-action@v1.0.3
         with:
-            github_token: ${{ secrets.PANKOD_BOT_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
             test-command: npm run test:coverage
   example-web:
     runs-on: ubuntu-latest
