@@ -5,7 +5,7 @@ import { ActionTypes } from "@contexts/notification";
 import { useCancelNotification, useNotification } from "@hooks";
 import { INotification } from "../../interfaces";
 
-import { NotificationProgress } from "./notificationProgress";
+import { NotificationProgress } from "./components";
 
 export const Notification: React.FC<{
     notifications: INotification[];
