@@ -32,7 +32,7 @@ export const List: React.FC<ListProps> = ({
     const translate = useTranslate();
 
     const defaultExtra = canCreate && (
-        <CreateButton size="middle" isModalShown={isModalShown} />
+        <CreateButton size="middle" onClick={isModalShown} />
     );
 
     const renderExtra = () => {

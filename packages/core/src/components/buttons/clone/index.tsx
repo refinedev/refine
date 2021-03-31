@@ -8,13 +8,11 @@ import { ResourceRouterParams } from "../../../interfaces";
 
 type CloneButtonProps = ButtonProps & {
     resourceName?: string;
-    isModalShown?: () => void;
     recordItemId?: string | number;
 };
 
 export const CloneButton: FC<CloneButtonProps> = ({
     resourceName,
-    isModalShown,
     recordItemId,
     ...rest
 }) => {
@@ -24,13 +22,11 @@ export const CloneButton: FC<CloneButtonProps> = ({
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const onButtonClick = () => {
-        isModalShown
-            ? isModalShown()
-            : history.push(
-                  `/resources/${
-                      resourceName ?? routeResourceName
-                  }/create/${recordItemId}`,
-              );
+        history.push(
+            `/resources/${
+                resourceName ?? routeResourceName
+            }/create/${recordItemId}`,
+        );
     };
 
     return (
