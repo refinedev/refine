@@ -11,3 +11,4 @@ export {
 
 export * from "./definitions/upload";
 export { getDefaultSortOrder } from "./definitions/table";
+export { defaultConfigProviderProps } from "./definitions/config";
