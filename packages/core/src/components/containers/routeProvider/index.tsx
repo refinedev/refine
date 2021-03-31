@@ -50,7 +50,10 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (CreateComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/:resource(${route})/:action(create)/:id`,
+                path: [
+                    `/resources/:resource(${route})/:action(create)`,
+                    `/resources/:resource(${route})/:action(create)/:id`,
+                ],
                 component: () => {
                     return <CreateComponent canEdit={canEdit} />;
                 },

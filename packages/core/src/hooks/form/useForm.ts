@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 
 import { useCreateForm, useCreateFormProps } from "./useCreateForm";
 import { useEditForm, useEditFormProps } from "./useEditForm";
+import { useCloneForm, useCloneFormProps } from "./useCloneForm";
 
 import { ResourceRouterParams } from "../../interfaces";
 
@@ -11,13 +12,16 @@ export type ActionParams = {
 
 export type useEditFormType = typeof useEditForm;
 export type useCreateFormType = typeof useCreateForm;
+export type useCloneFormType = typeof useCloneForm;
 
 export type useEditFormReturn = ReturnType<useEditFormType>;
 export type useCreateFormReturn = ReturnType<useCreateFormType>;
+export type useCloneFormTypeReturn = ReturnType<useCloneFormType>;
 
 export type useFormProps = (
-    props: ActionParams & (useCreateFormProps | useEditFormProps),
-) => Partial<useEditFormReturn & useCreateFormReturn>;
+    props: ActionParams &
+        (useCreateFormProps | useEditFormProps | useCloneFormProps),
+) => Partial<useEditFormReturn & useCreateFormReturn & useCloneFormTypeReturn>;
 
 export const useForm: useFormProps = (props) => {
     const { action: actionFromProp } = props;
@@ -25,11 +29,13 @@ export const useForm: useFormProps = (props) => {
 
     const createForm = useCreateForm(props as useCreateFormProps);
 
-    const { action: actionFromRoute } = useParams<ResourceRouterParams>();
+    const cloneForm = useCloneForm(props as useCloneFormProps);
+
+    const { action: actionFromRoute, id } = useParams<ResourceRouterParams>();
 
     switch (actionFromProp || actionFromRoute) {
         case "create":
-            return createForm;
+            return id ? cloneForm : createForm;
         case "edit":
             return editForm;
         default:
