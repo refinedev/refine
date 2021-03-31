@@ -21,7 +21,7 @@ jobs:
           npm run lerna bootstrap
       - uses: mattallty/jest-github-action@v1.0.3
         env:
-          GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
             test-command: npm run test:coverage
   example-web:
