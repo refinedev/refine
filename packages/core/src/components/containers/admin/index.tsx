@@ -15,6 +15,7 @@ import {
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { AdminContextProvider } from "@contexts/admin";
 import { NotificationContextProvider } from "@contexts/notification";
+import { ComponentsContextProvider } from "@contexts/components";
 import { RouteProvider, ReadyPage as DefaultReadyPage } from "@components";
 import { OptionalComponent, defaultConfigProviderProps } from "@definitions";
 import {
@@ -22,6 +23,7 @@ import {
     IDataContext,
     IAuthContext,
     I18nProvider,
+    IComponentsContext,
 } from "../../../interfaces";
 
 export interface AdminProps {
@@ -38,6 +40,7 @@ export interface AdminProps {
     warnWhenUnsavedChanges?: boolean;
     routes?: RouteProps[];
     configProviderProps?: ConfigProviderProps;
+    components?: ReactNode;
 }
 
 export const Admin: React.FC<AdminProps> = ({
@@ -55,6 +58,7 @@ export const Admin: React.FC<AdminProps> = ({
     warnWhenUnsavedChanges = false,
     routes = [],
     configProviderProps = defaultConfigProviderProps,
+    components,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -106,15 +110,19 @@ export const Admin: React.FC<AdminProps> = ({
                                         syncWithLocation={syncWithLocation}
                                     >
                                         <Router>
-                                            <RouteProvider
-                                                resources={resources}
-                                                catchAll={catchAll}
-                                                title={title}
-                                                dashboard={dashboard}
-                                                loginPage={loginPage}
-                                                ready={ready}
-                                                customRoutes={routes}
-                                            />
+                                            <ComponentsContextProvider
+                                                components={components}
+                                            >
+                                                <RouteProvider
+                                                    resources={resources}
+                                                    catchAll={catchAll}
+                                                    title={title}
+                                                    dashboard={dashboard}
+                                                    loginPage={loginPage}
+                                                    ready={ready}
+                                                    customRoutes={routes}
+                                                />
+                                            </ComponentsContextProvider>
                                         </Router>
                                     </AdminContextProvider>
                                 </NotificationContextProvider>
