@@ -20,8 +20,8 @@ npm run lerna bootstrap
 
 ```bash
 cd example
-yarn install
-yarn start
+npm install
+npm run start
 ```
 
 ## License
