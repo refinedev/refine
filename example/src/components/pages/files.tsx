@@ -48,7 +48,7 @@ export const FilesList = (props: any) => {
                     render={(value, record) => (
                         <FileField
                             download
-                            record={record}
+                            record={record as any}
                             value={value}
                             title={translate(
                                 "common:resources.files.forms.title",
