@@ -85,7 +85,9 @@ describe("Notification Reducer", () => {
             await waitForNextUpdate();
             const [state] = result.current;
 
-            expect(state[0].seconds).toEqual(4);
+            expect(state[0].seconds).toEqual(
+                providerProps.notifications[0].seconds - 1,
+            );
         });
     });
 });
