@@ -1,4 +1,4 @@
-import { BaseRecord } from "@contexts/data/IDataContext";
+import { BaseRecord } from "../interfaces";
 
 type RequireOnlyOne<T, Keys extends keyof T = keyof T> = Pick<
     T,

@@ -25,10 +25,9 @@ describe("useDelete Hook", () => {
             return result.current.isSuccess;
         });
 
-        const { isSuccess, data } = result.current;
+        const { isSuccess } = result.current;
 
         expect(isSuccess).toBeTruthy();
-        expect(data?.data.isDeleted).toBeTruthy();
     });
     it("should works with optimistic update", async () => {
         const { result, waitForNextUpdate, waitFor } = renderHook(
@@ -50,9 +49,8 @@ describe("useDelete Hook", () => {
             return result.current.isSuccess;
         });
 
-        const { isSuccess, data } = result.current;
+        const { isSuccess } = result.current;
 
         expect(isSuccess).toBeTruthy();
-        expect(data?.data.isDeleted).toBeTruthy();
     });
 });

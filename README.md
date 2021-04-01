@@ -14,17 +14,16 @@ npm install
 
 ```bash
 npm run lerna bootstrap
-npm run start
 ```
 
 ## Run Example
 
 ```bash
 cd example
+npm install
 npm run start
 ```
 
 ## License
 
 MIT © [pankod](https://github.com/pankod)
-

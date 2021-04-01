@@ -3,10 +3,11 @@ import {
     Admin,
     Resource,
     AuthProvider,
-    JsonServer,
     Icons,
     Authenticated,
+    defaultConfigProviderProps,
 } from "readmin";
+import JsonServer from "readmin-json-server";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -113,6 +114,9 @@ function App() {
                     path: "/customauth",
                 },
             ]}
+            configProviderProps={{
+                ...defaultConfigProviderProps,
+            }}
         >
             <Resource
                 name="posts"

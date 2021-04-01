@@ -26,11 +26,8 @@ describe("useUpdateMany Hook", () => {
             return result.current.isSuccess;
         });
 
-        const { status, data } = result.current;
+        const { status } = result.current;
 
         expect(status).toBe("success");
-        expect(data?.data.length).toBe(2);
-        expect(data?.data[0].title).toBe("test");
-        expect(data?.data[1].title).toBe("test");
     });
 });

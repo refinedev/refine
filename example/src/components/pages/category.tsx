@@ -10,6 +10,7 @@ import {
     DeleteButton,
     Button,
     EditButton,
+    SaveButton,
     Space,
     useForm,
     useEditableTable,
@@ -89,12 +90,10 @@ export const CategoryList = (props: { resourceName: string }) => {
                             if (isEditing(record.id)) {
                                 return (
                                     <Space>
-                                        <Button
+                                        <SaveButton
                                             {...saveButtonProps}
                                             size="small"
-                                        >
-                                            Save
-                                        </Button>
+                                        />
                                         <Button
                                             {...cancelButtonProps}
                                             size="small"

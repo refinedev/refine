@@ -1,10 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Card, Button, Space, ButtonProps } from "antd";
+import { Card, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
-import { SaveOutlined } from "@ant-design/icons";
 
 import { useResourceWithRoute, useTranslate } from "@hooks";
+import { SaveButton } from "@components";
 import { ResourceRouterParams } from "../../../interfaces";
 
 export interface CreateProps {
@@ -40,14 +40,7 @@ export const Create: React.FC<CreateProps> = ({
                     style={{ float: "right", marginRight: 24 }}
                 >
                     {actionButtons ?? (
-                        <Button
-                            {...saveButtonProps}
-                            htmlType="submit"
-                            type="primary"
-                            icon={<SaveOutlined />}
-                        >
-                            {translate("common:buttons.save", "Save")}
-                        </Button>
+                        <SaveButton {...saveButtonProps} htmlType="submit" />
                     )}
                 </Space>,
             ]}

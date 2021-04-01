@@ -9,15 +9,15 @@ import {
     GetManyResponse,
 } from "../../interfaces";
 
-export const useMany = <TData extends BaseRecord = BaseRecord>(
+export const useMany = (
     resource: string,
     ids: Identifier[],
-): QueryObserverResult<GetManyResponse<TData>> => {
+): QueryObserverResult<GetManyResponse<BaseRecord>> => {
     const { getMany } = useContext<IDataContext>(DataContext);
 
-    const queryResponse = useQuery<GetManyResponse<TData>>(
+    const queryResponse = useQuery<GetManyResponse<BaseRecord>>(
         `resource/list/${resource}`,
-        () => getMany<TData>(resource, ids),
+        () => getMany(resource, ids),
     );
 
     return queryResponse;

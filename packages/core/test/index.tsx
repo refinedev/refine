@@ -75,7 +75,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     };
 };
 
-export * from "./dataMocks";
+export { MockJSONServer } from "./dataMocks";
 
 // re-export everything
 export * from "@testing-library/react";

@@ -35,7 +35,7 @@ export * from "./form";
 export type Identifier = string | number;
 
 export type BaseRecord = {
-    id: Identifier;
+    id?: Identifier;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
 };

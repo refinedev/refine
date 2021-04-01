@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM node:14-alpine
 
 WORKDIR /opt/app
 
@@ -11,7 +11,6 @@ RUN npm install
 COPY . /opt/app
 
 RUN npm run lerna bootstrap
-
 RUN npm run build
 
 #Example 
@@ -21,8 +20,7 @@ RUN npm install
 
 RUN npm run build
 
-
-FROM node:12-alpine
+FROM node:14-alpine
 
 COPY --from=0 /opt/app/example/build /opt/app
 WORKDIR /opt/app/

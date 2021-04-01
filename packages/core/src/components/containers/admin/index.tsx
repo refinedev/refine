@@ -1,4 +1,6 @@
 import React, { ReactNode } from "react";
+import { ConfigProvider } from "antd";
+import { ConfigProviderProps } from "antd/lib/config-provider";
 import { BrowserRouter as Router, RouteProps } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -14,7 +16,7 @@ import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { AdminContextProvider } from "@contexts/admin";
 import { NotificationContextProvider } from "@contexts/notification";
 import { RouteProvider, ReadyPage as DefaultReadyPage } from "@components";
-import { OptionalComponent } from "@definitions";
+import { OptionalComponent, defaultConfigProviderProps } from "@definitions";
 import {
     MutationMode,
     IDataContext,
@@ -35,6 +37,7 @@ export interface AdminProps {
     syncWithLocation?: boolean;
     warnWhenUnsavedChanges?: boolean;
     routes?: RouteProps[];
+    configProviderProps?: ConfigProviderProps;
 }
 
 export const Admin: React.FC<AdminProps> = ({
@@ -51,6 +54,7 @@ export const Admin: React.FC<AdminProps> = ({
     syncWithLocation = false,
     warnWhenUnsavedChanges = false,
     routes = [],
+    configProviderProps = defaultConfigProviderProps,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -92,27 +96,29 @@ export const Admin: React.FC<AdminProps> = ({
                 <DataContextProvider {...dataProvider}>
                     <ResourceContextProvider resources={resources}>
                         <TranslationContextProvider i18nProvider={i18nProvider}>
-                            <NotificationContextProvider>
-                                <AdminContextProvider
-                                    mutationMode={mutationMode}
-                                    warnWhenUnsavedChanges={
-                                        warnWhenUnsavedChanges
-                                    }
-                                    syncWithLocation={syncWithLocation}
-                                >
-                                    <Router>
-                                        <RouteProvider
-                                            resources={resources}
-                                            catchAll={catchAll}
-                                            title={title}
-                                            dashboard={dashboard}
-                                            loginPage={loginPage}
-                                            ready={ready}
-                                            customRoutes={routes}
-                                        />
-                                    </Router>
-                                </AdminContextProvider>
-                            </NotificationContextProvider>
+                            <ConfigProvider {...configProviderProps}>
+                                <NotificationContextProvider>
+                                    <AdminContextProvider
+                                        mutationMode={mutationMode}
+                                        warnWhenUnsavedChanges={
+                                            warnWhenUnsavedChanges
+                                        }
+                                        syncWithLocation={syncWithLocation}
+                                    >
+                                        <Router>
+                                            <RouteProvider
+                                                resources={resources}
+                                                catchAll={catchAll}
+                                                title={title}
+                                                dashboard={dashboard}
+                                                loginPage={loginPage}
+                                                ready={ready}
+                                                customRoutes={routes}
+                                            />
+                                        </Router>
+                                    </AdminContextProvider>
+                                </NotificationContextProvider>
+                            </ConfigProvider>
                         </TranslationContextProvider>
                     </ResourceContextProvider>
                 </DataContextProvider>
