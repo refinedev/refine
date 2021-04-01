@@ -36,6 +36,7 @@ export const useModalForm = ({
         editId,
         formLoading,
         mutationResult,
+        setCloneId,
     } = useFormProps;
 
     const translate = useTranslate();
@@ -97,6 +98,10 @@ export const useModalForm = ({
         ...sunflowerUseModal,
         show: (id?: string | number) => {
             setEditId && setEditId(id);
+
+            console.log("id", id);
+            setCloneId && setCloneId(id);
+
             sunflowerUseModal.show();
         },
 

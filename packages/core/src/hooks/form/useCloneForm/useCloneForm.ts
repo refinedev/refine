@@ -6,21 +6,28 @@ import { ResourceRouterParams } from "../../../interfaces";
 import { useCreateFormProps } from "..";
 import { useCreateForm } from "../useCreateForm";
 
-export type useCloneFormProps = useCreateFormProps;
+export type useCloneFormProps = useCreateFormProps & {
+    cloneId: string | number;
+};
 
 export const useCloneForm = (props: useCloneFormProps) => {
     const useCreateFormProps = useCreateForm({ ...props });
+
     const { form, formLoading } = useCreateFormProps;
 
     const {
         resource: routeResourceName,
-        id,
+        id: idFromRoute,
         action,
     } = useParams<ResourceRouterParams>();
 
     const resource = useResourceWithRoute(routeResourceName);
 
-    const isClone = action === "create" && !!id;
+    console.log("props.editId", props.cloneId);
+
+    const id = props.cloneId?.toString() ?? idFromRoute;
+    // Check if clone process comes from useParams or modal
+    const isClone = (action === "create" && !!id) || !!id;
 
     const queryResult = useOne(resource.name, id, {
         enabled: isClone,
