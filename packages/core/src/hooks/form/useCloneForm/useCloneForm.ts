@@ -7,7 +7,7 @@ import { useCreateFormProps } from "..";
 import { useCreateForm } from "../useCreateForm";
 
 export type useCloneFormProps = useCreateFormProps & {
-    cloneId: string | number;
+    cloneId?: string | number;
 };
 
 export const useCloneForm = (props: useCloneFormProps) => {

@@ -34,6 +34,8 @@ export type useFormProps = (
 export const useForm: useFormProps = (props) => {
     const { action: actionFromProp } = props;
 
+    // id state is needed to determine selected record in addition to id parameter from route
+    // this could be moved to a custom hook that encapsulates both create and clone form hooks.
     const [cloneId, setCloneId] = React.useState<string | number>();
 
     const editForm = useEditForm(props as useEditFormProps);
@@ -46,8 +48,13 @@ export const useForm: useFormProps = (props) => {
 
     switch (actionFromProp || actionFromRoute) {
         case "create":
+            // setCloneId and cloneId needs to be returned from both clone and create cases.
+            // It is needed to make them accessible in useModalForm to be able to manage id state.
+
+            // clone case
             if (cloneId || id) {
                 return { ...cloneForm, setCloneId, cloneId };
+                // create case
             } else {
                 return { ...createForm, setCloneId, cloneId };
             }
