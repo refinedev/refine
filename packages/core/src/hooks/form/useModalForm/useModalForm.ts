@@ -99,7 +99,6 @@ export const useModalForm = ({
         show: (id?: string | number) => {
             setEditId && setEditId(id);
 
-            console.log("id", id);
             setCloneId && setCloneId(id);
 
             sunflowerUseModal.show();
@@ -133,6 +132,7 @@ export const useModalForm = ({
                     }
                 }
                 sunflowerUseModal.close();
+                setCloneId?.(undefined)
             },
         },
         saveButtonProps: saveButtonPropsSF,

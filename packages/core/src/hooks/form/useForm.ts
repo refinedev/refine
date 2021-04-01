@@ -25,15 +25,13 @@ export type useFormProps = (
 ) => Partial<
     useEditFormReturn &
         useCreateFormReturn &
-        useCloneFormTypeReturn & { setCloneId: Function }
+        useCloneFormTypeReturn & { setCloneId: Function; cloneId: string | number; }
 >;
 
 export const useForm: useFormProps = (props) => {
     const { action: actionFromProp } = props;
 
     const [cloneId, setCloneId] = React.useState<string | number>();
-
-    console.log("setedt", cloneId);
 
     const editForm = useEditForm(props as useEditFormProps);
 
@@ -45,7 +43,11 @@ export const useForm: useFormProps = (props) => {
 
     switch (actionFromProp || actionFromRoute) {
         case "create":
-            return cloneId ? cloneForm : { ...createForm, setCloneId };
+            if(cloneId || id){
+                return {...cloneForm, setCloneId, cloneId}
+            } else {
+                return { ...createForm, setCloneId, cloneId }
+            }
         case "edit":
             return editForm;
         default:
