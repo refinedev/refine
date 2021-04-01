@@ -19,13 +19,16 @@ export const CloneButton: FC<CloneButtonProps> = ({
     const history = useHistory();
     const translate = useTranslate();
 
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
+    const {
+        resource: routeResourceName,
+        id: idFromRoute,
+    } = useParams<ResourceRouterParams>();
 
     const onButtonClick = () => {
         history.push(
-            `/resources/${
-                resourceName ?? routeResourceName
-            }/create/${recordItemId}`,
+            `/resources/${resourceName ?? routeResourceName}/create/${
+                recordItemId ?? idFromRoute
+            }`,
         );
     };
 

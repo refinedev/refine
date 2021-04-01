@@ -132,7 +132,7 @@ export const useModalForm = ({
                     }
                 }
                 sunflowerUseModal.close();
-                setCloneId?.(undefined)
+                setCloneId?.(undefined);
             },
         },
         saveButtonProps: saveButtonPropsSF,

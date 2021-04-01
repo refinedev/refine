@@ -141,7 +141,6 @@ export const PostLightList = (props: any) => {
                                     onClick={() => {
                                         createModalShow(record.id);
                                     }}
-                                    recordItemId={record.id}
                                 />
                             </Space>
                         )}
