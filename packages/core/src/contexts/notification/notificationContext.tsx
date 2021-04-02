@@ -43,7 +43,7 @@ export const notificationReducer = (state: INotification[], action: any) => {
     }
 };
 
-export const NotificationContextProvider = (props: any) => {
+export const NotificationContextProvider: React.FC = ({ children }) => {
     const [notifications, notificationDispatch] = useReducer(
         notificationReducer,
         initialState,
@@ -53,7 +53,7 @@ export const NotificationContextProvider = (props: any) => {
 
     return (
         <NotificationContext.Provider value={notificationData}>
-            {props.children}
+            {children}
             {createPortal(
                 <Notification notifications={notifications} />,
                 document.body,

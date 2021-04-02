@@ -8,7 +8,7 @@ module.exports = {
     rootDir: "./",
     globals: {
         "ts-jest": {
-            tsconfig: "tsconfig.test.json",
+            tsconfig: "<rootDir>/tsconfig.test.json",
         },
     },
     setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
@@ -21,4 +21,6 @@ module.exports = {
         ...pathsToModuleNameMapper(paths, { prefix: "<rootDir>/" }),
         "\\.css$": "identity-obj-proxy",
     },
+    name: "core",
+    displayName: "core",
 };

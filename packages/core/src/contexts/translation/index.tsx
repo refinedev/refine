@@ -4,7 +4,8 @@ import { ITranslationContext } from "../../interfaces";
 
 export const defaultProvider: ITranslationContext = {
     i18nProvider: {
-        translate: (key: string, options: any) => options,
+        translate: (key: string, options: any, defaultMessage?: string) =>
+            defaultMessage || options,
         changeLocale: () => Promise.resolve(),
         getLocale: () => "en",
     },

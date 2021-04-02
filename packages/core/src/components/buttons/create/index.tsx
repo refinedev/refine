@@ -8,12 +8,10 @@ import { ResourceRouterParams } from "../../../interfaces";
 
 type CreateButtonProps = ButtonProps & {
     resourceName?: string;
-    isModalShown?: () => void;
 };
 
 export const CreateButton: FC<CreateButtonProps> = ({
     resourceName,
-    isModalShown,
     ...rest
 }) => {
     const history = useHistory();
@@ -22,11 +20,7 @@ export const CreateButton: FC<CreateButtonProps> = ({
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const onButtonClick = () => {
-        isModalShown
-            ? isModalShown()
-            : history.push(
-                  `/resources/${resourceName ?? routeResourceName}/create`,
-              );
+        history.push(`/resources/${resourceName ?? routeResourceName}/create`);
     };
 
     return (

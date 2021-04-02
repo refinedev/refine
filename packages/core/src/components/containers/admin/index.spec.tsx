@@ -1,9 +1,7 @@
 import React from "react";
-
-import { ReadyPage } from "@components/pages";
+import { Row } from "antd";
 
 import { render, MockJSONServer } from "@test";
-import { Row } from "antd";
 
 import { Admin } from "./index";
 
@@ -34,17 +32,18 @@ const mockAuthProvider = {
 };
 
 describe("Admin Container", () => {
-    xit("should render without resource", async () => {
-        render(
+    it("should render without resource", async () => {
+        const { getByText } = render(
             <Admin
                 authProvider={mockAuthProvider}
                 dataProvider={MockJSONServer}
             />,
         );
-        expect(ReadyPage).toBeTruthy();
+
+        getByText("Welcome to readmin");
     });
 
-    xit("should render correctly readyPage with ready prop", async () => {
+    it("should render correctly readyPage with ready prop", async () => {
         const readyPage = () => {
             return (
                 <Row

@@ -9,6 +9,7 @@ export * from "./istate";
 export * from "../contexts/data/IDataContext";
 export * from "../contexts/auth/IAuthContext";
 export * from "../contexts/translation/ITranslationContext";
+export * from "../contexts/components/IComponentsContext";
 export * from "../contexts/notification/INotificationContext";
 
 // field

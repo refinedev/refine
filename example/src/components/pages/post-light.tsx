@@ -20,6 +20,7 @@ import {
     useModalForm,
     ExportButton,
     CreateButton,
+    CloneButton,
 } from "readmin";
 
 export const PostLightList = (props: any) => {
@@ -62,7 +63,7 @@ export const PostLightList = (props: any) => {
                     };
                 }}
             />
-            <CreateButton />
+            <CreateButton onClick={() => createModalShow()} />
         </Space>
     );
 
@@ -135,6 +136,11 @@ export const PostLightList = (props: any) => {
                                 <ShowButton
                                     size="small"
                                     recordItemId={record.id}
+                                />
+                                <CloneButton
+                                    onClick={() => {
+                                        createModalShow(record.id);
+                                    }}
                                 />
                             </Space>
                         )}

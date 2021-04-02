@@ -6,6 +6,7 @@ import {
     Icons,
     Authenticated,
     defaultConfigProviderProps,
+    BackTop,
 } from "readmin";
 import dataProvider from "readmin-nestjsx-crud";
 import { useTranslation } from "react-i18next";
@@ -74,8 +75,7 @@ function App() {
     const { t, i18n } = useTranslation(["common", "translation"]);
 
     const i18nProvider = {
-        translate: (key: string, defaultTranslate: string) =>
-            t(key, defaultTranslate),
+        translate: (key: string, params: object) => t(key, params),
         changeLocale: (lang: string) => i18n.changeLanguage(lang),
         getLocale: () => i18n.language,
     };
@@ -102,6 +102,7 @@ function App() {
             i18nProvider={i18nProvider}
             mutationMode="pessimistic"
             syncWithLocation
+            components={<BackTop />}
             routes={[
                 {
                     exact: true,
