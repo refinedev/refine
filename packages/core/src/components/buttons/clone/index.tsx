@@ -6,21 +6,30 @@ import { useHistory, useParams } from "react-router-dom";
 import { useTranslate } from "@hooks";
 import { ResourceRouterParams } from "../../../interfaces";
 
-type CreateButtonProps = ButtonProps & {
+type CloneButtonProps = ButtonProps & {
     resourceName?: string;
+    recordItemId?: string | number;
 };
 
-export const CreateButton: FC<CreateButtonProps> = ({
+export const CloneButton: FC<CloneButtonProps> = ({
     resourceName,
+    recordItemId,
     ...rest
 }) => {
     const history = useHistory();
     const translate = useTranslate();
 
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
+    const {
+        resource: routeResourceName,
+        id: idFromRoute,
+    } = useParams<ResourceRouterParams>();
 
     const onButtonClick = () => {
-        history.push(`/resources/${resourceName ?? routeResourceName}/create`);
+        history.push(
+            `/resources/${resourceName ?? routeResourceName}/create/${
+                recordItemId ?? idFromRoute
+            }`,
+        );
     };
 
     return (
@@ -30,7 +39,7 @@ export const CreateButton: FC<CreateButtonProps> = ({
             icon={<PlusSquareOutlined />}
             {...rest}
         >
-            {translate("common:buttons.create", "Create")}
+            {translate("common:buttons.clone", "Clone")}
         </Button>
     );
 };
