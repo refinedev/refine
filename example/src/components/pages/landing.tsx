@@ -21,6 +21,7 @@ import {
     useForm,
     useModalForm,
     Modal,
+    CloneButton,
 } from "readmin";
 
 export const LandingList = (props: any) => {
@@ -97,6 +98,7 @@ export const LandingList = (props: any) => {
                                     size="small"
                                     recordItemId={record.id}
                                 />
+                                <CloneButton recordItemId={record.id} />
                             </Space>
                         )}
                     />
@@ -181,6 +183,7 @@ export const LandingCreate = (props: any) => {
                             required: true,
                         },
                     ]}
+                    initialValue=""
                 >
                     <ReactQuill theme="snow" />
                 </Form.Item>
