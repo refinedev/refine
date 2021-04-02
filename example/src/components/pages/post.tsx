@@ -33,6 +33,7 @@ import {
     useStepsForm,
     CreateButton,
     ExportButton,
+    CloneButton,
     getDefaultSortOrder,
 } from "readmin";
 
@@ -183,6 +184,7 @@ export const PostList = (props: any) => {
                                 recordItemId={record.id}
                             />
                             <ShowButton size="small" recordItemId={record.id} />
+                            <CloneButton size="small" recordItemId={record.id}/>
                         </Space>
                     )}
                 />
