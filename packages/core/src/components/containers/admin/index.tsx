@@ -108,10 +108,10 @@ export const Admin: React.FC<AdminProps> = ({
                                         }
                                         syncWithLocation={syncWithLocation}
                                     >
-                                        <Router>
-                                            <ComponentsContextProvider
-                                                components={components}
-                                            >
+                                        <ComponentsContextProvider
+                                            components={components}
+                                        >
+                                            <Router>
                                                 <RouteProvider
                                                     resources={resources}
                                                     catchAll={catchAll}
@@ -121,8 +121,8 @@ export const Admin: React.FC<AdminProps> = ({
                                                     ready={ready}
                                                     customRoutes={routes}
                                                 />
-                                            </ComponentsContextProvider>
-                                        </Router>
+                                            </Router>
+                                        </ComponentsContextProvider>
                                     </AdminContextProvider>
                                 </NotificationContextProvider>
                             </ConfigProvider>
