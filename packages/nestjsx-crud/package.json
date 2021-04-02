@@ -40,6 +40,7 @@
     "tslib": "^2.1.0"
   },
   "dependencies": {
+    "@nestjsx/crud-request": "^5.0.0-alpha.3",
     "axios": "^0.21.1",
     "query-string": "^7.0.0",
     "readmin": "^1.0.0"

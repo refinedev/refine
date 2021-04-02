@@ -4,7 +4,7 @@ module.exports = function (app) {
     app.use(
         "/api",
         createProxyMiddleware({
-            target: "https://readmin-fake-rest.pankod.com",
+            target: "https://readmin-nestjs-crud.pankod.com",
             changeOrigin: true,
             pathRewrite: { "^/api": "" },
         }),

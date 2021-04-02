@@ -1,61 +1,66 @@
 import axios from "axios";
 import { stringify } from "query-string";
+import {
+    QuerySort,
+    QuerySortArr,
+    QuerySortOperator,
+    RequestQueryBuilder,
+} from "@nestjsx/crud-request";
 import { DataProvider } from "readmin";
 
-const JsonServer = (apiUrl: string): DataProvider => ({
+type SortBy = QuerySort | QuerySortArr | Array<QuerySort | QuerySortArr>;
+
+const NestsxCrud = (apiUrl: string): DataProvider => ({
     getList: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
-
-        // search
-        const q = params.search;
-
-        // pagination
         const current = params.pagination?.current || 1;
         const pageSize = params.pagination?.pageSize || 10;
 
-        // sort
-        let _sort = ["id"]; // default sorting field
-        let _order = ["desc"]; // default sorting
-
         const { sort } = params;
 
-        if (Array.isArray(sort) || sort?.field) {
-            _sort = [];
-            _order = [];
-
+        let sortBy: SortBy = { field: "id", order: "DESC" };
+        if (sort) {
             if (Array.isArray(sort)) {
-                sort.map((item) => {
-                    _sort.push(`${item.field}`);
-                    _order.push(`${item.order}`.replace("end", "")); // replace -> [ascend, descend] -> [asc,desc]
+                const multipleSort: SortBy = [];
+                sort.map(({ field, order }) => {
+                    if (field && order) {
+                        multipleSort.push({
+                            field: field as string,
+                            order: order
+                                .replace("end", "")
+                                .toUpperCase() as QuerySortOperator,
+                        });
+                    }
                 });
+                sortBy = multipleSort;
             } else {
-                _sort.push(`${sort.field}`);
-                _order.push(`${sort.order}`.replace("end", "")); // replace -> [ascend, descend] -> [asc,desc]
+                const { field, order } = sort;
+
+                if (field && order) {
+                    sortBy = [
+                        {
+                            field: field as string,
+                            order: order
+                                .replace("end", "")
+                                .toUpperCase() as QuerySortOperator,
+                        },
+                    ];
+                }
             }
         }
 
-        // filter
-        const filters = stringify(params.filters || {}, {
-            skipNull: true,
-        });
+        const query = RequestQueryBuilder.create()
+            .setLimit(pageSize)
+            .setPage(current)
+            .sortBy(sortBy)
+            .setOffset((current - 1) * pageSize)
+            .query();
 
-        const query = {
-            _start: (current - 1) * pageSize,
-            _end: current * pageSize,
-            _sort: _sort.join(","),
-            _order: _order.join(","),
-            q,
-        };
-
-        const { data, headers } = await axios.get(
-            `${url}?${stringify(query)}&${filters}`,
-        );
-
-        const total = +headers["x-total-count"];
+        const { data } = await axios.get(`${url}?${query}`);
 
         return {
-            data,
-            total,
+            data: data.data,
+            total: data.total,
         };
     },
 
@@ -139,4 +144,4 @@ const JsonServer = (apiUrl: string): DataProvider => ({
     },
 });
 
-export default JsonServer;
+export default NestsxCrud;

@@ -51,8 +51,8 @@ export const PostList = (props: any) => {
         // },
         initialSorter: [
             {
-                field: "id",
-                order: "descend",
+                field: "title",
+                order: "ascend",
             },
         ],
         initialFilter: {
@@ -93,15 +93,6 @@ export const PostList = (props: any) => {
                     size: "small",
                 }}
             >
-                <Table.Column
-                    dataIndex="id"
-                    title={translate("common:resources.posts.fields.id")}
-                    key="id"
-                    sorter={{
-                        multiple: 3,
-                    }}
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
-                />
                 <Table.Column
                     dataIndex="title"
                     title={translate("common:resources.posts.fields.title")}

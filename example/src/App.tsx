@@ -7,7 +7,7 @@ import {
     Authenticated,
     defaultConfigProviderProps,
 } from "readmin";
-import JsonServer from "readmin-json-server";
+import dataProvider from "readmin-nestjsx-crud";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -95,7 +95,7 @@ function App() {
     return (
         <Admin
             authProvider={authProvider}
-            dataProvider={JsonServer("/api")}
+            dataProvider={dataProvider("/api")}
             loginPage={LoginPage}
             dashboard={DashboardPage}
             ready={ReadyPage}
