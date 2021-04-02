@@ -18,16 +18,13 @@ export const Notification: React.FC<{
     const successNotification = (id: string, resource: string) => {
         const message = (
             <span style={{ marginLeft: 20 }}>
-                {translate("common:notifications.success")}
+                {translate("common:notifications.success", "Successful")}
             </span>
         );
 
         const description = (
             <span style={{ marginLeft: 20 }}>
-                {translate("common:notifications.succesMessage", {
-                    id: id,
-                    resource: resource,
-                })}
+                Id: {`${id} ${resource}`} edited
             </span>
         );
 
@@ -58,7 +55,10 @@ export const Notification: React.FC<{
                 }
                 const message = (
                     <span style={{ marginLeft: 20 }}>
-                        {translate("common:notifications.undoable")}
+                        {translate(
+                            "common:notifications.undoable",
+                            "You have 5 seconds to undo",
+                        )}
                     </span>
                 );
 
@@ -84,7 +84,7 @@ export const Notification: React.FC<{
                                 );
                             }}
                         >
-                            {translate("common:buttons.undo")}
+                            {translate("common:buttons.undo", "Undo")}
                         </Button>
                     ),
                     duration: 0,
