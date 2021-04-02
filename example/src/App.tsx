@@ -74,8 +74,7 @@ function App() {
     const { t, i18n } = useTranslation(["common", "translation"]);
 
     const i18nProvider = {
-        translate: (key: string, defaultTranslate: string) =>
-            t(key, defaultTranslate),
+        translate: (key: string, params: object) => t(key, params),
         changeLocale: (lang: string) => i18n.changeLanguage(lang),
         getLocale: () => i18n.language,
     };

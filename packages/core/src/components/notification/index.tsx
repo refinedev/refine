@@ -24,7 +24,14 @@ export const Notification: React.FC<{
 
         const description = (
             <span style={{ marginLeft: 20 }}>
-                Id: {`${id} ${resource}`} edited
+                {translate(
+                    "common:notifications.succesMessage",
+                    {
+                        id: id,
+                        resource: resource,
+                    },
+                    `Id: ${id} ${resource} edited`,
+                )}
             </span>
         );
 
