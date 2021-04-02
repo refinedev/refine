@@ -8,6 +8,8 @@ import {
     defaultConfigProviderProps,
 } from "readmin";
 import JsonServer from "readmin-json-server";
+import { Thing } from "readmin-demo-sidebar";
+
 import { useTranslation } from "react-i18next";
 
 import {
@@ -81,7 +83,7 @@ function App() {
     };
 
     const CustomPage = () => {
-        return <div>anon and authenticated custom page</div>;
+        return <Thing />;
     };
 
     const AuthenticatedCustomPage = () => {
