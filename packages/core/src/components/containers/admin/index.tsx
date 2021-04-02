@@ -23,7 +23,6 @@ import {
     IDataContext,
     IAuthContext,
     I18nProvider,
-    IComponentsContext,
 } from "../../../interfaces";
 
 export interface AdminProps {
