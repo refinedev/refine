@@ -7,7 +7,7 @@ describe("useTranslate", () => {
         const translate = useTranslate();
         return (
             <div>
-                {translate("undefined key", { name: "burcu" }, "hello test")}
+                {translate("undefined key", { name: "test" }, "hello test")}
             </div>
         );
     };
@@ -45,6 +45,6 @@ describe("useTranslate", () => {
             }),
         });
 
-        expect(getByText("merhaba burcu")).toBeTruthy();
+        expect(getByText("merhaba test")).toBeTruthy();
     });
 });
