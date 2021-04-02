@@ -2,6 +2,7 @@ import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 import { AuthContextProvider } from "@contexts/auth";
+import { NotificationContextProvider } from "@contexts/notification";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { IDataContext, IAuthContext, I18nProvider } from "../src/interfaces";
@@ -36,6 +37,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
                 {children}
             </ResourceContextProvider>
         );
+
         const withData = dataProvider ? (
             <DataContextProvider {...dataProvider}>
                 {withResource}
@@ -52,12 +54,18 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
             withData
         );
 
+        const withNotification = (
+            <NotificationContextProvider>
+                {withTranslation}
+            </NotificationContextProvider>
+        );
+
         const withAuth = authProvider ? (
             <AuthContextProvider {...authProvider}>
-                {withTranslation}
+                {withNotification}
             </AuthContextProvider>
         ) : (
-            withTranslation
+            withNotification
         );
 
         const withComponents = components ? (

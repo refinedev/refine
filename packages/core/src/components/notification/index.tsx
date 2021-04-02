@@ -2,24 +2,36 @@ import React, { useEffect } from "react";
 import { Button, Progress } from "antd";
 
 import { ActionTypes } from "@contexts/notification";
-import { useCancelNotification, useNotification } from "@hooks";
+import { useCancelNotification, useNotification, useTranslate } from "@hooks";
 import { INotification } from "../../interfaces";
 
-import { NotificationProgress } from "./notificationProgress";
+import { NotificationProgress } from "./components";
 
 export const Notification: React.FC<{
     notifications: INotification[];
 }> = ({ notifications }) => {
     const notification = useNotification();
+    const translate = useTranslate();
 
     const { notificationDispatch } = useCancelNotification();
 
     const successNotification = (id: string, resource: string) => {
-        const message = <span style={{ marginLeft: 20 }}>Successful</span>;
+        const message = (
+            <span style={{ marginLeft: 20 }}>
+                {translate("common:notifications.success", "Successful")}
+            </span>
+        );
 
         const description = (
             <span style={{ marginLeft: 20 }}>
-                Id: {`${id} ${resource}`} edited
+                {translate(
+                    "common:notifications.succesMessage",
+                    {
+                        id: id,
+                        resource: resource,
+                    },
+                    `Id: ${id} ${resource} edited`,
+                )}
             </span>
         );
 
@@ -50,7 +62,10 @@ export const Notification: React.FC<{
                 }
                 const message = (
                     <span style={{ marginLeft: 20 }}>
-                        You have 5 seconds to undo
+                        {translate(
+                            "common:notifications.undoable",
+                            "You have 5 seconds to undo",
+                        )}
                     </span>
                 );
 
@@ -76,7 +91,7 @@ export const Notification: React.FC<{
                                 );
                             }}
                         >
-                            Undo
+                            {translate("common:buttons.undo", "Undo")}
                         </Button>
                     ),
                     duration: 0,
