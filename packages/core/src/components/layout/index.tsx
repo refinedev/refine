@@ -10,7 +10,7 @@ import { Link, Prompt, useHistory, useLocation } from "react-router-dom";
 import humanizeString from "humanize-string";
 
 import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "../../interfaces";
+import { IAuthContext, IComponentsContext } from "../../interfaces";
 import {
     useGetLocale,
     useResource,
@@ -19,6 +19,7 @@ import {
     useWarnAboutChange,
 } from "@hooks";
 import { AdminContext } from "@contexts/admin";
+import { ComponentsContext } from "@contexts/components";
 
 export interface LayoutProps {
     title?: ReactNode;
@@ -34,6 +35,7 @@ export const Layout: React.FC<LayoutProps> = ({
 
     const history = useHistory();
     const { logout } = useContext<IAuthContext>(AuthContext);
+    const { components } = useContext<IComponentsContext>(ComponentsContext);
     const { resources } = useResource();
 
     const location = useLocation();
@@ -143,6 +145,7 @@ export const Layout: React.FC<LayoutProps> = ({
                     <div style={{ padding: 24, minHeight: 360 }}>
                         {children}
                     </div>
+                    {components}
                 </AntLayout.Content>
             </AntLayout>
             <Prompt

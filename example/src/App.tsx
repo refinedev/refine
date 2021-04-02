@@ -6,6 +6,7 @@ import {
     Icons,
     Authenticated,
     defaultConfigProviderProps,
+    BackTop,
 } from "readmin";
 import JsonServer from "readmin-json-server";
 import { useTranslation } from "react-i18next";
@@ -102,6 +103,7 @@ function App() {
             i18nProvider={i18nProvider}
             mutationMode="pessimistic"
             syncWithLocation
+            components={<BackTop />}
             routes={[
                 {
                     exact: true,

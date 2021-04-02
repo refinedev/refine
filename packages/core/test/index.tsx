@@ -7,6 +7,7 @@ import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { IDataContext, IAuthContext, I18nProvider } from "../src/interfaces";
 import { MemoryRouter } from "react-router-dom";
 import { TranslationContextProvider } from "@contexts/translation";
+import { ComponentsContextProvider } from "@contexts/components";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ interface ITestWrapperProps {
     resources: IResourceItem[];
     children?: React.ReactNode;
     routerInitialEntries?: string[];
+    components?: React.ReactNode;
 }
 
 export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
@@ -25,6 +27,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     resources,
     i18nProvider,
     routerInitialEntries,
+    components,
 }) => {
     // eslint-disable-next-line react/display-name
     return ({ children }): React.ReactElement => {
@@ -57,10 +60,18 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
             withTranslation
         );
 
+        const withComponents = components ? (
+            <ComponentsContextProvider components={components}>
+                {withAuth}
+            </ComponentsContextProvider>
+        ) : (
+            withAuth
+        );
+
         return (
             <MemoryRouter initialEntries={routerInitialEntries}>
                 <QueryClientProvider client={queryClient}>
-                    {withAuth}
+                    {withComponents}
                 </QueryClientProvider>
             </MemoryRouter>
         );
