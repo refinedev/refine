@@ -17,7 +17,8 @@ import { useCreateFormProps } from "../useCreateForm";
 type useModalFormConfig = {
     action: "show" | "edit" | "create";
 };
-export type useModalFormProps = (useEditFormProps | useCreateFormProps) &
+
+export type useModalFormProps = Partial<useEditFormProps & useCreateFormProps> &
     UseModalFormConfigSF &
     useModalFormConfig;
 export const useModalForm = ({
