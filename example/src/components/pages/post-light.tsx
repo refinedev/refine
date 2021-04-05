@@ -39,7 +39,6 @@ export const PostLightList = (props: any) => {
     } = useModalForm({
         action: "edit",
         mutationMode: "undoable",
-        undoableTimeout: 10000,
     });
 
     const {
