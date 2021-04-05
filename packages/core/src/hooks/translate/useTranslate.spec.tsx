@@ -5,7 +5,11 @@ import { useTranslate } from "@hooks";
 describe("useTranslate", () => {
     const TestComponent = () => {
         const translate = useTranslate();
-        return <div>{translate("undefined key", "hello test")}</div>;
+        return (
+            <div>
+                {translate("undefined key", { name: "test" }, "hello test")}
+            </div>
+        );
     };
 
     it("works correctly without using i18n provider", () => {
@@ -27,5 +31,20 @@ describe("useTranslate", () => {
         });
 
         expect(getByText("merhaba")).toBeTruthy();
+    });
+
+    it("works with options and i18nprovider", () => {
+        const { getByText } = render(<TestComponent />, {
+            wrapper: TestWrapper({
+                resources: [{ name: "tests" }],
+                i18nProvider: {
+                    translate: (key, options) => `merhaba ${options.name}`,
+                    changeLocale: () => Promise.resolve(),
+                    getLocale: () => "tr",
+                },
+            }),
+        });
+
+        expect(getByText("merhaba test")).toBeTruthy();
     });
 });

@@ -1,4 +1,8 @@
-export type Translate = (key: string, options?: any) => string;
+export type Translate = (
+    key: string,
+    options?: any,
+    defaultMessage?: string,
+) => string;
 
 export interface I18nProvider {
     translate: Translate;

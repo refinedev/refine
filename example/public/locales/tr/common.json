@@ -104,7 +104,8 @@
         "filter": "Filtrele",
         "clear": "Temizle",
         "refresh": "Yenile",
-        "show": "Göster"
+        "show": "Göster",
+        "undo": "Geri Al"
     },
     "table": {
         "actions": "İşlemler"
@@ -118,5 +119,10 @@
         "title": "Yüklemek için dosyayı bu alana tıklayın veya sürükleyin",
         "description": "Tek veya toplu yükleme desteği."
     },
-    "warnWhenUnsavedChanges": "Kaydedilmemiş değişiklikleriniz var. Ayrılmak istediğinizden emin misiniz?"
+    "warnWhenUnsavedChanges": "Kaydedilmemiş değişiklikleriniz var. Ayrılmak istediğinizden emin misiniz?",
+    "notifications": {
+        "success": "Başarılı",
+        "succesMessage": "Id: {{id}} {{resource}} düzenlendi",
+        "undoable": "Geri almak için 5 saniyen var"
+    }
 }
