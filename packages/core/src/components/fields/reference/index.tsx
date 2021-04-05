@@ -2,9 +2,10 @@ import React, { useContext } from "react";
 import { useQuery } from "react-query";
 import { Typography } from "antd";
 
+import { useTranslate } from "@hooks";
 import { DataContext } from "@contexts/data";
-import { GetOneResponse, IDataContext } from "../../../interfaces";
 import { renderFieldRecord } from "@definitions";
+import { GetOneResponse, IDataContext } from "../../../interfaces";
 import { BaseFieldProps } from "../../../interfaces/field";
 
 export type ReferenceFieldProps = BaseFieldProps & {
@@ -24,11 +25,13 @@ export const ReferenceField: React.FC<ReferenceFieldProps> = ({
         () => getOne(resource, Number(value)),
     );
 
+    const translate = useTranslate();
+
     const { Text } = Typography;
 
     if (isFetching) {
         // TODO: Add loding ui.
-        return <Text>loading</Text>;
+        return <Text>{translate("common:loading", "loading")}</Text>;
     }
 
     if (!data) {

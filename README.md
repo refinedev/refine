@@ -14,6 +14,7 @@ npm install
 
 ```bash
 npm run lerna bootstrap
+npm run start
 ```
 
 ## Run Example

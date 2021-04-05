@@ -154,14 +154,24 @@ export const PostList = (props: any) => {
                 />
                 <Table.Column
                     dataIndex="status"
-                    title={translate("common:resources.posts.fields.status")}
+                    title={translate(
+                        "common:resources.posts.fields.status.title",
+                    )}
                     key="status"
                     render={(value) => <TagField value={value} />}
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Radio.Group>
-                                <Radio value="active">Active</Radio>
-                                <Radio value="draft">Draft</Radio>
+                                <Radio value="active">
+                                    {translate(
+                                        "common:resources.posts.fields.status.active",
+                                    )}
+                                </Radio>
+                                <Radio value="draft">
+                                    {translate(
+                                        "common:resources.posts.fields.status.draft",
+                                    )}
+                                </Radio>
                             </Radio.Group>
                         </FilterDropdown>
                     )}
@@ -268,7 +278,7 @@ export const PostCreate = (props: any) => {
 
         <>
             <Form.Item
-                label={translate("common:resources.posts.fields.status")}
+                label={translate("common:resources.posts.fields.status.title")}
                 name="status"
                 rules={[
                     {
@@ -495,7 +505,7 @@ export const PostEdit = (props: any) => {
 
         <>
             <Form.Item
-                label={translate("common:resources.posts.fields.status")}
+                label={translate("common:resources.posts.fields.status.title")}
                 name="status"
                 rules={[
                     {
