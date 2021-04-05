@@ -9,7 +9,7 @@ const mockNotifications = {
     id: "1",
     resource: "posts",
     cancelMutation: () => Promise.resolve(),
-    seconds: 5,
+    seconds: 5000,
     isRunning: true,
 };
 
@@ -23,8 +23,9 @@ describe("Cancel Notification", () => {
                 notificationItem={mockNotifications}
             />,
         );
+        const formattedSeconds = mockNotifications.seconds / 1000;
 
-        getByText(mockNotifications.seconds.toString());
+        getByText(formattedSeconds.toString());
         expect(notificationDispatch).not.toBeCalled();
     });
 
