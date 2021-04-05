@@ -85,7 +85,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                                 id: id,
                                 resource: resource,
                                 cancelMutation: cancelMutation,
-                                seconds: undoableTimeout / 1000, //milliseconds convert to seconds
+                                seconds: undoableTimeout,
                             },
                         });
                     }

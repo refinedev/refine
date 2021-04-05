@@ -33,7 +33,7 @@ export const notificationReducer = (state: INotification[], action: any) => {
                 if (notificationItem.id === action.payload.id) {
                     return {
                         ...notificationItem,
-                        seconds: action.payload.seconds - 1,
+                        seconds: action.payload.seconds - 1000,
                     };
                 }
                 return notificationItem;

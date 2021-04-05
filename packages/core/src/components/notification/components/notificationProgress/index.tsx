@@ -34,8 +34,10 @@ export const NotificationProgress: React.FC<{
         <Progress
             type="circle"
             percent={seconds * (100 / duration)}
-            format={(seconds) =>
-                seconds && `${Math.round(seconds / (100 / duration))}`
+            format={
+                (seconds) =>
+                    seconds &&
+                    `${Math.round(seconds / (100 / duration)) / 1000}` //format milliseconds convert to seconds
             }
             width={50}
             strokeColor="#1890ff"
