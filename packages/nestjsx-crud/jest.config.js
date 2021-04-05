@@ -1,6 +1,6 @@
 module.exports = {
     preset: "ts-jest",
     rootDir: "./",
-    name: "core",
-    displayName: "core",
+    name: "nestjsx-crud",
+    displayName: "nestjsx-crud",
 };
