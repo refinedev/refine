@@ -56,7 +56,7 @@
                 "status": {
                     "title": "Status",
                     "active": "Active",
-                    "draft": "Draft",
+                    "draft": "Draft"
                 },
                 "url": "Url",
                 "content": "Content",
