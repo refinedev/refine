@@ -230,6 +230,7 @@ export const PostLightEdit = (props: any) => {
     const translate = useTranslate();
 
     const { formProps, saveButtonProps } = useForm({});
+
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
