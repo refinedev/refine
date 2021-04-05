@@ -39,6 +39,7 @@ export const PostLightList = (props: any) => {
     } = useModalForm({
         action: "edit",
         mutationMode: "undoable",
+        undoableTimeout: 10000,
     });
 
     const {
@@ -230,7 +231,6 @@ export const PostLightEdit = (props: any) => {
     const translate = useTranslate();
 
     const { formProps, saveButtonProps } = useForm({});
-
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
