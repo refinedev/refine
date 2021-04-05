@@ -152,6 +152,7 @@ export const PostList = (props: any) => {
                         <FilterDropdown {...props}>
                             <Radio.Group>
                                 <Radio value="active">Active</Radio>
+                                <Radio value="passive">Passive</Radio>
                                 <Radio value="draft">Draft</Radio>
                             </Radio.Group>
                         </FilterDropdown>

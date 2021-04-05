@@ -1,14 +1,21 @@
 import axios from "axios";
 import { stringify } from "query-string";
 import {
+    QueryFilter,
+    QueryFilterArr,
     QuerySort,
     QuerySortArr,
     QuerySortOperator,
     RequestQueryBuilder,
+    CondOperator,
 } from "@nestjsx/crud-request";
 import { DataProvider } from "readmin";
 
 type SortBy = QuerySort | QuerySortArr | Array<QuerySort | QuerySortArr>;
+type CrudFilters =
+    | QueryFilter
+    | QueryFilterArr
+    | Array<QueryFilter | QueryFilterArr>;
 
 const NestsxCrud = (apiUrl: string): DataProvider => ({
     getList: async (resource, params) => {
@@ -49,7 +56,23 @@ const NestsxCrud = (apiUrl: string): DataProvider => ({
             }
         }
 
+        // filters
+        const crudFilters: CrudFilters = [];
+        const { filters } = params;
+        if (filters) {
+            Object.keys(filters).map((field) => {
+                if (filters[field]) {
+                    crudFilters.push({
+                        field,
+                        operator: CondOperator.IN,
+                        value: filters[field],
+                    });
+                }
+            });
+        }
+
         const query = RequestQueryBuilder.create()
+            .setFilter(crudFilters)
             .setLimit(pageSize)
             .setPage(current)
             .sortBy(sortBy)
