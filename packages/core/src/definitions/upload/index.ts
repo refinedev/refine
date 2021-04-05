@@ -1,4 +1,4 @@
-import { RcFile, UploadFile } from "antd/lib/upload/interface";
+import { UploadFile } from "antd/lib/upload/interface";
 
 interface UploadResponse {
     fileUrl: string;

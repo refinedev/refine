@@ -42,8 +42,6 @@ import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-import { ShowAside } from "../show";
-
 export const PostList = (props: any) => {
     const translate = useTranslate();
     const { tableProps, sorter, filters } = useTable({
@@ -59,7 +57,6 @@ export const PostList = (props: any) => {
         initialFilter: {
             status: ["active"],
         },
-        syncWithLocation: true,
     });
 
     const actions = (
@@ -115,11 +112,11 @@ export const PostList = (props: any) => {
                     defaultSortOrder={getDefaultSortOrder("slug", sorter)}
                 />
                 <Table.Column
-                    dataIndex="categoryId"
+                    dataIndex="category"
                     title={translate("common:resources.posts.fields.category")}
-                    key="categoryId"
-                    render={(value) => (
-                        <ReferenceField resource="categories" value={value}>
+                    key="category.id"
+                    render={({ id }) => (
+                        <ReferenceField resource="categories" value={id}>
                             <TextField renderRecordKey="title" />
                         </ReferenceField>
                     )}
@@ -301,12 +298,16 @@ export const PostCreate = (props: any) => {
         <>
             <Form.Item
                 label={translate("common:resources.posts.fields.category")}
-                name="categoryId"
+                name="category"
                 rules={[
                     {
                         required: true,
                     },
                 ]}
+                valuePropName="__"
+                getValueFromEvent={(id) => {
+                    return { id };
+                }}
             >
                 <Reference
                     reference="categories"
@@ -321,31 +322,22 @@ export const PostCreate = (props: any) => {
             </Form.Item>
             <Form.Item
                 label={translate("common:resources.posts.fields.user")}
-                name="userId"
+                name="user"
                 rules={[
                     {
                         required: true,
                     },
                 ]}
                 help="Autocomplete (search user email)"
+                valuePropName="__"
+                getValueFromEvent={(id) => {
+                    return { id };
+                }}
             >
                 <Reference reference="users" optionText="email">
                     <Select showSearch />
                 </Reference>
             </Form.Item>
-            {/* <Form.Item
-                label={translate("common:resources.posts.fields.tags")}
-                name="tags"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Reference reference="tags" optionText="title">
-                    <Select mode="multiple" />
-                </Reference>
-            </Form.Item> */}
         </>,
     ];
 
@@ -424,7 +416,7 @@ export const PostEdit = (props: any) => {
         formProps,
     } = useStepsForm({
         warnWhenUnsavedChanges: true,
-        redirect: "show",
+        redirect: "list",
         mutationMode: "pessimistic",
     });
 
@@ -433,17 +425,6 @@ export const PostEdit = (props: any) => {
             <Form.Item
                 label={translate("common:resources.posts.fields.title")}
                 name="title"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-            <Form.Item
-                label={translate("common:resources.posts.fields.url")}
-                name="slug"
                 rules={[
                     {
                         required: true,
@@ -469,9 +450,6 @@ export const PostEdit = (props: any) => {
                     }
                 />
             </Form.Item>
-        </>,
-
-        <>
             <Form.Item
                 label={translate("common:resources.posts.fields.status")}
                 name="status"
@@ -489,65 +467,16 @@ export const PostEdit = (props: any) => {
                             value: "active",
                         },
                         {
+                            label: "Passive",
+                            value: "passive",
+                        },
+                        {
                             label: "Draft",
                             value: "draft",
                         },
                     ]}
                 />
             </Form.Item>
-            <Form.Item
-                label={translate("common:resources.posts.fields.category")}
-                name="categoryId"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Reference
-                    reference="categories"
-                    optionText="title"
-                    sort={{
-                        field: "title",
-                        order: "ascend",
-                    }}
-                >
-                    <Select showSearch />
-                </Reference>
-            </Form.Item>
-        </>,
-
-        <>
-            <Form.Item
-                label={translate("common:resources.posts.fields.user")}
-                name="userId"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-                help="Autocomplete (search user email)"
-            >
-                <Reference reference="users" optionText="email">
-                    <Select showSearch />
-                </Reference>
-            </Form.Item>
-            <Form.Item
-                label={translate("common:resources.posts.fields.tags")}
-                name="tags"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Reference reference="tags" optionText="title">
-                    <Select mode="multiple" />
-                </Reference>
-            </Form.Item>
-        </>,
-
-        <>
             <Form.Item label={translate("common:resources.posts.fields.image")}>
                 <Form.Item
                     name="image"
@@ -571,6 +500,55 @@ export const PostEdit = (props: any) => {
                         </p>
                     </Upload.Dragger>
                 </Form.Item>
+            </Form.Item>
+        </>,
+
+        <>
+            <Form.Item
+                label={translate("common:resources.posts.fields.category")}
+                name="category"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+                getValueProps={({ id }) => {
+                    return { value: id };
+                }}
+                getValueFromEvent={(id) => {
+                    return { id };
+                }}
+            >
+                <Reference
+                    reference="categories"
+                    optionText="title"
+                    sort={{
+                        field: "title",
+                        order: "ascend",
+                    }}
+                >
+                    <Select showSearch />
+                </Reference>
+            </Form.Item>
+            <Form.Item
+                label={translate("common:resources.posts.fields.user")}
+                name="user"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+                getValueProps={({ id }) => {
+                    return { value: id };
+                }}
+                getValueFromEvent={(id) => {
+                    return { id };
+                }}
+                help="Autocomplete (search user email)"
+            >
+                <Reference reference="users" optionText="email">
+                    <Select showSearch />
+                </Reference>
             </Form.Item>
         </>,
     ];
@@ -606,16 +584,14 @@ export const PostEdit = (props: any) => {
             }
         >
             <Steps {...stepsProps}>
-                <Step title="Description" />
-                <Step title="Informations" />
-                <Step title="Details" />
-                <Step title="Image" />
+                <Step title="Content" />
+                <Step title="Relations" />
             </Steps>
 
             <div style={{ marginTop: 60 }}>
                 <Form
                     {...formProps}
-                    wrapperCol={{ span: 14 }}
+                    wrapperCol={{ span: 24 }}
                     layout="vertical"
                 >
                     {formList[current]}
@@ -627,11 +603,10 @@ export const PostEdit = (props: any) => {
 
 export const PostShow = (props: any) => {
     return (
-        <Show {...props} aside={ShowAside}>
+        <Show {...props}>
             <ShowSimple title="Post Title">
                 <TextField renderRecordKey="id" />
                 <TextField renderRecordKey="title" />
-                <TextField renderRecordKey="userId" />
                 <MarkdownField renderRecordKey="content" />
             </ShowSimple>
         </Show>
