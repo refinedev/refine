@@ -15,7 +15,6 @@ import {
     useMutationMode,
     useCancelNotification,
     useCacheQueries,
-    useUndoableTimeout,
 } from "@hooks";
 
 type UpdateParams<TParams> = {
@@ -39,8 +38,10 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
 ): UseUpdateReturnType<TParams> => {
     const queryClient = useQueryClient();
     const { update } = useContext<IDataContext>(DataContext);
-    const { mutationMode: mutationModeContext } = useMutationMode();
-    const { undoableTimeout: undoableTimeoutContext } = useUndoableTimeout();
+    const {
+        mutationMode: mutationModeContext,
+        undoableTimeout: undoableTimeoutContext,
+    } = useMutationMode();
 
     const { notificationDispatch } = useCancelNotification();
 

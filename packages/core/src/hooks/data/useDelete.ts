@@ -5,7 +5,6 @@ import {
     useMutationMode,
     useCancelNotification,
     useCacheQueries,
-    useUndoableTimeout,
 } from "@hooks";
 import { DataContext } from "@contexts/data";
 import { ActionTypes } from "@contexts/notification";
@@ -39,8 +38,11 @@ export const useDelete = (
 ): UseDeleteReturnType => {
     const queryClient = useQueryClient();
     const { deleteOne } = useContext<IDataContext>(DataContext);
-    const { mutationMode: mutationModeContext } = useMutationMode();
-    const { undoableTimeout: undoableTimeoutContext } = useUndoableTimeout();
+    const {
+        mutationMode: mutationModeContext,
+        undoableTimeout: undoableTimeoutContext,
+    } = useMutationMode();
+
     const { notificationDispatch } = useCancelNotification();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
