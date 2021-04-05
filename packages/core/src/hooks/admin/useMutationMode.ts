@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { AdminContext } from "@contexts/admin";
 
 export const useMutationMode = () => {
-    const { mutationMode } = useContext(AdminContext);
+    const { mutationMode, undoableTimeout } = useContext(AdminContext);
 
-    return { mutationMode };
+    return { mutationMode, undoableTimeout };
 };

@@ -8,12 +8,14 @@ export const AdminContext = React.createContext<IAdminContext>({
     warnWhen: false,
     setWarnWhen: (value: boolean) => value,
     syncWithLocation: false,
+    undoableTimeout: 5000,
 });
 
 export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
     mutationMode,
     warnWhenUnsavedChanges,
     syncWithLocation,
+    undoableTimeout,
     children,
 }) => {
     const [warnWhen, setWarnWhen] = useState(false);
@@ -25,6 +27,7 @@ export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
                 warnWhen: warnWhen,
                 setWarnWhen: setWarnWhen,
                 syncWithLocation,
+                undoableTimeout,
             }}
         >
             {children}

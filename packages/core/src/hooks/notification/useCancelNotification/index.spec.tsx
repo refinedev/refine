@@ -14,7 +14,7 @@ describe("useCancelNotification Hook", () => {
             {
                 id: "1",
                 resource: "posts",
-                seconds: 5,
+                seconds: 5000,
                 isRunning: true,
             },
         ];
@@ -40,7 +40,7 @@ describe("useCancelNotification Hook", () => {
             {
                 id: "1",
                 resource: "posts",
-                seconds: 5,
+                seconds: 5000,
                 isRunning: true,
             },
         ];

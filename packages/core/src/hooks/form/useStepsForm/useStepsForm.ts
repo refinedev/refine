@@ -8,7 +8,7 @@ import { StepsFormSF } from "../../../interfaces";
 
 import { useEditFormProps, useCreateFormProps } from "..";
 
-export type useStepsFormProps = (useCreateFormProps | useEditFormProps) &
+export type useStepsFormProps = Partial<useEditFormProps & useCreateFormProps> &
     UseStepsFormConfig;
 
 export const useStepsForm = (props: useStepsFormProps) => {
