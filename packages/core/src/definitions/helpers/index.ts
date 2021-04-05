@@ -1,1 +1,1 @@
-export { userFriendlySecond } from "./userFriendlySecond";
+export { userFriendlySecond } from "./userFriendlySeconds";
