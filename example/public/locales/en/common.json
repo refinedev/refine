@@ -121,6 +121,6 @@
     "notifications": {
         "success": "Successful",
         "succesMessage": "Id: {{id}} {{resource}} edited",
-        "undoable": "You have 5 seconds to undo"
+        "undoable": "You have {{seconds}} seconds to undo"
     }
 }

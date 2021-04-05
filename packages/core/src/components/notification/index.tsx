@@ -64,7 +64,10 @@ export const Notification: React.FC<{
                     <span style={{ marginLeft: 20 }}>
                         {translate(
                             "common:notifications.undoable",
-                            "You have 5 seconds to undo",
+                            {
+                                seconds: notificationItem.seconds / 1000,
+                            },
+                            `You have ${notificationItem.seconds} seconds to undo`,
                         )}
                     </span>
                 );
