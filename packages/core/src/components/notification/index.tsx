@@ -67,7 +67,9 @@ export const Notification: React.FC<{
                             {
                                 seconds: notificationItem.seconds / 1000,
                             },
-                            `You have ${notificationItem.seconds} seconds to undo`,
+                            `You have ${
+                                notificationItem.seconds / 1000
+                            } seconds to undo`,
                         )}
                     </span>
                 );

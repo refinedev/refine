@@ -123,6 +123,6 @@
     "notifications": {
         "success": "Başarılı",
         "succesMessage": "Id: {{id}} {{resource}} düzenlendi",
-        "undoable": "Geri almak için 5 saniyen var"
+        "undoable": "Geri almak için {{seconds}} saniyen var"
     }
 }
