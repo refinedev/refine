@@ -8,6 +8,7 @@ import {
     Form,
     Input,
     Button,
+    useTranslate,
 } from "readmin";
 
 import { useLogin } from "readmin";
@@ -22,6 +23,7 @@ export const LoginPage: React.FC = () => {
 
     const [form] = Form.useForm();
     const login = useLogin();
+    const translate = useTranslate();
 
     const onSubmit = (values: ILoginForm) => {
         login(values);
@@ -40,7 +42,7 @@ export const LoginPage: React.FC = () => {
                 <Col xl={6} lg={8} md={12} sm={18} xs={22}>
                     <Card>
                         <Title level={2} style={{ textAlign: "center" }}>
-                            Login
+                            {translate("common:pages.login.title")}
                         </Title>
                         <Form
                             className="ant-form-vertical"
@@ -69,7 +71,7 @@ export const LoginPage: React.FC = () => {
                                     size="large"
                                     htmlType="submit"
                                 >
-                                    Login
+                                    {translate("common:pages.login.title")}
                                 </Button>
                             </Form.Item>
                         </Form>

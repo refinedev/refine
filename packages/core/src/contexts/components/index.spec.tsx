@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 
-import { renderHook } from "@testing-library/react-hooks";
 import { render } from "@test";
-import { TranslationContextProvider } from "@contexts/translation";
-import { useGetLocale } from "@hooks";
+
 import { IComponentsContext } from "src/interfaces";
 import { ComponentsContext, ComponentsContextProvider } from ".";
 
