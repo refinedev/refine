@@ -7,7 +7,7 @@ import "./index.mock";
 axios.defaults.adapter = require("axios/lib/adapters/http");
 
 describe("getMany", () => {
-    it("correct response", async () => {
+    xit("correct response", async () => {
         const response = await JsonServer(
             "https://readmin-fake-rest.pankod.com",
         ).getMany("posts", [1, 2, 3]);

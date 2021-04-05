@@ -7,7 +7,7 @@ import "./index.mock";
 axios.defaults.adapter = require("axios/lib/adapters/http");
 
 describe("getList", () => {
-    it("correct response", async () => {
+    xit("correct response", async () => {
         const response = await JsonServer(
             "https://readmin-fake-rest.pankod.com",
         ).getList("posts", {});
@@ -19,7 +19,7 @@ describe("getList", () => {
         expect(response.total).toBe(1000);
     });
 
-    it("correct sorting response", async () => {
+    xit("correct sorting response", async () => {
         const response = await JsonServer(
             "https://readmin-fake-rest.pankod.com",
         ).getList("posts", {
@@ -36,7 +36,7 @@ describe("getList", () => {
         expect(response.total).toBe(1000);
     });
 
-    it("correct filter response", async () => {
+    xit("correct filter response", async () => {
         const response = await JsonServer(
             "https://readmin-fake-rest.pankod.com",
         ).getList("posts", {
@@ -49,7 +49,7 @@ describe("getList", () => {
         expect(response.total).toBe(20);
     });
 
-    it("correct filter and sort response", async () => {
+    xit("correct filter and sort response", async () => {
         const response = await JsonServer(
             "https://readmin-fake-rest.pankod.com",
         ).getList("posts", {
