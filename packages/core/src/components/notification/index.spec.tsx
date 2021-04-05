@@ -3,6 +3,7 @@ import React from "react";
 import { render } from "@test";
 
 import { Notification } from "./index";
+import { userFriendlySecond } from "@definitions";
 
 const mockNotification = [
     {
@@ -30,7 +31,9 @@ describe("Cancel Notification", () => {
             <Notification notifications={mockNotification} />,
         );
 
-        const formattedSeconds = mockNotification[0].seconds / 1000;
+        const formattedSeconds = userFriendlySecond(
+            mockNotification[0].seconds,
+        );
 
         getByText(`You have ${formattedSeconds} seconds to undo`);
     });

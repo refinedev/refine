@@ -1,0 +1,1 @@
+export { userFriendlySecond } from "./userFriendlySecond";
