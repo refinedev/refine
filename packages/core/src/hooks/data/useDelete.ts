@@ -86,7 +86,7 @@ export const useDelete = (
                                 id: id,
                                 resource: resource,
                                 cancelMutation: cancelMutation,
-                                seconds: undoableTimeout,
+                                seconds: undoableTimeout / 1000, //milliseconds convert to seconds
                             },
                         });
                     }
