@@ -1,0 +1,14 @@
+{
+    "plugins": [
+        [
+            "module-resolver",
+            {
+                "root": "./",
+                "alias": {
+                    "@components": "./src/components",
+                    "@containers": "./src/containers"
+                }
+            }
+        ]
+    ]
+}

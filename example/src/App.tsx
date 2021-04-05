@@ -9,7 +9,7 @@ import {
     BackTop,
 } from "readmin";
 import JsonServer from "readmin-json-server";
-import { Thing } from "readmin-demo-sidebar";
+import { DemoSidebar } from "readmin-demo-sidebar";
 
 import { useTranslation } from "react-i18next";
 
@@ -83,7 +83,7 @@ function App() {
     };
 
     const CustomPage = () => {
-        return <Thing />;
+        return <div>anon and authenticated custom page</div>;
     };
 
     const AuthenticatedCustomPage = () => {
@@ -104,7 +104,12 @@ function App() {
             i18nProvider={i18nProvider}
             mutationMode="pessimistic"
             syncWithLocation
-            components={<BackTop />}
+            components={
+                <>
+                    <BackTop />
+                    <DemoSidebar />
+                </>
+            }
             routes={[
                 {
                     exact: true,
