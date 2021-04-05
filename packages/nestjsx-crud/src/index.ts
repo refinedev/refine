@@ -88,9 +88,18 @@ const NestsxCrud = (apiUrl: string): DataProvider => ({
     },
 
     getMany: async (resource, ids) => {
-        const { data } = await axios.get(
-            `${apiUrl}/${resource}?${stringify({ id: ids })}`,
-        );
+        const url = `${apiUrl}/${resource}`;
+
+        const query = RequestQueryBuilder.create()
+            .setFilter({
+                field: "id",
+                operator: CondOperator.IN,
+                value: ids,
+            })
+            .query();
+
+        const { data } = await axios.get(`${url}?${query}`);
+
         return {
             data,
         };
