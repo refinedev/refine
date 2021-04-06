@@ -10,35 +10,34 @@ export const useNavigation = () => {
 
     const create = (resource: string, type: HistoryType) => {
         const resourceName = resourceWithRoute(resource);
-        console.log("resourceName", resourceName);
 
         type === "push"
-            ? history.push(`/resources/${resourceName}/create`)
-            : history.replace(`/resources/${resourceName}/create`);
+            ? history.push(`/resources/${resourceName.route}/create`)
+            : history.replace(`/resources/${resourceName.route}/create`);
     };
 
-    const edit = (resource: string, type: HistoryType, id: string) => {
+    const edit = (resource: string, type: HistoryType, id: number | string) => {
         const resourceName = resourceWithRoute(resource);
 
         type === "push"
-            ? history.push(`/resources/${resourceName}/edit/${id}`)
-            : history.replace(`/resources/${resourceName}/edit/${id}`);
+            ? history.push(`/resources/${resourceName.route}/edit/${id}`)
+            : history.replace(`/resources/${resourceName.route}/edit/${id}`);
     };
 
-    const show = (resource: string, type: HistoryType, id: string) => {
+    const show = (resource: string, type: HistoryType, id: number | string) => {
         const resourceName = resourceWithRoute(resource);
 
         type === "push"
-            ? history.push(`/resources/${resourceName}/show/${id}`)
-            : history.replace(`/resources/${resourceName}/show/${id}`);
+            ? history.push(`/resources/${resourceName.route}/show/${id}`)
+            : history.replace(`/resources/${resourceName.route}/show/${id}`);
     };
 
     const list = (resource: string, type: HistoryType) => {
         const resourceName = resourceWithRoute(resource);
 
         type === "push"
-            ? history.push(`/resources/${resourceName}`)
-            : history.replace(`/resources/${resourceName}`);
+            ? history.push(`/resources/${resourceName.route}`)
+            : history.replace(`/resources/${resourceName.route}`);
     };
 
     const push = (path: any) => {
