@@ -35,7 +35,6 @@ import {
     ExportButton,
     CloneButton,
     getDefaultSortOrder,
-    useBase64Upload,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -213,7 +212,6 @@ export const PostCreate = (props: any) => {
         submit,
         formLoading,
         formProps,
-        form,
     } = useStepsForm({
         warnWhenUnsavedChanges: true,
         defaultFormValues: () => {
@@ -222,16 +220,6 @@ export const PostCreate = (props: any) => {
             };
         },
     });
-
-    const { uploadedFiles, ...uploadProps } = useBase64Upload({
-        maxCount: 3,
-    });
-    React.useEffect(() => {
-        form &&
-            form.setFieldsValue({
-                base64Images: uploadedFiles,
-            });
-    }, [uploadedFiles]);
 
     const formList = [
         <>
@@ -303,33 +291,6 @@ export const PostCreate = (props: any) => {
                         maxCount={5}
                         multiple
                         onChange={onChange}
-                    >
-                        <p className="ant-upload-text">
-                            {translate("common:upload.title")}
-                        </p>
-                        <p className="ant-upload-hint">
-                            {translate("common:upload.description")}
-                        </p>
-                    </Upload.Dragger>
-                </Form.Item>
-            </Form.Item>
-
-            <Form.Item label="Base64Images">
-                <Form.Item
-                    name="base64Images"
-                    valuePropName="fileList"
-                    getValueFromEvent={normalizeFile}
-                    noStyle
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Upload.Dragger
-                        listType="picture"
-                        multiple
-                        {...uploadProps}
                     >
                         <p className="ant-upload-text">
                             {translate("common:upload.title")}
@@ -461,33 +422,11 @@ export const PostEdit = (props: any) => {
         submit,
         formLoading,
         formProps,
-        form,
-        queryResult,
     } = useStepsForm({
         warnWhenUnsavedChanges: true,
         redirect: "list",
         mutationMode: "pessimistic",
     });
-
-    const [base64Images, setBase64Images] = React.useState<any[]>([]);
-
-    React.useEffect(() => {
-        if (queryResult && queryResult.data) {
-            const { data } = queryResult;
-            setBase64Images(data.data.base64Images);
-        }
-    }, [queryResult]);
-
-    const { uploadedFiles, ...uploadProps } = useBase64Upload({
-        formData: base64Images,
-        maxCount: 3,
-    });
-    React.useEffect(() => {
-        form &&
-            form.setFieldsValue({
-                base64Images: uploadedFiles,
-            });
-    }, [uploadedFiles]);
 
     const formList = [
         <>
@@ -559,32 +498,6 @@ export const PostEdit = (props: any) => {
                         maxCount={5}
                         multiple
                         onChange={onChange}
-                    >
-                        <p className="ant-upload-text">
-                            {translate("common:upload.title")}
-                        </p>
-                        <p className="ant-upload-hint">
-                            {translate("common:upload.description")}
-                        </p>
-                    </Upload.Dragger>
-                </Form.Item>
-            </Form.Item>
-            <Form.Item label="Base64Images">
-                <Form.Item
-                    name="base64Images"
-                    valuePropName="fileList"
-                    getValueFromEvent={normalizeFile}
-                    noStyle
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Upload.Dragger
-                        listType="picture"
-                        multiple
-                        {...uploadProps}
                     >
                         <p className="ant-upload-text">
                             {translate("common:upload.title")}
