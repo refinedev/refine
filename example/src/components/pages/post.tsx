@@ -150,7 +150,7 @@ export const PostList = (props: any) => {
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Radio.Group>
-                                <Radio value="active">
+                                <Radio value="published">
                                     {translate(
                                         "common:resources.posts.fields.status.published",
                                     )}
@@ -163,7 +163,7 @@ export const PostList = (props: any) => {
                             </Radio.Group>
                         </FilterDropdown>
                     )}
-                    defaultFilteredValue={["active"]}
+                    defaultFilteredValue={["published"]}
                 />
                 <Table.Column
                     title={translate("common:table.actions", "Actions")}
@@ -216,7 +216,7 @@ export const PostCreate = (props: any) => {
         warnWhenUnsavedChanges: true,
         defaultFormValues: () => {
             return {
-                status: "active",
+                status: "published",
             };
         },
     });
