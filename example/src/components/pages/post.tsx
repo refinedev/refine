@@ -152,17 +152,12 @@ export const PostList = (props: any) => {
                             <Radio.Group>
                                 <Radio value="active">
                                     {translate(
-                                        "common:resources.posts.fields.status.active",
+                                        "common:resources.posts.fields.status.published",
                                     )}
                                 </Radio>
                                 <Radio value="draft">
                                     {translate(
                                         "common:resources.posts.fields.status.draft",
-                                    )}
-                                </Radio>
-                                <Radio value="passive">
-                                    {translate(
-                                        "common:resources.posts.fields.status.passive",
                                     )}
                                 </Radio>
                             </Radio.Group>
@@ -269,15 +264,9 @@ export const PostCreate = (props: any) => {
                     options={[
                         {
                             label: translate(
-                                "common:resources.posts.fields.status.active",
+                                "common:resources.posts.fields.status.published",
                             ),
-                            value: "active",
-                        },
-                        {
-                            label: translate(
-                                "common:resources.posts.fields.status.passive",
-                            ),
-                            value: "passive",
+                            value: "published",
                         },
                         {
                             label: translate(
@@ -482,15 +471,9 @@ export const PostEdit = (props: any) => {
                     options={[
                         {
                             label: translate(
-                                "common:resources.posts.fields.status.active",
+                                "common:resources.posts.fields.status.published",
                             ),
-                            value: "active",
-                        },
-                        {
-                            label: translate(
-                                "common:resources.posts.fields.status.passive",
-                            ),
-                            value: "passive",
+                            value: "published",
                         },
                         {
                             label: translate(

@@ -57,8 +57,8 @@
                 "category": "Kategori",
                 "status": {
                     "title": "Durum",
-                    "active": "Aktif",
-                    "draft": "Taslak"
+                    "published": "Published",
+                    "draft": "Draft"
                 },
                 "url": "Url",
                 "content": "İçerik",

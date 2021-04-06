@@ -55,7 +55,7 @@
                 "category": "Category",
                 "status": {
                     "title": "Status",
-                    "active": "Active",
+                    "published": "Published",
                     "draft": "Draft"
                 },
                 "url": "Url",
