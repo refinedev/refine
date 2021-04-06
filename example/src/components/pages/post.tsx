@@ -55,7 +55,7 @@ export const PostList = (props: any) => {
             },
         ],
         initialFilter: {
-            status: ["active"],
+            status: ["published"],
         },
     });
 
@@ -279,14 +279,14 @@ export const PostCreate = (props: any) => {
             </Form.Item>
             <Form.Item label={translate("common:resources.posts.fields.image")}>
                 <Form.Item
-                    name="image"
+                    name="images"
                     valuePropName="fileList"
                     getValueFromEvent={normalizeFile}
                     noStyle
                 >
                     <Upload.Dragger
                         name="file"
-                        action={`${apiUrl}/upload`}
+                        action={`${apiUrl}/media/upload`}
                         listType="picture"
                         maxCount={5}
                         multiple
@@ -486,14 +486,14 @@ export const PostEdit = (props: any) => {
             </Form.Item>
             <Form.Item label={translate("common:resources.posts.fields.image")}>
                 <Form.Item
-                    name="image"
+                    name="images"
                     valuePropName="fileList"
                     getValueFromEvent={normalizeFile}
                     noStyle
                 >
                     <Upload.Dragger
                         name="file"
-                        action={`${apiUrl}/upload`}
+                        action={`${apiUrl}/media/upload`}
                         listType="picture"
                         maxCount={5}
                         multiple
