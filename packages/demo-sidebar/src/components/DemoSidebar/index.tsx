@@ -3,19 +3,19 @@ import React, { useState } from "react";
 import {
     Drawer,
     Icons,
-    // Divider,
     Switch,
     AntdList as List,
     Select,
     Input,
+    MutationMode,
 } from "readmin";
 
-import { Group } from "@components/Group";
+import { Group } from "..";
 
 const handlerStyles: React.CSSProperties = {
     position: "absolute",
     top: "240px",
-    right: "300px",
+    right: "360px",
     zIndex: 0,
     display: "flex",
     alignItems: "center",
@@ -35,13 +35,35 @@ interface SettingItemProps {
     disabled?: boolean;
 }
 
-export const DemoSidebar = () => {
-    const [show, setShow] = useState(true);
+export interface DemoSidebarProps {
+    title: string;
+    mutationMode: MutationMode;
+    syncWithLocation: boolean;
+    warnWhenUnsavedChanges: boolean;
+    onTitleChange: React.Dispatch<React.SetStateAction<string>>;
+    onMutationModeChange: React.Dispatch<React.SetStateAction<MutationMode>>;
+    onSyncWithLocationChange: React.Dispatch<React.SetStateAction<boolean>>;
+    onWarnWhenUnsavedChangesChange: React.Dispatch<
+        React.SetStateAction<boolean>
+    >;
+}
+
+export const DemoSidebar: React.FC<DemoSidebarProps> = ({
+    title,
+    mutationMode,
+    syncWithLocation,
+    warnWhenUnsavedChanges,
+    onTitleChange,
+    onMutationModeChange,
+    onSyncWithLocationChange,
+    onWarnWhenUnsavedChangesChange,
+}) => {
+    const [show, setShow] = useState<boolean>(false);
 
     return (
         <Drawer
-            visible={true}
-            width={300}
+            visible={show}
+            width={360}
             onClose={() => setShow(false)}
             placement="right"
             handler={
@@ -99,20 +121,31 @@ export const DemoSidebar = () => {
                                     <Input
                                         size="small"
                                         placeholder="Readmin3"
-                                        style={{ width: 100 }}
+                                        style={{ width: 140 }}
+                                        value={title}
+                                        onChange={(e) =>
+                                            onTitleChange(e.target.value)
+                                        }
                                     />
                                 ),
                             },
                             {
                                 title: "Mutation mode",
                                 action: (
-                                    <Select<string>
+                                    <Select<MutationMode>
                                         size="small"
-                                        style={{ width: 100 }}
-                                        defaultValue="Fluid"
+                                        style={{ width: 140 }}
+                                        value={mutationMode}
+                                        onChange={onMutationModeChange}
                                     >
-                                        <Select.Option value="Fluid">
-                                            asdfasdfa
+                                        <Select.Option value="pessimistic">
+                                            Pessimistic
+                                        </Select.Option>
+                                        <Select.Option value="optimistic">
+                                            Optimistic
+                                        </Select.Option>
+                                        <Select.Option value="undoable">
+                                            Undoable
                                         </Select.Option>
                                     </Select>
                                 ),
@@ -122,8 +155,8 @@ export const DemoSidebar = () => {
                                 action: (
                                     <Switch
                                         size="small"
-                                        checked={true}
-                                        onChange={(checked) => 0}
+                                        checked={syncWithLocation}
+                                        onChange={onSyncWithLocationChange}
                                     />
                                 ),
                             },
@@ -132,8 +165,10 @@ export const DemoSidebar = () => {
                                 action: (
                                     <Switch
                                         size="small"
-                                        checked={true}
-                                        onChange={(checked) => 0}
+                                        checked={warnWhenUnsavedChanges}
+                                        onChange={
+                                            onWarnWhenUnsavedChangesChange
+                                        }
                                     />
                                 ),
                             },

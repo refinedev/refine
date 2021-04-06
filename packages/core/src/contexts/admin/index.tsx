@@ -8,6 +8,7 @@ export const AdminContext = React.createContext<IAdminContext>({
     warnWhen: false,
     setWarnWhen: (value: boolean) => value,
     syncWithLocation: false,
+    title: "Readmin2",
 });
 
 export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
@@ -15,6 +16,7 @@ export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
     warnWhenUnsavedChanges,
     syncWithLocation,
     children,
+    title,
 }) => {
     const [warnWhen, setWarnWhen] = useState(false);
     return (
@@ -25,6 +27,7 @@ export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
                 warnWhen: warnWhen,
                 setWarnWhen: setWarnWhen,
                 syncWithLocation,
+                title,
             }}
         >
             {children}

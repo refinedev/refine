@@ -20,22 +20,20 @@ import {
 } from "@hooks";
 import { AdminContext } from "@contexts/admin";
 import { ComponentsContext } from "@contexts/components";
+import { IAdminContext } from "@contexts/admin/IAdminContext";
 
 export interface LayoutProps {
     title?: ReactNode;
     dashboard?: React.FC;
 }
 
-export const Layout: React.FC<LayoutProps> = ({
-    children,
-    title,
-    dashboard,
-}) => {
+export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
     const [collapsed, setCollapsed] = React.useState(false);
 
     const history = useHistory();
     const { logout } = useContext<IAuthContext>(AuthContext);
     const { components } = useContext<IComponentsContext>(ComponentsContext);
+    const { title } = useContext<IAdminContext>(AdminContext);
     const { resources } = useResource();
 
     const location = useLocation();

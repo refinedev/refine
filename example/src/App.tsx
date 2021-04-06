@@ -9,7 +9,7 @@ import {
     BackTop,
 } from "readmin";
 import JsonServer from "readmin-json-server";
-import { DemoSidebar } from "readmin-demo-sidebar";
+import { DemoSidebar, useDemoSidebar } from "readmin-demo-sidebar";
 
 import { useTranslation } from "react-i18next";
 
@@ -46,6 +46,11 @@ import {
 } from "./components/pages/post-light";
 
 function App() {
+    const [adminProps, demoSidebarProps] = useDemoSidebar({
+        defaultTitle: "Readmin3",
+        defaultMutationMode: "pessimistic",
+    });
+
     const authProvider: AuthProvider = {
         login: (params: any) => {
             if (params.username === "admin") {
@@ -107,7 +112,7 @@ function App() {
             components={
                 <>
                     <BackTop />
-                    <DemoSidebar />
+                    <DemoSidebar {...demoSidebarProps} />
                 </>
             }
             routes={[
@@ -125,6 +130,7 @@ function App() {
             configProviderProps={{
                 ...defaultConfigProviderProps,
             }}
+            {...adminProps}
         >
             <Resource
                 name="posts"

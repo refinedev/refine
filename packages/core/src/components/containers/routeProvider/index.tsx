@@ -9,7 +9,6 @@ import { OptionalComponent } from "@definitions";
 import { IResourceItem } from "@contexts/resource";
 
 export interface RouteProviderProps {
-    title?: ReactNode;
     resources: IResourceItem[];
     catchAll?: React.ReactNode;
     dashboard?: React.ElementType;
@@ -21,7 +20,6 @@ export interface RouteProviderProps {
 type IRoutesProps = RouteProps & { routes?: RouteProps[] };
 
 const RouteProviderBase: React.FC<RouteProviderProps> = ({
-    title,
     resources,
     catchAll,
     dashboard,
@@ -112,7 +110,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     };
 
     const renderAuthorized = () => (
-        <Layout title={title}>
+        <Layout>
             <Switch>
                 <Route
                     path="/"
