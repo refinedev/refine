@@ -18,6 +18,7 @@ import {
     useWarnAboutChange,
 } from "@hooks";
 import { ComponentsContext } from "@contexts/components";
+import { AdminContext } from "@contexts/admin/";
 import { IAdminContext } from "@contexts/admin/IAdminContext";
 
 export interface LayoutProps {
