@@ -95,7 +95,7 @@ function App() {
     return (
         <Admin
             authProvider={authProvider}
-            dataProvider={dataProvider("/api")}
+            dataProvider={dataProvider("/nestjs-crud-api")}
             loginPage={LoginPage}
             dashboard={DashboardPage}
             ready={ReadyPage}
