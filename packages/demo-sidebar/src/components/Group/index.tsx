@@ -5,8 +5,10 @@ interface GroupProps {
 }
 
 export const Group: React.FC<GroupProps> = ({ children, title }) => (
-    <div style={{ marginBottom: 24 }}>
-        <h3 className="ant-drawer-title">{title}</h3>
+    <div style={{ marginBottom: 48 }}>
+        <h3 className="ant-drawer-title" style={{ marginBottom: 24 }}>
+            {title}
+        </h3>
         {children}
     </div>
 );

@@ -8,6 +8,7 @@ import {
     Select,
     Input,
     MutationMode,
+    Form,
 } from "readmin";
 
 import { Group } from "..";
@@ -15,7 +16,7 @@ import { Group } from "..";
 const handlerStyles: React.CSSProperties = {
     position: "absolute",
     top: "240px",
-    right: "360px",
+    right: "390px",
     zIndex: 0,
     display: "flex",
     alignItems: "center",
@@ -30,9 +31,8 @@ const handlerStyles: React.CSSProperties = {
 };
 
 interface SettingItemProps {
-    title: React.ReactNode;
+    title: string;
     action: React.ReactElement;
-    disabled?: boolean;
 }
 
 export interface DemoSidebarProps {
@@ -63,7 +63,7 @@ export const DemoSidebar: React.FC<DemoSidebarProps> = ({
     return (
         <Drawer
             visible={show}
-            width={360}
+            width={390}
             onClose={() => setShow(false)}
             placement="right"
             handler={
@@ -95,85 +95,63 @@ export const DemoSidebar: React.FC<DemoSidebarProps> = ({
         >
             <div className="ant-drawer-content">
                 <Group title="Settings">
-                    <List
-                        split={false}
-                        renderItem={(item: SettingItemProps) => {
-                            const action = React.cloneElement(item.action, {
-                                disabled: item.disabled,
-                            });
-
-                            return (
-                                <List.Item actions={[action]}>
-                                    <span
-                                        style={{
-                                            opacity: item.disabled ? 0.5 : 1,
-                                        }}
-                                    >
-                                        {item.title}
-                                    </span>
-                                </List.Item>
-                            );
+                    <Form
+                        labelCol={{
+                            flex: 1,
+                            style: {
+                                overflow: "visible",
+                                whiteSpace: "pre-wrap",
+                                textAlign: "left",
+                            },
                         }}
-                        dataSource={[
-                            {
-                                title: "Title",
-                                action: (
-                                    <Input
-                                        size="small"
-                                        placeholder="Readmin"
-                                        style={{ width: 140 }}
-                                        value={title}
-                                        onChange={(e) =>
-                                            onTitleChange(e.target.value)
-                                        }
-                                    />
-                                ),
+                        wrapperCol={{
+                            flex: 1,
+                            style: {
+                                marginRight: 5,
+                                alignItems: "flex-end",
                             },
-                            {
-                                title: "Mutation mode",
-                                action: (
-                                    <Select<MutationMode>
-                                        size="small"
-                                        style={{ width: 140 }}
-                                        value={mutationMode}
-                                        onChange={onMutationModeChange}
-                                    >
-                                        <Select.Option value="pessimistic">
-                                            Pessimistic
-                                        </Select.Option>
-                                        <Select.Option value="optimistic">
-                                            Optimistic
-                                        </Select.Option>
-                                        <Select.Option value="undoable">
-                                            Undoable
-                                        </Select.Option>
-                                    </Select>
-                                ),
-                            },
-                            {
-                                title: "Sync with location",
-                                action: (
-                                    <Switch
-                                        size="small"
-                                        checked={syncWithLocation}
-                                        onChange={onSyncWithLocationChange}
-                                    />
-                                ),
-                            },
-                            {
-                                title: "Warn when there are unsaved changes",
-                                action: (
-                                    <Switch
-                                        size="small"
-                                        checked={warnWhenUnsavedChanges}
-                                        onChange={
-                                            onWarnWhenUnsavedChangesChange
-                                        }
-                                    />
-                                ),
-                            },
-                        ]}
-                    />
+                        }}
+                    >
+                        <Form.Item label="Title">
+                            <Input
+                                size="small"
+                                placeholder="Readmin"
+                                value={title}
+                                onChange={(e) => onTitleChange(e.target.value)}
+                            />
+                        </Form.Item>
+                        <Form.Item label="Mutation mode">
+                            <Select<MutationMode>
+                                size="small"
+                                value={mutationMode}
+                                onChange={onMutationModeChange}
+                            >
+                                <Select.Option value="pessimistic">
+                                    Pessimistic
+                                </Select.Option>
+                                <Select.Option value="optimistic">
+                                    Optimistic
+                                </Select.Option>
+                                <Select.Option value="undoable">
+                                    Undoable
+                                </Select.Option>
+                            </Select>
+                        </Form.Item>
+                        <Form.Item label="Sync with location">
+                            <Switch
+                                size="small"
+                                checked={syncWithLocation}
+                                onChange={onSyncWithLocationChange}
+                            />
+                        </Form.Item>
+                        <Form.Item label="Warn when there are unsaved changes">
+                            <Switch
+                                size="small"
+                                checked={warnWhenUnsavedChanges}
+                                onChange={onWarnWhenUnsavedChangesChange}
+                            />
+                        </Form.Item>
+                    </Form>
                 </Group>
             </div>
         </Drawer>
