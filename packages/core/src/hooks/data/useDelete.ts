@@ -33,14 +33,21 @@ type UseDeleteReturnType = UseMutationResult<
 export const useDelete = (
     resource: string,
     mutationModeProp?: MutationMode,
+    undoableTimeoutProp?: number,
     onCancel?: (cancelMutation: () => void) => void,
 ): UseDeleteReturnType => {
     const queryClient = useQueryClient();
     const { deleteOne } = useContext<IDataContext>(DataContext);
-    const { mutationMode: mutationModeContext } = useMutationMode();
+    const {
+        mutationMode: mutationModeContext,
+        undoableTimeout: undoableTimeoutContext,
+    } = useMutationMode();
+
     const { notificationDispatch } = useCancelNotification();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
+
+    const undoableTimeout = undoableTimeoutProp ?? undoableTimeoutContext;
 
     if (!resource) {
         throw new Error("'resource' is required for useDelete hook.");
@@ -63,7 +70,7 @@ export const useDelete = (
                 (resolve, reject) => {
                     const updateTimeout = setTimeout(() => {
                         resolve(deleteOne(resource, id));
-                    }, 5000);
+                    }, undoableTimeout);
 
                     const cancelMutation = () => {
                         clearTimeout(updateTimeout);
@@ -79,7 +86,7 @@ export const useDelete = (
                                 id: id,
                                 resource: resource,
                                 cancelMutation: cancelMutation,
-                                seconds: 5,
+                                seconds: undoableTimeout,
                             },
                         });
                     }

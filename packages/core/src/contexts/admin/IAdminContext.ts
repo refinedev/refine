@@ -6,10 +6,12 @@ export interface IAdminContext {
     warnWhen: boolean;
     syncWithLocation: boolean;
     setWarnWhen: (value: boolean) => void;
+    undoableTimeout: number;
 }
 
 export interface IAdminContextProvider {
     mutationMode: MutationMode;
     warnWhenUnsavedChanges: boolean;
     syncWithLocation: boolean;
+    undoableTimeout: number;
 }

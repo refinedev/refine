@@ -40,6 +40,7 @@ export interface AdminProps {
     routes?: RouteProps[];
     configProviderProps?: ConfigProviderProps;
     components?: ReactNode;
+    undoableTimeout?: number;
 }
 
 export const Admin: React.FC<AdminProps> = ({
@@ -58,6 +59,7 @@ export const Admin: React.FC<AdminProps> = ({
     routes = [],
     configProviderProps = defaultConfigProviderProps,
     components,
+    undoableTimeout = 5000,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -107,6 +109,7 @@ export const Admin: React.FC<AdminProps> = ({
                                             warnWhenUnsavedChanges
                                         }
                                         syncWithLocation={syncWithLocation}
+                                        undoableTimeout={undoableTimeout}
                                     >
                                         <ComponentsContextProvider
                                             components={components}

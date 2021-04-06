@@ -33,14 +33,21 @@ type UseUpdateReturnType<
 export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
     resource: string,
     mutationModeProp?: MutationMode,
+    undoableTimeoutProp?: number,
     onCancel?: (cancelMutation: () => void) => void,
 ): UseUpdateReturnType<TParams> => {
     const queryClient = useQueryClient();
     const { update } = useContext<IDataContext>(DataContext);
-    const { mutationMode: mutationModeContext } = useMutationMode();
+    const {
+        mutationMode: mutationModeContext,
+        undoableTimeout: undoableTimeoutContext,
+    } = useMutationMode();
+
     const { notificationDispatch } = useCancelNotification();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
+
+    const undoableTimeout = undoableTimeoutProp ?? undoableTimeoutContext;
 
     if (!resource) {
         throw new Error("'resource' is required for useUpdate hook.");
@@ -62,7 +69,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                 (resolve, reject) => {
                     const updateTimeout = setTimeout(() => {
                         resolve(update<TParams>(resource, id, values));
-                    }, 5000);
+                    }, undoableTimeout);
 
                     const cancelMutation = () => {
                         clearTimeout(updateTimeout);
@@ -78,7 +85,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                                 id: id,
                                 resource: resource,
                                 cancelMutation: cancelMutation,
-                                seconds: 5,
+                                seconds: undoableTimeout,
                             },
                         });
                     }

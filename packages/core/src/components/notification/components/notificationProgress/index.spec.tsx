@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "@test";
 
+import { userFriendlySecond } from "@definitions";
 import { NotificationProgress } from "./";
 
 const notificationDispatch = jest.fn();
@@ -9,7 +10,7 @@ const mockNotifications = {
     id: "1",
     resource: "posts",
     cancelMutation: () => Promise.resolve(),
-    seconds: 5,
+    seconds: 5000,
     isRunning: true,
 };
 
@@ -23,8 +24,9 @@ describe("Cancel Notification", () => {
                 notificationItem={mockNotifications}
             />,
         );
+        const formattedSeconds = userFriendlySecond(mockNotifications.seconds);
 
-        getByText(mockNotifications.seconds.toString());
+        getByText(formattedSeconds.toString());
         expect(notificationDispatch).not.toBeCalled();
     });
 

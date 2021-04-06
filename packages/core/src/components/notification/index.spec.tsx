@@ -3,13 +3,14 @@ import React from "react";
 import { render } from "@test";
 
 import { Notification } from "./index";
+import { userFriendlySecond } from "@definitions";
 
 const mockNotification = [
     {
         id: "1",
         resource: "posts",
         cancelMutation: () => Promise.resolve(),
-        seconds: 5,
+        seconds: 5000,
         isRunning: true,
     },
 ];
@@ -30,7 +31,11 @@ describe("Cancel Notification", () => {
             <Notification notifications={mockNotification} />,
         );
 
-        getByText("You have 5 seconds to undo");
+        const formattedSeconds = userFriendlySecond(
+            mockNotification[0].seconds,
+        );
+
+        getByText(`You have ${formattedSeconds} seconds to undo`);
     });
 
     it("should render undo button successfuly", async () => {

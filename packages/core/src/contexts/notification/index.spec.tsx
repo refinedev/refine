@@ -12,7 +12,7 @@ describe("Notification Reducer", () => {
             {
                 id: "1",
                 resource: "posts",
-                seconds: 5,
+                seconds: 5000,
                 isRunning: true,
             },
         ],
@@ -35,7 +35,7 @@ describe("Notification Reducer", () => {
                 {
                     id: "1",
                     resource: "posts",
-                    seconds: 5,
+                    seconds: 5000,
                     isRunning: true,
                 },
             ]);
@@ -86,7 +86,7 @@ describe("Notification Reducer", () => {
             const [state] = result.current;
 
             expect(state[0].seconds).toEqual(
-                providerProps.notifications[0].seconds - 1,
+                providerProps.notifications[0].seconds - 1000,
             );
         });
     });

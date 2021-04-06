@@ -1,7 +1,7 @@
 {
     "pages": {
         "login": {
-            "title": "Login",
+            "title": "Giriş",
             "username": "Kullanıcı Adı",
             "password": "Şifre"
         }
@@ -18,6 +18,9 @@
             "forms": {
                 "title": "Başlık"
             }
+        },
+        "dashboard": {
+            "title": "Panel"
         },
         "files": {
             "Files": "Dosyalar",
@@ -52,7 +55,11 @@
                 "title": "Başlık",
                 "slug": "Slug",
                 "category": "Kategori",
-                "status": "Durum",
+                "status": {
+                    "title": "Durum",
+                    "active": "Aktif",
+                    "draft": "Taslak"
+                },
                 "url": "Url",
                 "content": "İçerik",
                 "user": "Kullanıcı",
@@ -123,6 +130,8 @@
     "notifications": {
         "success": "Başarılı",
         "succesMessage": "Id: {{id}} {{resource}} düzenlendi",
-        "undoable": "Geri almak için 5 saniyen var"
-    }
+        "undoable": "Geri almak için {{seconds}} saniyen var"
+    },
+    "loading": "Yükleniyor",
+    "backHome": "Ana sayfaya geri dön"
 }
