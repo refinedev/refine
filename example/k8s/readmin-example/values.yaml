@@ -60,7 +60,7 @@ ingress:
       location /nestjsx-crud-api/ {
 
           proxy_pass https://readmin-nestjs-crud.pankod.com:443/;
-          proxy_set_header Host readmin-fake-rest.pankod.com;
+          proxy_set_header Host readmin-nestjs-crud.pankod.com;
           proxy_set_header X-Real-IP $remote_addr;
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
           proxy_set_header X-Forwarded-Proto $scheme;
