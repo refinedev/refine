@@ -40,12 +40,12 @@ export const useNavigation = () => {
             : history.replace(`/resources/${resourceName.route}`);
     };
 
-    const push = (path: any) => {
-        history.push(`${path}`);
+    const push = (path: string, state?: unknown) => {
+        history.push(`${state ?? path}`);
     };
 
-    const replace = (path: any) => {
-        history.replace(`${path}`);
+    const replace = (path: string, state?: unknown) => {
+        history.replace(`${state ?? path}`);
     };
 
     return { create, edit, show, list, push, replace };
