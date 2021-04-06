@@ -120,7 +120,7 @@ export const DemoSidebar: React.FC<DemoSidebarProps> = ({
                                 action: (
                                     <Input
                                         size="small"
-                                        placeholder="Readmin3"
+                                        placeholder="Readmin"
                                         style={{ width: 140 }}
                                         value={title}
                                         onChange={(e) =>

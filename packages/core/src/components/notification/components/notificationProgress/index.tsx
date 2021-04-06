@@ -3,6 +3,7 @@ import { Progress } from "antd";
 
 import { ActionTypes } from "@contexts/notification";
 import { INotification } from "../../../../interfaces";
+import { userFriendlySecond } from "@definitions/helpers";
 
 export const NotificationProgress: React.FC<{
     notificationItem: INotification;
@@ -34,8 +35,12 @@ export const NotificationProgress: React.FC<{
         <Progress
             type="circle"
             percent={seconds * (100 / duration)}
-            format={(seconds) =>
-                seconds && `${Math.round(seconds / (100 / duration))}`
+            format={
+                (seconds) =>
+                    seconds &&
+                    `${userFriendlySecond(
+                        Math.round(seconds / (100 / duration)),
+                    )}` //format milliseconds convert to seconds
             }
             width={50}
             strokeColor="#1890ff"

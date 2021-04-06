@@ -7,6 +7,7 @@ export interface IAdminContext {
     syncWithLocation: boolean;
     setWarnWhen: (value: boolean) => void;
     title?: React.ReactNode;
+    undoableTimeout: number;
 }
 
 export interface IAdminContextProvider {
@@ -14,4 +15,5 @@ export interface IAdminContextProvider {
     warnWhenUnsavedChanges: boolean;
     syncWithLocation: boolean;
     title?: React.ReactNode;
+    undoableTimeout: number;
 }

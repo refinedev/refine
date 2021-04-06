@@ -37,6 +37,7 @@ export type useEditFormProps = {
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
     redirect?: RedirectionTypes;
+    undoableTimeout?: number;
 };
 
 export const useEditForm = ({
@@ -46,6 +47,7 @@ export const useEditForm = ({
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect = "list",
+    undoableTimeout,
 }: useEditFormProps) => {
     const [editId, setEditId] = React.useState<string | number>();
 
@@ -94,7 +96,11 @@ export const useEditForm = ({
         };
     }, [data, id, isFetching]);
 
-    const mutationResult = useUpdate(resource.name, mutationMode);
+    const mutationResult = useUpdate(
+        resource.name,
+        mutationMode,
+        undoableTimeout,
+    );
 
     const { mutate, isLoading: isLoadingMutation } = mutationResult;
 

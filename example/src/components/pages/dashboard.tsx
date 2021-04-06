@@ -1,5 +1,9 @@
 import * as React from "react";
 
+import { useTranslate } from "readmin";
+
 export const DashboardPage: React.FC = () => {
-    return <div>dashboard page</div>;
+    const translate = useTranslate();
+
+    return <div>{translate("common:resources.dashboard.title")}</div>;
 };

@@ -12,13 +12,11 @@ import humanizeString from "humanize-string";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext, IComponentsContext } from "../../interfaces";
 import {
-    useGetLocale,
     useResource,
     useSetLocale,
     useTranslate,
     useWarnAboutChange,
 } from "@hooks";
-import { AdminContext } from "@contexts/admin";
 import { ComponentsContext } from "@contexts/components";
 import { IAdminContext } from "@contexts/admin/IAdminContext";
 
@@ -92,7 +90,12 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
                             key={`dashboard`}
                             icon={<DashboardOutlined />}
                         >
-                            <Link to={`/`}>Dashboard</Link>
+                            <Link to={`/`}>
+                                {translate(
+                                    "common:resources.dashboard.title",
+                                    "Dashboard",
+                                )}
+                            </Link>
                         </Menu.Item>
                     )}
 

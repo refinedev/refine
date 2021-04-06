@@ -6,6 +6,7 @@ import { useCancelNotification, useNotification, useTranslate } from "@hooks";
 import { INotification } from "../../interfaces";
 
 import { NotificationProgress } from "./components";
+import { userFriendlySecond } from "@definitions/helpers";
 
 export const Notification: React.FC<{
     notifications: INotification[];
@@ -64,7 +65,14 @@ export const Notification: React.FC<{
                     <span style={{ marginLeft: 20 }}>
                         {translate(
                             "common:notifications.undoable",
-                            "You have 5 seconds to undo",
+                            {
+                                seconds: userFriendlySecond(
+                                    notificationItem.seconds,
+                                ),
+                            },
+                            `You have ${userFriendlySecond(
+                                notificationItem.seconds,
+                            )} seconds to undo`,
                         )}
                     </span>
                 );

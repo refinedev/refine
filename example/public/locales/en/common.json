@@ -19,6 +19,9 @@
                 "title": "Title"
             }
         },
+        "dashboard": {
+            "title": "Dashboard Page"
+        },
         "files": {
             "Files": "Files",
             "title": "Files",
@@ -50,7 +53,11 @@
                 "title": "Title",
                 "slug": "Slug",
                 "category": "Category",
-                "status": "Status",
+                "status": {
+                    "title": "Status",
+                    "active": "Active",
+                    "draft": "Draft"
+                },
                 "url": "Url",
                 "content": "Content",
                 "user": "User",
@@ -121,6 +128,8 @@
     "notifications": {
         "success": "Successful",
         "succesMessage": "Id: {{id}} {{resource}} edited",
-        "undoable": "You have 5 seconds to undo"
-    }
+        "undoable": "You have {{seconds}} seconds to undo"
+    },
+    "loading": "Loading",
+    "backHome": "Back Home"
 }

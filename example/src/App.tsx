@@ -47,7 +47,7 @@ import {
 
 function App() {
     const [adminProps, demoSidebarProps] = useDemoSidebar({
-        defaultTitle: "Readmin3",
+        defaultTitle: "Readmin",
         defaultMutationMode: "pessimistic",
     });
 
