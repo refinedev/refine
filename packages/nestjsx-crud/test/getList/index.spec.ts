@@ -1,5 +1,4 @@
 import axios from "axios";
-// import nock from "nock";
 
 import JsonServer from "../../src/index";
 import "./index.mock";
@@ -7,21 +6,19 @@ import "./index.mock";
 axios.defaults.adapter = require("axios/lib/adapters/http");
 
 describe("getList", () => {
-    xit("correct response", async () => {
-        const response = await JsonServer(
-            "https://readmin-fake-rest.pankod.com",
+    it("correct response", async () => {
+        const { data, total } = await JsonServer(
+            "https://readmin-nestjs-crud.pankod.com",
         ).getList("posts", {});
 
-        expect(response.data[0]["id"]).toBe(1000);
-        expect(response.data[0]["title"]).toBe(
-            "Ducimus amet beatae optio blanditiis dolore fugit aut quam.g",
-        );
-        expect(response.total).toBe(1000);
+        expect(data[0]["id"]).toBe("fdbc6bbe-58a9-469c-a10b-6f089cd77fd7");
+        expect(data[0]["title"]).toBe("Bike relationships repurpose");
+        expect(total).toBe(136);
     });
 
-    xit("correct sorting response", async () => {
-        const response = await JsonServer(
-            "https://readmin-fake-rest.pankod.com",
+    it("correct sorting response", async () => {
+        const { data, total } = await JsonServer(
+            "https://readmin-nestjs-crud.pankod.com",
         ).getList("posts", {
             sort: {
                 field: "id",
@@ -29,32 +26,32 @@ describe("getList", () => {
             },
         });
 
-        expect(response.data[0]["id"]).toBe(1);
-        expect(response.data[0]["title"]).toBe(
-            "Deleniti et quasi architecto hic quam et tempora vero quo.",
-        );
-        expect(response.total).toBe(1000);
+        expect(data[0]["id"]).toBe("0215838f-cf6d-49ed-8ee2-1a1350d126e5");
+        expect(data[0]["title"]).toBe("Reboot e-commerce customer loyalty");
+        expect(total).toBe(136);
     });
 
-    xit("correct filter response", async () => {
-        const response = await JsonServer(
-            "https://readmin-fake-rest.pankod.com",
+    it("correct filter response", async () => {
+        const { data, total } = await JsonServer(
+            "https://readmin-nestjs-crud.pankod.com",
         ).getList("posts", {
             filters: {
-                categoryId: [1],
+                "category.id": ["ba18b409-7084-4f5f-926c-207eab172f73"],
             },
         });
 
-        expect(response.data[0]["categoryId"]).toBe(1);
-        expect(response.total).toBe(20);
+        expect(data[0]["category"]["title"]).toBe(
+            "Redundant Aruban Guilder Consultant",
+        );
+        expect(total).toBe(3);
     });
 
-    xit("correct filter and sort response", async () => {
-        const response = await JsonServer(
-            "https://readmin-fake-rest.pankod.com",
+    it("correct filter and sort response", async () => {
+        const { data, total } = await JsonServer(
+            "https://readmin-nestjs-crud.pankod.com",
         ).getList("posts", {
             filters: {
-                categoryId: [1],
+                "category.id": ["ba18b409-7084-4f5f-926c-207eab172f73"],
             },
             sort: {
                 field: "id",
@@ -62,7 +59,7 @@ describe("getList", () => {
             },
         });
 
-        expect(response.data[0]["id"]).toBe(61);
-        expect(response.total).toBe(20);
+        expect(data[0]["title"]).toBe("Borders Shirt withdrawal");
+        expect(total).toBe(3);
     });
 });

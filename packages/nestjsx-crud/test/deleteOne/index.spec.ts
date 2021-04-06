@@ -1,5 +1,4 @@
 import axios from "axios";
-// import nock from "nock";
 
 import JsonServer from "../../src/index";
 import "./index.mock";
@@ -7,13 +6,11 @@ import "./index.mock";
 axios.defaults.adapter = require("axios/lib/adapters/http");
 
 describe("deleteOne", () => {
-    xit("correct response", async () => {
-        const response = await JsonServer(
-            "https://readmin-fake-rest.pankod.com",
-        ).deleteOne("posts", 1);
+    it("correct response", async () => {
+        const { data } = await JsonServer(
+            "https://readmin-nestjs-crud.pankod.com",
+        ).deleteOne("posts", "99d8ae54-432c-48d4-a385-f0ff4665e448");
 
-        const { data } = response;
-
-        expect(data).toEqual({});
+        expect(data).toEqual("");
     });
 });

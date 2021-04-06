@@ -252,7 +252,6 @@ export const PostCreate = (props: any) => {
                 ]}
             >
                 <Select
-                    defaultValue="active"
                     options={[
                         {
                             label: "Active",
@@ -304,7 +303,7 @@ export const PostCreate = (props: any) => {
                         required: true,
                     },
                 ]}
-                valuePropName="__"
+                valuePropName=""
                 getValueFromEvent={(id) => {
                     return { id };
                 }}
@@ -329,7 +328,7 @@ export const PostCreate = (props: any) => {
                     },
                 ]}
                 help="Autocomplete (search user email)"
-                valuePropName="__"
+                valuePropName=""
                 getValueFromEvent={(id) => {
                     return { id };
                 }}

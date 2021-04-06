@@ -127,7 +127,7 @@ const NestsxCrud = (apiUrl: string): DataProvider => ({
     updateMany: async (resource, ids, params) => {
         const response = await Promise.all(
             ids.map(async (id) => {
-                const { data } = await axios.put(
+                const { data } = await axios.patch(
                     `${apiUrl}/${resource}/${id}`,
                     params,
                 );

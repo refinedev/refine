@@ -1,5 +1,4 @@
 import axios from "axios";
-// import nock from "nock";
 
 import JsonServer from "../../src/index";
 import "./index.mock";
@@ -7,16 +6,16 @@ import "./index.mock";
 axios.defaults.adapter = require("axios/lib/adapters/http");
 
 describe("getMany", () => {
-    xit("correct response", async () => {
-        const response = await JsonServer(
-            "https://readmin-fake-rest.pankod.com",
-        ).getMany("posts", [1, 2, 3]);
+    it("correct response", async () => {
+        const { data } = await JsonServer(
+            "https://readmin-nestjs-crud.pankod.com",
+        ).getMany("posts", [
+            "6536e986-e500-4933-b154-b51d60d702c2",
+            "7810bbc3-b133-4f85-8c6b-d7806b329f17",
+        ]);
 
-        const { data } = response;
-
-        expect(data[0]["id"]).toBe(1);
-        expect(data[1]["id"]).toBe(2);
-        expect(data[2]["id"]).toBe(3);
-        expect(response.data.length).toBe(3);
+        expect(data[0]["id"]).toBe("6536e986-e500-4933-b154-b51d60d702c2");
+        expect(data[1]["id"]).toBe("7810bbc3-b133-4f85-8c6b-d7806b329f17");
+        expect(data.length).toBe(2);
     });
 });
