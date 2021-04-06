@@ -17,6 +17,7 @@ export const RefreshButton: FC<RefreshButtonProps> = ({
     ...rest
 }) => {
     const translate = useTranslate();
+    const resourceWithRoute = useResourceWithRoute();
 
     const {
         resource: routeResourceName,
@@ -25,7 +26,7 @@ export const RefreshButton: FC<RefreshButtonProps> = ({
 
     const resourceName = propResourceName ?? routeResourceName;
 
-    const resource = useResourceWithRoute(resourceName);
+    const resource = resourceWithRoute(resourceName);
 
     const { refetch, isFetching } = useOne(
         resource.name,

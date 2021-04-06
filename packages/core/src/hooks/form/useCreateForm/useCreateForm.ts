@@ -51,7 +51,9 @@ export const useCreateForm = ({
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
-    const resource = useResourceWithRoute(routeResourceName);
+    const resourceWithRoute = useResourceWithRoute();
+
+    const resource = resourceWithRoute(routeResourceName);
 
     const { mutate, isLoading } = useCreate();
 

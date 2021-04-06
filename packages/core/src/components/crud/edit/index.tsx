@@ -32,14 +32,15 @@ export const Edit: React.FC<EditProps> = ({
     deleteButtonProps,
 }) => {
     const history = useHistory();
+    const resourceWithRoute = useResourceWithRoute();
+
     const { mutationMode: mutationModeContext } = useMutationMode();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
-    const resource = useResourceWithRoute(routeResourceName);
-    const translate = useTranslate();
+    const resource = resourceWithRoute(routeResourceName);
 
     return (
         <Card

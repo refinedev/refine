@@ -20,7 +20,7 @@ export const CreateButton: FC<CreateButtonProps> = ({
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const onButtonClick = () => {
-        create(routeResourceName, "push");
+        create("posts", "push");
     };
 
     return (

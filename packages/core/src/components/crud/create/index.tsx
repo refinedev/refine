@@ -20,8 +20,9 @@ export const Create: React.FC<CreateProps> = ({
     children,
 }) => {
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
+    const resourceWithRoute = useResourceWithRoute();
 
-    const resource = useResourceWithRoute(routeResourceName);
+    const resource = resourceWithRoute(routeResourceName);
 
     const translate = useTranslate();
 

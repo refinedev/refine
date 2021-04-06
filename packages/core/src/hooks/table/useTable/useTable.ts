@@ -73,9 +73,11 @@ export const useTable = ({
     });
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-    const history = useHistory();
 
-    const resource = useResourceWithRoute(routeResourceName);
+    const history = useHistory();
+    const resourceWithRoute = useResourceWithRoute();
+
+    const resource = resourceWithRoute(routeResourceName);
 
     const [sorter, setSorter] = useState<Sort | undefined>(defaultSorter);
     const [filters, setFilters] = useState<Filters | undefined>(defaultFilter);

@@ -36,13 +36,14 @@ export const ExportButton: FC<ExportButtonProps> = ({
     ...rest
 }) => {
     const translate = useTranslate();
+    const resourceWithRoute = useResourceWithRoute();
 
     const [loading, setLoading] = useState(false);
     const [fileReady, setFileReady] = useState(false);
     const [exportData, setExportData] = useState<BaseRecord[]>([]);
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-    let { name: resource } = useResourceWithRoute(routeResourceName);
+    let { name: resource } = resourceWithRoute(routeResourceName);
 
     if (resourceName) {
         resource = resourceName;
