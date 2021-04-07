@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Button, ButtonProps, Popconfirm } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import {
     useDelete,
@@ -30,6 +30,8 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
     ...rest
 }) => {
     const translate = useTranslate();
+    const resourceWithRoute = useResourceWithRoute();
+
     const { mutationMode: mutationModeContext } = useMutationMode();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
@@ -41,7 +43,7 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
 
     const resourceName = propResourceName ?? routeResourceName;
 
-    const resource = useResourceWithRoute(resourceName);
+    const resource = resourceWithRoute(resourceName);
 
     const { mutateAsync, isLoading } = useDelete(resource.name, mutationMode);
 

@@ -15,6 +15,7 @@ import {
     useForm,
     useEditableTable,
     TextField,
+    DateField,
 } from "readmin";
 
 export const CategoryList = (props: { resourceName: string }) => {
@@ -27,10 +28,8 @@ export const CategoryList = (props: { resourceName: string }) => {
         editButtonProps,
         cancelButtonProps,
         setEditId,
-    } = useEditableTable({
-        mutationMode: "undoable",
-        initialPageSize: 10,
-    });
+    } = useEditableTable({});
+
     return (
         <List {...props}>
             <Form {...formProps}>
@@ -51,13 +50,6 @@ export const CategoryList = (props: { resourceName: string }) => {
                     })}
                 >
                     <Table.Column
-                        key="id"
-                        dataIndex="id"
-                        title={translate(
-                            "common:resources.categories.fields.id",
-                        )}
-                    />
-                    <Table.Column
                         key="title"
                         dataIndex="title"
                         title={translate(
@@ -76,6 +68,16 @@ export const CategoryList = (props: { resourceName: string }) => {
                             }
                             return <TextField value={value} />;
                         }}
+                    />
+                    <Table.Column
+                        dataIndex="createdAt"
+                        title={translate(
+                            "common:resources.categories.fields.createdAt",
+                        )}
+                        key="createdAt"
+                        render={(value) => (
+                            <DateField format="LLL" value={value} />
+                        )}
                     />
                     <Table.Column
                         title={translate("common:table.actions", "Actions")}

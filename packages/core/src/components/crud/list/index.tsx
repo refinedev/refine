@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { useResourceWithRoute, useTranslate } from "@hooks";
 import { OptionalComponent } from "@definitions";
 import { CreateButton } from "@components";
-import { ResourceRouterParams } from "../../../interfaces";
+import { ResourceRouterParams, CreateButtonProps } from "../../../interfaces";
 
 export interface ListProps {
     resourceName: string;
@@ -14,8 +14,8 @@ export interface ListProps {
     actionButtons?: React.FC;
     aside?: React.FC;
     title?: string;
-    isModalShown?: () => void;
     canExport?: boolean;
+    createButtonProps?: CreateButtonProps;
 }
 
 export const List: React.FC<ListProps> = ({
@@ -24,15 +24,17 @@ export const List: React.FC<ListProps> = ({
     title,
     actionButtons,
     children,
-    isModalShown,
+    createButtonProps,
 }) => {
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
-    const resource = useResourceWithRoute(routeResourceName);
     const translate = useTranslate();
+    const resourceWithRoute = useResourceWithRoute();
+
+    const resource = resourceWithRoute(routeResourceName);
 
     const defaultExtra = canCreate && (
-        <CreateButton size="middle" onClick={isModalShown} />
+        <CreateButton size="middle" {...createButtonProps} />
     );
 
     const renderExtra = () => {

@@ -1,8 +1,8 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../interfaces";
+import { useNavigation } from "@hooks/navigation";
 
 /**
  * @example
@@ -14,12 +14,12 @@ import { IAuthContext } from "../../interfaces";
  */
 
 export const useLogout = (redirectPath = "/login") => {
-    const history = useHistory();
+    const { push } = useNavigation();
     const authContext = React.useContext<IAuthContext>(AuthContext);
 
     const logout = React.useCallback(() => {
         authContext.logout().then(() => {
-            return history.push(redirectPath);
+            return push(redirectPath);
         });
     }, []);
 

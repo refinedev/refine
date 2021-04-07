@@ -6,7 +6,7 @@ import { useResourceWithRoute } from "./";
 
 describe("useResourceWithRoute Hook", () => {
     it("returns context value", async () => {
-        const { result } = renderHook(() => useResourceWithRoute("posts"), {
+        const { result } = renderHook(() => useResourceWithRoute(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
                 resources: [
@@ -16,6 +16,9 @@ describe("useResourceWithRoute Hook", () => {
             }),
         });
 
-        expect(result.current).toEqual({ name: "posts", route: "posts" });
+        expect(result.current("posts")).toEqual({
+            name: "posts",
+            route: "posts",
+        });
     });
 });

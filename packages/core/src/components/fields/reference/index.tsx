@@ -22,7 +22,7 @@ export const ReferenceField: React.FC<ReferenceFieldProps> = ({
 
     const { data, isFetching } = useQuery<GetOneResponse>(
         [`resource/one/${resource}/`, { id: value }],
-        () => getOne(resource, Number(value)),
+        () => getOne(resource, value),
     );
 
     const translate = useTranslate();

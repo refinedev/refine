@@ -35,14 +35,13 @@ import {
     ExportButton,
     CloneButton,
     getDefaultSortOrder,
+    DateField,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
-
-import { ShowAside } from "../show";
 
 export const PostList = (props: any) => {
     const translate = useTranslate();
@@ -52,14 +51,13 @@ export const PostList = (props: any) => {
         // },
         initialSorter: [
             {
-                field: "id",
+                field: "createdAt",
                 order: "descend",
             },
         ],
         initialFilter: {
-            status: ["active"],
+            status: ["published"],
         },
-        syncWithLocation: true,
     });
 
     const actions = (
@@ -95,15 +93,6 @@ export const PostList = (props: any) => {
                 }}
             >
                 <Table.Column
-                    dataIndex="id"
-                    title={translate("common:resources.posts.fields.id")}
-                    key="id"
-                    sorter={{
-                        multiple: 3,
-                    }}
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
-                />
-                <Table.Column
                     dataIndex="title"
                     title={translate("common:resources.posts.fields.title")}
                     key="title"
@@ -118,17 +107,13 @@ export const PostList = (props: any) => {
                     title={translate("common:resources.posts.fields.slug")}
                     key="slug"
                     render={(value) => <TextField value={value} />}
-                    sorter={{
-                        multiple: 2,
-                    }}
-                    defaultSortOrder={getDefaultSortOrder("slug", sorter)}
                 />
                 <Table.Column
-                    dataIndex="categoryId"
+                    dataIndex="category"
                     title={translate("common:resources.posts.fields.category")}
-                    key="categoryId"
-                    render={(value) => (
-                        <ReferenceField resource="categories" value={value}>
+                    key="category.id"
+                    render={({ id }) => (
+                        <ReferenceField resource="categories" value={id}>
                             <TextField renderRecordKey="title" />
                         </ReferenceField>
                     )}
@@ -162,9 +147,9 @@ export const PostList = (props: any) => {
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Radio.Group>
-                                <Radio value="active">
+                                <Radio value="published">
                                     {translate(
-                                        "common:resources.posts.fields.status.active",
+                                        "common:resources.posts.fields.status.published",
                                     )}
                                 </Radio>
                                 <Radio value="draft">
@@ -175,7 +160,17 @@ export const PostList = (props: any) => {
                             </Radio.Group>
                         </FilterDropdown>
                     )}
-                    defaultFilteredValue={["active"]}
+                    defaultFilteredValue={["published"]}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title={translate("common:resources.posts.fields.createdAt")}
+                    key="createdAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                    sorter={{
+                        multiple: 2,
+                    }}
+                    defaultSortOrder={getDefaultSortOrder("createdAt", sorter)}
                 />
                 <Table.Column
                     title={translate("common:table.actions", "Actions")}
@@ -228,7 +223,7 @@ export const PostCreate = (props: any) => {
         warnWhenUnsavedChanges: true,
         defaultFormValues: () => {
             return {
-                status: "active",
+                status: "published",
             };
         },
     });
@@ -238,17 +233,6 @@ export const PostCreate = (props: any) => {
             <Form.Item
                 label={translate("common:resources.posts.fields.title")}
                 name="title"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-            <Form.Item
-                label={translate("common:resources.posts.fields.url")}
-                name="slug"
                 rules={[
                     {
                         required: true,
@@ -274,9 +258,6 @@ export const PostCreate = (props: any) => {
                     }
                 />
             </Form.Item>
-        </>,
-
-        <>
             <Form.Item
                 label={translate("common:resources.posts.fields.status.title")}
                 name="status"
@@ -289,79 +270,30 @@ export const PostCreate = (props: any) => {
                 <Select
                     options={[
                         {
-                            label: "Active",
-                            value: "active",
+                            label: translate(
+                                "common:resources.posts.fields.status.published",
+                            ),
+                            value: "published",
                         },
                         {
-                            label: "Draft",
+                            label: translate(
+                                "common:resources.posts.fields.status.draft",
+                            ),
                             value: "draft",
                         },
                     ]}
                 />
             </Form.Item>
-            <Form.Item
-                label={translate("common:resources.posts.fields.category")}
-                name="categoryId"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Reference
-                    reference="categories"
-                    optionText="title"
-                    sort={{
-                        field: "title",
-                        order: "ascend",
-                    }}
-                >
-                    <Select showSearch />
-                </Reference>
-            </Form.Item>
-        </>,
-
-        <>
-            <Form.Item
-                label={translate("common:resources.posts.fields.user")}
-                name="userId"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-                help="Autocomplete (search user email)"
-            >
-                <Reference reference="users" optionText="email">
-                    <Select showSearch />
-                </Reference>
-            </Form.Item>
-            <Form.Item
-                label={translate("common:resources.posts.fields.tags")}
-                name="tags"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Reference reference="tags" optionText="title">
-                    <Select mode="multiple" />
-                </Reference>
-            </Form.Item>
-        </>,
-
-        <>
             <Form.Item label={translate("common:resources.posts.fields.image")}>
                 <Form.Item
-                    name="image"
+                    name="images"
                     valuePropName="fileList"
                     getValueFromEvent={normalizeFile}
                     noStyle
                 >
                     <Upload.Dragger
                         name="file"
-                        action={`${apiUrl}/upload`}
+                        action={`${apiUrl}/media/upload`}
                         listType="picture"
                         maxCount={5}
                         multiple
@@ -375,6 +307,51 @@ export const PostCreate = (props: any) => {
                         </p>
                     </Upload.Dragger>
                 </Form.Item>
+            </Form.Item>
+        </>,
+
+        <>
+            <Form.Item
+                label={translate("common:resources.posts.fields.category")}
+                name="category"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+                valuePropName=""
+                getValueFromEvent={(id) => {
+                    return { id };
+                }}
+            >
+                <Reference
+                    reference="categories"
+                    optionText="title"
+                    sort={{
+                        field: "title",
+                        order: "ascend",
+                    }}
+                >
+                    <Select showSearch />
+                </Reference>
+            </Form.Item>
+            <Form.Item
+                label={translate("common:resources.posts.fields.user")}
+                name="user"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+                help="Autocomplete (search user email)"
+                valuePropName=""
+                getValueFromEvent={(id) => {
+                    return { id };
+                }}
+            >
+                <Reference reference="users" optionText="email">
+                    <Select showSearch />
+                </Reference>
             </Form.Item>
         </>,
     ];
@@ -417,16 +394,14 @@ export const PostCreate = (props: any) => {
             }
         >
             <Steps {...stepsProps}>
-                <Step title="Description" />
-                <Step title="Informations" />
-                <Step title="Details" />
-                <Step title="Image" />
+                <Step title="Content" />
+                <Step title="Relations" />
             </Steps>
 
             <div style={{ marginTop: 60 }}>
                 <Form
                     {...formProps}
-                    wrapperCol={{ span: 14 }}
+                    wrapperCol={{ span: 24 }}
                     layout="vertical"
                 >
                     {formList[current]}
@@ -456,7 +431,7 @@ export const PostEdit = (props: any) => {
         formProps,
     } = useStepsForm({
         warnWhenUnsavedChanges: true,
-        redirect: "show",
+        redirect: "list",
         mutationMode: "pessimistic",
     });
 
@@ -465,17 +440,6 @@ export const PostEdit = (props: any) => {
             <Form.Item
                 label={translate("common:resources.posts.fields.title")}
                 name="title"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-            <Form.Item
-                label={translate("common:resources.posts.fields.url")}
-                name="slug"
                 rules={[
                     {
                         required: true,
@@ -501,9 +465,6 @@ export const PostEdit = (props: any) => {
                     }
                 />
             </Form.Item>
-        </>,
-
-        <>
             <Form.Item
                 label={translate("common:resources.posts.fields.status.title")}
                 name="status"
@@ -514,82 +475,32 @@ export const PostEdit = (props: any) => {
                 ]}
             >
                 <Select
-                    defaultValue="active"
                     options={[
                         {
-                            label: "Active",
-                            value: "active",
+                            label: translate(
+                                "common:resources.posts.fields.status.published",
+                            ),
+                            value: "published",
                         },
                         {
-                            label: "Draft",
+                            label: translate(
+                                "common:resources.posts.fields.status.draft",
+                            ),
                             value: "draft",
                         },
                     ]}
                 />
             </Form.Item>
-            <Form.Item
-                label={translate("common:resources.posts.fields.category")}
-                name="categoryId"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Reference
-                    reference="categories"
-                    optionText="title"
-                    sort={{
-                        field: "title",
-                        order: "ascend",
-                    }}
-                >
-                    <Select showSearch />
-                </Reference>
-            </Form.Item>
-        </>,
-
-        <>
-            <Form.Item
-                label={translate("common:resources.posts.fields.user")}
-                name="userId"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-                help="Autocomplete (search user email)"
-            >
-                <Reference reference="users" optionText="email">
-                    <Select showSearch />
-                </Reference>
-            </Form.Item>
-            <Form.Item
-                label={translate("common:resources.posts.fields.tags")}
-                name="tags"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Reference reference="tags" optionText="title">
-                    <Select mode="multiple" />
-                </Reference>
-            </Form.Item>
-        </>,
-
-        <>
             <Form.Item label={translate("common:resources.posts.fields.image")}>
                 <Form.Item
-                    name="image"
+                    name="images"
                     valuePropName="fileList"
                     getValueFromEvent={normalizeFile}
                     noStyle
                 >
                     <Upload.Dragger
                         name="file"
-                        action={`${apiUrl}/upload`}
+                        action={`${apiUrl}/media/upload`}
                         listType="picture"
                         maxCount={5}
                         multiple
@@ -603,6 +514,55 @@ export const PostEdit = (props: any) => {
                         </p>
                     </Upload.Dragger>
                 </Form.Item>
+            </Form.Item>
+        </>,
+
+        <>
+            <Form.Item
+                label={translate("common:resources.posts.fields.category")}
+                name="category"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+                getValueProps={({ id }) => {
+                    return { value: id };
+                }}
+                getValueFromEvent={(id) => {
+                    return { id };
+                }}
+            >
+                <Reference
+                    reference="categories"
+                    optionText="title"
+                    sort={{
+                        field: "title",
+                        order: "ascend",
+                    }}
+                >
+                    <Select showSearch />
+                </Reference>
+            </Form.Item>
+            <Form.Item
+                label={translate("common:resources.posts.fields.user")}
+                name="user"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+                getValueProps={({ id }) => {
+                    return { value: id };
+                }}
+                getValueFromEvent={(id) => {
+                    return { id };
+                }}
+                help="Autocomplete (search user email)"
+            >
+                <Reference reference="users" optionText="email">
+                    <Select showSearch />
+                </Reference>
             </Form.Item>
         </>,
     ];
@@ -638,16 +598,14 @@ export const PostEdit = (props: any) => {
             }
         >
             <Steps {...stepsProps}>
-                <Step title="Description" />
-                <Step title="Informations" />
-                <Step title="Details" />
-                <Step title="Image" />
+                <Step title="Content" />
+                <Step title="Relations" />
             </Steps>
 
             <div style={{ marginTop: 60 }}>
                 <Form
                     {...formProps}
-                    wrapperCol={{ span: 14 }}
+                    wrapperCol={{ span: 24 }}
                     layout="vertical"
                 >
                     {formList[current]}
@@ -659,11 +617,10 @@ export const PostEdit = (props: any) => {
 
 export const PostShow = (props: any) => {
     return (
-        <Show {...props} aside={ShowAside}>
+        <Show {...props}>
             <ShowSimple title="Post Title">
                 <TextField renderRecordKey="id" />
                 <TextField renderRecordKey="title" />
-                <TextField renderRecordKey="userId" />
                 <MarkdownField renderRecordKey="content" />
             </ShowSimple>
         </Show>

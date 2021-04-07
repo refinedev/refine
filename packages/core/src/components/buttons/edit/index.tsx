@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { EditOutlined } from "@ant-design/icons";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-import { useTranslate } from "@hooks";
+import { useNavigation, useTranslate } from "@hooks";
 import { ResourceRouterParams } from "../../../interfaces";
 
 type EditButtonProps = ButtonProps & {
@@ -16,7 +16,6 @@ export const EditButton: FC<EditButtonProps> = ({
     recordItemId,
     ...rest
 }) => {
-    const history = useHistory();
     const translate = useTranslate();
 
     const {
@@ -26,14 +25,14 @@ export const EditButton: FC<EditButtonProps> = ({
 
     const resourceName = propResourceName ?? routeResourceName;
 
+    const { edit } = useNavigation();
+
+    const id = recordItemId ?? idFromRoute;
+
     return (
         <Button
             onClick={(): void => {
-                history.push(
-                    `/resources/${resourceName}/edit/${
-                        recordItemId ?? idFromRoute
-                    }`,
-                );
+                edit(resourceName, "push", id);
             }}
             type="default"
             icon={<EditOutlined />}

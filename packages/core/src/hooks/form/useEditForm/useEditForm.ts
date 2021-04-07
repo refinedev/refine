@@ -77,7 +77,9 @@ export const useEditForm = ({
     } = useParams<ResourceRouterParams>();
     const isEdit = !!editId || action === "edit";
 
-    const resource = useResourceWithRoute(routeResourceName);
+    const resourceWithRoute = useResourceWithRoute();
+
+    const resource = resourceWithRoute(routeResourceName);
 
     const id = editId?.toString() ?? idFromRoute;
 

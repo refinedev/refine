@@ -18,13 +18,7 @@ describe("redirectionAfterSubmission Hook", () => {
     const { result } = renderHook(() => useRedirectionAfterSubmission(), {
         wrapper: TestWrapper({
             dataProvider: MockJSONServer,
-            resources: [{ name: "posts" }],
-            routerInitialEntries: [
-                "/resources/posts",
-                "/resources/posts/create",
-                "/resources/posts/edit/1",
-                "/resources/posts/show/1",
-            ],
+            resources: [{ name: "posts", route: "posts" }],
         }),
     });
 

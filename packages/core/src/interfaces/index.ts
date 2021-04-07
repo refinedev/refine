@@ -12,6 +12,9 @@ export * from "../contexts/translation/ITranslationContext";
 export * from "../contexts/components/IComponentsContext";
 export * from "../contexts/notification/INotificationContext";
 
+// buttons
+export { CreateButtonProps } from "../components/buttons/create/index";
+
 // field
 export * from "./field";
 

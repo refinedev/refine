@@ -34,7 +34,9 @@ export const Show: React.FC<ShowProps> = ({
         id: idFromRoute,
     } = useParams<ResourceRouterParams>();
 
-    const resource = useResourceWithRoute(routeResourceName);
+    const resourceWithRoute = useResourceWithRoute();
+
+    const resource = resourceWithRoute(routeResourceName);
 
     const { data, isLoading, isFetching } = useOne(resource.name, idFromRoute);
 

@@ -1,10 +1,10 @@
 import React from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Card, Row, Space, ButtonProps } from "antd";
 import pluralize from "pluralize";
 
 import { MutationMode, ResourceRouterParams } from "../../../interfaces";
-import { useTranslate, useResourceWithRoute, useMutationMode } from "@hooks";
+import { useResourceWithRoute, useMutationMode, useNavigation } from "@hooks";
 import {
     DeleteButton,
     RefreshButton,
@@ -31,15 +31,16 @@ export const Edit: React.FC<EditProps> = ({
     children,
     deleteButtonProps,
 }) => {
-    const history = useHistory();
+    const { push } = useNavigation();
+    const resourceWithRoute = useResourceWithRoute();
+
     const { mutationMode: mutationModeContext } = useMutationMode();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
-    const resource = useResourceWithRoute(routeResourceName);
-    const translate = useTranslate();
+    const resource = resourceWithRoute(routeResourceName);
 
     return (
         <Card
@@ -62,9 +63,7 @@ export const Edit: React.FC<EditProps> = ({
                             <DeleteButton
                                 mutationMode={mutationMode}
                                 onSuccess={() => {
-                                    return history.push(
-                                        `/resources/${resource.route}`,
-                                    );
+                                    return push(`/resources/${resource.route}`);
                                 }}
                                 {...deleteButtonProps}
                             />

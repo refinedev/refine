@@ -25,6 +25,7 @@
     "readmin": "../packages/core",
     "readmin-json-server": "../packages/json-server",
     "readmin-demo-sidebar": "../packages/demo-sidebar",
+    "readmin-nestjsx-crud": "../packages/nestjsx-crud",
     "react": "../node_modules/react",
     "react-dom": "../node_modules/react-dom"
   },
