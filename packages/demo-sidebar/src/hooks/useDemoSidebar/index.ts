@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MutationMode } from "readmin";
-import { DemoSidebarProps } from "../../components/DemoSidebar";
+import { DemoSidebarProps } from "../../components/DemoSidebar/types";
 
 interface DemoSidebarParams {
     defaultTitle: string;

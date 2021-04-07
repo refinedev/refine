@@ -1,54 +1,18 @@
-import React, { useState, CSSProperties } from "react";
+import React, { useState } from "react";
+import { DemoSidebarProps } from "./types";
+import { handlerStyles, formItemStyles } from "./styles";
 
 import {
     Drawer,
     Icons,
     Switch,
-    AntdList as List,
     Select,
     Input,
-    MutationMode,
     Form,
     InputNumber,
 } from "readmin";
 
 import { Group } from "..";
-
-const handlerStyles: CSSProperties = {
-    position: "absolute",
-    top: "240px",
-    right: "300px",
-    zIndex: 0,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "48px",
-    height: "48px",
-    fontSize: "16px",
-    textAlign: "center",
-    background: "var(--antd-wave-shadow-color)",
-    borderRadius: "4px 0 0 4px",
-    cursor: "pointer",
-};
-
-const formItemStyles: CSSProperties = {
-    marginBottom: "16px",
-};
-
-export interface DemoSidebarProps {
-    title: string;
-    mutationMode: MutationMode;
-    syncWithLocation: boolean;
-    warnWhenUnsavedChanges: boolean;
-    undoableTimeout: number;
-    onTitleChange: React.Dispatch<React.SetStateAction<string>>;
-    onMutationModeChange: React.Dispatch<React.SetStateAction<MutationMode>>;
-    onSyncWithLocationChange: React.Dispatch<React.SetStateAction<boolean>>;
-    onWarnWhenUnsavedChangesChange: React.Dispatch<
-        React.SetStateAction<boolean>
-    >;
-    onUndoableTimeoutChange: React.Dispatch<React.SetStateAction<number>>;
-}
 
 export const DemoSidebar: React.FC<DemoSidebarProps> = ({
     title,
