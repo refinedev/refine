@@ -16,7 +16,7 @@ import { Group } from "..";
 const handlerStyles: React.CSSProperties = {
     position: "absolute",
     top: "240px",
-    right: "390px",
+    right: "300px",
     zIndex: 0,
     display: "flex",
     alignItems: "center",
@@ -29,11 +29,6 @@ const handlerStyles: React.CSSProperties = {
     borderRadius: "4px 0 0 4px",
     cursor: "pointer",
 };
-
-interface SettingItemProps {
-    title: string;
-    action: React.ReactElement;
-}
 
 export interface DemoSidebarProps {
     title: string;
@@ -63,7 +58,7 @@ export const DemoSidebar: React.FC<DemoSidebarProps> = ({
     return (
         <Drawer
             visible={show}
-            width={390}
+            width={300}
             onClose={() => setShow(false)}
             placement="right"
             handler={
@@ -96,6 +91,8 @@ export const DemoSidebar: React.FC<DemoSidebarProps> = ({
             <div className="ant-drawer-content">
                 <Group title="Settings">
                     <Form
+                        form={undefined}
+                        colon={false}
                         labelCol={{
                             flex: 1,
                             style: {
@@ -118,13 +115,15 @@ export const DemoSidebar: React.FC<DemoSidebarProps> = ({
                                 placeholder="Readmin"
                                 value={title}
                                 onChange={(e) => onTitleChange(e.target.value)}
+                                data-testid="title"
                             />
                         </Form.Item>
                         <Form.Item label="Mutation mode">
-                            <Select<MutationMode>
+                            <Select
                                 size="small"
                                 value={mutationMode}
                                 onChange={onMutationModeChange}
+                                data-testid="mutationMode"
                             >
                                 <Select.Option value="pessimistic">
                                     Pessimistic
@@ -142,13 +141,15 @@ export const DemoSidebar: React.FC<DemoSidebarProps> = ({
                                 size="small"
                                 checked={syncWithLocation}
                                 onChange={onSyncWithLocationChange}
+                                data-testId="location"
                             />
                         </Form.Item>
-                        <Form.Item label="Warn when there are unsaved changes">
+                        <Form.Item label="Warn if unsaved changes">
                             <Switch
                                 size="small"
                                 checked={warnWhenUnsavedChanges}
                                 onChange={onWarnWhenUnsavedChangesChange}
+                                data-testId="warnWhenUnsavedChanges"
                             />
                         </Form.Item>
                     </Form>
