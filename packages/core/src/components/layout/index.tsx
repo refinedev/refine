@@ -59,6 +59,12 @@ export const Layout: React.FC<LayoutProps> = ({
         }
     };
 
+    if (warnWhen)
+        window.addEventListener("beforeunload", (e) => {
+            e.preventDefault();
+            return (e.returnValue = "Are you sure you want to close?");
+        });
+
     return (
         <AntLayout style={{ minHeight: "100vh" }}>
             <AntLayout.Sider
