@@ -6,12 +6,13 @@ import {
     UnorderedListOutlined,
 } from "@ant-design/icons";
 import { MenuClickEventHandler } from "rc-menu/lib/interface";
-import { Link, Prompt, useHistory, useLocation } from "react-router-dom";
+import { Link, Prompt, useLocation } from "react-router-dom";
 import humanizeString from "humanize-string";
 
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext, IComponentsContext } from "../../interfaces";
 import {
+    useNavigation,
     useResource,
     useSetLocale,
     useTranslate,
@@ -31,7 +32,7 @@ export const Layout: React.FC<LayoutProps> = ({
 }) => {
     const [collapsed, setCollapsed] = React.useState(false);
 
-    const history = useHistory();
+    const { push } = useNavigation();
     const { logout } = useContext<IAuthContext>(AuthContext);
     const { components } = useContext<IComponentsContext>(ComponentsContext);
     const { resources } = useResource();
@@ -54,7 +55,7 @@ export const Layout: React.FC<LayoutProps> = ({
 
     const menuOnClick: MenuClickEventHandler = ({ key }) => {
         if (key === "logout") {
-            logout({}).then(() => history.push("/login"));
+            logout({}).then(() => push("/login"));
         }
     };
 

@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 
 import { AuthContext } from "@contexts/auth";
+import { useNavigation } from "@hooks/navigation";
+
 import { IAuthContext } from "../../interfaces";
-import { useHistory } from "react-router-dom";
 
 /**
  * @example
@@ -21,12 +22,12 @@ import { useHistory } from "react-router-dom";
 
 export const useAuthenticated = () => {
     const { checkAuth } = useContext<IAuthContext>(AuthContext);
-    const history = useHistory();
+    const { push } = useNavigation();
 
     const authenticated = React.useCallback(
         (redirectPath = "/login") =>
             checkAuth().catch(() => {
-                return history.push(redirectPath);
+                return push(redirectPath);
             }),
         [],
     );

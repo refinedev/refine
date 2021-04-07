@@ -1,11 +1,10 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 
 import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "../../interfaces";
-
 import { useNotification } from "@hooks";
+import { useNavigation } from "@hooks/navigation";
 
+import { IAuthContext } from "../../interfaces";
 /**
  * @example
  * const [loading, setLoading] = useState(false);
@@ -19,7 +18,7 @@ import { useNotification } from "@hooks";
  */
 
 export const useLogin = () => {
-    const history = useHistory();
+    const { push } = useNavigation();
     const authContext = React.useContext<IAuthContext>(AuthContext);
     const notification = useNotification();
 
@@ -27,7 +26,7 @@ export const useLogin = () => {
         authContext
             .login(params)
             .then(() => {
-                return history.push("/");
+                return push("/");
             })
             .catch(() => {
                 notification.error({
