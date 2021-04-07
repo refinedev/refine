@@ -89,7 +89,6 @@ function App() {
             dashboard={DashboardPage}
             ready={ReadyPage}
             i18nProvider={i18nProvider}
-            mutationMode="pessimistic"
             syncWithLocation
             components={
                 <>

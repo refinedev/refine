@@ -23,7 +23,6 @@ import { AdminContext } from "@contexts/admin/";
 import { IAdminContext } from "@contexts/admin/IAdminContext";
 
 export interface LayoutProps {
-    title?: ReactNode;
     dashboard?: React.FC;
 }
 
