@@ -9,6 +9,7 @@ import {
     Input,
     MutationMode,
     Form,
+    InputNumber,
 } from "readmin";
 
 import { Group } from "..";
@@ -39,12 +40,14 @@ export interface DemoSidebarProps {
     mutationMode: MutationMode;
     syncWithLocation: boolean;
     warnWhenUnsavedChanges: boolean;
+    undoableTimeout: number;
     onTitleChange: React.Dispatch<React.SetStateAction<string>>;
     onMutationModeChange: React.Dispatch<React.SetStateAction<MutationMode>>;
     onSyncWithLocationChange: React.Dispatch<React.SetStateAction<boolean>>;
     onWarnWhenUnsavedChangesChange: React.Dispatch<
         React.SetStateAction<boolean>
     >;
+    onUndoableTimeoutChange: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const DemoSidebar: React.FC<DemoSidebarProps> = ({
@@ -52,10 +55,12 @@ export const DemoSidebar: React.FC<DemoSidebarProps> = ({
     mutationMode,
     syncWithLocation,
     warnWhenUnsavedChanges,
+    undoableTimeout,
     onTitleChange,
     onMutationModeChange,
     onSyncWithLocationChange,
     onWarnWhenUnsavedChangesChange,
+    onUndoableTimeoutChange,
 }) => {
     const [show, setShow] = useState<boolean>(false);
 
@@ -139,6 +144,20 @@ export const DemoSidebar: React.FC<DemoSidebarProps> = ({
                                 </Select.Option>
                             </Select>
                         </Form.Item>
+                        {mutationMode === "undoable" && (
+                            <Form.Item
+                                label="Timeout to revert"
+                                style={formItemStyles}
+                            >
+                                <InputNumber<number>
+                                    size="small"
+                                    min={0}
+                                    step={1000}
+                                    value={undoableTimeout}
+                                    onChange={onUndoableTimeoutChange}
+                                />
+                            </Form.Item>
+                        )}
                         <Form.Item
                             label="Sync with location"
                             style={formItemStyles}

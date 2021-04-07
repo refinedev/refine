@@ -23,12 +23,14 @@ export const useDemoSidebar = ({
         warnWhenUnsavedChanges,
         setWarnWhenUnsavedChanges,
     ] = useState<boolean>(false);
+    const [undoableTimeout, setUndoableTimeout] = useState<number>(5000);
 
     const adminProps = {
         title,
         mutationMode,
         syncWithLocation,
         warnWhenUnsavedChanges,
+        undoableTimeout,
     };
 
     const demoSidebarProps = {
@@ -36,10 +38,12 @@ export const useDemoSidebar = ({
         mutationMode,
         syncWithLocation,
         warnWhenUnsavedChanges,
+        undoableTimeout,
         onTitleChange: setTitle,
         onMutationModeChange: setMutationMode,
         onSyncWithLocationChange: setSyncWithLocation,
         onWarnWhenUnsavedChangesChange: setWarnWhenUnsavedChanges,
+        onUndoableTimeoutChange: setUndoableTimeout,
     };
 
     return [adminProps, demoSidebarProps];
