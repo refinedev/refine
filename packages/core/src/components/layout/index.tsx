@@ -79,7 +79,7 @@ export const Layout: React.FC<LayoutProps> = ({
                         alignItems: "center",
                     }}
                 >
-                    {title ?? "Readmin3"}
+                    {title ?? "Readmin"}
                 </div>
                 <Menu
                     onClick={menuOnClick}

@@ -13,7 +13,8 @@
             "Create": "Kategori oluştur",
             "fields": {
                 "id": "Id",
-                "title": "Başlık"
+                "title": "Başlık",
+                "createdAt": "Oluşturma Tarihi"
             },
             "forms": {
                 "title": "Başlık"
@@ -57,14 +58,15 @@
                 "category": "Kategori",
                 "status": {
                     "title": "Durum",
-                    "active": "Aktif",
-                    "draft": "Taslak"
+                    "published": "Published",
+                    "draft": "Draft"
                 },
                 "url": "Url",
                 "content": "İçerik",
                 "user": "Kullanıcı",
                 "tags": "Etiketler",
-                "image": "Resim"
+                "image": "Resim",
+                "createdAt": "Oluşturma Tarihi"
             },
             "forms": {
                 "active": "Aktif",

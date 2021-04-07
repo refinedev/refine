@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { useNavigation, useTranslate } from "@hooks";
 import { ResourceRouterParams } from "../../../interfaces";
 
-type CreateButtonProps = ButtonProps & {
+export type CreateButtonProps = ButtonProps & {
     resourceName?: string;
 };
 
