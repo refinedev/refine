@@ -2,16 +2,17 @@ import { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
-import { useHistory } from "react-router-dom";
 
 import { useResourceWithRoute, useList } from "@hooks";
-import { Filters, Sort, ResourceRouterParams } from "../../../interfaces";
+import { useSyncWithLocation } from "@hooks/admin";
+import { useNavigation } from "@hooks/navigation";
 import {
     stringifyTableParams,
     parseTableParams,
     merge,
 } from "@definitions/table";
-import { useSyncWithLocation } from "@hooks/admin";
+
+import { Filters, Sort, ResourceRouterParams } from "../../../interfaces";
 
 export type useTableProps = {
     permanentFilter?: { [key: string]: number[] | string[] };
@@ -73,9 +74,11 @@ export const useTable = ({
     });
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-    const history = useHistory();
 
-    const resource = useResourceWithRoute(routeResourceName);
+    const { push } = useNavigation();
+    const resourceWithRoute = useResourceWithRoute();
+
+    const resource = resourceWithRoute(routeResourceName);
 
     const [sorter, setSorter] = useState<Sort | undefined>(defaultSorter);
     const [filters, setFilters] = useState<Filters | undefined>(defaultFilter);
@@ -110,9 +113,7 @@ export const useTable = ({
                 filters,
             });
 
-            return history.push(
-                `/resources/${resource.route}?${stringifyParams}`,
-            );
+            return push(`/resources/${resource.route}?${stringifyParams}`);
         }
 
         refetch();

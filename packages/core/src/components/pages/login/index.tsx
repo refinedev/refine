@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import { Row, Col, Layout, Card, Typography, Form, Input, Button } from "antd";
-import { useHistory } from "react-router-dom";
 
-import { useNotification, useTranslate } from "@hooks";
+import { useNavigation, useNotification, useTranslate } from "@hooks";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
 
@@ -15,7 +14,7 @@ export const LoginPage: React.FC = () => {
     const { Title } = Typography;
 
     const [form] = Form.useForm();
-    const history = useHistory();
+    const { push } = useNavigation();
     const notification = useNotification();
     const translate = useTranslate();
 
@@ -23,7 +22,7 @@ export const LoginPage: React.FC = () => {
 
     const onSubmit = (values: ILoginForm) => {
         login(values)
-            .then(() => history.push("/"))
+            .then(() => push("/"))
             .catch(() => {
                 notification.error({
                     message: "Login Error",

@@ -1,9 +1,9 @@
 import { useCallback, ReactText } from "react";
-import { useHistory } from "react-router-dom";
 import { IResourceItem } from "@contexts/resource";
+import { useNavigation } from "@hooks/navigation";
 
 export const useRedirectionAfterSubmission = () => {
-    const history = useHistory();
+    const { show, edit, list } = useNavigation();
 
     const handleSubmitWithRedirect = useCallback(
         ({
@@ -15,20 +15,16 @@ export const useRedirectionAfterSubmission = () => {
             resource: IResourceItem;
             idFromRoute: string | ReactText;
         }) => {
-            if (redirect) {
+            if (redirect && resource.route) {
                 if (resource.canShow && redirect === "show") {
-                    return history.push(
-                        `/resources/${resource.route}/show/${idFromRoute}`,
-                    );
+                    return show(resource.route, "push", idFromRoute);
                 }
 
                 if (resource.canEdit && redirect === "edit") {
-                    return history.push(
-                        `/resources/${resource.route}/edit/${idFromRoute}`,
-                    );
+                    return edit(resource.route, "push", idFromRoute);
                 }
 
-                return history.push(`/resources/${resource.route}`);
+                return list(resource.route, "push");
             } else {
                 return;
             }

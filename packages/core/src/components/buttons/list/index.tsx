@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { BarsOutlined } from "@ant-design/icons";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import humanizeString from "humanize-string";
 
-import { useTranslate } from "@hooks";
+import { useNavigation, useTranslate } from "@hooks";
 import { ResourceRouterParams } from "../../../interfaces";
 
 type ListButtonProps = ButtonProps & {
@@ -15,7 +15,7 @@ export const ListButton: FC<ListButtonProps> = ({
     resourceName: propResourceName,
     ...rest
 }) => {
-    const history = useHistory();
+    const { list } = useNavigation();
     const translate = useTranslate();
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
@@ -24,7 +24,7 @@ export const ListButton: FC<ListButtonProps> = ({
 
     return (
         <Button
-            onClick={(): void => history.push(`/resources/${resourceName}`)}
+            onClick={(): void => list(resourceName, "push")}
             type="default"
             icon={<BarsOutlined />}
             {...rest}

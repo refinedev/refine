@@ -1,11 +1,10 @@
 import React from "react";
 import { Button, Result } from "antd";
-import { useHistory } from "react-router-dom";
 
-import { useTranslate } from "@hooks";
+import { useNavigation, useTranslate } from "@hooks";
 
 export const ErrorComponent: React.FC = () => {
-    const history = useHistory();
+    const { push } = useNavigation();
     const translate = useTranslate();
 
     return (
@@ -14,7 +13,7 @@ export const ErrorComponent: React.FC = () => {
             title="404"
             subTitle="Sorry, the page you visited does not exist."
             extra={
-                <Button type="primary" onClick={() => history.push("/")}>
+                <Button type="primary" onClick={() => push("/")}>
                     {translate("common:backHome", "Back Home")}
                 </Button>
             }

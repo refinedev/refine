@@ -28,8 +28,10 @@ export const List: React.FC<ListProps> = ({
 }) => {
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
-    const resource = useResourceWithRoute(routeResourceName);
     const translate = useTranslate();
+    const resourceWithRoute = useResourceWithRoute();
+
+    const resource = resourceWithRoute(routeResourceName);
 
     const defaultExtra = canCreate && (
         <CreateButton size="middle" onClick={isModalShown} />

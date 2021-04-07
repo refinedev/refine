@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { PlusSquareOutlined } from "@ant-design/icons";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-import { useTranslate } from "@hooks";
+import { useNavigation, useTranslate } from "@hooks";
 import { ResourceRouterParams } from "../../../interfaces";
 
 type CloneButtonProps = ButtonProps & {
@@ -16,7 +16,7 @@ export const CloneButton: FC<CloneButtonProps> = ({
     recordItemId,
     ...rest
 }) => {
-    const history = useHistory();
+    const { push } = useNavigation();
     const translate = useTranslate();
 
     const {
@@ -25,7 +25,7 @@ export const CloneButton: FC<CloneButtonProps> = ({
     } = useParams<ResourceRouterParams>();
 
     const onButtonClick = () => {
-        history.push(
+        push(
             `/resources/${resourceName ?? routeResourceName}/create/${
                 recordItemId ?? idFromRoute
             }`,

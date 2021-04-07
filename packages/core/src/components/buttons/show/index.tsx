@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-import { useTranslate } from "@hooks";
+import { useNavigation, useTranslate } from "@hooks";
 import { ResourceRouterParams } from "../../../interfaces";
 
 type ShowButtonProps = ButtonProps & {
@@ -16,7 +16,7 @@ export const ShowButton: FC<ShowButtonProps> = ({
     recordItemId,
     ...rest
 }) => {
-    const history = useHistory();
+    const { show } = useNavigation();
     const translate = useTranslate();
 
     const {
@@ -29,11 +29,7 @@ export const ShowButton: FC<ShowButtonProps> = ({
     return (
         <Button
             onClick={(): void =>
-                history.push(
-                    `/resources/${resourceName}/show/${
-                        recordItemId ?? idFromRoute
-                    }`,
-                )
+                show(resourceName, "push", recordItemId ?? idFromRoute)
             }
             type="default"
             icon={<EyeOutlined />}
