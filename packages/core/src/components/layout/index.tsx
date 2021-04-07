@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext } from "react";
+import React, { ReactNode, useContext, useEffect } from "react";
 import { Layout as AntLayout, Menu, Button } from "antd";
 import {
     DashboardOutlined,
@@ -59,11 +59,22 @@ export const Layout: React.FC<LayoutProps> = ({
         }
     };
 
-    if (warnWhen)
-        window.addEventListener("beforeunload", (e) => {
-            e.preventDefault();
-            return (e.returnValue = "Are you sure you want to close?");
-        });
+    const warnWhenListener = (e: {
+        preventDefault: () => void;
+        returnValue: string;
+    }) => {
+        e.preventDefault();
+
+        return (e.returnValue = "Are you sure you want to close?");
+    };
+
+    if (warnWhen) {
+        window.addEventListener("beforeunload", warnWhenListener);
+    }
+
+    useEffect(() => {
+        return window.removeEventListener("beforeunload", warnWhenListener);
+    }, []);
 
     return (
         <AntLayout style={{ minHeight: "100vh" }}>
