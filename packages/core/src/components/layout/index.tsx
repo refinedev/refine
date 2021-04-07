@@ -65,7 +65,12 @@ export const Layout: React.FC<LayoutProps> = ({
     }) => {
         e.preventDefault();
 
-        return (e.returnValue = "Are you sure you want to close?");
+        e.returnValue = translate(
+            "common:warnWhenUnsavedChanges",
+            "Are you sure you want to leave? You have with unsaved changes.",
+        );
+
+        return e.returnValue;
     };
 
     if (warnWhen) {
