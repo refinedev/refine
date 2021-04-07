@@ -7,6 +7,7 @@ export {
     IDataContext as DataProvider,
     ITranslationContext as TranslationProvider,
     I18nProvider,
+    MutationMode,
 } from "./interfaces";
 
 export * from "./definitions/upload";

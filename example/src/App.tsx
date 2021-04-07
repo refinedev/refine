@@ -8,6 +8,9 @@ import {
     defaultConfigProviderProps,
     BackTop,
 } from "readmin";
+import JsonServer from "readmin-json-server";
+import { DemoSidebar, useDemoSidebar } from "readmin-demo-sidebar";
+
 import dataProvider from "readmin-nestjsx-crud";
 import { useTranslation } from "react-i18next";
 
@@ -25,6 +28,11 @@ import { ReadyPage } from "./components/ready";
 import { LoginPage } from "./components/login";
 
 function App() {
+    const [adminProps, demoSidebarProps] = useDemoSidebar({
+        defaultTitle: "Readmin",
+        defaultMutationMode: "pessimistic",
+    });
+
     const authProvider: AuthProvider = {
         login: (params: any) => {
             if (params.username === "admin") {
@@ -81,9 +89,13 @@ function App() {
             dashboard={DashboardPage}
             ready={ReadyPage}
             i18nProvider={i18nProvider}
-            mutationMode="pessimistic"
             syncWithLocation
-            components={<BackTop />}
+            components={
+                <>
+                    <BackTop />
+                    <DemoSidebar {...demoSidebarProps} />
+                </>
+            }
             routes={[
                 {
                     exact: true,
@@ -99,6 +111,7 @@ function App() {
             configProviderProps={{
                 ...defaultConfigProviderProps,
             }}
+            {...adminProps}
         >
             <Resource
                 name="posts"

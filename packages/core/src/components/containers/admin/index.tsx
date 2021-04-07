@@ -109,6 +109,7 @@ export const Admin: React.FC<AdminProps> = ({
                                             warnWhenUnsavedChanges
                                         }
                                         syncWithLocation={syncWithLocation}
+                                        title={title}
                                         undoableTimeout={undoableTimeout}
                                     >
                                         <ComponentsContextProvider
@@ -118,7 +119,6 @@ export const Admin: React.FC<AdminProps> = ({
                                                 <RouteProvider
                                                     resources={resources}
                                                     catchAll={catchAll}
-                                                    title={title}
                                                     dashboard={dashboard}
                                                     loginPage={loginPage}
                                                     ready={ready}
