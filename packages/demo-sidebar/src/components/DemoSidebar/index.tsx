@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, CSSProperties } from "react";
 
 import {
     Drawer,
@@ -13,7 +13,7 @@ import {
 
 import { Group } from "..";
 
-const handlerStyles: React.CSSProperties = {
+const handlerStyles: CSSProperties = {
     position: "absolute",
     top: "240px",
     right: "300px",
@@ -28,6 +28,10 @@ const handlerStyles: React.CSSProperties = {
     background: "var(--antd-wave-shadow-color)",
     borderRadius: "4px 0 0 4px",
     cursor: "pointer",
+};
+
+const formItemStyles: CSSProperties = {
+    marginBottom: "16px",
 };
 
 export interface DemoSidebarProps {
@@ -91,7 +95,6 @@ export const DemoSidebar: React.FC<DemoSidebarProps> = ({
             <div className="ant-drawer-content">
                 <Group title="Settings">
                     <Form
-                        form={undefined}
                         colon={false}
                         labelCol={{
                             flex: 1,
@@ -109,7 +112,7 @@ export const DemoSidebar: React.FC<DemoSidebarProps> = ({
                             },
                         }}
                     >
-                        <Form.Item label="Title">
+                        <Form.Item label="Title" style={formItemStyles}>
                             <Input
                                 size="small"
                                 placeholder="Readmin"
@@ -118,7 +121,7 @@ export const DemoSidebar: React.FC<DemoSidebarProps> = ({
                                 data-testid="title"
                             />
                         </Form.Item>
-                        <Form.Item label="Mutation mode">
+                        <Form.Item label="Mutation mode" style={formItemStyles}>
                             <Select
                                 size="small"
                                 value={mutationMode}
@@ -136,7 +139,10 @@ export const DemoSidebar: React.FC<DemoSidebarProps> = ({
                                 </Select.Option>
                             </Select>
                         </Form.Item>
-                        <Form.Item label="Sync with location">
+                        <Form.Item
+                            label="Sync with location"
+                            style={formItemStyles}
+                        >
                             <Switch
                                 size="small"
                                 checked={syncWithLocation}
@@ -144,7 +150,10 @@ export const DemoSidebar: React.FC<DemoSidebarProps> = ({
                                 data-testId="location"
                             />
                         </Form.Item>
-                        <Form.Item label="Warn if unsaved changes">
+                        <Form.Item
+                            label="Warn if unsaved changes"
+                            style={formItemStyles}
+                        >
                             <Switch
                                 size="small"
                                 checked={warnWhenUnsavedChanges}

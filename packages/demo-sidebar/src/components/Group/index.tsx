@@ -11,8 +11,10 @@ const headerStyles: CSSProperties = {
     lineHeight: "24px",
 };
 
+const groupStyles: CSSProperties = { marginBottom: 48 };
+
 export const Group: React.FC<GroupProps> = ({ children, title }) => (
-    <div style={{ marginBottom: 48 }}>
+    <div style={groupStyles}>
         <h3 className="ant-drawer-title" style={headerStyles}>
             {title}
         </h3>
