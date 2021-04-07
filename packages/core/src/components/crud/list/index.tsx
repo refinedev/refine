@@ -14,7 +14,6 @@ export interface ListProps {
     actionButtons?: React.FC;
     aside?: React.FC;
     title?: string;
-    isModalShown?: () => void;
     canExport?: boolean;
 }
 
@@ -24,16 +23,13 @@ export const List: React.FC<ListProps> = ({
     title,
     actionButtons,
     children,
-    isModalShown,
 }) => {
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const resource = useResourceWithRoute(routeResourceName);
     const translate = useTranslate();
 
-    const defaultExtra = canCreate && (
-        <CreateButton size="middle" onClick={isModalShown} />
-    );
+    const defaultExtra = canCreate && <CreateButton size="middle" />;
 
     const renderExtra = () => {
         if (actionButtons) {

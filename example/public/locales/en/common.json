@@ -13,7 +13,8 @@
             "Create": "Create category",
             "fields": {
                 "id": "Id",
-                "title": "Title"
+                "title": "Title",
+                "createdAt": "Created At"
             },
             "forms": {
                 "title": "Title"
@@ -62,7 +63,8 @@
                 "content": "Content",
                 "user": "User",
                 "tags": "Tags",
-                "image": "Image"
+                "image": "Image",
+                "createdAt": "Created At"
             },
             "forms": {
                 "active": "Active",

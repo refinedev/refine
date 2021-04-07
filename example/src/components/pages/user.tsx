@@ -7,16 +7,8 @@ import {
     Table,
     EmailField,
     TagField,
-    BooleanField,
-    DateField,
-    Show,
-    ShowTab,
-    Tab,
     Form,
     Input,
-    TextField,
-    Tabs,
-    DatePicker,
     useTranslate,
     useTable,
     EditButton,
@@ -24,13 +16,8 @@ import {
     ShowButton,
     Space,
     useForm,
-    Upload,
-    normalizeFile,
-    useBase64Upload,
+    Radio,
 } from "readmin";
-
-import { Aside } from "../aside";
-import { useEffect } from "react";
 
 export const UserList = (props: any) => {
     const translate = useTranslate();
@@ -38,7 +25,7 @@ export const UserList = (props: any) => {
         initialPageSize: 20,
     });
     return (
-        <List {...props} aside={Aside}>
+        <List {...props}>
             <Table
                 {...tableProps}
                 rowKey="id"
@@ -52,11 +39,6 @@ export const UserList = (props: any) => {
                 }}
             >
                 <Table.Column
-                    key="id"
-                    dataIndex="id"
-                    title={translate("common:resources.users.fields.id")}
-                />
-                <Table.Column
                     key="firstName"
                     dataIndex="firstName"
                     title={translate("common:resources.users.fields.firstName")}
@@ -67,12 +49,6 @@ export const UserList = (props: any) => {
                     title={translate("common:resources.users.fields.lastName")}
                 />
                 <Table.Column
-                    dataIndex="status"
-                    title={translate("common:resources.users.fields.status")}
-                    key="status"
-                    render={(value) => <TagField value={value} />}
-                />
-                <Table.Column
                     key="email"
                     dataIndex="email"
                     title={translate("common:resources.users.fields.email")}
@@ -81,14 +57,8 @@ export const UserList = (props: any) => {
                 <Table.Column
                     dataIndex="status"
                     title={translate("common:resources.users.fields.status")}
-                    key="boolean"
-                    render={(value) => <BooleanField value={value} />}
-                />
-                <Table.Column
-                    key="birthday"
-                    dataIndex="birthday"
-                    title={translate("common:resources.users.fields.birthday")}
-                    render={(value) => <DateField value={value} />}
+                    key="status"
+                    render={(value) => <TagField value={value} />}
                 />
                 <Table.Column
                     title={translate("common:table.actions", "Actions")}
@@ -117,125 +87,69 @@ export const UserList = (props: any) => {
 
 export const UserEdit = (props: any) => {
     const translate = useTranslate();
-    const { formProps, saveButtonProps, queryResult, form } = useForm({
-        warnWhenUnsavedChanges: true,
-    });
-
-    const { TabPane } = Tabs;
-
-    const dateFormat = "DD/MM/YYYY";
-
-    const [avatar, setAvatar] = React.useState<any[]>([]);
-
-    React.useEffect(() => {
-        if (queryResult && queryResult.data) {
-            const { data } = queryResult;
-            setAvatar(data.data.avatar);
-        }
-    }, [queryResult]);
-
-    const { uploadedFiles, ...uploadProps } = useBase64Upload({
-        formData: avatar,
-        maxCount: 3,
-    });
-    useEffect(() => {
-        form &&
-            form.setFieldsValue({
-                avatar: uploadedFiles,
-            });
-    }, [uploadedFiles]);
-
+    const { formProps, saveButtonProps } = useForm({});
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
-                <Tabs>
-                    <TabPane tab="Summary" key="summary">
-                        <Form.Item
-                            label={translate(
-                                "common:resources.users.fields.firstName",
-                            )}
-                            name="firstName"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                        <Form.Item
-                            label={translate(
-                                "common:resources.users.fields.lastName",
-                            )}
-                            name="lastName"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                    </TabPane>
-                    <TabPane tab="Detail" key="detail">
-                        <Form.Item
-                            label={translate(
-                                "common:resources.users.fields.email",
-                            )}
-                            name="email"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                        <Form.Item
-                            label={translate(
-                                "common:resources.users.fields.birthday",
-                            )}
-                            name="birthday"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <DatePicker format={dateFormat} />
-                        </Form.Item>
-                        <Form.Item
-                            label={translate(
-                                "common:resources.users.fields.avatar",
-                            )}
-                        >
-                            <Form.Item
-                                name="avatar"
-                                valuePropName="fileList"
-                                getValueFromEvent={normalizeFile}
-                                noStyle
-                                rules={[
-                                    {
-                                        required: true,
-                                    },
-                                ]}
-                            >
-                                <Upload.Dragger
-                                    listType="picture"
-                                    multiple
-                                    {...uploadProps}
-                                >
-                                    <p className="ant-upload-text">
-                                        {translate("common:upload.title")}
-                                    </p>
-                                    <p className="ant-upload-hint">
-                                        {translate("common:upload.description")}
-                                    </p>
-                                </Upload.Dragger>
-                            </Form.Item>
-                        </Form.Item>
-                    </TabPane>
-                </Tabs>
+                <Form
+                    {...formProps}
+                    wrapperCol={{ span: 14 }}
+                    layout="vertical"
+                >
+                    <Form.Item
+                        label={translate(
+                            "common:resources.users.fields.firstName",
+                        )}
+                        name="firstName"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label={translate(
+                            "common:resources.users.fields.lastName",
+                        )}
+                        name="lastName"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label={translate("common:resources.users.fields.email")}
+                        name="email"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label={translate(
+                            "common:resources.users.fields.status",
+                        )}
+                        name="status"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Radio.Group>
+                            <Radio value={true}>Enable</Radio>
+                            <Radio value={false}>Disable</Radio>
+                        </Radio.Group>
+                    </Form.Item>
+                </Form>
             </Form>
         </Edit>
     );
@@ -243,23 +157,7 @@ export const UserEdit = (props: any) => {
 
 export const UserCreate = (props: any) => {
     const translate = useTranslate();
-    const { formProps, saveButtonProps, form } = useForm({
-        warnWhenUnsavedChanges: true,
-    });
-
-    const { TabPane } = Tabs;
-
-    const dateFormat = "DD/MM/YYYY";
-
-    const { uploadedFiles, ...uploadProps } = useBase64Upload({
-        maxCount: 3,
-    });
-    useEffect(() => {
-        form &&
-            form.setFieldsValue({
-                avatar: uploadedFiles,
-            });
-    }, [uploadedFiles]);
+    const { formProps, saveButtonProps } = useForm({});
 
     return (
         <Create
@@ -268,113 +166,54 @@ export const UserCreate = (props: any) => {
             submitOnEnter={false}
         >
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
-                <Tabs>
-                    <TabPane tab="Summary" key="summary">
-                        <Form.Item
-                            label={translate(
-                                "common:resources.users.fields.firstName",
-                            )}
-                            name="firstName"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                        <Form.Item
-                            label={translate(
-                                "common:resources.users.fields.lastName",
-                            )}
-                            name="lastName"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                    </TabPane>
-                    <TabPane tab="Detail" key="detail">
-                        <Form.Item
-                            label={translate(
-                                "common:resources.users.fields.email",
-                            )}
-                            name="email"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                        <Form.Item
-                            label={translate(
-                                "common:resources.users.fields.birthday",
-                            )}
-                            name="birthday"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <DatePicker format={dateFormat} />
-                        </Form.Item>
-                        <Form.Item
-                            label={translate(
-                                "common:resources.users.fields.avatar",
-                            )}
-                        >
-                            <Form.Item
-                                name="avatar"
-                                valuePropName="fileList"
-                                getValueFromEvent={normalizeFile}
-                                noStyle
-                                rules={[
-                                    {
-                                        required: true,
-                                    },
-                                ]}
-                            >
-                                <Upload.Dragger
-                                    listType="picture"
-                                    multiple
-                                    {...uploadProps}
-                                >
-                                    <p className="ant-upload-text">
-                                        {translate("common:upload.title")}
-                                    </p>
-                                    <p className="ant-upload-hint">
-                                        {translate("common:upload.description")}
-                                    </p>
-                                </Upload.Dragger>
-                            </Form.Item>
-                        </Form.Item>
-                    </TabPane>
-                </Tabs>
+                <Form.Item
+                    label={translate("common:resources.users.fields.firstName")}
+                    name="firstName"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label={translate("common:resources.users.fields.lastName")}
+                    name="lastName"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label={translate("common:resources.users.fields.email")}
+                    name="email"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label={translate("common:resources.users.fields.status")}
+                    name="status"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Radio.Group>
+                        <Radio value={true}>Enable</Radio>
+                        <Radio value={false}>Disable</Radio>
+                    </Radio.Group>
+                </Form.Item>
             </Form>
         </Create>
-    );
-};
-
-export const UserShow = (props: any) => {
-    return (
-        <Show {...props}>
-            <ShowTab>
-                <Tab tab="Summary">
-                    <TextField renderRecordKey="id" />
-                    <TextField renderRecordKey="firstName" />
-                    <TextField renderRecordKey="lastName" />
-                </Tab>
-                <Tab tab="Detail">
-                    <EmailField renderRecordKey="email" />
-                    <DateField renderRecordKey="birthday" />
-                </Tab>
-            </ShowTab>
-        </Show>
     );
 };

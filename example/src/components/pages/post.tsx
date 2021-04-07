@@ -35,6 +35,7 @@ import {
     ExportButton,
     CloneButton,
     getDefaultSortOrder,
+    DateField,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -50,8 +51,8 @@ export const PostList = (props: any) => {
         // },
         initialSorter: [
             {
-                field: "title",
-                order: "ascend",
+                field: "createdAt",
+                order: "descend",
             },
         ],
         initialFilter: {
@@ -106,10 +107,6 @@ export const PostList = (props: any) => {
                     title={translate("common:resources.posts.fields.slug")}
                     key="slug"
                     render={(value) => <TextField value={value} />}
-                    sorter={{
-                        multiple: 2,
-                    }}
-                    defaultSortOrder={getDefaultSortOrder("slug", sorter)}
                 />
                 <Table.Column
                     dataIndex="category"
@@ -164,6 +161,16 @@ export const PostList = (props: any) => {
                         </FilterDropdown>
                     )}
                     defaultFilteredValue={["published"]}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title={translate("common:resources.posts.fields.createdAt")}
+                    key="createdAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                    sorter={{
+                        multiple: 2,
+                    }}
+                    defaultSortOrder={getDefaultSortOrder("createdAt", sorter)}
                 />
                 <Table.Column
                     title={translate("common:table.actions", "Actions")}
