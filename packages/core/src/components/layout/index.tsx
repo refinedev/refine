@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext } from "react";
+import React, { ReactNode, useContext, useEffect } from "react";
 import { Layout as AntLayout, Menu, Button } from "antd";
 import {
     DashboardOutlined,
@@ -58,6 +58,28 @@ export const Layout: React.FC<LayoutProps> = ({
             logout({}).then(() => push("/login"));
         }
     };
+
+    const warnWhenListener = (e: {
+        preventDefault: () => void;
+        returnValue: string;
+    }) => {
+        e.preventDefault();
+
+        e.returnValue = translate(
+            "common:warnWhenUnsavedChanges",
+            "Are you sure you want to leave? You have with unsaved changes.",
+        );
+
+        return e.returnValue;
+    };
+
+    if (warnWhen) {
+        window.addEventListener("beforeunload", warnWhenListener);
+    }
+
+    useEffect(() => {
+        return window.removeEventListener("beforeunload", warnWhenListener);
+    }, []);
 
     return (
         <AntLayout style={{ minHeight: "100vh" }}>
