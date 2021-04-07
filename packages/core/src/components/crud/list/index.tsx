@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { useResourceWithRoute, useTranslate } from "@hooks";
 import { OptionalComponent } from "@definitions";
 import { CreateButton } from "@components";
-import { ResourceRouterParams } from "../../../interfaces";
+import { ResourceRouterParams, CreateButtonProps } from "../../../interfaces";
 
 export interface ListProps {
     resourceName: string;
@@ -15,6 +15,7 @@ export interface ListProps {
     aside?: React.FC;
     title?: string;
     canExport?: boolean;
+    createButtonProps?: CreateButtonProps;
 }
 
 export const List: React.FC<ListProps> = ({
@@ -23,13 +24,16 @@ export const List: React.FC<ListProps> = ({
     title,
     actionButtons,
     children,
+    createButtonProps,
 }) => {
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const resource = useResourceWithRoute(routeResourceName);
     const translate = useTranslate();
 
-    const defaultExtra = canCreate && <CreateButton size="middle" />;
+    const defaultExtra = canCreate && (
+        <CreateButton size="middle" {...createButtonProps} />
+    );
 
     const renderExtra = () => {
         if (actionButtons) {
