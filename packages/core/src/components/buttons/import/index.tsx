@@ -34,7 +34,9 @@ export const ImportButton: FC<ImportButtonProps> = ({
                 const [headers, ...body] = data;
 
                 body.map((entry) => Object.fromEntries(zip(headers, entry)))
-                    .map(mapData)
+                    .map((entry, index, allEntries) =>
+                        mapData.call(undefined, entry, index, allEntries),
+                    )
                     .forEach((value) => {
                         mutate({
                             resource,
