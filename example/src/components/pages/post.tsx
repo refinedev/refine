@@ -36,6 +36,7 @@ import {
     CloneButton,
     getDefaultSortOrder,
     DateField,
+    ImportButton,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -77,6 +78,7 @@ export const PostList = (props: any) => {
                     };
                 }}
             />
+            <ImportButton />
             <CreateButton />
         </Space>
     );

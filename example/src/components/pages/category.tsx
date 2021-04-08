@@ -15,6 +15,9 @@ import {
     useForm,
     useEditableTable,
     TextField,
+    ExportButton,
+    ImportButton,
+    CreateButton,
     DateField,
 } from "readmin";
 
@@ -22,6 +25,8 @@ export const CategoryList = (props: { resourceName: string }) => {
     const translate = useTranslate();
     const {
         tableProps,
+        sorter,
+        filters,
         formProps,
         isEditing,
         saveButtonProps,
@@ -30,8 +35,30 @@ export const CategoryList = (props: { resourceName: string }) => {
         setEditId,
     } = useEditableTable({});
 
+    const actions = (
+        <Space direction="horizontal">
+            <ExportButton
+                sorter={sorter}
+                filters={filters}
+                pageSize={100}
+                maxItemCount={300}
+                mapData={(item) => {
+                    return {
+                        id: item.id,
+                        title: item.title,
+                        slug: item.slug,
+                        content: item.content,
+                        status: item.status,
+                    };
+                }}
+            />
+            <ImportButton />
+            <CreateButton />
+        </Space>
+    );
+
     return (
-        <List {...props}>
+        <List {...props} actionButtons={actions}>
             <Form {...formProps}>
                 <Table
                     {...tableProps}
