@@ -11,12 +11,11 @@ import { parse } from "papaparse";
 type ImportButtonProps = ButtonProps & {
     resourceName?: string;
     mapData?(value: BaseRecord, index: number, array: BaseRecord[]): BaseRecord;
-    transform?<T>(data: T[]): T[];
 };
 
 export const ImportButton: FC<ImportButtonProps> = ({
     resourceName,
-    transform = (data) => data,
+    mapData = (data) => data,
     ...rest
 }) => {
     const translate = useTranslate();
@@ -34,16 +33,14 @@ export const ImportButton: FC<ImportButtonProps> = ({
             complete: ({ data }: { data: unknown[][] }) => {
                 const [headers, ...body] = data;
 
-                const values = transform(
-                    body.map((item) => Object.fromEntries(zip(headers, item))),
-                );
-
-                values.forEach(() => {
-                    mutate({
-                        resource,
-                        values,
+                body.map((entry) => Object.fromEntries(zip(headers, entry)))
+                    .map(mapData)
+                    .forEach((value) => {
+                        mutate({
+                            resource,
+                            values: value,
+                        });
                     });
-                });
             },
         });
     };
