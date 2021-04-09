@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-18 -18 36 36" width="512" height="512" style="display:block;overflow:visible;color:black;fill:none;stroke:currentColor"><g><path d="
+  M0 -16
+  L-14 -8
+  L -14 8
+  L 0 16
+  L 14 8
+  L 14 -8
+  L 0 -16
+  z
+"></path><path d="
+M0 -16
+L 0 0
+M-14 8
+L0 0
+L14 8
+" stroke-width="0.25"></path></g></svg>

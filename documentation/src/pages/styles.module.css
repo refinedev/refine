@@ -1,0 +1,115 @@
+/* stylelint-disable docusaurus/copyright-header */
+
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  display: flex;
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+}
+
+@media screen and (max-width: 966px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+  .logoContainer {
+    max-width: 72px !important;
+  }
+  .heroTitle {
+    max-width: 225px !important;
+  }
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+  .feature {
+    width: 100%;
+    flex-basis: 50% !important;
+  }
+}
+
+.topBadges {
+	margin: 20px 0;
+}
+
+.topBadges > a {
+	margin: 0 2px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoContainer {
+  max-width: 100px;
+  margin: auto;
+}
+
+.heroTitle {
+  max-width: 400px;
+  margin: auto;
+  color: #323232;
+}
+
+.heroSubtitle {
+  color: #0080FF;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.featuresContainer {
+  padding: 32px 0 12px;
+}
+
+.feature {
+  margin: 12px 0;
+  width: 100%;
+}
+
+.featureImage {
+  height: 50px;
+  width: 50;
+  margin-bottom: 4px;
+}
+
+.featureTitle {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-align: center;
+  color: #303846;
+  height: 32px;
+}
+
+.sectionImage {
+  display: flex;
+  margin: 0 auto;
+}
+
+.gettingStartedSection {
+  background-color: #f7f7f7;
+}
+
+html[data-theme='dark'] .gettingStartedSection {
+  background-color: #33363b;
+}
+
+html[data-theme='dark'] .heroBanner {
+  background-color: #181a1b;
+  /*2f3846*/
+}
+
+html[data-theme='dark'] .featureTitle {
+  color: #f5f6f7;
+}
+
+html[data-theme='dark'] .heroTitle {
+  color: #f5f6f7 !important;
+}
