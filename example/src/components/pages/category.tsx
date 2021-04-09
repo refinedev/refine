@@ -19,6 +19,7 @@ import {
     ImportButton,
     CreateButton,
     DateField,
+    getDefaultSortOrder,
 } from "readmin";
 
 export const CategoryList = (props: { resourceName: string }) => {
@@ -33,7 +34,14 @@ export const CategoryList = (props: { resourceName: string }) => {
         editButtonProps,
         cancelButtonProps,
         setEditId,
-    } = useEditableTable({});
+    } = useEditableTable({
+        initialSorter: [
+            {
+                field: "createdAt",
+                order: "descend",
+            },
+        ],
+    });
 
     const actions = (
         <Space direction="horizontal">
@@ -42,15 +50,6 @@ export const CategoryList = (props: { resourceName: string }) => {
                 filters={filters}
                 pageSize={100}
                 maxItemCount={300}
-                mapData={(item) => {
-                    return {
-                        id: item.id,
-                        title: item.title,
-                        slug: item.slug,
-                        content: item.content,
-                        status: item.status,
-                    };
-                }}
             />
             <ImportButton />
             <CreateButton />
@@ -104,6 +103,13 @@ export const CategoryList = (props: { resourceName: string }) => {
                         key="createdAt"
                         render={(value) => (
                             <DateField format="LLL" value={value} />
+                        )}
+                        sorter={{
+                            multiple: 1,
+                        }}
+                        defaultSortOrder={getDefaultSortOrder(
+                            "createdAt",
+                            sorter,
                         )}
                     />
                     <Table.Column
