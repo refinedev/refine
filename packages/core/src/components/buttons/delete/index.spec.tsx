@@ -6,7 +6,7 @@ import { DeleteButton } from "./";
 describe("Delete Button", () => {
     const deleteFunc = jest.fn();
 
-    it("should render button successfuly", () => {
+    it("should render button successfully", () => {
         const deleteButton = render(
             <DeleteButton onClick={() => deleteFunc()} />,
             {
@@ -38,7 +38,7 @@ describe("Delete Button", () => {
         expect(deleteFunc).toHaveBeenCalledTimes(1);
     });
 
-    it("should render Popconfirm successfuly", () => {
+    it("should render Popconfirm successfully", () => {
         const deleteButton = render(
             <DeleteButton onClick={() => deleteFunc()} />,
             {

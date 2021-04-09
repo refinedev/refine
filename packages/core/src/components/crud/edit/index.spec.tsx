@@ -17,13 +17,13 @@ const renderEdit = (edit: ReactNode) => {
 };
 
 describe("Edit", () => {
-    it("should render page successfuly", () => {
+    it("should render page successfully", () => {
         const { container } = renderEdit(<Edit></Edit>);
 
         expect(container).toBeTruthy();
     });
 
-    it("should render default save and delete buttons successfuly", () => {
+    it("should render default save and delete buttons successfully", () => {
         const { container, getByText } = renderEdit(<Edit />);
 
         expect(container.querySelector("button")).toBeTruthy();
@@ -47,7 +47,7 @@ describe("Edit", () => {
         getByText("New Delete Button");
     });
 
-    it("should render default title successfuly", () => {
+    it("should render default title successfully", () => {
         const { getByText } = renderEdit(<Edit />);
 
         getByText("Edit post");

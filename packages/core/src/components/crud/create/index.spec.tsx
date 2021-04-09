@@ -15,13 +15,13 @@ const renderCreate = (create: ReactNode) => {
     });
 };
 describe("Create", () => {
-    it("should render page successfuly", async () => {
+    it("should render page successfully", async () => {
         const { container } = renderCreate(<Create />);
 
         expect(container).toBeTruthy();
     });
 
-    it("should render default save button successfuly", async () => {
+    it("should render default save button successfully", async () => {
         const { container, getByText } = renderCreate(<Create></Create>);
         expect(container.querySelector("button")).toBeTruthy();
         getByText("Save");
@@ -36,7 +36,7 @@ describe("Create", () => {
         getByText("Optional Button");
     });
 
-    it("should render default title successfuly", async () => {
+    it("should render default title successfully", async () => {
         const { getByText } = renderCreate(<Create />);
 
         getByText("Create post");

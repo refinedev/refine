@@ -6,7 +6,7 @@ import { EditButton } from "./";
 describe("Edit Button", () => {
     const edit = jest.fn();
 
-    it("should render button successfuly", () => {
+    it("should render button successfully", () => {
         const editButton = render(<EditButton onClick={() => edit()} />, {
             wrapper: TestWrapper({
                 resources: [{ name: "posts" }],

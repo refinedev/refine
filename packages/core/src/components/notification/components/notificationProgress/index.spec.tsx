@@ -17,7 +17,7 @@ const mockNotifications = {
 jest.useFakeTimers();
 
 describe("Cancel Notification", () => {
-    it("should render cancel notification successfuly", () => {
+    it("should render cancel notification successfully", () => {
         const { getByText } = render(
             <NotificationProgress
                 dispatch={notificationDispatch}
@@ -30,7 +30,7 @@ describe("Cancel Notification", () => {
         expect(notificationDispatch).not.toBeCalled();
     });
 
-    it("should render cancel notification successfuly", () => {
+    it("should render cancel notification successfully", () => {
         render(
             <NotificationProgress
                 dispatch={notificationDispatch}

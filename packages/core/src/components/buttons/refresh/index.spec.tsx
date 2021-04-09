@@ -6,7 +6,7 @@ import { RefreshButton } from "./";
 describe("Refresh Button", () => {
     const refresh = jest.fn();
 
-    it("should render button successfuly", () => {
+    it("should render button successfully", () => {
         const refreshButton = render(
             <RefreshButton onClick={() => refresh()} />,
             {

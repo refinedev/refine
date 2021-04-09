@@ -6,7 +6,7 @@ import { ShowButton } from "./";
 describe("Show Button", () => {
     const show = jest.fn();
 
-    it("should render button successfuly", () => {
+    it("should render button successfully", () => {
         const showButton = render(<ShowButton onClick={() => show()} />, {
             wrapper: TestWrapper({
                 resources: [{ name: "posts" }],

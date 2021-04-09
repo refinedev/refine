@@ -26,7 +26,7 @@ const mockSuccessNotification = [
 ];
 
 describe("Cancel Notification", () => {
-    it("should render cancel notification successfuly", async () => {
+    it("should render cancel notification successfully", async () => {
         const { getByText } = render(
             <Notification notifications={mockNotification} />,
         );
@@ -38,7 +38,7 @@ describe("Cancel Notification", () => {
         getByText(`You have ${formattedSeconds} seconds to undo`);
     });
 
-    it("should render undo button successfuly", async () => {
+    it("should render undo button successfully", async () => {
         const { container, getByText } = render(
             <Notification notifications={mockNotification} />,
         );
@@ -49,7 +49,7 @@ describe("Cancel Notification", () => {
         getByText("Undo");
     });
 
-    it("should render Progress successfuly", async () => {
+    it("should render Progress successfully", async () => {
         const { getByRole } = render(
             <Notification notifications={mockNotification} />,
         );

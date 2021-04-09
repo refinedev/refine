@@ -6,7 +6,7 @@ import { ExportButton } from "./";
 describe("Export Button", () => {
     const fetchData = jest.fn();
 
-    it("should render button successfuly", () => {
+    it("should render button successfully", () => {
         const exportButton = render(
             <ExportButton onClick={() => fetchData()} />,
             {

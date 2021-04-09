@@ -6,7 +6,7 @@ import { ListButton } from "./";
 describe("List Button", () => {
     const list = jest.fn();
 
-    it("should render button successfuly", () => {
+    it("should render button successfully", () => {
         const listButton = render(
             <ListButton onClick={() => list()} resourceName="posts-light" />,
             {

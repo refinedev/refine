@@ -6,7 +6,7 @@ import { render } from "@test";
 import { ReadyPage } from "./index";
 
 describe("ReadyPage", () => {
-    it("should render page successfuly", async () => {
+    it("should render page successfully", async () => {
         render(<ReadyPage />);
 
         expect(Row).toBeDefined();

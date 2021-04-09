@@ -6,7 +6,7 @@ import { CloneButton } from "./";
 describe("Clone Button", () => {
     const clone = jest.fn();
 
-    it("should render button successfuly", () => {
+    it("should render button successfully", () => {
         const cloneButton = render(<CloneButton onClick={() => clone()} />, {
             wrapper: TestWrapper({
                 resources: [{ name: "posts" }],

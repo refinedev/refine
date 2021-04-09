@@ -6,7 +6,7 @@ import { SaveButton } from "./";
 describe("Save Button", () => {
     const save = jest.fn();
 
-    it("should render button successfuly", () => {
+    it("should render button successfully", () => {
         const saveButton = render(<SaveButton onClick={() => save()} />, {
             wrapper: TestWrapper({
                 resources: [{ name: "posts" }],

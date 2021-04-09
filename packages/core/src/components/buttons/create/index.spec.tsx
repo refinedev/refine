@@ -6,7 +6,7 @@ import { CreateButton } from "./";
 describe("Create Button", () => {
     const create = jest.fn();
 
-    it("should render button successfuly", () => {
+    it("should render button successfully", () => {
         const createButton = render(<CreateButton onClick={() => create()} />, {
             wrapper: TestWrapper({
                 resources: [{ name: "posts" }],
