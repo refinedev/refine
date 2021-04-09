@@ -1,22 +1,18 @@
-import React, { FC, useContext, useEffect, useState } from "react";
+import React, { FC, useEffect } from "react";
 import { Button, ButtonProps, Upload } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
 import { ImportOutlined } from "@ant-design/icons";
 import { useCreate, useResourceWithRoute, useTranslate } from "@hooks";
 import { useParams } from "react-router-dom";
-import { BaseRecord, ResourceRouterParams } from "../../../interfaces";
+import { ResourceRouterParams } from "../../../interfaces";
 import zip from "lodash/zip";
 import { parse, ParseConfig } from "papaparse";
 import { useQueryClient } from "react-query";
+import { MapDataFn } from "./csvImport.interface";
 
 type ImportButtonProps = ButtonProps & {
     resourceName?: string;
-    mapData?(
-        value: BaseRecord,
-        index?: number,
-        array?: BaseRecord[],
-        data?: unknown[][],
-    ): BaseRecord;
+    mapData?: MapDataFn;
     paparseOptions?: ParseConfig;
 };
 
@@ -44,7 +40,7 @@ export const ImportButton: FC<ImportButtonProps> = ({
         }
     }, [isLoading]);
 
-    const onChange = ({ file }: UploadChangeParam) => {
+    const handleChange = ({ file }: UploadChangeParam) => {
         parse((file as unknown) as File, {
             complete: ({ data }: { data: unknown[][] }) => {
                 const [headers, ...body] = data;
@@ -66,16 +62,18 @@ export const ImportButton: FC<ImportButtonProps> = ({
 
     return (
         <Upload
-            onChange={onChange}
+            onChange={handleChange}
             showUploadList={false}
             beforeUpload={() => false}
             accept=".csv"
+            data-testid="import-button-wrapper"
         >
             <Button
                 type="default"
                 icon={<ImportOutlined />}
                 loading={isLoading}
                 {...rest}
+                data-testid="import-button"
             >
                 {translate("common:buttons.export", "Import")}
             </Button>

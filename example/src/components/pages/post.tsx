@@ -75,10 +75,26 @@ export const PostList = (props: any) => {
                         slug: item.slug,
                         content: item.content,
                         status: item.status,
+                        categoryId: item.category.id,
+                        userId: item.user?.id,
                     };
                 }}
             />
-            <ImportButton />
+            <ImportButton
+                mapData={(item) => {
+                    return {
+                        title: item.title,
+                        content: item.content,
+                        status: item.status,
+                        category: {
+                            id: item.categoryId,
+                        },
+                        user: {
+                            id: item.userId,
+                        },
+                    };
+                }}
+            />
             <CreateButton />
         </Space>
     );
