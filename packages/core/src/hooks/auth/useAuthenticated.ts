@@ -26,8 +26,9 @@ export const useAuthenticated = () => {
 
     const authenticated = React.useCallback(
         (redirectPath = "/login") =>
-            checkAuth().catch(() => {
-                return push(redirectPath);
+            checkAuth().catch((error) => {
+                push(redirectPath);
+                throw error;
             }),
         [],
     );
