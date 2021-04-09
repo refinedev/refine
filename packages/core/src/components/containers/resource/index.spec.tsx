@@ -1,10 +1,10 @@
 import React from "react";
+import { Table } from "antd";
 
 import { render, TestWrapper, MockJSONServer } from "@test";
+import { List } from "@components/crud";
 
 import { Resource } from "./index";
-import { List } from "@components/crud";
-import { Table } from "antd";
 
 describe("<Resource />", () => {
     const PostList = ({ resourceName }: { resourceName: string }) => {
