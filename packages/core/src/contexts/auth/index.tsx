@@ -13,16 +13,15 @@ const defaultProvider: IAuthContext = {
             id: 1,
         }),
 };
-
 export const AuthContext = React.createContext<IAuthContext>(defaultProvider);
 
-export const AuthContextProvider: React.FC<IAuthContext> = ({
-    login,
-    logout,
-    checkAuth,
-    checkError,
-    getPermissions,
-    getUserIdentity,
+export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
+    login = defaultProvider.login,
+    logout = defaultProvider.logout,
+    checkAuth = defaultProvider.checkAuth,
+    checkError = defaultProvider.login,
+    getPermissions = defaultProvider.getPermissions,
+    getUserIdentity = defaultProvider.getUserIdentity,
     children,
 }) => {
     const [isAuthenticated, setAuthenticated] = useState(false);
