@@ -46,19 +46,15 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 export const PostList = (props: any) => {
     const translate = useTranslate();
     const { tableProps, sorter, filters } = useTable({
-        // permanentFilter: {
-        //     categoryId: [50, 49],
-        // },
-        initialSorter: [
+        /*  initialSorter: [
             {
                 field: "createdAt",
                 order: "descend",
             },
-        ],
-        initialFilter: {
-            status: ["published"],
-        },
+        ], */
     });
+
+    console.log("sorter", sorter);
 
     const actions = (
         <Space direction="horizontal">
@@ -93,16 +89,15 @@ export const PostList = (props: any) => {
                 }}
             >
                 <Table.Column
-                    dataIndex="title"
+                    dataIndex="text"
                     title={translate("common:resources.posts.fields.title")}
-                    key="title"
+                    key="text"
                     render={(value) => <TextField value={value} />}
                     sorter={{
                         multiple: 1,
                     }}
-                    defaultSortOrder={getDefaultSortOrder("title", sorter)}
                 />
-                <Table.Column
+                {/*           <Table.Column
                     dataIndex="slug"
                     title={translate("common:resources.posts.fields.slug")}
                     key="slug"
@@ -195,7 +190,7 @@ export const PostList = (props: any) => {
                             />
                         </Space>
                     )}
-                />
+                /> */}
             </Table>
         </List>
     );

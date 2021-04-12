@@ -16,8 +16,6 @@ type CrudFilters =
     | QueryFilterArr
     | Array<QueryFilter | QueryFilterArr>;
 
-// const axiosInstance = axios.create();
-
 const NestsxCrud = (
     apiUrl: string,
     httpClient: AxiosInstance = axios,
@@ -84,7 +82,6 @@ const NestsxCrud = (
             .query();
 
         const { data } = await httpClient.get(`${url}?${query}`);
-        /*  const { data } = await axios.get(`${url}?${query}`); */
 
         return {
             data: data.data,
