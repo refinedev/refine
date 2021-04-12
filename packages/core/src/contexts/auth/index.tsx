@@ -25,6 +25,8 @@ export const AuthContextProvider: React.FC<IAuthContext> = ({
     getUserIdentity,
     children,
 }) => {
+    // console.log("checkAuth", checkAuth);
+
     const [isAuthenticated, setAuthenticated] = useState(false);
 
     const loginFunc = async (params: any) => {
@@ -49,8 +51,10 @@ export const AuthContextProvider: React.FC<IAuthContext> = ({
 
     const checkAuthFunc = async (params: any) => {
         try {
+            console.log("context set before", isAuthenticated);
             await checkAuth(params);
             setAuthenticated(true);
+            console.log("context set after", isAuthenticated);
         } catch (error) {
             setAuthenticated(false);
             throw error;

@@ -1,6 +1,15 @@
 import React from "react";
 
-import { render, TestWrapper, MockJSONServer, act } from "@test";
+import {
+    render,
+    TestWrapper,
+    MockJSONServer,
+    act,
+    wait,
+    waitForElement,
+    getByText,
+    waitForDomChange,
+} from "@test";
 
 import { RouteProvider } from "./index";
 
@@ -20,15 +29,53 @@ const mockAuthProvider = {
 };
 
 describe("RouteProvider", () => {
-    it("renders renderUnauthorized", async () => {
+    // it("renders renderUnauthorized", async () => {
+    //     mockAuthProvider.checkAuth = jest
+    //         .fn()
+    //         .mockImplementation(() => Promise.reject("test"));
+
+    //     const renderRouteProvider = () => {
+    //         return render(
+    //             <RouteProvider
+    //                 resources={[{ name: "posts" }]}
+    //                 customRoutes={[]}
+    //             />,
+    //             {
+    //                 wrapper: TestWrapper({
+    //                     dataProvider: MockJSONServer,
+    //                     authProvider: mockAuthProvider,
+    //                     resources: [{ name: "posts" }],
+    //                 }),
+    //             },
+    //         );
+    //     };
+    //     await act(async () => {
+    //         renderRouteProvider();
+    //     });
+
+    //     const { getAllByText } = renderRouteProvider();
+
+    //     getAllByText("Login");
+    //     getAllByText("Username");
+    //     getAllByText("Password");
+    // });
+
+    it("renders with create", async () => {
         mockAuthProvider.checkAuth = jest
             .fn()
-            .mockImplementation(() => Promise.reject("test"));
+            .mockImplementation(() => Promise.resolve());
+
+        // await wait(() =>
+        //     expect(mockAuthProvider.checkAuth).toHaveBeenCalledTimes(1),
+        // );
+        const CreateComponent = () => {
+            return <div>create</div>;
+        };
 
         const renderRouteProvider = () => {
             return render(
                 <RouteProvider
-                    resources={[{ name: "posts" }]}
+                    resources={[{ name: "posts", create: CreateComponent }]}
                     customRoutes={[]}
                 />,
                 {
@@ -40,14 +87,12 @@ describe("RouteProvider", () => {
                 },
             );
         };
+
+        // await waitForDomChange();
         await act(async () => {
-            renderRouteProvider();
+            const { debug, getByText } = renderRouteProvider();
+            // getByText("create");
+            debug();
         });
-
-        const { getAllByText, debug } = renderRouteProvider();
-
-        getAllByText("Login");
-        getAllByText("Username");
-        getAllByText("Password");
     });
 });

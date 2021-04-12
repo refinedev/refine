@@ -30,11 +30,14 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         AuthContext,
     );
 
-    checkAuth({});
+    checkAuth({}).catch(() => {});
+    //checkAuth({}).then((d) => console.log(d, "d"));
 
     const routes: IRoutesProps[] = [];
     const RouteHandler = (val: IResourceItem): void => {
         const { list, create, edit, show, canDelete, route } = val;
+
+        console.log("value", val.create);
 
         const ListComponent = list;
         const CreateComponent = create;
@@ -149,6 +152,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         </Switch>
     );
 
+    console.log("isAuthenticated", isAuthenticated);
     return isAuthenticated ? renderAuthorized() : renderUnauthorized();
 };
 
