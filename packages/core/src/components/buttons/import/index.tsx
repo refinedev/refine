@@ -1,13 +1,13 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useLayoutEffect } from "react";
 import { Button, ButtonProps, Upload } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
 import { ImportOutlined } from "@ant-design/icons";
 import { useCreate, useResourceWithRoute, useTranslate } from "@hooks";
 import { useParams } from "react-router-dom";
+import { QueryClient, useQueryClient } from "react-query";
 import { ResourceRouterParams } from "../../../interfaces";
 import zip from "lodash/zip";
 import { parse, ParseConfig } from "papaparse";
-import { useQueryClient } from "react-query";
 import { MapDataFn } from "./csvImport.interface";
 import { importCSVMapper } from "@definitions";
 
@@ -27,24 +27,17 @@ export const ImportButton: FC<ImportButtonProps> = ({
     const resourceWithRoute = useResourceWithRoute();
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
     let { name: resource } = resourceWithRoute(routeResourceName);
-    const queryClient = useQueryClient();
     const { mutate, isLoading } = useCreate();
+    const queryClient = useQueryClient();
 
     if (resourceName) {
         resource = resourceName;
     }
 
-    useEffect(() => {
-        // TODO: invalidate query farklı şekilde halledilmeli
-        if (!isLoading) {
-            queryClient.invalidateQueries(`resource/list/${resource}`);
-        }
-    }, [isLoading]);
-
     const handleChange = ({ file }: UploadChangeParam) => {
         parse((file as unknown) as File, {
             complete: ({ data }: { data: unknown[][] }) => {
-                importCSVMapper(data, mapData).forEach((value) => {
+                importCSVMapper(data, mapData).map((value) => {
                     mutate({
                         resource,
                         values: value,
