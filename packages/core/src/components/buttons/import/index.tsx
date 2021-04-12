@@ -9,6 +9,7 @@ import zip from "lodash/zip";
 import { parse, ParseConfig } from "papaparse";
 import { useQueryClient } from "react-query";
 import { MapDataFn } from "./csvImport.interface";
+import { importCSVMapper } from "@definitions";
 
 type ImportButtonProps = ButtonProps & {
     resourceName?: string;
@@ -43,18 +44,12 @@ export const ImportButton: FC<ImportButtonProps> = ({
     const handleChange = ({ file }: UploadChangeParam) => {
         parse((file as unknown) as File, {
             complete: ({ data }: { data: unknown[][] }) => {
-                const [headers, ...body] = data;
-
-                body.map((entry) => Object.fromEntries(zip(headers, entry)))
-                    .map((item, index, array) =>
-                        mapData.call(undefined, item, index, array, data),
-                    )
-                    .forEach((value) => {
-                        mutate({
-                            resource,
-                            values: value,
-                        });
+                importCSVMapper(data, mapData).forEach((value) => {
+                    mutate({
+                        resource,
+                        values: value,
                     });
+                });
             },
             ...paparseOptions,
         });
