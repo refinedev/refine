@@ -14,7 +14,7 @@ import { DemoSidebar, useDemoSidebar } from "readmin-demo-sidebar";
 import dataProvider from "readmin-nestjsx-crud";
 import { useTranslation } from "react-i18next";
 
-import axios from "axios"
+import axios from "axios";
 
 import {
     PostCreate,
@@ -29,15 +29,19 @@ import { DashboardPage } from "./components/pages/dashboard";
 import { ReadyPage } from "./components/ready";
 import { LoginPage } from "./components/login";
 
-const axiosInstance = axios.create()
+const axiosInstance = axios.create();
 
 const authProvider: AuthProvider = {
-    login: (params: any) => {
-        if (params.username === "admin") {
+    login: async (params: any) => {
+        const result = await axios.post("/ayna-crud-api/auth/login", {
+            username: params.username,
+            password: params.password,
+        });
+        if (result.data.token) {
+            localStorage.setItem("token", result.data.token);
             axiosInstance.defaults.headers = {
-                Authorization: "Bearer 'myspecialpassword'",
-            }
-            localStorage.setItem("username", params.username);
+                Authorization: `Bearer ${result.data.token}`,
+            };
             return Promise.resolve();
         }
 
@@ -48,10 +52,16 @@ const authProvider: AuthProvider = {
         return Promise.resolve();
     },
     checkError: () => Promise.resolve(),
-    checkAuth: () =>
-        localStorage.getItem("username")
-            ? Promise.resolve()
-            : Promise.reject(),
+    checkAuth: () => {
+        if (localStorage.getItem("token")) {
+            axiosInstance.defaults.headers = {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            };
+            return Promise.resolve();
+        } else {
+            return Promise.reject();
+        }
+    },
     getPermissions: () => Promise.resolve(["admin"]),
     getUserIdentity: () =>
         Promise.resolve({
@@ -62,7 +72,6 @@ const authProvider: AuthProvider = {
         }),
 };
 
-
 function App() {
     const [adminProps, demoSidebarProps] = useDemoSidebar({
         defaultTitle: "Rea",
@@ -70,13 +79,12 @@ function App() {
     });
 
     return (
-        <Admin dataProvider={dataProvider("https://api.turkcell-ayna-ayna.puul.tv/", axiosInstance)} {...adminProps}>
-             <Resource
-                name="prizes"
-                list={PostList}
-                show={PostShow}
-                canDelete
-            />
+        <Admin
+            authProvider={authProvider}
+            dataProvider={dataProvider("/ayna-crud-api/admin", axiosInstance)}
+            {...adminProps}
+        >
+            <Resource name="prizes" list={PostList} show={PostShow} canDelete />
         </Admin>
     );
 }
