@@ -18,4 +18,12 @@ module.exports = function (app) {
             pathRewrite: { "^/nestjsx-crud-api": "" },
         }),
     );
+    app.use(
+        "/ayna-crud-api",
+        createProxyMiddleware({
+            target: "https://api.turkcell-ayna-ayna.puul.tv",
+            changeOrigin: true,
+            pathRewrite: { "^/ayna-crud-api": "" },
+        }),
+    );
 };
