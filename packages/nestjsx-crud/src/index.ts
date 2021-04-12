@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 import {
     QueryFilter,
     QueryFilterArr,
@@ -16,7 +16,12 @@ type CrudFilters =
     | QueryFilterArr
     | Array<QueryFilter | QueryFilterArr>;
 
-const NestsxCrud = (apiUrl: string): DataProvider => ({
+const axiosInstance = axios.create();
+
+const NestsxCrud = (
+    apiUrl: string,
+    httpClient: AxiosInstance = axiosInstance,
+): DataProvider => ({
     getList: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
         const current = params.pagination?.current || 1;
@@ -78,7 +83,7 @@ const NestsxCrud = (apiUrl: string): DataProvider => ({
             .setOffset((current - 1) * pageSize)
             .query();
 
-        const { data } = await axios.get(`${url}?${query}`);
+        const { data } = await httpClient.get(`${url}?${query}`);
 
         return {
             data: data.data,

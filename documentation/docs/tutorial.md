@@ -27,3 +27,39 @@ We’ll be using JSONPlaceholder, a fake REST API designed for testing and proto
 
 
 example api source
+
+
+To start make app work import Admin root component in to "App.tsx"  from readmin.
+
+
+```
+
+import React from "react";
+import {
+    Admin,
+} from "readmin";
+import JsonServer from "readmin-json-server";
+    
+function App() {
+
+
+    return (
+        <Admin dataProvider={JsonServer("/api"))} >
+      
+        </Admin>
+    );
+}
+
+export default App;
+
+```
+
+You can simply bootstrap the app with this setup. You will welcome page at the below.a
+
+
+//image//
+
+
+The App component renders an <Admin> component, which is the root component of a react-admin application. This component expects a dataProvider prop - a function capable of fetching data from an API. Since there is no standard for data exchanges between computers, you will probably have to write a custom provider to connect react-admin to your own APIs - but we’ll dive into Data Providers later. For now, let’s take advantage of the ra-data-json-server data provider, which speaks the same REST dialect as JSONPlaceholder.
+
+
