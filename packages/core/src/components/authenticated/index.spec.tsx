@@ -22,6 +22,13 @@ describe("Authenticated", () => {
     it("should render children successfully", () => {
         const { getByText } = render(
             <Authenticated>Custom Authenticated</Authenticated>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    authProvider: mockAuthProvider,
+                    resources: [{ name: "posts", route: "posts" }],
+                }),
+            },
         );
 
         getByText("Custom Authenticated");
