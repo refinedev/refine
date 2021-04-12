@@ -1,12 +1,10 @@
-import React, { FC, useEffect, useLayoutEffect } from "react";
+import React, { FC } from "react";
 import { Button, ButtonProps, Upload } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
 import { ImportOutlined } from "@ant-design/icons";
 import { useCreate, useResourceWithRoute, useTranslate } from "@hooks";
 import { useParams } from "react-router-dom";
-import { QueryClient, useQueryClient } from "react-query";
 import { ResourceRouterParams } from "../../../interfaces";
-import zip from "lodash/zip";
 import { parse, ParseConfig } from "papaparse";
 import { MapDataFn } from "./csvImport.interface";
 import { importCSVMapper } from "@definitions";
@@ -28,7 +26,6 @@ export const ImportButton: FC<ImportButtonProps> = ({
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
     let { name: resource } = resourceWithRoute(routeResourceName);
     const { mutate, isLoading } = useCreate();
-    const queryClient = useQueryClient();
 
     if (resourceName) {
         resource = resourceName;
