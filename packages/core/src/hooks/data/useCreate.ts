@@ -29,7 +29,7 @@ export const useCreate = <
         ({ resource, values }: { resource: string; values: TParams }) =>
             create<TParams>(resource, values),
         {
-            onSuccess: (data, { resource }) => {
+            onSettled: (_, __, { resource }) => {
                 getAllQueries(resource).forEach((query) => {
                     queryClient.invalidateQueries(query.queryKey);
                 });

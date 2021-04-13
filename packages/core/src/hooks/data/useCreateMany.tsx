@@ -25,7 +25,7 @@ export const useCreateMany = <
         ({ resource, values }: { resource: string; values: TParams[] }) =>
             createMany<TParams>(resource, values),
         {
-            onSuccess: (_, { resource }) => {
+            onSettled: (_, __, { resource }) => {
                 getAllQueries(resource).forEach((query) => {
                     queryClient.invalidateQueries(query.queryKey);
                 });
