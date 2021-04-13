@@ -34,7 +34,7 @@ export const Reference: React.FC<ReferenceProps> = ({
     const [search, setSearch] = React.useState<string | undefined>();
     const [options, setOptions] = React.useState<Option[]>();
 
-    const { isLoading, refetch } = useList(
+    const { isLoading } = useList(
         reference,
         {
             search: {
@@ -61,7 +61,6 @@ export const Reference: React.FC<ReferenceProps> = ({
 
     const onSearch = (value: string): void => {
         setSearch(value);
-        refetch();
     };
 
     const childrenWithProps = React.Children.map(children, (child) => {
