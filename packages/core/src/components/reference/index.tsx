@@ -37,7 +37,10 @@ export const Reference: React.FC<ReferenceProps> = ({
     const { isLoading, refetch } = useList(
         reference,
         {
-            search,
+            search: {
+                field: optionText,
+                value: search,
+            },
             sort,
             filters,
             pagination: {
@@ -70,6 +73,7 @@ export const Reference: React.FC<ReferenceProps> = ({
                 value,
                 options,
                 loading: isLoading,
+                filterOption: false,
             });
         }
         return child;

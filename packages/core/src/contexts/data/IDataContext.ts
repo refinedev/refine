@@ -9,6 +9,11 @@ export interface Pagination {
 
 export type Sort = SorterResult<any> | SorterResult<any>[];
 
+export interface Search {
+    field?: string;
+    value?: string;
+}
+
 export type Filters = Record<string, (string | number | boolean)[] | null>;
 
 export interface GetListResponse<TData extends BaseRecord = BaseRecord> {
@@ -49,7 +54,7 @@ export interface IDataContext {
         resource: string,
         params: {
             pagination?: Pagination;
-            search?: string;
+            search?: Search;
             sort?: Sort;
             filters?: Filters;
         },
