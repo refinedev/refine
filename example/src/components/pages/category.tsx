@@ -18,7 +18,7 @@ import {
     DateField,
 } from "readmin";
 
-export const CategoryList = (props: { resourceName: string }) => {
+export const CategoryList = (props: any) => {
     const translate = useTranslate();
     const {
         tableProps,

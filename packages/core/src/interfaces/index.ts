@@ -11,6 +11,8 @@ export * from "../contexts/auth/IAuthContext";
 export * from "../contexts/translation/ITranslationContext";
 export * from "../contexts/components/IComponentsContext";
 export * from "../contexts/notification/INotificationContext";
+export { IResourceComponents } from "../contexts/resource/IResourceContext";
+
 
 // buttons
 export { CreateButtonProps } from "../components/buttons/create/index";
