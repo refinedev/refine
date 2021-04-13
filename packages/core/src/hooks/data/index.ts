@@ -6,6 +6,7 @@ export { useUpdate } from "./useUpdate";
 export { useCreate } from "./useCreate";
 export { useDelete } from "./useDelete";
 
+export { useCreateMany } from "./useCreateMany";
 export { useUpdateMany } from "./useUpdateMany";
 export { useDeleteMany } from "./useDeleteMany";
 

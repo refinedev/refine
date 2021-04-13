@@ -1,11 +1,15 @@
+import { useCallback } from "react";
 import { useQueryClient } from "react-query";
 
-export const useListResourceQueries = (resource: string) => {
+export const useListResourceQueries = () => {
     const queryClient = useQueryClient();
     const data = queryClient.getQueryCache();
-    const listResourceQueries = data.getAll().filter((query) => {
-        return query.queryKey.includes(`resource/list/${resource}`);
-    });
+
+    const listResourceQueries = useCallback((resource: string) => {
+        return data.getAll().filter((query) => {
+            return query.queryKey.includes(`resource/list/${resource}`);
+        });
+    }, []);
 
     return listResourceQueries;
 };
@@ -21,7 +25,7 @@ export const useGetOneQueries = (resource: string) => {
 };
 
 export const useCacheQueries = (resource: string) => {
-    const listQuery = useListResourceQueries(resource);
+    const listQuery = useListResourceQueries();
     const getOneQuery = useGetOneQueries(resource);
 
     return (id?: string) => {
@@ -29,8 +33,8 @@ export const useCacheQueries = (resource: string) => {
             const getOneQueriesWithId = getOneQuery.filter((query) => {
                 return (query.queryKey[1] as any).id === id;
             });
-            return [...listQuery, ...getOneQueriesWithId];
+            return [...listQuery(resource), ...getOneQueriesWithId];
         }
-        return [...listQuery, ...getOneQuery];
+        return [...listQuery(resource), ...getOneQuery];
     };
 };

@@ -138,6 +138,16 @@ const NestsxCrud = (apiUrl: string): DataProvider => ({
         return { data: response };
     },
 
+    createMany: async (resource, params) => {
+        const url = `${apiUrl}/${resource}/bulk`;
+
+        const { data } = await axios.post(url, { bulk: params });
+
+        return {
+            data,
+        };
+    },
+
     getOne: async (resource, id) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
