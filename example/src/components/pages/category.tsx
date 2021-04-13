@@ -43,7 +43,7 @@ export const CategoryList = (props: { resourceName: string }) => {
         ],
     });
 
-    const actions = (
+    const Actions: React.FC = () => (
         <Space direction="horizontal">
             <ExportButton
                 sorter={sorter}
@@ -57,7 +57,7 @@ export const CategoryList = (props: { resourceName: string }) => {
     );
 
     return (
-        <List {...props} actionButtons={actions}>
+        <List {...props} actionButtons={<Actions />}>
             <Form {...formProps}>
                 <Table
                     {...tableProps}

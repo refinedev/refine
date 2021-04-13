@@ -61,7 +61,7 @@ export const PostList = (props: any) => {
         },
     });
 
-    const actions = (
+    const Actions = () => (
         <Space direction="horizontal">
             <ExportButton
                 sorter={sorter}
@@ -101,7 +101,7 @@ export const PostList = (props: any) => {
     );
 
     return (
-        <List {...props} actionButtons={actions}>
+        <List {...props} actionButtons={<Actions />}>
             <Table
                 {...tableProps}
                 rowKey="id"
