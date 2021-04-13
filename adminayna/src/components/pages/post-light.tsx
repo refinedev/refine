@@ -23,7 +23,7 @@ import {
     CloneButton,
 } from "readmin";
 
-export const PostLightList = (props: any) => {
+export const PostLightList = ({ ...props }) => {
     const translate = useTranslate();
     const { tableProps, sorter, filters } = useTable({
         initialPageSize: 20,
@@ -48,7 +48,7 @@ export const PostLightList = (props: any) => {
         show: createModalShow,
     } = useModalForm({ action: "create" });
 
-    const actions = (
+    const actions = () => (
         <Space direction="horizontal">
             <ExportButton
                 sorter={sorter}
@@ -69,11 +69,7 @@ export const PostLightList = (props: any) => {
 
     return (
         <>
-            <List
-                {...props}
-                isModalShown={createModalShow}
-                actionButtons={actions}
-            >
+            <List {...props} actionButtons={actions}>
                 <Table
                     {...tableProps}
                     rowKey="id"
