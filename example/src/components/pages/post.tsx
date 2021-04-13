@@ -94,6 +94,7 @@ export const PostList = (props: any) => {
                         },
                     };
                 }}
+                batchSize={null}
             />
             <CreateButton />
         </Space>
