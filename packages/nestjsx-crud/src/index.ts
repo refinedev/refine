@@ -70,8 +70,20 @@ const NestsxCrud = (apiUrl: string): DataProvider => ({
             });
         }
 
+        // search
+        const searchFilter: CrudFilters = [];
+        const { search } = params;
+        if (search?.value) {
+            searchFilter.push({
+                field: search.field,
+                operator: CondOperator.CONTAINS,
+                value: search.value,
+            });
+        }
+
         const query = RequestQueryBuilder.create()
             .setFilter(crudFilters)
+            .setOr(searchFilter)
             .setLimit(pageSize)
             .setPage(current)
             .sortBy(sortBy)
