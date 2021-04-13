@@ -7,7 +7,7 @@ const JsonServer = (apiUrl: string): DataProvider => ({
         const url = `${apiUrl}/${resource}`;
 
         // search
-        const q = params.search;
+        const q = params.search?.value;
 
         // pagination
         const current = params.pagination?.current || 1;
