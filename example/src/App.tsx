@@ -22,7 +22,6 @@ import {
 } from "./components/pages/post";
 import { CategoryList, CategoryCreate } from "./components/pages/category";
 import { UserList, UserEdit, UserCreate } from "./components/pages/user";
-import { TagList, TagCreate, TagEdit } from "./components/pages/tag";
 import { DashboardPage } from "./components/pages/dashboard";
 import { ReadyPage } from "./components/ready";
 import { LoginPage } from "./components/login";
@@ -84,7 +83,9 @@ function App() {
     return (
         <Admin
             authProvider={authProvider}
-            dataProvider={dataProvider("/nestjsx-crud-api")}
+            dataProvider={dataProvider(
+                "https://readmin-nestjs-crud.pankod.com",
+            )}
             loginPage={LoginPage}
             dashboard={DashboardPage}
             ready={ReadyPage}
