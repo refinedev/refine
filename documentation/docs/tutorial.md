@@ -109,6 +109,42 @@ Basicly, useTable looks to the url resource to get specific data from api..
 
 Gelen datayı liste halinde yazdırmak istediğimiz için ant-d table componentine aktardık..
 
+```
+import React from "react";
+import {
+    Admin,
+    Resources,
+    useTable,
+    Table,
+    List,
+} from "readmin";
+
+export const PostList = ({ ...props }) => {
+    const { tableProps } = useTable({});
+
+    return (
+        <List {...props} actionButtons={actions}>
+            <Table
+                {...tableProps}
+                rowKey="id"
+            >
+                <Table.Column
+                    dataIndex="id"
+                    title="ID"
+                    key="id"
+                    render={(value) => <TextField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="name"
+                    title="Name"
+                    key="name"
+                    render={(value) => <TextField value={value} />}
+                />
+            </Table>
+        </List>
+    );
+}
+```
 
 hookların detaylı kullanımı daha sonra..
 

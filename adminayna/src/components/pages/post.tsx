@@ -36,7 +36,7 @@ import {
     CloneButton,
     getDefaultSortOrder,
     DateField,
-    /*  IResourceComponents, */
+    IResourceComponents,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -44,7 +44,7 @@ import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-export const PostList = ({ ...props }) => {
+export const PostList: IResourceComponents["list"] = (props) => {
     const translate = useTranslate();
     const { tableProps, sorter, filters } = useTable({
         /*  initialSorter: [
@@ -54,6 +54,8 @@ export const PostList = ({ ...props }) => {
             },
         ], */
     });
+
+    console.log(props.canCreate);
 
     const actions = () => (
         <Space direction="horizontal">

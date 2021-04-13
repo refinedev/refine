@@ -8,6 +8,8 @@ export {
     ITranslationContext as TranslationProvider,
     I18nProvider,
     MutationMode,
+    IResourceComponents,
+    ILoginForm,
 } from "./interfaces";
 
 export * from "./definitions/upload";

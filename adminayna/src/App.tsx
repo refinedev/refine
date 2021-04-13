@@ -3,12 +3,9 @@ import {
     Admin,
     Resource,
     AuthProvider,
-    Icons,
-    Authenticated,
-    defaultConfigProviderProps,
-    BackTop,
+    ILoginForm,
 } from "readmin";
-import JsonServer from "readmin-json-server";
+
 import { DemoSidebar, useDemoSidebar } from "readmin-demo-sidebar";
 
 import dataProvider from "readmin-nestjsx-crud";
@@ -17,22 +14,14 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 
 import {
-    PostCreate,
     PostList,
-    PostEdit,
     PostShow,
 } from "./components/pages/post";
-import { CategoryList, CategoryCreate } from "./components/pages/category";
-import { UserList, UserEdit, UserCreate } from "./components/pages/user";
-import { TagList, TagCreate, TagEdit } from "./components/pages/tag";
-import { DashboardPage } from "./components/pages/dashboard";
-import { ReadyPage } from "./components/ready";
-import { LoginPage } from "./components/login";
 
 const axiosInstance = axios.create();
 
 const authProvider: AuthProvider = {
-    login: async (params: any) => {
+    login: async (params: ILoginForm) => {
         const result = await axios.post("/ayna-crud-api/auth/login", {
             username: params.username,
             password: params.password,
