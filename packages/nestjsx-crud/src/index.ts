@@ -73,7 +73,7 @@ const NestsxCrud = (apiUrl: string): DataProvider => ({
         // search
         const searchFilter: CrudFilters = [];
         const { search } = params;
-        if (search?.value) {
+        if (search?.value && search.field) {
             searchFilter.push({
                 field: search.field,
                 operator: CondOperator.CONTAINS,
