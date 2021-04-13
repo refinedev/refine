@@ -20,6 +20,10 @@ export interface CreateResponse {
     data: BaseRecord;
 }
 
+export interface CreateManyResponse {
+    data: BaseRecord[];
+}
+
 export interface UpdateResponse {
     data: BaseRecord;
 }
@@ -63,6 +67,10 @@ export interface IDataContext {
         resource: string,
         params: TParams,
     ) => Promise<CreateResponse>;
+    createMany: <TParams extends BaseRecord = BaseRecord>(
+        resource: string,
+        params: TParams[],
+    ) => Promise<CreateManyResponse>;
     update: <TParams extends BaseRecord = BaseRecord>(
         resource: string,
         id: Identifier,

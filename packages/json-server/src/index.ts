@@ -1,6 +1,6 @@
 import axios from "axios";
 import { stringify } from "query-string";
-import { DataProvider } from "readmin";
+import { DataProvider, Resource } from "readmin";
 
 const JsonServer = (apiUrl: string): DataProvider => ({
     getList: async (resource, params) => {
@@ -76,6 +76,10 @@ const JsonServer = (apiUrl: string): DataProvider => ({
         return {
             data,
         };
+    },
+
+    createMany: async (resource, paramsList) => {
+        throw new Error("createMany not implemented");
     },
 
     update: async (resource, id, params) => {

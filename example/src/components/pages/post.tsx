@@ -36,6 +36,7 @@ import {
     CloneButton,
     getDefaultSortOrder,
     DateField,
+    ImportButton,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -60,7 +61,7 @@ export const PostList = (props: any) => {
         },
     });
 
-    const actions = (
+    const Actions = () => (
         <Space direction="horizontal">
             <ExportButton
                 sorter={sorter}
@@ -74,15 +75,33 @@ export const PostList = (props: any) => {
                         slug: item.slug,
                         content: item.content,
                         status: item.status,
+                        categoryId: item.category.id,
+                        userId: item.user?.id,
                     };
                 }}
+            />
+            <ImportButton
+                mapData={(item) => {
+                    return {
+                        title: item.title,
+                        content: item.content,
+                        status: item.status,
+                        category: {
+                            id: item.categoryId,
+                        },
+                        user: {
+                            id: item.userId,
+                        },
+                    };
+                }}
+                batchSize={null}
             />
             <CreateButton />
         </Space>
     );
 
     return (
-        <List {...props} actionButtons={actions}>
+        <List {...props} actionButtons={<Actions />}>
             <Table
                 {...tableProps}
                 rowKey="id"
