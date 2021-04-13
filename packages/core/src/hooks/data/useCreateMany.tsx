@@ -18,7 +18,7 @@ export const useCreateMany = <
     TParams extends BaseRecord = BaseRecord
 >(): UseCreateManyReturnType<TParams> => {
     const { createMany } = useContext<IDataContext>(DataContext);
-    const getAllQueries = useListResourceQueries();
+    const getListQueries = useListResourceQueries();
     const queryClient = useQueryClient();
 
     const mutation = useMutation(
@@ -26,7 +26,7 @@ export const useCreateMany = <
             createMany<TParams>(resource, values),
         {
             onSettled: (_, __, { resource }) => {
-                getAllQueries(resource).forEach((query) => {
+                getListQueries(resource).forEach((query) => {
                     queryClient.invalidateQueries(query.queryKey);
                 });
             },

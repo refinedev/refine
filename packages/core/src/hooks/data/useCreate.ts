@@ -21,7 +21,7 @@ export const useCreate = <
     TParams extends BaseRecord = BaseRecord
 >(): UseCreateReturnType<TParams> => {
     const { create } = useContext<IDataContext>(DataContext);
-    const getAllQueries = useListResourceQueries();
+    const getListQueries = useListResourceQueries();
 
     const queryClient = useQueryClient();
 
@@ -30,7 +30,7 @@ export const useCreate = <
             create<TParams>(resource, values),
         {
             onSettled: (_, __, { resource }) => {
-                getAllQueries(resource).forEach((query) => {
+                getListQueries(resource).forEach((query) => {
                     queryClient.invalidateQueries(query.queryKey);
                 });
             },
