@@ -100,7 +100,7 @@ const NestsxCrud = (
             })
             .query();
 
-        const { data } = await axios.get(`${url}?${query}`);
+        const { data } = await httpClient.get(`${url}?${query}`);
 
         return {
             data,
@@ -120,7 +120,7 @@ const NestsxCrud = (
     update: async (resource, id, params) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await axios.patch(url, params);
+        const { data } = await httpClient.patch(url, params);
 
         return {
             data,
@@ -130,7 +130,7 @@ const NestsxCrud = (
     updateMany: async (resource, ids, params) => {
         const response = await Promise.all(
             ids.map(async (id) => {
-                const { data } = await axios.patch(
+                const { data } = await httpClient.patch(
                     `${apiUrl}/${resource}/${id}`,
                     params,
                 );
@@ -144,7 +144,7 @@ const NestsxCrud = (
     getOne: async (resource, id) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await axios.get(url);
+        const { data } = await httpClient.get(url);
 
         return {
             data,
@@ -154,7 +154,7 @@ const NestsxCrud = (
     deleteOne: async (resource, id) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await axios.delete(url);
+        const { data } = await httpClient.delete(url);
 
         return {
             data,
@@ -164,7 +164,7 @@ const NestsxCrud = (
     deleteMany: async (resource, ids) => {
         const response = await Promise.all(
             ids.map(async (id) => {
-                const { data } = await axios.delete(
+                const { data } = await httpClient.delete(
                     `${apiUrl}/${resource}/${id}`,
                 );
                 return data;
