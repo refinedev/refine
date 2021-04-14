@@ -9,7 +9,6 @@ import {
     Input,
     Edit,
     Show,
-    ShowSimple,
     useTable,
     EditButton,
     DeleteButton,
@@ -253,9 +252,7 @@ export const PostLightEdit = (props: any) => {
 export const PostLightShow = (props: any) => {
     return (
         <Show {...props}>
-            <ShowSimple title="Post Title">
-                <TextField renderRecordKey="title" />
-            </ShowSimple>
+            <div>TODO: Post gibi olacak.</div>
         </Show>
     );
 };
