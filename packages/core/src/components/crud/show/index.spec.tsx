@@ -4,9 +4,7 @@ import { Button } from "antd";
 
 import { render, TestWrapper, MockJSONServer } from "@test";
 
-import { TextField } from "@components";
-
-import { Show, ShowSimple } from "./index";
+import { Show } from "./index";
 
 const renderShow = (show: ReactNode) => {
     return render(<Route path="/resources/:resource/show/:id">{show}</Route>, {
@@ -17,42 +15,32 @@ const renderShow = (show: ReactNode) => {
         }),
     });
 };
-describe("<Show/>", () => {
-    describe("JSON Rest Server", () => {
-        it("renders ShowSimple with data", async () => {
-            const { findByTestId, findByText } = renderShow(
-                <Show key="posts">
-                    <ShowSimple data-testid="showsimple">
-                        <TextField renderRecordKey="id" />
-                        <TextField renderRecordKey="slug" />
-                    </ShowSimple>
-                </Show>,
-            );
+describe("Show", () => {
+    it("should render page successfuly", () => {
+        const { container } = renderShow(<Show></Show>);
 
-            await findByTestId("showsimple");
-            await findByText("ut-ad-et");
-        });
+        expect(container).toBeTruthy();
     });
 
-    it("renders list, refresh, delete, edit buttons", async () => {
-        const { findByText } = renderShow(
-            <Show key="posts" canDelete canEdit>
-                <ShowSimple data-testid="showsimple">
-                    <TextField renderRecordKey="id" />
-                    <TextField renderRecordKey="slug" />
-                </ShowSimple>
-            </Show>,
-        );
-        await findByText("Refresh");
-        await findByText("Posts");
-        await findByText("Delete");
-        await findByText("Edit");
+    it("should render default list and refresh buttons successfuly", async () => {
+        const { container, getByText } = renderShow(<Show />);
+
+        expect(container.querySelector("button")).toBeTruthy();
+        getByText("Posts");
+        getByText("Refresh");
+    });
+
+    it("should render optional edit and delete buttons successfuly", async () => {
+        const { container, getByText } = renderShow(<Show canEdit canDelete />);
+
+        expect(container.querySelector("button")).toBeTruthy();
+        getByText("Edit");
+        getByText("Delete");
     });
 
     it("should render optional buttons with actionButtons prop", async () => {
         const { findByText } = renderShow(
             <Show
-                key="posts"
                 actionButtons={
                     <>
                         <Button>New Save Button</Button>
@@ -64,5 +52,25 @@ describe("<Show/>", () => {
 
         await findByText("New Save Button");
         await findByText("New Delete Button");
+    });
+
+    it("should render default title successfuly", () => {
+        const { getByText } = renderShow(<Show />);
+
+        getByText("Show post");
+    });
+
+    it("should render optional title with title prop", () => {
+        const { getByText } = renderShow(<Show title="Test Title" />);
+
+        getByText("Test Title");
+    });
+
+    it("should render with aside component", () => {
+        const { getByText } = renderShow(
+            <Show aside={() => <div>Test Aside Component</div>} />,
+        );
+
+        getByText("Test Aside Component");
     });
 });
