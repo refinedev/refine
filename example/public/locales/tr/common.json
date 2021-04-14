@@ -132,6 +132,7 @@
     "warnWhenUnsavedChanges": "Kaydedilmemiş değişiklikleriniz var. Ayrılmak istediğinizden emin misiniz?",
     "notifications": {
         "success": "Başarılı",
+        "error": "Hata",
         "succesMessage": "Id: {{id}} {{resource}} düzenlendi",
         "undoable": "Geri almak için {{seconds}} saniyeniz var",
         "createSuccess": "{{resource}} başarıyla oluşturuldu",
