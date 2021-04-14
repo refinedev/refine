@@ -1,10 +1,11 @@
-import React, { createElement, FC } from "react";
+import React, { FC } from "react";
 import { useParams } from "react-router-dom";
-import { Card, CardProps, Col, Row, Space } from "antd";
+import { Card, Col, Row, Space } from "antd";
 import pluralize from "pluralize";
 
-import { BaseRecord, ResourceRouterParams } from "../../../interfaces";
+import { ResourceRouterParams } from "../../../interfaces";
 import { useOne, useResourceWithRoute } from "@hooks";
+import { OptionalComponent } from "@definitions";
 import {
     EditButton,
     DeleteButton,
@@ -12,22 +13,22 @@ import {
     ListButton,
 } from "@components";
 
-export type ShowProps = CardProps & {
-    aside?: FC<{ record?: BaseRecord }>;
-    component?: FC<{ record?: BaseRecord }>;
+export interface ShowProps {
+    aside?: FC;
+    component?: FC;
+    title?: string;
     canEdit?: boolean;
     canDelete?: boolean;
     actionButtons?: React.ReactNode;
-};
+}
 
 export const Show: React.FC<ShowProps> = ({
     aside,
-    component,
+    title,
     canEdit,
     canDelete,
     actionButtons,
     children,
-    ...rest
 }) => {
     const {
         resource: routeResourceName,
@@ -38,72 +39,44 @@ export const Show: React.FC<ShowProps> = ({
 
     const resource = resourceWithRoute(routeResourceName);
 
-    const { data, isLoading, isFetching } = useOne(resource.name, idFromRoute);
-
-    const record = data?.data;
-
-    const childrenWithProps = React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-            return React.cloneElement(child, {
-                resourceName: resource.name,
-                record,
-            });
-        }
-        return child;
-    });
+    const { isLoading, isFetching } = useOne(resource.name, idFromRoute);
 
     return (
         <Row gutter={[16, 16]}>
             <Col flex="1">
-                {component ? (
-                    React.createElement(
-                        component,
-                        {
-                            record,
-                        },
-                        childrenWithProps,
-                    )
-                ) : (
-                    <Card
-                        title={`Show ${pluralize.singular(resource.name)}`}
-                        loading={isLoading || isFetching}
-                        extra={
-                            <Row>
-                                <Space key="extra-buttons">
-                                    {actionButtons ?? (
-                                        <>
-                                            <ListButton />
-                                            {canEdit && (
-                                                <EditButton
-                                                    disabled={isFetching}
-                                                />
-                                            )}
-                                            {canDelete && (
-                                                <DeleteButton
-                                                    disabled={isFetching}
-                                                />
-                                            )}
-                                            <RefreshButton />
-                                        </>
-                                    )}
-                                </Space>
-                            </Row>
-                        }
-                        {...rest}
-                    >
-                        {childrenWithProps}
-                    </Card>
-                )}
+                <Card
+                    title={title ?? `Show ${pluralize.singular(resource.name)}`}
+                    loading={isLoading || isFetching}
+                    extra={
+                        <Row>
+                            <Space key="extra-buttons">
+                                {actionButtons ?? (
+                                    <>
+                                        <ListButton />
+                                        {canEdit && (
+                                            <EditButton disabled={isFetching} />
+                                        )}
+                                        {canDelete && (
+                                            <DeleteButton
+                                                disabled={isFetching}
+                                            />
+                                        )}
+                                        <RefreshButton />
+                                    </>
+                                )}
+                            </Space>
+                        </Row>
+                    }
+                >
+                    {children}
+                </Card>
             </Col>
-            <Col>
-                {aside &&
-                    createElement(aside, {
-                        record,
-                    })}
-            </Col>
+
+            {aside && (
+                <Col flex="0 1 300px">
+                    <OptionalComponent optional={aside} />
+                </Col>
+            )}
         </Row>
     );
 };
-
-export { ShowSimple } from "./showSimple";
-export { ShowTab, Tab } from "./showTab";
