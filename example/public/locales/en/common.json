@@ -112,7 +112,8 @@
         "clear": "Clear",
         "refresh": "Refresh",
         "show": "Show",
-        "undo": "Undo"
+        "undo": "Undo",
+        "import": "Import"
     },
     "table": {
         "actions": "Actions"
@@ -130,7 +131,9 @@
     "notifications": {
         "success": "Successful",
         "succesMessage": "Id: {{id}} {{resource}} edited",
-        "undoable": "You have {{seconds}} seconds to undo"
+        "undoable": "You have {{seconds}} seconds to undo",
+        "createErrorMessage": "There was an error creating in {{resource}}",
+        "createSuccess": "Successfully created"
     },
     "loading": "Loading",
     "backHome": "Back Home"

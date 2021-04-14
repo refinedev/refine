@@ -114,7 +114,8 @@
         "clear": "Temizle",
         "refresh": "Yenile",
         "show": "Göster",
-        "undo": "Geri Al"
+        "undo": "Geri Al",
+        "import": "Yükle"
     },
     "table": {
         "actions": "İşlemler"
@@ -132,7 +133,8 @@
     "notifications": {
         "success": "Başarılı",
         "succesMessage": "Id: {{id}} {{resource}} düzenlendi",
-        "undoable": "Geri almak için {{seconds}} saniyen var"
+        "undoable": "Geri almak için {{seconds}} saniyen var",
+        "createErrorMessage": "{{resource}} içinde kayıt oluşturulurken hata oldu"
     },
     "loading": "Yükleniyor",
     "backHome": "Ana sayfaya geri dön"

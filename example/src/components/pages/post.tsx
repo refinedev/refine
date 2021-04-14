@@ -83,7 +83,7 @@ export const PostList = (props: any) => {
             <ImportButton
                 mapData={(item) => {
                     return {
-                        title: item.title,
+                        title: "asdjasdfasd" + item.title,
                         content: item.content,
                         status: item.status,
                         category: {
