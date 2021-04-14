@@ -21,7 +21,7 @@ import {
 } from "./components/pages/post";
 import { CategoryList, CategoryCreate } from "./components/pages/category";
 import { UserList, UserEdit, UserCreate } from "./components/pages/user";
-import { TagsList, TagsCreate } from "./components/pages/tags";
+import { TagsList, TagsCreate, TagsEdit } from "./components/pages/tags";
 import { DashboardPage } from "./components/pages/dashboard";
 import { ReadyPage } from "./components/ready";
 import { LoginPage } from "./components/login";
@@ -138,7 +138,7 @@ function App() {
             <Resource
                 name="tags"
                 list={TagsList}
-                // edit={UserEdit}
+                edit={TagsEdit}
                 create={TagsCreate}
                 icon={<Icons.TagsOutlined />}
             />
