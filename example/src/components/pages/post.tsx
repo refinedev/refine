@@ -16,7 +16,6 @@ import {
     Radio,
     Input,
     Upload,
-    ShowSimple,
     MarkdownField,
     normalizeFile,
     useApiUrl,
@@ -37,12 +36,16 @@ import {
     getDefaultSortOrder,
     DateField,
     ImportButton,
+    useShow,
+    Typography,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
+
+const { Title, Text } = Typography;
 
 export const PostList = (props: any) => {
     const translate = useTranslate();
@@ -635,13 +638,23 @@ export const PostEdit = (props: any) => {
 };
 
 export const PostShow = (props: any) => {
+    const { queryResult } = useShow({});
+    const { data } = queryResult;
+    const record = data?.data;
+
     return (
         <Show {...props}>
-            <ShowSimple title="Post Title">
-                <TextField renderRecordKey="id" />
-                <TextField renderRecordKey="title" />
-                <MarkdownField renderRecordKey="content" />
-            </ShowSimple>
+            <Title level={5}>Id</Title>
+            <Text>{record?.id}</Text>
+
+            <Title level={5}>Title</Title>
+            <Text>{record?.title}</Text>
+
+            <Title level={5}>Content</Title>
+            <MarkdownField
+                record={record}
+                renderRecordKey="content"
+            ></MarkdownField>
         </Show>
     );
 };
