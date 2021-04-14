@@ -134,12 +134,12 @@
         "success": "Başarılı",
         "succesMessage": "Id: {{id}} {{resource}} düzenlendi",
         "undoable": "Geri almak için {{seconds}} saniyeniz var",
-        "createSuccess": "{{resource}} içinde başarıyla oluşturuldu",
-        "createError": "{{resource}} içinde oluşturulurken hata",
-        "deleteSuccess": "{{resource}} içinde başarıyla silindi",
-        "deleteError": "{{resource}} içinde silinirken hata",
-        "editSuccess": "{{resource}} içinde başarıyla düzenlendi",
-        "editError": "{{resource}} içinde düzenlenirken hata"
+        "createSuccess": "{{resource}} başarıyla oluşturuldu",
+        "createError": "{{resource}} oluşturulurken hata",
+        "deleteSuccess": "{{resource}} başarıyla silindi",
+        "deleteError": "{{resource}} silinirken hata",
+        "editSuccess": "{{resource}} başarıyla düzenlendi",
+        "editError": "{{resource}} düzenlenirken hata"
     },
     "loading": "Yükleniyor",
     "backHome": "Ana sayfaya geri dön"
