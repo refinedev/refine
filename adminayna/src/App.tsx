@@ -14,9 +14,10 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 
 import {
-    PostList,
+    PrizesList,
     PostShow,
-} from "./components/pages/post";
+    PrizesCreate,
+} from "./components/pages/prizes";
 
 const axiosInstance = axios.create();
 
@@ -73,7 +74,7 @@ function App() {
             dataProvider={dataProvider("/ayna-crud-api/admin", axiosInstance)}
             {...adminProps}
         >
-            <Resource name="prizes" list={PostList} show={PostShow} canDelete />
+            <Resource name="prizes" list={PrizesList} show={PostShow} create={PrizesCreate} canDelete />
         </Admin>
     );
 }

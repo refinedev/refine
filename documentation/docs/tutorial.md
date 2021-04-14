@@ -160,4 +160,12 @@ hookların detaylı kullanımı daha sonra..
 If you look at the network tab in the browser developer tools, you’ll notice that the application fetched the https://jsonplaceholder.typicode.com/users URL, then used the results to build the Datagrid. That’s basically how react-admin works.
 
 
+##Handling relationsips
 
+- ReferenceField
+
+##search and filter to the list
+
+- Reference component
+
+##Create, Edit

@@ -110,7 +110,7 @@ const NestsxCrud = (
     create: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { data } = await axios.post(url, params);
+        const { data } = await httpClient.post(url, params);
 
         return {
             data,

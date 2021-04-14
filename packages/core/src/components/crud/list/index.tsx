@@ -10,7 +10,7 @@ import { ResourceRouterParams, CreateButtonProps } from "../../../interfaces";
 
 export interface ListProps {
     canCreate?: boolean;
-    actionButtons?: React.FC;
+    actionButtons?: React.ReactNode;
     aside?: React.FC;
     title?: string;
     canExport?: boolean;

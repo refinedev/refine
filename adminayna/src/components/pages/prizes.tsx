@@ -39,7 +39,10 @@ import {
     getDefaultSortOrder,
     DateField,
     IResourceComponents,
-    ImageField
+    ImageField,
+    useForm,
+    InputNumber,
+    Switch,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -47,7 +50,7 @@ import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-export const PostList: IResourceComponents["list"] = (props) => {
+export const PrizesList: IResourceComponents["list"] = (props) => {
     const translate = useTranslate();
     const { tableProps, sorter, filters } = useTable({
         /*  initialSorter: [
@@ -60,7 +63,7 @@ export const PostList: IResourceComponents["list"] = (props) => {
 
     console.log("translate", translate("common:resources.posts.fields.slug"));
 
-    const actions = () => (
+    const Actions = () => (
         <Space direction="horizontal">
             <ExportButton
                 sorter={sorter}
@@ -82,7 +85,7 @@ export const PostList: IResourceComponents["list"] = (props) => {
     );
 
     return (
-        <List {...props} actionButtons={actions}>
+        <List {...props} actionButtons={<Actions />}>
             <Table
                 {...tableProps}
                 rowKey="id"
@@ -109,6 +112,11 @@ export const PostList: IResourceComponents["list"] = (props) => {
                     sorter={{
                         multiple: 1,
                     }}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Input />
+                        </FilterDropdown>
+                    )}
                 />
                 <Table.Column
                     dataIndex="weight"
@@ -127,6 +135,14 @@ export const PostList: IResourceComponents["list"] = (props) => {
                     sorter={{
                         multiple: 1,
                     }}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Radio.Group>
+                                <Radio value={true}>IsActive</Radio>
+                                <Radio value={false}>Not isActive</Radio>
+                            </Radio.Group>
+                        </FilterDropdown>
+                    )}
                 />
                 <Table.Column
                     dataIndex="createdAt"
@@ -150,7 +166,9 @@ export const PostList: IResourceComponents["list"] = (props) => {
                     dataIndex="images"
                     title="Images"
                     key="images"
-                    render={(value) => <ImageField width={200} value={value[0].url} />}
+                    render={(value) => (
+                        <ImageField width={200} value={value?.[0].url} />
+                    )}
                     sorter={{
                         multiple: 1,
                     }}
@@ -160,212 +178,60 @@ export const PostList: IResourceComponents["list"] = (props) => {
     );
 };
 
-export const PostCreate = (props: any) => {
-    const { Step } = Steps;
-
-    const apiUrl = useApiUrl();
-    const translate = useTranslate();
-
-    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
-        "write",
-    );
-    const { isLoading, onChange } = useFileUploadState();
-
-    const {
-        current,
-        gotoStep,
-        stepsProps,
-        submit,
-        formLoading,
-        formProps,
-    } = useStepsForm({
-        warnWhenUnsavedChanges: true,
-        defaultFormValues: () => {
-            return {
-                status: "published",
-            };
-        },
-    });
-
-    const formList = [
-        <>
-            <Form.Item
-                label={translate("common:resources.posts.fields.title")}
-                name="title"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-            <Form.Item
-                label={translate("common:resources.posts.fields.content")}
-                name="content"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <ReactMde
-                    selectedTab={selectedTab}
-                    onTabChange={setSelectedTab}
-                    generateMarkdownPreview={(markdown) =>
-                        Promise.resolve(<ReactMarkdown source={markdown} />)
-                    }
-                />
-            </Form.Item>
-            <Form.Item
-                label={translate("common:resources.posts.fields.status.title")}
-                name="status"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Select
-                    options={[
-                        {
-                            label: translate(
-                                "common:resources.posts.fields.status.published",
-                            ),
-                            value: "published",
-                        },
-                        {
-                            label: translate(
-                                "common:resources.posts.fields.status.draft",
-                            ),
-                            value: "draft",
-                        },
-                    ]}
-                />
-            </Form.Item>
-            <Form.Item label={translate("common:resources.posts.fields.image")}>
-                <Form.Item
-                    name="images"
-                    valuePropName="fileList"
-                    getValueFromEvent={normalizeFile}
-                    noStyle
-                >
-                    <Upload.Dragger
-                        name="file"
-                        action={`${apiUrl}/media/upload`}
-                        listType="picture"
-                        maxCount={5}
-                        multiple
-                        onChange={onChange}
-                    >
-                        <p className="ant-upload-text">
-                            {translate("common:upload.title")}
-                        </p>
-                        <p className="ant-upload-hint">
-                            {translate("common:upload.description")}
-                        </p>
-                    </Upload.Dragger>
-                </Form.Item>
-            </Form.Item>
-        </>,
-
-        <>
-            <Form.Item
-                label={translate("common:resources.posts.fields.category")}
-                name="category"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-                valuePropName=""
-                getValueFromEvent={(id) => {
-                    return { id };
-                }}
-            >
-                <Reference
-                    reference="categories"
-                    optionText="title"
-                    sort={{
-                        field: "title",
-                        order: "ascend",
-                    }}
-                >
-                    <Select showSearch />
-                </Reference>
-            </Form.Item>
-            <Form.Item
-                label={translate("common:resources.posts.fields.user")}
-                name="user"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-                help="Autocomplete (search user email)"
-                valuePropName=""
-                getValueFromEvent={(id) => {
-                    return { id };
-                }}
-            >
-                <Reference reference="users" optionText="email">
-                    <Select showSearch />
-                </Reference>
-            </Form.Item>
-        </>,
-    ];
+export const PrizesCreate = (props: any) => {
+    const { formProps, saveButtonProps } = useForm({});
 
     return (
-        <Create
-            {...props}
-            actionButtons={
-                <>
-                    {current > 0 && (
-                        <Button
-                            onClick={() => {
-                                gotoStep(current - 1);
-                            }}
-                        >
-                            {translate(
-                                "common:resources.posts.forms.prevButton",
-                            )}
-                        </Button>
-                    )}
-                    {current < formList.length - 1 && (
-                        <Button
-                            onClick={() => {
-                                gotoStep(current + 1);
-                            }}
-                        >
-                            {translate(
-                                "common:resources.posts.forms.nextButton",
-                            )}
-                        </Button>
-                    )}
-                    {current === formList.length - 1 && (
-                        <SaveButton
-                            style={{ marginRight: 10 }}
-                            loading={isLoading || formLoading}
-                            onClick={() => submit()}
-                        />
-                    )}
-                </>
-            }
-        >
-            <Steps {...stepsProps}>
-                <Step title="Content" />
-                <Step title="Relations" />
-            </Steps>
-
-            <div style={{ marginTop: 60 }}>
-                <Form
-                    {...formProps}
-                    wrapperCol={{ span: 24 }}
-                    layout="vertical"
+        <Create {...props} saveButtonProps={saveButtonProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
+                <Form.Item
+                    label="Text"
+                    name="text"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
                 >
-                    {formList[current]}
-                </Form>
-            </div>
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Description"
+                    name="description"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Weight"
+                    name="weight"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <InputNumber />
+                </Form.Item>
+                <Form.Item
+                    label="IsActive"
+                    name="isActive"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Switch />
+                </Form.Item>
+                <Form.Item label="ExternalId" name="externalId">
+                    <Input />
+                </Form.Item>
+            </Form>
         </Create>
     );
 };
