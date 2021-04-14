@@ -37,6 +37,7 @@ import {
     getDefaultSortOrder,
     DateField,
     ImportButton,
+    useSelect,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -59,6 +60,12 @@ export const PostList = (props: any) => {
         initialFilter: {
             status: ["published"],
         },
+    });
+
+    const categorySelectProps = useSelect({
+        resource: "categories",
+        optionLabel: "title",
+        optionValue: "id",
     });
 
     const Actions = () => (
@@ -138,21 +145,14 @@ export const PostList = (props: any) => {
                     )}
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
-                            <Reference
-                                reference="categories"
-                                optionText="title"
-                                sort={{
-                                    field: "title",
-                                    order: "ascend",
-                                }}
-                            >
-                                <Select
-                                    style={{ minWidth: 200 }}
-                                    showSearch
-                                    mode="multiple"
-                                    placeholder="Select Category"
-                                />
-                            </Reference>
+                            <Select
+                                style={{ minWidth: 200 }}
+                                showSearch
+                                mode="multiple"
+                                placeholder="Select Category"
+                                filterOption={false}
+                                {...categorySelectProps}
+                            />
                         </FilterDropdown>
                     )}
                 />
