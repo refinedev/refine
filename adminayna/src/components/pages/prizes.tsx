@@ -43,6 +43,7 @@ import {
     useForm,
     InputNumber,
     Switch,
+    IResourceComponentsProps,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -50,18 +51,8 @@ import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-export const PrizesList: IResourceComponents["list"] = (props) => {
-    const translate = useTranslate();
-    const { tableProps, sorter, filters } = useTable({
-        /*  initialSorter: [
-            {
-                field: "createdAt",
-                order: "descend",
-            },
-        ], */
-    });
-
-    console.log("translate", translate("common:resources.posts.fields.slug"));
+export const PrizesList = (props: IResourceComponentsProps) => {
+    const { tableProps, sorter, filters } = useTable({});
 
     const Actions = () => (
         <Space direction="horizontal">
@@ -95,7 +86,7 @@ export const PrizesList: IResourceComponents["list"] = (props) => {
                     size: "small",
                 }}
             >
-                <Table.Column
+                {/*    <Table.Column
                     dataIndex="id"
                     title="ID"
                     key="id"
@@ -103,6 +94,14 @@ export const PrizesList: IResourceComponents["list"] = (props) => {
                     sorter={{
                         multiple: 1,
                     }}
+                /> */}
+                <Table.Column
+                    dataIndex="images"
+                    title="Images"
+                    key="images"
+                    render={(value) => (
+                        <ImageField width={100} value={value?.[0].url} />
+                    )}
                 />
                 <Table.Column
                     dataIndex="text"
@@ -162,23 +161,35 @@ export const PrizesList: IResourceComponents["list"] = (props) => {
                         multiple: 1,
                     }}
                 />
+
                 <Table.Column
-                    dataIndex="images"
-                    title="Images"
-                    key="images"
-                    render={(value) => (
-                        <ImageField width={200} value={value?.[0].url} />
+                    title={"Actions"}
+                    dataIndex="actions"
+                    key="actions"
+                    render={(
+                        _text: string | number,
+                        record: {
+                            id: string | number;
+                        },
+                    ): React.ReactNode => (
+                        <Space>
+                            <EditButton size="small" recordItemId={record.id} />
+                            <DeleteButton
+                                size="small"
+                                recordItemId={record.id}
+                                mutationMode="undoable"
+                            />
+                            {/* <ShowButton size="small" recordItemId={record.id} /> */}
+                            {/*  <CloneButton /> */}
+                        </Space>
                     )}
-                    sorter={{
-                        multiple: 1,
-                    }}
                 />
             </Table>
         </List>
     );
 };
 
-export const PrizesCreate = (props: any) => {
+export const PrizesCreate = (props: IResourceComponentsProps) => {
     const { formProps, saveButtonProps } = useForm({});
 
     return (
@@ -231,211 +242,105 @@ export const PrizesCreate = (props: any) => {
                 <Form.Item label="ExternalId" name="externalId">
                     <Input />
                 </Form.Item>
+                <Form.Item label={"Image"}>
+                    <Form.Item
+                        name="images"
+                        valuePropName="fileList"
+                        getValueFromEvent={normalizeFile}
+                        noStyle
+                    >
+                        <Upload.Dragger
+                            name="file"
+                            action={`/ayna-crud-api/media/upload`}
+                            listType="picture"
+                            maxCount={1}
+                            multiple
+                        >
+                            <p className="ant-upload-text">title</p>
+                            <p className="ant-upload-hint">description</p>
+                        </Upload.Dragger>
+                    </Form.Item>
+                </Form.Item>
             </Form>
         </Create>
     );
 };
 
-export const PostEdit = (props: any) => {
-    const { Step } = Steps;
-
-    const apiUrl = useApiUrl();
+export const PrizeEdit = (props: IResourceComponentsProps) => {
     const translate = useTranslate();
 
-    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
-        "write",
-    );
-    const { onChange, isLoading } = useFileUploadState();
-
-    const {
-        current,
-        gotoStep,
-        stepsProps,
-        submit,
-        formLoading,
-        formProps,
-    } = useStepsForm({
-        warnWhenUnsavedChanges: true,
-        redirect: "list",
-        mutationMode: "pessimistic",
-    });
-
-    const formList = [
-        <>
-            <Form.Item
-                label={translate("common:resources.posts.fields.title")}
-                name="title"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-            <Form.Item
-                label={translate("common:resources.posts.fields.content")}
-                name="content"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <ReactMde
-                    selectedTab={selectedTab}
-                    onTabChange={setSelectedTab}
-                    generateMarkdownPreview={(markdown) =>
-                        Promise.resolve(<ReactMarkdown source={markdown} />)
-                    }
-                />
-            </Form.Item>
-            <Form.Item
-                label={translate("common:resources.posts.fields.status.title")}
-                name="status"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Select
-                    options={[
-                        {
-                            label: translate(
-                                "common:resources.posts.fields.status.published",
-                            ),
-                            value: "published",
-                        },
-                        {
-                            label: translate(
-                                "common:resources.posts.fields.status.draft",
-                            ),
-                            value: "draft",
-                        },
-                    ]}
-                />
-            </Form.Item>
-            <Form.Item label={translate("common:resources.posts.fields.image")}>
-                <Form.Item
-                    name="images"
-                    valuePropName="fileList"
-                    getValueFromEvent={normalizeFile}
-                    noStyle
-                >
-                    <Upload.Dragger
-                        name="file"
-                        action={`${apiUrl}/media/upload`}
-                        listType="picture"
-                        maxCount={5}
-                        multiple
-                        onChange={onChange}
-                    >
-                        <p className="ant-upload-text">
-                            {translate("common:upload.title")}
-                        </p>
-                        <p className="ant-upload-hint">
-                            {translate("common:upload.description")}
-                        </p>
-                    </Upload.Dragger>
-                </Form.Item>
-            </Form.Item>
-        </>,
-
-        <>
-            <Form.Item
-                label={translate("common:resources.posts.fields.category")}
-                name="category"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-                getValueProps={({ id }) => {
-                    return { value: id };
-                }}
-                getValueFromEvent={(id) => {
-                    return { id };
-                }}
-            >
-                <Reference
-                    reference="categories"
-                    optionText="title"
-                    sort={{
-                        field: "title",
-                        order: "ascend",
-                    }}
-                >
-                    <Select showSearch />
-                </Reference>
-            </Form.Item>
-            <Form.Item
-                label={translate("common:resources.posts.fields.user")}
-                name="user"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-                getValueProps={({ id }) => {
-                    return { value: id };
-                }}
-                getValueFromEvent={(id) => {
-                    return { id };
-                }}
-                help="Autocomplete (search user email)"
-            >
-                <Reference reference="users" optionText="email">
-                    <Select showSearch />
-                </Reference>
-            </Form.Item>
-        </>,
-    ];
+    const { formProps, saveButtonProps } = useForm({});
 
     return (
-        <Edit
-            {...props}
-            actionButtons={
-                <>
-                    {current > 0 && (
-                        <Button onClick={() => gotoStep(current - 1)}>
-                            {translate(
-                                "common:resources.posts.forms.prevButton",
-                            )}
-                        </Button>
-                    )}
-                    {current < formList.length - 1 && (
-                        <Button onClick={() => gotoStep(current + 1)}>
-                            {translate(
-                                "common:resources.posts.forms.nextButton",
-                            )}
-                        </Button>
-                    )}
-                    {current === formList.length - 1 && (
-                        <SaveButton
-                            style={{ marginRight: 10 }}
-                            loading={isLoading || formLoading}
-                            onClick={() => submit()}
-                            disabled={formLoading}
-                        />
-                    )}
-                </>
-            }
-        >
-            <Steps {...stepsProps}>
-                <Step title="Content" />
-                <Step title="Relations" />
-            </Steps>
-
-            <div style={{ marginTop: 60 }}>
-                <Form
-                    {...formProps}
-                    wrapperCol={{ span: 24 }}
-                    layout="vertical"
+        <Edit {...props} saveButtonProps={saveButtonProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
+                <Form.Item
+                    label="Text"
+                    name="text"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
                 >
-                    {formList[current]}
-                </Form>
-            </div>
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Description"
+                    name="description"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Weight"
+                    name="weight"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <InputNumber />
+                </Form.Item>
+                <Form.Item
+                    label="IsActive"
+                    name="isActive"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Switch />
+                </Form.Item>
+                <Form.Item label="ExternalId" name="externalId">
+                    <Input />
+                </Form.Item>
+                <Form.Item label={"Image"}>
+                    <Form.Item
+                        name="images"
+                        valuePropName="fileList"
+                        getValueFromEvent={normalizeFile}
+                        noStyle
+                    >
+                        <Upload.Dragger
+                            name="file"
+                            action={`/ayna-crud-api/media/upload`}
+                            listType="picture"
+                            maxCount={1}
+                            multiple
+                        >
+                            <p className="ant-upload-text">title</p>
+                            <p className="ant-upload-hint">description</p>
+                        </Upload.Dragger>
+                    </Form.Item>
+                </Form.Item>
+            </Form>
         </Edit>
     );
 };

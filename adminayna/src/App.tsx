@@ -1,10 +1,5 @@
 import React from "react";
-import {
-    Admin,
-    Resource,
-    AuthProvider,
-    ILoginForm,
-} from "readmin";
+import { Admin, Resource, AuthProvider, ILoginForm } from "readmin";
 
 import { DemoSidebar, useDemoSidebar } from "readmin-demo-sidebar";
 
@@ -17,6 +12,7 @@ import {
     PrizesList,
     PostShow,
     PrizesCreate,
+    PrizeEdit,
 } from "./components/pages/prizes";
 
 const axiosInstance = axios.create();
@@ -74,7 +70,14 @@ function App() {
             dataProvider={dataProvider("/ayna-crud-api/admin", axiosInstance)}
             {...adminProps}
         >
-            <Resource name="prizes" list={PrizesList} show={PostShow} create={PrizesCreate} canDelete />
+            <Resource
+                name="prizes"
+                list={PrizesList}
+                show={PostShow}
+                edit={PrizeEdit}
+                create={PrizesCreate}
+                canDelete
+            />
         </Admin>
     );
 }
