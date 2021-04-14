@@ -146,6 +146,9 @@ export const PostList = ({ ...props }) => {
 }
 ```
 
+table column kullanımı ile ilgili ufak ve carpıcı bir acıklama..
+(render fonksiyonu)
+
 hookların detaylı kullanımı daha sonra..
 
 

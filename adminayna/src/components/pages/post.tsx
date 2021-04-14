@@ -11,6 +11,8 @@ import {
     ReferenceField,
     TextField,
     TagField,
+    NumberField,
+    BooleanField,
     FilterDropdown,
     Select,
     Radio,
@@ -37,6 +39,7 @@ import {
     getDefaultSortOrder,
     DateField,
     IResourceComponents,
+    ImageField
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
@@ -55,7 +58,7 @@ export const PostList: IResourceComponents["list"] = (props) => {
         ], */
     });
 
-    console.log(props.canCreate);
+    console.log("translate", translate("common:resources.posts.fields.slug"));
 
     const actions = () => (
         <Space direction="horizontal">
@@ -90,108 +93,68 @@ export const PostList: IResourceComponents["list"] = (props) => {
                 }}
             >
                 <Table.Column
+                    dataIndex="id"
+                    title="ID"
+                    key="id"
+                    render={(value) => <TextField value={value} />}
+                    sorter={{
+                        multiple: 1,
+                    }}
+                />
+                <Table.Column
                     dataIndex="text"
-                    title={translate("common:resources.posts.fields.title")}
+                    title="Text"
                     key="text"
                     render={(value) => <TextField value={value} />}
                     sorter={{
                         multiple: 1,
                     }}
                 />
-                {/*           <Table.Column
-                    dataIndex="slug"
-                    title={translate("common:resources.posts.fields.slug")}
-                    key="slug"
-                    render={(value) => <TextField value={value} />}
+                <Table.Column
+                    dataIndex="weight"
+                    title="Weight"
+                    key="weight"
+                    render={(value) => <NumberField value={value} />}
+                    sorter={{
+                        multiple: 1,
+                    }}
                 />
                 <Table.Column
-                    dataIndex="category"
-                    title={translate("common:resources.posts.fields.category")}
-                    key="category.id"
-                    render={({ id }) => (
-                        <ReferenceField resource="categories" value={id}>
-                            <TextField renderRecordKey="title" />
-                        </ReferenceField>
-                    )}
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Reference
-                                reference="categories"
-                                optionText="title"
-                                sort={{
-                                    field: "title",
-                                    order: "ascend",
-                                }}
-                            >
-                                <Select
-                                    style={{ minWidth: 200 }}
-                                    showSearch
-                                    mode="multiple"
-                                    placeholder="Select Category"
-                                />
-                            </Reference>
-                        </FilterDropdown>
-                    )}
-                />
-                <Table.Column
-                    dataIndex="status"
-                    title={translate(
-                        "common:resources.posts.fields.status.title",
-                    )}
-                    key="status"
-                    render={(value) => <TagField value={value} />}
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Radio.Group>
-                                <Radio value="published">
-                                    {translate(
-                                        "common:resources.posts.fields.status.published",
-                                    )}
-                                </Radio>
-                                <Radio value="draft">
-                                    {translate(
-                                        "common:resources.posts.fields.status.draft",
-                                    )}
-                                </Radio>
-                            </Radio.Group>
-                        </FilterDropdown>
-                    )}
-                    defaultFilteredValue={["published"]}
+                    dataIndex="isActive"
+                    title="Active"
+                    key="isActive"
+                    render={(value) => <BooleanField value={value} />}
+                    sorter={{
+                        multiple: 1,
+                    }}
                 />
                 <Table.Column
                     dataIndex="createdAt"
-                    title={translate("common:resources.posts.fields.createdAt")}
+                    title="Created At"
                     key="createdAt"
                     render={(value) => <DateField format="LLL" value={value} />}
                     sorter={{
-                        multiple: 2,
+                        multiple: 1,
                     }}
-                    defaultSortOrder={getDefaultSortOrder("createdAt", sorter)}
                 />
                 <Table.Column
-                    title={translate("common:table.actions", "Actions")}
-                    dataIndex="actions"
-                    key="actions"
-                    render={(
-                        _text: string | number,
-                        record: {
-                            id: string | number;
-                        },
-                    ): React.ReactNode => (
-                        <Space>
-                            <EditButton size="small" recordItemId={record.id} />
-                            <DeleteButton
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <ShowButton size="small" recordItemId={record.id} />
-                            <CloneButton
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                /> */}
+                    dataIndex="updatedAt"
+                    title="Updated At"
+                    key="updatedAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                    sorter={{
+                        multiple: 1,
+                    }}
+                />
+                <Table.Column
+                    dataIndex="images"
+                    title="Images"
+                    key="images"
+                    render={(value) => <ImageField width={200} value={value[0].url} />}
+                    sorter={{
+                        multiple: 1,
+                    }}
+                />
             </Table>
         </List>
     );
