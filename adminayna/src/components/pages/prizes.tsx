@@ -137,8 +137,8 @@ export const PrizesList = (props: IResourceComponentsProps) => {
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Radio.Group>
-                                <Radio value={true}>IsActive</Radio>
-                                <Radio value={false}>Not isActive</Radio>
+                                <Radio value={true}>Active</Radio>
+                                <Radio value={false}>Passive</Radio>
                             </Radio.Group>
                         </FilterDropdown>
                     )}
@@ -179,8 +179,6 @@ export const PrizesList = (props: IResourceComponentsProps) => {
                                 recordItemId={record.id}
                                 mutationMode="undoable"
                             />
-                            {/* <ShowButton size="small" recordItemId={record.id} /> */}
-                            {/*  <CloneButton /> */}
                         </Space>
                     )}
                 />
@@ -310,6 +308,7 @@ export const PrizeEdit = (props: IResourceComponentsProps) => {
                 <Form.Item
                     label="IsActive"
                     name="isActive"
+                    valuePropName="checked"
                     rules={[
                         {
                             required: true,
