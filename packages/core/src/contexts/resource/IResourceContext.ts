@@ -4,20 +4,18 @@ export interface IResourceContext {
     resources: IResourceItem[];
 }
 
+export interface IResourceComponentsProps {
+    canCreate?: boolean;
+    canEdit?: boolean;
+    canDelete?: boolean;
+    canShow?: boolean;
+    name?: string;
+}
 export interface IResourceComponents {
-    list?: React.FunctionComponent<{
-        canCreate: boolean;
-        canEdit: boolean;
-        canDelete?: boolean;
-        canShow: boolean;
-    }>;
-    create?: React.FunctionComponent<{ canEdit: boolean }>;
-    edit?: React.FunctionComponent;
-    show?: React.FunctionComponent<{
-        canCreate: boolean;
-        canEdit: boolean;
-        canDelete?: boolean;
-    }>;
+    list?: React.FunctionComponent<IResourceComponentsProps>;
+    create?: React.FunctionComponent<IResourceComponentsProps>;
+    edit?: React.FunctionComponent<IResourceComponentsProps>;
+    show?: React.FunctionComponent<IResourceComponentsProps>;
 }
 
 export interface IResourceItem extends IResourceComponents {

@@ -9,6 +9,7 @@ export {
     I18nProvider,
     MutationMode,
     IResourceComponents,
+    IResourceComponentsProps,
     ILoginForm,
 } from "./interfaces";
 
