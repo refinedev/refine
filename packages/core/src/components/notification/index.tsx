@@ -16,45 +16,20 @@ export const Notification: React.FC<{
 
     const { notificationDispatch } = useCancelNotification();
 
-    const successNotification = (id: string, resource: string) => {
-        const message = (
-            <span style={{ marginLeft: 20 }}>
-                {translate("common:notifications.success", "Successful")}
-            </span>
-        );
-
-        const description = (
-            <span style={{ marginLeft: 20 }}>
-                {translate(
-                    "common:notifications.succesMessage",
-                    {
-                        id: id,
-                        resource: resource,
-                    },
-                    `Id: ${id} ${resource} edited`,
-                )}
-            </span>
-        );
-
+    const removeNotification = (id: string, resource: string) => {
         notificationDispatch({
             type: ActionTypes.REMOVE,
             payload: { id: id },
         });
 
-        notification.open({
-            key: `${id}-${resource}-undo`,
-            icon: <Progress type="circle" percent={100} width={50} />,
-            message,
-            description,
-            duration: 3,
-        });
+        notification.close(`${id}-${resource}-undo`);
     };
 
     const cancelNotification = () => {
         notifications.forEach((notificationItem: INotification) => {
             if (notificationItem.isRunning === true) {
                 if (notificationItem.seconds === 0) {
-                    successNotification(
+                    removeNotification(
                         notificationItem.id,
                         notificationItem.resource,
                     );

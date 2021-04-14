@@ -5,6 +5,8 @@ import {
     useMutationMode,
     useCancelNotification,
     useCacheQueries,
+    useNotification,
+    useTranslate,
 } from "@hooks";
 import { DataContext } from "@contexts/data";
 import { ActionTypes } from "@contexts/notification";
@@ -44,6 +46,8 @@ export const useDelete = (
     } = useMutationMode();
 
     const { notificationDispatch } = useCancelNotification();
+    const notification = useNotification();
+    const translate = useTranslate();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
@@ -148,12 +152,17 @@ export const useDelete = (
                     previousQueries: previousQueries,
                 };
             },
-            onError: (_err, _variables, context) => {
+            onError: (err: any, _variables, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
                     }
                 }
+
+                notification.error({
+                    message: translate("common:notifications.error", "Error"),
+                    description: err.message,
+                });
             },
             onSuccess: (_data, variables, _context) => {
                 const allQueries = cacheQueries(
@@ -167,6 +176,17 @@ export const useDelete = (
                         queryClient.removeQueries(query.queryKey);
                     }
                 }
+
+                notification.success({
+                    message: translate(
+                        "common:notifications.deleteSuccess",
+                        "Success",
+                    ),
+                    description: translate(
+                        "common:notifications.deleteSuccess",
+                        "Successfully deleted",
+                    ),
+                });
             },
             onSettled: (_data, _error, variables) => {
                 const allQueries = cacheQueries(

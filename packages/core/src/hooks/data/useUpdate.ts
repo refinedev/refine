@@ -15,6 +15,7 @@ import {
     useMutationMode,
     useCancelNotification,
     useCacheQueries,
+    useNotification,
 } from "@hooks";
 
 type UpdateParams<TParams> = {
@@ -42,6 +43,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
+    const notification = useNotification();
 
     const { notificationDispatch } = useCancelNotification();
 
@@ -150,11 +152,18 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                     previousQueries: previousQueries,
                 };
             },
-            onError: (_err, _variables, context) => {
+            onError: (error: any, _variables, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
                     }
+                }
+
+                if (error !== "mutation cancelled") {
+                    notification.error({
+                        message: `There was an error updating ${resource}`,
+                        description: error.message,
+                    });
                 }
             },
             onSettled: (_data, _error, variables) => {
@@ -162,6 +171,12 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                 for (const query of allQueries) {
                     queryClient.invalidateQueries(query.queryKey);
                 }
+            },
+            onSuccess: (_data, { id }) => {
+                notification.success({
+                    message: "Successful",
+                    description: `Id: ${id} ${resource} edited`,
+                });
             },
         },
     );

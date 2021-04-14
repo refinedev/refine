@@ -130,10 +130,12 @@
     "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
     "notifications": {
         "success": "Successful",
+        "error": "Error",
         "succesMessage": "Id: {{id}} {{resource}} edited",
         "undoable": "You have {{seconds}} seconds to undo",
+        "createSuccess": "Successfully created",
         "createErrorMessage": "There was an error creating in {{resource}}",
-        "createSuccess": "Successfully created"
+        "deleteSuccess": "Successfully deleted"
     },
     "loading": "Loading",
     "backHome": "Back Home"
