@@ -133,9 +133,12 @@
         "error": "Error",
         "succesMessage": "Id: {{id}} {{resource}} edited",
         "undoable": "You have {{seconds}} seconds to undo",
-        "createSuccess": "Successfully created",
-        "createErrorMessage": "There was an error creating in {{resource}}",
-        "deleteSuccess": "Successfully deleted"
+        "createSuccess": "Successfully created in {{resource}}",
+        "createError": "There was an error creating in {{resource}}",
+        "deleteSuccess": "Successfully deleted in {{resource}}",
+        "deleteError": "Error when deleting in {{resource}}",
+        "editSuccess": "Successfully edited in {{resource}}",
+        "editError": "Error when editing in {{resource}}"
     },
     "loading": "Loading",
     "backHome": "Back Home"

@@ -34,6 +34,7 @@ export const useCreate = <
                 notification.success({
                     description: translate(
                         "common:notifications.createSuccess",
+                        { resource },
                         "Successfully Created",
                     ),
                     message: translate(
@@ -50,11 +51,9 @@ export const useCreate = <
                 notification.error({
                     description: e.message,
                     message: translate(
-                        "common:notifications.createErrorMessage",
-                        {
-                            resource: resource,
-                        },
-                        `There was an error creating in ${resource}!`,
+                        "common:notifications.createError",
+                        { resource },
+                        `There was an error creating in ${resource}`,
                     ),
                 });
             },

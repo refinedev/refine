@@ -16,6 +16,7 @@ import {
     useCancelNotification,
     useCacheQueries,
     useNotification,
+    useTranslate,
 } from "@hooks";
 
 type UpdateParams<TParams> = {
@@ -44,6 +45,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
     const notification = useNotification();
+    const translate = useTranslate();
 
     const { notificationDispatch } = useCancelNotification();
 
@@ -59,7 +61,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
 
     const mutation = useMutation<
         UpdateResponse,
-        unknown,
+        Error,
         UpdateParams<TParams>,
         UpdateContext
     >(
@@ -152,16 +154,20 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                     previousQueries: previousQueries,
                 };
             },
-            onError: (error: any, _variables, context) => {
+            onError: (error: Error, _variables, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
                     }
                 }
 
-                if (error !== "mutation cancelled") {
+                if (error.message !== "mutation cancelled") {
                     notification.error({
-                        message: `There was an error updating ${resource}`,
+                        message: translate(
+                            "common:notifications:editError",
+                            { resource },
+                            `Error when editing in ${resource}`,
+                        ),
                         description: error.message,
                     });
                 }
@@ -174,8 +180,15 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
             },
             onSuccess: (_data, { id }) => {
                 notification.success({
-                    message: "Successful",
-                    description: `Id: ${id} ${resource} edited`,
+                    message: translate(
+                        "common:notifications:success",
+                        "Successful",
+                    ),
+                    description: translate(
+                        "common:notifications:editSuccess",
+                        { resource },
+                        `Successfully edited in ${resource}`,
+                    ),
                 });
             },
         },

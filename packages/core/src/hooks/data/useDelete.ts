@@ -61,7 +61,7 @@ export const useDelete = (
 
     const mutation = useMutation<
         DeleteOneResponse,
-        unknown,
+        Error,
         DeleteParams,
         DeleteContext
     >(
@@ -78,7 +78,7 @@ export const useDelete = (
 
                     const cancelMutation = () => {
                         clearTimeout(updateTimeout);
-                        reject("mutation cancelled");
+                        reject({ message: "mutationCancelled" });
                     };
 
                     if (onCancel) {
@@ -152,17 +152,22 @@ export const useDelete = (
                     previousQueries: previousQueries,
                 };
             },
-            onError: (err: any, _variables, context) => {
+            onError: (err: Error, _variables, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
                     }
                 }
 
-                notification.error({
-                    message: translate("common:notifications.error", "Error"),
-                    description: err.message,
-                });
+                if (err.message !== "mutationCancelled") {
+                    notification.error({
+                        message: translate(
+                            "common:notifications.error",
+                            "Error",
+                        ),
+                        description: err.message,
+                    });
+                }
             },
             onSuccess: (_data, variables, _context) => {
                 const allQueries = cacheQueries(

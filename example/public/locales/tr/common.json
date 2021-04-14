@@ -133,8 +133,13 @@
     "notifications": {
         "success": "Başarılı",
         "succesMessage": "Id: {{id}} {{resource}} düzenlendi",
-        "undoable": "Geri almak için {{seconds}} saniyen var",
-        "createErrorMessage": "{{resource}} içinde kayıt oluşturulurken hata oldu"
+        "undoable": "Geri almak için {{seconds}} saniyeniz var",
+        "createSuccess": "{{resource}} içinde başarıyla oluşturuldu",
+        "createError": "{{resource}} içinde oluşturulurken hata",
+        "deleteSuccess": "{{resource}} içinde başarıyla silindi",
+        "deleteError": "{{resource}} içinde silinirken hata",
+        "editSuccess": "{{resource}} içinde başarıyla düzenlendi",
+        "editError": "{{resource}} içinde düzenlenirken hata"
     },
     "loading": "Yükleniyor",
     "backHome": "Ana sayfaya geri dön"

@@ -125,13 +125,6 @@ export const useEditForm = ({
                             return onMutationSuccess(...args);
                         }
 
-                        // if (mutationMode !== "undoable") {
-                        //     notification.success({
-                        //         message: "Successful",
-                        //         description: `Id:${id} ${resource.name} edited`,
-                        //     });
-                        // }
-
                         if (mutationMode === "pessimistic") {
                             setEditId(undefined);
                             handleSubmitWithRedirect({
@@ -145,13 +138,6 @@ export const useEditForm = ({
                         if (onMutationError) {
                             return onMutationError(error, ...rest);
                         }
-
-                        // if (error !== "mutation cancelled") {
-                        //     notification.error({
-                        //         message: `There was an error updating it ${resource.name}!`,
-                        //         description: error.message,
-                        //     });
-                        // }
                     },
                 },
             );
