@@ -639,11 +639,11 @@ export const PostEdit = (props: any) => {
 
 export const PostShow = (props: any) => {
     const { queryResult } = useShow({});
-    const { data } = queryResult;
+    const { data, isLoading } = queryResult;
     const record = data?.data;
 
     return (
-        <Show {...props}>
+        <Show {...props} isLoading={isLoading}>
             <Title level={5}>Id</Title>
             <Text>{record?.id}</Text>
 

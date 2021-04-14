@@ -4,7 +4,6 @@ import { Card, Col, Row, Space } from "antd";
 import pluralize from "pluralize";
 
 import { ResourceRouterParams } from "../../../interfaces";
-import { useOne, useResourceWithRoute } from "@hooks";
 import { OptionalComponent } from "@definitions";
 import {
     EditButton,
@@ -20,6 +19,7 @@ export interface ShowProps {
     canEdit?: boolean;
     canDelete?: boolean;
     actionButtons?: React.ReactNode;
+    isLoading?: boolean;
 }
 
 export const Show: React.FC<ShowProps> = ({
@@ -28,25 +28,19 @@ export const Show: React.FC<ShowProps> = ({
     canEdit,
     canDelete,
     actionButtons,
+    isLoading,
     children,
 }) => {
-    const {
-        resource: routeResourceName,
-        id: idFromRoute,
-    } = useParams<ResourceRouterParams>();
-
-    const resourceWithRoute = useResourceWithRoute();
-
-    const resource = resourceWithRoute(routeResourceName);
-
-    const { isLoading, isFetching } = useOne(resource.name, idFromRoute);
+    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     return (
         <Row gutter={[16, 16]}>
             <Col flex="1">
                 <Card
-                    title={title ?? `Show ${pluralize.singular(resource.name)}`}
-                    loading={isLoading || isFetching}
+                    title={
+                        title ?? `Show ${pluralize.singular(routeResourceName)}`
+                    }
+                    loading={isLoading}
                     extra={
                         <Row>
                             <Space key="extra-buttons">
@@ -54,11 +48,11 @@ export const Show: React.FC<ShowProps> = ({
                                     <>
                                         <ListButton />
                                         {canEdit && (
-                                            <EditButton disabled={isFetching} />
+                                            <EditButton disabled={isLoading} />
                                         )}
                                         {canDelete && (
                                             <DeleteButton
-                                                disabled={isFetching}
+                                                disabled={isLoading}
                                             />
                                         )}
                                         <RefreshButton />
