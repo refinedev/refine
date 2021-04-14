@@ -24,7 +24,7 @@ export const useSelect = (props: UseSelectProps): SelectProps<"multiple"> => {
         optionLabel = "title",
         optionValue = "id",
     } = props;
-    useList(
+    const { isLoading } = useList(
         resource,
         {
             search: {
@@ -53,5 +53,6 @@ export const useSelect = (props: UseSelectProps): SelectProps<"multiple"> => {
     return {
         options,
         onSearch,
+        loading: isLoading,
     };
 };
