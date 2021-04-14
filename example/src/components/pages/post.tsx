@@ -7,7 +7,6 @@ import {
     Show,
     Form,
     Steps,
-    Reference,
     ReferenceField,
     TextField,
     TagField,
@@ -247,6 +246,18 @@ export const PostCreate = (props: any) => {
         },
     });
 
+    const categorySelectProps = useSelect({
+        resource: "categories",
+        optionLabel: "title",
+        optionValue: "id",
+    });
+
+    const userSelectProps = useSelect({
+        resource: "users",
+        optionLabel: "email",
+        optionValue: "id",
+    });
+
     const formList = [
         <>
             <Form.Item
@@ -343,16 +354,11 @@ export const PostCreate = (props: any) => {
                     return { id };
                 }}
             >
-                <Reference
-                    reference="categories"
-                    optionText="title"
-                    sort={{
-                        field: "title",
-                        order: "ascend",
-                    }}
-                >
-                    <Select showSearch />
-                </Reference>
+                <Select
+                    showSearch
+                    filterOption={false}
+                    {...categorySelectProps}
+                />
             </Form.Item>
             <Form.Item
                 label={translate("common:resources.posts.fields.user")}
@@ -368,9 +374,7 @@ export const PostCreate = (props: any) => {
                     return { id };
                 }}
             >
-                <Reference reference="users" optionText="email">
-                    <Select showSearch />
-                </Reference>
+                <Select showSearch filterOption={false} {...userSelectProps} />
             </Form.Item>
         </>,
     ];
@@ -452,6 +456,18 @@ export const PostEdit = (props: any) => {
         warnWhenUnsavedChanges: true,
         redirect: "list",
         mutationMode: "pessimistic",
+    });
+
+    const categorySelectProps = useSelect({
+        resource: "categories",
+        optionLabel: "title",
+        optionValue: "id",
+    });
+
+    const userSelectProps = useSelect({
+        resource: "users",
+        optionLabel: "email",
+        optionValue: "id",
     });
 
     const formList = [
@@ -552,16 +568,11 @@ export const PostEdit = (props: any) => {
                     return { id };
                 }}
             >
-                <Reference
-                    reference="categories"
-                    optionText="title"
-                    sort={{
-                        field: "title",
-                        order: "ascend",
-                    }}
-                >
-                    <Select showSearch />
-                </Reference>
+                <Select
+                    showSearch
+                    filterOption={false}
+                    {...categorySelectProps}
+                />
             </Form.Item>
             <Form.Item
                 label={translate("common:resources.posts.fields.user")}
@@ -579,9 +590,7 @@ export const PostEdit = (props: any) => {
                 }}
                 help="Autocomplete (search user email)"
             >
-                <Reference reference="users" optionText="email">
-                    <Select showSearch />
-                </Reference>
+                <Select showSearch filterOption={false} {...userSelectProps} />
             </Form.Item>
         </>,
     ];
