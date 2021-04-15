@@ -506,6 +506,8 @@ export const PostEdit = (props: any) => {
 
     const tagsSelectProps = useSelect({
         resource: "tags",
+        // TODO: tag interface
+        defaultValue: postData?.tags.map((tag: { id: string }) => tag.id),
     });
 
     const formList = [
