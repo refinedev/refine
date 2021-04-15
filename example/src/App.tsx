@@ -21,7 +21,12 @@ import {
     PostShow,
 } from "./components/pages/post";
 import { CategoryList, CategoryCreate } from "./components/pages/category";
-import { UserList, UserEdit, UserCreate } from "./components/pages/user";
+import {
+    UserList,
+    UserEdit,
+    UserCreate,
+    UserShow,
+} from "./components/pages/user";
 import { DashboardPage } from "./components/pages/dashboard";
 import { ReadyPage } from "./components/ready";
 import { LoginPage } from "./components/login";
@@ -133,6 +138,7 @@ function App() {
                 list={UserList}
                 edit={UserEdit}
                 create={UserCreate}
+                show={UserShow}
                 icon={<Icons.UserOutlined />}
             />
         </Admin>

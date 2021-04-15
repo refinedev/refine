@@ -9,7 +9,6 @@ import {
     Input,
     Edit,
     Show,
-    ShowSimple,
     useTable,
     EditButton,
     DeleteButton,
@@ -247,15 +246,5 @@ export const PostLightEdit = (props: any) => {
                 </Form.Item>
             </Form>
         </Edit>
-    );
-};
-
-export const PostLightShow = (props: any) => {
-    return (
-        <Show {...props}>
-            <ShowSimple title="Post Title">
-                <TextField renderRecordKey="title" />
-            </ShowSimple>
-        </Show>
     );
 };
