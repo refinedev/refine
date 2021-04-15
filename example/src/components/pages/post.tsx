@@ -251,14 +251,15 @@ export const PostCreate = (props: any) => {
 
     const categorySelectProps = useSelect({
         resource: "categories",
-        optionLabel: "title",
-        optionValue: "id",
     });
 
     const userSelectProps = useSelect({
         resource: "users",
         optionLabel: "email",
-        optionValue: "id",
+    });
+
+    const tagsSelectProps = useSelect({
+        resource: "tags",
     });
 
     const formList = [
@@ -352,7 +353,9 @@ export const PostCreate = (props: any) => {
                         required: true,
                     },
                 ]}
-                valuePropName=""
+                getValueProps={(prop) => {
+                    return { value: prop?.id };
+                }}
                 getValueFromEvent={(id) => {
                     return { id };
                 }}
@@ -372,12 +375,39 @@ export const PostCreate = (props: any) => {
                     },
                 ]}
                 help="Autocomplete (search user email)"
-                valuePropName=""
+                getValueProps={(prop) => {
+                    return { value: prop?.id };
+                }}
                 getValueFromEvent={(id) => {
                     return { id };
                 }}
             >
                 <Select showSearch filterOption={false} {...userSelectProps} />
+            </Form.Item>
+            <Form.Item
+                label={translate("common:resources.posts.fields.tags")}
+                name="tags"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+                // TODO: tags interface
+                getValueProps={(tags?: { id: string }[]) => {
+                    return { value: tags?.map((tag) => tag.id) };
+                }}
+                getValueFromEvent={(args: string[]) => {
+                    return args.map((item) => ({
+                        id: item,
+                    }));
+                }}
+            >
+                <Select
+                    mode="multiple"
+                    showSearch
+                    filterOption={false}
+                    {...tagsSelectProps}
+                />
             </Form.Item>
         </>,
     ];
@@ -465,16 +495,17 @@ export const PostEdit = (props: any) => {
     const postData = queryResult?.data?.data;
     const categorySelectProps = useSelect({
         resource: "categories",
-        optionLabel: "title",
-        optionValue: "id",
         defaultValue: postData?.category.id,
     });
 
     const userSelectProps = useSelect({
         resource: "users",
         optionLabel: "email",
-        optionValue: "id",
         defaultValue: postData?.user.id,
+    });
+
+    const tagsSelectProps = useSelect({
+        resource: "tags",
     });
 
     const formList = [
@@ -568,8 +599,8 @@ export const PostEdit = (props: any) => {
                         required: true,
                     },
                 ]}
-                getValueProps={({ id }) => {
-                    return { value: id };
+                getValueProps={(prop) => {
+                    return { value: prop?.id };
                 }}
                 getValueFromEvent={(id) => {
                     return { id };
@@ -589,8 +620,8 @@ export const PostEdit = (props: any) => {
                         required: true,
                     },
                 ]}
-                getValueProps={({ id }) => {
-                    return { value: id };
+                getValueProps={(prop) => {
+                    return { value: prop?.id };
                 }}
                 getValueFromEvent={(id) => {
                     return { id };
@@ -598,6 +629,31 @@ export const PostEdit = (props: any) => {
                 help="Autocomplete (search user email)"
             >
                 <Select showSearch filterOption={false} {...userSelectProps} />
+            </Form.Item>
+            <Form.Item
+                label={translate("common:resources.posts.fields.tags")}
+                name="tags"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+                // TODO: Tags Interface
+                getValueProps={(tags?: { id: string }[]) => {
+                    return { value: tags?.map((tag) => tag.id) };
+                }}
+                getValueFromEvent={(args: string[]) => {
+                    return args.map((item) => ({
+                        id: item,
+                    }));
+                }}
+            >
+                <Select
+                    mode="multiple"
+                    showSearch
+                    filterOption={false}
+                    {...tagsSelectProps}
+                />
             </Form.Item>
         </>,
     ];
