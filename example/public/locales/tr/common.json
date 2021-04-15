@@ -133,7 +133,6 @@
     "notifications": {
         "success": "Başarılı",
         "error": "Hata",
-        "succesMessage": "Id: {{id}} {{resource}} düzenlendi",
         "undoable": "Geri almak için {{seconds}} saniyeniz var",
         "createSuccess": "{{resource}} başarıyla oluşturuldu",
         "createError": "{{resource}} oluşturulurken hata",

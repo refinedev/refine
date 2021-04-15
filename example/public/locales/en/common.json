@@ -131,7 +131,6 @@
     "notifications": {
         "success": "Successful",
         "error": "Error",
-        "succesMessage": "Id: {{id}} {{resource}} edited",
         "undoable": "You have {{seconds}} seconds to undo",
         "createSuccess": "Successfully created in {{resource}}",
         "createError": "There was an error creating in {{resource}}",
