@@ -169,11 +169,8 @@ export const useDelete = (
                     });
                 }
             },
-            onSuccess: (_data, variables, _context) => {
-                const allQueries = cacheQueries(
-                    resource,
-                    variables.id.toString(),
-                );
+            onSuccess: (_data, { id }, _context) => {
+                const allQueries = cacheQueries(resource, id.toString());
                 for (const query of allQueries) {
                     if (
                         query.queryKey.includes(`resource/getOne/${resource}`)
@@ -183,6 +180,7 @@ export const useDelete = (
                 }
 
                 notification.success({
+                    key: `${id}-${resource}-notification`,
                     message: translate(
                         "common:notifications.deleteSuccess",
                         "Success",

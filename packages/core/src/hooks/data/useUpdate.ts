@@ -180,6 +180,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
             },
             onSuccess: (_data, { id }) => {
                 notification.success({
+                    key: `${id}-${resource}-notification`,
                     message: translate(
                         "common:notifications:success",
                         "Successful",

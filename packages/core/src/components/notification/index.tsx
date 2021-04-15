@@ -21,8 +21,6 @@ export const Notification: React.FC<{
             type: ActionTypes.REMOVE,
             payload: { id: id },
         });
-
-        notification.close(`${id}-${resource}-undo`);
     };
 
     const cancelNotification = () => {
@@ -53,7 +51,7 @@ export const Notification: React.FC<{
                 );
 
                 notification.open({
-                    key: `${notificationItem.id}-${notificationItem.resource}-undo`,
+                    key: `${notificationItem.id}-${notificationItem.resource}-notification`,
                     icon: (
                         <NotificationProgress
                             dispatch={notificationDispatch}
@@ -70,7 +68,7 @@ export const Notification: React.FC<{
                                 });
                                 notificationItem.cancelMutation();
                                 notification.close(
-                                    `${notificationItem.id}-${notificationItem.resource}-undo`,
+                                    `${notificationItem.id}-${notificationItem.resource}-notification`,
                                 );
                             }}
                         >
