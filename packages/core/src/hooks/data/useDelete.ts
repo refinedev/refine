@@ -10,6 +10,7 @@ import {
 } from "@hooks";
 import { DataContext } from "@contexts/data";
 import { ActionTypes } from "@contexts/notification";
+import pluralize from "pluralize";
 import {
     DeleteOneResponse,
     IDataContext,
@@ -152,13 +153,12 @@ export const useDelete = (
                     previousQueries: previousQueries,
                 };
             },
-            onError: (err: Error, { id }, context) => {
+            onError: (err: any, { id }, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
                     }
                 }
-
                 if (err.message !== "mutationCancelled") {
                     notification.error({
                         key: `${id}-${resource}-notification`,
@@ -170,16 +170,19 @@ export const useDelete = (
                     });
                 }
             },
-            onSuccess: (_data, { id }, _context) => {
+            onSuccess: (_data, { id }) => {
+                const resourceSingular = pluralize.singular(resource);
+
                 notification.success({
                     key: `${id}-${resource}-notification`,
                     message: translate(
-                        "common:notifications.deleteSuccess",
+                        "common:notifications.success",
                         "Success",
                     ),
                     description: translate(
                         "common:notifications.deleteSuccess",
-                        "Successfully deleted",
+                        { resource: resourceSingular },
+                        `Successfully deleted a ${resourceSingular}`,
                     ),
                 });
             },

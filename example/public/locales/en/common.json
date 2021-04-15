@@ -132,12 +132,12 @@
         "success": "Successful",
         "error": "Error",
         "undoable": "You have {{seconds}} seconds to undo",
-        "createSuccess": "Successfully created in {{resource}}",
-        "createError": "There was an error creating in {{resource}}",
-        "deleteSuccess": "Successfully deleted in {{resource}}",
-        "deleteError": "Error when deleting in {{resource}}",
-        "editSuccess": "Successfully edited in {{resource}}",
-        "editError": "Error when editing in {{resource}}"
+        "createSuccess": "Successfully created {{resource}}",
+        "createError": "There was an error creating {{resource}}",
+        "deleteSuccess": "Successfully deleted {{resource}}",
+        "deleteError": "Error when deleting {{resource}}",
+        "editSuccess": "Successfully edited {{resource}}",
+        "editError": "Error when editing {{resource}}"
     },
     "loading": "Loading",
     "backHome": "Back Home"

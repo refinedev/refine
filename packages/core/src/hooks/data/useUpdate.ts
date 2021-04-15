@@ -11,6 +11,7 @@ import {
     Context as UpdateContext,
     ContextQuery,
 } from "../../interfaces";
+import pluralize from "pluralize";
 import {
     useMutationMode,
     useCancelNotification,
@@ -56,6 +57,8 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
     if (!resource) {
         throw new Error("'resource' is required for useUpdate hook.");
     }
+
+    const resourceSingular = pluralize.singular(resource);
 
     const getAllQueries = useCacheQueries();
 
@@ -166,8 +169,8 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                         key: `${id}-${resource}-notification`,
                         message: translate(
                             "common:notifications:editError",
-                            { resource },
-                            `Error when editing in ${resource}`,
+                            { resourceSingular },
+                            `Error when editing ${resourceSingular}`,
                         ),
                         description: error.message,
                     });
@@ -188,8 +191,8 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                     ),
                     description: translate(
                         "common:notifications:editSuccess",
-                        { resource },
-                        `Successfully edited in ${resource}`,
+                        { resourceSingular },
+                        `Successfully edited ${resourceSingular}`,
                     ),
                 });
             },

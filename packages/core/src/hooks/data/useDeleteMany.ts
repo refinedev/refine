@@ -44,7 +44,7 @@ export const useDeleteMany = (resource: string): UseDeleteManyReturnType => {
                     description: translate(
                         "common:notifications.deleteSuccess",
                         { resource },
-                        `Successfully deleted in ${resource}`,
+                        `Successfully deleted ${resource}`,
                     ),
                 });
             },

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
+import pluralize from "pluralize";
 
 import { DataContext } from "@contexts/data";
 import { CreateResponse, IDataContext, BaseRecord } from "../../interfaces";
@@ -31,11 +32,13 @@ export const useCreate = <
             create<TParams>(resource, values),
         {
             onSuccess: (_, { resource }) => {
+                const resourceSingular = pluralize.singular(resource);
+
                 notification.success({
                     description: translate(
                         "common:notifications.createSuccess",
                         { resource },
-                        "Successfully Created",
+                        `Successfully created ${resourceSingular}`,
                     ),
                     message: translate(
                         "common:notifications.success",
@@ -48,12 +51,14 @@ export const useCreate = <
                 });
             },
             onError: (e: Error, { resource }) => {
+                const resourceSingular = pluralize.singular(resource);
+
                 notification.error({
                     description: e.message,
                     message: translate(
                         "common:notifications.createError",
-                        { resource },
-                        `There was an error creating in ${resource}`,
+                        { resourceSingular },
+                        `There was an error creating ${resourceSingular}`,
                     ),
                 });
             },

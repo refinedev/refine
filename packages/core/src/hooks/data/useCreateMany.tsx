@@ -50,7 +50,7 @@ export const useCreateMany = <
                     message: translate(
                         "common:notifications.createError",
                         { resource },
-                        `There was an error creating in ${resource}!`,
+                        `There was an error creating ${resource}!`,
                     ),
                 });
             },
