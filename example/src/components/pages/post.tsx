@@ -651,10 +651,7 @@ export const PostShow = (props: any) => {
             <Text>{record?.title}</Text>
 
             <Title level={5}>Content</Title>
-            <MarkdownField
-                record={record}
-                renderRecordKey="content"
-            ></MarkdownField>
+            <MarkdownField value={record?.content}></MarkdownField>
         </Show>
     );
 };
