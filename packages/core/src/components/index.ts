@@ -10,7 +10,6 @@ export * from "./containers";
 export * from "./notification";
 
 export { Layout } from "./layout";
-export { Reference } from "./reference";
 export { ErrorComponent } from "./layout/components";
 export { Authenticated } from "./authenticated";
 export { default as Icon } from "@ant-design/icons";
