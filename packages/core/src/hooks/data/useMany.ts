@@ -31,7 +31,7 @@ export const useMany = (
                 }
 
                 notification.error({
-                    key: `${ids.join("-")}-${resource}-notification`,
+                    key: `${ids[0]}-${resource}-notification`,
                     message: translate("common:notifications.error", "Error"),
                     description: err.message,
                 });
