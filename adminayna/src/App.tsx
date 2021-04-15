@@ -1,19 +1,9 @@
-import React from "react";
 import { Admin, Resource, AuthProvider, ILoginForm } from "readmin";
-
-import { DemoSidebar, useDemoSidebar } from "readmin-demo-sidebar";
-
 import dataProvider from "readmin-nestjsx-crud";
-import { useTranslation } from "react-i18next";
-
 import axios from "axios";
 
-import {
-    PrizesList,
-    PostShow,
-    PrizesCreate,
-    PrizeEdit,
-} from "./components/pages/prizes";
+import { PrizesList, PrizesCreate, PrizeEdit } from "./components/pages/prizes";
+import { UsersList, UsersEdit, UsersCreate } from "./components/pages/users";
 
 const axiosInstance = axios.create();
 
@@ -59,23 +49,23 @@ const authProvider: AuthProvider = {
 };
 
 function App() {
-    const [adminProps, demoSidebarProps] = useDemoSidebar({
-        defaultTitle: "Rea",
-        defaultMutationMode: "pessimistic",
-    });
-
     return (
         <Admin
             authProvider={authProvider}
             dataProvider={dataProvider("/ayna-crud-api/admin", axiosInstance)}
-            {...adminProps}
         >
             <Resource
                 name="prizes"
                 list={PrizesList}
-                show={PostShow}
                 edit={PrizeEdit}
                 create={PrizesCreate}
+                canDelete
+            />
+            <Resource
+                name="users"
+                list={UsersList}
+                edit={UsersEdit}
+                create={UsersCreate}
                 canDelete
             />
         </Admin>
