@@ -152,7 +152,7 @@ export const useDelete = (
                     previousQueries: previousQueries,
                 };
             },
-            onError: (err: Error, _variables, context) => {
+            onError: (err: Error, { id }, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
@@ -161,6 +161,7 @@ export const useDelete = (
 
                 if (err.message !== "mutationCancelled") {
                     notification.error({
+                        key: `${id}-${resource}-notification`,
                         message: translate(
                             "common:notifications.error",
                             "Error",
@@ -170,15 +171,6 @@ export const useDelete = (
                 }
             },
             onSuccess: (_data, { id }, _context) => {
-                const allQueries = cacheQueries(resource, id.toString());
-                for (const query of allQueries) {
-                    if (
-                        query.queryKey.includes(`resource/getOne/${resource}`)
-                    ) {
-                        queryClient.removeQueries(query.queryKey);
-                    }
-                }
-
                 notification.success({
                     key: `${id}-${resource}-notification`,
                     message: translate(

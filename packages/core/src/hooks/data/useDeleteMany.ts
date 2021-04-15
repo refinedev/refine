@@ -34,8 +34,9 @@ export const useDeleteMany = (resource: string): UseDeleteManyReturnType => {
             onSettled: () => {
                 queryClient.invalidateQueries(queryResource);
             },
-            onSuccess: () => {
+            onSuccess: (_data, { id }) => {
                 notification.success({
+                    key: `${id}-${resource}-notification`,
                     message: translate(
                         "common:notifications.success",
                         "Success",
@@ -47,8 +48,9 @@ export const useDeleteMany = (resource: string): UseDeleteManyReturnType => {
                     ),
                 });
             },
-            onError: (err: Error) => {
+            onError: (err: Error, { id }) => {
                 notification.error({
+                    key: `${id}-${resource}-notification`,
                     message: translate("common:notifications.error", "Error"),
                     description: err.message,
                 });

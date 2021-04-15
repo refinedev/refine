@@ -77,7 +77,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
 
                     const cancelMutation = () => {
                         clearTimeout(updateTimeout);
-                        reject("mutation cancelled");
+                        reject({ message: "mutationCancelled" });
                     };
 
                     if (onCancel) {
@@ -154,15 +154,16 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                     previousQueries: previousQueries,
                 };
             },
-            onError: (error: Error, _variables, context) => {
+            onError: (error: Error, { id }, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
                     }
                 }
 
-                if (error.message !== "mutation cancelled") {
+                if (error.message !== "mutationCancelled") {
                     notification.error({
+                        key: `${id}-${resource}-notification`,
                         message: translate(
                             "common:notifications:editError",
                             { resource },
