@@ -455,22 +455,26 @@ export const PostEdit = (props: any) => {
         submit,
         formLoading,
         formProps,
+        queryResult,
     } = useStepsForm({
         warnWhenUnsavedChanges: true,
         redirect: "list",
         mutationMode: "pessimistic",
     });
 
+    const postData = queryResult?.data?.data;
     const categorySelectProps = useSelect({
         resource: "categories",
         optionLabel: "title",
         optionValue: "id",
+        defaultValue: postData?.category.id,
     });
 
     const userSelectProps = useSelect({
         resource: "users",
         optionLabel: "email",
         optionValue: "id",
+        defaultValue: postData?.user.id,
     });
 
     const formList = [
