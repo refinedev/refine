@@ -10,10 +10,8 @@ import {
     Form,
     TextField,
     Input,
-    ShowSimple,
     useFileUploadState,
     useTranslate,
-    RichtextField,
     useTable,
     EditButton,
     ShowButton,
@@ -233,17 +231,5 @@ export const LandingEdit = (props: any) => {
                 </Form.Item>
             </Form>
         </Edit>
-    );
-};
-
-export const LandingShow = (props: any) => {
-    return (
-        <Show {...props}>
-            <ShowSimple title="Landing Title">
-                <TextField renderRecordKey="id" />
-                <TextField renderRecordKey="title" />
-                <RichtextField renderRecordKey="content" />
-            </ShowSimple>
-        </Show>
     );
 };
