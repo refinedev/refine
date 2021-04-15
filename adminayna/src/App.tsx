@@ -4,6 +4,11 @@ import axios from "axios";
 
 import { PrizesList, PrizesCreate, PrizeEdit } from "./components/pages/prizes";
 import { UsersList, UsersEdit, UsersCreate } from "./components/pages/users";
+import {
+    PromotionCodesEdit,
+    PromotionCodesList,
+    PromotionCodesCreate,
+} from "./components/pages/promotion-codes";
 
 const axiosInstance = axios.create();
 
@@ -66,6 +71,13 @@ function App() {
                 list={UsersList}
                 edit={UsersEdit}
                 create={UsersCreate}
+                canDelete
+            />
+            <Resource
+                name="promotion-codes"
+                list={PromotionCodesList}
+                edit={PromotionCodesEdit}
+                create={PromotionCodesCreate}
                 canDelete
             />
         </Admin>
