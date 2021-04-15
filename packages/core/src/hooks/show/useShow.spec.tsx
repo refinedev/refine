@@ -25,7 +25,7 @@ describe("useShow Hook", () => {
         });
 
         await waitFor(() => {
-            return !result.current.queryResult.data;
+            return result.current.queryResult.isSuccess;
         });
 
         expect(result.current.queryResult.data?.data.id).toEqual(posts[0].id);
@@ -40,7 +40,7 @@ describe("useShow Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.queryResult.data;
+            return result.current.queryResult.isSuccess;
         });
 
         expect(result.current.queryResult.data?.data.id).toEqual(posts[0].id);
