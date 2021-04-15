@@ -7,7 +7,6 @@ import {
     Show,
     Form,
     Steps,
-    Reference,
     ReferenceField,
     TextField,
     TagField,
@@ -18,7 +17,6 @@ import {
     Radio,
     Input,
     Upload,
-    ShowSimple,
     MarkdownField,
     normalizeFile,
     useApiUrl,
@@ -189,6 +187,7 @@ export const PrizesList = (props: IResourceComponentsProps) => {
 
 export const PrizesCreate = (props: IResourceComponentsProps) => {
     const { formProps, saveButtonProps } = useForm({});
+    const apiUrl = useApiUrl();
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
@@ -347,11 +346,11 @@ export const PrizeEdit = (props: IResourceComponentsProps) => {
 export const PostShow = (props: any) => {
     return (
         <Show {...props}>
-            <ShowSimple title="Post Title">
+            {/* <ShowSimple title="Post Title">
                 <TextField renderRecordKey="id" />
                 <TextField renderRecordKey="title" />
                 <MarkdownField renderRecordKey="content" />
-            </ShowSimple>
+            </ShowSimple> */}
         </Show>
     );
 };

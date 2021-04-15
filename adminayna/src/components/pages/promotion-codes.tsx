@@ -9,7 +9,6 @@ import {
     TextField,
     BooleanField,
     Input,
-    ShowSimple,
     MarkdownField,
     Table,
     useTable,
@@ -22,6 +21,8 @@ import {
     useForm,
     Switch,
     IResourceComponentsProps,
+    Select,
+    useSelect,
 } from "readmin";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
@@ -117,6 +118,25 @@ export const PromotionCodesList = (props: IResourceComponentsProps) => {
 
 export const PromotionCodesCreate = (props: IResourceComponentsProps) => {
     const { formProps, saveButtonProps } = useForm({});
+    const prizesIdSelectProps = useSelect({
+        resource: "prizes",
+        optionLabel: "text",
+    });
+
+    const statusOptions = [
+        {
+            label: "Ready",
+            value: "ready",
+        },
+        {
+            label: "Waiting",
+            value: "waiting",
+        },
+        {
+            label: "Consumed",
+            value: "consumed",
+        },
+    ];
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
@@ -141,7 +161,7 @@ export const PromotionCodesCreate = (props: IResourceComponentsProps) => {
                         },
                     ]}
                 >
-                    <Input />
+                    <Select options={statusOptions} />
                 </Form.Item>
                 <Form.Item
                     label="Prize"
@@ -152,7 +172,7 @@ export const PromotionCodesCreate = (props: IResourceComponentsProps) => {
                         },
                     ]}
                 >
-                    <Input />
+                    <Select {...prizesIdSelectProps} />
                 </Form.Item>
             </Form>
         </Create>
@@ -161,6 +181,25 @@ export const PromotionCodesCreate = (props: IResourceComponentsProps) => {
 
 export const PromotionCodesEdit = (props: IResourceComponentsProps) => {
     const { formProps, saveButtonProps } = useForm({});
+    const prizesIdSelectProps = useSelect({
+        resource: "prizes",
+        optionLabel: "text",
+    });
+
+    const statusOptions = [
+        {
+            label: "Ready",
+            value: "ready",
+        },
+        {
+            label: "Waiting",
+            value: "waiting",
+        },
+        {
+            label: "Consumed",
+            value: "consumed",
+        },
+    ];
 
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>
@@ -185,7 +224,7 @@ export const PromotionCodesEdit = (props: IResourceComponentsProps) => {
                         },
                     ]}
                 >
-                    <Input />
+                    <Select options={statusOptions} />
                 </Form.Item>
                 <Form.Item
                     label="Prize"
@@ -196,7 +235,7 @@ export const PromotionCodesEdit = (props: IResourceComponentsProps) => {
                         },
                     ]}
                 >
-                    <Input />
+                    <Select {...prizesIdSelectProps} />
                 </Form.Item>
             </Form>
         </Edit>
@@ -206,11 +245,11 @@ export const PromotionCodesEdit = (props: IResourceComponentsProps) => {
 export const PostShow = (props: any) => {
     return (
         <Show {...props}>
-            <ShowSimple title="Post Title">
+            {/* <ShowSimple title="Post Title">
                 <TextField renderRecordKey="id" />
                 <TextField renderRecordKey="title" />
                 <MarkdownField renderRecordKey="content" />
-            </ShowSimple>
+            </ShowSimple> */}
         </Show>
     );
 };

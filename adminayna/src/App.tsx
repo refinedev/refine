@@ -57,7 +57,7 @@ function App() {
     return (
         <Admin
             authProvider={authProvider}
-            dataProvider={dataProvider("/ayna-crud-api/admin", axiosInstance)}
+            dataProvider={dataProvider("https://api.turkcell-ayna-ayna.puul.tv/admin", axiosInstance)}
         >
             <Resource
                 name="prizes"

@@ -9,7 +9,6 @@ import {
     TextField,
     BooleanField,
     Input,
-    ShowSimple,
     MarkdownField,
     useTranslate,
     Table,
@@ -239,11 +238,11 @@ export const UsersEdit = (props: IResourceComponentsProps) => {
 export const PostShow = (props: any) => {
     return (
         <Show {...props}>
-            <ShowSimple title="Post Title">
+            {/* <ShowSimple title="Post Title">
                 <TextField renderRecordKey="id" />
                 <TextField renderRecordKey="title" />
                 <MarkdownField renderRecordKey="content" />
-            </ShowSimple>
+            </ShowSimple> */}
         </Show>
     );
 };
