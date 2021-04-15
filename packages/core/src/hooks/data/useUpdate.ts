@@ -53,7 +53,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
         throw new Error("'resource' is required for useUpdate hook.");
     }
 
-    const getAllQueries = useCacheQueries(resource);
+    const getAllQueries = useCacheQueries();
 
     const mutation = useMutation<
         UpdateResponse,
@@ -97,7 +97,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
             onMutate: async (variables) => {
                 const previousQueries: ContextQuery[] = [];
 
-                const allQueries = getAllQueries(variables.id);
+                const allQueries = getAllQueries(resource, variables.id);
 
                 for (const queryItem of allQueries) {
                     const { queryKey } = queryItem;
@@ -158,7 +158,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                 }
             },
             onSettled: (_data, _error, variables) => {
-                const allQueries = getAllQueries(variables.id);
+                const allQueries = getAllQueries(resource, variables.id);
                 for (const query of allQueries) {
                     queryClient.invalidateQueries(query.queryKey);
                 }

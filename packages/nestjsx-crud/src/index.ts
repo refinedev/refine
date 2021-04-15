@@ -73,8 +73,20 @@ const NestsxCrud = (
             });
         }
 
+        // search
+        const searchFilter: CrudFilters = [];
+        const { search } = params;
+        if (search?.value && search.field) {
+            searchFilter.push({
+                field: search.field,
+                operator: CondOperator.CONTAINS_LOW,
+                value: search.value,
+            });
+        }
+
         const query = RequestQueryBuilder.create()
             .setFilter(crudFilters)
+            .setOr(searchFilter)
             .setLimit(pageSize)
             .setPage(current)
             .sortBy(sortBy)
@@ -139,6 +151,16 @@ const NestsxCrud = (
         );
 
         return { data: response };
+    },
+
+    createMany: async (resource, params) => {
+        const url = `${apiUrl}/${resource}/bulk`;
+
+        const { data } = await axios.post(url, { bulk: params });
+
+        return {
+            data,
+        };
     },
 
     getOne: async (resource, id) => {

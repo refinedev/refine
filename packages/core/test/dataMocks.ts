@@ -29,6 +29,7 @@ export const posts = [
 const MockDataProvider = (): IDataContext => {
     return {
         create: () => Promise.resolve({ data: posts[0] }),
+        createMany: () => Promise.resolve({ data: posts }),
         deleteOne: () => Promise.resolve({ data: posts[0] }),
         deleteMany: () => Promise.resolve({ data: [] }),
         getList: () => Promise.resolve({ data: posts, total: 2 }),

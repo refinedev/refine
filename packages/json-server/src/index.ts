@@ -1,13 +1,13 @@
 import axios from "axios";
 import { stringify } from "query-string";
-import { DataProvider } from "readmin";
+import { DataProvider, Resource } from "readmin";
 
 const JsonServer = (apiUrl: string): DataProvider => ({
     getList: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
 
         // search
-        const q = params.search;
+        const q = params.search?.value;
 
         // pagination
         const current = params.pagination?.current || 1;
@@ -76,6 +76,10 @@ const JsonServer = (apiUrl: string): DataProvider => ({
         return {
             data,
         };
+    },
+
+    createMany: async (resource, paramsList) => {
+        throw new Error("createMany not implemented");
     },
 
     update: async (resource, id, params) => {

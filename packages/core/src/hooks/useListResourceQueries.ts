@@ -1,36 +1,53 @@
+import { useCallback } from "react";
 import { useQueryClient } from "react-query";
 
-export const useListResourceQueries = (resource: string) => {
+export const useListResourceQueries = () => {
     const queryClient = useQueryClient();
     const data = queryClient.getQueryCache();
-    const listResourceQueries = data.getAll().filter((query) => {
-        return query.queryKey.includes(`resource/list/${resource}`);
-    });
+
+    const listResourceQueries = useCallback(
+        (resource: string) => {
+            return data.getAll().filter((query) => {
+                return query.queryKey.includes(`resource/list/${resource}`);
+            });
+        },
+        [data],
+    );
 
     return listResourceQueries;
 };
 
-export const useGetOneQueries = (resource: string) => {
+export const useGetOneQueries = () => {
     const queryClient = useQueryClient();
     const data = queryClient.getQueryCache();
-    const getOneQueries = data.getAll().filter((query) => {
-        return query.queryKey.includes(`resource/getOne/${resource}`);
-    });
 
-    return getOneQueries;
+    return useCallback(
+        (resource: string) => {
+            const getOneQueries = data.getAll().filter((query) => {
+                return query.queryKey.includes(`resource/getOne/${resource}`);
+            });
+
+            return getOneQueries;
+        },
+        [data],
+    );
 };
 
-export const useCacheQueries = (resource: string) => {
-    const listQuery = useListResourceQueries(resource);
-    const getOneQuery = useGetOneQueries(resource);
+export const useCacheQueries = () => {
+    const listResourceQueries = useListResourceQueries();
+    const getOneQuery = useGetOneQueries();
 
-    return (id?: string) => {
+    return useCallback((resource: string, id?: string) => {
+        const query = getOneQuery(resource);
+        const listQuery = listResourceQueries(resource);
+
         if (id) {
-            const getOneQueriesWithId = getOneQuery.filter((query) => {
+            const getOneQueriesWithId = query.filter((query) => {
                 return (query.queryKey[1] as any).id === id;
             });
+
             return [...listQuery, ...getOneQueriesWithId];
         }
-        return [...listQuery, ...getOneQuery];
-    };
+        return [...listQuery, ...query];
+    }, []);
 };

@@ -6,6 +6,7 @@ import {
     GetListResponse,
     IDataContext,
     Sort,
+    Search,
     Filters,
     Pagination,
     BaseRecord,
@@ -13,7 +14,7 @@ import {
 
 interface UseListConfig {
     pagination?: Pagination;
-    search?: string;
+    search?: Search;
     sort?: Sort;
     filters?: Filters;
 }

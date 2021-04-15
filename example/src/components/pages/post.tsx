@@ -7,7 +7,6 @@ import {
     Show,
     Form,
     Steps,
-    Reference,
     ReferenceField,
     TextField,
     TagField,
@@ -16,7 +15,6 @@ import {
     Radio,
     Input,
     Upload,
-    ShowSimple,
     MarkdownField,
     normalizeFile,
     useApiUrl,
@@ -36,12 +34,18 @@ import {
     CloneButton,
     getDefaultSortOrder,
     DateField,
+    ImportButton,
+    useShow,
+    Typography,
+    useSelect,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
+
+const { Title, Text } = Typography;
 
 export const PostList = (props: any) => {
     const translate = useTranslate();
@@ -60,7 +64,13 @@ export const PostList = (props: any) => {
         },
     });
 
-    const actions = (
+    const categorySelectProps = useSelect({
+        resource: "categories",
+        optionLabel: "title",
+        optionValue: "id",
+    });
+
+    const Actions = () => (
         <Space direction="horizontal">
             <ExportButton
                 sorter={sorter}
@@ -74,15 +84,33 @@ export const PostList = (props: any) => {
                         slug: item.slug,
                         content: item.content,
                         status: item.status,
+                        categoryId: item.category.id,
+                        userId: item.user?.id,
                     };
                 }}
+            />
+            <ImportButton
+                mapData={(item) => {
+                    return {
+                        title: item.title,
+                        content: item.content,
+                        status: item.status,
+                        category: {
+                            id: item.categoryId,
+                        },
+                        user: {
+                            id: item.userId,
+                        },
+                    };
+                }}
+                batchSize={null}
             />
             <CreateButton />
         </Space>
     );
 
     return (
-        <List {...props} actionButtons={actions}>
+        <List {...props} actionButtons={<Actions />}>
             <Table
                 {...tableProps}
                 rowKey="id"
@@ -119,21 +147,14 @@ export const PostList = (props: any) => {
                     )}
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
-                            <Reference
-                                reference="categories"
-                                optionText="title"
-                                sort={{
-                                    field: "title",
-                                    order: "ascend",
-                                }}
-                            >
-                                <Select
-                                    style={{ minWidth: 200 }}
-                                    showSearch
-                                    mode="multiple"
-                                    placeholder="Select Category"
-                                />
-                            </Reference>
+                            <Select
+                                style={{ minWidth: 200 }}
+                                showSearch
+                                mode="multiple"
+                                placeholder="Select Category"
+                                filterOption={false}
+                                {...categorySelectProps}
+                            />
                         </FilterDropdown>
                     )}
                 />
@@ -228,6 +249,18 @@ export const PostCreate = (props: any) => {
         },
     });
 
+    const categorySelectProps = useSelect({
+        resource: "categories",
+        optionLabel: "title",
+        optionValue: "id",
+    });
+
+    const userSelectProps = useSelect({
+        resource: "users",
+        optionLabel: "email",
+        optionValue: "id",
+    });
+
     const formList = [
         <>
             <Form.Item
@@ -324,16 +357,11 @@ export const PostCreate = (props: any) => {
                     return { id };
                 }}
             >
-                <Reference
-                    reference="categories"
-                    optionText="title"
-                    sort={{
-                        field: "title",
-                        order: "ascend",
-                    }}
-                >
-                    <Select showSearch />
-                </Reference>
+                <Select
+                    showSearch
+                    filterOption={false}
+                    {...categorySelectProps}
+                />
             </Form.Item>
             <Form.Item
                 label={translate("common:resources.posts.fields.user")}
@@ -349,9 +377,7 @@ export const PostCreate = (props: any) => {
                     return { id };
                 }}
             >
-                <Reference reference="users" optionText="email">
-                    <Select showSearch />
-                </Reference>
+                <Select showSearch filterOption={false} {...userSelectProps} />
             </Form.Item>
         </>,
     ];
@@ -433,6 +459,18 @@ export const PostEdit = (props: any) => {
         warnWhenUnsavedChanges: true,
         redirect: "list",
         mutationMode: "pessimistic",
+    });
+
+    const categorySelectProps = useSelect({
+        resource: "categories",
+        optionLabel: "title",
+        optionValue: "id",
+    });
+
+    const userSelectProps = useSelect({
+        resource: "users",
+        optionLabel: "email",
+        optionValue: "id",
     });
 
     const formList = [
@@ -533,16 +571,11 @@ export const PostEdit = (props: any) => {
                     return { id };
                 }}
             >
-                <Reference
-                    reference="categories"
-                    optionText="title"
-                    sort={{
-                        field: "title",
-                        order: "ascend",
-                    }}
-                >
-                    <Select showSearch />
-                </Reference>
+                <Select
+                    showSearch
+                    filterOption={false}
+                    {...categorySelectProps}
+                />
             </Form.Item>
             <Form.Item
                 label={translate("common:resources.posts.fields.user")}
@@ -560,9 +593,7 @@ export const PostEdit = (props: any) => {
                 }}
                 help="Autocomplete (search user email)"
             >
-                <Reference reference="users" optionText="email">
-                    <Select showSearch />
-                </Reference>
+                <Select showSearch filterOption={false} {...userSelectProps} />
             </Form.Item>
         </>,
     ];
@@ -616,13 +647,20 @@ export const PostEdit = (props: any) => {
 };
 
 export const PostShow = (props: any) => {
+    const { queryResult } = useShow({});
+    const { data, isLoading } = queryResult;
+    const record = data?.data;
+
     return (
-        <Show {...props}>
-            <ShowSimple title="Post Title">
-                <TextField renderRecordKey="id" />
-                <TextField renderRecordKey="title" />
-                <MarkdownField renderRecordKey="content" />
-            </ShowSimple>
+        <Show {...props} isLoading={isLoading}>
+            <Title level={5}>Id</Title>
+            <Text>{record?.id}</Text>
+
+            <Title level={5}>Title</Title>
+            <Text>{record?.title}</Text>
+
+            <Title level={5}>Content</Title>
+            <MarkdownField value={record?.content}></MarkdownField>
         </Show>
     );
 };

@@ -15,23 +15,49 @@ import {
     useForm,
     useEditableTable,
     TextField,
+    ExportButton,
+    ImportButton,
+    CreateButton,
     DateField,
+    getDefaultSortOrder,
 } from "readmin";
 
 export const CategoryList = (props: any) => {
     const translate = useTranslate();
     const {
         tableProps,
+        sorter,
+        filters,
         formProps,
         isEditing,
         saveButtonProps,
         editButtonProps,
         cancelButtonProps,
         setEditId,
-    } = useEditableTable({});
+    } = useEditableTable({
+        initialSorter: [
+            {
+                field: "createdAt",
+                order: "descend",
+            },
+        ],
+    });
+
+    const Actions: React.FC = () => (
+        <Space direction="horizontal">
+            <ExportButton
+                sorter={sorter}
+                filters={filters}
+                pageSize={100}
+                maxItemCount={300}
+            />
+            <ImportButton />
+            <CreateButton />
+        </Space>
+    );
 
     return (
-        <List {...props}>
+        <List {...props} actionButtons={<Actions />}>
             <Form {...formProps}>
                 <Table
                     {...tableProps}
@@ -77,6 +103,13 @@ export const CategoryList = (props: any) => {
                         key="createdAt"
                         render={(value) => (
                             <DateField format="LLL" value={value} />
+                        )}
+                        sorter={{
+                            multiple: 1,
+                        }}
+                        defaultSortOrder={getDefaultSortOrder(
+                            "createdAt",
+                            sorter,
                         )}
                     />
                     <Table.Column

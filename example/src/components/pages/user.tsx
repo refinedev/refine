@@ -4,6 +4,7 @@ import {
     List,
     Edit,
     Create,
+    Show,
     Table,
     EmailField,
     TagField,
@@ -17,7 +18,13 @@ import {
     Space,
     useForm,
     Radio,
+    useShow,
+    Typography,
+    Row,
+    Col,
 } from "readmin";
+
+const { Title, Text } = Typography;
 
 export const UserList = (props: any) => {
     const translate = useTranslate();
@@ -215,5 +222,30 @@ export const UserCreate = (props: any) => {
                 </Form.Item>
             </Form>
         </Create>
+    );
+};
+
+export const UserShow = (props: any) => {
+    const { queryResult } = useShow({});
+    const { data, isLoading } = queryResult;
+    const record = data?.data;
+
+    return (
+        <Show {...props} isLoading={isLoading}>
+            <Row>
+                <Col span={8}>
+                    <Title level={5}>First Name</Title>
+                    <Text>{record?.firstName}</Text>
+                </Col>
+                <Col span={8}>
+                    <Title level={5}>Last Name</Title>
+                    <Text>{record?.lastName}</Text>
+                </Col>
+                <Col span={8}>
+                    <Title level={5}>Email</Title>
+                    <Text>{record?.email}</Text>
+                </Col>
+            </Row>
+        </Show>
     );
 };

@@ -53,7 +53,7 @@ export const useDelete = (
         throw new Error("'resource' is required for useDelete hook.");
     }
 
-    const getAllQueries = useCacheQueries(resource);
+    const cacheQueries = useCacheQueries();
 
     const mutation = useMutation<
         DeleteOneResponse,
@@ -98,7 +98,10 @@ export const useDelete = (
             onMutate: async (deleteParams) => {
                 const previousQueries: ContextQuery[] = [];
 
-                const allQueries = getAllQueries(deleteParams.id.toString());
+                const allQueries = cacheQueries(
+                    resource,
+                    deleteParams.id.toString(),
+                );
 
                 for (const queryItem of allQueries) {
                     const { queryKey } = queryItem;
@@ -153,7 +156,10 @@ export const useDelete = (
                 }
             },
             onSuccess: (_data, variables, _context) => {
-                const allQueries = getAllQueries(variables.id.toString());
+                const allQueries = cacheQueries(
+                    resource,
+                    variables.id.toString(),
+                );
                 for (const query of allQueries) {
                     if (
                         query.queryKey.includes(`resource/getOne/${resource}`)
@@ -163,7 +169,10 @@ export const useDelete = (
                 }
             },
             onSettled: (_data, _error, variables) => {
-                const allQueries = getAllQueries(variables.id.toString());
+                const allQueries = cacheQueries(
+                    resource,
+                    variables.id.toString(),
+                );
                 for (const query of allQueries) {
                     if (
                         !query.queryKey.includes(`resource/getOne/${resource}`)

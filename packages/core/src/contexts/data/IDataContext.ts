@@ -9,6 +9,11 @@ export interface Pagination {
 
 export type Sort = SorterResult<any> | SorterResult<any>[];
 
+export interface Search {
+    field?: string;
+    value?: string;
+}
+
 export type Filters = Record<string, (string | number | boolean)[] | null>;
 
 export interface GetListResponse<TData extends BaseRecord = BaseRecord> {
@@ -18,6 +23,10 @@ export interface GetListResponse<TData extends BaseRecord = BaseRecord> {
 
 export interface CreateResponse {
     data: BaseRecord;
+}
+
+export interface CreateManyResponse {
+    data: BaseRecord[];
 }
 
 export interface UpdateResponse {
@@ -49,7 +58,7 @@ export interface IDataContext {
         resource: string,
         params: {
             pagination?: Pagination;
-            search?: string;
+            search?: Search;
             sort?: Sort;
             filters?: Filters;
         },
@@ -63,6 +72,10 @@ export interface IDataContext {
         resource: string,
         params: TParams,
     ) => Promise<CreateResponse>;
+    createMany: <TParams extends BaseRecord = BaseRecord>(
+        resource: string,
+        params: TParams[],
+    ) => Promise<CreateManyResponse>;
     update: <TParams extends BaseRecord = BaseRecord>(
         resource: string,
         id: Identifier,
