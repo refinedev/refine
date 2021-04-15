@@ -18,11 +18,26 @@ const WrapperWithRoute: React.FC = ({ children }) => (
         <Route path="/resources/:resource/:action/:id">{children}</Route>
     </Wrapper>
 );
-describe("useEditForm Hook", () => {
+describe("useShow Hook", () => {
     it("should fetch data with use-query params succesfully", async () => {
         const { result, waitFor } = renderHook(() => useShow({}), {
             wrapper: WrapperWithRoute,
         });
+
+        await waitFor(() => {
+            return !result.current.queryResult.data;
+        });
+
+        expect(result.current.queryResult.data?.data.id).toEqual(posts[0].id);
+    });
+
+    it("should fetch data with hook params succesfully", async () => {
+        const { result, waitFor } = renderHook(
+            () => useShow({ resourceName: "posts", id: "1" }),
+            {
+                wrapper: WrapperWithRoute,
+            },
+        );
 
         await waitFor(() => {
             return !result.current.queryResult.data;
