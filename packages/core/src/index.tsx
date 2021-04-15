@@ -8,6 +8,7 @@ export {
     ITranslationContext as TranslationProvider,
     I18nProvider,
     MutationMode,
+    HttpError,
 } from "./interfaces";
 
 export * from "./definitions/upload";
