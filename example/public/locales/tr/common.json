@@ -114,7 +114,8 @@
         "clear": "Temizle",
         "refresh": "Yenile",
         "show": "Göster",
-        "undo": "Geri Al"
+        "undo": "Geri Al",
+        "import": "Yükle"
     },
     "table": {
         "actions": "İşlemler"
@@ -131,8 +132,14 @@
     "warnWhenUnsavedChanges": "Kaydedilmemiş değişiklikleriniz var. Ayrılmak istediğinizden emin misiniz?",
     "notifications": {
         "success": "Başarılı",
-        "succesMessage": "Id: {{id}} {{resource}} düzenlendi",
-        "undoable": "Geri almak için {{seconds}} saniyen var"
+        "error": "Hata",
+        "undoable": "Geri almak için {{seconds}} saniyeniz var",
+        "createSuccess": "{{resource}} başarıyla oluşturuldu",
+        "createError": "{{resource}} oluşturulurken hata",
+        "deleteSuccess": "{{resource}} başarıyla silindi",
+        "deleteError": "{{resource}} silinirken hata",
+        "editSuccess": "{{resource}} başarıyla düzenlendi",
+        "editError": "{{resource}} düzenlenirken hata"
     },
     "loading": "Yükleniyor",
     "backHome": "Ana sayfaya geri dön"
