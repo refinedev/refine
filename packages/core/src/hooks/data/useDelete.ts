@@ -20,6 +20,7 @@ import {
     Context as DeleteContext,
     BaseRecord,
     ContextQuery,
+    HttpError,
 } from "../../interfaces";
 
 type DeleteParams = {
@@ -62,7 +63,7 @@ export const useDelete = (
 
     const mutation = useMutation<
         DeleteOneResponse,
-        Error,
+        HttpError,
         DeleteParams,
         DeleteContext
     >(
@@ -153,18 +154,20 @@ export const useDelete = (
                     previousQueries: previousQueries,
                 };
             },
-            onError: (err: any, { id }, context) => {
+            onError: (err: HttpError, { id }, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
                     }
                 }
+
                 if (err.message !== "mutationCancelled") {
                     notification.error({
                         key: `${id}-${resource}-notification`,
                         message: translate(
                             "common:notifications.error",
-                            "Error",
+                            { statusCode: err.statusCode },
+                            `Error (status code: ${err.statusCode})`,
                         ),
                         description: err.message,
                     });

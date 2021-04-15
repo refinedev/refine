@@ -3,7 +3,12 @@ import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 import pluralize from "pluralize";
 
 import { DataContext } from "@contexts/data";
-import { CreateResponse, IDataContext, BaseRecord } from "../../interfaces";
+import {
+    CreateResponse,
+    IDataContext,
+    BaseRecord,
+    HttpError,
+} from "../../interfaces";
 import { useListResourceQueries, useTranslate, useNotification } from "@hooks";
 
 type UseCreateReturnType<
@@ -50,15 +55,15 @@ export const useCreate = <
                     queryClient.invalidateQueries(query.queryKey);
                 });
             },
-            onError: (e: Error, { resource }) => {
+            onError: (err: HttpError, { resource }) => {
                 const resourceSingular = pluralize.singular(resource);
 
                 notification.error({
-                    description: e.message,
+                    description: err.message,
                     message: translate(
                         "common:notifications.createError",
-                        { resourceSingular },
-                        `There was an error creating ${resourceSingular}`,
+                        { resourceSingular, statusCode: err.statusCode },
+                        `There was an error creating ${resourceSingular} (status code: ${err.statusCode})`,
                     ),
                 });
             },
