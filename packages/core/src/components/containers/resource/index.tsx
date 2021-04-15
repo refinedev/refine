@@ -11,19 +11,6 @@ export interface ResourceProps extends IResourceComponents {
     canDelete?: boolean;
     icon?: ReactNode;
     options?: OptionsProps;
-    list?: React.FunctionComponent<{
-        canCreate: boolean;
-        canEdit: boolean;
-        canDelete?: boolean;
-        canShow: boolean;
-    }>;
-    create?: React.FunctionComponent<{ canEdit: boolean }>;
-    edit?: React.FunctionComponent;
-    show?: React.FunctionComponent<{
-        canCreate: boolean;
-        canEdit: boolean;
-        canDelete?: boolean;
-    }>;
 }
 
 export const Resource: React.FC<ResourceProps> = () => null;

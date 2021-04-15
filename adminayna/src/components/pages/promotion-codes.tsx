@@ -166,8 +166,8 @@ export const PromotionCodesEdit = (props: IResourceComponentsProps) => {
         <Edit {...props} saveButtonProps={saveButtonProps}>
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
-                    label="Username"
-                    name="username"
+                    label="Code"
+                    name="code"
                     rules={[
                         {
                             required: true,
@@ -177,8 +177,8 @@ export const PromotionCodesEdit = (props: IResourceComponentsProps) => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Role"
-                    name="role"
+                    label="Status"
+                    name="status"
                     rules={[
                         {
                             required: true,
@@ -188,16 +188,15 @@ export const PromotionCodesEdit = (props: IResourceComponentsProps) => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="IsActive"
-                    name="isActive"
-                    valuePropName="checked"
+                    label="Prize"
+                    name={["prize", "id"]}
                     rules={[
                         {
                             required: true,
                         },
                     ]}
                 >
-                    <Switch />
+                    <Input />
                 </Form.Item>
             </Form>
         </Edit>
