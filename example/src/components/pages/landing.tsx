@@ -233,11 +233,3 @@ export const LandingEdit = (props: any) => {
         </Edit>
     );
 };
-
-export const LandingShow = (props: any) => {
-    return (
-        <Show {...props}>
-            <div>TODO: Post gibi olucak.</div>
-        </Show>
-    );
-};

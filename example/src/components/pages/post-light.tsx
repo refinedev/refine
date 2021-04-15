@@ -248,11 +248,3 @@ export const PostLightEdit = (props: any) => {
         </Edit>
     );
 };
-
-export const PostLightShow = (props: any) => {
-    return (
-        <Show {...props}>
-            <div>TODO: Post gibi olacak.</div>
-        </Show>
-    );
-};
