@@ -167,5 +167,13 @@ If you look at the network tab in the browser developer tools, you’ll notice t
 ##search and filter to the list
 
 - Reference component
+- filterdropdown örnekler
+
+
+
+
+
 
 ##Create, Edit
+
+- edit create vs.. buttons
