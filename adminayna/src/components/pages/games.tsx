@@ -14,7 +14,11 @@ import {
     DateField,
     IResourceComponentsProps,
     Select,
+    useShow,
+    Typography,
 } from "readmin";
+
+const { Title, Text } = Typography;
 
 export const GamesList = (props: IResourceComponentsProps) => {
     const { tableProps, sorter, filters } = useTable({});
@@ -152,5 +156,33 @@ export const GamesList = (props: IResourceComponentsProps) => {
                 />
             </Table>
         </List>
+    );
+};
+
+export const GameShow = (props: IResourceComponentsProps) => {
+    const {
+        queryResult: { data, isLoading },
+    } = useShow({});
+
+    const record = data?.data;
+    console.log("rea", record);
+
+    return (
+        <Show {...props} isLoading={isLoading}>
+            <Title level={5}>Id</Title>
+            <Text>{record?.id}</Text>
+
+            <Title level={5}>Prize Text</Title>
+            <Text>{record?.prize.text}</Text>
+
+            <Title level={5}>Code</Title>
+            <Text>{record?.code}</Text>
+
+            <Title level={5}>GsmNumber</Title>
+            <Text>{record?.gsmNumber}</Text>
+
+            <Title level={5}>Promotion Code Status</Title>
+            <Text>{record?.promotionCode.status}</Text>
+        </Show>
     );
 };

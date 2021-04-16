@@ -20,7 +20,7 @@ import {
     PromotionCodesCreate,
     PromotionCodesShow,
 } from "./components/pages/promotion-codes";
-import { GamesList } from "./components/pages/games";
+import { GamesList, GameShow } from "./components/pages/games";
 
 const axiosInstance = axios.create();
 
@@ -101,11 +101,7 @@ function App() {
                 show={PromotionCodesShow}
                 canDelete
             />
-            <Resource
-                name="games"
-                list={GamesList}
-                // show={PromotionCodesShow}
-            />
+            <Resource name="games" list={GamesList} show={GameShow} />
         </Admin>
     );
 }
