@@ -2,39 +2,19 @@ import * as React from "react";
 
 import {
     List,
-    Create,
-    Edit,
     Show,
-    Form,
     TextField,
-    NumberField,
-    BooleanField,
     FilterDropdown,
-    Radio,
-    Input,
-    Upload,
-    normalizeFile,
-    useApiUrl,
     Table,
     useTable,
     Space,
-    EditButton,
-    DeleteButton,
     ShowButton,
     CreateButton,
     ExportButton,
     DateField,
-    ImageField,
-    useForm,
-    InputNumber,
-    Switch,
     IResourceComponentsProps,
-    Typography,
-    useShow,
     Select,
 } from "readmin";
-
-const { Title, Text } = Typography;
 
 export const GamesList = (props: IResourceComponentsProps) => {
     const { tableProps, sorter, filters } = useTable({});
@@ -123,10 +103,10 @@ export const GamesList = (props: IResourceComponentsProps) => {
                     }}
                 />
                 <Table.Column
-                    dataIndex="promotionCode"
+                    dataIndex={["promotionCode", "status"]}
                     title="Promotion Code"
-                    key="promotionCode"
-                    render={(value) => <TextField value={value.status} />}
+                    key="promotionCode.status"
+                    render={(value) => <TextField value={value} />}
                     sorter={{
                         multiple: 1,
                     }}

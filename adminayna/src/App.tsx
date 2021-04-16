@@ -2,8 +2,18 @@ import { Admin, Resource, AuthProvider, ILoginForm } from "readmin";
 import dataProvider from "readmin-nestjsx-crud";
 import axios from "axios";
 
-import { PrizesList, PrizesCreate, PrizeEdit, PrizeShow } from "./components/pages/prizes";
-import { UsersList, UsersEdit, UsersCreate, UsersShow } from "./components/pages/users";
+import {
+    PrizesList,
+    PrizesCreate,
+    PrizeEdit,
+    PrizeShow,
+} from "./components/pages/prizes";
+import {
+    UsersList,
+    UsersEdit,
+    UsersCreate,
+    UsersShow,
+} from "./components/pages/users";
 import {
     PromotionCodesEdit,
     PromotionCodesList,
@@ -16,10 +26,13 @@ const axiosInstance = axios.create();
 
 const authProvider: AuthProvider = {
     login: async (params: ILoginForm) => {
-        const result = await axios.post("/ayna-crud-api/auth/login", {
-            username: params.username,
-            password: params.password,
-        });
+        const result = await axios.post(
+            "https://api.turkcell-ayna-ayna.puul.tv/auth/login",
+            {
+                username: params.username,
+                password: params.password,
+            },
+        );
         if (result.data.token) {
             localStorage.setItem("token", result.data.token);
             axiosInstance.defaults.headers = {
@@ -59,7 +72,10 @@ function App() {
     return (
         <Admin
             authProvider={authProvider}
-            dataProvider={dataProvider("https://api.turkcell-ayna-ayna.puul.tv/admin", axiosInstance)}
+            dataProvider={dataProvider(
+                "https://api.turkcell-ayna-ayna.puul.tv/admin",
+                axiosInstance,
+            )}
         >
             <Resource
                 name="prizes"
