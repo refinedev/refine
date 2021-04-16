@@ -2,7 +2,7 @@ import { Admin, Resource, AuthProvider, ILoginForm } from "readmin";
 import dataProvider from "readmin-nestjsx-crud";
 import axios from "axios";
 
-import { PrizesList, PrizesCreate, PrizeEdit } from "./components/pages/prizes";
+import { PrizesList, PrizesCreate, PrizeEdit, PrizeShow } from "./components/pages/prizes";
 import { UsersList, UsersEdit, UsersCreate } from "./components/pages/users";
 import {
     PromotionCodesEdit,
@@ -64,6 +64,7 @@ function App() {
                 list={PrizesList}
                 edit={PrizeEdit}
                 create={PrizesCreate}
+                show={PrizeShow}
                 canDelete
             />
             <Resource

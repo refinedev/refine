@@ -42,12 +42,16 @@ import {
     InputNumber,
     Switch,
     IResourceComponentsProps,
+    Typography,
+    useShow,
 } from "readmin";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
+
+const { Title, Text } = Typography;
 
 export const PrizesList = (props: IResourceComponentsProps) => {
     const { tableProps, sorter, filters } = useTable({});
@@ -84,15 +88,6 @@ export const PrizesList = (props: IResourceComponentsProps) => {
                     size: "small",
                 }}
             >
-                {/*    <Table.Column
-                    dataIndex="id"
-                    title="ID"
-                    key="id"
-                    render={(value) => <TextField value={value} />}
-                    sorter={{
-                        multiple: 1,
-                    }}
-                /> */}
                 <Table.Column
                     dataIndex="images"
                     title="Images"
@@ -177,6 +172,7 @@ export const PrizesList = (props: IResourceComponentsProps) => {
                                 recordItemId={record.id}
                                 mutationMode="undoable"
                             />
+                            <ShowButton size="small" recordItemId={record.id} />
                         </Space>
                     )}
                 />
@@ -264,8 +260,6 @@ export const PrizesCreate = (props: IResourceComponentsProps) => {
 };
 
 export const PrizeEdit = (props: IResourceComponentsProps) => {
-    const translate = useTranslate();
-
     const { formProps, saveButtonProps } = useForm({});
 
     return (
@@ -343,14 +337,28 @@ export const PrizeEdit = (props: IResourceComponentsProps) => {
     );
 };
 
-export const PostShow = (props: any) => {
+export const PrizeShow = (props: IResourceComponentsProps) => {
+    const {
+        queryResult: { data, isLoading },
+    } = useShow({});
+    const record = data?.data;
+
     return (
-        <Show {...props}>
-            {/* <ShowSimple title="Post Title">
-                <TextField renderRecordKey="id" />
-                <TextField renderRecordKey="title" />
-                <MarkdownField renderRecordKey="content" />
-            </ShowSimple> */}
+        <Show {...props} isLoading={isLoading}>
+            <Title level={5}>Id</Title>
+            <Text>{record?.id}</Text>
+
+            <Title level={5}>Text</Title>
+            <Text>{record?.text}</Text>
+
+            <Title level={5}>Weight</Title>
+            <Text>{record?.weight}</Text>
+
+            <Title level={5}>Active</Title>
+            <BooleanField value={record?.isActive} />
+
+            <Title level={5}>Image</Title>
+            <ImageField width={150} value={record?.images?.[0].url} />
         </Show>
     );
 };
