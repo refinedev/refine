@@ -26,6 +26,31 @@ describe("useSelect Hook", () => {
         const { options, loading } = result.current;
 
         expect(loading).toBeFalsy();
+        expect(options).toHaveLength(0);
+    });
+
+    it("defaultValue", async () => {
+        const { result, waitFor } = renderHook(
+            () =>
+                useSelect({
+                    resource: "posts",
+                    defaultValue: ["1", "2"],
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            return !result.current.loading;
+        });
+
+        const { options, loading } = result.current;
+
+        expect(loading).toBeFalsy();
         expect(options).toHaveLength(2);
     });
 });
