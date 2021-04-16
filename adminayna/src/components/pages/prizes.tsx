@@ -6,37 +6,24 @@ import {
     Edit,
     Show,
     Form,
-    Steps,
-    ReferenceField,
     TextField,
-    TagField,
     NumberField,
     BooleanField,
     FilterDropdown,
-    Select,
     Radio,
     Input,
     Upload,
-    MarkdownField,
     normalizeFile,
     useApiUrl,
-    useFileUploadState,
-    useTranslate,
-    Button,
     Table,
     useTable,
     Space,
     EditButton,
     DeleteButton,
     ShowButton,
-    SaveButton,
-    useStepsForm,
     CreateButton,
     ExportButton,
-    CloneButton,
-    getDefaultSortOrder,
     DateField,
-    IResourceComponents,
     ImageField,
     useForm,
     InputNumber,
@@ -45,11 +32,6 @@ import {
     Typography,
     useShow,
 } from "readmin";
-
-import ReactMarkdown from "react-markdown";
-import ReactMde from "react-mde";
-
-import "react-mde/lib/styles/css/react-mde-all.css";
 
 const { Title, Text } = Typography;
 

@@ -3,11 +3,12 @@ import dataProvider from "readmin-nestjsx-crud";
 import axios from "axios";
 
 import { PrizesList, PrizesCreate, PrizeEdit, PrizeShow } from "./components/pages/prizes";
-import { UsersList, UsersEdit, UsersCreate } from "./components/pages/users";
+import { UsersList, UsersEdit, UsersCreate, UsersShow } from "./components/pages/users";
 import {
     PromotionCodesEdit,
     PromotionCodesList,
     PromotionCodesCreate,
+    PromotionCodesShow,
 } from "./components/pages/promotion-codes";
 
 const axiosInstance = axios.create();
@@ -72,6 +73,7 @@ function App() {
                 list={UsersList}
                 edit={UsersEdit}
                 create={UsersCreate}
+                show={UsersShow}
                 canDelete
             />
             <Resource
@@ -79,6 +81,7 @@ function App() {
                 list={PromotionCodesList}
                 edit={PromotionCodesEdit}
                 create={PromotionCodesCreate}
+                show={PromotionCodesShow}
                 canDelete
             />
         </Admin>

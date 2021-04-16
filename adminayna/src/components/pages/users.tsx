@@ -9,8 +9,6 @@ import {
     TextField,
     BooleanField,
     Input,
-    MarkdownField,
-    useTranslate,
     Table,
     useTable,
     Space,
@@ -22,9 +20,13 @@ import {
     useForm,
     Switch,
     IResourceComponentsProps,
+    Typography,
+    useShow,
+    ShowButton,
+    Select,
 } from "readmin";
 
-import "react-mde/lib/styles/css/react-mde-all.css";
+const { Title, Text } = Typography;
 
 export const UsersList = (props: IResourceComponentsProps) => {
     const { tableProps, sorter, filters } = useTable({});
@@ -126,6 +128,7 @@ export const UsersList = (props: IResourceComponentsProps) => {
                                 recordItemId={record.id}
                                 mutationMode="undoable"
                             />
+                            <ShowButton size="small" recordItemId={record.id} />
                         </Space>
                     )}
                 />
@@ -136,6 +139,21 @@ export const UsersList = (props: IResourceComponentsProps) => {
 
 export const UsersCreate = (props: IResourceComponentsProps) => {
     const { formProps, saveButtonProps } = useForm({});
+
+    const rolesOptions = [
+        {
+            label: "Admin",
+            value: "admin",
+        },
+        {
+            label: "Super Admin",
+            value: "super-admin",
+        },
+        {
+            label: "Editor",
+            value: "editor",
+        },
+    ];
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
@@ -171,7 +189,7 @@ export const UsersCreate = (props: IResourceComponentsProps) => {
                         },
                     ]}
                 >
-                    <Input />
+                    <Select options={rolesOptions} />
                 </Form.Item>
                 <Form.Item
                     label="IsActive"
@@ -235,14 +253,22 @@ export const UsersEdit = (props: IResourceComponentsProps) => {
     );
 };
 
-export const PostShow = (props: any) => {
+export const UsersShow = (props: IResourceComponentsProps) => {
+    const {
+        queryResult: { data, isLoading },
+    } = useShow({});
+    const record = data?.data;
+
     return (
-        <Show {...props}>
-            {/* <ShowSimple title="Post Title">
-                <TextField renderRecordKey="id" />
-                <TextField renderRecordKey="title" />
-                <MarkdownField renderRecordKey="content" />
-            </ShowSimple> */}
+        <Show {...props} isLoading={isLoading}>
+            <Title level={5}>Username</Title>
+            <Text>{record?.username}</Text>
+
+            <Title level={5}>Role</Title>
+            <Text>{record?.role}</Text>
+
+            <Title level={5}>Active</Title>
+            <BooleanField value={record?.isActive} />
         </Show>
     );
 };

@@ -7,9 +7,7 @@ import {
     Show,
     Form,
     TextField,
-    BooleanField,
     Input,
-    MarkdownField,
     Table,
     useTable,
     Space,
@@ -17,15 +15,16 @@ import {
     DeleteButton,
     CreateButton,
     ExportButton,
-    DateField,
     useForm,
-    Switch,
     IResourceComponentsProps,
     Select,
     useSelect,
+    useShow,
+    Typography,
+    ShowButton,
 } from "readmin";
 
-import "react-mde/lib/styles/css/react-mde-all.css";
+const { Title, Text } = Typography;
 
 export const PromotionCodesList = (props: IResourceComponentsProps) => {
     const { tableProps, sorter, filters } = useTable({});
@@ -108,6 +107,7 @@ export const PromotionCodesList = (props: IResourceComponentsProps) => {
                                 recordItemId={record.id}
                                 mutationMode="optimistic"
                             />
+                            <ShowButton size="small" recordItemId={record.id} />
                         </Space>
                     )}
                 />
@@ -242,14 +242,22 @@ export const PromotionCodesEdit = (props: IResourceComponentsProps) => {
     );
 };
 
-export const PostShow = (props: any) => {
+export const PromotionCodesShow = (props: IResourceComponentsProps) => {
+    const {
+        queryResult: { data, isLoading },
+    } = useShow({});
+    const record = data?.data;
+
     return (
-        <Show {...props}>
-            {/* <ShowSimple title="Post Title">
-                <TextField renderRecordKey="id" />
-                <TextField renderRecordKey="title" />
-                <MarkdownField renderRecordKey="content" />
-            </ShowSimple> */}
+        <Show {...props} isLoading={isLoading}>
+            <Title level={5}>Code</Title>
+            <Text>{record?.code}</Text>
+
+            <Title level={5}>Status</Title>
+            <Text>{record?.status}</Text>
+
+            <Title level={5}>Prize Text</Title>
+            <Text>{record?.prize?.text}</Text>
         </Show>
     );
 };
