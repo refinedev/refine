@@ -48,10 +48,9 @@ export const PrizesList = (props: IResourceComponentsProps) => {
                 mapData={(item) => {
                     return {
                         id: item.id,
-                        title: item.title,
-                        slug: item.slug,
-                        content: item.content,
-                        status: item.status,
+                        text: item.text,
+                        image: item.images[0].url,
+                        isActive: item.isActive,
                     };
                 }}
             />
@@ -226,7 +225,7 @@ export const PrizesCreate = (props: IResourceComponentsProps) => {
                     >
                         <Upload.Dragger
                             name="file"
-                            action={`/ayna-crud-api/media/upload`}
+                            action={`${apiUrl}/media/upload`}
                             listType="picture"
                             maxCount={1}
                             multiple
@@ -243,7 +242,7 @@ export const PrizesCreate = (props: IResourceComponentsProps) => {
 
 export const PrizeEdit = (props: IResourceComponentsProps) => {
     const { formProps, saveButtonProps } = useForm({});
-
+    const apiUrl = useApiUrl();
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
@@ -304,7 +303,7 @@ export const PrizeEdit = (props: IResourceComponentsProps) => {
                     >
                         <Upload.Dragger
                             name="file"
-                            action={`/ayna-crud-api/media/upload`}
+                            action={`${apiUrl}/media/upload`}
                             listType="picture"
                             maxCount={1}
                             multiple

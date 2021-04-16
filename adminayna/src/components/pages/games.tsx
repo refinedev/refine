@@ -48,10 +48,9 @@ export const GamesList = (props: IResourceComponentsProps) => {
                 mapData={(item) => {
                     return {
                         id: item.id,
-                        title: item.title,
-                        slug: item.slug,
-                        content: item.content,
-                        status: item.status,
+                        code: item.code,
+                        gsmNumber: item.gsmNumber,
+                        prizeText: item.prize.text,
                     };
                 }}
             />

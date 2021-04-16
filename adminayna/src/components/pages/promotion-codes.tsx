@@ -39,10 +39,9 @@ export const PromotionCodesList = (props: IResourceComponentsProps) => {
                 mapData={(item) => {
                     return {
                         id: item.id,
-                        title: item.title,
-                        slug: item.slug,
-                        content: item.content,
+                        code: item.code,
                         status: item.status,
+                        prize: item.prize.text,
                     };
                 }}
             />

@@ -41,10 +41,10 @@ export const UsersList = (props: IResourceComponentsProps) => {
                 mapData={(item) => {
                     return {
                         id: item.id,
-                        title: item.title,
-                        slug: item.slug,
-                        content: item.content,
-                        status: item.status,
+                        username: item.name,
+                        password: item.password,
+                        role: item.role,
+                        isActive: item.isActive,
                     };
                 }}
             />
