@@ -44,7 +44,7 @@ const authProvider: AuthProvider = {
         return Promise.reject();
     },
     logout: () => {
-        localStorage.removeItem("username");
+        localStorage.removeItem("token");
         return Promise.resolve();
     },
     checkError: () => Promise.resolve(),
