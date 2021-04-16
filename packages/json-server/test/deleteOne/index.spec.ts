@@ -10,6 +10,7 @@ describe("deleteOne", () => {
     it("correct response", async () => {
         const response = await JsonServer(
             "https://readmin-fake-rest.pankod.com",
+            axios,
         ).deleteOne("posts", 1);
 
         const { data } = response;

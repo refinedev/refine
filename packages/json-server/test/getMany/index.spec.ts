@@ -10,6 +10,7 @@ describe("getMany", () => {
     it("correct response", async () => {
         const response = await JsonServer(
             "https://readmin-fake-rest.pankod.com",
+            axios,
         ).getMany("posts", [1, 2, 3]);
 
         const { data } = response;
