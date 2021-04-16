@@ -60,9 +60,10 @@ export const PostList = (props: any) => {
                 order: "descend",
             },
         ],
+        syncWithLocation: true,
     });
 
-    const categorySelectProps = useSelect({
+    const { ...categorySelectProps } = useSelect({
         resource: "categories",
         optionLabel: "title",
         optionValue: "id",

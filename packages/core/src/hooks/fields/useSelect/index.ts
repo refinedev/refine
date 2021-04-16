@@ -1,5 +1,4 @@
 import React from "react";
-import { SelectProps } from "antd/lib/select";
 
 import { useList, useMany } from "@hooks";
 import { Sort, Option } from "../../../interfaces";
@@ -14,7 +13,7 @@ export type UseSelectProps = {
     defaultValue?: string | string[];
 };
 
-export const useSelect = (props: UseSelectProps): SelectProps<"multiple"> => {
+export const useSelect = (props: UseSelectProps) => {
     const [search, setSearch] = React.useState<string | undefined>();
     const [options, setOptions] = React.useState<Option[]>([]);
 
@@ -45,7 +44,7 @@ export const useSelect = (props: UseSelectProps): SelectProps<"multiple"> => {
         },
     });
 
-    const { isLoading, refetch } = useList(
+    const queryResult = useList(
         resource,
         {
             search: {
@@ -67,6 +66,7 @@ export const useSelect = (props: UseSelectProps): SelectProps<"multiple"> => {
             },
         },
     );
+    const { refetch } = queryResult;
 
     React.useEffect(() => {
         if (search) {
@@ -81,6 +81,6 @@ export const useSelect = (props: UseSelectProps): SelectProps<"multiple"> => {
     return {
         options,
         onSearch,
-        loading: isLoading,
+        queryResult,
     };
 };

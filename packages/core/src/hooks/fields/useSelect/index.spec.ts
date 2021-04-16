@@ -20,12 +20,11 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.loading;
+            return !result.current.queryResult?.isLoading;
         });
 
-        const { options, loading } = result.current;
+        const { options } = result.current;
 
-        expect(loading).toBeFalsy();
         expect(options).toHaveLength(0);
     });
 
@@ -45,12 +44,11 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.loading;
+            return !result.current.queryResult.isLoading;
         });
 
-        const { options, loading } = result.current;
+        const { options } = result.current;
 
-        expect(loading).toBeFalsy();
         expect(options).toHaveLength(2);
     });
 });
