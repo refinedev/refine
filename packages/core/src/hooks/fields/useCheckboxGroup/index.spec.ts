@@ -4,7 +4,7 @@ import { MockJSONServer, TestWrapper } from "@test";
 
 import { useCheckboxGroup } from "./";
 
-describe("useCheckboxGroup Hook", () => {
+describe("render hook default options", () => {
     it("default", async () => {
         const { result, waitFor } = renderHook(
             () =>
