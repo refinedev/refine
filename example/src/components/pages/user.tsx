@@ -6,11 +6,13 @@ import {
     Create,
     Show,
     Table,
+    Drawer,
     EmailField,
     TagField,
     Form,
     Input,
     useTranslate,
+    useDrawerForm,
     useTable,
     EditButton,
     DeleteButton,
@@ -31,6 +33,11 @@ export const UserList = (props: any) => {
     const { tableProps } = useTable({
         initialPageSize: 20,
     });
+
+    const { formProps, drawerProps, show } = useDrawerForm({
+        action: "edit",
+    });
+
     return (
         <List {...props}>
             <Table
@@ -78,7 +85,13 @@ export const UserList = (props: any) => {
                         },
                     ): React.ReactNode => (
                         <Space>
-                            <EditButton size="small" recordItemId={record.id} />
+                            <EditButton
+                                size="small"
+                                onClick={() => {
+                                    show(record.id);
+                                }}
+                                recordItemId={record.id}
+                            />
                             <DeleteButton
                                 size="small"
                                 recordItemId={record.id}
