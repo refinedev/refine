@@ -3,6 +3,7 @@ import { useQueryClient, useMutation, UseMutationResult } from "react-query";
 
 import { DataContext } from "@contexts/data";
 import { DeleteManyResponse, IDataContext } from "../../interfaces";
+import { useNotification, useTranslate } from "@hooks";
 
 type UseDeleteManyReturnType = UseMutationResult<
     DeleteManyResponse,
@@ -15,6 +16,8 @@ type UseDeleteManyReturnType = UseMutationResult<
 
 export const useDeleteMany = (resource: string): UseDeleteManyReturnType => {
     const { deleteMany } = useContext<IDataContext>(DataContext);
+    const notification = useNotification();
+    const translate = useTranslate();
 
     if (!resource) {
         throw new Error("'resource' is required for useDelete hook.");
@@ -30,6 +33,27 @@ export const useDeleteMany = (resource: string): UseDeleteManyReturnType => {
             // Always refetch after error or success:
             onSettled: () => {
                 queryClient.invalidateQueries(queryResource);
+            },
+            onSuccess: (_data, { id }) => {
+                notification.success({
+                    key: `${id}-${resource}-notification`,
+                    message: translate(
+                        "common:notifications.success",
+                        "Success",
+                    ),
+                    description: translate(
+                        "common:notifications.deleteSuccess",
+                        { resource },
+                        `Successfully deleted ${resource}`,
+                    ),
+                });
+            },
+            onError: (err: Error, { id }) => {
+                notification.error({
+                    key: `${id}-${resource}-notification`,
+                    message: translate("common:notifications.error", "Error"),
+                    description: err.message,
+                });
             },
         },
     );

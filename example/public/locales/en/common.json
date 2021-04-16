@@ -112,7 +112,8 @@
         "clear": "Clear",
         "refresh": "Refresh",
         "show": "Show",
-        "undo": "Undo"
+        "undo": "Undo",
+        "import": "Import"
     },
     "table": {
         "actions": "Actions"
@@ -129,8 +130,14 @@
     "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
     "notifications": {
         "success": "Successful",
-        "succesMessage": "Id: {{id}} {{resource}} edited",
-        "undoable": "You have {{seconds}} seconds to undo"
+        "error": "Error",
+        "undoable": "You have {{seconds}} seconds to undo",
+        "createSuccess": "Successfully created {{resource}}",
+        "createError": "There was an error creating {{resource}}",
+        "deleteSuccess": "Successfully deleted {{resource}}",
+        "deleteError": "Error when deleting {{resource}}",
+        "editSuccess": "Successfully edited {{resource}}",
+        "editError": "Error when editing {{resource}}"
     },
     "loading": "Loading",
     "backHome": "Back Home"

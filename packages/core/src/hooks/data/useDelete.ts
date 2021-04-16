@@ -5,9 +5,12 @@ import {
     useMutationMode,
     useCancelNotification,
     useCacheQueries,
+    useNotification,
+    useTranslate,
 } from "@hooks";
 import { DataContext } from "@contexts/data";
 import { ActionTypes } from "@contexts/notification";
+import pluralize from "pluralize";
 import {
     DeleteOneResponse,
     IDataContext,
@@ -44,6 +47,8 @@ export const useDelete = (
     } = useMutationMode();
 
     const { notificationDispatch } = useCancelNotification();
+    const notification = useNotification();
+    const translate = useTranslate();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
@@ -57,7 +62,7 @@ export const useDelete = (
 
     const mutation = useMutation<
         DeleteOneResponse,
-        unknown,
+        Error,
         DeleteParams,
         DeleteContext
     >(
@@ -74,7 +79,7 @@ export const useDelete = (
 
                     const cancelMutation = () => {
                         clearTimeout(updateTimeout);
-                        reject("mutation cancelled");
+                        reject({ message: "mutationCancelled" });
                     };
 
                     if (onCancel) {
@@ -148,25 +153,38 @@ export const useDelete = (
                     previousQueries: previousQueries,
                 };
             },
-            onError: (_err, _variables, context) => {
+            onError: (err: any, { id }, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
                     }
                 }
-            },
-            onSuccess: (_data, variables, _context) => {
-                const allQueries = cacheQueries(
-                    resource,
-                    variables.id.toString(),
-                );
-                for (const query of allQueries) {
-                    if (
-                        query.queryKey.includes(`resource/getOne/${resource}`)
-                    ) {
-                        queryClient.removeQueries(query.queryKey);
-                    }
+                if (err.message !== "mutationCancelled") {
+                    notification.error({
+                        key: `${id}-${resource}-notification`,
+                        message: translate(
+                            "common:notifications.error",
+                            "Error",
+                        ),
+                        description: err.message,
+                    });
                 }
+            },
+            onSuccess: (_data, { id }) => {
+                const resourceSingular = pluralize.singular(resource);
+
+                notification.success({
+                    key: `${id}-${resource}-notification`,
+                    message: translate(
+                        "common:notifications.success",
+                        "Success",
+                    ),
+                    description: translate(
+                        "common:notifications.deleteSuccess",
+                        { resource: resourceSingular },
+                        `Successfully deleted a ${resourceSingular}`,
+                    ),
+                });
             },
             onSettled: (_data, _error, variables) => {
                 const allQueries = cacheQueries(

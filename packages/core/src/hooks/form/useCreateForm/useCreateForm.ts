@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import {
     useResourceWithRoute,
     useCreate,
-    useNotification,
     useWarnAboutChange,
     useRedirectionAfterSubmission,
 } from "@hooks";
@@ -57,8 +56,6 @@ export const useCreateForm = ({
 
     const { mutate, isLoading } = useCreate();
 
-    const notification = useNotification();
-
     const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 
     const onFinish = (values: BaseRecord) => {
@@ -71,11 +68,6 @@ export const useCreateForm = ({
                         onMutationSuccess(data, ...rest);
                         return;
                     }
-
-                    notification.success({
-                        message: "Successful",
-                        description: `New ${resource.name} created!`,
-                    });
 
                     const idFromRoute = data.data.id!;
 
@@ -90,11 +82,6 @@ export const useCreateForm = ({
                         onMutationError(error, ...rest);
                         return;
                     }
-
-                    notification.error({
-                        message: `There was an error creating it ${resource.name}!`,
-                        description: error.message,
-                    });
                 },
             },
         );
