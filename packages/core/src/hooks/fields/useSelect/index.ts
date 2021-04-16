@@ -45,7 +45,7 @@ export const useSelect = (props: UseSelectProps): SelectProps<"multiple"> => {
         },
     });
 
-    const { isLoading } = useList(
+    const { isLoading, refetch } = useList(
         resource,
         {
             search: {
@@ -56,6 +56,7 @@ export const useSelect = (props: UseSelectProps): SelectProps<"multiple"> => {
             filters,
         },
         {
+            enabled: false,
             onSuccess: (data) => {
                 const options: Option[] = data.data.map((item) => ({
                     label: item[optionLabel],
@@ -66,6 +67,12 @@ export const useSelect = (props: UseSelectProps): SelectProps<"multiple"> => {
             },
         },
     );
+
+    React.useEffect(() => {
+        if (search) {
+            refetch();
+        }
+    }, [search]);
 
     const onSearch = (value: string) => {
         setSearch(value);
