@@ -178,7 +178,7 @@ const NestsxCrud = (apiUrl: string): DataProvider => ({
     },
 
     getOne: async (resource, id) => {
-        const url = `${apiUrl}/${resource}/asdas${id}`;
+        const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await axiosInstance.get(url);
 
@@ -188,7 +188,7 @@ const NestsxCrud = (apiUrl: string): DataProvider => ({
     },
 
     deleteOne: async (resource, id) => {
-        const url = `${apiUrl}/adfasdf${resource}/${id}`;
+        const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await axiosInstance.delete(url);
 
