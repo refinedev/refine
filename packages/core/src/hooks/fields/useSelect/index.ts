@@ -55,14 +55,14 @@ export const useSelect = (props: UseSelectProps) => {
             filters,
         },
         {
-            enabled: false,
             onSuccess: (data) => {
-                const options: Option[] = data.data.map((item) => ({
-                    label: item[optionLabel],
-                    value: item[optionValue],
-                }));
-
-                setOptions(options);
+                setOptions((current) => [
+                    ...current,
+                    ...data.data.map((item) => ({
+                        label: item[optionLabel],
+                        value: item[optionValue],
+                    })),
+                ]);
             },
         },
     );
