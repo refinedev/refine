@@ -25,7 +25,7 @@ describe("useSelect Hook", () => {
 
         const { options } = result.current;
 
-        expect(options).toHaveLength(0);
+        expect(options).toHaveLength(2);
     });
 
     it("defaultValue", async () => {
@@ -33,7 +33,7 @@ describe("useSelect Hook", () => {
             () =>
                 useSelect({
                     resource: "posts",
-                    defaultValue: ["1", "2"],
+                    defaultValue: ["1", "2", "3", "4"],
                 }),
             {
                 wrapper: TestWrapper({
@@ -49,6 +49,6 @@ describe("useSelect Hook", () => {
 
         const { options } = result.current;
 
-        expect(options).toHaveLength(2);
+        expect(options).toHaveLength(4);
     });
 });
