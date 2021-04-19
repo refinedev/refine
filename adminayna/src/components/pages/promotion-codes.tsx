@@ -22,6 +22,7 @@ import {
     useShow,
     Typography,
     ShowButton,
+    ImportButton,
 } from "readmin";
 
 const { Title, Text } = Typography;
@@ -42,8 +43,19 @@ export const PromotionCodesList = (props: IResourceComponentsProps) => {
                         code: item.code,
                         status: item.status,
                         prize: item.prize.text,
+                        prizeId: item.prize.id,
                     };
                 }}
+            />
+            <ImportButton
+                mapData={(item) => {
+                    return {
+                        code: item.code,
+                        status: item.status,
+                        prize: { id: item.prizeId },
+                    };
+                }}
+                batchSize={null}
             />
             <CreateButton />
         </Space>
