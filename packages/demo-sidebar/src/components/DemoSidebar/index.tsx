@@ -10,7 +10,7 @@ import {
     Input,
     Form,
     InputNumber,
-} from "readmin";
+} from "refinejs";
 
 import { Group } from "..";
 

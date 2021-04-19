@@ -1,7 +1,7 @@
 import React from "react";
-import { Card, CardProps } from "readmin";
+import { Card, CardProps } from "refinejs";
 
-import { useTranslate } from "readmin";
+import { useTranslate } from "refinejs";
 
 export const Aside: React.FC<CardProps> = (props: any) => {
     const translate = useTranslate();
