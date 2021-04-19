@@ -9,6 +9,7 @@ describe("getList", () => {
     it("correct response", async () => {
         const { data, total } = await JsonServer(
             "https://readmin-nestjs-crud.pankod.com",
+            axios,
         ).getList("posts", {});
 
         expect(data[0]["id"]).toBe("fdbc6bbe-58a9-469c-a10b-6f089cd77fd7");
@@ -19,6 +20,7 @@ describe("getList", () => {
     it("correct sorting response", async () => {
         const { data, total } = await JsonServer(
             "https://readmin-nestjs-crud.pankod.com",
+            axios,
         ).getList("posts", {
             sort: {
                 field: "id",
@@ -34,6 +36,7 @@ describe("getList", () => {
     it("correct filter response", async () => {
         const { data, total } = await JsonServer(
             "https://readmin-nestjs-crud.pankod.com",
+            axios,
         ).getList("posts", {
             filters: {
                 "category.id": ["ba18b409-7084-4f5f-926c-207eab172f73"],
@@ -49,6 +52,7 @@ describe("getList", () => {
     it("correct filter and sort response", async () => {
         const { data, total } = await JsonServer(
             "https://readmin-nestjs-crud.pankod.com",
+            axios,
         ).getList("posts", {
             filters: {
                 "category.id": ["ba18b409-7084-4f5f-926c-207eab172f73"],

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 import {
     QueryFilter,
     QueryFilterArr,
@@ -25,15 +25,18 @@ axiosInstance.interceptors.response.use(
     (error) => {
         const customError: HttpError = {
             ...error,
-            message: error.response.data.message,
-            statusCode: error.response.status,
+            message: error.response?.data?.message,
+            statusCode: error.response?.status,
         };
 
         return Promise.reject(customError);
     },
 );
 
-const NestsxCrud = (apiUrl: string): DataProvider => ({
+const NestsxCrud = (
+    apiUrl: string,
+    httpClient: AxiosInstance = axiosInstance,
+): DataProvider => ({
     getList: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
         const current = params.pagination?.current || 1;
@@ -107,7 +110,7 @@ const NestsxCrud = (apiUrl: string): DataProvider => ({
             .setOffset((current - 1) * pageSize)
             .query();
 
-        const { data } = await axiosInstance.get(`${url}?${query}`);
+        const { data } = await httpClient.get(`${url}?${query}`);
 
         return {
             data: data.data,
@@ -126,7 +129,7 @@ const NestsxCrud = (apiUrl: string): DataProvider => ({
             })
             .query();
 
-        const { data } = await axiosInstance.get(`${url}?${query}`);
+        const { data } = await httpClient.get(`${url}?${query}`);
 
         return {
             data,
@@ -136,7 +139,7 @@ const NestsxCrud = (apiUrl: string): DataProvider => ({
     create: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { data } = await axiosInstance.post(url, params);
+        const { data } = await httpClient.post(url, params);
 
         return {
             data,
@@ -146,7 +149,7 @@ const NestsxCrud = (apiUrl: string): DataProvider => ({
     update: async (resource, id, params) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await axiosInstance.patch(url, params);
+        const { data } = await httpClient.patch(url, params);
 
         return {
             data,
@@ -156,7 +159,7 @@ const NestsxCrud = (apiUrl: string): DataProvider => ({
     updateMany: async (resource, ids, params) => {
         const response = await Promise.all(
             ids.map(async (id) => {
-                const { data } = await axiosInstance.patch(
+                const { data } = await httpClient.patch(
                     `${apiUrl}/${resource}/${id}`,
                     params,
                 );
@@ -170,7 +173,7 @@ const NestsxCrud = (apiUrl: string): DataProvider => ({
     createMany: async (resource, params) => {
         const url = `${apiUrl}/${resource}/bulk`;
 
-        const { data } = await axiosInstance.post(url, { bulk: params });
+        const { data } = await httpClient.post(url, { bulk: params });
 
         return {
             data,
@@ -180,7 +183,7 @@ const NestsxCrud = (apiUrl: string): DataProvider => ({
     getOne: async (resource, id) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await axiosInstance.get(url);
+        const { data } = await httpClient.get(url);
 
         return {
             data,
@@ -190,7 +193,7 @@ const NestsxCrud = (apiUrl: string): DataProvider => ({
     deleteOne: async (resource, id) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await axiosInstance.delete(url);
+        const { data } = await httpClient.delete(url);
 
         return {
             data,
@@ -200,7 +203,7 @@ const NestsxCrud = (apiUrl: string): DataProvider => ({
     deleteMany: async (resource, ids) => {
         const response = await Promise.all(
             ids.map(async (id) => {
-                const { data } = await axiosInstance.delete(
+                const { data } = await httpClient.delete(
                     `${apiUrl}/${resource}/${id}`,
                 );
                 return data;

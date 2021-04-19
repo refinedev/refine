@@ -9,6 +9,7 @@ describe("create", () => {
     it("correct response", async () => {
         const { data } = await JsonServer(
             "https://readmin-nestjs-crud.pankod.com",
+            axios,
         ).create("posts", {
             title: "foo",
             content: "bar",
