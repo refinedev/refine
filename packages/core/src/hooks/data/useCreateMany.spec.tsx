@@ -26,8 +26,6 @@ describe("useCreateMany Hook", () => {
 
         const { status, data } = result.current;
 
-        console.log(data);
-
         expect(status).toBe("success");
         expect(data?.data[0].slug).toBe("ut-ad-et");
         expect(data?.data[1].slug).toBe("consequatur-molestiae-rerum");

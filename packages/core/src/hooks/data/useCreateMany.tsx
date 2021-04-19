@@ -2,7 +2,12 @@ import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
 
 import { DataContext } from "@contexts/data";
-import { IDataContext, BaseRecord, CreateManyResponse } from "../../interfaces";
+import {
+    IDataContext,
+    BaseRecord,
+    CreateManyResponse,
+    HttpError,
+} from "../../interfaces";
 import { useListResourceQueries, useNotification, useTranslate } from "@hooks";
 
 type UseCreateManyReturnType<
@@ -44,13 +49,13 @@ export const useCreateMany = <
                     queryClient.invalidateQueries(query.queryKey);
                 });
             },
-            onError: (e: Error, { resource }) => {
+            onError: (err: HttpError, { resource }) => {
                 notification.error({
-                    description: e.message,
+                    description: err.message,
                     message: translate(
                         "common:notifications.createError",
                         { resource },
-                        `There was an error creating ${resource}!`,
+                        `There was an error creating ${resource} (status code: ${err.statusCode}`,
                     ),
                 });
             },

@@ -1,5 +1,4 @@
 import axios from "axios";
-// import nock from "nock";
 
 import JsonServer from "../../src/index";
 import "./index.mock";
@@ -10,6 +9,7 @@ describe("create", () => {
     it("correct response", async () => {
         const response = await JsonServer(
             "https://readmin-fake-rest.pankod.com",
+            axios,
         ).create("posts", {
             id: 1001,
             title: "foo",
