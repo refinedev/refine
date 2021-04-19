@@ -36,8 +36,7 @@ export const useSelect = (props: UseSelectProps) => {
     useMany(resource, defaultValue, {
         enabled: defaultValue.length > 0,
         onSuccess: (data) => {
-            setSelectedOptions((current) => [
-                ...current,
+            setSelectedOptions(() => [
                 ...data.data.map((item) => ({
                     label: item[optionLabel],
                     value: item[optionValue],
