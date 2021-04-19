@@ -23,7 +23,7 @@ import {
     Typography,
     ShowButton,
     ImportButton,
-} from "readmin";
+} from "@pankod/refine";
 
 const { Title, Text } = Typography;
 

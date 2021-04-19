@@ -1,5 +1,5 @@
-import { Admin, Resource, AuthProvider, ILoginForm } from "readmin";
-import dataProvider from "readmin-nestjsx-crud";
+import { Admin, Resource, AuthProvider, ILoginForm } from "@pankod/refine";
+import dataProvider from "@pankod/refine-nestjsx-crud";
 import axios from "axios";
 
 import {

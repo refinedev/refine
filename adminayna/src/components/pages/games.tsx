@@ -16,7 +16,7 @@ import {
     Select,
     useShow,
     Typography,
-} from "readmin";
+} from "@pankod/refine";
 
 const { Title, Text } = Typography;
 

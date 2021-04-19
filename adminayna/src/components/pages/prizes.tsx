@@ -32,7 +32,7 @@ import {
     Typography,
     useShow,
     useFileUploadState,
-} from "readmin";
+} from "@pankod/refine";
 
 const { Title, Text } = Typography;
 

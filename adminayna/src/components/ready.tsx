@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Row, Col, Typography } from "readmin";
+import { Row, Col, Typography } from "@pankod/refine";
 
 const styles: { [key: string]: React.CSSProperties } = {
     root: {
@@ -16,8 +16,8 @@ export const ReadyPage: React.FC = () => {
     return (
         <Row align="middle" justify="center" style={styles.root}>
             <Col style={{ textAlign: "center" }}>
-                <Title>readmin</Title>
-                <Title level={2}>Welcome to readmin</Title>
+                <Title>@pankod/refine</Title>
+                <Title level={2}>Welcome to @pankod/refine</Title>
                 <p style={{ marginBottom: 0 }}>
                     Your application is properly configured.
                 </p>
