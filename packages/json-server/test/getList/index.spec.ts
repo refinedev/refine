@@ -10,6 +10,7 @@ describe("getList", () => {
     it("correct response", async () => {
         const response = await JsonServer(
             "https://readmin-fake-rest.pankod.com",
+            axios,
         ).getList("posts", {});
 
         expect(response.data[0]["id"]).toBe(1000);
@@ -22,6 +23,7 @@ describe("getList", () => {
     it("correct sorting response", async () => {
         const response = await JsonServer(
             "https://readmin-fake-rest.pankod.com",
+            axios,
         ).getList("posts", {
             sort: {
                 field: "id",
@@ -39,6 +41,7 @@ describe("getList", () => {
     it("correct filter response", async () => {
         const response = await JsonServer(
             "https://readmin-fake-rest.pankod.com",
+            axios,
         ).getList("posts", {
             filters: {
                 categoryId: [1],
@@ -52,6 +55,7 @@ describe("getList", () => {
     it("correct filter and sort response", async () => {
         const response = await JsonServer(
             "https://readmin-fake-rest.pankod.com",
+            axios,
         ).getList("posts", {
             filters: {
                 categoryId: [1],

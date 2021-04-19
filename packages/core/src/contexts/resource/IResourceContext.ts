@@ -4,7 +4,21 @@ export interface IResourceContext {
     resources: IResourceItem[];
 }
 
-export interface IResourceItem {
+export interface IResourceComponentsProps {
+    canCreate?: boolean;
+    canEdit?: boolean;
+    canDelete?: boolean;
+    canShow?: boolean;
+    name?: string;
+}
+export interface IResourceComponents {
+    list?: React.FunctionComponent<IResourceComponentsProps>;
+    create?: React.FunctionComponent<IResourceComponentsProps>;
+    edit?: React.FunctionComponent<IResourceComponentsProps>;
+    show?: React.FunctionComponent<IResourceComponentsProps>;
+}
+
+export interface IResourceItem extends IResourceComponents {
     name: string;
     label?: string;
     route?: string;
@@ -13,18 +27,4 @@ export interface IResourceItem {
     canEdit?: boolean;
     canShow?: boolean;
     canDelete?: boolean;
-
-    list?: React.FunctionComponent<{
-        canCreate: boolean;
-        canEdit: boolean;
-        canDelete?: boolean;
-        canShow: boolean;
-    }>;
-    create?: React.FunctionComponent<{ canEdit: boolean }>;
-    edit?: React.FunctionComponent;
-    show?: React.FunctionComponent<{
-        canCreate: boolean;
-        canEdit: boolean;
-        canDelete?: boolean;
-    }>;
 }

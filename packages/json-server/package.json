@@ -3,6 +3,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "private": false,
   "files": [
     "dist",
     "src"
@@ -18,16 +19,16 @@
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
-  "name": "refinejs-json-server",
+  "name": "@pankod/refine-json-server",
   "author": "Pankod",
-  "module": "dist/refinejs-json-server.esm.js",
+  "module": "dist/refine-json-server.esm.js",
   "size-limit": [
     {
-      "path": "dist/refinejs-json-server.cjs.production.min.js",
+      "path": "dist/refine-json-server.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/refinejs-json-server.esm.js",
+      "path": "dist/refine-json-server.esm.js",
       "limit": "10 KB"
     }
   ],
@@ -42,6 +43,6 @@
   "dependencies": {
     "axios": "^0.21.1",
     "query-string": "^7.0.0",
-    "refinejs": "^1.0.0"
+    "@pankod/refine": "^1.0.0"
   }
 }

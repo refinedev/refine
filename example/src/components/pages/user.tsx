@@ -24,7 +24,7 @@ import {
     Typography,
     Row,
     Col,
-} from "refinejs";
+} from "@pankod/refine";
 
 const { Title, Text } = Typography;
 

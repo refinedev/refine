@@ -1,7 +1,8 @@
 {
-    "name": "refinejs",
+    "name": "@pankod/refine",
     "version": "1.0.0",
     "description": "",
+    "private": false,
     "main": "dist/index.js",
     "module": "dist/react.esm.js",
     "typings": "dist/index.d.ts",
@@ -19,11 +20,11 @@
     },
     "size-limit": [
         {
-            "path": "dist/tsdx.cjs.production.min.js",
+            "path": "dist/refine.cjs.production.min.js",
             "limit": "10 KB"
         },
         {
-            "path": "dist/tsdx.esm.js",
+            "path": "dist/refine.esm.js",
             "limit": "10 KB"
         }
     ],

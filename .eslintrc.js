@@ -30,5 +30,6 @@ module.exports = {
         "@typescript-eslint/interface-name-prefix": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
         "react/prop-types": "off",
+        "react/react-in-jsx-scope": "off"
     },
 };
