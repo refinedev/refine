@@ -115,7 +115,10 @@ export const GamesList = (props: IResourceComponentsProps) => {
                     }}
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
-                            <Select options={statusOptions} />
+                            <Select
+                                style={{ minWidth: 130 }}
+                                options={statusOptions}
+                            />
                         </FilterDropdown>
                     )}
                 />
