@@ -6,7 +6,7 @@ import {
     UrlField,
     useTranslate,
     useTable,
-} from "refinejs";
+} from "@pankod/refine";
 
 export const FilesList = (props: any) => {
     const translate = useTranslate();

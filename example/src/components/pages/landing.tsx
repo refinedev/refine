@@ -20,7 +20,7 @@ import {
     useModalForm,
     Modal,
     CloneButton,
-} from "refinejs";
+} from "@pankod/refine";
 
 export const LandingList = (props: any) => {
     const translate = useTranslate();
