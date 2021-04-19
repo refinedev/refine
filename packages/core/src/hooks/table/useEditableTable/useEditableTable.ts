@@ -5,7 +5,7 @@ import { useEditFormProps } from "../../form/useEditForm";
 type useEditableTableProps = useTableProps & useEditFormProps;
 
 export const useEditableTable = (props: useEditableTableProps) => {
-    const table = useTable({ ...props });
+    const table = useTable<{ [key: string]: any }>({ ...props });
     const edit = useEditForm({ ...props });
 
     const { form, editId, setEditId, formLoading } = edit;

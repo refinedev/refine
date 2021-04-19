@@ -15,31 +15,31 @@ import {
     DeleteOneResponse,
     IDataContext,
     MutationMode,
-    GetListResponse,
     QueryResponse,
     Context as DeleteContext,
     BaseRecord,
     ContextQuery,
     HttpError,
+    GetListResponse,
 } from "../../interfaces";
 
 type DeleteParams = {
     id: string | number;
 };
 
-type UseDeleteReturnType = UseMutationResult<
-    DeleteOneResponse,
+type UseDeleteReturnType<T> = UseMutationResult<
+    DeleteOneResponse<T>,
     unknown,
     DeleteParams,
     DeleteContext
 >;
 
-export const useDelete = (
+export const useDelete = <RecordType extends BaseRecord = BaseRecord>(
     resource: string,
     mutationModeProp?: MutationMode,
     undoableTimeoutProp?: number,
     onCancel?: (cancelMutation: () => void) => void,
-): UseDeleteReturnType => {
+): UseDeleteReturnType<RecordType> => {
     const queryClient = useQueryClient();
     const { deleteOne } = useContext<IDataContext>(DataContext);
     const {
@@ -62,7 +62,7 @@ export const useDelete = (
     const cacheQueries = useCacheQueries();
 
     const mutation = useMutation<
-        DeleteOneResponse,
+        DeleteOneResponse<RecordType>,
         HttpError,
         DeleteParams,
         DeleteContext
@@ -72,7 +72,7 @@ export const useDelete = (
                 return deleteOne(resource, id);
             }
 
-            const updatePromise = new Promise<DeleteOneResponse>(
+            const updatePromise = new Promise<DeleteOneResponse<RecordType>>(
                 (resolve, reject) => {
                     const updateTimeout = setTimeout(() => {
                         resolve(deleteOne(resource, id));
@@ -113,9 +113,9 @@ export const useDelete = (
                     const { queryKey } = queryItem;
                     await queryClient.cancelQueries(queryKey);
 
-                    const previousQuery = queryClient.getQueryData<QueryResponse>(
-                        queryKey,
-                    );
+                    const previousQuery = queryClient.getQueryData<
+                        QueryResponse<RecordType>
+                    >(queryKey);
 
                     if (!(mutationMode === "pessimistic")) {
                         if (previousQuery) {
@@ -130,12 +130,15 @@ export const useDelete = (
                                 const {
                                     data,
                                     total,
-                                } = previousQuery as GetListResponse;
+                                    // eslint-disable-next-line prettier/prettier
+                                } = previousQuery as GetListResponse<
+                                    RecordType
+                                >;
 
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: (data ?? []).filter(
-                                        (record: BaseRecord) =>
+                                        (record: RecordType) =>
                                             !(
                                                 record.id!.toString() ===
                                                 deleteParams.id.toString()

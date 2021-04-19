@@ -21,25 +21,23 @@ import {
     useTranslate,
 } from "@hooks";
 
-type UpdateParams<TParams> = {
+type UpdateParams<T> = {
     id: string;
-    values: TParams;
+    values: T;
 };
-type UseUpdateReturnType<
-    TParams extends BaseRecord = BaseRecord
-> = UseMutationResult<
-    UpdateResponse,
+type UseUpdateReturnType<T> = UseMutationResult<
+    UpdateResponse<T>,
     unknown,
-    UpdateParams<TParams>,
+    UpdateParams<BaseRecord>,
     UpdateContext
 >;
 
-export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
+export const useUpdate = <RecordType extends BaseRecord = BaseRecord>(
     resource: string,
     mutationModeProp?: MutationMode,
     undoableTimeoutProp?: number,
     onCancel?: (cancelMutation: () => void) => void,
-): UseUpdateReturnType<TParams> => {
+): UseUpdateReturnType<RecordType> => {
     const queryClient = useQueryClient();
     const { update } = useContext<IDataContext>(DataContext);
     const {
@@ -64,19 +62,19 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
     const getAllQueries = useCacheQueries();
 
     const mutation = useMutation<
-        UpdateResponse,
+        UpdateResponse<RecordType>,
         HttpError,
-        UpdateParams<TParams>,
+        UpdateParams<BaseRecord>,
         UpdateContext
     >(
         ({ id, values }) => {
             if (!(mutationMode === "undoable")) {
-                return update<TParams>(resource, id, values);
+                return update<RecordType>(resource, id, values);
             }
-            const updatePromise = new Promise<UpdateResponse>(
+            const updatePromise = new Promise<UpdateResponse<RecordType>>(
                 (resolve, reject) => {
                     const updateTimeout = setTimeout(() => {
-                        resolve(update<TParams>(resource, id, values));
+                        resolve(update<RecordType>(resource, id, values));
                     }, undoableTimeout);
 
                     const cancelMutation = () => {
@@ -129,7 +127,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
 
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
-                                    data: data.map((record: BaseRecord) => {
+                                    data: data.map((record: RecordType) => {
                                         if (
                                             record.id!.toString() ===
                                             variables.id

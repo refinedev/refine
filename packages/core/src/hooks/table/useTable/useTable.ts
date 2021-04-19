@@ -23,20 +23,14 @@ export type useTableProps = {
     syncWithLocation?: boolean;
 };
 
-type useTable = {
-    tableProps: TableProps<any>;
-    sorter: Sort;
-    filters: Filters;
-};
-
-export const useTable = ({
+export const useTable = <T = { [key: string]: any }>({
     permanentFilter,
     initialCurrent = 1,
     initialPageSize = 10,
     initialSorter,
     initialFilter,
     syncWithLocation = false,
-}: useTableProps): useTable => {
+}: useTableProps) => {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
     if (syncWithLocationContext) {
@@ -89,7 +83,7 @@ export const useTable = ({
         defaultCurrent: defaultCurrentSF,
     } = tablePropsSunflower.pagination;
 
-    const { data, isFetching } = useList(resource.name, {
+    const { data, isFetching } = useList<T>(resource.name, {
         pagination: { current: current ?? defaultCurrentSF, pageSize },
         filters: merge(permanentFilter, filters),
         sort: sorter,

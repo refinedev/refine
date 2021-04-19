@@ -2,7 +2,7 @@ import React from "react";
 
 import { IDataContext } from "../../interfaces";
 
-export const defaultDataProvider = (): IDataContext => {
+export const defaultDataProvider = () => {
     return {
         create: () => Promise.resolve({ data: { id: 1 } }),
         createMany: () => Promise.resolve({ data: [] }),
@@ -18,7 +18,7 @@ export const defaultDataProvider = (): IDataContext => {
 };
 
 export const DataContext = React.createContext<IDataContext>(
-    defaultDataProvider(),
+    defaultDataProvider() as IDataContext,
 );
 
 export const DataContextProvider: React.FC<IDataContext> = ({
