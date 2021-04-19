@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Row, Col, Typography } from "refinejs";
+import { Row, Col, Typography } from "@pankod/refine";
 
 const { Title } = Typography;
 

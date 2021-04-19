@@ -1,7 +1,7 @@
 import React from "react";
-import { Card, CardProps } from "refinejs";
+import { Card, CardProps } from "@pankod/refine";
 
-import { useTranslate } from "refinejs";
+import { useTranslate } from "@pankod/refine";
 
 export const Aside: React.FC<CardProps> = (props: any) => {
     const translate = useTranslate();

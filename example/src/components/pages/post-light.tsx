@@ -20,7 +20,7 @@ import {
     ExportButton,
     CreateButton,
     CloneButton,
-} from "refinejs";
+} from "@pankod/refine";
 
 export const PostLightList = (props: any) => {
     const translate = useTranslate();

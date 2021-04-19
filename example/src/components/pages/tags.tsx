@@ -14,7 +14,7 @@ import {
     Input,
     getDefaultSortOrder,
     Edit,
-} from "refinejs";
+} from "@pankod/refine";
 
 export const TagsList = (props: { resourceName: string }) => {
     const translate = useTranslate();

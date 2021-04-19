@@ -18,16 +18,16 @@
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
-  "name": "refinejs-nestjsx-crud",
+  "name": "@pankod/refine-nestjsx-crud",
   "author": "Pankod",
-  "module": "dist/refinejs-nestjsx-crud.esm.js",
+  "module": "dist/refine-nestjsx-crud.esm.js",
   "size-limit": [
     {
-      "path": "dist/refinejs-nestjsx-crud.cjs.production.min.js",
+      "path": "dist/refine-nestjsx-crud.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/refinejs-nestjsx-crud.esm.js",
+      "path": "dist/refine-nestjsx-crud.esm.js",
       "limit": "10 KB"
     }
   ],
@@ -43,6 +43,6 @@
     "@nestjsx/crud-request": "^5.0.0-alpha.3",
     "axios": "^0.21.1",
     "query-string": "^7.0.0",
-    "refinejs": "^1.0.0"
+    "@pankod/refine": "^1.0.0"
   }
 }

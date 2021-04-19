@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 import { stringify } from "query-string";
-import { DataProvider, HttpError } from "refinejs";
+import { DataProvider, HttpError } from "@pankod/refine";
 
 const axiosInstance = axios.create();
 

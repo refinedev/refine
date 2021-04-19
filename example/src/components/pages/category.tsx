@@ -20,7 +20,7 @@ import {
     CreateButton,
     DateField,
     getDefaultSortOrder,
-} from "refinejs";
+} from "@pankod/refine";
 
 export const CategoryList = (props: { resourceName: string }) => {
     const translate = useTranslate();
