@@ -49,6 +49,6 @@ describe("useSelect Hook", () => {
 
         const { options } = result.current;
 
-        expect(options).toHaveLength(4);
+        expect(options).toHaveLength(2);
     });
 });
