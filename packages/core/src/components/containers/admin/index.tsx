@@ -26,7 +26,7 @@ import {
 } from "../../../interfaces";
 
 export interface AdminProps {
-    authProvider: IAuthContext;
+    authProvider?: IAuthContext;
     dataProvider: IDataContext;
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;

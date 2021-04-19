@@ -22,7 +22,7 @@ import {
     getDefaultSortOrder,
 } from "@pankod/refine";
 
-export const CategoryList = (props: { resourceName: string }) => {
+export const CategoryList = (props: any) => {
     const translate = useTranslate();
     const {
         tableProps,

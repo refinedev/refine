@@ -8,6 +8,9 @@ export {
     ITranslationContext as TranslationProvider,
     I18nProvider,
     MutationMode,
+    IResourceComponents,
+    IResourceComponentsProps,
+    ILoginForm,
     HttpError,
 } from "./interfaces";
 

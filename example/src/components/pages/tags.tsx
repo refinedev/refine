@@ -16,7 +16,7 @@ import {
     Edit,
 } from "@pankod/refine";
 
-export const TagsList = (props: { resourceName: string }) => {
+export const TagsList = (props: any) => {
     const translate = useTranslate();
     const { tableProps, sorter } = useTable({
         initialSorter: [
