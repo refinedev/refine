@@ -88,19 +88,22 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
                     setCollapsed(collapsed)
                 }
             >
-                <div
-                    style={{
-                        color: "#FFF",
-                        fontSize: 16,
-                        textAlign: "center",
-                        height: 60,
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
-                    {title ?? "Readmin"}
-                </div>
+                {title ?? (
+                    <div
+                        style={{
+                            color: "#FFF",
+                            fontSize: 16,
+                            textAlign: "center",
+                            height: 60,
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}
+                    >
+                        Readmin
+                    </div>
+                )}
+
                 <Menu
                     onClick={menuOnClick}
                     theme="dark"

@@ -68,6 +68,21 @@ const authProvider: AuthProvider = {
         }),
 };
 
+const MenuHeader = () => (
+    <div
+        style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            color: "#FFFFFF",
+            paddingTop: 20,
+        }}
+    >
+        <img src={"/images/logo.svg"} />
+        <div style={{ marginTop: 15, fontSize: 18 }}>Ayna Ayna</div>
+    </div>
+);
+
 function App() {
     return (
         <Admin
@@ -76,6 +91,7 @@ function App() {
                 "https://api.turkcell-ayna-ayna.puul.tv/admin",
                 axiosInstance,
             )}
+            title={<MenuHeader />}
         >
             <Resource
                 name="prizes"
