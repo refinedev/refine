@@ -1,5 +1,4 @@
 import React from "react";
-import { CheckboxGroupProps } from "antd/lib/checkbox";
 
 import { useList, useMany } from "@hooks";
 import { Sort, Option } from "../../../interfaces";
@@ -18,7 +17,7 @@ export const useCheckboxGroup = ({
     optionLabel = "title",
     optionValue = "id",
     ...rest
-}: useCheckboxGroupProps): CheckboxGroupProps => {
+}: useCheckboxGroupProps) => {
     const [options, setOptions] = React.useState<Option[]>([]);
 
     let { defaultValue = [] } = rest;
@@ -40,24 +39,26 @@ export const useCheckboxGroup = ({
         },
     });
 
-    useList(
+    const queryResult = useList(
         resource,
         {
             sort,
         },
         {
             onSuccess: (data) => {
-                const options: Option[] = data.data.map((item) => ({
-                    label: item[optionLabel],
-                    value: item[optionValue],
-                }));
-
-                setOptions(options);
+                setOptions((current) => [
+                    ...current,
+                    ...data.data.map((item) => ({
+                        label: item[optionLabel],
+                        value: item[optionValue],
+                    })),
+                ]);
             },
         },
     );
 
     return {
         options,
+        queryResult,
     };
 };
