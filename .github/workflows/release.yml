@@ -26,4 +26,4 @@ jobs:
           npm test
           npm run lerna publish from-package -- --yes
         env:
-          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+          NPM_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
