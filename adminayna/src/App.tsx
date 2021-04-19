@@ -79,7 +79,7 @@ const MenuHeader = () => (
         }}
     >
         <img src={"/images/logo.svg"} />
-        <div style={{ marginTop: 15, fontSize: 18 }}>Ayna Ayna</div>
+        <div style={{ marginTop: 15, fontSize: 18, textAlign: "center" }}>Ayna Ayna</div>
     </div>
 );
 
