@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MutationMode } from "readmin";
+import { MutationMode } from "refinejs";
 import { DemoSidebarProps } from "../../components/DemoSidebar/types";
 
 interface DemoSidebarParams {

@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 import { stringify } from "query-string";
-import { DataProvider, HttpError } from "readmin";
+import { DataProvider, HttpError } from "refinejs";
 
 const axiosInstance = axios.create();
 

@@ -20,7 +20,7 @@ import {
     useModalForm,
     Modal,
     CloneButton,
-} from "readmin";
+} from "refinejs";
 
 export const LandingList = (props: any) => {
     const translate = useTranslate();

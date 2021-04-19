@@ -8,7 +8,7 @@ import {
     RequestQueryBuilder,
     CondOperator,
 } from "@nestjsx/crud-request";
-import { DataProvider, HttpError } from "readmin";
+import { DataProvider, HttpError } from "refinejs";
 
 type SortBy = QuerySort | QuerySortArr | Array<QuerySort | QuerySortArr>;
 type CrudFilters =

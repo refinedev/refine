@@ -89,7 +89,7 @@ export const useTable = ({
         defaultCurrent: defaultCurrentSF,
     } = tablePropsSunflower.pagination;
 
-    const { data, isFetching, refetch } = useList(resource.name, {
+    const { data, isFetching } = useList(resource.name, {
         pagination: { current: current ?? defaultCurrentSF, pageSize },
         filters: merge(permanentFilter, filters),
         sort: sorter,
@@ -115,8 +115,6 @@ export const useTable = ({
 
             return push(`/resources/${resource.route}?${stringifyParams}`);
         }
-
-        refetch();
     };
 
     return {

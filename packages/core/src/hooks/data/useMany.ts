@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { QueryObserverResult, useQuery } from "react-query";
+import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -15,6 +15,7 @@ import { useTranslate } from "@hooks/translate";
 export const useMany = (
     resource: string,
     ids: Identifier[],
+    options?: UseQueryOptions<GetManyResponse, HttpError>,
 ): QueryObserverResult<GetManyResponse<BaseRecord>> => {
     const { getMany } = useContext<IDataContext>(DataContext);
     const notification = useNotification();
@@ -24,8 +25,12 @@ export const useMany = (
         `resource/list/${resource}`,
         () => getMany(resource, ids),
         {
+            ...options,
             onError: (err: HttpError) => {
+                options?.onError?.(err);
+
                 notification.error({
+                    key: `${ids[0]}-${resource}-notification`,
                     message: translate(
                         "common:notifications.error",
                         { statusCode: err.statusCode },

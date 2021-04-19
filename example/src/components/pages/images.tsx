@@ -6,7 +6,7 @@ import {
     NumberField,
     useTranslate,
     useTable,
-} from "readmin";
+} from "refinejs";
 
 export const ImagesList = (props: any) => {
     const translate = useTranslate();

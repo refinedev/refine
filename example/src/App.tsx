@@ -7,11 +7,10 @@ import {
     Authenticated,
     defaultConfigProviderProps,
     BackTop,
-} from "readmin";
-import JsonServer from "readmin-json-server";
-import { DemoSidebar, useDemoSidebar } from "readmin-demo-sidebar";
+} from "refinejs";
+import { DemoSidebar, useDemoSidebar } from "refinejs-demo-sidebar";
 
-import dataProvider from "readmin-nestjsx-crud";
+import dataProvider from "refinejs-nestjsx-crud";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -27,6 +26,7 @@ import {
     UserCreate,
     UserShow,
 } from "./components/pages/user";
+import { TagsList, TagsCreate, TagsEdit } from "./components/pages/tags";
 import { DashboardPage } from "./components/pages/dashboard";
 import { ReadyPage } from "./components/ready";
 import { LoginPage } from "./components/login";
@@ -140,6 +140,13 @@ function App() {
                 create={UserCreate}
                 show={UserShow}
                 icon={<Icons.UserOutlined />}
+            />
+            <Resource
+                name="tags"
+                list={TagsList}
+                edit={TagsEdit}
+                create={TagsCreate}
+                icon={<Icons.TagsOutlined />}
             />
         </Admin>
     );
