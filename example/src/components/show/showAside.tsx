@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Card } from "readmin";
+import { Card } from "refinejs";
 
 export const ShowAside: React.FC<{ record: any }> = ({ record }) => {
     return (

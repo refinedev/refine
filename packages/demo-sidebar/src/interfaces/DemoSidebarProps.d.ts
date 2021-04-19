@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { MutationMode } from "readmin";
+import { MutationMode } from "refinejs";
 
 export interface DemoSidebarProps {
     title: string;
