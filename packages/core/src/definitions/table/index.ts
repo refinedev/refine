@@ -128,5 +128,9 @@ export const getDefaultFilter = (
     columnName: string,
     filters: Filters,
 ): string[] | undefined => {
-    return (filters[columnName] as string[]) || undefined;
+    if (!filters || filters[columnName]) {
+        return undefined;
+    }
+
+    return filters[columnName] as string[];
 };
