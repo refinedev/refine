@@ -156,7 +156,7 @@ const NestsxCrud = (
     createMany: async (resource, params) => {
         const url = `${apiUrl}/${resource}/bulk`;
 
-        const { data } = await axios.post(url, { bulk: params });
+        const { data } = await httpClient.post(url, { bulk: params });
 
         return {
             data,

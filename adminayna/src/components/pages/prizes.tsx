@@ -49,11 +49,15 @@ export const PrizesList = (props: IResourceComponentsProps) => {
                     return {
                         id: item.id,
                         text: item.text,
-                        image: item.images[0].url,
+                        description: item.description,
+                        weight: item.weight,
+                        externalId: item.externalId,
                         isActive: item.isActive,
+                        image: item.images[0].url,
                     };
                 }}
             />
+
             <CreateButton />
         </Space>
     );
