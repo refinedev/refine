@@ -123,3 +123,10 @@ export const getDefaultSortOrder = (
 
     return;
 };
+
+export const getDefaultFilter = (
+    columnName: string,
+    filters: Filters,
+): string[] | undefined => {
+    return (filters[columnName] as string[]) || undefined;
+};
