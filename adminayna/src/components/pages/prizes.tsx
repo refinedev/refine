@@ -31,6 +31,7 @@ import {
     IResourceComponentsProps,
     Typography,
     useShow,
+    useFileUploadState,
 } from "readmin";
 
 const { Title, Text } = Typography;
@@ -169,9 +170,16 @@ export const PrizesList = (props: IResourceComponentsProps) => {
 export const PrizesCreate = (props: IResourceComponentsProps) => {
     const { formProps, saveButtonProps } = useForm({});
     const apiUrl = useApiUrl();
+    const { onChange, isLoading } = useFileUploadState();
 
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
+        <Create
+            {...props}
+            saveButtonProps={{
+                ...saveButtonProps,
+                loading: saveButtonProps?.loading || isLoading,
+            }}
+        >
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label="Text"
@@ -232,10 +240,15 @@ export const PrizesCreate = (props: IResourceComponentsProps) => {
                             action={`${apiUrl}/media/upload`}
                             listType="picture"
                             maxCount={1}
+                            onChange={onChange}
                             multiple
                         >
-                            <p className="ant-upload-text">title</p>
-                            <p className="ant-upload-hint">description</p>
+                            <p className="ant-upload-text">
+                                Click or drag file to this area to upload
+                            </p>
+                            <p className="ant-upload-hint">
+                                Support for a single upload
+                            </p>
                         </Upload.Dragger>
                     </Form.Item>
                 </Form.Item>
@@ -247,8 +260,16 @@ export const PrizesCreate = (props: IResourceComponentsProps) => {
 export const PrizeEdit = (props: IResourceComponentsProps) => {
     const { formProps, saveButtonProps } = useForm({});
     const apiUrl = useApiUrl();
+    const { onChange, isLoading } = useFileUploadState();
+
     return (
-        <Edit {...props} saveButtonProps={saveButtonProps}>
+        <Edit
+            {...props}
+            saveButtonProps={{
+                ...saveButtonProps,
+                loading: saveButtonProps?.loading || isLoading,
+            }}
+        >
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
                 <Form.Item
                     label="Text"
@@ -311,9 +332,14 @@ export const PrizeEdit = (props: IResourceComponentsProps) => {
                             listType="picture"
                             maxCount={1}
                             multiple
+                            onChange={onChange}
                         >
-                            <p className="ant-upload-text">title</p>
-                            <p className="ant-upload-hint">description</p>
+                            <p className="ant-upload-text">
+                                Click or drag file to this area to upload
+                            </p>
+                            <p className="ant-upload-hint">
+                                Support for a single upload
+                            </p>
                         </Upload.Dragger>
                     </Form.Item>
                 </Form.Item>
