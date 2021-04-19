@@ -1,4 +1,5 @@
 import React from "react";
+import { merge } from "lodash";
 
 import { useList, useMany } from "@hooks";
 import { Sort, Option } from "../../../interfaces";
@@ -16,6 +17,7 @@ export type UseSelectProps = {
 export const useSelect = (props: UseSelectProps) => {
     const [search, setSearch] = React.useState<string | undefined>();
     const [options, setOptions] = React.useState<Option[]>([]);
+    const [selectedOptions, setSelectedOptions] = React.useState<Option[]>([]);
 
     let { defaultValue = [] } = props;
 
@@ -34,7 +36,7 @@ export const useSelect = (props: UseSelectProps) => {
     useMany(resource, defaultValue, {
         enabled: defaultValue.length > 0,
         onSuccess: (data) => {
-            setOptions((current) => [
+            setSelectedOptions((current) => [
                 ...current,
                 ...data.data.map((item) => ({
                     label: item[optionLabel],
@@ -56,8 +58,7 @@ export const useSelect = (props: UseSelectProps) => {
         },
         {
             onSuccess: (data) => {
-                setOptions((current) => [
-                    ...current,
+                setOptions(() => [
                     ...data.data.map((item) => ({
                         label: item[optionLabel],
                         value: item[optionValue],
@@ -79,7 +80,7 @@ export const useSelect = (props: UseSelectProps) => {
     };
 
     return {
-        options,
+        options: merge(options, selectedOptions),
         onSearch,
         queryResult,
     };
