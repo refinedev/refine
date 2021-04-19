@@ -38,7 +38,7 @@ import {
     useShow,
     Typography,
     useSelect,
-} from "readmin";
+} from "refinejs";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";

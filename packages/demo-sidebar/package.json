@@ -21,16 +21,16 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
-  "name": "readmin-demo-sidebar",
+  "name": "refinejs-demo-sidebar",
   "author": "Pankod",
-  "module": "dist/readmin-demo-sidebar.esm.js",
+  "module": "dist/refinejs-demo-sidebar.esm.js",
   "size-limit": [
     {
-      "path": "dist/readmin-demo-sidebar.cjs.production.min.js",
+      "path": "dist/refinejs-demo-sidebar.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/readmin-demo-sidebar.esm.js",
+      "path": "dist/refinejs-demo-sidebar.esm.js",
       "limit": "10 KB"
     }
   ],
@@ -47,6 +47,6 @@
     "typescript": "^3.9.8"
   },
   "dependencies": {
-    "readmin": "^1.0.0"
+    "refinejs": "^1.0.0"
   }
 }

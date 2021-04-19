@@ -20,7 +20,7 @@ import {
     CreateButton,
     DateField,
     getDefaultSortOrder,
-} from "readmin";
+} from "refinejs";
 
 export const CategoryList = (props: { resourceName: string }) => {
     const translate = useTranslate();

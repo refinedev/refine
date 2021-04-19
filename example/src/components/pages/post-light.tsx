@@ -20,7 +20,7 @@ import {
     ExportButton,
     CreateButton,
     CloneButton,
-} from "readmin";
+} from "refinejs";
 
 export const PostLightList = (props: any) => {
     const translate = useTranslate();

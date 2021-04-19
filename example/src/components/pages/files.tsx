@@ -6,7 +6,7 @@ import {
     UrlField,
     useTranslate,
     useTable,
-} from "readmin";
+} from "refinejs";
 
 export const FilesList = (props: any) => {
     const translate = useTranslate();

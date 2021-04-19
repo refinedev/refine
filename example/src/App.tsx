@@ -7,10 +7,10 @@ import {
     Authenticated,
     defaultConfigProviderProps,
     BackTop,
-} from "readmin";
-import { DemoSidebar, useDemoSidebar } from "readmin-demo-sidebar";
+} from "refinejs";
+import { DemoSidebar, useDemoSidebar } from "refinejs-demo-sidebar";
 
-import dataProvider from "readmin-nestjsx-crud";
+import dataProvider from "refinejs-nestjsx-crud";
 import { useTranslation } from "react-i18next";
 
 import {

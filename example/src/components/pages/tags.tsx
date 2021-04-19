@@ -14,7 +14,7 @@ import {
     Input,
     getDefaultSortOrder,
     Edit,
-} from "readmin";
+} from "refinejs";
 
 export const TagsList = (props: { resourceName: string }) => {
     const translate = useTranslate();
