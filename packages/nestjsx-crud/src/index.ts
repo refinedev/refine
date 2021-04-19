@@ -8,7 +8,7 @@ import {
     RequestQueryBuilder,
     CondOperator,
 } from "@nestjsx/crud-request";
-import { DataProvider } from "readmin";
+import { DataProvider, HttpError } from "refinejs";
 
 type SortBy = QuerySort | QuerySortArr | Array<QuerySort | QuerySortArr>;
 type CrudFilters =
@@ -16,9 +16,26 @@ type CrudFilters =
     | QueryFilterArr
     | Array<QueryFilter | QueryFilterArr>;
 
+const axiosInstance = axios.create();
+
+axiosInstance.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    (error) => {
+        const customError: HttpError = {
+            ...error,
+            message: error.response?.data?.message,
+            statusCode: error.response?.status,
+        };
+
+        return Promise.reject(customError);
+    },
+);
+
 const NestsxCrud = (
     apiUrl: string,
-    httpClient: AxiosInstance = axios,
+    httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     getList: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;

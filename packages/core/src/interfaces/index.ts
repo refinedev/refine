@@ -30,6 +30,9 @@ export * from "./match";
 // mutationMode
 export * from "./mutationMode";
 
+// mutationMode
+export * from "./HttpError";
+
 // resourceRouterParams
 export * from "./resourceRouterParams";
 

@@ -16,7 +16,7 @@ import {
     DeleteButton,
     Space,
     useForm,
-} from "readmin";
+} from "refinejs";
 
 export const TagList = (props: any) => {
     const translate = useTranslate();

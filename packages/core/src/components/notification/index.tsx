@@ -16,37 +16,10 @@ export const Notification: React.FC<{
 
     const { notificationDispatch } = useCancelNotification();
 
-    const successNotification = (id: string, resource: string) => {
-        const message = (
-            <span style={{ marginLeft: 20 }}>
-                {translate("common:notifications.success", "Successful")}
-            </span>
-        );
-
-        const description = (
-            <span style={{ marginLeft: 20 }}>
-                {translate(
-                    "common:notifications.succesMessage",
-                    {
-                        id: id,
-                        resource: resource,
-                    },
-                    `Id: ${id} ${resource} edited`,
-                )}
-            </span>
-        );
-
+    const removeNotification = (id: string, resource: string) => {
         notificationDispatch({
             type: ActionTypes.REMOVE,
             payload: { id: id },
-        });
-
-        notification.open({
-            key: `${id}-${resource}-undo`,
-            icon: <Progress type="circle" percent={100} width={50} />,
-            message,
-            description,
-            duration: 3,
         });
     };
 
@@ -54,7 +27,7 @@ export const Notification: React.FC<{
         notifications.forEach((notificationItem: INotification) => {
             if (notificationItem.isRunning === true) {
                 if (notificationItem.seconds === 0) {
-                    successNotification(
+                    removeNotification(
                         notificationItem.id,
                         notificationItem.resource,
                     );
@@ -78,7 +51,7 @@ export const Notification: React.FC<{
                 );
 
                 notification.open({
-                    key: `${notificationItem.id}-${notificationItem.resource}-undo`,
+                    key: `${notificationItem.id}-${notificationItem.resource}-notification`,
                     icon: (
                         <NotificationProgress
                             dispatch={notificationDispatch}
@@ -95,7 +68,7 @@ export const Notification: React.FC<{
                                 });
                                 notificationItem.cancelMutation();
                                 notification.close(
-                                    `${notificationItem.id}-${notificationItem.resource}-undo`,
+                                    `${notificationItem.id}-${notificationItem.resource}-notification`,
                                 );
                             }}
                         >

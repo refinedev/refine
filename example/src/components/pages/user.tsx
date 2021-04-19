@@ -22,7 +22,7 @@ import {
     Typography,
     Row,
     Col,
-} from "readmin";
+} from "refinejs";
 
 const { Title, Text } = Typography;
 

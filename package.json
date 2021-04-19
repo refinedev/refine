@@ -8,7 +8,7 @@
     "scripts": {
         "lerna": "lerna",
         "start": "lerna run start --stream --parallel",
-        "test": "lerna run test",
+        "test": "lerna run test --stream --parallel",
         "test:coverage": "jest --runInBand --silent --ci --coverage",
         "lint": "tsdx lint packages example",
         "lint:fix": "npm run lint -- packages example --quiet --fix --allow-empty",
@@ -33,7 +33,7 @@
         "printWidth": 80,
         "tabWidth": 4
     },
-    "name": "readmin-repo",
+    "name": "refinejs-repo",
     "author": "Pankod",
     "devDependencies": {
         "@types/react": "^17.0.1",

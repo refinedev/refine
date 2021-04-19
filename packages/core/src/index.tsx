@@ -11,8 +11,9 @@ export {
     IResourceComponents,
     IResourceComponentsProps,
     ILoginForm,
+    HttpError,
 } from "./interfaces";
 
 export * from "./definitions/upload";
-export { getDefaultSortOrder } from "./definitions/table";
+export { getDefaultSortOrder, getDefaultFilter } from "./definitions/table";
 export { defaultConfigProviderProps } from "./definitions/config";

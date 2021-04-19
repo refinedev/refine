@@ -62,16 +62,3 @@ describe("Cancel Notification", () => {
         );
     });
 });
-
-describe("Success Notification", () => {
-    it("should render successful notification if the second is zero", async () => {
-        const baseDom = render(
-            <Notification notifications={mockSuccessNotification} />,
-        );
-
-        expect(await baseDom.findByText("Successful")).toBeInTheDocument();
-        expect(
-            await baseDom.findByText("Id: 1 posts edited"),
-        ).toBeInTheDocument();
-    });
-});

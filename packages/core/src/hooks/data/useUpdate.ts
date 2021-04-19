@@ -10,11 +10,15 @@ import {
     MutationMode,
     Context as UpdateContext,
     ContextQuery,
+    HttpError,
 } from "../../interfaces";
+import pluralize from "pluralize";
 import {
     useMutationMode,
     useCancelNotification,
     useCacheQueries,
+    useNotification,
+    useTranslate,
 } from "@hooks";
 
 type UpdateParams<TParams> = {
@@ -42,6 +46,8 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
+    const notification = useNotification();
+    const translate = useTranslate();
 
     const { notificationDispatch } = useCancelNotification();
 
@@ -53,11 +59,13 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
         throw new Error("'resource' is required for useUpdate hook.");
     }
 
+    const resourceSingular = pluralize.singular(resource);
+
     const getAllQueries = useCacheQueries();
 
     const mutation = useMutation<
         UpdateResponse,
-        unknown,
+        HttpError,
         UpdateParams<TParams>,
         UpdateContext
     >(
@@ -73,7 +81,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
 
                     const cancelMutation = () => {
                         clearTimeout(updateTimeout);
-                        reject("mutation cancelled");
+                        reject({ message: "mutationCancelled" });
                     };
 
                     if (onCancel) {
@@ -150,11 +158,23 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                     previousQueries: previousQueries,
                 };
             },
-            onError: (_err, _variables, context) => {
+            onError: (err: HttpError, { id }, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
                     }
+                }
+
+                if (err.message !== "mutationCancelled") {
+                    notification.error({
+                        key: `${id}-${resource}-notification`,
+                        message: translate(
+                            "common:notifications:editError",
+                            { resourceSingular },
+                            `Error when editing ${resourceSingular} (status code: ${err.statusCode}`,
+                        ),
+                        description: err.message,
+                    });
                 }
             },
             onSettled: (_data, _error, variables) => {
@@ -162,6 +182,20 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                 for (const query of allQueries) {
                     queryClient.invalidateQueries(query.queryKey);
                 }
+            },
+            onSuccess: (_data, { id }) => {
+                notification.success({
+                    key: `${id}-${resource}-notification`,
+                    message: translate(
+                        "common:notifications:success",
+                        "Successful",
+                    ),
+                    description: translate(
+                        "common:notifications:editSuccess",
+                        { resourceSingular },
+                        `Successfully edited ${resourceSingular}`,
+                    ),
+                });
             },
         },
     );

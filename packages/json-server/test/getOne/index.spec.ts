@@ -10,6 +10,7 @@ describe("getOne", () => {
     it("correct response", async () => {
         const response = await JsonServer(
             "https://readmin-fake-rest.pankod.com",
+            axios,
         ).getOne("posts", 1);
 
         const { data } = response;
