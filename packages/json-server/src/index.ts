@@ -1,8 +1,28 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 import { stringify } from "query-string";
-import { DataProvider } from "refinejs";
+import { DataProvider, HttpError } from "refinejs";
 
-const JsonServer = (apiUrl: string): DataProvider => ({
+const axiosInstance = axios.create();
+
+axiosInstance.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    (error) => {
+        const customError: HttpError = {
+            ...error,
+            message: error.response?.data?.message,
+            statusCode: error.response?.status,
+        };
+
+        return Promise.reject(customError);
+    },
+);
+
+const JsonServer = (
+    apiUrl: string,
+    httpClient: AxiosInstance = axiosInstance,
+): DataProvider => ({
     getList: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
 
@@ -47,7 +67,7 @@ const JsonServer = (apiUrl: string): DataProvider => ({
             q,
         };
 
-        const { data, headers } = await axios.get(
+        const { data, headers } = await httpClient.get(
             `${url}?${stringify(query)}&${filters}`,
         );
 
@@ -60,7 +80,7 @@ const JsonServer = (apiUrl: string): DataProvider => ({
     },
 
     getMany: async (resource, ids) => {
-        const { data } = await axios.get(
+        const { data } = await httpClient.get(
             `${apiUrl}/${resource}?${stringify({ id: ids })}`,
         );
         return {
@@ -71,7 +91,7 @@ const JsonServer = (apiUrl: string): DataProvider => ({
     create: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { data } = await axios.post(url, params);
+        const { data } = await httpClient.post(url, params);
 
         return {
             data,
@@ -85,7 +105,7 @@ const JsonServer = (apiUrl: string): DataProvider => ({
     update: async (resource, id, params) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await axios.put(url, params);
+        const { data } = await httpClient.put(url, params);
 
         return {
             data,
@@ -95,7 +115,7 @@ const JsonServer = (apiUrl: string): DataProvider => ({
     updateMany: async (resource, ids, params) => {
         const response = await Promise.all(
             ids.map(async (id) => {
-                const { data } = await axios.put(
+                const { data } = await httpClient.put(
                     `${apiUrl}/${resource}/${id}`,
                     params,
                 );
@@ -109,7 +129,7 @@ const JsonServer = (apiUrl: string): DataProvider => ({
     getOne: async (resource, id) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await axios.get(url);
+        const { data } = await httpClient.get(url);
 
         return {
             data,
@@ -119,7 +139,7 @@ const JsonServer = (apiUrl: string): DataProvider => ({
     deleteOne: async (resource, id) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await axios.delete(url);
+        const { data } = await httpClient.delete(url);
 
         return {
             data,
@@ -129,7 +149,7 @@ const JsonServer = (apiUrl: string): DataProvider => ({
     deleteMany: async (resource, ids) => {
         const response = await Promise.all(
             ids.map(async (id) => {
-                const { data } = await axios.delete(
+                const { data } = await httpClient.delete(
                     `${apiUrl}/${resource}/${id}`,
                 );
                 return data;

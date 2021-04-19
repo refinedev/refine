@@ -10,6 +10,7 @@ import {
     MutationMode,
     Context as UpdateContext,
     ContextQuery,
+    HttpError,
 } from "../../interfaces";
 import pluralize from "pluralize";
 import {
@@ -64,7 +65,7 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
 
     const mutation = useMutation<
         UpdateResponse,
-        Error,
+        HttpError,
         UpdateParams<TParams>,
         UpdateContext
     >(
@@ -157,22 +158,22 @@ export const useUpdate = <TParams extends BaseRecord = BaseRecord>(
                     previousQueries: previousQueries,
                 };
             },
-            onError: (error: Error, { id }, context) => {
+            onError: (err: HttpError, { id }, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
                     }
                 }
 
-                if (error.message !== "mutationCancelled") {
+                if (err.message !== "mutationCancelled") {
                     notification.error({
                         key: `${id}-${resource}-notification`,
                         message: translate(
                             "common:notifications:editError",
                             { resourceSingular },
-                            `Error when editing ${resourceSingular}`,
+                            `Error when editing ${resourceSingular} (status code: ${err.statusCode}`,
                         ),
-                        description: error.message,
+                        description: err.message,
                     });
                 }
             },
