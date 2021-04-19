@@ -2,6 +2,7 @@
     "name": "@pankod/refine",
     "version": "1.0.0",
     "description": "",
+    "private": false,
     "main": "dist/index.js",
     "module": "dist/react.esm.js",
     "typings": "dist/index.d.ts",
