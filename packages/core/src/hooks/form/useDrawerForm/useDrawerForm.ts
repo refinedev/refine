@@ -1,5 +1,4 @@
 import { useEffect, useState, useCallback } from "react";
-import { DrawerProps } from "antd/lib/drawer";
 
 import {
     useForm,
@@ -102,7 +101,7 @@ export const useDrawerForm = ({
             onFinish: formProps?.onFinish,
         },
         drawerProps: {
-            width: "700px",
+            width: "500px",
             bodyStyle: {
                 paddingTop: "55px",
             },
@@ -123,6 +122,9 @@ export const useDrawerForm = ({
                 }
                 close();
                 setCloneId?.(undefined);
+                setEditId?.(undefined);
+
+                form?.resetFields();
             },
             visible,
         },

@@ -45,9 +45,25 @@ export const UserList = (props: any) => {
         action: "edit",
     });
 
+    const {
+        formProps: createFormProps,
+        drawerProps: createDrawerProps,
+        show: createShow,
+        saveButtonProps: createSaveButtonProps,
+    } = useDrawerForm({
+        action: "create",
+    });
+
     return (
         <>
-            <List {...props}>
+            <List
+                {...props}
+                createButtonProps={{
+                    onClick: () => {
+                        createShow();
+                    },
+                }}
+            >
                 <Table
                     {...tableProps}
                     rowKey="id"
@@ -128,12 +144,12 @@ export const UserList = (props: any) => {
                 >
                     <Form
                         {...formProps}
-                        wrapperCol={{ span: 14 }}
+                        wrapperCol={{ span: 24 }}
                         layout="vertical"
                     >
                         <Form.Item
                             label={translate(
-                                "common:resources.posts.fields.title",
+                                "common:resources.users.fields.firstName",
                             )}
                             name="firstName"
                             rules={[
@@ -144,8 +160,121 @@ export const UserList = (props: any) => {
                         >
                             <Input />
                         </Form.Item>
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.lastName",
+                            )}
+                            name="lastName"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.email",
+                            )}
+                            name="email"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            label={translate(
+                                "common:resources.users.fields.status",
+                            )}
+                            name="status"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Radio.Group>
+                                <Radio value={true}>Enable</Radio>
+                                <Radio value={false}>Disable</Radio>
+                            </Radio.Group>
+                        </Form.Item>
                     </Form>
                 </Edit>
+            </Drawer>
+            <Drawer {...createDrawerProps}>
+                <Create {...props} saveButtonProps={createSaveButtonProps}>
+                    <Form
+                        {...createFormProps}
+                        wrapperCol={{ span: 14 }}
+                        layout="vertical"
+                    >
+                        <Form
+                            {...formProps}
+                            wrapperCol={{ span: 24 }}
+                            layout="vertical"
+                        >
+                            <Form.Item
+                                label={translate(
+                                    "common:resources.users.fields.firstName",
+                                )}
+                                name="firstName"
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <Input />
+                            </Form.Item>
+                            <Form.Item
+                                label={translate(
+                                    "common:resources.users.fields.lastName",
+                                )}
+                                name="lastName"
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <Input />
+                            </Form.Item>
+                            <Form.Item
+                                label={translate(
+                                    "common:resources.users.fields.email",
+                                )}
+                                name="email"
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <Input />
+                            </Form.Item>
+                            <Form.Item
+                                label={translate(
+                                    "common:resources.users.fields.status",
+                                )}
+                                name="status"
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <Radio.Group>
+                                    <Radio value={true}>Enable</Radio>
+                                    <Radio value={false}>Disable</Radio>
+                                </Radio.Group>
+                            </Form.Item>
+                        </Form>
+                    </Form>
+                </Create>
             </Drawer>
         </>
     );
@@ -162,7 +291,6 @@ export const UserEdit = (props: any) => {
                     wrapperCol={{ span: 14 }}
                     layout="vertical"
                 >
-                    sdfsdfsdfsd
                     <Form.Item
                         label={translate(
                             "common:resources.users.fields.firstName",
