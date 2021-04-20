@@ -101,7 +101,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
                                 alignItems: "center",
                             }}
                         >
-                            Readmin
+                            refine
                         </div>
                     )}
                 </Link>
@@ -152,7 +152,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
                 <AntLayout.Header
                     style={{ padding: 0, backgroundColor: "#FFF" }}
                 >
-                    <div
+                 {/*    <div
                         style={{
                             display: "flex",
                             justifyContent: "flex-end",
@@ -167,7 +167,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
                         <Button size="middle" onClick={() => setLocale("tr")}>
                             TR
                         </Button>
-                    </div>
+                    </div> */}
                 </AntLayout.Header>
 
                 <AntLayout.Content>

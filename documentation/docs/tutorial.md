@@ -5,6 +5,7 @@ title: Tutorial
 sidebar_label: Tutorial
 ---
 import refineWelcome from '@site/static/img/refine-welcome.png';
+import resourceFirst from '@site/static/img/resource-1.png';
 
 
 We'll show how to create a simple admin app with CRUD operations based on an existing REST API.
@@ -99,38 +100,48 @@ You will see the welcome page.
 
 
 
+### Forming app structure
+#### Connect API with Resources 
 
-## Connect API with Resources 
+We'll start forming our app by adding a `<Resource />` component as a child.
+A `<Resource />` represents an endpoint in the API by given name property.
 
-Kısaca resource componentinden bahsedelim. 
-resource maps a name to an endpoint in the API by readmin.
-
-
-
-```
-import React from "react";
-import JsonServer from "readmin-json-server";
-import {
-    Admin,
-    Resources
-} from "readmin";
+```tsx title="src/App.tsx" 
+//highlight-next-line
+import { Admin, Resource } from "@pankod/refine";
+import dataProvider from "@pankod/refine-json-server";
 
 function App() {
- 
     return (
-        <Admin
-            dataProvider={dataProvider("/ayna-crud-api/admin", axiosInstance)}
-            {...adminProps}
-        >
-            <Resource name="prizes" list={PrizeList}/>
+        <Admin dataProvider={dataProvider("https://readmin-fake-rest.pankod.com/")}>
+             //highlight-next-line
+            <Resource name="posts" />
         </Admin>
     );
 }
+
+export default App;
 ```
 
- edilen resource propların ne yapacağı?
+<br/>
 
-The line <Resource name="users" /> informs react-admin to fetch the “users” records from the https://jsonplaceholder.typicode.com/users URL. <Resource/> also defines the React components to use for each CRUD operation (list, create, edit, and show)...
+After adding `Resource`, app redirects to url defined by `name` property. 
+`refine` handles route matching out of the box. 
+
+
+<>
+<div style={{textAlign: "center"}}>
+    <img   src={resourceFirst} />
+</div>
+<br/>
+</>
+
+
+
+You'll see 404 page since resource doesn't handle data fetching on its own. CRUD operations is done with custom refine hooks.
+
+
+
 
 
 The list={PostList} prop means that readmin  use the <PostList/> custom component to display the list of posts, which users create independently from readmin  
