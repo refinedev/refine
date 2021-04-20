@@ -4,7 +4,6 @@ import {
     List,
     Edit,
     Create,
-    Show,
     Table,
     Drawer,
     EmailField,
@@ -16,14 +15,11 @@ import {
     useTable,
     EditButton,
     DeleteButton,
+    CloneButton,
     ShowButton,
     Space,
-    useForm,
     Radio,
-    useShow,
     Typography,
-    Row,
-    Col,
 } from "@pankod/refine";
 
 const { Title, Text } = Typography;
@@ -131,6 +127,13 @@ export const UserList = (props: any) => {
                                     size="small"
                                     recordItemId={record.id}
                                 />
+                                <CloneButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                    onClick={() => {
+                                        createShow(record.id);
+                                    }}
+                                />
                             </Space>
                         )}
                     />
@@ -210,7 +213,7 @@ export const UserList = (props: any) => {
                 <Create {...props} saveButtonProps={createSaveButtonProps}>
                     <Form
                         {...createFormProps}
-                        wrapperCol={{ span: 14 }}
+                        wrapperCol={{ span: 24 }}
                         layout="vertical"
                     >
                         <Form.Item
