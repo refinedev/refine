@@ -19,10 +19,10 @@ export type useEditFormReturn = ReturnType<useEditFormType>;
 export type useCreateFormReturn = ReturnType<useCreateFormType>;
 export type useCloneFormTypeReturn = ReturnType<useCloneFormType>;
 
-export type useFormProps = (
-    props: ActionParams &
-        (useCreateFormProps | useEditFormProps | useCloneFormProps),
-) => Partial<
+export type useFormProps<T> = ActionParams &
+    (useCreateFormProps<T> | useEditFormProps | useCloneFormProps<T>);
+
+export type useForm = Partial<
     useEditFormReturn &
         useCreateFormReturn &
         useCloneFormTypeReturn & {
@@ -31,22 +31,26 @@ export type useFormProps = (
         }
 >;
 
-export const useForm: useFormProps = (props) => {
-    const { action: actionFromProp } = props;
-
+export const useForm = <RecordType>({
+    action,
+    ...rest
+}: useFormProps<RecordType>): useForm => {
     // id state is needed to determine selected record in addition to id parameter from route
     // this could be moved to a custom hook that encapsulates both create and clone form hooks.
     const [cloneId, setCloneId] = React.useState<string | number>();
 
-    const editForm = useEditForm(props as useEditFormProps);
+    const editForm = useEditForm(rest as useEditFormProps);
 
-    const createForm = useCreateForm(props as useCreateFormProps);
+    const createForm = useCreateForm(rest as useCreateFormProps<{}>);
 
-    const cloneForm = useCloneForm({ ...props, cloneId } as useCloneFormProps);
+    const cloneForm = useCloneForm({
+        ...rest,
+        cloneId,
+    } as useCloneFormProps<RecordType>);
 
     const { action: actionFromRoute, id } = useParams<ResourceRouterParams>();
 
-    switch (actionFromProp || actionFromRoute) {
+    switch (action || actionFromRoute) {
         case "create":
             // setCloneId and cloneId needs to be returned from both clone and create cases.
             // It is needed to make them accessible in useModalForm to be able to manage id state.

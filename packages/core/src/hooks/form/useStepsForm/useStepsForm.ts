@@ -8,10 +8,14 @@ import { StepsFormSF } from "../../../interfaces";
 
 import { useEditFormProps, useCreateFormProps } from "..";
 
-export type useStepsFormProps = Partial<useEditFormProps & useCreateFormProps> &
+export type useStepsFormProps<T> = Partial<
+    useEditFormProps & useCreateFormProps<T>
+> &
     UseStepsFormConfig;
 
-export const useStepsForm = (props: useStepsFormProps) => {
+export const useStepsForm = <RecordType>(
+    props: useStepsFormProps<RecordType>,
+) => {
     const useFormProps = useForm({ ...props });
     const { form, formProps, formLoading } = useFormProps;
 

@@ -16,23 +16,28 @@ import {
     BaseRecord,
     ResourceRouterParams,
     RedirectionTypes,
+    CreateResponse,
 } from "../../../interfaces";
 
-export type useCreateFormProps = {
-    onMutationSuccess?: (data: any, variables: any, context: any) => void;
+export type useCreateFormProps<T> = {
+    onMutationSuccess?: (
+        data: CreateResponse<T>,
+        variables: any,
+        context: any,
+    ) => void;
     onMutationError?: (error: any, variables: any, context: any) => void;
     mutationMode?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
     redirect?: RedirectionTypes;
 };
-export const useCreateForm = ({
+export const useCreateForm = <RecordType extends BaseRecord = BaseRecord>({
     onMutationSuccess,
     onMutationError,
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect = "edit",
-}: useCreateFormProps) => {
+}: useCreateFormProps<RecordType>) => {
     const [formAnt] = Form.useForm();
     const formSF: FormSF = useFormSF({
         form: formAnt,
@@ -54,7 +59,7 @@ export const useCreateForm = ({
 
     const resource = resourceWithRoute(routeResourceName);
 
-    const { mutate, isLoading } = useCreate();
+    const { mutate, isLoading } = useCreate<RecordType>();
 
     const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 

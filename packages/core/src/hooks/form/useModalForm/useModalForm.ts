@@ -18,13 +18,15 @@ type useModalFormConfig = {
     action: "show" | "edit" | "create";
 };
 
-export type useModalFormProps = Partial<useEditFormProps & useCreateFormProps> &
+export type useModalFormProps<T> = Partial<
+    useEditFormProps & useCreateFormProps<T>
+> &
     UseModalFormConfigSF &
     useModalFormConfig;
-export const useModalForm = ({
+export const useModalForm = <RecordType>({
     mutationMode: mutationModeProp,
     ...rest
-}: useModalFormProps) => {
+}: useModalFormProps<RecordType>) => {
     const useFormProps = useForm({
         ...rest,
         mutationMode: mutationModeProp,
