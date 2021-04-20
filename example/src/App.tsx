@@ -20,12 +20,7 @@ import {
     PostShow,
 } from "./components/pages/post";
 import { CategoryList, CategoryCreate } from "./components/pages/category";
-import {
-    UserList,
-    UserEdit,
-    UserCreate,
-    UserShow,
-} from "./components/pages/user";
+import { UserList } from "./components/pages/user";
 import { TagsList, TagsCreate, TagsEdit } from "./components/pages/tags";
 import { DashboardPage } from "./components/pages/dashboard";
 import { ReadyPage } from "./components/ready";
@@ -136,9 +131,6 @@ function App() {
             <Resource
                 name="users"
                 list={UserList}
-                edit={UserEdit}
-                create={UserCreate}
-                show={UserShow}
                 icon={<Icons.UserOutlined />}
             />
             <Resource

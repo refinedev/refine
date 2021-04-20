@@ -123,8 +123,6 @@ export const useDrawerForm = ({
                 close();
                 setCloneId?.(undefined);
                 setEditId?.(undefined);
-
-                form?.resetFields();
             },
             visible,
         },
