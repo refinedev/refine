@@ -4,68 +4,103 @@ id: tutorial
 title: Tutorial
 sidebar_label: Tutorial
 ---
+import refineWelcome from '@site/static/img/refine-welcome.png';
 
 
-Readmin uses React. We’ll use create-react-app to create an empty React app, and install the readmin package:
+We'll show how to create a simple admin app with CRUD operations based on an existing REST API.
+### Setup
 
+Refine uses React under the hood. We’ll use create-react-app to bootstrap an empty React app with Typescript.
+
+To create a new app, run the following commands:
 
 ````
-npm i create react-app test-admin
-cd test-admin/
-yarn add readmin 
-yarn start
-
+npx create-react-app tutorial --template typescript
 ````
 
-You should be up and running with an empty React application on port 3000.
+````
+npm i @pankod/refine
+````
 
-Using an API As Data Source
-React-admin runs in the browser, and relies on data it fetches from APIs.
+Then navigate to the project folder and launch it:
 
-We’ll be using pankod's  fake REST API designed for testing and prototyping, as the datasource for the application. Here is what it looks like:
+````
+npm run start
+````
+
+Then open http://localhost:3000/ to see your app.
 
 
+### Providing a Data Source with an API
 
-example api source
+Refine is designed to consume data from APIs.
 
 
-To start make app work import Admin root component in to "App.tsx"  from readmin.
+We’ll be using a fake REST API at https://readmin-fake-rest.pankod.com/ designed for testing as the data source for the application. 
 
-You should provide api provider to admin. Here we use readmin-json to demonstra...
-We ll use readmin-json-server CRUD api provider.. You can use your own..
+Example response:
 
+```ts title="https://readmin-fake-rest.pankod.com/posts/1"
+{
+  "id": 1,
+  "title": "Quis a ex quos.",
+  "slug": "eligendi-similique-autem",
+  "content": "Sapiente et nesciunt harum corrupti sequi iusto. Debitis explicabo beatae maiores assumenda. Quia velit quam inventore omnis in doloribus et modi aut. Aut deserunt est molestias sunt fugit rerum natus. Consequuntur quam porro doloribus vel nulla non. Suscipit ut deleniti. Consequatur repellat accusamus. Expedita eos hic amet fugit. Magni odio consequatur aut pariatur error eaque culpa. Officiis minus id et.",
+  "category": {
+    "id": 26
+  },
+  "user": {
+    "id": 32
+  },
+  "status": "draft",
+  "createdAt": "2019-07-25T22:19:18.929Z",
+  "image": []
+}
 ```
 
-import React from "react";
-import JsonServer from "readmin-json-server";
-import {
-    Admin,
-} from "readmin";
+Refine requires a `dataProvider` to use an API for CRUD operations which is an object with a set of methods.
 
-    
+We'll use `@pankod/refine-json-server` package as a data provider which has predefined methods to communicate with REST APIs.
+
+````
+npm i @pankod/refine-json-server
+````
+:::note
+You can also provide your own custom data provider to make the connection.
+:::
+
+### Bootstraping the app
+Change `App.tsx` with the following code:
+
+```tsx title="src/App.tsx" 
+import { Admin } from "@pankod/refine"
+import dataProvider from "@pankod/refine-json-server"
+
 function App() {
-
-    return (
-        <Admin dataProvider={JsonServer("https://readmin-fake-rest.pankod.com"))} >
-      
-        </Admin>
-    );
+  return (
+    <Admin dataProvider={dataProvider("https://readmin-fake-rest.pankod.com/")}/>
+  );
 }
 
 export default App;
-
 ```
+<br/>
 
-You can simply bootstrap the app with this setup. You will see the welcome page below.
+`<Admin/>` is the root component of a refine application. We provide a dataProvider with a REST API url as we mention above.
+
+You will see the welcome page.
+
+<>
+<div style={{textAlign: "center"}}>
+    <img  width="75%" src={refineWelcome} />
+</div>
+<br/>
+</>
 
 
-//image//
 
 
-The App component renders an <Admin> component, which is the root component of a react-admin application. This component expects a dataProvider prop - a function capable of fetching data from an API. Since there is no standard for data exchanges between computers, you will probably have to write a custom provider to connect react-admin to your own APIs - but we’ll dive into Data Providers later. For now, let’s take advantage of the ra-data-json-server data provider, which speaks the same REST dialect as JSONPlaceholder.
-
-
-##Connect API with resources 
+## Connect API with Resources 
 
 Kısaca resource componentinden bahsedelim. 
 resource maps a name to an endpoint in the API by readmin.
@@ -93,12 +128,12 @@ function App() {
 }
 ```
 
-import edilen resource propların ne yapacağı?
+ edilen resource propların ne yapacağı?
 
-The line <Resource name="users" /> informs react-admin to fetch the “users” records from the https://jsonplaceholder.typicode.com/users URL. <Resource> also defines the React components to use for each CRUD operation (list, create, edit, and show)...
+The line <Resource name="users" /> informs react-admin to fetch the “users” records from the https://jsonplaceholder.typicode.com/users URL. <Resource/> also defines the React components to use for each CRUD operation (list, create, edit, and show)...
 
 
-The list={PostList} prop means that readmin  use the <PostList> custom component to display the list of posts, which users create independently from readmin  
+The list={PostList} prop means that readmin  use the <PostList/> custom component to display the list of posts, which users create independently from readmin  
 
 Postlist uses List component wrapper from readmin-core  which uses ant-design components to render data with table.
 
