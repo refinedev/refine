@@ -8,6 +8,7 @@ import {
 } from "antd/lib/table/interface";
 import mergeWith from "lodash/mergeWith";
 import isArray from "lodash/isArray";
+import get from "lodash/get";
 
 const queryStringOptions = (): StringifyOptions => {
     return {
@@ -128,9 +129,11 @@ export const getDefaultFilter = (
     columnName: string,
     filters: Filters,
 ): string[] | undefined => {
-    if (!filters || filters[columnName]) {
+    const value = get(filters, columnName);
+    if (!(filters || value)) {
         return undefined;
     }
 
-    return filters[columnName] as string[];
+
+    return (value ?? []) as string[];
 };
