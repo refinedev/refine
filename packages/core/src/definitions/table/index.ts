@@ -130,7 +130,7 @@ export const getDefaultFilter = (
     filters: Filters,
 ): string[] | undefined => {
     const value = get(filters, columnName);
-    if (!(filters || value)) {
+    if (!filters || !value) {
         return undefined;
     }
 
