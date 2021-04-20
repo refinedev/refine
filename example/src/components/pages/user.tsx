@@ -34,74 +34,120 @@ export const UserList = (props: any) => {
         initialPageSize: 20,
     });
 
-    const { formProps, drawerProps, show } = useDrawerForm({
+    const {
+        formProps,
+        drawerProps,
+        show,
+        editId,
+        deleteButtonProps,
+        saveButtonProps,
+    } = useDrawerForm({
         action: "edit",
     });
 
     return (
-        <List {...props}>
-            <Table
-                {...tableProps}
-                rowKey="id"
-                pagination={{
-                    ...tableProps.pagination,
-                    position: ["bottomCenter"],
-                    size: "small",
-                }}
-                scroll={{
-                    x: true,
-                }}
-            >
-                <Table.Column
-                    key="firstName"
-                    dataIndex="firstName"
-                    title={translate("common:resources.users.fields.firstName")}
-                />
-                <Table.Column
-                    key="lastName"
-                    dataIndex="lastName"
-                    title={translate("common:resources.users.fields.lastName")}
-                />
-                <Table.Column
-                    key="email"
-                    dataIndex="email"
-                    title={translate("common:resources.users.fields.email")}
-                    render={(value) => <EmailField value={value} />}
-                />
-                <Table.Column
-                    dataIndex="status"
-                    title={translate("common:resources.users.fields.status")}
-                    key="status"
-                    render={(value) => <TagField value={value} />}
-                />
-                <Table.Column
-                    title={translate("common:table.actions", "Actions")}
-                    dataIndex="actions"
-                    key="actions"
-                    render={(
-                        _text: string | number,
-                        record: {
-                            id: string | number;
-                        },
-                    ): React.ReactNode => (
-                        <Space>
-                            <EditButton
-                                size="small"
-                                onClick={() => {
-                                    show(record.id);
-                                }}
-                                recordItemId={record.id}
-                            />
-                            <DeleteButton
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <ShowButton size="small" recordItemId={record.id} />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
+        <>
+            <List {...props}>
+                <Table
+                    {...tableProps}
+                    rowKey="id"
+                    pagination={{
+                        ...tableProps.pagination,
+                        position: ["bottomCenter"],
+                        size: "small",
+                    }}
+                    scroll={{
+                        x: true,
+                    }}
+                >
+                    <Table.Column
+                        key="firstName"
+                        dataIndex="firstName"
+                        title={translate(
+                            "common:resources.users.fields.firstName",
+                        )}
+                    />
+                    <Table.Column
+                        key="lastName"
+                        dataIndex="lastName"
+                        title={translate(
+                            "common:resources.users.fields.lastName",
+                        )}
+                    />
+                    <Table.Column
+                        key="email"
+                        dataIndex="email"
+                        title={translate("common:resources.users.fields.email")}
+                        render={(value) => <EmailField value={value} />}
+                    />
+                    <Table.Column
+                        dataIndex="status"
+                        title={translate(
+                            "common:resources.users.fields.status",
+                        )}
+                        key="status"
+                        render={(value) => <TagField value={value} />}
+                    />
+                    <Table.Column
+                        title={translate("common:table.actions", "Actions")}
+                        dataIndex="actions"
+                        key="actions"
+                        render={(
+                            _text: string | number,
+                            record: {
+                                id: string | number;
+                            },
+                        ): React.ReactNode => (
+                            <Space>
+                                <EditButton
+                                    size="small"
+                                    onClick={() => {
+                                        show(record.id);
+                                    }}
+                                    recordItemId={record.id}
+                                />
+                                <DeleteButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                                <ShowButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                            </Space>
+                        )}
+                    />
+                </Table>
+            </List>
+            <Drawer {...drawerProps}>
+                <Edit
+                    {...props}
+                    recordItemId={editId}
+                    deleteButtonProps={deleteButtonProps}
+                    saveButtonProps={saveButtonProps}
+                >
+                    <Form
+                        {...formProps}
+                        wrapperCol={{ span: 14 }}
+                        layout="vertical"
+                    >
+                        <Form.Item
+                            label={translate(
+                                "common:resources.posts.fields.title",
+                            )}
+                            name="firstName"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </Form>
+                </Edit>
+            </Drawer>
+        </>
     );
 };
 
@@ -116,6 +162,7 @@ export const UserEdit = (props: any) => {
                     wrapperCol={{ span: 14 }}
                     layout="vertical"
                 >
+                    sdfsdfsdfsd
                     <Form.Item
                         label={translate(
                             "common:resources.users.fields.firstName",
