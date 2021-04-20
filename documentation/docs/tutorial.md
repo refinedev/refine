@@ -140,6 +140,12 @@ After adding `Resource`, app redirects to url defined by `name` property.
 
 You'll see 404 page since resource doesn't handle data fetching on its own. CRUD operations is done with custom refine hooks.
 
+Resource holds components as props for CRUD operations(list, create, edit, show). In this example, we are going to set corresponding custom components which uses refine hooks to handle data operations and display the list of data.
+
+Let's create a PostList component to fetch and show posts data.
+
+
+
 
 
 
