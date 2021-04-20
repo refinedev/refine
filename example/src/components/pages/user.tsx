@@ -4,6 +4,7 @@ import {
     List,
     Edit,
     Create,
+    Show,
     Table,
     Drawer,
     EmailField,
@@ -12,6 +13,7 @@ import {
     Input,
     useTranslate,
     useDrawerForm,
+    useShow,
     useTable,
     EditButton,
     DeleteButton,
@@ -20,7 +22,9 @@ import {
     Space,
     Radio,
     Typography,
+    RefreshButton,
 } from "@pankod/refine";
+import { useCallback, useState } from "react";
 
 const { Title, Text } = Typography;
 
@@ -49,6 +53,10 @@ export const UserList = (props: any) => {
     } = useDrawerForm({
         action: "create",
     });
+
+    const [visible, setVisible] = useState(false);
+
+    const { queryResult, showId, setShowId } = useShow({});
 
     return (
         <>
@@ -108,7 +116,7 @@ export const UserList = (props: any) => {
                         render={(
                             _text: string | number,
                             record: {
-                                id: string | number;
+                                id: string;
                             },
                         ): React.ReactNode => (
                             <Space>
@@ -126,6 +134,10 @@ export const UserList = (props: any) => {
                                 <ShowButton
                                     size="small"
                                     recordItemId={record.id}
+                                    onClick={() => {
+                                        setShowId(record.id);
+                                        setVisible(true);
+                                    }}
                                 />
                                 <CloneButton
                                     size="small"
@@ -273,6 +285,19 @@ export const UserList = (props: any) => {
                         </Form.Item>
                     </Form>
                 </Create>
+            </Drawer>
+            <Drawer
+                visible={visible}
+                onClose={() => {
+                    setVisible(false);
+                }}
+            >
+                <Show
+                    {...props}
+                    actionButtons={<RefreshButton recordItemId={showId} />}
+                >
+                    {queryResult.data?.data.id}
+                </Show>
             </Drawer>
         </>
     );
