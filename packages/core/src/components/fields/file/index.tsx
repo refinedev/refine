@@ -1,18 +1,17 @@
 import React from "react";
 import { LinkProps } from "antd/lib/typography/Link";
 
-import { BaseFieldProps } from "../../../interfaces/field";
-import { renderFieldRecord } from "@definitions";
+import { FieldProps } from "../../../interfaces";
+
 import { UrlField } from "@components";
 
-export type FileFieldProps = BaseFieldProps &
+export type FileFieldProps = FieldProps &
     LinkProps & {
-        src?: string;
+        src: string;
+        title: string;
     };
 
 export const FileField: React.FC<FileFieldProps> = ({
-    record,
-    renderRecordKey,
     value,
     title,
     src,
@@ -22,22 +21,14 @@ export const FileField: React.FC<FileFieldProps> = ({
         return (
             <ul>
                 {value.map((file, index) => {
-                    const fileUrl = renderFieldRecord({
-                        record: file,
-                        renderRecordKey: `${src}`,
-                    });
-                    const fileTitleValue = renderFieldRecord({
-                        record: file,
-                        renderRecordKey: `${title}`,
-                    });
                     return (
                         <li key={index}>
                             <UrlField
-                                value={fileUrl}
-                                title={fileTitleValue}
+                                value={file[src]}
+                                title={file[title]}
                                 {...rest}
                             >
-                                {title ? fileTitleValue : fileUrl}
+                                {title ? file[title] : file[src]}
                             </UrlField>
                         </li>
                     );
@@ -46,16 +37,9 @@ export const FileField: React.FC<FileFieldProps> = ({
         );
     }
 
-    const url = renderFieldRecord({ value, record, renderRecordKey });
-    const titleValue = renderFieldRecord({
-        value: title,
-        record,
-        renderRecordKey,
-    });
-
     return (
-        <UrlField value={url} title={titleValue} {...rest}>
-            {title ? titleValue : url}
+        <UrlField value={value[src]} title={value[title]} {...rest}>
+            {title ? title : src}
         </UrlField>
     );
 };

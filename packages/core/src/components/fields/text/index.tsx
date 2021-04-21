@@ -2,23 +2,12 @@ import React from "react";
 import { Typography } from "antd";
 import { TextProps } from "antd/lib/typography/Text";
 
-import { BaseFieldProps } from "../../../interfaces/field";
-
-import { renderFieldRecord } from "@definitions";
+import { FieldProps } from "../../../interfaces/field";
 
 const { Text } = Typography;
 
-export type TextFieldProps = BaseFieldProps & TextProps & {};
+export type TextFieldProps = FieldProps & TextProps & {};
 
-export const TextField: React.FC<TextFieldProps> = ({
-    value,
-    record,
-    renderRecordKey,
-    ...rest
-}) => {
-    return (
-        <Text {...rest}>
-            {renderFieldRecord({ value, record, renderRecordKey })}
-        </Text>
-    );
+export const TextField: React.FC<TextFieldProps> = ({ value, ...rest }) => {
+    return <Text {...rest}>{value}</Text>;
 };

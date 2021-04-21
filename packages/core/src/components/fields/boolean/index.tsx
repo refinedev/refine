@@ -4,11 +4,9 @@ import { Tooltip } from "antd";
 
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 
-import { BaseFieldProps } from "../../../interfaces/field";
+import { FieldProps } from "../../../interfaces";
 
-import { renderFieldRecord } from "@definitions";
-
-export type BooleanFieldProps = BaseFieldProps &
+export type BooleanFieldProps = FieldProps &
     AbstractTooltipProps & {
         valueLabelTrue?: string;
         valueLabelFalse?: string;
@@ -18,24 +16,15 @@ export type BooleanFieldProps = BaseFieldProps &
 
 export const BooleanField: React.FC<BooleanFieldProps> = ({
     value,
-    record,
-    renderRecordKey,
     valueLabelTrue = "true",
     valueLabelFalse = "false",
     trueIcon = <CheckOutlined />,
     falseIcon = <CloseOutlined />,
     ...rest
 }) => {
-    const recordValue = Boolean(
-        renderFieldRecord({ value, record, renderRecordKey }),
-    );
-
     return (
-        <Tooltip
-            title={recordValue ? valueLabelTrue : valueLabelFalse}
-            {...rest}
-        >
-            {recordValue ? <span>{trueIcon}</span> : <span>{falseIcon}</span>}
+        <Tooltip title={value ? valueLabelTrue : valueLabelFalse} {...rest}>
+            {value ? <span>{trueIcon}</span> : <span>{falseIcon}</span>}
         </Tooltip>
     );
 };

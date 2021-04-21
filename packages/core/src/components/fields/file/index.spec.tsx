@@ -5,12 +5,16 @@ import { FileField } from "./";
 import { render } from "@test";
 describe("FileField", () => {
     it("renders an anchor with file link", () => {
-        const testUrl = "www.google.com";
+        const value = {
+            title: "Test",
+            src: "www.google.com",
+        };
+
         const { getByTitle } = render(
-            <FileField value={testUrl} title="Test" />,
+            <FileField value={value} title="title" src="src" />,
         );
 
-        expect(getByTitle("Test")).toHaveAttribute("href", testUrl);
+        expect(getByTitle(value.title)).toHaveAttribute("href", value.src);
     });
 
     it("handles multiple links", () => {

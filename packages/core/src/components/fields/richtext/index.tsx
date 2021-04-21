@@ -1,14 +1,6 @@
 import React from "react";
-import { BaseFieldProps } from "../../../interfaces/field";
+import { FieldProps } from "../../../interfaces";
 
-import { renderFieldRecord } from "@definitions";
-
-export const RichtextField: React.FC<BaseFieldProps> = ({
-    value,
-    record,
-    renderRecordKey,
-}) => {
-    const recordValue = renderFieldRecord({ value, record, renderRecordKey });
-
-    return <div dangerouslySetInnerHTML={{ __html: recordValue }} />;
+export const RichtextField: React.FC<FieldProps> = ({ value }) => {
+    return <div dangerouslySetInnerHTML={{ __html: value }} />;
 };
