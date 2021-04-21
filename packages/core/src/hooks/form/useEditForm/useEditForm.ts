@@ -1,17 +1,19 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { useForm as useFormSF } from "sunflower-antd";
-import { Form } from "antd";
+import {} from "sunflower-antd/es/";
+import { Form, FormInstance, FormProps } from "antd";
 import { useParams } from "react-router-dom";
+import { QueryObserverResult } from "react-query";
 
 import {
     useMutationMode,
     useResourceWithRoute,
     useOne,
     useUpdate,
-    useNotification,
     useWarnAboutChange,
     useRedirectionAfterSubmission,
 } from "@hooks";
+import { UseUpdateReturnType } from "../../data/useUpdate";
 
 import {
     MutationMode,
@@ -20,9 +22,8 @@ import {
     ResourceRouterParams,
     RedirectionTypes,
     GetOneResponse,
+    UseFormSFFormProps,
 } from "../../../interfaces";
-
-import { QueryObserverResult } from "react-query";
 
 type SaveButtonProps = {
     disabled: boolean;
@@ -30,9 +31,22 @@ type SaveButtonProps = {
     loading?: boolean;
 };
 
-export type useEditFormProps = {
-    onMutationSuccess?: (data: any, variables: any, context: any) => void;
-    onMutationError?: (error: any, variables: any, context: any) => void;
+export type useEditForm<T> = {
+    form: FormInstance;
+    formProps: UseFormSFFormProps & FormProps;
+    editId?: string | number;
+    setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
+    saveButtonProps: SaveButtonProps;
+    queryResult: QueryObserverResult<GetOneResponse<T>>;
+    mutationResult: UseUpdateReturnType<T>;
+    formLoading: boolean;
+    setCloneId?: Dispatch<SetStateAction<string | number | undefined>>;
+    cloneId?: string | number;
+};
+
+export type useEditFormProps<T> = {
+    onMutationSuccess?: (data: T) => void;
+    onMutationError?: (error: any) => void;
     mutationMode?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
@@ -40,7 +54,7 @@ export type useEditFormProps = {
     undoableTimeout?: number;
 };
 
-export const useEditForm = ({
+export const useEditForm = <RecordType = BaseRecord>({
     onMutationSuccess,
     onMutationError,
     mutationMode: mutationModeProp,
@@ -48,7 +62,7 @@ export const useEditForm = ({
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect = "list",
     undoableTimeout,
-}: useEditFormProps) => {
+}: useEditFormProps<RecordType>): useEditForm<RecordType> => {
     const [editId, setEditId] = React.useState<string | number>();
 
     const [formAnt] = Form.useForm();
@@ -83,7 +97,7 @@ export const useEditForm = ({
 
     const id = editId?.toString() ?? idFromRoute;
 
-    const queryResult = useOne(resource.name, id, {
+    const queryResult = useOne<RecordType>(resource.name, id, {
         enabled: isEdit,
     });
 
@@ -98,7 +112,7 @@ export const useEditForm = ({
         };
     }, [data, id, isFetching]);
 
-    const mutationResult = useUpdate(
+    const mutationResult = useUpdate<RecordType>(
         resource.name,
         mutationMode,
         undoableTimeout,
@@ -108,11 +122,9 @@ export const useEditForm = ({
 
     const formLoading = isFetching || isLoadingMutation;
 
-    const notification = useNotification();
-
     const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 
-    const onFinish = (values: BaseRecord) => {
+    const onFinish = async (values: BaseRecord) => {
         setWarnWhen(false);
 
         // Required to make onSuccess vs callbacks to work if component unmounts i.e. on route change
@@ -120,9 +132,9 @@ export const useEditForm = ({
             mutate(
                 { id, values },
                 {
-                    onSuccess: (...args) => {
+                    onSuccess: ({ data }) => {
                         if (onMutationSuccess) {
-                            return onMutationSuccess(...args);
+                            return onMutationSuccess(data);
                         }
 
                         if (mutationMode === "pessimistic") {
@@ -134,9 +146,9 @@ export const useEditForm = ({
                             });
                         }
                     },
-                    onError: (error: any, ...rest) => {
+                    onError: (error: any) => {
                         if (onMutationError) {
-                            return onMutationError(error, ...rest);
+                            return onMutationError(error);
                         }
                     },
                 },
@@ -185,9 +197,7 @@ export const useEditForm = ({
         editId,
         setEditId,
         saveButtonProps,
-        queryResult: queryResult as QueryObserverResult<
-            GetOneResponse<BaseRecord>
-        >,
+        queryResult,
         mutationResult,
         formLoading,
     };

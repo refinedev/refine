@@ -25,7 +25,7 @@ type UpdateParams<T> = {
     id: string;
     values: T;
 };
-type UseUpdateReturnType<T> = UseMutationResult<
+export type UseUpdateReturnType<T> = UseMutationResult<
     UpdateResponse<T>,
     unknown,
     UpdateParams<BaseRecord>,

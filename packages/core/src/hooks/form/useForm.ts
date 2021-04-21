@@ -1,49 +1,68 @@
-import * as React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { useParams } from "react-router-dom";
+import { QueryObserverResult } from "react-query";
 
 import { useCreateForm, useCreateFormProps } from "./useCreateForm";
 import { useEditForm, useEditFormProps } from "./useEditForm";
 import { useCloneForm, useCloneFormProps } from "./useCloneForm";
 
-import { ResourceRouterParams } from "../../interfaces";
+import { FormInstance, FormProps } from "@components/antd";
+import {
+    BaseRecord,
+    GetOneResponse,
+    ResourceRouterParams,
+    UseFormSFFormProps,
+} from "../../interfaces";
+import { UseUpdateReturnType } from "../data/useUpdate";
+import { UseCreateReturnType } from "../data/useCreate";
 
 export type ActionParams = {
     action?: "show" | "edit" | "create";
 };
 
-export type useEditFormType = typeof useEditForm;
-export type useCreateFormType = typeof useCreateForm;
-export type useCloneFormType = typeof useCloneForm;
+type SaveButtonProps = {
+    disabled: boolean;
+    onClick: () => void;
+    loading?: boolean;
+};
 
-export type useEditFormReturn = ReturnType<useEditFormType>;
-export type useCreateFormReturn = ReturnType<useCreateFormType>;
-export type useCloneFormTypeReturn = ReturnType<useCloneFormType>;
+// export type useEditFormReturn<T> = useEditForm<T>;
+// export type useCreateFormReturn<T> = useCreateForm<T>;
+// export type useCloneFormTypeReturn<T> = useCloneForm<T>;
 
 export type useFormProps<T> = ActionParams &
-    (useCreateFormProps<T> | useEditFormProps | useCloneFormProps<T>);
+    (useCreateFormProps<T> | useEditFormProps<T> | useCloneFormProps<T>);
 
-export type useForm = Partial<
-    useEditFormReturn &
-        useCreateFormReturn &
-        useCloneFormTypeReturn & {
-            setCloneId: Function;
-            cloneId: string | number;
-        }
->;
+export type useForm<T> = {
+    form: FormInstance;
+    formProps: UseFormSFFormProps & FormProps;
+    editId?: string | number;
+    setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
+    saveButtonProps: SaveButtonProps;
+    queryResult?: QueryObserverResult<GetOneResponse<T>>;
+    mutationResult: UseUpdateReturnType<T> | UseCreateReturnType<T>;
+    formLoading: boolean;
+    setCloneId?: Dispatch<SetStateAction<string | number | undefined>>;
+    cloneId?: string | number;
+};
 
-export const useForm = <RecordType>({
+export const useForm = <RecordType = BaseRecord>({
     action,
     ...rest
-}: useFormProps<RecordType>): useForm => {
+}: useFormProps<RecordType>): useForm<RecordType> => {
     // id state is needed to determine selected record in addition to id parameter from route
     // this could be moved to a custom hook that encapsulates both create and clone form hooks.
     const [cloneId, setCloneId] = React.useState<string | number>();
 
-    const editForm = useEditForm(rest as useEditFormProps);
+    const editForm = useEditForm<RecordType>(
+        rest as useEditFormProps<RecordType>,
+    );
 
-    const createForm = useCreateForm(rest as useCreateFormProps<{}>);
+    const createForm = useCreateForm<RecordType>(
+        rest as useCreateFormProps<RecordType>,
+    );
 
-    const cloneForm = useCloneForm({
+    const cloneForm = useCloneForm<RecordType>({
         ...rest,
         cloneId,
     } as useCloneFormProps<RecordType>);
@@ -58,10 +77,9 @@ export const useForm = <RecordType>({
             // clone case
             if (cloneId || id) {
                 return { ...cloneForm, setCloneId, cloneId };
-                // create case
-            } else {
-                return { ...createForm, setCloneId, cloneId };
             }
+            // create case
+            return { ...createForm, setCloneId, cloneId };
         case "edit":
             return editForm;
         default:

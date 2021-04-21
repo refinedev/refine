@@ -53,6 +53,14 @@ interface IPost {
     slug: string;
     status: "published" | "draft";
     createdAt: string;
+    category: {
+        id: string;
+        title: string;
+    };
+    user: {
+        id: string;
+    };
+    tags: [{ id: string }];
 }
 
 export const PostList = (props: any) => {
@@ -496,7 +504,7 @@ export const PostEdit = (props: any) => {
         formLoading,
         formProps,
         queryResult,
-    } = useStepsForm({
+    } = useStepsForm<IPost>({
         warnWhenUnsavedChanges: true,
         redirect: "list",
         mutationMode: "pessimistic",

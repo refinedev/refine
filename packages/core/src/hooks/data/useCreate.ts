@@ -11,7 +11,7 @@ import {
 } from "../../interfaces";
 import { useListResourceQueries, useTranslate, useNotification } from "@hooks";
 
-type UseCreateReturnType<
+export type UseCreateReturnType<
     RecordType extends BaseRecord = BaseRecord
 > = UseMutationResult<
     CreateResponse<RecordType>,

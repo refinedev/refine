@@ -2,11 +2,13 @@ import { useTable, useEditForm } from "@hooks";
 import { useTableProps } from "../useTable";
 import { useEditFormProps } from "../../form/useEditForm";
 
-type useEditableTableProps = useTableProps & useEditFormProps;
+type useEditableTableProps<T> = useTableProps & useEditFormProps<T>;
 
-export const useEditableTable = (props: useEditableTableProps) => {
+export const useEditableTable = <RecordType>(
+    props: useEditableTableProps<RecordType>,
+) => {
     const table = useTable<{ [key: string]: any }>({ ...props });
-    const edit = useEditForm({ ...props });
+    const edit = useEditForm<RecordType>({ ...props });
 
     const { form, editId, setEditId, formLoading } = edit;
 
@@ -16,12 +18,12 @@ export const useEditableTable = (props: useEditableTableProps) => {
     };
 
     const cancelButtonProps = {
-        onClick: () => setEditId(undefined),
+        onClick: () => setEditId && setEditId(undefined),
     };
 
     const editButtonProps = (id: string | number) => {
         return {
-            onClick: () => setEditId(id),
+            onClick: () => setEditId && setEditId(id),
         };
     };
 

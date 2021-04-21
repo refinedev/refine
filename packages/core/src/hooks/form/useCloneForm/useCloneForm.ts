@@ -1,21 +1,46 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { useParams } from "react-router-dom";
+import { QueryObserverResult } from "react-query";
+import { FormInstance, FormProps } from "@components/antd";
 
 import { useOne, useResourceWithRoute } from "@hooks";
-import { ResourceRouterParams } from "../../../interfaces";
-import { useCreateFormProps } from "..";
-import { useCreateForm } from "../useCreateForm";
+import {
+    GetOneResponse,
+    ResourceRouterParams,
+    UseFormSFFormProps,
+} from "../../../interfaces";
+import { useCreateForm, useCreateFormProps } from "../useCreateForm";
+import { UseCreateReturnType } from "../../data/useCreate";
 
 export type useCloneFormProps<T> = useCreateFormProps<T> & {
     cloneId?: string | number;
 };
 
+type SaveButtonProps = {
+    disabled: boolean;
+    onClick: () => void;
+    loading?: boolean;
+};
+
+export type useCloneForm<T> = {
+    form: FormInstance;
+    formProps: UseFormSFFormProps & FormProps;
+    editId?: string | number;
+    setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
+    saveButtonProps: SaveButtonProps;
+    formLoading: boolean;
+    mutationResult: UseCreateReturnType<T>;
+    queryResult: QueryObserverResult<GetOneResponse<T>>;
+    setCloneId?: Dispatch<SetStateAction<string | number | undefined>>;
+    cloneId?: string | number;
+};
+
 export const useCloneForm = <RecordType>(
     props: useCloneFormProps<RecordType>,
-) => {
+): useCloneForm<RecordType> => {
     const useCreateFormProps = useCreateForm<RecordType>({ ...props });
 
-    const { form, formLoading } = useCreateFormProps;
+    const { form, formLoading, mutationResult } = useCreateFormProps;
 
     const {
         resource: routeResourceName,
@@ -49,6 +74,7 @@ export const useCloneForm = <RecordType>(
     return {
         ...useCreateFormProps,
         formLoading: formLoading || isFetching,
+        mutationResult,
         queryResult,
     };
 };
