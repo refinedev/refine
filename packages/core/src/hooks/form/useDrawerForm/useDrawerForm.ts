@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 
 import {
     useForm,
@@ -6,7 +6,6 @@ import {
     useTranslate,
     useWarnAboutChange,
 } from "@hooks";
-// import { UseForm } from "../../../interfaces";
 import { useEditFormProps } from "../useEditForm";
 import { useCreateFormProps } from "../useCreateForm";
 import { UseFormConfig } from "sunflower-antd";
@@ -44,8 +43,6 @@ export const useDrawerForm = ({
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
 
     const [visible, setVisible] = useState(false);
-    const show = useCallback(() => setVisible(true), [visible]);
-    const close = useCallback(() => setVisible(false), [visible]);
 
     const { mutationMode: mutationModeContext } = useMutationMode();
     const mutationMode = mutationModeProp ?? mutationModeContext;
@@ -59,7 +56,7 @@ export const useDrawerForm = ({
     useEffect(() => {
         if (visible && mutationMode === "pessimistic") {
             if (isSuccessMutation && !isLoadingMutation) {
-                close();
+                setVisible(false);
                 resetMutation?.();
             }
         }
@@ -70,7 +67,7 @@ export const useDrawerForm = ({
         onClick: () => {
             form?.submit();
             if (!(mutationMode === "pessimistic")) {
-                close();
+                setVisible(false);
             }
         },
         loading: formLoading,
@@ -80,19 +77,19 @@ export const useDrawerForm = ({
         recordItemId: editId,
         onSuccess: () => {
             setEditId?.(undefined);
-            close();
+            setVisible(false);
         },
     };
 
     return {
         ...useFormProps,
-        close,
+        setVisible,
         show: (id?: string | number) => {
             setEditId?.(id);
 
             setCloneId?.(id);
 
-            show();
+            setVisible(true);
         },
         formProps: {
             form,
@@ -120,7 +117,7 @@ export const useDrawerForm = ({
                         return;
                     }
                 }
-                close();
+                setVisible(false);
                 setCloneId?.(undefined);
                 setEditId?.(undefined);
             },
