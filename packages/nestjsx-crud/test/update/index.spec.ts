@@ -9,6 +9,7 @@ describe("update", () => {
     it("correct response", async () => {
         const { data } = await JsonServer(
             "https://readmin-nestjs-crud.pankod.com",
+            axios,
         ).update("posts", "0b4faa6d-6726-4967-be13-e9d05d9aef7f", {
             title: "updated-title",
         });

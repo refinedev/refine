@@ -1,7 +1,8 @@
 {
-    "name": "refinejs",
-    "version": "1.0.0",
+    "name": "@pankod/refine",
+    "version": "1.0.1",
     "description": "",
+    "private": false,
     "main": "dist/index.js",
     "module": "dist/react.esm.js",
     "typings": "dist/index.d.ts",
@@ -19,11 +20,11 @@
     },
     "size-limit": [
         {
-            "path": "dist/tsdx.cjs.production.min.js",
+            "path": "dist/refine.cjs.production.min.js",
             "limit": "10 KB"
         },
         {
-            "path": "dist/tsdx.esm.js",
+            "path": "dist/refine.esm.js",
             "limit": "10 KB"
         }
     ],
@@ -68,5 +69,9 @@
         "sunflower-antd": "^1.0.0-beta.3"
     },
     "author": "Pankod",
-    "license": "MIT"
+    "license": "MIT",
+    "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
+    "publishConfig": {
+        "access": "public"
+    }
 }

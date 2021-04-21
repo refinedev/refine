@@ -33,12 +33,13 @@ import {
     ExportButton,
     CloneButton,
     getDefaultSortOrder,
+    getDefaultFilter,
     DateField,
     ImportButton,
     useShow,
     Typography,
     useSelect,
-} from "refinejs";
+} from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
@@ -59,15 +60,13 @@ export const PostList = (props: any) => {
                 order: "descend",
             },
         ],
-        initialFilter: {
-            status: ["published"],
-        },
     });
 
-    const categorySelectProps = useSelect({
+    const { ...categorySelectProps } = useSelect({
         resource: "categories",
         optionLabel: "title",
         optionValue: "id",
+        defaultValue: getDefaultFilter("category.id", filters),
     });
 
     const Actions = () => (
@@ -157,6 +156,10 @@ export const PostList = (props: any) => {
                             />
                         </FilterDropdown>
                     )}
+                    defaultFilteredValue={getDefaultFilter(
+                        "category.id",
+                        filters,
+                    )}
                 />
                 <Table.Column
                     dataIndex="status"
@@ -181,7 +184,7 @@ export const PostList = (props: any) => {
                             </Radio.Group>
                         </FilterDropdown>
                     )}
-                    defaultFilteredValue={["published"]}
+                    defaultFilteredValue={getDefaultFilter("status", filters)}
                 />
                 <Table.Column
                     dataIndex="createdAt"

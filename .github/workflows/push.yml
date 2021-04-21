@@ -1,6 +1,10 @@
 name: Lint & Test & Build [Push]
 
-on: push
+on: 
+  push:
+    tags-ignore:
+      - "*"
+
 
 jobs:
   build:

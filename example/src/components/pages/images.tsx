@@ -6,7 +6,7 @@ import {
     NumberField,
     useTranslate,
     useTable,
-} from "refinejs";
+} from "@pankod/refine";
 
 export const ImagesList = (props: any) => {
     const translate = useTranslate();

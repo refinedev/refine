@@ -1,14 +1,14 @@
 {
     "version": "0.1.0",
     "license": "MIT",
-    "private": true,
+    "private": false,
     "engines": {
         "node": ">=10"
     },
     "scripts": {
         "lerna": "lerna",
         "start": "lerna run start --stream --parallel",
-        "test": "lerna run test",
+        "test": "lerna run test --stream --parallel",
         "test:coverage": "jest --runInBand --silent --ci --coverage",
         "lint": "tsdx lint packages example",
         "lint:fix": "npm run lint -- packages example --quiet --fix --allow-empty",

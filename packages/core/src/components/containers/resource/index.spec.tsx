@@ -7,9 +7,9 @@ import { List } from "@components/crud";
 import { Table } from "antd";
 
 describe("<Resource />", () => {
-    const PostList = ({ resourceName }: { resourceName: string }) => {
+    const PostList = () => {
         return (
-            <List resourceName={resourceName}>
+            <List>
                 <Table rowKey="id">
                     <Table.Column key="title" title="Title" dataIndex="title" />
                 </Table>

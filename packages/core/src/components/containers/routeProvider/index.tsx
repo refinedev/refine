@@ -34,7 +34,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
 
     const routes: IRoutesProps[] = [];
     const RouteHandler = (val: IResourceItem): void => {
-        const { list, create, edit, show, canDelete, route } = val;
+        const { list, create, edit, show, canDelete, route, name } = val;
 
         const ListComponent = list;
         const CreateComponent = create;
@@ -50,7 +50,15 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
                 exact: true,
                 path: `/resources/:resource(${route})/:action(create)/:id?`,
                 component: () => {
-                    return <CreateComponent canEdit={canEdit} />;
+                    return (
+                        <CreateComponent
+                            canCreate={canCreate}
+                            canEdit={canEdit}
+                            canDelete={canDelete}
+                            canShow={canShow}
+                            name={name}
+                        />
+                    );
                 },
             });
         }
@@ -59,7 +67,15 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
             routes.push({
                 exact: true,
                 path: `/resources/:resource(${route})/:action(edit)/:id`,
-                component: () => <EditComponent />,
+                component: () => (
+                    <EditComponent
+                        canCreate={canCreate}
+                        canEdit={canEdit}
+                        canDelete={canDelete}
+                        canShow={canShow}
+                        name={name}
+                    />
+                ),
             });
         }
 
@@ -72,6 +88,8 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
                         canCreate={canCreate}
                         canEdit={canEdit}
                         canDelete={canDelete}
+                        canShow={canShow}
+                        name={name}
                     />
                 ),
             });
@@ -87,6 +105,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
                         canEdit={canEdit}
                         canDelete={canDelete}
                         canShow={canShow}
+                        name={name}
                     />
                 ),
             });

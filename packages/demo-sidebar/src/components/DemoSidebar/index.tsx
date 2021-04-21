@@ -10,7 +10,7 @@ import {
     Input,
     Form,
     InputNumber,
-} from "refinejs";
+} from "@pankod/refine";
 
 import { Group } from "..";
 

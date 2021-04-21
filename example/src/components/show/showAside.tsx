@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Card } from "refinejs";
+import { Card } from "@pankod/refine";
 
 export const ShowAside: React.FC<{ record: any }> = ({ record }) => {
     return (

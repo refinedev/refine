@@ -9,7 +9,6 @@ import { CreateButton } from "@components";
 import { ResourceRouterParams, CreateButtonProps } from "../../../interfaces";
 
 export interface ListProps {
-    resourceName: string;
     canCreate?: boolean;
     actionButtons?: React.ReactNode;
     aside?: React.FC;

@@ -16,7 +16,7 @@ import {
     DeleteButton,
     Space,
     useForm,
-} from "refinejs";
+} from "@pankod/refine";
 
 export const TagList = (props: any) => {
     const translate = useTranslate();
