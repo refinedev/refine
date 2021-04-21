@@ -7,10 +7,10 @@ import {
     Authenticated,
     defaultConfigProviderProps,
     BackTop,
-} from "refinejs";
-import { DemoSidebar, useDemoSidebar } from "refinejs-demo-sidebar";
+} from "@pankod/refine";
+import { DemoSidebar, useDemoSidebar } from "@pankod/refine-demo-sidebar";
 
-import dataProvider from "refinejs-nestjsx-crud";
+import dataProvider from "@pankod/refine-nestjsx-crud";
 import { useTranslation } from "react-i18next";
 
 import {

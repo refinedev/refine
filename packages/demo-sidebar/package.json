@@ -3,6 +3,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "private": false,
   "files": [
     "dist",
     "src"
@@ -21,16 +22,16 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
-  "name": "refinejs-demo-sidebar",
+  "name": "@pankod/refine-demo-sidebar",
   "author": "Pankod",
-  "module": "dist/refinejs-demo-sidebar.esm.js",
+  "module": "dist/refine-demo-sidebar.esm.js",
   "size-limit": [
     {
-      "path": "dist/refinejs-demo-sidebar.cjs.production.min.js",
+      "path": "dist/refine-demo-sidebar.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/refinejs-demo-sidebar.esm.js",
+      "path": "dist/refine-demo-sidebar.esm.js",
       "limit": "10 KB"
     }
   ],
@@ -47,6 +48,10 @@
     "typescript": "^3.9.8"
   },
   "dependencies": {
-    "refinejs": "^1.0.0"
+    "@pankod/refine": "^1.0.0"
+  },
+  "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
+  "publishConfig": {
+    "access": "public"
   }
 }

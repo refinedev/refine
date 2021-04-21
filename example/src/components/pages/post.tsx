@@ -39,7 +39,7 @@ import {
     useShow,
     Typography,
     useSelect,
-} from "refinejs";
+} from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";

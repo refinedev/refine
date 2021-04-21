@@ -20,7 +20,7 @@ describe("<List/>", () => {
     describe("JSON Rest Server", () => {
         it("mounts with table", async () => {
             const { getByText } = renderList(
-                <List key="posts" resourceName="posts">
+                <List key="posts">
                     <Table rowKey="id" />
                 </List>,
             );
@@ -29,7 +29,7 @@ describe("<List/>", () => {
         });
         it("renders given data", async () => {
             const { container } = renderList(
-                <List key="posts" resourceName="posts">
+                <List key="posts">
                     <Table rowKey="id">
                         <Table.Column
                             key="title"
@@ -49,15 +49,13 @@ describe("<List/>", () => {
             };
 
             const { getByText } = renderList(
-                <List aside={asideComponent} resourceName="posts"></List>,
+                <List aside={asideComponent}></List>,
             );
             getByText("Aside");
         });
 
         it("should render optional title with title prop", async () => {
-            const { getByText } = renderList(
-                <List resourceName="posts" title="New Title"></List>,
-            );
+            const { getByText } = renderList(<List title="New Title"></List>);
             getByText("New Title");
         });
 
