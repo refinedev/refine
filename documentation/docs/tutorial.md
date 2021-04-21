@@ -6,6 +6,7 @@ sidebar_label: Tutorial
 ---
 import refineWelcome from '@site/static/img/refine-welcome.png';
 import resourceFirst from '@site/static/img/resource-1.png';
+import resourceSecond from '@site/static/img/resource-2.png';
 
 
 We'll show how to create a simple admin app with CRUD operations based on an existing REST API.
@@ -87,7 +88,7 @@ export default App;
 ```
 <br/>
 
-`<Admin/>` is the root component of a refine application. We provide a dataProvider with a REST API url as we mention above.
+`<Admin/>` is the root component of a refine application. We provide a `dataProvider` with a REST API url as we mention above.
 
 You will see the welcome page.
 
@@ -100,8 +101,8 @@ You will see the welcome page.
 
 
 
-### Forming app structure
-#### Connect API with Resources 
+
+### Connect API with Resources 
 
 We'll start forming our app by adding a `<Resource />` component as a child.
 A `<Resource />` represents an endpoint in the API by given name property.
@@ -125,7 +126,7 @@ export default App;
 
 <br/>
 
-After adding `Resource`, app redirects to url defined by `name` property. 
+After adding `<Resource />`, app redirects to url defined by `name` property. 
 `refine` handles route matching out of the box. 
 
 
@@ -138,11 +139,127 @@ After adding `Resource`, app redirects to url defined by `name` property.
 
 
 
-You'll see 404 page since resource doesn't handle data fetching on its own. CRUD operations is done with custom refine hooks.
+You'll see 404 page since `<Resource />` doesn't handle data fetching on its own. CRUD operations is to be done with `refine` hooks.
 
-Resource holds components as props for CRUD operations(list, create, edit, show). In this example, we are going to set corresponding custom components which uses refine hooks to handle data operations and display the list of data.
+`<Resource />` holds components as props for CRUD operations(list, create, edit, show). In this example, we are going to set corresponding custom components to `<Resource />` which uses `refine` hooks to handle data operations and display the list of data.
 
-Let's create a PostList component to fetch and show posts data.
+
+### Showing and interacting with data
+
+Let's create a `PostList` component to fetch and show posts data.
+
+```tsx title="components/pages/posts.tsx" 
+import  { List, TextField, TagField, DateField, Table, useTable,
+IResourceComponentsProps } from "@pankod/refine";
+
+export const PostList = (props: IResourceComponentsProps) => {
+    const { tableProps } = useTable({});
+
+    return (
+        <List {...props}>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column
+                    dataIndex="title"
+                    title="title"
+                    key="title"
+                    render={(value) => <TextField value={value} />}
+                    sorter={{
+                        multiple: 1,
+                    }}
+                />
+
+                <Table.Column
+                    dataIndex="status"
+                    title="status"
+                    key="status"
+                    render={(value) => <TagField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="createdAt"
+                    key="createdAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                    sorter={{
+                        multiple: 2,
+                    }}
+                />
+            </Table>
+        </List>
+    );
+};
+```
+<br/>
+
+We wrap `<Table />` with custom `<List />` component from `refine`, which adds extra functionalities like a create button and title to the table view.
+
+
+:::tip
+`<List />` is not an obligation at this point. You can prefer to use your own wrapper component.
+:::
+<br/>
+
+`refine` apps uses [ant-design](https://ant.design/components/overview/) components to display data. In this example, we'll use `<Table />` component, which is exposed from ant-design to render a table with one row for each record. 
+
+The render prop of `<Table.Column />` is used to determine spesific field type of the data to render. Each `<Table.Column />` maps a different field in the API response, specified by the `dataIndex` prop.
+
+Refer to [ant-design docs](https://ant.design/components/table/#API) for more detailed information about `<Table />`. 
+
+
+
+```tsx
+  const { tableProps } = useTable({});
+```
+
+`useTable` is a hook from `refine`.  
+Basically, it's responsible for fetching data from API with `<Resource/>`'s `name` prop using `refine`'s helper hooks under the hood.  
+The `tableProps` includes all necessary props for `<Table />`  component to show and interact with data properly.
+
+
+You can find detailed usage of `useTable` from [here](#).
+
+
+
+After creating PostList component, now it's time to add to `<Resource />`.
+
+
+```tsx title="src/App.tsx" 
+import { Admin, Resource } from "@pankod/refine";
+import dataProvider from "@pankod/refine-json-server";
+//highlight-next-line
+import { PostList } from "./components/pages/posts";
+
+function App() {
+    return (
+        <Admin dataProvider={dataProvider("https://readmin-fake-rest.pankod.com/")}>
+             //highlight-next-line
+            <Resource name="posts" list={PostList} />
+        </Admin>
+    );
+}
+
+export default App;
+```
+<br />
+Now we can list posts data successfully as shown below.
+
+<>
+<div style={{textAlign: "center"}}>
+    <img src={resourceSecond} />
+</div>
+<br/>
+</>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -152,7 +269,7 @@ Let's create a PostList component to fetch and show posts data.
 
 The list={PostList} prop means that readmin  use the <PostList/> custom component to display the list of posts, which users create independently from readmin  
 
-Postlist uses List component wrapper from readmin-core  which uses ant-design components to render data with table.
+
 
 Postlist readmin hooklarını kullanarak api den data çekebilir, crud işlemlerini yapması içn gerekli olan readmin  tarafından sağlanana hookları barındırır. Çektiği dataı readmin crud list componenti ile ant design componentleri kullanılarak ekrana listeler.
 

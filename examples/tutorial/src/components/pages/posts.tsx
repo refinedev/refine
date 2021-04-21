@@ -13,10 +13,7 @@ export const PostList = (props: IResourceComponentsProps) => {
 
     return (
         <List {...props}>
-            <Table
-                {...tableProps}
-                rowKey="id"
-            >
+            <Table {...tableProps} rowKey="id">
                 <Table.Column
                     dataIndex="title"
                     title="title"
@@ -26,24 +23,12 @@ export const PostList = (props: IResourceComponentsProps) => {
                         multiple: 1,
                     }}
                 />
+
                 <Table.Column
-                    dataIndex="slug"
-                    title="slug"
-                    key="slug"
-                    render={(value) => <TextField value={value} />}
-                />
-                <Table.Column
-                    dataIndex="slug"
-                    title="slug"
-                    key="slug"
-                    render={(value) => <TextField value={value} />}
-                />
-                       <Table.Column
                     dataIndex="status"
                     title="status"
                     key="status"
                     render={(value) => <TagField value={value} />}
-              
                 />
                 <Table.Column
                     dataIndex="createdAt"
