@@ -2,6 +2,7 @@ import React from "react";
 
 import { useList, useMany } from "@hooks";
 import { Sort, Option } from "../../../interfaces";
+import { merge } from "lodash";
 
 export type useCheckboxGroupProps = {
     resource: string;
@@ -19,6 +20,7 @@ export const useCheckboxGroup = ({
     ...rest
 }: useCheckboxGroupProps) => {
     const [options, setOptions] = React.useState<Option[]>([]);
+    const [selectedOptions, setSelectedOptions] = React.useState<Option[]>([]);
 
     let { defaultValue = [] } = rest;
 
@@ -29,7 +31,7 @@ export const useCheckboxGroup = ({
     useMany(resource, defaultValue, {
         enabled: defaultValue.length > 0,
         onSuccess: (data) => {
-            setOptions((current) => [
+            setSelectedOptions((current) => [
                 ...current,
                 ...data.data.map((item) => ({
                     label: item[optionLabel],
@@ -58,7 +60,7 @@ export const useCheckboxGroup = ({
     );
 
     return {
-        options,
+        options: merge(options, selectedOptions),
         queryResult,
     };
 };
