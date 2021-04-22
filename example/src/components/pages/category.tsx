@@ -70,7 +70,7 @@ export const CategoryList = (props: any) => {
                     onRow={(record) => ({
                         onClick: (event: any) => {
                             if (event.target.nodeName === "TD") {
-                                setEditId(record.id);
+                                setEditId && setEditId(record.id);
                             }
                         },
                     })}

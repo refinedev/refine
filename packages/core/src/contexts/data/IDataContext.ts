@@ -16,45 +16,45 @@ export interface Search {
 
 export type Filters = Record<string, (string | number | boolean)[] | null>;
 
-export interface GetListResponse<TData extends BaseRecord = BaseRecord> {
-    data: TData[];
+export interface GetListResponse<RecordType = BaseRecord> {
+    data: RecordType[];
     total: number;
 }
 
-export interface CreateResponse {
-    data: BaseRecord;
+export interface CreateResponse<RecordType = BaseRecord> {
+    data: RecordType;
 }
 
-export interface CreateManyResponse {
-    data: BaseRecord[];
+export interface CreateManyResponse<RecordType = BaseRecord> {
+    data: RecordType[];
 }
 
-export interface UpdateResponse {
-    data: BaseRecord;
+export interface UpdateResponse<RecordType = BaseRecord> {
+    data: RecordType;
 }
 
-export interface UpdateManyResponse {
-    data: BaseRecord[];
+export interface UpdateManyResponse<RecordType = BaseRecord> {
+    data: RecordType[];
 }
 
-export interface GetOneResponse<TData extends BaseRecord = BaseRecord> {
-    data: TData;
+export interface GetOneResponse<RecordType = BaseRecord> {
+    data: RecordType;
 }
 
-export interface GetManyResponse<TData extends BaseRecord = BaseRecord> {
-    data: TData[];
+export interface GetManyResponse<RecordType = BaseRecord> {
+    data: RecordType[];
 }
 
-export interface DeleteOneResponse {
-    data: BaseRecord;
+export interface DeleteOneResponse<RecordType = BaseRecord> {
+    data: RecordType;
 }
 
-export interface DeleteManyResponse {
-    data: BaseRecord[];
+export interface DeleteManyResponse<RecordType = BaseRecord> {
+    data: RecordType[];
 }
 
 export interface IDataContext {
-    getList: (
+    getList: <RecordType extends BaseRecord = BaseRecord>(
         resource: string,
         params: {
             pagination?: Pagination;
@@ -62,34 +62,40 @@ export interface IDataContext {
             sort?: Sort;
             filters?: Filters;
         },
-    ) => Promise<GetListResponse<BaseRecord>>;
-    getMany: (
+    ) => Promise<GetListResponse<RecordType>>;
+    getMany: <RecordType extends BaseRecord = BaseRecord>(
         resource: string,
         ids: Identifier[],
-    ) => Promise<GetManyResponse<BaseRecord>>;
-    getOne: (resource: string, id: Identifier) => Promise<GetOneResponse>;
-    create: <TParams extends BaseRecord = BaseRecord>(
-        resource: string,
-        params: TParams,
-    ) => Promise<CreateResponse>;
-    createMany: <TParams extends BaseRecord = BaseRecord>(
-        resource: string,
-        params: TParams[],
-    ) => Promise<CreateManyResponse>;
-    update: <TParams extends BaseRecord = BaseRecord>(
+    ) => Promise<GetManyResponse<RecordType>>;
+    getOne: <RecordType extends BaseRecord = BaseRecord>(
         resource: string,
         id: Identifier,
-        params: TParams,
-    ) => Promise<UpdateResponse>;
-    updateMany: <TParams extends BaseRecord = BaseRecord>(
+    ) => Promise<GetOneResponse<RecordType>>;
+    create: <RecordType extends BaseRecord = BaseRecord>(
+        resource: string,
+        params: BaseRecord,
+    ) => Promise<CreateResponse<RecordType>>;
+    createMany: <RecordType extends BaseRecord = BaseRecord>(
+        resource: string,
+        params: BaseRecord[],
+    ) => Promise<CreateManyResponse<RecordType>>;
+    update: <RecordType extends BaseRecord = BaseRecord>(
+        resource: string,
+        id: Identifier,
+        params: BaseRecord,
+    ) => Promise<UpdateResponse<RecordType>>;
+    updateMany: <RecordType extends BaseRecord = BaseRecord>(
         resource: string,
         ids: Identifier[],
-        params: TParams,
-    ) => Promise<UpdateManyResponse>;
-    deleteOne: (resource: string, id: Identifier) => Promise<DeleteOneResponse>;
-    deleteMany: (
+        params: BaseRecord,
+    ) => Promise<UpdateManyResponse<RecordType>>;
+    deleteOne: <RecordType extends BaseRecord = BaseRecord>(
+        resource: string,
+        id: Identifier,
+    ) => Promise<DeleteOneResponse<RecordType>>;
+    deleteMany: <RecordType extends BaseRecord = BaseRecord>(
         resource: string,
         ids: Identifier[],
-    ) => Promise<DeleteManyResponse>;
+    ) => Promise<DeleteManyResponse<RecordType>>;
     getApiUrl: () => string;
 }

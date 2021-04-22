@@ -25,3 +25,5 @@ export type StepsFormSF = Omit<UseStepsFormSFReturn, "form"> & {
 export type ModalFormSF = Omit<UseModalFormSFReturn, "form"> & {
     form: FormInstance;
 };
+
+// export type DrawerForm = ;

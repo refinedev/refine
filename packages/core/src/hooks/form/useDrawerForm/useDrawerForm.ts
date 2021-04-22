@@ -1,8 +1,5 @@
-import {
-    useModalForm as useModalFormSF,
-    UseModalFormConfig as UseModalFormConfigSF,
-} from "sunflower-antd";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { UseFormConfig } from "sunflower-antd";
 
 import {
     useForm,
@@ -10,26 +7,26 @@ import {
     useTranslate,
     useWarnAboutChange,
 } from "@hooks";
-import { BaseRecord, ModalFormSF } from "../../../interfaces";
 import { useEditFormProps } from "../useEditForm";
 import { useCreateFormProps } from "../useCreateForm";
+import { BaseRecord } from "../../../interfaces";
 
-type useModalFormConfig = {
+export interface UseDrawerFormConfig extends UseFormConfig {
     action: "show" | "edit" | "create";
-};
+}
 
-export type useModalFormProps<M> = Partial<
+export type UseDrawerFormProps<M> = Partial<
     useEditFormProps<M> & useCreateFormProps<M>
 > &
-    UseModalFormConfigSF &
-    useModalFormConfig;
-export const useModalForm = <
+    UseDrawerFormConfig;
+
+export const useDrawerForm = <
     RecordType extends BaseRecord = BaseRecord,
     MutationType extends BaseRecord = RecordType
 >({
     mutationMode: mutationModeProp,
     ...rest
-}: useModalFormProps<MutationType>) => {
+}: UseDrawerFormProps<MutationType>) => {
     const useFormProps = useForm<RecordType, MutationType>({
         ...rest,
         mutationMode: mutationModeProp,
@@ -48,18 +45,8 @@ export const useModalForm = <
     const translate = useTranslate();
 
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
-    const sunflowerUseModal: ModalFormSF = useModalFormSF({
-        ...rest,
-        form: form,
-    });
 
-    const {
-        visible,
-        close,
-        form: modalForm,
-        formProps: modalFormProps,
-        modalProps,
-    } = sunflowerUseModal;
+    const [visible, setVisible] = useState(false);
 
     const { mutationMode: mutationModeContext } = useMutationMode();
     const mutationMode = mutationModeProp ?? mutationModeContext;
@@ -73,19 +60,18 @@ export const useModalForm = <
     useEffect(() => {
         if (visible && mutationMode === "pessimistic") {
             if (isSuccessMutation && !isLoadingMutation) {
-                close();
+                setVisible(false);
                 resetMutation?.();
             }
         }
     }, [isSuccessMutation, isLoadingMutation]);
 
-    const saveButtonPropsSF = {
+    const saveButtonProps = {
         disabled: formLoading,
         onClick: () => {
-            modalForm.submit();
-
+            form?.submit();
             if (!(mutationMode === "pessimistic")) {
-                close();
+                setVisible(false);
             }
         },
         loading: formLoading,
@@ -95,34 +81,32 @@ export const useModalForm = <
         recordItemId: editId,
         onSuccess: () => {
             setEditId?.(undefined);
-            sunflowerUseModal.close();
+            setVisible(false);
         },
     };
 
     return {
         ...useFormProps,
-        ...sunflowerUseModal,
+        setVisible,
         show: (id?: string | number) => {
-            setEditId && setEditId(id);
+            setEditId?.(id);
 
-            setCloneId && setCloneId(id);
+            setCloneId?.(id);
 
-            sunflowerUseModal.show();
+            setVisible(true);
         },
-
         formProps: {
-            ...modalFormProps,
+            form,
             onValuesChange: formProps?.onValuesChange,
             onKeyUp: formProps?.onKeyUp,
             onFinish: formProps?.onFinish,
         },
-        modalProps: {
-            ...modalProps,
-            width: "1000px",
+        drawerProps: {
+            width: "500px",
             bodyStyle: {
                 paddingTop: "55px",
             },
-            onCancel: () => {
+            onClose: () => {
                 if (warnWhen) {
                     const warnWhenConfirm = window.confirm(
                         translate(
@@ -137,11 +121,13 @@ export const useModalForm = <
                         return;
                     }
                 }
-                sunflowerUseModal.close();
-                // setCloneId?.(undefined);
+                setVisible(false);
+                setCloneId?.(undefined);
+                setEditId?.(undefined);
             },
+            visible,
         },
-        saveButtonProps: saveButtonPropsSF,
+        saveButtonProps,
         deleteButtonProps,
         formLoading,
     };

@@ -1,52 +1,74 @@
-import * as React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { useParams } from "react-router-dom";
+import { QueryObserverResult } from "react-query";
+import { FormInstance, FormProps } from "antd";
 
 import { useCreateForm, useCreateFormProps } from "./useCreateForm";
 import { useEditForm, useEditFormProps } from "./useEditForm";
 import { useCloneForm, useCloneFormProps } from "./useCloneForm";
 
-import { ResourceRouterParams } from "../../interfaces";
+import {
+    BaseRecord,
+    GetOneResponse,
+    ResourceRouterParams,
+    UseFormSFFormProps,
+} from "../../interfaces";
+import { UseUpdateReturnType } from "../data/useUpdate";
+import { UseCreateReturnType } from "../data/useCreate";
 
 export type ActionParams = {
     action?: "show" | "edit" | "create";
 };
 
-export type useEditFormType = typeof useEditForm;
-export type useCreateFormType = typeof useCreateForm;
-export type useCloneFormType = typeof useCloneForm;
+type SaveButtonProps = {
+    disabled: boolean;
+    onClick: () => void;
+    loading?: boolean;
+};
 
-export type useEditFormReturn = ReturnType<useEditFormType>;
-export type useCreateFormReturn = ReturnType<useCreateFormType>;
-export type useCloneFormTypeReturn = ReturnType<useCloneFormType>;
+export type useFormProps<M> = ActionParams &
+    (useCreateFormProps<M> | useEditFormProps<M> | useCloneFormProps<M>);
 
-export type useFormProps = (
-    props: ActionParams &
-        (useCreateFormProps | useEditFormProps | useCloneFormProps),
-) => Partial<
-    useEditFormReturn &
-        useCreateFormReturn &
-        useCloneFormTypeReturn & {
-            setCloneId: Function;
-            cloneId: string | number;
-        }
->;
+export type useForm<T, M> = {
+    form: FormInstance;
+    formProps: UseFormSFFormProps & FormProps;
+    editId?: string | number;
+    setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
+    saveButtonProps: SaveButtonProps;
+    queryResult?: QueryObserverResult<GetOneResponse<T>>;
+    mutationResult: UseUpdateReturnType<M> | UseCreateReturnType<M>;
+    formLoading: boolean;
+    setCloneId?: Dispatch<SetStateAction<string | number | undefined>>;
+    cloneId?: string | number;
+};
 
-export const useForm: useFormProps = (props) => {
-    const { action: actionFromProp } = props;
-
+export const useForm = <
+    RecordType = BaseRecord,
+    MutationType extends BaseRecord = RecordType
+>({
+    action,
+    ...rest
+}: useFormProps<MutationType>): useForm<RecordType, MutationType> => {
     // id state is needed to determine selected record in addition to id parameter from route
     // this could be moved to a custom hook that encapsulates both create and clone form hooks.
     const [cloneId, setCloneId] = React.useState<string | number>();
 
-    const editForm = useEditForm(props as useEditFormProps);
+    const editForm = useEditForm<RecordType, MutationType>(
+        rest as useEditFormProps<MutationType>,
+    );
 
-    const createForm = useCreateForm(props as useCreateFormProps);
+    const createForm = useCreateForm<RecordType, MutationType>(
+        rest as useCreateFormProps<MutationType>,
+    );
 
-    const cloneForm = useCloneForm({ ...props, cloneId } as useCloneFormProps);
+    const cloneForm = useCloneForm<RecordType, MutationType>({
+        ...rest,
+        cloneId,
+    } as useCloneFormProps<MutationType>);
 
     const { action: actionFromRoute, id } = useParams<ResourceRouterParams>();
 
-    switch (actionFromProp || actionFromRoute) {
+    switch (action || actionFromRoute) {
         case "create":
             // setCloneId and cloneId needs to be returned from both clone and create cases.
             // It is needed to make them accessible in useModalForm to be able to manage id state.
@@ -54,10 +76,9 @@ export const useForm: useFormProps = (props) => {
             // clone case
             if (cloneId || id) {
                 return { ...cloneForm, setCloneId, cloneId };
-                // create case
-            } else {
-                return { ...createForm, setCloneId, cloneId };
             }
+            // create case
+            return { ...createForm, setCloneId, cloneId };
         case "edit":
             return editForm;
         default:

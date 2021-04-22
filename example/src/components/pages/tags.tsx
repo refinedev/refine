@@ -16,9 +16,13 @@ import {
     Edit,
 } from "@pankod/refine";
 
+export interface ITags {
+    title: string;
+}
+
 export const TagsList = (props: any) => {
     const translate = useTranslate();
-    const { tableProps, sorter } = useTable({
+    const { tableProps, sorter } = useTable<ITags>({
         initialSorter: [
             {
                 field: "title",
@@ -73,7 +77,7 @@ export const TagsList = (props: any) => {
 export const TagsCreate = (props: any) => {
     const translate = useTranslate();
 
-    const { formProps, saveButtonProps } = useForm({});
+    const { formProps, saveButtonProps } = useForm<ITags>({});
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>

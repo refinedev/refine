@@ -11,21 +11,21 @@ import {
 } from "../../interfaces";
 import { useListResourceQueries, useTranslate, useNotification } from "@hooks";
 
-type UseCreateReturnType<
-    TParams extends BaseRecord = BaseRecord
+export type UseCreateReturnType<
+    RecordType extends BaseRecord = BaseRecord
 > = UseMutationResult<
-    CreateResponse,
+    CreateResponse<RecordType>,
     unknown,
     {
         resource: string;
-        values: TParams;
+        values: BaseRecord;
     },
     unknown
 >;
 
 export const useCreate = <
-    TParams extends BaseRecord = BaseRecord
->(): UseCreateReturnType<TParams> => {
+    RecordType extends BaseRecord = BaseRecord
+>(): UseCreateReturnType<RecordType> => {
     const { create } = useContext<IDataContext>(DataContext);
     const getListQueries = useListResourceQueries();
     const translate = useTranslate();
@@ -33,8 +33,8 @@ export const useCreate = <
     const queryClient = useQueryClient();
 
     const mutation = useMutation(
-        ({ resource, values }: { resource: string; values: TParams }) =>
-            create<TParams>(resource, values),
+        ({ resource, values }: { resource: string; values: BaseRecord }) =>
+            create<RecordType>(resource, values),
         {
             onSuccess: (_, { resource }) => {
                 const resourceSingular = pluralize.singular(resource);
