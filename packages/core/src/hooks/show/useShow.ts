@@ -8,6 +8,7 @@ import {
     BaseRecord,
     GetOneResponse,
 } from "../../interfaces";
+import { useState } from "react";
 
 export type useShowProps = {
     resourceName?: string;
@@ -20,18 +21,24 @@ export const useShow = ({ resourceName, id }: useShowProps) => {
         id: idFromRoute,
     } = useParams<ResourceRouterParams>();
 
+    const [showId, setShowId] = useState<string>();
+
     const resourceWithRoute = useResourceWithRoute();
 
     const resource = resourceWithRoute(routeResourceName);
 
     const name = resourceName ?? resource.name;
-    const resourceId = id ?? idFromRoute;
+    const resourceId = id ?? showId ?? idFromRoute;
 
-    const queryResult = useOne(name, resourceId);
+    const queryResult = useOne(name, resourceId, {
+        enabled: !!resourceId,
+    });
 
     return {
         queryResult: queryResult as QueryObserverResult<
             GetOneResponse<BaseRecord>
         >,
+        showId,
+        setShowId,
     };
 };
