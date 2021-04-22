@@ -10,7 +10,7 @@ import {
     useTranslate,
     useWarnAboutChange,
 } from "@hooks";
-import { ModalFormSF } from "../../../interfaces";
+import { BaseRecord, ModalFormSF } from "../../../interfaces";
 import { useEditFormProps } from "../useEditForm";
 import { useCreateFormProps } from "../useCreateForm";
 
@@ -18,14 +18,19 @@ type useModalFormConfig = {
     action: "show" | "edit" | "create";
 };
 
-export type useModalFormProps = Partial<useEditFormProps & useCreateFormProps> &
+export type useModalFormProps<M> = Partial<
+    useEditFormProps<M> & useCreateFormProps<M>
+> &
     UseModalFormConfigSF &
     useModalFormConfig;
-export const useModalForm = ({
+export const useModalForm = <
+    RecordType extends BaseRecord = BaseRecord,
+    MutationType extends BaseRecord = RecordType
+>({
     mutationMode: mutationModeProp,
     ...rest
-}: useModalFormProps) => {
-    const useFormProps = useForm({
+}: useModalFormProps<MutationType>) => {
+    const useFormProps = useForm<RecordType, MutationType>({
         ...rest,
         mutationMode: mutationModeProp,
     });
@@ -133,7 +138,7 @@ export const useModalForm = ({
                     }
                 }
                 sunflowerUseModal.close();
-                setCloneId?.(undefined);
+                // setCloneId?.(undefined);
             },
         },
         saveButtonProps: saveButtonPropsSF,

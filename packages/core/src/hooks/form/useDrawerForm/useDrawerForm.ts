@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { UseFormConfig } from "sunflower-antd";
 
 import {
     useForm,
@@ -8,22 +9,25 @@ import {
 } from "@hooks";
 import { useEditFormProps } from "../useEditForm";
 import { useCreateFormProps } from "../useCreateForm";
-import { UseFormConfig } from "sunflower-antd";
+import { BaseRecord } from "../../../interfaces";
 
 export interface UseDrawerFormConfig extends UseFormConfig {
     action: "show" | "edit" | "create";
 }
 
-export type UseDrawerFormProps = Partial<
-    useEditFormProps & useCreateFormProps
+export type UseDrawerFormProps<M> = Partial<
+    useEditFormProps<M> & useCreateFormProps<M>
 > &
     UseDrawerFormConfig;
 
-export const useDrawerForm = ({
+export const useDrawerForm = <
+    RecordType extends BaseRecord = BaseRecord,
+    MutationType extends BaseRecord = RecordType
+>({
     mutationMode: mutationModeProp,
     ...rest
-}: UseDrawerFormProps) => {
-    const useFormProps = useForm({
+}: UseDrawerFormProps<MutationType>) => {
+    const useFormProps = useForm<RecordType, MutationType>({
         ...rest,
         mutationMode: mutationModeProp,
     });

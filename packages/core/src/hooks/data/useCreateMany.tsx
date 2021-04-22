@@ -11,17 +11,17 @@ import {
 import { useListResourceQueries, useNotification, useTranslate } from "@hooks";
 
 type UseCreateManyReturnType<
-    T extends BaseRecord = BaseRecord
+    RecordType extends BaseRecord = BaseRecord
 > = UseMutationResult<
-    CreateManyResponse,
+    CreateManyResponse<RecordType>,
     unknown,
-    { resource: string; values: T[] },
+    { resource: string; values: BaseRecord[] },
     unknown
 >;
 
 export const useCreateMany = <
-    TParams extends BaseRecord = BaseRecord
->(): UseCreateManyReturnType<TParams> => {
+    RecordType extends BaseRecord = BaseRecord
+>(): UseCreateManyReturnType<RecordType> => {
     const { createMany } = useContext<IDataContext>(DataContext);
     const getListQueries = useListResourceQueries();
     const translate = useTranslate();
@@ -29,8 +29,8 @@ export const useCreateMany = <
     const notification = useNotification();
 
     const mutation = useMutation(
-        ({ resource, values }: { resource: string; values: TParams[] }) =>
-            createMany<TParams>(resource, values),
+        ({ resource, values }: { resource: string; values: BaseRecord[] }) =>
+            createMany<RecordType>(resource, values),
         {
             onSuccess: (_, { resource }) => {
                 notification.success({

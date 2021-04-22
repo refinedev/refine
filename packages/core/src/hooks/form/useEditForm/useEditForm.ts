@@ -1,17 +1,19 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { useForm as useFormSF } from "sunflower-antd";
-import { Form } from "antd";
+import {} from "sunflower-antd/es/";
+import { Form, FormInstance, FormProps } from "antd";
 import { useParams } from "react-router-dom";
+import { QueryObserverResult } from "react-query";
 
 import {
     useMutationMode,
     useResourceWithRoute,
     useOne,
     useUpdate,
-    useNotification,
     useWarnAboutChange,
     useRedirectionAfterSubmission,
 } from "@hooks";
+import { UseUpdateReturnType } from "../../data/useUpdate";
 
 import {
     MutationMode,
@@ -20,9 +22,9 @@ import {
     ResourceRouterParams,
     RedirectionTypes,
     GetOneResponse,
+    UseFormSFFormProps,
+    UpdateResponse,
 } from "../../../interfaces";
-
-import { QueryObserverResult } from "react-query";
 
 type SaveButtonProps = {
     disabled: boolean;
@@ -30,8 +32,25 @@ type SaveButtonProps = {
     loading?: boolean;
 };
 
-export type useEditFormProps = {
-    onMutationSuccess?: (data: any, variables: any, context: any) => void;
+export type useEditForm<T, M> = {
+    form: FormInstance;
+    formProps: UseFormSFFormProps & FormProps;
+    editId?: string | number;
+    setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
+    saveButtonProps: SaveButtonProps;
+    queryResult: QueryObserverResult<GetOneResponse<T>>;
+    mutationResult: UseUpdateReturnType<M>;
+    formLoading: boolean;
+    setCloneId?: Dispatch<SetStateAction<string | number | undefined>>;
+    cloneId?: string | number;
+};
+
+export type useEditFormProps<M> = {
+    onMutationSuccess?: (
+        data: UpdateResponse<M>,
+        variables: any,
+        context: any,
+    ) => void;
     onMutationError?: (error: any, variables: any, context: any) => void;
     mutationMode?: MutationMode;
     submitOnEnter?: boolean;
@@ -40,7 +59,10 @@ export type useEditFormProps = {
     undoableTimeout?: number;
 };
 
-export const useEditForm = ({
+export const useEditForm = <
+    RecordType = BaseRecord,
+    MutationType extends BaseRecord = RecordType
+>({
     onMutationSuccess,
     onMutationError,
     mutationMode: mutationModeProp,
@@ -48,7 +70,7 @@ export const useEditForm = ({
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect = "list",
     undoableTimeout,
-}: useEditFormProps) => {
+}: useEditFormProps<MutationType>): useEditForm<RecordType, MutationType> => {
     const [editId, setEditId] = React.useState<string | number>();
 
     const [formAnt] = Form.useForm();
@@ -83,7 +105,7 @@ export const useEditForm = ({
 
     const id = editId?.toString() ?? idFromRoute;
 
-    const queryResult = useOne(resource.name, id, {
+    const queryResult = useOne<RecordType>(resource.name, id, {
         enabled: isEdit,
     });
 
@@ -98,7 +120,7 @@ export const useEditForm = ({
         };
     }, [data, id, isFetching]);
 
-    const mutationResult = useUpdate(
+    const mutationResult = useUpdate<MutationType>(
         resource.name,
         mutationMode,
         undoableTimeout,
@@ -108,11 +130,9 @@ export const useEditForm = ({
 
     const formLoading = isFetching || isLoadingMutation;
 
-    const notification = useNotification();
-
     const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 
-    const onFinish = (values: BaseRecord) => {
+    const onFinish = async (values: BaseRecord) => {
         setWarnWhen(false);
 
         // Required to make onSuccess vs callbacks to work if component unmounts i.e. on route change
@@ -120,9 +140,9 @@ export const useEditForm = ({
             mutate(
                 { id, values },
                 {
-                    onSuccess: (...args) => {
+                    onSuccess: (data, ...rest) => {
                         if (onMutationSuccess) {
-                            return onMutationSuccess(...args);
+                            return onMutationSuccess(data, ...rest);
                         }
 
                         if (mutationMode === "pessimistic") {
@@ -130,7 +150,7 @@ export const useEditForm = ({
                             handleSubmitWithRedirect({
                                 redirect,
                                 resource,
-                                idFromRoute,
+                                id: idFromRoute,
                             });
                         }
                     },
@@ -148,7 +168,7 @@ export const useEditForm = ({
             handleSubmitWithRedirect({
                 redirect,
                 resource,
-                idFromRoute,
+                id: idFromRoute,
             });
         }
     };
@@ -185,9 +205,7 @@ export const useEditForm = ({
         editId,
         setEditId,
         saveButtonProps,
-        queryResult: queryResult as QueryObserverResult<
-            GetOneResponse<BaseRecord>
-        >,
+        queryResult,
         mutationResult,
         formLoading,
     };
