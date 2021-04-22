@@ -9,9 +9,11 @@ import { useForm, useFormProps } from "../useForm";
 export type useStepsFormProps<T> = Partial<useFormProps<T>> &
     UseStepsFormConfig;
 
+export type useStepsForm<T> = useForm<T> & StepsFormSF & {};
+
 export const useStepsForm = <RecordType = BaseRecord>(
     props: useStepsFormProps<RecordType>,
-) => {
+): useStepsForm<RecordType> => {
     const useFormProps = useForm<RecordType>({ ...props });
     const { form, formProps, formLoading } = useFormProps;
 
