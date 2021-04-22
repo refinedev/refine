@@ -1,5 +1,5 @@
 import React from "react";
-import dayjs from "dayjs";
+import dayjs, { ConfigType } from "dayjs";
 
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
 
@@ -12,7 +12,7 @@ type DateProps = {
     format?: string;
 };
 
-export type DateFieldProps = FieldProps & DateProps;
+export type DateFieldProps = FieldProps<ConfigType> & DateProps;
 
 export const DateField: React.FC<DateFieldProps> = ({
     value,

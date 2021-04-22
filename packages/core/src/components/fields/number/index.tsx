@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactChild } from "react";
 import { Typography } from "antd";
 import { TextProps } from "antd/lib/typography/Text";
 
@@ -14,7 +14,7 @@ function toLocaleStringSupportsOptions() {
     );
 }
 
-export type NumberFieldProps = FieldProps &
+export type NumberFieldProps = FieldProps<ReactChild> &
     TextProps & {
         locale?: string | string[];
         options?: Intl.NumberFormatOptions;
@@ -26,7 +26,7 @@ export const NumberField: React.FC<NumberFieldProps> = ({
     options,
     ...rest
 }) => {
-    const number = parseFloat(value);
+    const number = parseFloat(value.toString());
 
     return (
         <Text {...rest}>

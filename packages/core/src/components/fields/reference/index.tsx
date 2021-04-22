@@ -8,7 +8,7 @@ import { DataContext } from "@contexts/data";
 import { GetOneResponse, IDataContext } from "../../../interfaces";
 import { FieldProps } from "../../../interfaces";
 
-export type ReferenceFieldProps = FieldProps & {
+export type ReferenceFieldProps = FieldProps<string> & {
     resource: string;
 };
 

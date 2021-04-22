@@ -6,7 +6,7 @@ import { FieldProps } from "../../../interfaces/field";
 
 const { Link } = Typography;
 
-export type UrlFieldProps = FieldProps & LinkProps;
+export type UrlFieldProps = FieldProps<string | undefined> & LinkProps;
 
 export const UrlField: React.FC<UrlFieldProps> = ({
     children,

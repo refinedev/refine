@@ -1,4 +1,3 @@
-export type FieldProps = {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    value?: any;
+export type FieldProps<T> = {
+    value: T;
 };

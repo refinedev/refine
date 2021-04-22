@@ -1,22 +1,20 @@
 import React from "react";
 import { LinkProps } from "antd/lib/typography/Link";
 
-import { FieldProps } from "../../../interfaces";
-
 import { UrlField } from "@components";
 
-export type FileFieldProps = FieldProps &
-    LinkProps & {
-        src: string;
-        title: string;
-    };
+export type FileFieldProps<T> = LinkProps & {
+    srcKey: string;
+    titleKey: string;
+    value: T[] | T;
+};
 
-export const FileField: React.FC<FileFieldProps> = ({
+export const FileField = <T extends Record<string, string>>({
     value,
-    title,
-    src,
+    titleKey,
+    srcKey,
     ...rest
-}) => {
+}: FileFieldProps<T>) => {
     if (Array.isArray(value)) {
         return (
             <ul>
@@ -24,11 +22,11 @@ export const FileField: React.FC<FileFieldProps> = ({
                     return (
                         <li key={index}>
                             <UrlField
-                                value={file[src]}
-                                title={file[title]}
+                                value={file[srcKey]}
+                                title={file[titleKey]}
                                 {...rest}
                             >
-                                {title ? file[title] : file[src]}
+                                {titleKey ? file[titleKey] : file[srcKey]}
                             </UrlField>
                         </li>
                     );
@@ -38,8 +36,8 @@ export const FileField: React.FC<FileFieldProps> = ({
     }
 
     return (
-        <UrlField value={value[src]} title={value[title]} {...rest}>
-            {title ? title : src}
+        <UrlField value={value[srcKey]} title={value[titleKey]} {...rest}>
+            {titleKey ? titleKey : srcKey}
         </UrlField>
     );
 };

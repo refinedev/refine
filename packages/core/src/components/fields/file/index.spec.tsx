@@ -11,7 +11,7 @@ describe("FileField", () => {
         };
 
         const { getByTitle } = render(
-            <FileField value={value} title="title" src="src" />,
+            <FileField value={value} titleKey="title" srcKey="src" />,
         );
 
         expect(getByTitle(value.title)).toHaveAttribute("href", value.src);
@@ -22,7 +22,7 @@ describe("FileField", () => {
         const cat = { url: "cat.png", title: "Cat" };
         const files = [text, cat];
         const { getByTitle } = render(
-            <FileField value={files} src="url" title="title" />,
+            <FileField value={files} srcKey="url" titleKey="title" />,
         );
 
         [text, cat].forEach((item) => {

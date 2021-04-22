@@ -6,7 +6,7 @@ import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 
 import { FieldProps } from "../../../interfaces";
 
-export type BooleanFieldProps = FieldProps &
+export type BooleanFieldProps = FieldProps<unknown> &
     AbstractTooltipProps & {
         valueLabelTrue?: string;
         valueLabelFalse?: string;
