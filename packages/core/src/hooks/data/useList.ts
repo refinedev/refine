@@ -25,16 +25,16 @@ const defaultConfig: UseListConfig = {
     },
 };
 
-export const useList = (
+export const useList = <RecordType = BaseRecord>(
     resource: string,
     config?: UseListConfig,
-    queryOptions?: UseQueryOptions<GetListResponse<BaseRecord>>,
-): QueryObserverResult<GetListResponse<BaseRecord>, unknown> => {
+    queryOptions?: UseQueryOptions<GetListResponse<RecordType>>,
+): QueryObserverResult<GetListResponse<RecordType>, unknown> => {
     const { getList } = useContext<IDataContext>(DataContext);
 
-    const queryResponse = useQuery<GetListResponse<BaseRecord>>(
+    const queryResponse = useQuery<GetListResponse<RecordType>>(
         [`resource/list/${resource}`, { ...(config ?? defaultConfig) }],
-        () => getList(resource, config ?? defaultConfig),
+        () => getList<RecordType>(resource, config ?? defaultConfig),
         queryOptions ?? { keepPreviousData: true },
     );
 

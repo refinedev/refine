@@ -26,7 +26,7 @@ export const posts = [
     },
 ];
 
-const MockDataProvider = (): IDataContext => {
+const MockDataProvider = () => {
     return {
         create: () => Promise.resolve({ data: posts[0] }),
         createMany: () => Promise.resolve({ data: posts }),
@@ -41,4 +41,4 @@ const MockDataProvider = (): IDataContext => {
     };
 };
 
-export const MockJSONServer = MockDataProvider();
+export const MockJSONServer = MockDataProvider() as IDataContext;

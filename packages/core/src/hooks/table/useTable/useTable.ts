@@ -12,7 +12,12 @@ import {
     merge,
 } from "@definitions/table";
 
-import { Filters, Sort, ResourceRouterParams } from "../../../interfaces";
+import {
+    Filters,
+    Sort,
+    ResourceRouterParams,
+    BaseRecord,
+} from "../../../interfaces";
 
 export type useTableProps = {
     permanentFilter?: { [key: string]: number[] | string[] };
@@ -23,20 +28,14 @@ export type useTableProps = {
     syncWithLocation?: boolean;
 };
 
-type useTable = {
-    tableProps: TableProps<any>;
-    sorter: Sort;
-    filters: Filters;
-};
-
-export const useTable = ({
+export const useTable = <RecordType extends BaseRecord = BaseRecord>({
     permanentFilter,
     initialCurrent = 1,
     initialPageSize = 10,
     initialSorter,
     initialFilter,
     syncWithLocation = false,
-}: useTableProps): useTable => {
+}: useTableProps) => {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
     if (syncWithLocationContext) {
@@ -89,7 +88,7 @@ export const useTable = ({
         defaultCurrent: defaultCurrentSF,
     } = tablePropsSunflower.pagination;
 
-    const { data, isFetching } = useList(resource.name, {
+    const { data, isFetching } = useList<RecordType>(resource.name, {
         pagination: { current: current ?? defaultCurrentSF, pageSize },
         filters: merge(permanentFilter, filters),
         sort: sorter,

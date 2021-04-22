@@ -79,7 +79,6 @@ export const LoginPage: React.FC = () => {
                                     size="large"
                                     htmlType="submit"
                                 >
-                                    label=
                                     {translate(
                                         "common:pages.login.title",
                                         "Login",

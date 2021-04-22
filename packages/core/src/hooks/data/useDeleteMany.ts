@@ -2,11 +2,16 @@ import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
 
 import { DataContext } from "@contexts/data";
-import { DeleteManyResponse, IDataContext, HttpError } from "../../interfaces";
+import {
+    DeleteManyResponse,
+    IDataContext,
+    HttpError,
+    BaseRecord,
+} from "../../interfaces";
 import { useNotification, useTranslate } from "@hooks";
 
-type UseDeleteManyReturnType = UseMutationResult<
-    DeleteManyResponse,
+type UseDeleteManyReturnType<T> = UseMutationResult<
+    DeleteManyResponse<T>,
     unknown,
     {
         id: (string | number)[];
@@ -14,7 +19,9 @@ type UseDeleteManyReturnType = UseMutationResult<
     unknown
 >;
 
-export const useDeleteMany = (resource: string): UseDeleteManyReturnType => {
+export const useDeleteMany = <RecordType extends BaseRecord = BaseRecord>(
+    resource: string,
+): UseDeleteManyReturnType<RecordType> => {
     const { deleteMany } = useContext<IDataContext>(DataContext);
     const notification = useNotification();
     const translate = useTranslate();
@@ -28,7 +35,8 @@ export const useDeleteMany = (resource: string): UseDeleteManyReturnType => {
     const queryResource = `resource/list/${resource}`;
 
     const mutation = useMutation(
-        ({ id }: { id: (string | number)[] }) => deleteMany(resource, id),
+        ({ id }: { id: (string | number)[] }) =>
+            deleteMany<RecordType>(resource, id),
         {
             // Always refetch after error or success:
             onSettled: () => {

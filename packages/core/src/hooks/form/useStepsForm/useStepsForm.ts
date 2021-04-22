@@ -3,23 +3,28 @@ import {
     UseStepsFormConfig,
 } from "sunflower-antd";
 
-import { useForm } from "@hooks";
-import { StepsFormSF } from "../../../interfaces";
+import { BaseRecord, StepsFormSF } from "../../../interfaces";
+import { useForm, useFormProps } from "../useForm";
 
-import { useEditFormProps, useCreateFormProps } from "..";
-
-export type useStepsFormProps = Partial<useEditFormProps & useCreateFormProps> &
+export type useStepsFormProps<T> = Partial<useFormProps<T>> &
     UseStepsFormConfig;
 
-export const useStepsForm = (props: useStepsFormProps) => {
-    const useFormProps = useForm({ ...props });
+export type useStepsForm<T, M> = useForm<T, M> & StepsFormSF & {};
+
+export const useStepsForm = <
+    RecordType = BaseRecord,
+    MutationType extends BaseRecord = RecordType
+>(
+    props: useStepsFormProps<MutationType>,
+): useStepsForm<RecordType, MutationType> => {
+    const useFormProps = useForm<RecordType, MutationType>({ ...props });
     const { form, formProps, formLoading } = useFormProps;
 
     const stepsPropsSunflower: StepsFormSF = useStepsFormSF({
         ...props,
         form: form,
         submit: (values) => {
-            formProps?.onFinish(values as any);
+            formProps && formProps.onFinish && formProps.onFinish(values);
         },
     });
 

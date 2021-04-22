@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { useForm as useFormSF } from "sunflower-antd";
-import { Form } from "antd";
+import { Form, FormProps, FormInstance } from "antd";
 import { useParams } from "react-router-dom";
 
 import {
@@ -9,6 +9,7 @@ import {
     useWarnAboutChange,
     useRedirectionAfterSubmission,
 } from "@hooks";
+import { UseCreateReturnType } from "../../data/useCreate";
 
 import {
     MutationMode,
@@ -16,23 +17,54 @@ import {
     BaseRecord,
     ResourceRouterParams,
     RedirectionTypes,
+    CreateResponse,
+    UseFormSFFormProps,
 } from "../../../interfaces";
 
-export type useCreateFormProps = {
-    onMutationSuccess?: (data: any, variables: any, context: any) => void;
+type SaveButtonProps = {
+    disabled: boolean;
+    onClick: () => void;
+    loading?: boolean;
+};
+
+export type useCreateForm<T, M> = {
+    form: FormInstance;
+    formProps: UseFormSFFormProps & FormProps;
+    editId?: string | number;
+    setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
+    saveButtonProps: SaveButtonProps;
+    formLoading: boolean;
+    mutationResult: UseCreateReturnType<M>;
+    setCloneId?: Dispatch<SetStateAction<string | number | undefined>>;
+    cloneId?: string | number;
+};
+
+export type useCreateFormProps<M> = {
+    onMutationSuccess?: (
+        data: CreateResponse<M>,
+        variables: any,
+        context: any,
+    ) => void;
     onMutationError?: (error: any, variables: any, context: any) => void;
     mutationMode?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
     redirect?: RedirectionTypes;
 };
-export const useCreateForm = ({
+
+export const useCreateForm = <
+    RecordType extends BaseRecord = BaseRecord,
+    MutationType extends BaseRecord = RecordType
+>({
     onMutationSuccess,
     onMutationError,
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect = "edit",
-}: useCreateFormProps) => {
+}: useCreateFormProps<MutationType>): useCreateForm<
+    RecordType,
+    MutationType
+> => {
     const [formAnt] = Form.useForm();
     const formSF: FormSF = useFormSF({
         form: formAnt,
@@ -54,33 +86,32 @@ export const useCreateForm = ({
 
     const resource = resourceWithRoute(routeResourceName);
 
-    const { mutate, isLoading } = useCreate();
+    const mutationResult = useCreate<MutationType>();
+    const { mutate, isLoading } = mutationResult;
 
     const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 
-    const onFinish = (values: BaseRecord) => {
+    const onFinish = async (values: BaseRecord) => {
         setWarnWhen(false);
         mutate(
             { values, resource: resource.name },
             {
                 onSuccess: (data, ...rest) => {
                     if (onMutationSuccess) {
-                        onMutationSuccess(data, ...rest);
-                        return;
+                        return onMutationSuccess(data, ...rest);
                     }
 
-                    const idFromRoute = data.data.id!;
+                    const id = data.data.id;
 
                     handleSubmitWithRedirect({
                         redirect,
                         resource,
-                        idFromRoute,
+                        id,
                     });
                 },
                 onError: (error: any, ...rest) => {
                     if (onMutationError) {
-                        onMutationError(error, ...rest);
-                        return;
+                        return onMutationError(error, ...rest);
                     }
                 },
             },
@@ -117,5 +148,6 @@ export const useCreateForm = ({
         },
         saveButtonProps,
         formLoading: isLoading,
+        mutationResult,
     };
 };
