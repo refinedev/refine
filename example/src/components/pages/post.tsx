@@ -39,6 +39,7 @@ import {
     useShow,
     Typography,
     useSelect,
+    useRadioGroup,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -501,6 +502,11 @@ export const PostEdit = (props: any) => {
         defaultValue: postData?.category.id,
     });
 
+    const { radioProps } = useRadioGroup({
+        resource: "categories",
+        defaultValue: postData?.category.id,
+    });
+
     const userSelectProps = useSelect({
         resource: "users",
         optionLabel: "email",
@@ -611,11 +617,7 @@ export const PostEdit = (props: any) => {
                     return { id };
                 }}
             >
-                <Select
-                    showSearch
-                    filterOption={false}
-                    {...categorySelectProps}
-                />
+                <Radio.Group {...radioProps} />
             </Form.Item>
             <Form.Item
                 label={translate("common:resources.posts.fields.user")}

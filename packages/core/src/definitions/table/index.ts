@@ -134,6 +134,5 @@ export const getDefaultFilter = (
         return undefined;
     }
 
-
     return (value ?? []) as string[];
 };
