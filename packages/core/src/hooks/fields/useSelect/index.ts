@@ -78,9 +78,13 @@ export const useSelect = (props: UseSelectProps) => {
         setSearch(value);
     };
 
-    return {
+    const selectProps = {
         options: merge(options, selectedOptions),
         onSearch,
+    };
+
+    return {
+        selectProps,
         queryResult,
     };
 };

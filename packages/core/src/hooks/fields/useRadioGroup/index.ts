@@ -1,24 +1,24 @@
 import React from "react";
-
+import { CheckboxOptionType } from "antd";
 import { useList } from "@hooks";
-import { Sort, Option } from "../../../interfaces";
+import { Sort } from "../../../interfaces";
 
 export type useRadioGroupProps = {
     resource: string;
-    label?: string;
-    value?: string;
+    optionLabel?: string;
+    optionValue?: string;
     sort?: Sort;
-    defaultValue?: string | string[];
+    defaultValue?: string | number | boolean;
 };
 
 export const useRadioGroup = ({
     resource,
     sort,
-    label = "title",
-    value = "id",
+    optionLabel = "title",
+    optionValue = "id",
     defaultValue,
 }: useRadioGroupProps) => {
-    const [options, setOptions] = React.useState<Option[]>([]);
+    const [options, setOptions] = React.useState<CheckboxOptionType[]>([]);
 
     const queryResult = useList(
         resource,
@@ -29,21 +29,21 @@ export const useRadioGroup = ({
             onSuccess: (data) => {
                 setOptions(() =>
                     data.data.map((item) => ({
-                        label: item[label],
-                        value: item[value],
+                        label: item[optionLabel],
+                        value: item[optionValue],
                     })),
                 );
             },
         },
     );
 
-    const radioProps = {
+    const radioGroupProps = {
         options,
         defaultValue,
     };
 
     return {
-        radioProps,
+        radioGroupProps,
         queryResult,
     };
 };

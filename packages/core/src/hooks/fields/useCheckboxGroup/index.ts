@@ -57,8 +57,12 @@ export const useCheckboxGroup = ({
         },
     );
 
-    return {
+    const checkboxGroupProps = {
         options: merge(options, selectedOptions),
+    };
+
+    return {
+        checkboxGroupProps,
         queryResult,
     };
 };
