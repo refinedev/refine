@@ -10,7 +10,7 @@ import {
     useTranslate,
     useWarnAboutChange,
 } from "@hooks";
-import { ModalFormSF } from "../../../interfaces";
+import { BaseRecord, ModalFormSF } from "../../../interfaces";
 import { useEditFormProps } from "../useEditForm";
 import { useCreateFormProps } from "../useCreateForm";
 
@@ -18,15 +18,18 @@ type useModalFormConfig = {
     action: "show" | "edit" | "create";
 };
 
-export type useModalFormProps<T, M> = Partial<
+export type useModalFormProps<M> = Partial<
     useEditFormProps<M> & useCreateFormProps<M>
 > &
     UseModalFormConfigSF &
     useModalFormConfig;
-export const useModalForm = <RecordType, MutationType>({
+export const useModalForm = <
+    RecordType extends BaseRecord = BaseRecord,
+    MutationType extends BaseRecord = RecordType
+>({
     mutationMode: mutationModeProp,
     ...rest
-}: useModalFormProps<RecordType, MutationType>) => {
+}: useModalFormProps<MutationType>) => {
     const useFormProps = useForm<RecordType, MutationType>({
         ...rest,
         mutationMode: mutationModeProp,
