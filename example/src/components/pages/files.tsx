@@ -35,9 +35,8 @@ export const FilesList = (props: any) => {
                     render={(value) => (
                         <FileField
                             value={value}
-                            title={translate(
-                                "common:resources.files.fields.file",
-                            )}
+                            titleKey="name"
+                            srcKey="path"
                         />
                     )}
                 />
@@ -45,14 +44,12 @@ export const FilesList = (props: any) => {
                     key="url"
                     dataIndex="url"
                     title={translate("common:resources.files.fields.image")}
-                    render={(value, record) => (
+                    render={(value) => (
                         <FileField
                             download
-                            record={record as any}
                             value={value}
-                            title={translate(
-                                "common:resources.files.forms.title",
-                            )}
+                            titleKey="title"
+                            srcKey=""
                         />
                     )}
                 />
@@ -61,13 +58,12 @@ export const FilesList = (props: any) => {
                     key="files"
                     dataIndex="files"
                     title={translate("resources.files.forms.imageFiles")}
-                    render={(value, record) => {
+                    render={(value) => {
                         return (
                             <FileField
-                                record={record as any}
                                 value={value}
-                                src="url"
-                                title="title"
+                                srcKey="url"
+                                titleKey="title"
                                 target="_blank"
                                 rel="noopener"
                             />

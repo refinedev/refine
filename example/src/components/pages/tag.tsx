@@ -95,7 +95,7 @@ export const TagList = (props: any) => {
                     render={(value) => (
                         <ReferenceField resource="images" value={value}>
                             <ImageField
-                                renderRecordKey="url"
+                                value={value}
                                 imageTitle="meow"
                                 width={200}
                             />
