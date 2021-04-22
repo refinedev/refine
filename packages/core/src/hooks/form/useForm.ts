@@ -31,6 +31,9 @@ export type useFormProps = (
         }
 >;
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+// TODO: use-create-form'dan mutationResult döndüğümüz için tip hatası geldi. buna bakalım
 export const useForm: useFormProps = (props) => {
     const { action: actionFromProp } = props;
 
