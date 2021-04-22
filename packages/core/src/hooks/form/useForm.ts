@@ -26,10 +26,6 @@ type SaveButtonProps = {
     loading?: boolean;
 };
 
-// export type useEditFormReturn<T> = useEditForm<T>;
-// export type useCreateFormReturn<T> = useCreateForm<T>;
-// export type useCloneFormTypeReturn<T> = useCloneForm<T>;
-
 export type useFormProps<T> = ActionParams &
     (useCreateFormProps<T> | useEditFormProps<T> | useCloneFormProps<T>);
 

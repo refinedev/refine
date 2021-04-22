@@ -4,13 +4,9 @@ import {
 } from "sunflower-antd";
 
 import { BaseRecord, StepsFormSF } from "../../../interfaces";
-import { useForm } from "../useForm";
+import { useForm, useFormProps } from "../useForm";
 
-import { useEditFormProps, useCreateFormProps } from "..";
-
-export type useStepsFormProps<T> = Partial<
-    useEditFormProps<T> & useCreateFormProps<T>
-> &
+export type useStepsFormProps<T> = Partial<useFormProps<T>> &
     UseStepsFormConfig;
 
 export const useStepsForm = <RecordType = BaseRecord>(
