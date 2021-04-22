@@ -23,6 +23,7 @@ import {
     RedirectionTypes,
     GetOneResponse,
     UseFormSFFormProps,
+    UpdateResponse,
 } from "../../../interfaces";
 
 type SaveButtonProps = {
@@ -31,22 +32,26 @@ type SaveButtonProps = {
     loading?: boolean;
 };
 
-export type useEditForm<T> = {
+export type useEditForm<T, M> = {
     form: FormInstance;
     formProps: UseFormSFFormProps & FormProps;
     editId?: string | number;
     setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
     saveButtonProps: SaveButtonProps;
     queryResult: QueryObserverResult<GetOneResponse<T>>;
-    mutationResult: UseUpdateReturnType<T>;
+    mutationResult: UseUpdateReturnType<M>;
     formLoading: boolean;
     setCloneId?: Dispatch<SetStateAction<string | number | undefined>>;
     cloneId?: string | number;
 };
 
-export type useEditFormProps<T> = {
-    onMutationSuccess?: (data: T) => void;
-    onMutationError?: (error: any) => void;
+export type useEditFormProps<M> = {
+    onMutationSuccess?: (
+        data: UpdateResponse<M>,
+        variables: any,
+        context: any,
+    ) => void;
+    onMutationError?: (error: any, variables: any, context: any) => void;
     mutationMode?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
@@ -54,7 +59,10 @@ export type useEditFormProps<T> = {
     undoableTimeout?: number;
 };
 
-export const useEditForm = <RecordType = BaseRecord>({
+export const useEditForm = <
+    RecordType = BaseRecord,
+    MutationType extends BaseRecord = RecordType
+>({
     onMutationSuccess,
     onMutationError,
     mutationMode: mutationModeProp,
@@ -62,7 +70,7 @@ export const useEditForm = <RecordType = BaseRecord>({
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect = "list",
     undoableTimeout,
-}: useEditFormProps<RecordType>): useEditForm<RecordType> => {
+}: useEditFormProps<MutationType>): useEditForm<RecordType, MutationType> => {
     const [editId, setEditId] = React.useState<string | number>();
 
     const [formAnt] = Form.useForm();
@@ -112,7 +120,7 @@ export const useEditForm = <RecordType = BaseRecord>({
         };
     }, [data, id, isFetching]);
 
-    const mutationResult = useUpdate<RecordType>(
+    const mutationResult = useUpdate<MutationType>(
         resource.name,
         mutationMode,
         undoableTimeout,
@@ -132,9 +140,9 @@ export const useEditForm = <RecordType = BaseRecord>({
             mutate(
                 { id, values },
                 {
-                    onSuccess: ({ data }) => {
+                    onSuccess: (data, ...rest) => {
                         if (onMutationSuccess) {
-                            return onMutationSuccess(data);
+                            return onMutationSuccess(data, ...rest);
                         }
 
                         if (mutationMode === "pessimistic") {
@@ -142,13 +150,13 @@ export const useEditForm = <RecordType = BaseRecord>({
                             handleSubmitWithRedirect({
                                 redirect,
                                 resource,
-                                idFromRoute,
+                                id: idFromRoute,
                             });
                         }
                     },
-                    onError: (error: any) => {
+                    onError: (error: any, ...rest) => {
                         if (onMutationError) {
-                            return onMutationError(error);
+                            return onMutationError(error, ...rest);
                         }
                     },
                 },
@@ -160,7 +168,7 @@ export const useEditForm = <RecordType = BaseRecord>({
             handleSubmitWithRedirect({
                 redirect,
                 resource,
-                idFromRoute,
+                id: idFromRoute,
             });
         }
     };

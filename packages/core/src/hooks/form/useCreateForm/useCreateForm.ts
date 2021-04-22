@@ -27,21 +27,21 @@ type SaveButtonProps = {
     loading?: boolean;
 };
 
-export type useCreateForm<T> = {
+export type useCreateForm<T, M> = {
     form: FormInstance;
     formProps: UseFormSFFormProps & FormProps;
     editId?: string | number;
     setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
     saveButtonProps: SaveButtonProps;
     formLoading: boolean;
-    mutationResult: UseCreateReturnType<T>;
+    mutationResult: UseCreateReturnType<M>;
     setCloneId?: Dispatch<SetStateAction<string | number | undefined>>;
     cloneId?: string | number;
 };
 
-export type useCreateFormProps<T> = {
+export type useCreateFormProps<M> = {
     onMutationSuccess?: (
-        data: CreateResponse<T>,
+        data: CreateResponse<M>,
         variables: any,
         context: any,
     ) => void;
@@ -52,13 +52,19 @@ export type useCreateFormProps<T> = {
     redirect?: RedirectionTypes;
 };
 
-export const useCreateForm = <RecordType extends BaseRecord = BaseRecord>({
+export const useCreateForm = <
+    RecordType extends BaseRecord = BaseRecord,
+    MutationType extends BaseRecord = RecordType
+>({
     onMutationSuccess,
     onMutationError,
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect = "edit",
-}: useCreateFormProps<RecordType>): useCreateForm<RecordType> => {
+}: useCreateFormProps<MutationType>): useCreateForm<
+    RecordType,
+    MutationType
+> => {
     const [formAnt] = Form.useForm();
     const formSF: FormSF = useFormSF({
         form: formAnt,
@@ -80,7 +86,7 @@ export const useCreateForm = <RecordType extends BaseRecord = BaseRecord>({
 
     const resource = resourceWithRoute(routeResourceName);
 
-    const mutationResult = useCreate<RecordType>();
+    const mutationResult = useCreate<MutationType>();
     const { mutate, isLoading } = mutationResult;
 
     const handleSubmitWithRedirect = useRedirectionAfterSubmission();
@@ -95,12 +101,12 @@ export const useCreateForm = <RecordType extends BaseRecord = BaseRecord>({
                         return onMutationSuccess(data, ...rest);
                     }
 
-                    const idFromRoute = data.data.id!;
+                    const id = data.data.id;
 
                     handleSubmitWithRedirect({
                         redirect,
                         resource,
-                        idFromRoute,
+                        id,
                     });
                 },
                 onError: (error: any, ...rest) => {

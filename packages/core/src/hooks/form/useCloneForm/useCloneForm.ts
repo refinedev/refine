@@ -5,6 +5,7 @@ import { FormInstance, FormProps } from "antd";
 
 import { useOne, useResourceWithRoute } from "@hooks";
 import {
+    BaseRecord,
     GetOneResponse,
     ResourceRouterParams,
     UseFormSFFormProps,
@@ -12,7 +13,7 @@ import {
 import { useCreateForm, useCreateFormProps } from "../useCreateForm";
 import { UseCreateReturnType } from "../../data/useCreate";
 
-export type useCloneFormProps<T> = useCreateFormProps<T> & {
+export type useCloneFormProps<M> = useCreateFormProps<M> & {
     cloneId?: string | number;
 };
 
@@ -22,23 +23,28 @@ type SaveButtonProps = {
     loading?: boolean;
 };
 
-export type useCloneForm<T> = {
+export type useCloneForm<T, M> = {
     form: FormInstance;
     formProps: UseFormSFFormProps & FormProps;
     editId?: string | number;
     setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
     saveButtonProps: SaveButtonProps;
     formLoading: boolean;
-    mutationResult: UseCreateReturnType<T>;
+    mutationResult: UseCreateReturnType<M>;
     queryResult: QueryObserverResult<GetOneResponse<T>>;
     setCloneId?: Dispatch<SetStateAction<string | number | undefined>>;
     cloneId?: string | number;
 };
 
-export const useCloneForm = <RecordType>(
-    props: useCloneFormProps<RecordType>,
-): useCloneForm<RecordType> => {
-    const useCreateFormProps = useCreateForm<RecordType>({ ...props });
+export const useCloneForm = <
+    RecordType extends BaseRecord = BaseRecord,
+    MutationType extends BaseRecord = RecordType
+>(
+    props: useCloneFormProps<MutationType>,
+): useCloneForm<RecordType, MutationType> => {
+    const useCreateFormProps = useCreateForm<RecordType, MutationType>({
+        ...props,
+    });
 
     const { form, formLoading, mutationResult } = useCreateFormProps;
 

@@ -26,42 +26,45 @@ type SaveButtonProps = {
     loading?: boolean;
 };
 
-export type useFormProps<T> = ActionParams &
-    (useCreateFormProps<T> | useEditFormProps<T> | useCloneFormProps<T>);
+export type useFormProps<M> = ActionParams &
+    (useCreateFormProps<M> | useEditFormProps<M> | useCloneFormProps<M>);
 
-export type useForm<T> = {
+export type useForm<T, M> = {
     form: FormInstance;
     formProps: UseFormSFFormProps & FormProps;
     editId?: string | number;
     setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
     saveButtonProps: SaveButtonProps;
     queryResult?: QueryObserverResult<GetOneResponse<T>>;
-    mutationResult: UseUpdateReturnType<T> | UseCreateReturnType<T>;
+    mutationResult: UseUpdateReturnType<M> | UseCreateReturnType<M>;
     formLoading: boolean;
     setCloneId?: Dispatch<SetStateAction<string | number | undefined>>;
     cloneId?: string | number;
 };
 
-export const useForm = <RecordType = BaseRecord>({
+export const useForm = <
+    RecordType = BaseRecord,
+    MutationType extends BaseRecord = RecordType
+>({
     action,
     ...rest
-}: useFormProps<RecordType>): useForm<RecordType> => {
+}: useFormProps<MutationType>): useForm<RecordType, MutationType> => {
     // id state is needed to determine selected record in addition to id parameter from route
     // this could be moved to a custom hook that encapsulates both create and clone form hooks.
     const [cloneId, setCloneId] = React.useState<string | number>();
 
-    const editForm = useEditForm<RecordType>(
-        rest as useEditFormProps<RecordType>,
+    const editForm = useEditForm<RecordType, MutationType>(
+        rest as useEditFormProps<MutationType>,
     );
 
-    const createForm = useCreateForm<RecordType>(
-        rest as useCreateFormProps<RecordType>,
+    const createForm = useCreateForm<RecordType, MutationType>(
+        rest as useCreateFormProps<MutationType>,
     );
 
-    const cloneForm = useCloneForm<RecordType>({
+    const cloneForm = useCloneForm<RecordType, MutationType>({
         ...rest,
         cloneId,
-    } as useCloneFormProps<RecordType>);
+    } as useCloneFormProps<MutationType>);
 
     const { action: actionFromRoute, id } = useParams<ResourceRouterParams>();
 

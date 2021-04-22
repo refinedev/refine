@@ -18,16 +18,16 @@ type useModalFormConfig = {
     action: "show" | "edit" | "create";
 };
 
-export type useModalFormProps<T> = Partial<
-    useEditFormProps<T> & useCreateFormProps<T>
+export type useModalFormProps<T, M> = Partial<
+    useEditFormProps<M> & useCreateFormProps<M>
 > &
     UseModalFormConfigSF &
     useModalFormConfig;
-export const useModalForm = <RecordType>({
+export const useModalForm = <RecordType, MutationType>({
     mutationMode: mutationModeProp,
     ...rest
-}: useModalFormProps<RecordType>) => {
-    const useFormProps = useForm<RecordType>({
+}: useModalFormProps<RecordType, MutationType>) => {
+    const useFormProps = useForm<RecordType, MutationType>({
         ...rest,
         mutationMode: mutationModeProp,
     });
@@ -102,7 +102,7 @@ export const useModalForm = <RecordType>({
         show: (id?: string | number) => {
             setEditId && setEditId(id);
 
-            // setCloneId && setCloneId(id);
+            setCloneId && setCloneId(id);
 
             sunflowerUseModal.show();
         },

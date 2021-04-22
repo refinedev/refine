@@ -9,12 +9,15 @@ import { useForm, useFormProps } from "../useForm";
 export type useStepsFormProps<T> = Partial<useFormProps<T>> &
     UseStepsFormConfig;
 
-export type useStepsForm<T> = useForm<T> & StepsFormSF & {};
+export type useStepsForm<T, M> = useForm<T, M> & StepsFormSF & {};
 
-export const useStepsForm = <RecordType = BaseRecord>(
-    props: useStepsFormProps<RecordType>,
-): useStepsForm<RecordType> => {
-    const useFormProps = useForm<RecordType>({ ...props });
+export const useStepsForm = <
+    RecordType = BaseRecord,
+    MutationType extends BaseRecord = RecordType
+>(
+    props: useStepsFormProps<MutationType>,
+): useStepsForm<RecordType, MutationType> => {
+    const useFormProps = useForm<RecordType, MutationType>({ ...props });
     const { form, formProps, formLoading } = useFormProps;
 
     const stepsPropsSunflower: StepsFormSF = useStepsFormSF({
