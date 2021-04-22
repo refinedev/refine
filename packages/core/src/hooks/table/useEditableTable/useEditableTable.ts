@@ -7,7 +7,7 @@ type useEditableTableProps<T> = useTableProps & useEditFormProps<T>;
 export const useEditableTable = <RecordType>(
     props: useEditableTableProps<RecordType>,
 ) => {
-    const table = useTable<{ [key: string]: any }>({ ...props });
+    const table = useTable<RecordType>({ ...props });
     const edit = useEditForm<RecordType>({ ...props });
 
     const { form, editId, setEditId, formLoading } = edit;
