@@ -54,7 +54,8 @@ export const useCreateForm = ({
 
     const resource = resourceWithRoute(routeResourceName);
 
-    const { mutate, isLoading } = useCreate();
+    const mutationResult = useCreate();
+    const { mutate, isLoading } = mutationResult;
 
     const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 
@@ -117,5 +118,6 @@ export const useCreateForm = ({
         },
         saveButtonProps,
         formLoading: isLoading,
+        mutationResult,
     };
 };
