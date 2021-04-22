@@ -381,19 +381,13 @@ export const PostCreate = (props: any) => {
             </Form.Item>
             <Form.Item
                 label={translate("common:resources.posts.fields.user")}
-                name="user"
+                name={["name", "id"]}
                 rules={[
                     {
                         required: true,
                     },
                 ]}
                 help="Autocomplete (search user email)"
-                getValueProps={(prop) => {
-                    return { value: prop?.id };
-                }}
-                getValueFromEvent={(id) => {
-                    return { id };
-                }}
             >
                 <Select showSearch filterOption={false} {...userSelectProps} />
             </Form.Item>
@@ -511,11 +505,6 @@ export const PostEdit = (props: any) => {
         defaultValue: postData?.category.id,
     });
 
-    const { radioGroupProps } = useRadioGroup({
-        resource: "categories",
-        defaultValue: postData?.category.id,
-    });
-
     const { selectProps: userSelectProps } = useSelect({
         resource: "users",
         optionLabel: "email",
@@ -620,7 +609,11 @@ export const PostEdit = (props: any) => {
                     },
                 ]}
             >
-                <Radio.Group {...radioGroupProps} />
+                <Select
+                    showSearch
+                    filterOption={false}
+                    {...categorySelectProps}
+                />
             </Form.Item>
             <Form.Item
                 label={translate("common:resources.posts.fields.user")}

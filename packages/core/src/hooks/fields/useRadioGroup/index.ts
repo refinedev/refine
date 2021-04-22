@@ -1,7 +1,8 @@
 import React from "react";
 import { CheckboxOptionType } from "antd";
+
 import { useList } from "@hooks";
-import { Sort } from "../../../interfaces";
+import { Sort, BaseRecord } from "../../../interfaces";
 
 export type useRadioGroupProps = {
     resource: string;
@@ -11,7 +12,7 @@ export type useRadioGroupProps = {
     defaultValue?: string | number | boolean;
 };
 
-export const useRadioGroup = ({
+export const useRadioGroup = <RecordType extends BaseRecord = BaseRecord>({
     resource,
     sort,
     optionLabel = "title",
@@ -20,7 +21,7 @@ export const useRadioGroup = ({
 }: useRadioGroupProps) => {
     const [options, setOptions] = React.useState<CheckboxOptionType[]>([]);
 
-    const queryResult = useList(
+    const queryResult = useList<RecordType>(
         resource,
         {
             sort,

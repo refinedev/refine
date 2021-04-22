@@ -2,7 +2,7 @@ import React from "react";
 import { merge } from "lodash";
 
 import { useList, useMany } from "@hooks";
-import { Sort, Option } from "../../../interfaces";
+import { Sort, Option, BaseRecord } from "../../../interfaces";
 
 export type UseSelectProps = {
     resource: string;
@@ -14,7 +14,9 @@ export type UseSelectProps = {
     defaultValue?: string | string[];
 };
 
-export const useSelect = (props: UseSelectProps) => {
+export const useSelect = <RecordType extends BaseRecord = BaseRecord>(
+    props: UseSelectProps,
+) => {
     const [search, setSearch] = React.useState<string | undefined>();
     const [options, setOptions] = React.useState<Option[]>([]);
     const [selectedOptions, setSelectedOptions] = React.useState<Option[]>([]);
@@ -45,7 +47,7 @@ export const useSelect = (props: UseSelectProps) => {
         },
     });
 
-    const queryResult = useList(
+    const queryResult = useList<RecordType>(
         resource,
         {
             search: {
