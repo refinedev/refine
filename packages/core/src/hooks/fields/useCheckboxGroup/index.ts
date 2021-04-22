@@ -31,8 +31,7 @@ export const useCheckboxGroup = ({
     useMany(resource, defaultValue, {
         enabled: defaultValue.length > 0,
         onSuccess: (data) => {
-            setSelectedOptions((current) => [
-                ...current,
+            setSelectedOptions(() => [
                 ...data.data.map((item) => ({
                     label: item[optionLabel],
                     value: item[optionValue],
@@ -48,8 +47,7 @@ export const useCheckboxGroup = ({
         },
         {
             onSuccess: (data) => {
-                setOptions((current) => [
-                    ...current,
+                setOptions(() => [
                     ...data.data.map((item) => ({
                         label: item[optionLabel],
                         value: item[optionValue],
