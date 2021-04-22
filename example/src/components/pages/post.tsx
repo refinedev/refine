@@ -39,7 +39,6 @@ import {
     useShow,
     Typography,
     useSelect,
-    useRadioGroup,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -78,7 +77,7 @@ export const PostList = (props: any) => {
         ],
     });
 
-    const { ...categorySelectProps } = useSelect({
+    const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
         optionLabel: "title",
         optionValue: "id",
@@ -268,16 +267,16 @@ export const PostCreate = (props: any) => {
         },
     });
 
-    const categorySelectProps = useSelect({
+    const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
     });
 
-    const userSelectProps = useSelect({
+    const { selectProps: userSelectProps } = useSelect({
         resource: "users",
         optionLabel: "email",
     });
 
-    const tagsSelectProps = useSelect({
+    const { selectProps: tagsSelectProps } = useSelect({
         resource: "tags",
     });
 
