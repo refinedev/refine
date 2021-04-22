@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 
 import {
     List,
@@ -23,8 +24,8 @@ import {
     Radio,
     Typography,
     RefreshButton,
+    BooleanField,
 } from "@pankod/refine";
-import { useCallback, useState } from "react";
 
 const { Title, Text } = Typography;
 
@@ -291,12 +292,23 @@ export const UserList = (props: any) => {
                 onClose={() => {
                     setVisible(false);
                 }}
+                width="400"
             >
                 <Show
                     {...props}
                     actionButtons={<RefreshButton recordItemId={showId} />}
+                    title="User Details"
                 >
-                    {queryResult.data?.data.id}
+                    <Title level={5}>First Name</Title>
+                    <Text>{queryResult.data?.data.firstName}</Text>
+                    <Title level={5}>Last Name</Title>
+                    <Text>{queryResult.data?.data.lastName}</Text>
+                    <Title level={5}>Email</Title>
+                    <Text>{queryResult.data?.data.email}</Text>
+                    <Title level={5}>Status</Title>
+                    <BooleanField
+                        value={queryResult.data?.data.staus}
+                    ></BooleanField>
                 </Show>
             </Drawer>
         </>
