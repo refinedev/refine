@@ -6,6 +6,11 @@ import {
     Table,
     useTable,
     IResourceComponentsProps,
+    useForm,
+    Create,
+    Form,
+    Input,
+    Select
 } from "@pankod/refine";
 
 export const PostList = (props: IResourceComponentsProps) => {
@@ -17,7 +22,6 @@ export const PostList = (props: IResourceComponentsProps) => {
                 <Table.Column
                     dataIndex="title"
                     title="title"
-                    key="title"
                     render={(value) => <TextField value={value} />}
                     sorter={{
                         multiple: 1,
@@ -27,13 +31,11 @@ export const PostList = (props: IResourceComponentsProps) => {
                 <Table.Column
                     dataIndex="status"
                     title="status"
-                    key="status"
                     render={(value) => <TagField value={value} />}
                 />
                 <Table.Column
                     dataIndex="createdAt"
                     title="createdAt"
-                    key="createdAt"
                     render={(value) => <DateField format="LLL" value={value} />}
                     sorter={{
                         multiple: 2,
@@ -43,3 +45,36 @@ export const PostList = (props: IResourceComponentsProps) => {
         </List>
     );
 };
+
+export const PostCreate = () => {
+    const { formProps, saveButtonProps } = useForm({});
+
+    return (
+        <Create saveButtonProps={saveButtonProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
+                <Form.Item
+                    label="Title"
+                    name="title"
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Status"
+                    name="status"
+                >
+                    <Select
+                        options={[
+                            {
+                                label: "Published",
+                                value: "published",
+                            },
+                            {
+                                label: "Draft",
+                                value: "draft",
+                            },
+                        ]} />
+                </Form.Item>
+            </Form>
+        </Create>
+    )
+}

@@ -10,7 +10,7 @@ import resourceSecond from '@site/static/img/resource-2.png';
 
 
 We'll show how to create a simple admin app with CRUD operations based on an existing REST API.
-### Setup
+## Setup
 
 Refine uses React under the hood. We’ll use create-react-app to bootstrap an empty React app with Typescript.
 
@@ -33,7 +33,7 @@ npm run start
 Then open http://localhost:3000/ to see your app.
 
 
-### Providing a Data Source with an API
+## Providing a data source with an API
 
 Refine is designed to consume data from APIs.
 
@@ -60,7 +60,7 @@ Example response:
 }
 ```
 
-Refine requires a `dataProvider` to use an API for CRUD operations which is an object with a set of methods.
+Refine requires a `dataProvider` to use an API for CRUD operations which is an object with a set of certain methods.
 
 We'll use `@pankod/refine-json-server` package as a data provider which has predefined methods to communicate with REST APIs.
 
@@ -71,7 +71,7 @@ npm i @pankod/refine-json-server
 You can also provide your own custom data provider to make the connection.
 :::
 
-### Bootstraping the app
+## Bootstraping the app
 Change `App.tsx` with the following code:
 
 ```tsx title="src/App.tsx" 
@@ -102,10 +102,12 @@ You will see the welcome page.
 
 
 
-### Connect API with Resources 
+## Connect API with Resources 
 
-We'll start forming our app by adding a `<Resource />` component as a child.
-A `<Resource />` represents an endpoint in the API by given name property.
+We'll start forming our app by adding a `<Resource>` component as a child.
+A `<Resource>` represents an endpoint in the API by given name property. `name` property of `<Resource />` should be one of the endpoints in your API.
+
+We'll demonstrate how to get data at `/posts` endpoint from `https://readmin-fake-rest.pankod.com` REST API.
 
 ```tsx title="src/App.tsx" 
 //highlight-next-line
@@ -126,9 +128,11 @@ export default App;
 
 <br/>
 
-After adding `<Resource />`, app redirects to url defined by `name` property. 
-`refine` handles route matching out of the box. 
+After adding `<Resource>`, app redirects to a url defined by `name` property. 
 
+:::info
+`refine` handles route matching out of the box. More info about [routing](#).
+:::
 
 <>
 <div style={{textAlign: "center"}}>
@@ -139,49 +143,38 @@ After adding `<Resource />`, app redirects to url defined by `name` property.
 
 
 
-You'll see 404 page since `<Resource />` doesn't handle data fetching on its own. CRUD operations is to be done with `refine` hooks.
+You'll see a 404 page since `<Resource>` doesn't handle data fetching on its own. CRUD operations is to be done with `refine` hooks.
 
-`<Resource />` holds components as props for CRUD operations(list, create, edit, show). In this example, we are going to set corresponding custom components to `<Resource />` which uses `refine` hooks to handle data operations and display the list of data.
+Components for CRUD operations(list, create, edit, show) should be given to `<Resource>` as props. In this example, we are going to set corresponding custom components to `<Resource>` which uses `refine` hooks to handle data operations and display the list of data.
 
 
-### Showing and interacting with data
+## Showing and interacting with data
 
-Let's create a `PostList` component to fetch and show posts data.
+Let's create a `PostList` component to fetch and show posts data. This component will be passed as `list` prop to `<Resource>`
 
 ```tsx title="components/pages/posts.tsx" 
-import  { List, TextField, TagField, DateField, Table, useTable,
-IResourceComponentsProps } from "@pankod/refine";
+import  { List, TextField, TagField, DateField, Table, useTable } from "@pankod/refine";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList = () => {
     const { tableProps } = useTable({});
 
     return (
-        <List {...props}>
+        <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     dataIndex="title"
                     title="title"
-                    key="title"
                     render={(value) => <TextField value={value} />}
-                    sorter={{
-                        multiple: 1,
-                    }}
                 />
-
                 <Table.Column
                     dataIndex="status"
                     title="status"
-                    key="status"
                     render={(value) => <TagField value={value} />}
                 />
                 <Table.Column
                     dataIndex="createdAt"
                     title="createdAt"
-                    key="createdAt"
                     render={(value) => <DateField format="LLL" value={value} />}
-                    sorter={{
-                        multiple: 2,
-                    }}
                 />
             </Table>
         </List>
@@ -190,37 +183,38 @@ export const PostList = (props: IResourceComponentsProps) => {
 ```
 <br/>
 
-We wrap `<Table />` with custom `<List />` component from `refine`, which adds extra functionalities like a create button and title to the table view.
+### Fetching and managing data
 
-
-:::tip
-`<List />` is not an obligation at this point. You can prefer to use your own wrapper component.
-:::
-<br/>
-
-`refine` apps uses [ant-design](https://ant.design/components/overview/) components to display data. In this example, we'll use `<Table />` component, which is exposed from ant-design to render a table with one row for each record. 
-
-The render prop of `<Table.Column />` is used to determine spesific field type of the data to render. Each `<Table.Column />` maps a different field in the API response, specified by the `dataIndex` prop.
-
-Refer to [ant-design docs](https://ant.design/components/table/#API) for more detailed information about `<Table />`. 
-
-
+`useTable` is a hook from `refine` that is responsible for fetching data from API with `<Resource>`'s `name` prop using `refine`'s various helper hooks under the hood.  
 
 ```tsx
   const { tableProps } = useTable({});
 ```
 
-`useTable` is a hook from `refine`.  
-Basically, it's responsible for fetching data from API with `<Resource/>`'s `name` prop using `refine`'s helper hooks under the hood.  
-The `tableProps` includes all necessary props for `<Table />`  component to show and interact with data properly.
-
+The `tableProps` includes all necessary props for `<Table>`  component to show and interact with data properly.
 
 You can find detailed usage of `useTable` from [here](#).
 
+### Showing and formatting data
+We wrap `<Table>` with custom [`<List>`](#) component from `refine`, which adds extra functionalities like a create button and title to the table view.
 
 
-After creating PostList component, now it's time to add to `<Resource />`.
+:::tip
+`<List>` is not an obligation at this point. You can prefer to use your own wrapper component.
+:::
 
+`refine` apps uses [ant-design](https://ant.design/components/overview/) components to display data. In this example, we'll use `<Table>` component, which is exposed from ant-design to render a table with one row for each record. 
+
+Refer to [ant-design docs](https://ant.design/components/table/#API) for more detailed information about `<Table>`. 
+
+The render prop of `<Table.Column>` is used to determine how to format and show data. Each `<Table.Column>` maps a different field in the API response, specified by the `dataIndex` prop.
+
+We used  `<TextField>`, `<TagField>` and `<DateField>` in `<Table.Column>` to show data in the proper format. These are examples of many more field components from `refine` that are based on ant design components.  
+User has full freedom on how to format and show raw data that comes from render prop including ant design components or custom components.
+
+You can find detailed usage of fields from [here](#).
+
+After creating the `<PostList>` component, now it's time to add it to `<Resource>`.
 
 ```tsx title="src/App.tsx" 
 import { Admin, Resource } from "@pankod/refine";
@@ -240,7 +234,8 @@ function App() {
 export default App;
 ```
 <br />
-Now we can list posts data successfully as shown below.
+
+We can now list `/posts` data successfully as shown below.
 
 <>
 <div style={{textAlign: "center"}}>
@@ -249,96 +244,73 @@ Now we can list posts data successfully as shown below.
 <br/>
 </>
 
+## Handling relationships
 
+## Creating a record
 
+We'll implement a page for creating a new record using fake REST API.
 
+Let's create a `PostCreate` component to create a new post. This component will be passed as `create` prop to `<Resource>`
 
+```tsx title="components/pages/posts.tsx"
+import { useForm, Create, Form, Input, Select } from "@pankod/refine";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-The list={PostList} prop means that readmin  use the <PostList/> custom component to display the list of posts, which users create independently from readmin  
-
-
-
-Postlist readmin hooklarını kullanarak api den data çekebilir, crud işlemlerini yapması içn gerekli olan readmin  tarafından sağlanana hookları barındırır. Çektiği dataı readmin crud list componenti ile ant design componentleri kullanılarak ekrana listeler.
-
-Bu örnekte PostList componenti içinde useTable hookunu kullanarak api den list verisini çektik. useTable çalışma mantığı...
-Basicly, useTable looks to the url resource to get specific data from api..
-
-Gelen datayı liste halinde yazdırmak istediğimiz için ant-d table componentine aktardık..
-
-```
-import React from "react";
-import {
-    Admin,
-    Resources,
-    useTable,
-    Table,
-    List,
-} from "readmin";
-
-export const PostList = ({ ...props }) => {
-    const { tableProps } = useTable({});
+export const PostCreate = () => {
+    const { formProps, saveButtonProps } = useForm({});
 
     return (
-        <List {...props} actionButtons={actions}>
-            <Table
-                {...tableProps}
-                rowKey="id"
-            >
-                <Table.Column
-                    dataIndex="id"
-                    title="ID"
-                    key="id"
-                    render={(value) => <TextField value={value} />}
-                />
-                <Table.Column
-                    dataIndex="name"
-                    title="Name"
-                    key="name"
-                    render={(value) => <TextField value={value} />}
-                />
-            </Table>
-        </List>
-    );
+        <Create saveButtonProps={saveButtonProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
+                <Form.Item
+                    label="Title"
+                    name="title"
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Status"
+                    name="status"
+                >
+                    <Select
+                        options={[
+                            {
+                                label: "Published",
+                                value: "published",
+                            },
+                            {
+                                label: "Draft",
+                                value: "draft",
+                            },
+                        ]} />
+                </Form.Item>
+            </Form>
+        </Create>
+    )
 }
 ```
 
-table column kullanımı ile ilgili ufak ve carpıcı bir acıklama..
-(render fonksiyonu)
+### Managing the form
 
-hookların detaylı kullanımı daha sonra..
+`useForm` is another skillful hook from `refine` that is responsible for managing form data like creating and editing.
+
+```tsx
+const { formProps, saveButtonProps } = useForm({});
+```
+
+The `formProps` includes all necessary props for `<Form>` component to manage form data properly. 
+
+`refine` apps uses [ant-design form components](https://ant.design/components/form/) to handle form management. In this example, we'll use `<Form>` and `<Form.Item>` component, which is exposed from ant-design to manage form inputs. 
+
+We'll use the [`<Create>`](#) component from `refine` that provides a save button that can be used for submitting the form.
+`saveButtonProps` includes all necessary props for a button to submit a form.
+
+You can find detailed usage of `useForm` from [here](#).
 
 
-//display a list of users:
+## Edit
 
-//image screenshot List
+## Show
 
+## Adding search and filters
 
-If you look at the network tab in the browser developer tools, you’ll notice that the application fetched the https://jsonplaceholder.typicode.com/users URL, then used the results to build the Datagrid. That’s basically how react-admin works.
-
-
-##Handling relationsips
-
-- ReferenceField
-
-##search and filter to the list
-
-- Reference component
-- filterdropdown örnekler
-
-##Create, Edit
-
-- edit create vs.. buttons
-- useForm
+## Connecting to a real API
