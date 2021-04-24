@@ -23,18 +23,17 @@ describe("render hook default options", () => {
             return result.current.queryResult.isSuccess;
         });
 
-        const { radioProps } = result.current;
-        const { options } = radioProps;
+        const { radioGroupProps } = result.current;
+        const { options } = radioGroupProps;
 
         expect(options).toHaveLength(2);
     });
 
-    it("should success data with default values", async () => {
+    it("should successfully fetch data by default", async () => {
         const { result, waitFor } = renderHook(
             () =>
                 useRadioGroup({
                     resource: "posts",
-                    defaultValue: ["1", "2", "3", "4"],
                 }),
             {
                 wrapper: TestWrapper({
@@ -48,9 +47,9 @@ describe("render hook default options", () => {
             return result.current.queryResult.isSuccess;
         });
 
-        const { radioProps } = result.current;
-        const { options } = radioProps;
+        const { radioGroupProps } = result.current;
+        const { options } = radioGroupProps;
 
-        expect(options).toHaveLength(4);
+        expect(options).toHaveLength(2);
     });
 });

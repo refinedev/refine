@@ -23,17 +23,18 @@ describe("render hook default options", () => {
             return result.current.queryResult.isSuccess;
         });
 
-        const { options } = result.current;
+        const { checkboxGroupProps } = result.current;
+        const { options } = checkboxGroupProps;
 
         expect(options).toHaveLength(2);
     });
 
-    it("should success data with default values", async () => {
+    it("should successfully fetch data with default values", async () => {
         const { result, waitFor } = renderHook(
             () =>
                 useCheckboxGroup({
                     resource: "posts",
-                    defaultValue: ["1", "2", "3", "4"],
+                    defaultValue: ["1", "2"],
                 }),
             {
                 wrapper: TestWrapper({
@@ -47,8 +48,9 @@ describe("render hook default options", () => {
             return result.current.queryResult.isSuccess;
         });
 
-        const { options } = result.current;
+        const { checkboxGroupProps } = result.current;
+        const { options } = checkboxGroupProps;
 
-        expect(options).toHaveLength(4);
+        expect(options).toHaveLength(2);
     });
 });
