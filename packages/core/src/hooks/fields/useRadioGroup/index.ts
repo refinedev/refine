@@ -1,9 +1,10 @@
 import React from "react";
+import { RadioGroupProps } from "antd";
 
 import { useList } from "@hooks";
 import { Sort, BaseRecord, Option } from "../../../interfaces";
 
-export type useRadioGroupProps = {
+export type useRadioGroupProps = RadioGroupProps & {
     resource: string;
     optionLabel?: string;
     optionValue?: string;
@@ -18,6 +19,7 @@ export const useRadioGroup = <RecordType extends BaseRecord = BaseRecord>({
     filters,
     optionLabel = "title",
     optionValue = "id",
+    ...rest
 }: useRadioGroupProps) => {
     const [options, setOptions] = React.useState<Option[]>([]);
 
@@ -41,6 +43,7 @@ export const useRadioGroup = <RecordType extends BaseRecord = BaseRecord>({
 
     const radioGroupProps = {
         options,
+        ...rest,
     };
 
     return {
