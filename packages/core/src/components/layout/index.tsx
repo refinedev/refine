@@ -175,24 +175,24 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
 
     return Layout ? (
         <Layout
-            sider={sider ? sider : defaultSider}
-            header={header ? header : defaultHeader}
-            footer={footer ? footer : defaultFooter}
+            sider={sider ?? defaultSider}
+            header={header ?? defaultHeader}
+            footer={footer ?? defaultFooter}
         >
             {children}
         </Layout>
     ) : (
         <AntLayout style={{ minHeight: "100vh" }}>
-            {sider ? sider : defaultSider}
+            {sider ?? defaultSider}
             <AntLayout className="site-layout">
-                {header ? header : defaultHeader}
+                {header ?? defaultHeader}
                 <AntLayout.Content>
                     <div style={{ padding: 24, minHeight: 360 }}>
                         {children}
                     </div>
                     {components}
                 </AntLayout.Content>
-                {footer ? footer : defaultFooter}
+                {footer ?? defaultFooter}
             </AntLayout>
             <Prompt
                 when={warnWhen}
