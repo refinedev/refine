@@ -85,11 +85,7 @@ export const PostList = (props: any) => {
     React.useEffect(() => {
         if (tableProps.dataSource) {
             setCategoryIds(
-                tableProps.dataSource
-                    .map((item) => item.category.id)
-                    .filter(
-                        (value, index, self) => self.indexOf(value) === index,
-                    ),
+                tableProps.dataSource.map((item) => item.category.id),
             );
         }
     }, [tableProps.dataSource]);
@@ -187,16 +183,16 @@ export const PostList = (props: any) => {
                     key="category.id"
                     render={(value) => {
                         if (isLoading) {
-                            return <span>Loading...</span>;
+                            return <TextField value="Loading..." />;
                         }
 
                         return (
-                            <span>
-                                {
+                            <TextField
+                                value={
                                     data?.data.find((item) => item.id === value)
                                         ?.title
                                 }
-                            </span>
+                            />
                         );
                     }}
                     filterDropdown={(props) => (
