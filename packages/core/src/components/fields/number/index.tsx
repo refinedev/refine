@@ -1,10 +1,8 @@
-import React from "react";
+import React, { ReactChild } from "react";
 import { Typography } from "antd";
 import { TextProps } from "antd/lib/typography/Text";
 
-import { renderFieldRecord } from "@definitions";
-
-import { BaseFieldProps } from "../../../interfaces/field";
+import { FieldProps } from "../../../interfaces";
 
 const { Text } = Typography;
 
@@ -16,7 +14,7 @@ function toLocaleStringSupportsOptions() {
     );
 }
 
-export type NumberFieldProps = BaseFieldProps &
+export type NumberFieldProps = FieldProps<ReactChild> &
     TextProps & {
         locale?: string | string[];
         options?: Intl.NumberFormatOptions;
@@ -24,14 +22,11 @@ export type NumberFieldProps = BaseFieldProps &
 
 export const NumberField: React.FC<NumberFieldProps> = ({
     value,
-    record,
-    renderRecordKey,
     locale,
     options,
     ...rest
 }) => {
-    const recordValue = renderFieldRecord({ value, record, renderRecordKey });
-    const number = parseFloat(recordValue);
+    const number = parseFloat(value.toString());
 
     return (
         <Text {...rest}>
