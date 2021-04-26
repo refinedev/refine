@@ -1,6 +1,6 @@
 import nock from "nock";
 
-nock("https://readmin-fake-rest.pankod.com:443", { encodedQueryParams: true })
+nock("https://refine-fake-rest.pankod.com:443", { encodedQueryParams: true })
     .delete("/posts/10")
     .reply(200, {}, [
         "Server",

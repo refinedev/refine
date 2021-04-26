@@ -1,6 +1,6 @@
 import nock from "nock";
 
-nock("https://readmin-nestjs-crud.pankod.com:443", { encodedQueryParams: true })
+nock("https://refine-nestjs-crud.pankod.com:443", { encodedQueryParams: true })
     .patch("/posts/f1d6e030-4d70-44d4-98dd-8786f197c640", {
         title: "updated-title-1",
     })

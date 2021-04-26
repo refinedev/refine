@@ -28,7 +28,7 @@ import { LoginPage } from "./components/login";
 
 function App() {
     const [adminProps, demoSidebarProps] = useDemoSidebar({
-        defaultTitle: "Readmin",
+        defaultTitle: "Refine",
         defaultMutationMode: "pessimistic",
     });
 
@@ -83,9 +83,7 @@ function App() {
     return (
         <Admin
             authProvider={authProvider}
-            dataProvider={dataProvider(
-                "https://readmin-nestjs-crud.pankod.com",
-            )}
+            dataProvider={dataProvider("https://refine-nestjs-crud.pankod.com")}
             loginPage={LoginPage}
             dashboard={DashboardPage}
             ready={ReadyPage}

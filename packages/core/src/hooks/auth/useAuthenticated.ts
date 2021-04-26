@@ -7,7 +7,7 @@ import { IAuthContext } from "../../interfaces";
 
 /**
  * @example
- * import { useAuthenticated } from 'readmin';
+ * import { useAuthenticated } from '@pankod/refine';
  *
  * const checkAuth = useAuthenticated();
  * const [authenticated, setAuthenticated] = useState(true);

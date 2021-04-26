@@ -8,7 +8,7 @@ axios.defaults.adapter = require("axios/lib/adapters/http");
 describe("getList", () => {
     it("correct response", async () => {
         const { data, total } = await JsonServer(
-            "https://readmin-nestjs-crud.pankod.com",
+            "https://refine-nestjs-crud.pankod.com",
             axios,
         ).getList("posts", {});
 
@@ -19,7 +19,7 @@ describe("getList", () => {
 
     it("correct sorting response", async () => {
         const { data, total } = await JsonServer(
-            "https://readmin-nestjs-crud.pankod.com",
+            "https://refine-nestjs-crud.pankod.com",
             axios,
         ).getList("posts", {
             sort: {
@@ -35,7 +35,7 @@ describe("getList", () => {
 
     it("correct filter response", async () => {
         const { data, total } = await JsonServer(
-            "https://readmin-nestjs-crud.pankod.com",
+            "https://refine-nestjs-crud.pankod.com",
             axios,
         ).getList("posts", {
             filters: {
@@ -51,7 +51,7 @@ describe("getList", () => {
 
     it("correct filter and sort response", async () => {
         const { data, total } = await JsonServer(
-            "https://readmin-nestjs-crud.pankod.com",
+            "https://refine-nestjs-crud.pankod.com",
             axios,
         ).getList("posts", {
             filters: {

@@ -14,6 +14,6 @@ describe("useApiUrl Hook", () => {
         });
 
         console.log(result.current);
-        expect(result.current).toBe("https://readmin-fake-rest.pankod.com");
+        expect(result.current).toBe("https://refine-fake-rest.pankod.com");
     });
 });

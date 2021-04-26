@@ -6,13 +6,13 @@ sidebar_label: Tutorial
 ---
 
 
-Readmin uses React. We’ll use create-react-app to create an empty React app, and install the readmin package:
+refine uses React. We’ll use create-react-app to create an empty React app, and install the refine package:
 
 
 ````
 npm i create react-app test-admin
 cd test-admin/
-yarn add readmin 
+yarn add @pankod/refine 
 yarn start
 
 ````
@@ -29,24 +29,24 @@ We’ll be using pankod's  fake REST API designed for testing and prototyping, a
 example api source
 
 
-To start make app work import Admin root component in to "App.tsx"  from readmin.
+To start make app work import Admin root component in to "App.tsx"  from refine.
 
-You should provide api provider to admin. Here we use readmin-json to demonstra...
-We ll use readmin-json-server CRUD api provider.. You can use your own..
+You should provide api provider to admin. Here we use refine-json to demonstra...
+We ll use refine-json-server CRUD api provider.. You can use your own..
 
 ```
 
 import React from "react";
-import JsonServer from "readmin-json-server";
+import JsonServer from "@pankod/refine-json-server";
 import {
     Admin,
-} from "readmin";
+} from "@pankod/refine";
 
     
 function App() {
 
     return (
-        <Admin dataProvider={JsonServer("https://readmin-fake-rest.pankod.com"))} >
+        <Admin dataProvider={JsonServer("https://refine-fake-rest.pankod.com"))} >
       
         </Admin>
     );
@@ -68,17 +68,17 @@ The App component renders an <Admin> component, which is the root component of a
 ##Connect API with resources 
 
 Kısaca resource componentinden bahsedelim. 
-resource maps a name to an endpoint in the API by readmin.
+resource maps a name to an endpoint in the API by refine.
 
 
 
 ```
 import React from "react";
-import JsonServer from "readmin-json-server";
+import JsonServer from "@pankod/refine-json-server";
 import {
     Admin,
     Resources
-} from "readmin";
+} from "@pankod/refine";
 
 function App() {
  
@@ -98,11 +98,11 @@ import edilen resource propların ne yapacağı?
 The line <Resource name="users" /> informs react-admin to fetch the “users” records from the https://jsonplaceholder.typicode.com/users URL. <Resource> also defines the React components to use for each CRUD operation (list, create, edit, and show)...
 
 
-The list={PostList} prop means that readmin  use the <PostList> custom component to display the list of posts, which users create independently from readmin  
+The list={PostList} prop means that refine  use the <PostList> custom component to display the list of posts, which users create independently from refine  
 
-Postlist uses List component wrapper from readmin-core  which uses ant-design components to render data with table.
+Postlist uses List component wrapper from refine-core  which uses ant-design components to render data with table.
 
-Postlist readmin hooklarını kullanarak api den data çekebilir, crud işlemlerini yapması içn gerekli olan readmin  tarafından sağlanana hookları barındırır. Çektiği dataı readmin crud list componenti ile ant design componentleri kullanılarak ekrana listeler.
+Postlist refine hooklarını kullanarak api den data çekebilir, crud işlemlerini yapması içn gerekli olan refine  tarafından sağlanana hookları barındırır. Çektiği dataı refine crud list componenti ile ant design componentleri kullanılarak ekrana listeler.
 
 Bu örnekte PostList componenti içinde useTable hookunu kullanarak api den list verisini çektik. useTable çalışma mantığı...
 Basicly, useTable looks to the url resource to get specific data from api..
@@ -117,7 +117,7 @@ import {
     useTable,
     Table,
     List,
-} from "readmin";
+} from "@pankod/refine";
 
 export const PostList = ({ ...props }) => {
     const { tableProps } = useTable({});

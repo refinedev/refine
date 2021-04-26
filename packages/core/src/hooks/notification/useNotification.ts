@@ -3,7 +3,7 @@ import { NotificationApi } from "antd/lib/notification";
 
 /**
  * @example
- * import { useNotification } from 'readmin';
+ * import { useNotification } from '@pankod/refine';
  *
  * const notification = useNotification();
  * notification["error"]({

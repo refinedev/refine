@@ -9,7 +9,7 @@ axios.defaults.adapter = require("axios/lib/adapters/http");
 describe("getList", () => {
     it("correct response", async () => {
         const response = await JsonServer(
-            "https://readmin-fake-rest.pankod.com",
+            "https://refine-fake-rest.pankod.com",
             axios,
         ).getList("posts", {});
 
@@ -22,7 +22,7 @@ describe("getList", () => {
 
     it("correct sorting response", async () => {
         const response = await JsonServer(
-            "https://readmin-fake-rest.pankod.com",
+            "https://refine-fake-rest.pankod.com",
             axios,
         ).getList("posts", {
             sort: {
@@ -40,7 +40,7 @@ describe("getList", () => {
 
     it("correct filter response", async () => {
         const response = await JsonServer(
-            "https://readmin-fake-rest.pankod.com",
+            "https://refine-fake-rest.pankod.com",
             axios,
         ).getList("posts", {
             filters: {
@@ -54,7 +54,7 @@ describe("getList", () => {
 
     it("correct filter and sort response", async () => {
         const response = await JsonServer(
-            "https://readmin-fake-rest.pankod.com",
+            "https://refine-fake-rest.pankod.com",
             axios,
         ).getList("posts", {
             filters: {

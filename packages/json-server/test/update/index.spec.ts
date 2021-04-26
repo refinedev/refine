@@ -9,7 +9,7 @@ axios.defaults.adapter = require("axios/lib/adapters/http");
 describe("update", () => {
     it("correct response", async () => {
         const response = await JsonServer(
-            "https://readmin-fake-rest.pankod.com",
+            "https://refine-fake-rest.pankod.com",
             axios,
         ).update("posts", 1000, {
             id: 1001,
