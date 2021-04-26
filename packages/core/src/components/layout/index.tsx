@@ -88,22 +88,19 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
                     setCollapsed(collapsed)
                 }
             >
-                <Link to={`/`}>
-                    {title ?? (
-                        <div
-                            style={{
-                                color: "#FFF",
-                                fontSize: 16,
-                                textAlign: "center",
-                                height: 60,
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                            }}
-                        >
-                            Readmin
-                        </div>
-                    )}
+                <Link
+                    to={`/`}
+                    style={{
+                        color: "#FFF",
+                        fontSize: 16,
+                        textAlign: "center",
+                        height: 60,
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    {title ?? <span>Refine</span>}
                 </Link>
 
                 <Menu

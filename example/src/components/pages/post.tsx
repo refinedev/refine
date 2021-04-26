@@ -48,9 +48,24 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 
 const { Title, Text } = Typography;
 
+interface IPost {
+    title: string;
+    slug: string;
+    status: "published" | "draft";
+    createdAt: string;
+    category: {
+        id: string;
+        title: string;
+    };
+    user: {
+        id: string;
+    };
+    tags: [{ id: string }];
+}
+
 export const PostList = (props: any) => {
     const translate = useTranslate();
-    const { tableProps, sorter, filters } = useTable({
+    const { tableProps, sorter, filters } = useTable<IPost>({
         // permanentFilter: {
         //     categoryId: [50, 49],
         // },
@@ -110,7 +125,7 @@ export const PostList = (props: any) => {
 
     return (
         <List {...props} actionButtons={<Actions />}>
-            <Table
+            <Table<IPost>
                 {...tableProps}
                 rowKey="id"
                 pagination={{
@@ -489,7 +504,7 @@ export const PostEdit = (props: any) => {
         formLoading,
         formProps,
         queryResult,
-    } = useStepsForm({
+    } = useStepsForm<IPost>({
         warnWhenUnsavedChanges: true,
         redirect: "list",
         mutationMode: "pessimistic",

@@ -10,17 +10,17 @@ import {
 } from "../../interfaces";
 
 type UseUpdateManyReturnType<
-    T extends BaseRecord = BaseRecord
+    RecordType extends BaseRecord = BaseRecord
 > = UseMutationResult<
-    UpdateManyResponse,
+    UpdateManyResponse<RecordType>,
     unknown,
-    { id: Identifier[]; values: T },
+    { id: Identifier[]; values: BaseRecord },
     unknown
 >;
 
-export const useUpdateMany = <TParams extends BaseRecord = BaseRecord>(
+export const useUpdateMany = <RecordType extends BaseRecord = BaseRecord>(
     resource: string,
-): UseUpdateManyReturnType<TParams> => {
+): UseUpdateManyReturnType<RecordType> => {
     const { updateMany } = useContext<IDataContext>(DataContext);
 
     if (!resource) {
@@ -28,8 +28,8 @@ export const useUpdateMany = <TParams extends BaseRecord = BaseRecord>(
     }
 
     const mutation = useMutation(
-        ({ id, values }: { id: Identifier[]; values: TParams }) =>
-            updateMany<TParams>(resource, id, values),
+        ({ id, values }: { id: Identifier[]; values: BaseRecord }) =>
+            updateMany<RecordType>(resource, id, values),
     );
 
     return mutation;

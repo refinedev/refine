@@ -26,7 +26,7 @@ export const posts = [
     },
 ];
 
-const MockDataProvider = (): IDataContext => {
+const MockDataProvider = () => {
     return {
         create: () => Promise.resolve({ data: posts[0] }),
         createMany: () => Promise.resolve({ data: posts }),
@@ -37,8 +37,8 @@ const MockDataProvider = (): IDataContext => {
         getOne: () => Promise.resolve({ data: posts[0] }),
         update: () => Promise.resolve({ data: posts[0] }),
         updateMany: () => Promise.resolve({ data: [] }),
-        getApiUrl: () => "https://readmin-fake-rest.pankod.com",
+        getApiUrl: () => "https://refine-fake-rest.pankod.com",
     };
 };
 
-export const MockJSONServer = MockDataProvider();
+export const MockJSONServer = MockDataProvider() as IDataContext;

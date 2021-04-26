@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "readmin-example.fullname" . }}
+  name: {{ include "refine-example.fullname" . }}
   labels:
-    {{- include "readmin-example.labels" . | nindent 4 }}
+    {{- include "refine-example.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "readmin-example.selectorLabels" . | nindent 6 }}
+      {{- include "refine-example.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "readmin-example.selectorLabels" . | nindent 8 }}
+        {{- include "refine-example.selectorLabels" . | nindent 8 }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      serviceAccountName: {{ include "readmin-example.serviceAccountName" . }}
+      serviceAccountName: {{ include "refine-example.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:

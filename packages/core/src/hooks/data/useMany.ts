@@ -12,18 +12,18 @@ import {
 import { useNotification } from "@hooks";
 import { useTranslate } from "@hooks/translate";
 
-export const useMany = (
+export const useMany = <RecordType extends BaseRecord = BaseRecord>(
     resource: string,
     ids: Identifier[],
-    options?: UseQueryOptions<GetManyResponse, HttpError>,
-): QueryObserverResult<GetManyResponse<BaseRecord>> => {
+    options?: UseQueryOptions<GetManyResponse<RecordType>, HttpError>,
+): QueryObserverResult<GetManyResponse<RecordType>> => {
     const { getMany } = useContext<IDataContext>(DataContext);
     const notification = useNotification();
     const translate = useTranslate();
 
-    const queryResponse = useQuery<GetManyResponse<BaseRecord>, HttpError>(
+    const queryResponse = useQuery<GetManyResponse<RecordType>, HttpError>(
         `resource/list/${resource}`,
-        () => getMany(resource, ids),
+        () => getMany<RecordType>(resource, ids),
         {
             ...options,
             onError: (err: HttpError) => {
