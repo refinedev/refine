@@ -17,9 +17,7 @@ describe("UrlField", () => {
     it("renders deep fields", () => {
         const record = { id: 1, source: { path: url } };
 
-        const { getByText } = render(
-            <UrlField record={record} renderRecordKey="source.path" />,
-        );
+        const { getByText } = render(<UrlField value={record.source.path} />);
 
         const link = getByText(url) as HTMLAnchorElement;
         expect(link.href).toBe(url);
