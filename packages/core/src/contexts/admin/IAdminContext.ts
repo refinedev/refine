@@ -6,18 +6,9 @@ export type TitleProps = {
     collapsed: boolean;
 };
 
-export interface IAdminContext {
-    mutationMode: MutationMode;
-    warnWhenUnsavedChanges: boolean;
+export interface IAdminContext extends IAdminContextProvider {
     warnWhen: boolean;
-    syncWithLocation: boolean;
     setWarnWhen: (value: boolean) => void;
-    Title?: FC<TitleProps>;
-    undoableTimeout: number;
-    Layout?: FC<LayoutProps>;
-    sider?: ReactNode;
-    header?: ReactNode;
-    footer?: ReactNode;
 }
 
 export interface IAdminContextProvider {
