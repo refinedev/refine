@@ -5,7 +5,7 @@ import { IAuthContext } from "../../interfaces";
 
 /**
  * @example
- * import { usePermissions } from 'readmin';
+ * import { usePermissions } from '@pankod/refine';
  *
  * const PostDetail = props => {
  *   const { loaded, permissions } = usePermissions();

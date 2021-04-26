@@ -15,8 +15,8 @@ describe("ReadyPage", () => {
     it("should render 4 texts", async () => {
         const { getByText } = render(<ReadyPage />);
 
-        getByText("readmin");
-        getByText("Welcome to readmin");
+        getByText("refine");
+        getByText("Welcome to refine");
         getByText("Your application is properly configured.");
         getByText("Now you can add a <Resource> as child of <Admin>.");
     });

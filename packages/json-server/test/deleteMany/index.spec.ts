@@ -9,7 +9,7 @@ axios.defaults.adapter = require("axios/lib/adapters/http");
 describe("deleteMany", () => {
     it("correct response", async () => {
         const response = await JsonServer(
-            "https://readmin-fake-rest.pankod.com",
+            "https://refine-fake-rest.pankod.com",
             axios,
         ).deleteMany("posts", [10]);
 

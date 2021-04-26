@@ -1,6 +1,6 @@
 import nock from "nock";
 
-nock("https://readmin-nestjs-crud.pankod.com:443", { encodedQueryParams: true })
+nock("https://refine-nestjs-crud.pankod.com:443", { encodedQueryParams: true })
     .delete("/posts/99d8ae54-432c-48d4-a385-f0ff4665e448")
     .reply(200, "", [
         "Server",

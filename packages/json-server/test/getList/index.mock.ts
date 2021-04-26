@@ -1,6 +1,6 @@
 import nock from "nock";
 
-nock("https://readmin-fake-rest.pankod.com:443", { encodedQueryParams: true })
+nock("https://refine-fake-rest.pankod.com:443", { encodedQueryParams: true })
     .get("/posts")
     .query({ _end: "10", _order: "desc", _sort: "id", _start: "0" })
     .reply(
@@ -158,7 +158,7 @@ nock("https://readmin-fake-rest.pankod.com:443", { encodedQueryParams: true })
         ],
     );
 
-nock("https://readmin-fake-rest.pankod.com:443", {
+nock("https://refine-fake-rest.pankod.com:443", {
     encodedQueryParams: true,
 })
     .get("/posts")
@@ -326,7 +326,7 @@ nock("https://readmin-fake-rest.pankod.com:443", {
         ],
     );
 
-nock("https://readmin-fake-rest.pankod.com:443", {
+nock("https://refine-fake-rest.pankod.com:443", {
     encodedQueryParams: true,
 })
     .get("/posts")
@@ -498,7 +498,7 @@ nock("https://readmin-fake-rest.pankod.com:443", {
         ],
     );
 
-nock("https://readmin-fake-rest.pankod.com:443", {
+nock("https://refine-fake-rest.pankod.com:443", {
     encodedQueryParams: true,
 })
     .get("/posts")

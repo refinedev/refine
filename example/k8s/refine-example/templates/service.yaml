@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "readmin-example.fullname" . }}
+  name: {{ include "refine-example.fullname" . }}
   labels:
-    {{- include "readmin-example.labels" . | nindent 4 }}
+    {{- include "refine-example.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "readmin-example.selectorLabels" . | nindent 4 }}
+    {{- include "refine-example.selectorLabels" . | nindent 4 }}

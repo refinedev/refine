@@ -40,7 +40,7 @@ describe("Admin Container", () => {
             />,
         );
 
-        getByText("Welcome to readmin");
+        getByText("Welcome to refine");
     });
 
     it("should render correctly readyPage with ready prop", async () => {

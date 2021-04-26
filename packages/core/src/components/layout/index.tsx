@@ -100,7 +100,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
                         alignItems: "center",
                     }}
                 >
-                    {title ?? <span>Readmin</span>}
+                    {title ?? <span>Refine</span>}
                 </Link>
 
                 <Menu
