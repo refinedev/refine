@@ -8,7 +8,7 @@ axios.defaults.adapter = require("axios/lib/adapters/http");
 describe("getOne", () => {
     it("correct response", async () => {
         const { data } = await JsonServer(
-            "https://readmin-nestjs-crud.pankod.com",
+            "https://refine-nestjs-crud.pankod.com",
             axios,
         ).getOne("posts", "6536e986-e500-4933-b154-b51d60d702c2");
 

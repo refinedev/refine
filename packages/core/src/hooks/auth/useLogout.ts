@@ -6,7 +6,7 @@ import { useNavigation } from "@hooks/navigation";
 
 /**
  * @example
- * import { useLogout } from 'readmin';
+ * import { useLogout } from '@pankod/refine';
  *
  * const logout = useLogout();
  * const handleClick = () => logout();

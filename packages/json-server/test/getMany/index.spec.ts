@@ -9,7 +9,7 @@ axios.defaults.adapter = require("axios/lib/adapters/http");
 describe("getMany", () => {
     it("correct response", async () => {
         const response = await JsonServer(
-            "https://readmin-fake-rest.pankod.com",
+            "https://refine-fake-rest.pankod.com",
             axios,
         ).getMany("posts", [1, 2, 3]);
 

@@ -5,7 +5,7 @@ import { IAuthContext } from "../../interfaces";
 
 /**
  * @example
- * import { useGetIdentity } from 'readmin';
+ * import { useGetIdentity } from '@pankod/refine';
  *
  * const PostDetail = props => {
  *   const { loading, userIdentity } = useGetIdentity();

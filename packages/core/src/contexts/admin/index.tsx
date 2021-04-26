@@ -8,7 +8,7 @@ export const AdminContext = React.createContext<IAdminContext>({
     warnWhen: false,
     setWarnWhen: (value: boolean) => value,
     syncWithLocation: false,
-    title: "Readmin",
+    title: "Refine",
     undoableTimeout: 5000,
 });
 
