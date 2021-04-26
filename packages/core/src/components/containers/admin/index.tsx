@@ -1,9 +1,10 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, FC } from "react";
 import { ConfigProvider } from "antd";
 import { ConfigProviderProps } from "antd/lib/config-provider";
 import { BrowserRouter as Router, RouteProps } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { LayoutProps } from "../../layout";
 import "antd/dist/antd.css";
 
 import { AuthContextProvider } from "@contexts/auth";
@@ -41,7 +42,7 @@ export interface AdminProps {
     configProviderProps?: ConfigProviderProps;
     components?: ReactNode;
     undoableTimeout?: number;
-    layout?: ReactNode;
+    Layout?: FC<LayoutProps>;
     sider?: ReactNode;
     header?: ReactNode;
     footer?: ReactNode;
@@ -64,7 +65,7 @@ export const Admin: React.FC<AdminProps> = ({
     configProviderProps = defaultConfigProviderProps,
     components,
     undoableTimeout = 5000,
-    layout,
+    Layout,
     sider,
     header,
     footer,
@@ -119,7 +120,7 @@ export const Admin: React.FC<AdminProps> = ({
                                         syncWithLocation={syncWithLocation}
                                         title={title}
                                         undoableTimeout={undoableTimeout}
-                                        layout={layout}
+                                        Layout={Layout}
                                         sider={sider}
                                         footer={footer}
                                         header={header}

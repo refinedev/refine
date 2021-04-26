@@ -1,5 +1,6 @@
-import { ReactNode } from "react";
+import { ReactNode, FC } from "react";
 import { MutationMode } from "../../interfaces";
+import { LayoutProps } from "../../components/layout";
 
 export interface IAdminContext {
     mutationMode: MutationMode;
@@ -9,7 +10,7 @@ export interface IAdminContext {
     setWarnWhen: (value: boolean) => void;
     title?: ReactNode;
     undoableTimeout: number;
-    layout?: ReactNode;
+    Layout?: FC<LayoutProps>;
     sider?: ReactNode;
     header?: ReactNode;
     footer?: ReactNode;
@@ -21,7 +22,7 @@ export interface IAdminContextProvider {
     syncWithLocation: boolean;
     title?: ReactNode;
     undoableTimeout: number;
-    layout?: ReactNode;
+    Layout?: FC<LayoutProps>;
     sider?: ReactNode;
     header?: ReactNode;
     footer?: ReactNode;

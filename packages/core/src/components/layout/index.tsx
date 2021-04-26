@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext, useEffect } from "react";
+import React, { ReactNode, FC, useContext, useEffect } from "react";
 import { Layout as AntLayout, Menu, Button } from "antd";
 import {
     DashboardOutlined,
@@ -23,7 +23,10 @@ import { AdminContext } from "@contexts/admin/";
 import { IAdminContext } from "@contexts/admin/IAdminContext";
 
 export interface LayoutProps {
-    dashboard?: React.FC;
+    dashboard?: FC;
+    sider?: ReactNode;
+    header?: ReactNode;
+    footer?: ReactNode;
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
@@ -32,9 +35,10 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
     const { push } = useNavigation();
     const { logout } = useContext<IAuthContext>(AuthContext);
     const { components } = useContext<IComponentsContext>(ComponentsContext);
-    const { title, layout, footer, header, sider } = useContext<IAdminContext>(
+    const { title, Layout, footer, header, sider } = useContext<IAdminContext>(
         AdminContext,
     );
+
     const { resources } = useResource();
 
     const location = useLocation();
@@ -81,101 +85,114 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
         return window.removeEventListener("beforeunload", warnWhenListener);
     }, []);
 
-    return (
-        <AntLayout style={{ minHeight: "100vh" }}>
-            <AntLayout.Sider
-                collapsible
-                collapsed={collapsed}
-                onCollapse={(collapsed: boolean): void =>
-                    setCollapsed(collapsed)
-                }
+    const defaultSider = (
+        <AntLayout.Sider
+            collapsible
+            collapsed={collapsed}
+            onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
+        >
+            <Link
+                to={`/`}
+                style={{
+                    color: "#FFF",
+                    fontSize: 16,
+                    textAlign: "center",
+                    height: 60,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
             >
-                <Link
-                    to={`/`}
-                    style={{
-                        color: "#FFF",
-                        fontSize: 16,
-                        textAlign: "center",
-                        height: 60,
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
-                    {title ?? <span>Refine</span>}
-                </Link>
-
-                <Menu
-                    onClick={menuOnClick}
-                    theme="dark"
-                    defaultSelectedKeys={["dashboard"]}
-                    selectedKeys={[selectedKey]}
-                    mode="inline"
-                >
-                    {dashboard && (
-                        <Menu.Item
-                            key={`dashboard`}
-                            icon={<DashboardOutlined />}
-                        >
-                            <Link to={`/`}>
-                                {translate(
-                                    "common:resources.dashboard.title",
-                                    "Dashboard",
-                                )}
-                            </Link>
-                        </Menu.Item>
-                    )}
-
-                    {resources.map((item) => (
-                        <Menu.Item
-                            key={`/resources/${item.route}`}
-                            icon={item.icon ?? <UnorderedListOutlined />}
-                        >
-                            <Link to={`/resources/${item.route}`}>
-                                {translate(
-                                    `common:resources.${item.name}.${
-                                        item.label ?? humanizeString(item.name)
-                                    }`,
-                                    item.label ?? humanizeString(item.name),
-                                )}
-                            </Link>
-                        </Menu.Item>
-                    ))}
-
-                    <Menu.Item key="logout" icon={<LogoutOutlined />}>
-                        {translate("common:buttons.logout", "Logout")}
+                {title ?? <span>Refine</span>}
+            </Link>
+            <Menu
+                onClick={menuOnClick}
+                theme="dark"
+                defaultSelectedKeys={["dashboard"]}
+                selectedKeys={[selectedKey]}
+                mode="inline"
+            >
+                {dashboard && (
+                    <Menu.Item key={`dashboard`} icon={<DashboardOutlined />}>
+                        <Link to={`/`}>
+                            {translate(
+                                "common:resources.dashboard.title",
+                                "Dashboard",
+                            )}
+                        </Link>
                     </Menu.Item>
-                </Menu>
-            </AntLayout.Sider>
-            <AntLayout className="site-layout">
-                <AntLayout.Header
-                    style={{ padding: 0, backgroundColor: "#FFF" }}
-                >
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "flex-end",
-                            height: "100%",
-                            alignItems: "center",
-                            padding: "24px",
-                        }}
-                    >
-                        <Button size="middle" onClick={() => setLocale("en")}>
-                            EN
-                        </Button>
-                        <Button size="middle" onClick={() => setLocale("tr")}>
-                            TR
-                        </Button>
-                    </div>
-                </AntLayout.Header>
+                )}
 
+                {resources.map((item) => (
+                    <Menu.Item
+                        key={`/resources/${item.route}`}
+                        icon={item.icon ?? <UnorderedListOutlined />}
+                    >
+                        <Link to={`/resources/${item.route}`}>
+                            {translate(
+                                `common:resources.${item.name}.${
+                                    item.label ?? humanizeString(item.name)
+                                }`,
+                                item.label ?? humanizeString(item.name),
+                            )}
+                        </Link>
+                    </Menu.Item>
+                ))}
+
+                <Menu.Item key="logout" icon={<LogoutOutlined />}>
+                    {translate("common:buttons.logout", "Logout")}
+                </Menu.Item>
+            </Menu>
+        </AntLayout.Sider>
+    );
+
+    const defaultHeader = (
+        <AntLayout.Header style={{ padding: 0, backgroundColor: "#FFF" }}>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    height: "100%",
+                    alignItems: "center",
+                    padding: "24px",
+                }}
+            >
+                <Button size="middle" onClick={() => setLocale("en")}>
+                    EN
+                </Button>
+                <Button size="middle" onClick={() => setLocale("tr")}>
+                    TR
+                </Button>
+            </div>
+        </AntLayout.Header>
+    );
+
+    const defaultFooter = (
+        <AntLayout.Footer style={{ textAlign: "center" }}>
+            Refine ©{new Date().getFullYear()} Created by Pankod
+        </AntLayout.Footer>
+    );
+
+    return Layout ? (
+        <Layout
+            sider={sider ? sider : defaultSider}
+            header={header ? header : defaultHeader}
+            footer={footer ? footer : defaultFooter}
+        >
+            {children}
+        </Layout>
+    ) : (
+        <AntLayout style={{ minHeight: "100vh" }}>
+            {sider ? sider : defaultSider}
+            <AntLayout className="site-layout">
+                {header ? header : defaultHeader}
                 <AntLayout.Content>
                     <div style={{ padding: 24, minHeight: 360 }}>
                         {children}
                     </div>
                     {components}
                 </AntLayout.Content>
-                {footer}
+                {footer ? footer : defaultFooter}
             </AntLayout>
             <Prompt
                 when={warnWhen}

@@ -89,9 +89,26 @@ function App() {
             dashboard={DashboardPage}
             ready={ReadyPage}
             i18nProvider={i18nProvider}
+            Layout={({ children, sider, header, footer }) => (
+                <AntdLayout
+                    style={{ minHeight: "100vh", flexDirection: "row" }}
+                >
+                    <AntdLayout className="site-layout">
+                        {header}
+                        <AntdLayout.Content>
+                            <div style={{ padding: 24, minHeight: 360 }}>
+                                {children}
+                            </div>
+                        </AntdLayout.Content>
+                        {footer}
+                    </AntdLayout>
+                    {sider}
+                </AntdLayout>
+            )}
             footer={
                 <AntdLayout.Footer style={{ textAlign: "center" }}>
                     Refine ©{new Date().getFullYear()} Created by Pankod
+                    (Example Footer)
                 </AntdLayout.Footer>
             }
             components={
