@@ -9,6 +9,7 @@ import refineWelcome from '@site/static/img/refine-welcome.png';
 import resourceFirst from '@site/static/img/resource-1.png';
 import resourceSecond from '@site/static/img/resource-2.png';
 import createGif from '@site/static/img/create.gif';
+import editGif from '@site/static/img/edit.gif';
 
 We'll show how to create a simple admin app with CRUD operations based on an existing REST API.
 
@@ -261,11 +262,164 @@ We can now list `/posts` data successfully as shown below.
 
 ## Handling relationships
 
+## Editing a record
+
+We'll implement a page for editing an existing record.
+
+Let's create a `<PostEdit>` component to edit an existing post. This component will be passed as `list` prop to `<Resource>`.
+
+```tsx title="components/pages/posts.tsx"
+export const PostEdit = () => {
+    const { formProps, saveButtonProps } = useForm({});
+
+    return (
+        <Edit saveButtonProps={saveButtonProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
+                <Form.Item label="Title" name="title">
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Status" name="status">
+                    <Select
+                        options={[
+                            {
+                                label: "Published",
+                                value: "published",
+                            },
+                            {
+                                label: "Draft",
+                                value: "draft",
+                            },
+                        ]}
+                    />
+                </Form.Item>
+            </Form>
+        </Edit>
+    );
+};
+```
+
+<br />
+
+After creating the `<PostEdit>` component, now it's time to add it to `<Resource>`.
+
+<br />
+
+```tsx title="src/App.tsx"
+import { Admin, Resource } from "@pankod/refine";
+import dataProvider from "@pankod/refine-json-server";
+//highlight-next-line
+import { PostList, PostEdit } from "./components/pages/posts";
+
+function App() {
+    return (
+        <Admin
+            dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
+        >
+            <Resource
+                name="posts"
+                list={PostList}
+                //highlight-next-line
+                edit={PostEdit}
+            />
+        </Admin>
+    );
+}
+
+export default App;
+```
+
+<br />
+
+:::important
+`refine` doesn't automatically add an _**edit**_ button by default to each record in `<PostList>` to give access to the edit page which renders the `<PostEdit>` component.
+
+We' ll add a new column to `<Table>` in `<PostList>` to show the action button for edit.   
+ `<EditButton>` from refine can be used to navigate to edit page at `/resources/posts/edit`.
+
+You can find detailed usage of `<EditButton>` from [here](#).
+
+<br />
+
+
+```tsx title="components/pages/posts.tsx"
+import {
+    ...
+    //highlight-start
+    Space,
+    EditButton
+    //highlight-end
+} from "@pankod/refine";
+
+export const PostList = () => {
+...
+    <Table.Column
+        title="Actions"
+        dataIndex="actions"
+        render={(
+            _text: string | number,
+            record: {
+                id: string | number;
+            },
+        ): React.ReactNode => {
+            return(
+                <Space>
+                    <EditButton size="small" recordItemId={record.id} />
+                </Space>
+        )}}
+    />   
+...
+}
+```
+
+:::
+
+### Managing the form
+
+`useForm` is another skillful hook from `refine` that is responsible for managing form data like creating and editing.
+
+```tsx
+const { formProps, saveButtonProps } = useForm({});
+```
+
+The `formProps` includes all necessary props for `<Form>` component to manage form data properly.
+Similarly `saveButtonProps` includes usefull properties for a button to submit a form.
+
+[Refer to `useForm` documentation for detailed usage. &#8594](#)
+
+### Editing the form
+
+`refine` apps uses [ant-design form components](https://ant.design/components/form/) to handle form management. In this example, we'll use `<Form>` and `<Form.Item>` component, which is exposed from ant-design to manage form inputs.
+
+We wrap `<Form>` with [`<Edit>`](#) component from `refine` that provides save, delete and refresh buttons that can be used for form actions.
+
+:::caution Attention
+In edit page, `useForm` hook initializes the form with current record values.
+:::
+
+We are getting form values from inputs by passing them as child to `<Form.Item>`. Edited input values are automatically set to form data.
+
+Save button submits the form and issues a `PUT` request to the REST API when clicked. After request responses successfully, app will be navigated to listing page on `resources/posts` with updated data.
+
+
+[Refer to **How editing works?** section for in depth explanation. &#8594](#)
+
+<br />
+
+<>
+
+<div style={{textAlign: "center"}}>
+    <img src={editGif} />
+</div>
+<br/>
+</>
+
+<br />
+
 ## Creating a record
 
-We'll implement a page for creating a new record using fake REST API.
+We'll implement a page for creating a new record using fake REST API. It has a similar implemantation and managing form methods like [Editing a record](#editing-a-record). 
 
-Let's create a `PostCreate` component to create a new post. This component will be passed as `create` prop to `<Resource>`.
+First create a `<PostCreate>` component to create a new post. This component will be passed as `create` prop to `<Resource>`.
 
 ```tsx title="components/pages/posts.tsx"
 import { useForm, Create, Form, Input, Select } from "@pankod/refine";
@@ -299,24 +453,27 @@ export const PostCreate = () => {
 };
 ```
 
-After creating the `<PostCreate>` component, now it's time to add it to `<Resource>`.
+<br />
 
+After creating the `<PostCreate>` component, add it to `<Resource>`.
 
+<br />
 
 ```tsx title="src/App.tsx"
 import { Admin, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
-import { PostList, PostCreate } from "./components/pages/posts";
+import { PostList, PostEdit, PostCreate } from "./components/pages/posts";
 
 function App() {
     return (
         <Admin
-            dataProvider={dataProvider("https://readmin-fake-rest.pankod.com/")}
+            dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
         >
             <Resource
                 name="posts"
                 list={PostList}
+                edit={PostEdit}
                 //highlight-next-line
                 create={PostCreate}
             />
@@ -327,13 +484,14 @@ function App() {
 export default App;
 ```
 
+<br />
+
 :::important
 `refine` doesn't automatically add a _**create**_ button by default on top of the `<PostList>` to give access to the create page which renders the `<PostCreate>` component.
 
-Each component given to `<Resource>` will get passed props with `IResourceComponentsProps` interface. If this props are passed to `<List>` in `<PostList>`, a create button will be rendered in case a `create` component is passed to `<Resource>`.
+Each component given to `<Resource>` will get passed props with `IResourceComponentsProps` interface. If this props are passed to `<List>` wrapper in `<PostList>` component, `<List>` will render a create button in case a `create` component is passed to `<Resource>`.
 
 [More about **IResourceComponentsProps** &#8594](#)
-
 
 ```tsx title="components/pages/posts.tsx"
 ...
@@ -346,36 +504,19 @@ export const PostList = (props: IResourceComponentsProps) => {
         <List {...props}>
 ...
 ```
+
 :::
 
+<br />
 
-
-
-### Managing the form
-
-`useForm` is another skillful hook from `refine` that is responsible for managing form data like creating and editing.
-
-```tsx
-const { formProps, saveButtonProps } = useForm({});
-```
-
-The `formProps` includes all necessary props for `<Form>` component to manage form data properly.
-`saveButtonProps` includes all necessary props for a button to submit a form.
-
-[Refer to `useForm` documentation for detailed usage. &#8594](#)
 
 ### Filling the form
 
-We wrap `<Form>` with [`<Create>`](#) component from `refine` that provides a save button that can be used for submitting the form.
+This part is very similar to [Editing the form](#editing-the-form). Only differences are:
 
-`refine` apps uses [ant-design form components](https://ant.design/components/form/) to handle form management. In this example, we'll use `<Form>` and `<Form.Item>` component, which is exposed from ant-design to manage form inputs.
+- We wrap `<Form>` with [`<Create>`](#) component from `refine`.
 
-We are getting form values from related input components by passing them as child to `<Form.Item>`. Input values are automatically set to form data.
-
-Save button submits the form and issues a `POST` request to the REST API when clicked. After request responses successfully, app will be navigated to listing page on `/posts` with newly created data. 
-
-[Refer to **How creation works?** section for in depth explanation. &#8594](#)
-
+- Save button submits the form and issues a `POST` request to the REST API.
 
 <br />
 
@@ -385,10 +526,6 @@ Save button submits the form and issues a `POST` request to the REST API when cl
 <br/>
 
 <br/>
-
-
-
-## Edit
 
 ## Show
 

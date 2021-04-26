@@ -10,7 +10,10 @@ import {
     Create,
     Form,
     Input,
-    Select
+    Select,
+    Edit,
+    Space,
+    EditButton
 } from "@pankod/refine";
 
 export const PostList = (props: IResourceComponentsProps) => {
@@ -41,6 +44,23 @@ export const PostList = (props: IResourceComponentsProps) => {
                         multiple: 2,
                     }}
                 />
+                 <Table.Column
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(
+                        _text: string | number,
+                        record: {
+                            id: string | number;
+                        },
+                    ): React.ReactNode => {
+                         console.log("tex", _text);
+                         
+                        return(
+                        <Space>
+                            <EditButton size="small" recordItemId={record.id} />
+                        </Space>
+                    )}}
+                />
             </Table>
         </List>
     );
@@ -52,16 +72,10 @@ export const PostCreate = () => {
     return (
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                >
+                <Form.Item label="Title" name="title">
                     <Input />
                 </Form.Item>
-                <Form.Item
-                    label="Status"
-                    name="status"
-                >
+                <Form.Item label="Status" name="status">
                     <Select
                         options={[
                             {
@@ -72,9 +86,38 @@ export const PostCreate = () => {
                                 label: "Draft",
                                 value: "draft",
                             },
-                        ]} />
+                        ]}
+                    />
                 </Form.Item>
             </Form>
         </Create>
-    )
-}
+    );
+};
+
+export const PostEdit = () => {
+    const { formProps, saveButtonProps } = useForm({});
+
+    return (
+        <Edit saveButtonProps={saveButtonProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
+                <Form.Item label="Title" name="title">
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Status" name="status">
+                    <Select
+                        options={[
+                            {
+                                label: "Published",
+                                value: "published",
+                            },
+                            {
+                                label: "Draft",
+                                value: "draft",
+                            },
+                        ]}
+                    />
+                </Form.Item>
+            </Form>
+        </Edit>
+    );
+};
