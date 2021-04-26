@@ -33,27 +33,15 @@ export const FilesList = (props: any) => {
                     dataIndex="url"
                     title={translate("common:resources.files.fields.url")}
                     render={(value) => (
-                        <FileField
-                            value={value}
-                            title={translate(
-                                "common:resources.files.fields.file",
-                            )}
-                        />
+                        <FileField title={value.title} src={value.path} />
                     )}
                 />
                 <Table.Column
                     key="url"
                     dataIndex="url"
                     title={translate("common:resources.files.fields.image")}
-                    render={(value, record) => (
-                        <FileField
-                            download
-                            record={record as any}
-                            value={value}
-                            title={translate(
-                                "common:resources.files.forms.title",
-                            )}
-                        />
+                    render={(value) => (
+                        <FileField title={value.title} src={value.src} />
                     )}
                 />
 
@@ -61,13 +49,11 @@ export const FilesList = (props: any) => {
                     key="files"
                     dataIndex="files"
                     title={translate("resources.files.forms.imageFiles")}
-                    render={(value, record) => {
+                    render={(value) => {
                         return (
                             <FileField
-                                record={record as any}
-                                value={value}
-                                src="url"
-                                title="title"
+                                src={value.url}
+                                title={value.title}
                                 target="_blank"
                                 rel="noopener"
                             />

@@ -156,7 +156,7 @@ export const PostList = (props: any) => {
                     key="category.id"
                     render={({ id }) => (
                         <ReferenceField resource="categories" value={id}>
-                            <TextField renderRecordKey="title" />
+                            <TextField value="title" />
                         </ReferenceField>
                     )}
                     filterDropdown={(props) => (

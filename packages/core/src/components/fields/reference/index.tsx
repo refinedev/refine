@@ -4,18 +4,17 @@ import { Typography } from "antd";
 
 import { useTranslate } from "@hooks";
 import { DataContext } from "@contexts/data";
-import { renderFieldRecord } from "@definitions";
-import { GetOneResponse, IDataContext } from "../../../interfaces";
-import { BaseFieldProps } from "../../../interfaces/field";
 
-export type ReferenceFieldProps = BaseFieldProps & {
+import { GetOneResponse, IDataContext } from "../../../interfaces";
+import { FieldProps } from "../../../interfaces";
+
+export type ReferenceFieldProps = FieldProps<string> & {
     resource: string;
 };
 
 export const ReferenceField: React.FC<ReferenceFieldProps> = ({
     resource,
     value,
-    renderRecordKey,
     children,
 }) => {
     const { getOne } = useContext<IDataContext>(DataContext);
@@ -38,16 +37,8 @@ export const ReferenceField: React.FC<ReferenceFieldProps> = ({
         return <Text>{value}</Text>;
     }
 
-    if (renderRecordKey) {
-        return (
-            <Text>
-                {renderFieldRecord({
-                    value,
-                    record: data.data,
-                    renderRecordKey,
-                })}
-            </Text>
-        );
+    if (value) {
+        return <Text>value</Text>;
     }
 
     const childrenWithProps = React.Children.map(children, (child) => {

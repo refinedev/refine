@@ -1,21 +1,10 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Tag, TagProps } from "antd";
 
-import { BaseFieldProps } from "../../../interfaces/field";
+import { FieldProps } from "../../../interfaces";
 
-import { renderFieldRecord } from "@definitions";
+export type TagFieldProps = FieldProps<ReactNode> & TagProps;
 
-export type TagFieldProps = BaseFieldProps & TagProps & {};
-
-export const TagField: React.FC<TagFieldProps> = ({
-    value,
-    record,
-    renderRecordKey,
-    ...rest
-}) => {
-    return (
-        <Tag {...rest}>
-            {`${renderFieldRecord({ value, record, renderRecordKey })}`}
-        </Tag>
-    );
+export const TagField: React.FC<TagFieldProps> = ({ value, ...rest }) => {
+    return <Tag {...rest}>{value?.toString()}</Tag>;
 };
