@@ -32,7 +32,9 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
     const { push } = useNavigation();
     const { logout } = useContext<IAuthContext>(AuthContext);
     const { components } = useContext<IComponentsContext>(ComponentsContext);
-    const { title } = useContext<IAdminContext>(AdminContext);
+    const { title, layout, footer, header, sider } = useContext<IAdminContext>(
+        AdminContext,
+    );
     const { resources } = useResource();
 
     const location = useLocation();
@@ -173,6 +175,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
                     </div>
                     {components}
                 </AntLayout.Content>
+                {footer}
             </AntLayout>
             <Prompt
                 when={warnWhen}

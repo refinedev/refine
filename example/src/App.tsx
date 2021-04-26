@@ -7,6 +7,7 @@ import {
     Authenticated,
     defaultConfigProviderProps,
     BackTop,
+    AntdLayout,
 } from "@pankod/refine";
 import { DemoSidebar, useDemoSidebar } from "@pankod/refine-demo-sidebar";
 
@@ -88,7 +89,11 @@ function App() {
             dashboard={DashboardPage}
             ready={ReadyPage}
             i18nProvider={i18nProvider}
-            syncWithLocation
+            footer={
+                <AntdLayout.Footer style={{ textAlign: "center" }}>
+                    Refine ©{new Date().getFullYear()} Created by Pankod
+                </AntdLayout.Footer>
+            }
             components={
                 <>
                     <BackTop />

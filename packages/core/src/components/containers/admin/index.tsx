@@ -41,6 +41,10 @@ export interface AdminProps {
     configProviderProps?: ConfigProviderProps;
     components?: ReactNode;
     undoableTimeout?: number;
+    layout?: ReactNode;
+    sider?: ReactNode;
+    header?: ReactNode;
+    footer?: ReactNode;
 }
 
 export const Admin: React.FC<AdminProps> = ({
@@ -60,6 +64,10 @@ export const Admin: React.FC<AdminProps> = ({
     configProviderProps = defaultConfigProviderProps,
     components,
     undoableTimeout = 5000,
+    layout,
+    sider,
+    header,
+    footer,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -111,6 +119,10 @@ export const Admin: React.FC<AdminProps> = ({
                                         syncWithLocation={syncWithLocation}
                                         title={title}
                                         undoableTimeout={undoableTimeout}
+                                        layout={layout}
+                                        sider={sider}
+                                        footer={footer}
+                                        header={header}
                                     >
                                         <ComponentsContextProvider
                                             components={components}
