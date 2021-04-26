@@ -1,8 +1,8 @@
 import React from "react";
+import { merge } from "lodash";
 
 import { useList, useMany } from "@hooks";
-import { Sort, Option } from "../../../interfaces";
-import { merge } from "lodash";
+import { Sort, Option, BaseRecord } from "../../../interfaces";
 
 export type useCheckboxGroupProps = {
     resource: string;
@@ -12,7 +12,7 @@ export type useCheckboxGroupProps = {
     defaultValue?: string | string[];
 };
 
-export const useCheckboxGroup = ({
+export const useCheckboxGroup = <RecordType extends BaseRecord = BaseRecord>({
     resource,
     sort,
     optionLabel = "title",
@@ -31,8 +31,7 @@ export const useCheckboxGroup = ({
     useMany(resource, defaultValue, {
         enabled: defaultValue.length > 0,
         onSuccess: (data) => {
-            setSelectedOptions((current) => [
-                ...current,
+            setSelectedOptions(() => [
                 ...data.data.map((item) => ({
                     label: item[optionLabel],
                     value: item[optionValue],
@@ -41,15 +40,14 @@ export const useCheckboxGroup = ({
         },
     });
 
-    const queryResult = useList(
+    const queryResult = useList<RecordType>(
         resource,
         {
             sort,
         },
         {
             onSuccess: (data) => {
-                setOptions((current) => [
-                    ...current,
+                setOptions(() => [
                     ...data.data.map((item) => ({
                         label: item[optionLabel],
                         value: item[optionValue],
@@ -59,8 +57,12 @@ export const useCheckboxGroup = ({
         },
     );
 
-    return {
+    const checkboxGroupProps = {
         options: merge(options, selectedOptions),
+    };
+
+    return {
+        checkboxGroupProps,
         queryResult,
     };
 };

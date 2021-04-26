@@ -23,7 +23,8 @@ describe("useSelect Hook", () => {
             return !result.current.queryResult?.isLoading;
         });
 
-        const { options } = result.current;
+        const { selectProps } = result.current;
+        const { options } = selectProps;
 
         expect(options).toHaveLength(2);
     });
@@ -47,7 +48,8 @@ describe("useSelect Hook", () => {
             return !result.current.queryResult.isLoading;
         });
 
-        const { options } = result.current;
+        const { selectProps } = result.current;
+        const { options } = selectProps;
 
         expect(options).toHaveLength(2);
     });
