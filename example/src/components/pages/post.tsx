@@ -507,7 +507,7 @@ export const PostEdit = (props: any) => {
     const { selectProps: userSelectProps } = useSelect({
         resource: "users",
         optionLabel: "email",
-        defaultValue: postData?.category.id,
+        defaultValue: postData?.user.id,
     });
 
     const { selectProps: tagsSelectProps } = useSelect({
