@@ -11,22 +11,9 @@ describe("FileField", () => {
         };
 
         const { getByTitle } = render(
-            <FileField value={value} titleKey="title" srcKey="src" />,
+            <FileField src={value.src} title={value.title} />,
         );
 
         expect(getByTitle(value.title)).toHaveAttribute("href", value.src);
-    });
-
-    it("handles multiple links", () => {
-        const text = { url: "test.txt", title: "Text" };
-        const cat = { url: "cat.png", title: "Cat" };
-        const files = [text, cat];
-        const { getByTitle } = render(
-            <FileField value={files} srcKey="url" titleKey="title" />,
-        );
-
-        [text, cat].forEach((item) => {
-            expect(getByTitle(item.title)).toHaveAttribute("href", item.url);
-        });
     });
 });

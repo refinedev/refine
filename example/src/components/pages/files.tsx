@@ -33,11 +33,7 @@ export const FilesList = (props: any) => {
                     dataIndex="url"
                     title={translate("common:resources.files.fields.url")}
                     render={(value) => (
-                        <FileField
-                            value={value}
-                            titleKey="name"
-                            srcKey="path"
-                        />
+                        <FileField title={value.title} src={value.path} />
                     )}
                 />
                 <Table.Column
@@ -45,12 +41,7 @@ export const FilesList = (props: any) => {
                     dataIndex="url"
                     title={translate("common:resources.files.fields.image")}
                     render={(value) => (
-                        <FileField
-                            download
-                            value={value}
-                            titleKey="title"
-                            srcKey=""
-                        />
+                        <FileField title={value.title} src={value.src} />
                     )}
                 />
 
@@ -61,9 +52,8 @@ export const FilesList = (props: any) => {
                     render={(value) => {
                         return (
                             <FileField
-                                value={value}
-                                srcKey="url"
-                                titleKey="title"
+                                src={value.url}
+                                title={value.title}
                                 target="_blank"
                                 rel="noopener"
                             />
