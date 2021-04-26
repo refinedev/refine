@@ -133,6 +133,9 @@ function App() {
                 ...defaultConfigProviderProps,
             }}
             {...adminProps}
+            Title={({ collapsed }) => (
+                <div>{collapsed ? "Title" : "Long Title"}</div>
+            )}
         >
             <Resource
                 name="posts"

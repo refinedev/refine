@@ -35,7 +35,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
     const { push } = useNavigation();
     const { logout } = useContext<IAuthContext>(AuthContext);
     const { components } = useContext<IComponentsContext>(ComponentsContext);
-    const { title, Layout, footer, header, sider } = useContext<IAdminContext>(
+    const { Title, Layout, footer, header, sider } = useContext<IAdminContext>(
         AdminContext,
     );
 
@@ -103,7 +103,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
                     alignItems: "center",
                 }}
             >
-                {title ?? <span>Refine</span>}
+                {Title && <Title collapsed={collapsed} />}
             </Link>
             <Menu
                 onClick={menuOnClick}

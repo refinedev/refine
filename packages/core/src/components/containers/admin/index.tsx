@@ -5,6 +5,7 @@ import { BrowserRouter as Router, RouteProps } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { LayoutProps } from "../../layout";
+import { TitleProps } from "../../../contexts/admin/IAdminContext";
 import "antd/dist/antd.css";
 
 import { AuthContextProvider } from "@contexts/auth";
@@ -31,7 +32,7 @@ export interface AdminProps {
     dataProvider: IDataContext;
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
-    title?: ReactNode;
+    Title?: FC<TitleProps>;
     loginPage?: React.FC | false;
     dashboard?: React.FC;
     ready?: React.FC;
@@ -51,7 +52,7 @@ export interface AdminProps {
 export const Admin: React.FC<AdminProps> = ({
     authProvider,
     dataProvider,
-    title,
+    Title,
     dashboard,
     ready,
     loginPage,
@@ -118,7 +119,7 @@ export const Admin: React.FC<AdminProps> = ({
                                             warnWhenUnsavedChanges
                                         }
                                         syncWithLocation={syncWithLocation}
-                                        title={title}
+                                        Title={Title}
                                         undoableTimeout={undoableTimeout}
                                         Layout={Layout}
                                         sider={sider}

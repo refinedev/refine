@@ -8,7 +8,6 @@ export const AdminContext = React.createContext<IAdminContext>({
     warnWhen: false,
     setWarnWhen: (value: boolean) => value,
     syncWithLocation: false,
-    title: "Refine",
     undoableTimeout: 5000,
 });
 
@@ -18,7 +17,7 @@ export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
     syncWithLocation,
     undoableTimeout,
     children,
-    title,
+    Title,
     Layout,
     sider,
     header,
@@ -33,7 +32,7 @@ export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
                 warnWhen: warnWhen,
                 setWarnWhen: setWarnWhen,
                 syncWithLocation,
-                title,
+                Title,
                 undoableTimeout,
                 Layout,
                 sider,
