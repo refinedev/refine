@@ -7,7 +7,6 @@ import {
     Show,
     Form,
     Steps,
-    ReferenceField,
     TextField,
     TagField,
     FilterDropdown,
@@ -39,6 +38,7 @@ import {
     useShow,
     Typography,
     useSelect,
+    useMany,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -53,14 +53,16 @@ interface IPost {
     slug: string;
     status: "published" | "draft";
     createdAt: string;
-    category: {
-        id: string;
-        title: string;
-    };
+    category: ICategory;
     user: {
         id: string;
     };
     tags: [{ id: string }];
+}
+
+interface ICategory {
+    id: string;
+    title: string;
 }
 
 export const PostList = (props: any) => {
@@ -76,6 +78,31 @@ export const PostList = (props: any) => {
             },
         ],
     });
+
+    // collect categoryIds
+    const [categoryIds, setCategoryIds] = React.useState<string[]>([]);
+
+    React.useEffect(() => {
+        if (tableProps.dataSource) {
+            setCategoryIds(
+                tableProps.dataSource.map((item) => item.category.id),
+            );
+        }
+    }, [tableProps.dataSource]);
+
+    const { data, isLoading, refetch } = useMany<ICategory>(
+        "categories",
+        categoryIds,
+        {
+            enabled: false,
+        },
+    );
+
+    React.useEffect(() => {
+        if (categoryIds.length > 0) {
+            refetch();
+        }
+    }, [categoryIds]);
 
     const { ...categorySelectProps } = useSelect({
         resource: "categories",
@@ -151,14 +178,23 @@ export const PostList = (props: any) => {
                     render={(value) => <TextField value={value} />}
                 />
                 <Table.Column
-                    dataIndex="category"
+                    dataIndex={["category", "id"]}
                     title={translate("common:resources.posts.fields.category")}
                     key="category.id"
-                    render={({ id }) => (
-                        <ReferenceField resource="categories" value={id}>
-                            <TextField value="title" />
-                        </ReferenceField>
-                    )}
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+
+                        return (
+                            <TextField
+                                value={
+                                    data?.data.find((item) => item.id === value)
+                                        ?.title
+                                }
+                            />
+                        );
+                    }}
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Select
