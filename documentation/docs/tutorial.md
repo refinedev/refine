@@ -10,6 +10,7 @@ import resourceFirst from '@site/static/img/resource-1.png';
 import resourceSecond from '@site/static/img/resource-2.png';
 import createGif from '@site/static/img/create.gif';
 import editGif from '@site/static/img/edit.gif';
+import showGif from '@site/static/img/show.gif';
 
 We'll show how to create a simple admin app with CRUD operations based on an existing REST API.
 
@@ -269,6 +270,21 @@ We'll implement a page for editing an existing record.
 Let's create a `<PostEdit>` component to edit an existing post. This component will be passed as `list` prop to `<Resource>`.
 
 ```tsx title="components/pages/posts.tsx"
+import { 
+    ...
+    //highlight-start
+    useForm, 
+    Edit, 
+    Form, 
+    Input, 
+    Select
+     //highlight-end 
+} from "@pankod/refine";
+
+export const PostList = () => { 
+    ...
+}
+
 export const PostEdit = () => {
     const { formProps, saveButtonProps } = useForm({});
 
@@ -422,7 +438,19 @@ We'll implement a page for creating a new record using fake REST API. It has a s
 First create a `<PostCreate>` component to create a new post. This component will be passed as `create` prop to `<Resource>`.
 
 ```tsx title="components/pages/posts.tsx"
-import { useForm, Create, Form, Input, Select } from "@pankod/refine";
+import { 
+    ...
+    //highlight-next-line
+    Create 
+} from "@pankod/refine";
+
+export const PostList = () => { 
+    ...
+}
+
+export const PostEdit = () => { 
+    ...
+}
 
 export const PostCreate = () => {
     const { formProps, saveButtonProps } = useForm({});
@@ -527,7 +555,124 @@ This part is very similar to [Editing the form](#editing-the-form). Only differe
 
 <br/>
 
-## Show
+## Showing a record
+
+Let's implement a page for showing an existing record in detail.
+
+First create a `<PostShow>` component to show an existing post. This component will be passed as `show` prop to `<Resource>`.
+
+```tsx title="components/pages/posts.tsx"
+import {
+    ...
+    //highlight-start 
+    Show, 
+    useShow, 
+    Typography, 
+    Tag, 
+    ShowButton
+    //highlight-end
+} from "@pankod/refine";
+
+export const PostList = () => { 
+    ...
+}
+
+export const PostEdit = () => { 
+    ...
+}
+
+export const PostCreate = () => { 
+    ...
+}
+
+export const PostShow = () => {
+    const { queryResult } = useShow({});
+    const { data, isLoading } = queryResult;
+    const record = data?.data;
+
+    return (
+        <Show isLoading={isLoading}>
+            <Title level={5}>Title</Title>
+            <Text>{record?.title}</Text>
+
+            <Title level={5}>Status</Title>
+            <Tag>{record?.status}</Tag>
+        </Show>
+    )
+}
+```
+
+<br />
+
+After creating the `<PostShow>` component, add it to `<Resource>`.
+
+<br />
+
+```tsx title="src/App.tsx"
+import { Admin, Resource } from "@pankod/refine";
+import dataProvider from "@pankod/refine-json-server";
+//highlight-next-line
+import { PostList, PostEdit, PostCreate, PostShow } from "./components/pages/posts";
+
+function App() {
+    return (
+        <Admin
+            dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
+        >
+            <Resource
+                name="posts"
+                list={PostList}
+                edit={PostEdit}
+                create={PostCreate}
+                //highlight-next-line
+                show={PostShow}
+            />
+        </Admin>
+    );
+}
+
+export default App;
+```
+
+### Fetching record data
+```tsx
+const { queryResult } = useShow({});
+```
+
+`useShow` is another skillful hook from `refine` that is responsible for fetching a single record data.
+
+The `queryResult` includes fetched data and query state like `isLoading` state.
+
+[Refer to `useShow` documentation for detailed usage. &#8594](#)
+
+### Showing the data
+
+Since record data is explicit, there is no constraint on how to present that data. `refine` provides a `<Show>` wrapper component that provides extra features like a `list` and a `refresh` buttons.
+
+[Refer to `<Show>` documentation for detailed usage. &#8594](#)
+
+:::tip
+`<Show>` can also render `edit` and `delete` buttons via `canEdit` and `canDelete` props which can be passed from props of `<PostShow>`
+
+```tsx
+export const PostShow = (props: IResourceComponentsProps) => {
+    ...
+    <Show {...props}>
+}
+```
+:::
+
+<br />
+
+<>
+
+<div style={{textAlign: "center"}}>
+    <img src={showGif} />
+</div>
+<br/>
+</>
+
+<br />
 
 ## Adding search and filters
 

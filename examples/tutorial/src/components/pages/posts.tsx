@@ -13,8 +13,15 @@ import {
     Select,
     Edit,
     Space,
-    EditButton
+    EditButton,
+    Show,
+    useShow,
+    Typography,
+    Tag,
+    ShowButton
 } from "@pankod/refine";
+
+const { Title, Text } = Typography
 
 export const PostList = (props: IResourceComponentsProps) => {
     const { tableProps } = useTable({});
@@ -44,7 +51,7 @@ export const PostList = (props: IResourceComponentsProps) => {
                         multiple: 2,
                     }}
                 />
-                 <Table.Column
+                <Table.Column
                     title="Actions"
                     dataIndex="actions"
                     render={(
@@ -53,13 +60,13 @@ export const PostList = (props: IResourceComponentsProps) => {
                             id: string | number;
                         },
                     ): React.ReactNode => {
-                         console.log("tex", _text);
-                         
-                        return(
-                        <Space>
-                            <EditButton size="small" recordItemId={record.id} />
-                        </Space>
-                    )}}
+                        return (
+                            <Space>
+                                <EditButton size="small" recordItemId={record.id} />
+                                <ShowButton size="small" recordItemId={record.id} />
+                            </Space>
+                        )
+                    }}
                 />
             </Table>
         </List>
@@ -121,3 +128,19 @@ export const PostEdit = () => {
         </Edit>
     );
 };
+
+export const PostShow = () => {
+    const { queryResult } = useShow({});
+    const { data, isLoading } = queryResult;
+    const record = data?.data;
+
+    return (
+        <Show isLoading={isLoading}>
+            <Title level={5}>Title</Title>
+            <Text>{record?.title}</Text>
+
+            <Title level={5}>Status</Title>
+            <Tag>{record?.status}</Tag>
+        </Show>
+    )
+}

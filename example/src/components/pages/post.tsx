@@ -432,7 +432,6 @@ export const PostCreate = (props: any) => {
 
     return (
         <Create
-            {...props}
             actionButtons={
                 <>
                     {current > 0 && (
