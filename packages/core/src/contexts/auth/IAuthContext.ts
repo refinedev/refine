@@ -6,8 +6,6 @@ export interface IAuthContext {
     getPermissions: (params?: any) => Promise<any>;
     getUserIdentity?: () => Promise<{
         id: string | number;
-        fullName?: string;
-        avatar?: string;
         [key: string]: any;
     }>;
     [key: string]: any;

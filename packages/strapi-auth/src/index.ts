@@ -1,7 +1,7 @@
 import { AuthProvider } from "@pankod/refine";
 import axios from "axios";
 
-import { ILoginResponse } from "./strapi";
+import { ILoginResponse, IUser } from "./strapi";
 
 const StrapiAuthProvider = (apiUrl: string): AuthProvider => ({
     login: async (params) => {
@@ -28,13 +28,21 @@ const StrapiAuthProvider = (apiUrl: string): AuthProvider => ({
     checkAuth: () =>
         localStorage.getItem("token") ? Promise.resolve() : Promise.reject(),
     getPermissions: () => Promise.resolve(["admin"]),
-    getUserIdentity: () =>
-        Promise.resolve({
-            id: 1,
-            fullName: "Jane Doe",
-            avatar:
-                "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
-        }),
+    getUserIdentity: async () => {
+        const token = localStorage.getItem("token");
+
+        const { data, status } = await axios.get<IUser>(`${apiUrl}/users/me`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        if (status === 200) {
+            return data;
+        }
+
+        return data;
+    },
 });
 
 export default StrapiAuthProvider;
