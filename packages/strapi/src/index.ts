@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 import { DataProvider, HttpError } from "@pankod/refine";
+import { stringify } from "query-string";
 
 const axiosInstance = axios.create();
 
@@ -24,14 +25,41 @@ const Strapi = (
 ): DataProvider => ({
     getList: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
-        const { sort } = params;
-        const query = "";
+        const { pagination, sort } = params;
 
-        const { data } = await httpClient.get(`${url}?${query}`);
+        const current = pagination?.current || 1;
+        const pageSize = pagination?.pageSize || 10;
+
+        const _sort = [];
+        if (Array.isArray(sort) || sort?.field) {
+            if (Array.isArray(sort)) {
+                sort.map((item) => {
+                    if (item.order) {
+                        const order = item.order.replace("end", "");
+                        _sort.push(`${item.field}:${order}`);
+                    }
+                });
+            } else {
+                if (sort.order) {
+                    const order = sort.order.replace("end", "");
+                    _sort.push(`${sort.field}:${order}`);
+                }
+            }
+        }
+
+        const query = {
+            _start: (current - 1) * pageSize,
+            _limit: current * pageSize,
+            _sort: _sort.length > 0 ? _sort.join(",") : undefined,
+            // q,
+        };
+
+        const { data } = await httpClient.get(`${url}?${stringify(query)}`);
+        const countRequest = await httpClient.get(`${url}/count`);
 
         return {
-            data: data.data,
-            total: data.total,
+            data: data,
+            total: countRequest.data,
         };
     },
 

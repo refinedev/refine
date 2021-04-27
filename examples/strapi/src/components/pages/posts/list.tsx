@@ -11,8 +11,8 @@ export const PostList = (props: IResourceComponentsProps) => {
     const { tableProps, sorter } = useTable({
         initialSorter: [
             {
-                field: "title",
-                order: "ascend",
+                field: "id",
+                order: "descend",
             },
         ],
     });
@@ -29,11 +29,30 @@ export const PostList = (props: IResourceComponentsProps) => {
                 }}
             >
                 <Table.Column
+                    key="id"
+                    dataIndex="id"
+                    title="ID"
+                    render={(value) => <TextField value={value} />}
+                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
+                    sorter
+                />
+                <Table.Column
                     key="title"
                     dataIndex="title"
                     title="Title"
                     render={(value) => <TextField value={value} />}
                     defaultSortOrder={getDefaultSortOrder("title", sorter)}
+                    sorter
+                />
+                <Table.Column
+                    key="category.id"
+                    dataIndex={["category", "title"]}
+                    title="Category"
+                    render={(value) => <TextField value={value} />}
+                    defaultSortOrder={getDefaultSortOrder(
+                        "category.id",
+                        sorter,
+                    )}
                     sorter
                 />
             </Table>
