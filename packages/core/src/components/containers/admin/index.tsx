@@ -44,7 +44,7 @@ export interface AdminProps {
     Sider?: FC<unknown>;
     Header?: FC<unknown>;
     Footer?: FC<unknown>;
-    OffLayoutArea: FC<unknown>;
+    OffLayoutArea?: FC<unknown>;
     Title?: FC<TitleProps>;
 }
 

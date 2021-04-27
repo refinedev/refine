@@ -1,39 +1,48 @@
 import React, { ReactNode } from "react";
-import { ComponentsContext } from "@contexts/components";
 import { Layout } from "@components/layout";
-import { IComponentsContext } from "../../contexts/components/IComponentsContext";
+import { IAdminContextProvider } from "../../contexts/admin/IAdminContext";
 import { render, screen, TestWrapper, MockJSONServer } from "@test";
 import { Route } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
 
-const renderWithComponentsContext = (
+const renderWithAdminContext = (
     children: ReactNode,
-    { components }: IComponentsContext,
+    adminProvider: IAdminContextProvider,
 ) => {
     return render(<Route path="/">{children}</Route>, {
         wrapper: TestWrapper({
             dataProvider: MockJSONServer,
             resources: [{ name: "posts", route: "posts" }],
             routerInitialEntries: ["/"],
-            components,
+            adminProvider,
         }),
     });
 };
 
 describe("Layout", () => {
-    test("Layout renders the components passed by ComponentsContext", () => {
+    test("Layout renders the components passed by AdminContext", () => {
         const testContent = "Example component content";
 
-        renderWithComponentsContext(<Layout />, {
-            components: <p>{testContent}</p>,
+        const CustomOffLayoutArea = () => <p>{testContent}</p>;
+
+        renderWithAdminContext(<Layout />, {
+            OffLayoutArea: CustomOffLayoutArea,
+            warnWhenUnsavedChanges: false,
+            mutationMode: "pessimistic",
+            syncWithLocation: false,
+            undoableTimeout: 5000,
         });
 
         expect(screen.getByText(testContent));
     });
 
-    test("Layout renders without components", () => {
-        const result = renderWithComponentsContext(<Layout />, {
-            components: undefined,
+    test("Layout renders without OffLayoutArea component", () => {
+        const result = renderWithAdminContext(<Layout />, {
+            OffLayoutArea: undefined,
+            warnWhenUnsavedChanges: false,
+            mutationMode: "pessimistic",
+            syncWithLocation: false,
+            undoableTimeout: 5000,
         });
 
         expect(result).toBeTruthy();
