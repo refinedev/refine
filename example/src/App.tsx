@@ -89,10 +89,17 @@ function App() {
             dashboard={DashboardPage}
             ready={ReadyPage}
             i18nProvider={i18nProvider}
-            CustomLayout={({ children, Sider, Header, Footer }) => (
+            CustomLayout={({
+                children,
+                Sider,
+                Header,
+                Footer,
+                OffLayoutArea,
+            }) => (
                 <AntdLayout
                     style={{ minHeight: "100vh", flexDirection: "row" }}
                 >
+                    <Sider />
                     <AntdLayout className="site-layout">
                         <Header />
                         <AntdLayout.Content>
@@ -102,7 +109,7 @@ function App() {
                         </AntdLayout.Content>
                         <Footer />
                     </AntdLayout>
-                    <Sider />
+                    <OffLayoutArea />
                 </AntdLayout>
             )}
             CustomFooter={() => (
@@ -111,12 +118,12 @@ function App() {
                     (Example Footer)
                 </AntdLayout.Footer>
             )}
-            components={
+            OffLayoutArea={() => (
                 <>
                     <BackTop />
                     <DemoSidebar {...demoSidebarProps} />
                 </>
-            }
+            )}
             routes={[
                 {
                     exact: true,

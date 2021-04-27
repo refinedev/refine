@@ -22,6 +22,7 @@ export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
     CustomSider,
     CustomHeader,
     CustomFooter,
+    OffLayoutArea,
 }) => {
     const [warnWhen, setWarnWhen] = useState(false);
     return (
@@ -38,6 +39,7 @@ export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
                 CustomSider,
                 CustomHeader,
                 CustomFooter,
+                OffLayoutArea,
             }}
         >
             {children}

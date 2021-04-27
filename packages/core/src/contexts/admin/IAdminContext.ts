@@ -10,10 +10,11 @@ export interface IAdminContextProvider {
     mutationMode: MutationMode;
     warnWhenUnsavedChanges: boolean;
     syncWithLocation: boolean;
-    Title?: FC<TitleProps>;
     undoableTimeout: number;
+    Title?: FC<TitleProps>;
     CustomLayout?: FC<CustomLayoutProps>;
     CustomSider?: FC<unknown>;
     CustomHeader?: FC<unknown>;
     CustomFooter?: FC<unknown>;
+    OffLayoutArea?: FC<unknown>;
 }

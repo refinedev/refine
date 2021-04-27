@@ -1,5 +1,5 @@
-import React, { ReactNode, FC, useContext, useEffect } from "react";
-import { Layout as AntLayout, Menu, Button } from "antd";
+import React, { FC, useContext, useEffect } from "react";
+import { Layout as AntLayout, Menu, Button, BackTop } from "antd";
 import {
     DashboardOutlined,
     LogoutOutlined,
@@ -10,7 +10,7 @@ import { Link, Prompt, useLocation } from "react-router-dom";
 import humanizeString from "humanize-string";
 
 import { AuthContext } from "@contexts/auth";
-import { IAuthContext, IComponentsContext } from "../../interfaces";
+import { IAuthContext } from "../../interfaces";
 import {
     useNavigation,
     useResource,
@@ -18,7 +18,6 @@ import {
     useTranslate,
     useWarnAboutChange,
 } from "@hooks";
-import { ComponentsContext } from "@contexts/components";
 import { AdminContext } from "@contexts/admin/";
 import { IAdminContext } from "@contexts/admin/IAdminContext";
 
@@ -31,13 +30,14 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
 
     const { push } = useNavigation();
     const { logout } = useContext<IAuthContext>(AuthContext);
-    const { components } = useContext<IComponentsContext>(ComponentsContext);
+
     const {
         Title,
         CustomLayout,
         CustomFooter,
         CustomHeader,
         CustomSider,
+        OffLayoutArea,
     } = useContext<IAdminContext>(AdminContext);
 
     const { resources } = useResource();
@@ -174,13 +174,27 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
         </AntLayout.Footer>
     );
 
+    const DefaultOffLayoutArea = () => (
+        <>
+            <BackTop />
+        </>
+    );
+
     return CustomLayout ? (
         <CustomLayout
             Sider={CustomSider ?? DefaultSider}
             Header={CustomHeader ?? DefaultHeader}
             Footer={CustomFooter ?? DefaultFooter}
+            OffLayoutArea={OffLayoutArea ?? DefaultOffLayoutArea}
         >
             {children}
+            <Prompt
+                when={warnWhen}
+                message={translate(
+                    "common:warnWhenUnsavedChanges",
+                    "Are you sure you want to leave? You have with unsaved changes.",
+                )}
+            />
         </CustomLayout>
     ) : (
         <AntLayout style={{ minHeight: "100vh" }}>
@@ -191,7 +205,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
                     <div style={{ padding: 24, minHeight: 360 }}>
                         {children}
                     </div>
-                    {components}
+                    {OffLayoutArea && <OffLayoutArea />}
                 </AntLayout.Content>
                 {CustomFooter ? <CustomFooter /> : <DefaultFooter />}
             </AntLayout>
