@@ -1,13 +1,13 @@
 import { Admin, Resource } from "@pankod/refine";
-import AuthProvider from "@pankod/refine-stripi-auth";
-import DataProvider from "@pankod/refine-nestjsx-crud";
+import AuthProvider from "@pankod/refine-strapi-auth";
+import DataProvider from "@pankod/refine-strapi";
 
 import { PostList } from "./components/pages/posts";
 
 const App = () => {
     const apiUrl = "http://localhost:1337";
     const authProvider = AuthProvider(apiUrl);
-    const dataProvider = DataProvider("https://refine-nestjs-crud.pankod.com");
+    const dataProvider = DataProvider(apiUrl);
 
     return (
         <Admin authProvider={authProvider} dataProvider={dataProvider}>

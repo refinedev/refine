@@ -1,5 +1,5 @@
 {
-  "version": "0.1.1",
+  "version": "0.1.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -19,16 +19,16 @@
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
-  "name": "@pankod/refine-stripi-auth",
+  "name": "@pankod/refine-strapi-auth",
   "author": "Pankod",
-  "module": "dist/refine-stripi-auth.esm.js",
+  "module": "dist/refine-strapi-auth.esm.js",
   "size-limit": [
     {
-      "path": "dist/refine-stripi-auth.cjs.production.min.js",
+      "path": "dist/refine-strapi-auth.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/refine-stripi-auth.esm.js",
+      "path": "dist/refine-strapi-auth.esm.js",
       "limit": "10 KB"
     }
   ],
