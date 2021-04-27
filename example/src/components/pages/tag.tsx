@@ -5,8 +5,6 @@ import {
     Create,
     Edit,
     Form,
-    ImageField,
-    ReferenceField,
     Input,
     Button,
     Collapse,
@@ -92,15 +90,6 @@ export const TagList = (props: any) => {
                     key="id"
                     dataIndex="id"
                     title={translate("common:resources.tags.fields.image")}
-                    render={(value) => (
-                        <ReferenceField resource="images" value={value}>
-                            <ImageField
-                                renderRecordKey="url"
-                                imageTitle="meow"
-                                width={200}
-                            />
-                        </ReferenceField>
-                    )}
                 />
                 <Table.Column
                     title={translate("common:table.actions", "Actions")}

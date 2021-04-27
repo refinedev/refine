@@ -7,7 +7,6 @@ import {
     Show,
     Form,
     Steps,
-    ReferenceField,
     TextField,
     TagField,
     FilterDropdown,
@@ -39,6 +38,7 @@ import {
     useShow,
     Typography,
     useSelect,
+    useMany,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -53,14 +53,16 @@ interface IPost {
     slug: string;
     status: "published" | "draft";
     createdAt: string;
-    category: {
-        id: string;
-        title: string;
-    };
+    category: ICategory;
     user: {
         id: string;
     };
     tags: [{ id: string }];
+}
+
+interface ICategory {
+    id: string;
+    title: string;
 }
 
 export const PostList = (props: any) => {
@@ -76,8 +78,33 @@ export const PostList = (props: any) => {
             },
         ],
     });
+  
+      // collect categoryIds
+    const [categoryIds, setCategoryIds] = React.useState<string[]>([]);
 
-    const { ...categorySelectProps } = useSelect({
+    React.useEffect(() => {
+        if (tableProps.dataSource) {
+            setCategoryIds(
+                tableProps.dataSource.map((item) => item.category.id),
+            );
+        }
+    }, [tableProps.dataSource]);
+
+    const { data, isLoading, refetch } = useMany<ICategory>(
+        "categories",
+        categoryIds,
+        {
+            enabled: false,
+        },
+    );
+
+    React.useEffect(() => {
+        if (categoryIds.length > 0) {
+            refetch();
+        }
+    }, [categoryIds]);
+
+    const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
         optionLabel: "title",
         optionValue: "id",
@@ -151,14 +178,23 @@ export const PostList = (props: any) => {
                     render={(value) => <TextField value={value} />}
                 />
                 <Table.Column
-                    dataIndex="category"
+                    dataIndex={["category", "id"]}
                     title={translate("common:resources.posts.fields.category")}
                     key="category.id"
-                    render={({ id }) => (
-                        <ReferenceField resource="categories" value={id}>
-                            <TextField renderRecordKey="title" />
-                        </ReferenceField>
-                    )}
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+
+                        return (
+                            <TextField
+                                value={
+                                    data?.data.find((item) => item.id === value)
+                                        ?.title
+                                }
+                            />
+                        );
+                    }}
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Select
@@ -267,16 +303,16 @@ export const PostCreate = (props: any) => {
         },
     });
 
-    const categorySelectProps = useSelect({
+    const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
     });
 
-    const userSelectProps = useSelect({
+    const { selectProps: userSelectProps } = useSelect({
         resource: "users",
         optionLabel: "email",
     });
 
-    const tagsSelectProps = useSelect({
+    const { selectProps: tagsSelectProps } = useSelect({
         resource: "tags",
     });
 
@@ -365,18 +401,12 @@ export const PostCreate = (props: any) => {
         <>
             <Form.Item
                 label={translate("common:resources.posts.fields.category")}
-                name="category"
+                name={["category", "id"]}
                 rules={[
                     {
                         required: true,
                     },
                 ]}
-                getValueProps={(prop) => {
-                    return { value: prop?.id };
-                }}
-                getValueFromEvent={(id) => {
-                    return { id };
-                }}
             >
                 <Select
                     showSearch
@@ -386,19 +416,13 @@ export const PostCreate = (props: any) => {
             </Form.Item>
             <Form.Item
                 label={translate("common:resources.posts.fields.user")}
-                name="user"
+                name={["name", "id"]}
                 rules={[
                     {
                         required: true,
                     },
                 ]}
                 help="Autocomplete (search user email)"
-                getValueProps={(prop) => {
-                    return { value: prop?.id };
-                }}
-                getValueFromEvent={(id) => {
-                    return { id };
-                }}
             >
                 <Select showSearch filterOption={false} {...userSelectProps} />
             </Form.Item>
@@ -510,18 +534,18 @@ export const PostEdit = (props: any) => {
     });
 
     const postData = queryResult?.data?.data;
-    const categorySelectProps = useSelect({
+    const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
         defaultValue: postData?.category.id,
     });
 
-    const userSelectProps = useSelect({
+    const { selectProps: userSelectProps } = useSelect({
         resource: "users",
         optionLabel: "email",
         defaultValue: postData?.user.id,
     });
 
-    const tagsSelectProps = useSelect({
+    const { selectProps: tagsSelectProps } = useSelect({
         resource: "tags",
         // TODO: tag interface
         defaultValue: postData?.tags.map((tag: { id: string }) => tag.id),
@@ -612,18 +636,12 @@ export const PostEdit = (props: any) => {
         <>
             <Form.Item
                 label={translate("common:resources.posts.fields.category")}
-                name="category"
+                name={["category", "id"]}
                 rules={[
                     {
                         required: true,
                     },
                 ]}
-                getValueProps={(prop) => {
-                    return { value: prop?.id };
-                }}
-                getValueFromEvent={(id) => {
-                    return { id };
-                }}
             >
                 <Select
                     showSearch
@@ -633,18 +651,12 @@ export const PostEdit = (props: any) => {
             </Form.Item>
             <Form.Item
                 label={translate("common:resources.posts.fields.user")}
-                name="user"
+                name={["user", "id"]}
                 rules={[
                     {
                         required: true,
                     },
                 ]}
-                getValueProps={(prop) => {
-                    return { value: prop?.id };
-                }}
-                getValueFromEvent={(id) => {
-                    return { id };
-                }}
                 help="Autocomplete (search user email)"
             >
                 <Select showSearch filterOption={false} {...userSelectProps} />

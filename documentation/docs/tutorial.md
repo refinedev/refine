@@ -664,7 +664,7 @@ export const PostShow = (props: IResourceComponentsProps) => {
 
 <br />
 
-<>
+
 
 <div style={{textAlign: "center"}}>
     <img src={showGif} />
