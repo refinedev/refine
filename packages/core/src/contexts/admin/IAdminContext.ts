@@ -1,10 +1,5 @@
-import { ReactNode, FC } from "react";
-import { MutationMode } from "../../interfaces";
-import { LayoutProps } from "../../components/layout";
-
-export type TitleProps = {
-    collapsed: boolean;
-};
+import { FC } from "react";
+import { MutationMode, TitleProps, CustomLayoutProps } from "../../interfaces";
 
 export interface IAdminContext extends IAdminContextProvider {
     warnWhen: boolean;
@@ -17,8 +12,8 @@ export interface IAdminContextProvider {
     syncWithLocation: boolean;
     Title?: FC<TitleProps>;
     undoableTimeout: number;
-    Layout?: FC<LayoutProps>;
-    sider?: ReactNode;
-    header?: ReactNode;
-    footer?: ReactNode;
+    CustomLayout?: FC<CustomLayoutProps>;
+    CustomSider?: FC<unknown>;
+    CustomHeader?: FC<unknown>;
+    CustomFooter?: FC<unknown>;
 }

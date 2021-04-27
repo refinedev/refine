@@ -33,6 +33,9 @@ export * from "./mutationMode";
 // mutationMode
 export * from "./HttpError";
 
+// custom components
+export * from "./customComponents";
+
 // resourceRouterParams
 export * from "./resourceRouterParams";
 

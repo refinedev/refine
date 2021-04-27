@@ -18,10 +18,10 @@ export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
     undoableTimeout,
     children,
     Title,
-    Layout,
-    sider,
-    header,
-    footer,
+    CustomLayout,
+    CustomSider,
+    CustomHeader,
+    CustomFooter,
 }) => {
     const [warnWhen, setWarnWhen] = useState(false);
     return (
@@ -34,10 +34,10 @@ export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
                 syncWithLocation,
                 Title,
                 undoableTimeout,
-                Layout,
-                sider,
-                header,
-                footer,
+                CustomLayout,
+                CustomSider,
+                CustomHeader,
+                CustomFooter,
             }}
         >
             {children}

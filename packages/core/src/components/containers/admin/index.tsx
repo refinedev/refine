@@ -4,8 +4,6 @@ import { ConfigProviderProps } from "antd/lib/config-provider";
 import { BrowserRouter as Router, RouteProps } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { LayoutProps } from "../../layout";
-import { TitleProps } from "../../../contexts/admin/IAdminContext";
 import "antd/dist/antd.css";
 
 import { AuthContextProvider } from "@contexts/auth";
@@ -25,6 +23,8 @@ import {
     IDataContext,
     IAuthContext,
     I18nProvider,
+    CustomLayoutProps,
+    TitleProps,
 } from "../../../interfaces";
 
 export interface AdminProps {
@@ -43,10 +43,10 @@ export interface AdminProps {
     configProviderProps?: ConfigProviderProps;
     components?: ReactNode;
     undoableTimeout?: number;
-    Layout?: FC<LayoutProps>;
-    sider?: ReactNode;
-    header?: ReactNode;
-    footer?: ReactNode;
+    CustomLayout?: FC<CustomLayoutProps>;
+    CustomSider?: FC<unknown>;
+    CustomHeader?: FC<unknown>;
+    CustomFooter?: FC<unknown>;
 }
 
 export const Admin: React.FC<AdminProps> = ({
@@ -66,10 +66,10 @@ export const Admin: React.FC<AdminProps> = ({
     configProviderProps = defaultConfigProviderProps,
     components,
     undoableTimeout = 5000,
-    Layout,
-    sider,
-    header,
-    footer,
+    CustomLayout,
+    CustomSider,
+    CustomHeader,
+    CustomFooter,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -121,10 +121,10 @@ export const Admin: React.FC<AdminProps> = ({
                                         syncWithLocation={syncWithLocation}
                                         Title={Title}
                                         undoableTimeout={undoableTimeout}
-                                        Layout={Layout}
-                                        sider={sider}
-                                        footer={footer}
-                                        header={header}
+                                        CustomLayout={CustomLayout}
+                                        CustomSider={CustomSider}
+                                        CustomFooter={CustomFooter}
+                                        CustomHeader={CustomHeader}
                                     >
                                         <ComponentsContextProvider
                                             components={components}

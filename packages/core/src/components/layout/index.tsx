@@ -24,9 +24,6 @@ import { IAdminContext } from "@contexts/admin/IAdminContext";
 
 export interface LayoutProps {
     dashboard?: FC;
-    sider?: ReactNode;
-    header?: ReactNode;
-    footer?: ReactNode;
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
@@ -35,9 +32,13 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
     const { push } = useNavigation();
     const { logout } = useContext<IAuthContext>(AuthContext);
     const { components } = useContext<IComponentsContext>(ComponentsContext);
-    const { Title, Layout, footer, header, sider } = useContext<IAdminContext>(
-        AdminContext,
-    );
+    const {
+        Title,
+        CustomLayout,
+        CustomFooter,
+        CustomHeader,
+        CustomSider,
+    } = useContext<IAdminContext>(AdminContext);
 
     const { resources } = useResource();
 
@@ -85,7 +86,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
         return window.removeEventListener("beforeunload", warnWhenListener);
     }, []);
 
-    const defaultSider = (
+    const DefaultSider = () => (
         <AntLayout.Sider
             collapsible
             collapsed={collapsed}
@@ -146,7 +147,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
         </AntLayout.Sider>
     );
 
-    const defaultHeader = (
+    const DefaultHeader = () => (
         <AntLayout.Header style={{ padding: 0, backgroundColor: "#FFF" }}>
             <div
                 style={{
@@ -167,32 +168,32 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
         </AntLayout.Header>
     );
 
-    const defaultFooter = (
+    const DefaultFooter = () => (
         <AntLayout.Footer style={{ textAlign: "center" }}>
             Refine ©{new Date().getFullYear()} Created by Pankod
         </AntLayout.Footer>
     );
 
-    return Layout ? (
-        <Layout
-            sider={sider ?? defaultSider}
-            header={header ?? defaultHeader}
-            footer={footer ?? defaultFooter}
+    return CustomLayout ? (
+        <CustomLayout
+            Sider={CustomSider ?? DefaultSider}
+            Header={CustomHeader ?? DefaultHeader}
+            Footer={CustomFooter ?? DefaultFooter}
         >
             {children}
-        </Layout>
+        </CustomLayout>
     ) : (
         <AntLayout style={{ minHeight: "100vh" }}>
-            {sider ?? defaultSider}
+            {CustomSider ? <CustomSider /> : <DefaultSider />}
             <AntLayout className="site-layout">
-                {header ?? defaultHeader}
+                {CustomHeader ? <CustomHeader /> : <DefaultHeader />}
                 <AntLayout.Content>
                     <div style={{ padding: 24, minHeight: 360 }}>
                         {children}
                     </div>
                     {components}
                 </AntLayout.Content>
-                {footer ?? defaultFooter}
+                {CustomFooter ? <CustomFooter /> : <DefaultFooter />}
             </AntLayout>
             <Prompt
                 when={warnWhen}
