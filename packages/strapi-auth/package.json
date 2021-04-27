@@ -19,16 +19,16 @@
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
-  "name": "@pankod/refine-nestjsx-crud",
+  "name": "@pankod/refine-stripi-auth",
   "author": "Pankod",
-  "module": "dist/refine-nestjsx-crud.esm.js",
+  "module": "dist/refine-stripi-auth.esm.js",
   "size-limit": [
     {
-      "path": "dist/refine-nestjsx-crud.cjs.production.min.js",
+      "path": "dist/refine-stripi-auth.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/refine-nestjsx-crud.esm.js",
+      "path": "dist/refine-stripi-auth.esm.js",
       "limit": "10 KB"
     }
   ],
