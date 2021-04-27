@@ -670,7 +670,6 @@ export const PostShow = (props: IResourceComponentsProps) => {
     <img src={showGif} />
 </div>
 <br/>
-</>
 
 <br />
 

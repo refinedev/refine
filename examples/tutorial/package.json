@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@pankod/refine": "^1.0.0",
-    "@pankod/refine-json-server": "^0.1.0",
+    "@pankod/refine": "../../packages/core",
+    "@pankod/refine-json-server": "../../packages/json-server",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
