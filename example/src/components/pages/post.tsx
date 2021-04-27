@@ -78,8 +78,8 @@ export const PostList = (props: any) => {
             },
         ],
     });
-  
-      // collect categoryIds
+
+    // collect categoryIds
     const [categoryIds, setCategoryIds] = React.useState<string[]>([]);
 
     React.useEffect(() => {
