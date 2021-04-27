@@ -18,14 +18,29 @@ import {
     useShow,
     Typography,
     Tag,
-    ShowButton
+    ShowButton,
+    useMany,
 } from "@pankod/refine";
 
-const { Title, Text } = Typography
+const { Title, Text } = Typography;
+
+interface ICategory {
+    id: string;
+    title: string;
+}
 
 export const PostList = (props: IResourceComponentsProps) => {
     const { tableProps } = useTable({});
 
+    const { data, isLoading } = useMany<ICategory>(
+        "categories",
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [],
+        {
+            enabled: !!tableProps?.dataSource,
+        },
+    );
+
+    console.log("data" , data)
     return (
         <List {...props}>
             <Table {...tableProps} rowKey="id">
@@ -37,7 +52,24 @@ export const PostList = (props: IResourceComponentsProps) => {
                         multiple: 1,
                     }}
                 />
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
 
+                        return (
+                            <TextField
+                                value={
+                                    data?.data.find((item) => item.id === value)
+                                        ?.title
+                                }
+                            />
+                        );
+                    }}
+                />
                 <Table.Column
                     dataIndex="status"
                     title="status"
@@ -62,10 +94,16 @@ export const PostList = (props: IResourceComponentsProps) => {
                     ): React.ReactNode => {
                         return (
                             <Space>
-                                <EditButton size="small" recordItemId={record.id} />
-                                <ShowButton size="small" recordItemId={record.id} />
+                                <EditButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                                <ShowButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
                             </Space>
-                        )
+                        );
                     }}
                 />
             </Table>
@@ -142,5 +180,5 @@ export const PostShow = () => {
             <Title level={5}>Status</Title>
             <Tag>{record?.status}</Tag>
         </Show>
-    )
-}
+    );
+};

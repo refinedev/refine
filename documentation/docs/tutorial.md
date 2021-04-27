@@ -263,6 +263,123 @@ We can now list `/posts` data successfully as shown below.
 
 ## Handling relationships
 
+In `readmin-fake-rest.pankod.com/posts` response, each post record has category id field.
+
+```ts title="https://readmin-fake-rest.pankod.com/posts/1"
+...
+  "category": {
+    "id": 26
+  }
+...
+```
+Category with this id has data on `readmin-fake-rest.pankod.com/category` endpoint.
+
+Let's say we want to show category title from `/category` endpoint related to category id from `<PostList>` component using `/posts` resource.
+
+```ts title="https://readmin-fake-rest.pankod.com/category/26"
+...
+  { 
+    "id": 26,
+    "title": "mock category title",
+  }
+...
+```
+
+In order to get different resource data, we need to use `refine` hook named `useMany`.
+
+```tsx title="components/pages/posts.tsx"
+import {
+    List,
+    TextField,
+    TagField,
+    DateField,
+    Table,
+    useTable,
+    useMany
+} from "@pankod/refine";
+
+ //highlight-start
+interface ICategory {
+    id: string;
+    title: string;
+}
+ //highlight-end
+
+export const PostList = () => {
+    const { tableProps } = useTable({});
+
+   //highlight-start
+    const { data, isLoading } = useMany<ICategory>(
+        "categories",
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [],
+        {
+            enabled: !!tableProps?.dataSource,
+        },
+    );
+    //highlight-end
+
+    return (
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column
+                    dataIndex="title"
+                    title="title"
+                    render={(value) => <TextField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="status"
+                    title="status"
+                    render={(value) => <TagField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="createdAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                />
+                //highlight-start
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+
+                        return (
+                            <TextField
+                                value={
+                                    data?.data.find((item) => item.id === value)
+                                        ?.title
+                                }
+                            />
+                        );
+                    }}
+                  />
+                     //highlight-end
+            </Table>
+        </List>
+    );
+};
+```
+
+`useMany` expects external resource endpoint and id of each post record. It fetches and return  data with loading status.
+
+```tsx
+  const { data, isLoading } = useMany<ICategory>(
+        "categories",
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [],
+        {
+            enabled: !!tableProps?.dataSource,
+        },
+    );
+```
+
+In our example, we are fetching category data from  `/categories` endpoint to each `/post` record.
+
+[Refer to `useShow` documentation for detailed usage. &#8594](#)
+
+
+
 ## Editing a record
 
 We'll implement a page for editing an existing record.

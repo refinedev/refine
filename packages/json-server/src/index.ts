@@ -83,6 +83,8 @@ const JsonServer = (
         const { data } = await httpClient.get(
             `${apiUrl}/${resource}?${stringify({ id: ids })}`,
         );
+
+        console.log("data", data)
         return {
             data,
         };
