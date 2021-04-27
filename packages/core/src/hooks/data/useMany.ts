@@ -22,7 +22,7 @@ export const useMany = <RecordType extends BaseRecord = BaseRecord>(
     const translate = useTranslate();
 
     const queryResponse = useQuery<GetManyResponse<RecordType>, HttpError>(
-        `resource/list/${resource}`,
+        [`resource/getMany/${resource}`, ids],
         () => getMany<RecordType>(resource, ids),
         {
             ...options,

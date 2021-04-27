@@ -78,31 +78,14 @@ export const PostList = (props: any) => {
             },
         ],
     });
-  
-      // collect categoryIds
-    const [categoryIds, setCategoryIds] = React.useState<string[]>([]);
 
-    React.useEffect(() => {
-        if (tableProps.dataSource) {
-            setCategoryIds(
-                tableProps.dataSource.map((item) => item.category.id),
-            );
-        }
-    }, [tableProps.dataSource]);
-
-    const { data, isLoading, refetch } = useMany<ICategory>(
+    const { data, isLoading } = useMany<ICategory>(
         "categories",
-        categoryIds,
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [],
         {
-            enabled: false,
+            enabled: !!tableProps?.dataSource,
         },
     );
-
-    React.useEffect(() => {
-        if (categoryIds.length > 0) {
-            refetch();
-        }
-    }, [categoryIds]);
 
     const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
