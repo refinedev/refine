@@ -12,6 +12,7 @@ export {
     IResourceComponentsProps,
     ILoginForm,
     HttpError,
+    CustomLayoutProps,
 } from "./interfaces";
 
 export * from "./definitions/upload";

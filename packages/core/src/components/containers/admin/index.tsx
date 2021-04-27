@@ -15,7 +15,6 @@ import {
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { AdminContextProvider } from "@contexts/admin";
 import { NotificationContextProvider } from "@contexts/notification";
-import { ComponentsContextProvider } from "@contexts/components";
 import { RouteProvider, ReadyPage as DefaultReadyPage } from "@components";
 import { OptionalComponent, defaultConfigProviderProps } from "@definitions";
 import {
@@ -32,7 +31,6 @@ export interface AdminProps {
     dataProvider: IDataContext;
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
-    Title?: FC<TitleProps>;
     loginPage?: React.FC | false;
     dashboard?: React.FC;
     ready?: React.FC;
@@ -42,11 +40,12 @@ export interface AdminProps {
     routes?: RouteProps[];
     configProviderProps?: ConfigProviderProps;
     undoableTimeout?: number;
-    CustomLayout?: FC<CustomLayoutProps>;
-    CustomSider?: FC<unknown>;
-    CustomHeader?: FC<unknown>;
-    CustomFooter?: FC<unknown>;
+    Layout?: FC<CustomLayoutProps>;
+    Sider?: FC<unknown>;
+    Header?: FC<unknown>;
+    Footer?: FC<unknown>;
     OffLayoutArea: FC<unknown>;
+    Title?: FC<TitleProps>;
 }
 
 export const Admin: React.FC<AdminProps> = ({
@@ -65,10 +64,10 @@ export const Admin: React.FC<AdminProps> = ({
     routes = [],
     configProviderProps = defaultConfigProviderProps,
     undoableTimeout = 5000,
-    CustomLayout,
-    CustomSider,
-    CustomHeader,
-    CustomFooter,
+    Layout,
+    Sider,
+    Header,
+    Footer,
     OffLayoutArea,
 }) => {
     const queryClient = new QueryClient({
@@ -121,10 +120,10 @@ export const Admin: React.FC<AdminProps> = ({
                                         syncWithLocation={syncWithLocation}
                                         Title={Title}
                                         undoableTimeout={undoableTimeout}
-                                        CustomLayout={CustomLayout}
-                                        CustomSider={CustomSider}
-                                        CustomFooter={CustomFooter}
-                                        CustomHeader={CustomHeader}
+                                        CustomLayout={Layout}
+                                        CustomSider={Sider}
+                                        CustomFooter={Footer}
+                                        CustomHeader={Header}
                                         OffLayoutArea={OffLayoutArea}
                                     >
                                         <Router>

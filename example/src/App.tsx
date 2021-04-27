@@ -89,13 +89,25 @@ function App() {
             dashboard={DashboardPage}
             ready={ReadyPage}
             i18nProvider={i18nProvider}
-            CustomLayout={({
-                children,
-                Sider,
-                Header,
-                Footer,
-                OffLayoutArea,
-            }) => (
+            routes={[
+                {
+                    exact: true,
+                    component: CustomPage,
+                    path: "/custom",
+                },
+                {
+                    exact: true,
+                    component: AuthenticatedCustomPage,
+                    path: "/customauth",
+                },
+            ]}
+            configProviderProps={{
+                ...defaultConfigProviderProps,
+            }}
+            Title={({ collapsed }) => (
+                <div>{collapsed ? "Title" : "Long Title"}</div>
+            )}
+            Layout={({ children, Sider, Header, Footer, OffLayoutArea }) => (
                 <AntdLayout
                     style={{ minHeight: "100vh", flexDirection: "row" }}
                 >
@@ -112,7 +124,7 @@ function App() {
                     <OffLayoutArea />
                 </AntdLayout>
             )}
-            CustomFooter={() => (
+            Footer={() => (
                 <AntdLayout.Footer style={{ textAlign: "center" }}>
                     Refine ©{new Date().getFullYear()} Created by Pankod
                     (Example Footer)
@@ -124,25 +136,7 @@ function App() {
                     <DemoSidebar {...demoSidebarProps} />
                 </>
             )}
-            routes={[
-                {
-                    exact: true,
-                    component: CustomPage,
-                    path: "/custom",
-                },
-                {
-                    exact: true,
-                    component: AuthenticatedCustomPage,
-                    path: "/customauth",
-                },
-            ]}
-            configProviderProps={{
-                ...defaultConfigProviderProps,
-            }}
             {...adminProps}
-            Title={({ collapsed }) => (
-                <div>{collapsed ? "Title" : "Long Title"}</div>
-            )}
         >
             <Resource
                 name="posts"

@@ -174,29 +174,29 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
         </AntLayout.Footer>
     );
 
-    const DefaultOffLayoutArea = () => (
-        <>
-            <BackTop />
-        </>
-    );
+    const DefaultOffLayoutArea = () => null;
 
-    return CustomLayout ? (
-        <CustomLayout
-            Sider={CustomSider ?? DefaultSider}
-            Header={CustomHeader ?? DefaultHeader}
-            Footer={CustomFooter ?? DefaultFooter}
-            OffLayoutArea={OffLayoutArea ?? DefaultOffLayoutArea}
-        >
-            {children}
-            <Prompt
-                when={warnWhen}
-                message={translate(
-                    "common:warnWhenUnsavedChanges",
-                    "Are you sure you want to leave? You have with unsaved changes.",
-                )}
-            />
-        </CustomLayout>
-    ) : (
+    if (CustomLayout) {
+        return (
+            <CustomLayout
+                Sider={CustomSider ?? DefaultSider}
+                Header={CustomHeader ?? DefaultHeader}
+                Footer={CustomFooter ?? DefaultFooter}
+                OffLayoutArea={OffLayoutArea ?? DefaultOffLayoutArea}
+            >
+                {children}
+                <Prompt
+                    when={warnWhen}
+                    message={translate(
+                        "common:warnWhenUnsavedChanges",
+                        "Are you sure you want to leave? You have with unsaved changes.",
+                    )}
+                />
+            </CustomLayout>
+        );
+    }
+
+    return (
         <AntLayout style={{ minHeight: "100vh" }}>
             {CustomSider ? <CustomSider /> : <DefaultSider />}
             <AntLayout className="site-layout">
