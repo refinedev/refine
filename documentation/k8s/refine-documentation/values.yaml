@@ -1,15 +1,16 @@
-# Default values for refine-example.
+# Default values for refine-documentation.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
-  repository: docker.pkg.github.com/pankod/refine/refine-example
+  repository: docker.pkg.github.com/pankod/refine/refine-documentation
   pullPolicy: IfNotPresent
 
 imagePullSecrets:
     - name: github
+
 nameOverride: ""
 fullnameOverride: ""
 
@@ -20,7 +21,9 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name:
+  name: ""
+
+podAnnotations: {}
 
 podSecurityContext: {}
   # fsGroup: 2000
@@ -37,9 +40,13 @@ service:
   type: ClusterIP
   port: 80
 
-
 ingress:
   enabled: true
+
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -52,6 +59,13 @@ resources: {}
   # requests:
   #   cpu: 100m
   #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
 
 nodeSelector:
   doks.digitalocean.com/node-pool: pool-vk41bzxym
