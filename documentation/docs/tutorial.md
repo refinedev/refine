@@ -263,7 +263,10 @@ We can now list `/posts` data successfully as shown below.
 
 ## Handling relationships
 
-In `readmin-fake-rest.pankod.com/posts` response, each post record has category id field.
+Let's say we want to show category title at `<PostList>`.  
+
+[Each post record](#providing-a-data-source-with-an-api) includes a category property that has an id field, which points to a category:
+
 
 ```ts title="https://readmin-fake-rest.pankod.com/posts/1"
 ...
@@ -272,11 +275,12 @@ In `readmin-fake-rest.pankod.com/posts` response, each post record has category 
   }
 ...
 ```
-Category with this id has data on `readmin-fake-rest.pankod.com/category` endpoint.
+<br />
 
-Let's say we want to show category title from `/category` endpoint related to category id from `<PostList>` component using `/posts` resource.
+Each category id references a record at `readmin-fake-rest.pankod.com/categories` endpoint.
 
-```ts title="https://readmin-fake-rest.pankod.com/category/26"
+
+```ts title="https://readmin-fake-rest.pankod.com/categories/26"
 ...
   { 
     "id": 26,
@@ -284,8 +288,9 @@ Let's say we want to show category title from `/category` endpoint related to ca
   }
 ...
 ```
+<br />
 
-In order to get different resource data, we need to use `refine` hook named `useMany`.
+In order to get data from a different resource, we can use a `refine` hook named `useMany`.
 
 ```tsx title="components/pages/posts.tsx"
 import {
@@ -295,6 +300,7 @@ import {
     DateField,
     Table,
     useTable,
+    //highlight-next-line
     useMany
 } from "@pankod/refine";
 
@@ -362,21 +368,27 @@ export const PostList = () => {
 };
 ```
 
-`useMany` expects external resource endpoint and id of each post record. It fetches and return  data with loading status.
 
-```tsx
-  const { data, isLoading } = useMany<ICategory>(
-        "categories",
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [],
-        {
-            enabled: !!tableProps?.dataSource,
-        },
-    );
+:::tip
+We can reach nested properties by using an array.
+
 ```
+ dataIndex={["category", "id"]}
+```
+:::
 
-In our example, we are fetching category data from  `/categories` endpoint to each `/post` record.
+<br />
 
-[Refer to `useShow` documentation for detailed usage. &#8594](#)
+`useMany` expects the external resource endpoint and an array of ids. It fetches and returns data with loading status.
+
+To show category title field, find the title corresponding to the id in data returned by `useMany`, 
+
+[Refer to `useMany` documentation for detailed usage. &#8594](#)
+
+
+
+
+
 
 
 
