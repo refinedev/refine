@@ -3,12 +3,11 @@ import dataProvider from "@pankod/refine-json-server";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
 
-const App = () => {
-    const apiUrl =
-        process.env.REACT_APP_API_URL || "https://refine-fake-rest.pankod.com";
+const API_URL = "https://refine-fake-rest.pankod.com";
 
+const App = () => {
     return (
-        <Admin dataProvider={dataProvider(apiUrl)}>
+        <Admin dataProvider={dataProvider(API_URL)}>
             <Resource
                 name="posts"
                 list={PostList}

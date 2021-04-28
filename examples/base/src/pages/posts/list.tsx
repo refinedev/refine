@@ -1,37 +1,42 @@
+import { useState, useEffect } from "react";
 import {
     List,
     Table,
     TextField,
     useTable,
     IResourceComponentsProps,
-    DateField,
     Space,
     EditButton,
-    DeleteButton,
     ShowButton,
+    useMany,
 } from "@pankod/refine";
 
 export const PostList = (props: IResourceComponentsProps) => {
-    const { tableProps } = useTable({
-        initialSorter: [
-            {
-                field: "id",
-                order: "descend",
-            },
-        ],
+    const { tableProps } = useTable({});
+
+    const [categoryIds, setCategoryIds] = useState<string[]>([]);
+
+    useEffect(() => {
+        if (tableProps.dataSource) {
+            setCategoryIds(
+                tableProps.dataSource.map((item) => item.category.id),
+            );
+        }
+    }, [tableProps.dataSource]);
+
+    const { data, isLoading, refetch } = useMany("categories", categoryIds, {
+        enabled: false,
     });
+
+    useEffect(() => {
+        if (categoryIds.length > 0) {
+            refetch();
+        }
+    }, [categoryIds]);
 
     return (
         <List {...props}>
-            <Table
-                {...tableProps}
-                rowKey="id"
-                pagination={{
-                    ...tableProps.pagination,
-                    position: ["bottomCenter"],
-                    size: "small",
-                }}
-            >
+            <Table {...tableProps} rowKey="id">
                 <Table.Column
                     key="id"
                     dataIndex="id"
@@ -45,18 +50,22 @@ export const PostList = (props: IResourceComponentsProps) => {
                     render={(value) => <TextField value={value} />}
                 />
                 <Table.Column
-                    key="category.id"
                     dataIndex={["category", "id"]}
+                    key="category"
                     title="Category"
-                    render={(value) => <TextField value={value} />}
-                />
-                <Table.Column
-                    key="created_at"
-                    dataIndex="created_at"
-                    title="Created At"
-                    render={(value) => (
-                        <DateField value={value} format="YYYY-MM-DD HH:mm:ss" />
-                    )}
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+                        return (
+                            <TextField
+                                value={
+                                    data?.data.find((item) => item.id === value)
+                                        ?.title
+                                }
+                            />
+                        );
+                    }}
                 />
                 <Table.Column<{ id: number }>
                     title="Actions"
@@ -65,10 +74,6 @@ export const PostList = (props: IResourceComponentsProps) => {
                     render={(_value, record) => (
                         <Space>
                             <EditButton size="small" recordItemId={record.id} />
-                            <DeleteButton
-                                size="small"
-                                recordItemId={record.id}
-                            />
                             <ShowButton size="small" recordItemId={record.id} />
                         </Space>
                     )}

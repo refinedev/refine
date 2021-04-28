@@ -17,9 +17,8 @@ export const PostEdit = (props: IResourceComponentsProps) => {
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
+            <Form {...formProps} layout="vertical" wrapperCol={{ span: 8 }}>
                 <Form.Item
-                    wrapperCol={{ span: 14 }}
                     label="Title"
                     name="title"
                     rules={[
@@ -31,18 +30,6 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input.TextArea style={{ minHeight: 200 }} />
-                </Form.Item>
-                <Form.Item
-                    wrapperCol={{ span: 8 }}
                     label="Category"
                     name={["category", "id"]}
                     rules={[
@@ -52,6 +39,28 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                     ]}
                 >
                     <Select showSearch filterOption={false} {...selectProps} />
+                </Form.Item>
+                <Form.Item
+                    label="Status"
+                    name="status"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select
+                        options={[
+                            {
+                                label: "Published",
+                                value: "published",
+                            },
+                            {
+                                label: "Draft",
+                                value: "draft",
+                            },
+                        ]}
+                    />
                 </Form.Item>
             </Form>
         </Create>
