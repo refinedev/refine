@@ -5,16 +5,28 @@ import {
     useTable,
     IResourceComponentsProps,
     getDefaultSortOrder,
+    FilterDropdown,
+    Select,
+    getDefaultFilter,
+    useSelect,
+    DateField,
 } from "@pankod/refine";
 
 export const PostList = (props: IResourceComponentsProps) => {
-    const { tableProps, sorter } = useTable({
+    const { tableProps, sorter, filters } = useTable({
         initialSorter: [
             {
                 field: "id",
                 order: "descend",
             },
         ],
+    });
+
+    const { selectProps } = useSelect({
+        resource: "categories",
+        optionLabel: "title",
+        optionValue: "id",
+        defaultValue: getDefaultFilter("category.id", filters),
     });
 
     return (
@@ -49,9 +61,29 @@ export const PostList = (props: IResourceComponentsProps) => {
                     dataIndex={["category", "title"]}
                     title="Category"
                     render={(value) => <TextField value={value} />}
-                    defaultSortOrder={getDefaultSortOrder(
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Select
+                                style={{ minWidth: 200 }}
+                                showSearch
+                                mode="multiple"
+                                placeholder="Select Category"
+                                filterOption={false}
+                                {...selectProps}
+                            />
+                        </FilterDropdown>
+                    )}
+                    defaultFilteredValue={getDefaultFilter(
                         "category.id",
-                        sorter,
+                        filters,
+                    )}
+                />
+                <Table.Column
+                    key="created_at"
+                    dataIndex="created_at"
+                    title="Created At"
+                    render={(value) => (
+                        <DateField value={value} format="YYYY-MM-DD HH:mm:ss" />
                     )}
                     sorter
                 />

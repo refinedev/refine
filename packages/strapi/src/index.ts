@@ -47,14 +47,21 @@ const Strapi = (
             }
         }
 
+        // filter
+        const filters = stringify(params.filters || {}, {
+            skipNull: true,
+        });
+
         const query = {
             _start: (current - 1) * pageSize,
             _limit: current * pageSize,
             _sort: _sort.length > 0 ? _sort.join(",") : undefined,
-            // q,
         };
 
-        const { data } = await httpClient.get(`${url}?${stringify(query)}`);
+        const { data } = await httpClient.get(
+            `${url}?${stringify(query)}&${filters}`,
+        );
+
         const countRequest = await httpClient.get(`${url}/count`);
 
         return {
