@@ -28,6 +28,12 @@ export type useTableProps = {
     syncWithLocation?: boolean;
 };
 
+export type useTableReturnType<RecordType extends BaseRecord = BaseRecord> = {
+    tableProps: TableProps<RecordType>;
+    sorter: Sort;
+    filters: Filters;
+};
+
 export const useTable = <RecordType extends BaseRecord = BaseRecord>({
     permanentFilter,
     initialCurrent = 1,
@@ -35,7 +41,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
     initialSorter,
     initialFilter,
     syncWithLocation = false,
-}: useTableProps) => {
+}: useTableProps): useTableReturnType<RecordType> => {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
     if (syncWithLocationContext) {
@@ -125,6 +131,8 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
             pagination: {
                 ...tablePropsSunflower.pagination,
                 total: data?.total,
+                size: "small",
+                position: ["bottomCenter"],
             },
         },
         sorter: sorter as Sort,
