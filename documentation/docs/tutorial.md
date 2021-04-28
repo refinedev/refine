@@ -62,7 +62,7 @@ You can simply bootstrap the app with this setup. You will see the welcome page 
 //image//
 
 
-The App component renders an <Admin> component, which is the root component of a react-admin application. This component expects a dataProvider prop - a function capable of fetching data from an API. Since there is no standard for data exchanges between computers, you will probably have to write a custom provider to connect react-admin to your own APIs - but we’ll dive into Data Providers later. For now, let’s take advantage of the ra-data-json-server data provider, which speaks the same REST dialect as JSONPlaceholder.
+The App component renders an ```<Admin>``` component, which is the root component of a react-admin application. This component expects a dataProvider prop - a function capable of fetching data from an API. Since there is no standard for data exchanges between computers, you will probably have to write a custom provider to connect react-admin to your own APIs - but we’ll dive into Data Providers later. For now, let’s take advantage of the ra-data-json-server data provider, which speaks the same REST dialect as JSONPlaceholder.
 
 
 ##Connect API with resources 
@@ -93,12 +93,12 @@ function App() {
 }
 ```
 
-import edilen resource propların ne yapacağı?
+```import edilen resource propların ne yapacağı?```
 
-The line <Resource name="users" /> informs react-admin to fetch the “users” records from the https://jsonplaceholder.typicode.com/users URL. <Resource> also defines the React components to use for each CRUD operation (list, create, edit, and show)...
+The line ```<Resource name="users" />``` informs react-admin to fetch the “users” records from the https://jsonplaceholder.typicode.com/users URL. ```<Resource>``` also defines the React components to use for each CRUD operation (list, create, edit, and show)...
 
 
-The list={PostList} prop means that refine  use the <PostList> custom component to display the list of posts, which users create independently from refine  
+The list={PostList} prop means that refine  use the ```<PostList>``` custom component to display the list of posts, which users create independently from refine  
 
 Postlist uses List component wrapper from refine-core  which uses ant-design components to render data with table.
 
