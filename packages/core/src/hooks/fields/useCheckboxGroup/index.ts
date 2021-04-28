@@ -17,7 +17,7 @@ export type useCheckboxGroupProps = {
 export type UseCheckboxGroupReturnType<
     RecordType extends BaseRecord = BaseRecord
 > = {
-    radioGroupProps: CheckboxGroupProps;
+    checkboxGroupProps: CheckboxGroupProps;
     queryResult: QueryObserverResult<GetListResponse<RecordType>>;
 };
 
