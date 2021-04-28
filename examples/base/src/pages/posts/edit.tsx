@@ -11,13 +11,13 @@ import {
 export const PostEdit = (props: IResourceComponentsProps) => {
     const { formProps, saveButtonProps } = useForm({});
 
-    const { selectProps } = useSelect({
+    const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
     });
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical" wrapperCol={{ span: 8 }}>
+            <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
                     name="title"
@@ -38,7 +38,11 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                         },
                     ]}
                 >
-                    <Select showSearch filterOption={false} {...selectProps} />
+                    <Select
+                        showSearch
+                        filterOption={false}
+                        {...categorySelectProps}
+                    />
                 </Form.Item>
                 <Form.Item
                     label="Status"
@@ -61,6 +65,17 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                             },
                         ]}
                     />
+                </Form.Item>
+                <Form.Item
+                    label="Content"
+                    name="content"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input.TextArea style={{ minHeight: 200 }} />
                 </Form.Item>
             </Form>
         </Create>

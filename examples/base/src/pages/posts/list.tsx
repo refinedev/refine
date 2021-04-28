@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import {
     List,
     Table,
@@ -9,30 +8,26 @@ import {
     EditButton,
     ShowButton,
     useMany,
+    getDefaultFilter,
 } from "@pankod/refine";
 
+import { IPost } from "../../interfaces";
+
+interface ICategory {
+    id: string;
+    title: string;
+}
+
 export const PostList = (props: IResourceComponentsProps) => {
-    const { tableProps } = useTable({});
+    const { tableProps, filters } = useTable<IPost>({});
 
-    const [categoryIds, setCategoryIds] = useState<string[]>([]);
-
-    useEffect(() => {
-        if (tableProps.dataSource) {
-            setCategoryIds(
-                tableProps.dataSource.map((item) => item.category.id),
-            );
-        }
-    }, [tableProps.dataSource]);
-
-    const { data, isLoading, refetch } = useMany("categories", categoryIds, {
-        enabled: false,
-    });
-
-    useEffect(() => {
-        if (categoryIds.length > 0) {
-            refetch();
-        }
-    }, [categoryIds]);
+    const { data, isLoading } = useMany<ICategory>(
+        "categories",
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [],
+        {
+            enabled: !!tableProps?.dataSource,
+        },
+    );
 
     return (
         <List {...props}>
@@ -51,12 +46,13 @@ export const PostList = (props: IResourceComponentsProps) => {
                 />
                 <Table.Column
                     dataIndex={["category", "id"]}
-                    key="category"
+                    key="category.id"
                     title="Category"
                     render={(value) => {
                         if (isLoading) {
                             return <TextField value="Loading..." />;
                         }
+
                         return (
                             <TextField
                                 value={
@@ -66,8 +62,12 @@ export const PostList = (props: IResourceComponentsProps) => {
                             />
                         );
                     }}
+                    defaultFilteredValue={getDefaultFilter(
+                        "category.id",
+                        filters,
+                    )}
                 />
-                <Table.Column<{ id: number }>
+                <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
                     key="actions"

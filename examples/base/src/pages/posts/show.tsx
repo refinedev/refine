@@ -1,11 +1,26 @@
-import { useShow, Show, Typography, MarkdownField } from "@pankod/refine";
+import {
+    useShow,
+    Show,
+    Typography,
+    IResourceComponentsProps,
+    useOne,
+} from "@pankod/refine";
 
-const { Title, Text } = Typography;
+import { IPost, ICategory } from "../../interfaces";
 
-export const PostShow = (props: any) => {
-    const { queryResult } = useShow({});
+const { Title, Text, Paragraph } = Typography;
+
+export const PostShow = (props: IResourceComponentsProps) => {
+    const { queryResult } = useShow<IPost>({});
     const { data, isLoading } = queryResult;
     const record = data?.data;
+
+    const {
+        data: categoryData,
+        isLoading: categoryIsLoading,
+    } = useOne<ICategory>("categories", record?.category.id, {
+        enabled: !!record,
+    });
 
     return (
         <Show {...props} isLoading={isLoading}>
@@ -15,8 +30,13 @@ export const PostShow = (props: any) => {
             <Title level={5}>Title</Title>
             <Text>{record?.title}</Text>
 
+            <Title level={5}>Category</Title>
+            <Text>
+                {categoryIsLoading ? "Loading..." : categoryData?.data.title}
+            </Text>
+
             <Title level={5}>Content</Title>
-            <MarkdownField value={record?.content}></MarkdownField>
+            <Paragraph>{record?.content}</Paragraph>
         </Show>
     );
 };
