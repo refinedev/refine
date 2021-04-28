@@ -6,23 +6,11 @@ import {
     Table,
     useTable,
     IResourceComponentsProps,
-    useForm,
-    Create,
-    Form,
-    Input,
-    Select,
-    Edit,
     Space,
     EditButton,
-    Show,
-    useShow,
-    Typography,
-    Tag,
     ShowButton,
     useMany,
 } from "@pankod/refine";
-
-const { Title, Text } = Typography;
 
 interface ICategory {
     id: string;
@@ -34,13 +22,14 @@ export const PostList = (props: IResourceComponentsProps) => {
 
     const { data, isLoading } = useMany<ICategory>(
         "categories",
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [],
+        tableProps?.dataSource
+        ?.filter((item) => !!item.category)
+        .map((item) => item.category.id) ?? [],
         {
             enabled: !!tableProps?.dataSource,
         },
     );
 
-    console.log("data" , data)
     return (
         <List {...props}>
             <Table {...tableProps} rowKey="id">
@@ -108,77 +97,5 @@ export const PostList = (props: IResourceComponentsProps) => {
                 />
             </Table>
         </List>
-    );
-};
-
-export const PostCreate = () => {
-    const { formProps, saveButtonProps } = useForm({});
-
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
-                <Form.Item label="Title" name="title">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Status" name="status">
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                        ]}
-                    />
-                </Form.Item>
-            </Form>
-        </Create>
-    );
-};
-
-export const PostEdit = () => {
-    const { formProps, saveButtonProps } = useForm({});
-
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
-                <Form.Item label="Title" name="title">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Status" name="status">
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                        ]}
-                    />
-                </Form.Item>
-            </Form>
-        </Edit>
-    );
-};
-
-export const PostShow = () => {
-    const { queryResult } = useShow({});
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
-
-    return (
-        <Show isLoading={isLoading}>
-            <Title level={5}>Title</Title>
-            <Text>{record?.title}</Text>
-
-            <Title level={5}>Status</Title>
-            <Tag>{record?.status}</Tag>
-        </Show>
     );
 };

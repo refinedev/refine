@@ -1,6 +1,7 @@
 import { Admin, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
-import { PostList, PostCreate, PostEdit, PostShow } from "./components/pages/posts";
+import { PostList, PostEdit, PostCreate, PostShow } from "./pages";
+/* import { PostList, PostCreate, PostEdit, PostShow } from "./components/pages/posts"; */
 
 function App() {
     return (
@@ -13,6 +14,10 @@ function App() {
                 edit={PostEdit}
                 create={PostCreate}
                 show={PostShow}
+         /*        edit={PostEdit}
+         /*        edit={PostEdit}
+                create={PostCreate}
+                show={PostShow} */
             />
         </Admin>
     );
