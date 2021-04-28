@@ -1,7 +1,13 @@
-import { useForm, Form, Input, Select, Edit } from "@pankod/refine";
+import { useForm, Form, Input, Select, Edit, useSelect } from "@pankod/refine";
 
 export const PostEdit = () => {
-    const { formProps, saveButtonProps } = useForm({});
+    const { formProps, saveButtonProps, queryResult } = useForm({});
+
+    const { selectProps: categorySelectProps } = useSelect({
+        resource: "categories",
+        defaultValue: queryResult?.data?.data?.category.id,
+    });
+
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
@@ -21,6 +27,16 @@ export const PostEdit = () => {
                                 value: "draft",
                             },
                         ]}
+                    />
+                </Form.Item>
+                <Form.Item
+                    label="Category"
+                    name={["category", "id"]}
+                >
+                    <Select
+                        showSearch
+                        filterOption={false}
+                        {...categorySelectProps}
                     />
                 </Form.Item>
             </Form>

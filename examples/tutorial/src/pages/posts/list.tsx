@@ -20,13 +20,12 @@ interface ICategory {
 export const PostList = (props: IResourceComponentsProps) => {
     const { tableProps } = useTable({});
 
+    const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
     const { data, isLoading } = useMany<ICategory>(
         "categories",
-        tableProps?.dataSource
-        ?.filter((item) => !!item.category)
-        .map((item) => item.category.id) ?? [],
+        categoryIds,
         {
-            enabled: !!tableProps?.dataSource,
+            enabled: categoryIds.length > 0,
         },
     );
 

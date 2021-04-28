@@ -315,11 +315,12 @@ export const PostList = () => {
     const { tableProps } = useTable({});
 
    //highlight-start
+    const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
     const { data, isLoading } = useMany<ICategory>(
         "categories",
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [],
+        categoryIds,
         {
-            enabled: !!tableProps?.dataSource,
+            enabled: categoryIds.length > 0,
         },
     );
     //highlight-end
