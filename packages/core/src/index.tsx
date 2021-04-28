@@ -1,3 +1,5 @@
+import "./styles.css";
+
 export * from "./components";
 export * from "./components/antd";
 export * from "./hooks";
