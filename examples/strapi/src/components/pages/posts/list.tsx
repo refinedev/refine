@@ -10,6 +10,9 @@ import {
     getDefaultFilter,
     useSelect,
     DateField,
+    Space,
+    EditButton,
+    DeleteButton,
 } from "@pankod/refine";
 
 export const PostList = (props: IResourceComponentsProps) => {
@@ -86,6 +89,20 @@ export const PostList = (props: IResourceComponentsProps) => {
                         <DateField value={value} format="YYYY-MM-DD HH:mm:ss" />
                     )}
                     sorter
+                />
+                <Table.Column<{ id: number }>
+                    title="Actions"
+                    dataIndex="actions"
+                    key="actions"
+                    render={(_value, record) => (
+                        <Space>
+                            <EditButton size="small" recordItemId={record.id} />
+                            <DeleteButton
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                        </Space>
+                    )}
                 />
             </Table>
         </List>

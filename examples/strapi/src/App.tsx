@@ -3,7 +3,7 @@ import StrapiAuthHelper from "@pankod/refine-strapi-auth";
 import DataProvider from "@pankod/refine-strapi";
 import axios from "axios";
 
-import { PostList } from "./components/pages/posts";
+import { PostList, PostCreate, PostEdit } from "./components/pages/posts";
 
 const App = () => {
     const axiosInstance = axios.create();
@@ -70,7 +70,12 @@ const App = () => {
 
     return (
         <Admin authProvider={authProvider} dataProvider={dataProvider}>
-            <Resource name="posts" list={PostList} />
+            <Resource
+                name="posts"
+                list={PostList}
+                create={PostCreate}
+                edit={PostEdit}
+            />
         </Admin>
     );
 };

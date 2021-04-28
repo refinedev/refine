@@ -95,7 +95,7 @@ const Strapi = (
     update: async (resource, id, params) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.patch(url, params);
+        const { data } = await httpClient.put(url, params);
 
         return {
             data,
@@ -105,7 +105,7 @@ const Strapi = (
     updateMany: async (resource, ids, params) => {
         const response = await Promise.all(
             ids.map(async (id) => {
-                const { data } = await httpClient.patch(
+                const { data } = await httpClient.put(
                     `${apiUrl}/${resource}/${id}`,
                     params,
                 );
