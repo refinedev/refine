@@ -84,7 +84,7 @@ const JsonServer = (
             `${apiUrl}/${resource}?${stringify({ id: ids })}`,
         );
 
-        console.log("data", data)
+        console.log("data", data);
         return {
             data,
         };
