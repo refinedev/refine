@@ -14,7 +14,7 @@ export type useCheckboxGroupProps = {
     defaultValue?: string | string[];
 };
 
-export type UseRadioGroupReturnType<
+export type UseCheckboxGroupReturnType<
     RecordType extends BaseRecord = BaseRecord
 > = {
     radioGroupProps: CheckboxGroupProps;
@@ -27,7 +27,7 @@ export const useCheckboxGroup = <RecordType extends BaseRecord = BaseRecord>({
     optionLabel = "title",
     optionValue = "id",
     ...rest
-}: useCheckboxGroupProps) => {
+}: useCheckboxGroupProps): UseCheckboxGroupReturnType<RecordType> => {
     const [options, setOptions] = React.useState<Option[]>([]);
     const [selectedOptions, setSelectedOptions] = React.useState<Option[]>([]);
 
