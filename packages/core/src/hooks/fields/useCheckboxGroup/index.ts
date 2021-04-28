@@ -1,8 +1,10 @@
 import React from "react";
-import { merge } from "lodash";
+import { CheckboxGroupProps } from "antd/lib/checkbox";
+import { QueryObserverResult } from "react-query";
+import uniqBy from "lodash/uniqBy";
 
 import { useList, useMany } from "@hooks";
-import { Sort, Option, BaseRecord } from "../../../interfaces";
+import { Sort, Option, BaseRecord, GetListResponse } from "../../../interfaces";
 
 export type useCheckboxGroupProps = {
     resource: string;
@@ -10,6 +12,13 @@ export type useCheckboxGroupProps = {
     optionValue?: string;
     sort?: Sort;
     defaultValue?: string | string[];
+};
+
+export type UseRadioGroupReturnType<
+    RecordType extends BaseRecord = BaseRecord
+> = {
+    radioGroupProps: CheckboxGroupProps;
+    queryResult: QueryObserverResult<GetListResponse<RecordType>>;
 };
 
 export const useCheckboxGroup = <RecordType extends BaseRecord = BaseRecord>({
@@ -31,12 +40,12 @@ export const useCheckboxGroup = <RecordType extends BaseRecord = BaseRecord>({
     useMany(resource, defaultValue, {
         enabled: defaultValue.length > 0,
         onSuccess: (data) => {
-            setSelectedOptions(() => [
-                ...data.data.map((item) => ({
+            setSelectedOptions(
+                data.data.map((item) => ({
                     label: item[optionLabel],
                     value: item[optionValue],
                 })),
-            ]);
+            );
         },
     });
 
@@ -47,18 +56,18 @@ export const useCheckboxGroup = <RecordType extends BaseRecord = BaseRecord>({
         },
         {
             onSuccess: (data) => {
-                setOptions(() => [
-                    ...data.data.map((item) => ({
+                setOptions(
+                    data.data.map((item) => ({
                         label: item[optionLabel],
                         value: item[optionValue],
                     })),
-                ]);
+                );
             },
         },
     );
 
     const checkboxGroupProps = {
-        options: merge(options, selectedOptions),
+        options: uniqBy([...options, ...selectedOptions], "value"),
     };
 
     return {

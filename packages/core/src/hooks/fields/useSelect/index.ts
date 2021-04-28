@@ -1,8 +1,16 @@
 import React from "react";
-import { merge } from "lodash";
+import uniqBy from "lodash/uniqBy";
+import { SelectProps } from "antd/lib/select";
+import { QueryObserverResult } from "react-query";
 
 import { useList, useMany } from "@hooks";
-import { Sort, Option, BaseRecord } from "../../../interfaces";
+import {
+    Sort,
+    Option,
+    BaseRecord,
+    GetManyResponse,
+    GetListResponse,
+} from "../../../interfaces";
 
 export type UseSelectProps = {
     resource: string;
@@ -14,9 +22,15 @@ export type UseSelectProps = {
     defaultValue?: string | string[];
 };
 
+export type UseSelectReturnType<RecordType extends BaseRecord = BaseRecord> = {
+    selectProps: SelectProps<{ value: string; label: string }>;
+    queryResult: QueryObserverResult<GetListResponse<RecordType>>;
+    defaultValueQueryResult: QueryObserverResult<GetManyResponse<RecordType>>;
+};
+
 export const useSelect = <RecordType extends BaseRecord = BaseRecord>(
     props: UseSelectProps,
-) => {
+): UseSelectReturnType<RecordType> => {
     const [search, setSearch] = React.useState<string | undefined>();
     const [options, setOptions] = React.useState<Option[]>([]);
     const [selectedOptions, setSelectedOptions] = React.useState<Option[]>([]);
@@ -35,17 +49,21 @@ export const useSelect = <RecordType extends BaseRecord = BaseRecord>(
         defaultValue = [defaultValue];
     }
 
-    useMany(resource, defaultValue, {
-        enabled: defaultValue.length > 0,
-        onSuccess: (data) => {
-            setSelectedOptions(() => [
-                ...data.data.map((item) => ({
-                    label: item[optionLabel],
-                    value: item[optionValue],
-                })),
-            ]);
+    const defaultValueQueryResult = useMany<RecordType>(
+        resource,
+        defaultValue,
+        {
+            enabled: defaultValue.length > 0,
+            onSuccess: (data) => {
+                setSelectedOptions(
+                    data.data.map((item) => ({
+                        label: item[optionLabel],
+                        value: item[optionValue],
+                    })),
+                );
+            },
         },
-    });
+    );
 
     const queryResult = useList<RecordType>(
         resource,
@@ -58,35 +76,34 @@ export const useSelect = <RecordType extends BaseRecord = BaseRecord>(
             filters,
         },
         {
+            enabled: false,
             onSuccess: (data) => {
-                setOptions(() => [
-                    ...data.data.map((item) => ({
+                setOptions(
+                    data.data.map((item) => ({
                         label: item[optionLabel],
                         value: item[optionValue],
                     })),
-                ]);
+                );
             },
         },
     );
-    const { refetch } = queryResult;
+    const { refetch: refetchList } = queryResult;
 
     React.useEffect(() => {
-        if (search) {
-            refetch();
-        }
+        refetchList();
     }, [search]);
 
     const onSearch = (value: string) => {
         setSearch(value);
     };
 
-    const selectProps = {
-        options: merge(options, selectedOptions),
-        onSearch,
-    };
-
     return {
-        selectProps,
+        selectProps: {
+            options: uniqBy([...options, ...selectedOptions], "value"),
+            onSearch,
+            loading: defaultValueQueryResult.isFetching,
+        },
         queryResult,
+        defaultValueQueryResult,
     };
 };
