@@ -1,3 +1,4 @@
+import React from "react";
 import {
     Create,
     Form,
@@ -8,14 +9,23 @@ import {
     useSelect,
 } from "@pankod/refine";
 
-export const PostCreate = (props: IResourceComponentsProps) => {
-    const { formProps, saveButtonProps, queryResult } = useForm({});
+import ReactMarkdown from "react-markdown";
+import ReactMde from "react-mde";
 
-    const postData = queryResult?.data?.data;
-    const { selectProps: categorySelectProps } = useSelect({
+import "react-mde/lib/styles/css/react-mde-all.css";
+
+import { IPost, ICategory } from "../../interfaces";
+
+export const PostCreate = (props: IResourceComponentsProps) => {
+    const { formProps, saveButtonProps } = useForm<IPost>({});
+
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
-        defaultValue: postData?.category.id,
     });
+
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+        "write",
+    );
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
@@ -77,7 +87,15 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                         },
                     ]}
                 >
-                    <Input.TextArea style={{ minHeight: 200 }} />
+                    <ReactMde
+                        selectedTab={selectedTab}
+                        onTabChange={setSelectedTab}
+                        generateMarkdownPreview={(markdown) =>
+                            Promise.resolve(
+                                <ReactMarkdown>{markdown}</ReactMarkdown>,
+                            )
+                        }
+                    />
                 </Form.Item>
             </Form>
         </Create>

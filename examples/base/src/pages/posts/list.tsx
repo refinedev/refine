@@ -11,27 +11,20 @@ import {
     getDefaultFilter,
 } from "@pankod/refine";
 
-import { IPost } from "../../interfaces";
-
-interface ICategory {
-    id: string;
-    title: string;
-}
+import { IPost, ICategory } from "../../interfaces";
 
 export const PostList = (props: IResourceComponentsProps) => {
     const { tableProps, filters } = useTable<IPost>({});
 
-    const { data, isLoading } = useMany<ICategory>(
-        "categories",
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [],
-        {
-            enabled: !!tableProps?.dataSource,
-        },
-    );
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
+        enabled: categoryIds.length > 0,
+    });
 
     return (
         <List {...props}>
-            <Table {...tableProps} rowKey="id">
+            <Table {...tableProps} key="id">
                 <Table.Column
                     key="id"
                     dataIndex="id"
@@ -62,10 +55,6 @@ export const PostList = (props: IResourceComponentsProps) => {
                             />
                         );
                     }}
-                    defaultFilteredValue={getDefaultFilter(
-                        "category.id",
-                        filters,
-                    )}
                 />
                 <Table.Column<IPost>
                     title="Actions"
