@@ -9,7 +9,7 @@ const siteConfig = {
   title: 'Refine',
   tagline: 'Admin panel. Reimagined.',
   url: 'https://pankod.github.io',
-  baseUrl: '/refine/',
+  baseUrl: '/',
  projectName: 'refine',
   organizationName: 'pankod',
   favicon: 'img/footer_icon.png',

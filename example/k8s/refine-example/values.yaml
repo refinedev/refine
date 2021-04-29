@@ -53,7 +53,8 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-nodeSelector: {}
+nodeSelector:
+  doks.digitalocean.com/node-pool: pool-vk41bzxym
 
 tolerations: []
 
