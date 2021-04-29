@@ -157,7 +157,7 @@ Components for CRUD operations(list, create, edit, show) should be given to `<Re
 
 Let's create a `PostList` component to fetch and show posts data. This component will be passed as `list` prop to `<Resource>`
 
-```tsx title="components/pages/posts.tsx"
+```tsx title="pages/posts/list.tsx"
 import {
     List,
     TextField,
@@ -166,9 +166,10 @@ import {
     Table,
     useTable,
 } from "@pankod/refine";
+import { IPost } from "../../interfaces"
 
 export const PostList = () => {
-    const { tableProps } = useTable({});
+    const { tableProps } = useTable<IPost>({});
 
     return (
         <List>
@@ -194,6 +195,14 @@ export const PostList = () => {
 };
 ```
 
+```ts title="interfaces/IPost.d.ts"
+export interface IPost {
+    title: string;
+    status: "published" | "draft";
+    createdAt: string;
+}
+```
+
 <br/>
 
 ### Fetching and managing data
@@ -201,7 +210,7 @@ export const PostList = () => {
 `useTable` is a hook from `refine` that is responsible for fetching data from API with `<Resource>`'s `name` prop using `refine`'s various helper hooks under the hood.
 
 ```tsx
-const { tableProps } = useTable({});
+const { tableProps } = useTable<IPost>({});
 ```
 
 The `tableProps` includes all necessary props for `<Table>` component to show and interact with data properly.
@@ -221,6 +230,19 @@ We wrap `<Table>` with [`<List>`](#) component from `refine`, which adds extra f
 Refer to [ant-design docs](https://ant.design/components/table/#API) for more detailed information about `<Table>`.
 
 The render prop of `<Table.Column>` is used to determine how to format and show data. Each `<Table.Column>` maps a different field in the API response, specified by the `dataIndex` prop.
+
+:::note
+```tsx
+<Table.Column
+    // highlight-next-line
+    dataIndex="title"
+    title="title"
+    // highlight-next-line
+    render={(value) => <TextField value={value} />}
+/>
+```
+`value` of render props points to data with key described by `dataIndex`.
+:::
 
 We used `<TextField>`, `<TagField>` and `<DateField>` in `<Table.Column>` to show data in the proper format. These are examples of many more field components from `refine` that are based on ant design components.  
 User has full freedom on how to format and show raw data that comes from render prop including ant design components or custom components.
@@ -263,7 +285,7 @@ We can now list `/posts` data successfully as shown below.
 
 ## Handling relationships
 
-Let's say we want to show category title at `<PostList>`.  
+Let's say we want to show title of category  at `<PostList>`.  
 
 [Each post record](#providing-a-data-source-with-an-api) includes a category property that has an id field, which points to a category:
 
@@ -292,7 +314,7 @@ Each category id references a record at `readmin-fake-rest.pankod.com/categories
 
 In order to get data from a different resource, we can use a `refine` hook named `useMany`.
 
-```tsx title="components/pages/posts.tsx"
+```tsx title="pages/posts/list.tsx"
 import {
     List,
     TextField,
@@ -304,15 +326,11 @@ import {
     useMany
 } from "@pankod/refine";
 
- //highlight-start
-interface ICategory {
-    id: string;
-    title: string;
-}
- //highlight-end
+//highlight-next-line
+import { IPost, ICategory } from "../../interfaces"
 
 export const PostList = () => {
-    const { tableProps } = useTable({});
+    const { tableProps } = useTable<IPost>({});
 
    //highlight-start
     const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
@@ -362,7 +380,7 @@ export const PostList = () => {
                         );
                     }}
                   />
-                     //highlight-end
+                    //highlight-end
             </Table>
         </List>
     );
@@ -370,8 +388,28 @@ export const PostList = () => {
 ```
 
 
+```ts title="interfaces/ICategory.d.ts"
+export interface ICategory {
+    id: string;
+    title: string;
+}
+```
+
+```ts title="interfaces/IPost.d.ts"
+ // highlight-next-line
+import { ICategory } from "./ICategory"
+
+export interface IPost {
+    title: string;
+    status: "published" | "draft";
+    // highlight-next-line
+    category: ICategory;
+    createdAt: string;
+}
+```
+
 :::tip
-We can reach nested properties by using an array.
+We can reach nested properties of table data by using an array.
 
 ```
  dataIndex={["category", "id"]}
@@ -382,16 +420,19 @@ We can reach nested properties by using an array.
 
 `useMany` expects the external resource endpoint and an array of ids. It fetches and returns data with loading status.
 
-To show category title field, find the title corresponding to the id in data returned by `useMany`, 
+We collect `categoryId`' s from list data at `/posts` endpoint and send to `useMany`.
+
+:::note
+```tsx
+enabled: categoryIds.length > 0
+```  
+We set a condition to start fetching only when data is available.
+:::
+
+
+To show category title field, find the title corresponding to the catogory id of the current record in data returned by `useMany`, 
 
 [Refer to `useMany` documentation for detailed usage. &#8594](#)
-
-
-
-
-
-
-
 
 ## Editing a record
 
@@ -399,24 +440,17 @@ We'll implement a page for editing an existing record.
 
 Let's create a `<PostEdit>` component to edit an existing post. This component will be passed as `list` prop to `<Resource>`.
 
-```tsx title="components/pages/posts.tsx"
-import { 
-    ...
-    //highlight-start
-    useForm, 
-    Edit, 
-    Form, 
-    Input, 
-    Select
-     //highlight-end 
-} from "@pankod/refine";
-
-export const PostList = () => { 
-    ...
-}
+```tsx title="pages/posts/edit.tsx"
+import { useForm, Form, Input, Select, Edit, useSelect } from "@pankod/refine";
+import { IPost } from "../../interfaces";
 
 export const PostEdit = () => {
-    const { formProps, saveButtonProps } = useForm({});
+    const { formProps, saveButtonProps, queryResult } = useForm<IPost>({});
+
+    const { selectProps: categorySelectProps } = useSelect<IPost>({
+        resource: "categories",
+        defaultValue: queryResult?.data?.data?.category.id,
+    });
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
@@ -436,6 +470,16 @@ export const PostEdit = () => {
                                 value: "draft",
                             },
                         ]}
+                    />
+                </Form.Item>
+                <Form.Item
+                    label="Category"
+                    name={["category", "id"]}
+                >
+                    <Select
+                        showSearch
+                        filterOption={false}
+                        {...categorySelectProps}
                     />
                 </Form.Item>
             </Form>
@@ -524,13 +568,26 @@ export const PostList = () => {
 `useForm` is another skillful hook from `refine` that is responsible for managing form data like creating and editing.
 
 ```tsx
-const { formProps, saveButtonProps } = useForm({});
+const { formProps, saveButtonProps } = useForm<IPost>({});
 ```
 
 The `formProps` includes all necessary props for `<Form>` component to manage form data properly.
-Similarly `saveButtonProps` includes usefull properties for a button to submit a form.
+Similarly `saveButtonProps` includes useful properties for a button to submit a form.
 
 [Refer to `useForm` documentation for detailed usage. &#8594](#)
+
+`useSelect` produces props for `<Select>` component from data at another resource. `Select` is an Ant-Design component that is exported from `refine` for convenience.  
+
+[Refer to `Select` documentation for detailed usage. &#8594](https://ant.design/components/select/)
+
+```tsx
+const { selectProps: categorySelectProps } = useSelect<IPost>({
+        resource: "categories",
+        defaultValue: queryResult?.data?.data?.category.id,
+});
+```
+
+[Refer to `useSelect` documentation for detailed usage. &#8594](#)
 
 ### Editing the form
 
