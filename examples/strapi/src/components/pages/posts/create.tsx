@@ -1,3 +1,4 @@
+import React from "react";
 import {
     Create,
     Form,
@@ -8,7 +9,15 @@ import {
     useSelect,
 } from "@pankod/refine";
 
+import ReactMarkdown from "react-markdown";
+import ReactMde from "react-mde";
+import "react-mde/lib/styles/css/react-mde-all.css";
+
 export const PostCreate = (props: IResourceComponentsProps) => {
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+        "write",
+    );
+
     const { formProps, saveButtonProps, queryResult } = useForm({});
 
     const postData = queryResult?.data?.data;
@@ -41,7 +50,15 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                         },
                     ]}
                 >
-                    <Input.TextArea style={{ minHeight: 200 }} />
+                    <ReactMde
+                        selectedTab={selectedTab}
+                        onTabChange={setSelectedTab}
+                        generateMarkdownPreview={(markdown) =>
+                            Promise.resolve(
+                                <ReactMarkdown>{markdown}</ReactMarkdown>,
+                            )
+                        }
+                    />
                 </Form.Item>
                 <Form.Item
                     wrapperCol={{ span: 8 }}
