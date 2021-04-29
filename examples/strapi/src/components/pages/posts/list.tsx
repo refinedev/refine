@@ -13,9 +13,13 @@ import {
     Space,
     EditButton,
     DeleteButton,
+    useMany,
 } from "@pankod/refine";
 
 export const PostList = (props: IResourceComponentsProps) => {
+    const { data } = useMany("posts", [1, 2, 3]);
+    console.log("data", data);
+
     const { tableProps, sorter, filters } = useTable({
         initialSorter: [
             {

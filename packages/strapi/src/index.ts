@@ -73,7 +73,9 @@ const Strapi = (
     getMany: async (resource, ids) => {
         const url = `${apiUrl}/${resource}`;
 
-        const query = "";
+        const query = ids
+            .map((item: string | number) => `id_in=${item}`)
+            .join("&");
 
         const { data } = await httpClient.get(`${url}?${query}`);
 
@@ -116,14 +118,8 @@ const Strapi = (
         return { data: response };
     },
 
-    createMany: async (resource, params) => {
-        const url = `${apiUrl}/${resource}/bulk`;
-
-        const { data } = await httpClient.post(url, { bulk: params });
-
-        return {
-            data,
-        };
+    createMany: async () => {
+        throw new Error("createMany not implemented");
     },
 
     getOne: async (resource, id) => {
