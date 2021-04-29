@@ -106,7 +106,7 @@ export const stringifyTableParams = (params: {
 
 export const getDefaultSortOrder = (
     columnName: string,
-    sorter: Sort,
+    sorter?: Sort,
 ): SortOrder | undefined => {
     if (Array.isArray(sorter)) {
         const sortItem = sorter.find((item) => item.field === columnName);
@@ -118,7 +118,7 @@ export const getDefaultSortOrder = (
         return;
     }
 
-    if (sorter.field === columnName) {
+    if (sorter?.field === columnName) {
         return sorter.order || undefined;
     }
 
@@ -127,7 +127,7 @@ export const getDefaultSortOrder = (
 
 export const getDefaultFilter = (
     columnName: string,
-    filters: Filters,
+    filters?: Filters,
 ): string[] | undefined => {
     const value = get(filters, columnName);
     if (!filters || !value) {

@@ -30,8 +30,8 @@ export type useTableProps = {
 
 export type useTableReturnType<RecordType extends BaseRecord = BaseRecord> = {
     tableProps: TableProps<RecordType>;
-    sorter: Sort;
-    filters: Filters;
+    sorter?: Sort;
+    filters?: Filters;
 };
 
 export const useTable = <RecordType extends BaseRecord = BaseRecord>({
@@ -135,7 +135,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
                 position: ["bottomCenter"],
             },
         },
-        sorter: sorter as Sort,
-        filters: filters as Filters,
+        sorter,
+        filters,
     };
 };
