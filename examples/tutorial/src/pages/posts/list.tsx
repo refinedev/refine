@@ -12,13 +12,10 @@ import {
     useMany,
 } from "@pankod/refine";
 
-interface ICategory {
-    id: string;
-    title: string;
-}
+import { IPost, ICategory } from "../../interfaces"
 
 export const PostList = (props: IResourceComponentsProps) => {
-    const { tableProps } = useTable({});
+    const { tableProps } = useTable<IPost>({});
 
     const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
     const { data, isLoading } = useMany<ICategory>(
@@ -41,6 +38,19 @@ export const PostList = (props: IResourceComponentsProps) => {
                     }}
                 />
                 <Table.Column
+                    dataIndex="status"
+                    title="status"
+                    render={(value) => <TagField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="createdAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                    sorter={{
+                        multiple: 2,
+                    }}
+                />
+                <Table.Column
                     dataIndex={["category", "id"]}
                     title="category"
                     render={(value) => {
@@ -56,19 +66,6 @@ export const PostList = (props: IResourceComponentsProps) => {
                                 }
                             />
                         );
-                    }}
-                />
-                <Table.Column
-                    dataIndex="status"
-                    title="status"
-                    render={(value) => <TagField value={value} />}
-                />
-                <Table.Column
-                    dataIndex="createdAt"
-                    title="createdAt"
-                    render={(value) => <DateField format="LLL" value={value} />}
-                    sorter={{
-                        multiple: 2,
                     }}
                 />
                 <Table.Column

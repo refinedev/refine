@@ -1,13 +1,14 @@
 import { useForm, Form, Input, Select, Edit, useSelect } from "@pankod/refine";
 
+import { IPost } from "../../interfaces";
+
 export const PostEdit = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm({});
+    const { formProps, saveButtonProps, queryResult } = useForm<IPost>({});
 
-    const { selectProps: categorySelectProps } = useSelect({
+    const { selectProps: categorySelectProps } = useSelect<IPost>({
         resource: "categories",
-        defaultValue: queryResult?.data?.data?.category.id,
+        defaultValue: queryResult?.data?.data.category.id,
     });
-
 
     return (
         <Edit saveButtonProps={saveButtonProps}>

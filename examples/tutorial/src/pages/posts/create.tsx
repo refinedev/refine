@@ -1,7 +1,9 @@
 import { useForm, Create, Form, Input, Select } from "@pankod/refine";
 
+import {IPost} from "../../interfaces"
+
 export const PostCreate = () => {
-    const { formProps, saveButtonProps } = useForm({});
+    const { formProps, saveButtonProps } = useForm<IPost>({});
 
     return (
         <Create saveButtonProps={saveButtonProps}>
