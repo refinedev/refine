@@ -8,7 +8,7 @@ import {
     useSelect,
 } from "@pankod/refine";
 
-export const PostCreate = (props: IResourceComponentsProps) => {
+export const PostEdit = (props: IResourceComponentsProps) => {
     const { formProps, saveButtonProps } = useForm({});
 
     const { selectProps } = useSelect({
