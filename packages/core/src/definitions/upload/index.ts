@@ -4,12 +4,16 @@ interface UploadResponse {
     fileUrl: string;
 }
 
-interface Event {
-    file: UploadFile<UploadResponse>;
-    fileList: Array<UploadFile<UploadResponse>>;
+interface StrapiUploadResponse {
+    url: string;
 }
 
-export const normalizeFile = (event: Event) => {
+interface EventArgs<T = UploadResponse> {
+    file: UploadFile<T>;
+    fileList: Array<UploadFile<T>>;
+}
+
+export const normalizeFile = (event: EventArgs) => {
     const { fileList } = event;
 
     return fileList.map((item) => {
@@ -18,6 +22,24 @@ export const normalizeFile = (event: Event) => {
 
         if (response) {
             url = response.fileUrl;
+        }
+
+        return { uid, name, url, type, size, percent, status };
+    });
+};
+
+export const normalizeFileForStrapi = (
+    event: EventArgs<StrapiUploadResponse[]>,
+    baseUrl: string,
+) => {
+    const { fileList } = event;
+
+    return fileList.map((item) => {
+        let { url } = item;
+        const { uid, name, response, type, size, percent, status } = item;
+
+        if (response) {
+            url = `${baseUrl}${response[0].url}`;
         }
 
         return { uid, name, url, type, size, percent, status };

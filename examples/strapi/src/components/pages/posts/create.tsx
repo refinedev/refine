@@ -5,15 +5,22 @@ import {
     Input,
     IResourceComponentsProps,
     Select,
+    Upload,
+    useApiUrl,
     useForm,
     useSelect,
+    normalizeFileForStrapi,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
+import { TOKEN_KEY } from "../../../constants";
+
 export const PostCreate = (props: IResourceComponentsProps) => {
+    const API_URL = useApiUrl();
+
     const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
         "write",
     );
@@ -71,6 +78,33 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                     ]}
                 >
                     <Select showSearch filterOption={false} {...selectProps} />
+                </Form.Item>
+                <Form.Item label="Cover">
+                    <Form.Item
+                        name="cover"
+                        valuePropName="fileList"
+                        getValueFromEvent={(event) =>
+                            normalizeFileForStrapi(event, API_URL)
+                        }
+                        noStyle
+                    >
+                        <Upload.Dragger
+                            name="files"
+                            action={`${API_URL}/upload`}
+                            headers={{
+                                Authorization: `Bearer ${localStorage.getItem(
+                                    TOKEN_KEY,
+                                )}`,
+                            }}
+                            listType="picture"
+                            maxCount={5}
+                            multiple
+                        >
+                            <p className="ant-upload-text">
+                                Drag & drop a file in this area
+                            </p>
+                        </Upload.Dragger>
+                    </Form.Item>
                 </Form.Item>
             </Form>
         </Create>
