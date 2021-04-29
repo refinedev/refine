@@ -87,7 +87,7 @@ export const PostList = (props: any) => {
         },
     );
 
-    const { selectProps: categorySelectProps } = useSelect({
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
         optionLabel: "title",
         optionValue: "id",

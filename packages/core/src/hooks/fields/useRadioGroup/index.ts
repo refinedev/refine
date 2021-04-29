@@ -1,8 +1,9 @@
 import React from "react";
-import { RadioGroupProps } from "antd";
+import { RadioGroupProps } from "antd/lib/radio";
+import { QueryObserverResult } from "react-query";
 
 import { useList } from "@hooks";
-import { Sort, BaseRecord, Option } from "../../../interfaces";
+import { Sort, BaseRecord, Option, GetListResponse } from "../../../interfaces";
 
 export type useRadioGroupProps = RadioGroupProps & {
     resource: string;
@@ -13,6 +14,13 @@ export type useRadioGroupProps = RadioGroupProps & {
     filters?: Record<string, (string | number | boolean)[] | null>;
 };
 
+export type UseRadioGroupReturnType<
+    RecordType extends BaseRecord = BaseRecord
+> = {
+    radioGroupProps: RadioGroupProps;
+    queryResult: QueryObserverResult<GetListResponse<RecordType>>;
+};
+
 export const useRadioGroup = <RecordType extends BaseRecord = BaseRecord>({
     resource,
     sort,
@@ -20,7 +28,7 @@ export const useRadioGroup = <RecordType extends BaseRecord = BaseRecord>({
     optionLabel = "title",
     optionValue = "id",
     ...rest
-}: useRadioGroupProps) => {
+}: useRadioGroupProps): UseRadioGroupReturnType => {
     const [options, setOptions] = React.useState<Option[]>([]);
 
     const queryResult = useList<RecordType>(
