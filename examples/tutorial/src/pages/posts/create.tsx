@@ -1,9 +1,13 @@
-import { useForm, Create, Form, Input, Select } from "@pankod/refine";
+import { useForm, Create, Form, Input, Select, useSelect } from "@pankod/refine";
 
-import {IPost} from "../../interfaces"
+import { IPost } from "../../interfaces";
 
 export const PostCreate = () => {
     const { formProps, saveButtonProps } = useForm<IPost>({});
+
+    const { selectProps: categorySelectProps } = useSelect<IPost>({
+        resource: "categories",
+    });
 
     return (
         <Create saveButtonProps={saveButtonProps}>
@@ -23,6 +27,16 @@ export const PostCreate = () => {
                                 value: "draft",
                             },
                         ]}
+                    />
+                </Form.Item>
+                <Form.Item
+                    label="Category"
+                    name={["category", "id"]}
+                >
+                    <Select
+                        showSearch
+                        filterOption={false}
+                        {...categorySelectProps}
                     />
                 </Form.Item>
             </Form>

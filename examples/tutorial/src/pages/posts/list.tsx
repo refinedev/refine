@@ -18,7 +18,7 @@ export const PostList = (props: IResourceComponentsProps) => {
     const { tableProps } = useTable<IPost>({});
 
     const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = useMany<ICategory>(
+    const { data: categoriesData, isLoading } = useMany<ICategory>(
         "categories",
         categoryIds,
         {
@@ -61,7 +61,7 @@ export const PostList = (props: IResourceComponentsProps) => {
                         return (
                             <TextField
                                 value={
-                                    data?.data.find((item) => item.id === value)
+                                    categoriesData?.data.find((item) => item.id === value)
                                         ?.title
                                 }
                             />

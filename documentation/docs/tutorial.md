@@ -255,7 +255,7 @@ After creating the `<PostList>` component, now it's time to add it to `<Resource
 import { Admin, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
-import { PostList } from "./components/pages/posts";
+import { PostList } from "./pages";
 
 function App() {
     return (
@@ -334,7 +334,7 @@ export const PostList = () => {
 
    //highlight-start
     const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = useMany<ICategory>(
+    const { data: categoriesData, isLoading } = useMany<ICategory>(
         "categories",
         categoryIds,
         {
@@ -373,7 +373,7 @@ export const PostList = () => {
                         return (
                             <TextField
                                 value={
-                                    data?.data.find((item) => item.id === value)
+                                    categoriesData?.data.find((item) => item.id === value)
                                         ?.title
                                 }
                             />
@@ -498,7 +498,7 @@ After creating the `<PostEdit>` component, now it's time to add it to `<Resource
 import { Admin, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
-import { PostList, PostEdit } from "./components/pages/posts";
+import { PostList, PostEdit } from "./pages";
 
 function App() {
     return (
@@ -587,6 +587,10 @@ const { selectProps: categorySelectProps } = useSelect<IPost>({
 });
 ```
 
+:::important
+`defaultValue` is used to get the value for the current item independent of search, sort and filter parameters.
+:::
+
 [Refer to `useSelect` documentation for detailed usage. &#8594](#)
 
 ### Editing the form
@@ -624,23 +628,20 @@ We'll implement a page for creating a new record using fake REST API. It has a s
 
 First create a `<PostCreate>` component to create a new post. This component will be passed as `create` prop to `<Resource>`.
 
-```tsx title="components/pages/posts.tsx"
+```tsx title="pages/posts/create.tsx"
 import { 
     ...
     //highlight-next-line
     Create 
 } from "@pankod/refine";
-
-export const PostList = () => { 
-    ...
-}
-
-export const PostEdit = () => { 
-    ...
-}
+import { IPost } from "../../interfaces";
 
 export const PostCreate = () => {
-    const { formProps, saveButtonProps } = useForm({});
+    const { formProps, saveButtonProps } = useForm<IPost>({});
+
+    const { selectProps: categorySelectProps } = useSelect<IPost>({
+        resource: "categories",
+    });
 
     return (
         <Create saveButtonProps={saveButtonProps}>
@@ -678,7 +679,7 @@ After creating the `<PostCreate>` component, add it to `<Resource>`.
 import { Admin, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
-import { PostList, PostEdit, PostCreate } from "./components/pages/posts";
+import { PostList, PostEdit, PostCreate } from "./pages";
 
 function App() {
     return (
@@ -733,6 +734,8 @@ This part is very similar to [Editing the form](#editing-the-form). Only differe
 
 - Save button submits the form and issues a `POST` request to the REST API.
 
+- Since there can't be a pre-selected value in a create form, we don't pass a `defaultValue` parameter to `useSelect`.
+
 <br />
 
 <div style={{textAlign: "center"}}>
@@ -748,7 +751,7 @@ Let's implement a page for showing an existing record in detail.
 
 First create a `<PostShow>` component to show an existing post. This component will be passed as `show` prop to `<Resource>`.
 
-```tsx title="components/pages/posts.tsx"
+```tsx title="pages/posts/show.tsx"
 import {
     ...
     //highlight-start 
@@ -759,18 +762,6 @@ import {
     ShowButton
     //highlight-end
 } from "@pankod/refine";
-
-export const PostList = () => { 
-    ...
-}
-
-export const PostEdit = () => { 
-    ...
-}
-
-export const PostCreate = () => { 
-    ...
-}
 
 export const PostShow = () => {
     const { queryResult } = useShow({});
@@ -799,7 +790,7 @@ After creating the `<PostShow>` component, add it to `<Resource>`.
 import { Admin, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
-import { PostList, PostEdit, PostCreate, PostShow } from "./components/pages/posts";
+import { PostList, PostEdit, PostCreate, PostShow } from "./pages";
 
 function App() {
     return (
