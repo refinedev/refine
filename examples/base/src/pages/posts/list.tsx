@@ -8,13 +8,12 @@ import {
     EditButton,
     ShowButton,
     useMany,
-    getDefaultFilter,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "../../interfaces";
 
 export const PostList = (props: IResourceComponentsProps) => {
-    const { tableProps, filters } = useTable<IPost>({});
+    const { tableProps } = useTable<IPost>({});
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
