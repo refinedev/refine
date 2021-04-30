@@ -1,14 +1,14 @@
-import { FC } from "react";
+import React from "react";
 
 export type TitleProps = {
     collapsed: boolean;
 };
 
 export type LayoutProps = {
-    Sider: FC<SiderProps>;
-    Header: FC<unknown>;
-    Footer: FC<unknown>;
-    OffLayoutArea: FC<unknown>;
+    Sider: React.FC<SiderProps>;
+    Header: React.FC;
+    Footer: React.FC;
+    OffLayoutArea: React.FC;
     dashboard?: boolean;
 };
 

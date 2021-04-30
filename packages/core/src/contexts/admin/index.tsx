@@ -2,11 +2,11 @@ import React, { useState } from "react";
 
 import { IAdminContext, IAdminContextProvider } from "./IAdminContext";
 import {
-    Footer,
-    Header,
-    Sider,
-    Layout,
-    OffLayoutArea,
+    Layout as DefaultLayout,
+    Header as DefaultHeader,
+    Sider as DefaultSider,
+    Footer as DefaultFooter,
+    OffLayoutArea as DefaultOffLayoutArea,
 } from "@components/layoutWrapper/components";
 
 export const AdminContext = React.createContext<IAdminContext>({
@@ -16,11 +16,11 @@ export const AdminContext = React.createContext<IAdminContext>({
     setWarnWhen: (value: boolean) => value,
     syncWithLocation: false,
     undoableTimeout: 5000,
-    Sider,
-    Header,
-    Footer,
-    Layout,
-    OffLayoutArea,
+    Sider: DefaultSider,
+    Header: DefaultHeader,
+    Footer: DefaultFooter,
+    Layout: DefaultLayout,
+    OffLayoutArea: DefaultOffLayoutArea,
 });
 
 export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
@@ -30,11 +30,11 @@ export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
     undoableTimeout,
     children,
     Title,
-    Layout,
-    Sider,
-    Header,
-    Footer,
-    OffLayoutArea,
+    Layout = DefaultLayout,
+    Header = DefaultHeader,
+    Sider = DefaultSider,
+    Footer = DefaultFooter,
+    OffLayoutArea = DefaultOffLayoutArea,
 }) => {
     const [warnWhen, setWarnWhen] = useState(false);
     return (
@@ -48,8 +48,8 @@ export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
                 Title,
                 undoableTimeout,
                 Layout,
-                Sider,
                 Header,
+                Sider,
                 Footer,
                 OffLayoutArea,
             }}

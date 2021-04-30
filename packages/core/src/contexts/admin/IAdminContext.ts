@@ -1,10 +1,20 @@
 import { SiderProps } from "@components/layoutWrapper/components/sider";
-import { FC } from "react";
+import React from "react";
 import { MutationMode, TitleProps, LayoutProps } from "../../interfaces";
 
-export interface IAdminContext extends IAdminContextProvider {
+export interface IAdminContext {
     warnWhen: boolean;
     setWarnWhen: (value: boolean) => void;
+    mutationMode: MutationMode;
+    warnWhenUnsavedChanges: boolean;
+    syncWithLocation: boolean;
+    undoableTimeout: number;
+    Title?: React.FC<TitleProps>;
+    Layout: React.FC<LayoutProps>;
+    Sider: React.FC<SiderProps>;
+    Header: React.FC;
+    Footer: React.FC;
+    OffLayoutArea: React.FC;
 }
 
 export interface IAdminContextProvider {
@@ -12,10 +22,10 @@ export interface IAdminContextProvider {
     warnWhenUnsavedChanges: boolean;
     syncWithLocation: boolean;
     undoableTimeout: number;
-    Title?: FC<TitleProps>;
-    Layout: FC<LayoutProps>;
-    Sider: FC<SiderProps>;
-    Header: FC<unknown>;
-    Footer: FC<unknown>;
-    OffLayoutArea: FC<unknown>;
+    Title?: React.FC<TitleProps>;
+    Layout?: React.FC<LayoutProps>;
+    Sider?: React.FC<SiderProps>;
+    Header?: React.FC;
+    Footer?: React.FC;
+    OffLayoutArea?: React.FC;
 }

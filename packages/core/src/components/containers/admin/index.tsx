@@ -1,4 +1,4 @@
-import React, { ReactNode, FC } from "react";
+import React from "react";
 import { ConfigProvider } from "antd";
 import { ConfigProviderProps } from "antd/lib/config-provider";
 import { BrowserRouter as Router, RouteProps } from "react-router-dom";
@@ -36,25 +36,25 @@ export interface AdminProps {
     authProvider?: IAuthContext;
     dataProvider: IDataContext;
     i18nProvider?: I18nProvider;
-    catchAll?: ReactNode;
-    loginPage?: FC | false;
-    dashboardPage?: FC;
-    ready?: FC;
+    catchAll?: React.ReactNode;
+    loginPage?: React.FC | false;
+    dashboardPage?: React.FC;
+    ready?: React.FC;
     mutationMode?: MutationMode;
     syncWithLocation?: boolean;
     warnWhenUnsavedChanges?: boolean;
     routes?: RouteProps[];
     configProviderProps?: ConfigProviderProps;
     undoableTimeout?: number;
-    Layout?: FC<LayoutProps>;
-    Sider?: FC<unknown>;
-    Header?: FC<unknown>;
-    Footer?: FC<unknown>;
-    OffLayoutArea?: FC<unknown>;
-    Title?: FC<TitleProps>;
+    Layout?: React.FC<LayoutProps>;
+    Sider?: React.FC;
+    Header?: React.FC;
+    Footer?: React.FC;
+    OffLayoutArea?: React.FC;
+    Title?: React.FC<TitleProps>;
 }
 
-export const Admin: FC<AdminProps> = ({
+export const Admin: React.FC<AdminProps> = ({
     authProvider,
     dataProvider,
     dashboardPage,
@@ -70,11 +70,11 @@ export const Admin: FC<AdminProps> = ({
     configProviderProps = defaultConfigProviderProps,
     undoableTimeout = 5000,
     Title,
-    Layout = DefaultLayout,
-    Sider = DefaultSider,
-    Header = DefaultHeader,
-    Footer = DefaultFooter,
-    OffLayoutArea = DefaultOffLayoutArea,
+    Layout,
+    Sider,
+    Header,
+    Footer,
+    OffLayoutArea,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {

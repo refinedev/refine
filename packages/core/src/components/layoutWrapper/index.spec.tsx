@@ -1,6 +1,12 @@
-import React, { ReactNode, FC } from "react";
+import React from "react";
 import { LayoutWrapper } from "@components/layoutWrapper";
-import { Layout } from "@components/layoutWrapper/components";
+import {
+    Layout,
+    Sider,
+    Header,
+    Footer,
+    OffLayoutArea,
+} from "@components/layoutWrapper/components";
 import { IAdminContextProvider } from "../../contexts/admin/IAdminContext";
 import { render, screen, TestWrapper, MockJSONServer } from "@test";
 import { Route } from "react-router-dom";
@@ -8,7 +14,7 @@ import "@testing-library/jest-dom/extend-expect";
 import { LayoutProps } from "src/interfaces";
 
 const renderWithAdminContext = (
-    children: ReactNode,
+    children: React.ReactNode,
     adminProvider: IAdminContextProvider,
 ) => {
     return render(<Route path="/">{children}</Route>, {
@@ -54,7 +60,7 @@ describe("LayoutWrapper", () => {
     });
 
     test("LayoutWrapper renders custom components if given custom Layout renders them", () => {
-        const CustomLayout: FC<LayoutProps> = ({
+        const CustomLayout: React.FC<LayoutProps> = ({
             Header,
             Sider,
             Footer,
@@ -82,7 +88,7 @@ describe("LayoutWrapper", () => {
         const customOffLayoutAreaContent = "customOffLayoutAreaContent";
         const CustomOffLayoutArea = () => <p>{customOffLayoutAreaContent}</p>;
 
-        renderWithAdminContext(<LayoutWrapper />, {
+        const { getByText } = renderWithAdminContext(<LayoutWrapper />, {
             warnWhenUnsavedChanges: false,
             mutationMode: "pessimistic",
             syncWithLocation: false,
@@ -94,9 +100,9 @@ describe("LayoutWrapper", () => {
             OffLayoutArea: CustomOffLayoutArea,
         });
 
-        expect(screen.getByText(customSiderContent));
-        expect(screen.getByText(customHeaderContent));
-        expect(screen.getByText(customFooterContent));
-        expect(screen.getByText(customOffLayoutAreaContent));
+        expect(getByText(customSiderContent));
+        expect(getByText(customHeaderContent));
+        expect(getByText(customFooterContent));
+        expect(getByText(customOffLayoutAreaContent));
     });
 });
