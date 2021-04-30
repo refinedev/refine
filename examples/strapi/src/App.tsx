@@ -7,7 +7,7 @@ import "@pankod/refine/dist/styles.min.css";
 import { PostList, PostCreate, PostEdit } from "./components/pages/posts";
 import { TOKEN_KEY } from "./constants";
 
-export const API_URL = "https://refine-strapi.pankod.com";
+export const API_URL = "/api";
 
 const App = () => {
     const axiosInstance = axios.create();

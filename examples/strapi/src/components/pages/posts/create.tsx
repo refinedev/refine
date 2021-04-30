@@ -91,11 +91,11 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                         <Upload.Dragger
                             name="files"
                             action={`${API_URL}/upload`}
-                            headers={{
+                            /*     headers={{
                                 Authorization: `Bearer ${localStorage.getItem(
                                     TOKEN_KEY,
                                 )}`,
-                            }}
+                            }} */
                             listType="picture"
                             maxCount={5}
                             multiple
