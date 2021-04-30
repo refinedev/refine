@@ -33,13 +33,13 @@ export const Layout: React.FC<LayoutProps> = ({
         return e.returnValue;
     };
 
-    if (warnWhen) {
-        window.addEventListener("beforeunload", warnWhenListener);
-    }
-
     useEffect(() => {
+        if (warnWhen) {
+            window.addEventListener("beforeunload", warnWhenListener);
+        }
+
         return window.removeEventListener("beforeunload", warnWhenListener);
-    }, []);
+    }, [warnWhen]);
 
     return (
         <AntLayout style={{ minHeight: "100vh" }}>

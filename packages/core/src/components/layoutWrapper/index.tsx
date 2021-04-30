@@ -39,13 +39,13 @@ export const LayoutWrapper: React.FC<LayoutWrapperProps> = ({
         return e.returnValue;
     };
 
-    if (warnWhen) {
-        window.addEventListener("beforeunload", warnWhenListener);
-    }
-
     useEffect(() => {
+        if (warnWhen) {
+            window.addEventListener("beforeunload", warnWhenListener);
+        }
+
         return window.removeEventListener("beforeunload", warnWhenListener);
-    }, []);
+    }, [warnWhen]);
 
     return (
         <Layout
