@@ -9,7 +9,7 @@ export interface LayoutWrapperProps {
     dashboard?: boolean;
 }
 
-export const LayoutWrapper: React.FC<LayoutWrapperProps> = ({
+export const LayoutWrapper: FC<LayoutWrapperProps> = ({
     children,
     dashboard,
 }) => {

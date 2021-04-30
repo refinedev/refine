@@ -1,12 +1,7 @@
-import React, { FC, useEffect } from "react";
+import React from "react";
 import { Layout as AntLayout } from "antd";
-import { Prompt } from "react-router-dom";
 
-import { useTranslate, useWarnAboutChange } from "@hooks";
-import {
-    SiderProps,
-    LayoutProps,
-} from "../../../../interfaces/customComponents";
+import { LayoutProps } from "../../../../interfaces/customComponents";
 
 export const Layout: React.FC<LayoutProps> = ({
     children,
@@ -16,31 +11,6 @@ export const Layout: React.FC<LayoutProps> = ({
     Footer,
     OffLayoutArea,
 }) => {
-    const translate = useTranslate();
-    const { warnWhen } = useWarnAboutChange();
-
-    const warnWhenListener = (e: {
-        preventDefault: () => void;
-        returnValue: string;
-    }) => {
-        e.preventDefault();
-
-        e.returnValue = translate(
-            "common:warnWhenUnsavedChanges",
-            "Are you sure you want to leave? You have with unsaved changes.",
-        );
-
-        return e.returnValue;
-    };
-
-    useEffect(() => {
-        if (warnWhen) {
-            window.addEventListener("beforeunload", warnWhenListener);
-        }
-
-        return window.removeEventListener("beforeunload", warnWhenListener);
-    }, [warnWhen]);
-
     return (
         <AntLayout style={{ minHeight: "100vh" }}>
             <Sider dashboard={dashboard} />
@@ -54,13 +24,6 @@ export const Layout: React.FC<LayoutProps> = ({
                 </AntLayout.Content>
                 <Footer />
             </AntLayout>
-            <Prompt
-                when={warnWhen}
-                message={translate(
-                    "common:warnWhenUnsavedChanges",
-                    "Are you sure you want to leave? You have with unsaved changes.",
-                )}
-            />
         </AntLayout>
     );
 };
