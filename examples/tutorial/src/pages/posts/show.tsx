@@ -7,7 +7,7 @@ export const PostShow = () => {
     const { data, isLoading } = queryResult;
     const record = data?.data;
 
-    const {data: categoryData} = useOne("categories", record?.category.id?.toString() ?? "", {
+    const { data: categoryData } = useOne("categories", record!.category.id.toString(), {
         enabled: !!record?.category.id
     })
 
@@ -17,7 +17,7 @@ export const PostShow = () => {
             <Text>{record?.title}</Text>
 
             <Title level={5}>Status</Title>
-            <Tag>{record?.status}</Tag>
+            <Text><Tag>{record?.status}</Tag></Text>
 
             <Title level={5}>Category</Title>
             <Text>{categoryData?.data.title}</Text>
