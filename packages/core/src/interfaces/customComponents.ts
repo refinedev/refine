@@ -5,8 +5,8 @@ export type TitleProps = {
 };
 
 export type CustomLayoutProps = {
-    Sider?: FC<unknown>;
-    Header?: FC<unknown>;
-    Footer?: FC<unknown>;
-    OffLayoutArea?: FC<unknown>;
+    Sider: FC<unknown>;
+    Header: FC<unknown>;
+    Footer: FC<unknown>;
+    OffLayoutArea: FC<unknown>;
 };

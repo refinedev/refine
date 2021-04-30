@@ -8,6 +8,8 @@ import {
     defaultConfigProviderProps,
     BackTop,
     AntdLayout,
+    Button,
+    useSetLocale,
 } from "@pankod/refine";
 import { DemoSidebar, useDemoSidebar } from "@pankod/refine-demo-sidebar";
 import "@pankod/refine/dist/styles.min.css";
@@ -63,6 +65,7 @@ function App() {
     };
 
     const { t, i18n } = useTranslation(["common", "translation"]);
+    const setLocale = useSetLocale();
 
     const i18nProvider = {
         translate: (key: string, params: object) => t(key, params),
@@ -112,17 +115,17 @@ function App() {
                 <AntdLayout
                     style={{ minHeight: "100vh", flexDirection: "row" }}
                 >
-                    <Sider />
+                    {Sider && <Sider />}
                     <AntdLayout className="site-layout">
-                        <Header />
+                        {Header && <Header />}
                         <AntdLayout.Content>
                             <div style={{ padding: 24, minHeight: 360 }}>
                                 {children}
                             </div>
                         </AntdLayout.Content>
-                        <Footer />
+                        {Footer && <Footer />}
                     </AntdLayout>
-                    <OffLayoutArea />
+                    {OffLayoutArea && <OffLayoutArea />}
                 </AntdLayout>
             )}
             Footer={() => (
@@ -130,6 +133,28 @@ function App() {
                     Refine ©{new Date().getFullYear()} Created by Pankod
                     (Example Footer)
                 </AntdLayout.Footer>
+            )}
+            Header={() => (
+                <AntdLayout.Header
+                    style={{ padding: 0, backgroundColor: "#FFF" }}
+                >
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "flex-end",
+                            height: "100%",
+                            alignItems: "center",
+                            padding: "24px",
+                        }}
+                    >
+                        <Button size="middle" onClick={() => setLocale("en")}>
+                            EN
+                        </Button>
+                        <Button size="middle" onClick={() => setLocale("tr")}>
+                            TR
+                        </Button>
+                    </div>
+                </AntdLayout.Header>
             )}
             OffLayoutArea={() => (
                 <>

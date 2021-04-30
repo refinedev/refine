@@ -1,38 +1,22 @@
 import React, { FC, useContext, useEffect } from "react";
-import { Layout as AntLayout, Menu, Button, BackTop } from "antd";
-import {
-    DashboardOutlined,
-    LogoutOutlined,
-    UnorderedListOutlined,
-} from "@ant-design/icons";
-import { MenuClickEventHandler } from "rc-menu/lib/interface";
-import { Link, Prompt, useLocation } from "react-router-dom";
-import humanizeString from "humanize-string";
+import { Layout as AntLayout } from "antd";
+import { Prompt } from "react-router-dom";
 
-import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "../../interfaces";
-import {
-    useNavigation,
-    useResource,
-    useSetLocale,
-    useTranslate,
-    useWarnAboutChange,
-} from "@hooks";
+import { useTranslate, useWarnAboutChange } from "@hooks";
 import { AdminContext } from "@contexts/admin/";
 import { IAdminContext } from "@contexts/admin/IAdminContext";
 
+import { Sider as DefaultSider } from "./components/sider";
+import { Header as DefaultHeader } from "./components/header";
+import { Footer as DefaultFooter } from "./components/footer";
+
+const DefaultOffLayoutArea = () => null;
 export interface LayoutProps {
-    dashboard?: FC;
+    dashboard?: boolean;
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
-    const [collapsed, setCollapsed] = React.useState(false);
-
-    const { push } = useNavigation();
-    const { logout } = useContext<IAuthContext>(AuthContext);
-
     const {
-        Title,
         CustomLayout,
         CustomFooter,
         CustomHeader,
@@ -40,29 +24,9 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
         OffLayoutArea,
     } = useContext<IAdminContext>(AdminContext);
 
-    const { resources } = useResource();
-
-    const location = useLocation();
-
-    const setLocale = useSetLocale();
     const translate = useTranslate();
 
-    const { warnWhen, setWarnWhen } = useWarnAboutChange();
-
-    const selectedKey = React.useMemo(() => {
-        const selectedResource = resources.find((el) =>
-            location.pathname.startsWith(`/resources/${el.route}`),
-        );
-
-        setWarnWhen(false);
-        return `/resources/${selectedResource?.route ?? ""}`;
-    }, [location]);
-
-    const menuOnClick: MenuClickEventHandler = ({ key }) => {
-        if (key === "logout") {
-            logout({}).then(() => push("/login"));
-        }
-    };
+    const { warnWhen } = useWarnAboutChange();
 
     const warnWhenListener = (e: {
         preventDefault: () => void;
@@ -86,96 +50,6 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
         return window.removeEventListener("beforeunload", warnWhenListener);
     }, []);
 
-    const DefaultSider = () => (
-        <AntLayout.Sider
-            collapsible
-            collapsed={collapsed}
-            onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
-        >
-            <Link
-                to={`/`}
-                style={{
-                    color: "#FFF",
-                    fontSize: 16,
-                    textAlign: "center",
-                    height: 60,
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-            >
-                {Title && <Title collapsed={collapsed} />}
-            </Link>
-            <Menu
-                onClick={menuOnClick}
-                theme="dark"
-                defaultSelectedKeys={["dashboard"]}
-                selectedKeys={[selectedKey]}
-                mode="inline"
-            >
-                {dashboard && (
-                    <Menu.Item key={`dashboard`} icon={<DashboardOutlined />}>
-                        <Link to={`/`}>
-                            {translate(
-                                "common:resources.dashboard.title",
-                                "Dashboard",
-                            )}
-                        </Link>
-                    </Menu.Item>
-                )}
-
-                {resources.map((item) => (
-                    <Menu.Item
-                        key={`/resources/${item.route}`}
-                        icon={item.icon ?? <UnorderedListOutlined />}
-                    >
-                        <Link to={`/resources/${item.route}`}>
-                            {translate(
-                                `common:resources.${item.name}.${
-                                    item.label ?? humanizeString(item.name)
-                                }`,
-                                item.label ?? humanizeString(item.name),
-                            )}
-                        </Link>
-                    </Menu.Item>
-                ))}
-
-                <Menu.Item key="logout" icon={<LogoutOutlined />}>
-                    {translate("common:buttons.logout", "Logout")}
-                </Menu.Item>
-            </Menu>
-        </AntLayout.Sider>
-    );
-
-    const DefaultHeader = () => (
-        <AntLayout.Header style={{ padding: 0, backgroundColor: "#FFF" }}>
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    height: "100%",
-                    alignItems: "center",
-                    padding: "24px",
-                }}
-            >
-                <Button size="middle" onClick={() => setLocale("en")}>
-                    EN
-                </Button>
-                <Button size="middle" onClick={() => setLocale("tr")}>
-                    TR
-                </Button>
-            </div>
-        </AntLayout.Header>
-    );
-
-    const DefaultFooter = () => (
-        <AntLayout.Footer style={{ textAlign: "center" }}>
-            Refine ©{new Date().getFullYear()} Created by Pankod
-        </AntLayout.Footer>
-    );
-
-    const DefaultOffLayoutArea = () => null;
-
     if (CustomLayout) {
         return (
             <CustomLayout
@@ -198,7 +72,11 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
 
     return (
         <AntLayout style={{ minHeight: "100vh" }}>
-            {CustomSider ? <CustomSider /> : <DefaultSider />}
+            {CustomSider ? (
+                <CustomSider />
+            ) : (
+                <DefaultSider dashboard={dashboard} />
+            )}
             <AntLayout className="site-layout">
                 {CustomHeader ? <CustomHeader /> : <DefaultHeader />}
                 <AntLayout.Content>
