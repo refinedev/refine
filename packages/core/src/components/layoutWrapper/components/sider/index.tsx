@@ -55,20 +55,22 @@ export const Sider: FC<SiderProps> = ({ dashboard }) => {
             collapsed={collapsed}
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
         >
-            <Link
-                to={`/`}
-                style={{
-                    color: "#FFF",
-                    fontSize: 16,
-                    textAlign: "center",
-                    height: 60,
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-            >
-                {Title && <Title collapsed={collapsed} />}
-            </Link>
+            {Title && (
+                <Link
+                    to={`/`}
+                    style={{
+                        color: "#FFF",
+                        fontSize: 16,
+                        textAlign: "center",
+                        height: 60,
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    <Title collapsed={collapsed} />
+                </Link>
+            )}
             <Menu
                 onClick={menuOnClick}
                 theme="dark"
