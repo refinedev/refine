@@ -22,9 +22,6 @@ const renderWithAdminContext = (
 
 describe("LayoutWrapper", () => {
     test("LayoutWrapper renders the custom components if Layout is given as DefaultLayout", () => {
-        const customTitleContent = "customTitleContent";
-        const CustomTitle = () => <p>{customTitleContent}</p>;
-
         const customSiderContent = "customSiderContent";
         const CustomSider = () => <p>{customSiderContent}</p>;
 
@@ -42,14 +39,12 @@ describe("LayoutWrapper", () => {
             mutationMode: "pessimistic",
             syncWithLocation: false,
             undoableTimeout: 5000,
-            Title: CustomTitle,
             Sider: CustomSider,
             Header: CustomHeader,
             Footer: CustomFooter,
             OffLayoutArea: CustomOffLayoutArea,
         });
 
-        expect(screen.getByText(customTitleContent));
         expect(screen.getByText(customSiderContent));
         expect(screen.getByText(customHeaderContent));
         expect(screen.getByText(customFooterContent));
@@ -73,9 +68,6 @@ describe("LayoutWrapper", () => {
             </div>
         );
 
-        const customTitleContent = "customTitleContent";
-        const CustomTitle = () => <p>{customTitleContent}</p>;
-
         const customSiderContent = "customSiderContent";
         const CustomSider = () => <p>{customSiderContent}</p>;
 
@@ -93,7 +85,6 @@ describe("LayoutWrapper", () => {
             mutationMode: "pessimistic",
             syncWithLocation: false,
             undoableTimeout: 5000,
-            Title: CustomTitle,
             Layout: CustomLayout,
             Sider: CustomSider,
             Header: CustomHeader,
@@ -101,10 +92,24 @@ describe("LayoutWrapper", () => {
             OffLayoutArea: CustomOffLayoutArea,
         });
 
-        expect(getByText(customTitleContent));
         expect(getByText(customSiderContent));
         expect(getByText(customHeaderContent));
         expect(getByText(customFooterContent));
         expect(getByText(customOffLayoutAreaContent));
+    });
+
+    test("LayoutWrapper renders custom title if given default Sider", () => {
+        const customTitleContent = "customTitleContent";
+        const CustomTitle = () => <p>{customTitleContent}</p>;
+
+        const { getByText } = renderWithAdminContext(<LayoutWrapper />, {
+            warnWhenUnsavedChanges: false,
+            mutationMode: "pessimistic",
+            syncWithLocation: false,
+            undoableTimeout: 5000,
+            Title: CustomTitle,
+        });
+
+        expect(getByText(customTitleContent));
     });
 });
