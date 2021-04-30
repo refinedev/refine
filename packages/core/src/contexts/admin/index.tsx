@@ -7,6 +7,7 @@ import {
     Sider as DefaultSider,
     Footer as DefaultFooter,
     OffLayoutArea as DefaultOffLayoutArea,
+    Title as DefaultTitle,
 } from "@components/layoutWrapper/components";
 
 export const AdminContext = React.createContext<IAdminContext>({
@@ -16,6 +17,7 @@ export const AdminContext = React.createContext<IAdminContext>({
     setWarnWhen: (value: boolean) => value,
     syncWithLocation: false,
     undoableTimeout: 5000,
+    Title: DefaultTitle,
     Sider: DefaultSider,
     Header: DefaultHeader,
     Footer: DefaultFooter,
@@ -29,7 +31,7 @@ export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
     syncWithLocation,
     undoableTimeout,
     children,
-    Title,
+    Title = DefaultTitle,
     Layout = DefaultLayout,
     Header = DefaultHeader,
     Sider = DefaultSider,

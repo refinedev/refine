@@ -9,7 +9,7 @@ export interface IAdminContext {
     warnWhenUnsavedChanges: boolean;
     syncWithLocation: boolean;
     undoableTimeout: number;
-    Title?: React.FC<TitleProps>;
+    Title: React.FC<TitleProps>;
     Layout: React.FC<LayoutProps>;
     Sider: React.FC<SiderProps>;
     Header: React.FC;

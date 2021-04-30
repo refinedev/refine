@@ -24,13 +24,6 @@ import {
     LayoutProps,
     TitleProps,
 } from "../../../interfaces";
-import {
-    Footer as DefaultFooter,
-    Header as DefaultHeader,
-    Layout as DefaultLayout,
-    Sider as DefaultSider,
-    OffLayoutArea as DefaultOffLayoutArea,
-} from "@components/layoutWrapper/components";
 
 export interface AdminProps {
     authProvider?: IAuthContext;
