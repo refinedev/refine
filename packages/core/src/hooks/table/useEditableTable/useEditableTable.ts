@@ -6,7 +6,7 @@ import { BaseRecord } from "../../../interfaces";
 type useEditableTableProps<T> = useTableProps & useEditFormProps<T>;
 
 export const useEditableTable = <RecordType extends BaseRecord = BaseRecord>(
-    props: useEditableTableProps<RecordType>,
+    props: useEditableTableProps<RecordType> = {},
 ) => {
     const table = useTable<RecordType>({ ...props });
     const edit = useEditForm<RecordType>({ ...props });
