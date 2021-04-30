@@ -20,7 +20,7 @@ export const Layout: React.FC<LayoutProps> = ({
                     <div style={{ padding: 24, minHeight: 360 }}>
                         {children}
                     </div>
-                    {OffLayoutArea && <OffLayoutArea />}
+                    <OffLayoutArea />
                 </AntLayout.Content>
                 <Footer />
             </AntLayout>

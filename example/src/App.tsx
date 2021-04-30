@@ -108,9 +108,6 @@ function App() {
             configProviderProps={{
                 ...defaultConfigProviderProps,
             }}
-            Title={({ collapsed }) => (
-                <div>{collapsed ? "Title" : "Long Title"}</div>
-            )}
             Layout={({ children, Sider, Header, Footer, OffLayoutArea }) => (
                 <AntdLayout
                     style={{ minHeight: "100vh", flexDirection: "row" }}
