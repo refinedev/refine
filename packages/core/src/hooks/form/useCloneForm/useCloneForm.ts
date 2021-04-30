@@ -40,7 +40,7 @@ export const useCloneForm = <
     RecordType extends BaseRecord = BaseRecord,
     MutationType extends BaseRecord = RecordType
 >(
-    props: useCloneFormProps<MutationType>,
+    props: useCloneFormProps<MutationType> = {},
 ): useCloneForm<RecordType, MutationType> => {
     const useCreateFormProps = useCreateForm<RecordType, MutationType>({
         ...props,

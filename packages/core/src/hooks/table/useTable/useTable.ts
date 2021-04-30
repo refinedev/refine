@@ -41,7 +41,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
     initialSorter,
     initialFilter,
     syncWithLocation = false,
-}: useTableProps): useTableReturnType<RecordType> => {
+}: useTableProps = {}): useTableReturnType<RecordType> => {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
     if (syncWithLocationContext) {
