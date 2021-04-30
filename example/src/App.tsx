@@ -90,7 +90,7 @@ function App() {
             authProvider={authProvider}
             dataProvider={dataProvider("https://refine-nestjs-crud.pankod.com")}
             loginPage={LoginPage}
-            dashboard={DashboardPage}
+            dashboardPage={DashboardPage}
             ready={ReadyPage}
             i18nProvider={i18nProvider}
             routes={[
@@ -115,17 +115,17 @@ function App() {
                 <AntdLayout
                     style={{ minHeight: "100vh", flexDirection: "row" }}
                 >
-                    {Sider && <Sider />}
+                    <Sider />
                     <AntdLayout className="site-layout">
-                        {Header && <Header />}
+                        <Header />
                         <AntdLayout.Content>
                             <div style={{ padding: 24, minHeight: 360 }}>
                                 {children}
                             </div>
                         </AntdLayout.Content>
-                        {Footer && <Footer />}
+                        <Footer />
                     </AntdLayout>
-                    {OffLayoutArea && <OffLayoutArea />}
+                    <OffLayoutArea />
                 </AntdLayout>
             )}
             Footer={() => (

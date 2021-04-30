@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 
 import { IAdminContext, IAdminContextProvider } from "./IAdminContext";
+import {
+    Footer,
+    Header,
+    Sider,
+    Layout,
+    OffLayoutArea,
+} from "@components/layoutWrapper/components";
 
 export const AdminContext = React.createContext<IAdminContext>({
     mutationMode: "pessimistic",
@@ -9,6 +16,11 @@ export const AdminContext = React.createContext<IAdminContext>({
     setWarnWhen: (value: boolean) => value,
     syncWithLocation: false,
     undoableTimeout: 5000,
+    Sider,
+    Header,
+    Footer,
+    Layout,
+    OffLayoutArea,
 });
 
 export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
@@ -18,10 +30,10 @@ export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
     undoableTimeout,
     children,
     Title,
-    CustomLayout,
-    CustomSider,
-    CustomHeader,
-    CustomFooter,
+    Layout,
+    Sider,
+    Header,
+    Footer,
     OffLayoutArea,
 }) => {
     const [warnWhen, setWarnWhen] = useState(false);
@@ -35,10 +47,10 @@ export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
                 syncWithLocation,
                 Title,
                 undoableTimeout,
-                CustomLayout,
-                CustomSider,
-                CustomHeader,
-                CustomFooter,
+                Layout,
+                Sider,
+                Header,
+                Footer,
                 OffLayoutArea,
             }}
         >

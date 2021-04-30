@@ -21,9 +21,16 @@ import {
     IDataContext,
     IAuthContext,
     I18nProvider,
-    CustomLayoutProps,
+    LayoutProps,
     TitleProps,
 } from "../../../interfaces";
+import {
+    Footer as DefaultFooter,
+    Header as DefaultHeader,
+    Layout as DefaultLayout,
+    Sider as DefaultSider,
+    OffLayoutArea as DefaultOffLayoutArea,
+} from "@components/layoutWrapper/components";
 
 export interface AdminProps {
     authProvider?: IAuthContext;
@@ -31,7 +38,7 @@ export interface AdminProps {
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
     loginPage?: React.FC | false;
-    dashboard?: React.FC;
+    dashboardPage?: React.FC;
     ready?: React.FC;
     mutationMode?: MutationMode;
     syncWithLocation?: boolean;
@@ -39,7 +46,7 @@ export interface AdminProps {
     routes?: RouteProps[];
     configProviderProps?: ConfigProviderProps;
     undoableTimeout?: number;
-    Layout?: FC<CustomLayoutProps>;
+    Layout?: FC<LayoutProps>;
     Sider?: FC<unknown>;
     Header?: FC<unknown>;
     Footer?: FC<unknown>;
@@ -50,8 +57,7 @@ export interface AdminProps {
 export const Admin: React.FC<AdminProps> = ({
     authProvider,
     dataProvider,
-    Title,
-    dashboard,
+    dashboardPage,
     ready,
     loginPage,
     catchAll,
@@ -63,11 +69,12 @@ export const Admin: React.FC<AdminProps> = ({
     routes = [],
     configProviderProps = defaultConfigProviderProps,
     undoableTimeout = 5000,
-    Layout,
-    Sider,
-    Header,
-    Footer,
-    OffLayoutArea,
+    Title,
+    Layout = DefaultLayout,
+    Sider = DefaultSider,
+    Header = DefaultHeader,
+    Footer = DefaultFooter,
+    OffLayoutArea = DefaultOffLayoutArea,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -119,17 +126,17 @@ export const Admin: React.FC<AdminProps> = ({
                                         syncWithLocation={syncWithLocation}
                                         Title={Title}
                                         undoableTimeout={undoableTimeout}
-                                        CustomLayout={Layout}
-                                        CustomSider={Sider}
-                                        CustomFooter={Footer}
-                                        CustomHeader={Header}
+                                        Layout={Layout}
+                                        Sider={Sider}
+                                        Footer={Footer}
+                                        Header={Header}
                                         OffLayoutArea={OffLayoutArea}
                                     >
                                         <Router>
                                             <RouteProvider
                                                 resources={resources}
                                                 catchAll={catchAll}
-                                                dashboard={dashboard}
+                                                dashboardPage={dashboardPage}
                                                 loginPage={loginPage}
                                                 ready={ready}
                                                 customRoutes={routes}

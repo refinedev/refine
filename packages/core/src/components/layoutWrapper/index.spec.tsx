@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Layout } from "@components/layout";
+import { LayoutWrapper } from "@components/layoutWrapper";
 import { IAdminContextProvider } from "../../contexts/admin/IAdminContext";
 import { render, screen, TestWrapper, MockJSONServer } from "@test";
 import { Route } from "react-router-dom";
@@ -25,7 +25,7 @@ describe("Layout", () => {
 
         const CustomOffLayoutArea = () => <p>{testContent}</p>;
 
-        renderWithAdminContext(<Layout />, {
+        renderWithAdminContext(<LayoutWrapper />, {
             OffLayoutArea: CustomOffLayoutArea,
             warnWhenUnsavedChanges: false,
             mutationMode: "pessimistic",
@@ -37,7 +37,7 @@ describe("Layout", () => {
     });
 
     test("Layout renders without OffLayoutArea component", () => {
-        const result = renderWithAdminContext(<Layout />, {
+        const result = renderWithAdminContext(<LayoutWrapper />, {
             OffLayoutArea: undefined,
             warnWhenUnsavedChanges: false,
             mutationMode: "pessimistic",
