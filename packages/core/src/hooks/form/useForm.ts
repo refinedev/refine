@@ -45,10 +45,10 @@ export type useForm<T, M> = {
 export const useForm = <
     RecordType = BaseRecord,
     MutationType extends BaseRecord = RecordType
->({
-    action,
-    ...rest
-}: useFormProps<MutationType>): useForm<RecordType, MutationType> => {
+>({ action, ...rest }: useFormProps<MutationType> = {}): useForm<
+    RecordType,
+    MutationType
+> => {
     // id state is needed to determine selected record in addition to id parameter from route
     // this could be moved to a custom hook that encapsulates both create and clone form hooks.
     const [cloneId, setCloneId] = React.useState<string | number>();

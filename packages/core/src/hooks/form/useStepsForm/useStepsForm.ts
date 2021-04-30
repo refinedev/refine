@@ -15,7 +15,7 @@ export const useStepsForm = <
     RecordType = BaseRecord,
     MutationType extends BaseRecord = RecordType
 >(
-    props: useStepsFormProps<MutationType>,
+    props: useStepsFormProps<MutationType> = {},
 ): useStepsForm<RecordType, MutationType> => {
     const useFormProps = useForm<RecordType, MutationType>({ ...props });
     const { form, formProps, formLoading } = useFormProps;

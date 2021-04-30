@@ -70,7 +70,10 @@ export const useEditForm = <
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect = "list",
     undoableTimeout,
-}: useEditFormProps<MutationType>): useEditForm<RecordType, MutationType> => {
+}: useEditFormProps<MutationType> = {}): useEditForm<
+    RecordType,
+    MutationType
+> => {
     const [editId, setEditId] = React.useState<string | number>();
 
     const [formAnt] = Form.useForm();
