@@ -9,6 +9,7 @@ import {
     BackTop,
 } from "@pankod/refine";
 import { DemoSidebar, useDemoSidebar } from "@pankod/refine-demo-sidebar";
+import "@pankod/refine/dist/styles.min.css";
 
 import dataProvider from "@pankod/refine-nestjsx-crud";
 import { useTranslation } from "react-i18next";
