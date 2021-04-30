@@ -3,7 +3,7 @@ import { useForm, Create, Form, Input, Select, useSelect } from "@pankod/refine"
 import { IPost } from "../../interfaces";
 
 export const PostCreate = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>({});
+    const { formProps, saveButtonProps } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<IPost>({
         resource: "categories",
