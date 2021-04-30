@@ -12,7 +12,7 @@ import createGif from '@site/static/img/create.gif';
 import editGif from '@site/static/img/edit.gif';
 import showGif from '@site/static/img/show.gif';
 
-We'll show how to create a simple admin app with CRUD operations based on an existing REST API.
+We'll show how to create a simple admin app with CRUD operations based on REST API.
 
 ## Setup
 
@@ -34,7 +34,7 @@ Then navigate to the project folder and launch it:
 npm run start
 ```
 
-Then open http://localhost:3000/ to see your app.
+Then open [http://localhost:3000](http://localhost:3000) to see your app.
 
 ## Providing a data source with an API
 
@@ -583,7 +583,7 @@ Similarly `saveButtonProps` includes useful properties for a button to submit a 
 
 [Refer to `useForm` documentation for detailed usage. &#8594](#)
 
-`useSelect` produces props for `<Select>` component from data at another resource. `Select` is an Ant-Design component that is exported from `refine` for convenience.  
+`useSelect` produces props for `<Select>` component from data at another resource. `<Select>` is an Ant-Design component that is exported from `refine` for convenience.  
 
 [Refer to `Select` documentation for detailed usage. &#8594](https://ant.design/components/select/)
 
@@ -886,4 +886,92 @@ export const PostShow = (props: IResourceComponentsProps) => {
 
 ## Adding search and filters
 
+
+We'll use`<Table.Column>`'s [`filterDropdown`](https://ant.design/components/table/#Column)   property from Ant-design and `<FilterDropdown>` component from `refine` to search and filter content.
+
+Let's add search and filter feature to category field.
+
+
+```tsx title="pages/posts/list.tsx"
+import {
+    ...
+    //highlight-start 
+    FilterDropdown,
+    Select,
+    useSelect
+    //highlight-end 
+} from "@pankod/refine";
+
+export const PostList = (props: IResourceComponentsProps) => {
+    ...
+
+    //highlight-start 
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+    });
+     //highlight-end 
+
+    return (
+        <List {...props}>
+            <Table {...tableProps} rowKey="id">
+               ...
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+
+                        return (
+                            <TextField
+                                value={
+                                    categoriesData?.data.find(
+                                        (item) => item.id === value,
+                                    )?.title
+                                }
+                            />
+                        );
+                    }}
+                    //highlight-start 
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Select
+                                style={{ minWidth: 200 }}
+                                showSearch
+                                mode="multiple"
+                                placeholder="Select Category"
+                                filterOption={false}
+                                {...categorySelectProps}
+                            />
+                        </FilterDropdown>
+                    )}
+                    //highlight-end 
+                />
+               ...
+            </Table>
+        </List>
+    );
+};
+```
+
+`<FilterDropdown>` component serves as a bridge between its child input and  `refine`'s `useTable` hook.
+
+It transfers child's input value to `useTable` hook using `filterDropdown`'s embedded props and provides a filter button to start filtering functionality. 
+
+[Refer to `<FilterDropdown>` documentation for detailed usage. &#8594](#)
+
+In order to let user choose or search a category to filter, we get all categories as `categorySelectProps` using `useSelect` hook and set to `<Select>`.
+
+
 ## Connecting to a real API
+
+At this point we have an app with basic features implemented using a fake REST API.  
+
+[Refer to `dataProvider` documentation for how to connect your own api to `refine`.](#)
+
+## Conclusion
+
+Core functionality of `refine` is based heavily on hooks. This way it provides a wide range of flexibility on data management and UI structure.  
+
+You can develop new features or modify existing behavior based on your needs on top of `refine` codebase.

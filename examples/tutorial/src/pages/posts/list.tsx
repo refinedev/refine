@@ -10,14 +10,18 @@ import {
     EditButton,
     ShowButton,
     useMany,
+    FilterDropdown,
+    Select,
+    useSelect,
 } from "@pankod/refine";
 
-import { IPost, ICategory } from "../../interfaces"
+import { IPost, ICategory } from "../../interfaces";
 
 export const PostList = (props: IResourceComponentsProps) => {
     const { tableProps } = useTable<IPost>({});
 
-    const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
     const { data: categoriesData, isLoading } = useMany<ICategory>(
         "categories",
         categoryIds,
@@ -26,6 +30,10 @@ export const PostList = (props: IResourceComponentsProps) => {
         },
     );
 
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+    });
+
     return (
         <List {...props}>
             <Table {...tableProps} rowKey="id">
@@ -33,9 +41,6 @@ export const PostList = (props: IResourceComponentsProps) => {
                     dataIndex="title"
                     title="title"
                     render={(value) => <TextField value={value} />}
-                    sorter={{
-                        multiple: 1,
-                    }}
                 />
                 <Table.Column
                     dataIndex="status"
@@ -46,9 +51,6 @@ export const PostList = (props: IResourceComponentsProps) => {
                     dataIndex="createdAt"
                     title="createdAt"
                     render={(value) => <DateField format="LLL" value={value} />}
-                    sorter={{
-                        multiple: 2,
-                    }}
                 />
                 <Table.Column
                     dataIndex={["category", "id"]}
@@ -61,12 +63,25 @@ export const PostList = (props: IResourceComponentsProps) => {
                         return (
                             <TextField
                                 value={
-                                    categoriesData?.data.find((item) => item.id === value)
-                                        ?.title
+                                    categoriesData?.data.find(
+                                        (item) => item.id === value,
+                                    )?.title
                                 }
                             />
                         );
                     }}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Select
+                                style={{ minWidth: 200 }}
+                                showSearch
+                                mode="multiple"
+                                placeholder="Select Category"
+                                filterOption={false}
+                                {...categorySelectProps}
+                            />
+                        </FilterDropdown>
+                    )}
                 />
                 <Table.Column
                     title="Actions"
