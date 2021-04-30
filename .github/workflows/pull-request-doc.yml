@@ -1,4 +1,4 @@
-name: Pull Request Example [synchronize]
+name: Pull Request Documentation [synchronize]
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
       - synchronize
       - opened
       - reopened
-    paths-ignore:
+    paths:
       - "documentation/**"
 jobs:
   test-coverage:
