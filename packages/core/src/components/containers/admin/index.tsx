@@ -36,10 +36,10 @@ export interface AdminProps {
     authProvider?: IAuthContext;
     dataProvider: IDataContext;
     i18nProvider?: I18nProvider;
-    catchAll?: React.ReactNode;
-    loginPage?: React.FC | false;
-    dashboardPage?: React.FC;
-    ready?: React.FC;
+    catchAll?: ReactNode;
+    loginPage?: FC | false;
+    dashboardPage?: FC;
+    ready?: FC;
     mutationMode?: MutationMode;
     syncWithLocation?: boolean;
     warnWhenUnsavedChanges?: boolean;
@@ -54,7 +54,7 @@ export interface AdminProps {
     Title?: FC<TitleProps>;
 }
 
-export const Admin: React.FC<AdminProps> = ({
+export const Admin: FC<AdminProps> = ({
     authProvider,
     dataProvider,
     dashboardPage,
