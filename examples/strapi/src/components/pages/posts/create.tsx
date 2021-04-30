@@ -10,6 +10,8 @@ import {
     useForm,
     useSelect,
     normalizeFileForStrapi,
+    InputNumber,
+    useStrapiUpload,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -32,6 +34,18 @@ export const PostCreate = (props: IResourceComponentsProps) => {
         resource: "categories",
         defaultValue: postData?.category.id,
     });
+
+    const { uploadedFileIds, ...uploadProps } = useStrapiUpload({
+        maxCount: 3,
+    });
+
+    const { form } = formProps;
+    React.useEffect(() => {
+        form &&
+            form.setFieldsValue({
+                cover: uploadedFileIds,
+            });
+    }, [uploadedFileIds]);
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
@@ -81,7 +95,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                 </Form.Item>
                 <Form.Item label="Cover">
                     <Form.Item
-                        name="cover"
+                        name="_cover"
                         valuePropName="fileList"
                         getValueFromEvent={(event) =>
                             normalizeFileForStrapi(event, API_URL)
@@ -91,19 +105,22 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                         <Upload.Dragger
                             name="files"
                             action={`${API_URL}/upload`}
-                            /*     headers={{
+                            headers={{
                                 Authorization: `Bearer ${localStorage.getItem(
                                     TOKEN_KEY,
                                 )}`,
-                            }} */
+                            }}
                             listType="picture"
-                            maxCount={5}
                             multiple
+                            {...uploadProps}
                         >
                             <p className="ant-upload-text">
                                 Drag & drop a file in this area
                             </p>
                         </Upload.Dragger>
+                    </Form.Item>
+                    <Form.Item name="cover">
+                        <InputNumber />
                     </Form.Item>
                 </Form.Item>
             </Form>

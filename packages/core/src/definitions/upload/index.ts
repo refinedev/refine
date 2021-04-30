@@ -6,6 +6,15 @@ interface UploadResponse {
 
 interface StrapiUploadResponse {
     url: string;
+    id: string | number;
+}
+
+export interface StrapiUploadedFile {
+    id: string | number;
+    name: string;
+    mime: string;
+    size: number;
+    url: string;
 }
 
 interface EventArgs<T = UploadResponse> {
@@ -35,11 +44,12 @@ export const normalizeFileForStrapi = (
     const { fileList } = event;
 
     return fileList.map((item) => {
-        let { url } = item;
-        const { uid, name, response, type, size, percent, status } = item;
+        let { url, uid } = item;
+        const { name, response, type, size, percent, status } = item;
 
         if (response) {
             url = `${baseUrl}${response[0].url}`;
+            uid = `${response[0].id}`;
         }
 
         return { uid, name, url, type, size, percent, status };
