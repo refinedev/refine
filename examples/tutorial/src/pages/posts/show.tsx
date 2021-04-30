@@ -1,13 +1,14 @@
 import { Show, useShow, Typography, Tag, useOne } from "@pankod/refine";
+import { IPost, ICategory} from "../../interfaces"
 
 const { Title, Text } = Typography;
 
 export const PostShow = () => {
-    const { queryResult } = useShow({});
+    const { queryResult } = useShow<IPost>({});
     const { data, isLoading } = queryResult;
     const record = data?.data;
 
-    const { data: categoryData } = useOne("categories", record!.category.id.toString(), {
+    const { data: categoryData } = useOne<ICategory>("categories", record?.category.id ?? "", {
         enabled: !!record?.category.id
     })
 

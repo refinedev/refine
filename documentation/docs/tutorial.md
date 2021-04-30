@@ -81,6 +81,7 @@ Change `App.tsx` with the following code:
 ```tsx title="src/App.tsx"
 import { Admin } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
+import "@pankod/refine/dist/styles.min.css"
 
 function App() {
     return (
@@ -107,6 +108,12 @@ You will see the welcome page.
 <br/>
 </>
 
+:::tip
+```tsx
+import "@pankod/refine/dist/styles.min.css"
+```
+[Refer to theme documentation for further information about importing the default css](#)
+:::
 ## Connect API with Resources
 
 We'll start forming our app by adding a `<Resource>` component as a child.
@@ -753,20 +760,26 @@ First create a `<PostShow>` component to show an existing post. This component w
 
 ```tsx title="pages/posts/show.tsx"
 import {
-    ...
     //highlight-start 
     Show, 
     useShow, 
     Typography, 
     Tag, 
-    ShowButton
+    useOne
     //highlight-end
 } from "@pankod/refine";
+import { IPost, ICategory} from "../../interfaces"
+
+const { Title, Text } = Typography;
 
 export const PostShow = () => {
     const { queryResult } = useShow({});
     const { data, isLoading } = queryResult;
     const record = data?.data;
+
+    const { data: categoryData } = useOne<ICategory>("categories", record!.category.id, {
+        enabled: !!record?.category.id
+    })
 
     return (
         <Show isLoading={isLoading}>
@@ -774,7 +787,10 @@ export const PostShow = () => {
             <Text>{record?.title}</Text>
 
             <Title level={5}>Status</Title>
-            <Tag>{record?.status}</Tag>
+            <Text><Tag>{record?.status}</Tag></Text>
+
+            <Title level={5}>Category</Title>
+            <Text>{categoryData?.data.title}</Text>
         </Show>
     )
 }
@@ -814,7 +830,7 @@ export default App;
 
 ### Fetching record data
 ```tsx
-const { queryResult } = useShow({});
+const { queryResult } = useShow<IPost>({});
 ```
 
 `useShow` is another skillful hook from `refine` that is responsible for fetching a single record data.
@@ -822,6 +838,23 @@ const { queryResult } = useShow({});
 The `queryResult` includes fetched data and query state like `isLoading` state.
 
 [Refer to `useShow` documentation for detailed usage. &#8594](#)
+
+```tsx
+const { data: categoryData } = useOne<ICategory>("categories", record?.category.id ?? "", {
+        enabled: !!record?.category.id
+    });
+```
+
+`useOne` is a low level hook from `refine` that is also responsible for fetching a single record data for any given resource.
+
+Here, `useOne` is used to fetch a record data from `/resources/categories`.
+
+[Refer to `useOne` documentation for detailed usage. &#8594](#)
+
+:::caution attention
+Difference between `useOne` and `useShow` is that `useShow` is tuned for fetching data from current resource.
+:::
+
 
 ### Showing the data
 
