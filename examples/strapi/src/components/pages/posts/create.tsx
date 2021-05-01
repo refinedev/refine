@@ -10,13 +10,13 @@ import {
     useForm,
     useSelect,
     normalizeFileForStrapi,
-    InputNumber,
-    useStrapiUpload,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
+
+import { useStrapiUpload } from "@pankod/refine-strapi";
 
 import { TOKEN_KEY } from "../../../constants";
 
@@ -35,17 +35,9 @@ export const PostCreate = (props: IResourceComponentsProps) => {
         defaultValue: postData?.category.id,
     });
 
-    const { uploadedFileIds, ...uploadProps } = useStrapiUpload({
-        maxCount: 3,
+    const { ...uploadProps } = useStrapiUpload({
+        maxCount: 1,
     });
-
-    const { form } = formProps;
-    React.useEffect(() => {
-        form &&
-            form.setFieldsValue({
-                cover: uploadedFileIds,
-            });
-    }, [uploadedFileIds]);
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
@@ -95,7 +87,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                 </Form.Item>
                 <Form.Item label="Cover">
                     <Form.Item
-                        name="_cover"
+                        name="cover"
                         valuePropName="fileList"
                         getValueFromEvent={(event) =>
                             normalizeFileForStrapi(event, API_URL)
@@ -118,9 +110,6 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                                 Drag & drop a file in this area
                             </p>
                         </Upload.Dragger>
-                    </Form.Item>
-                    <Form.Item name="cover">
-                        <InputNumber />
                     </Form.Item>
                 </Form.Item>
             </Form>
