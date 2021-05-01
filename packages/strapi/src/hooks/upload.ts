@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import {
     RcFile,
     UploadChangeParam,
@@ -6,16 +6,12 @@ import {
 } from "antd/lib/upload/interface";
 
 interface StrapiUploadParams {
-    formData?: UploadFile[];
     maxCount: number;
 }
 
-export const useStrapiUpload = ({
-    formData = [],
-    maxCount,
-}: StrapiUploadParams) => {
-    const [uploadedFileIds, setUploadedFileIds] = React.useState<string[]>([]);
-    const [fileList, setFileList] = React.useState<UploadFile[]>([]);
+export const useStrapiUpload = ({ maxCount }: StrapiUploadParams) => {
+    const [uploadedFileIds, setUploadedFileIds] = useState<string[]>([]);
+    const [fileList, setFileList] = useState<UploadFile[]>([]);
 
     const beforeUpload = (_file: RcFile, files: RcFile[]): boolean => {
         const totalFiles = fileList.length;
@@ -35,12 +31,6 @@ export const useStrapiUpload = ({
         return true;
     };
 
-    // React.useEffect(() => {
-    //     if (formData.length > 0) {
-    //         setFileList(formData);
-    //     }
-    // }, [formData]);
-
     const onChange = (info: UploadChangeParam) => {
         const ids = [];
         for (const file of info.fileList) {
@@ -59,7 +49,6 @@ export const useStrapiUpload = ({
         uploadedFileIds,
         beforeUpload,
         fileList,
-        // onRemove,
         maxCount,
         onChange,
     };

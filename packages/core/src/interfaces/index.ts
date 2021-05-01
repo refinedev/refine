@@ -42,6 +42,9 @@ export * from "./redirectionTypes";
 // sunflower forms
 export * from "./form";
 
+// upload
+export * from "./upload";
+
 export type Identifier = string | number;
 
 export type BaseRecord = {

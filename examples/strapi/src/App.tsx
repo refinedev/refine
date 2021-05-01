@@ -1,6 +1,6 @@
 import { Admin, AuthProvider, Resource } from "@pankod/refine";
 import StrapiAuthHelper from "@pankod/refine-strapi-auth";
-import DataProvider from "@pankod/refine-strapi";
+import { StrapiDataProvider } from "@pankod/refine-strapi";
 import axios from "axios";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -67,7 +67,7 @@ const App = () => {
             return Promise.reject();
         },
     };
-    const dataProvider = DataProvider(API_URL, axiosInstance);
+    const dataProvider = StrapiDataProvider(API_URL, axiosInstance);
 
     return (
         <Admin authProvider={authProvider} dataProvider={dataProvider}>

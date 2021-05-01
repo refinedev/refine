@@ -15,6 +15,7 @@ export {
     IResourceComponentsProps,
     ILoginForm,
     HttpError,
+    UploadedFile,
 } from "./interfaces";
 
 export * from "./definitions/upload";
