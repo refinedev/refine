@@ -1,6 +1,5 @@
 import { Admin, AuthProvider, Resource } from "@pankod/refine";
-import StrapiAuthHelper from "@pankod/refine-strapi-auth";
-import { StrapiDataProvider } from "@pankod/refine-strapi";
+import { DataProvider, AuthHelper } from "@pankod/refine-strapi";
 import axios from "axios";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -11,7 +10,7 @@ export const API_URL = "/api";
 
 const App = () => {
     const axiosInstance = axios.create();
-    const strapiAuthHelper = StrapiAuthHelper(API_URL);
+    const strapiAuthHelper = AuthHelper(API_URL);
 
     const authProvider: AuthProvider = {
         login: async ({ username, password }) => {
@@ -67,7 +66,7 @@ const App = () => {
             return Promise.reject();
         },
     };
-    const dataProvider = StrapiDataProvider(API_URL, axiosInstance);
+    const dataProvider = DataProvider(API_URL, axiosInstance);
 
     return (
         <Admin authProvider={authProvider} dataProvider={dataProvider}>

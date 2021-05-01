@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios";
-import { DataProvider, HttpError } from "@pankod/refine";
+import { DataProvider as IDataProvider, HttpError } from "@pankod/refine";
 import { stringify } from "query-string";
 
 const axiosInstance = axios.create();
@@ -31,10 +31,10 @@ const mediaUploadMapper = (params: any) => {
     return params;
 };
 
-export const StrapiDataProvider = (
+export const DataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
+): IDataProvider => ({
     getList: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
         const { pagination, sort } = params;
