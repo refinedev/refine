@@ -3,20 +3,6 @@ import { UploadFile } from "antd/lib/upload/interface";
 interface UploadResponse {
     fileUrl: string;
 }
-
-interface StrapiUploadResponse {
-    url: string;
-    id: string | number;
-}
-
-export interface StrapiUploadedFile {
-    id: string | number;
-    name: string;
-    mime: string;
-    size: number;
-    url: string;
-}
-
 interface EventArgs<T = UploadResponse> {
     file: UploadFile<T>;
     fileList: Array<UploadFile<T>>;
@@ -31,25 +17,6 @@ export const normalizeFile = (event: EventArgs) => {
 
         if (response) {
             url = response.fileUrl;
-        }
-
-        return { uid, name, url, type, size, percent, status };
-    });
-};
-
-export const normalizeFileForStrapi = (
-    event: EventArgs<StrapiUploadResponse[]>,
-    baseUrl: string,
-) => {
-    const { fileList } = event;
-
-    return fileList.map((item) => {
-        let { url, uid } = item;
-        const { name, response, type, size, percent, status } = item;
-
-        if (response) {
-            url = `${baseUrl}${response[0].url}`;
-            uid = `${response[0].id}`;
         }
 
         return { uid, name, url, type, size, percent, status };

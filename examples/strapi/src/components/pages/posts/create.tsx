@@ -9,14 +9,13 @@ import {
     useApiUrl,
     useForm,
     useSelect,
-    normalizeFileForStrapi,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-import { useStrapiUpload } from "@pankod/refine-strapi";
+import { useStrapiUpload, normalizeFileForStrapi } from "@pankod/refine-strapi";
 
 import { TOKEN_KEY } from "../../../constants";
 

@@ -8,10 +8,9 @@ import {
     useForm,
     useSelect,
     useApiUrl,
-    normalizeFileForStrapi,
     Upload,
 } from "@pankod/refine";
-import { useStrapiUpload } from "@pankod/refine-strapi";
+import { useStrapiUpload, normalizeFileForStrapi } from "@pankod/refine-strapi";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
