@@ -1,4 +1,15 @@
-import { UploadedFile } from "@pankod/refine";
+// TODO: Use @pankod/refine
+// import { UploadedFile } from "@pankod/refine";
+
+interface UploadedFile {
+    uid: string;
+    name: string;
+    url: string;
+    type: string;
+    size: number;
+    percent: number;
+    status: "error" | "success" | "done" | "uploading" | "removed";
+}
 
 export type StrapiUpload = {
     id: string;
