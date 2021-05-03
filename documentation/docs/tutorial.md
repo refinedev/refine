@@ -129,7 +129,7 @@ import dataProvider from "@pankod/refine-json-server";
 function App() {
     return (
         <Admin
-            dataProvider={dataProvider("https://readmin-fake-rest.pankod.com/")}
+            dataProvider={dataProvider("https://readmin-fake-rest.pankod.com")}
         >
             //highlight-next-line
             <Resource name="posts" />
