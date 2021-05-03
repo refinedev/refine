@@ -8,21 +8,21 @@ import {
     Form,
     Select,
     Input,
-    TextField,
-    useTable,
-    IResourceComponentsProps,
+    Modal,
     Space,
-    EditButton,
-    ShowButton,
+    Typography,
+    TextField,
+    MarkdownField,
+    useTable,
     useMany,
     useShow,
     useSelect,
     useModalForm,
-    Modal,
     useOne,
+    EditButton,
+    ShowButton,
     RefreshButton,
-    Typography,
-    MarkdownField,
+    IResourceComponentsProps,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -39,12 +39,9 @@ export const PostList = (props: IResourceComponentsProps) => {
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+
     const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
         enabled: categoryIds.length > 0,
-    });
-
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
     });
 
     const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
@@ -71,10 +68,17 @@ export const PostList = (props: IResourceComponentsProps) => {
         show: editModalShow,
         editId,
         deleteButtonProps,
+        queryResult: editQueryResult,
         formLoading,
     } = useModalForm<IPost>({
         action: "edit",
         warnWhenUnsavedChanges: true,
+    });
+
+    const postData = editQueryResult?.data?.data;
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+        defaultValue: postData?.category.id,
     });
 
     const { queryResult, showId, setShowId } = useShow<IPost>();
@@ -93,6 +97,7 @@ export const PostList = (props: IResourceComponentsProps) => {
         <>
             <List
                 {...props}
+                canCreate
                 createButtonProps={{
                     onClick: () => {
                         createModalShow();
