@@ -3,13 +3,12 @@ import { UploadFile } from "antd/lib/upload/interface";
 interface UploadResponse {
     fileUrl: string;
 }
-
-interface Event {
-    file: UploadFile<UploadResponse>;
-    fileList: Array<UploadFile<UploadResponse>>;
+interface EventArgs<T = UploadResponse> {
+    file: UploadFile<T>;
+    fileList: Array<UploadFile<T>>;
 }
 
-export const normalizeFile = (event: Event) => {
+export const normalizeFile = (event: EventArgs) => {
     const { fileList } = event;
 
     return fileList.map((item) => {
