@@ -310,12 +310,10 @@ Each category id references a record at `refine-fake-rest.pankod.com/categories`
 
 
 ```ts title="https://refine-fake-rest.pankod.com/categories/26"
-...
   { 
     "id": 26,
     "title": "mock category title",
   }
-...
 ```
 <br />
 
