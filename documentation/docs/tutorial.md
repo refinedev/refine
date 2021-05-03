@@ -176,7 +176,7 @@ import {
 import { IPost } from "../../interfaces"
 
 export const PostList = () => {
-    const { tableProps } = useTable<IPost>({});
+    const { tableProps } = useTable<IPost>();
 
     return (
         <List>
@@ -217,7 +217,7 @@ export interface IPost {
 `useTable` is a hook from `refine` that is responsible for fetching data from API with `<Resource>`'s `name` prop using `refine`'s various helper hooks under the hood.
 
 ```tsx
-const { tableProps } = useTable<IPost>({});
+const { tableProps } = useTable<IPost>();
 ```
 
 The `tableProps` includes all necessary props for `<Table>` component to show and interact with data properly.
@@ -337,7 +337,7 @@ import {
 import { IPost, ICategory } from "../../interfaces"
 
 export const PostList = () => {
-    const { tableProps } = useTable<IPost>({});
+    const { tableProps } = useTable<IPost>();
 
    //highlight-start
     const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
@@ -452,7 +452,7 @@ import { useForm, Form, Input, Select, Edit, useSelect } from "@pankod/refine";
 import { IPost } from "../../interfaces";
 
 export const PostEdit = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>({});
+    const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<IPost>({
         resource: "categories",
@@ -575,7 +575,7 @@ export const PostList = () => {
 `useForm` is another skillful hook from `refine` that is responsible for managing form data like creating and editing.
 
 ```tsx
-const { formProps, saveButtonProps } = useForm<IPost>({});
+const { formProps, saveButtonProps } = useForm<IPost>();
 ```
 
 The `formProps` includes all necessary props for `<Form>` component to manage form data properly.
@@ -644,7 +644,7 @@ import {
 import { IPost } from "../../interfaces";
 
 export const PostCreate = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>({});
+    const { formProps, saveButtonProps } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<IPost>({
         resource: "categories",
@@ -720,7 +720,7 @@ Each component given to `<Resource>` will get passed props with `IResourceCompon
 ...
 //highlight-next-line
 export const PostList = (props: IResourceComponentsProps) => {
-    const { tableProps } = useTable({});
+    const { tableProps } = useTable();
 
     return (
         //highlight-next-line
@@ -773,7 +773,7 @@ import { IPost, ICategory} from "../../interfaces"
 const { Title, Text } = Typography;
 
 export const PostShow = () => {
-    const { queryResult } = useShow({});
+    const { queryResult } = useShow();
     const { data, isLoading } = queryResult;
     const record = data?.data;
 
@@ -830,7 +830,7 @@ export default App;
 
 ### Fetching record data
 ```tsx
-const { queryResult } = useShow<IPost>({});
+const { queryResult } = useShow<IPost>();
 ```
 
 `useShow` is another skillful hook from `refine` that is responsible for fetching a single record data.
