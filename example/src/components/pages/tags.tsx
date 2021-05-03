@@ -77,7 +77,7 @@ export const TagsList = (props: any) => {
 export const TagsCreate = (props: any) => {
     const translate = useTranslate();
 
-    const { formProps, saveButtonProps } = useForm<ITags>({});
+    const { formProps, saveButtonProps } = useForm<ITags>();
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
@@ -101,7 +101,7 @@ export const TagsCreate = (props: any) => {
 export const TagsEdit = (props: any) => {
     const translate = useTranslate();
 
-    const { formProps, saveButtonProps } = useForm({});
+    const { formProps, saveButtonProps } = useForm();
 
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>

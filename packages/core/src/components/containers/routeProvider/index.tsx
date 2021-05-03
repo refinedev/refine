@@ -30,7 +30,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         AuthContext,
     );
 
-    checkAuth({});
+    checkAuth();
 
     const routes: IRoutesProps[] = [];
     const RouteHandler = (val: IResourceItem): void => {

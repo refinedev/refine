@@ -722,7 +722,7 @@ export const PostEdit = (props: any) => {
 };
 
 export const PostShow = (props: any) => {
-    const { queryResult } = useShow({});
+    const { queryResult } = useShow();
     const { data, isLoading } = queryResult;
     const record = data?.data;
 

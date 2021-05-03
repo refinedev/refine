@@ -53,7 +53,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, dashboard }) => {
 
     const menuOnClick: MenuClickEventHandler = ({ key }) => {
         if (key === "logout") {
-            logout({}).then(() => push("/login"));
+            logout().then(() => push("/login"));
         }
     };
 

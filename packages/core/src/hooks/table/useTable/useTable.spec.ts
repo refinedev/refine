@@ -26,7 +26,7 @@ const customPagination = {
 
 describe("useTable Hook", () => {
     it("default", async () => {
-        const { result, waitFor } = renderHook(() => useTable({}), {
+        const { result, waitFor } = renderHook(() => useTable(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
                 resources: [{ name: "posts" }],

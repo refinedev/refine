@@ -161,7 +161,7 @@ export const CategoryList = (props: any) => {
 export const CategoryCreate = (props: any) => {
     const translate = useTranslate();
 
-    const { formProps, saveButtonProps } = useForm({});
+    const { formProps, saveButtonProps } = useForm();
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
@@ -185,7 +185,7 @@ export const CategoryCreate = (props: any) => {
 export const CategoryEdit = (props: any) => {
     const translate = useTranslate();
 
-    const { formProps, saveButtonProps } = useForm({});
+    const { formProps, saveButtonProps } = useForm();
 
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>

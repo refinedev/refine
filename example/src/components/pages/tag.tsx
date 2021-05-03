@@ -117,7 +117,7 @@ export const TagList = (props: any) => {
 
 export const TagCreate = (props: any) => {
     const translate = useTranslate();
-    const { formProps, saveButtonProps } = useForm({});
+    const { formProps, saveButtonProps } = useForm();
 
     const { Panel } = Collapse;
 
@@ -148,7 +148,7 @@ export const TagCreate = (props: any) => {
 
 export const TagEdit = (props: any) => {
     const translate = useTranslate();
-    const { formProps, saveButtonProps } = useForm({});
+    const { formProps, saveButtonProps } = useForm();
 
     const { Panel } = Collapse;
 
