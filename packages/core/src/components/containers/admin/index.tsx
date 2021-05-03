@@ -30,9 +30,9 @@ export interface AdminProps {
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
     title?: ReactNode;
-    loginPage?: React.FC | false;
-    dashboard?: React.FC;
-    ready?: React.FC;
+    LoginPage?: React.FC | false;
+    DashboardPage?: React.FC;
+    ReadyPage?: React.FC;
     mutationMode?: MutationMode;
     syncWithLocation?: boolean;
     warnWhenUnsavedChanges?: boolean;
@@ -46,9 +46,9 @@ export const Admin: React.FC<AdminProps> = ({
     authProvider,
     dataProvider,
     title,
-    dashboard,
-    ready,
-    loginPage,
+    DashboardPage,
+    ReadyPage,
+    LoginPage,
     catchAll,
     children,
     i18nProvider = defaultProvider.i18nProvider,
@@ -88,7 +88,7 @@ export const Admin: React.FC<AdminProps> = ({
 
     if (resources.length === 0) {
         return (
-            <OptionalComponent optional={ready}>
+            <OptionalComponent optional={ReadyPage}>
                 <DefaultReadyPage />
             </OptionalComponent>
         );
@@ -118,9 +118,11 @@ export const Admin: React.FC<AdminProps> = ({
                                                 <RouteProvider
                                                     resources={resources}
                                                     catchAll={catchAll}
-                                                    dashboard={dashboard}
-                                                    loginPage={loginPage}
-                                                    ready={ready}
+                                                    DashboardPage={
+                                                        DashboardPage
+                                                    }
+                                                    LoginPage={LoginPage}
+                                                    ReadyPage={ReadyPage}
                                                     customRoutes={routes}
                                                 />
                                             </Router>

@@ -85,9 +85,9 @@ function App() {
         <Admin
             authProvider={authProvider}
             dataProvider={dataProvider("https://refine-nestjs-crud.pankod.com")}
-            loginPage={LoginPage}
-            dashboard={DashboardPage}
-            ready={ReadyPage}
+            LoginPage={LoginPage}
+            DashboardPage={DashboardPage}
+            ReadyPage={ReadyPage}
             i18nProvider={i18nProvider}
             syncWithLocation
             components={
