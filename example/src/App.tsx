@@ -28,8 +28,10 @@ import {
     TagsList,
     TagsCreate,
     TagsEdit,
+    DashboardPage,
+    ReadyPage,
+    LoginPage,
 } from "./components/pages";
-import { DashboardPage, ReadyPage, LoginPage } from "./components";
 
 function App() {
     const [adminProps, demoSidebarProps] = useDemoSidebar({
