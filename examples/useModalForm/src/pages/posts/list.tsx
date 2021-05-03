@@ -3,6 +3,7 @@ import {
     List,
     Create,
     Edit,
+    Show,
     Table,
     Form,
     Select,
@@ -14,9 +15,14 @@ import {
     EditButton,
     ShowButton,
     useMany,
+    useShow,
     useSelect,
     useModalForm,
     Modal,
+    useOne,
+    RefreshButton,
+    Typography,
+    MarkdownField,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -25,6 +31,8 @@ import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ICategory } from "../../interfaces";
+
+const { Title, Text } = Typography;
 
 export const PostList = (props: IResourceComponentsProps) => {
     const { tableProps } = useTable<IPost>();
@@ -41,6 +49,10 @@ export const PostList = (props: IResourceComponentsProps) => {
 
     const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
         "write",
+    );
+
+    const [visibleShowModal, setVisibleShowModal] = React.useState<boolean>(
+        false,
     );
 
     const {
@@ -63,6 +75,18 @@ export const PostList = (props: IResourceComponentsProps) => {
     } = useModalForm<IPost>({
         action: "edit",
         warnWhenUnsavedChanges: true,
+    });
+
+    const { queryResult, showId, setShowId } = useShow<IPost>();
+
+    const { data: showQueryResult, isLoading: showIsLoading } = queryResult;
+    const record = showQueryResult?.data;
+
+    const {
+        data: categoryData,
+        isLoading: categoryIsLoading,
+    } = useOne<ICategory>("categories", record?.category.id ?? "", {
+        enabled: !!record,
     });
 
     return (
@@ -122,6 +146,10 @@ export const PostList = (props: IResourceComponentsProps) => {
                                 <ShowButton
                                     size="small"
                                     recordItemId={record.id}
+                                    onClick={() => {
+                                        setShowId(record.id);
+                                        setVisibleShowModal(true);
+                                    }}
                                 />
                             </Space>
                         )}
@@ -285,6 +313,34 @@ export const PostList = (props: IResourceComponentsProps) => {
                         </Form.Item>
                     </Form>
                 </Edit>
+            </Modal>
+            <Modal
+                visible={visibleShowModal}
+                onCancel={() => setVisibleShowModal(false)}
+            >
+                <Show
+                    {...props}
+                    isLoading={showIsLoading}
+                    actionButtons={<RefreshButton recordItemId={showId} />}
+                >
+                    <Title level={5}>Id</Title>
+                    <Text>{record?.id}</Text>
+
+                    <Title level={5}>Title</Title>
+                    <Text>{record?.title}</Text>
+
+                    <Title level={5}>Category</Title>
+                    <Text>
+                        {categoryIsLoading
+                            ? "Loading..."
+                            : categoryData?.data.title}
+                    </Text>
+
+                    <Title level={5}>Content</Title>
+                    <MarkdownField
+                        value={record?.content ?? "Cannot found content"}
+                    />
+                </Show>
             </Modal>
         </>
     );
