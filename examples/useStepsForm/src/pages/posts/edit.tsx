@@ -5,8 +5,11 @@ import {
     Input,
     IResourceComponentsProps,
     Select,
-    useForm,
+    Button,
+    SaveButton,
     useSelect,
+    useStepsForm,
+    Steps,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -16,8 +19,21 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ICategory } from "../../interfaces";
 
+const { Step } = Steps;
+
 export const PostEdit = (props: IResourceComponentsProps) => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
+    const {
+        current,
+        gotoStep,
+        stepsProps,
+        submit,
+        formLoading,
+        formProps,
+        saveButtonProps,
+        queryResult,
+    } = useStepsForm<IPost>({
+        warnWhenUnsavedChanges: true,
+    });
 
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -29,76 +45,126 @@ export const PostEdit = (props: IResourceComponentsProps) => {
         "write",
     );
 
+    const formList = [
+        <>
+            <Form.Item
+                label="Title"
+                name="title"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+            <Form.Item
+                label="Category"
+                name={["category", "id"]}
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Select
+                    showSearch
+                    filterOption={false}
+                    {...categorySelectProps}
+                />
+            </Form.Item>
+            <Form.Item
+                label="Status"
+                name="status"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Select
+                    options={[
+                        {
+                            label: "Published",
+                            value: "published",
+                        },
+                        {
+                            label: "Draft",
+                            value: "draft",
+                        },
+                    ]}
+                />
+            </Form.Item>
+        </>,
+        <>
+            <Form.Item
+                label="Content"
+                name="content"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <ReactMde
+                    selectedTab={selectedTab}
+                    onTabChange={setSelectedTab}
+                    generateMarkdownPreview={(markdown) =>
+                        Promise.resolve(
+                            <ReactMarkdown>{markdown}</ReactMarkdown>,
+                        )
+                    }
+                />
+            </Form.Item>
+        </>,
+    ];
+
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
+        <Create
+            {...props}
+            saveButtonProps={saveButtonProps}
+            actionButtons={
+                <>
+                    {current > 0 && (
+                        <Button
+                            onClick={() => {
+                                gotoStep(current - 1);
+                            }}
+                        >
+                            Previous
+                        </Button>
+                    )}
+                    {current < formList.length - 1 && (
+                        <Button
+                            onClick={() => {
+                                gotoStep(current + 1);
+                            }}
+                        >
+                            Next
+                        </Button>
+                    )}
+                    {current === formList.length - 1 && (
+                        <SaveButton
+                            style={{ marginRight: 10 }}
+                            loading={formLoading}
+                            disabled={formLoading}
+                            onClick={() => submit()}
+                        />
+                    )}
+                </>
+            }
+        >
             <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name={["category", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select
-                        showSearch
-                        filterOption={false}
-                        {...categorySelectProps}
-                    />
-                </Form.Item>
-                <Form.Item
-                    label="Status"
-                    name="status"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                        ]}
-                    />
-                </Form.Item>
-                <Form.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <ReactMde
-                        selectedTab={selectedTab}
-                        onTabChange={setSelectedTab}
-                        generateMarkdownPreview={(markdown) =>
-                            Promise.resolve(
-                                <ReactMarkdown>{markdown}</ReactMarkdown>,
-                            )
-                        }
-                    />
-                </Form.Item>
+                <Steps {...stepsProps}>
+                    <Step title="About Post" />
+                    <Step title="Content" />
+                </Steps>
+
+                <div style={{ marginTop: 30 }}>
+                    <Form {...formProps} layout="vertical">
+                        {formList[current]}
+                    </Form>
+                </div>
             </Form>
         </Create>
     );
