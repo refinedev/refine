@@ -36,7 +36,7 @@ export const Sider: FC<SiderProps> = ({ dashboard }) => {
 
     const menuOnClick: MenuClickEventHandler = ({ key }) => {
         if (key === "logout") {
-            logout({}).then(() => push("/login"));
+            logout().then(() => push("/login"));
         }
     };
 

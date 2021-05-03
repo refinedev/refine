@@ -20,7 +20,7 @@ const WrapperWithRoute: React.FC = ({ children }) => (
 );
 describe("useCloneForm Hook", () => {
     it("fetches data and puts in the form", async () => {
-        const { result, waitFor } = renderHook(() => useCloneForm({}), {
+        const { result, waitFor } = renderHook(() => useCloneForm(), {
             wrapper: WrapperWithRoute,
         });
 

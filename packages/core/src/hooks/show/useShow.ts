@@ -18,7 +18,7 @@ export type useShowProps = {
 export const useShow = <RecordType extends BaseRecord = BaseRecord>({
     resourceName,
     id,
-}: useShowProps) => {
+}: useShowProps = {}) => {
     const {
         resource: routeResourceName,
         id: idFromRoute,

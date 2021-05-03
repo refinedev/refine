@@ -20,7 +20,7 @@ const WrapperWithRoute: React.FC = ({ children }) => (
 );
 describe("useShow Hook", () => {
     it("should fetch data with use-query params succesfully", async () => {
-        const { result, waitFor } = renderHook(() => useShow({}), {
+        const { result, waitFor } = renderHook(() => useShow(), {
             wrapper: WrapperWithRoute,
         });
 

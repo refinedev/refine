@@ -20,7 +20,7 @@ const WrapperWithRoute: React.FC = ({ children }) => (
 );
 describe("useEditForm Hook", () => {
     it("fetches data and puts in the form", async () => {
-        const { result, waitFor } = renderHook(() => useEditForm({}), {
+        const { result, waitFor } = renderHook(() => useEditForm(), {
             wrapper: WrapperWithRoute,
         });
 
