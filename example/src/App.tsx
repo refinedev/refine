@@ -22,13 +22,14 @@ import {
     PostList,
     PostEdit,
     PostShow,
-} from "./components/pages/post";
-import { CategoryList, CategoryCreate } from "./components/pages/category";
-import { UserList } from "./components/pages/user";
-import { TagsList, TagsCreate, TagsEdit } from "./components/pages/tags";
-import { DashboardPage } from "./components/pages/dashboard";
-import { ReadyPage } from "./components/ready";
-import { LoginPage } from "./components/login";
+    CategoryList,
+    CategoryCreate,
+    UserList,
+    TagsList,
+    TagsCreate,
+    TagsEdit,
+} from "./components/pages";
+import { DashboardPage, ReadyPage, LoginPage } from "./components";
 
 function App() {
     const [adminProps, demoSidebarProps] = useDemoSidebar({
