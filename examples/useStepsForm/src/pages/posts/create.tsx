@@ -30,14 +30,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
         formLoading,
         formProps,
         saveButtonProps,
-    } = useStepsForm<IPost>({
-        warnWhenUnsavedChanges: true,
-        defaultFormValues: () => {
-            return {
-                status: "published",
-            };
-        },
-    });
+    } = useStepsForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",

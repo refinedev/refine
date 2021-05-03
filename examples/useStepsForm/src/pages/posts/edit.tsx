@@ -31,9 +31,7 @@ export const PostEdit = (props: IResourceComponentsProps) => {
         formProps,
         saveButtonProps,
         queryResult,
-    } = useStepsForm<IPost>({
-        warnWhenUnsavedChanges: true,
-    });
+    } = useStepsForm<IPost>();
 
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
