@@ -5,171 +5,971 @@ title: Tutorial
 sidebar_label: Tutorial
 ---
 
+import refineWelcome from '@site/static/img/refine-welcome.png';
+import resourceFirst from '@site/static/img/resource-1.png';
+import resourceSecond from '@site/static/img/resource-2.png';
+import createGif from '@site/static/img/create.gif';
+import editGif from '@site/static/img/edit.gif';
+import showGif from '@site/static/img/show.gif';
 
-refine uses React. We’ll use create-react-app to create an empty React app, and install the refine package:
+We'll show how to create a simple admin app with CRUD operations based on REST API.
 
+## Setup
 
-````
-npm i create react-app test-admin
-cd test-admin/
-yarn add @pankod/refine 
-yarn start
+Refine uses React under the hood. We’ll use create-react-app to bootstrap an empty React app with Typescript.
 
-````
-
-You should be up and running with an empty React application on port 3000.
-
-Using an API As Data Source
-React-admin runs in the browser, and relies on data it fetches from APIs.
-
-We’ll be using pankod's  fake REST API designed for testing and prototyping, as the datasource for the application. Here is what it looks like:
-
-
-
-example api source
-
-
-To start make app work import Admin root component in to "App.tsx"  from refine.
-
-You should provide api provider to admin. Here we use refine-json to demonstra...
-We ll use refine-json-server CRUD api provider.. You can use your own..
+To create a new app, run the following commands:
 
 ```
+npx create-react-app tutorial --template typescript
+```
 
-import React from "react";
-import JsonServer from "@pankod/refine-json-server";
-import {
-    Admin,
-} from "@pankod/refine";
+```
+npm i @pankod/refine
+```
 
-    
+Then navigate to the project folder and launch it:
+
+```
+npm run start
+```
+
+Then open [http://localhost:3000](http://localhost:3000) to see your app.
+
+## Providing a data source with an API
+
+Refine is designed to consume data from APIs.
+
+We’ll be using a fake REST API at https://refine-fake-rest.pankod.com/ designed for testing as the data source for the application.
+
+Example response:
+
+```ts title="https://refine-fake-rest.pankod.com/posts/1"
+{
+  "id": 1,
+  "title": "Quis a ex quos.",
+  "slug": "eligendi-similique-autem",
+  "content": "Sapiente et nesciunt harum corrupti sequi iusto. Debitis explicabo beatae maiores assumenda. Quia velit quam inventore omnis in doloribus et modi aut. Aut deserunt est molestias sunt fugit rerum natus. Consequuntur quam porro doloribus vel nulla non. Suscipit ut deleniti. Consequatur repellat accusamus. Expedita eos hic amet fugit. Magni odio consequatur aut pariatur error eaque culpa. Officiis minus id et.",
+  "category": {
+    "id": 26
+  },
+  "user": {
+    "id": 32
+  },
+  "status": "draft",
+  "createdAt": "2019-07-25T22:19:18.929Z",
+  "image": []
+}
+```
+
+Refine requires a `dataProvider` to use an API for CRUD operations which is an object with a set of certain methods.
+
+We'll use `@pankod/refine-json-server` package as a data provider which has predefined methods to communicate with REST APIs.
+
+```
+npm i @pankod/refine-json-server
+```
+
+:::note
+You can also provide your own custom data provider to make the connection.
+:::
+
+## Bootstraping the app
+
+Change `App.tsx` with the following code:
+
+```tsx title="src/App.tsx"
+import { Admin } from "@pankod/refine";
+import dataProvider from "@pankod/refine-json-server";
+import "@pankod/refine/dist/styles.min.css"
+
 function App() {
-
     return (
-        <Admin dataProvider={JsonServer("https://refine-fake-rest.pankod.com"))} >
-      
+        <Admin
+            dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
+        />
+    );
+}
+
+export default App;
+```
+
+<br/>
+
+`<Admin/>` is the root component of a refine application. We provide a `dataProvider` with a REST API url as we mention above.
+
+You will see the welcome page.
+
+<>
+
+<div style={{textAlign: "center"}}>
+    <img  width="75%" src={refineWelcome} />
+</div>
+<br/>
+</>
+
+:::tip
+```tsx
+import "@pankod/refine/dist/styles.min.css"
+```
+[Refer to theme documentation for further information about importing the default css](#)
+:::
+## Connect API with Resources
+
+We'll start forming our app by adding a `<Resource>` component as a child.
+A `<Resource>` represents an endpoint in the API by given name property. `name` property of `<Resource />` should be one of the endpoints in your API.
+
+We'll demonstrate how to get data at `/posts` endpoint from `https://refine-fake-rest.pankod.com` REST API.
+
+```tsx title="src/App.tsx"
+//highlight-next-line
+import { Admin, Resource } from "@pankod/refine";
+import dataProvider from "@pankod/refine-json-server";
+
+function App() {
+    return (
+        <Admin
+            dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
+        >
+            //highlight-next-line
+            <Resource name="posts" />
         </Admin>
     );
 }
 
 export default App;
-
 ```
 
-You can simply bootstrap the app with this setup. You will see the welcome page below.
+<br/>
 
+After adding `<Resource>`, app redirects to a url defined by `name` property.
 
-//image//
+:::info
+`refine` handles route matching out of the box. More info about [routing](#).
+:::
 
+<>
 
-The App component renders an ```<Admin>``` component, which is the root component of a react-admin application. This component expects a dataProvider prop - a function capable of fetching data from an API. Since there is no standard for data exchanges between computers, you will probably have to write a custom provider to connect react-admin to your own APIs - but we’ll dive into Data Providers later. For now, let’s take advantage of the ra-data-json-server data provider, which speaks the same REST dialect as JSONPlaceholder.
+<div style={{textAlign: "center"}}>
+    <img   src={resourceFirst} />
+</div>
+<br/>
+</>
 
+You'll see a 404 page since `<Resource>` doesn't handle data fetching on its own. CRUD operations is to be done with `refine` hooks.
 
-##Connect API with resources 
+Components for CRUD operations(list, create, edit, show) should be given to `<Resource>` as props. In this example, we are going to set corresponding custom components to `<Resource>` which uses `refine` hooks to handle data operations and display the list of data.
 
-Kısaca resource componentinden bahsedelim. 
-resource maps a name to an endpoint in the API by refine.
+## Showing and interacting with data
 
+Let's create a `PostList` component to fetch and show posts data. This component will be passed as `list` prop to `<Resource>`
 
-
-```
-import React from "react";
-import JsonServer from "@pankod/refine-json-server";
+```tsx title="pages/posts/list.tsx"
 import {
-    Admin,
-    Resources
-} from "@pankod/refine";
-
-function App() {
- 
-    return (
-        <Admin
-            dataProvider={dataProvider("/ayna-crud-api/admin", axiosInstance)}
-            {...adminProps}
-        >
-            <Resource name="prizes" list={PrizeList}/>
-        </Admin>
-    );
-}
-```
-
-```import edilen resource propların ne yapacağı?```
-
-The line ```<Resource name="users" />``` informs react-admin to fetch the “users” records from the https://jsonplaceholder.typicode.com/users URL. ```<Resource>``` also defines the React components to use for each CRUD operation (list, create, edit, and show)...
-
-
-The list={PostList} prop means that refine  use the ```<PostList>``` custom component to display the list of posts, which users create independently from refine  
-
-Postlist uses List component wrapper from refine-core  which uses ant-design components to render data with table.
-
-Postlist refine hooklarını kullanarak api den data çekebilir, crud işlemlerini yapması içn gerekli olan refine  tarafından sağlanana hookları barındırır. Çektiği dataı refine crud list componenti ile ant design componentleri kullanılarak ekrana listeler.
-
-Bu örnekte PostList componenti içinde useTable hookunu kullanarak api den list verisini çektik. useTable çalışma mantığı...
-Basicly, useTable looks to the url resource to get specific data from api..
-
-Gelen datayı liste halinde yazdırmak istediğimiz için ant-d table componentine aktardık..
-
-```
-import React from "react";
-import {
-    Admin,
-    Resources,
-    useTable,
-    Table,
     List,
+    TextField,
+    TagField,
+    DateField,
+    Table,
+    useTable,
 } from "@pankod/refine";
+import { IPost } from "../../interfaces"
 
-export const PostList = ({ ...props }) => {
-    const { tableProps } = useTable({});
+export const PostList = () => {
+    const { tableProps } = useTable<IPost>();
 
     return (
-        <List {...props} actionButtons={actions}>
-            <Table
-                {...tableProps}
-                rowKey="id"
-            >
+        <List>
+            <Table {...tableProps} rowKey="id">
                 <Table.Column
-                    dataIndex="id"
-                    title="ID"
-                    key="id"
+                    dataIndex="title"
+                    title="title"
                     render={(value) => <TextField value={value} />}
                 />
                 <Table.Column
-                    dataIndex="name"
-                    title="Name"
-                    key="name"
-                    render={(value) => <TextField value={value} />}
+                    dataIndex="status"
+                    title="status"
+                    render={(value) => <TagField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="createdAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
                 />
             </Table>
         </List>
     );
+};
+```
+
+```ts title="interfaces/IPost.d.ts"
+export interface IPost {
+    title: string;
+    status: "published" | "draft";
+    createdAt: string;
 }
 ```
 
-table column kullanımı ile ilgili ufak ve carpıcı bir acıklama..
-(render fonksiyonu)
+<br/>
 
-hookların detaylı kullanımı daha sonra..
+### Fetching and managing data
+
+`useTable` is a hook from `refine` that is responsible for fetching data from API with `<Resource>`'s `name` prop using `refine`'s various helper hooks under the hood.
+
+```tsx
+const { tableProps } = useTable<IPost>();
+```
+
+The `tableProps` includes all necessary props for `<Table>` component to show and interact with data properly.
+
+You can find detailed usage of `useTable` from [here](#).
+
+### Showing and formatting data
+
+We wrap `<Table>` with [`<List>`](#) component from `refine`, which adds extra functionalities like a create button and title to the table view.
+
+:::tip
+`<List>` is not an obligation at this point. You can prefer to use your own wrapper component.
+:::
+
+`refine` apps uses [ant-design](https://ant.design/components/overview/) components to display data. In this example, we'll use `<Table>` component, which is exposed from ant-design to render a table with one row for each record.
+
+Refer to [ant-design docs](https://ant.design/components/table/#API) for more detailed information about `<Table>`.
+
+The render prop of `<Table.Column>` is used to determine how to format and show data. Each `<Table.Column>` maps a different field in the API response, specified by the `dataIndex` prop.
+
+:::note
+```tsx
+<Table.Column
+    // highlight-next-line
+    dataIndex="title"
+    title="title"
+    // highlight-next-line
+    render={(value) => <TextField value={value} />}
+/>
+```
+`value` of render props points to data with key described by `dataIndex`.
+:::
+
+We used `<TextField>`, `<TagField>` and `<DateField>` in `<Table.Column>` to show data in the proper format. These are examples of many more field components from `refine` that are based on ant design components.  
+User has full freedom on how to format and show raw data that comes from render prop including ant design components or custom components.
+
+You can find detailed usage of fields from [here](#).
+
+After creating the `<PostList>` component, now it's time to add it to `<Resource>`.
+
+```tsx title="src/App.tsx"
+import { Admin, Resource } from "@pankod/refine";
+import dataProvider from "@pankod/refine-json-server";
+//highlight-next-line
+import { PostList } from "./pages";
+
+function App() {
+    return (
+        <Admin
+            dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
+        >
+            //highlight-next-line
+            <Resource name="posts" list={PostList} />
+        </Admin>
+    );
+}
+
+export default App;
+```
+
+<br />
+
+We can now list `/posts` data successfully as shown below.
+
+<>
+
+<div style={{textAlign: "center"}}>
+    <img src={resourceSecond} />
+</div>
+<br/>
+</>
+
+## Handling relationships
+
+Let's say we want to show title of category  at `<PostList>`.  
+
+[Each post record](#providing-a-data-source-with-an-api) includes a category property that has an id field, which points to a category:
 
 
-//display a list of users:
+```ts title="https://refine-fake-rest.pankod.com/posts/1"
+...
+  "category": {
+    "id": 26
+  }
+...
+```
+<br />
 
-//image screenshot List
+Each category id references a record at `refine-fake-rest.pankod.com/categories` endpoint.
 
 
-If you look at the network tab in the browser developer tools, you’ll notice that the application fetched the https://jsonplaceholder.typicode.com/users URL, then used the results to build the Datagrid. That’s basically how react-admin works.
+```ts title="https://refine-fake-rest.pankod.com/categories/26"
+  { 
+    "id": 26,
+    "title": "mock category title",
+  }
+```
+<br />
+
+In order to get data from a different resource, we can use a `refine` hook named `useMany`.
+
+```tsx title="pages/posts/list.tsx"
+import {
+    List,
+    TextField,
+    TagField,
+    DateField,
+    Table,
+    useTable,
+    //highlight-next-line
+    useMany
+} from "@pankod/refine";
+
+//highlight-next-line
+import { IPost, ICategory } from "../../interfaces"
+
+export const PostList = () => {
+    const { tableProps } = useTable<IPost>();
+
+   //highlight-start
+    const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const { data: categoriesData, isLoading } = useMany<ICategory>(
+        "categories",
+        categoryIds,
+        {
+            enabled: categoryIds.length > 0,
+        },
+    );
+    //highlight-end
+
+    return (
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column
+                    dataIndex="title"
+                    title="title"
+                    render={(value) => <TextField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="status"
+                    title="status"
+                    render={(value) => <TagField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="createdAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                />
+                //highlight-start
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+
+                        return (
+                            <TextField
+                                value={
+                                    categoriesData?.data.find((item) => item.id === value)
+                                        ?.title
+                                }
+                            />
+                        );
+                    }}
+                  />
+                    //highlight-end
+            </Table>
+        </List>
+    );
+};
+```
 
 
-##Handling relationships
+```ts title="interfaces/ICategory.d.ts"
+export interface ICategory {
+    id: string;
+    title: string;
+}
+```
 
-- https://github.com/pankod/refine/issues/307#issuecomment-826582047
+```ts title="interfaces/IPost.d.ts"
+ // highlight-next-line
+import { ICategory } from "./ICategory"
 
-##search and filter to the list
+export interface IPost {
+    title: string;
+    status: "published" | "draft";
+    // highlight-next-line
+    category: ICategory;
+    createdAt: string;
+}
+```
 
-- Reference component
-- filterdropdown örnekler
+:::tip
+We can reach nested properties of table data by using an array.
 
-##Create, Edit
+```
+ dataIndex={["category", "id"]}
+```
+:::
 
-- edit create vs.. buttons
-- useForm
+<br />
+
+`useMany` expects the external resource endpoint and an array of ids. It fetches and returns data with loading status.
+
+We collect `categoryId`' s from list data at `/posts` endpoint and send to `useMany`.
+
+:::note
+```tsx
+enabled: categoryIds.length > 0
+```  
+We set a condition to start fetching only when data is available.
+:::
+
+
+To show category title field, find the title corresponding to the catogory id of the current record in data returned by `useMany`, 
+
+[Refer to `useMany` documentation for detailed usage. &#8594](#)
+
+## Editing a record
+
+We'll implement a page for editing an existing record.
+
+Let's create a `<PostEdit>` component to edit an existing post. This component will be passed as `list` prop to `<Resource>`.
+
+```tsx title="pages/posts/edit.tsx"
+import { useForm, Form, Input, Select, Edit, useSelect } from "@pankod/refine";
+import { IPost } from "../../interfaces";
+
+export const PostEdit = () => {
+    const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
+
+    const { selectProps: categorySelectProps } = useSelect<IPost>({
+        resource: "categories",
+        defaultValue: queryResult?.data?.data?.category.id,
+    });
+
+    return (
+        <Edit saveButtonProps={saveButtonProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
+                <Form.Item label="Title" name="title">
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Status" name="status">
+                    <Select
+                        options={[
+                            {
+                                label: "Published",
+                                value: "published",
+                            },
+                            {
+                                label: "Draft",
+                                value: "draft",
+                            },
+                        ]}
+                    />
+                </Form.Item>
+                <Form.Item
+                    label="Category"
+                    name={["category", "id"]}
+                >
+                    <Select
+                        showSearch
+                        filterOption={false}
+                        {...categorySelectProps}
+                    />
+                </Form.Item>
+            </Form>
+        </Edit>
+    );
+};
+```
+
+<br />
+
+After creating the `<PostEdit>` component, now it's time to add it to `<Resource>`.
+
+<br />
+
+```tsx title="src/App.tsx"
+import { Admin, Resource } from "@pankod/refine";
+import dataProvider from "@pankod/refine-json-server";
+//highlight-next-line
+import { PostList, PostEdit } from "./pages";
+
+function App() {
+    return (
+        <Admin
+            dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
+        >
+            <Resource
+                name="posts"
+                list={PostList}
+                //highlight-next-line
+                edit={PostEdit}
+            />
+        </Admin>
+    );
+}
+
+export default App;
+```
+
+<br />
+
+:::important
+`refine` doesn't automatically add an _**edit**_ button by default to each record in `<PostList>` to give access to the edit page which renders the `<PostEdit>` component.
+
+We' ll add a new column to `<Table>` in `<PostList>` to show the action button for edit.   
+ `<EditButton>` from refine can be used to navigate to edit page at `/resources/posts/edit`.
+
+You can find detailed usage of `<EditButton>` from [here](#).
+
+<br />
+
+
+```tsx title="components/pages/posts.tsx"
+import {
+    ...
+    //highlight-start
+    Space,
+    EditButton
+    //highlight-end
+} from "@pankod/refine";
+
+export const PostList = () => {
+...
+    <Table.Column
+        title="Actions"
+        dataIndex="actions"
+        render={(
+            _text: string | number,
+            record: {
+                id: string | number;
+            },
+        ): React.ReactNode => {
+            return(
+                <Space>
+                    <EditButton size="small" recordItemId={record.id} />
+                </Space>
+        )}}
+    />   
+...
+}
+```
+
+:::
+
+### Managing the form
+
+`useForm` is another skillful hook from `refine` that is responsible for managing form data like creating and editing.
+
+```tsx
+const { formProps, saveButtonProps } = useForm<IPost>();
+```
+
+The `formProps` includes all necessary props for `<Form>` component to manage form data properly.
+Similarly `saveButtonProps` includes useful properties for a button to submit a form.
+
+[Refer to `useForm` documentation for detailed usage. &#8594](#)
+
+`useSelect` produces props for `<Select>` component from data at another resource. `<Select>` is an Ant-Design component that is exported from `refine` for convenience.  
+
+[Refer to `Select` documentation for detailed usage. &#8594](https://ant.design/components/select/)
+
+```tsx
+const { selectProps: categorySelectProps } = useSelect<IPost>({
+        resource: "categories",
+        defaultValue: queryResult?.data?.data?.category.id,
+});
+```
+
+:::important
+`defaultValue` is used to get the value for the current item independent of search, sort and filter parameters.
+:::
+
+[Refer to `useSelect` documentation for detailed usage. &#8594](#)
+
+### Editing the form
+
+`refine` apps uses [ant-design form components](https://ant.design/components/form/) to handle form management. In this example, we'll use `<Form>` and `<Form.Item>` component, which is exposed from ant-design to manage form inputs.
+
+We wrap `<Form>` with [`<Edit>`](#) component from `refine` that provides save, delete and refresh buttons that can be used for form actions.
+
+:::caution Attention
+In edit page, `useForm` hook initializes the form with current record values.
+:::
+
+We are getting form values from inputs by passing them as child to `<Form.Item>`. Edited input values are automatically set to form data.
+
+Save button submits the form and issues a `PUT` request to the REST API when clicked. After request responses successfully, app will be navigated to listing page on `resources/posts` with updated data.
+
+
+[Refer to **How editing works?** section for in depth explanation. &#8594](#)
+
+<br />
+
+<>
+
+<div style={{textAlign: "center"}}>
+    <img src={editGif} />
+</div>
+<br/>
+</>
+
+<br />
+
+## Creating a record
+
+We'll implement a page for creating a new record using fake REST API. It has a similar implemantation and managing form methods like [Editing a record](#editing-a-record). 
+
+First create a `<PostCreate>` component to create a new post. This component will be passed as `create` prop to `<Resource>`.
+
+```tsx title="pages/posts/create.tsx"
+import { 
+    ...
+    //highlight-next-line
+    Create 
+} from "@pankod/refine";
+import { IPost } from "../../interfaces";
+
+export const PostCreate = () => {
+    const { formProps, saveButtonProps } = useForm<IPost>();
+
+    const { selectProps: categorySelectProps } = useSelect<IPost>({
+        resource: "categories",
+    });
+
+    return (
+        <Create saveButtonProps={saveButtonProps}>
+            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
+                <Form.Item label="Title" name="title">
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Status" name="status">
+                    <Select
+                        options={[
+                            {
+                                label: "Published",
+                                value: "published",
+                            },
+                            {
+                                label: "Draft",
+                                value: "draft",
+                            },
+                        ]}
+                    />
+                </Form.Item>
+            </Form>
+        </Create>
+    );
+};
+```
+
+<br />
+
+After creating the `<PostCreate>` component, add it to `<Resource>`.
+
+<br />
+
+```tsx title="src/App.tsx"
+import { Admin, Resource } from "@pankod/refine";
+import dataProvider from "@pankod/refine-json-server";
+//highlight-next-line
+import { PostList, PostEdit, PostCreate } from "./pages";
+
+function App() {
+    return (
+        <Admin
+            dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
+        >
+            <Resource
+                name="posts"
+                list={PostList}
+                edit={PostEdit}
+                //highlight-next-line
+                create={PostCreate}
+            />
+        </Admin>
+    );
+}
+
+export default App;
+```
+
+<br />
+
+:::important
+`refine` doesn't automatically add a _**create**_ button by default on top of the `<PostList>` to give access to the create page which renders the `<PostCreate>` component.
+
+Each component given to `<Resource>` will get passed props with `IResourceComponentsProps` interface. If this props are passed to `<List>` wrapper in `<PostList>` component, `<List>` will render a create button in case a `create` component is passed to `<Resource>`.
+
+[More about **IResourceComponentsProps** &#8594](#)
+
+```tsx title="components/pages/posts.tsx"
+...
+//highlight-next-line
+export const PostList = (props: IResourceComponentsProps) => {
+    const { tableProps } = useTable();
+
+    return (
+        //highlight-next-line
+        <List {...props}>
+...
+```
+
+:::
+
+<br />
+
+
+### Filling the form
+
+This part is very similar to [Editing the form](#editing-the-form). Only differences are:
+
+- We wrap `<Form>` with [`<Create>`](#) component from `refine`.
+
+- Save button submits the form and issues a `POST` request to the REST API.
+
+- Since there can't be a pre-selected value in a create form, we don't pass a `defaultValue` parameter to `useSelect`.
+
+<br />
+
+<div style={{textAlign: "center"}}>
+    <img src={createGif} />
+</div>
+<br/>
+
+<br/>
+
+## Showing a record
+
+Let's implement a page for showing an existing record in detail.
+
+First create a `<PostShow>` component to show an existing post. This component will be passed as `show` prop to `<Resource>`.
+
+```tsx title="pages/posts/show.tsx"
+import {
+    //highlight-start 
+    Show, 
+    useShow, 
+    Typography, 
+    Tag, 
+    useOne
+    //highlight-end
+} from "@pankod/refine";
+import { IPost, ICategory} from "../../interfaces"
+
+const { Title, Text } = Typography;
+
+export const PostShow = () => {
+    const { queryResult } = useShow();
+    const { data, isLoading } = queryResult;
+    const record = data?.data;
+
+    const { data: categoryData } = useOne<ICategory>("categories", record!.category.id, {
+        enabled: !!record?.category.id
+    })
+
+    return (
+        <Show isLoading={isLoading}>
+            <Title level={5}>Title</Title>
+            <Text>{record?.title}</Text>
+
+            <Title level={5}>Status</Title>
+            <Text><Tag>{record?.status}</Tag></Text>
+
+            <Title level={5}>Category</Title>
+            <Text>{categoryData?.data.title}</Text>
+        </Show>
+    )
+}
+```
+
+<br />
+
+After creating the `<PostShow>` component, add it to `<Resource>`.
+
+<br />
+
+```tsx title="src/App.tsx"
+import { Admin, Resource } from "@pankod/refine";
+import dataProvider from "@pankod/refine-json-server";
+//highlight-next-line
+import { PostList, PostEdit, PostCreate, PostShow } from "./pages";
+
+function App() {
+    return (
+        <Admin
+            dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
+        >
+            <Resource
+                name="posts"
+                list={PostList}
+                edit={PostEdit}
+                create={PostCreate}
+                //highlight-next-line
+                show={PostShow}
+            />
+        </Admin>
+    );
+}
+
+export default App;
+```
+
+### Fetching record data
+```tsx
+const { queryResult } = useShow<IPost>();
+```
+
+`useShow` is another skillful hook from `refine` that is responsible for fetching a single record data.
+
+The `queryResult` includes fetched data and query state like `isLoading` state.
+
+[Refer to `useShow` documentation for detailed usage. &#8594](#)
+
+```tsx
+const { data: categoryData } = useOne<ICategory>("categories", record?.category.id ?? "", {
+        enabled: !!record?.category.id
+    });
+```
+
+`useOne` is a low level hook from `refine` that is also responsible for fetching a single record data for any given resource.
+
+Here, `useOne` is used to fetch a record data from `/resources/categories`.
+
+[Refer to `useOne` documentation for detailed usage. &#8594](#)
+
+:::caution attention
+Difference between `useOne` and `useShow` is that `useShow` is tuned for fetching data from current resource.
+:::
+
+
+### Showing the data
+
+Since record data is explicit, there is no constraint on how to present that data. `refine` provides a `<Show>` wrapper component that provides extra features like a `list` and a `refresh` buttons.
+
+[Refer to `<Show>` documentation for detailed usage. &#8594](#)
+
+:::tip
+`<Show>` can also render `edit` and `delete` buttons via `canEdit` and `canDelete` props which can be passed from props of `<PostShow>`
+
+```tsx
+export const PostShow = (props: IResourceComponentsProps) => {
+    ...
+    <Show {...props}>
+}
+```
+:::
+
+<br />
+
+
+
+<div style={{textAlign: "center"}}>
+    <img src={showGif} />
+</div>
+<br/>
+
+<br />
+
+## Adding search and filters
+
+
+We'll use`<Table.Column>`'s [`filterDropdown`](https://ant.design/components/table/#Column)   property from Ant-design and `<FilterDropdown>` component from `refine` to search and filter content.
+
+Let's add search and filter feature to category field.
+
+
+```tsx title="pages/posts/list.tsx"
+import {
+    ...
+    //highlight-start 
+    FilterDropdown,
+    Select,
+    useSelect
+    //highlight-end 
+} from "@pankod/refine";
+
+export const PostList = (props: IResourceComponentsProps) => {
+    ...
+
+    //highlight-start 
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+    });
+     //highlight-end 
+
+    return (
+        <List {...props}>
+            <Table {...tableProps} rowKey="id">
+               ...
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+
+                        return (
+                            <TextField
+                                value={
+                                    categoriesData?.data.find(
+                                        (item) => item.id === value,
+                                    )?.title
+                                }
+                            />
+                        );
+                    }}
+                    //highlight-start 
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Select
+                                style={{ minWidth: 200 }}
+                                showSearch
+                                mode="multiple"
+                                placeholder="Select Category"
+                                filterOption={false}
+                                {...categorySelectProps}
+                            />
+                        </FilterDropdown>
+                    )}
+                    //highlight-end 
+                />
+               ...
+            </Table>
+        </List>
+    );
+};
+```
+
+`<FilterDropdown>` component serves as a bridge between its child input and  `refine`'s `useTable` hook.
+
+It transfers child's input value to `useTable` hook using `filterDropdown`'s embedded props and provides a filter button to start filtering functionality. 
+
+[Refer to `<FilterDropdown>` documentation for detailed usage. &#8594](#)
+
+In order to let user choose or search a category to filter, we get all categories as `categorySelectProps` using `useSelect` hook and set to `<Select>`.
+
+
+## Connecting to a real API
+
+At this point we have an app with basic features implemented using a fake REST API.  
+
+[Refer to `dataProvider` documentation for how to connect your own api to `refine`.](#)
+
+## Conclusion
+
+Core functionality of `refine` is based heavily on hooks. This way it provides a wide range of flexibility on data management and UI structure.  
+
+You can develop new features or modify existing behavior based on your needs on top of `refine` codebase.

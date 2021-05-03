@@ -100,4 +100,3 @@ jobs:
           body-template: |
             Test me! '%basebranch%'
             [Link to %headbranch%](https://${{ steps.substring-pr-branch-name.outputs.substring }}-refine.pankod.com)
-          body-update-action: 'suffix'
