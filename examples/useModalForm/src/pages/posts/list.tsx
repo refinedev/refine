@@ -8,21 +8,21 @@ import {
     Form,
     Select,
     Input,
-    TextField,
-    useTable,
-    IResourceComponentsProps,
+    Modal,
     Space,
-    EditButton,
-    ShowButton,
+    Typography,
+    TextField,
+    MarkdownField,
+    useTable,
     useMany,
     useShow,
     useSelect,
     useModalForm,
-    Modal,
     useOne,
+    EditButton,
+    ShowButton,
     RefreshButton,
-    Typography,
-    MarkdownField,
+    IResourceComponentsProps,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -39,6 +39,7 @@ export const PostList = (props: IResourceComponentsProps) => {
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+
     const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
         enabled: categoryIds.length > 0,
     });
