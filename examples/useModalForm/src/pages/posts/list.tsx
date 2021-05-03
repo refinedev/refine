@@ -39,7 +39,10 @@ export const PostList = (props: IResourceComponentsProps) => {
         resource: "categories",
     });
 
-    // Create modal section
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+        "write",
+    );
+
     const {
         modalProps: createModalProps,
         formProps: createFormProps,
@@ -49,11 +52,6 @@ export const PostList = (props: IResourceComponentsProps) => {
         action: "create",
     });
 
-    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
-        "write",
-    );
-
-    // Edit modal section
     const {
         modalProps: editModalProps,
         formProps: editFormProps,
@@ -62,7 +60,7 @@ export const PostList = (props: IResourceComponentsProps) => {
         editId,
         deleteButtonProps,
         formLoading,
-    } = useModalForm({
+    } = useModalForm<IPost>({
         action: "edit",
         warnWhenUnsavedChanges: true,
     });
