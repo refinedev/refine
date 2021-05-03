@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import {
-    Create,
+    Edit,
     Form,
     Input,
     IResourceComponentsProps,
@@ -40,12 +40,15 @@ export const PostEdit = (props: IResourceComponentsProps) => {
     });
 
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
+        <Edit {...props} saveButtonProps={saveButtonProps}>
             <Form
                 {...formProps}
                 layout="vertical"
                 onFinish={(values) => {
-                    return formProps?.onFinish!(mediaUploadMapper(values));
+                    return (
+                        formProps.onFinish &&
+                        formProps.onFinish(mediaUploadMapper(values))
+                    );
                 }}
             >
                 <Form.Item
@@ -122,6 +125,6 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                     </Form.Item>
                 </Form.Item>
             </Form>
-        </Create>
+        </Edit>
     );
 };

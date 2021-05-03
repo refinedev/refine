@@ -30,7 +30,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
         "write",
     );
 
-    const { formProps, saveButtonProps, queryResult, form } = useForm({});
+    const { formProps, saveButtonProps, queryResult } = useForm({});
 
     const postData = queryResult?.data?.data;
     const { selectProps } = useSelect({
@@ -48,7 +48,10 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                 {...formProps}
                 layout="vertical"
                 onFinish={(values) => {
-                    return formProps?.onFinish!(mediaUploadMapper(values));
+                    return (
+                        formProps.onFinish &&
+                        formProps.onFinish(mediaUploadMapper(values))
+                    );
                 }}
             >
                 <Form.Item
