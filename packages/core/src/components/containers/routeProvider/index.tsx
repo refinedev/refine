@@ -1,8 +1,11 @@
 /* eslint-disable react/display-name */
 import React, { useContext, ReactNode } from "react";
 import { Switch, Route, RouteProps, Redirect } from "react-router-dom";
-import { Layout, ErrorComponent } from "@components";
-import { LoginPage as DefaultLoginPage } from "@components";
+import {
+    LoginPage as DefaultLoginPage,
+    ErrorComponent,
+    LayoutWrapper,
+} from "@components";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
 import { OptionalComponent } from "@definitions";
@@ -129,7 +132,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     };
 
     const renderAuthorized = () => (
-        <Layout>
+        <LayoutWrapper>
             <Switch>
                 <Route
                     path="/"
@@ -147,7 +150,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
                 ))}
                 <Route>{catchAll ?? <ErrorComponent />}</Route>
             </Switch>
-        </Layout>
+        </LayoutWrapper>
     );
 
     const renderUnauthorized = () => (
