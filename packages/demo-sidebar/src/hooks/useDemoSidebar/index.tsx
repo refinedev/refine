@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { MutationMode } from "@pankod/refine";
+import React, { useState } from "react";
+import { MutationMode, TitleProps } from "@pankod/refine";
 import { DemoSidebarProps } from "../../components/DemoSidebar/types";
 
 interface DemoSidebarParams {
@@ -8,7 +8,7 @@ interface DemoSidebarParams {
 }
 
 interface PartialAdminProps {
-    title: string;
+    Title: React.FC<TitleProps>;
 }
 
 export const useDemoSidebar = ({
@@ -25,8 +25,10 @@ export const useDemoSidebar = ({
     ] = useState<boolean>(false);
     const [undoableTimeout, setUndoableTimeout] = useState<number>(5000);
 
+    const DefaultTitle = () => <span>{title}</span>;
+
     const adminProps = {
-        title,
+        Title: DefaultTitle,
         mutationMode,
         syncWithLocation,
         warnWhenUnsavedChanges,

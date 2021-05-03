@@ -1,7 +1,7 @@
 import React from "react";
 import ReactRouterDom from "react-router-dom";
 
-import { ErrorComponent } from "./";
+import { ErrorComponent } from ".";
 import { render, fireEvent, TestWrapper } from "@test";
 
 const mHistory = {

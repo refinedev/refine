@@ -79,13 +79,12 @@ export const PostList = (props: any) => {
         ],
     });
 
-    const { data, isLoading } = useMany<ICategory>(
-        "categories",
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [],
-        {
-            enabled: !!tableProps?.dataSource,
-        },
-    );
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+
+    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
+        enabled: categoryIds.length > 0,
+    });
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
@@ -439,7 +438,6 @@ export const PostCreate = (props: any) => {
 
     return (
         <Create
-            {...props}
             actionButtons={
                 <>
                     {current > 0 && (
@@ -629,6 +627,8 @@ export const PostEdit = (props: any) => {
             >
                 <Select
                     showSearch
+                    mode="multiple"
+                    placeholder="Select Category"
                     filterOption={false}
                     {...categorySelectProps}
                 />
