@@ -2,6 +2,7 @@ import React from "react";
 import {
     List,
     Create,
+    Edit,
     Table,
     Form,
     Select,
@@ -51,6 +52,20 @@ export const PostList = (props: IResourceComponentsProps) => {
     const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
         "write",
     );
+
+    // Edit modal section
+    const {
+        modalProps: editModalProps,
+        formProps: editFormProps,
+        saveButtonProps: editSaveButtonProps,
+        show: editModalShow,
+        editId,
+        deleteButtonProps,
+        formLoading,
+    } = useModalForm({
+        action: "edit",
+        warnWhenUnsavedChanges: true,
+    });
 
     return (
         <>
@@ -104,6 +119,7 @@ export const PostList = (props: IResourceComponentsProps) => {
                                 <EditButton
                                     size="small"
                                     recordItemId={record.id}
+                                    onClick={() => editModalShow(record.id)}
                                 />
                                 <ShowButton
                                     size="small"
@@ -188,6 +204,89 @@ export const PostList = (props: IResourceComponentsProps) => {
                         </Form.Item>
                     </Form>
                 </Create>
+            </Modal>
+            <Modal {...editModalProps} footer={null}>
+                <Edit
+                    {...props}
+                    recordItemId={editId}
+                    saveButtonProps={{
+                        ...editSaveButtonProps,
+                        disabled: isLoading || formLoading,
+                    }}
+                    deleteButtonProps={deleteButtonProps}
+                >
+                    <Form {...editFormProps} layout="vertical">
+                        <Form.Item
+                            label="Title"
+                            name="title"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            label="Category"
+                            name={["category", "id"]}
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Select
+                                showSearch
+                                filterOption={false}
+                                {...categorySelectProps}
+                            />
+                        </Form.Item>
+                        <Form.Item
+                            label="Status"
+                            name="status"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Select
+                                options={[
+                                    {
+                                        label: "Published",
+                                        value: "published",
+                                    },
+                                    {
+                                        label: "Draft",
+                                        value: "draft",
+                                    },
+                                ]}
+                            />
+                        </Form.Item>
+                        <Form.Item
+                            label="Content"
+                            name="content"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <ReactMde
+                                selectedTab={selectedTab}
+                                onTabChange={setSelectedTab}
+                                generateMarkdownPreview={(markdown) =>
+                                    Promise.resolve(
+                                        <ReactMarkdown>
+                                            {markdown}
+                                        </ReactMarkdown>,
+                                    )
+                                }
+                            />
+                        </Form.Item>
+                    </Form>
+                </Edit>
             </Modal>
         </>
     );
