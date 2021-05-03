@@ -1,10 +1,8 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { useForm as useFormSF } from "sunflower-antd";
 import { Form, FormProps, FormInstance } from "antd";
-import { useParams } from "react-router-dom";
 
 import {
-    useResourceWithRoute,
     useCreate,
     useWarnAboutChange,
     useRedirectionAfterSubmission,
@@ -15,10 +13,10 @@ import {
     MutationMode,
     FormSF,
     BaseRecord,
-    ResourceRouterParams,
     RedirectionTypes,
     CreateResponse,
     UseFormSFFormProps,
+    IResourceItem,
 } from "../../../interfaces";
 
 type SaveButtonProps = {
@@ -50,6 +48,7 @@ export type useCreateFormProps<M> = {
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
     redirect?: RedirectionTypes;
+    resource: IResourceItem;
 };
 
 export const useCreateForm = <
@@ -61,7 +60,8 @@ export const useCreateForm = <
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect = "edit",
-}: useCreateFormProps<MutationType> = {}): useCreateForm<
+    resource
+}: useCreateFormProps<MutationType>): useCreateForm<
     RecordType,
     MutationType
 > => {
@@ -79,12 +79,6 @@ export const useCreateForm = <
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContext;
 
     const { form } = formSF;
-
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-
-    const resourceWithRoute = useResourceWithRoute();
-
-    const resource = resourceWithRoute(routeResourceName);
 
     const mutationResult = useCreate<MutationType>();
     const { mutate, isLoading } = mutationResult;
