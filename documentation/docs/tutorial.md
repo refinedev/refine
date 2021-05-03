@@ -40,11 +40,11 @@ Then open [http://localhost:3000](http://localhost:3000) to see your app.
 
 Refine is designed to consume data from APIs.
 
-We’ll be using a fake REST API at https://readmin-fake-rest.pankod.com/ designed for testing as the data source for the application.
+We’ll be using a fake REST API at https://refine-fake-rest.pankod.com/ designed for testing as the data source for the application.
 
 Example response:
 
-```ts title="https://readmin-fake-rest.pankod.com/posts/1"
+```ts title="https://refine-fake-rest.pankod.com/posts/1"
 {
   "id": 1,
   "title": "Quis a ex quos.",
@@ -86,7 +86,7 @@ import "@pankod/refine/dist/styles.min.css"
 function App() {
     return (
         <Admin
-            dataProvider={dataProvider("https://readmin-fake-rest.pankod.com/")}
+            dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
         />
     );
 }
@@ -119,7 +119,7 @@ import "@pankod/refine/dist/styles.min.css"
 We'll start forming our app by adding a `<Resource>` component as a child.
 A `<Resource>` represents an endpoint in the API by given name property. `name` property of `<Resource />` should be one of the endpoints in your API.
 
-We'll demonstrate how to get data at `/posts` endpoint from `https://readmin-fake-rest.pankod.com` REST API.
+We'll demonstrate how to get data at `/posts` endpoint from `https://refine-fake-rest.pankod.com` REST API.
 
 ```tsx title="src/App.tsx"
 //highlight-next-line
@@ -129,7 +129,7 @@ import dataProvider from "@pankod/refine-json-server";
 function App() {
     return (
         <Admin
-            dataProvider={dataProvider("https://readmin-fake-rest.pankod.com/")}
+            dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
         >
             //highlight-next-line
             <Resource name="posts" />
@@ -267,7 +267,7 @@ import { PostList } from "./pages";
 function App() {
     return (
         <Admin
-            dataProvider={dataProvider("https://readmin-fake-rest.pankod.com/")}
+            dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
         >
             //highlight-next-line
             <Resource name="posts" list={PostList} />
@@ -297,7 +297,7 @@ Let's say we want to show title of category  at `<PostList>`.
 [Each post record](#providing-a-data-source-with-an-api) includes a category property that has an id field, which points to a category:
 
 
-```ts title="https://readmin-fake-rest.pankod.com/posts/1"
+```ts title="https://refine-fake-rest.pankod.com/posts/1"
 ...
   "category": {
     "id": 26
@@ -306,10 +306,10 @@ Let's say we want to show title of category  at `<PostList>`.
 ```
 <br />
 
-Each category id references a record at `readmin-fake-rest.pankod.com/categories` endpoint.
+Each category id references a record at `refine-fake-rest.pankod.com/categories` endpoint.
 
 
-```ts title="https://readmin-fake-rest.pankod.com/categories/26"
+```ts title="https://refine-fake-rest.pankod.com/categories/26"
 ...
   { 
     "id": 26,
