@@ -33,7 +33,7 @@ export const usePermissions = (): State => {
     const { getPermissions } = useContext<IAuthContext>(AuthContext);
 
     React.useEffect(() => {
-        getPermissions({})
+        getPermissions()
             .then((permissions) => {
                 setState({ loading: false, loaded: true, permissions });
             })

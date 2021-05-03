@@ -17,7 +17,7 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "../../interfaces";
 
 export const PostCreate = (props: IResourceComponentsProps) => {
-    const { formProps, saveButtonProps } = useForm<IPost>({});
+    const { formProps, saveButtonProps } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",

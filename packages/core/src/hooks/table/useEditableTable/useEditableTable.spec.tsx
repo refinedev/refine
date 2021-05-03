@@ -21,7 +21,7 @@ const WrapperWithRoute: React.FC = ({ children }) => (
 );
 describe("useEditableTable Hook", () => {
     it("fetches table and form data", async () => {
-        const { result, waitFor } = renderHook(() => useEditableTable({}), {
+        const { result, waitFor } = renderHook(() => useEditableTable(), {
             wrapper: WrapperWithRoute,
         });
 

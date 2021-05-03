@@ -19,7 +19,7 @@ const WrapperWithRoute: React.FC = ({ children }) => (
 );
 describe("useCreateForm Hook", () => {
     it("renders with form", async () => {
-        const { result } = renderHook(() => useCreateForm({}), {
+        const { result } = renderHook(() => useCreateForm(), {
             wrapper: WrapperWithRoute,
         });
 

@@ -57,7 +57,7 @@ export const UserList = (props: any) => {
 
     const [visible, setVisible] = useState(false);
 
-    const { queryResult, showId, setShowId } = useShow({});
+    const { queryResult, showId, setShowId } = useShow();
 
     return (
         <>

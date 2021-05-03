@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { ConfigProvider } from "antd";
 import { ConfigProviderProps } from "antd/lib/config-provider";
 import { BrowserRouter as Router, RouteProps } from "react-router-dom";
@@ -14,7 +14,6 @@ import {
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { AdminContextProvider } from "@contexts/admin";
 import { NotificationContextProvider } from "@contexts/notification";
-import { ComponentsContextProvider } from "@contexts/components";
 import { RouteProvider, ReadyPage as DefaultReadyPage } from "@components";
 import { OptionalComponent, defaultConfigProviderProps } from "@definitions";
 import {
@@ -22,6 +21,8 @@ import {
     IDataContext,
     IAuthContext,
     I18nProvider,
+    LayoutProps,
+    TitleProps,
 } from "../../../interfaces";
 
 export interface AdminProps {
@@ -29,26 +30,29 @@ export interface AdminProps {
     dataProvider: IDataContext;
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
-    title?: ReactNode;
-    loginPage?: React.FC | false;
-    dashboard?: React.FC;
-    ready?: React.FC;
+    LoginPage?: React.FC | false;
+    DashboardPage?: React.FC;
+    ReadyPage?: React.FC;
     mutationMode?: MutationMode;
     syncWithLocation?: boolean;
     warnWhenUnsavedChanges?: boolean;
     routes?: RouteProps[];
     configProviderProps?: ConfigProviderProps;
-    components?: ReactNode;
     undoableTimeout?: number;
+    Layout?: React.FC<LayoutProps>;
+    Sider?: React.FC;
+    Header?: React.FC;
+    Footer?: React.FC;
+    OffLayoutArea?: React.FC;
+    Title?: React.FC<TitleProps>;
 }
 
 export const Admin: React.FC<AdminProps> = ({
     authProvider,
     dataProvider,
-    title,
-    dashboard,
-    ready,
-    loginPage,
+    DashboardPage,
+    ReadyPage,
+    LoginPage,
     catchAll,
     children,
     i18nProvider = defaultProvider.i18nProvider,
@@ -57,8 +61,13 @@ export const Admin: React.FC<AdminProps> = ({
     warnWhenUnsavedChanges = false,
     routes = [],
     configProviderProps = defaultConfigProviderProps,
-    components,
     undoableTimeout = 5000,
+    Title,
+    Layout,
+    Sider,
+    Header,
+    Footer,
+    OffLayoutArea,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -88,7 +97,7 @@ export const Admin: React.FC<AdminProps> = ({
 
     if (resources.length === 0) {
         return (
-            <OptionalComponent optional={ready}>
+            <OptionalComponent optional={ReadyPage}>
                 <DefaultReadyPage />
             </OptionalComponent>
         );
@@ -108,23 +117,24 @@ export const Admin: React.FC<AdminProps> = ({
                                             warnWhenUnsavedChanges
                                         }
                                         syncWithLocation={syncWithLocation}
-                                        title={title}
+                                        Title={Title}
                                         undoableTimeout={undoableTimeout}
+                                        Layout={Layout}
+                                        Sider={Sider}
+                                        Footer={Footer}
+                                        Header={Header}
+                                        OffLayoutArea={OffLayoutArea}
                                     >
-                                        <ComponentsContextProvider
-                                            components={components}
-                                        >
-                                            <Router>
-                                                <RouteProvider
-                                                    resources={resources}
-                                                    catchAll={catchAll}
-                                                    dashboard={dashboard}
-                                                    loginPage={loginPage}
-                                                    ready={ready}
-                                                    customRoutes={routes}
-                                                />
-                                            </Router>
-                                        </ComponentsContextProvider>
+                                        <Router>
+                                            <RouteProvider
+                                                resources={resources}
+                                                catchAll={catchAll}
+                                                DashboardPage={DashboardPage}
+                                                LoginPage={LoginPage}
+                                                ReadyPage={ReadyPage}
+                                                customRoutes={routes}
+                                            />
+                                        </Router>
                                     </AdminContextProvider>
                                 </NotificationContextProvider>
                             </ConfigProvider>

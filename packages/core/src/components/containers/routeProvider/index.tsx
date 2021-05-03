@@ -1,8 +1,11 @@
 /* eslint-disable react/display-name */
 import React, { useContext, ReactNode } from "react";
 import { Switch, Route, RouteProps, Redirect } from "react-router-dom";
-import { Layout, ErrorComponent } from "@components";
-import { LoginPage as DefaultLoginPage } from "@components";
+import {
+    LoginPage as DefaultLoginPage,
+    ErrorComponent,
+    LayoutWrapper,
+} from "@components";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
 import { OptionalComponent } from "@definitions";
@@ -11,9 +14,9 @@ import { IResourceItem } from "@contexts/resource";
 export interface RouteProviderProps {
     resources: IResourceItem[];
     catchAll?: React.ReactNode;
-    dashboard?: React.ElementType;
-    loginPage?: React.FC | false;
-    ready?: React.FC;
+    DashboardPage?: React.ElementType;
+    LoginPage?: React.FC | false;
+    ReadyPage?: React.FC;
     customRoutes: RouteProps[];
 }
 
@@ -22,15 +25,15 @@ type IRoutesProps = RouteProps & { routes?: RouteProps[] };
 const RouteProviderBase: React.FC<RouteProviderProps> = ({
     resources,
     catchAll,
-    dashboard,
-    loginPage,
+    DashboardPage,
+    LoginPage,
     customRoutes,
 }) => {
     const { isAuthenticated, checkAuth } = useContext<IAuthContext>(
         AuthContext,
     );
 
-    checkAuth({});
+    checkAuth();
 
     const routes: IRoutesProps[] = [];
     const RouteHandler = (val: IResourceItem): void => {
@@ -129,14 +132,14 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     };
 
     const renderAuthorized = () => (
-        <Layout>
+        <LayoutWrapper>
             <Switch>
                 <Route
                     path="/"
                     exact
                     component={() =>
-                        dashboard ? (
-                            React.createElement(dashboard, null)
+                        DashboardPage ? (
+                            <DashboardPage />
                         ) : (
                             <Redirect to={`/resources/${resources[0].route}`} />
                         )
@@ -147,7 +150,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
                 ))}
                 <Route>{catchAll ?? <ErrorComponent />}</Route>
             </Switch>
-        </Layout>
+        </LayoutWrapper>
     );
 
     const renderUnauthorized = () => (
@@ -156,7 +159,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
                 exact
                 path={["/", "/login"]}
                 component={() => (
-                    <OptionalComponent optional={loginPage}>
+                    <OptionalComponent optional={LoginPage}>
                         <DefaultLoginPage />
                     </OptionalComponent>
                 )}

@@ -204,7 +204,7 @@ export const PostLightList = (props: any) => {
 export const PostLightCreate = (props: any) => {
     const translate = useTranslate();
 
-    const { formProps, saveButtonProps } = useForm({});
+    const { formProps, saveButtonProps } = useForm();
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
@@ -228,7 +228,7 @@ export const PostLightCreate = (props: any) => {
 export const PostLightEdit = (props: any) => {
     const translate = useTranslate();
 
-    const { formProps, saveButtonProps } = useForm({});
+    const { formProps, saveButtonProps } = useForm();
 
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>

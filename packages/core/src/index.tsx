@@ -16,6 +16,9 @@ export {
     ILoginForm,
     HttpError,
     UploadedFile,
+    LayoutProps,
+    SiderProps,
+    TitleProps,
 } from "./interfaces";
 
 export * from "./definitions/upload";

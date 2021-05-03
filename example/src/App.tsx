@@ -7,6 +7,9 @@ import {
     Authenticated,
     defaultConfigProviderProps,
     BackTop,
+    AntdLayout,
+    Button,
+    useSetLocale,
 } from "@pankod/refine";
 import { DemoSidebar, useDemoSidebar } from "@pankod/refine-demo-sidebar";
 import "@pankod/refine/dist/styles.min.css";
@@ -19,13 +22,16 @@ import {
     PostList,
     PostEdit,
     PostShow,
-} from "./components/pages/post";
-import { CategoryList, CategoryCreate } from "./components/pages/category";
-import { UserList } from "./components/pages/user";
-import { TagsList, TagsCreate, TagsEdit } from "./components/pages/tags";
-import { DashboardPage } from "./components/pages/dashboard";
-import { ReadyPage } from "./components/ready";
-import { LoginPage } from "./components/login";
+    CategoryList,
+    CategoryCreate,
+    UserList,
+    TagsList,
+    TagsCreate,
+    TagsEdit,
+    DashboardPage,
+    ReadyPage,
+    LoginPage,
+} from "./components/pages";
 
 function App() {
     const [adminProps, demoSidebarProps] = useDemoSidebar({
@@ -62,6 +68,7 @@ function App() {
     };
 
     const { t, i18n } = useTranslation(["common", "translation"]);
+    const setLocale = useSetLocale();
 
     const i18nProvider = {
         translate: (key: string, params: object) => t(key, params),
@@ -85,17 +92,10 @@ function App() {
         <Admin
             authProvider={authProvider}
             dataProvider={dataProvider("https://refine-nestjs-crud.pankod.com")}
-            loginPage={LoginPage}
-            dashboard={DashboardPage}
-            ready={ReadyPage}
+            LoginPage={LoginPage}
+            DashboardPage={DashboardPage}
+            ReadyPage={ReadyPage}
             i18nProvider={i18nProvider}
-            syncWithLocation
-            components={
-                <>
-                    <BackTop />
-                    <DemoSidebar {...demoSidebarProps} />
-                </>
-            }
             routes={[
                 {
                     exact: true,
@@ -111,6 +111,57 @@ function App() {
             configProviderProps={{
                 ...defaultConfigProviderProps,
             }}
+            Layout={({ children, Sider, Header, Footer, OffLayoutArea }) => (
+                <AntdLayout
+                    style={{ minHeight: "100vh", flexDirection: "row" }}
+                >
+                    <Sider />
+                    <AntdLayout className="site-layout">
+                        <Header />
+                        <AntdLayout.Content>
+                            <div style={{ padding: 24, minHeight: 360 }}>
+                                {children}
+                            </div>
+                        </AntdLayout.Content>
+                        <Footer />
+                    </AntdLayout>
+                    <OffLayoutArea />
+                </AntdLayout>
+            )}
+            Footer={() => (
+                <AntdLayout.Footer style={{ textAlign: "center" }}>
+                    Refine ©{new Date().getFullYear()} Created by Pankod
+                    (Example Footer)
+                </AntdLayout.Footer>
+            )}
+            Header={() => (
+                <AntdLayout.Header
+                    style={{ padding: 0, backgroundColor: "#FFF" }}
+                >
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "flex-end",
+                            height: "100%",
+                            alignItems: "center",
+                            padding: "24px",
+                        }}
+                    >
+                        <Button size="middle" onClick={() => setLocale("en")}>
+                            EN
+                        </Button>
+                        <Button size="middle" onClick={() => setLocale("tr")}>
+                            TR
+                        </Button>
+                    </div>
+                </AntdLayout.Header>
+            )}
+            OffLayoutArea={() => (
+                <>
+                    <BackTop />
+                    <DemoSidebar {...demoSidebarProps} />
+                </>
+            )}
             {...adminProps}
         >
             <Resource
