@@ -1,41 +1,38 @@
 import React from "react";
 import {
-    Create,
+    Edit,
     Form,
     Input,
     IResourceComponentsProps,
     Select,
-    Upload,
-    useApiUrl,
     useForm,
     useSelect,
+    useApiUrl,
+    Upload,
 } from "@pankod/refine";
+import {
+    useStrapiUpload,
+    getValueProps,
+    mediaUploadMapper,
+} from "@pankod/refine-strapi";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-import {
-    useStrapiUpload,
-    mediaUploadMapper,
-    getValueProps,
-} from "@pankod/refine-strapi";
+import { TOKEN_KEY } from "../../constants";
 
-import { TOKEN_KEY } from "../../../constants";
-
-export const PostCreate = (props: IResourceComponentsProps) => {
+export const PostEdit = (props: IResourceComponentsProps) => {
     const API_URL = useApiUrl();
 
     const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
         "write",
     );
 
-    const { formProps, saveButtonProps, queryResult } = useForm({});
+    const { formProps, saveButtonProps } = useForm();
 
-    const postData = queryResult?.data?.data;
     const { selectProps } = useSelect({
         resource: "categories",
-        defaultValue: postData?.category.id,
     });
 
     const { ...uploadProps } = useStrapiUpload({
@@ -43,7 +40,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
     });
 
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
+        <Edit {...props} saveButtonProps={saveButtonProps}>
             <Form
                 {...formProps}
                 layout="vertical"
@@ -128,6 +125,6 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                     </Form.Item>
                 </Form.Item>
             </Form>
-        </Create>
+        </Edit>
     );
 };
