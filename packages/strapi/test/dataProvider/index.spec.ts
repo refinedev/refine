@@ -23,13 +23,7 @@ describe("dataProvider", () => {
             ).create("posts", {
                 title: "foo",
                 content: "bar",
-                cover: [
-                    {
-                        uid: "116",
-                        name: "***",
-                        // ...
-                    },
-                ],
+                cover: ["116"],
             });
 
             expect(data["title"]).toBe("foo");
