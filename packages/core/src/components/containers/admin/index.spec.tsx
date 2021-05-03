@@ -59,7 +59,7 @@ describe("Admin Container", () => {
             <Admin
                 authProvider={mockAuthProvider}
                 dataProvider={MockJSONServer}
-                ready={readyPage}
+                ReadyPage={readyPage}
             />,
         );
         expect(getByTestId("readyContainer")).toBeTruthy();
