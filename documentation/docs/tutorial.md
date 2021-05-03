@@ -40,7 +40,7 @@ Then open [http://localhost:3000](http://localhost:3000) to see your app.
 
 Refine is designed to consume data from APIs.
 
-We’ll be using a fake REST API at https://readmin-fake-rest.pankod.com/ designed for testing as the data source for the application.
+We’ll be using a fake REST API at https://readmin-fake-rest.pankod.com designed for testing as the data source for the application.
 
 Example response:
 
