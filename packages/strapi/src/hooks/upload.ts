@@ -1,9 +1,8 @@
 import { useState } from "react";
 import {
     RcFile,
-    UploadChangeParam,
     UploadFile,
-} from "antd/lib/upload/interface";
+} from "@pankod/refine/node_modules/antd/lib/upload/interface";
 
 interface StrapiUploadParams {
     maxCount: number;
@@ -31,25 +30,10 @@ export const useStrapiUpload = ({ maxCount }: StrapiUploadParams) => {
         return true;
     };
 
-    const onChange = (info: UploadChangeParam) => {
-        const ids = [];
-        for (const file of info.fileList) {
-            if (file.response) {
-                ids.push(`${file.response[0].id}`);
-                break;
-            }
-
-            ids.push(file.uid);
-        }
-
-        setUploadedFileIds(ids);
-    };
-
     return {
         uploadedFileIds,
         beforeUpload,
         fileList,
         maxCount,
-        onChange,
     };
 };

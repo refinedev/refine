@@ -19,18 +19,6 @@ axiosInstance.interceptors.response.use(
     },
 );
 
-// hack for media upload
-const mediaUploadMapper = (params: any) => {
-    Object.keys(params).map((item) => {
-        const param = params[item];
-        const isMediaField = Array.isArray(param) && param[0]["uid"];
-        if (isMediaField) {
-            params[item] = param.map((item: any) => item.uid);
-        }
-    });
-    return params;
-};
-
 export const DataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -99,7 +87,7 @@ export const DataProvider = (
     create: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { data } = await httpClient.post(url, mediaUploadMapper(params));
+        const { data } = await httpClient.post(url, params);
 
         return {
             data,
@@ -109,7 +97,7 @@ export const DataProvider = (
     update: async (resource, id, params) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.put(url, mediaUploadMapper(params));
+        const { data } = await httpClient.put(url, params);
 
         return {
             data,
@@ -121,7 +109,7 @@ export const DataProvider = (
             ids.map(async (id) => {
                 const { data } = await httpClient.put(
                     `${apiUrl}/${resource}/${id}`,
-                    mediaUploadMapper(params),
+                    params,
                 );
                 return data;
             }),
@@ -138,29 +126,6 @@ export const DataProvider = (
         const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await httpClient.get(url);
-
-        Object.keys(data).map((item) => {
-            const isMediaField =
-                data[item] &&
-                data[item]["id"] &&
-                data[item]["width"] &&
-                data[item]["url"];
-
-            if (isMediaField) {
-                data[item] = [
-                    {
-                        name: data[item].name,
-                        percent: 100,
-                        size: data[item].size,
-                        status: "done",
-                        type: data[item].mime,
-                        uid: data[item].id,
-                        // TODO: fix api url
-                        url: `https://refine-strapi.pankod.com${data[item].url}`,
-                    },
-                ];
-            }
-        });
 
         return {
             data,

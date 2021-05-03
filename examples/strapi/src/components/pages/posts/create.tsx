@@ -15,7 +15,11 @@ import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-import { useStrapiUpload, normalizeFileForStrapi } from "@pankod/refine-strapi";
+import {
+    useStrapiUpload,
+    mediaUploadMapper,
+    getValueProps,
+} from "@pankod/refine-strapi";
 
 import { TOKEN_KEY } from "../../../constants";
 
@@ -26,7 +30,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
         "write",
     );
 
-    const { formProps, saveButtonProps, queryResult } = useForm({});
+    const { formProps, saveButtonProps, queryResult, form } = useForm({});
 
     const postData = queryResult?.data?.data;
     const { selectProps } = useSelect({
@@ -40,7 +44,13 @@ export const PostCreate = (props: IResourceComponentsProps) => {
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
+            <Form
+                {...formProps}
+                layout="vertical"
+                onFinish={(values) => {
+                    return formProps?.onFinish!(mediaUploadMapper(values));
+                }}
+            >
                 <Form.Item
                     wrapperCol={{ span: 14 }}
                     label="Title"
@@ -88,8 +98,11 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                     <Form.Item
                         name="cover"
                         valuePropName="fileList"
-                        getValueFromEvent={(event) =>
-                            normalizeFileForStrapi(event, API_URL)
+                        getValueProps={(data) =>
+                            getValueProps(
+                                data,
+                                "https://refine-strapi.pankod.com",
+                            )
                         }
                         noStyle
                     >

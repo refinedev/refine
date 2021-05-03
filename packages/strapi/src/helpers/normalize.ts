@@ -1,34 +1,50 @@
-import { UploadFile } from "antd/lib/upload/interface";
+export const getValueProps = (data: any, imageUrl: string) => {
+    if (!data) {
+        return { fileList: [] };
+    }
 
-interface UploadResponse {
-    fileUrl: string;
-}
+    return {
+        file: data.file,
+        fileList:
+            data.fileList ??
+            (Array.isArray(data) ? data : [...data]).map((item: any) => {
+                const file: any = {
+                    name: item.name,
+                    percent: item.percent,
+                    size: item.size,
+                    status: item.status,
+                    type: item.mime || item.type,
+                    uid: item.id,
+                };
 
-interface StrapiUploadResponse {
-    url: string;
-    id: string | number;
-}
+                if (item.url) {
+                    file.url = `${imageUrl}${item.url}`;
+                }
 
-interface EventArgs<T = UploadResponse> {
-    file: UploadFile<T>;
-    fileList: Array<UploadFile<T>>;
-}
+                return file;
+            }),
+    };
+};
 
-export const normalizeFileForStrapi = (
-    event: EventArgs<StrapiUploadResponse[]>,
-    baseUrl: string,
-) => {
-    const { fileList } = event;
-
-    return fileList.map((item) => {
-        let { url, uid } = item;
-        const { name, response, type, size, percent, status } = item;
-
-        if (response) {
-            url = `${baseUrl}${response[0].url}`;
-            uid = `${response[0].id}`;
+export const mediaUploadMapper = (params: any) => {
+    Object.keys(params).map((item) => {
+        if (params[item]) {
+            const param = params[item].fileList;
+            const isMediaField = Array.isArray(param) && param[0]["uid"];
+            if (isMediaField) {
+                const ids = [];
+                for (const item of param) {
+                    if (item.response) {
+                        for (const response of item.response) {
+                            ids.push(response.id);
+                        }
+                    } else {
+                        ids.push(item.uid);
+                    }
+                }
+                params[item] = ids;
+            }
         }
-
-        return { uid, name, url, type, size, percent, status };
     });
+    return params;
 };
