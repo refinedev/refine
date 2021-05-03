@@ -43,10 +43,6 @@ export const PostList = (props: IResourceComponentsProps) => {
         enabled: categoryIds.length > 0,
     });
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-    });
-
     const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
         "write",
     );
@@ -71,10 +67,17 @@ export const PostList = (props: IResourceComponentsProps) => {
         show: editModalShow,
         editId,
         deleteButtonProps,
+        queryResult: editQueryResult,
         formLoading,
     } = useModalForm<IPost>({
         action: "edit",
         warnWhenUnsavedChanges: true,
+    });
+
+    const postData = editQueryResult?.data?.data;
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+        defaultValue: postData?.category.id,
     });
 
     const { queryResult, showId, setShowId } = useShow<IPost>();
@@ -93,6 +96,7 @@ export const PostList = (props: IResourceComponentsProps) => {
         <>
             <List
                 {...props}
+                canCreate
                 createButtonProps={{
                     onClick: () => {
                         createModalShow();
