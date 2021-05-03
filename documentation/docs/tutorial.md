@@ -267,7 +267,7 @@ import { PostList } from "./pages";
 function App() {
     return (
         <Admin
-            dataProvider={dataProvider("https://readmin-fake-rest.pankod.com/")}
+            dataProvider={dataProvider("https://readmin-fake-rest.pankod.com")}
         >
             //highlight-next-line
             <Resource name="posts" list={PostList} />
