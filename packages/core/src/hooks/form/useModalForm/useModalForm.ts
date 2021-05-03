@@ -11,16 +11,13 @@ import {
     useWarnAboutChange,
 } from "@hooks";
 import { BaseRecord, ModalFormSF } from "../../../interfaces";
-import { useEditFormProps } from "../useEditForm";
-import { useCreateFormProps } from "../useCreateForm";
+import { useFormProps } from "../useForm";
 
 type useModalFormConfig = {
     action: "show" | "edit" | "create";
 };
 
-export type useModalFormProps<M> = Partial<
-    useEditFormProps<M> & useCreateFormProps<M>
-> &
+export type useModalFormProps<M> = useFormProps<M> &
     UseModalFormConfigSF &
     useModalFormConfig;
 export const useModalForm = <
