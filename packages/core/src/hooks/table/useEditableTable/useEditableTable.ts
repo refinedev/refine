@@ -1,4 +1,4 @@
-import { useTable, useEditForm } from "@hooks";
+import { useTable, useForm } from "@hooks";
 import { useTableProps } from "../useTable";
 import { useEditFormProps } from "../../form/useEditForm";
 import { BaseRecord } from "../../../interfaces";
@@ -9,7 +9,7 @@ export const useEditableTable = <RecordType extends BaseRecord = BaseRecord>(
     props: useEditableTableProps<RecordType> = {},
 ) => {
     const table = useTable<RecordType>({ ...props });
-    const edit = useEditForm<RecordType>({ ...props });
+    const edit = useForm<RecordType>({ ...props, action: "edit" });
 
     const { form, editId, setEditId, formLoading } = edit;
 
