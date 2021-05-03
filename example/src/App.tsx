@@ -92,9 +92,9 @@ function App() {
         <Admin
             authProvider={authProvider}
             dataProvider={dataProvider("https://refine-nestjs-crud.pankod.com")}
-            loginPage={LoginPage}
-            dashboardPage={DashboardPage}
-            ready={ReadyPage}
+            LoginPage={LoginPage}
+            DashboardPage={DashboardPage}
+            ReadyPage={ReadyPage}
             i18nProvider={i18nProvider}
             routes={[
                 {

@@ -1,8 +1,11 @@
 /* eslint-disable react/display-name */
 import React, { useContext, ReactNode } from "react";
 import { Switch, Route, RouteProps, Redirect } from "react-router-dom";
-import { LayoutWrapper, ErrorComponent } from "@components";
-import { LoginPage as DefaultLoginPage } from "@components";
+import {
+    LoginPage as DefaultLoginPage,
+    ErrorComponent,
+    LayoutWrapper,
+} from "@components";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
 import { OptionalComponent } from "@definitions";
@@ -11,9 +14,9 @@ import { IResourceItem } from "@contexts/resource";
 export interface RouteProviderProps {
     resources: IResourceItem[];
     catchAll?: React.ReactNode;
-    dashboardPage?: React.ElementType;
-    loginPage?: React.FC | false;
-    ready?: React.FC;
+    DashboardPage?: React.ElementType;
+    LoginPage?: React.FC | false;
+    ReadyPage?: React.FC;
     customRoutes: RouteProps[];
 }
 
@@ -22,8 +25,8 @@ type IRoutesProps = RouteProps & { routes?: RouteProps[] };
 const RouteProviderBase: React.FC<RouteProviderProps> = ({
     resources,
     catchAll,
-    dashboardPage,
-    loginPage,
+    DashboardPage,
+    LoginPage,
     customRoutes,
 }) => {
     const { isAuthenticated, checkAuth } = useContext<IAuthContext>(
@@ -135,8 +138,8 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
                     path="/"
                     exact
                     component={() =>
-                        dashboardPage ? (
-                            React.createElement(dashboardPage, null)
+                        DashboardPage ? (
+                            <DashboardPage />
                         ) : (
                             <Redirect to={`/resources/${resources[0].route}`} />
                         )
@@ -156,7 +159,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
                 exact
                 path={["/", "/login"]}
                 component={() => (
-                    <OptionalComponent optional={loginPage}>
+                    <OptionalComponent optional={LoginPage}>
                         <DefaultLoginPage />
                     </OptionalComponent>
                 )}
