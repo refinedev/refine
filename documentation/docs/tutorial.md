@@ -86,7 +86,7 @@ import "@pankod/refine/dist/styles.min.css"
 function App() {
     return (
         <Admin
-            dataProvider={dataProvider("https://readmin-fake-rest.pankod.com/")}
+            dataProvider={dataProvider("https://readmin-fake-rest.pankod.com")}
         />
     );
 }
