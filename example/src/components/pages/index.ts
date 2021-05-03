@@ -7,3 +7,6 @@ export * from "./post";
 export * from "./tag";
 export * from "./tags";
 export * from "./user";
+export * from "./login";
+export * from "./ready";
+export * from "./dashboard";
