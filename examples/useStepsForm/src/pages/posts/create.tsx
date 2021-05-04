@@ -27,7 +27,6 @@ export const PostCreate = (props: IResourceComponentsProps) => {
         gotoStep,
         stepsProps,
         submit,
-        formLoading,
         formProps,
         saveButtonProps,
     } = useStepsForm<IPost>();
@@ -117,7 +116,6 @@ export const PostCreate = (props: IResourceComponentsProps) => {
     return (
         <Create
             {...props}
-            saveButtonProps={saveButtonProps}
             actionButtons={
                 <>
                     {current > 0 && (
@@ -139,12 +137,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                         </Button>
                     )}
                     {current === formList.length - 1 && (
-                        <SaveButton
-                            style={{ marginRight: 10 }}
-                            loading={formLoading}
-                            disabled={formLoading}
-                            onClick={() => submit()}
-                        />
+                        <SaveButton {...saveButtonProps} />
                     )}
                 </>
             }

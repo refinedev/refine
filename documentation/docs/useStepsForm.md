@@ -29,7 +29,6 @@ export const PostCreate = (props: IResourceComponentsProps) => {
         gotoStep,
         stepsProps,
         submit,
-        formLoading,
         formProps,
         saveButtonProps,
         queryResult,
@@ -126,7 +125,6 @@ To help your user navigate between pages in your form, you can use action button
 return (
     <Create
         {...props}
-        saveButtonProps={saveButtonProps}
         //highlight-start
         actionButtons={
             <>
@@ -152,6 +150,7 @@ return (
                     <SaveButton
                         style={{ marginRight: 10 }}
                         onClick={() => submit()}
+                        {...saveButtonProps}
                     />
                 )}
             </>

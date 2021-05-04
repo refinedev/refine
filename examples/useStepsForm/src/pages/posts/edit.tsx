@@ -26,8 +26,6 @@ export const PostEdit = (props: IResourceComponentsProps) => {
         current,
         gotoStep,
         stepsProps,
-        submit,
-        formLoading,
         formProps,
         saveButtonProps,
         queryResult,
@@ -120,7 +118,6 @@ export const PostEdit = (props: IResourceComponentsProps) => {
     return (
         <Edit
             {...props}
-            saveButtonProps={saveButtonProps}
             actionButtons={
                 <>
                     {current > 0 && (
@@ -142,12 +139,7 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                         </Button>
                     )}
                     {current === formList.length - 1 && (
-                        <SaveButton
-                            style={{ marginRight: 10 }}
-                            loading={formLoading}
-                            disabled={formLoading}
-                            onClick={() => submit()}
-                        />
+                        <SaveButton {...saveButtonProps} />
                     )}
                 </>
             }
