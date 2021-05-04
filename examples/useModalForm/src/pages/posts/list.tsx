@@ -14,44 +14,22 @@ import {
     TextField,
     MarkdownField,
     useTable,
-    useMany,
     useShow,
-    useSelect,
     useModalForm,
-    useOne,
     EditButton,
     ShowButton,
     RefreshButton,
     IResourceComponentsProps,
 } from "@pankod/refine";
 
-import ReactMarkdown from "react-markdown";
-import ReactMde from "react-mde";
-
-import "react-mde/lib/styles/css/react-mde-all.css";
-
-import { IPost, ICategory } from "../../interfaces";
+import { IPost } from "../../interfaces";
 
 const { Title, Text } = Typography;
 
 export const PostList = (props: IResourceComponentsProps) => {
     const { tableProps } = useTable<IPost>();
 
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-
-    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
-        enabled: categoryIds.length > 0,
-    });
-
-    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
-        "write",
-    );
-
-    const [visibleShowModal, setVisibleShowModal] = React.useState<boolean>(
-        false,
-    );
-
+    // Create Modal
     const {
         modalProps: createModalProps,
         formProps: createFormProps,
@@ -61,6 +39,7 @@ export const PostList = (props: IResourceComponentsProps) => {
         action: "create",
     });
 
+    // Edit Modal
     const {
         modalProps: editModalProps,
         formProps: editFormProps,
@@ -68,30 +47,21 @@ export const PostList = (props: IResourceComponentsProps) => {
         show: editModalShow,
         editId,
         deleteButtonProps,
-        queryResult: editQueryResult,
         formLoading,
     } = useModalForm<IPost>({
         action: "edit",
         warnWhenUnsavedChanges: true,
     });
 
-    const postData = editQueryResult?.data?.data;
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-        defaultValue: postData?.category.id,
-    });
+    // Show Modal
+    const [visibleShowModal, setVisibleShowModal] = React.useState<boolean>(
+        false,
+    );
 
     const { queryResult, showId, setShowId } = useShow<IPost>();
 
     const { data: showQueryResult, isLoading: showIsLoading } = queryResult;
     const record = showQueryResult?.data;
-
-    const {
-        data: categoryData,
-        isLoading: categoryIsLoading,
-    } = useOne<ICategory>("categories", record?.category.id ?? "", {
-        enabled: !!record,
-    });
 
     return (
         <>
@@ -116,26 +86,6 @@ export const PostList = (props: IResourceComponentsProps) => {
                         dataIndex="title"
                         title="Title"
                         render={(value) => <TextField value={value} />}
-                    />
-                    <Table.Column
-                        dataIndex={["category", "id"]}
-                        key="category.id"
-                        title="Category"
-                        render={(value) => {
-                            if (isLoading) {
-                                return <TextField value="Loading..." />;
-                            }
-
-                            return (
-                                <TextField
-                                    value={
-                                        data?.data.find(
-                                            (item) => item.id === value,
-                                        )?.title
-                                    }
-                                />
-                            );
-                        }}
                     />
                     <Table.Column<IPost>
                         title="Actions"
@@ -176,21 +126,6 @@ export const PostList = (props: IResourceComponentsProps) => {
                             <Input />
                         </Form.Item>
                         <Form.Item
-                            label="Category"
-                            name={["category", "id"]}
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Select
-                                showSearch
-                                filterOption={false}
-                                {...categorySelectProps}
-                            />
-                        </Form.Item>
-                        <Form.Item
                             label="Status"
                             name="status"
                             rules={[
@@ -212,27 +147,6 @@ export const PostList = (props: IResourceComponentsProps) => {
                                 ]}
                             />
                         </Form.Item>
-                        <Form.Item
-                            label="Content"
-                            name="content"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <ReactMde
-                                selectedTab={selectedTab}
-                                onTabChange={setSelectedTab}
-                                generateMarkdownPreview={(markdown) =>
-                                    Promise.resolve(
-                                        <ReactMarkdown>
-                                            {markdown}
-                                        </ReactMarkdown>,
-                                    )
-                                }
-                            />
-                        </Form.Item>
                     </Form>
                 </Create>
             </Modal>
@@ -242,7 +156,7 @@ export const PostList = (props: IResourceComponentsProps) => {
                     recordItemId={editId}
                     saveButtonProps={{
                         ...editSaveButtonProps,
-                        disabled: isLoading || formLoading,
+                        disabled: formLoading,
                     }}
                     deleteButtonProps={deleteButtonProps}
                 >
@@ -259,21 +173,6 @@ export const PostList = (props: IResourceComponentsProps) => {
                             <Input />
                         </Form.Item>
                         <Form.Item
-                            label="Category"
-                            name={["category", "id"]}
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Select
-                                showSearch
-                                filterOption={false}
-                                {...categorySelectProps}
-                            />
-                        </Form.Item>
-                        <Form.Item
                             label="Status"
                             name="status"
                             rules={[
@@ -293,27 +192,6 @@ export const PostList = (props: IResourceComponentsProps) => {
                                         value: "draft",
                                     },
                                 ]}
-                            />
-                        </Form.Item>
-                        <Form.Item
-                            label="Content"
-                            name="content"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <ReactMde
-                                selectedTab={selectedTab}
-                                onTabChange={setSelectedTab}
-                                generateMarkdownPreview={(markdown) =>
-                                    Promise.resolve(
-                                        <ReactMarkdown>
-                                            {markdown}
-                                        </ReactMarkdown>,
-                                    )
-                                }
                             />
                         </Form.Item>
                     </Form>
@@ -333,13 +211,6 @@ export const PostList = (props: IResourceComponentsProps) => {
 
                     <Title level={5}>Title</Title>
                     <Text>{record?.title}</Text>
-
-                    <Title level={5}>Category</Title>
-                    <Text>
-                        {categoryIsLoading
-                            ? "Loading..."
-                            : categoryData?.data.title}
-                    </Text>
 
                     <Title level={5}>Content</Title>
                     <MarkdownField
