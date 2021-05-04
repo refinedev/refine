@@ -16,7 +16,7 @@ export const PostList = (props: IResourceComponentsProps) => {
     const { tableProps } = useTable<IPost>();
 
     const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+        tableProps?.dataSource?.map((item) => item.category?.id) ?? [];
     const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
         enabled: categoryIds.length > 0,
     });
