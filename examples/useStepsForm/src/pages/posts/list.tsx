@@ -62,7 +62,6 @@ export const PostList = (props: IResourceComponentsProps) => {
                     render={(_value, record) => (
                         <Space>
                             <EditButton size="small" recordItemId={record.id} />
-                            <ShowButton size="small" recordItemId={record.id} />
                         </Space>
                     )}
                 />
