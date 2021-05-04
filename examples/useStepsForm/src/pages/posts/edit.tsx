@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    Create,
+    Edit,
     Form,
     Input,
     IResourceComponentsProps,
@@ -118,7 +118,7 @@ export const PostEdit = (props: IResourceComponentsProps) => {
     ];
 
     return (
-        <Create
+        <Edit
             {...props}
             saveButtonProps={saveButtonProps}
             actionButtons={
@@ -164,6 +164,6 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                     </Form>
                 </div>
             </Form>
-        </Create>
+        </Edit>
     );
 };
