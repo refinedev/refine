@@ -17,7 +17,7 @@ interface ITestWrapperProps {
     authProvider?: IAuthContext;
     dataProvider?: IDataContext;
     i18nProvider?: I18nProvider;
-    resources: IResourceItem[];
+    resources?: IResourceItem[];
     children?: React.ReactNode;
     routerInitialEntries?: string[];
     adminProvider?: IAdminContextProvider;
@@ -33,11 +33,11 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
 }) => {
     // eslint-disable-next-line react/display-name
     return ({ children }): React.ReactElement => {
-        const withResource = (
+        const withResource = resources ? (
             <ResourceContextProvider resources={resources}>
                 {children}
             </ResourceContextProvider>
-        );
+        ) : children;
 
         const withData = dataProvider ? (
             <DataContextProvider {...dataProvider}>
