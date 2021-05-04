@@ -51,7 +51,7 @@ export interface IPost {
 }
 ```
 
-This hook returns a set of useful values for you to render your steps form. Given `current`, you should have a way to render your form items conditionally with this this index value. You can use an array to achieve this: 
+This hook returns a set of useful values for you to render your steps form. Given `current`, you should have a way to render your form items conditionally with this index value. You can use an array to achieve this: 
 
 ```ts
 const formList = [
