@@ -92,18 +92,21 @@ import { useModalForm, Modal, Form, Create, Radio } from "@pankod/refine";
 import { IPost } from "../../interfaces";
 
 export const PostList (props) => {
-    //highlight-start
+
     const {
         modalProps,
         formProps,
         show,
         saveButtonProps,
+        //highlight-start
         deleteButtonProps,
         editId,
+         //highlight-end
     } = useModalForm<IPost>({
+        //highlight-next-line
         action: "edit",
     });
-    //highlight-end
+
 
     return (
         <>
@@ -126,13 +129,15 @@ export const PostList (props) => {
                     />
                 </Table>
             </List>
-            //highlight-start
             <Modal {...modalProps}>
+            //highlight-next-line
                 <Edit
                     {...props}
-                    recordItemId={editId}
                     saveButtonProps={saveButtonProps}
+                    //highlight-start
                     deleteButtonProps={deleteButtonProps}
+                    recordItemId={editId}
+                    //highlight-end
                 >
                     <Form {...formProps} layout="vertical">
                         <Form.Item label="Title" name="title">
@@ -145,9 +150,8 @@ export const PostList (props) => {
                             </Radio.Group>
                         </Form.Item>
                     </Form>
-                </Create>
+                </Edit>
             </Modal>
-            //highlight-end
         </>
     )
 }
