@@ -3,7 +3,9 @@ title: useModalForm
 siderbar_label: useModalForm
 ---
 
-The `useModalForm` hook allows you to easily open your form or anything you want within Modal. If we look in detail, `useModalForm` uses ant-design [form](https://ant.design/components/form/) and [modal](https://ant.design/components/modal/) components so it returns the appropriate values to the components. All we have to do is write the props it returns to the Modal and Form component.
+import createGif from '@site/static/img/create-useModalForm.gif';
+
+The `useModalForm` hook allows you manage a form within Modal. If we look in detail, `useModalForm` uses ant-design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components so it returns the appropriate values to the components. All we have to do is pass the props it returns to the Modal and Form components.
 
 For example, let's look at an example of creating a record with `useModalForm`.
 
@@ -17,6 +19,8 @@ export const PostList (props) => {
          //highlight-start
         modalProps,
         formProps,
+        show,
+        saveButtonProps,
          //highlight-end
     } = useModalForm<IPost>({
          // highlight-next-line
@@ -25,32 +29,123 @@ export const PostList (props) => {
     ...
 
     return (
-        //highlight-start
-        <Modal {...createModalProps}>
-            <Create {...props} saveButtonProps={createSaveButtonProps}>
-                <Form {...createFormProps} layout="vertical">
-        //highlight-end
-                    <Form.Item label="Title" name="title">
-                        <Input />
-                    </Form.Item>
-                    <Form.Item label="Status" name="status">
-                        <Radio.Group>
-                            <Radio value={true}>Enable</Radio>
-                            <Radio value={false}>Disable</Radio>
-                        </Radio.Group>
-                    </Form.Item>
-                </Form>
-            </Create>
-        </Modal>
+        <>
+            <List
+                ...
+                //highlight-start
+                createButtonProps={{
+                    onClick: () => {
+                        show();
+                    },
+                }}
+                //highlight-end
+            >
+                ...
+            </List>
+            //highlight-start
+            <Modal {...modalProps}>
+                <Create {...props} saveButtonProps={saveButtonProps}>
+                    <Form {...formProps} layout="vertical">
+            //highlight-end
+                        <Form.Item label="Title" name="title">
+                            <Input />
+                        </Form.Item>
+                        <Form.Item label="Status" name="status">
+                            <Radio.Group>
+                                <Radio value="draft">Draft</Radio>
+                                <Radio value="published">Published</Radio>
+                            </Radio.Group>
+                        </Form.Item>
+                    </Form>
+                </Create>
+            </Modal>
+        </>
     )
 }
 
 ```
 
-Burada bu kodun nasıl gözükeceğini gösteren bir gif olabilir.
-Ayrıca List tıklayınca açılacağı yeri belirtmedik. List içine gönderebiliriz.
+Let's see how it looks
 
-Daha sonrasında Edit için bir örnek gösterip.
+<div style={{textAlign: "center"}}>
+    <img src={createGif} />
+</div>
+
+<br />
+
+With the `saveButtonProps` value coming from our hook, save button is automatically activated.
+
+Let's learn the edit action of modal. Now, just like in the example above, we will open the records that we can edit in the modal.
+
+```tsx title="pages/posts/list.tsx"
+import { useModalForm, Modal, Form, Create, Radio } from "@pankod/refine";
+import { IPost } from "../../interfaces";
+
+export const PostList (props) => {
+    ...
+    const {
+        //highlight-start
+        modalProps,
+        formProps,
+        show,
+        saveButtonProps,
+        deleteButtonProps,
+        editId,
+         //highlight-end
+    } = useModalForm<IPost>({
+         // highlight-next-line
+        action: "edit",
+    });
+    ...
+
+    return (
+        <>
+            <List>
+                <Table>
+                    ...
+                    <Table.Column<IPost>
+                        title="Actions"
+                        dataIndex="actions"
+                        key="actions"
+                        render={(_value, record) => (
+                            <EditButton
+                                size="small"
+                                recordItemId={record.id}
+                                onClick={() => editModalShow(record.id)}
+                            />
+                        )}
+                    />
+                </Table>
+            </List>
+            //highlight-start
+            <Modal {...modalProps}>
+                <Edit
+                    {...props}
+                    recordItemId={editId}
+                    saveButtonProps={saveButtonProps}
+                    deleteButtonProps={deleteButtonProps}
+                >
+                    <Form {...formProps} layout="vertical">
+            //highlight-end
+                        <Form.Item label="Title" name="title">
+                            <Input />
+                        </Form.Item>
+                        <Form.Item label="Status" name="status">
+                            <Radio.Group>
+                                <Radio value="draft">Draft</Radio>
+                                <Radio value="published">Published</Radio>
+                            </Radio.Group>
+                        </Form.Item>
+                    </Form>
+                </Create>
+            </Modal>
+        </>
+    )
+}
+
+```
+
+Edit örneği için açıklama gelicek.
 Daha detaylı example için codesandbox'a yönlendirme yapılmalı.
 Markdowntable olucak. Useform ve useModal'ın tüm proplarını aldığını belirtebiliriz.
 
