@@ -28,7 +28,6 @@ export const PostCreate = (props: IResourceComponentsProps) => {
         current,
         gotoStep,
         stepsProps,
-        submit,
         formProps,
         saveButtonProps,
         queryResult,
@@ -92,7 +91,7 @@ const formList = [
 ...
 ```
 :::info about `useSelect`
-Since `category` is a relational data, we use `useSelect` to fetch its name from its `id`.
+Since `category` is a relational data, we use `useSelect` to fetch its name with its `id`.
 
 Read more about [useSelect](useSelect.md).
 :::

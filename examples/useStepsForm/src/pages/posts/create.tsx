@@ -26,7 +26,6 @@ export const PostCreate = (props: IResourceComponentsProps) => {
         current,
         gotoStep,
         stepsProps,
-        submit,
         formProps,
         saveButtonProps,
     } = useStepsForm<IPost>();
