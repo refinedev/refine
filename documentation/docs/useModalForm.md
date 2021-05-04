@@ -4,6 +4,7 @@ siderbar_label: useModalForm
 ---
 
 import createGif from '@site/static/img/create-useModalForm.gif';
+import editGif from '@site/static/img/edit-useModalForm.gif';
 
 The `useModalForm` hook allows you manage a form within Modal. If we look in detail, `useModalForm` uses ant-design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components so it returns the appropriate values to the components. All we have to do is pass the props it returns to the Modal and Form components.
 
@@ -111,7 +112,7 @@ export const PostList (props) => {
                             <EditButton
                                 size="small"
                                 recordItemId={record.id}
-                                onClick={() => editModalShow(record.id)}
+                                onClick={() => show(record.id)}
                             />
                         )}
                     />
@@ -142,12 +143,22 @@ export const PostList (props) => {
         </>
     )
 }
-
 ```
 
-Edit örneği için açıklama gelicek.
-Daha detaylı example için codesandbox'a yönlendirme yapılmalı.
-Markdowntable olucak. Useform ve useModal'ın tüm proplarını aldığını belirtebiliriz.
+We put the edit buttons on our list. In this way, our modal form can fetch data by record `id`.
+
+<div style={{textAlign: "center"}}>
+    <img src={editGif} />
+</div>
+
+<br />
+
+The `saveButtonProps` and `deleteButtonProps` values coming from our hook, save, delete, and refresh button is automatically activated.
+
+For a more detailed codesandbox example, you can see [here](https://www.google.com.tr).
+
+<!-- Markdowntable olucak.
+Useform ve useModal'ın tüm proplarını aldığını belirtebiliriz.
 
 `useModalForm` expects argument with the following keys:
 
@@ -186,4 +197,4 @@ The return value of `useModalForm` is an object, using the following keys:
 -   `queryResult`: lorem lorem
 -   `mutationResult`: lorem lorem
 -   `setCloneId`: lorem lorem
--   `cloneId`: lorem lorem
+-   `cloneId`: lorem lorem -->
