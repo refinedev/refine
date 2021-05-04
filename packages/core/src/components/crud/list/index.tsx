@@ -13,7 +13,6 @@ export interface ListProps {
     actionButtons?: React.ReactNode;
     aside?: React.FC;
     title?: string;
-    canExport?: boolean;
     createButtonProps?: CreateButtonProps;
 }
 
@@ -32,7 +31,7 @@ export const List: React.FC<ListProps> = ({
 
     const resource = resourceWithRoute(routeResourceName);
 
-    const defaultExtra = canCreate && (
+    const defaultExtra = (canCreate || createButtonProps) && (
         <CreateButton size="middle" {...createButtonProps} />
     );
 
