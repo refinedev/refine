@@ -6,7 +6,9 @@ siderbar_label: useModalForm
 import createGif from '@site/static/img/create-useModalForm.gif';
 import editGif from '@site/static/img/edit-useModalForm.gif';
 
-The `useModalForm` hook allows you manage a form within Modal. If we look in detail, `useModalForm` uses ant-design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components so it returns the appropriate values to the components. All we have to do is pass the props it returns to the Modal and Form components.
+The `useModalForm` hook allows you manage a form within Modal. If we look in detail, `useModalForm` uses ant-design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components. Data scope management under the hood and returns the appropriate values to the components.
+
+All we have to do is pass the props it returns to the `<Modal>` and `<Form>` components.
 
 For example, let's look at an example of creating a record with `useModalForm`.
 
@@ -15,24 +17,21 @@ import { useModalForm, Modal, Form, Create, Radio } from "@pankod/refine";
 import { IPost } from "../../interfaces";
 
 export const PostList (props) => {
-    ...
+
+    //highlight-start
     const {
-         //highlight-start
         modalProps,
         formProps,
         show,
         saveButtonProps,
-         //highlight-end
     } = useModalForm<IPost>({
-         // highlight-next-line
         action: "create",
     });
-    ...
+    //highlight-end
 
     return (
         <>
             <List
-                ...
                 //highlight-start
                 createButtonProps={{
                     onClick: () => {
@@ -47,7 +46,6 @@ export const PostList (props) => {
             <Modal {...modalProps}>
                 <Create {...props} saveButtonProps={saveButtonProps}>
                     <Form {...formProps} layout="vertical">
-            //highlight-end
                         <Form.Item label="Title" name="title">
                             <Input />
                         </Form.Item>
@@ -60,13 +58,26 @@ export const PostList (props) => {
                     </Form>
                 </Create>
             </Modal>
+            //highlight-end
         </>
     )
 }
 
 ```
 
-Let's see how it looks
+`createButtonProps` allows creating and managing a button above the table.
+
+```tsx
+    createButtonProps={{
+        onClick: () => {
+            show();
+        },
+    }}
+```
+
+This code block makes `<Modal>` appear when you click the button.
+
+`saveButtonProps` allows us to manage save button in the modal.
 
 <div style={{textAlign: "center"}}>
     <img src={createGif} />
@@ -74,30 +85,25 @@ Let's see how it looks
 
 <br />
 
-With the `saveButtonProps` value coming from our hook, save button is automatically activated.
-
-Let's learn the edit action of modal. Now, just like in the example above, we will open the records that we can edit in the modal.
+Let's learn how to add editing capability to records that will be opening form in Modal with using `action` prop.
 
 ```tsx title="pages/posts/list.tsx"
 import { useModalForm, Modal, Form, Create, Radio } from "@pankod/refine";
 import { IPost } from "../../interfaces";
 
 export const PostList (props) => {
-    ...
+    //highlight-start
     const {
-        //highlight-start
         modalProps,
         formProps,
         show,
         saveButtonProps,
         deleteButtonProps,
         editId,
-         //highlight-end
     } = useModalForm<IPost>({
-         // highlight-next-line
         action: "edit",
     });
-    ...
+    //highlight-end
 
     return (
         <>
@@ -109,11 +115,13 @@ export const PostList (props) => {
                         dataIndex="actions"
                         key="actions"
                         render={(_value, record) => (
+                            //highlight-start
                             <EditButton
                                 size="small"
                                 recordItemId={record.id}
                                 onClick={() => show(record.id)}
                             />
+                            //highlight-end
                         )}
                     />
                 </Table>
@@ -127,7 +135,6 @@ export const PostList (props) => {
                     deleteButtonProps={deleteButtonProps}
                 >
                     <Form {...formProps} layout="vertical">
-            //highlight-end
                         <Form.Item label="Title" name="title">
                             <Input />
                         </Form.Item>
@@ -140,20 +147,41 @@ export const PostList (props) => {
                     </Form>
                 </Create>
             </Modal>
+            //highlight-end
         </>
     )
 }
 ```
 
-We put the edit buttons on our list. In this way, our modal form can fetch data by record `id`.
+:::important
+`refine` doesn't automatically add a edit button by default to the each record in `<PostList>` which opens edit form in `<Modal>` when clicking.
+
+So, we put the edit buttons on our list. In that way, our modal form can fetch data by record `id`.
+
+```tsx
+<Table.Column<IPost>
+    title="Actions"
+    dataIndex="actions"
+    key="actions"
+    render={(_value, record) => (
+        <EditButton
+            size="small"
+            recordItemId={record.id}
+            onClick={() => show(record.id)}
+        />
+    )}
+/>
+```
+
+:::
+
+The `saveButtonProps` and `deleteButtonProps` allows creating and managing; save, delete, and refresh button in the modal.
 
 <div style={{textAlign: "center"}}>
     <img src={editGif} />
 </div>
 
 <br />
-
-The `saveButtonProps` and `deleteButtonProps` values coming from our hook, save, delete, and refresh button is automatically activated.
 
 For a more detailed codesandbox example, you can see [here](https://www.google.com.tr).
 
