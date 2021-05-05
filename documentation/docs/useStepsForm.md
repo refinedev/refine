@@ -12,7 +12,7 @@ All we have to do is to pass the props it returns to our `<Steps>` and `<Form>` 
 
 ## Example
 
-For the sake of simplicity, we're gonna build a `Post` edit form that consists of only a `title` and a relational `category` field.
+For the sake of simplicity, we're going to build a `Post` edit form that consists of only a `title` and a relational `category` field.
 
 To split your form items under a `<Steps>` component, first import and use `useStepsForm` hook in your page:
 
@@ -39,7 +39,12 @@ export const PostCreate = (props: IResourceComponentsProps) => {
 
 `useStepsForm` is generic over the type form data to help you type check your code. 
 
-```ts title="src/interfaces/IPost.d.ts"
+```ts title="src/interfaces.d.ts"
+export interface ICategory {
+    id: string;
+    title: string;
+}
+
 export interface IPost {
     id: string;
     title: string;
@@ -125,6 +130,10 @@ export const PostCreate = (props: IResourceComponentsProps) => {
     ...
 }
 ```
+
+:::tip 
+In this example, we're building a page for creating new resources and using `<Create>` component. You can build an edit page with `<Edit>` component, without modifying any code in the rest of this example. 
+:::
 
 To help your user navigate between pages in your form, you can use action buttons. Your navigation buttons should use `gotoStep` function that was previously returned from the `useStepsForm` hook.
 
