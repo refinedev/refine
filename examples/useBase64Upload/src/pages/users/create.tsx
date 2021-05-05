@@ -6,7 +6,7 @@ import {
     IResourceComponentsProps,
     Upload,
     useForm,
-    normalizeFile,
+    getValueFromEvent,
     file2Base64,
 } from "@pankod/refine";
 
@@ -17,7 +17,10 @@ export const UserCreate = (props: IResourceComponentsProps) => {
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
-            <Form {...formProps} wrapperCol={{ span: 24 }} layout="vertical"
+            <Form
+                {...formProps}
+                wrapperCol={{ span: 24 }}
+                layout="vertical"
                 onFinish={async (values) => {
                     const base64Files = [];
                     const avatars = values.avatar;
@@ -37,7 +40,8 @@ export const UserCreate = (props: IResourceComponentsProps) => {
                             avatar: base64Files,
                         })
                     );
-                }}>
+                }}
+            >
                 <Form.Item
                     label="First Name"
                     name="firstName"
@@ -75,7 +79,7 @@ export const UserCreate = (props: IResourceComponentsProps) => {
                     <Form.Item
                         name="avatar"
                         valuePropName="fileList"
-                        getValueFromEvent={normalizeFile}
+                        getValueFromEvent={getValueFromEvent}
                         noStyle
                         rules={[
                             {
@@ -83,10 +87,7 @@ export const UserCreate = (props: IResourceComponentsProps) => {
                             },
                         ]}
                     >
-                        <Upload.Dragger
-                            listType="picture"
-                            multiple
-                        >
+                        <Upload.Dragger listType="picture" multiple>
                             <p className="ant-upload-text">Title</p>
                             <p className="ant-upload-hint">Upload</p>
                         </Upload.Dragger>
