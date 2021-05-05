@@ -6,8 +6,8 @@ import {
     IResourceComponentsProps,
     Upload,
     useForm,
-    useBase64Upload,
     normalizeFile,
+    file2Base64,
 } from "@pankod/refine";
 
 // import { IPost, ICategory } from "../../interfaces";
@@ -15,20 +15,29 @@ import {
 export const UserCreate = (props: IResourceComponentsProps) => {
     const { form, formProps, saveButtonProps } = useForm();
 
-    const { uploadedFiles, ...uploadProps } = useBase64Upload({
-        maxCount: 3,
-    });
-
-    React.useEffect(() => {
-        form &&
-            form.setFieldsValue({
-                base64Images: uploadedFiles,
-            });
-    }, [uploadedFiles]);
-
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
-            <Form {...formProps} wrapperCol={{ span: 24 }} layout="vertical">
+            <Form {...formProps} wrapperCol={{ span: 24 }} layout="vertical"
+                onFinish={async (values) => {
+                    const base64Files = [];
+                    const avatars = values.avatar;
+
+                    for (const file of avatars) {
+                        if (file.originFileObj) {
+                            base64Files.push(await file2Base64(file));
+                        } else {
+                            base64Files.push(file);
+                        }
+                    }
+
+                    return (
+                        formProps.onFinish &&
+                        formProps.onFinish({
+                            ...values,
+                            avatar: base64Files,
+                        })
+                    );
+                }}>
                 <Form.Item
                     label="First Name"
                     name="firstName"
@@ -77,7 +86,6 @@ export const UserCreate = (props: IResourceComponentsProps) => {
                         <Upload.Dragger
                             listType="picture"
                             multiple
-                            {...uploadProps}
                         >
                             <p className="ant-upload-text">Title</p>
                             <p className="ant-upload-hint">Upload</p>

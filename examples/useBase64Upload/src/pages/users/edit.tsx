@@ -4,42 +4,41 @@ import {
     Form,
     Input,
     IResourceComponentsProps,
-    Radio,
     Upload,
     useForm,
-    useBase64Upload,
     normalizeFile,
-    UploadedFile,
+    file2Base64,
 } from "@pankod/refine";
 
 import { IUser } from "../../interfaces";
 
 export const UserEdit = (props: IResourceComponentsProps) => {
-    const [avatar, setAvatar] = React.useState<UploadedFile[]>([]);
     const { form, formProps, saveButtonProps, queryResult } = useForm<IUser>();
-
-    const { uploadedFiles, ...uploadProps } = useBase64Upload({
-        maxCount: 1,
-        formData: avatar,
-    });
-
-    React.useEffect(() => {
-        if (queryResult?.data) {
-            const { data } = queryResult;
-            setAvatar(data.data.avatar);
-        }
-    }, [queryResult]);
-
-    React.useEffect(() => {
-        form &&
-            form.setFieldsValue({
-                avatar: uploadedFiles,
-            });
-    }, [uploadedFiles]);
 
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>
-            <Form {...formProps} wrapperCol={{ span: 24 }} layout="vertical">
+            <Form {...formProps} wrapperCol={{ span: 24 }} layout="vertical"
+                onFinish={async (values) => {
+                    const base64Files = [];
+                    const { avatars } = values;
+
+                    for (const file of avatars) {
+                        if (file.originFileObj) {
+                            base64Files.push(await file2Base64(file));
+                        } else {
+                            base64Files.push(file);
+                        }
+                    }
+
+                    return (
+                        formProps.onFinish &&
+                        formProps.onFinish({
+                            ...values,
+                            avatar: base64Files,
+                        })
+                    );
+                }}
+            >
                 <Form.Item
                     label="First Name"
                     name="firstName"
@@ -88,7 +87,7 @@ export const UserEdit = (props: IResourceComponentsProps) => {
                         <Upload.Dragger
                             listType="picture"
                             multiple
-                            {...uploadProps}
+                            beforeUpload={() => false}
                         >
                             <p className="ant-upload-text">Title</p>
                             <p className="ant-upload-hint">Upload</p>

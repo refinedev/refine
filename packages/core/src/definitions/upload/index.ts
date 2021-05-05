@@ -19,7 +19,7 @@ export const normalizeFile = (event: EventArgs) => {
             url = response.fileUrl;
         }
 
-        return { uid, name, url, type, size, percent, status };
+        return { ...item, uid, name, url, type, size, percent, status };
     });
 };
 
@@ -28,25 +28,16 @@ export interface UploadFileWithBase64 extends UploadFile {
 }
 
 export function file2Base64(file: UploadFile): Promise<UploadFileWithBase64> {
-    const { uid, name, size, type, lastModified, lastModifiedDate } = file;
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
 
-        if (file instanceof Blob) {
-            reader.readAsDataURL(file);
-            reader.onload = () => {
-                return resolve({
-                    ...file,
-                    uid,
-                    name,
-                    size,
-                    type,
-                    lastModified,
-                    lastModifiedDate,
-                    base64String: reader.result as string,
-                });
-            };
-        }
+        reader.readAsDataURL(file.originFileObj as Blob);
+        reader.onload = () => {
+            return resolve({
+                ...file,
+                base64String: reader.result as string,
+            });
+        };
 
         reader.onerror = (error) => reject(error);
     });
