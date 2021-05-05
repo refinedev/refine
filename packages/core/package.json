@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine",
-    "version": "1.0.4",
+    "version": "1.0.14",
     "description": "",
     "private": false,
     "main": "dist/index.js",
@@ -16,8 +16,7 @@
     },
     "peerDependencies": {
         "react": "^17.0.2",
-        "react-dom": "^17.0.2",
-        "tslib": "^2.1.0"
+        "react-dom": "^17.0.2"
     },
     "size-limit": [
         {
@@ -67,7 +66,8 @@
         "react-query": "^3.8.2",
         "react-router-dom": "^5.2.0",
         "remark-gfm": "^1.0.0",
-        "sunflower-antd": "^1.0.0-beta.3"
+        "sunflower-antd": "^1.0.0-beta.3",
+        "tslib": "^2.2.0"
     },
     "author": "Pankod",
     "license": "MIT",
