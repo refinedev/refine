@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "",
     "private": false,
     "main": "dist/index.js",
@@ -16,7 +16,8 @@
     },
     "peerDependencies": {
         "react": "^17.0.2",
-        "react-dom": "^17.0.2"
+        "react-dom": "^17.0.2",
+        "tslib": "^2.1.0"
     },
     "size-limit": [
         {
@@ -48,7 +49,6 @@
         "rollup-plugin-postcss": "^4.0.0",
         "size-limit": "^4.9.2",
         "tsdx": "^0.14.1",
-        "tslib": "^2.1.0",
         "typescript": "^3.9.8"
     },
     "dependencies": {
