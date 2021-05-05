@@ -1,13 +1,11 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { useForm as useFormSF } from "sunflower-antd";
-import {} from "sunflower-antd/es/";
 import { Form, FormInstance, FormProps } from "antd";
 import { useParams } from "react-router-dom";
 import { QueryObserverResult } from "react-query";
 
 import {
     useMutationMode,
-    useResourceWithRoute,
     useOne,
     useUpdate,
     useWarnAboutChange,
@@ -24,6 +22,7 @@ import {
     GetOneResponse,
     UseFormSFFormProps,
     UpdateResponse,
+    IResourceItem,
 } from "../../../interfaces";
 
 type SaveButtonProps = {
@@ -57,6 +56,7 @@ export type useEditFormProps<M> = {
     warnWhenUnsavedChanges?: boolean;
     redirect?: RedirectionTypes;
     undoableTimeout?: number;
+    resource: IResourceItem;
 };
 
 export const useEditForm = <
@@ -70,7 +70,8 @@ export const useEditForm = <
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect = "list",
     undoableTimeout,
-}: useEditFormProps<MutationType> = {}): useEditForm<
+    resource,
+}: useEditFormProps<MutationType>): useEditForm<
     RecordType,
     MutationType
 > => {
@@ -96,15 +97,10 @@ export const useEditForm = <
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
     const {
-        resource: routeResourceName,
         id: idFromRoute,
         action,
     } = useParams<ResourceRouterParams>();
     const isEdit = !!editId || action === "edit";
-
-    const resourceWithRoute = useResourceWithRoute();
-
-    const resource = resourceWithRoute(routeResourceName);
 
     const id = editId?.toString() ?? idFromRoute;
 

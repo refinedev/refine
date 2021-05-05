@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { QueryObserverResult } from "react-query";
 import { FormInstance, FormProps } from "antd";
 
-import { useOne, useResourceWithRoute } from "@hooks";
+import { useOne } from "@hooks";
 import {
     BaseRecord,
     GetOneResponse,
@@ -40,7 +40,7 @@ export const useCloneForm = <
     RecordType extends BaseRecord = BaseRecord,
     MutationType extends BaseRecord = RecordType
 >(
-    props: useCloneFormProps<MutationType> = {},
+    props: useCloneFormProps<MutationType>,
 ): useCloneForm<RecordType, MutationType> => {
     const useCreateFormProps = useCreateForm<RecordType, MutationType>({
         ...props,
@@ -49,20 +49,15 @@ export const useCloneForm = <
     const { form, formLoading, mutationResult } = useCreateFormProps;
 
     const {
-        resource: routeResourceName,
         id: idFromRoute,
         action,
     } = useParams<ResourceRouterParams>();
-
-    const resourceWithRoute = useResourceWithRoute();
-
-    const resource = resourceWithRoute(routeResourceName);
 
     const id = props.cloneId?.toString() ?? idFromRoute;
     // Check if clone process comes from useParams or modal
     const isClone = (action === "create" && !!id) || !!id;
 
-    const queryResult = useOne<RecordType>(resource.name, id, {
+    const queryResult = useOne<RecordType>(props.resource.name, id, {
         enabled: isClone,
     });
 

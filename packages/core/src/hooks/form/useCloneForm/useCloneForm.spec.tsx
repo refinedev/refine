@@ -9,7 +9,6 @@ import { useCloneForm } from "./useCloneForm";
 
 const Wrapper = TestWrapper({
     dataProvider: MockJSONServer,
-    resources: [{ name: "posts", route: "posts" }],
     routerInitialEntries: ["/resources/posts/create/1"],
 });
 
@@ -20,7 +19,7 @@ const WrapperWithRoute: React.FC = ({ children }) => (
 );
 describe("useCloneForm Hook", () => {
     it("fetches data and puts in the form", async () => {
-        const { result, waitFor } = renderHook(() => useCloneForm(), {
+        const { result, waitFor } = renderHook(() => useCloneForm({resource: {name: "posts"}}), {
             wrapper: WrapperWithRoute,
         });
 
