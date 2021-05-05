@@ -18,6 +18,7 @@ export const useBase64Upload = ({
     const [fileList, setFileList] = React.useState<UploadFile[]>([]);
 
     const beforeUpload = (_file: RcFile, files: RcFile[]): boolean => {
+        console.log("beforeUpload", files, _file);
         const totalFiles = fileList.length;
         const filesCount = files.length;
 
@@ -30,7 +31,7 @@ export const useBase64Upload = ({
 
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
-        setFileList([...fileList, ...files]);
+        setFileList([...fileList, ...files, _file]);
 
         return false;
     };
@@ -55,6 +56,8 @@ export const useBase64Upload = ({
                     files.push(file);
                 }
             }
+            console.log("setUploadedFiles", files);
+
             setUploadedFiles(files);
         })();
     }, [fileList]);
