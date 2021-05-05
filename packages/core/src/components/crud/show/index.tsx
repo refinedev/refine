@@ -43,6 +43,9 @@ export const Show: React.FC<ShowProps> = ({
     const resource = resourceWithRoute(routeResourceName);
 
 
+    const isDeleteButtonVisible = canDelete ? canDelete : resource.canDelete;
+    const isEditButtonVisible = canEdit ? canEdit : resource.canEdit;
+
     return (
         <PageHeader
             ghost={false}
@@ -60,13 +63,11 @@ export const Show: React.FC<ShowProps> = ({
                         {actionButtons ?? (
                             <>
                                 <ListButton />
-                                {(canEdit && resource.canEdit) && (
+                                {isEditButtonVisible && (
                                     <EditButton disabled={isLoading} />
                                 )}
-                                {(canDelete && resource.canDelete) && (
-                                    <DeleteButton
-                                        disabled={isLoading}
-                                    />
+                                {isDeleteButtonVisible && (
+                                    <DeleteButton />
                                 )}
                                 <RefreshButton />
                             </>

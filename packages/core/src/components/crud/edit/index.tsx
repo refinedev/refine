@@ -47,6 +47,8 @@ export const Edit: React.FC<EditProps> = ({
 
     const resource = resourceWithRoute(routeResourceName);
 
+    const isDeleteButtonVisible = canDelete ? canDelete : resource.canDelete || deleteButtonProps;
+
     return (
         <PageHeader
             ghost={false}
@@ -77,7 +79,7 @@ export const Edit: React.FC<EditProps> = ({
                     >
                         {actionButtons ?? (
                             <>
-                                {((canDelete || deleteButtonProps) || resource.canDelete) && <DeleteButton
+                                {isDeleteButtonVisible && <DeleteButton
                                     mutationMode={mutationMode}
                                     onSuccess={() => {
                                         return push(`/resources/${resource.route}`);
