@@ -6,6 +6,11 @@ module.exports = {
         },
         {
             type: "category",
+            label: "App Configuration",
+            items: ["authProvider"],
+        },
+        {
+            type: "category",
             label: "Hooks",
             items: ["useModalForm"],
         },
