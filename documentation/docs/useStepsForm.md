@@ -90,7 +90,7 @@ const formList = [
 ];
 ...
 ```
-:::info about `useSelect`
+:::tip 
 Since `category` is a relational data, we use `useSelect` to fetch its name with its `id`.
 
 Refer to [useSelect](#useSelect) documentation for detailed usage. →
