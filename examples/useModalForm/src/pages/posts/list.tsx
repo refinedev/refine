@@ -22,7 +22,7 @@ import {
     IResourceComponentsProps,
 } from "@pankod/refine";
 
-import { IPost } from "../../interfaces";
+import { IPost } from "interfaces";
 
 const { Title, Text } = Typography;
 
