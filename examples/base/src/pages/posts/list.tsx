@@ -10,7 +10,7 @@ import {
     useMany,
 } from "@pankod/refine";
 
-import { IPost, ICategory } from "../../interfaces";
+import { IPost, ICategory } from "interfaces";
 
 export const PostList = (props: IResourceComponentsProps) => {
     const { tableProps } = useTable<IPost>();

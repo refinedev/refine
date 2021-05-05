@@ -1,6 +1,6 @@
 import { useForm, Form, Input, Select, Edit, useSelect } from "@pankod/refine";
 
-import { IPost } from "../../interfaces";
+import { IPost } from "interfaces";
 
 export const PostEdit = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();

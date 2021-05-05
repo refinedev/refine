@@ -14,7 +14,7 @@ For example, let's look at an example of creating a record with `useModalForm`.
 
 ```tsx title="pages/posts/list.tsx"
 import { useModalForm, Modal, Form, Create, Radio } from "@pankod/refine";
-import { IPost } from "../../interfaces";
+import { IPost } from "interfaces";
 
 export const PostList (props) => {
 
@@ -89,7 +89,7 @@ Let's learn how to add editing capability to records that will be opening form i
 
 ```tsx title="pages/posts/list.tsx"
 import { useModalForm, Modal, Form, Create, Radio } from "@pankod/refine";
-import { IPost } from "../../interfaces";
+import { IPost } from "interfaces";
 
 export const PostList (props) => {
 
