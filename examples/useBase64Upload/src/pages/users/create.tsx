@@ -23,11 +23,16 @@ export const UserCreate = (props: IResourceComponentsProps) => {
                 layout="vertical"
                 onFinish={async (values) => {
                     const base64Files = [];
-                    const avatars = values.avatar;
+                    const { avatar } = values;
 
-                    for (const file of avatars) {
+                    for (const file of avatar) {
                         if (file.originFileObj) {
-                            base64Files.push(await file2Base64(file));
+                            const base64String = await file2Base64(file);
+
+                            base64Files.push({
+                                ...file,
+                                base64String,
+                            });
                         } else {
                             base64Files.push(file);
                         }
