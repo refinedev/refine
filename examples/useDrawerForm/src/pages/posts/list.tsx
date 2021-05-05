@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     List,
     Create,
@@ -54,9 +54,7 @@ export const PostList = (props: IResourceComponentsProps) => {
     });
 
     // Show Drawer
-    const [visibleShowDrawer, setVisibleShowDrawer] = React.useState<boolean>(
-        false,
-    );
+    const [visibleShowDrawer, setVisibleShowDrawer] = useState<boolean>(false);
     const { queryResult, showId, setShowId } = useShow<IPost>();
 
     const { data: showQueryResult, isLoading: showIsLoading } = queryResult;

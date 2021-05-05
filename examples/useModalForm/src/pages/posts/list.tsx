@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     List,
     Create,
@@ -54,9 +54,7 @@ export const PostList = (props: IResourceComponentsProps) => {
     });
 
     // Show Modal
-    const [visibleShowModal, setVisibleShowModal] = React.useState<boolean>(
-        false,
-    );
+    const [visibleShowModal, setVisibleShowModal] = useState<boolean>(false);
 
     const { queryResult, showId, setShowId } = useShow<IPost>();
 

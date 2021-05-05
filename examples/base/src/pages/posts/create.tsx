@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Create,
     Form,
@@ -23,7 +23,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
         resource: "categories",
     });
 
-    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
         "write",
     );
 
