@@ -108,7 +108,7 @@ Refer to [useSelect](#useSelect) documentation for detailed usage.
 
 You should use `stepsProps` on `<Steps>` component, `formProps` on the `<Form>` component correctly. And as the last step, you should render the `<Steps>` component besides the form like this:
 
-```tsx
+```tsx title="src/pages/posts/create.tsx"
 export const PostCreate = (props: IResourceComponentsProps) => {
     ...
     <Create
