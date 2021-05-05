@@ -6,7 +6,7 @@ siderbar_label: useDrawerForm
 import createGif from '@site/static/img/create-useModalForm.gif';
 import editGif from '@site/static/img/edit-useModalForm.gif';
 
-The `useDrawerForm` hook allows you manage a form within Drawer. If we look in detail, `useDrawerForm` uses ant-design [Form](https://ant.design/components/form/) and [Drawer](https://ant.design/components/drawer/) components. Data scope management under the hood and returns the appropriate values to the components.
+The `useDrawerForm` hook allows you manage a form within Drawer. If we look in detail, `useDrawerForm` uses ant-design [Form](https://ant.design/components/form/) and [Drawer](https://ant.design/components/drawer/) components data scope management under the hood and returns the appropriate values to the components.
 
 All we have to do is pass the props it returns to the `<Drawer>` and `<Form>` components.
 
@@ -92,18 +92,19 @@ import { useDrawerForm, Drawer, Form, Create, Radio } from "@pankod/refine";
 import { IPost } from "../../interfaces";
 
 export const PostList (props) => {
-    //highlight-start
     const {
         drawerProps,
         formProps,
         show,
         saveButtonProps,
+        //highlight-start
         deleteButtonProps,
         editId,
+        //highlight-end
     } = useDrawerForm<IPost>({
+        //highlight-next-line
         action: "edit",
     });
-    //highlight-end
 
     return (
         <>
@@ -126,13 +127,15 @@ export const PostList (props) => {
                     />
                 </Table>
             </List>
-            //highlight-start
             <Drawer {...drawerProps}>
+             //highlight-next-line
                 <Edit
                     {...props}
-                    recordItemId={editId}
                     saveButtonProps={saveButtonProps}
+                    //highlight-start
                     deleteButtonProps={deleteButtonProps}
+                    recordItemId={editId}
+                    //highlight-end
                 >
                     <Form {...formProps} layout="vertical">
                         <Form.Item label="Title" name="title">
@@ -145,9 +148,8 @@ export const PostList (props) => {
                             </Radio.Group>
                         </Form.Item>
                     </Form>
-                </Create>
+                </Edit>
             </Drawer>
-            //highlight-end
         </>
     )
 }
@@ -156,7 +158,7 @@ export const PostList (props) => {
 :::important
 `refine` doesn't automatically add a edit button by default to the each record in `<PostList>` which opens edit form in `<Drawer>` when clicking.
 
-So, we put the edit buttons on our list. In that way, our drawer form can fetch data by record `id`.
+So, we put the edit buttons on our list. In that way, `<Edit>` form in `<Drawer>` can fetch data by record `id`.
 
 ```tsx
 <Table.Column<IPost>
@@ -175,7 +177,7 @@ So, we put the edit buttons on our list. In that way, our drawer form can fetch 
 
 :::
 
-The `saveButtonProps` and `deleteButtonProps` allows creating and managing; save, delete, and refresh button in the drawer.
+The `saveButtonProps` and `deleteButtonProps` can provides functionality to save and delete buttons in the drawer.
 
 <div style={{textAlign: "center"}}>
     <img src={editGif} />
@@ -183,4 +185,4 @@ The `saveButtonProps` and `deleteButtonProps` allows creating and managing; save
 
 <br />
 
-For a more detailed codesandbox example, you can see [here](https://www.google.com.tr).
+Refer to [codesandbox](https://www.google.com.tr) example for detailed usage.
