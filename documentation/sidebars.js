@@ -6,8 +6,8 @@ module.exports = {
         },
         {
             type: "category",
-            label: "App Configuration",
-            items: ["authProvider"],
+            label: "Providers",
+            items: ["authProvider", "dataPoviders"],
         },
         {
             type: "category",
