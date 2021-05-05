@@ -96,7 +96,7 @@ Since `category` is a relational data, we use `useSelect` to fetch its name with
 Refer to [useSelect](#useSelect) documentation for detailed usage. →
 :::
 
-You should use `stepsProps` on `Steps` component, `formProps` on the `Form` component correctly. And as the last step, you should render the steps component besides the form like this:
+You should use `stepsProps` on `<Steps>` component, `formProps` on the `<Form>` component correctly. And as the last step, you should render the `<Steps>` component besides the form like this:
 
 ```tsx
 ...
