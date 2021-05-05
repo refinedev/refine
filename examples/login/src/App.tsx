@@ -3,7 +3,6 @@ import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList } from "pages/posts";
-import { LoginPage } from "pages/login";
 import { DashboardPage } from "pages/dashboard";
 
 const API_URL = "https://refine-fake-rest.pankod.com";
@@ -41,7 +40,6 @@ const App = () => {
         <Admin
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
-            LoginPage={LoginPage}
             DashboardPage={DashboardPage}
         >
             <Resource name="posts" list={PostList} />
