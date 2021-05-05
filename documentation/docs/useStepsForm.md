@@ -6,7 +6,7 @@ title: useStepsForm
 
 import useStepsFormExample from '@site/static/img/use-steps-form-example.gif';
 
-Using this hook, you can split your form contents under a [Steps Component](https://ant.design/components/steps/).
+Using this `refine`'s hook, you can split your form contents under an ant-design based [Steps](https://ant.design/components/steps/) component.
 
 ## Example
 
