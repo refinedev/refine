@@ -1,10 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Card, Row, Space, ButtonProps } from "antd";
+import { Card, Row, Space, ButtonProps, PageHeader, PageHeaderProps } from "antd";
 import pluralize from "pluralize";
 
 import { MutationMode, ResourceRouterParams } from "../../../interfaces";
-import { useResourceWithRoute, useMutationMode, useNavigation } from "@hooks";
+import { useResourceWithRoute, useMutationMode, useNavigation, useTranslate } from "@hooks";
 import {
     DeleteButton,
     RefreshButton,
@@ -19,6 +19,8 @@ export interface EditProps {
     saveButtonProps?: ButtonProps;
     mutationMode?: MutationMode;
     recordItemId?: string | number;
+    pageHeaderProps?: PageHeaderProps;
+    canDelete?: boolean;
     deleteButtonProps?: DeleteButtonProps;
 }
 
@@ -30,8 +32,11 @@ export const Edit: React.FC<EditProps> = ({
     recordItemId,
     children,
     deleteButtonProps,
+    pageHeaderProps,
+    canDelete
 }) => {
-    const { push } = useNavigation();
+    const translate = useTranslate();
+    const { push, goBack } = useNavigation();
     const resourceWithRoute = useResourceWithRoute();
 
     const { mutationMode: mutationModeContext } = useMutationMode();
@@ -42,38 +47,53 @@ export const Edit: React.FC<EditProps> = ({
 
     const resource = resourceWithRoute(routeResourceName);
 
+    const isDeleteButtonVisible = canDelete ? canDelete : resource.canDelete || deleteButtonProps;
+
     return (
-        <Card
-            title={title ?? `Edit ${pluralize.singular(resource.name)}`}
+        <PageHeader
+            ghost={false}
+            onBack={goBack}
+            title={
+                title ??
+                translate(
+                    `common:resources.${resource.name}.Edit`,
+                    `Edit ${pluralize.singular(resource.name)}`,
+                )
+            }
             extra={
                 <Row>
                     <Space>
                         {!recordItemId && <ListButton />}
                         <RefreshButton recordItemId={recordItemId} />
+
                     </Space>
                 </Row>
             }
-            actions={[
-                <Space
-                    key="action-buttons"
-                    style={{ float: "right", marginRight: 24 }}
-                >
-                    {actionButtons ?? (
-                        <>
-                            <DeleteButton
-                                mutationMode={mutationMode}
-                                onSuccess={() => {
-                                    return push(`/resources/${resource.route}`);
-                                }}
-                                {...deleteButtonProps}
-                            />
-                            <SaveButton {...saveButtonProps} />
-                        </>
-                    )}
-                </Space>,
-            ]}
+            {...pageHeaderProps}
         >
-            {children}
-        </Card>
+            <Card
+                actions={[
+                    <Space
+                        key="action-buttons"
+                        style={{ float: "right", marginRight: 24 }}
+                    >
+                        {actionButtons ?? (
+                            <>
+                                {isDeleteButtonVisible && <DeleteButton
+                                    mutationMode={mutationMode}
+                                    onSuccess={() => {
+                                        return push(`/resources/${resource.route}`);
+                                    }}
+                                    {...deleteButtonProps}
+                                />}
+                                <SaveButton {...saveButtonProps} />
+                            </>
+                        )}
+                    </Space>,
+                ]}
+            >
+                {children}
+            </Card>
+        </PageHeader>
     );
 };

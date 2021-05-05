@@ -8,7 +8,7 @@ export const useNavigation = () => {
     const history = useHistory();
     const resourceWithRoute = useResourceWithRoute();
 
-    const create = (resource: string, type: HistoryType) => {
+    const create = (resource: string, type: HistoryType = "push") => {
         const resourceName = resourceWithRoute(resource);
 
         type === "push"
@@ -16,7 +16,7 @@ export const useNavigation = () => {
             : history.replace(`/resources/${resourceName.route}/create`);
     };
 
-    const edit = (resource: string, type: HistoryType, id: number | string) => {
+    const edit = (resource: string, type: HistoryType = "push", id: number | string) => {
         const resourceName = resourceWithRoute(resource);
 
         type === "push"
@@ -24,7 +24,7 @@ export const useNavigation = () => {
             : history.replace(`/resources/${resourceName.route}/edit/${id}`);
     };
 
-    const show = (resource: string, type: HistoryType, id: number | string) => {
+    const show = (resource: string, type: HistoryType = "push", id: number | string) => {
         const resourceName = resourceWithRoute(resource);
 
         type === "push"
@@ -32,7 +32,7 @@ export const useNavigation = () => {
             : history.replace(`/resources/${resourceName.route}/show/${id}`);
     };
 
-    const list = (resource: string, type: HistoryType) => {
+    const list = (resource: string, type: HistoryType = "push") => {
         const resourceName = resourceWithRoute(resource);
 
         type === "push"
@@ -48,5 +48,9 @@ export const useNavigation = () => {
         history.replace(`${state ?? path}`);
     };
 
-    return { create, edit, show, list, push, replace };
+    const goBack = () => {
+        history.goBack();
+    };
+
+    return { create, edit, show, list, push, replace, goBack };
 };

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useParams } from "react-router-dom";
-import { Card, Col, Row, Space } from "antd";
+import { Card, Col, PageHeader, PageHeaderProps, Row, Space } from "antd";
 import pluralize from "pluralize";
 
 import { ResourceRouterParams } from "../../../interfaces";
@@ -11,15 +11,16 @@ import {
     RefreshButton,
     ListButton,
 } from "@components";
+import { useNavigation, useResourceWithRoute, useTranslate } from "@hooks";
 
 export interface ShowProps {
     aside?: FC;
-    component?: FC;
     title?: string;
     canEdit?: boolean;
     canDelete?: boolean;
     actionButtons?: React.ReactNode;
     isLoading?: boolean;
+    pageHeaderProps?: PageHeaderProps;
 }
 
 export const Show: React.FC<ShowProps> = ({
@@ -30,47 +31,67 @@ export const Show: React.FC<ShowProps> = ({
     actionButtons,
     isLoading,
     children,
+    pageHeaderProps
 }) => {
+    const translate = useTranslate();
+
+    const { goBack } = useNavigation();
+
+    const resourceWithRoute = useResourceWithRoute();
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
-    return (
-        <Row gutter={[16, 16]}>
-            <Col flex="1">
-                <Card
-                    title={
-                        title ?? `Show ${pluralize.singular(routeResourceName)}`
-                    }
-                    loading={isLoading}
-                    extra={
-                        <Row>
-                            <Space key="extra-buttons">
-                                {actionButtons ?? (
-                                    <>
-                                        <ListButton />
-                                        {canEdit && (
-                                            <EditButton disabled={isLoading} />
-                                        )}
-                                        {canDelete && (
-                                            <DeleteButton
-                                                disabled={isLoading}
-                                            />
-                                        )}
-                                        <RefreshButton />
-                                    </>
-                                )}
-                            </Space>
-                        </Row>
-                    }
-                >
-                    {children}
-                </Card>
-            </Col>
+    const resource = resourceWithRoute(routeResourceName);
 
-            {aside && (
-                <Col flex="0 1 300px">
-                    <OptionalComponent optional={aside} />
+
+    const isDeleteButtonVisible = canDelete ? canDelete : resource.canDelete;
+    const isEditButtonVisible = canEdit ? canEdit : resource.canEdit;
+
+    return (
+        <PageHeader
+            ghost={false}
+            onBack={goBack}
+            title={
+                title ??
+                translate(
+                    `common:resources.${resource.name}.Show`,
+                    `Show ${pluralize.singular(resource.name)}`,
+                )
+            }
+            extra={
+                <Row>
+                    <Space key="extra-buttons">
+                        {actionButtons ?? (
+                            <>
+                                <ListButton />
+                                {isEditButtonVisible && (
+                                    <EditButton disabled={isLoading} />
+                                )}
+                                {isDeleteButtonVisible && (
+                                    <DeleteButton />
+                                )}
+                                <RefreshButton />
+                            </>
+                        )}
+                    </Space>
+                </Row>
+            }
+            {...pageHeaderProps}
+        >
+            <Row gutter={[16, 16]}>
+                <Col flex="1">
+                    <Card
+                        loading={isLoading}
+                    >
+                        {children}
+                    </Card>
                 </Col>
-            )}
-        </Row>
+
+                {aside && (
+                    <Col flex="0 1 300px">
+                        <OptionalComponent optional={aside} />
+                    </Col>
+                )}
+            </Row>
+        </PageHeader>
     );
 };
