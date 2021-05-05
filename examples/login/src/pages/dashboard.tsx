@@ -1,37 +1,38 @@
-import React, { useEffect } from "react";
-
 import {
-    Space,
+    Row,
+    Col,
     Card,
     Typography,
     useGetIdentity,
     usePermissions,
-    useAuthenticated,
-    useLogout,
 } from "@pankod/refine";
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 export const DashboardPage = () => {
     const identity = useGetIdentity();
     const permissions = usePermissions();
-    const checkAuth = useAuthenticated();
-    const logout = useLogout();
-
-    useEffect(() => {
-        checkAuth().catch(() => logout());
-    }, []);
 
     return (
-        <Space direction="vertical">
-            <Card>
-                <Title level={2}>Identity</Title>
-                <Text>{JSON.stringify(identity)}</Text>
-            </Card>
-            <Card>
-                <Title level={2}>Permissions</Title>
-                <Text>{JSON.stringify(permissions)}</Text>
-            </Card>
-        </Space>
+        <Row gutter={20}>
+            <Col span={6}>
+                <Card
+                    title="Identity"
+                    style={{ height: "300px" }}
+                    headStyle={{ textAlign: "center" }}
+                >
+                    <Text>{JSON.stringify(identity.userIdentity)}</Text>
+                </Card>
+            </Col>
+            <Col span={6}>
+                <Card
+                    title="Permissions"
+                    style={{ height: "300px" }}
+                    headStyle={{ textAlign: "center" }}
+                >
+                    <Text>{JSON.stringify(permissions.permissions)}</Text>
+                </Card>
+            </Col>
+        </Row>
     );
 };

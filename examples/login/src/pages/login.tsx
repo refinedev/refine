@@ -29,17 +29,22 @@ export const LoginPage = () => {
         <AntdLayout>
             <Row
                 justify="center"
+                align="middle"
                 style={{
                     display: "flex",
-                    alignContent: "center",
                     height: "100vh",
                 }}
             >
-                <Col xl={6} lg={8} md={12} sm={18} xs={22}>
-                    <Card>
-                        <Title level={2} style={{ textAlign: "center" }}>
-                            Login
-                        </Title>
+                <Col>
+                    <Card
+                        hoverable
+                        title={
+                            <Title level={3} style={{ textAlign: "center" }}>
+                                refine
+                            </Title>
+                        }
+                        style={{ minWidth: "300px", borderRadius: "15px" }}
+                    >
                         <Form
                             className="ant-form-vertical"
                             form={form}
@@ -60,15 +65,21 @@ export const LoginPage = () => {
                             >
                                 <Input type="password" />
                             </Form.Item>
-
-                            <Button
-                                type="primary"
-                                size="middle"
-                                shape="round"
-                                htmlType="submit"
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                }}
                             >
-                                Submit
-                            </Button>
+                                <Button
+                                    type="primary"
+                                    size="middle"
+                                    shape="round"
+                                    htmlType="submit"
+                                >
+                                    Submit
+                                </Button>
+                            </div>
                         </Form>
                     </Card>
                 </Col>
