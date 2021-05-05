@@ -3,9 +3,7 @@ import { useParams } from "react-router-dom";
 import { QueryObserverResult } from "react-query";
 import { FormInstance, FormProps } from "antd";
 
-import {
-    useResourceWithRoute,
-} from "@hooks";
+import { useResourceWithRoute } from "@hooks";
 
 import { useCreateForm, useCreateFormProps } from "./useCreateForm";
 import { useEditForm, useEditFormProps } from "./useEditForm";
@@ -37,8 +35,9 @@ type ActionFormProps<M> =
 
 type ResourcelessActionFormProps<M> = Omit<ActionFormProps<M>, "resource">;
 
-export type useFormProps<M> = ActionParams & {resource?: string;} &
-ResourcelessActionFormProps<M>;
+export type useFormProps<M> = ActionParams & {
+    resource?: string;
+} & ResourcelessActionFormProps<M>;
 
 export type useForm<T, M> = {
     form: FormInstance;
@@ -56,10 +55,11 @@ export type useForm<T, M> = {
 export const useForm = <
     RecordType = BaseRecord,
     MutationType extends BaseRecord = RecordType
->({ action, resource: resourceFromProps, ...rest }: useFormProps<MutationType> = {}): useForm<
-    RecordType,
-    MutationType
-> => {
+>({
+    action,
+    resource: resourceFromProps,
+    ...rest
+}: useFormProps<MutationType> = {}): useForm<RecordType, MutationType> => {
     // id state is needed to determine selected record in addition to id parameter from route
     // this could be moved to a custom hook that encapsulates both create and clone form hooks.
     const [cloneId, setCloneId] = React.useState<string | number>();
