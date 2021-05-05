@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Row, Col } from "antd";
+import { Card, Row, Col, PageHeader, PageHeaderProps } from "antd";
 import humanizeString from "humanize-string";
 import { useParams } from "react-router-dom";
 
@@ -10,19 +10,19 @@ import { ResourceRouterParams, CreateButtonProps } from "../../../interfaces";
 
 export interface ListProps {
     canCreate?: boolean;
-    actionButtons?: React.ReactNode;
     aside?: React.FC;
     title?: string;
     createButtonProps?: CreateButtonProps;
+    pageHeaderProps?: PageHeaderProps;
 }
 
 export const List: React.FC<ListProps> = ({
     canCreate,
     aside,
     title,
-    actionButtons,
     children,
     createButtonProps,
+    pageHeaderProps,
 }) => {
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
@@ -31,23 +31,17 @@ export const List: React.FC<ListProps> = ({
 
     const resource = resourceWithRoute(routeResourceName);
 
-    const defaultExtra = (canCreate || createButtonProps) && (
+    const defaultExtra = (canCreate ||
+        createButtonProps ||
+        resource.canCreate) && (
         <CreateButton size="middle" {...createButtonProps} />
     );
-
-    const renderExtra = () => {
-        if (actionButtons) {
-            return actionButtons;
-        }
-
-        return defaultExtra;
-    };
 
     return (
         <Row gutter={[16, 16]}>
             <Col flex="1 1 200px">
-                <Card
-                    bodyStyle={{ padding: 0, flex: 1 }}
+                <PageHeader
+                    ghost={false}
                     title={
                         title ??
                         translate(
@@ -55,10 +49,11 @@ export const List: React.FC<ListProps> = ({
                             humanizeString(resource.name),
                         )
                     }
-                    extra={renderExtra()}
+                    extra={defaultExtra}
+                    {...pageHeaderProps}
                 >
                     {children}
-                </Card>
+                </PageHeader>
             </Col>
 
             {aside && (

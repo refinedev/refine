@@ -1,9 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Card, Space, ButtonProps } from "antd";
+import { Card, Space, ButtonProps, PageHeader, PageHeaderProps } from "antd";
 import pluralize from "pluralize";
 
-import { useResourceWithRoute, useTranslate } from "@hooks";
+import { useNavigation, useResourceWithRoute, useTranslate } from "@hooks";
 import { SaveButton } from "@components";
 import { ResourceRouterParams } from "../../../interfaces";
 
@@ -11,6 +11,7 @@ export interface CreateProps {
     title?: string;
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
+    pageHeaderProps?: PageHeaderProps;
 }
 
 export const Create: React.FC<CreateProps> = ({
@@ -18,7 +19,10 @@ export const Create: React.FC<CreateProps> = ({
     actionButtons,
     saveButtonProps,
     children,
+    pageHeaderProps,
 }) => {
+    const { goBack } = useNavigation();
+
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
     const resourceWithRoute = useResourceWithRoute();
 
@@ -27,7 +31,9 @@ export const Create: React.FC<CreateProps> = ({
     const translate = useTranslate();
 
     return (
-        <Card
+        <PageHeader
+            ghost={false}
+            onBack={goBack}
             title={
                 title ??
                 translate(
@@ -35,18 +41,25 @@ export const Create: React.FC<CreateProps> = ({
                     `Create ${pluralize.singular(resource.name)}`,
                 )
             }
-            actions={[
-                <Space
-                    key="action-buttons"
-                    style={{ float: "right", marginRight: 24 }}
-                >
-                    {actionButtons ?? (
-                        <SaveButton {...saveButtonProps} htmlType="submit" />
-                    )}
-                </Space>,
-            ]}
+            {...pageHeaderProps}
         >
-            {children}
-        </Card>
+            <Card
+                actions={[
+                    <Space
+                        key="action-buttons"
+                        style={{ float: "right", marginRight: 24 }}
+                    >
+                        {actionButtons ?? (
+                            <SaveButton
+                                {...saveButtonProps}
+                                htmlType="submit"
+                            />
+                        )}
+                    </Space>,
+                ]}
+            >
+                {children}
+            </Card>
+        </PageHeader>
     );
 };

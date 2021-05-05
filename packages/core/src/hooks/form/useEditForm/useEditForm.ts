@@ -71,10 +71,7 @@ export const useEditForm = <
     redirect = "list",
     undoableTimeout,
     resource,
-}: useEditFormProps<MutationType>): useEditForm<
-    RecordType,
-    MutationType
-> => {
+}: useEditFormProps<MutationType>): useEditForm<RecordType, MutationType> => {
     const [editId, setEditId] = React.useState<string | number>();
 
     const [formAnt] = Form.useForm();
@@ -96,10 +93,7 @@ export const useEditForm = <
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
-    const {
-        id: idFromRoute,
-        action,
-    } = useParams<ResourceRouterParams>();
+    const { id: idFromRoute, action } = useParams<ResourceRouterParams>();
     const isEdit = !!editId || action === "edit";
 
     const id = editId?.toString() ?? idFromRoute;

@@ -30,10 +30,7 @@ export const PostEdit = () => {
                         ]}
                     />
                 </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name={["category", "id"]}
-                >
+                <Form.Item label="Category" name={["category", "id"]}>
                     <Select
                         showSearch
                         filterOption={false}

@@ -11,24 +11,24 @@ exports[`<List/> JSON Rest Server renders given data 1`] = `
       style="padding: 8px 8px 8px 8px; flex: 1 1 200px;"
     >
       <div
-        class="ant-card ant-card-bordered"
+        class="ant-page-header"
       >
         <div
-          class="ant-card-head"
+          class="ant-page-header-heading"
         >
           <div
-            class="ant-card-head-wrapper"
+            class="ant-page-header-heading-left"
           >
-            <div
-              class="ant-card-head-title"
+            <span
+              class="ant-page-header-heading-title"
+              title="Posts"
             >
               Posts
-            </div>
+            </span>
           </div>
         </div>
         <div
-          class="ant-card-body"
-          style="padding: 0px; flex: 1;"
+          class="ant-page-header-content"
         >
           <div
             class="ant-table-wrapper"

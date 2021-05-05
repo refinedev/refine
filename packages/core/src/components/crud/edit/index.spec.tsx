@@ -23,8 +23,15 @@ describe("Edit", () => {
         expect(container).toBeTruthy();
     });
 
-    it("should render default save and delete buttons successfuly", () => {
+    it("should render default save button successfuly", () => {
         const { container, getByText } = renderEdit(<Edit />);
+
+        expect(container.querySelector("button")).toBeTruthy();
+        getByText("Save");
+    });
+
+    it("should render default save and delete buttons successfuly", () => {
+        const { container, getByText } = renderEdit(<Edit canDelete />);
 
         expect(container.querySelector("button")).toBeTruthy();
         getByText("Save");

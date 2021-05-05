@@ -8,6 +8,7 @@ import { useNavigation } from ".";
 const mHistory = {
     push: jest.fn(),
     replace: jest.fn(),
+    goBack: jest.fn(),
 };
 
 jest.mock("react-router-dom", () => ({
@@ -81,5 +82,11 @@ describe("useNavigation Hook", () => {
         result.current.replace("/resources/posts");
 
         expect(mHistory.replace).toBeCalledWith("/resources/posts");
+    });
+
+    it("navigation goBack", async () => {
+        result.current.goBack();
+
+        expect(mHistory.goBack).toBeCalledTimes(1);
     });
 });
