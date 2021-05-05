@@ -14,8 +14,7 @@ export interface UseDrawerFormConfig extends UseFormConfig {
     action: "show" | "edit" | "create";
 }
 
-export type UseDrawerFormProps<M> = useFormProps<M> &
-    UseDrawerFormConfig;
+export type UseDrawerFormProps<M> = useFormProps<M> & UseDrawerFormConfig;
 
 export const useDrawerForm = <
     RecordType extends BaseRecord = BaseRecord,

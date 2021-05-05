@@ -93,7 +93,7 @@ export const PostList = (props: any) => {
         defaultValue: getDefaultFilter("category.id", filters),
     });
 
-    const Actions = () => (
+    const extra = (
         <Space direction="horizontal">
             <ExportButton
                 sorter={sorter}
@@ -133,7 +133,12 @@ export const PostList = (props: any) => {
     );
 
     return (
-        <List {...props} actionButtons={<Actions />}>
+        <List
+            {...props}
+            pageHeaderProps={{
+                extra,
+            }}
+        >
             <Table<IPost>
                 {...tableProps}
                 rowKey="id"
@@ -676,6 +681,7 @@ export const PostEdit = (props: any) => {
     return (
         <Edit
             {...props}
+            canDelete
             actionButtons={
                 <>
                     {current > 0 && (

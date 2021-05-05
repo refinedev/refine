@@ -60,7 +60,7 @@ export const useCreateForm = <
     submitOnEnter = true,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect = "edit",
-    resource
+    resource,
 }: useCreateFormProps<MutationType>): useCreateForm<
     RecordType,
     MutationType

@@ -6,7 +6,7 @@ siderbar_label: useModalForm
 import createGif from '@site/static/img/create-useModalForm.gif';
 import editGif from '@site/static/img/edit-useModalForm.gif';
 
-The `useModalForm` hook allows you manage a form within Modal. If we look in detail, `useModalForm` uses ant-design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components. Data scope management under the hood and returns the appropriate values to the components.
+The `useModalForm` hook allows you manage a form within Modal. If we look in detail, `useModalForm` uses ant-design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components data scope management under the hood and returns the appropriate values to the components.
 
 All we have to do is pass the props it returns to the `<Modal>` and `<Form>` components.
 
@@ -92,18 +92,20 @@ import { useModalForm, Modal, Form, Create, Radio } from "@pankod/refine";
 import { IPost } from "../../interfaces";
 
 export const PostList (props) => {
-    //highlight-start
     const {
         modalProps,
         formProps,
         show,
         saveButtonProps,
+        //highlight-start
         deleteButtonProps,
         editId,
+         //highlight-end
     } = useModalForm<IPost>({
+        //highlight-next-line
         action: "edit",
     });
-    //highlight-end
+
 
     return (
         <>
@@ -126,13 +128,15 @@ export const PostList (props) => {
                     />
                 </Table>
             </List>
-            //highlight-start
             <Modal {...modalProps}>
+            //highlight-next-line
                 <Edit
                     {...props}
-                    recordItemId={editId}
                     saveButtonProps={saveButtonProps}
+                    //highlight-start
                     deleteButtonProps={deleteButtonProps}
+                    recordItemId={editId}
+                    //highlight-end
                 >
                     <Form {...formProps} layout="vertical">
                         <Form.Item label="Title" name="title">
@@ -145,9 +149,8 @@ export const PostList (props) => {
                             </Radio.Group>
                         </Form.Item>
                     </Form>
-                </Create>
+                </Edit>
             </Modal>
-            //highlight-end
         </>
     )
 }
@@ -156,7 +159,7 @@ export const PostList (props) => {
 :::important
 `refine` doesn't automatically add a edit button by default to the each record in `<PostList>` which opens edit form in `<Modal>` when clicking.
 
-So, we put the edit buttons on our list. In that way, our modal form can fetch data by record `id`.
+So, we put the edit buttons on our list. In that way, `<Edit>` form in `<Modal>` can fetch data by record `id`.
 
 ```tsx
 <Table.Column<IPost>
@@ -175,7 +178,7 @@ So, we put the edit buttons on our list. In that way, our modal form can fetch d
 
 :::
 
-The `saveButtonProps` and `deleteButtonProps` allows creating and managing; save, delete, and refresh button in the modal.
+The `saveButtonProps` and `deleteButtonProps` can provides functionality to save and delete buttons in the modal.
 
 <div style={{textAlign: "center"}}>
     <img src={editGif} />
@@ -183,7 +186,7 @@ The `saveButtonProps` and `deleteButtonProps` allows creating and managing; save
 
 <br />
 
-For a more detailed codesandbox example, you can see [here](https://www.google.com.tr).
+Refer to [codesandbox](https://www.google.com.tr) example for detailed usage.
 
 <!-- Markdowntable olucak.
 Useform ve useModal'ın tüm proplarını aldığını belirtebiliriz.

@@ -7,9 +7,12 @@ const Wrapper = TestWrapper({});
 
 describe("useCreateForm Hook", () => {
     it("renders with form", async () => {
-        const { result } = renderHook(() => useCreateForm({resource: {name: "posts"}}), {
-            wrapper: Wrapper,
-        });
+        const { result } = renderHook(
+            () => useCreateForm({ resource: { name: "posts" } }),
+            {
+                wrapper: Wrapper,
+            },
+        );
 
         expect(result.current.form).toBeDefined();
     });
