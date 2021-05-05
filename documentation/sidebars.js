@@ -7,7 +7,7 @@ module.exports = {
         {
             type: "category",
             label: "Providers",
-            items: ["authProvider", "dataPoviders"],
+            items: ["authProvider", "dataProvider"],
         },
         {
             type: "category",
