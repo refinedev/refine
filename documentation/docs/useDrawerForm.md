@@ -3,8 +3,8 @@ title: useDrawerForm
 siderbar_label: useDrawerForm
 ---
 
-import createGif from '@site/static/img/create-useModalForm.gif';
-import editGif from '@site/static/img/edit-useModalForm.gif';
+import createGif from '@site/static/img/create-useDrawerForm.gif';
+import editGif from '@site/static/img/edit-useDrawerForm.gif';
 
 The `useDrawerForm` hook allows you manage a form within Drawer. If we look in detail, `useDrawerForm` uses ant-design [Form](https://ant.design/components/form/) and [Drawer](https://ant.design/components/drawer/) components data scope management under the hood and returns the appropriate values to the components.
 
