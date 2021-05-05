@@ -8,10 +8,8 @@ import {
     Form,
     Input,
     Button,
+    useLogin,
 } from "@pankod/refine";
-
-import { useLogin } from "@pankod/refine";
-
 export interface ILoginForm {
     username: string;
     password: string;
