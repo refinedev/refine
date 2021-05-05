@@ -93,7 +93,7 @@ export const PostList = (props: any) => {
         defaultValue: getDefaultFilter("category.id", filters),
     });
 
-    const actions = (
+    const extra = (
         <Space direction="horizontal">
             <ExportButton
                 sorter={sorter}
@@ -134,7 +134,7 @@ export const PostList = (props: any) => {
 
     return (
         <List {...props} pageHeaderProps={{
-            extra: actions,
+            extra,
         }}>
             <Table<IPost>
                 {...tableProps}
