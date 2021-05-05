@@ -18,7 +18,7 @@ export const DashboardPage = () => {
             <Col span={6}>
                 <Card
                     title="Identity"
-                    style={{ height: "300px" }}
+                    style={{ height: "300px", borderRadius: "15px" }}
                     headStyle={{ textAlign: "center" }}
                 >
                     <Text>{JSON.stringify(identity.userIdentity)}</Text>
@@ -27,7 +27,7 @@ export const DashboardPage = () => {
             <Col span={6}>
                 <Card
                     title="Permissions"
-                    style={{ height: "300px" }}
+                    style={{ height: "300px", borderRadius: "15px" }}
                     headStyle={{ textAlign: "center" }}
                 >
                     <Text>{JSON.stringify(permissions.permissions)}</Text>
