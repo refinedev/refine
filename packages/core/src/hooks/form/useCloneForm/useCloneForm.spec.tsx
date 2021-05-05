@@ -19,9 +19,12 @@ const WrapperWithRoute: React.FC = ({ children }) => (
 );
 describe("useCloneForm Hook", () => {
     it("fetches data and puts in the form", async () => {
-        const { result, waitFor } = renderHook(() => useCloneForm({resource: {name: "posts"}}), {
-            wrapper: WrapperWithRoute,
-        });
+        const { result, waitFor } = renderHook(
+            () => useCloneForm({ resource: { name: "posts" } }),
+            {
+                wrapper: WrapperWithRoute,
+            },
+        );
 
         await waitFor(() => {
             return !result.current.formLoading;

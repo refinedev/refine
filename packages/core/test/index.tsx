@@ -37,7 +37,9 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
             <ResourceContextProvider resources={resources}>
                 {children}
             </ResourceContextProvider>
-        ) : children;
+        ) : (
+            children
+        );
 
         const withData = dataProvider ? (
             <DataContextProvider {...dataProvider}>

@@ -1,4 +1,11 @@
-import { useForm, Create, Form, Input, Select, useSelect } from "@pankod/refine";
+import {
+    useForm,
+    Create,
+    Form,
+    Input,
+    Select,
+    useSelect,
+} from "@pankod/refine";
 
 import { IPost } from "../../interfaces";
 
@@ -29,10 +36,7 @@ export const PostCreate = () => {
                         ]}
                     />
                 </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name={["category", "id"]}
-                >
+                <Form.Item label="Category" name={["category", "id"]}>
                     <Select
                         showSearch
                         filterOption={false}
