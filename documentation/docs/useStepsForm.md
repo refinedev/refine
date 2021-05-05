@@ -14,7 +14,7 @@ Using this hook, you can split your form contents under a [Steps Component](http
     <img src={useStepsFormExample} />
 </div>
 
-To split your form items under a `Steps Component`, first import and use `useStepsForm` hook in your page:
+To split your form items under a `<Steps>` component, first import and use `useStepsForm` hook in your page:
 
 ```ts title="src/pages/posts/create.tsx"
 import {
