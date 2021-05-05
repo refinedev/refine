@@ -6,13 +6,13 @@ title: useStepsForm
 
 import useStepsFormExample from '@site/static/img/use-steps-form-example.gif';
 
-Using this `refine`'s hook, you can split your form contents under an ant-design based [Steps](https://ant.design/components/steps/) component.
+`refine`'s `useStepsForm` hook allows you to split your form under an ant-design based [Steps](https://ant.design/components/steps/) component and provides you with a few useful values to help you manage your form. 
+
+All we have to do is to pass the props it returns to our `<Steps>` and `<Form>` components. 
 
 ## Example
 
-<div style={{textAlign: "center"}}>
-    <img src={useStepsFormExample} />
-</div>
+For the sake of simplicity, we're gonna build a `Post` edit form that consists of only a `title` and a relational `category` field.
 
 To split your form items under a `<Steps>` component, first import and use `useStepsForm` hook in your page:
 
@@ -49,126 +49,141 @@ export interface IPost {
 }
 ```
 
-This hook returns a set of useful values to render steps form. Given `current` value, you should have a way to render your form items conditionally with this index value. You can use an array to achieve this: 
+This hook returns a set of useful values to render steps form. Given `current` value, you should have a way to render your form items conditionally with this index value. You can use an array to achieve this.
 
-```ts
-const { selectProps: categorySelectProps } = useSelect<ICategory>({
-    resource: "categories",
-});
+Here, each item of `formList` corresponds to one step in form:
 
-const formList = [
-    <>
-        <Form.Item
-            label="Title"
-            name="title"
-            rules={[
-                {
-                    required: true,
-                },
-            ]}
-        >
-            <Input />
-        </Form.Item>
-    </>,
-    <>
-        <Form.Item
-            label="Category"
-            name={["category", "id"]}
-            rules={[
-                {
-                    required: true,
-                },
-            ]}
-        >
-            <Select
-                showSearch
-                filterOption={false}
-                {...categorySelectProps}
-            />
-        </Form.Item>
-    </>,
-];
-...
+```ts title="src/pages/posts/create.tsx
+export const PostCreate = (props: IResourceComponentsProps) => {
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+    });
+    //highlight-start
+    const formList = [
+        <>
+            <Form.Item
+                label="Title"
+                name="title"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+        </>,
+        <>
+            <Form.Item
+                label="Category"
+                name={["category", "id"]}
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Select
+                    showSearch
+                    filterOption={false}
+                    {...categorySelectProps}
+                />
+            </Form.Item>
+        </>,
+    ];
+    //highlight-end
+    ...
+}
 ```
 :::tip 
 Since `category` is a relational data, we use `useSelect` to fetch its name with its `id`.
 
-Refer to [useSelect](#useSelect) documentation for detailed usage. →
+Refer to [useSelect](#useSelect) documentation for detailed usage.
 :::
 
 You should use `stepsProps` on `<Steps>` component, `formProps` on the `<Form>` component correctly. And as the last step, you should render the `<Steps>` component besides the form like this:
 
 ```tsx
-...
-<Create
-    {...props}
-    saveButtonProps={saveButtonProps}
->
-    //highlight-start
-    <Steps {...stepsProps}>
-        <Step title="First Step" />
-        <Step title="Second Step" />
-    </Steps>
-    <Form {...formProps} layout="vertical">
-        {formList[current]}
-    </Form>
-    //highlight-end
-</Create>
-...
+export const PostCreate = (props: IResourceComponentsProps) => {
+    ...
+    <Create
+        {...props}
+        saveButtonProps={saveButtonProps}
+    >
+        //highlight-start
+        // make sure to add as much <Step> components 
+        // as the number of steps in `formList` array
+        <Steps {...stepsProps}>
+            <Step title="First Step" />
+            <Step title="Second Step" />
+        </Steps>
+        <Form {...formProps} layout="vertical">
+            {formList[current]}
+        </Form>
+        //highlight-end
+    </Create>
+    ...
+}
 ```
 
 To help your user navigate between pages in your form, you can use action buttons. Your navigation buttons should use `gotoStep` function that was previously returned from the `useStepsForm` hook.
 
-```tsx
-...
-return (
-    <Create
-        {...props}
-        //highlight-start
-        actionButtons={
-            <>
-                {current > 0 && (
-                    <Button
-                        onClick={() => {
-                            gotoStep(current - 1);
-                        }}
-                    >
-                        Previous
-                    </Button>
-                )}
-                {current < formList.length - 1 && (
-                    <Button
-                        onClick={() => {
-                            gotoStep(current + 1);
-                        }}
-                    >
-                        Next
-                    </Button>
-                )}
-                {current === formList.length - 1 && (
-                    <SaveButton
-                        style={{ marginRight: 10 }}
-                        onClick={() => submit()}
-                        {...saveButtonProps}
-                    />
-                )}
-            </>
-        }
-        //highlight-end
-    >
-        <Steps {...stepsProps}>
-            <Step title="About Post" />
-            <Step title="Content" />
-        </Steps>
+```tsx title="src/pages/posts/create.tsx"
+export const PostCreate = (props: IResourceComponentsProps) => {
+    ...
+    return (
+        <Create
+            {...props}
+            //highlight-start
+            actionButtons={
+                <>
+                    {current > 0 && (
+                        <Button
+                            onClick={() => {
+                                gotoStep(current - 1);
+                            }}
+                        >
+                            Previous
+                        </Button>
+                    )}
+                    {current < formList.length - 1 && (
+                        <Button
+                            onClick={() => {
+                                gotoStep(current + 1);
+                            }}
+                        >
+                            Next
+                        </Button>
+                    )}
+                    {current === formList.length - 1 && (
+                        <SaveButton
+                            style={{ marginRight: 10 }}
+                            onClick={() => submit()}
+                            {...saveButtonProps}
+                        />
+                    )}
+                </>
+            }
+            //highlight-end
+        >
+            <Steps {...stepsProps}>
+                <Step title="About Post" />
+                <Step title="Content" />
+            </Steps>
 
-        <div style={{ marginTop: 30 }}>
-            <Form {...formProps} layout="vertical">
-                {formList[current]}
-            </Form>
-        </div>
-    </Create>
-    );
-...
+            <div style={{ marginTop: 30 }}>
+                <Form {...formProps} layout="vertical">
+                    {formList[current]}
+                </Form>
+            </div>
+        </Create>
+        );
+    ...
+}
 ```
 
 And it's done.
+
+<div style={{textAlign: "center"}}>
+    <img src={useStepsFormExample} />
+</div>
