@@ -84,7 +84,6 @@ describe("useNavigation Hook", () => {
         expect(mHistory.replace).toBeCalledWith("/resources/posts");
     });
 
-
     it("navigation goBack", async () => {
         result.current.goBack();
 

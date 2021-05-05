@@ -31,7 +31,7 @@ export const Show: React.FC<ShowProps> = ({
     actionButtons,
     isLoading,
     children,
-    pageHeaderProps
+    pageHeaderProps,
 }) => {
     const translate = useTranslate();
 
@@ -41,7 +41,6 @@ export const Show: React.FC<ShowProps> = ({
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const resource = resourceWithRoute(routeResourceName);
-
 
     const isDeleteButtonVisible = canDelete ? canDelete : resource.canDelete;
     const isEditButtonVisible = canEdit ? canEdit : resource.canEdit;
@@ -66,9 +65,7 @@ export const Show: React.FC<ShowProps> = ({
                                 {isEditButtonVisible && (
                                     <EditButton disabled={isLoading} />
                                 )}
-                                {isDeleteButtonVisible && (
-                                    <DeleteButton />
-                                )}
+                                {isDeleteButtonVisible && <DeleteButton />}
                                 <RefreshButton />
                             </>
                         )}
@@ -79,11 +76,7 @@ export const Show: React.FC<ShowProps> = ({
         >
             <Row gutter={[16, 16]}>
                 <Col flex="1">
-                    <Card
-                        loading={isLoading}
-                    >
-                        {children}
-                    </Card>
+                    <Card loading={isLoading}>{children}</Card>
                 </Col>
 
                 {aside && (

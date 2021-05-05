@@ -50,7 +50,10 @@ export const Create: React.FC<CreateProps> = ({
                         style={{ float: "right", marginRight: 24 }}
                     >
                         {actionButtons ?? (
-                            <SaveButton {...saveButtonProps} htmlType="submit" />
+                            <SaveButton
+                                {...saveButtonProps}
+                                htmlType="submit"
+                            />
                         )}
                     </Space>,
                 ]}

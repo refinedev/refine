@@ -31,7 +31,9 @@ export const List: React.FC<ListProps> = ({
 
     const resource = resourceWithRoute(routeResourceName);
 
-    const defaultExtra = ((canCreate || createButtonProps) || resource.canCreate) && (
+    const defaultExtra = (canCreate ||
+        createButtonProps ||
+        resource.canCreate) && (
         <CreateButton size="middle" {...createButtonProps} />
     );
 

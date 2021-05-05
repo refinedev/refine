@@ -48,10 +48,7 @@ export const useCloneForm = <
 
     const { form, formLoading, mutationResult } = useCreateFormProps;
 
-    const {
-        id: idFromRoute,
-        action,
-    } = useParams<ResourceRouterParams>();
+    const { id: idFromRoute, action } = useParams<ResourceRouterParams>();
 
     const id = props.cloneId?.toString() ?? idFromRoute;
     // Check if clone process comes from useParams or modal

@@ -16,7 +16,11 @@ export const useNavigation = () => {
             : history.replace(`/resources/${resourceName.route}/create`);
     };
 
-    const edit = (resource: string, type: HistoryType = "push", id: number | string) => {
+    const edit = (
+        resource: string,
+        type: HistoryType = "push",
+        id: number | string,
+    ) => {
         const resourceName = resourceWithRoute(resource);
 
         type === "push"
@@ -24,7 +28,11 @@ export const useNavigation = () => {
             : history.replace(`/resources/${resourceName.route}/edit/${id}`);
     };
 
-    const show = (resource: string, type: HistoryType = "push", id: number | string) => {
+    const show = (
+        resource: string,
+        type: HistoryType = "push",
+        id: number | string,
+    ) => {
         const resourceName = resourceWithRoute(resource);
 
         type === "push"

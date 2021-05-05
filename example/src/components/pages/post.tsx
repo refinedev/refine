@@ -133,9 +133,12 @@ export const PostList = (props: any) => {
     );
 
     return (
-        <List {...props} pageHeaderProps={{
-            extra,
-        }}>
+        <List
+            {...props}
+            pageHeaderProps={{
+                extra,
+            }}
+        >
             <Table<IPost>
                 {...tableProps}
                 rowKey="id"

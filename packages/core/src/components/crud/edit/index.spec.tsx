@@ -30,7 +30,6 @@ describe("Edit", () => {
         getByText("Save");
     });
 
-
     it("should render default save and delete buttons successfuly", () => {
         const { container, getByText } = renderEdit(<Edit canDelete />);
 

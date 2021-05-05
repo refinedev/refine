@@ -1,10 +1,22 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Card, Row, Space, ButtonProps, PageHeader, PageHeaderProps } from "antd";
+import {
+    Card,
+    Row,
+    Space,
+    ButtonProps,
+    PageHeader,
+    PageHeaderProps,
+} from "antd";
 import pluralize from "pluralize";
 
 import { MutationMode, ResourceRouterParams } from "../../../interfaces";
-import { useResourceWithRoute, useMutationMode, useNavigation, useTranslate } from "@hooks";
+import {
+    useResourceWithRoute,
+    useMutationMode,
+    useNavigation,
+    useTranslate,
+} from "@hooks";
 import {
     DeleteButton,
     RefreshButton,
@@ -33,7 +45,7 @@ export const Edit: React.FC<EditProps> = ({
     children,
     deleteButtonProps,
     pageHeaderProps,
-    canDelete
+    canDelete,
 }) => {
     const translate = useTranslate();
     const { push, goBack } = useNavigation();
@@ -47,7 +59,9 @@ export const Edit: React.FC<EditProps> = ({
 
     const resource = resourceWithRoute(routeResourceName);
 
-    const isDeleteButtonVisible = canDelete ? canDelete : resource.canDelete || deleteButtonProps;
+    const isDeleteButtonVisible = canDelete
+        ? canDelete
+        : resource.canDelete || deleteButtonProps;
 
     return (
         <PageHeader
@@ -65,7 +79,6 @@ export const Edit: React.FC<EditProps> = ({
                     <Space>
                         {!recordItemId && <ListButton />}
                         <RefreshButton recordItemId={recordItemId} />
-
                     </Space>
                 </Row>
             }
@@ -79,13 +92,17 @@ export const Edit: React.FC<EditProps> = ({
                     >
                         {actionButtons ?? (
                             <>
-                                {isDeleteButtonVisible && <DeleteButton
-                                    mutationMode={mutationMode}
-                                    onSuccess={() => {
-                                        return push(`/resources/${resource.route}`);
-                                    }}
-                                    {...deleteButtonProps}
-                                />}
+                                {isDeleteButtonVisible && (
+                                    <DeleteButton
+                                        mutationMode={mutationMode}
+                                        onSuccess={() => {
+                                            return push(
+                                                `/resources/${resource.route}`,
+                                            );
+                                        }}
+                                        {...deleteButtonProps}
+                                    />
+                                )}
                                 <SaveButton {...saveButtonProps} />
                             </>
                         )}
