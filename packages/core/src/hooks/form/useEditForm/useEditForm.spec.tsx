@@ -9,7 +9,6 @@ import { useEditForm } from "./useEditForm";
 
 const Wrapper = TestWrapper({
     dataProvider: MockJSONServer,
-    resources: [{ name: "posts", route: "posts" }],
     routerInitialEntries: ["/resources/posts/edit/1"],
 });
 
@@ -20,7 +19,7 @@ const WrapperWithRoute: React.FC = ({ children }) => (
 );
 describe("useEditForm Hook", () => {
     it("fetches data and puts in the form", async () => {
-        const { result, waitFor } = renderHook(() => useEditForm(), {
+        const { result, waitFor } = renderHook(() => useEditForm({resource: {name: "posts"}}), {
             wrapper: WrapperWithRoute,
         });
 

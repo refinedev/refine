@@ -7,17 +7,14 @@ import {
     useTranslate,
     useWarnAboutChange,
 } from "@hooks";
-import { useEditFormProps } from "../useEditForm";
-import { useCreateFormProps } from "../useCreateForm";
 import { BaseRecord } from "../../../interfaces";
+import { useFormProps } from "../useForm";
 
 export interface UseDrawerFormConfig extends UseFormConfig {
     action: "show" | "edit" | "create";
 }
 
-export type UseDrawerFormProps<M> = Partial<
-    useEditFormProps<M> & useCreateFormProps<M>
-> &
+export type UseDrawerFormProps<M> = useFormProps<M> &
     UseDrawerFormConfig;
 
 export const useDrawerForm = <

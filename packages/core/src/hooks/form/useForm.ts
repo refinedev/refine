@@ -3,6 +3,10 @@ import { useParams } from "react-router-dom";
 import { QueryObserverResult } from "react-query";
 import { FormInstance, FormProps } from "antd";
 
+import {
+    useResourceWithRoute,
+} from "@hooks";
+
 import { useCreateForm, useCreateFormProps } from "./useCreateForm";
 import { useEditForm, useEditFormProps } from "./useEditForm";
 import { useCloneForm, useCloneFormProps } from "./useCloneForm";
@@ -26,8 +30,15 @@ type SaveButtonProps = {
     loading?: boolean;
 };
 
-export type useFormProps<M> = ActionParams &
-    (useCreateFormProps<M> | useEditFormProps<M> | useCloneFormProps<M>);
+type ActionFormProps<M> =
+    | useCreateFormProps<M>
+    | useEditFormProps<M>
+    | useCloneFormProps<M>;
+
+type ResourcelessActionFormProps<M> = Omit<ActionFormProps<M>, "resource">;
+
+export type useFormProps<M> = ActionParams & {resource?: string;} &
+ResourcelessActionFormProps<M>;
 
 export type useForm<T, M> = {
     form: FormInstance;
@@ -45,7 +56,7 @@ export type useForm<T, M> = {
 export const useForm = <
     RecordType = BaseRecord,
     MutationType extends BaseRecord = RecordType
->({ action, ...rest }: useFormProps<MutationType> = {}): useForm<
+>({ action, resource: resourceFromProps, ...rest }: useFormProps<MutationType> = {}): useForm<
     RecordType,
     MutationType
 > => {
@@ -53,16 +64,27 @@ export const useForm = <
     // this could be moved to a custom hook that encapsulates both create and clone form hooks.
     const [cloneId, setCloneId] = React.useState<string | number>();
 
-    const editForm = useEditForm<RecordType, MutationType>(
-        rest as useEditFormProps<MutationType>,
-    );
+    const resourceWithRoute = useResourceWithRoute();
 
-    const createForm = useCreateForm<RecordType, MutationType>(
-        rest as useCreateFormProps<MutationType>,
-    );
+    const { resource: resourceFromParams } = useParams<ResourceRouterParams>();
+
+    const resourceType = resourceFromProps ?? resourceFromParams;
+
+    const resource = resourceWithRoute(resourceType);
+
+    const editForm = useEditForm<RecordType, MutationType>({
+        ...rest,
+        resource,
+    } as useEditFormProps<MutationType>);
+
+    const createForm = useCreateForm<RecordType, MutationType>({
+        ...rest,
+        resource,
+    } as useCreateFormProps<MutationType>);
 
     const cloneForm = useCloneForm<RecordType, MutationType>({
         ...rest,
+        resource,
         cloneId,
     } as useCloneFormProps<MutationType>);
 
