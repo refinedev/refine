@@ -6,11 +6,7 @@ import { TablePaginationConfig, TableProps } from "antd/lib/table";
 import { useResourceWithRoute, useList } from "@hooks";
 import { useSyncWithLocation } from "@hooks/admin";
 import { useNavigation } from "@hooks/navigation";
-import {
-    stringifyTableParams,
-    parseTableParams,
-    merge,
-} from "@definitions/table";
+import { stringifyTableParams, parseTableParams } from "@definitions/table";
 
 import {
     Filters,
@@ -20,7 +16,7 @@ import {
 } from "../../../interfaces";
 
 export type useTableProps = {
-    permanentFilter?: { [key: string]: number[] | string[] };
+    permanentFilter?: Filters;
     initialCurrent?: number;
     initialPageSize?: number;
     initialSorter?: Sort;
@@ -96,7 +92,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
 
     const { data, isFetching } = useList<RecordType>(resource.name, {
         pagination: { current: current ?? defaultCurrentSF, pageSize },
-        filters: merge(permanentFilter, filters),
+        filters: { ...filters, ...permanentFilter },
         sort: sorter,
     });
 
