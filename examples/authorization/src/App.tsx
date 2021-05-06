@@ -6,31 +6,26 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const API_URL = "https://refine-fake-rest.pankod.com";
 
-interface LoginForm {
-    username: string;
-    password: string;
-}
-
 interface Auth {
-    username: LoginForm["username"];
-    permissions: string;
+    username: string;
+    permission: string;
 }
 
 const App = () => {
     const authProvider: AuthProvider = {
-        login: ({ username }: LoginForm) => {
+        login: ({ username }) => {
             let auth: Auth;
             switch (username) {
                 case "admin":
                     auth = {
                         username,
-                        permissions: "admin",
+                        permission: "admin",
                     };
                     break;
                 case "editor":
                     auth = {
                         username,
-                        permissions: "editor",
+                        permission: "editor",
                     };
                     break;
                 default:
@@ -50,7 +45,7 @@ const App = () => {
             const auth = localStorage.getItem("auth");
             if (auth) {
                 const parseAuth: Auth = JSON.parse(auth);
-                const role = parseAuth.permissions;
+                const role = parseAuth.permission;
                 return role ? Promise.resolve(role) : Promise.reject();
             }
             return Promise.reject();
