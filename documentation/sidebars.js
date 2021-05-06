@@ -7,7 +7,7 @@ module.exports = {
         {
             type: "category",
             label: "Hooks",
-            items: ["useModalForm", "useDrawerForm"],
+            items: ["useModalForm", "useDrawerForm", "useSelect"],
         },
     ],
 };
