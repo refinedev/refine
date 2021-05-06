@@ -7,7 +7,7 @@ export const Layout: React.FC<LayoutProps> = ({
     children,
     dashboard,
     Sider,
-    Header,
+    // Header,
     Footer,
     OffLayoutArea,
 }) => {
@@ -15,7 +15,7 @@ export const Layout: React.FC<LayoutProps> = ({
         <AntLayout style={{ minHeight: "100vh" }}>
             <Sider dashboard={dashboard} />
             <AntLayout className="site-layout">
-                <Header />
+                {/* <Header /> */}
                 <AntLayout.Content>
                     <div style={{ padding: 24, minHeight: 360 }}>
                         {children}

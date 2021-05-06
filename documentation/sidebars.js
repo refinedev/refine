@@ -6,8 +6,18 @@ module.exports = {
         },
         {
             type: "category",
+            label: "Providers",
+            items: ["authProvider", "dataProvider"],
+        },
+        {
+            type: "category",
             label: "Hooks",
-            items: ["useModalForm", "useDrawerForm", "useSelect"],
+            items: [
+                "useModalForm",
+                "useDrawerForm",
+                "useStepsForm",
+                "useSelect",
+            ],
         },
     ],
 };

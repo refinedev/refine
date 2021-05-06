@@ -8,10 +8,7 @@ const defaultProvider: IAuthContext = {
     checkAuth: () => Promise.resolve(),
     checkError: () => Promise.resolve(),
     getPermissions: () => Promise.resolve(),
-    getUserIdentity: () =>
-        Promise.resolve({
-            id: 1,
-        }),
+    getUserIdentity: () => Promise.resolve(),
 };
 export const AuthContext = React.createContext<IAuthContext>(defaultProvider);
 
