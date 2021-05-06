@@ -1,7 +1,7 @@
 import React from "react";
 
 import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "../../interfaces";
+import { IAuthContext } from "../../../interfaces";
 import { useNavigation } from "@hooks/navigation";
 
 /**
@@ -13,15 +13,21 @@ import { useNavigation } from "@hooks/navigation";
  * return <button onClick={handleClick}>Logout</button>;
  */
 
-export const useLogout = (redirectPath = "/login") => {
+export const useLogout = () => {
     const { push } = useNavigation();
     const authContext = React.useContext<IAuthContext>(AuthContext);
 
-    const logout = React.useCallback(() => {
-        authContext.logout().then(() => {
-            return push(redirectPath);
-        });
-    }, []);
+    const logout = React.useCallback(
+        (redirectPath = "/login") =>
+            authContext
+                .logout()
+                .then((data) => {
+                    push(redirectPath);
+                    Promise.resolve(data);
+                })
+                .catch((error) => Promise.reject(error)),
+        [],
+    );
 
     return logout;
 };
