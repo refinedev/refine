@@ -18,7 +18,7 @@ export const useStepsForm = <
     props: useStepsFormProps<MutationType> = {},
 ): useStepsForm<RecordType, MutationType> => {
     const useFormProps = useForm<RecordType, MutationType>({ ...props });
-    const { form, formProps, formLoading } = useFormProps;
+    const { form, formProps } = useFormProps;
 
     const stepsPropsSunflower: StepsFormSF = useStepsFormSF({
         ...props,
@@ -36,6 +36,9 @@ export const useStepsForm = <
             onValuesChange: formProps?.onValuesChange,
             onKeyUp: formProps?.onKeyUp,
         },
-        formLoading,
+        saveButtonProps: {
+            ...useFormProps.saveButtonProps,
+            onClick: () => stepsPropsSunflower.submit(),
+        },
     };
 };

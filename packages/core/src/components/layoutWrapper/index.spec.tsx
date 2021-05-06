@@ -25,8 +25,8 @@ describe("LayoutWrapper", () => {
         const customSiderContent = "customSiderContent";
         const CustomSider = () => <p>{customSiderContent}</p>;
 
-        const customHeaderContent = "customHeaderContent";
-        const CustomHeader = () => <p>{customHeaderContent}</p>;
+        // const customHeaderContent = "customHeaderContent";
+        // const CustomHeader = () => <p>{customHeaderContent}</p>;
 
         const customFooterContent = "customFooterContent";
         const CustomFooter = () => <p>{customFooterContent}</p>;
@@ -40,13 +40,13 @@ describe("LayoutWrapper", () => {
             syncWithLocation: false,
             undoableTimeout: 5000,
             Sider: CustomSider,
-            Header: CustomHeader,
+            // Header: CustomHeader,
             Footer: CustomFooter,
             OffLayoutArea: CustomOffLayoutArea,
         });
 
         expect(screen.getByText(customSiderContent));
-        expect(screen.getByText(customHeaderContent));
+        // expect(screen.getByText(customHeaderContent));
         expect(screen.getByText(customFooterContent));
         expect(screen.getByText(customOffLayoutAreaContent));
     });
