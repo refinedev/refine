@@ -20,7 +20,7 @@ import { IAuthContext } from "../../interfaces";
 interface State {
     loading: boolean;
     loaded: boolean;
-    permissions?: object;
+    permissions?: any;
     error?: string;
 }
 
