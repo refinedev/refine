@@ -21,6 +21,7 @@ import {
 
 export type useTableProps = {
     permanentFilter?: { [key: string]: number[] | string[] };
+    resource?: string;
     initialCurrent?: number;
     initialPageSize?: number;
     initialSorter?: Sort;
@@ -41,11 +42,17 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
     initialSorter,
     initialFilter,
     syncWithLocation = false,
+    resource,
 }: useTableProps = {}): useTableReturnType<RecordType> => {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
     if (syncWithLocationContext) {
         syncWithLocation = true;
+    }
+
+    // disable syncWithLocation for custom tables
+    if (resource) {
+        syncWithLocation = false;
     }
 
     const { search } = useLocation();
@@ -83,7 +90,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
     const { push } = useNavigation();
     const resourceWithRoute = useResourceWithRoute();
 
-    const resource = resourceWithRoute(routeResourceName);
+    const activeResource = resourceWithRoute(resource ?? routeResourceName);
 
     const [sorter, setSorter] = useState<Sort | undefined>(defaultSorter);
     const [filters, setFilters] = useState<Filters | undefined>(defaultFilter);
@@ -94,7 +101,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
         defaultCurrent: defaultCurrentSF,
     } = tablePropsSunflower.pagination;
 
-    const { data, isFetching } = useList<RecordType>(resource.name, {
+    const { data, isFetching } = useList<RecordType>(activeResource.name, {
         pagination: { current: current ?? defaultCurrentSF, pageSize },
         filters: merge(permanentFilter, filters),
         sort: sorter,
@@ -118,7 +125,9 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
                 filters,
             });
 
-            return push(`/resources/${resource.route}?${stringifyParams}`);
+            return push(
+                `/resources/${activeResource.route}?${stringifyParams}`,
+            );
         }
     };
 
