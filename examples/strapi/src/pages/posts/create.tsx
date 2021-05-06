@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Create,
     Form,
@@ -26,7 +26,7 @@ import { TOKEN_KEY } from "../../constants";
 export const PostCreate = (props: IResourceComponentsProps) => {
     const API_URL = useApiUrl();
 
-    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
         "write",
     );
 

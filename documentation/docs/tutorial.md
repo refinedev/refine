@@ -173,7 +173,7 @@ import {
     Table,
     useTable,
 } from "@pankod/refine";
-import { IPost } from "../../interfaces"
+import { IPost } from "interfaces"
 
 export const PostList = () => {
     const { tableProps } = useTable<IPost>();
@@ -202,7 +202,7 @@ export const PostList = () => {
 };
 ```
 
-```ts title="interfaces/IPost.d.ts"
+```ts title="interfaces/index.d.ts"
 export interface IPost {
     title: string;
     status: "published" | "draft";
@@ -332,7 +332,7 @@ import {
 } from "@pankod/refine";
 
 //highlight-next-line
-import { IPost, ICategory } from "../../interfaces"
+import { IPost, ICategory } from "interfaces"
 
 export const PostList = () => {
     const { tableProps } = useTable<IPost>();
@@ -393,16 +393,13 @@ export const PostList = () => {
 ```
 
 
-```ts title="interfaces/ICategory.d.ts"
+```ts title="interfaces/index.d.ts"
+// highlight-start
 export interface ICategory {
     id: string;
     title: string;
 }
-```
-
-```ts title="interfaces/IPost.d.ts"
- // highlight-next-line
-import { ICategory } from "./ICategory"
+// highlight-end
 
 export interface IPost {
     title: string;
@@ -447,7 +444,7 @@ Let's create a `<PostEdit>` component to edit an existing post. This component w
 
 ```tsx title="pages/posts/edit.tsx"
 import { useForm, Form, Input, Select, Edit, useSelect } from "@pankod/refine";
-import { IPost } from "../../interfaces";
+import { IPost } from "interfaces";
 
 export const PostEdit = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
@@ -639,7 +636,7 @@ import {
     //highlight-next-line
     Create 
 } from "@pankod/refine";
-import { IPost } from "../../interfaces";
+import { IPost } from "interfaces";
 
 export const PostCreate = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
@@ -766,7 +763,7 @@ import {
     useOne
     //highlight-end
 } from "@pankod/refine";
-import { IPost, ICategory} from "../../interfaces"
+import { IPost, ICategory} from "interfaces"
 
 const { Title, Text } = Typography;
 
