@@ -2,17 +2,17 @@ import { renderHook } from "@testing-library/react-hooks";
 
 import { act, MockJSONServer, TestWrapper } from "@test";
 
-import { useAuthenticated } from "./";
+import { usePermissions } from "./";
 
-describe("useAuthenticated Hook", () => {
-    it("returns authenticated true", async () => {
-        const { result } = renderHook(() => useAuthenticated(), {
+describe("usePermissions Hook", () => {
+    it("returns authenticated userPermissions", async () => {
+        const { result } = renderHook(() => usePermissions(), {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.resolve(),
                     checkAuth: () => Promise.resolve(),
                     checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
+                    getPermissions: () => Promise.resolve(["admin"]),
                     logout: () => Promise.resolve(),
                     getUserIdentity: () => Promise.resolve({ id: 1 }),
                 },
@@ -20,21 +20,21 @@ describe("useAuthenticated Hook", () => {
         });
 
         await act(async () => {
-            const isAuthenticated = await result.current();
-            expect(isAuthenticated).toBeTruthy();
+            const permissions = await result.current();
+            expect(permissions).toEqual(["admin"]);
         });
     });
 
-    it("returns authenticated false and called checkError", async () => {
-        const checkErrorMock = jest.fn();
-        const { result } = renderHook(() => useAuthenticated(), {
+    it("returns error for not authenticated", async () => {
+        const { result } = renderHook(() => usePermissions(), {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.resolve(),
                     checkAuth: () =>
                         Promise.reject(new Error("Not Authenticated")),
-                    checkError: checkErrorMock,
-                    getPermissions: () => Promise.resolve(),
+                    checkError: () => Promise.resolve(),
+                    getPermissions: () =>
+                        Promise.reject(new Error("Not Authenticated")),
                     logout: () => Promise.resolve(),
                     getUserIdentity: () => Promise.resolve({ id: 1 }),
                 },
@@ -42,12 +42,12 @@ describe("useAuthenticated Hook", () => {
         });
 
         await act(async () => {
-            const isAuthenticated = await result.current();
-            expect(isAuthenticated).not.toBeTruthy();
-            expect(checkErrorMock).toBeCalledTimes(1);
-            expect(checkErrorMock).toBeCalledWith(
-                new Error("Not Authenticated"),
-            );
+            let permissions;
+            try {
+                permissions = await result.current();
+            } catch (error) {
+                expect(error).toEqual(new Error("Not Authenticated"));
+            }
         });
     });
 });
