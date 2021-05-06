@@ -6,33 +6,29 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const API_URL = "https://refine-fake-rest.pankod.com";
 
-interface Auth {
-    username: string;
-    permission: string;
-}
+const mockUsers = [
+    {
+        username: "admin",
+        roles: ["admin", "super-admin"],
+    },
+    {
+        username: "editor",
+        roles: ["editor"],
+    },
+];
 
 const App = () => {
     const authProvider: AuthProvider = {
         login: ({ username, password }) => {
-            let auth: Auth;
-            switch (username) {
-                case "admin":
-                    auth = {
-                        username,
-                        permission: "admin",
-                    };
-                    break;
-                case "editor":
-                    auth = {
-                        username,
-                        permission: "editor",
-                    };
-                    break;
-                default:
-                    return Promise.reject();
+            // Suppose we actually send a request to the back end here.
+            const user = mockUsers.find((item) => item.username === username);
+
+            if (user) {
+                localStorage.setItem("auth", JSON.stringify(user));
+                return Promise.resolve();
             }
-            localStorage.setItem("auth", JSON.stringify(auth));
-            return Promise.resolve();
+
+            return Promise.reject();
         },
         logout: () => {
             localStorage.removeItem("auth");
@@ -44,9 +40,8 @@ const App = () => {
         getPermissions: () => {
             const auth = localStorage.getItem("auth");
             if (auth) {
-                const parseAuth: Auth = JSON.parse(auth);
-                const role = parseAuth.permission;
-                return role ? Promise.resolve(role) : Promise.reject();
+                const parsedUser = JSON.parse(auth);
+                return Promise.resolve(parsedUser.roles);
             }
             return Promise.reject();
         },

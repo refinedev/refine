@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
     List,
     Table,
@@ -23,10 +24,14 @@ export const PostList = (props: IResourceComponentsProps) => {
         enabled: categoryIds.length > 0,
     });
 
-    const { permissions } = usePermissions();
+    const permissions = usePermissions();
+    const [roles, setRoles] = useState<string[]>([]);
+    useEffect(() => {
+        permissions().then((res) => setRoles(res));
+    }, []);
 
     return (
-        <List {...props} canCreate={permissions === "admin"}>
+        <List {...props} canCreate={roles.includes("admin")}>
             <Table {...tableProps} key="id">
                 <Table.Column
                     key="id"
@@ -67,7 +72,7 @@ export const PostList = (props: IResourceComponentsProps) => {
                         <Space>
                             <EditButton size="small" recordItemId={record.id} />
                             <ShowButton size="small" recordItemId={record.id} />
-                            {permissions === "admin" && (
+                            {roles.includes("admin") && (
                                 <DeleteButton
                                     size="small"
                                     recordItemId={record.id}
