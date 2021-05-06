@@ -6,29 +6,38 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const API_URL = "https://refine-fake-rest.pankod.com";
 
+interface LoginForm {
+    username: string;
+    password: string;
+}
+
+interface Auth {
+    username: LoginForm["username"];
+    permissions: string;
+}
+
 const App = () => {
     const authProvider: AuthProvider = {
-        login: (params: any) => {
-            let auth: object;
-            switch (params.username) {
+        login: ({ username }: LoginForm) => {
+            let auth: Auth;
+            switch (username) {
                 case "admin":
                     auth = {
-                        username: params.username,
+                        username,
                         permissions: "admin",
                     };
-                    localStorage.setItem("auth", JSON.stringify(auth));
-                    return Promise.resolve();
+                    break;
                 case "editor":
                     auth = {
-                        username: params.username,
+                        username,
                         permissions: "editor",
                     };
-                    localStorage.setItem("auth", JSON.stringify(auth));
-                    return Promise.resolve();
+                    break;
                 default:
-                    Promise.reject();
+                    return Promise.reject();
             }
-            return Promise.reject();
+            localStorage.setItem("auth", JSON.stringify(auth));
+            return Promise.resolve();
         },
         logout: () => {
             localStorage.removeItem("auth");
@@ -40,7 +49,7 @@ const App = () => {
         getPermissions: () => {
             const auth = localStorage.getItem("auth");
             if (auth) {
-                const parseAuth = JSON.parse(auth);
+                const parseAuth: Auth = JSON.parse(auth);
                 const role = parseAuth.permissions;
                 return role ? Promise.resolve(role) : Promise.reject();
             }
