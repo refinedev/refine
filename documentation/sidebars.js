@@ -7,7 +7,12 @@ module.exports = {
         {
             type: "category",
             label: "Hooks",
-            items: ["useModalForm", "useDrawerForm", "useBase64Upload"],
+            items: ["useModalForm", "useDrawerForm"],
+        },
+        {
+            type: "category",
+            label: "Guides",
+            items: ["base64upload"],
         },
     ],
 };
