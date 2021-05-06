@@ -3,7 +3,7 @@ id: useTable
 title: useTable
 ---
 
-`useTable` kullanarak, backendden gelen veriyi tablo halinde gösterebilirsiniz ve loading, sayfalama, sıralama, filtreleme gibi özellikleri kolaylıkla implemente edebilirsiniz. `useTable`, ant-design [`<Table>`](https://ant.design/components/table/) componentinde kullanılabilen proplar döndürür.
+`useTable` kullanarak, backendden gelen veriyi tablo halinde gösterebilirsiniz ve loading, sayfalama, sıralama, filtreleme gibi özellikleri kolaylıkla implemente edebilirsiniz. `useTable`, Ant Design [`<Table>`](https://ant.design/components/table/) componentinde kullanılabilen proplar döndürür.
 
 # Örnek
 
@@ -54,4 +54,3 @@ export const PostList = (props: IResourceComponentsProps) => {
 ```
 
 `<Table.Column>` componentinin `dataIndex` propuna verilen değer, endpointten dönen verilerde, o sütunda gösterilecek olan değerin anahtarının adıdır. 
-
