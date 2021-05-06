@@ -102,7 +102,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
 }
 ```
 :::tip 
-Since `category` is a relational data, we use `useSelect` to fetch its name with its `id`.
+Since `category` is a relational data, we use `useSelect` to fetch its data.
 
 Refer to [useSelect](#useSelect) documentation for detailed usage.
 :::
