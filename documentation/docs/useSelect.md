@@ -4,11 +4,11 @@ title: useSelect
 siderbar_label: useSelect
 ---
 
-`useSelect` works with ant-design [Select](https://ant.design/components/select/) component. `useSelect` returns the props of the `<Select>` component, `queryResult` and `defaultValueQueryResult`.
+The `useSelect` hook allows you manage a Ant Design [Select](https://ant.design/components/select/) component. If we look in detail, `useSelect` returns `selectProps`, `queryResult` and `defaultValueQueryResult`.
 
-The `selectProps` contains `options`, `onSearch` and `Loading` properties. Therefore, it is very easy for us to manage the `<Select>` component.
+So all we have to do is pass the `selectProps` it return to the `<Select>` component.
 
-Now let's do with examples which props our hook gets and what it does.
+Now let's examine what `useSelect` does, with step-by-step examples.
 
 #### `resource`
 
