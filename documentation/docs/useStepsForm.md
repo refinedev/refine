@@ -12,12 +12,13 @@ All we have to do is to pass the props it returns to our `<Steps>` and `<Form>` 
 
 ## Example
 
-For the sake of simplicity, we're going to build a `Post` edit form that consists of only a `title` and a relational `category` field.
+For the sake of simplicity, we're going to build a `Post` create form that consists of only a `title` and a relational `category` field.
 
 To split your form items under a `<Steps>` component, first import and use `useStepsForm` hook in your page:
 
-```ts title="src/pages/posts/create.tsx"
+```tsx title="src/pages/posts/create.tsx"
 import {
+    useSelect,
     useStepsForm,
     IResourceComponentsProps,
 } from "@pankod/refine";
@@ -58,7 +59,7 @@ This hook returns a set of useful values to render steps form. Given `current` v
 
 Here, each item of `formList` corresponds to one step in form:
 
-```ts title="src/pages/posts/create.tsx
+```tsx title="src/pages/posts/create.tsx"
 export const PostCreate = (props: IResourceComponentsProps) => {
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
