@@ -8,54 +8,53 @@ import {
     Form,
     Select,
     Input,
-    Modal,
+    Drawer,
     Space,
     Typography,
     TextField,
     MarkdownField,
     useTable,
     useShow,
-    useModalForm,
+    useDrawerForm,
     EditButton,
     ShowButton,
     RefreshButton,
     IResourceComponentsProps,
 } from "@pankod/refine";
 
-import { IPost } from "interfaces";
+import { IPost } from "../../interfaces";
 
 const { Title, Text } = Typography;
 
 export const PostList = (props: IResourceComponentsProps) => {
     const { tableProps } = useTable<IPost>();
 
-    // Create Modal
+    // Create Drawer
     const {
-        modalProps: createModalProps,
         formProps: createFormProps,
+        drawerProps: createDrawerProps,
+        show: createDrawerShow,
         saveButtonProps: createSaveButtonProps,
-        show: createModalShow,
-    } = useModalForm<IPost>({
+    } = useDrawerForm<IPost>({
         action: "create",
     });
 
-    // Edit Modal
+    // Edit Drawer
     const {
-        modalProps: editModalProps,
         formProps: editFormProps,
+        drawerProps: editDrawerProps,
+        show: editDrawerShow,
         saveButtonProps: editSaveButtonProps,
-        show: editModalShow,
-        editId,
         deleteButtonProps,
+        editId,
         formLoading,
-    } = useModalForm<IPost>({
+    } = useDrawerForm<IPost>({
         action: "edit",
         warnWhenUnsavedChanges: true,
     });
 
-    // Show Modal
-    const [visibleShowModal, setVisibleShowModal] = useState<boolean>(false);
-
+    // Show Drawer
+    const [visibleShowDrawer, setVisibleShowDrawer] = useState<boolean>(false);
     const { queryResult, showId, setShowId } = useShow<IPost>();
 
     const { data: showQueryResult, isLoading: showIsLoading } = queryResult;
@@ -68,7 +67,7 @@ export const PostList = (props: IResourceComponentsProps) => {
                 canCreate
                 createButtonProps={{
                     onClick: () => {
-                        createModalShow();
+                        createDrawerShow();
                     },
                 }}
             >
@@ -94,14 +93,14 @@ export const PostList = (props: IResourceComponentsProps) => {
                                 <EditButton
                                     size="small"
                                     recordItemId={record.id}
-                                    onClick={() => editModalShow(record.id)}
+                                    onClick={() => editDrawerShow(record.id)}
                                 />
                                 <ShowButton
                                     size="small"
                                     recordItemId={record.id}
                                     onClick={() => {
                                         setShowId(record.id);
-                                        setVisibleShowModal(true);
+                                        setVisibleShowDrawer(true);
                                     }}
                                 />
                             </Space>
@@ -109,7 +108,7 @@ export const PostList = (props: IResourceComponentsProps) => {
                     />
                 </Table>
             </List>
-            <Modal {...createModalProps} footer={null}>
+            <Drawer {...createDrawerProps}>
                 <Create {...props} saveButtonProps={createSaveButtonProps}>
                     <Form {...createFormProps} layout="vertical">
                         <Form.Item
@@ -147,8 +146,8 @@ export const PostList = (props: IResourceComponentsProps) => {
                         </Form.Item>
                     </Form>
                 </Create>
-            </Modal>
-            <Modal {...editModalProps} footer={null}>
+            </Drawer>
+            <Drawer {...editDrawerProps}>
                 <Edit
                     {...props}
                     recordItemId={editId}
@@ -194,10 +193,11 @@ export const PostList = (props: IResourceComponentsProps) => {
                         </Form.Item>
                     </Form>
                 </Edit>
-            </Modal>
-            <Modal
-                visible={visibleShowModal}
-                onCancel={() => setVisibleShowModal(false)}
+            </Drawer>
+            <Drawer
+                visible={visibleShowDrawer}
+                onClose={() => setVisibleShowDrawer(false)}
+                width="500"
             >
                 <Show
                     {...props}
@@ -215,7 +215,7 @@ export const PostList = (props: IResourceComponentsProps) => {
                         value={record?.content ?? "Cannot found content"}
                     />
                 </Show>
-            </Modal>
+            </Drawer>
         </>
     );
 };
