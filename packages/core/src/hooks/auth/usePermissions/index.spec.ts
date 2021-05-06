@@ -6,7 +6,7 @@ import { usePermissions } from "./";
 
 describe("usePermissions Hook", () => {
     it("returns authenticated userPermissions", async () => {
-        const { result } = renderHook(() => usePermissions(), {
+        const { result, waitFor } = renderHook(() => usePermissions(), {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.resolve(),
@@ -16,17 +16,20 @@ describe("usePermissions Hook", () => {
                     logout: () => Promise.resolve(),
                     getUserIdentity: () => Promise.resolve({ id: 1 }),
                 },
+                dataProvider: MockJSONServer,
+                resources: [{ name: "posts" }],
             }),
         });
 
-        await act(async () => {
-            const permissions = await result.current();
-            expect(permissions).toEqual(["admin"]);
+        await waitFor(() => {
+            return result.current.isSuccess;
         });
+
+        expect(result.current.data).toEqual(["admin"]);
     });
 
     it("returns error for not authenticated", async () => {
-        const { result } = renderHook(() => usePermissions(), {
+        const { result, waitFor } = renderHook(() => usePermissions(), {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.resolve(),
@@ -41,13 +44,10 @@ describe("usePermissions Hook", () => {
             }),
         });
 
-        await act(async () => {
-            let permissions;
-            try {
-                permissions = await result.current();
-            } catch (error) {
-                expect(error).toEqual(new Error("Not Authenticated"));
-            }
+        await waitFor(() => {
+            return result.current.isError;
         });
+
+        expect(result.current.error).toEqual(new Error("Not Authenticated"));
     });
 });
