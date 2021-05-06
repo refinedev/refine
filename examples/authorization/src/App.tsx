@@ -9,23 +9,43 @@ const API_URL = "https://refine-fake-rest.pankod.com";
 const App = () => {
     const authProvider: AuthProvider = {
         login: (params: any) => {
-            if (params.username === "admin") {
-                localStorage.setItem("username", params.username);
-                return Promise.resolve();
+            let auth: object;
+            switch (params.username) {
+                case "admin":
+                    auth = {
+                        username: params.username,
+                        permissions: "admin",
+                    };
+                    localStorage.setItem("auth", JSON.stringify(auth));
+                    return Promise.resolve();
+                case "editor":
+                    auth = {
+                        username: params.username,
+                        permissions: "editor",
+                    };
+                    localStorage.setItem("auth", JSON.stringify(auth));
+                    return Promise.resolve();
+                default:
+                    Promise.reject();
             }
-
             return Promise.reject();
         },
         logout: () => {
-            localStorage.removeItem("username");
+            localStorage.removeItem("auth");
             return Promise.resolve();
         },
         checkError: () => Promise.resolve(),
         checkAuth: () =>
-            localStorage.getItem("username")
-                ? Promise.resolve()
-                : Promise.reject(),
-        getPermissions: () => Promise.resolve(["admin"]),
+            localStorage.getItem("auth") ? Promise.resolve() : Promise.reject(),
+        getPermissions: () => {
+            const auth = localStorage.getItem("auth");
+            if (auth) {
+                const parseAuth = JSON.parse(auth);
+                const role = parseAuth.permissions;
+                return role ? Promise.resolve(role) : Promise.reject();
+            }
+            return Promise.reject();
+        },
         getUserIdentity: () =>
             Promise.resolve({
                 id: 1,

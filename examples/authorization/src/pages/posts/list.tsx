@@ -7,7 +7,9 @@ import {
     Space,
     EditButton,
     ShowButton,
+    DeleteButton,
     useMany,
+    usePermissions,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "../../interfaces";
@@ -21,8 +23,10 @@ export const PostList = (props: IResourceComponentsProps) => {
         enabled: categoryIds.length > 0,
     });
 
+    const { permissions } = usePermissions();
+
     return (
-        <List {...props}>
+        <List {...props} canCreate={permissions === "admin"}>
             <Table {...tableProps} key="id">
                 <Table.Column
                     key="id"
@@ -63,6 +67,12 @@ export const PostList = (props: IResourceComponentsProps) => {
                         <Space>
                             <EditButton size="small" recordItemId={record.id} />
                             <ShowButton size="small" recordItemId={record.id} />
+                            {permissions === "admin" && (
+                                <DeleteButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                            )}
                         </Space>
                     )}
                 />
