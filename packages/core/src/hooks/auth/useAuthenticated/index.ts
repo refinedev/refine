@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "@contexts/auth";
 import { useNavigation } from "@hooks/navigation";
 
-import { IAuthContext } from "../../interfaces";
+import { IAuthContext } from "../../../interfaces";
 
 /**
  * @example
@@ -12,7 +12,7 @@ import { IAuthContext } from "../../interfaces";
  * const checkAuth = useAuthenticated();
  * const [authenticated, setAuthenticated] = useState(true);
  * useEffect(() => {
- *   checkAuth({}, false)
+ *   checkAuth()
  *     .then(() => setAuthenticated(true))
  *     .catch(() => setAuthenticated(false));
  *   }, []);
@@ -21,14 +21,16 @@ import { IAuthContext } from "../../interfaces";
  */
 
 export const useAuthenticated = () => {
-    const { checkAuth } = useContext<IAuthContext>(AuthContext);
-    const { push } = useNavigation();
+    const { checkAuth, checkError } = useContext<IAuthContext>(AuthContext);
 
     const authenticated = React.useCallback(
-        (redirectPath = "/login") =>
-            checkAuth().catch(() => {
-                return push(redirectPath);
-            }),
+        () =>
+            checkAuth()
+                .then(() => true)
+                .catch((error) => {
+                    checkError(error);
+                    return false;
+                }),
         [],
     );
 
