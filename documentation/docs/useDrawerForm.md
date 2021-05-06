@@ -1,30 +1,30 @@
 ---
-title: useModalForm
-siderbar_label: useModalForm
+title: useDrawerForm
+siderbar_label: useDrawerForm
 ---
 
-import createGif from '@site/static/img/create-useModalForm.gif';
-import editGif from '@site/static/img/edit-useModalForm.gif';
+import createGif from '@site/static/img/create-useDrawerForm.gif';
+import editGif from '@site/static/img/edit-useDrawerForm.gif';
 
-The `useModalForm` hook allows you manage a form within Modal. If we look in detail, `useModalForm` uses ant-design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components data scope management under the hood and returns the appropriate values to the components.
+The `useDrawerForm` hook allows you manage a form within Drawer. If we look in detail, `useDrawerForm` uses ant-design [Form](https://ant.design/components/form/) and [Drawer](https://ant.design/components/drawer/) components data scope management under the hood and returns the appropriate values to the components.
 
-All we have to do is pass the props it returns to the `<Modal>` and `<Form>` components.
+All we have to do is pass the props it returns to the `<Drawer>` and `<Form>` components.
 
-For example, let's look at an example of creating a record with `useModalForm`.
+For example, let's look at an example of creating a record with `useDrawerForm`.
 
 ```tsx title="pages/posts/list.tsx"
-import { useModalForm, Modal, Form, Create, Radio } from "@pankod/refine";
-import { IPost } from "interfaces";
+import { useDrawerForm, Drawer, Form, Create, Radio } from "@pankod/refine";
+import { IPost } from "../../interfaces";
 
 export const PostList (props) => {
 
     //highlight-start
     const {
-        modalProps,
         formProps,
+        drawerProps,
         show,
         saveButtonProps,
-    } = useModalForm<IPost>({
+    } = useDrawerForm<IPost>({
         action: "create",
     });
     //highlight-end
@@ -43,7 +43,7 @@ export const PostList (props) => {
                 ...
             </List>
             //highlight-start
-            <Modal {...modalProps}>
+            <Drawer {...drawerProps}>
                 <Create {...props} saveButtonProps={saveButtonProps}>
                     <Form {...formProps} layout="vertical">
                         <Form.Item label="Title" name="title">
@@ -57,7 +57,7 @@ export const PostList (props) => {
                         </Form.Item>
                     </Form>
                 </Create>
-            </Modal>
+            </Drawer>
             //highlight-end
         </>
     )
@@ -75,9 +75,9 @@ export const PostList (props) => {
     }}
 ```
 
-This code block makes `<Modal>` appear when you click the button.
+This code block makes `<Drawer>` appear when you click the button.
 
-`saveButtonProps` allows us to manage save button in the modal.
+`saveButtonProps` allows us to manage save button in the drawer.
 
 <div style={{textAlign: "center"}}>
     <img src={createGif} />
@@ -85,27 +85,26 @@ This code block makes `<Modal>` appear when you click the button.
 
 <br />
 
-Let's learn how to add editing capability to records that will be opening form in Modal with using `action` prop.
+Let's learn how to add editing capability to records that will be opening form in Drawer with using `action` prop.
 
 ```tsx title="pages/posts/list.tsx"
-import { useModalForm, Modal, Form, Create, Radio } from "@pankod/refine";
-import { IPost } from "interfaces";
+import { useDrawerForm, Drawer, Form, Create, Radio } from "@pankod/refine";
+import { IPost } from "../../interfaces";
 
 export const PostList (props) => {
     const {
-        modalProps,
+        drawerProps,
         formProps,
         show,
         saveButtonProps,
         //highlight-start
         deleteButtonProps,
         editId,
-         //highlight-end
-    } = useModalForm<IPost>({
+        //highlight-end
+    } = useDrawerForm<IPost>({
         //highlight-next-line
         action: "edit",
     });
-
 
     return (
         <>
@@ -128,8 +127,8 @@ export const PostList (props) => {
                     />
                 </Table>
             </List>
-            <Modal {...modalProps}>
-            //highlight-next-line
+            <Drawer {...drawerProps}>
+             //highlight-next-line
                 <Edit
                     {...props}
                     saveButtonProps={saveButtonProps}
@@ -150,16 +149,16 @@ export const PostList (props) => {
                         </Form.Item>
                     </Form>
                 </Edit>
-            </Modal>
+            </Drawer>
         </>
     )
 }
 ```
 
 :::important
-`refine` doesn't automatically add a edit button by default to the each record in `<PostList>` which opens edit form in `<Modal>` when clicking.
+`refine` doesn't automatically add a edit button by default to the each record in `<PostList>` which opens edit form in `<Drawer>` when clicking.
 
-So, we put the edit buttons on our list. In that way, `<Edit>` form in `<Modal>` can fetch data by record `id`.
+So, we put the edit buttons on our list. In that way, `<Edit>` form in `<Drawer>` can fetch data by record `id`.
 
 ```tsx
 <Table.Column<IPost>
@@ -178,7 +177,7 @@ So, we put the edit buttons on our list. In that way, `<Edit>` form in `<Modal>`
 
 :::
 
-The `saveButtonProps` and `deleteButtonProps` can provides functionality to save and delete buttons in the modal.
+The `saveButtonProps` and `deleteButtonProps` can provides functionality to save and delete buttons in the drawer.
 
 <div style={{textAlign: "center"}}>
     <img src={editGif} />
@@ -187,45 +186,3 @@ The `saveButtonProps` and `deleteButtonProps` can provides functionality to save
 <br />
 
 Refer to [codesandbox](https://www.google.com.tr) example for detailed usage.
-
-<!-- Markdowntable olucak.
-Useform ve useModal'ın tüm proplarını aldığını belirtebiliriz.
-
-`useModalForm` expects argument with the following keys:
-
--   `action`: lorem lorem
--   `autoSubmitClose`: lorem lorem
--   `defaultFormValues`: lorem lorem
--   `defaultVisible`: lorem lorem
--   `form`: lorem lorem
--   `mutationMode`: lorem lorem
--   `onMutationError`: lorem lorem
--   `onMutationSuccess`: lorem lorem
--   `redirect`: lorem lorem
--   `submit`: lorem lorem
--   `submitOnEnter`: lorem lorem
--   `undoableTimeout`: lorem lorem
--   `warnWhenUnsavedChanges`: lorem lorem
-
-The return value of `useModalForm` is an object, using the following keys:
-
--   `show`: lorem lorem
--   `formProps`: lorem lorem
--   `modalProps`: lorem lorem
--   `saveButtonProps`: lorem lorem
--   `deleteButtonProps`: lorem lorem
--   `formLoading`: lorem lorem
--   `submit`: lorem lorem
--   `initialValues`: lorem lorem
--   `visible`: lorem lorem
--   `close`: lorem lorem
--   `defaultFormValuesLoading`: lorem lorem
--   `formValues`: lorem lorem
--   `formResult`: lorem lorem
--   `form`: lorem lorem
--   `editId`: lorem lorem
--   `setEditId`: lorem lorem
--   `queryResult`: lorem lorem
--   `mutationResult`: lorem lorem
--   `setCloneId`: lorem lorem
--   `cloneId`: lorem lorem -->

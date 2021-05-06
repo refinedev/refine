@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Create,
     Form,
@@ -14,7 +14,7 @@ import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-import { IPost, ICategory } from "../../interfaces";
+import { IPost, ICategory } from "interfaces";
 
 export const PostCreate = (props: IResourceComponentsProps) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
@@ -23,7 +23,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
         resource: "categories",
     });
 
-    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
         "write",
     );
 
