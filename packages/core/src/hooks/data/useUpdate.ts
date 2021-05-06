@@ -169,7 +169,7 @@ export const useUpdate = <RecordType extends BaseRecord = BaseRecord>(
                         message: translate(
                             "common:notifications:editError",
                             { resourceSingular },
-                            `Error when editing ${resourceSingular} (status code: ${err.statusCode}`,
+                            `Error when editing ${resourceSingular} (status code: ${err.statusCode})`,
                         ),
                         description: err.message,
                     });
