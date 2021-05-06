@@ -13,7 +13,7 @@ interface Auth {
 
 const App = () => {
     const authProvider: AuthProvider = {
-        login: ({ username }) => {
+        login: ({ username, password }) => {
             let auth: Auth;
             switch (username) {
                 case "admin":
@@ -50,13 +50,6 @@ const App = () => {
             }
             return Promise.reject();
         },
-        getUserIdentity: () =>
-            Promise.resolve({
-                id: 1,
-                fullName: "Jane Doe",
-                avatar:
-                    "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
-            }),
     };
 
     return (
