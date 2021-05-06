@@ -133,7 +133,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
 ```
 
 :::tip 
-In this example, we're building a page for creating new resources and using `<Create>` component. You can build an edit page with `<Edit>` component, without modifying any code in the rest of this example. 
+In this example, we're building a page for creating new resources using `<Create>` component. You can build an edit page with `<Edit>` component, without modifying any code in the rest of this example. 
 :::
 
 To help your user navigate between pages in your form, you can use action buttons. Your navigation buttons should use `gotoStep` function that was previously returned from the `useStepsForm` hook.
