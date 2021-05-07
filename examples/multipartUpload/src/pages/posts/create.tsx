@@ -4,9 +4,12 @@ import {
     Form,
     Input,
     IResourceComponentsProps,
+    normalizeFile,
     Select,
+    useApiUrl,
     useForm,
     useSelect,
+    Upload,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -26,6 +29,8 @@ export const PostCreate = (props: IResourceComponentsProps) => {
     const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
         "write",
     );
+
+    const apiUrl = useApiUrl();
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
@@ -96,6 +101,26 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                             )
                         }
                     />
+                </Form.Item>
+                <Form.Item label="Cover">
+                    <Form.Item
+                        name="cover"
+                        valuePropName="fileList"
+                        getValueFromEvent={normalizeFile}
+                        noStyle
+                    >
+                        <Upload.Dragger
+                            name="file"
+                            action={`${apiUrl}/media/upload`}
+                            listType="picture"
+                            maxCount={5}
+                            multiple
+                        >
+                            <p className="ant-upload-text">
+                                Drag & drop a file in this area
+                            </p>
+                        </Upload.Dragger>
+                    </Form.Item>
                 </Form.Item>
             </Form>
         </Create>

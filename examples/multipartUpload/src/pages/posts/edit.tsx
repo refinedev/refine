@@ -4,7 +4,10 @@ import {
     Form,
     Input,
     IResourceComponentsProps,
+    normalizeFile,
     Select,
+    Upload,
+    useApiUrl,
     useForm,
     useSelect,
 } from "@pankod/refine";
@@ -28,6 +31,8 @@ export const PostEdit = (props: IResourceComponentsProps) => {
     const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
         "write",
     );
+
+    const apiUrl = useApiUrl();
 
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>
@@ -98,6 +103,26 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                             )
                         }
                     />
+                </Form.Item>
+                <Form.Item label="Cover">
+                    <Form.Item
+                        name="cover"
+                        valuePropName="fileList"
+                        getValueFromEvent={normalizeFile}
+                        noStyle
+                    >
+                        <Upload.Dragger
+                            name="file"
+                            action={`${apiUrl}/media/upload`}
+                            listType="picture"
+                            maxCount={5}
+                            multiple
+                        >
+                            <p className="ant-upload-text">
+                                Drag & drop a file in this area
+                            </p>
+                        </Upload.Dragger>
+                    </Form.Item>
                 </Form.Item>
             </Form>
         </Edit>
