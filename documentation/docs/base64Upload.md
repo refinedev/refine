@@ -4,7 +4,7 @@ title: Uploading Base64
 sidebar_label: Uploading Base64
 ---
 
-Formlarınızdan base64 upload yapabilmek için, [Ant Design](https://ant.design/) ile gelen [`<Form>`](https://ant.design/components/form/#Form) componentinin `onFinish` propuna vereceğiniz fonksiyon ile upload öncesinde, gereken tüm dosyaları base64 formatına çevirebilirsiniz.
+Formlarınızdan dosya ve resimleri base64'e encode ederek upload için, [Ant Design](https://ant.design/) ile gelen [`<Form>`](https://ant.design/components/form/#Form) componentinin `onFinish` propuna vereceğiniz fonksiyon ile submit öncesinde, gereken tüm dosyaları base64 formatına çevirebilirsiniz.
 
 # Örnek
 
