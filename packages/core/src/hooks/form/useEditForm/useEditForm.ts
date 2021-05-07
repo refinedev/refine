@@ -66,7 +66,7 @@ export const useEditForm = <
     onMutationSuccess,
     onMutationError,
     mutationMode: mutationModeProp,
-    submitOnEnter = true,
+    submitOnEnter = false,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect = "list",
     undoableTimeout,

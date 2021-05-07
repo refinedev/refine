@@ -57,7 +57,7 @@ export const useCreateForm = <
 >({
     onMutationSuccess,
     onMutationError,
-    submitOnEnter = true,
+    submitOnEnter = false,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect = "edit",
     resource,
