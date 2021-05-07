@@ -72,8 +72,7 @@ export const UserCreate = (props: IResourceComponentsProps) => {
                         ]}
                     >
                         <Upload.Dragger listType="picture" multiple>
-                            <p className="ant-upload-text">Title</p>
-                            <p className="ant-upload-hint">Upload</p>
+                            <p className="ant-upload-text">Drag & drop a file in this area</p>
                         </Upload.Dragger>
                     </Form.Item>
                 </Form.Item>
