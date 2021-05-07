@@ -11,7 +11,14 @@ import { TranslationContextProvider } from "@contexts/translation";
 import { AdminContextProvider } from "@contexts/admin";
 import { IAdminContextProvider } from "@contexts/admin/IAdminContext";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            cacheTime: 0,
+            retry: 0,
+        },
+    },
+});
 
 interface ITestWrapperProps {
     authProvider?: IAuthContext;

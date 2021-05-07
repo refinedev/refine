@@ -1,12 +1,12 @@
 import { renderHook } from "@testing-library/react-hooks";
 
-import { act, TestWrapper } from "@test";
+import { TestWrapper } from "@test";
 
 import { useGetIdentity } from "./";
 
 describe("usePermissions Hook", () => {
     it("returns object useGetIdentity", async () => {
-        const { result } = renderHook(() => useGetIdentity(), {
+        const { result, waitFor } = renderHook(() => useGetIdentity(), {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.resolve(),
@@ -19,14 +19,15 @@ describe("usePermissions Hook", () => {
             }),
         });
 
-        await act(async () => {
-            const permissions = await result.current();
-            expect(permissions).toEqual({ id: 1 });
+        await waitFor(() => {
+            return result.current?.isSuccess;
         });
+
+        expect(result.current?.data).toEqual({ id: 1 });
     });
 
     it("throw error useGetIdentity", async () => {
-        const { result } = renderHook(() => useGetIdentity(), {
+        const { result, waitFor } = renderHook(() => useGetIdentity(), {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.resolve(),
@@ -40,18 +41,15 @@ describe("usePermissions Hook", () => {
             }),
         });
 
-        await act(async () => {
-            let permissions;
-            try {
-                permissions = await result.current();
-            } catch (error) {
-                expect(error).toEqual(new Error("Not Authenticated"));
-            }
+        await waitFor(() => {
+            return result.current.isError;
         });
+
+        expect(result.current?.error).toEqual(new Error("Not Authenticated"));
     });
 
     it("throw error useGetIdentity undefined", async () => {
-        const { result } = renderHook(() => useGetIdentity(), {
+        const { result, waitFor } = renderHook(() => useGetIdentity(), {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.resolve(),
@@ -63,17 +61,11 @@ describe("usePermissions Hook", () => {
             }),
         });
 
-        await act(async () => {
-            let permissions;
-            try {
-                permissions = await result.current();
-            } catch (error) {
-                expect(error).toEqual(
-                    new Error(
-                        "Not implemented 'getUserIdentity' on AuthProvider.",
-                    ),
-                );
-            }
+        await waitFor(() => {
+            return !result.current.isLoading;
         });
+
+        expect(result.current.status).toEqual("success");
+        expect(result.current.data).not.toBeDefined();
     });
 });

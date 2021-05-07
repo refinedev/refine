@@ -2,6 +2,7 @@ import React from "react";
 
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
+import { useQuery } from "react-query";
 
 /**
  * @example
@@ -23,18 +24,9 @@ import { IAuthContext } from "../../../interfaces";
 export const useGetIdentity = () => {
     const { getUserIdentity } = React.useContext<IAuthContext>(AuthContext);
 
-    const userIdentity = React.useCallback(() => {
-        if (!getUserIdentity) {
-            Promise.reject(
-                new Error("Not implemented 'getUserIdentity' on AuthProvider."),
-            );
-            return;
-        }
+    const queryResponse = useQuery("getUserIdentity", getUserIdentity!, {
+        enabled: !!getUserIdentity,
+    });
 
-        return getUserIdentity()
-            .then((identity: any) => Promise.resolve(identity))
-            .catch((error: any) => Promise.reject(error));
-    }, [getUserIdentity]);
-
-    return userIdentity;
+    return queryResponse;
 };
