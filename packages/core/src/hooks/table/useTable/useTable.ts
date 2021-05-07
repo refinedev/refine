@@ -42,7 +42,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
     initialSorter,
     initialFilter,
     syncWithLocation = false,
-    resource,
+    resource: resourceFromProp,
 }: useTableProps = {}): useTableReturnType<RecordType> => {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
@@ -50,8 +50,8 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
         syncWithLocation = true;
     }
 
-    // disable syncWithLocation for custom tables
-    if (resource) {
+    // disable syncWithLocation for custom resource tables
+    if (resourceFromProp) {
         syncWithLocation = false;
     }
 
@@ -90,7 +90,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
     const { push } = useNavigation();
     const resourceWithRoute = useResourceWithRoute();
 
-    const activeResource = resourceWithRoute(resource ?? routeResourceName);
+    const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
     const [sorter, setSorter] = useState<Sort | undefined>(defaultSorter);
     const [filters, setFilters] = useState<Filters | undefined>(defaultFilter);
@@ -101,7 +101,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
         defaultCurrent: defaultCurrentSF,
     } = tablePropsSunflower.pagination;
 
-    const { data, isFetching } = useList<RecordType>(activeResource.name, {
+    const { data, isFetching } = useList<RecordType>(resource.name, {
         pagination: { current: current ?? defaultCurrentSF, pageSize },
         filters: merge(permanentFilter, filters),
         sort: sorter,
@@ -125,9 +125,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
                 filters,
             });
 
-            return push(
-                `/resources/${activeResource.route}?${stringifyParams}`,
-            );
+            return push(`/resources/${resource.route}?${stringifyParams}`);
         }
     };
 
