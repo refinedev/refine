@@ -6,6 +6,11 @@ module.exports = {
         },
         {
             type: "category",
+            label: "Guides",
+            items: ["multipartUpload"],
+        },
+        {
+            type: "category",
             label: "Providers",
             items: ["authProvider", "dataProvider"],
         },
