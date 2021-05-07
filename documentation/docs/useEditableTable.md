@@ -6,7 +6,7 @@ title: useEditableTable
 import editButton from '@site/static/img/edit-button.gif';
 import rowClickEdit from '@site/static/img/row-click-edit.gif';
 
-`useEditableTable` kullanarak, [`useTable`](useTable.md) sağladığı özelliklerin üzerine, tablo üzerinde düzenleme özelliğini kolaylıkla implemente edebilmenizi sağlar. `useEditableTable`, Ant Design'ın [`<Table>`](https://ant.design/components/table/) ve [`<Form>`](https://ant.design/components/form/) componentlerinde kullanılabilen proplar döndürür.
+`useEditableTable`, [`useTable`](useTable.md)ın sağladığı özelliklerin üzerine, tablo üzerinde düzenleme özelliğini kolaylıkla implemente edebilmenizi sağlar. `useEditableTable`, Ant Design'ın [`<Table>`](https://ant.design/components/table/) ve [`<Form>`](https://ant.design/components/form/) componentlerinde kullanılabilen proplar döndürür.
 
 ## Butonlarla Düzenleme
 
