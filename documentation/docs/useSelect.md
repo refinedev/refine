@@ -129,12 +129,31 @@ It allows us to add some filters while fetching the data.
 ```tsx
 const { selectProps } = useSelect({
     resource: "categories",
-    //highlight-next-line
+    //highlight-start
     sort: {
         field: "title",
         order: "ascend",
     },
+    //highlight-end
 });
 ```
 
 It allows us to sort the `options`.
+
+## Adding Type
+
+```tsx title="src/pages/posts/create.tsx"
+import { Form, useSelect } from "@pankod/refine";
+//highlight-next-line
+import { ICategory } from "interfaces";
+
+export const PostCreate = (props) => {
+    //highlight-next-line
+    const { queryResult, defaultValueQueryResult } = useSelect<ICategory>({
+        resource: "categories",
+        defaultValue: ["1", "2"],
+    });
+};
+```
+
+Now, We expect the `queryResult` and `defaultValueQueryResult` result to return according to `ICategory` type.

@@ -21,6 +21,10 @@ export const PostCreate = (props: IResourceComponentsProps) => {
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
+        sort: {
+            field: "title",
+            order: "ascend",
+        },
     });
 
     const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
