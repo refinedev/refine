@@ -5,17 +5,6 @@ import { useNotification } from "@hooks";
 import { useNavigation } from "@hooks/navigation";
 
 import { IAuthContext } from "../../../interfaces";
-/**
- * @example
- * const [loading, setLoading] = useState(false);
- * const login = useLogin();
- * const handleClick = {
- *     setLoading(true);
- *     login({ username: 'john', password: 'p@ssw0rd' })
- *         .then(() => setLoading(false));
- * }
- * return <button onClick={handleClick}>Login</button>;
- */
 
 export const useLogin = () => {
     const { push } = useNavigation();

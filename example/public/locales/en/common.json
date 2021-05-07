@@ -115,6 +115,9 @@
         "undo": "Undo",
         "import": "Import"
     },
+    "tags": {
+        "Clone": "Clone"
+    },
     "table": {
         "actions": "Actions"
     },

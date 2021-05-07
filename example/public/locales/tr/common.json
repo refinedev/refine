@@ -117,6 +117,9 @@
         "undo": "Geri Al",
         "import": "Yükle"
     },
+    "tags": {
+        "Clone": "Klon"
+    },
     "table": {
         "actions": "İşlemler"
     },
