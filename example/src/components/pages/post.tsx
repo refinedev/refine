@@ -186,10 +186,8 @@ export const PostList = (props: any) => {
                         <FilterDropdown {...props}>
                             <Select
                                 style={{ minWidth: 200 }}
-                                showSearch
                                 mode="multiple"
                                 placeholder="Select Category"
-                                filterOption={false}
                                 {...categorySelectProps}
                             />
                         </FilterDropdown>
@@ -395,11 +393,7 @@ export const PostCreate = (props: any) => {
                     },
                 ]}
             >
-                <Select
-                    showSearch
-                    filterOption={false}
-                    {...categorySelectProps}
-                />
+                <Select {...categorySelectProps} />
             </Form.Item>
             <Form.Item
                 label={translate("common:resources.posts.fields.user")}
@@ -411,7 +405,7 @@ export const PostCreate = (props: any) => {
                 ]}
                 help="Autocomplete (search user email)"
             >
-                <Select showSearch filterOption={false} {...userSelectProps} />
+                <Select {...userSelectProps} />
             </Form.Item>
             <Form.Item
                 label={translate("common:resources.posts.fields.tags")}
@@ -431,12 +425,7 @@ export const PostCreate = (props: any) => {
                     }));
                 }}
             >
-                <Select
-                    mode="multiple"
-                    showSearch
-                    filterOption={false}
-                    {...tagsSelectProps}
-                />
+                <Select mode="multiple" {...tagsSelectProps} />
             </Form.Item>
         </>,
     ];
@@ -631,10 +620,8 @@ export const PostEdit = (props: any) => {
                 ]}
             >
                 <Select
-                    showSearch
                     mode="multiple"
                     placeholder="Select Category"
-                    filterOption={false}
                     {...categorySelectProps}
                 />
             </Form.Item>
@@ -648,7 +635,7 @@ export const PostEdit = (props: any) => {
                 ]}
                 help="Autocomplete (search user email)"
             >
-                <Select showSearch filterOption={false} {...userSelectProps} />
+                <Select {...userSelectProps} />
             </Form.Item>
             <Form.Item
                 label={translate("common:resources.posts.fields.tags")}
@@ -668,12 +655,7 @@ export const PostEdit = (props: any) => {
                     }));
                 }}
             >
-                <Select
-                    mode="multiple"
-                    showSearch
-                    filterOption={false}
-                    {...tagsSelectProps}
-                />
+                <Select mode="multiple" {...tagsSelectProps} />
             </Form.Item>
         </>,
     ];

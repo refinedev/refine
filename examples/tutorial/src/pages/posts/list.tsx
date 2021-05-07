@@ -74,10 +74,8 @@ export const PostList = (props: IResourceComponentsProps) => {
                         <FilterDropdown {...props}>
                             <Select
                                 style={{ minWidth: 200 }}
-                                showSearch
                                 mode="multiple"
                                 placeholder="Select Category"
-                                filterOption={false}
                                 {...categorySelectProps}
                             />
                         </FilterDropdown>

@@ -31,11 +31,7 @@ export const PostEdit = () => {
                     />
                 </Form.Item>
                 <Form.Item label="Category" name={["category", "id"]}>
-                    <Select
-                        showSearch
-                        filterOption={false}
-                        {...categorySelectProps}
-                    />
+                    <Select {...categorySelectProps} />
                 </Form.Item>
             </Form>
         </Edit>
