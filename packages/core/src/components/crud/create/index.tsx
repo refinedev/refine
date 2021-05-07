@@ -29,6 +29,7 @@ export const Create: React.FC<CreateProps> = ({
     pageHeaderProps,
 }) => {
     const { goBack } = useNavigation();
+    const t = useTranslate();
 
     const {
         resource: routeResourceName,
@@ -42,7 +43,7 @@ export const Create: React.FC<CreateProps> = ({
 
     const tags = [];
     if (idFromRoute) {
-        tags.push(<Tag color="blue">Clone</Tag>);
+        tags.push(<Tag color="blue">{t("tags.Clone", "Clone")}</Tag>);
     }
 
     return (
