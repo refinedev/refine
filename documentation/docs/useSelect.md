@@ -65,12 +65,16 @@ export const PostCreate = (props) => {
 </div>
 <br/>
 
-As you can see, you only need to specify the `resource` name to give `options` to the `<Select`> component.
+As you can see, you only need to specify the `resource` name and it give you `options` to the `<Select`> component.
 
 <div style={{textAlign: "center"}}>
     <img src={search} />
 </div>
 <br/>
+
+:::caution attention
+If you want to search in the option values you can add `filterOption` props your `<Select`> component.
+:::
 
 `useSelect` uses the `useList` hook for fetching data. Refer to [useList](#) hook for details.
 
@@ -104,8 +108,8 @@ Can use `defaultValue` property when edit a record in `<Edit>` component.
 const { selectProps } = useSelect({
     resource: "categories",
     //highlight-start
-    optionLabel = "title",
-    optionValue = "id",
+    optionLabel: "title",
+    optionValue: "id",
     //highlight-end
 });
 ```
@@ -118,11 +122,11 @@ Allows you to change the values and appearance of your options. Default values a
 const { selectProps } = useSelect({
     resource: "categories",
     //highlight-next-line
-    filters: { id: ["1", "2"] },
+    filters: { isActive: true },
 });
 ```
 
-It allows us to add some filters while fetching the data.
+It allows us to add some filters while fetching the data. For example, if you want to list only active records.
 
 ### `sort`
 
@@ -138,7 +142,7 @@ const { selectProps } = useSelect({
 });
 ```
 
-It allows us to sort the `options`.
+It allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
 
 ## Adding Type
 
@@ -156,4 +160,4 @@ export const PostCreate = (props) => {
 };
 ```
 
-Now, We expect the `queryResult` and `defaultValueQueryResult` result to return according to `ICategory` type.
+Now, we expect the `queryResult` and `defaultValueQueryResult` result to return according to `ICategory` type.
