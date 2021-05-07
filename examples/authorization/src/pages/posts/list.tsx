@@ -27,7 +27,7 @@ export const PostList = (props: IResourceComponentsProps) => {
     const { data: perssionsData } = usePermissions();
 
     return (
-        <List {...props} canCreate={perssionsData.includes("admin")}>
+        <List {...props} canCreate={perssionsData?.includes("admin")}>
             <Table {...tableProps} key="id">
                 <Table.Column
                     key="id"
@@ -68,7 +68,7 @@ export const PostList = (props: IResourceComponentsProps) => {
                         <Space>
                             <EditButton size="small" recordItemId={record.id} />
                             <ShowButton size="small" recordItemId={record.id} />
-                            {perssionsData.includes("admin") && (
+                            {perssionsData?.includes("admin") && (
                                 <DeleteButton
                                     size="small"
                                     recordItemId={record.id}
