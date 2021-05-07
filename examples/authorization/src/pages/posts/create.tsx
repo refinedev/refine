@@ -17,7 +17,7 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostCreate = (props: IResourceComponentsProps) => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+    const { formProps } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
@@ -28,11 +28,10 @@ export const PostCreate = (props: IResourceComponentsProps) => {
     );
 
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
+        <Create {...props}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
-                    name="title"
                     rules={[
                         {
                             required: true,
@@ -43,7 +42,6 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                 </Form.Item>
                 <Form.Item
                     label="Category"
-                    name={["category", "id"]}
                     rules={[
                         {
                             required: true,
@@ -58,7 +56,6 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                 </Form.Item>
                 <Form.Item
                     label="Status"
-                    name="status"
                     rules={[
                         {
                             required: true,
@@ -80,7 +77,6 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                 </Form.Item>
                 <Form.Item
                     label="Content"
-                    name="content"
                     rules={[
                         {
                             required: true,
