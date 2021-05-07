@@ -94,6 +94,10 @@ defaultValue: ["1", "2"],
 
 Refer to [useMany](#) documentation for detailed usage.
 
+:::tip
+Can use `defaultValue` property when edit a record in `<Edit>` component.
+:::
+
 ### `optionLabel` and `optionValue`
 
 ```tsx
@@ -113,28 +117,24 @@ Allows you to change the values and appearance of your options. Default values a
 ```tsx
 const { selectProps } = useSelect({
     resource: "categories",
-    optionLabel = "title",
-    optionValue = "id",
-    filters,
+    //highlight-next-line
+    filters: { id: ["1", "2"] },
 });
 ```
 
-Filtereme işlemi örneği.
+It allows us to add some filters while fetching the data.
 
 ### `sort`
 
 ```tsx
 const { selectProps } = useSelect({
     resource: "categories",
-    optionLabel = "title",
-    optionValue = "id",
-    filters,
-    sort,
+    //highlight-next-line
+    sort: {
+        field: "title",
+        order: "ascend",
+    },
 });
 ```
 
-Sort işlemi örnek.
-
-### Basic Example
-
-Select propsların select component'e verildiği bir örnek yapılabilir.
+It allows us to sort the `options`.
