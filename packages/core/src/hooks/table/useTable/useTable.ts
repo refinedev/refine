@@ -21,6 +21,7 @@ import {
 
 export type useTableProps = {
     permanentFilter?: { [key: string]: number[] | string[] };
+    resource?: string;
     initialCurrent?: number;
     initialPageSize?: number;
     initialSorter?: Sort;
@@ -41,11 +42,17 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
     initialSorter,
     initialFilter,
     syncWithLocation = false,
+    resource: resourceFromProp,
 }: useTableProps = {}): useTableReturnType<RecordType> => {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
     if (syncWithLocationContext) {
         syncWithLocation = true;
+    }
+
+    // disable syncWithLocation for custom resource tables
+    if (resourceFromProp) {
+        syncWithLocation = false;
     }
 
     const { search } = useLocation();
@@ -83,7 +90,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
     const { push } = useNavigation();
     const resourceWithRoute = useResourceWithRoute();
 
-    const resource = resourceWithRoute(routeResourceName);
+    const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
     const [sorter, setSorter] = useState<Sort | undefined>(defaultSorter);
     const [filters, setFilters] = useState<Filters | undefined>(defaultFilter);
