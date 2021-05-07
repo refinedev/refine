@@ -24,14 +24,10 @@ export const PostList = (props: IResourceComponentsProps) => {
         enabled: categoryIds.length > 0,
     });
 
-    const permissions = usePermissions();
-    const [roles, setRoles] = useState<string[]>([]);
-    useEffect(() => {
-        permissions().then((res) => setRoles(res));
-    }, []);
+    const { data: perssionsData } = usePermissions();
 
     return (
-        <List {...props} canCreate={roles.includes("admin")}>
+        <List {...props} canCreate={perssionsData.includes("admin")}>
             <Table {...tableProps} key="id">
                 <Table.Column
                     key="id"
@@ -72,7 +68,7 @@ export const PostList = (props: IResourceComponentsProps) => {
                         <Space>
                             <EditButton size="small" recordItemId={record.id} />
                             <ShowButton size="small" recordItemId={record.id} />
-                            {roles.includes("admin") && (
+                            {perssionsData.includes("admin") && (
                                 <DeleteButton
                                     size="small"
                                     recordItemId={record.id}
