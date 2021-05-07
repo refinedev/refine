@@ -70,4 +70,32 @@ describe("useTable Hook", () => {
 
         expect(pagination).toEqual(customPagination);
     });
+
+    it("with custom resource", async () => {
+        const { result, waitFor } = renderHook(
+            () =>
+                useTable({
+                    resource: "categories",
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [
+                        { name: "posts", route: "posts" },
+                        { name: "categories", route: "categories" },
+                    ],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            return !result.current.tableProps.loading;
+        });
+
+        const {
+            tableProps: { dataSource },
+        } = result.current;
+
+        expect(dataSource).toHaveLength(2);
+    });
 });
