@@ -73,13 +73,12 @@ export const useCheckboxGroup = <RecordType extends BaseRecord = BaseRecord>({
                 setOptions(
                     data.data.map((item) => ({
                         label: item[optionLabel],
-                        value: item[optionValue].toString(),
+                        value: item[optionValue],
                     })),
                 );
             },
         },
     );
-
     return {
         checkboxGroupProps: {
             options: uniqBy([...options, ...selectedOptions], "value"),

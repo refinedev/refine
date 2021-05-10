@@ -50,7 +50,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                 </Form.Item>
                 <Form.Item
                     label="Tag"
-                    name={"tags"}
+                    name={["tags"]}
                     rules={[
                         {
                             required: true,
