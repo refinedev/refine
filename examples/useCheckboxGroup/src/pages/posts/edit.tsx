@@ -4,7 +4,6 @@ import {
     Form,
     Input,
     IResourceComponentsProps,
-    Select,
     useForm,
     useCheckboxGroup,
     Checkbox,
