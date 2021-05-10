@@ -25,8 +25,8 @@ export const LoginPage: React.FC = () => {
     const login = useLogin();
     const translate = useTranslate();
 
-    const onSubmit = (values: ILoginForm) => {
-        login(values);
+    const onSubmit = async (values: ILoginForm) => {
+        login(values).catch(() => false);
     };
 
     return (

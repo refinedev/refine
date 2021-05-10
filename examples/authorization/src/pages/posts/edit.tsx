@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     Edit,
     Form,
@@ -25,7 +25,7 @@ export const PostEdit = (props: IResourceComponentsProps) => {
         defaultValue: postData?.category.id,
     });
 
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
         "write",
     );
 
@@ -52,7 +52,11 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                         },
                     ]}
                 >
-                    <Select {...categorySelectProps} />
+                    <Select
+                        showSearch
+                        filterOption={false}
+                        {...categorySelectProps}
+                    />
                 </Form.Item>
                 <Form.Item
                     label="Status"

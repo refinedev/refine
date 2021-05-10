@@ -46,7 +46,7 @@ function App() {
                 return Promise.resolve();
             }
 
-            return Promise.reject();
+            return Promise.reject(new Error("Invalid username or password"));
         },
         logout: () => {
             localStorage.removeItem("username");

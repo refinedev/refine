@@ -19,12 +19,6 @@ interface UseListConfig {
     filters?: Filters;
 }
 
-const defaultConfig: UseListConfig = {
-    pagination: {
-        pageSize: 999,
-    },
-};
-
 export const useList = <RecordType = BaseRecord>(
     resource: string,
     config?: UseListConfig,
@@ -33,8 +27,8 @@ export const useList = <RecordType = BaseRecord>(
     const { getList } = useContext<IDataContext>(DataContext);
 
     const queryResponse = useQuery<GetListResponse<RecordType>>(
-        [`resource/list/${resource}`, { ...(config ?? defaultConfig) }],
-        () => getList<RecordType>(resource, config ?? defaultConfig),
+        [`resource/list/${resource}`, { ...config }],
+        () => getList<RecordType>(resource, { ...config }),
         queryOptions ?? { keepPreviousData: true },
     );
 
