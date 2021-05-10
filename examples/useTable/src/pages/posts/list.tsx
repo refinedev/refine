@@ -20,10 +20,12 @@ export const PostList = (props: IResourceComponentsProps) => {
                 order: "ascend",
             },
         ],
-        initialFilter: {
-            status: ["draft"],
+        permanentFilter: {
+            status: ["published"],
         },
     });
+
+    console.log(filters);
 
     return (
         <List {...props}>
