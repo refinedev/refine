@@ -6,7 +6,7 @@ title: useTable
 import tableSorting from '@site/static/img/table-sorting.gif';
 import filters from '@site/static/img/filters.gif';
 
-`useTable` kullanarak, backendden gelen veriyi Ant Design [`<Table>`](https://ant.design/components/table/) componentine göre uygun formatlanmış proplar elde ederek tablo halinde gösterebilir ve loading, sayfalama, sıralama, filtreleme gibi özellikleri kolaylıkla implemente edebilirsiniz.`
+`useTable` kullanarak, API'dan gelen kayıtlarınız için Ant Design [`<Table>`](https://ant.design/components/table/) component'ine uygun şekilde proplar elde edersiniz. Sayfalama, sıralama, filtreleme gibi özelliklerin tamamı out of the box olarak gelir.
 
 :::tip 
 `useTable`, verdiğiniz kaynağın verilerini çekerken `useMany` kullanır.
