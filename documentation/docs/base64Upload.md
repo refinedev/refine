@@ -84,4 +84,6 @@ export const UserCreate = (props: IResourceComponentsProps) => {
 
 `file2Base64` fonksiyonunu kullanarak dosyaları base64'e çevirebilirsiniz. 
 
+:::tip
 `<Create>` yerine `<Edit>` componenti kullanılarak, kodun kalanında değişiklik yapmadan, düzenleme formu yapılabilir.
+:::
