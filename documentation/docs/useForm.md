@@ -4,7 +4,7 @@ id: useForm
 title: useForm
 ---
 
-`useForm` is used to edit, create and clone data then manage forms. It uses Ant-design [Form](https://ant.design/components/form/) data scope management under the hood and returns the required props for managing the form actions.
+`useForm` is used to manage forms. It uses Ant-design [Form](https://ant.design/components/form/) data scope management under the hood and returns the required props for managing the form actions.
 
 ## Example
 
@@ -72,30 +72,40 @@ export const PostEdit = (props: IResourceComponentsProps) => {
 
 `formProps` includes all necessary values to manage Ant-design Form components. 
 
-`useForm` can handle edit, create and clone actions. 
 
-:::tip Important
-By default it determines the action from route. Also it can take an action parameter for the situations where it isn't possible to determine the action from route i.e. using a form in a modal or using a custom route.
 
-```tsx
-const { formProps, saveButtonProps } = useForm<IPost>({action: "edit"});
-```
-:::
+In the example if you navigate to `/resources/posts/edit/1234` it will manage the data of the post with id `1234` in an editing context. See [Actions](#actions) on how `useForm` determines this is an editing context.
 
-In the example if you navigate to `/resources/posts/edit/1234` it will manage the data of the post with id `1234` in an editing context. 
-
-Firstly it will fill the form with the data of the post with id `1234` and then be ready to edit the form further and submit the changes. 
+Since this is an edit form it will fill the form with the data of the post with id `1234` and then the form will be ready to edit further and submit the changes. 
 
 Submit functionality is provided by `saveButtonProps` which includes all necessary props for a button to submit a form including automatically updating loading states.
 
 `useForm` accepts type parameters for the record in use and for the response type of the mutation. `IPost` in the example represents the record to edit. It is also used as default type for mutation response.
 
-## Parameters
 
-### action
+## Actions
+
+`useForm` can handle edit, create and clone actions. 
+
+By default it determines the action from route. In the example the route is `/resources/posts/edit/1234` thus this is an editing form.  
+Also it can take an action parameter for the situations where it isn't possible to determine the action from route i.e. using a form in a modal, using a custom route.
+
+```tsx
+const { formProps, saveButtonProps } = useForm<IPost>({action: "edit"}); // "create" || "clone"
+```
 
 
-### resource
+### `action: "edit"`
+
+Used for editing an existing record. Form initially will be filled with the data of the record.
+### `action: "create"`
+
+Used for creating a new record that didn't exist before.
+### `action: "clone"`
+
+Used for creating a new record taking the data of an existing record as initial values. Form will be filled with those initial values.
+
+## Resource
 ### mutationMode
 ### onMutationSuccess
 ### onMutationError
