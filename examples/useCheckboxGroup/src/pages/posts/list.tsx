@@ -8,17 +8,18 @@ import {
     EditButton,
     ShowButton,
     useMany,
+    Tag,
 } from "@pankod/refine";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ITag } from "interfaces";
 
 export const PostList = (props: IResourceComponentsProps) => {
     const { tableProps } = useTable<IPost>();
 
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
-        enabled: categoryIds.length > 0,
+    const tagIds = tableProps?.dataSource?.map((item) => item.tags) ?? [];
+    const mergeTagIds = tagIds.reduce((a, b) => a.concat(b), []);
+    const { data, isLoading } = useMany<ITag>("tags", mergeTagIds, {
+        enabled: tagIds.length > 0,
     });
 
     return (
@@ -37,21 +38,25 @@ export const PostList = (props: IResourceComponentsProps) => {
                     render={(value) => <TextField value={value} />}
                 />
                 <Table.Column
-                    dataIndex={["category", "id"]}
-                    key="category.id"
-                    title="Category"
-                    render={(value) => {
+                    dataIndex={["tags"]}
+                    key="tags"
+                    title="Tags"
+                    render={(value: Array<string>) => {
                         if (isLoading) {
                             return <TextField value="Loading..." />;
                         }
-
                         return (
-                            <TextField
-                                value={
-                                    data?.data.find((item) => item.id === value)
-                                        ?.title
-                                }
-                            />
+                            <>
+                                {value?.map((tagId) => (
+                                    <Tag key={tagId}>
+                                        {
+                                            data?.data.find(
+                                                (item) => item.id == tagId,
+                                            )?.title
+                                        }
+                                    </Tag>
+                                ))}
+                            </>
                         );
                     }}
                 />

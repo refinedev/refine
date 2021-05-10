@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
     Create,
     Form,
@@ -6,7 +6,8 @@ import {
     IResourceComponentsProps,
     Select,
     useForm,
-    useSelect,
+    useCheckboxGroup,
+    Checkbox,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -14,13 +15,19 @@ import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ITag } from "interfaces";
 
 export const PostCreate = (props: IResourceComponentsProps) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
+    const {
+        checkboxGroupProps: tagsCheckboxGroupProps,
+    } = useCheckboxGroup<ITag>({
+        resource: "tags",
+        sort: {
+            field: "title",
+            order: "ascend",
+        },
     });
 
     const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
@@ -42,19 +49,15 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Category"
-                    name={["category", "id"]}
+                    label="Tag"
+                    name={"tags"}
                     rules={[
                         {
                             required: true,
                         },
                     ]}
                 >
-                    <Select
-                        showSearch
-                        filterOption={false}
-                        {...categorySelectProps}
-                    />
+                    <Checkbox.Group {...tagsCheckboxGroupProps} />
                 </Form.Item>
                 <Form.Item
                     label="Status"

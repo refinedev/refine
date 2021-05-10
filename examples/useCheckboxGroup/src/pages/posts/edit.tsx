@@ -6,7 +6,8 @@ import {
     IResourceComponentsProps,
     Select,
     useForm,
-    useSelect,
+    useCheckboxGroup,
+    Checkbox,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -14,15 +15,17 @@ import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ITag } from "interfaces";
 
 export const PostEdit = (props: IResourceComponentsProps) => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
     const postData = queryResult?.data?.data;
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-        defaultValue: postData?.category.id,
+    const {
+        checkboxGroupProps: tagsCheckboxGroupProps,
+    } = useCheckboxGroup<ITag>({
+        resource: "tags",
+        defaultValue: postData?.tags,
     });
 
     const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
@@ -44,19 +47,15 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Category"
-                    name={["category", "id"]}
+                    label="Tags"
+                    name={["tags"]}
                     rules={[
                         {
                             required: true,
                         },
                     ]}
                 >
-                    <Select
-                        showSearch
-                        filterOption={false}
-                        {...categorySelectProps}
-                    />
+                    <Checkbox.Group {...tagsCheckboxGroupProps} />
                 </Form.Item>
                 <Form.Item
                     label="Status"

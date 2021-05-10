@@ -3,11 +3,12 @@ import {
     Show,
     Typography,
     IResourceComponentsProps,
-    useOne,
     MarkdownField,
+    useMany,
+    Tag,
 } from "@pankod/refine";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ITag } from "interfaces";
 
 const { Title, Text } = Typography;
 
@@ -16,15 +17,18 @@ export const PostShow = (props: IResourceComponentsProps) => {
     const { data, isLoading } = queryResult;
     const record = data?.data;
 
-    const {
-        data: categoryData,
-        isLoading: categoryIsLoading,
-    } = useOne<ICategory>("categories", record!.category.id, {
-        enabled: !!record,
-    });
+    const { data: tagsData, isLoading: tagsIsLoading } = useMany<ITag>(
+        "tags",
+        record!?.tags,
+        {
+            enabled: record!?.tags.length > 0,
+        },
+    );
+
+    console.log(tagsData?.data);
 
     return (
-        <Show {...props} isLoading={isLoading}>
+        <Show {...props} isLoading={isLoading && tagsIsLoading}>
             {record && (
                 <>
                     <Title level={5}>Id</Title>
@@ -33,14 +37,14 @@ export const PostShow = (props: IResourceComponentsProps) => {
                     <Title level={5}>Title</Title>
                     <Text>{record.title}</Text>
 
-                    <Title level={5}>Category</Title>
-                    <Text>
-                        {categoryIsLoading
-                            ? "Loading..."
-                            : categoryData?.data.title}
-                    </Text>
+                    <Title level={5}>Tags</Title>
+                    {tagsData?.data.map((tag) => (
+                        <Tag key={tag.id}>{tag.title}</Tag>
+                    ))}
 
-                    <Title level={5}>Content</Title>
+                    <Title level={5} style={{ marginTop: "20px" }}>
+                        Content
+                    </Title>
                     <MarkdownField value={record.content} />
                 </>
             )}
