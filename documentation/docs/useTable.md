@@ -16,7 +16,7 @@ import filters from '@site/static/img/filters.gif';
 
 Tabloda göstereceğimiz verinin endpointten şu şekilde geldiğini varsayalım:
 
-```json title="Example GET https://refine-fake-rest.pankod.com/posts"
+```json title="https://refine-fake-rest.pankod.com/posts"
 [
     {
         "id": 182,
