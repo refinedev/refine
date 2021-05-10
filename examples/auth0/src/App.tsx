@@ -1,19 +1,23 @@
-import { Admin, Resource, AuthProvider, Spin } from "@pankod/refine";
+import { Admin, Resource, AuthProvider } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Login } from "pages/login";
+import { Dashboard } from "pages/dashboard";
 
 const API_URL = "https://refine-fake-rest.pankod.com";
 
 const App = () => {
-    const { isLoading, isAuthenticated, user, logout } = useAuth0();
-
-    console.log("isLoading", isLoading);
-    console.log("isAuthenticated", isAuthenticated);
-    console.log("user", user);
+    const {
+        isLoading,
+        isAuthenticated,
+        user,
+        logout,
+        getIdTokenClaims,
+    } = useAuth0();
 
     if (isLoading) {
         return <span>loading...</span>;
@@ -25,8 +29,6 @@ const App = () => {
         },
         logout: async () => {
             logout();
-
-            return Promise.resolve();
         },
         checkError: () => Promise.resolve(),
         checkAuth: async () => {
@@ -37,15 +39,24 @@ const App = () => {
             return Promise.reject();
         },
         getPermissions: () => Promise.resolve(),
-        getUserIdentity: async () => user,
+        getUserIdentity: async () => {
+            return Promise.resolve(user);
+        },
     };
+
+    getIdTokenClaims().then((token) => {
+        axios.defaults.headers.common = {
+            Authorization: `Bearer ${token.__raw}`,
+        };
+    });
 
     return (
         <>
             <Admin
+                DashboardPage={Dashboard}
                 LoginPage={Login}
                 authProvider={authProvider}
-                dataProvider={dataProvider(API_URL)}
+                dataProvider={dataProvider(API_URL, axios)}
             >
                 <Resource
                     name="posts"
