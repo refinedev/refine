@@ -1,7 +1,10 @@
 import {
     List,
     Table,
-    TextField,
+    Radio,
+    FilterDropdown,
+    getDefaultFilter,
+    TagField,
     useTable,
     IResourceComponentsProps,
     getDefaultSortOrder,
@@ -10,13 +13,16 @@ import {
 import { IPost } from "interfaces";
 
 export const PostList = (props: IResourceComponentsProps) => {
-    const { tableProps, sorter } = useTable<IPost>({
+    const { tableProps, sorter, filters } = useTable<IPost>({
         initialSorter: [
             {
                 field: "title",
                 order: "ascend",
             },
         ],
+        initialFilter: {
+            status: ["draft"],
+        },
     });
 
     return (
@@ -35,6 +41,21 @@ export const PostList = (props: IResourceComponentsProps) => {
                     dataIndex="content"
                     title="Content"
                     sorter={{ multiple: 1 }}
+                />
+                <Table.Column
+                    dataIndex="status"
+                    title="Status"
+                    key="status"
+                    render={(value) => <TagField value={value} />}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Radio.Group>
+                                <Radio value="published">Published</Radio>
+                                <Radio value="draft">Draft</Radio>
+                            </Radio.Group>
+                        </FilterDropdown>
+                    )}
+                    defaultFilteredValue={getDefaultFilter("status", filters)}
                 />
             </Table>
         </List>
