@@ -6,11 +6,7 @@ import { TablePaginationConfig, TableProps } from "antd/lib/table";
 import { useResourceWithRoute, useList } from "@hooks";
 import { useSyncWithLocation } from "@hooks/admin";
 import { useNavigation } from "@hooks/navigation";
-import {
-    stringifyTableParams,
-    parseTableParams,
-    merge,
-} from "@definitions/table";
+import { stringifyTableParams, parseTableParams } from "@definitions/table";
 
 import {
     Filters,
@@ -20,7 +16,8 @@ import {
 } from "../../../interfaces";
 
 export type useTableProps = {
-    permanentFilter?: { [key: string]: number[] | string[] };
+    permanentFilter?: Filters;
+    resource?: string;
     initialCurrent?: number;
     initialPageSize?: number;
     initialSorter?: Sort;
@@ -41,11 +38,17 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
     initialSorter,
     initialFilter,
     syncWithLocation = false,
+    resource: resourceFromProp,
 }: useTableProps = {}): useTableReturnType<RecordType> => {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
     if (syncWithLocationContext) {
         syncWithLocation = true;
+    }
+
+    // disable syncWithLocation for custom resource tables
+    if (resourceFromProp) {
+        syncWithLocation = false;
     }
 
     const { search } = useLocation();
@@ -83,7 +86,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
     const { push } = useNavigation();
     const resourceWithRoute = useResourceWithRoute();
 
-    const resource = resourceWithRoute(routeResourceName);
+    const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
     const [sorter, setSorter] = useState<Sort | undefined>(defaultSorter);
     const [filters, setFilters] = useState<Filters | undefined>(defaultFilter);
@@ -96,7 +99,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
 
     const { data, isFetching } = useList<RecordType>(resource.name, {
         pagination: { current: current ?? defaultCurrentSF, pageSize },
-        filters: merge(permanentFilter, filters),
+        filters: { ...filters, ...permanentFilter },
         sort: sorter,
     });
 

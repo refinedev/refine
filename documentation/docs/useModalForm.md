@@ -1,4 +1,5 @@
 ---
+id: useModalForm
 title: useModalForm
 siderbar_label: useModalForm
 ---
@@ -118,11 +119,7 @@ export const PostList (props) => {
                         key="actions"
                         render={(_value, record) => (
                             //highlight-start
-                            <EditButton
-                                size="small"
-                                recordItemId={record.id}
-                                onClick={() => show(record.id)}
-                            />
+                            <EditButton onClick={() => show(record.id)} />
                             //highlight-end
                         )}
                     />
@@ -167,11 +164,7 @@ So, we put the edit buttons on our list. In that way, `<Edit>` form in `<Modal>`
     dataIndex="actions"
     key="actions"
     render={(_value, record) => (
-        <EditButton
-            size="small"
-            recordItemId={record.id}
-            onClick={() => show(record.id)}
-        />
+        <EditButton onClick={() => show(record.id)} />
     )}
 />
 ```

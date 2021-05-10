@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { useAuthenticated, useLogout } from "@hooks";
+import { useAuthenticated } from "@hooks";
 
 export type AuthenticatedProps = {};
 
 export const Authenticated: React.FC<AuthenticatedProps> = ({ children }) => {
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const checkAuth = useAuthenticated();
-    const logout = useLogout();
 
     React.useEffect(() => {
-        checkAuth().catch(() => logout());
-    }, [checkAuth, logout]);
+        checkAuth()
+            .then(() => {
+                setIsAuthenticated(true);
+            })
+            .catch(() => {
+                setIsAuthenticated(false);
+            });
+    }, [checkAuth]);
 
-    return <>{children}</>;
+    return isAuthenticated ? <>{children}</> : null;
 };
