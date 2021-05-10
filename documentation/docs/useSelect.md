@@ -73,7 +73,7 @@ As you can see, you only need to specify the `resource` name and it give you `op
 <br/>
 
 :::caution attention
-If you want to search in the option values you can add `filterOption` props your `<Select`> component.
+By default, `refine` does the search using the `useList` hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://ant.design/components/select/#components-select-demo-search-sort) example.
 :::
 
 `useSelect` uses the `useList` hook for fetching data. Refer to [useList](#) hook for details.
@@ -90,7 +90,7 @@ const { selectProps } = useSelect({
 });
 ```
 
-Sets the default value of `<Select>` component. It uses `useMany` so `defaultValue` can be an array of strings like follows.
+Adds extra `options` to `<Select>` component. It uses `useMany` so `defaultValue` can be an array of strings like follows.
 
 ```ts
 defaultValue: ["1", "2"],
@@ -144,7 +144,7 @@ const { selectProps } = useSelect({
 
 It allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
 
-## Adding Type
+## Add Type
 
 ```tsx title="src/pages/posts/create.tsx"
 import { Form, useSelect } from "@pankod/refine";
