@@ -17,6 +17,7 @@ module.exports = {
                 "useDrawerForm",
                 "useStepsForm",
                 "useTable",
+                "useEditableTable",
             ],
         },
     ],

@@ -372,4 +372,3 @@ export const PostList = (props: IResourceComponentsProps) => {
     );
 };
 ```
-
