@@ -4,91 +4,286 @@ id: multipartUpload
 title: Multipart Upload
 ---
 
-`refine` ile birkaç farklı upload yöntemi vardır. Bunlardan biri de multipart upload yöntemidir. 
+import create from '@site/static/img/multipart-upload-create.jpg';
+import uploadedFile from '@site/static/img/multpipart-upload-uploaded.jpg';
+import edit from '@site/static/img/multipart-upload-edit.jpg';
 
-Base64'e encode ederek dosya yüklemek için [burayı](TODO:url) inceleyebilirsiniz.
+We'll show you how to upload multiple files with `refine`.
 
-### API  
-Dosyaları yüklemek için aşağdaki gibi bir end-pointe ihtihacımız var. 
+Let's start with the `creation form` first.
+
+### Create Form
+
+Let's add the cover field to the post creation form.
+
+```tsx
+export const PostCreate = (props: IResourceComponentsProps) => {
+    const { formProps, saveButtonProps } = useForm<IPost>();
+
+    const apiUrl = useApiUrl();
+
+    return (
+        <Create {...props} saveButtonProps={saveButtonProps}>
+            <Form {...formProps} layout="vertical">
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                // highlight-start
+                <Form.Item label="Cover">
+                    <Form.Item
+                        name="cover"
+                        valuePropName="fileList"
+                        getValueFromEvent={normalizeFile}
+                        noStyle
+                    >
+                        <Upload.Dragger
+                            name="file"
+                            action={`${apiUrl}/media/upload`}
+                            listType="picture"
+                            maxCount={5}
+                            multiple
+                        >
+                            <p className="ant-upload-text">
+                                Drag & drop a file in this area
+                            </p>
+                        </Upload.Dragger>
+                    </Form.Item>
+                </Form.Item>
+                // highlight-end
+            </Form>
+        </Create>
+    );
+};
+```
+
+It looks like this.
+
+<>
+    <div style={{textAlign: "center"}}>
+        <img src={create} />
+    </div>
+    <br/>
+</>
+
+We need now is an upload end-point that accepts multipart uploads. We write this address in the `action` prop of the `Upload` component.
 
 :::tip
-Bu end-point mutlaka **Content-type:** multipart/form-data olmalıdır ve `Form Data` binary kabul etmelidir. 
+We can reach the api url by using the `useApiUrl` hook.  
 :::
 
 **Method:** POST  
-**Path:** /upload  
+**Path:** /media/upload  
 **Content-type:** multipart/form-data  
 **Form Data:** file: binary
 
-**Response:**
-```json
+This end-point should respond similarly.
+
+```json title="[POST] /media/upload"
 {
     "fileUrl": "https://example.com/uploaded-file.jpeg"
-} 
+}
 ```
 
-### Client
+<>
+    <div style={{textAlign: "center"}}>
+        <img src={uploadedFile} />
+    </div>
+    <br/>
+</>
 
-UI'da bir upload alanı oluşturmak için aşağıdaki formItem'ı `<Form>` tag'i içine eklemeliyiz. 
+:::important
+We have to use the `normalizeFile` method to convert the uploaded files to [Antd UploadFile](https://ant.design/components/upload/#UploadFile) object.
+:::
 
-```tsx
-import { Form, Upload, normalizeFile, useApiUrl } from "@pankod/refine";
+This data is sent to the API when form submitted.
 
-const apiUrl = useApiUrl();
-
-<Form.Item label="Cover">
-    <Form.Item
-        name="cover"
-        valuePropName="fileList"
-        getValueFromEvent={normalizeFile}
-        noStyle
-    >
-        <Upload.Dragger
-            name="file"
-            action={`${apiUrl}/media/upload`}
-            listType="picture"
-            maxCount={2}
-            multiple
-        >
-            <p className="ant-upload-text">
-                Drag & drop a file in this area
-            </p>
-        </Upload.Dragger>
-    </Form.Item>
-</Form.Item>
+```json title="[POST] https://refine-fake-rest.pankod.com/posts"
+{
+    "title":"Test",
+    "cover": [
+        {
+            "uid":"rc-upload-1620630541327-7",
+            "name":"greg-bulla-6RD0mcpY8f8-unsplash.jpg",
+            "url":"https://refine.ams3.digitaloceanspaces.com/78c82c0b2203e670d77372f4c20fc0e2",
+            "type":"image/jpeg",
+            "size":70922,
+            "percent":100,
+            "status":"done"
+        }
+    ],
+}
 ```
 
-**Dikkat edilmesi gerekenler; **
+:::important
+The following data are required for the [Antd Upload](https://ant.design/components/upload) component and all should be saved.
+:::
 
-- `getValueFromEvent={normalizeFile}` kullanılarak upload edilen dosyaların `normalizeFile`dan geçirilmelidir.
-- `Upload`'ın `name` prop'u API'a binary olarak gönderilecek file'ın key'ini temsil eder.
-- `Upload`'in `action` prop'una yüklenecek dosyaların post edileceği url yazılmalıdır.
+| Property | Description  |
+| -------- | ------------ |
+| uid      | Unique id    |
+| name     | File Name    |
+| url      | Download url |
+| status   | error, success, done, uploading, removed |
 
-:::tip
-API'ın url'ini `useApiUrl` hook'u ile alınabilir.
-::: 
+### Edit Form
 
-- Diğer prop özellikleri ve detaylı bilgi için 
-[Antd Upload](https://ant.design/components/upload) component'ini inceleyebilirsiniz.
-
-### isLoading State'ini yakalamak
-
-Dosya upload'ı sürerken form'daki `Kaydet` butonunu disable etmek isteyebilirsiniz. Bunun için `useFileUploadState` hook'unu kullanabilirsiniz.
-
-Bu hook `onChange` ve `isLoading` döner. `onChange`'i upload componentine eklemelisiniz.
+Let's add the cover field to the post editing form.
 
 ```tsx
-<Upload.Dragger
-    ...
-    onChange={onChange} >
-/>
+export const PostEdit = (props: IResourceComponentsProps) => {
+    const { formProps, saveButtonProps } = useForm<IPost>();
+
+    const apiUrl = useApiUrl();
+
+    return (
+        <Edit {...props} saveButtonProps={saveButtonProps}>
+            <Form {...formProps} layout="vertical">
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                // highlight-start
+                <Form.Item label="Cover">
+                    <Form.Item
+                        name="cover"
+                        valuePropName="fileList"
+                        getValueFromEvent={normalizeFile}
+                        noStyle
+                    >
+                        <Upload.Dragger
+                            name="file"
+                            action={`${apiUrl}/media/upload`}
+                            listType="picture"
+                            maxCount={5}
+                            multiple
+                        >
+                            <p className="ant-upload-text">
+                                Drag & drop a file in this area
+                            </p>
+                        </Upload.Dragger>
+                    </Form.Item>
+                </Form.Item>
+                // highlight-end
+            </Form>
+        </Edit>
+    );
+};
 ```
 
-Daha sonra `isLoading`'i istediğiniz yerde kullanabilirsiniz. Biz örnek olarak `Save` butonunda kullanalım.
+<>
+    <div style={{textAlign: "center"}}>
+        <img src={edit} />
+    </div>
+<br/>
+</>
 
-```tsx
-<SaveButton
-    ...
-    loading={isLoading}
-/>
+A request as below is sent for edit form.
+
+```json title="[GET] https://refine-fake-rest.pankod.com/posts/1"
+{
+    "id": 1,
+    "title": "Test",
+    "cover": [
+        {
+            "uid": "rc-upload-1620630541327-7",
+            "name": "greg-bulla-6RD0mcpY8f8-unsplash.jpg",
+            "url": "https://refine.ams3.digitaloceanspaces.com/78c82c0b2203e670d77372f4c20fc0e2",
+            "type": "image/jpeg",
+            "size": 70922,
+            "percent": 100,
+            "status": "done"
+        }
+    ],
+}
+```
+
+This data is sent to the API when form submitted.
+
+```json title="[PUT] https://refine-fake-rest.pankod.com/posts/1"
+{
+    "title": "Test",
+    "cover": [
+        {
+            "uid": "rc-upload-1620630541327-7",
+            "name": "greg-bulla-6RD0mcpY8f8-unsplash.jpg",
+            "url": "https://refine.ams3.digitaloceanspaces.com/78c82c0b2203e670d77372f4c20fc0e2",
+            "type": "image/jpeg",
+            "size": 70922,
+            "percent": 100,
+            "status": "done"
+        }
+    ]
+}
+```
+
+### Uploading State
+
+You may want to disable the "Save" button in the form while the upload continues. You can use the `useFileUploadState` hook for this.
+
+
+```tsx {4,9-12,38}
+export const PostCreate = (props: IResourceComponentsProps) => {
+    const { formProps, saveButtonProps } = useForm<IPost>();
+
+    const { isLoading, onChange } = useFileUploadState();
+
+    const apiUrl = useApiUrl();
+
+    return (
+        <Create {...props} saveButtonProps={{
+                ...saveButtonProps,
+                disabled: isLoading,
+            }}>
+            <Form {...formProps} layout="vertical">
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Cover">
+                    <Form.Item
+                        name="cover"
+                        valuePropName="fileList"
+                        getValueFromEvent={normalizeFile}
+                        noStyle
+                    >
+                        <Upload.Dragger
+                            name="file"
+                            action={`${apiUrl}/media/upload`}
+                            listType="picture"
+                            maxCount={5}
+                            multiple
+                            onChange={onChange}
+                        >
+                            <p className="ant-upload-text">
+                                Drag & drop a file in this area
+                            </p>
+                        </Upload.Dragger>
+                    </Form.Item>
+                </Form.Item>
+            </Form>
+        </Create>
+    );
+};
 ```
