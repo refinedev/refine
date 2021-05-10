@@ -17,6 +17,8 @@ Let's start with the `creation form` first.
 Let's add the cover field to the post creation form.
 
 ```tsx
+import { normalizeFile } from '@pankod/refine';
+
 export const PostCreate = (props: IResourceComponentsProps) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
@@ -64,6 +66,10 @@ export const PostCreate = (props: IResourceComponentsProps) => {
 };
 ```
 
+:::tip
+We can reach the api url by using the `useApiUrl` hook.  
+:::
+
 It looks like this.
 
 <>
@@ -75,15 +81,16 @@ It looks like this.
 
 We need now is an upload end-point that accepts multipart uploads. We write this address in the `action` prop of the `Upload` component.
 
-:::tip
-We can reach the api url by using the `useApiUrl` hook.  
-:::
-
 ```json title="[POST] /media/upload"
 {
     file: binary
 }
 ```
+
+:::important
+This end-point should be `Content-type: multipart/form-data` and `Form Data: file: binary`.
+:::
+
 
 This end-point should respond similarly.
 
@@ -139,6 +146,8 @@ The following data are required for the [Antd Upload](https://ant.design/compone
 Let's add the cover field to the post editing form.
 
 ```tsx
+import { normalizeFile } from '@pankod/refine';
+
 export const PostEdit = (props: IResourceComponentsProps) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
@@ -237,19 +246,25 @@ This data is sent to the API when form submitted.
 You may want to disable the "Save" button in the form while the upload continues. You can use the `useFileUploadState` hook for this.
 
 
-```tsx {4,9-12,38}
+```tsx
+import { normalizeFile, useFileUploadState } from '@pankod/refine';
+
 export const PostCreate = (props: IResourceComponentsProps) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
+    // highlight-start
     const { isLoading, onChange } = useFileUploadState();
+    // highlight-end
 
     const apiUrl = useApiUrl();
 
     return (
+        // highlight-start
         <Create {...props} saveButtonProps={{
                 ...saveButtonProps,
                 disabled: isLoading,
             }}>
+        // highlight-end
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
@@ -275,7 +290,9 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                             listType="picture"
                             maxCount={5}
                             multiple
+                            // highlight-start
                             onChange={onChange}
+                            // highlight-end
                         >
                             <p className="ant-upload-text">
                                 Drag & drop a file in this area
