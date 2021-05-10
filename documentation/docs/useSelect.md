@@ -7,7 +7,7 @@ siderbar_label: useSelect
 import basicUsage from '@site/static/img/use-select-basic-usage.png'
 import search from '@site/static/img/use-select-search.png'
 
-The `useSelect` hook allows you manage a Ant Design [Select](https://ant.design/components/select/) component. All we have to do is pass the `selectProps` it return to the `<Select>` component. In addition, we can use the `queryResult` and `defaultValueQueryResult` value it returns to us.
+The `useSelect` hook allows you to manage an Ant Design [Select](https://ant.design/components/select/) component when records in a resource needs to be used as options. All we have to do is pass the `selectProps` it returns to the `<Select>` component. In addition, we can use the `queryResult` and `defaultValueQueryResult` value it returns to us.
 
 Now let's examine what `useSelect` does, with step-by-step examples. So let's start by suppose our `dataProvider` has an endpoint that returns categories as follows.
 
@@ -65,7 +65,7 @@ export const PostCreate = (props) => {
 </div>
 <br/>
 
-As you can see, you only need to specify the `resource` name and it give you `options` to the `<Select`> component.
+As you can see, `useSelect` fetches data from API with given `resource` endpoint name and then returns properly formatted `options` value for `<Select>` component.
 
 <div style={{textAlign: "center"}}>
     <img src={search} />
