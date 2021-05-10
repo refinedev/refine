@@ -60,28 +60,6 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                     <Checkbox.Group {...tagsCheckboxGroupProps} />
                 </Form.Item>
                 <Form.Item
-                    label="Status"
-                    name="status"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                        ]}
-                    />
-                </Form.Item>
-                <Form.Item
                     label="Content"
                     name="content"
                     rules={[
