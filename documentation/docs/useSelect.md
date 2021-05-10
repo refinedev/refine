@@ -38,7 +38,7 @@ Now let's see how we fetch this data and give it to `<Select>` component as `opt
 Refer to Ant Design [Select](#) component documentation for detailed info for `options`.
 
 ```tsx title="src/pages/posts/create.tsx"
-import { Form, useSelect } from "@pankod/refine";
+import { Form, Select, useSelect } from "@pankod/refine";
 
 export const PostCreate = (props) => {
     //highlight-start
