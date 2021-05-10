@@ -9,7 +9,7 @@ import tableSorting from '@site/static/img/table-sorting.gif';
 
 ## Basit Kullanım
 
-Örneğin, `id` ve `title` değerlerini gösterdiğimiz bir listeleme sayfası yapmak istersek:
+Örneğin, `id`, `title` ve `content` değerlerini gösterdiğimiz bir listeleme sayfası yapmak istersek:
 
 ```tsx title="/src/interfaces/index.d.ts"
 export interface IPost {
@@ -99,6 +99,11 @@ export const PostList = (props: IResourceComponentsProps) => {
                     //highlight-next-line
                     sorter={{ multiple: 1 }}
                 />
+                <Table.Column
+                    key="content"
+                    dataIndex="content"
+                    title="Content"
+                />
             </Table>
         </List>
     );
@@ -123,3 +128,6 @@ const { tableProps, sorter } = useTable<IPost>({
     ],
 });
 ```
+
+`initialSorter` ayarı ile, hangi `field`ın hangi sıralama durumuyla başlayacağını (`"ascend"`, `"descend"`, `undefined`) seçebilirsiniz.
+
