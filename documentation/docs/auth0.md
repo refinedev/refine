@@ -51,7 +51,7 @@ See the [**Auth0 docs**](https://auth0.com/docs) for detailed information and `C
 :::
 
 
-### Create login page
+### Override login page
 
 First, we need to override the refine, `login page`. In this way, we will redirect it to the auth0 login screen. We create a `login.tsx` file in the `/pages` folder.
 
@@ -108,3 +108,79 @@ Clicking the `Login with Auth0` button, you will be directed to the auth0 login 
     <img src={login} />
 </div>
 <br/>
+
+### Auth Provider
+
+In refine, Authentication and Authorization processes are performed with the auth provider. Let's write a provider for Auth0.
+
+```tsx title="App.tsx"
+import { useAuth0 } from "@auth0/auth0-react";
+
+import { Login } from "pages/login";
+
+const API_URL = "https://refine-fake-rest.pankod.com";
+
+const App = () => {
+    const { isLoading, isAuthenticated, user, logout } = useAuth0();
+
+    if (isLoading) {
+        return <span>loading...</span>;
+    }
+
+    // highlight-start
+    const authProvider: AuthProvider = {
+        login: async () => {
+            return Promise.resolve();
+        },
+        logout: async () => {
+            logout();
+        },
+        checkError: () => Promise.resolve(),
+        checkAuth: async () => {
+            if (isAuthenticated) {
+                return Promise.resolve();
+            }
+
+            return Promise.reject();
+        },
+        getPermissions: () => Promise.resolve(),
+        getUserIdentity: async () => {
+            return Promise.resolve(user);
+        },
+    };
+    // highlight-end
+
+    return (
+        <Admin
+                LoginPage={Login}
+                authProvider={authProvider}
+                dataProvider={dataProvider(API_URL)}
+            >
+        ...
+        </Admin>
+    );
+};
+
+export default App;
+```
+
+#### login
+
+We overrided the login page and handed it over to auth0 completely. That's why we're returning to an empty promise.
+
+#### logout
+
+Logout method comes from `useAuth0` hook.
+
+#### checkError & getPermissions
+
+We revert to empty promise because Auth0 does not support it.
+
+#### checkAuth
+
+We can use the `isAuthenticated` method, which returns the authentication status of the `useAuth0` hook.
+
+#### getUserIdentity
+
+We can use it with the `user` from the `useAuth0` hook.
+
