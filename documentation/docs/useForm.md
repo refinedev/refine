@@ -67,7 +67,7 @@ export const PostEdit = (props: IResourceComponentsProps) => {
 ```
 
 ```tsx
-   const { formProps, saveButtonProps } = useForm<IPost>();
+const { formProps, saveButtonProps } = useForm<IPost>();
 ```
 
 `formProps` includes all necessary values to manage Ant-design Form components. 
@@ -87,13 +87,15 @@ Submit functionality is provided by `saveButtonProps` which includes all necessa
 
 `useForm` can handle edit, create and clone actions. 
 
+:::tip
 By default it determines the action from route. In the example the route is `/resources/posts/edit/1234` thus this is an editing form.  
-Also it can take an action parameter for the situations where it isn't possible to determine the action from route i.e. using a form in a modal, using a custom route.
+::: 
+
+It can take an `action` parameter for the situations where it isn't possible to determine the action from route i.e. using a form in a modal, using a custom route.
 
 ```tsx
-const { formProps, saveButtonProps } = useForm<IPost>({action: "edit"}); // "create" || "clone"
+const { formProps, saveButtonProps } = useForm({ action: "edit" });
 ```
-
 
 ### `action: "edit"`
 
@@ -101,10 +103,28 @@ Used for editing an existing record. Form initially will be filled with the data
 ### `action: "create"`
 
 Used for creating a new record that didn't exist before.
-### `action: "clone"`
 
-Used for creating a new record taking the data of an existing record as initial values. Form will be filled with those initial values.
+### Clone mode
+When creating a new record, `useForm` can initialize the form with the data of an existing record.
 
+`useForm` works on clone mode when route has a `create` and `id` params like `resources/create/1234`.  
+Alternatively, if route doesn't have those params, action can be set with `action: "create"` and id can be set with `setCloneId`.
+
+```tsx
+const { setCloneId } = useForm();
+```
+:::tip 
+If you want to show a form in a modal you can use [useModalForm](#) hook.
+:::
+
+:::tip 
+`<CloneButton>` can be used to navigate to a create route with id like `resources/create/1234`.
+
+```tsx
+<CloneButton recordItemId={record.id} />
+```
+
+:::
 ## Resource
 ### mutationMode
 ### onMutationSuccess
@@ -124,34 +144,14 @@ Used for creating a new record taking the data of an existing record as initial 
 ### formLoading
 
 
-<table>
-  <thead>
-    <tr>
-      <th>Key</th>
-      <th>Description</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>modalProps</td>
-      <td>antd Modal props</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>show</td>
-      <td>Specify a function that can open the modal</td>
-      <td>() => void</td>
-    </tr>
-    <tr>
-      <td>close</td>
-      <td>Specify a function that can close the modal</td>
-      <td>() => void</td>
-    </tr>
-    <tr>
-      <td>visible</td>
-      <td>Whether the modal dialog is visible or not</td>
-      <td>boolean</td>
-    </tr>
-  </tbody>
-</table>
+| Property               | Description                          | Type                                                              |
+| ---------------------- | ------------------------------------ | ----------------------------------------------------------------- |
+| action                 | Type of form mode                    | `"edit"` \| `"create"`                                            |
+| resource               | [`Resource`](#) for API data interactions | `string`                                                          |
+| onMutationSuccess      |                                      | `(data: UpdateResponse<M>, variables: any, context: any) => void` |
+| onMutationError        |                                      |                                                                   |
+| mutationMode           |                                      |                                                                   |
+| submitOnEnter          |                                      |                                                                   |
+| warnWhenUnsavedChanges |                                      |                                                                   |
+| redirect               |                                      |                                                                   |
+| undoableTimeout        |                                      |                                                                   |
