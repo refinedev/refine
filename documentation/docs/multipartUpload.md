@@ -79,10 +79,11 @@ We need now is an upload end-point that accepts multipart uploads. We write this
 We can reach the api url by using the `useApiUrl` hook.  
 :::
 
-**Method:** POST  
-**Path:** /media/upload  
-**Content-type:** multipart/form-data  
-**Form Data:** file: binary
+```json title="[POST] /media/upload"
+{
+    file: binary
+}
+```
 
 This end-point should respond similarly.
 
