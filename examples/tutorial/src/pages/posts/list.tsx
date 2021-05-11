@@ -37,11 +37,7 @@ export const PostList = (props: IResourceComponentsProps) => {
     return (
         <List {...props}>
             <Table {...tableProps} rowKey="id">
-                <Table.Column
-                    dataIndex="title"
-                    title="title"
-                    render={(value) => <TextField value={value} />}
-                />
+                <Table.Column dataIndex="title" title="title" />
                 <Table.Column
                     dataIndex="status"
                     title="status"
