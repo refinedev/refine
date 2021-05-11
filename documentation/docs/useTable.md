@@ -88,10 +88,12 @@ export const PostList = (props: IResourceComponentsProps) => {
 };
 ```
 
-`<Table.Column>` componentinin `dataIndex` propuna verilen değer, endpointten dönen verilerde, o sütunda gösterilecek olan değerin anahtarının adıdır.
-
 :::tip
 `<Admin>` componentine verilen `<Resource>` üzerindeki bir sayfada, `useTable` hangi kaynağın gösterileceğinin çıkarımını otomatik olarak yapar. Başka bir kaynağın verilerini göstermek isterseniz, `useTable(options)` hookunun aldığı opsiyon nesnesindeki `resource: string` opsiyonu ile başka bir `resource`a ait endpointten gelen verileri gösterebilirsiniz.
+:::
+
+:::tip
+Eğer `resource` verilmişse, `syncWithLocation` çalışmaz.
 :::
 
 ## Sıralama
