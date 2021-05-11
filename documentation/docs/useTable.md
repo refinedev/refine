@@ -17,13 +17,13 @@ Tabloda göstereceğimiz verinin endpointten şu şekilde geldiğini varsayalım
     {
         "id": 182,
         "title": "A aspernatur rerum molestiae.",
-        "content": "Natus molestias incidunt voluptatibus. Libero delectus facilis. Voluptates minus eius adipisci a. Voluptas voluptates distinctio et voluptatem omnis distinctio. Et ab cupiditate itaque inventore. Est possimus maxime dolores maxime ut rerum occaecati dolores. Totam voluptas incidunt. Et blanditiis iure dolorem. Laboriosam repellendus voluptatem nostrum qui voluptatem aspernatur repellat cupiditate dolorem. Nisi voluptatum qui illum exercitationem minima ut quo.",
+        "content": "Natus molestias incidunt voluptatibus. Libero delectus facilis...",
         "status": "published",
     },
     {
         "id": 989,
         "title": "A molestiae vel voluptatem enim.",
-        "content": "Voluptas consequatur quia beatae. Ipsa est qui culpa deleniti. Voluptate distinctio est qui voluptatibus repellat incidunt. Qui sunt reprehenderit aliquid delectus illum aspernatur ad rem. Qui dicta voluptatibus reprehenderit provident minus aut consequatur aliquid impedit. Eligendi repudiandae consequatur eum officia sunt. Rerum tempora beatae exercitationem. Recusandae deleniti soluta cumque ut amet consectetur. Animi quisquam ut iure aut minima sint rerum velit quam. Ipsum in ratione aut quia maxime dignissimos dolores.",
+        "content": "Voluptas consequatur quia beatae. Ipsa est qui culpa deleniti...",
         "status": "draft",
         "createdAt": "2020-01-28T02:57:58.892Z",
     },
