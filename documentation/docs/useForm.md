@@ -29,22 +29,12 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                 <Form.Item
                     label="Title"
                     name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item
                     label="Status"
                     name="status"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
                 >
                     <Select
                         options={[
@@ -151,7 +141,7 @@ const { clone } = useNavigation()
 | undoableTimeout        | Duration to wait before executing mutations when `mutationMode = "undoable"`                       | `number`                                                          | `5000`*          |
 
 :::caution important
-`*`: These props have default values in `AdminContext` and can also be set on `<Admin>` component. `useForm` will see what is passed to `<Admin>` as default and can override locally.
+`*`: These props have default values in `AdminContext` and can also be set on **<[Admin](Admin)>** component. `useForm` will see what is passed to `<Admin>` as default and can override locally.
 :::
 <br/>
 
