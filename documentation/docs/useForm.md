@@ -133,18 +133,21 @@ const { clone } = useNavigation()
 
 ### Properties
 
-| Property               | Description                                                                                        | Type                                                              |
-| ---------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| action                 | Type of form mode                                                                                  | `"edit"` \| `"create"`                                            |
-| resource               | [`Resource`](#) for API data interactions                                                          | `string`                                                          |
-| onMutationSuccess      | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful       | `(data: UpdateResponse<M>, variables: any, context: any) => void` |
-| onMutationError        | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error | `(error: any, variables: any, context: any) => void`              |
-| mutationMode           | [Determines when mutations are executed](#)                                                        | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  |
-| submitOnEnter          | Listen `Enter` key press to submit form                                                            | `boolean`                                                         |
-| warnWhenUnsavedChanges | Shows notification when unsaved changes exist                                                      | `boolean`                                                         |
-| redirect               | Page to redirect after succesfull mutation                                                         | ` "show` \| `"edit` \| `"list"` \| `false`                        |
-| undoableTimeout        | Duration to wait before executing mutations when `mutationMode = "undoable"`                       | `number`                                                          |
+| Property               | Description                                                                                        | Type                                                              | Default          |
+| ---------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ---------------- |
+| action                 | Type of form mode                                                                                  | `"edit"` \| `"create"`                                            |                  |
+| resource               | [`Resource`](#) for API data interactions                                                          | `string`                                                          |                  |
+| onMutationSuccess      | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful       | `(data: UpdateResponse<M>, variables: any, context: any) => void` |                  |
+| onMutationError        | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error | `(error: any, variables: any, context: any) => void`              |                  |
+| mutationMode           | [Determines when mutations are executed](#)                                                        | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`* |
+| submitOnEnter          | Listen `Enter` key press to submit form                                                            | `boolean`                                                         | `false`          |
+| warnWhenUnsavedChanges | Shows notification when unsaved changes exist                                                      | `boolean`                                                         | `false`*         |
+| redirect               | Page to redirect after succesfull mutation                                                         | ` "show` \| `"edit` \| `"list"` \| `false`                        | `"list"`         |
+| undoableTimeout        | Duration to wait before executing mutations when `mutationMode = "undoable"`                       | `number`                                                          | `5000`*          |
 
+:::caution important
+`*`: These props have default values in `AdminContext` and can also be set on `<Admin>` component. `useForm` will see what is passed to `<Admin>` as default and can override locally.
+:::
 <br/>
 
 ### Return values
