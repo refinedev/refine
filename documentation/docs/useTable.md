@@ -8,10 +8,6 @@ import filters from '@site/static/img/filters.gif';
 
 `useTable` kullanarak, API'dan gelen kayıtlarınız için Ant Design [`<Table>`](https://ant.design/components/table/) component'ine uygun şekilde proplar elde edersiniz. Sayfalama, sıralama, filtreleme gibi özelliklerin tamamı out of the box olarak gelir.
 
-:::tip 
-`useTable`, verdiğiniz kaynağın verilerini çekerken `useMany` kullanır.
-:::
-
 ## Basit Kullanım
 
 Tabloda göstereceğimiz verinin endpointten şu şekilde geldiğini varsayalım:
@@ -89,11 +85,9 @@ export const PostList = (props: IResourceComponentsProps) => {
 ```
 
 :::tip
-`<Admin>` componentine verilen `<Resource>` üzerindeki bir sayfada, `useTable` hangi kaynağın gösterileceğinin çıkarımını otomatik olarak yapar. Başka bir kaynağın verilerini göstermek isterseniz, `useTable(options)` hookunun aldığı opsiyon nesnesindeki `resource: string` opsiyonu ile başka bir `resource`a ait endpointten gelen verileri gösterebilirsiniz.
-:::
+`<Admin>` componentine verilen `<Resource>` üzerindeki bir sayfada, `useTable` hangi kaynağın gösterileceğinin çıkarımını otomatik olarak yapar. Başka bir kaynağın verilerini göstermek isterseniz, `useTable(options)` hookunun aldığı opsiyon nesnesindeki `resource: string` opsiyonu ile başka bir `resource`a ait endpointten gelen verileri gösterebilirsiniz. Eğer `resource` opsiyonu verilmişse, `syncWithLocation` çalışmaz.
 
-:::tip
-Eğer `resource` verilmişse, `syncWithLocation` çalışmaz.
+`useTable`, verdiğiniz kaynağın verilerini çekerken `useMany` kullanır.
 :::
 
 ## Sıralama
