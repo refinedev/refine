@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    Create,
+    Edit,
     Form,
     Input,
     IResourceComponentsProps,
@@ -30,7 +30,7 @@ export const PostEdit = (props: IResourceComponentsProps) => {
     );
 
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
+        <Edit {...props} saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
@@ -52,11 +52,7 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                         },
                     ]}
                 >
-                    <Select
-                        showSearch
-                        filterOption={false}
-                        {...categorySelectProps}
-                    />
+                    <Select {...categorySelectProps} />
                 </Form.Item>
                 <Form.Item
                     label="Status"
@@ -100,6 +96,6 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                     />
                 </Form.Item>
             </Form>
-        </Create>
+        </Edit>
     );
 };
