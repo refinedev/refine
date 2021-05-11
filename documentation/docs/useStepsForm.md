@@ -6,9 +6,9 @@ title: useStepsForm
 
 import useStepsFormExample from '@site/static/img/use-steps-form-example.gif';
 
-`refine`'s `useStepsForm` hook allows you to split your form under an ant-design based [Steps](https://ant.design/components/steps/) component and provides you with a few useful values to help you manage your form. 
+`refine`'s `useStepsForm` hook allows you to split your form under an ant-design based [Steps](https://ant.design/components/steps/) component and provides you with a few useful values to help you manage your form.
 
-All we have to do is to pass the props it returns to our `<Steps>` and `<Form>` components. 
+All we have to do is to pass the props it returns to our `<Steps>` and `<Form>` components.
 
 ## Example
 
@@ -38,7 +38,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
 }
 ```
 
-`useStepsForm` is generic over the type form data to help you type check your code. 
+`useStepsForm` is generic over the type form data to help you type check your code.
 
 ```ts title="src/interfaces.d.ts"
 export interface ICategory {
@@ -89,11 +89,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                     },
                 ]}
             >
-                <Select
-                    showSearch
-                    filterOption={false}
-                    {...categorySelectProps}
-                />
+                <Select {...categorySelectProps} />
             </Form.Item>
         </>,
     ];
@@ -101,7 +97,8 @@ export const PostCreate = (props: IResourceComponentsProps) => {
     ...
 }
 ```
-:::tip 
+
+:::tip
 Since `category` is a relational data, we use `useSelect` to fetch its data.
 
 Refer to [useSelect](#useSelect) documentation for detailed usage.
@@ -117,7 +114,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
         saveButtonProps={saveButtonProps}
     >
         //highlight-start
-        // make sure to add as much <Step> components 
+        // make sure to add as much <Step> components
         // as the number of steps in `formList` array
         <Steps {...stepsProps}>
             <Step title="First Step" />
@@ -132,8 +129,8 @@ export const PostCreate = (props: IResourceComponentsProps) => {
 }
 ```
 
-:::tip 
-In this example, we're building a page for creating new resources using `<Create>` component. You can build an edit page with `<Edit>` component, without modifying any code in the rest of this example. 
+:::tip
+In this example, we're building a page for creating new resources using `<Create>` component. You can build an edit page with `<Edit>` component, without modifying any code in the rest of this example.
 :::
 
 To help users navigate between pages in the form, you can use action buttons. Your navigation buttons should use `gotoStep` function that was previously returned from the `useStepsForm` hook.
