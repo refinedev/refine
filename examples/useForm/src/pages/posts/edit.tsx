@@ -43,11 +43,7 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                         },
                     ]}
                 >
-                    <Select
-                        showSearch
-                        filterOption={false}
-                        {...categorySelectProps}
-                    />
+                    <Select {...categorySelectProps} />
                 </Form.Item>
                 <Form.Item
                     label="Status"

@@ -10,10 +10,9 @@ title: useForm
 
 We'll show the basic usage of `useForm` by adding an editing form.
 
-
 ```tsx title="pages/posts/edit.tsx"
   //highlight-next-line
-import { Edit, Form, Input, IResourceComponentsProps, useForm } from "@pankod/refine";
+import { Edit, Form, Input, IResourceComponentsProps, useForm, Select } from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
@@ -72,8 +71,6 @@ const { formProps, saveButtonProps } = useForm<IPost>();
 
 `formProps` includes all necessary values to manage Ant-design Form components. 
 
-
-
 In the example if you navigate to `/resources/posts/edit/1234` it will manage the data of the post with id `1234` in an editing context. See [Actions](#actions) on how `useForm` determines this is an editing context.
 
 Since this is an edit form it will fill the form with the data of the post with id `1234` and then the form will be ready to edit further and submit the changes. 
@@ -114,7 +111,7 @@ Alternatively, if route doesn't have those params, action can be set with `actio
 const { setCloneId } = useForm();
 ```
 :::tip 
-If you want to show a form in a modal you can use [useModalForm](#) hook.
+If you want to show a form in a modal or drawer where necessary route params might not be there you can use [useModalForm](useModalForm) or [useDrawerForm](useDrawerForm) hook.
 :::
 
 :::tip 
@@ -128,7 +125,7 @@ Also `clone` method from [useNavigation](#) hook can be used too.
 ```tsx
 const { clone } = useNavigation()
 
-<Button onClick={() => clone("post", "push", record.id)} />
+<Button onClick={() => clone("posts", "push", record.id)} />
 ```
 :::
 
@@ -147,7 +144,6 @@ const { clone } = useNavigation()
 | warnWhenUnsavedChanges | Shows notification when unsaved changes exist                                                      | `boolean`                                                         |
 | redirect               | Page to redirect after succesfull mutation                                                         | ` "show` \| `"edit` \| `"list"` \| `false`                        |
 | undoableTimeout        | Duration to wait before executing mutations when `mutationMode = "undoable"`                       | `number`                                                          |
-
 
 <br/>
 
