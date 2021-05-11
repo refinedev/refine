@@ -20,8 +20,8 @@ export const PostList = (props: IResourceComponentsProps) => {
                 order: "ascend",
             },
         ],
-        permanentFilter: {
-            status: ["published"],
+        initialFilter: {
+            status: ["draft"],
         },
     });
 

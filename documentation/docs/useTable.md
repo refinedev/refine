@@ -21,41 +21,15 @@ Tabloda göstereceğimiz verinin endpointten şu şekilde geldiğini varsayalım
     {
         "id": 182,
         "title": "A aspernatur rerum molestiae.",
-        "slug": "doloremque-animi-saepe",
         "content": "Natus molestias incidunt voluptatibus. Libero delectus facilis. Voluptates minus eius adipisci a. Voluptas voluptates distinctio et voluptatem omnis distinctio. Et ab cupiditate itaque inventore. Est possimus maxime dolores maxime ut rerum occaecati dolores. Totam voluptas incidunt. Et blanditiis iure dolorem. Laboriosam repellendus voluptatem nostrum qui voluptatem aspernatur repellat cupiditate dolorem. Nisi voluptatum qui illum exercitationem minima ut quo.",
-        "category": {
-            "id": 43
-        },
-        "user": {
-            "id": 36
-        },
         "status": "published",
-        "createdAt": "2021-03-23T01:40:50.921Z",
-        "image": [],
-        "tags": [
-            17,
-            4
-        ]
     },
     {
         "id": 989,
         "title": "A molestiae vel voluptatem enim.",
-        "slug": "dolore-quas-et",
         "content": "Voluptas consequatur quia beatae. Ipsa est qui culpa deleniti. Voluptate distinctio est qui voluptatibus repellat incidunt. Qui sunt reprehenderit aliquid delectus illum aspernatur ad rem. Qui dicta voluptatibus reprehenderit provident minus aut consequatur aliquid impedit. Eligendi repudiandae consequatur eum officia sunt. Rerum tempora beatae exercitationem. Recusandae deleniti soluta cumque ut amet consectetur. Animi quisquam ut iure aut minima sint rerum velit quam. Ipsum in ratione aut quia maxime dignissimos dolores.",
-        "category": {
-            "id": 17
-        },
-        "user": {
-            "id": 21
-        },
         "status": "draft",
         "createdAt": "2020-01-28T02:57:58.892Z",
-        "image": [],
-        "tags": [
-            49,
-            5,
-            41
-        ]
     },
 ]
 ```
@@ -63,16 +37,11 @@ Tabloda göstereceğimiz verinin endpointten şu şekilde geldiğini varsayalım
 O halde şöyle bir arayüz bizim için yeterli olur:
 
 ```tsx title="/src/interfaces/index.d.ts"
-interface IPost {
+export interface IPost {
+    id: string;
     title: string;
-    slug: string;
+    content: string;
     status: "published" | "draft";
-    createdAt: string;
-    category: ICategory;
-    user: {
-        id: string;
-    };
-    tags: [{ id: string }];
 }
 ```
 
