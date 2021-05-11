@@ -88,12 +88,12 @@ const { formProps, saveButtonProps } = useForm({ action: "edit" });
 
 Used for editing an existing record. Form initially will be filled with the data of the record.
 
-`useForm` uses [`useUpdate`](data/useUpdate) under the hood for mutations on edit mode.
+`useForm` uses [`useUpdate`](#) under the hood for mutations on edit mode.
 ### `action: "create"`
 
 Used for creating a new record that didn't exist before.
 
-`useForm` uses [`useCreate`](data/useCreate) under the hood for mutations on create mode.
+`useForm` uses [`useCreate`](#) under the hood for mutations on create mode.
 
 
 ### Clone mode
@@ -141,7 +141,7 @@ const { clone } = useNavigation()
 | undoableTimeout        | Duration to wait before executing mutations when `mutationMode = "undoable"`                       | `number`                                                          | `5000`*          |
 
 :::caution important
-`*`: These props have default values in `AdminContext` and can also be set on **<[Admin](Admin)>** component. `useForm` will see what is passed to `<Admin>` as default and can override locally.
+`*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component. `useForm` will see what is passed to `<Admin>` as default and can override locally.
 :::
 <br/>
 
