@@ -123,7 +123,6 @@ export const PostCreate = (props) => {
     //highlight-next-line
     const { queryResult, defaultValueQueryResult } = useCheckboxGroup<ITag>({
         resource: "tags",
-        defaultValue: ["1", "2"],
     });
 };
 ```
