@@ -20,12 +20,7 @@ export const PostShow = (props: IResourceComponentsProps) => {
     const { data: tagsData, isLoading: tagsIsLoading } = useMany<ITag>(
         "tags",
         record!?.tags,
-        {
-            enabled: record!?.tags.length > 0,
-        },
     );
-
-    console.log(tagsData?.data);
 
     return (
         <Show {...props} isLoading={isLoading && tagsIsLoading}>
