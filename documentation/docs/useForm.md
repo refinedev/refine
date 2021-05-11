@@ -123,35 +123,45 @@ If you want to show a form in a modal you can use [useModalForm](#) hook.
 ```tsx
 <CloneButton recordItemId={record.id} />
 ```
+Also `clone` method from [useNavigation](#) hook can be used too.
 
+```tsx
+const { clone } = useNavigation()
+
+<Button onClick={() => clone("post", "push", record.id)} />
+```
 :::
-## Resource
-### mutationMode
-### onMutationSuccess
-### onMutationError
-### submitOnEnter
-### warnWhenUnsavedChanges
-### redirect
-### undoableTimeout
 
-## Returns
+## API Reference
 
-### editId
-### setEditId
-### saveButtonProps
-### queryResult
-### mutationResult
-### formLoading
+### Properties
+
+| Property               | Description                                                                                        | Type                                                              |
+| ---------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| action                 | Type of form mode                                                                                  | `"edit"` \| `"create"`                                            |
+| resource               | [`Resource`](#) for API data interactions                                                          | `string`                                                          |
+| onMutationSuccess      | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful       | `(data: UpdateResponse<M>, variables: any, context: any) => void` |
+| onMutationError        | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error | `(error: any, variables: any, context: any) => void`              |
+| mutationMode           | [Determines when mutations are executed](#)                                                        | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  |
+| submitOnEnter          | Listen `Enter` key press to submit form                                                            | `boolean`                                                         |
+| warnWhenUnsavedChanges | Shows notification when unsaved changes exist                                                      | `boolean`                                                         |
+| redirect               | Page to redirect after succesfull mutation                                                         | ` "show` \| `"edit` \| `"list"` \| `false`                        |
+| undoableTimeout        | Duration to wait before executing mutations when `mutationMode = "undoable"`                       | `number`                                                          |
 
 
-| Property               | Description                          | Type                                                              |
-| ---------------------- | ------------------------------------ | ----------------------------------------------------------------- |
-| action                 | Type of form mode                    | `"edit"` \| `"create"`                                            |
-| resource               | [`Resource`](#) for API data interactions | `string`                                                          |
-| onMutationSuccess      |                                      | `(data: UpdateResponse<M>, variables: any, context: any) => void` |
-| onMutationError        |                                      |                                                                   |
-| mutationMode           |                                      |                                                                   |
-| submitOnEnter          |                                      |                                                                   |
-| warnWhenUnsavedChanges |                                      |                                                                   |
-| redirect               |                                      |                                                                   |
-| undoableTimeout        |                                      |                                                                   |
+<br/>
+
+### Return values
+
+| Property        | Description                                             | Type                                                                             |
+| --------------- | ------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| form            | Ant design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)               |
+| formProps       | Ant design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                          |
+| saveButtonProps | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                  |
+| queryResult     | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)  |
+| mutationResult  | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation) |
+| formLoading     | Loading state of form request                           | `boolean`                                                                        |
+| cloneId         | Record id for clone action                              | `"string"` \| `"number"`                                                         |
+| setCloneId      | `cloneId` setter                                        | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                 |
+| editId          | Record id for edit action                               | `"string"` \| `"number"`                                                         |  |
+| setEditId       | `editId` setter                                         | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                 |
