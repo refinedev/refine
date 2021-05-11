@@ -49,7 +49,7 @@ export const PostCreate = (props) => {
     return (
         <Form>
             ...
-            <Form.Item label="Tags" name={["tags"]}>
+            <Form.Item label="Tags" name="tags">
                 //highlight-next-line
                 <Checkbox.Group {...checkboxGroupProps} />
             </Form.Item>

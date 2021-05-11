@@ -45,7 +45,7 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                 </Form.Item>
                 <Form.Item
                     label="Tags"
-                    name={["tags"]}
+                    name="tags"
                     rules={[
                         {
                             required: true,
