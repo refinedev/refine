@@ -95,7 +95,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                         },
                     ]}
                 >
-                    <Select showSearch filterOption={false} {...selectProps} />
+                    <Select {...selectProps} />
                 </Form.Item>
                 <Form.Item label="Cover">
                     <Form.Item
