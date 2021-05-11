@@ -348,12 +348,12 @@ export const PostList = (props: IResourceComponentsProps) => {
 
 ## API
 
-| Key              | Description                                                                    | Type      |
-| ---------------- | ------------------------------------------------------------------------------ | --------- |
-| permanentFilter  | Varsayılan ve değiştirilemez filtre.                                           | `Filters` |
-| resource         | Verilerin listeleneceği resource. Eğer verilmezse, contextten çıkarım yapılır. | `string`  |
-| initialCurrent   | Varsayılan sayfa indeksi.                                                      | `number`  |
-| initialPageSize  | Varsayılan sayfa başına gösterilen kayıt sayısı.                               | `number`  |
-| initialSorter    | Varsayılan sıralama.                                                           | Sort      |
-| initialFilter    | Varsayılan filtreleme.                                                         | `Filters` |
-| syncWithLocation | Varsayılan sayfa başına gösterilen kayıt sayısı.                               | `boolean` |
+| Key              | Description                                                                                                               | Type      |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------- | --------- |
+| permanentFilter  | Varsayılan ve değiştirilemez filtre.                                                                                      | `Filters` |
+| resource         | Verilerin listeleneceği resource. Eğer verilmezse, contextten çıkarım yapılır.                                            | `string`  |
+| initialCurrent   | Varsayılan sayfa indeksi.                                                                                                 | `number`  |
+| initialPageSize  | Varsayılan sayfa başına gösterilen kayıt sayısı.                                                                          | `number`  |
+| initialSorter    | Varsayılan sıralama.                                                                                                      | Sort      |
+| initialFilter    | Varsayılan filtreleme.                                                                                                    | `Filters` |
+| syncWithLocation | Tablodaki sıralamalar, filtreler, sayfa indeksi ve sayfa başına gösterilen kayıt browser history tarafından takip edilir. | `boolean` |

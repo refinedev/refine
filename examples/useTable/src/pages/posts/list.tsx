@@ -23,6 +23,7 @@ export const PostList = (props: IResourceComponentsProps) => {
         initialFilter: {
             status: ["draft"],
         },
+        syncWithLocation: true,
     });
 
     console.log(filters);
