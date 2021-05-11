@@ -6,7 +6,7 @@ title: useCheckboxGroup
 
 import basicUsage from '@site/static/img/use-checkboxgroup-basic.png'
 
-The `useCheckboxGroup` hook allows you to manage an Ant Design [Checkbox.Group](https://ant.design/components/checkbox/#components-checkbox-demo-group) component when records in a resource needs to be used as checkbox options. All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.Group>` component. In addition, we can use the `queryResult` and `defaultValueQueryResult` value it returns to us.
+The `useCheckboxGroup` hook allows you to manage an Ant Design [Checkbox.Group](https://ant.design/components/checkbox/#components-checkbox-demo-group) component when records in a resource needs to be used as checkbox options. All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.Group>` component. In addition, we can use the `queryResult` value it return to us.
 
 Now let's examine what `useCheckboxGroup` does, with step-by-step examples. So let's start by suppose our `dataProvider` has an endpoint that returns tags as follows.
 
@@ -128,4 +128,4 @@ export const PostCreate = (props) => {
 };
 ```
 
-Now, we expect the `queryResult` and `defaultValueQueryResult` result to return according to `ITag` type.
+Now, we expect the `queryResult` result to return according to `ITag` type.
