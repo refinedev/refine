@@ -18,6 +18,7 @@ module.exports = {
                 "useStepsForm",
                 "useSelect",
                 "useEditableTable",
+                "useRadioGroup",
             ],
         },
     ],
