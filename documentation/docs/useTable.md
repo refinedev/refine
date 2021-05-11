@@ -92,7 +92,7 @@ export const PostList = (props: IResourceComponentsProps) => {
 
 ## Sıralama
 
-Bir sütuna sıralama özelliği eklemek için, ilgili `<Table.Column>` componentine `sorter` propu verilir.
+Bir sütuna sıralama özelliği eklemek için, ilgili `<Table.Column>` componentine [sorter](https://ant.design/components/table/#components-table-demo-head) propu verilir.
 
 ```tsx title="/src/pages/posts/list.tsx"
 import {
