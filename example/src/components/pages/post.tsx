@@ -15,7 +15,7 @@ import {
     Input,
     Upload,
     MarkdownField,
-    normalizeFile,
+    getValueFromEvent,
     useApiUrl,
     useFileUploadState,
     useTranslate,
@@ -361,7 +361,7 @@ export const PostCreate = (props: any) => {
                 <Form.Item
                     name="images"
                     valuePropName="fileList"
-                    getValueFromEvent={normalizeFile}
+                    getValueFromEvent={getValueFromEvent}
                     noStyle
                 >
                     <Upload.Dragger
@@ -587,7 +587,7 @@ export const PostEdit = (props: any) => {
                 <Form.Item
                     name="images"
                     valuePropName="fileList"
-                    getValueFromEvent={normalizeFile}
+                    getValueFromEvent={getValueFromEvent}
                     noStyle
                 >
                     <Upload.Dragger

@@ -8,45 +8,24 @@ interface EventArgs<T = UploadResponse> {
     fileList: Array<UploadFile<T>>;
 }
 
-export const normalizeFile = (event: EventArgs) => {
+export const getValueFromEvent = (event: EventArgs) => {
     const { fileList } = event;
 
-    return fileList.map((item) => {
-        let { url } = item;
-        const { uid, name, response, type, size, percent, status } = item;
-
-        if (response) {
-            url = response.fileUrl;
-        }
-
-        return { uid, name, url, type, size, percent, status };
-    });
+    return [...fileList];
 };
 
 export interface UploadFileWithBase64 extends UploadFile {
     base64String?: string;
 }
 
-export function file2Base64(file: UploadFile): Promise<UploadFileWithBase64> {
-    const { uid, name, size, type, lastModified, lastModifiedDate } = file;
+export function file2Base64(file: UploadFile): Promise<string> {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
 
-        if (file instanceof Blob) {
-            reader.readAsDataURL(file);
-            reader.onload = () => {
-                return resolve({
-                    ...file,
-                    uid,
-                    name,
-                    size,
-                    type,
-                    lastModified,
-                    lastModifiedDate,
-                    base64String: reader.result as string,
-                });
-            };
-        }
+        reader.readAsDataURL(file.originFileObj as Blob);
+        reader.onload = () => {
+            return resolve(reader.result as string);
+        };
 
         reader.onerror = (error) => reject(error);
     });

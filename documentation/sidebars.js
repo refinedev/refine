@@ -20,5 +20,10 @@ module.exports = {
                 "useEditableTable",
             ],
         },
+        {
+            type: "category",
+            label: "Guides",
+            items: ["base64upload"],
+        },
     ],
 };
