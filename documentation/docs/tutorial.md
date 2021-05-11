@@ -81,7 +81,7 @@ Change `App.tsx` with the following code:
 ```tsx title="src/App.tsx"
 import { Admin } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
-import "@pankod/refine/dist/styles.min.css"
+import "@pankod/refine/dist/styles.min.css";
 
 function App() {
     return (
@@ -109,11 +109,14 @@ You will see the welcome page.
 </>
 
 :::tip
+
 ```tsx
-import "@pankod/refine/dist/styles.min.css"
+import "@pankod/refine/dist/styles.min.css";
 ```
+
 [Refer to theme documentation for further information about importing the default css](#)
 :::
+
 ## Connect API with Resources
 
 We'll start forming our app by adding a `<Resource>` component as a child.
@@ -173,7 +176,7 @@ import {
     Table,
     useTable,
 } from "@pankod/refine";
-import { IPost } from "interfaces"
+import { IPost } from "interfaces";
 
 export const PostList = () => {
     const { tableProps } = useTable<IPost>();
@@ -239,6 +242,7 @@ Refer to [ant-design docs](https://ant.design/components/table/#API) for more de
 The render prop of `<Table.Column>` is used to determine how to format and show data. Each `<Table.Column>` maps a different field in the API response, specified by the `dataIndex` prop.
 
 :::note
+
 ```tsx
 <Table.Column
     // highlight-next-line
@@ -248,10 +252,11 @@ The render prop of `<Table.Column>` is used to determine how to format and show 
     render={(value) => <TextField value={value} />}
 />
 ```
+
 `value` of render props points to data with key described by `dataIndex`.
 :::
 
-We used `<TextField>`, `<TagField>` and `<DateField>` in `<Table.Column>` to show data in the proper format. These are examples of many more field components from `refine` that are based on ant design components.  
+We used `<TextField>`, `<TagField>` and `<DateField>` in `<Table.Column>` to show data in the proper format. These are examples of many more field components from `refine` that are based on ant design components.
 User has full freedom on how to format and show raw data that comes from render prop including ant design components or custom components.
 
 You can find detailed usage of fields from [here](#).
@@ -292,10 +297,9 @@ We can now list `/posts` data successfully as shown below.
 
 ## Handling relationships
 
-Let's say we want to show title of category  at `<PostList>`.  
+Let's say we want to show title of category at `<PostList>`.
 
 [Each post record](#providing-a-data-source-with-an-api) includes a category property that has an id field, which points to a category:
-
 
 ```ts title="https://refine-fake-rest.pankod.com/posts/1"
 ...
@@ -304,17 +308,18 @@ Let's say we want to show title of category  at `<PostList>`.
   }
 ...
 ```
+
 <br />
 
 Each category id references a record at `refine-fake-rest.pankod.com/categories` endpoint.
 
-
 ```ts title="https://refine-fake-rest.pankod.com/categories/26"
-  { 
+  {
     "id": 26,
     "title": "mock category title",
   }
 ```
+
 <br />
 
 In order to get data from a different resource, we can use a `refine` hook named `useMany`.
@@ -328,17 +333,18 @@ import {
     Table,
     useTable,
     //highlight-next-line
-    useMany
+    useMany,
 } from "@pankod/refine";
 
 //highlight-next-line
-import { IPost, ICategory } from "interfaces"
+import { IPost, ICategory } from "interfaces";
 
 export const PostList = () => {
     const { tableProps } = useTable<IPost>();
 
-   //highlight-start
-    const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    //highlight-start
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
     const { data: categoriesData, isLoading } = useMany<ICategory>(
         "categories",
         categoryIds,
@@ -378,20 +384,20 @@ export const PostList = () => {
                         return (
                             <TextField
                                 value={
-                                    categoriesData?.data.find((item) => item.id === value)
-                                        ?.title
+                                    categoriesData?.data.find(
+                                        (item) => item.id === value,
+                                    )?.title
                                 }
                             />
                         );
                     }}
-                  />
-                    //highlight-end
+                />
+                //highlight-end
             </Table>
         </List>
     );
 };
 ```
-
 
 ```ts title="interfaces/index.d.ts"
 // highlight-start
@@ -416,6 +422,7 @@ We can reach nested properties of table data by using an array.
 ```
  dataIndex={["category", "id"]}
 ```
+
 :::
 
 <br />
@@ -425,14 +432,15 @@ We can reach nested properties of table data by using an array.
 We collect `categoryId`' s from list data at `/posts` endpoint and send to `useMany`.
 
 :::note
+
 ```tsx
-enabled: categoryIds.length > 0
-```  
+enabled: categoryIds.length > 0;
+```
+
 We set a condition to start fetching only when data is available.
 :::
 
-
-To show category title field, find the title corresponding to the catogory id of the current record in data returned by `useMany`, 
+To show category title field, find the title corresponding to the catogory id of the current record in data returned by `useMany`,
 
 [Refer to `useMany` documentation for detailed usage. &#8594](#)
 
@@ -474,15 +482,8 @@ export const PostEdit = () => {
                         ]}
                     />
                 </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name={["category", "id"]}
-                >
-                    <Select
-                        showSearch
-                        filterOption={false}
-                        {...categorySelectProps}
-                    />
+                <Form.Item label="Category" name={["category", "id"]}>
+                    <Select {...categForySelectProps} />
                 </Form.Item>
             </Form>
         </Edit>
@@ -525,13 +526,12 @@ export default App;
 :::important
 `refine` doesn't automatically add an _**edit**_ button by default to each record in `<PostList>` to give access to the edit page which renders the `<PostEdit>` component.
 
-We' ll add a new column to `<Table>` in `<PostList>` to show the action button for edit.   
- `<EditButton>` from refine can be used to navigate to edit page at `/resources/posts/edit`.
+We' ll add a new column to `<Table>` in `<PostList>` to show the action button for edit.
+`<EditButton>` from refine can be used to navigate to edit page at `/resources/posts/edit`.
 
 You can find detailed usage of `<EditButton>` from [here](#).
 
 <br />
-
 
 ```tsx title="components/pages/posts.tsx"
 import {
@@ -558,7 +558,7 @@ export const PostList = () => {
                     <EditButton size="small" recordItemId={record.id} />
                 </Space>
         )}}
-    />   
+    />
 ...
 }
 ```
@@ -578,14 +578,14 @@ Similarly `saveButtonProps` includes useful properties for a button to submit a 
 
 [Refer to `useForm` documentation for detailed usage. &#8594](#)
 
-`useSelect` produces props for `<Select>` component from data at another resource. `<Select>` is an Ant-Design component that is exported from `refine` for convenience.  
+`useSelect` produces props for `<Select>` component from data at another resource. `<Select>` is an Ant-Design component that is exported from `refine` for convenience.
 
 [Refer to `Select` documentation for detailed usage. &#8594](https://ant.design/components/select/)
 
 ```tsx
 const { selectProps: categorySelectProps } = useSelect<IPost>({
-        resource: "categories",
-        defaultValue: queryResult?.data?.data?.category.id,
+    resource: "categories",
+    defaultValue: queryResult?.data?.data?.category.id,
 });
 ```
 
@@ -609,7 +609,6 @@ We are getting form values from inputs by passing them as child to `<Form.Item>`
 
 Save button submits the form and issues a `PUT` request to the REST API when clicked. After request responses successfully, app will be navigated to listing page on `resources/posts` with updated data.
 
-
 [Refer to **How editing works?** section for in depth explanation. &#8594](#)
 
 <br />
@@ -626,15 +625,15 @@ Save button submits the form and issues a `PUT` request to the REST API when cli
 
 ## Creating a record
 
-We'll implement a page for creating a new record using fake REST API. It has a similar implemantation and managing form methods like [Editing a record](#editing-a-record). 
+We'll implement a page for creating a new record using fake REST API. It has a similar implemantation and managing form methods like [Editing a record](#editing-a-record).
 
 First create a `<PostCreate>` component to create a new post. This component will be passed as `create` prop to `<Resource>`.
 
 ```tsx title="pages/posts/create.tsx"
-import { 
+import {
     ...
     //highlight-next-line
-    Create 
+    Create
 } from "@pankod/refine";
 import { IPost } from "interfaces";
 
@@ -727,16 +726,15 @@ export const PostList = (props: IResourceComponentsProps) => {
 
 <br />
 
-
 ### Filling the form
 
 This part is very similar to [Editing the form](#editing-the-form). Only differences are:
 
-- We wrap `<Form>` with [`<Create>`](#) component from `refine`.
+-   We wrap `<Form>` with [`<Create>`](#) component from `refine`.
 
-- Save button submits the form and issues a `POST` request to the REST API.
+-   Save button submits the form and issues a `POST` request to the REST API.
 
-- Since there can't be a pre-selected value in a create form, we don't pass a `defaultValue` parameter to `useSelect`.
+-   Since there can't be a pre-selected value in a create form, we don't pass a `defaultValue` parameter to `useSelect`.
 
 <br />
 
@@ -755,15 +753,15 @@ First create a `<PostShow>` component to show an existing post. This component w
 
 ```tsx title="pages/posts/show.tsx"
 import {
-    //highlight-start 
-    Show, 
-    useShow, 
-    Typography, 
-    Tag, 
-    useOne
+    //highlight-start
+    Show,
+    useShow,
+    Typography,
+    Tag,
+    useOne,
     //highlight-end
 } from "@pankod/refine";
-import { IPost, ICategory} from "interfaces"
+import { IPost, ICategory } from "interfaces";
 
 const { Title, Text } = Typography;
 
@@ -772,9 +770,13 @@ export const PostShow = () => {
     const { data, isLoading } = queryResult;
     const record = data?.data;
 
-    const { data: categoryData } = useOne<ICategory>("categories", record!.category.id, {
-        enabled: !!record?.category.id
-    })
+    const { data: categoryData } = useOne<ICategory>(
+        "categories",
+        record!.category.id,
+        {
+            enabled: !!record?.category.id,
+        },
+    );
 
     return (
         <Show isLoading={isLoading}>
@@ -782,13 +784,15 @@ export const PostShow = () => {
             <Text>{record?.title}</Text>
 
             <Title level={5}>Status</Title>
-            <Text><Tag>{record?.status}</Tag></Text>
+            <Text>
+                <Tag>{record?.status}</Tag>
+            </Text>
 
             <Title level={5}>Category</Title>
             <Text>{categoryData?.data.title}</Text>
         </Show>
-    )
-}
+    );
+};
 ```
 
 <br />
@@ -824,6 +828,7 @@ export default App;
 ```
 
 ### Fetching record data
+
 ```tsx
 const { queryResult } = useShow<IPost>();
 ```
@@ -835,9 +840,13 @@ The `queryResult` includes fetched data and query state like `isLoading` state.
 [Refer to `useShow` documentation for detailed usage. &#8594](#)
 
 ```tsx
-const { data: categoryData } = useOne<ICategory>("categories", record?.category.id ?? "", {
-        enabled: !!record?.category.id
-    });
+const { data: categoryData } = useOne<ICategory>(
+    "categories",
+    record?.category.id ?? "",
+    {
+        enabled: !!record?.category.id,
+    },
+);
 ```
 
 `useOne` is a low level hook from `refine` that is also responsible for fetching a single record data for any given resource.
@@ -849,7 +858,6 @@ Here, `useOne` is used to fetch a record data from `/resources/categories`.
 :::caution attention
 Difference between `useOne` and `useShow` is that `useShow` is tuned for fetching data from current resource.
 :::
-
 
 ### Showing the data
 
@@ -866,11 +874,10 @@ export const PostShow = (props: IResourceComponentsProps) => {
     <Show {...props}>
 }
 ```
+
 :::
 
 <br />
-
-
 
 <div style={{textAlign: "center"}}>
     <img src={showGif} />
@@ -881,30 +888,28 @@ export const PostShow = (props: IResourceComponentsProps) => {
 
 ## Adding search and filters
 
-
-We'll use`<Table.Column>`'s [`filterDropdown`](https://ant.design/components/table/#Column)   property from Ant-design and `<FilterDropdown>` component from `refine` to search and filter content.
+We'll use`<Table.Column>`'s [`filterDropdown`](https://ant.design/components/table/#Column) property from Ant-design and `<FilterDropdown>` component from `refine` to search and filter content.
 
 Let's add search and filter feature to category field.
-
 
 ```tsx title="pages/posts/list.tsx"
 import {
     ...
-    //highlight-start 
+    //highlight-start
     FilterDropdown,
     Select,
     useSelect
-    //highlight-end 
+    //highlight-end
 } from "@pankod/refine";
 
 export const PostList = (props: IResourceComponentsProps) => {
     ...
 
-    //highlight-start 
+    //highlight-start
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
     });
-     //highlight-end 
+     //highlight-end
 
     return (
         <List {...props}>
@@ -928,20 +933,18 @@ export const PostList = (props: IResourceComponentsProps) => {
                             />
                         );
                     }}
-                    //highlight-start 
+                    //highlight-start
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Select
                                 style={{ minWidth: 200 }}
-                                showSearch
                                 mode="multiple"
                                 placeholder="Select Category"
-                                filterOption={false}
                                 {...categorySelectProps}
                             />
                         </FilterDropdown>
                     )}
-                    //highlight-end 
+                    //highlight-end
                 />
                ...
             </Table>
@@ -950,23 +953,22 @@ export const PostList = (props: IResourceComponentsProps) => {
 };
 ```
 
-`<FilterDropdown>` component serves as a bridge between its child input and  `refine`'s `useTable` hook.
+`<FilterDropdown>` component serves as a bridge between its child input and `refine`'s `useTable` hook.
 
-It transfers child's input value to `useTable` hook using `filterDropdown`'s embedded props and provides a filter button to start filtering functionality. 
+It transfers child's input value to `useTable` hook using `filterDropdown`'s embedded props and provides a filter button to start filtering functionality.
 
 [Refer to `<FilterDropdown>` documentation for detailed usage. &#8594](#)
 
 In order to let user choose or search a category to filter, we get all categories as `categorySelectProps` using `useSelect` hook and set to `<Select>`.
 
-
 ## Connecting to a real API
 
-At this point we have an app with basic features implemented using a fake REST API.  
+At this point we have an app with basic features implemented using a fake REST API.
 
 [Refer to `dataProvider` documentation for how to connect your own api to `refine`.](#)
 
 ## Conclusion
 
-Core functionality of `refine` is based heavily on hooks. This way it provides a wide range of flexibility on data management and UI structure.  
+Core functionality of `refine` is based heavily on hooks. This way it provides a wide range of flexibility on data management and UI structure.
 
 You can develop new features or modify existing behavior based on your needs on top of `refine` codebase.
