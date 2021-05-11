@@ -6,8 +6,8 @@ import {
     IResourceComponentsProps,
     Space,
     EditButton,
-    ShowButton,
     useMany,
+    CloneButton,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
@@ -62,7 +62,10 @@ export const PostList = (props: IResourceComponentsProps) => {
                     render={(_value, record) => (
                         <Space>
                             <EditButton size="small" recordItemId={record.id} />
-                            <ShowButton size="small" recordItemId={record.id} />
+                            <CloneButton
+                                size="small"
+                                recordItemId={record.id}
+                            />
                         </Space>
                     )}
                 />
