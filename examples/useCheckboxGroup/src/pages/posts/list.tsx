@@ -7,7 +7,7 @@ import {
     Space,
     EditButton,
     ShowButton,
-    useMany,
+    useList,
     Tag,
 } from "@pankod/refine";
 
@@ -16,11 +16,7 @@ import { IPost, ITag } from "interfaces";
 export const PostList = (props: IResourceComponentsProps) => {
     const { tableProps } = useTable<IPost>();
 
-    const tagIds = tableProps?.dataSource?.map((item) => item.tags) ?? [];
-    const mergeTagIds = tagIds.reduce((a, b) => a.concat(b), []);
-    const { data, isLoading } = useMany<ITag>("tags", mergeTagIds, {
-        enabled: tagIds.length > 0,
-    });
+    const { data, isLoading } = useList<ITag>("tags");
 
     return (
         <List {...props}>
@@ -45,13 +41,14 @@ export const PostList = (props: IResourceComponentsProps) => {
                         if (isLoading) {
                             return <TextField value="Loading..." />;
                         }
+
                         return (
                             <>
                                 {value?.map((tagId) => (
                                     <Tag key={tagId}>
                                         {
                                             data?.data.find(
-                                                (item) => item.id == tagId,
+                                                (item) => item.id === tagId,
                                             )?.title
                                         }
                                     </Tag>

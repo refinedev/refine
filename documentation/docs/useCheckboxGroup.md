@@ -70,28 +70,6 @@ As you can see, `useCheckboxGroup` fetches data from API with given `resource` e
 
 ## Optional Values
 
-### `defaultValue`
-
-```tsx
-const { checkboxGroupProps } = useCheckboxGroup({
-    resource: "tags",
-    //highlight-next-line
-    defaultValue: "1",
-});
-```
-
-Adds extra `options` to `<Checkbox.Group>` component. It uses `useMany` so `defaultValue` can be an array of strings like follows.
-
-```ts
-defaultValue: ["1", "2"],
-```
-
-Refer to [useMany](#) documentation for detailed usage.
-
-:::tip
-Can use `defaultValue` property when edit a record in `<Edit>` component.
-:::
-
 ### `optionLabel` and `optionValue`
 
 ```tsx

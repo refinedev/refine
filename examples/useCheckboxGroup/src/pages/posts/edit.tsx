@@ -17,14 +17,12 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ITag } from "interfaces";
 
 export const PostEdit = (props: IResourceComponentsProps) => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
+    const { formProps, saveButtonProps } = useForm<IPost>();
 
-    const postData = queryResult?.data?.data;
     const {
         checkboxGroupProps: tagsCheckboxGroupProps,
     } = useCheckboxGroup<ITag>({
         resource: "tags",
-        defaultValue: postData?.tags,
     });
 
     const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
