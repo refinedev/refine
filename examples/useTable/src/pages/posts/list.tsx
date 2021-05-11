@@ -26,8 +26,6 @@ export const PostList = (props: IResourceComponentsProps) => {
         syncWithLocation: true,
     });
 
-    console.log(filters);
-
     return (
         <List {...props}>
             <Table {...tableProps} key="id">
