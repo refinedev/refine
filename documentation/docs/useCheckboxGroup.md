@@ -6,9 +6,11 @@ title: useCheckboxGroup
 
 import basicUsage from '@site/static/img/use-checkboxgroup-basic.png'
 
-The `useCheckboxGroup` hook allows you to manage an Ant Design [Checkbox.Group](https://ant.design/components/checkbox/#components-checkbox-demo-group) component when records in a resource needs to be used as checkbox options. All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.Group>` component. In addition, we can use the `queryResult` value it return to us.
+`useCheckboxGroup` hook allows you to manage an Ant Design [Checkbox.Group](https://ant.design/components/checkbox/#components-checkbox-demo-group) component when records in a resource needs to be used as checkbox options.
 
-Now let's examine what `useCheckboxGroup` does, with step-by-step examples. So let's start by suppose our `dataProvider` has an endpoint that returns tags as follows.
+## Example
+
+Let's examine what `useCheckboxGroup` does, with step-by-step examples. Suppose our `dataProvider` has an endpoint that returns tags as follows.
 
 ```ts title="https://refine-fake-rest.pankod.com/tags"
 {
@@ -29,10 +31,9 @@ Now let's examine what `useCheckboxGroup` does, with step-by-step examples. So l
     ];
 }
 ```
+### `resource`
 
-## Basic Usage
-
-Now let's see how we fetch this data and give it to `<Checkbox.Group>` component as `options`.
+Let's see how to fetch this data with `resource` and give the `<Checkbox.Group>` component as options.
 
 Refer to Ant Design [Checkbox.Group](https://ant.design/components/checkbox) component documentation for detailed info for `options`.
 
@@ -66,9 +67,9 @@ export const PostCreate = (props) => {
 
 As you can see, `useCheckboxGroup` fetches data from API with given `resource` endpoint name and then returns properly formatted `options` value for `<Checkbox.Group>` component.
 
-`useCheckboxGroup` uses the `useList` hook for fetching data. Refer to [useList](#) hook for details.
+All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.Group>` component.
 
-## Optional Values
+`useCheckboxGroup` uses the `useList` hook for fetching data. Refer to [useList](#) hook for details.
 
 ### `optionLabel` and `optionValue`
 
@@ -121,10 +122,30 @@ import { ITag } from "interfaces";
 
 export const PostCreate = (props) => {
     //highlight-next-line
-    const { queryResult, defaultValueQueryResult } = useCheckboxGroup<ITag>({
+    const { queryResult } = useCheckboxGroup<ITag>({
         resource: "tags",
     });
 };
 ```
 
 Now, we expect the `queryResult` result to return according to `ITag` type.
+
+
+## API Reference
+
+### Properties
+
+| Property                                          | Description                               | Type     | Default   |
+| ------------------------------------------------- | ----------------------------------------- | -------- | --------- |
+| resource <div className="required">Required</div> | [`Resource`](#) for API data interactions | `string` |           |
+| optionValue                                       | Set the option's value                    | `string` | `"id"`    |
+| optionLabel                                       | Set the option's label value              | `string` | `"title"` |
+| filters                                           | Add filters while fetching the data       | ``       |           |
+| sort                                              | Allow us to sort the options              | ``       |           |
+
+### Return values
+
+| Property           | Description                     | Type                                                                            |
+| ------------------ | ------------------------------- | ------------------------------------------------------------------------------- |
+| checkboxGroupProps | Ant design checkbox group props | [`Checkbox Group`](https://ant.design/components/checkbox/#Checkbox-Group)      |
+| queryResult        | Result of the query of a record | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery) |
