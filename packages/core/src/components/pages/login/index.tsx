@@ -65,6 +65,7 @@ export const LoginPage: React.FC = () => {
                             form={form}
                             name="control-hooks"
                             onFinish={onSubmit}
+                            requiredMark={false}
                         >
                             <Form.Item
                                 name="username"
@@ -81,7 +82,7 @@ export const LoginPage: React.FC = () => {
                             </Form.Item>
                             <Form.Item
                                 name="password"
-                                label="Username"
+                                label="Password"
                                 rules={[{ required: true }]}
                             >
                                 <Input
