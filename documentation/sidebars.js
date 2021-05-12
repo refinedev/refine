@@ -13,6 +13,13 @@ module.exports = {
             type: "category",
             label: "Hooks",
             items: [
+                {
+                    type: "category",
+                    label: "Data",
+                    items: [
+                        "hooks/data/useCreate"
+                    ]
+                },
                 "useModalForm",
                 "useDrawerForm",
                 "useStepsForm",

@@ -28,10 +28,9 @@ type SaveButtonProps = {
     loading?: boolean;
 };
 
-type ActionFormProps<M> =
-    | useCreateFormProps<M>
-    | useEditFormProps<M>
-    | useCloneFormProps<M>;
+type ActionFormProps<M> = useCreateFormProps<M> &
+    useEditFormProps<M> &
+    useCloneFormProps<M>;
 
 type ResourcelessActionFormProps<M> = Omit<ActionFormProps<M>, "resource">;
 
