@@ -23,6 +23,7 @@ module.exports = {
                 "useStepsForm",
                 "useSelect",
                 "useEditableTable",
+                "useForm"
             ],
         },
         {

@@ -28,6 +28,18 @@ export const useNavigation = () => {
             : history.replace(`/resources/${resourceName.route}/edit/${id}`);
     };
 
+    const clone = (
+        resource: string,
+        type: HistoryType = "push",
+        id: number | string,
+    ) => {
+        const resourceName = resourceWithRoute(resource);
+
+        type === "push"
+            ? history.push(`/resources/${resourceName.route}/create/${id}`)
+            : history.replace(`/resources/${resourceName.route}/create/${id}`);
+    };
+
     const show = (
         resource: string,
         type: HistoryType = "push",
@@ -60,5 +72,5 @@ export const useNavigation = () => {
         history.goBack();
     };
 
-    return { create, edit, show, list, push, replace, goBack };
+    return { create, edit, clone, show, list, push, replace, goBack };
 };
