@@ -187,7 +187,6 @@ export const PostList = () => {
                 <Table.Column
                     dataIndex="title"
                     title="title"
-                    render={(value) => <TextField value={value} />}
                 />
                 <Table.Column
                     dataIndex="status"
@@ -360,7 +359,6 @@ export const PostList = () => {
                 <Table.Column
                     dataIndex="title"
                     title="title"
-                    render={(value) => <TextField value={value} />}
                 />
                 <Table.Column
                     dataIndex="status"
