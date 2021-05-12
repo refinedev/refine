@@ -24,6 +24,19 @@
   padding: 0 var(--ifm-pre-padding);
 }
 
+.required {
+  border-radius: 3px;
+  border-style: solid;
+  border-color: #fa5035;
+  color: #fa5035;
+  border-width: 1px;
+  letter-spacing: .02rem;
+  margin-right: 0;
+  padding: 0 6px;
+  display: inline-block;
+  margin-left: 5px;
+}
+
 .footer__links {
   margin-bottom: 20px;
 }
