@@ -3,7 +3,7 @@ import { RadioGroupProps } from "antd/lib/radio";
 import { QueryObserverResult } from "react-query";
 
 import { useList } from "@hooks";
-import { Sort, BaseRecord, Option, GetListResponse } from "../../../interfaces";
+import { Sort, BaseRecord, Option, GetListResponse, CrudFilters } from "../../../interfaces";
 
 export type useRadioGroupProps = RadioGroupProps & {
     resource: string;
@@ -11,7 +11,7 @@ export type useRadioGroupProps = RadioGroupProps & {
     optionValue?: string;
     sort?: Sort;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    filters?: Record<string, (string | number | boolean)[] | null>;
+    filters?: CrudFilters;
 };
 
 export type UseRadioGroupReturnType<

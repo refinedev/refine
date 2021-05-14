@@ -13,22 +13,23 @@ import {
     Sort,
     ResourceRouterParams,
     BaseRecord,
+    CrudFilters,
 } from "../../../interfaces";
 
 export type useTableProps = {
-    permanentFilter?: Filters;
+    permanentFilter?: CrudFilters;
     resource?: string;
     initialCurrent?: number;
     initialPageSize?: number;
     initialSorter?: Sort;
-    initialFilter?: Filters;
+    initialFilter?: CrudFilters;
     syncWithLocation?: boolean;
 };
 
 export type useTableReturnType<RecordType extends BaseRecord = BaseRecord> = {
     tableProps: TableProps<RecordType>;
     sorter?: Sort;
-    filters?: Filters;
+    filters?: CrudFilters;
 };
 
 export const useTable = <RecordType extends BaseRecord = BaseRecord>({
@@ -89,17 +90,20 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
     const [sorter, setSorter] = useState<Sort | undefined>(defaultSorter);
-    const [filters, setFilters] = useState<Filters | undefined>(defaultFilter);
+    const [filters, setFilters] = useState<CrudFilters | undefined>(defaultFilter);
 
+    filters
     const {
         current,
         pageSize,
         defaultCurrent: defaultCurrentSF,
     } = tablePropsSunflower.pagination;
 
+    console.log(filters)
+
     const { data, isFetching } = useList<RecordType>(resource.name, {
         pagination: { current: current ?? defaultCurrentSF, pageSize },
-        filters: { ...filters, ...permanentFilter },
+        filters: [...permanentFilter || [], ...filters || []],
         sort: sorter,
     });
 
@@ -108,7 +112,19 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
         filters: Filters,
         sorter: Sort,
     ) => {
-        setFilters(filters);
+        if (filters) {
+            const crudFilters: CrudFilters = [];
+            Object.keys(filters).map((field) => {
+                if (filters[field]) {
+                    crudFilters.push({
+                        field,
+                        operator: "$in",
+                        value: filters[field],
+                    });
+                }
+            });
+            setFilters(crudFilters);
+        }
         setSorter(sorter);
 
         tablePropsSunflower.onChange(pagination, filters, sorter);

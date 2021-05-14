@@ -31,6 +31,7 @@ import {
     DashboardPage,
     ReadyPage,
     LoginPage,
+    PostLightList,
 } from "./components/pages";
 
 function App() {
@@ -171,6 +172,15 @@ function App() {
                 edit={PostEdit}
                 show={PostShow}
                 canDelete
+            />
+
+            <Resource
+                name="posts"
+                list={PostLightList}
+                options={{
+                    label: "Post Light",
+                    route: "post-light",
+                }}
             />
             <Resource
                 name="categories"

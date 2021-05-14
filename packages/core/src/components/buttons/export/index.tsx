@@ -11,6 +11,7 @@ import {
     Filters,
     IDataContext,
     BaseRecord,
+    CrudFilters,
 } from "../../../interfaces";
 import { DataContext } from "@contexts/data";
 import { CSVDownloadProps } from "./csvDownload.interface";
@@ -18,7 +19,7 @@ import { CSVDownloadProps } from "./csvDownload.interface";
 type ExportButtonProps = ButtonProps & {
     resourceName?: string;
     sorter?: Sort;
-    filters?: Filters;
+    filters?: CrudFilters;
     maxItemCount?: number;
     pageSize?: number;
     mapData?(value: BaseRecord, index: number, array: BaseRecord[]): BaseRecord;

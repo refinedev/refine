@@ -77,6 +77,10 @@ export const PostList = (props: any) => {
                 order: "descend",
             },
         ],
+        permanentFilter: 
+            [{ field: "title", value: "be", operator: "$contL" }],
+        syncWithLocation: true,
+        
     });
 
     const categoryIds =

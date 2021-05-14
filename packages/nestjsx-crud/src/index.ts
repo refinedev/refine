@@ -76,10 +76,13 @@ const NestsxCrud = (
         }
 
         // filters
-        const crudFilters: CrudFilters = [];
+        let crudFilters: CrudFilters = [];
         const { filters } = params;
+
+        console.log(filters);
         if (filters) {
-            Object.keys(filters).map((field) => {
+            crudFilters = filters;
+          /*   Object.keys(filters).map((field) => {
                 if (filters[field]) {
                     crudFilters.push({
                         field,
@@ -87,7 +90,7 @@ const NestsxCrud = (
                         value: filters[field],
                     });
                 }
-            });
+            }); */
         }
 
         // search

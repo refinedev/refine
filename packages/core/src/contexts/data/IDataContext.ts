@@ -16,6 +16,50 @@ export interface Search {
 
 export type Filters = Record<string, (string | number | boolean)[] | null>;
 
+
+export type CrudFilters =
+    | QueryFilterArr
+    | Array<QueryFilter | QueryFilterArr>;
+
+export type QueryFilter = {
+    field: string;
+    operator: ComparisonOperator;
+    value?: any;
+};
+export type QueryFilterArr = [string, ComparisonOperator, any?];
+
+export type ComparisonOperator = keyof FieldOperator;
+export type PrimitivesVal = string | number | boolean;
+export type FiledValues = PrimitivesVal | Array<PrimitivesVal>;
+
+export type FieldOperator = {
+    $eq?: FiledValues;
+    $ne?: FiledValues;
+    $gt?: FiledValues;
+    $lt?: FiledValues;
+    $gte?: FiledValues;
+    $lte?: FiledValues;
+    $starts?: FiledValues;
+    $ends?: FiledValues;
+    $cont?: FiledValues;
+    $excl?: FiledValues;
+    $in?: FiledValues;
+    $notin?: FiledValues;
+    $between?: FiledValues;
+    $isnull?: FiledValues;
+    $notnull?: FiledValues;
+    $eqL?: FiledValues;
+    $neL?: FiledValues;
+    $startsL?: FiledValues;
+    $endsL?: FiledValues;
+    $contL?: FiledValues;
+    $exclL?: FiledValues;
+    $inL?: FiledValues;
+    $notinL?: FiledValues;
+    $or?: FieldOperator;
+    $and?: never;
+};
+
 export interface GetListResponse<RecordType = BaseRecord> {
     data: RecordType[];
     total: number;
@@ -60,7 +104,7 @@ export interface IDataContext {
             pagination?: Pagination;
             search?: Search;
             sort?: Sort;
-            filters?: Filters;
+            filters?: CrudFilters;
         },
     ) => Promise<GetListResponse<RecordType>>;
     getMany: <RecordType extends BaseRecord = BaseRecord>(

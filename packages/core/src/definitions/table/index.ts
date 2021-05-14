@@ -1,6 +1,6 @@
 import qs, { StringifyOptions } from "query-string";
 
-import { Sort, Filters } from "../../interfaces";
+import { Sort, Filters, CrudFilters } from "../../interfaces";
 import {
     SorterResult,
     SortOrder,
@@ -27,7 +27,7 @@ export const merge = (object: any, source: any) => {
 
 export const parseTableParams = (params: {
     initialSorter?: Sort;
-    initialFilter?: Filters;
+    initialFilter?: CrudFilters;
     url: string;
 }) => {
     const options = queryStringOptions();
@@ -37,6 +37,8 @@ export const parseTableParams = (params: {
         url,
         options,
     );
+
+    console.log("parseTableParams", filters);
 
     let parsedSorter: Sort;
     if (Array.isArray(sort) && Array.isArray(order)) {
@@ -60,11 +62,30 @@ export const parseTableParams = (params: {
         ];
     }
 
+
+    let parsedFilters: CrudFilters = [];
+    if (filters) {
+        const crudFilters: CrudFilters = [];
+        Object.keys(filters).map((field) => {
+            if (filters[field]) {
+                crudFilters.push({
+                    field,
+                    operator: "$in",
+                    value: filters[field],
+                });
+            }
+        });
+        parsedFilters = crudFilters;
+    }
+
+    console.log("parsedFilters", parsedFilters)
+
     return {
         parsedCurrent: current && Number(current),
         parsedPageSize: pageSize && Number(pageSize),
         parsedSorter: merge(initialSorter, parsedSorter),
-        parsedFilters: merge(initialFilter, filters) as Filters,
+        parsedFilters: [...initialFilter || [], ...parsedFilters || []],//merge(initialFilter, filters) as Filters,
+        //parsedFilters: [...initialFilter || [], ...filters || []]
     };
 };
 
@@ -127,8 +148,11 @@ export const getDefaultSortOrder = (
 
 export const getDefaultFilter = (
     columnName: string,
-    filters?: Filters,
+    filters?: CrudFilters,
 ): string[] | undefined => {
+    console.log("getDefaultFilter", filters)
+
+
     const value = get(filters, columnName);
     if (!filters || !value) {
         return undefined;
