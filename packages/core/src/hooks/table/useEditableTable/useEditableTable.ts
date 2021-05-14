@@ -13,9 +13,17 @@ export type useEditableTableReturnType<
     MutationType
 > = useTableReturnType<RecordType> &
     useForm<RecordType, MutationType> & {
-        saveButtonProps: ButtonProps;
-        cancelButtonProps: ButtonProps;
-        editButtonProps: (id: string | number) => ButtonProps;
+        saveButtonProps: ButtonProps & {
+            onClick: () => void;
+        };
+        cancelButtonProps: ButtonProps & {
+            onClick: () => void;
+        };
+        editButtonProps: (
+            id: string | number,
+        ) => ButtonProps & {
+            onClick: () => void;
+        };
         isEditing: (id: string | number) => boolean;
     };
 

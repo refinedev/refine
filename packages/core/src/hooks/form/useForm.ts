@@ -39,7 +39,9 @@ export type useForm<T, M> = {
     formProps: UseFormSFFormProps & FormProps;
     editId?: string | number;
     setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
-    saveButtonProps: ButtonProps;
+    saveButtonProps: ButtonProps & {
+        onClick: () => void;
+    };
     queryResult?: QueryObserverResult<GetOneResponse<T>>;
     mutationResult: UseUpdateReturnType<M> | UseCreateReturnType<M>;
     formLoading: boolean;
