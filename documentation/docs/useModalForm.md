@@ -119,11 +119,7 @@ export const PostList (props) => {
                         key="actions"
                         render={(_value, record) => (
                             //highlight-start
-                            <EditButton
-                                size="small"
-                                recordItemId={record.id}
-                                onClick={() => show(record.id)}
-                            />
+                            <EditButton onClick={() => show(record.id)} />
                             //highlight-end
                         )}
                     />
@@ -168,15 +164,14 @@ So, we put the edit buttons on our list. In that way, `<Edit>` form in `<Modal>`
     dataIndex="actions"
     key="actions"
     render={(_value, record) => (
-        <EditButton
-            size="small"
-            recordItemId={record.id}
-            onClick={() => show(record.id)}
-        />
+        <EditButton onClick={() => show(record.id)} />
     )}
 />
 ```
+:::
 
+:::caution
+Don't forget to pass the record id to `show` to fetch the record data. This is necessary for both edit and clone forms. See [actions](#) for more information.
 :::
 
 The `saveButtonProps` and `deleteButtonProps` can provides functionality to save and delete buttons in the modal.

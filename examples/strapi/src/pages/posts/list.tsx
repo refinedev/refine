@@ -47,7 +47,6 @@ export const PostList = (props: IResourceComponentsProps) => {
                     key="id"
                     dataIndex="id"
                     title="ID"
-                    render={(value) => <TextField value={value} />}
                     defaultSortOrder={getDefaultSortOrder("id", sorter)}
                     sorter
                 />
@@ -55,7 +54,6 @@ export const PostList = (props: IResourceComponentsProps) => {
                     key="title"
                     dataIndex="title"
                     title="Title"
-                    render={(value) => <TextField value={value} />}
                     defaultSortOrder={getDefaultSortOrder("title", sorter)}
                     sorter
                 />
@@ -63,15 +61,12 @@ export const PostList = (props: IResourceComponentsProps) => {
                     key="category.id"
                     dataIndex={["category", "title"]}
                     title="Category"
-                    render={(value) => <TextField value={value} />}
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Select
                                 style={{ minWidth: 200 }}
-                                showSearch
                                 mode="multiple"
                                 placeholder="Select Category"
-                                filterOption={false}
                                 {...selectProps}
                             />
                         </FilterDropdown>

@@ -26,7 +26,7 @@ export type SiderProps = {
 export const Sider: FC<SiderProps> = ({ dashboard }) => {
     const [collapsed, setCollapsed] = React.useState(false);
     const { push } = useNavigation();
-    const { logout } = useContext<IAuthContext>(AuthContext);
+    const { logout, isProvided } = useContext<IAuthContext>(AuthContext);
     const translate = useTranslate();
     const { resources } = useResource();
     const location = useLocation();
@@ -103,9 +103,11 @@ export const Sider: FC<SiderProps> = ({ dashboard }) => {
                     </Menu.Item>
                 ))}
 
-                <Menu.Item key="logout" icon={<LogoutOutlined />}>
-                    {translate("common:buttons.logout", "Logout")}
-                </Menu.Item>
+                {isProvided && (
+                    <Menu.Item key="logout" icon={<LogoutOutlined />}>
+                        {translate("common:buttons.logout", "Logout")}
+                    </Menu.Item>
+                )}
             </Menu>
         </Layout.Sider>
     );

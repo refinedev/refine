@@ -69,13 +69,15 @@ export const useDelete = <RecordType extends BaseRecord = BaseRecord>(
     >(
         ({ id }) => {
             if (!(mutationMode === "undoable")) {
-                return deleteOne(resource, id);
+                return deleteOne<RecordType>(resource, id);
             }
 
             const updatePromise = new Promise<DeleteOneResponse<RecordType>>(
                 (resolve, reject) => {
                     const updateTimeout = setTimeout(() => {
-                        resolve(deleteOne(resource, id));
+                        deleteOne<RecordType>(resource, id)
+                            .then((result) => resolve(result))
+                            .catch((err) => reject(err));
                     }, undoableTimeout);
 
                     const cancelMutation = () => {
@@ -163,6 +165,13 @@ export const useDelete = <RecordType extends BaseRecord = BaseRecord>(
                         queryClient.setQueryData(query.queryKey, query.query);
                     }
                 }
+
+                notificationDispatch({
+                    type: ActionTypes.REMOVE,
+                    payload: {
+                        id,
+                    },
+                });
 
                 if (err.message !== "mutationCancelled") {
                     notification.error({

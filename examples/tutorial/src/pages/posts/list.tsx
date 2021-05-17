@@ -37,11 +37,7 @@ export const PostList = (props: IResourceComponentsProps) => {
     return (
         <List {...props}>
             <Table {...tableProps} rowKey="id">
-                <Table.Column
-                    dataIndex="title"
-                    title="title"
-                    render={(value) => <TextField value={value} />}
-                />
+                <Table.Column dataIndex="title" title="title" />
                 <Table.Column
                     dataIndex="status"
                     title="status"
@@ -74,10 +70,8 @@ export const PostList = (props: IResourceComponentsProps) => {
                         <FilterDropdown {...props}>
                             <Select
                                 style={{ minWidth: 200 }}
-                                showSearch
                                 mode="multiple"
                                 placeholder="Select Category"
-                                filterOption={false}
                                 {...categorySelectProps}
                             />
                         </FilterDropdown>

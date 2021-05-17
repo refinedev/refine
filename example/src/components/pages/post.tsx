@@ -15,7 +15,7 @@ import {
     Input,
     Upload,
     MarkdownField,
-    normalizeFile,
+    getValueFromEvent,
     useApiUrl,
     useFileUploadState,
     useTranslate,
@@ -152,7 +152,6 @@ export const PostList = (props: any) => {
                     dataIndex="title"
                     title={translate("common:resources.posts.fields.title")}
                     key="title"
-                    render={(value) => <TextField value={value} />}
                     sorter={{
                         multiple: 1,
                     }}
@@ -162,7 +161,6 @@ export const PostList = (props: any) => {
                     dataIndex="slug"
                     title={translate("common:resources.posts.fields.slug")}
                     key="slug"
-                    render={(value) => <TextField value={value} />}
                 />
                 <Table.Column
                     dataIndex={["category", "id"]}
@@ -186,10 +184,8 @@ export const PostList = (props: any) => {
                         <FilterDropdown {...props}>
                             <Select
                                 style={{ minWidth: 200 }}
-                                showSearch
                                 mode="multiple"
                                 placeholder="Select Category"
-                                filterOption={false}
                                 {...categorySelectProps}
                             />
                         </FilterDropdown>
@@ -363,7 +359,7 @@ export const PostCreate = (props: any) => {
                 <Form.Item
                     name="images"
                     valuePropName="fileList"
-                    getValueFromEvent={normalizeFile}
+                    getValueFromEvent={getValueFromEvent}
                     noStyle
                 >
                     <Upload.Dragger
@@ -395,11 +391,7 @@ export const PostCreate = (props: any) => {
                     },
                 ]}
             >
-                <Select
-                    showSearch
-                    filterOption={false}
-                    {...categorySelectProps}
-                />
+                <Select {...categorySelectProps} />
             </Form.Item>
             <Form.Item
                 label={translate("common:resources.posts.fields.user")}
@@ -411,7 +403,7 @@ export const PostCreate = (props: any) => {
                 ]}
                 help="Autocomplete (search user email)"
             >
-                <Select showSearch filterOption={false} {...userSelectProps} />
+                <Select {...userSelectProps} />
             </Form.Item>
             <Form.Item
                 label={translate("common:resources.posts.fields.tags")}
@@ -431,12 +423,7 @@ export const PostCreate = (props: any) => {
                     }));
                 }}
             >
-                <Select
-                    mode="multiple"
-                    showSearch
-                    filterOption={false}
-                    {...tagsSelectProps}
-                />
+                <Select mode="multiple" {...tagsSelectProps} />
             </Form.Item>
         </>,
     ];
@@ -598,7 +585,7 @@ export const PostEdit = (props: any) => {
                 <Form.Item
                     name="images"
                     valuePropName="fileList"
-                    getValueFromEvent={normalizeFile}
+                    getValueFromEvent={getValueFromEvent}
                     noStyle
                 >
                     <Upload.Dragger
@@ -631,10 +618,8 @@ export const PostEdit = (props: any) => {
                 ]}
             >
                 <Select
-                    showSearch
                     mode="multiple"
                     placeholder="Select Category"
-                    filterOption={false}
                     {...categorySelectProps}
                 />
             </Form.Item>
@@ -648,7 +633,7 @@ export const PostEdit = (props: any) => {
                 ]}
                 help="Autocomplete (search user email)"
             >
-                <Select showSearch filterOption={false} {...userSelectProps} />
+                <Select {...userSelectProps} />
             </Form.Item>
             <Form.Item
                 label={translate("common:resources.posts.fields.tags")}
@@ -668,12 +653,7 @@ export const PostEdit = (props: any) => {
                     }));
                 }}
             >
-                <Select
-                    mode="multiple"
-                    showSearch
-                    filterOption={false}
-                    {...tagsSelectProps}
-                />
+                <Select mode="multiple" {...tagsSelectProps} />
             </Form.Item>
         </>,
     ];

@@ -102,6 +102,8 @@ export const useSelect = <RecordType extends BaseRecord = BaseRecord>(
             options: uniqBy([...options, ...selectedOptions], "value"),
             onSearch,
             loading: defaultValueQueryResult.isFetching,
+            showSearch: true,
+            filterOption: false,
         },
         queryResult,
         defaultValueQueryResult,
