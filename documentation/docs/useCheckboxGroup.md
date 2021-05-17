@@ -31,11 +31,6 @@ Let's examine what `useCheckboxGroup` does, with step-by-step examples. Suppose 
     ];
 }
 ```
-### `resource`
-
-Let's see how to fetch this data with `resource` and give the `<Checkbox.Group>` component as options.
-
-Refer to Ant Design [Checkbox.Group](https://ant.design/components/checkbox) component documentation for detailed info for `options`.
 
 ```tsx title="src/pages/posts/create.tsx"
 import { Form, Checkbox, useCheckboxGroup } from "@pankod/refine";
@@ -70,6 +65,20 @@ As you can see, `useCheckboxGroup` fetches data from API with given `resource` e
 All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.Group>` component.
 
 `useCheckboxGroup` uses the `useList` hook for fetching data. Refer to [useList](#) hook for details.
+
+## Options
+### `resource`
+
+```tsx
+const { checkboxGroupProps } = useCheckboxGroup({
+    //highlight-next-line
+    resource: "tags",
+});
+```
+
+`resource` allows us to fetch data provided by your Data Provider. Then creates `options` using this data.
+
+Refer to Ant Design [Checkbox.Group](https://ant.design/components/checkbox) component documentation for detailed info for `options`.
 
 ### `optionLabel` and `optionValue`
 
