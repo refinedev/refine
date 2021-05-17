@@ -37,7 +37,7 @@ mutate({
 
 `mutationResult` is what's returned from `react-query`'s `useMutation`.
 
-`RecordType` will be used for response data.
+You may produce a custom `RecordType` that represents a record in a resource. It will be used for response data.
 
 ```ts title="mutation response:"
 { data: RecordType; }
@@ -46,19 +46,22 @@ mutate({
 :::important
 Variables passed to `mutate` must have the type of
 
-```ts title="variables"
+```ts
 {
     resource: string;
-    values: {
-        id?: string | number;
-        [key: string]: any;
-    };
+    values: BaseRecord;
 }
 ```
-
+```ts
+type BaseRecord = {
+    id?: string | number;
+    [key: string]: any;
+};
+```
 :::
 ### Return values
 
 | Property       | Description            | Type                                                                                                          |
 | -------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------- |
-| mutationResult | Result of the mutation | [`UseMutationResult<`<br/>`{ data: T},`<br/>`unknown,`<br/>`  { resource: string; values: BaseRecord; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
+| mutationResult | Result of the mutation | [`UseMutationResult<`<br/>`{ data: RecordType},`<br/>`unknown,`<br/>`  { resource: string; values: BaseRecord; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
+
