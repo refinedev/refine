@@ -51,7 +51,7 @@ export type useForm<T, M> = {
 
 export const useForm = <
     RecordType = BaseRecord,
-    MutationType extends BaseRecord = RecordType
+    MutationType extends BaseRecord = RecordType,
 >({
     action,
     resource: resourceFromProps,

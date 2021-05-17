@@ -115,9 +115,10 @@ export const useDelete = <RecordType extends BaseRecord = BaseRecord>(
                     const { queryKey } = queryItem;
                     await queryClient.cancelQueries(queryKey);
 
-                    const previousQuery = queryClient.getQueryData<
-                        QueryResponse<RecordType>
-                    >(queryKey);
+                    const previousQuery =
+                        queryClient.getQueryData<QueryResponse<RecordType>>(
+                            queryKey,
+                        );
 
                     if (!(mutationMode === "pessimistic")) {
                         if (previousQuery) {
