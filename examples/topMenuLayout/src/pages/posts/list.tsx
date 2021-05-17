@@ -4,9 +4,6 @@ import {
     TextField,
     useTable,
     IResourceComponentsProps,
-    Space,
-    EditButton,
-    ShowButton,
     useMany,
 } from "@pankod/refine";
 
@@ -44,17 +41,6 @@ export const PostList = (props: IResourceComponentsProps) => {
                             />
                         );
                     }}
-                />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    key="actions"
-                    render={(_value, record) => (
-                        <Space>
-                            <EditButton size="small" recordItemId={record.id} />
-                            <ShowButton size="small" recordItemId={record.id} />
-                        </Space>
-                    )}
                 />
             </Table>
         </List>
