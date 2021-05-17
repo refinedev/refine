@@ -1,15 +1,43 @@
-import { useTable, useForm } from "@hooks";
+import { useTable } from "@hooks";
 import { useTableProps } from "../useTable";
-import { BaseRecord } from "../../../interfaces";
 import { useFormProps } from "../../form/useForm";
+import { useTableReturnType } from "../useTable/useTable";
+import { useForm } from "../../form/useForm";
+import { ButtonProps } from "../../../components/antd";
+import { BaseRecord } from "src/interfaces";
 
-type useEditableTableProps<T> = useTableProps & useFormProps<T>;
+type useEditableTableProps<T, M> = useTableProps & useFormProps<M>;
 
-export const useEditableTable = <RecordType extends BaseRecord = BaseRecord>(
-    props: useEditableTableProps<RecordType> = {},
-) => {
+export type useEditableTableReturnType<
+    RecordType,
+    MutationType
+> = useTableReturnType<RecordType> &
+    useForm<RecordType, MutationType> & {
+        saveButtonProps: ButtonProps & {
+            onClick: () => void;
+        };
+        cancelButtonProps: ButtonProps & {
+            onClick: () => void;
+        };
+        editButtonProps: (
+            id: string | number,
+        ) => ButtonProps & {
+            onClick: () => void;
+        };
+        isEditing: (id: string | number) => boolean;
+    };
+
+export const useEditableTable = <
+    RecordType extends BaseRecord = BaseRecord,
+    MutationType extends BaseRecord = RecordType
+>(
+    props: useEditableTableProps<RecordType, MutationType> = {},
+): useEditableTableReturnType<RecordType, MutationType> => {
     const table = useTable<RecordType>({ ...props });
-    const edit = useForm<RecordType>({ ...props, action: "edit" });
+    const edit = useForm<RecordType, MutationType>({
+        ...props,
+        action: "edit",
+    });
 
     const { form, editId, setEditId, formLoading } = edit;
 
