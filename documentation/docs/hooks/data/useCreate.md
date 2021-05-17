@@ -55,11 +55,10 @@ Variables passed to `mutate` must have the type of
     };
 }
 ```
-:::
 
+:::
 ### Return values
 
-| Property        | Description                                             | Type                                                                             |
-| --------------- | ------------------------------------------------------- | -------------------------------------------------------------------------------- |
-
-| mutationResult  | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation) |
+| Property       | Description            | Type                                                                                                          |
+| -------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------- |
+| mutationResult | Result of the mutation | [`UseMutationResult<`<br/>`{ data: T},`<br/>`unknown,`<br/>`  { resource: string; values: BaseRecord; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
