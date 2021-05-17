@@ -4,7 +4,7 @@ title: useCreate
 siderbar_label: useCreate
 ---
 
-`useCreate` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for create mutations. It uses `create` method from the `dataProvider` that is passed to `<Admin>`.  
+`useCreate` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for create mutations. It uses `create` method as mutation function from the `dataProvider` that is passed to `<Admin>`.  
 
 ### Features
 
@@ -15,53 +15,90 @@ siderbar_label: useCreate
 
 ### Usage
 
-```ts
-const mutationResult = useCreate<RecordType>();
-const { mutate, isLoading } = mutationResult;
+Let'say we have a `categories` resource
+
+```ts title="https://refine-fake-rest.pankod.com/categories"
+{
+    [
+        {
+            id: 1,
+            title: "E-business",
+        },
+        {
+            id: 2,
+            title: "Virtual Invoice Avon",
+        },
+        {
+            id: 3,
+            title: "Unbranded",
+        },
+    ];
+}
+```
+
+```tsx
+type CategoryMutationResult = {
+    id?: string | number;
+    title: string;
+}
+
+const { mutate } = useCreate<CategoryMutationResult>();
 
 mutate({
-    resource: "your-resource",
+    resource: "categories",
     values: {
-        "your-key": 123,
-    },
-    {
-        onSuccess: (data, ...rest) => {
-          ...  
-        },
-        onError: (error, ...rest) => {
-          ...  
-        }
+        title: "New Category",
     }
 })
 ```
 
-`mutationResult` is what's returned from `react-query`'s `useMutation`.
+After mutation runs `categories` will be updated as below:
 
-You may produce a custom `RecordType` that represents a record in a resource. It will be used for response data.
-
-```ts title="mutation response:"
-{ data: RecordType; }
+```ts title="https://refine-fake-rest.pankod.com/categories"
+{
+    [
+        {
+            id: 1,
+            title: "E-business",
+        },
+        {
+            id: 2,
+            title: "Virtual Invoice Avon",
+        },
+        {
+            id: 3,
+            title: "Unbranded",
+        },
+        // highlight-start
+        {
+            id: 4,
+            title: "New Category",
+        },
+        // highlight-end
+    ];
+}
 ```
+:::note
+Queries that use `/categories` endpoint will be automatically invalidated to show the updated data. For example, data returned from [`useList`](#) will be automatically updated.
+:::
+
+:::tip
+`useCreate` returns `react-query`'s `useMutation` result. It includes `mutate` with  [many other properties](https://react-query.tanstack.com/reference/useMutation).
+:::
 
 :::important
 Variables passed to `mutate` must have the type of
 
-```ts
+```tsx
 {
     resource: string;
-    values: BaseRecord;
+    values: any;
 }
-```
-```ts
-type BaseRecord = {
-    id?: string | number;
-    [key: string]: any;
-};
 ```
 :::
 ### Return values
 
 | Property       | Description            | Type                                                                                                          |
 | -------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------- |
-| mutationResult | Result of the mutation | [`UseMutationResult<`<br/>`{ data: RecordType},`<br/>`unknown,`<br/>`  { resource: string; values: BaseRecord; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
+| mutationResult | Result of the mutation | [`UseMutationResult<`<br/>`{ data: CategoryMutationResult },`<br/>`unknown,`<br/>`  { resource: string; values: any; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
 
