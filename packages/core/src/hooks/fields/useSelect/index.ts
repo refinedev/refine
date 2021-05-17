@@ -18,8 +18,6 @@ export type UseSelectProps = {
     optionLabel?: string;
     optionValue?: string;
     sort?: Sort;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    // refactor filters
     filters?: CrudFilters;
     defaultValue?: string | string[];
 };
@@ -75,8 +73,7 @@ export const useSelect = <RecordType extends BaseRecord = BaseRecord>(
                 value: search,
             },
             sort,
-            // refactor filters
-            filters: [],
+            filters,
         },
         {
             enabled: false,
