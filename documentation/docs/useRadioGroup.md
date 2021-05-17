@@ -15,20 +15,18 @@ Let's examine what `useRadioGroup` does, with step-by-step examples. Suppose our
 ```ts title="https://refine-fake-rest.pankod.com/languages"
 {
     [
-        [
-            {
-                id: 1,
-                title: "Turkish",
-            },
-            {
-                id: 2,
-                title: "English",
-            },
-            {
-                id: 3,
-                title: "German",
-            },
-        ],
+        {
+            id: 1,
+            title: "Turkish",
+        },
+        {
+            id: 2,
+            title: "English",
+        },
+        {
+            id: 3,
+            title: "German",
+        },
     ];
 }
 ```
@@ -68,6 +66,7 @@ All we have to do is pass the `radioGroupProps` it returns to the `<Radio.Group>
 `useRadioGroup` uses the `useList` hook for fetching data. Refer to [useList](#) hook for details.
 
 ## Options
+
 ### `resource`
 
 ```tsx
@@ -139,7 +138,6 @@ export const PostCreate = (props) => {
 ```
 
 Now, we expect the `queryResult` result to return according to `ILanguage` type.
-
 
 ## API Reference
 
