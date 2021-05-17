@@ -52,8 +52,7 @@ export const CategoryList = (props: any) => {
         <Space direction="horizontal">
             <ExportButton
                 sorter={sorter}
-                // refactor filters
-                filters={[]}
+                filters={filters}
                 pageSize={100}
                 maxItemCount={300}
             />

@@ -18,7 +18,6 @@ import { CSVDownloadProps } from "./csvDownload.interface";
 type ExportButtonProps = ButtonProps & {
     resourceName?: string;
     sorter?: Sort;
-    // refactor filters
     filters?: CrudFilters;
     maxItemCount?: number;
     pageSize?: number;
@@ -63,8 +62,7 @@ export const ExportButton: FC<ExportButtonProps> = ({
         let preparingData = true;
         while (preparingData) {
             const { data } = await getList(resource, {
-                // refactor filters
-                filters: [],
+                filters,
                 sort: sorter,
                 pagination: {
                     current,

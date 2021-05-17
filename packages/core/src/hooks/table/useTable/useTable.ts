@@ -154,6 +154,6 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
             },
         },
         sorter,
-        filters,
+        filters: permanentFilter?.concat(filters),
     };
 };
