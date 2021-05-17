@@ -11,7 +11,7 @@ Auth0 is a flexible, drop-in solution to add authentication and authorization se
 
 To use auth0 with refine;
 
-### Instalation
+### Installation
 
 Run the following command within your project directory to install the Auth0 React SDK:
 
@@ -183,4 +183,3 @@ We can use the `isAuthenticated` method, which returns the authentication status
 #### getUserIdentity
 
 We can use it with the `user` from the `useAuth0` hook.
-
