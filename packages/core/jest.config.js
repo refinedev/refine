@@ -23,4 +23,7 @@ module.exports = {
     },
     name: "core",
     displayName: "core",
+    transform: {
+        "^.+\\.svg$": "<rootDir>/test/svgTransform.ts",
+    },
 };

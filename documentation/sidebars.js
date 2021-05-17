@@ -21,6 +21,7 @@ module.exports = {
                 "useModalForm",
                 "useDrawerForm",
                 "useStepsForm",
+                "useCheckboxGroup",
                 "useSelect",
                 "useEditableTable",
                 "useRadioGroup",
