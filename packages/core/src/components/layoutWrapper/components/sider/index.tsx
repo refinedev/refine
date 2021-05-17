@@ -11,17 +11,17 @@ import humanizeString from "humanize-string";
 
 import { AuthContext } from "@contexts/auth";
 import { AdminContext } from "@contexts/admin";
-import { IAuthContext, IAdminContext } from "../../../../interfaces";
+import {
+    IAuthContext,
+    IAdminContext,
+    SiderProps,
+} from "../../../../interfaces";
 import {
     useNavigation,
     useTranslate,
     useResource,
     useWarnAboutChange,
 } from "@hooks";
-
-export type SiderProps = {
-    dashboard?: boolean;
-};
 
 export const Sider: FC<SiderProps> = ({ dashboard }) => {
     const [collapsed, setCollapsed] = React.useState(false);
