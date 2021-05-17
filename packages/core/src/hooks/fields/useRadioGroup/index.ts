@@ -35,7 +35,8 @@ export const useRadioGroup = <RecordType extends BaseRecord = BaseRecord>({
         resource,
         {
             sort,
-            filters,
+            // refactor filters
+            filters: [],
         },
         {
             onSuccess: (data) => {

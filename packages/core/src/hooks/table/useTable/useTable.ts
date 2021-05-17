@@ -13,22 +13,24 @@ import {
     Sort,
     ResourceRouterParams,
     BaseRecord,
+    CrudFilters,
 } from "../../../interfaces";
+import { merge } from "lodash";
 
 export type useTableProps = {
-    permanentFilter?: Filters;
+    permanentFilter?: CrudFilters;
     resource?: string;
     initialCurrent?: number;
     initialPageSize?: number;
     initialSorter?: Sort;
-    initialFilter?: Filters;
-    syncWithLocation?: boolean;
+    initialFilter?: CrudFilters;
+    // syncWithLocation?: boolean;
 };
 
 export type useTableReturnType<RecordType extends BaseRecord = BaseRecord> = {
     tableProps: TableProps<RecordType>;
     sorter?: Sort;
-    filters?: Filters;
+    filters?: CrudFilters;
 };
 
 export const useTable = <RecordType extends BaseRecord = BaseRecord>({
@@ -37,44 +39,44 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
     initialPageSize = 10,
     initialSorter,
     initialFilter,
-    syncWithLocation = false,
+    // syncWithLocation = false,
     resource: resourceFromProp,
 }: useTableProps = {}): useTableReturnType<RecordType> => {
-    const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
+    // const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
-    if (syncWithLocationContext) {
-        syncWithLocation = true;
-    }
+    // if (syncWithLocationContext) {
+    //     syncWithLocation = true;
+    // }
 
-    // disable syncWithLocation for custom resource tables
-    if (resourceFromProp) {
-        syncWithLocation = false;
-    }
+    // // disable syncWithLocation for custom resource tables
+    // if (resourceFromProp) {
+    //     syncWithLocation = false;
+    // }
 
-    const { search } = useLocation();
+    // const { search } = useLocation();
 
-    let defaultCurrent = initialCurrent;
-    let defaultPageSize = initialPageSize;
-    let defaultSorter = initialSorter;
-    let defaultFilter = initialFilter;
+    // let defaultCurrent = initialCurrent;
+    // let defaultPageSize = initialPageSize;
+    // let defaultSorter = initialSorter;
+    // let defaultFilter = initialFilter;
 
-    if (syncWithLocation) {
-        const {
-            parsedCurrent,
-            parsedPageSize,
-            parsedSorter,
-            parsedFilters,
-        } = parseTableParams({
-            initialSorter,
-            initialFilter,
-            url: search,
-        });
+    // if (syncWithLocation) {
+    //     const {
+    //         parsedCurrent,
+    //         parsedPageSize,
+    //         parsedSorter,
+    //         parsedFilters,
+    //     } = parseTableParams({
+    //         initialSorter,
+    //         initialFilter,
+    //         url: search,
+    //     });
 
-        defaultCurrent = parsedCurrent || defaultCurrent;
-        defaultPageSize = parsedPageSize || defaultPageSize;
-        defaultSorter = parsedSorter || defaultSorter;
-        defaultFilter = parsedFilters || defaultFilter;
-    }
+    //     defaultCurrent = parsedCurrent || defaultCurrent;
+    //     defaultPageSize = parsedPageSize || defaultPageSize;
+    //     defaultSorter = parsedSorter || defaultSorter;
+    //     defaultFilter = parsedFilters || defaultFilter;
+    // }
 
     const { tableProps: tablePropsSunflower } = useFormTable({
         defaultCurrent: initialCurrent,
@@ -88,8 +90,8 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
 
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
-    const [sorter, setSorter] = useState<Sort | undefined>(defaultSorter);
-    const [filters, setFilters] = useState<Filters | undefined>(defaultFilter);
+    const [sorter, setSorter] = useState<Sort | undefined>(initialSorter);
+    const [filters, setFilters] = useState<CrudFilters>(initialFilter || []);
 
     const {
         current,
@@ -99,7 +101,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
 
     const { data, isFetching } = useList<RecordType>(resource.name, {
         pagination: { current: current ?? defaultCurrentSF, pageSize },
-        filters: { ...filters, ...permanentFilter },
+        filters: merge(filters, permanentFilter),
         sort: sorter,
     });
 
@@ -108,21 +110,23 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
         filters: Filters,
         sorter: Sort,
     ) => {
-        setFilters(filters);
+        // map antd -> crud
+        console.log("filters", filters);
+        // setFilters([]);
         setSorter(sorter);
 
         tablePropsSunflower.onChange(pagination, filters, sorter);
 
         // synchronize with url
-        if (syncWithLocation) {
-            const stringifyParams = stringifyTableParams({
-                pagination,
-                sorter,
-                filters,
-            });
+        // if (syncWithLocation) {
+        //     const stringifyParams = stringifyTableParams({
+        //         pagination,
+        //         sorter,
+        //         filters,
+        //     });
 
-            return push(`/resources/${resource.route}?${stringifyParams}`);
-        }
+        //     return push(`/resources/${resource.route}?${stringifyParams}`);
+        // }
     };
 
     return {
