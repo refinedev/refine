@@ -22,7 +22,8 @@ module.exports = {
                     type: "category",
                     label: "Data",
                     items: [
-                        "hooks/data/useCreate"
+                        "hooks/data/useCreate",
+                        "hooks/data/useCreateMany"
                     ]
                 },
                 "useModalForm",
