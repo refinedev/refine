@@ -1,15 +1,17 @@
 ---
+slug: /useSelect
 id: useSelect
 title: useSelect
-siderbar_label: useSelect
 ---
 
 import basicUsage from '@site/static/img/use-select-basic-usage.png'
 import search from '@site/static/img/use-select-search.png'
 
-The `useSelect` hook allows you to manage an Ant Design [Select](https://ant.design/components/select/) component when records in a resource needs to be used as options. All we have to do is pass the `selectProps` it returns to the `<Select>` component. In addition, we can use the `queryResult` and `defaultValueQueryResult` value it returns to us.
+`useSelect` hook allows you to manage an Ant Design [Select](https://ant.design/components/select/) component when records in a resource needs to be used as select options.
 
-Now let's examine what `useSelect` does, with step-by-step examples. So let's start by suppose our `dataProvider` has an endpoint that returns categories as follows.
+## Example
+
+Let's examine what `useSelect` does, with step-by-step examples. Suppose our `dataProvider` has an endpoint that returns categories as follows.
 
 ```ts title="https://refine-fake-rest.pankod.com/categories"
 {
@@ -31,12 +33,6 @@ Now let's examine what `useSelect` does, with step-by-step examples. So let's st
 }
 ```
 
-## Basic Usage
-
-Now let's see how we fetch this data and give it to `<Select>` component as `options`.
-
-Refer to Ant Design [Select](#) component documentation for detailed info for `options`.
-
 ```tsx title="src/pages/posts/create.tsx"
 import { Form, Select, useSelect } from "@pankod/refine";
 
@@ -50,7 +46,7 @@ export const PostCreate = (props) => {
     return (
         <Form>
             ...
-            <Form.Item label="Category">
+            <Form.Item label="Categories" name="categories">
                 //highlight-next-line
                 <Select {...selectProps} />
             </Form.Item>
@@ -60,14 +56,16 @@ export const PostCreate = (props) => {
 };
 ```
 
-<div style={{textAlign: "center"}}>
+<div>
     <img src={basicUsage} />
 </div>
 <br/>
 
 As you can see, `useSelect` fetches data from API with given `resource` endpoint name and then returns properly formatted `options` value for `<Select>` component.
 
-<div style={{textAlign: "center"}}>
+All we have to do is pass the `selectProps` it returns to the `<Select>` component.
+
+<div>
     <img src={search} />
 </div>
 <br/>
@@ -78,7 +76,20 @@ By default, `refine` does the search using the `useList` hook and passes it to t
 
 `useSelect` uses the `useList` hook for fetching data. Refer to [useList](#) hook for details.
 
-## Optional Values
+## Options
+
+### `resource`
+
+```tsx
+const { selectProps } = useSelect({
+    //highlight-next-line
+    resource: "categories",
+});
+```
+
+`resource` allows us to fetch data provided by your Data Provider. Then creates `options` using this data.
+
+Refer to Ant Design [Select](https://ant.design/components/Select) component documentation for detailed info for `options`.
 
 ### `defaultValue`
 
@@ -161,3 +172,24 @@ export const PostCreate = (props) => {
 ```
 
 Now, we expect the `queryResult` and `defaultValueQueryResult` result to return according to `ICategory` type.
+
+## API Reference
+
+### Properties
+
+| Property                                          | Description                               | Type                        | Default   |
+| ------------------------------------------------- | ----------------------------------------- | --------------------------- | --------- |
+| resource <div className="required">Required</div> | [`Resource`](#) for API data interactions | `string`                    |           |
+| defaultValue                                      | Adds extra `options`                      | `string` \| `Array<string>` |           |
+| optionValue                                       | Set the option's value                    | `string`                    | `"id"`    |
+| optionLabel                                       | Set the option's label value              | `string`                    | `"title"` |
+| filters                                           | Add filters while fetching the data       | ``                          |           |
+| sort                                              | Allow us to sort the options              | ``                          |           |
+
+### Return values
+
+| Property                | Description                                    | Type                                                                            |
+| ----------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------- |
+| selectProps             | Ant design Select props                        | [`Select`](https://ant.design/components/Select/#Selec)                         |
+| queryResult             | Result of the query of a record                | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery) |
+| defaultValueQueryResult | Result of the query of a `defaultValue` record | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery) |
