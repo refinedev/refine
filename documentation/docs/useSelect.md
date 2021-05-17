@@ -61,8 +61,6 @@ export const PostCreate = (props) => {
 </div>
 <br/>
 
-As you can see, `useSelect` fetches data from API with given `resource` endpoint name and then returns properly formatted `options` value for `<Select>` component.
-
 All we have to do is pass the `selectProps` it returns to the `<Select>` component.
 
 <div>
@@ -87,7 +85,7 @@ const { selectProps } = useSelect({
 });
 ```
 
-`resource` allows us to fetch data provided by your Data Provider. Then creates `options` using this data.
+`resource` property determines API resource endpoint to fetch records from data provider. It returns properly configured `options` values for select options.
 
 Refer to Ant Design [Select](https://ant.design/components/Select) component documentation for detailed info for `options`.
 
