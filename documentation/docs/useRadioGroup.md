@@ -4,11 +4,13 @@ id: useRadioGroup
 title: useRadioGroup
 ---
 
-<!-- import basicUsage from '@site/static/img/use-checkboxgroup-basic.png' -->
+import basicUsage from '@site/static/img/use-radio-basic-usage.png'
 
-The `useRadioGroup` hook allows you to manage an Ant Design [Radio.Group](https://ant.design/components/radio/#components-radio-demo-radiogroup-with-name) component when records in a resource needs to be used as radio options. All we have to do is pass the `radioGroupProps` it returns to the `<Radio.Group>` component. In addition, we can use the `queryResult` value it return to us.
+`useRadioGroup` hook allows you to manage an Ant Design [Radio.Group](https://ant.design/components/radio/#components-radio-demo-radiogroup-with-name) component when records in a resource needs to be used as radio options.
 
-Now let's examine what `useRadioGroup` does, with step-by-step examples. So let's start by suppose our `dataProvider` has an endpoint that returns languages as follows.
+## Example
+
+Let's examine what `useRadioGroup` does, with step-by-step examples. Suppose our `dataProvider` has an endpoint that returns languages as follows.
 
 ```ts title="https://refine-fake-rest.pankod.com/languages"
 {
@@ -31,26 +33,20 @@ Now let's examine what `useRadioGroup` does, with step-by-step examples. So let'
 }
 ```
 
-## Basic Usage
-
-Now let's see how we fetch this data and give it to `<Radio.Group>` component as `options`.
-
-Refer to Ant Design [Radio.Group](https://ant.design/components/radio) component documentation for detailed info for `options`.
-
 ```tsx title="src/pages/posts/create.tsx"
 import { Form, Radio, useRadioGroup } from "@pankod/refine";
 
 export const PostCreate = (props) => {
     //highlight-start
     const { radioGroupProps } = useRadioGroup({
-        resource: "tags",
+        resource: "languages",
     });
     //highlight-end
 
     return (
         <Form>
             ...
-            <Form.Item label="Tags" name="tags">
+            <Form.Item label="Languages" name="languages">
                 //highlight-next-line
                 <Radio.Group {...radioGroupProps} />
             </Form.Item>
@@ -60,22 +56,36 @@ export const PostCreate = (props) => {
 };
 ```
 
-<!-- <div>
+<div>
     <img src={basicUsage} />
 </div>
-<br/> -->
+<br/>
 
 As you can see, `useRadioGroup` fetches data from API with given `resource` endpoint name and then returns properly formatted `options` value for `<Radio.Group>` component.
 
+All we have to do is pass the `radioGroupProps` it returns to the `<Radio.Group>` component.
+
 `useRadioGroup` uses the `useList` hook for fetching data. Refer to [useList](#) hook for details.
 
-## Optional Values
+## Options
+### `resource`
+
+```tsx
+const { radioGroupProps } = useRadioGroup({
+    //highlight-next-line
+    resource: "languages",
+});
+```
+
+`resource` allows us to fetch data provided by your Data Provider. Then creates `options` using this data.
+
+Refer to Ant Design [Radio.Group](https://ant.design/components/radio) component documentation for detailed info for `options`.
 
 ### `optionLabel` and `optionValue`
 
 ```tsx
 const { radioGroupProps } = useRadioGroup({
-    resource: "tags",
+    resource: "languages",
     //highlight-start
     optionLabel: "title",
     optionValue: "id",
@@ -89,7 +99,7 @@ Allows you to change the values and appearance of your options. Default values a
 
 ```tsx
 const { radioGroupProps } = useRadioGroup({
-    resource: "tags",
+    resource: "languages",
     //highlight-next-line
     filters: { isActive: true },
 });
@@ -101,7 +111,7 @@ It allows us to add some filters while fetching the data. For example, if you wa
 
 ```tsx
 const { radioGroupProps } = useRadioGroup({
-    resource: "tags",
+    resource: "languages",
     //highlight-start
     sort: {
         field: "title",
@@ -122,10 +132,30 @@ import { ILanguage } from "interfaces";
 
 export const PostCreate = (props) => {
     //highlight-next-line
-    const { queryResult, defaultValueQueryResult } = useRadioGroup<ILanguage>({
-        resource: "tags",
+    const { queryResult } = useRadioGroup<ILanguage>({
+        resource: "languages",
     });
 };
 ```
 
 Now, we expect the `queryResult` result to return according to `ILanguage` type.
+
+
+## API Reference
+
+### Properties
+
+| Property                                          | Description                               | Type     | Default   |
+| ------------------------------------------------- | ----------------------------------------- | -------- | --------- |
+| resource <div className="required">Required</div> | [`Resource`](#) for API data interactions | `string` |           |
+| optionValue                                       | Set the option's value                    | `string` | `"id"`    |
+| optionLabel                                       | Set the option's label value              | `string` | `"title"` |
+| filters                                           | Add filters while fetching the data       | ``       |           |
+| sort                                              | Allow us to sort the options              | ``       |           |
+
+### Return values
+
+| Property        | Description                     | Type                                                                            |
+| --------------- | ------------------------------- | ------------------------------------------------------------------------------- |
+| radioGroupProps | Ant design radio group props    | [`Radio Group`](https://ant.design/components/radio/#RadioGroup)                |
+| queryResult     | Result of the query of a record | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery) |
