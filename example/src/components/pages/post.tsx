@@ -225,7 +225,7 @@ export const PostList = (props: any) => {
                             </Radio.Group>
                         </FilterDropdown>
                     )}
-                    // refactor filters
+                    // refactor filters -> syncWithLocation
                     // defaultFilteredValue={getDefaultFilter("status", filters)}
                 />
                 <Table.Column
