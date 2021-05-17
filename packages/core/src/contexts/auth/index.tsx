@@ -19,6 +19,7 @@ export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
     checkError = defaultProvider.login,
     getPermissions = defaultProvider.getPermissions,
     getUserIdentity = defaultProvider.getUserIdentity,
+    isProvided,
     children,
 }) => {
     const [isAuthenticated, setAuthenticated] = useState(false);
@@ -63,6 +64,7 @@ export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
                 getPermissions,
                 getUserIdentity,
                 isAuthenticated,
+                isProvided,
             }}
         >
             {children}
