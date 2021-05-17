@@ -68,9 +68,13 @@ interface ICategory {
 export const PostList = (props: any) => {
     const translate = useTranslate();
     const { tableProps, sorter, filters } = useTable<IPost>({
-        // permanentFilter: {
-        //     categoryId: [50, 49],
-        // },
+        permanentFilter: [
+            {
+                field: "category.id",
+                operator: "in",
+                value: ["fa9b12d3-48b8-466f-a5dd-9bede24e58b3"],
+            },
+        ],
         initialSorter: [
             {
                 field: "createdAt",
@@ -90,14 +94,17 @@ export const PostList = (props: any) => {
         resource: "categories",
         optionLabel: "title",
         optionValue: "id",
-        defaultValue: getDefaultFilter("category.id", filters),
+        // refactor filters
+        // defaultValue: getDefaultFilter("category.id", filters),
+        defaultValue: [],
     });
 
     const extra = (
         <Space direction="horizontal">
             <ExportButton
                 sorter={sorter}
-                filters={filters}
+                // refactor filters
+                filters={[]}
                 pageSize={100}
                 maxItemCount={300}
                 mapData={(item) => {
@@ -190,10 +197,11 @@ export const PostList = (props: any) => {
                             />
                         </FilterDropdown>
                     )}
-                    defaultFilteredValue={getDefaultFilter(
-                        "category.id",
-                        filters,
-                    )}
+                    // refactor filters
+                    // defaultFilteredValue={getDefaultFilter(
+                    //     "category.id",
+                    //     filters,
+                    // )}
                 />
                 <Table.Column
                     dataIndex="status"
@@ -218,7 +226,8 @@ export const PostList = (props: any) => {
                             </Radio.Group>
                         </FilterDropdown>
                     )}
-                    defaultFilteredValue={getDefaultFilter("status", filters)}
+                    // refactor filters
+                    // defaultFilteredValue={getDefaultFilter("status", filters)}
                 />
                 <Table.Column
                     dataIndex="createdAt"
