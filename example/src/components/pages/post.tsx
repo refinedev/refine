@@ -70,9 +70,9 @@ export const PostList = (props: any) => {
     const { tableProps, sorter, filters } = useTable<IPost>({
         permanentFilter: [
             {
-                field: "category.id",
-                operator: "in",
-                value: ["fa9b12d3-48b8-466f-a5dd-9bede24e58b3"],
+                field: "createdAt",
+                operator: "gte",
+                value: "2021-05-17",
             },
         ],
         initialSorter: [
@@ -94,7 +94,7 @@ export const PostList = (props: any) => {
         resource: "categories",
         optionLabel: "title",
         optionValue: "id",
-        // refactor filters
+        // refactor filters -> syncWithLocation
         // defaultValue: getDefaultFilter("category.id", filters),
         defaultValue: [],
     });
@@ -197,7 +197,7 @@ export const PostList = (props: any) => {
                             />
                         </FilterDropdown>
                     )}
-                    // refactor filters
+                    // refactor filters -> syncWithLocation
                     // defaultFilteredValue={getDefaultFilter(
                     //     "category.id",
                     //     filters,

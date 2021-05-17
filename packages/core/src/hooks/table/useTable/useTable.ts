@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
 
 import { useResourceWithRoute, useList } from "@hooks";
-import { useSyncWithLocation } from "@hooks/admin";
-import { useNavigation } from "@hooks/navigation";
-import { stringifyTableParams, parseTableParams } from "@definitions/table";
+// import { useSyncWithLocation } from "@hooks/admin";
+// import { useNavigation } from "@hooks/navigation";
+// import { stringifyTableParams, parseTableParams } from "@definitions/table";
 
 import {
     Filters,
@@ -15,7 +15,6 @@ import {
     BaseRecord,
     CrudFilters,
 } from "../../../interfaces";
-import { merge } from "lodash";
 
 export type useTableProps = {
     permanentFilter?: CrudFilters;
@@ -85,7 +84,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
-    const { push } = useNavigation();
+    // const { push } = useNavigation();
     const resourceWithRoute = useResourceWithRoute();
 
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
@@ -101,7 +100,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
 
     const { data, isFetching } = useList<RecordType>(resource.name, {
         pagination: { current: current ?? defaultCurrentSF, pageSize },
-        filters: merge(filters, permanentFilter),
+        filters: permanentFilter?.concat(filters),
         sort: sorter,
     });
 
@@ -110,13 +109,25 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
         filters: Filters,
         sorter: Sort,
     ) => {
-        // map antd -> crud
-        console.log("filters", filters);
-        // setFilters([]);
+        // Map Antd:Filter -> Refine:CrudFilter
+        const crudFilters: CrudFilters = [];
+        Object.keys(filters).map((field) => {
+            const value = filters[field];
+
+            if (value) {
+                crudFilters.push({
+                    field,
+                    operator: "in",
+                    value,
+                });
+            }
+        });
+        setFilters(crudFilters);
         setSorter(sorter);
 
         tablePropsSunflower.onChange(pagination, filters, sorter);
 
+        // refactor filters -> syncWithLocation
         // synchronize with url
         // if (syncWithLocation) {
         //     const stringifyParams = stringifyTableParams({
