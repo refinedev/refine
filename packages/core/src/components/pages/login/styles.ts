@@ -1,7 +1,5 @@
 import { CSSProperties } from "react";
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
 import loginBg from "./background.svg";
 
 export const loginCard: CSSProperties = {

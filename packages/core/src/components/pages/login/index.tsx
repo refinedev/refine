@@ -18,8 +18,6 @@ import {
     loginBackground,
 } from "./styles";
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
 import logo from "./refine.svg";
 
 import { useNavigation, useNotification } from "@hooks";
