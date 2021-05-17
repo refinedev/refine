@@ -57,3 +57,9 @@ Variables passed to `mutate` must have the type of
 ```
 :::
 
+### Return values
+
+| Property        | Description                                             | Type                                                                             |
+| --------------- | ------------------------------------------------------- | -------------------------------------------------------------------------------- |
+
+| mutationResult  | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation) |
