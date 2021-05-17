@@ -99,8 +99,6 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
         defaultCurrent: defaultCurrentSF,
     } = tablePropsSunflower.pagination;
 
-    console.log(filters)
-
     const { data, isFetching } = useList<RecordType>(resource.name, {
         pagination: { current: current ?? defaultCurrentSF, pageSize },
         filters: [...permanentFilter || [], ...filters || []],

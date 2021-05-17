@@ -12,7 +12,6 @@ import { DataProvider, HttpError } from "@pankod/refine";
 
 type SortBy = QuerySort | QuerySortArr | Array<QuerySort | QuerySortArr>;
 type CrudFilters =
-    | QueryFilter
     | QueryFilterArr
     | Array<QueryFilter | QueryFilterArr>;
 

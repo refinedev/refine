@@ -84,8 +84,9 @@ export const parseTableParams = (params: {
         parsedCurrent: current && Number(current),
         parsedPageSize: pageSize && Number(pageSize),
         parsedSorter: merge(initialSorter, parsedSorter),
-        parsedFilters: [...initialFilter || [], ...parsedFilters || []],//merge(initialFilter, filters) as Filters,
-        //parsedFilters: [...initialFilter || [], ...filters || []]
+        parsedFilters: [...initialFilter || [], ...parsedFilters || []],
+        // merge(initialFilter, filters) as Filters,
+        // parsedFilters: [...initialFilter || [], ...filters || []]
     };
 };
 
