@@ -61,7 +61,8 @@ function App() {
             Promise.resolve({
                 id: 1,
                 fullName: "Jane Doe",
-                avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
+                avatar:
+                    "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
             }),
     };
 

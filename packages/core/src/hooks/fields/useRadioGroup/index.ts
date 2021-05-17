@@ -49,13 +49,10 @@ export const useRadioGroup = <RecordType extends BaseRecord = BaseRecord>({
         },
     );
 
-    const radioGroupProps = {
-        options,
-        ...rest,
-    };
-
     return {
-        radioGroupProps,
+        radioGroupProps: {
+            options,
+        },
         queryResult,
     };
 };

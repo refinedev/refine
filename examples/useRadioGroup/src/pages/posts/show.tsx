@@ -3,11 +3,11 @@ import {
     Show,
     Typography,
     IResourceComponentsProps,
-    useOne,
     MarkdownField,
+    useOne,
 } from "@pankod/refine";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ILanguage } from "interfaces";
 
 const { Title, Text } = Typography;
 
@@ -17,14 +17,12 @@ export const PostShow = (props: IResourceComponentsProps) => {
     const record = data?.data;
 
     const {
-        data: categoryData,
-        isLoading: categoryIsLoading,
-    } = useOne<ICategory>("categories", record!.category.id, {
-        enabled: !!record,
-    });
+        data: languageData,
+        isLoading: languageIsLoading,
+    } = useOne<ILanguage>("languages", record!?.language);
 
     return (
-        <Show {...props} isLoading={isLoading}>
+        <Show {...props} isLoading={isLoading && languageIsLoading}>
             {record && (
                 <>
                     <Title level={5}>Id</Title>
@@ -33,14 +31,12 @@ export const PostShow = (props: IResourceComponentsProps) => {
                     <Title level={5}>Title</Title>
                     <Text>{record.title}</Text>
 
-                    <Title level={5}>Category</Title>
-                    <Text>
-                        {categoryIsLoading
-                            ? "Loading..."
-                            : categoryData?.data.title}
-                    </Text>
+                    <Title level={5}>Tags</Title>
+                    <Text>{languageData?.data.title}</Text>
 
-                    <Title level={5}>Content</Title>
+                    <Title level={5} style={{ marginTop: "20px" }}>
+                        Content
+                    </Title>
                     <MarkdownField value={record.content} />
                 </>
             )}

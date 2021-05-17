@@ -28,8 +28,9 @@ export const PostEdit = (props: IResourceComponentsProps) => {
         defaultValue: postData?.category.id,
     });
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+        "write",
+    );
 
     const apiUrl = useApiUrl();
 

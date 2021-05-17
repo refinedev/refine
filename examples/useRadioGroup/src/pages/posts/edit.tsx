@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
-    Create,
+    Edit,
     Form,
     Input,
     IResourceComponentsProps,
-    Select,
     useForm,
-    useSelect,
+    useRadioGroup,
+    Radio,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -14,13 +14,15 @@ import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ILanguage } from "interfaces";
 
-export const PostCreate = (props: IResourceComponentsProps) => {
+export const PostEdit = (props: IResourceComponentsProps) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
+    const {
+        radioGroupProps: languageRadioGroupProps,
+    } = useRadioGroup<ILanguage>({
+        resource: "languages",
     });
 
     const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
@@ -28,7 +30,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
     );
 
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
+        <Edit {...props} saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
@@ -42,37 +44,15 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Category"
-                    name={["category", "id"]}
+                    label="Language"
+                    name="language"
                     rules={[
                         {
                             required: true,
                         },
                     ]}
                 >
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Status"
-                    name="status"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                        ]}
-                    />
+                    <Radio.Group {...languageRadioGroupProps} />
                 </Form.Item>
                 <Form.Item
                     label="Content"
@@ -94,6 +74,6 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                     />
                 </Form.Item>
             </Form>
-        </Create>
+        </Edit>
     );
 };

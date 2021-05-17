@@ -24,6 +24,7 @@ module.exports = {
                 "useCheckboxGroup",
                 "useSelect",
                 "useEditableTable",
+                "useRadioGroup",
                 "useForm"
             ],
         },

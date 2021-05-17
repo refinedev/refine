@@ -60,13 +60,12 @@ export const PostCreate = (props) => {
 </div>
 <br/>
 
-As you can see, `useCheckboxGroup` fetches data from API with given `resource` endpoint name and then returns properly formatted `options` value for `<Checkbox.Group>` component.
-
 All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.Group>` component.
 
 `useCheckboxGroup` uses the `useList` hook for fetching data. Refer to [useList](#) hook for details.
 
 ## Options
+
 ### `resource`
 
 ```tsx
@@ -76,7 +75,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
 });
 ```
 
-`resource` allows us to fetch data provided by your Data Provider. Then creates `options` using this data.
+`resource` property determines API resource endpoint to fetch records from data provider. It returns properly configured `options` values for checkboxes.
 
 Refer to Ant Design [Checkbox.Group](https://ant.design/components/checkbox) component documentation for detailed info for `options`.
 
@@ -138,7 +137,6 @@ export const PostCreate = (props) => {
 ```
 
 Now, we expect the `queryResult` result to return according to `ITag` type.
-
 
 ## API Reference
 

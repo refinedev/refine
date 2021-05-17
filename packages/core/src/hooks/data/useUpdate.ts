@@ -111,8 +111,9 @@ export const useUpdate = <RecordType extends BaseRecord = BaseRecord>(
                     const { queryKey } = queryItem;
                     await queryClient.cancelQueries(queryKey);
 
-                    const previousQuery =
-                        queryClient.getQueryData<QueryResponse>(queryKey);
+                    const previousQuery = queryClient.getQueryData<QueryResponse>(
+                        queryKey,
+                    );
 
                     if (!(mutationMode === "pessimistic")) {
                         if (previousQuery) {
