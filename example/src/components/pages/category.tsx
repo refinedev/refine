@@ -22,6 +22,11 @@ import {
     getDefaultSortOrder,
 } from "@pankod/refine";
 
+export interface ICategory {
+    id: string;
+    title: string;
+}
+
 export const CategoryList = (props: any) => {
     const translate = useTranslate();
     const {
@@ -34,7 +39,7 @@ export const CategoryList = (props: any) => {
         editButtonProps,
         cancelButtonProps,
         setEditId,
-    } = useEditableTable({
+    } = useEditableTable<ICategory, ICategory>({
         initialSorter: [
             {
                 field: "createdAt",

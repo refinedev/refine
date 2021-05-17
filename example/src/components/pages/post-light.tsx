@@ -95,7 +95,6 @@ export const PostLightList = (props: any) => {
                         dataIndex="title"
                         title={translate("common:resources.posts.fields.title")}
                         key="title"
-                        render={(value) => <TextField value={value} />}
                         sorter={{
                             multiple: 1,
                         }}
@@ -104,7 +103,6 @@ export const PostLightList = (props: any) => {
                         dataIndex="slug"
                         title={translate("common:resources.posts.fields.slug")}
                         key="slug"
-                        render={(value) => <TextField value={value} />}
                         sorter={{
                             multiple: 2,
                         }}

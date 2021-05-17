@@ -6,6 +6,11 @@ module.exports = {
         },
         {
             type: "category",
+            label: "Guides",
+            items: ["multipartUpload", "base64upload"],
+        },
+        {
+            type: "category",
             label: "Providers",
             items: ["authProvider", "dataProvider"],
         },
@@ -17,9 +22,11 @@ module.exports = {
                 "useDrawerForm",
                 "useStepsForm",
                 "useTable",
+                "useCheckboxGroup",
                 "useSelect",
                 "useEditableTable",
+                "useForm"
             ],
-        },
+        }
     ],
 };

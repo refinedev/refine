@@ -74,7 +74,9 @@ export const useUpdate = <RecordType extends BaseRecord = BaseRecord>(
             const updatePromise = new Promise<UpdateResponse<RecordType>>(
                 (resolve, reject) => {
                     const updateTimeout = setTimeout(() => {
-                        resolve(update<RecordType>(resource, id, values));
+                        update<RecordType>(resource, id, values)
+                            .then((result) => resolve(result))
+                            .catch((err) => reject(err));
                     }, undoableTimeout);
 
                     const cancelMutation = () => {
@@ -109,9 +111,8 @@ export const useUpdate = <RecordType extends BaseRecord = BaseRecord>(
                     const { queryKey } = queryItem;
                     await queryClient.cancelQueries(queryKey);
 
-                    const previousQuery = queryClient.getQueryData<QueryResponse>(
-                        queryKey,
-                    );
+                    const previousQuery =
+                        queryClient.getQueryData<QueryResponse>(queryKey);
 
                     if (!(mutationMode === "pessimistic")) {
                         if (previousQuery) {
@@ -162,6 +163,13 @@ export const useUpdate = <RecordType extends BaseRecord = BaseRecord>(
                         queryClient.setQueryData(query.queryKey, query.query);
                     }
                 }
+
+                notificationDispatch({
+                    type: ActionTypes.REMOVE,
+                    payload: {
+                        id,
+                    },
+                });
 
                 if (err.message !== "mutationCancelled") {
                     notification.error({
