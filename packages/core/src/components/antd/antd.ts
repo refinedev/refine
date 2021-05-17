@@ -203,6 +203,7 @@ export { default as Tooltip } from "antd/lib/tooltip";
 
 export type { TypographyProps } from "antd/lib/typography";
 export { default as Typography } from "antd/lib/typography";
+export type { TitleProps } from "antd/lib/typography/Title";
 
 export type { UploadProps } from "antd/lib/upload";
 
