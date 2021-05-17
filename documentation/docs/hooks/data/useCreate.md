@@ -52,6 +52,10 @@ mutate({
 })
 ```
 
+:::tip
+`mutate` can also accept lifecycle methods like `onSuccess` and `onError`. [Refer to `react-query` docs for further information.](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
+:::
+
 After mutation runs `categories` will be updated as below:
 
 ```ts title="https://refine-fake-rest.pankod.com/categories"
