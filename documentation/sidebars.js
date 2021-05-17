@@ -6,6 +6,11 @@ module.exports = {
         },
         {
             type: "category",
+            label: "Guides",
+            items: ["multipartUpload"],
+        },
+        {
+            type: "category",
             label: "Providers",
             items: ["authProvider", "dataProvider"],
         },
@@ -19,7 +24,13 @@ module.exports = {
                 "useSelect",
                 "useEditableTable",
                 "useRadioGroup",
+                "useForm"
             ],
+        },
+        {
+            type: "category",
+            label: "Guides",
+            items: ["base64upload"],
         },
     ],
 };

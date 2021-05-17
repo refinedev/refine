@@ -19,7 +19,7 @@ import { UseUpdateReturnType } from "../data/useUpdate";
 import { UseCreateReturnType } from "../data/useCreate";
 
 export type ActionParams = {
-    action?: "show" | "edit" | "create";
+    action?: "edit" | "create";
 };
 
 type SaveButtonProps = {

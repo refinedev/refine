@@ -15,7 +15,7 @@ import {
     Input,
     Upload,
     MarkdownField,
-    normalizeFile,
+    getValueFromEvent,
     useApiUrl,
     useFileUploadState,
     useTranslate,
@@ -152,7 +152,6 @@ export const PostList = (props: any) => {
                     dataIndex="title"
                     title={translate("common:resources.posts.fields.title")}
                     key="title"
-                    render={(value) => <TextField value={value} />}
                     sorter={{
                         multiple: 1,
                     }}
@@ -162,7 +161,6 @@ export const PostList = (props: any) => {
                     dataIndex="slug"
                     title={translate("common:resources.posts.fields.slug")}
                     key="slug"
-                    render={(value) => <TextField value={value} />}
                 />
                 <Table.Column
                     dataIndex={["category", "id"]}
@@ -361,7 +359,7 @@ export const PostCreate = (props: any) => {
                 <Form.Item
                     name="images"
                     valuePropName="fileList"
-                    getValueFromEvent={normalizeFile}
+                    getValueFromEvent={getValueFromEvent}
                     noStyle
                 >
                     <Upload.Dragger
@@ -587,7 +585,7 @@ export const PostEdit = (props: any) => {
                 <Form.Item
                     name="images"
                     valuePropName="fileList"
-                    getValueFromEvent={normalizeFile}
+                    getValueFromEvent={getValueFromEvent}
                     noStyle
                 >
                     <Upload.Dragger
