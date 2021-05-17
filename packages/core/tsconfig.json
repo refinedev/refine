@@ -1,8 +1,7 @@
 {
     "include": [
         "src",
-        "types",
-        "custom.d.ts"
+        "types"
     ],
     "extends": "../../tsconfig.build.json",
     "compilerOptions": {
