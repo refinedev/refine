@@ -93,7 +93,7 @@ const useMenu: useMenu = () => {
 
 export const Sider: FC<SiderProps> = () => {
     const [collapsed, setCollapsed] = React.useState(false);
-    const { logout } = useContext<IAuthContext>(AuthContext);
+    const { logout, isProvided } = useContext<IAuthContext>(AuthContext);
     const { Title } = useContext<IAdminContext>(AdminContext);
     const { push } = useNavigation();
     const translate = useTranslate();
