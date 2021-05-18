@@ -27,10 +27,9 @@ type ActionFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {}
-> =
-    | useCreateFormProps<TData, TError, TVariables>
-    | useEditFormProps<TData, TError, TVariables>
-    | useCloneFormProps<TData, TError, TVariables>;
+> = useCreateFormProps<TData, TError, TVariables> &
+    useEditFormProps<TData, TError, TVariables> &
+    useCloneFormProps<TData, TError, TVariables>;
 
 type ResourcelessActionFormProps<
     TData extends BaseRecord = BaseRecord,
