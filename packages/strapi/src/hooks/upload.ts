@@ -1,15 +1,12 @@
 import { useState } from "react";
-import {
-    RcFile,
-    UploadFile,
-} from "@pankod/refine/node_modules/antd/lib/upload/interface";
+import { RcFile, UploadFile } from "@pankod/refine";
 
 interface StrapiUploadParams {
     maxCount: number;
 }
 
 export const useStrapiUpload = ({ maxCount }: StrapiUploadParams) => {
-    const [uploadedFileIds, setUploadedFileIds] = useState<string[]>([]);
+    const [uploadedFileIds] = useState<string[]>([]);
     const [fileList, setFileList] = useState<UploadFile[]>([]);
 
     const beforeUpload = (_file: RcFile, files: RcFile[]): boolean => {
