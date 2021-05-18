@@ -19,6 +19,9 @@ export {
     LayoutProps,
     SiderProps,
     TitleProps,
+    CrudFilter,
+    CrudFilters,
+    CrudOperators,
 } from "./interfaces";
 
 export * from "./definitions/upload";
