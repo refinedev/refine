@@ -1,18 +1,23 @@
 import { useTable, useForm } from "@hooks";
 import { useTableProps } from "../useTable";
-import { BaseRecord } from "../../../interfaces";
+import { BaseRecord, HttpError } from "../../../interfaces";
 import { useFormProps } from "../../form/useForm";
 
-type useEditableTableProps<T, M> = useTableProps & useFormProps<T, M>;
+type useEditableTableProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = useTableProps & useFormProps<TData, TError, TVariables>;
 
 export const useEditableTable = <
-    RecordType extends BaseRecord = BaseRecord,
-    MutationType = BaseRecord
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
 >(
-    props: useEditableTableProps<RecordType, MutationType> = {},
+    props: useEditableTableProps<TData, TError, TVariables> = {},
 ) => {
-    const table = useTable<RecordType>({ ...props });
-    const edit = useForm<RecordType, MutationType>({
+    const table = useTable<TData>({ ...props });
+    const edit = useForm<TData, TError, TVariables>({
         ...props,
         action: "edit",
     });

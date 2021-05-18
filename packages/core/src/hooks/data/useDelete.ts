@@ -21,29 +21,28 @@ import {
     ContextQuery,
     HttpError,
     GetListResponse,
+    Identifier,
 } from "../../interfaces";
 
 type UseDeleteReturnType<
     TData extends BaseRecord = BaseRecord,
-    TError = HttpError,
-    TVariables = {}
+    TError = HttpError
 > = UseMutationResult<
     DeleteOneResponse<TData>,
     TError,
-    TVariables,
+    { id: Identifier },
     DeleteContext
 >;
 
 export const useDelete = <
     TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TVariables extends BaseRecord = BaseRecord
+    TError extends HttpError = HttpError
 >(
     resource: string,
     mutationModeProp?: MutationMode,
     undoableTimeoutProp?: number,
     onCancel?: (cancelMutation: () => void) => void,
-): UseDeleteReturnType<TData, TError, TVariables> => {
+): UseDeleteReturnType<TData, TError> => {
     const queryClient = useQueryClient();
     const { deleteOne } = useContext<IDataContext>(DataContext);
     const {
@@ -68,18 +67,20 @@ export const useDelete = <
     const mutation = useMutation<
         DeleteOneResponse<TData>,
         TError,
-        TVariables,
+        {
+            id: Identifier;
+        },
         DeleteContext
     >(
-        (variables) => {
+        ({ id }) => {
             if (!(mutationMode === "undoable")) {
-                return deleteOne<TData, TVariables>(resource, variables);
+                return deleteOne<TData>(resource, id);
             }
 
             const updatePromise = new Promise<DeleteOneResponse<TData>>(
                 (resolve, reject) => {
                     const updateTimeout = setTimeout(() => {
-                        deleteOne<TData>(resource, variables)
+                        deleteOne<TData>(resource, id)
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     }, undoableTimeout);
@@ -95,7 +96,7 @@ export const useDelete = <
                         notificationDispatch({
                             type: ActionTypes.ADD,
                             payload: {
-                                id: variables.id,
+                                id,
                                 resource: resource,
                                 cancelMutation: cancelMutation,
                                 seconds: undoableTimeout,

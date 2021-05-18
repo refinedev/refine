@@ -89,19 +89,13 @@ export interface IDataContext {
         ids: Identifier[],
         params: TVariables,
     ) => Promise<UpdateManyResponse<TData>>;
-    deleteOne: <
-        TData extends BaseRecord = BaseRecord,
-        TVariables extends BaseRecord = BaseRecord
-    >(
+    deleteOne: <TData extends BaseRecord = BaseRecord>(
         resource: string,
-        params: TVariables,
+        id: Identifier,
     ) => Promise<DeleteOneResponse<TData>>;
-    deleteMany: <
-        TData extends BaseRecord = BaseRecord,
-        TVariables = { id: (string | number)[] }
-    >(
+    deleteMany: <TData extends BaseRecord = BaseRecord>(
         resource: string,
-        params: TVariables,
+        ids: Identifier[],
     ) => Promise<DeleteManyResponse<TData>>;
     getApiUrl: () => string;
 }
