@@ -30,7 +30,6 @@ import {
     TagsEdit,
     DashboardPage,
     ReadyPage,
-    LoginPage,
 } from "./components/pages";
 
 function App() {
@@ -92,7 +91,6 @@ function App() {
         <Admin
             authProvider={authProvider}
             dataProvider={dataProvider("https://refine-nestjs-crud.pankod.com")}
-            LoginPage={LoginPage}
             DashboardPage={DashboardPage}
             ReadyPage={ReadyPage}
             i18nProvider={i18nProvider}
