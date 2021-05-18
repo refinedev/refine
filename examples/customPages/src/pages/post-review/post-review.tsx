@@ -3,22 +3,28 @@ import {
     Typography,
     Button,
     Card,
+    Icons,
     AntdList,
     useList,
     MarkdownField,
     useMany,
+    useUpdate,
+    Select,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
 
+const { LeftOutlined, RightOutlined } = Icons;
 const { Title, Text } = Typography;
+const { Option } = Select;
 
 export const PostReview = () => {
     const [page, setPage] = useState<number>(1);
+    const [pageSize, setPageSize] = useState<number>(1);
 
     const { data, isLoading } = useList<IPost>("posts", {
         filters: { status: ["draft"] },
-        pagination: { pageSize: 2, current: page },
+        pagination: { pageSize, current: page },
     });
 
     const record = data?.data;
@@ -31,6 +37,14 @@ export const PostReview = () => {
             enabled: categoryIds.length > 0,
         },
     );
+
+    const mutationResult = useUpdate<IPost>("posts");
+
+    const { mutate } = mutationResult;
+
+    const handleUpdate = (item: IPost) => {
+        mutate({ id: item.id, values: { ...item, status: "published" } });
+    };
 
     return (
         <div>
@@ -47,10 +61,20 @@ export const PostReview = () => {
                             }}
                         >
                             <Button onClick={() => setPage((prev) => prev - 1)}>
+                                <LeftOutlined />
                                 Previous Page
                             </Button>
+                            <Select
+                                defaultValue={1}
+                                onChange={(value) => setPageSize(value)}
+                            >
+                                <Option value={1}>1 / page</Option>
+                                <Option value={2}>2 / page</Option>
+                                <Option value={3}>3 / page</Option>
+                            </Select>
                             <Button onClick={() => setPage((prev) => prev + 1)}>
                                 Next Page
+                                <RightOutlined />
                             </Button>
                         </div>
                     }
@@ -58,13 +82,20 @@ export const PostReview = () => {
                         <AntdList.Item>
                             <Card
                                 style={{ height: "100%" }}
-                                title={item.title}
                                 actions={[
-                                    <Button key="approve" type="primary">
+                                    <Button
+                                        key="approve"
+                                        type="primary"
+                                        onClick={() => handleUpdate(item)}
+                                    >
                                         Approve
                                     </Button>,
                                 ]}
                             >
+                                <Title level={5}>Status</Title>
+                                <Text mark>{item.status}</Text>
+                                <Title level={5}>Title</Title>
+                                <Text>{item.title}</Text>
                                 <Title level={5}>Category</Title>
                                 <Text>
                                     {
