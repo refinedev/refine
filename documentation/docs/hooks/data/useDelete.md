@@ -48,8 +48,11 @@ mutate({ id: 2 })
 ```
 
 :::tip
-`mutate` can also accept lifecycle methods like `onSuccess` and `onError`. [Refer to react-query docs for further information.](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
+`mutate` can also accept lifecycle methods like `onSuccess` and `onError`.  
+[Refer to react-query docs for further information.](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
 :::
+
+<br/>
 
 After mutation runs `categories` will be updated as below:
 
@@ -63,6 +66,8 @@ After mutation runs `categories` will be updated as below:
     ];
 }
 ```
+<br/>
+
 :::note
 Queries that use `/categories` endpoint will be automatically invalidated to show the updated data. For example, data returned from [`useList`](#) will be automatically updated.
 :::
@@ -81,38 +86,66 @@ Variables passed to `mutate` must have the type of
 ```
 :::
 
-## Options
-
-### `mutationMode`
+## Mutation mode
 
 Determines the mode with which the mutation runs.
 
 ```tsx
 const { mutate } = useDelete<CategoryMutationResult>("categories", "optimistic");
 ```
-#### `pessimistic` : The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfully.
+ `pessimistic` : The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfuly.
+
+ `optimistic` : The mutation is applied locally, redirection and UI updates are executed immediately as if mutation is succesful. If mutation returns with error, UI updates accordingly.
+
+ `undoable`: The mutation is applied locally, redirection and UI updates are executed immediately as if mutation is succesful. Waits for a customizable amount of timeout before mutation is applied. During the timeout, mutation can be cancelled from the notification with an undo button and UI will revert back accordingly.
 
 
-#### `optimistic` : The mutation is applied locally and redirection and UI updates are executed immediately as muatation is succesful. If mutation returns with error, UI updates accordingly.
+[Refer to mutation mode docs for further information. &#8594](#)
 
-#### `undoable`
 
-pessimistic: The mutation is passed to the dataProvider first. When the dataProvider returns successfully, the mutation is applied locally, and the side effects are executed.
+## Custom method on mutation cancellation
+You can define cancel mutation method by passing a callback to `onCancel`  property. Cancel callback triggers when undo button is clicked on  `mutationModeProp = "undoable"` mutation mode.
+`onCancel` callback need to be in format like below
 
-optimistic: The mutation is applied locally and the side effects are executed immediately. Then the mutation is passed to the dataProvider. If the dataProvider returns successfully, nothing happens (as the mutation was already applied locally). If the dataProvider returns in error, the page is refreshed and an error notification is shown.
+A custom callback can be passed to be run on undo action. Upon clicking the undo button this callback will be run.
 
-undoable (default): The mutation is applied locally and the side effects are executed immediately. Then a notification is shown with an undo button. If the user clicks on undo, the mutation is never sent to the dataProvider, and the page is refreshed. Otherwise, after a 5 seconds delay, the mutation is passed to the dataProvider. If the dataProvider returns successfully, nothing happens (as the mutation was already applied locally). If the dataProvider returns in error, the page is refreshed and an error notification is shown.
+:::caution
+Default behaviour on undo action includes notifications. If a custom callback is passed this notification will not appear.
+:::
+
+:::danger
+Passed callback will be passed a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on undoable mode.
+
+```tsx
+const customOnCancel = (cancelMutation) => {
+    cancelMutation()
+    // rest of custom onCancel logic...
+}
+
+const { mutate } = useDelete("categories", "optimistic", undefined, customOnCancel);
+```
+:::
 
 
 ## API
 
-### Properties
+### Parameters
 
 
+| Property               | Description                                                                                        | Type                                                              | Default          |
+| ---------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ---------------- |
+| resource  <div className=" required">Required</div>               | [`Resource`](#) for API data interactions                                                          | `string`                                                          |                  |
+| mutationModeProp           | [Determines when mutations are executed](#)                                                        | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`* |
+| onCancel               | Callback that runs when undo button is clicked on `mutationModeProp = "undoable"`                                                      | `(cancelMutation: () => void) => void`  |                         | `"list"`         |
+| undoableTimeoutProp        | Duration to wait before executing mutations when `mutationModeProp = "undoable"`                       | `number`                                                          | `5000ms`*          |
+
+>`*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component. `useDelete` will see what is passed to `<Admin>` as default and can override locally.
+
+<br/>
 
 ### Return values
 
 | Property       | Description            | Type                                                                                                          |
 | -------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------- |
-| mutationResult | Result of the mutation | [`UseMutationResult<`<br/>`{ data: CategoryMutationResult },`<br/>`unknown,`<br/>`  { resource: string; values: any; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
+| mutationResult | Result of the mutation          | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { id: Identifier; },`<br/>` DeleteContext>`](https://react-query.tanstack.com/reference/useMutation) |
 
