@@ -46,7 +46,6 @@ export const TagsList = (props: any) => {
                     key="title"
                     dataIndex="title"
                     title={translate("common:resources.tags.fields.title")}
-                    render={(value) => <TextField value={value} />}
                     defaultSortOrder={getDefaultSortOrder("title", sorter)}
                     sorter
                 />

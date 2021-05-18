@@ -8,6 +8,7 @@ import { useResourceWithRoute } from "@hooks";
 import { useCreateForm, useCreateFormProps } from "./useCreateForm";
 import { useEditForm, useEditFormProps } from "./useEditForm";
 import { useCloneForm, useCloneFormProps } from "./useCloneForm";
+import { ButtonProps } from "../../components/antd";
 
 import {
     BaseRecord,
@@ -19,19 +20,12 @@ import { UseUpdateReturnType } from "../data/useUpdate";
 import { UseCreateReturnType } from "../data/useCreate";
 
 export type ActionParams = {
-    action?: "show" | "edit" | "create";
+    action?: "edit" | "create";
 };
 
-type SaveButtonProps = {
-    disabled: boolean;
-    onClick: () => void;
-    loading?: boolean;
-};
-
-type ActionFormProps<M> =
-    | useCreateFormProps<M>
-    | useEditFormProps<M>
-    | useCloneFormProps<M>;
+type ActionFormProps<M> = useCreateFormProps<M> &
+    useEditFormProps<M> &
+    useCloneFormProps<M>;
 
 type ResourcelessActionFormProps<M> = Omit<ActionFormProps<M>, "resource">;
 
@@ -44,7 +38,9 @@ export type useForm<T, M> = {
     formProps: UseFormSFFormProps & FormProps;
     editId?: string | number;
     setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
-    saveButtonProps: SaveButtonProps;
+    saveButtonProps: ButtonProps & {
+        onClick: () => void;
+    };
     queryResult?: QueryObserverResult<GetOneResponse<T>>;
     mutationResult: UseUpdateReturnType<M> | UseCreateReturnType<M>;
     formLoading: boolean;

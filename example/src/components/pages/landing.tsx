@@ -69,7 +69,6 @@ export const LandingList = (props: any) => {
                         dataIndex="title"
                         title={translate("common:resources.posts.fields.title")}
                         key="title"
-                        render={(value) => <TextField value={value} />}
                         sorter={{
                             multiple: 1,
                         }}

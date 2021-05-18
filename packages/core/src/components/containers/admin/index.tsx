@@ -105,7 +105,7 @@ export const Admin: React.FC<AdminProps> = ({
 
     return (
         <QueryClientProvider client={queryClient}>
-            <AuthContextProvider {...authProvider}>
+            <AuthContextProvider {...authProvider} isProvided={!!authProvider}>
                 <DataContextProvider {...dataProvider}>
                     <ResourceContextProvider resources={resources}>
                         <TranslationContextProvider i18nProvider={i18nProvider}>

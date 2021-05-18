@@ -44,7 +44,6 @@ export type useCreateFormProps<M> = {
         context: any,
     ) => void;
     onMutationError?: (error: any, variables: any, context: any) => void;
-    mutationMode?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
     redirect?: RedirectionTypes;

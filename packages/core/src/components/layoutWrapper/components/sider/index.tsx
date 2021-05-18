@@ -125,9 +125,11 @@ export const Sider: FC<SiderProps> = () => {
                     </Menu.Item>
                 ))}
 
-                <Menu.Item key="logout" icon={<LogoutOutlined />}>
-                    {translate("common:buttons.logout", "Logout")}
-                </Menu.Item>
+                {isProvided && (
+                    <Menu.Item key="logout" icon={<LogoutOutlined />}>
+                        {translate("common:buttons.logout", "Logout")}
+                    </Menu.Item>
+                )}
             </Menu>
         </Layout.Sider>
     );

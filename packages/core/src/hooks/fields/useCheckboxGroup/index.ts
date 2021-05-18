@@ -1,9 +1,8 @@
 import React from "react";
 import { CheckboxGroupProps } from "antd/lib/checkbox";
 import { QueryObserverResult } from "react-query";
-import uniqBy from "lodash/uniqBy";
 
-import { useList, useMany } from "@hooks";
+import { useList } from "@hooks";
 import { Sort, Option, BaseRecord, GetListResponse } from "../../../interfaces";
 
 export type useCheckboxGroupProps = {
@@ -11,7 +10,7 @@ export type useCheckboxGroupProps = {
     optionLabel?: string;
     optionValue?: string;
     sort?: Sort;
-    defaultValue?: string | string[];
+    filters?: Record<string, (string | number | boolean)[] | null>;
 };
 
 export type UseCheckboxGroupReturnType<
@@ -24,35 +23,17 @@ export type UseCheckboxGroupReturnType<
 export const useCheckboxGroup = <RecordType extends BaseRecord = BaseRecord>({
     resource,
     sort,
+    filters,
     optionLabel = "title",
     optionValue = "id",
-    ...rest
 }: useCheckboxGroupProps): UseCheckboxGroupReturnType<RecordType> => {
     const [options, setOptions] = React.useState<Option[]>([]);
-    const [selectedOptions, setSelectedOptions] = React.useState<Option[]>([]);
-
-    let { defaultValue = [] } = rest;
-
-    if (!Array.isArray(defaultValue)) {
-        defaultValue = [defaultValue];
-    }
-
-    useMany(resource, defaultValue, {
-        enabled: defaultValue.length > 0,
-        onSuccess: (data) => {
-            setSelectedOptions(
-                data.data.map((item) => ({
-                    label: item[optionLabel],
-                    value: item[optionValue],
-                })),
-            );
-        },
-    });
 
     const queryResult = useList<RecordType>(
         resource,
         {
             sort,
+            filters,
         },
         {
             onSuccess: (data) => {
@@ -65,13 +46,10 @@ export const useCheckboxGroup = <RecordType extends BaseRecord = BaseRecord>({
             },
         },
     );
-
-    const checkboxGroupProps = {
-        options: uniqBy([...options, ...selectedOptions], "value"),
-    };
-
     return {
-        checkboxGroupProps,
+        checkboxGroupProps: {
+            options,
+        },
         queryResult,
     };
 };
