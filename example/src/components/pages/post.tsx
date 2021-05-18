@@ -68,20 +68,19 @@ interface ICategory {
 export const PostList = (props: any) => {
     const translate = useTranslate();
     const { tableProps, sorter, filters } = useTable<IPost>({
-        permanentFilter: [
-            {
-                field: "createdAt",
-                operator: "gte",
-                value: "2021-05-17",
-            },
-        ],
+        // permanentFilter: [
+        //     {
+        //         field: "createdAt",
+        //         operator: "gte",
+        //         value: "2021-05-17",
+        //     },
+        // ],
         initialSorter: [
             {
                 field: "createdAt",
                 order: "descend",
             },
         ],
-        syncWithLocation: true,
     });
 
     const categoryIds =
@@ -91,8 +90,6 @@ export const PostList = (props: any) => {
         enabled: categoryIds.length > 0,
     });
 
-    // console.log("filters", filters);
-    // console.log("getDefaultFilter", getDefaultFilter("status", filters));
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
         optionLabel: "title",

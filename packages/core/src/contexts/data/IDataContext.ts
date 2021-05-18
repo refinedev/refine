@@ -55,9 +55,6 @@ export type CrudFilter = {
 
 export type CrudFilters = CrudFilter[];
 
-// @deprecated -> CrudFilter
-export type Filters = Record<string, (string | number | boolean)[] | null>;
-
 export interface GetListResponse<RecordType = BaseRecord> {
     data: RecordType[];
     total: number;
