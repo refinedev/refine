@@ -35,7 +35,7 @@ export const Show: React.FC<ShowProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const { goBack } = useNavigation();
+    const { goBack, list } = useNavigation();
 
     const resourceWithRoute = useResourceWithRoute();
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
@@ -65,7 +65,7 @@ export const Show: React.FC<ShowProps> = ({
                                 {isEditButtonVisible && (
                                     <EditButton disabled={isLoading} />
                                 )}
-                                {isDeleteButtonVisible && <DeleteButton />}
+                                {isDeleteButtonVisible && <DeleteButton onSuccess={() => list(resource.route ?? resource.name)} />}
                                 <RefreshButton />
                             </>
                         )}

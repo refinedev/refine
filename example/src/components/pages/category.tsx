@@ -39,7 +39,7 @@ export const CategoryList = (props: any) => {
         editButtonProps,
         cancelButtonProps,
         setEditId,
-    } = useEditableTable<ICategory, ICategory>({
+    } = useEditableTable<ICategory>({
         initialSorter: [
             {
                 field: "createdAt",

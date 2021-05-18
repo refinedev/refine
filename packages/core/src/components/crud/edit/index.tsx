@@ -48,7 +48,7 @@ export const Edit: React.FC<EditProps> = ({
     canDelete,
 }) => {
     const translate = useTranslate();
-    const { push, goBack } = useNavigation();
+    const { goBack, list } = useNavigation();
     const resourceWithRoute = useResourceWithRoute();
 
     const { mutationMode: mutationModeContext } = useMutationMode();
@@ -96,9 +96,7 @@ export const Edit: React.FC<EditProps> = ({
                                     <DeleteButton
                                         mutationMode={mutationMode}
                                         onSuccess={() => {
-                                            return push(
-                                                `/resources/${resource.route}`,
-                                            );
+                                            list(resource.route ?? resource.name)
                                         }}
                                         {...deleteButtonProps}
                                     />
