@@ -22,15 +22,15 @@ export type UseSelectProps = {
     defaultValue?: string | string[];
 };
 
-export type UseSelectReturnType<RecordType extends BaseRecord = BaseRecord> = {
+export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
     selectProps: SelectProps<{ value: string; label: string }>;
-    queryResult: QueryObserverResult<GetListResponse<RecordType>>;
-    defaultValueQueryResult: QueryObserverResult<GetManyResponse<RecordType>>;
+    queryResult: QueryObserverResult<GetListResponse<TData>>;
+    defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
 };
 
-export const useSelect = <RecordType extends BaseRecord = BaseRecord>(
+export const useSelect = <TData extends BaseRecord = BaseRecord>(
     props: UseSelectProps,
-): UseSelectReturnType<RecordType> => {
+): UseSelectReturnType<TData> => {
     const [search, setSearch] = React.useState<string | undefined>();
     const [options, setOptions] = React.useState<Option[]>([]);
     const [selectedOptions, setSelectedOptions] = React.useState<Option[]>([]);
@@ -49,23 +49,19 @@ export const useSelect = <RecordType extends BaseRecord = BaseRecord>(
         defaultValue = [defaultValue];
     }
 
-    const defaultValueQueryResult = useMany<RecordType>(
-        resource,
-        defaultValue,
-        {
-            enabled: defaultValue.length > 0,
-            onSuccess: (data) => {
-                setSelectedOptions(
-                    data.data.map((item) => ({
-                        label: item[optionLabel],
-                        value: item[optionValue],
-                    })),
-                );
-            },
+    const defaultValueQueryResult = useMany<TData>(resource, defaultValue, {
+        enabled: defaultValue.length > 0,
+        onSuccess: (data) => {
+            setSelectedOptions(
+                data.data.map((item) => ({
+                    label: item[optionLabel],
+                    value: item[optionValue],
+                })),
+            );
         },
-    );
+    });
 
-    const queryResult = useList<RecordType>(
+    const queryResult = useList<TData>(
         resource,
         {
             search: {

@@ -16,8 +16,8 @@ export interface Search {
 
 export type Filters = Record<string, (string | number | boolean)[] | null>;
 
-export interface GetListResponse<RecordType = BaseRecord> {
-    data: RecordType[];
+export interface GetListResponse<TData = BaseRecord> {
+    data: TData[];
     total: number;
 }
 
@@ -25,36 +25,36 @@ export interface CreateResponse<TData = BaseRecord> {
     data: TData;
 }
 
-export interface CreateManyResponse<RecordType = BaseRecord> {
-    data: RecordType[];
+export interface CreateManyResponse<TData = BaseRecord> {
+    data: TData[];
 }
 
-export interface UpdateResponse<RecordType = BaseRecord> {
-    data: RecordType;
+export interface UpdateResponse<TData = BaseRecord> {
+    data: TData;
 }
 
-export interface UpdateManyResponse<RecordType = BaseRecord> {
-    data: RecordType[];
+export interface UpdateManyResponse<TData = BaseRecord> {
+    data: TData[];
 }
 
-export interface GetOneResponse<RecordType = BaseRecord> {
-    data: RecordType;
+export interface GetOneResponse<TData = BaseRecord> {
+    data: TData;
 }
 
-export interface GetManyResponse<RecordType = BaseRecord> {
-    data: RecordType[];
+export interface GetManyResponse<TData = BaseRecord> {
+    data: TData[];
 }
 
-export interface DeleteOneResponse<RecordType = BaseRecord> {
-    data: RecordType;
+export interface DeleteOneResponse<TData = BaseRecord> {
+    data: TData;
 }
 
-export interface DeleteManyResponse<RecordType = BaseRecord> {
-    data: RecordType[];
+export interface DeleteManyResponse<TData = BaseRecord> {
+    data: TData[];
 }
 
 export interface IDataContext {
-    getList: <RecordType extends BaseRecord = BaseRecord>(
+    getList: <TData extends BaseRecord = BaseRecord>(
         resource: string,
         params: {
             pagination?: Pagination;
@@ -62,15 +62,15 @@ export interface IDataContext {
             sort?: Sort;
             filters?: Filters;
         },
-    ) => Promise<GetListResponse<RecordType>>;
-    getMany: <RecordType extends BaseRecord = BaseRecord>(
+    ) => Promise<GetListResponse<TData>>;
+    getMany: <TData extends BaseRecord = BaseRecord>(
         resource: string,
         ids: Identifier[],
-    ) => Promise<GetManyResponse<RecordType>>;
-    getOne: <RecordType extends BaseRecord = BaseRecord>(
+    ) => Promise<GetManyResponse<TData>>;
+    getOne: <TData extends BaseRecord = BaseRecord>(
         resource: string,
         id: Identifier,
-    ) => Promise<GetOneResponse<RecordType>>;
+    ) => Promise<GetOneResponse<TData>>;
     create: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
         resource: string,
         params: TVariables,
