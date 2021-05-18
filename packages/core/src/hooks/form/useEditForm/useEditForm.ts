@@ -23,6 +23,7 @@ import {
     UseFormSFFormProps,
     UpdateResponse,
     IResourceItem,
+    HttpError,
 } from "../../../interfaces";
 
 type SaveButtonProps = {
@@ -31,26 +32,38 @@ type SaveButtonProps = {
     loading?: boolean;
 };
 
-export type useEditForm<T, M> = {
-    form: FormInstance;
-    formProps: UseFormSFFormProps & FormProps;
+export type useEditForm<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = {
+    form: FormInstance<TVariables>;
+    formProps: FormProps<TVariables>;
     editId?: string | number;
     setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
     saveButtonProps: SaveButtonProps;
-    queryResult: QueryObserverResult<GetOneResponse<T>>;
-    mutationResult: UseUpdateReturnType<M>;
+    queryResult: QueryObserverResult<GetOneResponse<TData>>;
+    mutationResult: UseUpdateReturnType<TData, TError, TVariables>;
     formLoading: boolean;
     setCloneId?: Dispatch<SetStateAction<string | number | undefined>>;
     cloneId?: string | number;
 };
 
-export type useEditFormProps<M> = {
+export type useEditFormProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = {
     onMutationSuccess?: (
-        data: UpdateResponse<M>,
-        variables: any,
+        data: UpdateResponse<TData>,
+        variables: TVariables,
         context: any,
     ) => void;
-    onMutationError?: (error: any, variables: any, context: any) => void;
+    onMutationError?: (
+        error: TError,
+        variables: TVariables,
+        context: any,
+    ) => void;
     mutationMode?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
@@ -60,8 +73,9 @@ export type useEditFormProps<M> = {
 };
 
 export const useEditForm = <
-    RecordType = BaseRecord,
-    MutationType extends BaseRecord = RecordType
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
 >({
     onMutationSuccess,
     onMutationError,
@@ -71,7 +85,11 @@ export const useEditForm = <
     redirect = "list",
     undoableTimeout,
     resource,
-}: useEditFormProps<MutationType>): useEditForm<RecordType, MutationType> => {
+}: useEditFormProps<TData, TError, TVariables>): useEditForm<
+    TData,
+    TError,
+    TVariables
+> => {
     const [editId, setEditId] = React.useState<string | number>();
 
     const [formAnt] = Form.useForm();
@@ -98,7 +116,7 @@ export const useEditForm = <
 
     const id = editId?.toString() ?? idFromRoute;
 
-    const queryResult = useOne<RecordType>(resource.name, id, {
+    const queryResult = useOne<TData>(resource.name, id, {
         enabled: isEdit,
     });
 
@@ -113,7 +131,7 @@ export const useEditForm = <
         };
     }, [data, id, isFetching]);
 
-    const mutationResult = useUpdate<MutationType>(
+    const mutationResult = useUpdate<TData, TError, TVariables>(
         resource.name,
         mutationMode,
         undoableTimeout,
@@ -125,7 +143,7 @@ export const useEditForm = <
 
     const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 
-    const onFinish = async (values: BaseRecord) => {
+    const onFinish = async (values: TVariables) => {
         setWarnWhen(false);
 
         // Required to make onSuccess vs callbacks to work if component unmounts i.e. on route change
@@ -133,9 +151,9 @@ export const useEditForm = <
             mutate(
                 { id, values },
                 {
-                    onSuccess: (data, ...rest) => {
+                    onSuccess: (data, variables, context) => {
                         if (onMutationSuccess) {
-                            return onMutationSuccess(data, ...rest);
+                            return onMutationSuccess(data, values, context);
                         }
 
                         if (mutationMode === "pessimistic") {
@@ -147,9 +165,9 @@ export const useEditForm = <
                             });
                         }
                     },
-                    onError: (error: any, ...rest) => {
+                    onError: (error: TError, variables, context) => {
                         if (onMutationError) {
-                            return onMutationError(error, ...rest);
+                            return onMutationError(error, values, context);
                         }
                     },
                 },

@@ -10,24 +10,29 @@ import {
     useTranslate,
     useWarnAboutChange,
 } from "@hooks";
-import { BaseRecord, ModalFormSF } from "../../../interfaces";
+import { BaseRecord, HttpError, ModalFormSF } from "../../../interfaces";
 import { useFormProps } from "../useForm";
 
 type useModalFormConfig = {
     action: "show" | "edit" | "create";
 };
 
-export type useModalFormProps<M> = useFormProps<M> &
+export type useModalFormProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = useFormProps<TData, TError, TVariables> &
     UseModalFormConfigSF &
     useModalFormConfig;
 export const useModalForm = <
-    RecordType extends BaseRecord = BaseRecord,
-    MutationType extends BaseRecord = RecordType
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
 >({
     mutationMode: mutationModeProp,
     ...rest
-}: useModalFormProps<MutationType>) => {
-    const useFormProps = useForm<RecordType, MutationType>({
+}: useModalFormProps<TData, TError, TVariables>) => {
+    const useFormProps = useForm<TData, TError, TVariables>({
         ...rest,
         mutationMode: mutationModeProp,
     });

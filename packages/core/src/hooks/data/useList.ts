@@ -10,6 +10,7 @@ import {
     Filters,
     Pagination,
     BaseRecord,
+    HttpError,
 } from "../../interfaces";
 
 interface UseListConfig {
@@ -19,16 +20,19 @@ interface UseListConfig {
     filters?: Filters;
 }
 
-export const useList = <RecordType = BaseRecord>(
+export const useList = <
+    TData = BaseRecord,
+    TError extends HttpError = HttpError
+>(
     resource: string,
     config?: UseListConfig,
-    queryOptions?: UseQueryOptions<GetListResponse<RecordType>>,
-): QueryObserverResult<GetListResponse<RecordType>, unknown> => {
+    queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>,
+): QueryObserverResult<GetListResponse<TData>, TError> => {
     const { getList } = useContext<IDataContext>(DataContext);
 
-    const queryResponse = useQuery<GetListResponse<RecordType>>(
+    const queryResponse = useQuery<GetListResponse<TData>, TError>(
         [`resource/list/${resource}`, { ...config }],
-        () => getList<RecordType>(resource, { ...config }),
+        () => getList<TData>(resource, { ...config }),
         queryOptions ?? { keepPreviousData: true },
     );
 

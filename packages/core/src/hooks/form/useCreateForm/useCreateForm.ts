@@ -17,6 +17,7 @@ import {
     CreateResponse,
     UseFormSFFormProps,
     IResourceItem,
+    HttpError,
 } from "../../../interfaces";
 
 type SaveButtonProps = {
@@ -25,25 +26,37 @@ type SaveButtonProps = {
     loading?: boolean;
 };
 
-export type useCreateForm<T, M> = {
-    form: FormInstance;
-    formProps: UseFormSFFormProps & FormProps;
+export type useCreateForm<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = {
+    form: FormInstance<TVariables>;
+    formProps: FormProps<TVariables>;
     editId?: string | number;
     setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
     saveButtonProps: SaveButtonProps;
     formLoading: boolean;
-    mutationResult: UseCreateReturnType<M>;
+    mutationResult: UseCreateReturnType<TData, TError, TVariables>;
     setCloneId?: Dispatch<SetStateAction<string | number | undefined>>;
     cloneId?: string | number;
 };
 
-export type useCreateFormProps<M> = {
+export type useCreateFormProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = {
     onMutationSuccess?: (
-        data: CreateResponse<M>,
-        variables: any,
+        data: CreateResponse<TData>,
+        variables: TVariables,
         context: any,
     ) => void;
-    onMutationError?: (error: any, variables: any, context: any) => void;
+    onMutationError?: (
+        error: TError,
+        variables: TVariables,
+        context: any,
+    ) => void;
     mutationMode?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
@@ -52,8 +65,9 @@ export type useCreateFormProps<M> = {
 };
 
 export const useCreateForm = <
-    RecordType extends BaseRecord = BaseRecord,
-    MutationType extends BaseRecord = RecordType
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
 >({
     onMutationSuccess,
     onMutationError,
@@ -61,9 +75,10 @@ export const useCreateForm = <
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect = "edit",
     resource,
-}: useCreateFormProps<MutationType>): useCreateForm<
-    RecordType,
-    MutationType
+}: useCreateFormProps<TData, TError, TVariables>): useCreateForm<
+    TData,
+    TError,
+    TVariables
 > => {
     const [formAnt] = Form.useForm();
     const formSF: FormSF = useFormSF({
@@ -80,19 +95,19 @@ export const useCreateForm = <
 
     const { form } = formSF;
 
-    const mutationResult = useCreate<MutationType>();
+    const mutationResult = useCreate<TData, TError, TVariables>();
     const { mutate, isLoading } = mutationResult;
 
     const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 
-    const onFinish = async (values: BaseRecord) => {
+    const onFinish = async (values: TVariables) => {
         setWarnWhen(false);
         mutate(
             { values, resource: resource.name },
             {
-                onSuccess: (data, ...rest) => {
+                onSuccess: (data, variables, context) => {
                     if (onMutationSuccess) {
-                        return onMutationSuccess(data, ...rest);
+                        return onMutationSuccess(data, values, context);
                     }
 
                     const id = data.data.id;
@@ -103,9 +118,9 @@ export const useCreateForm = <
                         id,
                     });
                 },
-                onError: (error: any, ...rest) => {
+                onError: (error: TError, variables, context) => {
                     if (onMutationError) {
-                        return onMutationError(error, ...rest);
+                        return onMutationError(error, values, context);
                     }
                 },
             },

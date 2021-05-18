@@ -20,6 +20,7 @@ import {
     CreateButton,
     DateField,
     getDefaultSortOrder,
+    HttpError,
 } from "@pankod/refine";
 
 export const CategoryList = (props: any) => {
@@ -158,10 +159,19 @@ export const CategoryList = (props: any) => {
     );
 };
 
+interface ICategory {
+    id: string;
+    title: string;
+}
+
 export const CategoryCreate = (props: any) => {
     const translate = useTranslate();
 
-    const { formProps, saveButtonProps } = useForm();
+    const { formProps, saveButtonProps } = useForm<
+        ICategory,
+        HttpError,
+        { title: string }
+    >();
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
@@ -185,7 +195,11 @@ export const CategoryCreate = (props: any) => {
 export const CategoryEdit = (props: any) => {
     const translate = useTranslate();
 
-    const { formProps, saveButtonProps } = useForm();
+    const { formProps, saveButtonProps } = useForm<
+        ICategory,
+        HttpError,
+        { title: string }
+    >();
 
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>

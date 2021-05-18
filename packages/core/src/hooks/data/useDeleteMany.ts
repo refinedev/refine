@@ -10,18 +10,21 @@ import {
 } from "../../interfaces";
 import { useNotification, useTranslate } from "@hooks";
 
-type UseDeleteManyReturnType<T> = UseMutationResult<
-    DeleteManyResponse<T>,
-    unknown,
-    {
-        id: (string | number)[];
-    },
-    unknown
->;
+type UseDeleteManyReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TError = HttpError,
+    TVariables = {}
+> = UseMutationResult<DeleteManyResponse<TData>, TError, TVariables, unknown>;
 
-export const useDeleteMany = <RecordType extends BaseRecord = BaseRecord>(
+export const useDeleteMany = <
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {
+        id: (string | number)[];
+    }
+>(
     resource: string,
-): UseDeleteManyReturnType<RecordType> => {
+): UseDeleteManyReturnType<TData, TError, TVariables> => {
     const { deleteMany } = useContext<IDataContext>(DataContext);
     const notification = useNotification();
     const translate = useTranslate();
@@ -34,15 +37,14 @@ export const useDeleteMany = <RecordType extends BaseRecord = BaseRecord>(
 
     const queryResource = `resource/list/${resource}`;
 
-    const mutation = useMutation(
-        ({ id }: { id: (string | number)[] }) =>
-            deleteMany<RecordType>(resource, id),
+    const mutation = useMutation<DeleteManyResponse<TData>, TError, TVariables>(
+        (id) => deleteMany<TData, TVariables>(resource, id),
         {
             // Always refetch after error or success:
             onSettled: () => {
                 queryClient.invalidateQueries(queryResource);
             },
-            onSuccess: (_data, { id }) => {
+            onSuccess: (_data, id) => {
                 notification.success({
                     key: `${id}-${resource}-notification`,
                     message: translate(
@@ -56,7 +58,7 @@ export const useDeleteMany = <RecordType extends BaseRecord = BaseRecord>(
                     ),
                 });
             },
-            onError: (err: HttpError, { id }) => {
+            onError: (err: TError, id) => {
                 notification.error({
                     key: `${id}-${resource}-notification`,
                     message: translate(

@@ -9,18 +9,20 @@ export type UseFormSFReturn = ReturnType<UseFormSF>;
 export type UseStepsFormSFReturn = ReturnType<UseStepsFormSF>;
 export type UseModalFormSFReturn = ReturnType<UseModalFormSF>;
 
-export type UseFormSFFormProps = Omit<UseFormSFReturn["formProps"], "form"> & {
-    form?: FormInstance;
-};
+export type UseFormSFFormProps = Omit<UseFormSFReturn["formProps"], "form"> &
+    Omit<UseFormSFReturn["formProps"], "onFinish"> & {
+        form?: FormInstance;
+    };
 
 export type FormSF = Omit<UseFormSFReturn, "form" | "formProps"> & {
     form: FormInstance;
     formProps: UseFormSFFormProps;
 };
 
-export type StepsFormSF = Omit<UseStepsFormSFReturn, "form"> & {
-    form: FormInstance;
-};
+export type StepsFormSF = Omit<UseStepsFormSFReturn, "form"> &
+    Omit<UseFormSFReturn["formProps"], "onFinish"> & {
+        form: FormInstance;
+    };
 
 export type ModalFormSF = Omit<UseModalFormSFReturn, "form"> & {
     form: FormInstance;

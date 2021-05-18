@@ -10,21 +10,24 @@ import {
 } from "../../interfaces";
 import { useNotification, useTranslate } from "@hooks";
 
-export const useOne = <RecordType extends BaseRecord = BaseRecord>(
+export const useOne = <
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError
+>(
     resource: string,
     id: string,
-    options?: UseQueryOptions<GetOneResponse<RecordType>, HttpError>,
-): QueryObserverResult<GetOneResponse<RecordType>> => {
+    options?: UseQueryOptions<GetOneResponse<TData>, TError>,
+): QueryObserverResult<GetOneResponse<TData>> => {
     const { getOne } = useContext<IDataContext>(DataContext);
     const notification = useNotification();
     const translate = useTranslate();
 
-    const queryResponse = useQuery<GetOneResponse<RecordType>, HttpError>(
+    const queryResponse = useQuery<GetOneResponse<TData>, TError>(
         [`resource/getOne/${resource}`, { id }],
-        () => getOne<RecordType>(resource, id),
+        () => getOne<TData>(resource, id),
         {
             ...options,
-            onError: (err: HttpError) => {
+            onError: (err: TError) => {
                 if (options?.onError) {
                     options.onError(err);
                 }

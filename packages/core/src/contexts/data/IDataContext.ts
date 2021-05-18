@@ -1,6 +1,6 @@
 import { SorterResult } from "antd/lib/table/interface";
 
-import { BaseRecord, Identifier } from "../../interfaces";
+import { BaseRecord, HttpError, Identifier } from "../../interfaces";
 
 export interface Pagination {
     current?: number;
@@ -21,8 +21,8 @@ export interface GetListResponse<RecordType = BaseRecord> {
     total: number;
 }
 
-export interface CreateResponse<RecordType = BaseRecord> {
-    data: RecordType;
+export interface CreateResponse<TData = BaseRecord> {
+    data: TData;
 }
 
 export interface CreateManyResponse<RecordType = BaseRecord> {
@@ -71,31 +71,37 @@ export interface IDataContext {
         resource: string,
         id: Identifier,
     ) => Promise<GetOneResponse<RecordType>>;
-    create: <RecordType extends BaseRecord = BaseRecord>(
+    create: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
         resource: string,
-        params: BaseRecord,
-    ) => Promise<CreateResponse<RecordType>>;
-    createMany: <RecordType extends BaseRecord = BaseRecord>(
+        params: TVariables,
+    ) => Promise<CreateResponse<TData>>;
+    createMany: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
         resource: string,
-        params: BaseRecord[],
-    ) => Promise<CreateManyResponse<RecordType>>;
-    update: <RecordType extends BaseRecord = BaseRecord>(
-        resource: string,
-        id: Identifier,
-        params: BaseRecord,
-    ) => Promise<UpdateResponse<RecordType>>;
-    updateMany: <RecordType extends BaseRecord = BaseRecord>(
-        resource: string,
-        ids: Identifier[],
-        params: BaseRecord,
-    ) => Promise<UpdateManyResponse<RecordType>>;
-    deleteOne: <RecordType extends BaseRecord = BaseRecord>(
+        params: TVariables[],
+    ) => Promise<CreateManyResponse<TData>>;
+    update: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
         resource: string,
         id: Identifier,
-    ) => Promise<DeleteOneResponse<RecordType>>;
-    deleteMany: <RecordType extends BaseRecord = BaseRecord>(
+        params: TVariables,
+    ) => Promise<UpdateResponse<TData>>;
+    updateMany: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
         resource: string,
         ids: Identifier[],
-    ) => Promise<DeleteManyResponse<RecordType>>;
+        params: TVariables,
+    ) => Promise<UpdateManyResponse<TData>>;
+    deleteOne: <
+        TData extends BaseRecord = BaseRecord,
+        TVariables extends BaseRecord = BaseRecord
+    >(
+        resource: string,
+        params: TVariables,
+    ) => Promise<DeleteOneResponse<TData>>;
+    deleteMany: <
+        TData extends BaseRecord = BaseRecord,
+        TVariables = { id: (string | number)[] }
+    >(
+        resource: string,
+        params: TVariables,
+    ) => Promise<DeleteManyResponse<TData>>;
     getApiUrl: () => string;
 }
