@@ -10,7 +10,6 @@ import {
 import { UseCreateReturnType } from "../../data/useCreate";
 
 import {
-    FormSF,
     BaseRecord,
     RedirectionTypes,
     CreateResponse,
@@ -27,7 +26,7 @@ type SaveButtonProps = {
 export type useCreateForm<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = {
     form: FormInstance<TVariables>;
     formProps: FormProps<TVariables>;
@@ -43,7 +42,7 @@ export type useCreateForm<
 export type useCreateFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = {
     onMutationSuccess?: (
         data: CreateResponse<TData>,
@@ -64,7 +63,7 @@ export type useCreateFormProps<
 export const useCreateForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 >({
     onMutationSuccess,
     onMutationError,
@@ -78,7 +77,7 @@ export const useCreateForm = <
     TVariables
 > => {
     const [formAnt] = Form.useForm();
-    const formSF: FormSF = useFormSF({
+    const formSF = useFormSF<TData, TVariables>({
         form: formAnt,
     });
 

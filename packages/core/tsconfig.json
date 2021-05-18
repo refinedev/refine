@@ -57,6 +57,9 @@
             "@definitions": [
                 "src/definitions"
             ]
-        }
+        },
+        "typeRoots": [
+            "./types"
+        ]
     }
 }

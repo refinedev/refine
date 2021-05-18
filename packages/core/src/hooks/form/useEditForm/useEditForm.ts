@@ -15,12 +15,10 @@ import { UseUpdateReturnType } from "../../data/useUpdate";
 
 import {
     MutationMode,
-    FormSF,
     BaseRecord,
     ResourceRouterParams,
     RedirectionTypes,
     GetOneResponse,
-    UseFormSFFormProps,
     UpdateResponse,
     IResourceItem,
     HttpError,
@@ -35,7 +33,7 @@ type SaveButtonProps = {
 export type useEditForm<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = {
     form: FormInstance<TVariables>;
     formProps: FormProps<TVariables>;
@@ -52,7 +50,7 @@ export type useEditForm<
 export type useEditFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = {
     onMutationSuccess?: (
         data: UpdateResponse<TData>,
@@ -75,7 +73,7 @@ export type useEditFormProps<
 export const useEditForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 >({
     onMutationSuccess,
     onMutationError,
@@ -93,7 +91,7 @@ export const useEditForm = <
     const [editId, setEditId] = React.useState<string | number>();
 
     const [formAnt] = Form.useForm();
-    const formSF: FormSF = useFormSF({
+    const formSF = useFormSF<TData, TVariables>({
         form: formAnt,
     });
 
@@ -124,7 +122,7 @@ export const useEditForm = <
 
     React.useEffect(() => {
         form.setFieldsValue({
-            ...data?.data,
+            ...(data?.data as any), // Fix Me
         });
         return () => {
             form.resetFields();

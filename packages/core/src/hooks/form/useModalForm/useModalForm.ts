@@ -10,7 +10,7 @@ import {
     useTranslate,
     useWarnAboutChange,
 } from "@hooks";
-import { BaseRecord, HttpError, ModalFormSF } from "../../../interfaces";
+import { BaseRecord, HttpError } from "../../../interfaces";
 import { useFormProps } from "../useForm";
 
 type useModalFormConfig = {
@@ -20,14 +20,14 @@ type useModalFormConfig = {
 export type useModalFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = useFormProps<TData, TError, TVariables> &
     UseModalFormConfigSF &
     useModalFormConfig;
 export const useModalForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 >({
     mutationMode: mutationModeProp,
     ...rest
@@ -50,7 +50,7 @@ export const useModalForm = <
     const translate = useTranslate();
 
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
-    const sunflowerUseModal: ModalFormSF = useModalFormSF({
+    const sunflowerUseModal = useModalFormSF<TData, TVariables>({
         ...rest,
         form: form,
     });
