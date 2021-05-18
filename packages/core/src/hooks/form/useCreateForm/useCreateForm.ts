@@ -10,12 +10,10 @@ import {
 import { UseCreateReturnType } from "../../data/useCreate";
 
 import {
-    MutationMode,
     FormSF,
     BaseRecord,
     RedirectionTypes,
     CreateResponse,
-    UseFormSFFormProps,
     IResourceItem,
     HttpError,
 } from "../../../interfaces";
@@ -57,7 +55,6 @@ export type useCreateFormProps<
         variables: TVariables,
         context: any,
     ) => void;
-    mutationMode?: MutationMode;
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
     redirect?: RedirectionTypes;

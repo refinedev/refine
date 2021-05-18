@@ -7,7 +7,7 @@ module.exports = {
         {
             type: "category",
             label: "Guides",
-            items: ["multipartUpload"],
+            items: ["multipartUpload", "base64upload", "auth0"],
         },
         {
             type: "category",
@@ -18,18 +18,24 @@ module.exports = {
             type: "category",
             label: "Hooks",
             items: [
+                {
+                    type: "category",
+                    label: "Data",
+                    items: [
+                        "hooks/data/useCreate",
+                        "hooks/data/useCreateMany"
+                    ]
+                },
                 "useModalForm",
                 "useDrawerForm",
                 "useStepsForm",
+                "useTable",
+                "useCheckboxGroup",
                 "useSelect",
                 "useEditableTable",
+                "useRadioGroup",
                 "useForm"
             ],
-        },
-        {
-            type: "category",
-            label: "Guides",
-            items: ["base64upload"],
-        },
+        }
     ],
 };

@@ -1,7 +1,30 @@
-import { useTable, useForm } from "@hooks";
+import { useTable } from "@hooks";
 import { useTableProps } from "../useTable";
 import { BaseRecord, HttpError } from "../../../interfaces";
 import { useFormProps } from "../../form/useForm";
+import { useTableReturnType } from "../useTable/useTable";
+import { useForm } from "../../form/useForm";
+import { ButtonProps } from "../../../components/antd";
+
+export type useEditableTableReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = useTableReturnType<TData> &
+    useForm<TData, TError, TVariables> & {
+        saveButtonProps: ButtonProps & {
+            onClick: () => void;
+        };
+        cancelButtonProps: ButtonProps & {
+            onClick: () => void;
+        };
+        editButtonProps: (
+            id: string | number,
+        ) => ButtonProps & {
+            onClick: () => void;
+        };
+        isEditing: (id: string | number) => boolean;
+    };
 
 type useEditableTableProps<
     TData extends BaseRecord = BaseRecord,
@@ -15,7 +38,7 @@ export const useEditableTable = <
     TVariables = {}
 >(
     props: useEditableTableProps<TData, TError, TVariables> = {},
-) => {
+): useEditableTableReturnType<TData, TError, TVariables> => {
     const table = useTable<TData>({ ...props });
     const edit = useForm<TData, TError, TVariables>({
         ...props,

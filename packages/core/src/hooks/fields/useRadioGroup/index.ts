@@ -47,13 +47,10 @@ export const useRadioGroup = <TData extends BaseRecord = BaseRecord>({
         },
     );
 
-    const radioGroupProps = {
-        options,
-        ...rest,
-    };
-
     return {
-        radioGroupProps,
+        radioGroupProps: {
+            options,
+        },
         queryResult,
     };
 };
