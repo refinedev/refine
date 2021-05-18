@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
 
 import { useResourceWithRoute, useList } from "@hooks";
-// import { useSyncWithLocation } from "@hooks/admin";
-// import { useNavigation } from "@hooks/navigation";
-// import { stringifyTableParams, parseTableParams } from "@definitions/table";
+import { useSyncWithLocation } from "@hooks/admin";
+import { useNavigation } from "@hooks/navigation";
+import { stringifyTableParams, parseTableParams } from "@definitions/table";
 
 import {
     Filters,
@@ -23,7 +23,7 @@ export type useTableProps = {
     initialPageSize?: number;
     initialSorter?: Sort;
     initialFilter?: CrudFilters;
-    // syncWithLocation?: boolean;
+    syncWithLocation?: boolean;
 };
 
 export type useTableReturnType<RecordType extends BaseRecord = BaseRecord> = {
@@ -38,59 +38,55 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
     initialPageSize = 10,
     initialSorter,
     initialFilter,
-    // syncWithLocation = false,
+    syncWithLocation = false,
     resource: resourceFromProp,
 }: useTableProps = {}): useTableReturnType<RecordType> => {
-    // const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
+    const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
-    // if (syncWithLocationContext) {
-    //     syncWithLocation = true;
-    // }
+    if (syncWithLocationContext) {
+        syncWithLocation = true;
+    }
 
-    // // disable syncWithLocation for custom resource tables
-    // if (resourceFromProp) {
-    //     syncWithLocation = false;
-    // }
+    // disable syncWithLocation for custom resource tables
+    if (resourceFromProp) {
+        syncWithLocation = false;
+    }
 
-    // const { search } = useLocation();
+    const { search } = useLocation();
 
-    // let defaultCurrent = initialCurrent;
-    // let defaultPageSize = initialPageSize;
-    // let defaultSorter = initialSorter;
-    // let defaultFilter = initialFilter;
+    let defaultCurrent = initialCurrent;
+    let defaultPageSize = initialPageSize;
+    let defaultSorter = initialSorter;
+    let defaultFilter = initialFilter;
 
-    // if (syncWithLocation) {
-    //     const {
-    //         parsedCurrent,
-    //         parsedPageSize,
-    //         parsedSorter,
-    //         parsedFilters,
-    //     } = parseTableParams({
-    //         initialSorter,
-    //         initialFilter,
-    //         url: search,
-    //     });
+    if (syncWithLocation) {
+        const {
+            parsedCurrent,
+            parsedPageSize,
+            parsedSorter,
+            parsedFilters,
+        } = parseTableParams(search);
 
-    //     defaultCurrent = parsedCurrent || defaultCurrent;
-    //     defaultPageSize = parsedPageSize || defaultPageSize;
-    //     defaultSorter = parsedSorter || defaultSorter;
-    //     defaultFilter = parsedFilters || defaultFilter;
-    // }
+        defaultCurrent = parsedCurrent || defaultCurrent;
+        defaultPageSize = parsedPageSize || defaultPageSize;
+        defaultSorter = parsedSorter || defaultSorter;
+        defaultFilter = parsedFilters || defaultFilter;
+    }
 
     const { tableProps: tablePropsSunflower } = useFormTable({
-        defaultCurrent: initialCurrent,
-        defaultPageSize: initialPageSize,
+        defaultCurrent,
+        defaultPageSize,
     });
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
-    // const { push } = useNavigation();
+    const { push } = useNavigation();
     const resourceWithRoute = useResourceWithRoute();
 
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
-    const [sorter, setSorter] = useState<Sort | undefined>(initialSorter);
-    const [filters, setFilters] = useState<CrudFilters>(initialFilter || []);
+    const [sorter, setSorter] = useState<Sort | undefined>(defaultSorter);
+    const [filters, setFilters] = useState<CrudFilters>(defaultFilter || []);
 
     const {
         current,
@@ -127,17 +123,16 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
 
         tablePropsSunflower.onChange(pagination, filters, sorter);
 
-        // refactor filters -> syncWithLocation
         // synchronize with url
-        // if (syncWithLocation) {
-        //     const stringifyParams = stringifyTableParams({
-        //         pagination,
-        //         sorter,
-        //         filters,
-        //     });
+        if (syncWithLocation) {
+            const stringifyParams = stringifyTableParams({
+                pagination,
+                sorter,
+                filters: crudFilters,
+            });
 
-        //     return push(`/resources/${resource.route}?${stringifyParams}`);
-        // }
+            return push(`/resources/${resource.route}?${stringifyParams}`);
+        }
     };
 
     return {

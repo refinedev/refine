@@ -81,6 +81,7 @@ export const PostList = (props: any) => {
                 order: "descend",
             },
         ],
+        syncWithLocation: true,
     });
 
     const categoryIds =
@@ -90,13 +91,13 @@ export const PostList = (props: any) => {
         enabled: categoryIds.length > 0,
     });
 
+    // console.log("filters", filters);
+    // console.log("getDefaultFilter", getDefaultFilter("status", filters));
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
         optionLabel: "title",
         optionValue: "id",
-        // refactor filters -> syncWithLocation
-        // defaultValue: getDefaultFilter("category.id", filters),
-        defaultValue: [],
+        defaultValue: getDefaultFilter("category.id", filters),
     });
 
     const extra = (
@@ -196,11 +197,10 @@ export const PostList = (props: any) => {
                             />
                         </FilterDropdown>
                     )}
-                    // refactor filters -> syncWithLocation
-                    // defaultFilteredValue={getDefaultFilter(
-                    //     "category.id",
-                    //     filters,
-                    // )}
+                    defaultFilteredValue={getDefaultFilter(
+                        "category.id",
+                        filters,
+                    )}
                 />
                 <Table.Column
                     dataIndex="status"
@@ -225,8 +225,7 @@ export const PostList = (props: any) => {
                             </Radio.Group>
                         </FilterDropdown>
                     )}
-                    // refactor filters -> syncWithLocation
-                    // defaultFilteredValue={getDefaultFilter("status", filters)}
+                    defaultFilteredValue={getDefaultFilter("status", filters)}
                 />
                 <Table.Column
                     dataIndex="createdAt"
