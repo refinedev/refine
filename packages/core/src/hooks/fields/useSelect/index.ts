@@ -10,6 +10,7 @@ import {
     BaseRecord,
     GetManyResponse,
     GetListResponse,
+    CrudFilters,
 } from "../../../interfaces";
 
 export type UseSelectProps = {
@@ -17,8 +18,7 @@ export type UseSelectProps = {
     optionLabel?: string;
     optionValue?: string;
     sort?: Sort;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    filters?: Record<string, (string | number | boolean)[] | null>;
+    filters?: CrudFilters;
     defaultValue?: string | string[];
 };
 

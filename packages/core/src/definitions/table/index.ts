@@ -1,48 +1,31 @@
-import qs, { StringifyOptions } from "query-string";
+import qs, { IStringifyOptions } from "qs";
 
-import { Sort, Filters } from "../../interfaces";
+import { Sort, CrudFilters, CrudOperators } from "../../interfaces";
 import {
     SorterResult,
     SortOrder,
     TablePaginationConfig,
 } from "antd/lib/table/interface";
 import mergeWith from "lodash/mergeWith";
-import isArray from "lodash/isArray";
-import get from "lodash/get";
-
-const queryStringOptions = (): StringifyOptions => {
-    return {
-        arrayFormat: "bracket",
-        skipNull: true,
-    };
-};
 
 export const merge = (object: any, source: any) => {
     return mergeWith(object, source, (val, src): any => {
-        if (isArray(val)) {
+        if (Array.isArray(val)) {
             return val.concat(src);
         }
     });
 };
 
-export const parseTableParams = (params: {
-    initialSorter?: Sort;
-    initialFilter?: Filters;
-    url: string;
-}) => {
-    const options = queryStringOptions();
-    const { initialSorter, initialFilter, url } = params;
-
+export const parseTableParams = (url: string) => {
     const { current, pageSize, sort, order, ...filters } = qs.parse(
-        url,
-        options,
+        url.substring(1), // remove first ? character
     );
 
-    let parsedSorter: Sort;
+    let parsedSorter: Sort = [];
     if (Array.isArray(sort) && Array.isArray(order)) {
         const arrSorter: SorterResult<any>[] = [];
 
-        sort.map((item, index) => {
+        sort.forEach((item: any, index: any) => {
             const sortOrder = order[index] as SortOrder;
             arrSorter.push({
                 field: item,
@@ -60,23 +43,39 @@ export const parseTableParams = (params: {
         ];
     }
 
+    const parsedFilters: CrudFilters = [];
+    Object.keys(filters).map((item) => {
+        const [field, operator] = item.split("__");
+        const value = filters[item];
+
+        parsedFilters.push({
+            field,
+            operator: operator as CrudOperators,
+            value,
+        });
+    });
+
     return {
         parsedCurrent: current && Number(current),
         parsedPageSize: pageSize && Number(pageSize),
-        parsedSorter: merge(initialSorter, parsedSorter),
-        parsedFilters: merge(initialFilter, filters) as Filters,
+        parsedSorter,
+        parsedFilters,
     };
 };
 
 export const stringifyTableParams = (params: {
     pagination: TablePaginationConfig;
     sorter: Sort;
-    filters: Filters;
+    filters: CrudFilters;
 }): string => {
-    const { pagination, sorter, filters } = params;
-    const options = queryStringOptions();
+    const options: IStringifyOptions = {
+        skipNulls: true,
+        arrayFormat: "brackets",
+        encode: false,
+    };
 
-    const qsFilters = qs.stringify(filters, options);
+    const { pagination, sorter, filters } = params;
+
     let sortFields;
     let sortOrders;
 
@@ -93,6 +92,13 @@ export const stringifyTableParams = (params: {
 
     let queryString = `current=${pagination.current}&pageSize=${pagination.pageSize}`;
 
+    const qsFilterItems: { [key: string]: string } = {};
+    filters.map((filterItem) => {
+        qsFilterItems[`${filterItem.field}__${filterItem.operator}`] =
+            filterItem.value;
+    });
+
+    const qsFilters = qs.stringify(qsFilterItems, options);
     if (qsFilters) {
         queryString = `${queryString}&${qsFilters}`;
     }
@@ -127,12 +133,13 @@ export const getDefaultSortOrder = (
 
 export const getDefaultFilter = (
     columnName: string,
-    filters?: Filters,
+    filters?: CrudFilters,
 ): string[] | undefined => {
-    const value = get(filters, columnName);
-    if (!filters || !value) {
-        return undefined;
+    const value = filters?.find(({ field }) => field === columnName);
+
+    if (value) {
+        return value.value || [];
     }
 
-    return (value ?? []) as string[];
+    return undefined;
 };

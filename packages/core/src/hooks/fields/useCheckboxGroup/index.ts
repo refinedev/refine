@@ -3,14 +3,20 @@ import { CheckboxGroupProps } from "antd/lib/checkbox";
 import { QueryObserverResult } from "react-query";
 
 import { useList } from "@hooks";
-import { Sort, Option, BaseRecord, GetListResponse } from "../../../interfaces";
+import {
+    Sort,
+    Option,
+    BaseRecord,
+    GetListResponse,
+    CrudFilters,
+} from "../../../interfaces";
 
 export type useCheckboxGroupProps = {
     resource: string;
     optionLabel?: string;
     optionValue?: string;
     sort?: Sort;
-    filters?: Record<string, (string | number | boolean)[] | null>;
+    filters?: CrudFilters;
 };
 
 export type UseCheckboxGroupReturnType<

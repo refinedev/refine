@@ -19,8 +19,14 @@ export {
     LayoutProps,
     SiderProps,
     TitleProps,
+    CrudFilter,
+    CrudFilters,
+    CrudOperators,
 } from "./interfaces";
 
 export * from "./definitions/upload";
 export { getDefaultSortOrder, getDefaultFilter } from "./definitions/table";
 export { defaultConfigProviderProps } from "./definitions/config";
+
+// antd upload (useStrapiUpload)
+export { RcFile, UploadFile } from "antd/lib/upload/interface";

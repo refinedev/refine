@@ -93,9 +93,13 @@ describe("dataProvider", () => {
                 "https://refine-strapi.pankod.com",
                 axiosInstance,
             ).getList("posts", {
-                filters: {
-                    title: ["foo"],
-                },
+                filters: [
+                    {
+                        field: "title",
+                        operator: "eq",
+                        value: "foo",
+                    },
+                ],
             });
 
             expect(data[0]["title"]).toBe("foo");
@@ -107,9 +111,13 @@ describe("dataProvider", () => {
                 "https://refine-strapi.pankod.com",
                 axiosInstance,
             ).getList("posts", {
-                filters: {
-                    title: ["foo"],
-                },
+                filters: [
+                    {
+                        field: "title",
+                        operator: "eq",
+                        value: "foo",
+                    },
+                ],
                 sort: {
                     field: "id",
                     order: "descend",
