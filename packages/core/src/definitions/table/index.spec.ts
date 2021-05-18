@@ -1,6 +1,6 @@
 import { stringifyTableParams, parseTableParams } from "./";
 import { TablePaginationConfig } from "@components/antd";
-import { Sort, Filters, CrudFilters } from "../../interfaces";
+import { Sort, CrudFilters } from "../../interfaces";
 
 describe("definitions/table", () => {
     it("stringify table params correctly", async () => {

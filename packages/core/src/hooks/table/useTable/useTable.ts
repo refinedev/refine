@@ -9,7 +9,6 @@ import { useNavigation } from "@hooks/navigation";
 import { stringifyTableParams, parseTableParams } from "@definitions/table";
 
 import {
-    Filters,
     Sort,
     ResourceRouterParams,
     BaseRecord,
@@ -102,7 +101,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
 
     const onChange = (
         pagination: TablePaginationConfig,
-        filters: Filters,
+        filters: Record<string, (string | number | boolean)[] | null>,
         sorter: Sort,
     ) => {
         // Map Antd:Filter -> Refine:CrudFilter
