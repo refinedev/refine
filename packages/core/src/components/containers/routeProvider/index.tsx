@@ -124,7 +124,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     const RouteWithSubRoutes = (route: any) => {
         return (
             <Route
-                exact
+                exact={route.exact}
                 path={route.path}
                 render={(props) => <route.component {...props} />}
             />
