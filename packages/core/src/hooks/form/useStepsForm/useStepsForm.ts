@@ -9,19 +9,19 @@ import { useForm, useFormProps } from "../useForm";
 export type useStepsFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {},
+    TVariables = {}
 > = useFormProps<TData, TError, TVariables> & UseStepsFormConfig;
 
 export type useStepsForm<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {},
+    TVariables = {}
 > = useForm<TData, TError, TVariables>;
 
 export const useStepsForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {},
+    TVariables = {}
 >(
     props: useStepsFormProps<TData, TError, TVariables> = {},
 ): useStepsForm<TData, TError, TVariables> => {

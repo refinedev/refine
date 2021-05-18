@@ -33,7 +33,7 @@ type SaveButtonProps = {
 export type useEditForm<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {},
+    TVariables = {}
 > = {
     form: FormInstance<TVariables>;
     formProps: FormProps<TVariables>;
@@ -50,7 +50,7 @@ export type useEditForm<
 export type useEditFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {},
+    TVariables = {}
 > = {
     onMutationSuccess?: (
         data: UpdateResponse<TData>,
@@ -73,7 +73,7 @@ export type useEditFormProps<
 export const useEditForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {},
+    TVariables = {}
 >({
     onMutationSuccess,
     onMutationError,

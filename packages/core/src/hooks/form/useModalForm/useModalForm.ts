@@ -20,14 +20,14 @@ type useModalFormConfig = {
 export type useModalFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {},
+    TVariables = {}
 > = useFormProps<TData, TError, TVariables> &
     UseModalFormConfigSF &
     useModalFormConfig;
 export const useModalForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {},
+    TVariables = {}
 >({
     mutationMode: mutationModeProp,
     ...rest
