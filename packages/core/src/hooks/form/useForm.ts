@@ -23,10 +23,9 @@ export type ActionParams = {
     action?: "edit" | "create";
 };
 
-type ActionFormProps<M> =
-    | useCreateFormProps<M>
-    | useEditFormProps<M>
-    | useCloneFormProps<M>;
+type ActionFormProps<M> = useCreateFormProps<M> &
+    useEditFormProps<M> &
+    useCloneFormProps<M>;
 
 type ResourcelessActionFormProps<M> = Omit<ActionFormProps<M>, "resource">;
 
@@ -51,7 +50,7 @@ export type useForm<T, M> = {
 
 export const useForm = <
     RecordType = BaseRecord,
-    MutationType extends BaseRecord = RecordType,
+    MutationType extends BaseRecord = RecordType
 >({
     action,
     resource: resourceFromProps,

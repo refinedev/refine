@@ -8,24 +8,28 @@ import { BaseRecord } from "src/interfaces";
 
 type useEditableTableProps<T, M> = useTableProps & useFormProps<M>;
 
-export type useEditableTableReturnType<RecordType, MutationType> =
-    useTableReturnType<RecordType> &
-        useForm<RecordType, MutationType> & {
-            saveButtonProps: ButtonProps & {
-                onClick: () => void;
-            };
-            cancelButtonProps: ButtonProps & {
-                onClick: () => void;
-            };
-            editButtonProps: (id: string | number) => ButtonProps & {
-                onClick: () => void;
-            };
-            isEditing: (id: string | number) => boolean;
+export type useEditableTableReturnType<
+    RecordType,
+    MutationType
+> = useTableReturnType<RecordType> &
+    useForm<RecordType, MutationType> & {
+        saveButtonProps: ButtonProps & {
+            onClick: () => void;
         };
+        cancelButtonProps: ButtonProps & {
+            onClick: () => void;
+        };
+        editButtonProps: (
+            id: string | number,
+        ) => ButtonProps & {
+            onClick: () => void;
+        };
+        isEditing: (id: string | number) => boolean;
+    };
 
 export const useEditableTable = <
     RecordType extends BaseRecord = BaseRecord,
-    MutationType extends BaseRecord = RecordType,
+    MutationType extends BaseRecord = RecordType
 >(
     props: useEditableTableProps<RecordType, MutationType> = {},
 ): useEditableTableReturnType<RecordType, MutationType> => {
