@@ -33,7 +33,7 @@ export type useTableReturnType<RecordType extends BaseRecord = BaseRecord> = {
 };
 
 export const useTable = <RecordType extends BaseRecord = BaseRecord>({
-    permanentFilter,
+    permanentFilter = [],
     initialCurrent = 1,
     initialPageSize = 10,
     initialSorter,
