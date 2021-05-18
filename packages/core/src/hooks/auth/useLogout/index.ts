@@ -6,19 +6,25 @@ import { useNavigation } from "@hooks/navigation";
 
 export const useLogout = () => {
     const { push } = useNavigation();
-    const authContext = React.useContext<IAuthContext>(AuthContext);
+    const {
+        isProvided,
+        logout: logoutFromContext,
+    } = React.useContext<IAuthContext>(AuthContext);
 
-    const logout = React.useCallback(
-        (redirectPath = "/login") =>
-            authContext
-                .logout()
-                .then((data) => {
-                    push(redirectPath);
-                    Promise.resolve(data);
-                })
-                .catch((error) => Promise.reject(error)),
-        [],
-    );
+    if (isProvided) {
+        const logout = React.useCallback(
+            (redirectPath = "/login") =>
+                logoutFromContext()
+                    .then((data) => {
+                        push(redirectPath);
+                        Promise.resolve(data);
+                    })
+                    .catch((error) => Promise.reject(error)),
+            [],
+        );
 
-    return logout;
+        return logout;
+    }
+
+    return null;
 };

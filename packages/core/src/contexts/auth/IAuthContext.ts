@@ -5,5 +5,6 @@ export interface IAuthContext {
     checkError: (error: any) => Promise<void>;
     getPermissions: (params?: any) => Promise<any>;
     getUserIdentity?: () => Promise<any>;
+    isProvided?: boolean;
     [key: string]: any;
 }

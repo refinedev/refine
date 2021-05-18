@@ -1,7 +1,6 @@
-import React, { FC, useContext } from "react";
+import React, { useContext } from "react";
 import { Layout, Menu } from "antd";
 import { LogoutOutlined } from "@ant-design/icons";
-import { MenuClickEventHandler } from "rc-menu/lib/interface";
 import { Link } from "react-router-dom";
 
 import { AuthContext } from "@contexts/auth";
@@ -17,12 +16,6 @@ export const Sider: React.FC = () => {
     const translate = useTranslate();
     const { menuItems, selectedKey } = useMenu();
 
-    const onLogout: MenuClickEventHandler = ({ key }) => {
-        if (key === "logout") {
-            logout().then(() => push("/login"));
-        }
-    };
-
     return (
         <Layout.Sider
             collapsible
@@ -35,7 +28,6 @@ export const Sider: React.FC = () => {
                 defaultSelectedKeys={["dashboard"]}
                 selectedKeys={[selectedKey]}
                 mode="inline"
-                onClick={onLogout}
             >
                 {menuItems.map(({ icon, route, label }) => (
                     <Menu.Item key={route} icon={icon}>
@@ -44,7 +36,13 @@ export const Sider: React.FC = () => {
                 ))}
 
                 {isProvided && (
-                    <Menu.Item key="logout" icon={<LogoutOutlined />}>
+                    <Menu.Item
+                        onClick={() => {
+                            logout().then(() => push("/login"));
+                        }}
+                        key="logout"
+                        icon={<LogoutOutlined />}
+                    >
                         {translate("common:buttons.logout", "Logout")}
                     </Menu.Item>
                 )}

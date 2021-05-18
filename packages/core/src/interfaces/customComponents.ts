@@ -7,6 +7,7 @@ export type TitleProps = {
 export type LayoutProps = {
     Sider: React.FC;
     Header: React.FC;
+    Title: React.FC;
     Footer: React.FC;
     OffLayoutArea: React.FC;
     dashboard?: boolean;

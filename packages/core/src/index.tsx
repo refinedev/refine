@@ -4,6 +4,7 @@ import "../node_modules/antd/es/date-picker/style/index.css";
 export * from "./components";
 export * from "./components/antd";
 export * from "./hooks";
+export { Link } from "react-router-dom";
 
 export { IAuthContext as AuthProvider, Sort, Pagination } from "./interfaces";
 export {
