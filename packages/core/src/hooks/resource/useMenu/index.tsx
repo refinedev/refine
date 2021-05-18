@@ -6,15 +6,13 @@ import { DashboardOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { IAdminContext, IResourceItem, IMenuItem } from "../../../interfaces";
 import { useTranslate, useResource, useWarnAboutChange } from "@hooks";
 
-type useMenu = {
-    (): {
-        selectedKey: string;
-        resources: IResourceItem[];
-        menuItems: IMenuItem[];
-    };
+type useMenuReturnType = {
+    selectedKey: string;
+    resources: IResourceItem[];
+    menuItems: IMenuItem[];
 };
 
-export const useMenu: useMenu = () => {
+export const useMenu: () => useMenuReturnType = () => {
     const { resources } = useResource();
     const { setWarnWhen } = useWarnAboutChange();
     const translate = useTranslate();

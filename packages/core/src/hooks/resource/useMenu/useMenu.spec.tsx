@@ -1,5 +1,3 @@
-import React from "react";
-import { UnorderedListOutlined } from "@ant-design/icons";
 import { renderHook } from "@testing-library/react-hooks";
 
 import { MockJSONServer, TestWrapper } from "@test";
