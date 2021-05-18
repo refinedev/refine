@@ -9,7 +9,6 @@ import {
     GetOneResponse,
     HttpError,
     ResourceRouterParams,
-    UseFormSFFormProps,
 } from "../../../interfaces";
 import { useCreateForm, useCreateFormProps } from "../useCreateForm";
 import { UseCreateReturnType } from "../../data/useCreate";
