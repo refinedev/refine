@@ -24,7 +24,7 @@ const mapOperator = (operator: CrudOperators): string => {
         case "ne":
         case "gte":
         case "lte":
-            return operator;
+            return `_${operator}`;
         case "contains":
             return "like";
     }
@@ -73,7 +73,7 @@ const JsonServer = (
         if (filters) {
             filters.map(({ field, operator, value }) => {
                 const mappedOperator = mapOperator(operator);
-                queryFilters[`${field}_${mappedOperator}`] = value;
+                queryFilters[`${field}${mappedOperator}`] = value;
             });
         }
 
