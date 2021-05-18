@@ -1,97 +1,15 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React, { FC, useContext } from "react";
 import { Layout, Menu } from "antd";
-import {
-    DashboardOutlined,
-    LogoutOutlined,
-    UnorderedListOutlined,
-} from "@ant-design/icons";
+import { LogoutOutlined } from "@ant-design/icons";
 import { MenuClickEventHandler } from "rc-menu/lib/interface";
-import { Link, useLocation } from "react-router-dom";
-import humanizeString from "humanize-string";
+import { Link } from "react-router-dom";
 
 import { AuthContext } from "@contexts/auth";
 import { AdminContext } from "@contexts/admin";
-import {
-    IAuthContext,
-    IAdminContext,
-    SiderProps,
-    IResourceItem,
-    IMenuItem,
-} from "../../../../interfaces";
-import {
-    useNavigation,
-    useTranslate,
-    useResource,
-    useWarnAboutChange,
-} from "@hooks";
+import { IAuthContext, IAdminContext } from "../../../../interfaces";
+import { useNavigation, useTranslate, useMenu } from "@hooks";
 
-export type useMenu = {
-    (): {
-        selectedKey: string;
-        resources: IResourceItem[];
-        menuItems: IMenuItem[];
-    };
-};
-
-const useMenu: useMenu = () => {
-    const { resources } = useResource();
-    const { setWarnWhen } = useWarnAboutChange();
-    const translate = useTranslate();
-    const location = useLocation();
-    const { hasDashboard } = useContext<IAdminContext>(AdminContext);
-
-    const selectedResource = resources.find((el) =>
-        location.pathname.startsWith(`/resources/${el.route}`),
-    );
-
-    setWarnWhen(false);
-    const selectedKey = `/resources/${selectedResource?.route ?? ""}`;
-
-    const menuItems: IMenuItem[] = React.useMemo(
-        () => [
-            ...(hasDashboard
-                ? [
-                      {
-                          name: "Dashboard",
-                          icon: <DashboardOutlined />,
-                          route: `/`,
-                          key: "dashboard",
-                          label: translate(
-                              "common:resources.dashboard.title",
-                              "Dashboard",
-                          ),
-                      },
-                  ]
-                : []),
-            ...resources.map((resource) => {
-                const route = `/resources/${resource.route}`;
-
-                return {
-                    ...resource,
-                    icon: resource.icon ?? <UnorderedListOutlined />,
-                    route: route,
-                    key: route,
-                    label: translate(
-                        `common:resources.${resource.name}.${
-                            resource.label ?? humanizeString(resource.name)
-                        }`,
-                        resource.label ?? humanizeString(resource.name),
-                    ),
-                };
-            }),
-        ],
-        [resources, hasDashboard],
-    );
-
-    return {
-        selectedKey,
-        resources,
-        menuItems,
-    };
-};
-
-export const Sider: FC<SiderProps> = () => {
+export const Sider: React.FC = () => {
     const [collapsed, setCollapsed] = React.useState(false);
     const { logout, isProvided } = useContext<IAuthContext>(AuthContext);
     const { Title } = useContext<IAdminContext>(AdminContext);

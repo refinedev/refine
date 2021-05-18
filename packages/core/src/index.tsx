@@ -17,7 +17,6 @@ export {
     HttpError,
     UploadedFile,
     LayoutProps,
-    SiderProps,
     TitleProps,
 } from "./interfaces";
 
