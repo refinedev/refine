@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React, { FC, useContext } from "react";
 import { Layout, Menu } from "antd";
 import {
@@ -15,6 +16,8 @@ import {
     IAuthContext,
     IAdminContext,
     SiderProps,
+    IResourceItem,
+    IMenuItem,
 } from "../../../../interfaces";
 import {
     useNavigation,
@@ -23,31 +26,84 @@ import {
     useWarnAboutChange,
 } from "@hooks";
 
-export const Sider: FC<SiderProps> = ({ dashboard }) => {
-    const [collapsed, setCollapsed] = React.useState(false);
-    const { push } = useNavigation();
-    const { logout } = useContext<IAuthContext>(AuthContext);
-    const translate = useTranslate();
+export type useMenu = {
+    (): {
+        selectedKey: string;
+        resources: IResourceItem[];
+        menuItems: IMenuItem[];
+    };
+};
+
+const useMenu: useMenu = () => {
     const { resources } = useResource();
-    const location = useLocation();
     const { setWarnWhen } = useWarnAboutChange();
+    const translate = useTranslate();
+    const location = useLocation();
+    const { hasDashboard } = useContext<IAdminContext>(AdminContext);
 
+    const selectedResource = resources.find((el) =>
+        location.pathname.startsWith(`/resources/${el.route}`),
+    );
+
+    setWarnWhen(false);
+    const selectedKey = `/resources/${selectedResource?.route ?? ""}`;
+
+    const menuItems: IMenuItem[] = React.useMemo(
+        () => [
+            ...(hasDashboard
+                ? [
+                      {
+                          name: "Dashboard",
+                          icon: <DashboardOutlined />,
+                          route: `/`,
+                          key: "dashboard",
+                          label: translate(
+                              "common:resources.dashboard.title",
+                              "Dashboard",
+                          ),
+                      },
+                  ]
+                : []),
+            ...resources.map((resource) => {
+                const route = `/resources/${resource.route}`;
+
+                return {
+                    ...resource,
+                    icon: resource.icon ?? <UnorderedListOutlined />,
+                    route: route,
+                    key: route,
+                    label: translate(
+                        `common:resources.${resource.name}.${
+                            resource.label ?? humanizeString(resource.name)
+                        }`,
+                        resource.label ?? humanizeString(resource.name),
+                    ),
+                };
+            }),
+        ],
+        [resources, hasDashboard],
+    );
+
+    return {
+        selectedKey,
+        resources,
+        menuItems,
+    };
+};
+
+export const Sider: FC<SiderProps> = () => {
+    const [collapsed, setCollapsed] = React.useState(false);
+    const { logout } = useContext<IAuthContext>(AuthContext);
     const { Title } = useContext<IAdminContext>(AdminContext);
+    const { push } = useNavigation();
+    const translate = useTranslate();
+    const { menuItems, selectedKey } = useMenu();
 
-    const menuOnClick: MenuClickEventHandler = ({ key }) => {
+    const onLogout: MenuClickEventHandler = ({ key }) => {
         if (key === "logout") {
             logout().then(() => push("/login"));
         }
     };
-
-    const selectedKey = React.useMemo(() => {
-        const selectedResource = resources.find((el) =>
-            location.pathname.startsWith(`/resources/${el.route}`),
-        );
-
-        setWarnWhen(false);
-        return `/resources/${selectedResource?.route ?? ""}`;
-    }, [location]);
 
     return (
         <Layout.Sider
@@ -55,51 +111,17 @@ export const Sider: FC<SiderProps> = ({ dashboard }) => {
             collapsed={collapsed}
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
         >
-            <Link
-                to={`/`}
-                style={{
-                    color: "#FFF",
-                    fontSize: 16,
-                    textAlign: "center",
-                    height: 60,
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-            >
-                <Title collapsed={collapsed} />
-            </Link>
+            <Title collapsed={collapsed} />
             <Menu
-                onClick={menuOnClick}
                 theme="dark"
                 defaultSelectedKeys={["dashboard"]}
                 selectedKeys={[selectedKey]}
                 mode="inline"
+                onClick={onLogout}
             >
-                {dashboard && (
-                    <Menu.Item key={`dashboard`} icon={<DashboardOutlined />}>
-                        <Link to={`/`}>
-                            {translate(
-                                "common:resources.dashboard.title",
-                                "Dashboard",
-                            )}
-                        </Link>
-                    </Menu.Item>
-                )}
-
-                {resources.map((item) => (
-                    <Menu.Item
-                        key={`/resources/${item.route}`}
-                        icon={item.icon ?? <UnorderedListOutlined />}
-                    >
-                        <Link to={`/resources/${item.route}`}>
-                            {translate(
-                                `common:resources.${item.name}.${
-                                    item.label ?? humanizeString(item.name)
-                                }`,
-                                item.label ?? humanizeString(item.name),
-                            )}
-                        </Link>
+                {menuItems.map(({ icon, route, label }) => (
+                    <Menu.Item key={route} icon={icon}>
+                        <Link to={route}>{label}</Link>
                     </Menu.Item>
                 ))}
 
