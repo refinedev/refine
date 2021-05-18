@@ -23,7 +23,8 @@ module.exports = {
                     label: "Data",
                     items: [
                         "hooks/data/useCreate",
-                        "hooks/data/useCreateMany"
+                        "hooks/data/useCreateMany",
+                        "hooks/data/useDelete"
                     ]
                 },
                 "useModalForm",
