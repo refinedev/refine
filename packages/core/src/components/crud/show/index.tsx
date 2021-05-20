@@ -65,7 +65,15 @@ export const Show: React.FC<ShowProps> = ({
                                 {isEditButtonVisible && (
                                     <EditButton disabled={isLoading} />
                                 )}
-                                {isDeleteButtonVisible && <DeleteButton onSuccess={() => list(resource.route ?? resource.name)} />}
+                                {isDeleteButtonVisible && (
+                                    <DeleteButton
+                                        onSuccess={() =>
+                                            list(
+                                                resource.route ?? resource.name,
+                                            )
+                                        }
+                                    />
+                                )}
                                 <RefreshButton />
                             </>
                         )}

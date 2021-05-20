@@ -38,9 +38,13 @@ describe("getList", () => {
             "https://refine-nestjs-crud.pankod.com",
             axios,
         ).getList("posts", {
-            filters: {
-                "category.id": ["ba18b409-7084-4f5f-926c-207eab172f73"],
-            },
+            filters: [
+                {
+                    field: "category.id",
+                    operator: "in",
+                    value: ["ba18b409-7084-4f5f-926c-207eab172f73"],
+                },
+            ],
         });
 
         expect(data[0]["category"]["title"]).toBe(
@@ -54,9 +58,13 @@ describe("getList", () => {
             "https://refine-nestjs-crud.pankod.com",
             axios,
         ).getList("posts", {
-            filters: {
-                "category.id": ["ba18b409-7084-4f5f-926c-207eab172f73"],
-            },
+            filters: [
+                {
+                    field: "category.id",
+                    operator: "in",
+                    value: ["ba18b409-7084-4f5f-926c-207eab172f73"],
+                },
+            ],
             sort: {
                 field: "id",
                 order: "ascend",

@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 import { stringify } from "query-string";
-import { DataProvider, HttpError } from "@pankod/refine";
+import { DataProvider, HttpError, CrudOperators } from "@pankod/refine";
 
 const axiosInstance = axios.create();
 
@@ -18,6 +18,19 @@ axiosInstance.interceptors.response.use(
         return Promise.reject(customError);
     },
 );
+
+const mapOperator = (operator: CrudOperators): string => {
+    switch (operator) {
+        case "ne":
+        case "gte":
+        case "lte":
+            return `_${operator}`;
+        case "contains":
+            return "like";
+    }
+
+    return ""; // default "eq"
+};
 
 const JsonServer = (
     apiUrl: string,
@@ -55,9 +68,14 @@ const JsonServer = (
         }
 
         // filter
-        const filters = stringify(params.filters || {}, {
-            skipNull: true,
-        });
+        const queryFilters: { [key: string]: string } = {};
+        const { filters } = params;
+        if (filters) {
+            filters.map(({ field, operator, value }) => {
+                const mappedOperator = mapOperator(operator);
+                queryFilters[`${field}${mappedOperator}`] = value;
+            });
+        }
 
         const query = {
             _start: (current - 1) * pageSize,
@@ -68,7 +86,7 @@ const JsonServer = (
         };
 
         const { data, headers } = await httpClient.get(
-            `${url}?${stringify(query)}&${filters}`,
+            `${url}?${stringify(query)}&${stringify(queryFilters)}`,
         );
 
         const total = +headers["x-total-count"];

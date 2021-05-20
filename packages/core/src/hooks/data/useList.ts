@@ -7,7 +7,7 @@ import {
     IDataContext,
     Sort,
     Search,
-    Filters,
+    CrudFilters,
     Pagination,
     BaseRecord,
 } from "../../interfaces";
@@ -16,7 +16,7 @@ interface UseListConfig {
     pagination?: Pagination;
     search?: Search;
     sort?: Sort;
-    filters?: Filters;
+    filters?: CrudFilters;
 }
 
 export const useList = <RecordType = BaseRecord>(

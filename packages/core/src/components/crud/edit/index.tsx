@@ -96,7 +96,9 @@ export const Edit: React.FC<EditProps> = ({
                                     <DeleteButton
                                         mutationMode={mutationMode}
                                         onSuccess={() => {
-                                            list(resource.route ?? resource.name)
+                                            list(
+                                                resource.route ?? resource.name,
+                                            );
                                         }}
                                         {...deleteButtonProps}
                                     />
