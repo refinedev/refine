@@ -18,7 +18,7 @@ export interface Search {
 
 // | Filter              | Description                    |
 // | ------------------- | ------------------------------ |
-// | No suffix or `eq`   | Equal                          |
+// | `eq`                | Equal                          |
 // | ne                  | Not equal                      |
 // | lt                  | Less than                      |
 // | gt                  | Greater than                   |

@@ -353,4 +353,4 @@ export const PostList = (props: IResourceComponentsProps) => {
 | initialSorter | Varsayılan sıralama. | Sort |
 | initialFilter | Varsayılan filtreleme. | `CrudFilters` |
 | syncWithLocation | Tablodaki sıralamalar, filtreler, sayfa indeksi ve sayfa başına gösterilen kayıt browser history tarafından takip edilir. | `boolean` |
-| onSearch | When the search form is submitted, it creates the 'CrudFilters' object. See here for [details](**). | `Function` |
+| onSearch | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form](/table-search). | `Function` |
