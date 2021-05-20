@@ -84,15 +84,15 @@ export const PostList = (props: any) => {
         ],
     });
 
-    const deleteSelectedItems = () => {
-        mutate({ id: selectedRowKeys });
-    };
-
     const [selectedRowKeys, setSelectedRowKeys] = React.useState([]);
 
     const { mutate, isSuccess, isLoading: deleteManyIsLoading } = useDeleteMany(
         "posts",
     );
+    
+    const deleteSelectedItems = () => {
+        mutate({ ids: selectedRowKeys });
+    };
 
     React.useEffect(() => {
         if (isSuccess) {
