@@ -14,7 +14,13 @@ const { Title, Text } = Typography;
 
 export const PostReview = () => {
     const { data, isLoading } = useList<IPost>("posts", {
-        filters: { status: ["draft"] },
+        filters: [
+            {
+                field: "status",
+                operator: "eq",
+                value: "draft",
+            },
+        ],
         pagination: { pageSize: 1, current: 1 },
     });
 
