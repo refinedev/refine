@@ -26,6 +26,7 @@ export const PostList = (props: IResourceComponentsProps) => {
             <Table {...tableProps} key="id">
                 <Table.Column key="id" dataIndex="id" title="ID" />
                 <Table.Column key="title" dataIndex="title" title="Title" />
+                <Table.Column key="status" dataIndex="status" title="Status" />
                 <Table.Column
                     dataIndex={["category", "id"]}
                     key="category.id"
