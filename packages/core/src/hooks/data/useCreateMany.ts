@@ -11,26 +11,37 @@ import {
 import { useListResourceQueries, useNotification, useTranslate } from "@hooks";
 
 type UseCreateManyReturnType<
-    RecordType extends BaseRecord = BaseRecord
+    TData extends BaseRecord = BaseRecord,
+    TError = HttpError,
+    TVariables = {}
 > = UseMutationResult<
-    CreateManyResponse<RecordType>,
-    unknown,
-    { resource: string; values: BaseRecord[] },
+    CreateManyResponse<TData>,
+    TError,
+    { resource: string; values: TVariables[] },
     unknown
 >;
 
 export const useCreateMany = <
-    RecordType extends BaseRecord = BaseRecord
->(): UseCreateManyReturnType<RecordType> => {
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+>(): UseCreateManyReturnType<TData, TError, TVariables> => {
     const { createMany } = useContext<IDataContext>(DataContext);
     const getListQueries = useListResourceQueries();
     const translate = useTranslate();
     const queryClient = useQueryClient();
     const notification = useNotification();
 
-    const mutation = useMutation(
-        ({ resource, values }: { resource: string; values: BaseRecord[] }) =>
-            createMany<RecordType>(resource, values),
+    const mutation = useMutation<
+        CreateManyResponse<TData>,
+        TError,
+        {
+            resource: string;
+            values: TVariables[];
+        }
+    >(
+        ({ resource, values }: { resource: string; values: TVariables[] }) =>
+            createMany<TData, TVariables>(resource, values),
         {
             onSuccess: (_, { resource }) => {
                 notification.success({
@@ -49,7 +60,7 @@ export const useCreateMany = <
                     queryClient.invalidateQueries(query.queryKey);
                 });
             },
-            onError: (err: HttpError, { resource }) => {
+            onError: (err: TError, { resource }) => {
                 notification.error({
                     description: err.message,
                     message: translate(

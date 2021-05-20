@@ -7,21 +7,26 @@ import {
     IDataContext,
     HttpError,
     BaseRecord,
+    Identifier,
 } from "../../interfaces";
 import { useNotification, useTranslate } from "@hooks";
 
-type UseDeleteManyReturnType<T> = UseMutationResult<
-    DeleteManyResponse<T>,
-    unknown,
-    {
-        id: (string | number)[];
-    },
+type UseDeleteManyReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TError = HttpError
+> = UseMutationResult<
+    DeleteManyResponse<TData>,
+    TError,
+    { ids: Identifier[] },
     unknown
 >;
 
-export const useDeleteMany = <RecordType extends BaseRecord = BaseRecord>(
+export const useDeleteMany = <
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError
+>(
     resource: string,
-): UseDeleteManyReturnType<RecordType> => {
+): UseDeleteManyReturnType<TData, TError> => {
     const { deleteMany } = useContext<IDataContext>(DataContext);
     const notification = useNotification();
     const translate = useTranslate();
@@ -34,41 +39,40 @@ export const useDeleteMany = <RecordType extends BaseRecord = BaseRecord>(
 
     const queryResource = `resource/list/${resource}`;
 
-    const mutation = useMutation(
-        ({ id }: { id: (string | number)[] }) =>
-            deleteMany<RecordType>(resource, id),
+    const mutation = useMutation<
+        DeleteManyResponse<TData>,
+        TError,
         {
-            // Always refetch after error or success:
-            onSettled: () => {
-                queryClient.invalidateQueries(queryResource);
-            },
-            onSuccess: (_data, { id }) => {
-                notification.success({
-                    key: `${id}-${resource}-notification`,
-                    message: translate(
-                        "common:notifications.success",
-                        "Success",
-                    ),
-                    description: translate(
-                        "common:notifications.deleteSuccess",
-                        { resource },
-                        `Successfully deleted ${resource}`,
-                    ),
-                });
-            },
-            onError: (err: HttpError, { id }) => {
-                notification.error({
-                    key: `${id}-${resource}-notification`,
-                    message: translate(
-                        "common:notifications.error",
-                        { statusCode: err.statusCode },
-                        `Error (status code: ${err.statusCode})`,
-                    ),
-                    description: err.message,
-                });
-            },
+            ids: Identifier[];
+        }
+    >(({ ids }: { ids: Identifier[] }) => deleteMany<TData>(resource, ids), {
+        // Always refetch after error or success:
+        onSettled: () => {
+            queryClient.invalidateQueries(queryResource);
         },
-    );
+        onSuccess: (_data, id) => {
+            notification.success({
+                key: `${id}-${resource}-notification`,
+                message: translate("common:notifications.success", "Success"),
+                description: translate(
+                    "common:notifications.deleteSuccess",
+                    { resource },
+                    `Successfully deleted ${resource}`,
+                ),
+            });
+        },
+        onError: (err: TError, id) => {
+            notification.error({
+                key: `${id}-${resource}-notification`,
+                message: translate(
+                    "common:notifications.error",
+                    { statusCode: err.statusCode },
+                    `Error (status code: ${err.statusCode})`,
+                ),
+                description: err.message,
+            });
+        },
+    });
 
     return mutation;
 };

@@ -15,7 +15,7 @@ export type useShowProps = {
     id?: string;
 };
 
-export const useShow = <RecordType extends BaseRecord = BaseRecord>({
+export const useShow = <TData extends BaseRecord = BaseRecord>({
     resource: resourceName,
     id,
 }: useShowProps = {}) => {
@@ -28,14 +28,12 @@ export const useShow = <RecordType extends BaseRecord = BaseRecord>({
     const resource = resourceName ?? routeResourceName;
     const resourceId = showId ?? id ?? idFromRoute;
 
-    const queryResult = useOne<RecordType>(resource, resourceId, {
+    const queryResult = useOne<TData>(resource, resourceId, {
         enabled: !!resourceId,
     });
 
     return {
-        queryResult: queryResult as QueryObserverResult<
-            GetOneResponse<RecordType>
-        >,
+        queryResult: queryResult as QueryObserverResult<GetOneResponse<TData>>,
         showId,
         setShowId,
     };

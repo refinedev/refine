@@ -7,23 +7,28 @@ import {
     useTranslate,
     useWarnAboutChange,
 } from "@hooks";
-import { BaseRecord } from "../../../interfaces";
+import { BaseRecord, HttpError } from "../../../interfaces";
 import { useFormProps } from "../useForm";
 
 export interface UseDrawerFormConfig extends UseFormConfig {
     action: "show" | "edit" | "create";
 }
 
-export type UseDrawerFormProps<M> = useFormProps<M> & UseDrawerFormConfig;
+export type UseDrawerFormProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = useFormProps<TData, TError, TVariables> & UseDrawerFormConfig;
 
 export const useDrawerForm = <
-    RecordType extends BaseRecord = BaseRecord,
-    MutationType extends BaseRecord = RecordType
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
 >({
     mutationMode: mutationModeProp,
     ...rest
-}: UseDrawerFormProps<MutationType>) => {
-    const useFormProps = useForm<RecordType, MutationType>({
+}: UseDrawerFormProps<TData, TError, TVariables>) => {
+    const useFormProps = useForm<TData, TError, TVariables>({
         ...rest,
         mutationMode: mutationModeProp,
     });

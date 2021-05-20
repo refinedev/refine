@@ -3,27 +3,41 @@ import {
     UseStepsFormConfig,
 } from "sunflower-antd";
 
-import { BaseRecord, StepsFormSF } from "../../../interfaces";
+import {
+    BaseRecord,
+    HttpError,
+    useStepsFormFromSFReturnType,
+} from "../../../interfaces";
+
 import { useForm, useFormProps } from "../useForm";
 
-export type useStepsFormProps<T> = Partial<useFormProps<T>> &
-    UseStepsFormConfig;
+export type useStepsFormReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = useForm<TData, TError, TVariables> &
+    useStepsFormFromSFReturnType<TData, TVariables>;
 
-export type useStepsForm<T, M> = useForm<T, M> & StepsFormSF & {};
+export type useStepsFormProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = useFormProps<TData, TError, TVariables> & UseStepsFormConfig;
 
 export const useStepsForm = <
-    RecordType = BaseRecord,
-    MutationType extends BaseRecord = RecordType
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
 >(
-    props: useStepsFormProps<MutationType> = {},
-): useStepsForm<RecordType, MutationType> => {
-    const useFormProps = useForm<RecordType, MutationType>({ ...props });
+    props: useStepsFormProps<TData, TError, TVariables> = {},
+): useStepsFormReturnType<TData, TError, TVariables> => {
+    const useFormProps = useForm<TData, TError, TVariables>({ ...props });
     const { form, formProps } = useFormProps;
 
-    const stepsPropsSunflower: StepsFormSF = useStepsFormSF({
+    const stepsPropsSunflower = useStepsFormSF<TData, TVariables>({
         ...props,
         form: form,
-        submit: (values) => {
+        submit: (values: any) => {
             formProps && formProps.onFinish && formProps.onFinish(values);
         },
     });

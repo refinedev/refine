@@ -25,19 +25,27 @@ type UpdateParams<T> = {
     id: string;
     values: T;
 };
-export type UseUpdateReturnType<T> = UseMutationResult<
-    UpdateResponse<T>,
-    unknown,
-    UpdateParams<BaseRecord>,
+export type UseUpdateReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = UseMutationResult<
+    UpdateResponse<TData>,
+    TError,
+    UpdateParams<TVariables>,
     UpdateContext
 >;
 
-export const useUpdate = <RecordType extends BaseRecord = BaseRecord>(
+export const useUpdate = <
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+>(
     resource: string,
     mutationModeProp?: MutationMode,
     undoableTimeoutProp?: number,
     onCancel?: (cancelMutation: () => void) => void,
-): UseUpdateReturnType<RecordType> => {
+): UseUpdateReturnType<TData, TError, TVariables> => {
     const queryClient = useQueryClient();
     const { update } = useContext<IDataContext>(DataContext);
     const {
@@ -62,19 +70,19 @@ export const useUpdate = <RecordType extends BaseRecord = BaseRecord>(
     const getAllQueries = useCacheQueries();
 
     const mutation = useMutation<
-        UpdateResponse<RecordType>,
-        HttpError,
-        UpdateParams<BaseRecord>,
+        UpdateResponse<TData>,
+        TError,
+        UpdateParams<TVariables>,
         UpdateContext
     >(
         ({ id, values }) => {
             if (!(mutationMode === "undoable")) {
-                return update<RecordType>(resource, id, values);
+                return update<TData, TVariables>(resource, id, values);
             }
-            const updatePromise = new Promise<UpdateResponse<RecordType>>(
+            const updatePromise = new Promise<UpdateResponse<TData>>(
                 (resolve, reject) => {
                     const updateTimeout = setTimeout(() => {
-                        update<RecordType>(resource, id, values)
+                        update<TData, TVariables>(resource, id, values)
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     }, undoableTimeout);
@@ -129,7 +137,7 @@ export const useUpdate = <RecordType extends BaseRecord = BaseRecord>(
 
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
-                                    data: data.map((record: RecordType) => {
+                                    data: data.map((record: TData) => {
                                         if (
                                             record.id!.toString() ===
                                             variables.id
@@ -158,7 +166,7 @@ export const useUpdate = <RecordType extends BaseRecord = BaseRecord>(
                     previousQueries: previousQueries,
                 };
             },
-            onError: (err: HttpError, { id }, context) => {
+            onError: (err: TError, { id }, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);

@@ -21,25 +21,28 @@ import {
     ContextQuery,
     HttpError,
     GetListResponse,
+    Identifier,
 } from "../../interfaces";
 
-type DeleteParams = {
-    id: string | number;
-};
-
-type UseDeleteReturnType<T> = UseMutationResult<
-    DeleteOneResponse<T>,
-    unknown,
-    DeleteParams,
+type UseDeleteReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TError = HttpError
+> = UseMutationResult<
+    DeleteOneResponse<TData>,
+    TError,
+    { id: Identifier },
     DeleteContext
 >;
 
-export const useDelete = <RecordType extends BaseRecord = BaseRecord>(
+export const useDelete = <
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError
+>(
     resource: string,
     mutationModeProp?: MutationMode,
     undoableTimeoutProp?: number,
     onCancel?: (cancelMutation: () => void) => void,
-): UseDeleteReturnType<RecordType> => {
+): UseDeleteReturnType<TData, TError> => {
     const queryClient = useQueryClient();
     const { deleteOne } = useContext<IDataContext>(DataContext);
     const {
@@ -62,20 +65,22 @@ export const useDelete = <RecordType extends BaseRecord = BaseRecord>(
     const cacheQueries = useCacheQueries();
 
     const mutation = useMutation<
-        DeleteOneResponse<RecordType>,
-        HttpError,
-        DeleteParams,
+        DeleteOneResponse<TData>,
+        TError,
+        {
+            id: Identifier;
+        },
         DeleteContext
     >(
         ({ id }) => {
             if (!(mutationMode === "undoable")) {
-                return deleteOne<RecordType>(resource, id);
+                return deleteOne<TData>(resource, id);
             }
 
-            const updatePromise = new Promise<DeleteOneResponse<RecordType>>(
+            const updatePromise = new Promise<DeleteOneResponse<TData>>(
                 (resolve, reject) => {
                     const updateTimeout = setTimeout(() => {
-                        deleteOne<RecordType>(resource, id)
+                        deleteOne<TData>(resource, id)
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     }, undoableTimeout);
@@ -91,7 +96,7 @@ export const useDelete = <RecordType extends BaseRecord = BaseRecord>(
                         notificationDispatch({
                             type: ActionTypes.ADD,
                             payload: {
-                                id: id,
+                                id,
                                 resource: resource,
                                 cancelMutation: cancelMutation,
                                 seconds: undoableTimeout,
@@ -108,7 +113,7 @@ export const useDelete = <RecordType extends BaseRecord = BaseRecord>(
 
                 const allQueries = cacheQueries(
                     resource,
-                    deleteParams.id.toString(),
+                    deleteParams.id?.toString(),
                 );
 
                 for (const queryItem of allQueries) {
@@ -116,7 +121,7 @@ export const useDelete = <RecordType extends BaseRecord = BaseRecord>(
                     await queryClient.cancelQueries(queryKey);
 
                     const previousQuery = queryClient.getQueryData<
-                        QueryResponse<RecordType>
+                        QueryResponse<TData>
                     >(queryKey);
 
                     if (!(mutationMode === "pessimistic")) {
@@ -134,16 +139,16 @@ export const useDelete = <RecordType extends BaseRecord = BaseRecord>(
                                     total,
                                     // eslint-disable-next-line prettier/prettier
                                 } = previousQuery as GetListResponse<
-                                    RecordType
+                                    TData
                                 >;
 
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: (data ?? []).filter(
-                                        (record: RecordType) =>
+                                        (record: TData) =>
                                             !(
                                                 record.id!.toString() ===
-                                                deleteParams.id.toString()
+                                                deleteParams.id?.toString()
                                             ),
                                     ),
                                     total: total - 1,
@@ -159,7 +164,7 @@ export const useDelete = <RecordType extends BaseRecord = BaseRecord>(
                     previousQueries: previousQueries,
                 };
             },
-            onError: (err: HttpError, { id }, context) => {
+            onError: (err: TError, { id }, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
@@ -188,6 +193,16 @@ export const useDelete = <RecordType extends BaseRecord = BaseRecord>(
             onSuccess: (_data, { id }) => {
                 const resourceSingular = pluralize.singular(resource);
 
+                const allQueries = cacheQueries(resource, id?.toString());
+                for (const query of allQueries) {
+                    if (
+                        query.queryKey.includes(`resource/getOne/${resource}`)
+                    ) {
+                        console.log("invalidate", query.queryKey);
+                        queryClient.invalidateQueries(query.queryKey);
+                    }
+                }
+
                 notification.success({
                     key: `${id}-${resource}-notification`,
                     message: translate(
@@ -204,7 +219,7 @@ export const useDelete = <RecordType extends BaseRecord = BaseRecord>(
             onSettled: (_data, _error, variables) => {
                 const allQueries = cacheQueries(
                     resource,
-                    variables.id.toString(),
+                    variables.id?.toString(),
                 );
                 for (const query of allQueries) {
                     if (
