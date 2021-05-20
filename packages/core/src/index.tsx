@@ -24,8 +24,11 @@ export {
     CrudOperators,
 } from "./interfaces";
 
-// types
-export { useModalFormFromSFReturnType } from "../types/sunflower";
+// sunflower types
+export {
+    useModalFormFromSFReturnType,
+    useStepsFormFromSFReturnType,
+} from "../types/sunflower";
 
 export * from "./definitions/upload";
 export { getDefaultSortOrder, getDefaultFilter } from "./definitions/table";

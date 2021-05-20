@@ -21,6 +21,23 @@ export type useModalFormFromSFReturnType<TData, TVariables> = {
     submit: (values?: TVariables) => Promise<TData>;
 };
 
+export type useStepsFormFromSFReturnType<TData, TVariables> = {
+    current: number;
+    gotoStep: (step: number) => void;
+    stepsProps: {
+        current: number;
+        onChange: (currentStep: number) => void;
+    };
+    formProps: FormProps<TVariables>;
+    formLoading: boolean;
+    defaultFormValuesLoading: boolean;
+    formValues: {};
+    initialValues: {};
+    formResult: undefined;
+    form: FormInstance<TVariables>;
+    submit: (values?: TVariables) => Promise<TData>;
+};
+
 declare module "sunflower-antd" {
     export const useStepsForm: <TData, TVariables>(
         config: UseStepsFormConfig,

@@ -47,7 +47,10 @@ export * from "./redirectionTypes";
 export * from "./upload";
 
 // sunflower types
-export { useModalFormFromSFReturnType } from "../../types/sunflower";
+export {
+    useModalFormFromSFReturnType,
+    useStepsFormFromSFReturnType,
+} from "../../types/sunflower";
 
 export type Identifier = string | number;
 

@@ -3,9 +3,20 @@ import {
     UseStepsFormConfig,
 } from "sunflower-antd";
 
-import { BaseRecord, HttpError } from "../../../interfaces";
+import {
+    BaseRecord,
+    HttpError,
+    useStepsFormFromSFReturnType,
+} from "../../../interfaces";
 
 import { useForm, useFormProps } from "../useForm";
+
+export type useStepsFormReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = useForm<TData, TError, TVariables> &
+    useStepsFormFromSFReturnType<TData, TVariables>;
 
 export type useStepsFormProps<
     TData extends BaseRecord = BaseRecord,
@@ -19,7 +30,7 @@ export const useStepsForm = <
     TVariables = {}
 >(
     props: useStepsFormProps<TData, TError, TVariables> = {},
-) => {
+): useStepsFormReturnType<TData, TError, TVariables> => {
     const useFormProps = useForm<TData, TError, TVariables>({ ...props });
     const { form, formProps } = useFormProps;
 
