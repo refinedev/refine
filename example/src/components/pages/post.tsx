@@ -71,7 +71,6 @@ interface ICategory {
 export const PostList = (props: any) => {
     const translate = useTranslate();
     const { RangePicker } = DatePicker;
-    const [extraFilter, setExtraFilter] = React.useState<CrudFilters>([]);
 
     const { tableProps, sorter, filters, formProps } = useTable<IPost>({
         // permanentFilter: [
@@ -87,7 +86,6 @@ export const PostList = (props: any) => {
                 order: "descend",
             },
         ],
-        extraFilter,
         onSearch: (searchParams: {
             title: string;
             createdAt: [Dayjs, Dayjs];
@@ -108,17 +106,17 @@ export const PostList = (props: any) => {
                     {
                         field: "createdAt",
                         operator: "gte",
-                        value: createdAt[0].format(),
+                        value: createdAt[0].toISOString(),
                     },
                     {
                         field: "createdAt",
                         operator: "lte",
-                        value: createdAt[1].format(),
+                        value: createdAt[1].toISOString(),
                     },
                 );
             }
 
-            setExtraFilter(filters);
+            return filters;
         },
     });
 

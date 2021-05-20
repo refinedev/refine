@@ -26,7 +26,7 @@ export type useTableProps = {
     initialFilter?: CrudFilters;
     extraFilter?: CrudFilters;
     syncWithLocation?: boolean;
-    onSearch?: (data: any) => void;
+    onSearch?: (data: any) => CrudFilters | Promise<CrudFilters>;
 };
 
 export type useTableReturnType<RecordType extends BaseRecord = BaseRecord> = {
@@ -39,7 +39,6 @@ export type useTableReturnType<RecordType extends BaseRecord = BaseRecord> = {
 export const useTable = <RecordType extends BaseRecord = BaseRecord>({
     onSearch,
     permanentFilter = [],
-    extraFilter = [],
     initialCurrent = 1,
     initialPageSize = 10,
     initialSorter,
@@ -95,6 +94,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
 
     const [sorter, setSorter] = useState<Sort | undefined>(defaultSorter);
     const [filters, setFilters] = useState<CrudFilters>(defaultFilter || []);
+    const [extraFilter, setExtraFilter] = useState<CrudFilters>([]);
 
     const {
         current,
@@ -143,9 +143,11 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
         }
     };
 
-    const onFinish = (value: any) => {
-        onSearch && onSearch(value);
-        return Promise.resolve();
+    const onFinish = async (value: any) => {
+        if (onSearch) {
+            const filters = await onSearch(value);
+            return setExtraFilter(filters);
+        }
     };
 
     return {
