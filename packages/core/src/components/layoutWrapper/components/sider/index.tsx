@@ -3,15 +3,20 @@ import { Layout, Menu } from "antd";
 import { LogoutOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-import { AuthContext } from "@contexts/auth";
 import { AdminContext } from "@contexts/admin";
-import { IAuthContext, IAdminContext } from "../../../../interfaces";
-import { useNavigation, useTranslate, useMenu } from "@hooks";
+import { IAdminContext } from "../../../../interfaces";
+import {
+    useNavigation,
+    useTranslate,
+    useMenu,
+    useLogout,
+    useTitle,
+} from "@hooks";
 
 export const Sider: React.FC = () => {
     const [collapsed, setCollapsed] = React.useState(false);
-    const { logout, isProvided } = useContext<IAuthContext>(AuthContext);
-    const { Title } = useContext<IAdminContext>(AdminContext);
+    const logout = useLogout();
+    const Title = useTitle();
     const { push } = useNavigation();
     const translate = useTranslate();
     const { menuItems, selectedKey } = useMenu();
@@ -35,7 +40,7 @@ export const Sider: React.FC = () => {
                     </Menu.Item>
                 ))}
 
-                {isProvided && (
+                {logout && (
                     <Menu.Item
                         onClick={() => {
                             logout().then(() => push("/login"));
