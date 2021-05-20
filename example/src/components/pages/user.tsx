@@ -25,6 +25,7 @@ import {
     Typography,
     RefreshButton,
     BooleanField,
+    HttpError,
 } from "@pankod/refine";
 
 const { Title, Text } = Typography;
@@ -51,7 +52,12 @@ export const UserList = (props: any) => {
         drawerProps: createDrawerProps,
         show: createShow,
         saveButtonProps: createSaveButtonProps,
-    } = useDrawerForm({
+        queryResult: createQueryResult,
+    } = useDrawerForm<
+        { id: string; firstName: string },
+        HttpError,
+        { title: string }
+    >({
         action: "create",
     });
 

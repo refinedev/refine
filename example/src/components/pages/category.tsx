@@ -20,6 +20,7 @@ import {
     CreateButton,
     DateField,
     getDefaultSortOrder,
+    HttpError,
 } from "@pankod/refine";
 
 export interface ICategory {
@@ -39,7 +40,7 @@ export const CategoryList = (props: any) => {
         editButtonProps,
         cancelButtonProps,
         setEditId,
-    } = useEditableTable<ICategory>({
+    } = useEditableTable<ICategory, HttpError, ICategory>({
         initialSorter: [
             {
                 field: "createdAt",
@@ -166,7 +167,11 @@ export const CategoryList = (props: any) => {
 export const CategoryCreate = (props: any) => {
     const translate = useTranslate();
 
-    const { formProps, saveButtonProps } = useForm();
+    const { formProps, saveButtonProps } = useForm<
+        ICategory,
+        HttpError,
+        { title: string }
+    >();
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
@@ -190,7 +195,11 @@ export const CategoryCreate = (props: any) => {
 export const CategoryEdit = (props: any) => {
     const translate = useTranslate();
 
-    const { formProps, saveButtonProps } = useForm();
+    const { formProps, saveButtonProps } = useForm<
+        ICategory,
+        HttpError,
+        { title: string }
+    >();
 
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>

@@ -12,6 +12,7 @@ import {
     QueryResponse,
     GetListResponse,
     Context as DeleteContext,
+    Identifier,
 } from "../../interfaces";
 import {
     useNotification,
@@ -26,19 +27,25 @@ type DeleteParams = {
     ids: (string | number)[];
 };
 
-type UseDeleteManyReturnType<T> = UseMutationResult<
-    DeleteManyResponse<T>,
-    unknown,
-    DeleteParams,
-    DeleteContext
+type UseDeleteManyReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TError = HttpError
+> = UseMutationResult<
+    DeleteManyResponse<TData>,
+    TError,
+    { ids: Identifier[] },
+    unknown
 >;
 
-export const useDeleteMany = <RecordType extends BaseRecord = BaseRecord>(
+export const useDeleteMany = <
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError
+>(
     resource: string,
     mutationModeProp?: MutationMode,
     undoableTimeoutProp?: number,
     onCancel?: (cancelMutation: () => void) => void,
-): UseDeleteManyReturnType<RecordType> => {
+): UseDeleteManyReturnType<TData, TError> => {
     const { deleteMany } = useContext<IDataContext>(DataContext);
     const {
         mutationMode: mutationModeContext,
@@ -61,8 +68,8 @@ export const useDeleteMany = <RecordType extends BaseRecord = BaseRecord>(
     const queryClient = useQueryClient();
 
     const mutation = useMutation<
-        DeleteManyResponse<RecordType>,
-        HttpError,
+        DeleteManyResponse<TData>,
+        TError,
         DeleteParams,
         DeleteContext
     >(
@@ -70,13 +77,13 @@ export const useDeleteMany = <RecordType extends BaseRecord = BaseRecord>(
             console.log("mode", mutationMode);
 
             if (!(mutationMode === "undoable")) {
-                return deleteMany<RecordType>(resource, ids);
+                return deleteMany<TData>(resource, ids);
             }
 
-            const updatePromise = new Promise<DeleteManyResponse<RecordType>>(
+            const updatePromise = new Promise<DeleteManyResponse<TData>>(
                 (resolve, reject) => {
                     const updateTimeout = setTimeout(() => {
-                        deleteMany<RecordType>(resource, ids)
+                        deleteMany<TData>(resource, ids)
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     }, undoableTimeout);
@@ -117,7 +124,7 @@ export const useDeleteMany = <RecordType extends BaseRecord = BaseRecord>(
                     await queryClient.cancelQueries(queryKey);
 
                     const previousQuery = queryClient.getQueryData<
-                        QueryResponse<RecordType>
+                        QueryResponse<TData>
                     >(queryKey);
 
                     if (!(mutationMode === "pessimistic")) {
@@ -134,12 +141,12 @@ export const useDeleteMany = <RecordType extends BaseRecord = BaseRecord>(
                                     data,
                                     total,
                                     // eslint-disable-next-line prettier/prettier
-                                } = previousQuery as GetListResponse<RecordType>;
+                                } = previousQuery as GetListResponse<TData>;
 
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: (data ?? []).filter(
-                                        (record: RecordType) =>
+                                        (record: TData) =>
                                             !deleteParams.ids.includes(
                                                 record.id!.toString(),
                                             ),
@@ -185,7 +192,7 @@ export const useDeleteMany = <RecordType extends BaseRecord = BaseRecord>(
                     ),
                 });
             },
-            onError: (err: HttpError, { ids }, context) => {
+            onError: (err, { ids }, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);

@@ -20,22 +20,22 @@ export type useCheckboxGroupProps = {
 };
 
 export type UseCheckboxGroupReturnType<
-    RecordType extends BaseRecord = BaseRecord
+    TData extends BaseRecord = BaseRecord
 > = {
     checkboxGroupProps: CheckboxGroupProps;
-    queryResult: QueryObserverResult<GetListResponse<RecordType>>;
+    queryResult: QueryObserverResult<GetListResponse<TData>>;
 };
 
-export const useCheckboxGroup = <RecordType extends BaseRecord = BaseRecord>({
+export const useCheckboxGroup = <TData extends BaseRecord = BaseRecord>({
     resource,
     sort,
     filters,
     optionLabel = "title",
     optionValue = "id",
-}: useCheckboxGroupProps): UseCheckboxGroupReturnType<RecordType> => {
+}: useCheckboxGroupProps): UseCheckboxGroupReturnType<TData> => {
     const [options, setOptions] = React.useState<Option[]>([]);
 
-    const queryResult = useList<RecordType>(
+    const queryResult = useList<TData>(
         resource,
         {
             sort,
