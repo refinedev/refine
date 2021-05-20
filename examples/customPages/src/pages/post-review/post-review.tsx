@@ -21,18 +21,17 @@ export const PostReview = () => {
                 value: "draft",
             },
         ],
-        pagination: { pageSize: 1, current: 1 },
+        pagination: { pageSize: 1 },
     });
 
     const record = data?.data[0];
 
-    const { data: categoryData } = useOne<ICategory>(
-        "categories",
-        record!?.category.id,
-        {
-            enabled: !!record,
-        },
-    );
+    const {
+        data: categoryData,
+        isLoading: categoryIsLoading,
+    } = useOne<ICategory>("categories", record!?.category.id, {
+        enabled: !!record,
+    });
 
     const mutationResult = useUpdate<IPost>("posts");
 
@@ -42,18 +41,20 @@ export const PostReview = () => {
         mutate({ id: item.id, values: { ...item, status } });
     };
 
+    const buttonDisabled = isLoading || categoryIsLoading || mutateIsLoading;
+
     return (
-        <div>
+        <>
             {record && (
                 <Show
                     title="Review Posts"
                     resource="posts"
-                    isLoading={isLoading}
+                    isLoading={isLoading || categoryIsLoading}
                     actionButtons={[
                         <Button
                             key="reject"
                             danger
-                            disabled={mutateIsLoading}
+                            disabled={buttonDisabled}
                             onClick={() => handleUpdate(record, "rejected")}
                         >
                             Reject
@@ -61,7 +62,7 @@ export const PostReview = () => {
                         <Button
                             key="approve"
                             type="primary"
-                            disabled={mutateIsLoading}
+                            disabled={buttonDisabled}
                             onClick={() => handleUpdate(record, "published")}
                         >
                             Approve
@@ -78,6 +79,6 @@ export const PostReview = () => {
                     <MarkdownField value={record.content} />
                 </Show>
             )}
-        </div>
+        </>
     );
 };
