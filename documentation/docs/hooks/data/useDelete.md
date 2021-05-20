@@ -13,7 +13,7 @@ siderbar_label: useDelete
 * Automatically invalidates `list` queries after mutation is succesfully run.  
 [Refer to React Query docs for detailed information &#8594](https://react-query.tanstack.com/guides/invalidations-from-mutations)
 
-* Supports [mutation mode](#).(`pessimistic`, `optimistic`, `undoable`)
+* Supports [mutation mode](#mutation-mode).
 
 
 ## Usage
@@ -49,7 +49,7 @@ mutate({ id: 2 })
 
 :::tip
 `mutate` can also accept lifecycle methods like `onSuccess` and `onError`.  
-[Refer to react-query docs for further information.](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
+[Refer to react-query docs for further information.  &#8594](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
 :::
 
 <br/>
@@ -104,28 +104,27 @@ const { mutate } = useDelete<CategoryMutationResult>("categories", "optimistic")
 
 
 ## Custom method on mutation cancellation
-You can define cancel mutation method by passing a callback to `onCancel`  property. Cancel callback triggers when undo button is clicked on  `mutationModeProp = "undoable"` mutation mode.
-`onCancel` callback need to be in format like below
-
-A custom callback can be passed to be run on undo action. Upon clicking the undo button this callback will be run.
+You can pass a custom callback to `useDelete`. Cancel callback is triggered when undo button is clicked on  `mutationModeProp = "undoable"` mutation mode.
 
 :::caution
 Default behaviour on undo action includes notifications. If a custom callback is passed this notification will not appear.
 :::
 
 :::danger
-Passed callback will be passed a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on undoable mode.
+Passed callback will receive a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on `undoable` mode.
 
 ```tsx
 const customOnCancel = (cancelMutation) => {
     cancelMutation()
-    // rest of custom onCancel logic...
+    // rest of custom cancel logic...
 }
 
-const { mutate } = useDelete("categories", "optimistic", undefined, customOnCancel);
+const { mutate } = useDelete("categories", "undoable", 7500, customOnCancel);
 ```
+After 7.5 seconds the mutation will be executed. The mutation can be cancelled within that 7.5 seconds. If cancelled `customOnCancel` will be executed
 :::
 
+<br />
 
 ## API
 
@@ -136,10 +135,10 @@ const { mutate } = useDelete("categories", "optimistic", undefined, customOnCanc
 | ---------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ---------------- |
 | resource  <div className=" required">Required</div>               | [`Resource`](#) for API data interactions                                                          | `string`                                                          |                  |
 | mutationModeProp           | [Determines when mutations are executed](#)                                                        | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`* |
+| undoableTimeoutProp        | Duration to wait before executing the mutation when `mutationModeProp = "undoable"`                       | `number`                                                          | `5000ms`*          |
 | onCancel               | Callback that runs when undo button is clicked on `mutationModeProp = "undoable"`                                                      | `(cancelMutation: () => void) => void`  |                         | `"list"`         |
-| undoableTimeoutProp        | Duration to wait before executing mutations when `mutationModeProp = "undoable"`                       | `number`                                                          | `5000ms`*          |
 
->`*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component. `useDelete` will see what is passed to `<Admin>` as default and can override locally.
+>`*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component. `useDelete` will use what is passed to `<Admin>` as default and can override locally.
 
 <br/>
 
