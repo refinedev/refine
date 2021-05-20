@@ -40,7 +40,7 @@ export const CategoryList = (props: any) => {
         editButtonProps,
         cancelButtonProps,
         setEditId,
-    } = useEditableTable<ICategory, ICategory>({
+    } = useEditableTable<ICategory, HttpError, ICategory>({
         initialSorter: [
             {
                 field: "createdAt",
@@ -163,11 +163,6 @@ export const CategoryList = (props: any) => {
         </List>
     );
 };
-
-interface ICategory {
-    id: string;
-    title: string;
-}
 
 export const CategoryCreate = (props: any) => {
     const translate = useTranslate();

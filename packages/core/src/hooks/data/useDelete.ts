@@ -193,6 +193,16 @@ export const useDelete = <
             onSuccess: (_data, { id }) => {
                 const resourceSingular = pluralize.singular(resource);
 
+                const allQueries = cacheQueries(resource, id?.toString());
+                for (const query of allQueries) {
+                    if (
+                        query.queryKey.includes(`resource/getOne/${resource}`)
+                    ) {
+                        console.log("invalidate", query.queryKey);
+                        queryClient.invalidateQueries(query.queryKey);
+                    }
+                }
+
                 notification.success({
                     key: `${id}-${resource}-notification`,
                     message: translate(

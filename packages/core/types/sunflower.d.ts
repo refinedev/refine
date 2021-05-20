@@ -11,10 +11,10 @@ declare module "sunflower-antd" {
         config: UseStepsFormConfig,
     ) => {
         current: number;
-        gotoStep: (step: any) => any;
+        gotoStep: (step: number) => void;
         stepsProps: {
             current: number;
-            onChange: (currentStep: any) => any;
+            onChange: (currentStep: number) => void;
         };
         formProps: FormProps<TVariables>;
         formLoading: boolean;

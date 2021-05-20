@@ -4,6 +4,7 @@ import {
 } from "sunflower-antd";
 
 import { BaseRecord, HttpError } from "../../../interfaces";
+
 import { useForm, useFormProps } from "../useForm";
 
 export type useStepsFormProps<
@@ -12,19 +13,13 @@ export type useStepsFormProps<
     TVariables = {}
 > = useFormProps<TData, TError, TVariables> & UseStepsFormConfig;
 
-export type useStepsForm<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TVariables = {}
-> = useForm<TData, TError, TVariables>;
-
 export const useStepsForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {}
 >(
     props: useStepsFormProps<TData, TError, TVariables> = {},
-): useStepsForm<TData, TError, TVariables> => {
+) => {
     const useFormProps = useForm<TData, TError, TVariables>({ ...props });
     const { form, formProps } = useFormProps;
 
