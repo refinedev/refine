@@ -24,6 +24,9 @@ export {
     CrudOperators,
 } from "./interfaces";
 
+// types
+export { useModalFormFromSFReturnType } from "../types/sunflower";
+
 export * from "./definitions/upload";
 export { getDefaultSortOrder, getDefaultFilter } from "./definitions/table";
 export { defaultConfigProviderProps } from "./definitions/config";

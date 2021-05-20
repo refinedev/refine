@@ -9,13 +9,24 @@ import {
     useMutationMode,
     useTranslate,
     useWarnAboutChange,
-} from "@hooks";
+} from "../../../hooks";
 import { BaseRecord, HttpError } from "../../../interfaces";
+import { useModalFormFromSFReturnType } from "../../../../types/sunflower";
 import { useFormProps } from "../useForm";
+import { DeleteButtonProps } from "../../../components/buttons";
 
 type useModalFormConfig = {
     action: "show" | "edit" | "create";
 };
+
+export type useModalFormReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = useForm<TData, TError, TVariables> &
+    useModalFormFromSFReturnType<TData, TVariables> & {
+        deleteButtonProps: DeleteButtonProps;
+    };
 
 export type useModalFormProps<
     TData extends BaseRecord = BaseRecord,
@@ -31,7 +42,11 @@ export const useModalForm = <
 >({
     mutationMode: mutationModeProp,
     ...rest
-}: useModalFormProps<TData, TError, TVariables>) => {
+}: useModalFormProps<TData, TError, TVariables>): useModalFormReturnType<
+    TData,
+    TError,
+    TVariables
+> => {
     const useFormProps = useForm<TData, TError, TVariables>({
         ...rest,
         mutationMode: mutationModeProp,
@@ -100,7 +115,6 @@ export const useModalForm = <
             sunflowerUseModal.close();
         },
     };
-
     return {
         ...useFormProps,
         ...sunflowerUseModal,
@@ -140,7 +154,6 @@ export const useModalForm = <
                     }
                 }
                 sunflowerUseModal.close();
-                // setCloneId?.(undefined);
             },
         },
         saveButtonProps: saveButtonPropsSF,

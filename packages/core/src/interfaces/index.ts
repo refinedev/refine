@@ -46,6 +46,9 @@ export * from "./redirectionTypes";
 // upload
 export * from "./upload";
 
+// sunflower types
+export { useModalFormFromSFReturnType } from "../../types/sunflower";
+
 export type Identifier = string | number;
 
 export type BaseRecord = {

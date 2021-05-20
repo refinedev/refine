@@ -1,10 +1,25 @@
-import { FormInstance, FormProps } from "src";
-import { UseFormConfig } from "sunflower-antd";
+import { FormInstance, FormProps, ModalProps } from "../src/components/antd";
+import { UseFormConfig, UseModalFormConfig } from "sunflower-antd";
 export interface UseStepsFormConfig extends UseFormConfig {
     defaultCurrent?: number;
     total?: number;
     isBackValidate?: boolean;
 }
+
+export type useModalFormFromSFReturnType<TData, TVariables> = {
+    form: FormInstance<TVariables>;
+    visible: boolean;
+    show: (id?: string | number) => void;
+    close: () => void;
+    modalProps: ModalProps;
+    formProps: FormProps<TVariables>;
+    formLoading: boolean;
+    defaultFormValuesLoading: boolean;
+    formValues: {};
+    initialValues: {};
+    formResult: undefined;
+    submit: (values?: TVariables) => Promise<TData>;
+};
 
 declare module "sunflower-antd" {
     export const useStepsForm: <TData, TVariables>(
