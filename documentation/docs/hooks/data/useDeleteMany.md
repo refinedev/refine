@@ -4,7 +4,7 @@ title: useDeleteMany
 siderbar_label: useDeleteMany
 ---
 
-`useDelete` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for delete mutations. It uses `deleteOne` method as mutation function from the `dataProvider` that is passed to `<Admin>`.  
+`useDeleteMany` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for multiple delete mutations. It uses `deleteMany` method as mutation function from the `dataProvider` that is passed to `<Admin>`.  
 
 ## Features
 
@@ -32,19 +32,23 @@ Let'say we have a `categories` resource
             id: 2,
             title: "Virtual Invoice Avon",
         },
+        {
+            id: 3,
+            title: "Specialist Avon Steel",
+        },
     ];
 }
 ```
 
 ```tsx
 type CategoryMutationResult = {
-    id?: string | number;
+    ids?: (string | number)[];
     title: string;
 }
 
-const { mutate } = useDelete<CategoryMutationResult>("categories");
+const { mutate } = useDeleteMany<CategoryMutationResult>("categories");
 
-mutate({ id: 2 })
+mutate({ ids: [ 2, 3 ] })
 ```
 
 :::tip
@@ -73,7 +77,7 @@ Queries that use `/categories` endpoint will be automatically invalidated to sho
 :::
 
 :::tip
-`useDelete` returns `react-query`'s `useMutation` result. It includes `mutate` with  [many other properties](https://react-query.tanstack.com/reference/useMutation).
+`useDeleteMany` returns `react-query`'s `useMutation` result. It includes `mutate` with  [many other properties](https://react-query.tanstack.com/reference/useMutation).
 :::
 
 :::important
@@ -81,7 +85,7 @@ Variables passed to `mutate` must have the type of
 
 ```tsx
 {
-    id: string | number;
+    ids: (string | number)[];
 }
 ```
 :::
@@ -91,7 +95,7 @@ Variables passed to `mutate` must have the type of
 Determines the mode with which the mutation runs.
 
 ```tsx
-const { mutate } = useDelete<CategoryMutationResult>("categories", "optimistic");
+const { mutate } = useDeleteMany<CategoryMutationResult>("categories", "optimistic");
 ```
  `pessimistic` : The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfuly.
 
@@ -104,7 +108,7 @@ const { mutate } = useDelete<CategoryMutationResult>("categories", "optimistic")
 
 
 ## Custom method on mutation cancellation
-You can pass a custom callback to `useDelete`. Cancel callback is triggered when undo button is clicked on  `mutationModeProp = "undoable"` mutation mode.
+You can pass a custom callback to `useDeleteMany`. Cancel callback is triggered when undo button is clicked when  `mutationModeProp = "undoable"` mutation mode.
 
 :::caution
 Default behaviour on undo action includes notifications. If a custom callback is passed this notification will not appear.
@@ -119,7 +123,7 @@ const customOnCancel = (cancelMutation) => {
     // rest of custom cancel logic...
 }
 
-const { mutate } = useDelete("categories", "undoable", 7500, customOnCancel);
+const { mutate } = useDeleteMany("categories", "undoable", 7500, customOnCancel);
 ```
 After 7.5 seconds the mutation will be executed. The mutation can be cancelled within that 7.5 seconds. If cancelled `customOnCancel` will be executed
 :::
@@ -131,20 +135,20 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 ### Parameters
 
 
-| Property               | Description                                                                                        | Type                                                              | Default          |
-| ---------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ---------------- |
-| resource  <div className=" required">Required</div>               | [`Resource`](#) for API data interactions                                                          | `string`                                                          |                  |
-| mutationModeProp           | [Determines when mutations are executed](#)                                                        | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`* |
-| undoableTimeoutProp        | Duration to wait before executing the mutation when `mutationModeProp = "undoable"`                       | `number`                                                          | `5000ms`*          |
-| onCancel               | Callback that runs when undo button is clicked on `mutationModeProp = "undoable"`                                                      | `(cancelMutation: () => void) => void`  |                         | `"list"`         |
+| Property                                            | Description                                                                         | Type                                             | Default          |
+| --------------------------------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------ | ---------------- |
+| resource  <div className=" required">Required</div> | [`Resource`](#) for API data interactions                                           | `string`                                         |                  |
+| mutationModeProp                                    | [Determines when mutations are executed](#)                                         | ` "pessimistic` \| `"optimistic` \| `"undoable"` | `"pessimistic"`* |
+| undoableTimeoutProp                                 | Duration to wait before executing the mutation when `mutationModeProp = "undoable"` | `number`                                         | `5000ms`*        |
+| onCancel                                            | Callback that runs when undo button is clicked on `mutationModeProp = "undoable"`   | `(cancelMutation: () => void) => void`           |                  | 
 
->`*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component. `useDelete` will use what is passed to `<Admin>` as default and can override locally.
+>`*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component. `useDeleteMany` will use what is passed to `<Admin>` as default and can override locally.
 
 <br/>
 
 ### Return values
 
-| Property       | Description            | Type                                                                                                          |
-| -------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------- |
-| mutationResult | Result of the mutation          | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { id: Identifier; },`<br/>` DeleteContext>`](https://react-query.tanstack.com/reference/useMutation) |
+| Property       | Description            | Type                                                                                                                                                                   |
+| -------------- | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| mutationResult | Result of the mutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { ids: Identifier[]; },`<br/>` DeleteContext>`](https://react-query.tanstack.com/reference/useMutation) |
 

@@ -84,7 +84,7 @@ export const PostList = (props: any) => {
         ],
     });
 
-    const [selectedRowKeys, setSelectedRowKeys] = React.useState([]);
+    const [selectedRowKeys, setSelectedRowKeys] = React.useState<(string | number)[]>([]);
 
     const { mutate, isSuccess, isLoading: deleteManyIsLoading } = useDeleteMany(
         "posts",
@@ -100,7 +100,8 @@ export const PostList = (props: any) => {
         }
     }, [isSuccess]);
 
-    const onSelectChange = (selectedRowKeys: any) => {
+    const onSelectChange = (selectedRowKeys: (string | number)[]) => {
+        console.log({selectedRowKeys})
         setSelectedRowKeys(selectedRowKeys);
     };
 

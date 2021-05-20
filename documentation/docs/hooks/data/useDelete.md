@@ -104,7 +104,7 @@ const { mutate } = useDelete<CategoryMutationResult>("categories", "optimistic")
 
 
 ## Custom method on mutation cancellation
-You can pass a custom callback to `useDelete`. Cancel callback is triggered when undo button is clicked on  `mutationModeProp = "undoable"` mutation mode.
+You can pass a custom callback to `useDelete`. Cancel callback is triggered when undo button is clicked when  `mutationModeProp = "undoable"` mutation mode.
 
 :::caution
 Default behaviour on undo action includes notifications. If a custom callback is passed this notification will not appear.
@@ -131,12 +131,12 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 ### Parameters
 
 
-| Property               | Description                                                                                        | Type                                                              | Default          |
-| ---------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ---------------- |
-| resource  <div className=" required">Required</div>               | [`Resource`](#) for API data interactions                                                          | `string`                                                          |                  |
-| mutationModeProp           | [Determines when mutations are executed](#)                                                        | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`* |
-| undoableTimeoutProp        | Duration to wait before executing the mutation when `mutationModeProp = "undoable"`                       | `number`                                                          | `5000ms`*          |
-| onCancel               | Callback that runs when undo button is clicked on `mutationModeProp = "undoable"`                                                      | `(cancelMutation: () => void) => void`  |                         | `"list"`         |
+| Property                                            | Description                                                                         | Type                                             | Default          |
+| --------------------------------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------ | ---------------- |
+| resource  <div className=" required">Required</div> | [`Resource`](#) for API data interactions                                           | `string`                                         |                  |
+| mutationModeProp                                    | [Determines when mutations are executed](#)                                         | ` "pessimistic` \| `"optimistic` \| `"undoable"` | `"pessimistic"`* |
+| undoableTimeoutProp                                 | Duration to wait before executing the mutation when `mutationModeProp = "undoable"` | `number`                                         | `5000ms`*        |
+| onCancel                                            | Callback that runs when undo button is clicked on `mutationModeProp = "undoable"`   | `(cancelMutation: () => void) => void`           |                  | 
 
 >`*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component. `useDelete` will use what is passed to `<Admin>` as default and can override locally.
 
@@ -144,7 +144,7 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 ### Return values
 
-| Property       | Description            | Type                                                                                                          |
-| -------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------- |
-| mutationResult | Result of the mutation          | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { id: Identifier; },`<br/>` DeleteContext>`](https://react-query.tanstack.com/reference/useMutation) |
+| Property       | Description            | Type                                                                                                                                                                   |
+| -------------- | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| mutationResult | Result of the mutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { id: Identifier; },`<br/>` DeleteContext>`](https://react-query.tanstack.com/reference/useMutation) |
 
