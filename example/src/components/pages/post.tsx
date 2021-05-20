@@ -86,12 +86,9 @@ export const PostList = (props: any) => {
                 order: "descend",
             },
         ],
-        onSearch: (searchParams: {
-            title: string;
-            createdAt: [Dayjs, Dayjs];
-        }) => {
+        onSearch: (params: { title: string; createdAt: [Dayjs, Dayjs] }) => {
             const filters: CrudFilters = [];
-            const { title, createdAt } = searchParams;
+            const { title, createdAt } = params;
 
             if (title) {
                 filters.push({
