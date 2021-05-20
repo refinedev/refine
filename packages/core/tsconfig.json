@@ -57,6 +57,10 @@
             "@definitions": [
                 "src/definitions"
             ]
-        }
+        },
+        "typeRoots": [
+            "./types",
+            "./node_modules/@types"
+        ]
     }
 }

@@ -43,11 +43,14 @@ export * from "./resourceRouterParams";
 // redirection
 export * from "./redirectionTypes";
 
-// sunflower forms
-export * from "./form";
-
 // upload
 export * from "./upload";
+
+// sunflower types
+export {
+    useModalFormFromSFReturnType,
+    useStepsFormFromSFReturnType,
+} from "../../types/sunflower";
 
 export type Identifier = string | number;
 

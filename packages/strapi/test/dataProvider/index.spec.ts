@@ -166,7 +166,6 @@ describe("dataProvider", () => {
             ).update("posts", 49, {
                 title: "updated",
             });
-
             expect(data["id"]).toBe(49);
             expect(data["title"]).toBe("updated");
         });

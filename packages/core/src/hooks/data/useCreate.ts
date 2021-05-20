@@ -12,29 +12,41 @@ import {
 import { useListResourceQueries, useTranslate, useNotification } from "@hooks";
 
 export type UseCreateReturnType<
-    RecordType extends BaseRecord = BaseRecord
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
 > = UseMutationResult<
-    CreateResponse<RecordType>,
-    unknown,
+    CreateResponse<TData>,
+    TError,
     {
         resource: string;
-        values: BaseRecord;
+        values: TVariables;
     },
     unknown
 >;
 
 export const useCreate = <
-    RecordType extends BaseRecord = BaseRecord
->(): UseCreateReturnType<RecordType> => {
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+>(): UseCreateReturnType<TData, TError, TVariables> => {
     const { create } = useContext<IDataContext>(DataContext);
     const getListQueries = useListResourceQueries();
     const translate = useTranslate();
     const notification = useNotification();
     const queryClient = useQueryClient();
 
-    const mutation = useMutation(
-        ({ resource, values }: { resource: string; values: BaseRecord }) =>
-            create<RecordType>(resource, values),
+    const mutation = useMutation<
+        CreateResponse<TData>,
+        TError,
+        {
+            resource: string;
+            values: TVariables;
+        },
+        unknown
+    >(
+        ({ resource, values }: { resource: string; values: TVariables }) =>
+            create<TData, TVariables>(resource, values),
         {
             onSuccess: (_, { resource }) => {
                 const resourceSingular = pluralize.singular(resource);
@@ -55,7 +67,7 @@ export const useCreate = <
                     queryClient.invalidateQueries(query.queryKey);
                 });
             },
-            onError: (err: HttpError, { resource }) => {
+            onError: (err: TError, { resource }) => {
                 const resourceSingular = pluralize.singular(resource);
 
                 notification.error({

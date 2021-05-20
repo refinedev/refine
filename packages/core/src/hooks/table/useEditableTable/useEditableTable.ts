@@ -1,18 +1,17 @@
 import { useTable } from "@hooks";
 import { useTableProps } from "../useTable";
+import { BaseRecord, HttpError } from "../../../interfaces";
 import { useFormProps } from "../../form/useForm";
 import { useTableReturnType } from "../useTable/useTable";
 import { useForm } from "../../form/useForm";
 import { ButtonProps } from "../../../components/antd";
-import { BaseRecord } from "src/interfaces";
-
-type useEditableTableProps<T, M> = useTableProps & useFormProps<M>;
 
 export type useEditableTableReturnType<
-    RecordType,
-    MutationType
-> = useTableReturnType<RecordType> &
-    useForm<RecordType, MutationType> & {
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = useTableReturnType<TData> &
+    useForm<TData, TError, TVariables> & {
         saveButtonProps: ButtonProps & {
             onClick: () => void;
         };
@@ -27,14 +26,21 @@ export type useEditableTableReturnType<
         isEditing: (id: string | number) => boolean;
     };
 
+type useEditableTableProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = useTableProps & useFormProps<TData, TError, TVariables>;
+
 export const useEditableTable = <
-    RecordType extends BaseRecord = BaseRecord,
-    MutationType extends BaseRecord = RecordType
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
 >(
-    props: useEditableTableProps<RecordType, MutationType> = {},
-): useEditableTableReturnType<RecordType, MutationType> => {
-    const table = useTable<RecordType>({ ...props });
-    const edit = useForm<RecordType, MutationType>({
+    props: useEditableTableProps<TData, TError, TVariables> = {},
+): useEditableTableReturnType<TData, TError, TVariables> => {
+    const table = useTable<TData>({ ...props });
+    const edit = useForm<TData, TError, TVariables>({
         ...props,
         action: "edit",
     });

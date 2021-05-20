@@ -7,13 +7,17 @@ import { useOne } from "@hooks";
 import {
     BaseRecord,
     GetOneResponse,
+    HttpError,
     ResourceRouterParams,
-    UseFormSFFormProps,
 } from "../../../interfaces";
 import { useCreateForm, useCreateFormProps } from "../useCreateForm";
 import { UseCreateReturnType } from "../../data/useCreate";
 
-export type useCloneFormProps<M> = useCreateFormProps<M> & {
+export type useCloneFormProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = useCreateFormProps<TData, TError, TVariables> & {
     cloneId?: string | number;
 };
 
@@ -23,26 +27,31 @@ type SaveButtonProps = {
     loading?: boolean;
 };
 
-export type useCloneForm<T, M> = {
-    form: FormInstance;
-    formProps: UseFormSFFormProps & FormProps;
+export type useCloneForm<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = {
+    form: FormInstance<TVariables>;
+    formProps: FormProps<TVariables>;
     editId?: string | number;
     setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
     saveButtonProps: SaveButtonProps;
     formLoading: boolean;
-    mutationResult: UseCreateReturnType<M>;
-    queryResult: QueryObserverResult<GetOneResponse<T>>;
+    mutationResult: UseCreateReturnType<TData, TError, TVariables>;
+    queryResult: QueryObserverResult<GetOneResponse<TData>>;
     setCloneId?: Dispatch<SetStateAction<string | number | undefined>>;
     cloneId?: string | number;
 };
 
 export const useCloneForm = <
-    RecordType extends BaseRecord = BaseRecord,
-    MutationType extends BaseRecord = RecordType
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
 >(
-    props: useCloneFormProps<MutationType>,
-): useCloneForm<RecordType, MutationType> => {
-    const useCreateFormProps = useCreateForm<RecordType, MutationType>({
+    props: useCloneFormProps<TData, TError, TVariables>,
+): useCloneForm<TData, TError, TVariables> => {
+    const useCreateFormProps = useCreateForm<TData, TError, TVariables>({
         ...props,
     });
 
@@ -54,7 +63,7 @@ export const useCloneForm = <
     // Check if clone process comes from useParams or modal
     const isClone = (action === "create" && !!id) || !!id;
 
-    const queryResult = useOne<RecordType>(props.resource.name, id, {
+    const queryResult = useOne<TData>(props.resource.name, id, {
         enabled: isClone,
     });
 
@@ -62,7 +71,7 @@ export const useCloneForm = <
 
     React.useEffect(() => {
         form.setFieldsValue({
-            ...data?.data,
+            ...(data?.data as any), // Fix Me
         });
         return () => {
             form.resetFields();
