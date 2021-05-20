@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
+import { useForm } from "antd/lib/form/Form";
 
 import { useResourceWithRoute, useList } from "@hooks";
 import { useSyncWithLocation } from "@hooks/admin";
 import { useNavigation } from "@hooks/navigation";
 import { stringifyTableParams, parseTableParams } from "@definitions/table";
+import { FormProps } from "@components/antd";
 
 import {
     Sort,
@@ -22,17 +24,22 @@ export type useTableProps = {
     initialPageSize?: number;
     initialSorter?: Sort;
     initialFilter?: CrudFilters;
+    extraFilter?: CrudFilters;
     syncWithLocation?: boolean;
+    onSearch?: (data: any) => void;
 };
 
 export type useTableReturnType<RecordType extends BaseRecord = BaseRecord> = {
+    formProps: FormProps;
     tableProps: TableProps<RecordType>;
     sorter?: Sort;
     filters?: CrudFilters;
 };
 
 export const useTable = <RecordType extends BaseRecord = BaseRecord>({
+    onSearch,
     permanentFilter = [],
+    extraFilter = [],
     initialCurrent = 1,
     initialPageSize = 10,
     initialSorter,
@@ -41,6 +48,8 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
     resource: resourceFromProp,
 }: useTableProps = {}): useTableReturnType<RecordType> => {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
+
+    const [form] = useForm();
 
     if (syncWithLocationContext) {
         syncWithLocation = true;
@@ -95,7 +104,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
 
     const { data, isFetching } = useList<RecordType>(resource.name, {
         pagination: { current: current ?? defaultCurrentSF, pageSize },
-        filters: permanentFilter?.concat(filters),
+        filters: permanentFilter.concat(extraFilter, filters),
         sort: sorter,
     });
 
@@ -134,7 +143,16 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
         }
     };
 
+    const onFinish = (value: any) => {
+        onSearch && onSearch(value);
+        return Promise.resolve();
+    };
+
     return {
+        formProps: {
+            ...form,
+            onFinish,
+        },
         tableProps: {
             ...tablePropsSunflower,
             dataSource: data?.data,
