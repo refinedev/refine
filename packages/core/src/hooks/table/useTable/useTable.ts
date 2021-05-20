@@ -25,13 +25,13 @@ export type useTableProps = {
     syncWithLocation?: boolean;
 };
 
-export type useTableReturnType<RecordType extends BaseRecord = BaseRecord> = {
-    tableProps: TableProps<RecordType>;
+export type useTableReturnType<TData extends BaseRecord = BaseRecord> = {
+    tableProps: TableProps<TData>;
     sorter?: Sort;
     filters?: CrudFilters;
 };
 
-export const useTable = <RecordType extends BaseRecord = BaseRecord>({
+export const useTable = <TData extends BaseRecord = BaseRecord>({
     permanentFilter = [],
     initialCurrent = 1,
     initialPageSize = 10,
@@ -39,7 +39,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
     initialFilter,
     syncWithLocation = false,
     resource: resourceFromProp,
-}: useTableProps = {}): useTableReturnType<RecordType> => {
+}: useTableProps = {}): useTableReturnType<TData> => {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
     if (syncWithLocationContext) {
@@ -93,7 +93,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
         defaultCurrent: defaultCurrentSF,
     } = tablePropsSunflower.pagination;
 
-    const { data, isFetching } = useList<RecordType>(resource.name, {
+    const { data, isFetching } = useList<TData>(resource.name, {
         pagination: { current: current ?? defaultCurrentSF, pageSize },
         filters: permanentFilter?.concat(filters),
         sort: sorter,

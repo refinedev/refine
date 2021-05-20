@@ -13,8 +13,8 @@ import { ButtonProps } from "../../components/antd";
 import {
     BaseRecord,
     GetOneResponse,
+    HttpError,
     ResourceRouterParams,
-    UseFormSFFormProps,
 } from "../../interfaces";
 import { UseUpdateReturnType } from "../data/useUpdate";
 import { UseCreateReturnType } from "../data/useCreate";
@@ -23,39 +23,62 @@ export type ActionParams = {
     action?: "edit" | "create";
 };
 
-type ActionFormProps<M> = useCreateFormProps<M> &
-    useEditFormProps<M> &
-    useCloneFormProps<M>;
+type ActionFormProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = useCreateFormProps<TData, TError, TVariables> &
+    useEditFormProps<TData, TError, TVariables> &
+    useCloneFormProps<TData, TError, TVariables>;
 
-type ResourcelessActionFormProps<M> = Omit<ActionFormProps<M>, "resource">;
+type ResourcelessActionFormProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = Omit<ActionFormProps<TData, TError, TVariables>, "resource">;
 
-export type useFormProps<M> = ActionParams & {
+export type useFormProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = ActionParams & {
     resource?: string;
-} & ResourcelessActionFormProps<M>;
+} & ResourcelessActionFormProps<TData, TError, TVariables>;
 
-export type useForm<T, M> = {
-    form: FormInstance;
-    formProps: UseFormSFFormProps & FormProps;
+export type useForm<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = {
+    form: FormInstance<TVariables>;
+    formProps: FormProps<TVariables>;
     editId?: string | number;
     setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
     saveButtonProps: ButtonProps & {
         onClick: () => void;
     };
-    queryResult?: QueryObserverResult<GetOneResponse<T>>;
-    mutationResult: UseUpdateReturnType<M> | UseCreateReturnType<M>;
+    queryResult?: QueryObserverResult<GetOneResponse<TData>>;
+    mutationResult:
+        | UseUpdateReturnType<TData, TError, TVariables>
+        | UseCreateReturnType<TData, TError, TVariables>;
     formLoading: boolean;
     setCloneId?: Dispatch<SetStateAction<string | number | undefined>>;
     cloneId?: string | number;
 };
 
 export const useForm = <
-    RecordType = BaseRecord,
-    MutationType extends BaseRecord = RecordType
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
 >({
     action,
     resource: resourceFromProps,
     ...rest
-}: useFormProps<MutationType> = {}): useForm<RecordType, MutationType> => {
+}: useFormProps<TData, TError, TVariables> = {}): useForm<
+    TData,
+    TError,
+    TVariables
+> => {
     // id state is needed to determine selected record in addition to id parameter from route
     // this could be moved to a custom hook that encapsulates both create and clone form hooks.
     const [cloneId, setCloneId] = React.useState<string | number>();
@@ -68,21 +91,21 @@ export const useForm = <
 
     const resource = resourceWithRoute(resourceType);
 
-    const editForm = useEditForm<RecordType, MutationType>({
+    const editForm = useEditForm<TData, TError, TVariables>({
         ...rest,
         resource,
-    } as useEditFormProps<MutationType>);
+    } as useEditFormProps<TData, TError, TVariables>);
 
-    const createForm = useCreateForm<RecordType, MutationType>({
+    const createForm = useCreateForm<TData, TError, TVariables>({
         ...rest,
         resource,
-    } as useCreateFormProps<MutationType>);
+    } as useCreateFormProps<TData, TError, TVariables>);
 
-    const cloneForm = useCloneForm<RecordType, MutationType>({
+    const cloneForm = useCloneForm<TData, TError, TVariables>({
         ...rest,
         resource,
         cloneId,
-    } as useCloneFormProps<MutationType>);
+    } as useCloneFormProps<TData, TError, TVariables>);
 
     const { action: actionFromRoute, id } = useParams<ResourceRouterParams>();
 

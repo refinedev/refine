@@ -19,14 +19,12 @@ export type useRadioGroupProps = RadioGroupProps & {
     filters?: CrudFilters;
 };
 
-export type UseRadioGroupReturnType<
-    RecordType extends BaseRecord = BaseRecord
-> = {
+export type UseRadioGroupReturnType<TData extends BaseRecord = BaseRecord> = {
     radioGroupProps: RadioGroupProps;
-    queryResult: QueryObserverResult<GetListResponse<RecordType>>;
+    queryResult: QueryObserverResult<GetListResponse<TData>>;
 };
 
-export const useRadioGroup = <RecordType extends BaseRecord = BaseRecord>({
+export const useRadioGroup = <TData extends BaseRecord = BaseRecord>({
     resource,
     sort,
     filters,
@@ -36,7 +34,7 @@ export const useRadioGroup = <RecordType extends BaseRecord = BaseRecord>({
 }: useRadioGroupProps): UseRadioGroupReturnType => {
     const [options, setOptions] = React.useState<Option[]>([]);
 
-    const queryResult = useList<RecordType>(
+    const queryResult = useList<TData>(
         resource,
         {
             sort,
