@@ -39,6 +39,7 @@ describe("LayoutWrapper", () => {
             mutationMode: "pessimistic",
             syncWithLocation: false,
             undoableTimeout: 5000,
+            hasDashboard: false,
             Sider: CustomSider,
             // Header: CustomHeader,
             Footer: CustomFooter,
@@ -85,6 +86,7 @@ describe("LayoutWrapper", () => {
             mutationMode: "pessimistic",
             syncWithLocation: false,
             undoableTimeout: 5000,
+            hasDashboard: false,
             Layout: CustomLayout,
             Sider: CustomSider,
             Header: CustomHeader,
@@ -107,6 +109,7 @@ describe("LayoutWrapper", () => {
             mutationMode: "pessimistic",
             syncWithLocation: false,
             undoableTimeout: 5000,
+            hasDashboard: false,
             Title: CustomTitle,
         });
 
