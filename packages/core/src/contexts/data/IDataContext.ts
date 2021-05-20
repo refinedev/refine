@@ -14,7 +14,46 @@ export interface Search {
     value?: string;
 }
 
-export type Filters = Record<string, (string | number | boolean)[] | null>;
+// Filters are used as a suffix of a field name:
+
+// | Filter              | Description                    |
+// | ------------------- | ------------------------------ |
+// | No suffix or `eq`   | Equal                          |
+// | ne                  | Not equal                      |
+// | lt                  | Less than                      |
+// | gt                  | Greater than                   |
+// | lte                 | Less than or equal to          |
+// | gte                 | Greater than or equal to       |
+// | in                  | Included in an array           |
+// | nin                 | Not included in an array       |
+// | contains            | Contains                       |
+// | ncontains           | Doesn't contain                |
+// | containss           | Contains, case sensitive       |
+// | ncontainss          | Doesn't contain, case sensitive|
+// | null                | Is null or not null            |
+
+export type CrudOperators =
+    | "eq"
+    | "ne"
+    | "lt"
+    | "gt"
+    | "lte"
+    | "gte"
+    | "in"
+    | "nin"
+    | "contains"
+    | "ncontains"
+    | "containss"
+    | "ncontainss"
+    | "null";
+
+export type CrudFilter = {
+    field: string;
+    operator: CrudOperators;
+    value: any;
+};
+
+export type CrudFilters = CrudFilter[];
 
 export interface GetListResponse<RecordType = BaseRecord> {
     data: RecordType[];
@@ -60,7 +99,7 @@ export interface IDataContext {
             pagination?: Pagination;
             search?: Search;
             sort?: Sort;
-            filters?: Filters;
+            filters?: CrudFilter[];
         },
     ) => Promise<GetListResponse<RecordType>>;
     getMany: <RecordType extends BaseRecord = BaseRecord>(

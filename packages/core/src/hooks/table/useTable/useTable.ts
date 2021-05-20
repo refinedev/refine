@@ -9,30 +9,30 @@ import { useNavigation } from "@hooks/navigation";
 import { stringifyTableParams, parseTableParams } from "@definitions/table";
 
 import {
-    Filters,
     Sort,
     ResourceRouterParams,
     BaseRecord,
+    CrudFilters,
 } from "../../../interfaces";
 
 export type useTableProps = {
-    permanentFilter?: Filters;
+    permanentFilter?: CrudFilters;
     resource?: string;
     initialCurrent?: number;
     initialPageSize?: number;
     initialSorter?: Sort;
-    initialFilter?: Filters;
+    initialFilter?: CrudFilters;
     syncWithLocation?: boolean;
 };
 
 export type useTableReturnType<RecordType extends BaseRecord = BaseRecord> = {
     tableProps: TableProps<RecordType>;
     sorter?: Sort;
-    filters?: Filters;
+    filters?: CrudFilters;
 };
 
 export const useTable = <RecordType extends BaseRecord = BaseRecord>({
-    permanentFilter,
+    permanentFilter = [],
     initialCurrent = 1,
     initialPageSize = 10,
     initialSorter,
@@ -64,11 +64,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
             parsedPageSize,
             parsedSorter,
             parsedFilters,
-        } = parseTableParams({
-            initialSorter,
-            initialFilter,
-            url: search,
-        });
+        } = parseTableParams(search);
 
         defaultCurrent = parsedCurrent || defaultCurrent;
         defaultPageSize = parsedPageSize || defaultPageSize;
@@ -77,8 +73,8 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
     }
 
     const { tableProps: tablePropsSunflower } = useFormTable({
-        defaultCurrent: initialCurrent,
-        defaultPageSize: initialPageSize,
+        defaultCurrent,
+        defaultPageSize,
     });
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
@@ -89,7 +85,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
     const [sorter, setSorter] = useState<Sort | undefined>(defaultSorter);
-    const [filters, setFilters] = useState<Filters | undefined>(defaultFilter);
+    const [filters, setFilters] = useState<CrudFilters>(defaultFilter || []);
 
     const {
         current,
@@ -99,16 +95,29 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
 
     const { data, isFetching } = useList<RecordType>(resource.name, {
         pagination: { current: current ?? defaultCurrentSF, pageSize },
-        filters: { ...filters, ...permanentFilter },
+        filters: permanentFilter?.concat(filters),
         sort: sorter,
     });
 
     const onChange = (
         pagination: TablePaginationConfig,
-        filters: Filters,
+        filters: Record<string, (string | number | boolean)[] | null>,
         sorter: Sort,
     ) => {
-        setFilters(filters);
+        // Map Antd:Filter -> Refine:CrudFilter
+        const crudFilters: CrudFilters = [];
+        Object.keys(filters).map((field) => {
+            const value = filters[field];
+
+            if (value) {
+                crudFilters.push({
+                    field,
+                    operator: "in",
+                    value,
+                });
+            }
+        });
+        setFilters(crudFilters);
         setSorter(sorter);
 
         tablePropsSunflower.onChange(pagination, filters, sorter);
@@ -118,7 +127,7 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
             const stringifyParams = stringifyTableParams({
                 pagination,
                 sorter,
-                filters,
+                filters: crudFilters,
             });
 
             return push(`/resources/${resource.route}?${stringifyParams}`);
@@ -139,6 +148,6 @@ export const useTable = <RecordType extends BaseRecord = BaseRecord>({
             },
         },
         sorter,
-        filters,
+        filters: permanentFilter?.concat(filters),
     };
 };

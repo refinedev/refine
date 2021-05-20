@@ -68,9 +68,13 @@ interface ICategory {
 export const PostList = (props: any) => {
     const translate = useTranslate();
     const { tableProps, sorter, filters } = useTable<IPost>({
-        // permanentFilter: {
-        //     categoryId: [50, 49],
-        // },
+        // permanentFilter: [
+        //     {
+        //         field: "createdAt",
+        //         operator: "gte",
+        //         value: "2021-05-17",
+        //     },
+        // ],
         initialSorter: [
             {
                 field: "createdAt",
