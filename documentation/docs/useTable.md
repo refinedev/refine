@@ -37,7 +37,7 @@ export interface IPost {
     id: string;
     title: string;
     content: string;
-    status: "published" | "draft";
+    status: "published" | "draft" | "rejected";
 }
 ```
 
@@ -161,7 +161,7 @@ const { tableProps, sorter } = useTable<IPost>({
 
 ## Filtreleme
 
-Endpointten gelen her `post` bir `status` değerine sahip. Bu değer `published` ya da `draft` olabilir. `status` değerini bir Ant Design `<TagField>` ile gösterebiliriz: 
+Endpointten gelen her `post` bir `status` değerine sahip. Bu değer `published` ya da `draft` olabilir. `status` değerini bir Ant Design `<TagField>` ile gösterebiliriz:
 
 ```tsx title="/src/pages/posts/list.tsx"
 ...
@@ -231,6 +231,7 @@ export const PostList = (props: IResourceComponentsProps) => {
                             <Radio.Group>
                                 <Radio value="published">Published</Radio>
                                 <Radio value="draft">Draft</Radio>
+                                <Radio value="rejected">Rejected</Radio>
                             </Radio.Group>
                         </FilterDropdown>
                     )}
@@ -326,10 +327,11 @@ export const PostList = (props: IResourceComponentsProps) => {
                             <Radio.Group>
                                 <Radio value="published">Published</Radio>
                                 <Radio value="draft">Draft</Radio>
+                                <Radio value="rejected">Rejected</Radio>
                             </Radio.Group>
                         </FilterDropdown>
                     )}
-                    //highlight-next-line 
+                    //highlight-next-line
                     defaultFilteredValue={getDefaultFilter("status", filters)}
                 />
             </Table>

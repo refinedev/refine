@@ -51,7 +51,7 @@ const { Title, Text } = Typography;
 interface IPost {
     title: string;
     slug: string;
-    status: "published" | "draft";
+    status: "published" | "draft" | "rejected";
     createdAt: string;
     category: ICategory;
     user: {
@@ -219,6 +219,11 @@ export const PostList = (props: any) => {
                                         "common:resources.posts.fields.status.draft",
                                     )}
                                 </Radio>
+                                <Radio value="rejected">
+                                    {translate(
+                                        "common:resources.posts.fields.status.rejected",
+                                    )}
+                                </Radio>
                             </Radio.Group>
                         </FilterDropdown>
                     )}
@@ -355,6 +360,12 @@ export const PostCreate = (props: any) => {
                                 "common:resources.posts.fields.status.draft",
                             ),
                             value: "draft",
+                        },
+                        {
+                            label: translate(
+                                "common:resources.posts.fields.status.rejected",
+                            ),
+                            value: "rejected",
                         },
                     ]}
                 />
@@ -581,6 +592,12 @@ export const PostEdit = (props: any) => {
                                 "common:resources.posts.fields.status.draft",
                             ),
                             value: "draft",
+                        },
+                        {
+                            label: translate(
+                                "common:resources.posts.fields.status.rejected",
+                            ),
+                            value: "rejected",
                         },
                     ]}
                 />

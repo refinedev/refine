@@ -53,6 +53,7 @@ export const PostList = (props: IResourceComponentsProps) => {
                             <Radio.Group>
                                 <Radio value="published">Published</Radio>
                                 <Radio value="draft">Draft</Radio>
+                                <Radio value="rejected">Rejected</Radio>
                             </Radio.Group>
                         </FilterDropdown>
                     )}
