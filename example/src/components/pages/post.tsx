@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Dayjs } from "dayjs";
 
 import {
     List,
@@ -40,7 +39,6 @@ import {
     Typography,
     useSelect,
     useMany,
-    CrudFilters,
     DatePicker,
 } from "@pankod/refine";
 
@@ -72,7 +70,7 @@ export const PostList = (props: any) => {
     const translate = useTranslate();
     const { RangePicker } = DatePicker;
 
-    const { tableProps, sorter, filters, formProps } = useTable<IPost>({
+    const { tableProps, sorter, filters } = useTable<IPost>({
         // permanentFilter: [
         //     {
         //         field: "createdAt",
@@ -86,35 +84,6 @@ export const PostList = (props: any) => {
                 order: "descend",
             },
         ],
-        onSearch: (params: { title: string; createdAt: [Dayjs, Dayjs] }) => {
-            const filters: CrudFilters = [];
-            const { title, createdAt } = params;
-
-            if (title) {
-                filters.push({
-                    field: "title",
-                    operator: "contains",
-                    value: title,
-                });
-            }
-
-            if (createdAt) {
-                filters.push(
-                    {
-                        field: "createdAt",
-                        operator: "gte",
-                        value: createdAt[0].toISOString(),
-                    },
-                    {
-                        field: "createdAt",
-                        operator: "lte",
-                        value: createdAt[1].toISOString(),
-                    },
-                );
-            }
-
-            return filters;
-        },
     });
 
     const categoryIds =
@@ -177,158 +146,122 @@ export const PostList = (props: any) => {
                 extra,
             }}
         >
-            <Space direction="vertical" size="large">
-                <Form layout="inline" {...formProps}>
-                    <Form.Item label="Title" name="title">
-                        <Input placeholder="Title" />
-                    </Form.Item>
-
-                    <Form.Item label="Created At" name="createdAt">
-                        <RangePicker />
-                    </Form.Item>
-
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit">
-                            Search
-                        </Button>
-                    </Form.Item>
-                </Form>
-                <Table<IPost>
-                    {...tableProps}
-                    rowKey="id"
-                    pagination={{
-                        ...tableProps.pagination,
-                        position: ["bottomCenter"],
-                        size: "small",
+            <Table<IPost>
+                {...tableProps}
+                rowKey="id"
+                pagination={{
+                    ...tableProps.pagination,
+                    position: ["bottomCenter"],
+                    size: "small",
+                }}
+            >
+                <Table.Column
+                    dataIndex="title"
+                    title={translate("common:resources.posts.fields.title")}
+                    key="title"
+                    sorter={{
+                        multiple: 1,
                     }}
-                >
-                    <Table.Column
-                        dataIndex="title"
-                        title={translate("common:resources.posts.fields.title")}
-                        key="title"
-                        sorter={{
-                            multiple: 1,
-                        }}
-                        defaultSortOrder={getDefaultSortOrder("title", sorter)}
-                    />
-                    <Table.Column
-                        dataIndex="slug"
-                        title={translate("common:resources.posts.fields.slug")}
-                        key="slug"
-                    />
-                    <Table.Column
-                        dataIndex={["category", "id"]}
-                        title={translate(
-                            "common:resources.posts.fields.category",
-                        )}
-                        key="category.id"
-                        render={(value) => {
-                            if (isLoading) {
-                                return <TextField value="Loading..." />;
-                            }
+                    defaultSortOrder={getDefaultSortOrder("title", sorter)}
+                />
+                <Table.Column
+                    dataIndex="slug"
+                    title={translate("common:resources.posts.fields.slug")}
+                    key="slug"
+                />
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title={translate("common:resources.posts.fields.category")}
+                    key="category.id"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
 
-                            return (
-                                <TextField
-                                    value={
-                                        data?.data.find(
-                                            (item) => item.id === value,
-                                        )?.title
-                                    }
-                                />
-                            );
-                        }}
-                        filterDropdown={(props) => (
-                            <FilterDropdown {...props}>
-                                <Select
-                                    style={{ minWidth: 200 }}
-                                    mode="multiple"
-                                    placeholder="Select Category"
-                                    {...categorySelectProps}
-                                />
-                            </FilterDropdown>
-                        )}
-                        defaultFilteredValue={getDefaultFilter(
-                            "category.id",
-                            filters,
-                        )}
-                    />
-                    <Table.Column
-                        dataIndex="status"
-                        title={translate(
-                            "common:resources.posts.fields.status.title",
-                        )}
-                        key="status"
-                        render={(value) => <TagField value={value} />}
-                        filterDropdown={(props) => (
-                            <FilterDropdown {...props}>
-                                <Radio.Group>
-                                    <Radio value="published">
-                                        {translate(
-                                            "common:resources.posts.fields.status.published",
-                                        )}
-                                    </Radio>
-                                    <Radio value="draft">
-                                        {translate(
-                                            "common:resources.posts.fields.status.draft",
-                                        )}
-                                    </Radio>
-                                </Radio.Group>
-                            </FilterDropdown>
-                        )}
-                        defaultFilteredValue={getDefaultFilter(
-                            "status",
-                            filters,
-                        )}
-                    />
-                    <Table.Column
-                        dataIndex="createdAt"
-                        title={translate(
-                            "common:resources.posts.fields.createdAt",
-                        )}
-                        key="createdAt"
-                        render={(value) => (
-                            <DateField format="LLL" value={value} />
-                        )}
-                        sorter={{
-                            multiple: 2,
-                        }}
-                        defaultSortOrder={getDefaultSortOrder(
-                            "createdAt",
-                            sorter,
-                        )}
-                    />
-                    <Table.Column
-                        title={translate("common:table.actions", "Actions")}
-                        dataIndex="actions"
-                        key="actions"
-                        render={(
-                            _text: string | number,
-                            record: {
-                                id: string | number;
-                            },
-                        ): React.ReactNode => (
-                            <Space>
-                                <EditButton
-                                    size="small"
-                                    recordItemId={record.id}
-                                />
-                                <DeleteButton
-                                    size="small"
-                                    recordItemId={record.id}
-                                />
-                                <ShowButton
-                                    size="small"
-                                    recordItemId={record.id}
-                                />
-                                <CloneButton
-                                    size="small"
-                                    recordItemId={record.id}
-                                />
-                            </Space>
-                        )}
-                    />
-                </Table>
-            </Space>
+                        return (
+                            <TextField
+                                value={
+                                    data?.data.find((item) => item.id === value)
+                                        ?.title
+                                }
+                            />
+                        );
+                    }}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Select
+                                style={{ minWidth: 200 }}
+                                mode="multiple"
+                                placeholder="Select Category"
+                                {...categorySelectProps}
+                            />
+                        </FilterDropdown>
+                    )}
+                    defaultFilteredValue={getDefaultFilter(
+                        "category.id",
+                        filters,
+                    )}
+                />
+                <Table.Column
+                    dataIndex="status"
+                    title={translate(
+                        "common:resources.posts.fields.status.title",
+                    )}
+                    key="status"
+                    render={(value) => <TagField value={value} />}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Radio.Group>
+                                <Radio value="published">
+                                    {translate(
+                                        "common:resources.posts.fields.status.published",
+                                    )}
+                                </Radio>
+                                <Radio value="draft">
+                                    {translate(
+                                        "common:resources.posts.fields.status.draft",
+                                    )}
+                                </Radio>
+                            </Radio.Group>
+                        </FilterDropdown>
+                    )}
+                    defaultFilteredValue={getDefaultFilter("status", filters)}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title={translate("common:resources.posts.fields.createdAt")}
+                    key="createdAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                    sorter={{
+                        multiple: 2,
+                    }}
+                    defaultSortOrder={getDefaultSortOrder("createdAt", sorter)}
+                />
+                <Table.Column
+                    title={translate("common:table.actions", "Actions")}
+                    dataIndex="actions"
+                    key="actions"
+                    render={(
+                        _text: string | number,
+                        record: {
+                            id: string | number;
+                        },
+                    ): React.ReactNode => (
+                        <Space>
+                            <EditButton size="small" recordItemId={record.id} />
+                            <DeleteButton
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <ShowButton size="small" recordItemId={record.id} />
+                            <CloneButton
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                        </Space>
+                    )}
+                />
+            </Table>
         </List>
     );
 };
