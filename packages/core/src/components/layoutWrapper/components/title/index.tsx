@@ -3,18 +3,21 @@ import { Link } from "react-router-dom";
 import { TitleProps } from "src/interfaces";
 
 export const Title: React.FC<TitleProps> = () => (
-    <Link
-        to={`/`}
-        style={{
-            color: "#FFF",
-            fontSize: 16,
-            textAlign: "center",
-            height: 60,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-        }}
-    >
-        refine
+    <Link to="/">
+        <a
+            href="/"
+            style={{
+                display: "flex",
+                width: "100%",
+                textAlign: "center",
+                color: "rgb(255, 255, 255)",
+                fontSize: "16px",
+                height: "60px",
+                justifyContent: "center",
+                alignItems: "center",
+            }}
+        >
+            refine
+        </a>
     </Link>
 );
