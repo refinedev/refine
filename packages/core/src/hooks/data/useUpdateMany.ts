@@ -7,29 +7,43 @@ import {
     Identifier,
     BaseRecord,
     UpdateManyResponse,
+    HttpError,
 } from "../../interfaces";
 
 type UseUpdateManyReturnType<
-    RecordType extends BaseRecord = BaseRecord
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
 > = UseMutationResult<
-    UpdateManyResponse<RecordType>,
-    unknown,
-    { id: Identifier[]; values: BaseRecord },
+    UpdateManyResponse<TData>,
+    TError,
+    { id: Identifier[]; values: TVariables },
     unknown
 >;
 
-export const useUpdateMany = <RecordType extends BaseRecord = BaseRecord>(
+export const useUpdateMany = <
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+>(
     resource: string,
-): UseUpdateManyReturnType<RecordType> => {
+): UseUpdateManyReturnType<TData, TError, TVariables> => {
     const { updateMany } = useContext<IDataContext>(DataContext);
 
     if (!resource) {
         throw new Error("'resource' is required for useUpdate hook.");
     }
 
-    const mutation = useMutation(
-        ({ id, values }: { id: Identifier[]; values: BaseRecord }) =>
-            updateMany<RecordType>(resource, id, values),
+    const mutation = useMutation<
+        UpdateManyResponse<TData>,
+        TError,
+        {
+            id: Identifier[];
+            values: TVariables;
+        },
+        unknown
+    >(({ id, values }: { id: Identifier[]; values: TVariables }) =>
+        updateMany<TData, TVariables>(resource, id, values),
     );
 
     return mutation;

@@ -39,6 +39,7 @@ import {
     Typography,
     useSelect,
     useMany,
+    HttpError,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";

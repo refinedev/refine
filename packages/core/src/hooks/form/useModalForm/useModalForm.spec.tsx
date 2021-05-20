@@ -1,12 +1,13 @@
 import React from "react";
 import { renderHook } from "@testing-library/react-hooks";
 import { Route } from "react-router-dom";
+import { act } from "react-dom/test-utils";
 
 import { MockJSONServer, TestWrapper } from "@test";
 import { posts } from "@test/dataMocks";
 
 import { useModalForm } from "./useModalForm";
-import { act } from "react-dom/test-utils";
+import { HttpError } from "../../../interfaces";
 
 const Wrapper = TestWrapper({
     dataProvider: MockJSONServer,
@@ -21,10 +22,10 @@ const WrapperWithRoute: React.FC = ({ children }) => (
 );
 
 describe("useModalForm Hook", () => {
-    it("should load data to form with edit action", async () => {
+    fit("should load data to form with edit action", async () => {
         const { result, waitFor } = renderHook(
             () =>
-                useModalForm({
+                useModalForm<{}, HttpError, { title: string }>({
                     action: "edit",
                 }),
             {
@@ -42,6 +43,6 @@ describe("useModalForm Hook", () => {
             return !result.current.formLoading;
         });
 
-        expect(formProps.form?.getFieldValue("title")).toEqual(posts[0].title);
+        expect(formProps.form!.getFieldValue("title")).toEqual(posts[0].title);
     });
 });

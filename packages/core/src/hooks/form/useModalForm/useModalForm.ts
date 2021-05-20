@@ -9,25 +9,45 @@ import {
     useMutationMode,
     useTranslate,
     useWarnAboutChange,
-} from "@hooks";
-import { BaseRecord, ModalFormSF } from "../../../interfaces";
+} from "../../../hooks";
+import { BaseRecord, HttpError } from "../../../interfaces";
+import { useModalFormFromSFReturnType } from "../../../../types/sunflower";
 import { useFormProps } from "../useForm";
+import { DeleteButtonProps } from "../../../components/buttons";
 
 type useModalFormConfig = {
     action: "show" | "edit" | "create";
 };
 
-export type useModalFormProps<M> = useFormProps<M> &
+export type useModalFormReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = useForm<TData, TError, TVariables> &
+    useModalFormFromSFReturnType<TData, TVariables> & {
+        deleteButtonProps: DeleteButtonProps;
+    };
+
+export type useModalFormProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
+> = useFormProps<TData, TError, TVariables> &
     UseModalFormConfigSF &
     useModalFormConfig;
 export const useModalForm = <
-    RecordType extends BaseRecord = BaseRecord,
-    MutationType extends BaseRecord = RecordType
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {}
 >({
     mutationMode: mutationModeProp,
     ...rest
-}: useModalFormProps<MutationType>) => {
-    const useFormProps = useForm<RecordType, MutationType>({
+}: useModalFormProps<TData, TError, TVariables>): useModalFormReturnType<
+    TData,
+    TError,
+    TVariables
+> => {
+    const useFormProps = useForm<TData, TError, TVariables>({
         ...rest,
         mutationMode: mutationModeProp,
     });
@@ -45,7 +65,7 @@ export const useModalForm = <
     const translate = useTranslate();
 
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
-    const sunflowerUseModal: ModalFormSF = useModalFormSF({
+    const sunflowerUseModal = useModalFormSF<TData, TVariables>({
         ...rest,
         form: form,
     });
@@ -95,7 +115,6 @@ export const useModalForm = <
             sunflowerUseModal.close();
         },
     };
-
     return {
         ...useFormProps,
         ...sunflowerUseModal,
@@ -135,7 +154,6 @@ export const useModalForm = <
                     }
                 }
                 sunflowerUseModal.close();
-                // setCloneId?.(undefined);
             },
         },
         saveButtonProps: saveButtonPropsSF,
