@@ -7,8 +7,10 @@ import {
     QuerySortOperator,
     RequestQueryBuilder,
     CondOperator,
+    ComparisonOperator,
 } from "@nestjsx/crud-request";
 import { DataProvider, HttpError } from "@pankod/refine";
+import { CrudOperators } from "@pankod/refine/dist/interfaces";
 
 type SortBy = QuerySort | QuerySortArr | Array<QuerySort | QuerySortArr>;
 type CrudFilters =
@@ -32,6 +34,37 @@ axiosInstance.interceptors.response.use(
         return Promise.reject(customError);
     },
 );
+
+const mapOperator = (operator: CrudOperators): ComparisonOperator => {
+    switch (operator) {
+        case "ne":
+            return CondOperator.NOT_EQUALS;
+        case "lt":
+            return CondOperator.LOWER_THAN;
+        case "gt":
+            return CondOperator.GREATER_THAN;
+        case "lte":
+            return CondOperator.LOWER_THAN_EQUALS;
+        case "gte":
+            return CondOperator.GREATER_THAN_EQUALS;
+        case "in":
+            return CondOperator.IN;
+        case "nin":
+            return CondOperator.NOT_IN;
+        case "contains":
+            return CondOperator.CONTAINS_LOW;
+        case "ncontains":
+            return CondOperator.EXCLUDES_LOW;
+        case "containss":
+            return CondOperator.CONTAINS;
+        case "ncontainss":
+            return CondOperator.EXCLUDES;
+        case "null":
+            return CondOperator.IS_NULL;
+    }
+
+    return CondOperator.EQUALS;
+};
 
 const NestsxCrud = (
     apiUrl: string,
@@ -79,14 +112,12 @@ const NestsxCrud = (
         const crudFilters: CrudFilters = [];
         const { filters } = params;
         if (filters) {
-            Object.keys(filters).map((field) => {
-                if (filters[field]) {
-                    crudFilters.push({
-                        field,
-                        operator: CondOperator.IN,
-                        value: filters[field],
-                    });
-                }
+            filters.map(({ field, operator, value }) => {
+                crudFilters.push({
+                    field,
+                    operator: mapOperator(operator),
+                    value,
+                });
             });
         }
 

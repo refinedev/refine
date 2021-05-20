@@ -47,10 +47,13 @@ export const DataProvider = (
             }
         }
 
-        // filter
-        const filters = stringify(params.filters || {}, {
-            skipNull: true,
-        });
+        const queryFilters: { [key: string]: string } = {};
+        const { filters } = params;
+        if (filters) {
+            filters.map(({ field, operator, value }) => {
+                queryFilters[`${field}_${operator}`] = value;
+            });
+        }
 
         const query = {
             _start: (current - 1) * pageSize,
@@ -59,7 +62,7 @@ export const DataProvider = (
         };
 
         const { data } = await httpClient.get(
-            `${url}?${stringify(query)}&${filters}`,
+            `${url}?${stringify(query)}&${stringify(queryFilters)}`,
         );
 
         const countRequest = await httpClient.get(`${url}/count`);
