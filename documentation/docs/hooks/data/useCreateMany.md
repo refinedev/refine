@@ -6,14 +6,14 @@ siderbar_label: useCreateMany
 
 `useCreateMany` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for multiple create mutations. It uses `createMany` method as mutation function from the `dataProvider` that is passed to `<Admin>`.  
 
-### Features
+## Features
 
 * Shows notifications on success and error.  
 
 * Automatically invalidates `list` queries after mutation is succesfully run.  
 [Refer to React Query docs for detailed information &#8594](https://react-query.tanstack.com/guides/invalidations-from-mutations)
 
-### Usage
+## Usage
 
 Let'say we have a `categories` resource
 
@@ -103,9 +103,19 @@ Variables passed to `mutate` must have the type of
 }
 ```
 :::
+
+## API
+### Type Parameters
+
+| Property | Default         |
+| -------- | --------------- |
+| TData    | [`BaseRecord`](#) |
+| TError   | [`HttpError`](#)  |
+| TVariables   | `{}`  |
+
 ### Return values
 
-| Property       | Description            | Type                                                                                                                                                                                             |
-| -------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| mutationResult | Result of the mutation | [`UseMutationResult<`<br/>`{ data: CategoryMutationResult[] },`<br/>`unknown,`<br/>`  { resource: string; values: any[]; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
+| Description                               | Type                                                                                                                                                                      |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Result of the `react-query`'s useMutation  | [`UseMutationResult<`<br/>`{ data: TData[]},`<br/>`TError,`<br/>`  { resource: string; values: TVariables[]; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
 
