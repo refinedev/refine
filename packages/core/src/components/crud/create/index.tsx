@@ -19,6 +19,7 @@ export interface CreateProps {
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
     pageHeaderProps?: PageHeaderProps;
+    resource?: string;
 }
 
 export const Create: React.FC<CreateProps> = ({
@@ -27,6 +28,7 @@ export const Create: React.FC<CreateProps> = ({
     saveButtonProps,
     children,
     pageHeaderProps,
+    resource: resourceFromProps,
 }) => {
     const { goBack } = useNavigation();
     const t = useTranslate();
@@ -37,7 +39,7 @@ export const Create: React.FC<CreateProps> = ({
     } = useParams<ResourceRouterParams>();
     const resourceWithRoute = useResourceWithRoute();
 
-    const resource = resourceWithRoute(routeResourceName);
+    const resource = resourceWithRoute(routeResourceName ?? resourceFromProps);
 
     const translate = useTranslate();
 

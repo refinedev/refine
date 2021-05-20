@@ -21,6 +21,7 @@ export interface ShowProps {
     actionButtons?: React.ReactNode;
     isLoading?: boolean;
     pageHeaderProps?: PageHeaderProps;
+    resource?: string;
 }
 
 export const Show: React.FC<ShowProps> = ({
@@ -32,6 +33,7 @@ export const Show: React.FC<ShowProps> = ({
     isLoading,
     children,
     pageHeaderProps,
+    resource: resourceFromProps,
 }) => {
     const translate = useTranslate();
 
@@ -40,7 +42,7 @@ export const Show: React.FC<ShowProps> = ({
     const resourceWithRoute = useResourceWithRoute();
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
-    const resource = resourceWithRoute(routeResourceName);
+    const resource = resourceWithRoute(routeResourceName ?? resourceFromProps);
 
     const isDeleteButtonVisible = canDelete ? canDelete : resource.canDelete;
     const isEditButtonVisible = canEdit ? canEdit : resource.canEdit;

@@ -34,6 +34,7 @@ export interface EditProps {
     pageHeaderProps?: PageHeaderProps;
     canDelete?: boolean;
     deleteButtonProps?: DeleteButtonProps;
+    resource?: string;
 }
 
 export const Edit: React.FC<EditProps> = ({
@@ -46,6 +47,7 @@ export const Edit: React.FC<EditProps> = ({
     deleteButtonProps,
     pageHeaderProps,
     canDelete,
+    resource: resourceFromProps,
 }) => {
     const translate = useTranslate();
     const { push, goBack } = useNavigation();
@@ -57,7 +59,7 @@ export const Edit: React.FC<EditProps> = ({
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
-    const resource = resourceWithRoute(routeResourceName);
+    const resource = resourceWithRoute(routeResourceName ?? resourceFromProps);
 
     const isDeleteButtonVisible = canDelete
         ? canDelete
