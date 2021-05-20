@@ -24,7 +24,6 @@ export type useTableProps = {
     initialPageSize?: number;
     initialSorter?: Sort;
     initialFilter?: CrudFilters;
-    extraFilter?: CrudFilters;
     syncWithLocation?: boolean;
     onSearch?: (data: any) => CrudFilters | Promise<CrudFilters>;
 };
