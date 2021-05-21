@@ -1,6 +1,6 @@
 import { SorterResult } from "antd/lib/table/interface";
 
-import { BaseRecord, HttpError, Identifier } from "../../interfaces";
+import { BaseRecord, Identifier } from "../../interfaces";
 
 export interface Pagination {
     current?: number;
@@ -55,6 +55,9 @@ export type CrudFilter = {
 
 export type CrudFilters = CrudFilter[];
 
+export interface CustomResponse<TData = BaseRecord> {
+    data: TData;
+}
 export interface GetListResponse<TData = BaseRecord> {
     data: TData[];
     total: number;
@@ -137,4 +140,20 @@ export interface IDataContext {
         ids: Identifier[],
     ) => Promise<DeleteManyResponse<TData>>;
     getApiUrl: () => string;
+    custom?: <TData extends BaseRecord = BaseRecord>(
+        url: string,
+        method:
+            | "get"
+            | "delete"
+            | "head"
+            | "options"
+            | "post"
+            | "put"
+            | "patch",
+        params: {
+            sort?: Sort;
+            filters?: CrudFilter[];
+            payload?: {};
+        },
+    ) => Promise<CustomResponse<TData>>;
 }
