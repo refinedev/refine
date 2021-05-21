@@ -8,7 +8,9 @@ import gif from '@site/static/img/custom-pages-gif.gif'
 
 `refine` allows us to add custom pages to our application. To do this, it is necessary to create an object array with [react-router-dom](https://reactrouter.com/web/api/Route) `<Route>` properties. Then, pass this array as `routes` prop in the `<Admin>` component.
 
-Let's see how to do it:
+## Public Custom Pages
+
+It allows creating custom pages that everyone can access via path.
 
 ```tsx title="src/App.tsx"
 import { Admin } from "@pankod/refine";
@@ -37,7 +39,11 @@ const App = () => {
 export default App;
 ```
 
-Now, everyone can access our page via `/custom-page` path. If we only want authenticated users to access this page, it is enough to wrap our page component with `<Authenticated>` component.
+Everyone can access this page via `/custom-page` path.
+
+## Authenticated Custom Pages
+
+It allows creating custom pages that only authenticated users can access via path.
 
 ```tsx title="src/App.tsx"
 //highlight-next-line
@@ -96,6 +102,8 @@ const App = () => {
 export default App;
 ```
 
+Only authenticated users can access this page via `/custom-page` path.
+
 :::caution attention
 For authenticated custom page, your application needs an `authProvider`.
 
@@ -103,7 +111,7 @@ Refer to [authProvider](#) for more detailed information.
 :::
 
 :::danger
-If you want to anything operation by using `resource` in custom page, you have to pass as `name` prop to `<Resource>` component like below code.
+`refine` needs to know in order to manage resources, It recognizes them from the `<Resource>` component you have given to the `<Admin>` component. So, you need to give the resources you use in the custom page to the `<Admin>` component. But you don't need list, create, edit and show pages, you just need to give the name like the below code.
 
 ```tsx
 <Resource name="posts" />
@@ -113,7 +121,9 @@ If you want to anything operation by using `resource` in custom page, you have t
 
 ## Example
 
-Let's make a custom page for posts. Suppose our `dataProvider` has an endpoint that returns posts as follows.
+Let's make a custom page for posts. On this page, the editor can approve or reject the posts with "draft" status.
+
+Before starting the example, let's assume that our `dataProvider` has an endpoint that returns posts as following.
 
 ```ts title="https://refine-fake-rest.pankod.com/posts"
 {
@@ -171,9 +181,7 @@ const App = () => {
 export default App;
 ```
 
-Now, let's create the custom page with the name `<PostReview>`. On this page, the editor can approve or reject the posts with "draft" status.
-
-xWe will use the props of `useList`, `filter` and `pagination`, to fetch a post with "draft" status.
+Now, let's create the custom page with the name `<PostReview>`. We will use the props of `useList`, `filter` and `pagination`, to fetch a post with "draft" status.
 
 [Refer to `useList` documentation for detailed usage. &#8594](#)
 
