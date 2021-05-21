@@ -3,7 +3,7 @@ id: customPages
 title: Custom Pages
 ---
 
-`refine` allows us to add custom pages to our application. To do this, it is necessary to create an object array with [react-router-dom](#) `<Route>` properties. Then, pass this array as `routes` prop in the `<Admin>` component.
+`refine` allows us to add custom pages to our application. To do this, it is necessary to create an object array with [react-router-dom](https://reactrouter.com/web/api/Route) `<Route>` properties. Then, pass this array as `routes` prop in the `<Admin>` component.
 
 Let's see how to do it:
 
@@ -12,6 +12,7 @@ import { Admin } from "@pankod/refine";
 
 //highlight-end
 import { CustomPage } from "pages/custom-page";
+
 const App = () => {
     return (
         <Admin
@@ -24,7 +25,6 @@ const App = () => {
                 },
             ]}
             //highlight-end
-            //...
         >
             ...
         </Admin>
@@ -38,9 +38,30 @@ Now, everyone can access our page via `/custom-page` path. If we only want authe
 
 ```tsx title="src/App.tsx"
 //highlight-next-line
-import { Admin, Authenticated } from "@pankod/refine";
+import { Admin, Authenticated, AuthProvider } from "@pankod/refine";
 
 import { CustomPage } from "pages/custom-page";
+
+//highlight-start
+const authProvider: AuthProvider = {
+    login: (params: any) => {
+        if (params.username === "admin") {
+            localStorage.setItem("username", params.username);
+            return Promise.resolve();
+        }
+
+        return Promise.reject();
+    },
+    logout: () => {
+        localStorage.removeItem("username");
+        return Promise.resolve();
+    },
+    checkError: () => Promise.resolve(),
+    checkAuth: () =>
+        localStorage.getItem("username") ? Promise.resolve() : Promise.reject(),
+    getPermissions: () => Promise.resolve(["admin"]),
+};
+//highlight-end
 
 //highlight-start
 const AuthenticatedCustomPage = () => {
@@ -54,6 +75,7 @@ const AuthenticatedCustomPage = () => {
 const App = () => {
     return (
         <Admin
+            authProvider={authProvider}
             routes={[
                 {
                     exact: true,
@@ -62,7 +84,6 @@ const App = () => {
                     path: "/custom-page",
                 },
             ]}
-            //...
         >
             ...
         </Admin>
