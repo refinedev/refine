@@ -2,6 +2,7 @@ import {
     Typography,
     Button,
     Show,
+    Space,
     useList,
     MarkdownField,
     useOne,
@@ -44,41 +45,50 @@ export const PostReview = () => {
     const buttonDisabled = isLoading || categoryIsLoading || mutateIsLoading;
 
     return (
-        <>
-            {record && (
-                <Show
-                    title="Review Posts"
-                    resource="posts"
-                    isLoading={isLoading || categoryIsLoading}
-                    actionButtons={[
-                        <Button
-                            key="reject"
-                            danger
-                            disabled={buttonDisabled}
-                            onClick={() => handleUpdate(record, "rejected")}
-                        >
-                            Reject
-                        </Button>,
-                        <Button
-                            key="approve"
-                            type="primary"
-                            disabled={buttonDisabled}
-                            onClick={() => handleUpdate(record, "published")}
-                        >
-                            Approve
-                        </Button>,
-                    ]}
+        <Show
+            title="Review Posts"
+            resource="posts"
+            recordItemId={record?.id}
+            isLoading={isLoading || categoryIsLoading}
+            pageHeaderProps={{
+                backIcon: false,
+            }}
+            actionButtons={
+                <Space
+                    key="action-buttons"
+                    style={{ float: "right", marginRight: 24 }}
                 >
-                    <Title level={5}>Status</Title>
-                    <Text mark>{record.status}</Text>
-                    <Title level={5}>Title</Title>
-                    <Text>{record.title}</Text>
-                    <Title level={5}>Category</Title>
-                    <Text>{categoryData?.data.title}</Text>
-                    <Title level={5}>Content</Title>
-                    <MarkdownField value={record.content} />
-                </Show>
-            )}
-        </>
+                    <Button
+                        key="reject"
+                        danger
+                        disabled={buttonDisabled}
+                        onClick={() =>
+                            record && handleUpdate(record, "rejected")
+                        }
+                    >
+                        Reject
+                    </Button>
+                    <Button
+                        key="approve"
+                        type="primary"
+                        disabled={buttonDisabled}
+                        onClick={() =>
+                            record && handleUpdate(record, "published")
+                        }
+                    >
+                        Approve
+                    </Button>
+                </Space>
+            }
+        >
+            <Title level={5}>Status</Title>
+            <Text>{record?.status}</Text>
+            <Title level={5}>Title</Title>
+            <Text>{record?.title}</Text>
+            <Title level={5}>Category</Title>
+            <Text>{categoryData?.data.title}</Text>
+            <Title level={5}>Content</Title>
+            <MarkdownField value={record?.content} />
+        </Show>
     );
 };
