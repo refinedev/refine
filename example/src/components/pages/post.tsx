@@ -40,6 +40,7 @@ import {
     useSelect,
     useMany,
     useDeleteMany,
+    useUpdateMany,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -84,14 +85,79 @@ export const PostList = (props: any) => {
         ],
     });
 
-    const [selectedRowKeys, setSelectedRowKeys] = React.useState<(string | number)[]>([]);
+    const [selectedRowKeys, setSelectedRowKeys] = React.useState<
+        (string | number)[]
+    >([]);
 
-    const { mutate, isSuccess, isLoading: deleteManyIsLoading } = useDeleteMany<IPost>(
+    const {
+        mutate,
+        isSuccess,
+        isLoading: deleteManyIsLoading,
+    } = useUpdateMany<IPost>("posts");
+
+    /*   const { mutate, isSuccess, isLoading: deleteManyIsLoading } = useDeleteMany<IPost>(
         "posts",
     );
-    
+     */
     const deleteSelectedItems = () => {
-        mutate({ ids: selectedRowKeys });
+        mutate({
+            ids: selectedRowKeys,
+            values: {
+                title: "necati33333333",
+             /*    id: "f34c233c-e883-499d-aad7-2b39e9b0c9ac", */
+                status: "draft",
+             /*    id: "4fa734d9-349a-4524-b70b-0cd5c40c8dec", */
+                content:
+                    "Voluptatibus possimus ratione similique dolores mollitia sunt cupiditate omnis. Labore dolores voluptate earum eos odit vel veritatis ut cum. Modi est dignissimos. Temporibus culpa voluptates quia dicta vel. Provident quo soluta enim corrupti laudantium voluptates blanditiis culpa. Totam sint enim dolorum deleniti hic doloribus in.\n \rQui voluptatem eaque voluptas quibusdam beatae et. Consectetur assumenda velit possimus placeat est. Nemo fugiat laborum. Sit qui id ad ipsa qui quia quam unde. Sapiente eius earum qui. Deserunt distinctio qui.\n \rQui rerum eos. Natus qui maiores esse quia distinctio aut voluptatem quaerat. Non est hic itaque ea corporis qui in rerum et. Doloribus adipisci temporibus soluta. Quibusdam voluptatem commodi qui.\n \rError repellendus dolores magnam impedit cupiditate mollitia eum sunt harum. Ut quia eos modi. Vel non eos. Inventore aperiam eaque voluptas. Et consequuntur ipsum at sunt sit natus iste ratione expedita. Delectus itaque architecto fugiat sed explicabo.\n \rEt quia culpa praesentium voluptatibus quisquam earum veritatis distinctio ab. Nulla necessitatibus perspiciatis odio. Quo nobis maiores rerum adipisci culpa hic harum. Sit suscipit quidem. Et et sunt qui quo.\n \rMolestiae sunt vero. Quam vero itaque. Recusandae consequatur id. Dolor nobis qui et illum.\n \rQui hic ducimus et reiciendis. Suscipit quaerat vitae in voluptas qui sed. Pariatur ipsa consequuntur beatae placeat aliquid ratione eum quas repudiandae. Quis consequatur sequi reprehenderit exercitationem aut eaque rerum et laborum. Dolores libero tempora aperiam quo commodi et.\n \rImpedit veritatis consectetur corrupti nisi et quidem quia aut. Repellat sapiente est nemo illo numquam qui esse ut. Qui id consectetur quis magnam aut ut enim repellendus. Aspernatur sunt unde accusamus. Quo sed corrupti eos ratione totam iste. Omnis qui adipisci aut nemo repellendus non quis.\n \rAt aut non quod voluptatem similique. Molestiae autem tempore occaecati vel repellendus. Omnis architecto et doloremque qui aut.\n \rEa non non corporis sapiente. Autem fuga laborum tempore natus necessitatibus mollitia aut. Magni nulla ut est qui delectus. Repellendus ut nisi et quia quisquam qui.",
+                slug: "necati22222222",
+                images: [
+                    {
+                        uid: "rc-upload-0higiy05yt",
+                        name: "random-image.jpg",
+                        url: "https://picsum.photos/800",
+                        type: "image/jpeg",
+                        size: 141940,
+                    },
+                ],
+                createdAt: "2021-05-21T13:24:17.049Z",
+                updatedAt: "2021-05-21T13:29:12.744Z",
+                category: {
+                    id: "3307dec1-af04-4dd4-a88a-d55fdfb26256",
+                    title: "Australia Navigate Borders",
+                    createdAt: "2021-05-21T13:24:17.229Z",
+                    updatedAt: "2021-05-21T13:24:17.229Z",
+                },
+                user: {
+                    id: "9712de46-3864-47b4-a6bd-592c6cf9a17f",
+                    firstName: "Antonietta",
+                    lastName: "Shanahan",
+                    email: "antonietta.Shanahan68@hotmail.com",
+                    status: true,
+                    createdAt: "2021-05-21T13:24:16.291Z",
+                    updatedAt: "2021-05-21T13:24:16.291Z",
+                },
+                tags: [
+                    {
+                        id: "8b6ede0f-4695-451e-a996-97762a93bf05",
+                        title: "card",
+                        createdAt: "2021-05-21T13:24:16.316Z",
+                        updatedAt: "2021-05-21T13:24:16.316Z",
+                    },
+                    {
+                        id: "26355cd8-ebf7-47d8-bc30-d01b5ebe4f84",
+                        title: "rhode Island",
+                        createdAt: "2021-05-21T13:24:16.368Z",
+                        updatedAt: "2021-05-21T13:24:16.368Z",
+                    },
+                    {
+                        id: "74222c6d-fa8e-428e-9f65-f40a070c03e8",
+                        title: "fantastic",
+                        createdAt: "2021-05-21T13:24:16.460Z",
+                        updatedAt: "2021-05-21T13:24:16.460Z",
+                    },
+                ],
+            },
+        });
     };
 
     React.useEffect(() => {
@@ -101,7 +167,7 @@ export const PostList = (props: any) => {
     }, [isSuccess]);
 
     const onSelectChange = (selectedRowKeys: (string | number)[]) => {
-        console.log({selectedRowKeys})
+        console.log({ selectedRowKeys });
         setSelectedRowKeys(selectedRowKeys);
     };
 
@@ -211,7 +277,7 @@ export const PostList = (props: any) => {
                     }}
                     defaultSortOrder={getDefaultSortOrder("title", sorter)}
                 />
-                <Table.Column
+                {/*  <Table.Column
                     dataIndex="slug"
                     title={translate("common:resources.posts.fields.slug")}
                     key="slug"
@@ -248,8 +314,8 @@ export const PostList = (props: any) => {
                         "category.id",
                         filters,
                     )}
-                />
-                <Table.Column
+                /> */}
+                {/*  <Table.Column
                     dataIndex="status"
                     title={translate(
                         "common:resources.posts.fields.status.title",
@@ -284,6 +350,8 @@ export const PostList = (props: any) => {
                     }}
                     defaultSortOrder={getDefaultSortOrder("createdAt", sorter)}
                 />
+            */}
+
                 <Table.Column
                     title={translate("common:table.actions", "Actions")}
                     dataIndex="actions"
