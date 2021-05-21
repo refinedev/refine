@@ -96,7 +96,7 @@ Variables passed to `mutate` must have the type of
 ```tsx
 {
     resource: string;
-    values: any;
+    values: TVariables = {};
 }
 ```
 :::
@@ -105,11 +105,11 @@ Variables passed to `mutate` must have the type of
 ### Type Parameters
 
 
-| Property | Default         |
-| -------- | --------------- |
-| TData    | [`BaseRecord`](#) |
-| TError   | [`HttpError`](#)  |
-| TVariables   | `{}`  |
+| Property   | Desription                                             | Type              | Default           |
+| ---------- | ------------------------------------------------------ | ----------------- | ----------------- |
+| TData      | Result data of the mutation. Extends [`BaseRecord`](#) | [`BaseRecord`](#) | [`BaseRecord`](#) |
+| TError     | Custom error object that extends [`HttpError`](#)      | [`HttpError`](#)  | [`HttpError`](#)  |
+| TVariables | Values for mutation function                           | `{}`              | `{}`              |
 ### Return value
 
 | Description                               | Type                                                                                                                                                                      |

@@ -35,7 +35,7 @@ Let'say we have a `categories` resource
 
 ```tsx
 type CategoryMutationResult = {
-    id?: string | number;
+    id: string | number;
     title: string;
 }
 
@@ -99,7 +99,7 @@ Variables passed to `mutate` must have the type of
 ```tsx
 {
     resource: string;
-    values: any[];
+    values: TVariables[] = {};
 }
 ```
 :::
@@ -107,15 +107,16 @@ Variables passed to `mutate` must have the type of
 ## API
 ### Type Parameters
 
-| Property | Default         |
-| -------- | --------------- |
-| TData    | [`BaseRecord`](#) |
-| TError   | [`HttpError`](#)  |
-| TVariables   | `{}`  |
+
+| Property   | Desription                                             | Type              | Default           |
+| ---------- | ------------------------------------------------------ | ----------------- | ----------------- |
+| TData      | Result data of the mutation. Extends [`BaseRecord`](#) | [`BaseRecord`](#) | [`BaseRecord`](#) |
+| TError     | Custom error object that extends [`HttpError`](#)      | [`HttpError`](#)  | [`HttpError`](#)  |
+| TVariables | Values for mutation function                           | `{}`              | `{}`              |
 
 ### Return values
 
-| Description                               | Type                                                                                                                                                                      |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the `react-query`'s useMutation  | [`UseMutationResult<`<br/>`{ data: TData[]},`<br/>`TError,`<br/>`  { resource: string; values: TVariables[]; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
+| Description                               | Type                                                                                                                                                                                      |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData[]},`<br/>`TError,`<br/>`  { resource: string; values: TVariables[]; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
 

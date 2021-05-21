@@ -37,12 +37,7 @@ Let'say we have a `categories` resource
 ```
 
 ```tsx
-type CategoryMutationResult = {
-    id?: string | number;
-    title: string;
-}
-
-const { mutate } = useDelete<CategoryMutationResult>("categories");
+const { mutate } = useDelete("categories");
 
 mutate({ id: 2 })
 ```
@@ -91,7 +86,7 @@ Variables passed to `mutate` must have the type of
 Determines the mode with which the mutation runs.
 
 ```tsx
-const { mutate } = useDelete<CategoryMutationResult>("categories", "optimistic");
+const { mutate } = useDelete("categories", "optimistic");
 ```
  `pessimistic` : The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfuly.
 
@@ -144,10 +139,10 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 ### Type Parameters
 
-| Property | Default         |
-| -------- | --------------- |
-| TData    | [`BaseRecord`](#) |
-| TError   | [`HttpError`](#)  |
+| Property | Desription                                             | Type              | Default           |
+| -------- | ------------------------------------------------------ | ----------------- | ----------------- |
+| TData    | Result data of the mutation. Extends [`BaseRecord`](#) | [`BaseRecord`](#) | [`BaseRecord`](#) |
+| TError   | Custom error object that extends [`HttpError`](#)      | [`HttpError`](#)  | [`HttpError`](#)  |
 
 ### Return value
 

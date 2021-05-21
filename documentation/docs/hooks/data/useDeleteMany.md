@@ -41,12 +41,7 @@ Let'say we have a `categories` resource
 ```
 
 ```tsx
-type CategoryMutationResult = {
-    ids?: (string | number)[];
-    title: string;
-}
-
-const { mutate } = useDeleteMany<CategoryMutationResult>("categories");
+const { mutate } = useDeleteMany("categories");
 
 mutate({ ids: [ 2, 3 ] })
 ```
@@ -81,7 +76,7 @@ Queries that use `/categories` endpoint will be automatically invalidated to sho
 :::
 
 :::important
-Variables passed to `mutate` must have the type of
+Values passed to `mutate` must have the type of
 
 ```tsx
 {
@@ -95,7 +90,7 @@ Variables passed to `mutate` must have the type of
 Determines the mode with which the mutation runs.
 
 ```tsx
-const { mutate } = useDeleteMany<CategoryMutationResult>("categories", "optimistic");
+const { mutate } = useDeleteMany("categories", "optimistic");
 ```
  `pessimistic` : The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfuly.
 
@@ -148,15 +143,15 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 ### Type Parameters
 
-| Property | Default         |
-| -------- | --------------- |
-| TData    | [`BaseRecord`](#) |
-| TError   | [`HttpError`](#)  |
+| Property | Desription                                             | Type              | Default           |
+| -------- | ------------------------------------------------------ | ----------------- | ----------------- |
+| TData    | Result data of the mutation. Extends [`BaseRecord`](#) | [`BaseRecord`](#) | [`BaseRecord`](#) |
+| TError   | Custom error object that extends [`HttpError`](#)      | [`HttpError`](#)  | [`HttpError`](#)  |
 
 ### Return value
 
-| Description                               | Type                                                                                                                                                                      |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description                               | Type                                                                                                                                                                       |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { ids: Identifier[]; },`<br/>` DeleteContext>`](https://react-query.tanstack.com/reference/useMutation)* |
 
 >`*` Refer to documentation for [`Identifier`](#) and [`DeleteContext`](#)
