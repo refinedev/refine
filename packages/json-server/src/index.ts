@@ -1,6 +1,12 @@
 import axios, { AxiosInstance } from "axios";
 import { stringify } from "query-string";
-import { DataProvider, HttpError, CrudOperators } from "@pankod/refine";
+import {
+    DataProvider,
+    HttpError,
+    CrudOperators,
+    Sort,
+    CrudFilters,
+} from "@pankod/refine";
 
 const axiosInstance = axios.create();
 
@@ -32,6 +38,43 @@ const mapOperator = (operator: CrudOperators): string => {
     return ""; // default "eq"
 };
 
+const generateSort = (sort?: Sort) => {
+    let _sort = ["id"]; // default sorting field
+    let _order = ["desc"]; // default sorting
+
+    if (Array.isArray(sort) || sort?.field) {
+        _sort = [];
+        _order = [];
+
+        if (Array.isArray(sort)) {
+            sort.map((item) => {
+                _sort.push(`${item.field}`);
+                _order.push(`${item.order}`.replace("end", "")); // replace -> [ascend, descend] -> [asc,desc]
+            });
+        } else {
+            _sort.push(`${sort.field}`);
+            _order.push(`${sort.order}`.replace("end", "")); // replace -> [ascend, descend] -> [asc,desc]
+        }
+    }
+
+    return {
+        _sort,
+        _order,
+    };
+};
+
+const generateFilter = (filters?: CrudFilters) => {
+    const queryFilters: { [key: string]: string } = {};
+    if (filters) {
+        filters.map(({ field, operator, value }) => {
+            const mappedOperator = mapOperator(operator);
+            queryFilters[`${field}${mappedOperator}`] = value;
+        });
+    }
+
+    return queryFilters;
+};
+
 const JsonServer = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -46,36 +89,9 @@ const JsonServer = (
         const current = params.pagination?.current || 1;
         const pageSize = params.pagination?.pageSize || 10;
 
-        // sort
-        let _sort = ["id"]; // default sorting field
-        let _order = ["desc"]; // default sorting
+        const { _sort, _order } = generateSort(params.sort);
 
-        const { sort } = params;
-
-        if (Array.isArray(sort) || sort?.field) {
-            _sort = [];
-            _order = [];
-
-            if (Array.isArray(sort)) {
-                sort.map((item) => {
-                    _sort.push(`${item.field}`);
-                    _order.push(`${item.order}`.replace("end", "")); // replace -> [ascend, descend] -> [asc,desc]
-                });
-            } else {
-                _sort.push(`${sort.field}`);
-                _order.push(`${sort.order}`.replace("end", "")); // replace -> [ascend, descend] -> [asc,desc]
-            }
-        }
-
-        // filter
-        const queryFilters: { [key: string]: string } = {};
-        const { filters } = params;
-        if (filters) {
-            filters.map(({ field, operator, value }) => {
-                const mappedOperator = mapOperator(operator);
-                queryFilters[`${field}${mappedOperator}`] = value;
-            });
-        }
+        const queryFilters = generateFilter(params.filters);
 
         const query = {
             _start: (current - 1) * pageSize,
@@ -179,6 +195,40 @@ const JsonServer = (
 
     getApiUrl: () => {
         return apiUrl;
+    },
+
+    custom: async (url, method, params) => {
+        const { filters, sort, payload } = params;
+
+        const { _sort, _order } = generateSort(sort);
+
+        const queryFilters = generateFilter(filters);
+
+        const query = {
+            _sort: _sort.join(","),
+            _order: _order.join(","),
+        };
+
+        let axiosResponse;
+        switch (method) {
+            case "put":
+            case "post":
+            case "patch":
+                axiosResponse = await httpClient.post(`${url}`, payload);
+                break;
+            case "delete":
+                axiosResponse = await httpClient.delete(`${url}`);
+                break;
+            default:
+                axiosResponse = await httpClient.get(
+                    `${url}?${stringify(query)}&${stringify(queryFilters)}`,
+                );
+                break;
+        }
+
+        const { data } = axiosResponse;
+
+        return Promise.resolve({ data });
     },
 });
 
