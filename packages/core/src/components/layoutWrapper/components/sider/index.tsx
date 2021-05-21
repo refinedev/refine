@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Layout, Menu } from "antd";
 import { LogoutOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-import { AdminContext } from "@contexts/admin";
-import { IAdminContext } from "../../../../interfaces";
 import {
     useNavigation,
     useTranslate,
