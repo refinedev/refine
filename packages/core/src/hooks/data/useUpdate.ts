@@ -25,6 +25,7 @@ type UpdateParams<T> = {
     id: string;
     values: T;
 };
+
 export type UseUpdateReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
