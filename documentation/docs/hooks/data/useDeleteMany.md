@@ -103,7 +103,7 @@ const { mutate } = useDeleteMany("categories", "optimistic");
 
 
 ## Custom method on mutation cancellation
-You can pass a custom callback to `useDeleteMany`. Cancel callback is triggered when undo button is clicked when  `mutationModeProp = "undoable"` mutation mode.
+You can pass a custom cancel callback to `useUpdate`. That callback is triggered when undo button is clicked when  `mutationModeProp = "undoable"`.
 
 :::caution
 Default behaviour on undo action includes notifications. If a custom callback is passed this notification will not appear.
