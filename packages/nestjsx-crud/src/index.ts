@@ -260,7 +260,7 @@ const NestsxCrud = (
         return apiUrl;
     },
 
-    custom: async (url, method, params) => {
+    custom: async (url, method, params = {}) => {
         const { filters, sort, payload } = params;
 
         const query = RequestQueryBuilder.create()
@@ -279,7 +279,6 @@ const NestsxCrud = (
                 axiosResponse = await httpClient.delete(`${url}`);
                 break;
             default:
-                console.log("query", query);
                 axiosResponse = await httpClient.get(`${url}?${query}`);
                 break;
         }
