@@ -1,6 +1,5 @@
-import { SiderProps } from "../../interfaces";
 import React from "react";
-import { MutationMode, TitleProps, LayoutProps } from "../../interfaces";
+import { MutationMode, TitleProps, LayoutProps, SiderProps } from "../../interfaces";
 
 export interface IAdminContext {
     hasDashboard: boolean;
