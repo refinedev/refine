@@ -57,7 +57,10 @@ export const Edit: React.FC<EditProps> = ({
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
+    const {
+        resource: routeResourceName,
+        id: idFromRoute,
+    } = useParams<ResourceRouterParams>();
 
     const resource = resourceWithRoute(routeResourceName ?? resourceFromProps);
 
@@ -79,8 +82,13 @@ export const Edit: React.FC<EditProps> = ({
             extra={
                 <Row>
                     <Space>
-                        {!recordItemId && <ListButton />}
-                        <RefreshButton recordItemId={recordItemId} />
+                        {!recordItemId && (
+                            <ListButton resourceName={resource.name} />
+                        )}
+                        <RefreshButton
+                            resourceName={resource.name}
+                            recordItemId={recordItemId ?? idFromRoute}
+                        />
                     </Space>
                 </Row>
             }

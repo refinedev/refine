@@ -22,6 +22,7 @@ export interface ShowProps {
     isLoading?: boolean;
     pageHeaderProps?: PageHeaderProps;
     resource?: string;
+    recordItemId?: string | number;
 }
 
 export const Show: React.FC<ShowProps> = ({
@@ -34,15 +35,19 @@ export const Show: React.FC<ShowProps> = ({
     children,
     pageHeaderProps,
     resource: resourceFromProps,
+    recordItemId,
 }) => {
     const translate = useTranslate();
 
     const { goBack } = useNavigation();
 
     const resourceWithRoute = useResourceWithRoute();
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
+    const {
+        resource: routeResourceName,
+        id: idFromRoute,
+    } = useParams<ResourceRouterParams>();
 
-    const resource = resourceWithRoute(routeResourceName ?? resourceFromProps);
+    const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
     const isDeleteButtonVisible = canDelete ? canDelete : resource.canDelete;
     const isEditButtonVisible = canEdit ? canEdit : resource.canEdit;
@@ -61,16 +66,26 @@ export const Show: React.FC<ShowProps> = ({
             extra={
                 <Row>
                     <Space key="extra-buttons">
-                        {actionButtons ?? (
-                            <>
-                                <ListButton />
-                                {isEditButtonVisible && (
-                                    <EditButton disabled={isLoading} />
-                                )}
-                                {isDeleteButtonVisible && <DeleteButton />}
-                                <RefreshButton />
-                            </>
+                        {!recordItemId && (
+                            <ListButton resourceName={resource.name} />
                         )}
+                        {isEditButtonVisible && (
+                            <EditButton
+                                disabled={isLoading}
+                                resourceName={resource.name}
+                                recordItemId={recordItemId ?? idFromRoute}
+                            />
+                        )}
+                        {isDeleteButtonVisible && (
+                            <DeleteButton
+                                resourceName={resource.name}
+                                recordItemId={recordItemId ?? idFromRoute}
+                            />
+                        )}
+                        <RefreshButton
+                            resourceName={resource.name}
+                            recordItemId={recordItemId ?? idFromRoute}
+                        />
                     </Space>
                 </Row>
             }
@@ -78,7 +93,9 @@ export const Show: React.FC<ShowProps> = ({
         >
             <Row gutter={[16, 16]}>
                 <Col flex="1">
-                    <Card loading={isLoading}>{children}</Card>
+                    <Card loading={isLoading} actions={[actionButtons]}>
+                        {children}
+                    </Card>
                 </Col>
 
                 {aside && (
