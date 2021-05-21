@@ -46,7 +46,7 @@ We can give a space between the `Table` and the `Form` by using the `Space` comp
 
 <br />
 
-When the form is submitted, the `onSearch` method works and we get the search form values. We have to return an object of type `CrudFilters` for this method.
+When the form is submitted, the `onSearch` method runs and we get the search form values. We have to return an object of type `CrudFilters` for this method.
 
 ```tsx
 const { formProps } = useTable<IPost>({
@@ -103,6 +103,5 @@ const { formProps } = useTable<IPost>({
 | containss | Contains, case sensitive |
 | ncontainss | Doesn't contain, case sensitive|
 | null | Is null or not null |
-
 
 
