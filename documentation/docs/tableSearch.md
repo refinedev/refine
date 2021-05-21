@@ -83,7 +83,7 @@ const { formProps } = useTable<IPost>({
 });
 ```
 :::important
-`CrudFilters` type guides in which area, with which operator and with which data the filter.
+`CrudFilters` types object has `field`, `operator` and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
 :::
 
 **Supported operators:**
@@ -103,5 +103,4 @@ const { formProps } = useTable<IPost>({
 | containss | Contains, case sensitive |
 | ncontainss | Doesn't contain, case sensitive|
 | null | Is null or not null |
-
 
