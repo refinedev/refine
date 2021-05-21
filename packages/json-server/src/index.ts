@@ -197,7 +197,7 @@ const JsonServer = (
         return apiUrl;
     },
 
-    custom: async (url, method, params) => {
+    custom: async (url, method, params = {}) => {
         const { filters, sort, payload } = params;
 
         const { _sort, _order } = generateSort(sort);

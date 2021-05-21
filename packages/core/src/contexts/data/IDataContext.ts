@@ -151,7 +151,7 @@ export interface IDataContext {
             | "post"
             | "put"
             | "patch",
-        params: {
+        params?: {
             sort?: Sort;
             filters?: CrudFilter[];
             payload?: {};
