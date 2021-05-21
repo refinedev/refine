@@ -46,7 +46,7 @@ We can give a space between the `Table` and the `Form` by using the `Space` comp
 
 <br />
 
-When the form is submitted, the `onSearch` method works and we get the search form values. We have to return an object of type `CrudFilters` for this method.
+When the form is submitted, the `onSearch` method runs and we get the search form values. We have to return an object of type `CrudFilters` for this method.
 
 ```tsx
 import { Dayjs } from "dayjs";
@@ -85,7 +85,7 @@ const { formProps } = useTable<IPost>({
 });
 ```
 :::important
-`CrudFilters` type guides in which area, with which operator and with which data the filter.
+`CrudFilters` types object has `field`, `operator` and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
 :::
 
 **Supported operators:**
@@ -105,6 +105,4 @@ const { formProps } = useTable<IPost>({
 | containss | Contains, case sensitive |
 | ncontainss | Doesn't contain, case sensitive|
 | null | Is null or not null |
-
-
 
