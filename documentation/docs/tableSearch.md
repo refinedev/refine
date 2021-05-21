@@ -49,6 +49,8 @@ We can give a space between the `Table` and the `Form` by using the `Space` comp
 When the form is submitted, the `onSearch` method works and we get the search form values. We have to return an object of type `CrudFilters` for this method.
 
 ```tsx
+import { Dayjs } from "dayjs";
+
 const { formProps } = useTable<IPost>({
     onSearch: (params: { title: string; createdAt: [Dayjs, Dayjs] }) => {
         const filters: CrudFilters = [];
