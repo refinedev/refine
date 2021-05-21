@@ -121,15 +121,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         RouteHandler(item);
     });
 
-    const RouteWithSubRoutes = (route: any) => {
-        return (
-            <Route
-                exact={route.exact}
-                path={route.path}
-                render={(props) => <route.component {...props} />}
-            />
-        );
-    };
+    const RouteWithSubRoutes = (route: any) => <Route {...route} />;
 
     const renderAuthorized = () => (
         <LayoutWrapper>
