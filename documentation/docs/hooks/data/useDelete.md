@@ -17,7 +17,6 @@ siderbar_label: useDelete
 
 
 ## Usage
-Shows a notification with action to cancel the delete mutation with customizable timeout duration.
 
 Let'say we have a `categories` resource
 
