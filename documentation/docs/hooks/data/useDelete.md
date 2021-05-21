@@ -121,7 +121,7 @@ const customOnCancel = (cancelMutation) => {
 
 const { mutate } = useDelete("categories", "undoable", 7500, customOnCancel);
 ```
-After 7.5 seconds the mutation will be executed. The mutation can be cancelled within that 7.5 seconds. If cancelled `customOnCancel` will be executed
+After 7.5 seconds the mutation will be executed. The mutation can be cancelled within that 7.5 seconds. If cancelled `customOnCancel` will be executed and the request will not be sent.
 :::
 
 <br />
