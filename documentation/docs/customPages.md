@@ -1,6 +1,6 @@
 ---
 id: customPages
-title: customPages
+title: Custom Pages
 ---
 
 `refine` allows us to add custom pages to our application. To do this, it is necessary to create an object array with [react-router-dom](#) `<Route>` properties. Then, pass this array as `routes` prop in the `<Admin>` component.
