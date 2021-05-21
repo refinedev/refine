@@ -30,11 +30,12 @@ import {
     TagsEdit,
     DashboardPage,
     ReadyPage,
+    TagList,
 } from "./components/pages";
 
 function App() {
     const [adminProps, demoSidebarProps] = useDemoSidebar({
-        defaultTitle: "Refine",
+        defaultTitle: "refine",
         defaultMutationMode: "pessimistic",
     });
 
@@ -183,10 +184,10 @@ function App() {
             />
             <Resource
                 name="tags"
-                list={TagsList}
-                edit={TagsEdit}
-                create={TagsCreate}
-                icon={<Icons.TagsOutlined />}
+                list={TagList}
+                /* edit={TagsEdit}
+            create={TagsCreate}
+            icon={<Icons.TagsOutlined />} */
             />
         </Admin>
     );

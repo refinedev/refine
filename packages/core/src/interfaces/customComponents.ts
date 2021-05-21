@@ -5,13 +5,10 @@ export type TitleProps = {
 };
 
 export type LayoutProps = {
-    Sider: React.FC<SiderProps>;
+    Sider: React.FC;
     Header: React.FC;
+    Title: React.FC<TitleProps>;
     Footer: React.FC;
     OffLayoutArea: React.FC;
-    dashboard?: boolean;
-};
-
-export type SiderProps = {
     dashboard?: boolean;
 };

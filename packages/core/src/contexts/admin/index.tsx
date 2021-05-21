@@ -11,6 +11,7 @@ import {
 } from "@components/layoutWrapper/components";
 
 export const AdminContext = React.createContext<IAdminContext>({
+    hasDashboard: false,
     mutationMode: "pessimistic",
     warnWhenUnsavedChanges: false,
     warnWhen: false,
@@ -26,6 +27,7 @@ export const AdminContext = React.createContext<IAdminContext>({
 });
 
 export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
+    hasDashboard,
     mutationMode,
     warnWhenUnsavedChanges,
     syncWithLocation,
@@ -42,6 +44,7 @@ export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
     return (
         <AdminContext.Provider
             value={{
+                hasDashboard,
                 mutationMode,
                 warnWhenUnsavedChanges,
                 warnWhen: warnWhen,

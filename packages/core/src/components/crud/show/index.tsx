@@ -39,7 +39,7 @@ export const Show: React.FC<ShowProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const { goBack } = useNavigation();
+    const { goBack, list } = useNavigation();
 
     const resourceWithRoute = useResourceWithRoute();
     const {
@@ -80,6 +80,9 @@ export const Show: React.FC<ShowProps> = ({
                             <DeleteButton
                                 resourceName={resource.name}
                                 recordItemId={recordItemId ?? idFromRoute}
+                                onSuccess={() =>
+                                    list(resource.route ?? resource.name)
+                                }
                             />
                         )}
                         <RefreshButton

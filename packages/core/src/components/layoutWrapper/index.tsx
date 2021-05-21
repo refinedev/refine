@@ -18,6 +18,7 @@ export const LayoutWrapper: FC<LayoutWrapperProps> = ({
         Footer,
         Header,
         Sider,
+        Title,
         OffLayoutArea,
     } = useContext<IAdminContext>(AdminContext);
 
@@ -52,6 +53,7 @@ export const LayoutWrapper: FC<LayoutWrapperProps> = ({
             Sider={Sider}
             Header={Header}
             Footer={Footer}
+            Title={Title}
             OffLayoutArea={OffLayoutArea}
             dashboard={dashboard}
         >
