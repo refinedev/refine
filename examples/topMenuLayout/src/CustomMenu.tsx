@@ -1,18 +1,16 @@
 import React from "react";
-import { Layout, Menu } from "antd";
-import { LogoutOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
-
 import {
+    Link,
+    Menu,
+    useMenu,
     useNavigation,
     useTranslate,
-    useMenu,
     useLogout,
     useTitle,
-} from "@hooks";
+    Icons,
+} from "@pankod/refine";
 
-export const Sider: React.FC = () => {
-    const [collapsed, setCollapsed] = React.useState(false);
+export const CustomMenu: React.FC = () => {
     const logout = useLogout();
     const Title = useTitle();
     const { push } = useNavigation();
@@ -20,17 +18,13 @@ export const Sider: React.FC = () => {
     const { menuItems, selectedKey } = useMenu();
 
     return (
-        <Layout.Sider
-            collapsible
-            collapsed={collapsed}
-            onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
-        >
-            <Title collapsed={collapsed} />
+        <>
+            <Title collapsed={false} />
             <Menu
                 theme="dark"
                 defaultSelectedKeys={["dashboard"]}
                 selectedKeys={[selectedKey]}
-                mode="inline"
+                mode="horizontal"
             >
                 {menuItems.map(({ icon, route, label }) => (
                     <Menu.Item key={route} icon={icon}>
@@ -44,12 +38,12 @@ export const Sider: React.FC = () => {
                             logout().then(() => push("/login"));
                         }}
                         key="logout"
-                        icon={<LogoutOutlined />}
+                        icon={<Icons.LogoutOutlined />}
                     >
                         {translate("common:buttons.logout", "Logout")}
                     </Menu.Item>
                 )}
             </Menu>
-        </Layout.Sider>
+        </>
     );
 };
