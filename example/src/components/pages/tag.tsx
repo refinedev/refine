@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     List,
     Table,
@@ -14,6 +14,7 @@ import {
     DeleteButton,
     Space,
     useForm,
+    useDeleteMany,
 } from "@pankod/refine";
 
 export const TagList = (props: any) => {
@@ -24,14 +25,21 @@ export const TagList = (props: any) => {
         initialPageSize: 20,
     });
 
-    const start = () => {
-        setLoading(true);
+    const { mutate, isSuccess, isLoading } = useDeleteMany("tags");
 
-        setTimeout(() => {
-            setSelectedRowKeys([]);
-            setLoading(false);
-        }, 1000);
+    const start = () => {
+        console.log("selectedRowKeys", selectedRowKeys);
+
     };
+
+    useEffect(() => {
+        setSelectedRowKeys([]);
+        setLoading(false);
+    }, [isSuccess]);
+
+    useEffect(() => {
+        setLoading(isLoading);
+    }, [isLoading]);
 
     const onSelectChange = (selectedRowKeys: any) => {
         setSelectedRowKeys(selectedRowKeys);

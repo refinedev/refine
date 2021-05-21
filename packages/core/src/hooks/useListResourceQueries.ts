@@ -37,17 +37,24 @@ export const useCacheQueries = () => {
     const listResourceQueries = useListResourceQueries();
     const getOneQuery = useGetOneQueries();
 
-    return useCallback((resource: string, id?: string) => {
-        const query = getOneQuery(resource);
+    return useCallback((resource: string, id?: string | string[]) => {
+        const queries = getOneQuery(resource);
         const listQuery = listResourceQueries(resource);
 
         if (id) {
-            const getOneQueriesWithId = query.filter((query) => {
-                return (query.queryKey[1] as any).id === id;
-            });
+            let getOneQueriesWithId;
+            if (Array.isArray(id)) {
+                getOneQueriesWithId = queries.filter((query) => {
+                    return id.includes((query.queryKey[1] as any).id);
+                });
+            } else {
+                getOneQueriesWithId = queries.filter((query) => {
+                    return (query.queryKey[1] as any).id === id;
+                });
+            }
 
             return [...listQuery, ...getOneQueriesWithId];
         }
-        return [...listQuery, ...query];
+        return [...listQuery, ...queries];
     }, []);
 };

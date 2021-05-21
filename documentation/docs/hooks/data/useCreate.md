@@ -6,14 +6,14 @@ siderbar_label: useCreate
 
 `useCreate` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for create mutations. It uses `create` method as mutation function from the `dataProvider` that is passed to `<Admin>`.  
 
-### Features
+## Features
 
 * Shows notifications on success and error.  
 
 * Automatically invalidates `list` queries after mutation is succesfully run.  
 [Refer to React Query docs for detailed information &#8594](https://react-query.tanstack.com/guides/invalidations-from-mutations)
 
-### Usage
+## Usage
 
 Let'say we have a `categories` resource
 
@@ -38,7 +38,7 @@ Let'say we have a `categories` resource
 
 ```tsx
 type CategoryMutationResult = {
-    id?: string | number;
+    id: string | number;
     title: string;
 }
 
@@ -53,7 +53,7 @@ mutate({
 ```
 
 :::tip
-`mutate` can also accept lifecycle methods like `onSuccess` and `onError`. [Refer to `react-query` docs for further information.](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
+`mutate` can also accept lifecycle methods like `onSuccess` and `onError`. [Refer to react-query docs for further information.](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
 :::
 
 After mutation runs `categories` will be updated as below:
@@ -96,13 +96,23 @@ Variables passed to `mutate` must have the type of
 ```tsx
 {
     resource: string;
-    values: any;
+    values: TVariables = {};
 }
 ```
 :::
-### Return values
 
-| Property       | Description            | Type                                                                                                          |
-| -------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------- |
-| mutationResult | Result of the mutation | [`UseMutationResult<`<br/>`{ data: CategoryMutationResult },`<br/>`unknown,`<br/>`  { resource: string; values: any; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
+## API
+### Type Parameters
+
+
+| Property   | Desription                                             | Type              | Default           |
+| ---------- | ------------------------------------------------------ | ----------------- | ----------------- |
+| TData      | Result data of the mutation. Extends [`BaseRecord`](#) | [`BaseRecord`](#) | [`BaseRecord`](#) |
+| TError     | Custom error object that extends [`HttpError`](#)      | [`HttpError`](#)  | [`HttpError`](#)  |
+| TVariables | Values for mutation function                           | `{}`              | `{}`              |
+### Return value
+
+| Description                               | Type                                                                                                                                                                      |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { resource: string; values: TVariables; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
 
