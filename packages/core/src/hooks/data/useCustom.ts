@@ -11,7 +11,7 @@ import {
     HttpError,
 } from "../../interfaces";
 
-interface UseListConfig {
+interface UseCustomConfig {
     sort?: Sort;
     filters?: CrudFilters;
     payload?: {};
@@ -23,7 +23,7 @@ export const useCustom = <
 >(
     url: string,
     method: "get" | "delete" | "head" | "options" | "post" | "put" | "patch",
-    config?: UseListConfig,
+    config?: UseCustomConfig,
     queryOptions?: UseQueryOptions<CustomResponse<TData>, TError>,
 ): QueryObserverResult<CustomResponse<TData>, TError> => {
     const { custom } = useContext<IDataContext>(DataContext);
