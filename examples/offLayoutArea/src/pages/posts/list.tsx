@@ -1,13 +1,8 @@
 import {
     List,
     Table,
-    TextField,
     useTable,
     IResourceComponentsProps,
-    Space,
-    EditButton,
-    ShowButton,
-    useMany,
 } from "@pankod/refine";
 
 import { IPost } from "interfaces";
