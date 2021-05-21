@@ -38,7 +38,7 @@ Let'say we have a `categories` resource
 
 ```tsx
 type CategoryMutationResult = {
-    id?: string | number;
+    id: string | number;
     title: string;
 }
 
