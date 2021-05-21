@@ -25,6 +25,8 @@ module.exports = {
                         "hooks/data/useCreate",
                         "hooks/data/useCreateMany",
                         "hooks/data/useUpdate",
+                        "hooks/data/useDelete",
+                        "hooks/data/useDeleteMany",
                     ],
                 },
                 "useModalForm",
@@ -35,8 +37,8 @@ module.exports = {
                 "useSelect",
                 "useEditableTable",
                 "useRadioGroup",
-                "useForm"
+                "useForm",
             ],
-        }
+        },
     ],
 };
