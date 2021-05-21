@@ -12,6 +12,10 @@ We can make extensive search / filter operations using the `useTable` hook on th
 First, we create a form by extracting `formProps` from` useTable`. We will use this form for search / filtering.
 
 ```tsx
+import { Form, Button, DatePicker, Space } from "@pankod/refine";
+
+const { RangePicker } = DatePicker;
+
 const { formProps } = useTable<IPost>();
 
 <Space direction="vertical" size="large">
