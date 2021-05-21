@@ -59,7 +59,6 @@ export const PostReview = () => {
                     style={{ float: "right", marginRight: 24 }}
                 >
                     <Button
-                        key="reject"
                         danger
                         disabled={buttonDisabled}
                         onClick={() =>
@@ -69,7 +68,6 @@ export const PostReview = () => {
                         Reject
                     </Button>
                     <Button
-                        key="approve"
                         type="primary"
                         disabled={buttonDisabled}
                         onClick={() =>
