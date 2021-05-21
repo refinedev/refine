@@ -138,11 +138,13 @@
         "error": "Hata",
         "undoable": "Geri almak için {{seconds}} saniyeniz var",
         "createSuccess": "{{resource}} başarıyla oluşturuldu",
-        "createError": "{{resource}} oluşturulurken hata",
+        "createError": "{{resource}} oluşturulurken hata oluştu",
         "deleteSuccess": "{{resource}} başarıyla silindi",
-        "deleteError": "{{resource}} silinirken hata",
+        "deleteError": "{{resource}} silinirken hata oluştu",
         "editSuccess": "{{resource}} başarıyla düzenlendi",
-        "editError": "{{resource}} düzenlenirken hata"
+        "editError": "{{resource}} düzenlenirken hata oluştu",
+        "updateSuccess": "{{resource}} başarıyla düzenlendi",
+        "updateError": "{{resource}} güncellenirken hata oluştu"
     },
     "loading": "Yükleniyor",
     "backHome": "Ana sayfaya geri dön"
