@@ -30,11 +30,12 @@ import {
     TagsEdit,
     DashboardPage,
     ReadyPage,
+    TagList,
 } from "./components/pages";
 
 function App() {
     const [adminProps, demoSidebarProps] = useDemoSidebar({
-        defaultTitle: "Refine",
+        defaultTitle: "refine",
         defaultMutationMode: "pessimistic",
     });
 
@@ -61,8 +62,7 @@ function App() {
             Promise.resolve({
                 id: 1,
                 fullName: "Jane Doe",
-                avatar:
-                    "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
+                avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
             }),
     };
 
@@ -183,10 +183,10 @@ function App() {
             />
             <Resource
                 name="tags"
-                list={TagsList}
-                edit={TagsEdit}
-                create={TagsCreate}
-                icon={<Icons.TagsOutlined />}
+                list={TagList}
+                /* edit={TagsEdit}
+            create={TagsCreate}
+            icon={<Icons.TagsOutlined />} */
             />
         </Admin>
     );

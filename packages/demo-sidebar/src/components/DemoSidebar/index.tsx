@@ -84,7 +84,7 @@ export const DemoSidebar: React.FC<DemoSidebarProps> = ({
                         <Form.Item label="Title" style={formItemStyles}>
                             <Input
                                 size="small"
-                                placeholder="Refine"
+                                placeholder="refine"
                                 value={title}
                                 onChange={(e) => onTitleChange(e.target.value)}
                                 data-testid="title"

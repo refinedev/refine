@@ -140,9 +140,8 @@ const { clone } = useNavigation()
 | redirect               | Page to redirect after succesfull mutation                                                         | ` "show` \| `"edit` \| `"list"` \| `false`                        | `"list"`         |
 | undoableTimeout        | Duration to wait before executing mutations when `mutationMode = "undoable"`                       | `number`                                                          | `5000`*          |
 
-:::caution important
-`*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component. `useForm` will see what is passed to `<Admin>` as default and can override locally.
-:::
+>`*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component. `useForm` will use what is passed to `<Admin>` as default and can override locally.
+
 <br/>
 
 ### Return values
