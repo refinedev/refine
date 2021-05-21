@@ -140,7 +140,8 @@ export interface IDataContext {
         ids: Identifier[],
     ) => Promise<DeleteManyResponse<TData>>;
     getApiUrl: () => string;
-    custom?: <TData extends BaseRecord = BaseRecord>(
+    // TODO: Should be optional
+    custom: <TData extends BaseRecord = BaseRecord>(
         url: string,
         method:
             | "get"
