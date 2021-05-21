@@ -9,7 +9,12 @@ import {
     CondOperator,
     ComparisonOperator,
 } from "@nestjsx/crud-request";
-import { DataProvider, HttpError } from "@pankod/refine";
+import {
+    DataProvider,
+    HttpError,
+    Sort,
+    CrudFilters as RefineCrudFilter,
+} from "@pankod/refine";
 import { CrudOperators } from "@pankod/refine/dist/interfaces";
 
 type SortBy = QuerySort | QuerySortArr | Array<QuerySort | QuerySortArr>;
@@ -66,6 +71,56 @@ const mapOperator = (operator: CrudOperators): ComparisonOperator => {
     return CondOperator.EQUALS;
 };
 
+const generateSort = (sort?: Sort): SortBy => {
+    let sortBy: SortBy = { field: "id", order: "DESC" };
+    if (sort) {
+        if (Array.isArray(sort)) {
+            const multipleSort: SortBy = [];
+            sort.map(({ field, order }) => {
+                if (field && order) {
+                    multipleSort.push({
+                        field: field as string,
+                        order: order
+                            .replace("end", "")
+                            .toUpperCase() as QuerySortOperator,
+                    });
+                }
+            });
+            sortBy = multipleSort;
+        } else {
+            const { field, order } = sort;
+
+            if (field && order) {
+                sortBy = [
+                    {
+                        field: field as string,
+                        order: order
+                            .replace("end", "")
+                            .toUpperCase() as QuerySortOperator,
+                    },
+                ];
+            }
+        }
+    }
+
+    return sortBy;
+};
+
+const generateFilter = (filters?: RefineCrudFilter): CrudFilters => {
+    const crudFilters: CrudFilters = [];
+    if (filters) {
+        filters.map(({ field, operator, value }) => {
+            crudFilters.push({
+                field,
+                operator: mapOperator(operator),
+                value,
+            });
+        });
+    }
+
+    return crudFilters;
+};
+
 const NestsxCrud = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -75,51 +130,9 @@ const NestsxCrud = (
         const current = params.pagination?.current || 1;
         const pageSize = params.pagination?.pageSize || 10;
 
-        const { sort } = params;
+        const sortBy = generateSort(params.sort);
 
-        let sortBy: SortBy = { field: "id", order: "DESC" };
-        if (sort) {
-            if (Array.isArray(sort)) {
-                const multipleSort: SortBy = [];
-                sort.map(({ field, order }) => {
-                    if (field && order) {
-                        multipleSort.push({
-                            field: field as string,
-                            order: order
-                                .replace("end", "")
-                                .toUpperCase() as QuerySortOperator,
-                        });
-                    }
-                });
-                sortBy = multipleSort;
-            } else {
-                const { field, order } = sort;
-
-                if (field && order) {
-                    sortBy = [
-                        {
-                            field: field as string,
-                            order: order
-                                .replace("end", "")
-                                .toUpperCase() as QuerySortOperator,
-                        },
-                    ];
-                }
-            }
-        }
-
-        // filters
-        const crudFilters: CrudFilters = [];
-        const { filters } = params;
-        if (filters) {
-            filters.map(({ field, operator, value }) => {
-                crudFilters.push({
-                    field,
-                    operator: mapOperator(operator),
-                    value,
-                });
-            });
-        }
+        const filters = generateFilter(params.filters);
 
         // search
         const searchFilter: CrudFilters = [];
@@ -133,7 +146,7 @@ const NestsxCrud = (
         }
 
         const query = RequestQueryBuilder.create()
-            .setFilter(crudFilters)
+            .setFilter(filters)
             .setOr(searchFilter)
             .setLimit(pageSize)
             .setPage(current)
@@ -245,6 +258,35 @@ const NestsxCrud = (
 
     getApiUrl: () => {
         return apiUrl;
+    },
+
+    custom: async (url, method, params) => {
+        const { filters, sort, payload } = params;
+
+        const query = RequestQueryBuilder.create()
+            .setFilter(generateFilter(filters))
+            .sortBy(generateSort(sort))
+            .query();
+
+        let axiosResponse;
+        switch (method) {
+            case "put":
+            case "post":
+            case "patch":
+                axiosResponse = await httpClient.post(`${url}`, payload);
+                break;
+            case "delete":
+                axiosResponse = await httpClient.delete(`${url}`);
+                break;
+            default:
+                console.log("query", query);
+                axiosResponse = await httpClient.get(`${url}?${query}`);
+                break;
+        }
+
+        const { data } = axiosResponse;
+
+        return Promise.resolve({ data });
     },
 });
 
