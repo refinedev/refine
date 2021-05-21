@@ -56,6 +56,12 @@ When the form is submitted, the `onSearch` method runs and we get the search for
 import { useTable } from "@pankod/refine";
 import { Dayjs } from "dayjs";
 
+
+export interface IPost {
+    title: string;
+    createdAt: string;
+}
+
 const { formProps } = useTable<IPost>({
     onSearch: (params: { title: string; createdAt: [Dayjs, Dayjs] }) => {
         const filters: CrudFilters = [];
