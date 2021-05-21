@@ -87,4 +87,40 @@ describe("usePermissions Hook", () => {
             }
         });
     });
+
+    it("should return null if isProvided from AdminContext is false", () => {
+        const { result } = renderHook(() => useLogout(), {
+            wrapper: TestWrapper({
+                authProvider: {
+                    login: () => Promise.resolve(),
+                    checkAuth: () => Promise.resolve(),
+                    checkError: () => Promise.resolve(),
+                    getPermissions: () => Promise.resolve(),
+                    logout: () => Promise.resolve(),
+                    getUserIdentity: () => Promise.resolve(),
+                    isProvided: false,
+                },
+            }),
+        });
+
+        expect(result.current).toBeNull();
+    });
+
+    it("shoudn't return null if isProvided from AdminContext is true", () => {
+        const { result } = renderHook(() => useLogout(), {
+            wrapper: TestWrapper({
+                authProvider: {
+                    login: () => Promise.resolve(),
+                    checkAuth: () => Promise.resolve(),
+                    checkError: () => Promise.resolve(),
+                    getPermissions: () => Promise.resolve(),
+                    logout: () => Promise.resolve(),
+                    getUserIdentity: () => Promise.resolve(),
+                    isProvided: true,
+                },
+            }),
+        });
+
+        expect(result.current).not.toBeNull();
+    });
 });
