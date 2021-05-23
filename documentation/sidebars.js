@@ -23,8 +23,9 @@ module.exports = {
                     label: "Data",
                     items: [
                         "hooks/data/useCreate",
-                        "hooks/data/useCreateMany"
-                    ]
+                        "hooks/data/useCreateMany",
+                        "hooks/data/useCustom",
+                    ],
                 },
                 "useModalForm",
                 "useDrawerForm",
@@ -34,8 +35,8 @@ module.exports = {
                 "useSelect",
                 "useEditableTable",
                 "useRadioGroup",
-                "useForm"
+                "useForm",
             ],
-        }
+        },
     ],
 };
