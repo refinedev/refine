@@ -75,6 +75,10 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                                 label: "Draft",
                                 value: "draft",
                             },
+                            {
+                                label: "Rejected",
+                                value: "rejected",
+                            },
                         ]}
                     />
                 </Form.Item>
