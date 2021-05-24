@@ -25,6 +25,7 @@ type UpdateParams<T> = {
     id: string;
     values: T;
 };
+
 export type UseUpdateReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -119,9 +120,9 @@ export const useUpdate = <
                     const { queryKey } = queryItem;
                     await queryClient.cancelQueries(queryKey);
 
-                    const previousQuery = queryClient.getQueryData<QueryResponse>(
-                        queryKey,
-                    );
+                    const previousQuery = queryClient.getQueryData<
+                        QueryResponse<TData>
+                    >(queryKey);
 
                     if (!(mutationMode === "pessimistic")) {
                         if (previousQuery) {
@@ -184,9 +185,9 @@ export const useUpdate = <
                     notification.error({
                         key: `${id}-${resource}-notification`,
                         message: translate(
-                            "common:notifications:editError",
+                            "common:notifications:updateError",
                             { resourceSingular },
-                            `Error when editing ${resourceSingular} (status code: ${err.statusCode})`,
+                            `Error when updating ${resourceSingular} (status code: ${err.statusCode})`,
                         ),
                         description: err.message,
                     });
@@ -206,9 +207,9 @@ export const useUpdate = <
                         "Successful",
                     ),
                     description: translate(
-                        "common:notifications:editSuccess",
+                        "common:notifications:updateSuccess",
                         { resourceSingular },
-                        `Successfully edited ${resourceSingular}`,
+                        `Successfully updated ${resourceSingular}`,
                     ),
                 });
             },
