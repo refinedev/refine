@@ -26,7 +26,7 @@ const mapOperator = (operator: CrudOperators): string => {
         case "lte":
             return `_${operator}`;
         case "contains":
-            return "like";
+            return "_like";
     }
 
     return ""; // default "eq"
