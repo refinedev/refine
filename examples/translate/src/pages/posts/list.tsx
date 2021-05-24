@@ -8,11 +8,13 @@ import {
     EditButton,
     ShowButton,
     useMany,
+    useTranslate,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
 
 export const PostList = (props: IResourceComponentsProps) => {
+    const translate = useTranslate();
     const { tableProps } = useTable<IPost>();
 
     const categoryIds =
@@ -25,11 +27,15 @@ export const PostList = (props: IResourceComponentsProps) => {
         <List {...props}>
             <Table {...tableProps} key="id">
                 <Table.Column key="id" dataIndex="id" title="ID" />
-                <Table.Column key="title" dataIndex="title" title="Title" />
+                <Table.Column
+                    key="title"
+                    dataIndex="title"
+                    title={translate("resources:posts.title")}
+                />
                 <Table.Column
                     dataIndex={["category", "id"]}
                     key="category.id"
-                    title="Category"
+                    title={translate("resources:posts.category")}
                     render={(value) => {
                         if (isLoading) {
                             return <TextField value="Loading..." />;
@@ -46,7 +52,7 @@ export const PostList = (props: IResourceComponentsProps) => {
                     }}
                 />
                 <Table.Column<IPost>
-                    title="Actions"
+                    title={translate("common:table.actions")}
                     dataIndex="actions"
                     key="actions"
                     render={(_value, record) => (

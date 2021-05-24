@@ -1,10 +1,14 @@
 {
-    "resources": {
-        "posts": {
-            "title": "Başlık",
-            "content": "İçerik",
-            "createdAt": "Oluştrma Tarihi",
-            "actions": "İşlemler"
-        }
+    "posts": {
+        "id": "Id",
+        "title": "Başlık",
+        "category": "Kategori",
+        "status": {
+            "title": "Durum",
+            "published": "Yayınlanan",
+            "draft": "Taslak",
+            "rejected": "Reddedildi"
+        },
+        "content": "İçerik"
     }
 }

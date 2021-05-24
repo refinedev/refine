@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
     Edit,
     Form,
@@ -7,6 +7,7 @@ import {
     Select,
     useForm,
     useSelect,
+    useTranslate,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -17,6 +18,7 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostEdit = (props: IResourceComponentsProps) => {
+    const translate = useTranslate();
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
     const postData = queryResult?.data?.data;
@@ -25,15 +27,14 @@ export const PostEdit = (props: IResourceComponentsProps) => {
         defaultValue: postData?.category.id,
     });
 
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
+    const [selectedTab, setSelectedTab] =
+        useState<"write" | "preview">("write");
 
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label="Title"
+                    label={translate("resources:posts.title")}
                     name="title"
                     rules={[
                         {
@@ -44,7 +45,7 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Category"
+                    label={translate("resources:posts.category")}
                     name={["category", "id"]}
                     rules={[
                         {
@@ -55,7 +56,7 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                     <Select {...categorySelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label="Status"
+                    label={translate("resources:posts.status.title")}
                     name="status"
                     rules={[
                         {
@@ -66,22 +67,28 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                     <Select
                         options={[
                             {
-                                label: "Published",
+                                label: translate(
+                                    "resources:posts.status.published",
+                                ),
                                 value: "published",
                             },
                             {
-                                label: "Draft",
+                                label: translate(
+                                    "resources:posts.status.draft",
+                                ),
                                 value: "draft",
                             },
                             {
-                                label: "Rejected",
+                                label: translate(
+                                    "resources:posts.status.rejected",
+                                ),
                                 value: "rejected",
                             },
                         ]}
                     />
                 </Form.Item>
                 <Form.Item
-                    label="Content"
+                    label={translate("resources:posts.content")}
                     name="content"
                     rules={[
                         {

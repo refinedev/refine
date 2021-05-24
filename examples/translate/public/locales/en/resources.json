@@ -1,10 +1,14 @@
 {
-    "resources": {
-        "posts": {
-            "title": "Title",
-            "content": "Content",
-            "createdAt": "Created At",
-            "actions": "Actions"
-        }
+    "posts": {
+        "id": "Id",
+        "title": "Title",
+        "category": "Category",
+        "status": {
+            "title": "Status",
+            "published": "Published",
+            "draft": "Draft",
+            "rejected": "Rejected"
+        },
+        "content": "Content"
     }
 }

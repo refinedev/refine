@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
     Create,
     Form,
@@ -7,6 +7,7 @@ import {
     Select,
     useForm,
     useSelect,
+    useTranslate,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -17,21 +18,21 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostCreate = (props: IResourceComponentsProps) => {
+    const translate = useTranslate();
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
     });
 
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
+    const [selectedTab, setSelectedTab] =
+        useState<"write" | "preview">("write");
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label="Title"
+                    label={translate("resources:posts.title")}
                     name="title"
                     rules={[
                         {
@@ -42,7 +43,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Category"
+                    label={translate("resources:posts.category")}
                     name={["category", "id"]}
                     rules={[
                         {
@@ -53,7 +54,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                     <Select {...categorySelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label="Status"
+                    label={translate("resources:posts.status.title")}
                     name="status"
                     rules={[
                         {
@@ -64,22 +65,28 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                     <Select
                         options={[
                             {
-                                label: "Published",
+                                label: translate(
+                                    "resources:posts.status.published",
+                                ),
                                 value: "published",
                             },
                             {
-                                label: "Draft",
+                                label: translate(
+                                    "resources:posts.status.draft",
+                                ),
                                 value: "draft",
                             },
                             {
-                                label: "Rejected",
+                                label: translate(
+                                    "resources:posts.status.rejected",
+                                ),
                                 value: "rejected",
                             },
                         ]}
                     />
                 </Form.Item>
                 <Form.Item
-                    label="Content"
+                    label={translate("resources:posts.content")}
                     name="content"
                     rules={[
                         {
