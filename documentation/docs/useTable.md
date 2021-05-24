@@ -37,7 +37,7 @@ export interface IPost {
     id: string;
     title: string;
     content: string;
-    status: "published" | "draft";
+    status: "published" | "draft" | "rejected";
 }
 ```
 
@@ -161,7 +161,7 @@ const { tableProps, sorter } = useTable<IPost>({
 
 ## Filtreleme
 
-Endpointten gelen her `post` bir `status` değerine sahip. Bu değer `published` ya da `draft` olabilir. `status` değerini bir Ant Design `<TagField>` ile gösterebiliriz: 
+Endpointten gelen her `post` bir `status` değerine sahip. Bu değer `published` ya da `draft` olabilir. `status` değerini bir Ant Design `<TagField>` ile gösterebiliriz:
 
 ```tsx title="/src/pages/posts/list.tsx"
 ...
@@ -231,6 +231,7 @@ export const PostList = (props: IResourceComponentsProps) => {
                             <Radio.Group>
                                 <Radio value="published">Published</Radio>
                                 <Radio value="draft">Draft</Radio>
+                                <Radio value="rejected">Rejected</Radio>
                             </Radio.Group>
                         </FilterDropdown>
                     )}
@@ -326,10 +327,11 @@ export const PostList = (props: IResourceComponentsProps) => {
                             <Radio.Group>
                                 <Radio value="published">Published</Radio>
                                 <Radio value="draft">Draft</Radio>
+                                <Radio value="rejected">Rejected</Radio>
                             </Radio.Group>
                         </FilterDropdown>
                     )}
-                    //highlight-next-line 
+                    //highlight-next-line
                     defaultFilteredValue={getDefaultFilter("status", filters)}
                 />
             </Table>
@@ -344,12 +346,13 @@ export const PostList = (props: IResourceComponentsProps) => {
 
 ## API
 
-| Key              | Description                                                                                                               | Type      |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------- | --------- |
-| permanentFilter  | Varsayılan ve değiştirilemez filtre.                                                                                      | `Filters` |
-| resource         | Verilerin listeleneceği resource. Eğer verilmezse, contextten çıkarım yapılır.                                            | `string`  |
-| initialCurrent   | Varsayılan sayfa indeksi.                                                                                                 | `number`  |
-| initialPageSize  | Varsayılan sayfa başına gösterilen kayıt sayısı.                                                                          | `number`  |
-| initialSorter    | Varsayılan sıralama.                                                                                                      | Sort      |
-| initialFilter    | Varsayılan filtreleme.                                                                                                    | `Filters` |
+| Key | Description | Type |
+| --- | --- | --- |
+| permanentFilter | Varsayılan ve değiştirilemez filtre. | `CrudFilters` |
+| resource | Verilerin listeleneceği resource. Eğer verilmezse, contextten çıkarım yapılır. | `string` |
+| initialCurrent | Varsayılan sayfa indeksi. | `number`  |
+| initialPageSize | Varsayılan sayfa başına gösterilen kayıt sayısı. | `number`  |
+| initialSorter | Varsayılan sıralama. | Sort |
+| initialFilter | Varsayılan filtreleme. | `CrudFilters` |
 | syncWithLocation | Tablodaki sıralamalar, filtreler, sayfa indeksi ve sayfa başına gösterilen kayıt browser history tarafından takip edilir. | `boolean` |
+| onSearch | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form](/docs/table-search). | `Function` |

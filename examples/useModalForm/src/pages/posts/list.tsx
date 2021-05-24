@@ -132,6 +132,10 @@ export const PostList = (props: IResourceComponentsProps) => {
                                         label: "Draft",
                                         value: "draft",
                                     },
+                                    {
+                                        label: "Rejected",
+                                        value: "rejected",
+                                    },
                                 ]}
                             />
                         </Form.Item>
@@ -178,6 +182,10 @@ export const PostList = (props: IResourceComponentsProps) => {
                                     {
                                         label: "Draft",
                                         value: "draft",
+                                    },
+                                    {
+                                        label: "Rejected",
+                                        value: "rejected",
                                     },
                                 ]}
                             />

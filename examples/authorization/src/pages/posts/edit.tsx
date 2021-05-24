@@ -25,9 +25,8 @@ export const PostEdit = (props: IResourceComponentsProps) => {
         defaultValue: postData?.category.id,
     });
 
-    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
-        "write",
-    );
+    const [selectedTab, setSelectedTab] =
+        React.useState<"write" | "preview">("write");
 
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>
@@ -76,6 +75,10 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                             {
                                 label: "Draft",
                                 value: "draft",
+                            },
+                            {
+                                label: "Rejected",
+                                value: "rejected",
                             },
                         ]}
                     />

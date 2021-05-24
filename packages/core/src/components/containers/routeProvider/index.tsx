@@ -29,9 +29,8 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     LoginPage,
     customRoutes,
 }) => {
-    const { isAuthenticated, checkAuth, checkError } = useContext<IAuthContext>(
-        AuthContext,
-    );
+    const { isAuthenticated, checkAuth, checkError } =
+        useContext<IAuthContext>(AuthContext);
 
     checkAuth().catch(checkError);
 
@@ -121,15 +120,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         RouteHandler(item);
     });
 
-    const RouteWithSubRoutes = (route: any) => {
-        return (
-            <Route
-                exact
-                path={route.path}
-                render={(props) => <route.component {...props} />}
-            />
-        );
-    };
+    const RouteWithSubRoutes = (route: any) => <Route {...route} />;
 
     const renderAuthorized = () => (
         <LayoutWrapper>

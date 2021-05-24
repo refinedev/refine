@@ -14,7 +14,7 @@ import {
 import { DemoSidebar, useDemoSidebar } from "@pankod/refine-demo-sidebar";
 import "@pankod/refine/dist/styles.min.css";
 
-import dataProvider from "@pankod/refine-nestjsx-crud";
+import dataProvider from "@pankod/refine-json-server";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -90,7 +90,7 @@ function App() {
     return (
         <Admin
             authProvider={authProvider}
-            dataProvider={dataProvider("https://refine-nestjs-crud.pankod.com")}
+            dataProvider={dataProvider("https://refine-fake-rest.pankod.com")}
             DashboardPage={DashboardPage}
             ReadyPage={ReadyPage}
             i18nProvider={i18nProvider}

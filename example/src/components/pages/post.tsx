@@ -39,6 +39,7 @@ import {
     Typography,
     useSelect,
     useMany,
+    DatePicker,
     useDeleteMany,
 } from "@pankod/refine";
 
@@ -52,7 +53,7 @@ const { Title, Text } = Typography;
 interface IPost {
     title: string;
     slug: string;
-    status: "published" | "draft";
+    status: "published" | "draft" | "rejected";
     createdAt: string;
     category: ICategory;
     user: {
@@ -68,14 +69,9 @@ interface ICategory {
 
 export const PostList = (props: any) => {
     const translate = useTranslate();
+    const { RangePicker } = DatePicker;
+
     const { tableProps, sorter, filters } = useTable<IPost>({
-        // permanentFilter: [
-        //     {
-        //         field: "createdAt",
-        //         operator: "gte",
-        //         value: "2021-05-17",
-        //     },
-        // ],
         initialSorter: [
             {
                 field: "createdAt",
@@ -84,12 +80,16 @@ export const PostList = (props: any) => {
         ],
     });
 
-    const [selectedRowKeys, setSelectedRowKeys] = React.useState<(string | number)[]>([]);
+    const [selectedRowKeys, setSelectedRowKeys] = React.useState<
+        (string | number)[]
+    >([]);
 
-    const { mutate, isSuccess, isLoading: deleteManyIsLoading } = useDeleteMany<IPost>(
-        "posts",
-    );
-    
+    const {
+        mutate,
+        isSuccess,
+        isLoading: deleteManyIsLoading,
+    } = useDeleteMany<IPost>("posts");
+
     const deleteSelectedItems = () => {
         mutate({ ids: selectedRowKeys });
     };
@@ -101,7 +101,7 @@ export const PostList = (props: any) => {
     }, [isSuccess]);
 
     const onSelectChange = (selectedRowKeys: (string | number)[]) => {
-        console.log({selectedRowKeys})
+        console.log({ selectedRowKeys });
         setSelectedRowKeys(selectedRowKeys);
     };
 
@@ -269,6 +269,11 @@ export const PostList = (props: any) => {
                                         "common:resources.posts.fields.status.draft",
                                     )}
                                 </Radio>
+                                <Radio value="rejected">
+                                    {translate(
+                                        "common:resources.posts.fields.status.rejected",
+                                    )}
+                                </Radio>
                             </Radio.Group>
                         </FilterDropdown>
                     )}
@@ -319,26 +324,19 @@ export const PostCreate = (props: any) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
 
-    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
-        "write",
-    );
+    const [selectedTab, setSelectedTab] =
+        React.useState<"write" | "preview">("write");
     const { isLoading, onChange } = useFileUploadState();
 
-    const {
-        current,
-        gotoStep,
-        stepsProps,
-        submit,
-        formLoading,
-        formProps,
-    } = useStepsForm({
-        warnWhenUnsavedChanges: true,
-        defaultFormValues: () => {
-            return {
-                status: "published",
-            };
-        },
-    });
+    const { current, gotoStep, stepsProps, submit, formLoading, formProps } =
+        useStepsForm({
+            warnWhenUnsavedChanges: true,
+            defaultFormValues: () => {
+                return {
+                    status: "published",
+                };
+            },
+        });
 
     const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
@@ -405,6 +403,12 @@ export const PostCreate = (props: any) => {
                                 "common:resources.posts.fields.status.draft",
                             ),
                             value: "draft",
+                        },
+                        {
+                            label: translate(
+                                "common:resources.posts.fields.status.rejected",
+                            ),
+                            value: "rejected",
                         },
                     ]}
                 />
@@ -542,9 +546,8 @@ export const PostEdit = (props: any) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
 
-    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
-        "write",
-    );
+    const [selectedTab, setSelectedTab] =
+        React.useState<"write" | "preview">("write");
     const { onChange, isLoading } = useFileUploadState();
 
     const {
@@ -631,6 +634,12 @@ export const PostEdit = (props: any) => {
                                 "common:resources.posts.fields.status.draft",
                             ),
                             value: "draft",
+                        },
+                        {
+                            label: translate(
+                                "common:resources.posts.fields.status.rejected",
+                            ),
+                            value: "rejected",
                         },
                     ]}
                 />
