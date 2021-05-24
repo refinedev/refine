@@ -34,6 +34,7 @@ export interface EditProps {
     pageHeaderProps?: PageHeaderProps;
     canDelete?: boolean;
     deleteButtonProps?: DeleteButtonProps;
+    resource?: string;
 }
 
 export const Edit: React.FC<EditProps> = ({
@@ -46,18 +47,22 @@ export const Edit: React.FC<EditProps> = ({
     deleteButtonProps,
     pageHeaderProps,
     canDelete,
+    resource: resourceFromProps,
 }) => {
     const translate = useTranslate();
-    const { push, goBack } = useNavigation();
+    const { goBack, list } = useNavigation();
     const resourceWithRoute = useResourceWithRoute();
 
     const { mutationMode: mutationModeContext } = useMutationMode();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
+    const {
+        resource: routeResourceName,
+        id: idFromRoute,
+    } = useParams<ResourceRouterParams>();
 
-    const resource = resourceWithRoute(routeResourceName);
+    const resource = resourceWithRoute(routeResourceName ?? resourceFromProps);
 
     const isDeleteButtonVisible = canDelete
         ? canDelete
@@ -77,8 +82,13 @@ export const Edit: React.FC<EditProps> = ({
             extra={
                 <Row>
                     <Space>
-                        {!recordItemId && <ListButton />}
-                        <RefreshButton recordItemId={recordItemId} />
+                        {!recordItemId && (
+                            <ListButton resourceName={resource.name} />
+                        )}
+                        <RefreshButton
+                            resourceName={resource.name}
+                            recordItemId={recordItemId ?? idFromRoute}
+                        />
                     </Space>
                 </Row>
             }
@@ -96,8 +106,8 @@ export const Edit: React.FC<EditProps> = ({
                                     <DeleteButton
                                         mutationMode={mutationMode}
                                         onSuccess={() => {
-                                            return push(
-                                                `/resources/${resource.route}`,
+                                            list(
+                                                resource.route ?? resource.name,
                                             );
                                         }}
                                         {...deleteButtonProps}

@@ -77,6 +77,10 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                                 label: "Draft",
                                 value: "draft",
                             },
+                            {
+                                label: "Rejected",
+                                value: "rejected",
+                            },
                         ]}
                     />
                 </Form.Item>

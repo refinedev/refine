@@ -124,6 +124,7 @@ export const Admin: React.FC<AdminProps> = ({
                                         Footer={Footer}
                                         Header={Header}
                                         OffLayoutArea={OffLayoutArea}
+                                        hasDashboard={!!DashboardPage}
                                     >
                                         <Router>
                                             <RouteProvider

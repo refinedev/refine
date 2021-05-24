@@ -33,7 +33,7 @@ describe("useShow Hook", () => {
 
     it("should fetch data with hook params succesfully", async () => {
         const { result, waitFor } = renderHook(
-            () => useShow({ resourceName: "posts", id: "1" }),
+            () => useShow({ resource: "posts", id: "1" }),
             {
                 wrapper: WrapperWithRoute,
             },

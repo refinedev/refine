@@ -27,6 +27,10 @@ export const PostEdit = () => {
                                 label: "Draft",
                                 value: "draft",
                             },
+                            {
+                                label: "Rejected",
+                                value: "rejected",
+                            },
                         ]}
                     />
                 </Form.Item>
