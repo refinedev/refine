@@ -57,20 +57,20 @@ const { data, isLoading } = useCustom<IPost[]>(
 
 #### Parameters
 
-| Property     | Description                                                             | Type   | Required |
-| ------------ | ----------------------------------------------------------------------- | ------ | -------- |
-| url          | URL                                                                     | string | true     |
-| method       | Method                                                                  | string | true     |
-| config       | Query Params                                                            | object | false    |
-| queryOptions | [useQuery Options](https://react-query.tanstack.com/reference/useQuery) | object | false    |
+| Property     | Description                                                             | Type                                                             | Required |
+| ------------ | ----------------------------------------------------------------------- | ---------------------------------------------------------------- | -------- |
+| url          | URL                                                                     | string                                                           | true     |
+| method       | Method                                                                  | "get", "delete", "head", "options", "post", "put", "patch"       | true     |
+| config       | Query Params                                                            | { sort?: Sort; filters?: CrudFilters; payload?: {}; query?: {} } | false    |
+| queryOptions | [useQuery Options](https://react-query.tanstack.com/reference/useQuery) | object                                                           | false    |
 
 #### Type Parameters
 
-| Property   | Desription                                             | Type              | Default           |
-| ---------- | ------------------------------------------------------ | ----------------- | ----------------- |
-| TData      | Result data of the mutation. Extends [`BaseRecord`](#) | [`BaseRecord`](#) | [`BaseRecord`](#) |
-| TError     | Custom error object that extends [`HttpError`](#)      | [`HttpError`](#)  | [`HttpError`](#)  |
-| TVariables | Values for mutation function                           | `{}`              | `{}`              |
+| Property   | Desription                                          | Type              | Default           |
+| ---------- | --------------------------------------------------- | ----------------- | ----------------- |
+| TData      | Result data of the query. Extends [`BaseRecord`](#) | [`BaseRecord`](#) | [`BaseRecord`](#) |
+| TError     | Custom error object that extends [`HttpError`](#)   | [`HttpError`](#)  | [`HttpError`](#)  |
+| TVariables | Values for request function                         | `{}`              | `{}`              |
 
 #### Return value
 

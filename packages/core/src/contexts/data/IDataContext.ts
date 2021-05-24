@@ -155,6 +155,7 @@ export interface IDataContext {
             sort?: Sort;
             filters?: CrudFilter[];
             payload?: {};
+            query?: {};
         },
     ) => Promise<CustomResponse<TData>>;
 }

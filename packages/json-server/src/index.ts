@@ -198,16 +198,23 @@ const JsonServer = (
     },
 
     custom: async (url, method, params = {}) => {
-        const { filters, sort, payload } = params;
+        const { filters, sort, payload, query } = params;
 
-        const { _sort, _order } = generateSort(sort);
+        let q: any;
+        if (sort) {
+            const { _sort, _order } = generateSort(sort);
+            q._sort = _sort.join(",");
+            q._order = _order.join(",");
+        }
 
-        const queryFilters = generateFilter(filters);
+        if (filters) {
+            const generateFilters = generateFilter(filters);
+            q = { ...q, ...generateFilters };
+        }
 
-        const query = {
-            _sort: _sort.join(","),
-            _order: _order.join(","),
-        };
+        if (query) {
+            q = { ...q, ...query };
+        }
 
         let axiosResponse;
         switch (method) {
@@ -220,9 +227,7 @@ const JsonServer = (
                 axiosResponse = await httpClient.delete(`${url}`);
                 break;
             default:
-                axiosResponse = await httpClient.get(
-                    `${url}?${stringify(query)}&${stringify(queryFilters)}`,
-                );
+                axiosResponse = await httpClient.get(`${url}?${stringify(q)}`);
                 break;
         }
 

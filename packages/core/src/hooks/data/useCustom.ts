@@ -14,6 +14,7 @@ import {
 interface UseCustomConfig {
     sort?: Sort;
     filters?: CrudFilters;
+    query?: {};
     payload?: {};
 }
 
