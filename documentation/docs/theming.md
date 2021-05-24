@@ -83,9 +83,23 @@ Then, execute `npm start` to start your application. Since `craco-less` is activ
 
 There are two approaches to override variables.
 
+### Variable overrides in `less` files
+
+You can just change variables values in `less` files. Add these contents to your `/styles/antd.less` file:
+
+```less title="/styles/antd.less"
+@import '~@pankod/refine/node_modules/antd/lib/style/themes/default.less';
+@import '~@pankod/refine/node_modules/antd/dist/antd.less';
+// There are some major variables below, 
+// all less variables could be found in 
+// https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
+
+@primary-color: #1DA57A;
+```
+
 ### Variable overrides in `craco.config.js`
 
-To change the variable named `@primary-color`, you can use `modifyVars` property of [`lessOptions`](https://github.com/DocSpring/craco-less#configuration):
+Or you can use `craco.config.js` to change variable values. To change the variable named `@primary-color`, you can use `modifyVars` property of [`lessOptions`](https://github.com/DocSpring/craco-less#configuration):
 
 ```ts
 const CracoLessPlugin = require("craco-less");
@@ -106,20 +120,6 @@ module.exports = {
         },
     ],
 };
-```
-
-### Variable overrides in `less` files
-
-Or you can just change their values in `less` files. Add these contents to your `/styles/antd.less` file:
-
-```less title="/styles/antd.less"
-@import '~@pankod/refine/node_modules/antd/lib/style/themes/default.less';
-@import '~@pankod/refine/node_modules/antd/dist/antd.less';
-// There are some major variables below, 
-// all less variables could be found in 
-// https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
-
-@primary-color: #1DA57A;
 ```
 
 All variable overrides configured in `lessOptions.modifyVars` always have higher precedence than overrides in `less` files.
