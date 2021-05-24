@@ -124,7 +124,7 @@ const JsonServer = (
     update: async (resource, id, params) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.put(url, params);
+        const { data } = await httpClient.patch(url, params);
 
         return {
             data,
@@ -134,7 +134,7 @@ const JsonServer = (
     updateMany: async (resource, ids, params) => {
         const response = await Promise.all(
             ids.map(async (id) => {
-                const { data } = await httpClient.put(
+                const { data } = await httpClient.patch(
                     `${apiUrl}/${resource}/${id}`,
                     params,
                 );

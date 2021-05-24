@@ -192,10 +192,7 @@ const NestsxCrud = (
             ids.map(async (id) => {
                 const { data } = await httpClient.patch(
                     `${apiUrl}/${resource}/${id}`,
-                    {
-                        ...params,
-                        id,
-                    },
+                    params,
                 );
                 return data;
             }),
