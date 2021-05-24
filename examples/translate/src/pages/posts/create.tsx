@@ -25,8 +25,9 @@ export const PostCreate = (props: IResourceComponentsProps) => {
         resource: "categories",
     });
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+        "write",
+    );
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
