@@ -9,6 +9,7 @@
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.3",
     "i18next": "^20.3.0",
+    "i18next-browser-languagedetector": "^6.1.1",
     "i18next-xhr-backend": "^3.2.2",
     "react": "../../node_modules/react",
     "react-dom": "../../node_modules/react-dom",
