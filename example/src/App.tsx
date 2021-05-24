@@ -35,7 +35,7 @@ import {
 
 function App() {
     const [adminProps, demoSidebarProps] = useDemoSidebar({
-        defaultTitle: "Refine",
+        defaultTitle: "refine",
         defaultMutationMode: "pessimistic",
     });
 

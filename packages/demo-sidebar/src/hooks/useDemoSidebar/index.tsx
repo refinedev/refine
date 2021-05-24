@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MutationMode, TitleProps } from "@pankod/refine";
+import { MutationMode, TitleProps, Link } from "@pankod/refine";
 import { DemoSidebarProps } from "../../components/DemoSidebar/types";
 
 interface DemoSidebarParams {
@@ -25,7 +25,25 @@ export const useDemoSidebar = ({
     ] = useState<boolean>(false);
     const [undoableTimeout, setUndoableTimeout] = useState<number>(5000);
 
-    const DefaultTitle = () => <span>{title}</span>;
+    const DefaultTitle = () => (
+        <Link to="/">
+            <a
+                href="/"
+                style={{
+                    display: "flex",
+                    width: "100%",
+                    textAlign: "center",
+                    color: "rgb(255, 255, 255)",
+                    fontSize: "16px",
+                    height: "60px",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
+            >
+                {title}
+            </a>
+        </Link>
+    );
 
     const adminProps = {
         Title: DefaultTitle,

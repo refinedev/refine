@@ -5,7 +5,6 @@ import { LayoutProps } from "../../../../interfaces/customComponents";
 
 export const Layout: React.FC<LayoutProps> = ({
     children,
-    dashboard,
     Sider,
     // Header,
     Footer,
@@ -13,7 +12,7 @@ export const Layout: React.FC<LayoutProps> = ({
 }) => {
     return (
         <AntLayout style={{ minHeight: "100vh" }}>
-            <Sider dashboard={dashboard} />
+            <Sider />
             <AntLayout className="site-layout">
                 {/* <Header /> */}
                 <AntLayout.Content>

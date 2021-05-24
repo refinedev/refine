@@ -7,7 +7,7 @@ module.exports = {
         {
             type: "category",
             label: "Guides",
-            items: ["multipartUpload", "base64upload", "auth0"],
+            items: ["multipartUpload", "base64upload", "auth0", "customPages"],
         },
         {
             type: "category",

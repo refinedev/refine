@@ -207,7 +207,7 @@ export const PostList = () => {
 ```ts title="interfaces/index.d.ts"
 export interface IPost {
     title: string;
-    status: "published" | "draft";
+    status: "published" | "draft" | "rejected";
     createdAt: string;
 }
 ```
@@ -407,7 +407,7 @@ export interface ICategory {
 
 export interface IPost {
     title: string;
-    status: "published" | "draft";
+    status: "published" | "draft" | "rejected";
     // highlight-next-line
     category: ICategory;
     createdAt: string;
@@ -476,6 +476,10 @@ export const PostEdit = () => {
                             {
                                 label: "Draft",
                                 value: "draft",
+                            },
+                            {
+                                label: "Rejected",
+                                value: "rejected",
                             },
                         ]}
                     />
@@ -658,6 +662,10 @@ export const PostCreate = () => {
                             {
                                 label: "Draft",
                                 value: "draft",
+                            },
+                            {
+                                label: "Rejected",
+                                value: "rejected",
                             },
                         ]}
                     />

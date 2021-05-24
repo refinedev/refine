@@ -1,8 +1,13 @@
-import { SiderProps } from "@components/layoutWrapper/components/sider";
 import React from "react";
-import { MutationMode, TitleProps, LayoutProps } from "../../interfaces";
+import {
+    MutationMode,
+    TitleProps,
+    LayoutProps,
+    SiderProps,
+} from "../../interfaces";
 
 export interface IAdminContext {
+    hasDashboard: boolean;
     warnWhen: boolean;
     setWarnWhen: (value: boolean) => void;
     mutationMode: MutationMode;
@@ -18,6 +23,7 @@ export interface IAdminContext {
 }
 
 export interface IAdminContextProvider {
+    hasDashboard: boolean;
     mutationMode: MutationMode;
     warnWhenUnsavedChanges: boolean;
     syncWithLocation: boolean;
