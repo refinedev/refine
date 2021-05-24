@@ -57,7 +57,8 @@
                 "status": {
                     "title": "Status",
                     "published": "Published",
-                    "draft": "Draft"
+                    "draft": "Draft",
+                    "rejected": "Rejected"
                 },
                 "url": "Url",
                 "content": "Content",
