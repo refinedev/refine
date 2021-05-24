@@ -84,12 +84,16 @@ export const PostList = (props: any) => {
         ],
     });
 
-    const [selectedRowKeys, setSelectedRowKeys] = React.useState<(string | number)[]>([]);
+    const [selectedRowKeys, setSelectedRowKeys] = React.useState<
+        (string | number)[]
+    >([]);
 
-    const { mutate, isSuccess, isLoading: deleteManyIsLoading } = useDeleteMany<IPost>(
-        "posts",
-    );
-    
+    const {
+        mutate,
+        isSuccess,
+        isLoading: deleteManyIsLoading,
+    } = useDeleteMany<IPost>("posts");
+
     const deleteSelectedItems = () => {
         mutate({ ids: selectedRowKeys });
     };
@@ -101,7 +105,7 @@ export const PostList = (props: any) => {
     }, [isSuccess]);
 
     const onSelectChange = (selectedRowKeys: (string | number)[]) => {
-        console.log({selectedRowKeys})
+        console.log({ selectedRowKeys });
         setSelectedRowKeys(selectedRowKeys);
     };
 
