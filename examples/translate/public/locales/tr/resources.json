@@ -1,0 +1,10 @@
+{
+    "resources": {
+        "posts": {
+            "title": "Başlık",
+            "content": "İçerik",
+            "createdAt": "Oluştrma Tarihi",
+            "actions": "İşlemler"
+        }
+    }
+}

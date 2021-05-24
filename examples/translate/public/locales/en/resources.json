@@ -1,0 +1,10 @@
+{
+    "resources": {
+        "posts": {
+            "title": "Title",
+            "content": "Content",
+            "createdAt": "Created At",
+            "actions": "Actions"
+        }
+    }
+}
