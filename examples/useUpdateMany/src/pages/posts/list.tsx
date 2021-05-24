@@ -1,3 +1,4 @@
+import * as React from "react";
 import {
     List,
     Table,
@@ -10,6 +11,7 @@ import {
     useMany,
     useUpdateMany,
     Button,
+    useTranslate,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
@@ -23,30 +25,66 @@ export const PostList = (props: IResourceComponentsProps) => {
         enabled: categoryIds.length > 0,
     });
 
+    const [selectedRowKeys, setSelectedRowKeys] = React.useState<
+        (string | number)[]
+    >([]);
+
     const {
         mutate,
         isSuccess,
         isLoading: deleteManyIsLoading,
-    } = useUpdateMany<IPost>("posts");
+    } = useUpdateMany<IPost>("posts", "undoable");
+
+    const updateSelectedItems = () => {
+        mutate({
+            ids: selectedRowKeys,
+            values: {
+                status: "draft",
+            },
+        });
+    };
+
+    React.useEffect(() => {
+        if (isSuccess) {
+            setSelectedRowKeys([]);
+        }
+    }, [isSuccess]);
+
+    const onSelectChange = (selectedRowKeys: (string | number)[]) => {
+        console.log({ selectedRowKeys });
+        setSelectedRowKeys(selectedRowKeys);
+    };
+
+    const rowSelection = {
+        selectedRowKeys,
+        onChange: onSelectChange,
+        selections: [
+            Table.SELECTION_ALL,
+            Table.SELECTION_INVERT,
+            Table.SELECTION_NONE,
+        ],
+    };
+
+    const hasSelected = selectedRowKeys.length > 0;
 
     return (
         <List {...props}>
-            {/*         <div style={{ padding: "16px 8px" }}>
+            <div style={{ padding: "16px 8px" }}>
                 <Button
                     type="primary"
-                    onClick={deleteSelectedItems}
+                    onClick={updateSelectedItems}
                     disabled={!hasSelected}
                     loading={deleteManyIsLoading}
                 >
-                    {translate("common:resources.posts.updateMany")}
+                    Update All
                 </Button>
                 <span style={{ marginLeft: 8 }}>
                     {hasSelected
                         ? `Selected ${selectedRowKeys.length} items`
                         : ""}
                 </span>
-            </div> */}
-            <Table {...tableProps} key="id">
+            </div>
+            <Table {...tableProps} rowSelection={rowSelection} rowKey="id">
                 <Table.Column key="id" dataIndex="id" title="ID" />
                 <Table.Column key="title" dataIndex="title" title="Title" />
                 <Table.Column key="status" dataIndex="status" title="Status" />
