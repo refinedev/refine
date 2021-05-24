@@ -13,6 +13,9 @@ i18n.use(Backend)
             loadPath: "/locales/{{lng}}/{{ns}}.json",
         },
         fallbackLng: ["en", "tr"],
+        react: {
+            useSuspense: false,
+        },
     });
 
 export default i18n;
