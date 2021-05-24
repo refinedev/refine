@@ -32,8 +32,8 @@ export const PostList = (props: IResourceComponentsProps) => {
     const {
         mutate,
         isSuccess,
-        isLoading: deleteManyIsLoading,
-    } = useUpdateMany<IPost>("posts", "undoable");
+        isLoading: updateManyIsLoading,
+    } = useUpdateMany<IPost>("posts");
 
     const updateSelectedItems = () => {
         mutate({
@@ -51,7 +51,6 @@ export const PostList = (props: IResourceComponentsProps) => {
     }, [isSuccess]);
 
     const onSelectChange = (selectedRowKeys: (string | number)[]) => {
-        console.log({ selectedRowKeys });
         setSelectedRowKeys(selectedRowKeys);
     };
 
@@ -74,9 +73,9 @@ export const PostList = (props: IResourceComponentsProps) => {
                     type="primary"
                     onClick={updateSelectedItems}
                     disabled={!hasSelected}
-                    loading={deleteManyIsLoading}
+                    loading={updateManyIsLoading}
                 >
-                    Update All
+                    Update Status
                 </Button>
                 <span style={{ marginLeft: 8 }}>
                     {hasSelected
