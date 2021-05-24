@@ -5,6 +5,7 @@ import "@pankod/refine/dist/styles.min.css";
 import "i18n";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import { Header } from "components";
 
 const API_URL = "https://refine-fake-rest.pankod.com";
 
@@ -18,7 +19,11 @@ const App = () => {
     };
 
     return (
-        <Admin dataProvider={dataProvider(API_URL)} i18nProvider={i18nProvider}>
+        <Admin
+            dataProvider={dataProvider(API_URL)}
+            i18nProvider={i18nProvider}
+            Header={Header}
+        >
             <Resource
                 name="posts"
                 list={PostList}
