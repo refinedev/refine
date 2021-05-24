@@ -39,6 +39,7 @@ import {
     Typography,
     useSelect,
     useMany,
+    DatePicker,
     useDeleteMany,
 } from "@pankod/refine";
 
@@ -68,14 +69,9 @@ interface ICategory {
 
 export const PostList = (props: any) => {
     const translate = useTranslate();
+    const { RangePicker } = DatePicker;
+
     const { tableProps, sorter, filters } = useTable<IPost>({
-        // permanentFilter: [
-        //     {
-        //         field: "createdAt",
-        //         operator: "gte",
-        //         value: "2021-05-17",
-        //     },
-        // ],
         initialSorter: [
             {
                 field: "createdAt",
@@ -328,26 +324,19 @@ export const PostCreate = (props: any) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
 
-    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
-        "write",
-    );
+    const [selectedTab, setSelectedTab] =
+        React.useState<"write" | "preview">("write");
     const { isLoading, onChange } = useFileUploadState();
 
-    const {
-        current,
-        gotoStep,
-        stepsProps,
-        submit,
-        formLoading,
-        formProps,
-    } = useStepsForm({
-        warnWhenUnsavedChanges: true,
-        defaultFormValues: () => {
-            return {
-                status: "published",
-            };
-        },
-    });
+    const { current, gotoStep, stepsProps, submit, formLoading, formProps } =
+        useStepsForm({
+            warnWhenUnsavedChanges: true,
+            defaultFormValues: () => {
+                return {
+                    status: "published",
+                };
+            },
+        });
 
     const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
@@ -557,9 +546,8 @@ export const PostEdit = (props: any) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
 
-    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
-        "write",
-    );
+    const [selectedTab, setSelectedTab] =
+        React.useState<"write" | "preview">("write");
     const { onChange, isLoading } = useFileUploadState();
 
     const {
