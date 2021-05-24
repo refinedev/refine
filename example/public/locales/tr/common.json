@@ -59,7 +59,8 @@
                 "status": {
                     "title": "Durum",
                     "published": "Published",
-                    "draft": "Draft"
+                    "draft": "Draft",
+                    "rejected": "Rejected"
                 },
                 "url": "Url",
                 "content": "İçerik",

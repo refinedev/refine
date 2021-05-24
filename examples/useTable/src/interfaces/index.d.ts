@@ -2,5 +2,5 @@ export interface IPost {
     id: string;
     title: string;
     content: string;
-    status: "published" | "draft";
+    status: "published" | "draft" | "rejected";
 }

@@ -53,6 +53,7 @@ export const PostList (props) => {
                             <Radio.Group>
                                 <Radio value="draft">Draft</Radio>
                                 <Radio value="published">Published</Radio>
+                                <Radio value="rejected">Rejected</Radio>
                             </Radio.Group>
                         </Form.Item>
                     </Form>
@@ -145,6 +146,7 @@ export const PostList (props) => {
                             <Radio.Group>
                                 <Radio value="draft">Draft</Radio>
                                 <Radio value="published">Published</Radio>
+                                <Radio value="rejected">Rejected</Radio>
                             </Radio.Group>
                         </Form.Item>
                     </Form>

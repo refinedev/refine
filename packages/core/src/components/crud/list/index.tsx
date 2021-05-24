@@ -14,6 +14,7 @@ export interface ListProps {
     title?: string;
     createButtonProps?: CreateButtonProps;
     pageHeaderProps?: PageHeaderProps;
+    resource?: string;
 }
 
 export const List: React.FC<ListProps> = ({
@@ -23,13 +24,14 @@ export const List: React.FC<ListProps> = ({
     children,
     createButtonProps,
     pageHeaderProps,
+    resource: resourceFromProps,
 }) => {
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const translate = useTranslate();
     const resourceWithRoute = useResourceWithRoute();
 
-    const resource = resourceWithRoute(routeResourceName);
+    const resource = resourceWithRoute(routeResourceName ?? resourceFromProps);
 
     const defaultExtra = canCreate &&
         (createButtonProps || resource.canCreate) && (
