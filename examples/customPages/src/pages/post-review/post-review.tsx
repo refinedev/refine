@@ -27,10 +27,12 @@ export const PostReview = () => {
 
     const record = data?.data[0];
 
-    const { data: categoryData, isLoading: categoryIsLoading } =
-        useOne<ICategory>("categories", record!?.category.id, {
-            enabled: !!record,
-        });
+    const {
+        data: categoryData,
+        isLoading: categoryIsLoading,
+    } = useOne<ICategory>("categories", record!?.category.id, {
+        enabled: !!record,
+    });
 
     const mutationResult = useUpdate<IPost>("posts");
 

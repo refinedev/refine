@@ -22,15 +22,21 @@ import { IPost, ICategory } from "../../interfaces";
 const { Step } = Steps;
 
 export const PostCreate = (props: IResourceComponentsProps) => {
-    const { current, gotoStep, stepsProps, formProps, saveButtonProps } =
-        useStepsForm<IPost>();
+    const {
+        current,
+        gotoStep,
+        stepsProps,
+        formProps,
+        saveButtonProps,
+    } = useStepsForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
     });
 
-    const [selectedTab, setSelectedTab] =
-        React.useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+        "write",
+    );
 
     const formList = [
         <>

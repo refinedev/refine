@@ -33,8 +33,10 @@ export const Create: React.FC<CreateProps> = ({
     const { goBack } = useNavigation();
     const t = useTranslate();
 
-    const { resource: routeResourceName, id: idFromRoute } =
-        useParams<ResourceRouterParams>();
+    const {
+        resource: routeResourceName,
+        id: idFromRoute,
+    } = useParams<ResourceRouterParams>();
     const resourceWithRoute = useResourceWithRoute();
 
     const resource = resourceWithRoute(routeResourceName ?? resourceFromProps);

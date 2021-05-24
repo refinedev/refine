@@ -324,19 +324,26 @@ export const PostCreate = (props: any) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
 
-    const [selectedTab, setSelectedTab] =
-        React.useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+        "write",
+    );
     const { isLoading, onChange } = useFileUploadState();
 
-    const { current, gotoStep, stepsProps, submit, formLoading, formProps } =
-        useStepsForm({
-            warnWhenUnsavedChanges: true,
-            defaultFormValues: () => {
-                return {
-                    status: "published",
-                };
-            },
-        });
+    const {
+        current,
+        gotoStep,
+        stepsProps,
+        submit,
+        formLoading,
+        formProps,
+    } = useStepsForm({
+        warnWhenUnsavedChanges: true,
+        defaultFormValues: () => {
+            return {
+                status: "published",
+            };
+        },
+    });
 
     const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
@@ -546,8 +553,9 @@ export const PostEdit = (props: any) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
 
-    const [selectedTab, setSelectedTab] =
-        React.useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+        "write",
+    );
     const { onChange, isLoading } = useFileUploadState();
 
     const {

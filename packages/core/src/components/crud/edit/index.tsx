@@ -57,8 +57,10 @@ export const Edit: React.FC<EditProps> = ({
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
-    const { resource: routeResourceName, id: idFromRoute } =
-        useParams<ResourceRouterParams>();
+    const {
+        resource: routeResourceName,
+        id: idFromRoute,
+    } = useParams<ResourceRouterParams>();
 
     const resource = resourceWithRoute(routeResourceName ?? resourceFromProps);
 

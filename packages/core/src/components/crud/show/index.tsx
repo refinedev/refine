@@ -42,8 +42,10 @@ export const Show: React.FC<ShowProps> = ({
     const { goBack, list } = useNavigation();
 
     const resourceWithRoute = useResourceWithRoute();
-    const { resource: routeResourceName, id: idFromRoute } =
-        useParams<ResourceRouterParams>();
+    const {
+        resource: routeResourceName,
+        id: idFromRoute,
+    } = useParams<ResourceRouterParams>();
 
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
