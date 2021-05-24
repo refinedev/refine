@@ -1,4 +1,11 @@
-import { AntdLayout, Button, Menu, Icons, Dropdown } from "@pankod/refine";
+import {
+    AntdLayout,
+    Button,
+    Menu,
+    Icons,
+    Dropdown,
+    useGetLocale,
+} from "@pankod/refine";
 import { useTranslation } from "react-i18next";
 
 const { DownOutlined } = Icons;
@@ -21,13 +28,14 @@ const languages: Record<string, ILanguage> = {
 
 export const Header = () => {
     const { i18n } = useTranslation();
+    const locale = useGetLocale();
 
     const changeLanguage = ({ key }: any) => {
         i18n.changeLanguage(key);
     };
 
     const menu = (
-        <Menu onClick={changeLanguage} selectedKeys={[i18n.language]}>
+        <Menu onClick={changeLanguage} selectedKeys={[locale()]}>
             {i18n.languages?.sort().map((lang) => (
                 <Menu.Item
                     key={lang}
@@ -65,7 +73,7 @@ export const Header = () => {
                         style={{ height: "100%" }}
                         onClick={(e) => e.preventDefault()}
                     >
-                        {languages[i18n.language]?.title} <DownOutlined />
+                        {languages[locale()]?.title} <DownOutlined />
                     </Button>
                 </Dropdown>
             </div>
