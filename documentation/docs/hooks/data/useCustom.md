@@ -66,11 +66,11 @@ const { data, isLoading } = useCustom<IPost[]>(
 
 #### Type Parameters
 
-| Property   | Desription                                             | Type              | Default           |
-| ---------- | ------------------------------------------------------ | ----------------- | ----------------- |
-| TData      | Result data of the mutation. Extends [`BaseRecord`](#) | [`BaseRecord`](#) | [`BaseRecord`](#) |
-| TError     | Custom error object that extends [`HttpError`](#)      | [`HttpError`](#)  | [`HttpError`](#)  |
-| TVariables | Values for mutation function                           | `{}`              | `{}`              |
+| Property   | Desription                                          | Type              | Default           |
+| ---------- | --------------------------------------------------- | ----------------- | ----------------- |
+| TData      | Result data of the query. Extends [`BaseRecord`](#) | [`BaseRecord`](#) | [`BaseRecord`](#) |
+| TError     | Custom error object that extends [`HttpError`](#)   | [`HttpError`](#)  | [`HttpError`](#)  |
+| TVariables | Values for request function                         | `{}`              | `{}`              |
 
 #### Return value
 
