@@ -59,7 +59,7 @@ export const Show: React.FC<ShowProps> = ({
             title={
                 title ??
                 translate(
-                    `common:resources.${resource.name}.Show`,
+                    `resources:${resource.name}.show`,
                     `Show ${pluralize.singular(resource.name)}`,
                 )
             }

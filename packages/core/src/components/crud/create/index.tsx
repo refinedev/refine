@@ -45,7 +45,7 @@ export const Create: React.FC<CreateProps> = ({
 
     const tags = [];
     if (idFromRoute) {
-        tags.push(<Tag color="blue">{t("tags.Clone", "Clone")}</Tag>);
+        tags.push(<Tag color="blue">{t("tags.clone", "Clone")}</Tag>);
     }
 
     return (
@@ -56,7 +56,7 @@ export const Create: React.FC<CreateProps> = ({
             title={
                 title ??
                 translate(
-                    `common:resources.${resource.name}.Create`,
+                    `resources:${resource.name}.create`,
                     `Create ${pluralize.singular(resource.name)}`,
                 )
             }

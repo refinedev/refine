@@ -1,9 +1,13 @@
 {
     "pages": {
         "login": {
-            "title": "Login",
+            "login": "Login",
+            "signup": "Sign up",
             "username": "Username",
-            "password": "Password"
+            "password": "Password",
+            "remember": "Remember me",
+            "forgotPassword": "Forgot password?",
+            "noAccountText": "Still no account? Please go to"
         }
     },
     "buttons": {
@@ -37,7 +41,7 @@
     "loading": "Loading",
     "backHome": "Back Home",
     "tags": {
-        "Clone": "Clone"
+        "clone": "Clone"
     },
     "table": {
         "actions": "Actions"

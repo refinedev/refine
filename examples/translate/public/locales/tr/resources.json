@@ -1,14 +1,21 @@
 {
     "posts": {
-        "id": "Id",
-        "title": "Başlık",
-        "category": "Kategori",
-        "status": {
-            "title": "Durum",
-            "published": "Yayınlanan",
-            "draft": "Taslak",
-            "rejected": "Reddedildi"
-        },
-        "content": "İçerik"
-    }
+        "title": "Gönderiler",
+        "fields": {
+            "id": "Id",
+            "title": "Başlık",
+            "category": "Kategori",
+            "status": {
+                "title": "Durum",
+                "published": "Yayınlanan",
+                "draft": "Taslak",
+                "rejected": "Reddedildi"
+            },
+            "content": "İçerik"
+        }
+    },
+    "create": "Gönderi Oluştur",
+    "edit": "Gönderi Düzenle",
+    "listTitle": "Gönderiler",
+    "show": "Gönderi Göster"
 }

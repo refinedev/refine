@@ -1,14 +1,21 @@
 {
     "posts": {
-        "id": "Id",
-        "title": "Title",
-        "category": "Category",
-        "status": {
-            "title": "Status",
-            "published": "Published",
-            "draft": "Draft",
-            "rejected": "Rejected"
-        },
-        "content": "Content"
-    }
+        "title": "Posts",
+        "fields": {
+            "id": "Id",
+            "title": "Title",
+            "category": "Category",
+            "status": {
+                "title": "Status",
+                "published": "Published",
+                "draft": "Draft",
+                "rejected": "Rejected"
+            },
+            "content": "Content"
+        }
+    },
+    "create": "Create Post",
+    "edit": "Edit Post",
+    "listTitle": "Posts",
+    "show": "Show Post"
 }

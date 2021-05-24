@@ -33,12 +33,12 @@ export const PostShow = (props: IResourceComponentsProps) => {
                     <Text>{record.id}</Text>
 
                     <Title level={5}>
-                        {translate("resources:posts.title")}
+                        {translate("resources:posts.fields.title")}
                     </Title>
                     <Text>{record.title}</Text>
 
                     <Title level={5}>
-                        {translate("resources:posts.category")}
+                        {translate("resources:posts.fields.category")}
                     </Title>
                     <Text>
                         {categoryIsLoading
@@ -47,7 +47,7 @@ export const PostShow = (props: IResourceComponentsProps) => {
                     </Text>
 
                     <Title level={5}>
-                        {translate("resources:posts.content")}
+                        {translate("resources:posts.fields.content")}
                     </Title>
                     <MarkdownField value={record.content} />
                 </>

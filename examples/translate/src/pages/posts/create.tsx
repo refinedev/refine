@@ -33,7 +33,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
         <Create {...props} saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={translate("resources:posts.title")}
+                    label={translate("resources:posts.fields.title")}
                     name="title"
                     rules={[
                         {
@@ -44,7 +44,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("resources:posts.category")}
+                    label={translate("resources:posts.fields.category")}
                     name={["category", "id"]}
                     rules={[
                         {
@@ -55,7 +55,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                     <Select {...categorySelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("resources:posts.status.title")}
+                    label={translate("resources:posts.fields.status.title")}
                     name="status"
                     rules={[
                         {
@@ -67,19 +67,19 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                         options={[
                             {
                                 label: translate(
-                                    "resources:posts.status.published",
+                                    "resources:posts.fields.status.published",
                                 ),
                                 value: "published",
                             },
                             {
                                 label: translate(
-                                    "resources:posts.status.draft",
+                                    "resources:posts.fields.status.draft",
                                 ),
                                 value: "draft",
                             },
                             {
                                 label: translate(
-                                    "resources:posts.status.rejected",
+                                    "resources:posts.fields.status.rejected",
                                 ),
                                 value: "rejected",
                             },
@@ -87,7 +87,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                     />
                 </Form.Item>
                 <Form.Item
-                    label={translate("resources:posts.content")}
+                    label={translate("resources:posts.fields.content")}
                     name="content"
                     rules={[
                         {

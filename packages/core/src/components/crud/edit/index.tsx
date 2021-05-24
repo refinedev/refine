@@ -75,7 +75,7 @@ export const Edit: React.FC<EditProps> = ({
             title={
                 title ??
                 translate(
-                    `common:resources.${resource.name}.Edit`,
+                    `resources:${resource.name}.edit`,
                     `Edit ${pluralize.singular(resource.name)}`,
                 )
             }

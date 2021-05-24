@@ -30,12 +30,12 @@ export const PostList = (props: IResourceComponentsProps) => {
                 <Table.Column
                     key="title"
                     dataIndex="title"
-                    title={translate("resources:posts.title")}
+                    title={translate("resources:posts.fields.title")}
                 />
                 <Table.Column
                     dataIndex={["category", "id"]}
                     key="category.id"
-                    title={translate("resources:posts.category")}
+                    title={translate("resources:posts.fields.category")}
                     render={(value) => {
                         if (isLoading) {
                             return <TextField value="Loading..." />;

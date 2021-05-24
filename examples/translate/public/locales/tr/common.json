@@ -1,9 +1,13 @@
 {
     "pages": {
         "login": {
-            "title": "Giriş",
+            "login": "Giriş",
+            "signup": "Kayıt",
             "username": "Kullanıcı Adı",
-            "password": "Şifre"
+            "password": "Şifre",
+            "remember": "Beni Hatırla",
+            "forgotPassword": "Şifremi unuttum",
+            "noAccountText": "Hala üye olmadın mı? Hadi tıkla"
         }
     },
     "buttons": {
@@ -37,7 +41,7 @@
     "loading": "Yükleniyor",
     "backHome": "Ana sayfaya geri dön",
     "tags": {
-        "Clone": "Kopya"
+        "clone": "Kopya"
     },
     "table": {
         "actions": "İşlemler"
