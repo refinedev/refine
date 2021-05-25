@@ -24,6 +24,8 @@ module.exports = {
                     items: [
                         "hooks/data/useCreate",
                         "hooks/data/useCreateMany",
+                        "hooks/data/useUpdate",
+                        "hooks/data/useUpdateMany",
                         "hooks/data/useDelete",
                         "hooks/data/useDeleteMany",
                         "hooks/data/useOne",

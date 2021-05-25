@@ -1,7 +1,7 @@
 import nock from "nock";
 
 nock("https://refine-fake-rest.pankod.com:443", { encodedQueryParams: true })
-    .put("/posts/999", { title: "foo", content: "bar" })
+    .patch("/posts/999", { title: "foo", content: "bar" })
     .reply(200, { title: "foo", content: "bar", id: 999 }, [
         "Server",
         "nginx/1.17.10",

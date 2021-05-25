@@ -42,7 +42,7 @@ const categoryQueryResult = useOne<ICategory>("categories", 1);
 - For example, to disable query from running automatically you can set `enabled` to `false`
 
 ```tsx
-const categoryQueryResult = useOne<ICategory>("categories", 1), { enabled: false };
+const categoryQueryResult = useOne<ICategory>("categories", 1, { enabled: false });
 ```
 :::
 
@@ -91,4 +91,3 @@ After query runs `categoryQueryResult` will include the retrieved data:
 | Description                            | Type                                                                                                                                                                                      |
 | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Result of the `react-query`'s `useQuery` | [`QueryObserverResult<{ data: TData; }>`](https://react-query.tanstack.com/reference/useQuery) |
-

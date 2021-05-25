@@ -39,7 +39,6 @@ import {
     Typography,
     useSelect,
     useMany,
-    DatePicker,
     useDeleteMany,
 } from "@pankod/refine";
 
@@ -69,7 +68,6 @@ interface ICategory {
 
 export const PostList = (props: any) => {
     const translate = useTranslate();
-    const { RangePicker } = DatePicker;
 
     const { tableProps, sorter, filters } = useTable<IPost>({
         initialSorter: [
