@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
     Create,
     Form,
@@ -19,7 +19,7 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostCreate = (props: IResourceComponentsProps) => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+    const { form, formProps, saveButtonProps } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
@@ -32,12 +32,8 @@ export const PostCreate = (props: IResourceComponentsProps) => {
     const apiUrl = useApiUrl();
     const url = `${apiUrl}/posts`;
 
-    const [title, setTitle] = useState("");
-    const [validationStatus, setValidationStatus] = useState<
-        "" | "success" | "warning" | "error" | "validating"
-    >();
-    const [titleHelp, setTitleHelp] = useState<string | undefined>();
-    const { data, refetch } = useCustom<IPost[]>(
+    const title = form.getFieldValue("title");
+    const { refetch } = useCustom<IPost[]>(
         url,
         "get",
         {
@@ -48,32 +44,11 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                     value: title,
                 },
             ],
-            sort: {
-                field: "id",
-                order: "ascend",
-            },
         },
         {
-            enabled: !!title,
+            enabled: false,
         },
     );
-
-    useEffect(() => {
-        refetch();
-    }, [title]);
-
-    useEffect(() => {
-        if (data) {
-            const postLength = data.data.length;
-            if (postLength > 0) {
-                setValidationStatus("error");
-                setTitleHelp("'title' is must be unique");
-            } else {
-                setValidationStatus(undefined);
-                setTitleHelp(undefined);
-            }
-        }
-    }, [data]);
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
@@ -81,15 +56,34 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                 <Form.Item
                     label="Title"
                     name="title"
+                    validateTrigger="onBlur"
                     rules={[
                         {
                             required: true,
                         },
+                        {
+                            validator: async (_, value) => {
+                                if (!value) return;
+
+                                const { data } = await refetch();
+
+                                if (data) {
+                                    const postLength = data.data.length;
+                                    if (postLength > 0) {
+                                        return Promise.reject(
+                                            new Error(
+                                                "'title' is must be unique",
+                                            ),
+                                        );
+                                    }
+                                }
+
+                                return Promise.resolve();
+                            },
+                        },
                     ]}
-                    help={titleHelp}
-                    validateStatus={validationStatus}
                 >
-                    <Input onChange={(event) => setTitle(event.target.value)} />
+                    <Input />
                 </Form.Item>
                 <Form.Item
                     label="Category"

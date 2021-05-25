@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
     Edit,
     Form,
     Input,
     IResourceComponentsProps,
     Select,
+    useApiUrl,
+    useCustom,
     useForm,
     useSelect,
 } from "@pankod/refine";
@@ -17,7 +19,7 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostEdit = (props: IResourceComponentsProps) => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
+    const { form, formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -29,15 +31,57 @@ export const PostEdit = (props: IResourceComponentsProps) => {
         "write",
     );
 
+    const apiUrl = useApiUrl();
+    const url = `${apiUrl}/posts`;
+
+    const title = form.getFieldValue("title");
+    const { refetch } = useCustom<IPost[]>(
+        url,
+        "get",
+        {
+            filters: [
+                {
+                    field: "title",
+                    operator: "eq",
+                    value: title,
+                },
+            ],
+        },
+        {
+            enabled: false,
+        },
+    );
+
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
                     name="title"
+                    validateTrigger="onBlur"
                     rules={[
                         {
                             required: true,
+                        },
+                        {
+                            validator: async (_, value) => {
+                                if (!value) return;
+
+                                const { data } = await refetch();
+
+                                if (data) {
+                                    const postLength = data.data.length;
+                                    if (postLength > 0) {
+                                        return Promise.reject(
+                                            new Error(
+                                                "'title' is must be unique",
+                                            ),
+                                        );
+                                    }
+                                }
+
+                                return Promise.resolve();
+                            },
                         },
                     ]}
                 >
