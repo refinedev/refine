@@ -22,7 +22,7 @@ npm install @craco/craco --save
 
 And in your `package.json` file, update the calls from `react-scripts` to `craco`:
 
-```json title="src/pages/users/create.tsx"
+```json title="package.json"
   "scripts": {
     "start": "craco start",
     "build": "craco build",
