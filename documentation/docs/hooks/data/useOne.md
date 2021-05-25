@@ -8,7 +8,7 @@ siderbar_label: useOne
 
 ## Usage
 
-Let'say we have a `categories` resource
+Let's say we have a `categories` resource
 
 ```ts title="https://refine-fake-rest.pankod.com/categories"
 {
