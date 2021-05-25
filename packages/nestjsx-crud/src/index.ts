@@ -16,6 +16,7 @@ import {
     CrudFilters as RefineCrudFilter,
 } from "@pankod/refine";
 import { CrudOperators } from "@pankod/refine/dist/interfaces";
+import { stringify } from "query-string";
 
 type SortBy = QuerySort | QuerySortArr | Array<QuerySort | QuerySortArr>;
 type CrudFilters =
@@ -261,12 +262,18 @@ const NestsxCrud = (
     },
 
     custom: async (url, method, params = {}) => {
-        const { filters, sort, payload } = params;
+        const { filters, sort, payload, query } = params;
 
-        const query = RequestQueryBuilder.create()
+        const requestQueryBuilder = RequestQueryBuilder.create()
             .setFilter(generateFilter(filters))
             .sortBy(generateSort(sort))
             .query();
+
+        let requestUrl = `${url}?${requestQueryBuilder}`;
+
+        if (query) {
+            requestUrl = `${requestUrl}&${stringify(query)}`;
+        }
 
         let axiosResponse;
         switch (method) {
@@ -279,7 +286,7 @@ const NestsxCrud = (
                 axiosResponse = await httpClient.delete(`${url}`);
                 break;
             default:
-                axiosResponse = await httpClient.get(`${url}?${query}`);
+                axiosResponse = await httpClient.get(requestUrl);
                 break;
         }
 

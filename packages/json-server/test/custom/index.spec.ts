@@ -15,8 +15,8 @@ describe("custom", () => {
             "get",
         );
 
-        expect(response.data[0]["id"]).toBe(50);
-        expect(response.data[0]["email"]).toBe("rahul.damore39@yahoo.com");
+        expect(response.data[0]["id"]).toBe(1);
+        expect(response.data[0]["email"]).toBe("tiana_gleason63@hotmail.com");
     });
 
     it("correct filter response", async () => {
@@ -28,14 +28,14 @@ describe("custom", () => {
                     {
                         field: "email",
                         operator: "eq",
-                        value: "rahul.damore39@yahoo.com",
+                        value: "tiana_gleason63@hotmail.com",
                     },
                 ],
             },
         );
 
-        expect(response.data[0]["id"]).toBe(50);
-        expect(response.data[0]["email"]).toBe("rahul.damore39@yahoo.com");
+        expect(response.data[0]["id"]).toBe(1);
+        expect(response.data[0]["email"]).toBe("tiana_gleason63@hotmail.com");
     });
 
     it("correct sort response", async () => {

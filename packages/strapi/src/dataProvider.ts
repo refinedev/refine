@@ -178,14 +178,27 @@ export const DataProvider = (
     },
 
     custom: async (url, method, params = {}) => {
-        const { filters, sort, payload } = params;
+        const { filters, sort, payload, query } = params;
 
-        const _sort = generateSort(sort);
-        const queryFilters = generateFilter(filters);
+        let requestUrl = `${url}?`;
 
-        const query = {
-            _sort: _sort.length > 0 ? _sort.join(",") : undefined,
-        };
+        if (sort) {
+            const sortQuery = generateSort(sort);
+            if (sortQuery.length > 0) {
+                requestUrl = `${requestUrl}&${stringify({
+                    _sort: sortQuery.join(","),
+                })}`;
+            }
+        }
+
+        if (filters) {
+            const filterQuery = generateFilter(filters);
+            requestUrl = `${requestUrl}&${stringify(filterQuery)}`;
+        }
+
+        if (query) {
+            requestUrl = `${requestUrl}&${stringify(query)}`;
+        }
 
         let axiosResponse;
         switch (method) {
@@ -198,9 +211,7 @@ export const DataProvider = (
                 axiosResponse = await httpClient.delete(`${url}`);
                 break;
             default:
-                axiosResponse = await httpClient.get(
-                    `${url}?${stringify(query)}&${stringify(queryFilters)}`,
-                );
+                axiosResponse = await httpClient.get(requestUrl);
                 break;
         }
 
