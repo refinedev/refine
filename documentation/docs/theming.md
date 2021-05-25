@@ -41,7 +41,7 @@ npm install craco-less --save
 
 Then create the `craco.config.js` file: 
 
-```ts
+```ts title="craco.config.js"
 const CracoLessPlugin = require("craco-less");
 
 module.exports = {
