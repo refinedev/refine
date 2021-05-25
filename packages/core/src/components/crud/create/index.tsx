@@ -54,7 +54,7 @@ export const Create: React.FC<CreateProps> = ({
             title={
                 title ??
                 translate(
-                    `${resource.name}.create`,
+                    `${resource.name}.titles.create`,
                     `Create ${pluralize.singular(resource.name)}`,
                 )
             }

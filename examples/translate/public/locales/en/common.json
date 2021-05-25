@@ -46,10 +46,11 @@
         "actions": "Actions"
     },
     "posts": {
-        "title": "Posts",
-        "create": "Create Post",
-        "edit": "Edit Post",
-        "listTitle": "Posts",
-        "show": "Show Post"
+        "titles": {
+            "create": "Create Post",
+            "edit": "Edit Post",
+            "list": "Posts",
+            "show": "Show Post"
+        }
     }
 }

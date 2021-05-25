@@ -29,7 +29,10 @@ export const ListButton: FC<ListButtonProps> = ({
             icon={<BarsOutlined />}
             {...rest}
         >
-            {translate(`${resourceName}.title`, humanizeString(resourceName))}
+            {translate(
+                `${resourceName}.titles.title`,
+                humanizeString(resourceName),
+            )}
         </Button>
     );
 };
