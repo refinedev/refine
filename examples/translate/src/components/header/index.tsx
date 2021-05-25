@@ -30,15 +30,12 @@ export const Header = () => {
     const { i18n } = useTranslation();
     const locale = useGetLocale();
 
-    const changeLanguage = ({ key }: any) => {
-        i18n.changeLanguage(key);
-    };
-
     const menu = (
-        <Menu onClick={changeLanguage} selectedKeys={[locale()]}>
+        <Menu selectedKeys={[locale()]}>
             {i18n.languages?.sort().map((lang) => (
                 <Menu.Item
                     key={lang}
+                    onClick={() => i18n.changeLanguage(lang)}
                     icon={
                         <span style={{ marginRight: 8 }}>
                             {languages[lang].flag}
