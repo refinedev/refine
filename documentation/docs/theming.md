@@ -4,9 +4,13 @@ id: theming
 title: Theming With Less
 ---
 
-Ant Design allows you to customize many of its [less variables](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less).You should configure your bundler for handling less files. After that, you can override these less variables values to fit Ant Design to your branding:
+Ant Design allows you to customize many of its [less variables](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less). To be able to theme Ant Design, instead of importing Ant Design's compiled css files, you should import its less files and override the values of *less variables* contained within these files. You should configure your bundler for handling less files to override its variables.
 
-In this example, we'll be demonstrating theming with `less` using [CRACO (Create React App Configuration Override)](https://github.com/gsoft-inc/craco) as our customization layer for [Create-React-App](https://github.com/facebook/create-react-app).
+In this example, we'll be demonstrating theming with `less` using [CRACO (Create React App Configuration Override)](https://github.com/gsoft-inc/craco) as our customization layer for [Create React App](https://github.com/facebook/create-react-app).
+
+:::tip
+If you're not using Create React App and already have a webpack setup, you can refer to Ant Design docs for configuring your setup: [Customize in webpack](https://ant.design/docs/react/customize-theme#Customize-in-webpack)
+:::
 
 If you're using Create React App, you can easily enable CRACO.
 
