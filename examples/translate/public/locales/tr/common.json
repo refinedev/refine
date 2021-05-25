@@ -34,6 +34,7 @@
         "createSuccess": "{{resource}} başarıyla oluşturuldu",
         "createError": "{{resource}} oluşturulurken hata (hata kodu: {{statusCode}})",
         "deleteSuccess": "{{resource}} başarıyla silindi",
+        "deleteError": "{{resource}} silinirken hata (hata kodu: {{statusCode}})",
         "editSuccess": "{{resource}} başarıyla düzenlendi",
         "editError": "{{resource}} düzenlenirken hata (hata kodu: {{statusCode}})"
     },

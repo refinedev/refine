@@ -207,8 +207,8 @@ export const useDeleteMany = <
                 notification.error({
                     key: `${ids}-${resource}-notification`,
                     message: translate(
-                        "notifications.error",
-                        { statusCode: err.statusCode },
+                        "notifications.deleteError",
+                        { resource, statusCode: err.statusCode },
                         `Error (status code: ${err.statusCode})`,
                     ),
                     description: err.message,

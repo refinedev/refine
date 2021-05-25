@@ -180,8 +180,8 @@ export const useDelete = <
                     notification.error({
                         key: `${id}-${resource}-notification`,
                         message: translate(
-                            "notifications.error",
-                            { statusCode: err.statusCode },
+                            "notifications.deleteError",
+                            { resource, statusCode: err.statusCode },
                             `Error (status code: ${err.statusCode})`,
                         ),
                         description: err.message,
