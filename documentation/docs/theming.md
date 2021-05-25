@@ -69,7 +69,7 @@ Create a less file and import antd styles from `~@pankod/refine/node_modules/ant
 
 And import the `less` file in `App.tsx`:
 
-```tsx
+```tsx title="App.tsx"
 import "styles/antd.less";
 import { Admin, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
