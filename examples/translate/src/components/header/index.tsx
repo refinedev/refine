@@ -8,7 +8,7 @@ import {
 } from "@pankod/refine";
 import { useTranslation } from "react-i18next";
 
-const { DownOutlined } = Icons;
+const { TranslationOutlined } = Icons;
 
 interface ILanguage {
     title: string;
@@ -67,11 +67,11 @@ export const Header = () => {
                 <Dropdown overlay={menu}>
                     <Button
                         type="text"
+                        size="large"
                         style={{ height: "100%" }}
+                        icon={<TranslationOutlined />}
                         onClick={(e) => e.preventDefault()}
-                    >
-                        {languages[locale()]?.title} <DownOutlined />
-                    </Button>
+                    />
                 </Dropdown>
             </div>
         </AntdLayout.Header>
