@@ -10,7 +10,7 @@ Ant Design allows you to customize many of its design variables. You should conf
 
 In this example, we'll be demonstrating theming with `less` using [Create React App Configuration Override](https://github.com/gsoft-inc/craco) as our customization layer for [Create-React-App](https://github.com/facebook/create-react-app).
 
-If you're using Create-React-App, you can easily enable CRACO.
+If you're using Create React App, you can easily enable CRACO.
 
 ## Enabling CRACO
 
