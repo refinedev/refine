@@ -72,22 +72,22 @@ After query runs `categoryQueryResult` will include the retrieved data:
 ### Parameters
 
 
-| Property          &nbsp;  &nbsp;      &nbsp;      &nbsp;                                            | Description                               | Type                                                      | Default |
+| Property                                                                                            | Description                               | Type                                                      | Default |
 | --------------------------------------------------------------------------------------------------- | ----------------------------------------- | --------------------------------------------------------- | ------- |
 | <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](#) for API data interactions | `string`                                                  |         |
-| id <div className="required">Required</div>                                                         | id of the item in the resource            | `string`                                                  |         |
+| id <div className="required">Required</div>                                                         | id of the item in the resource            | `string` \| `number`                                      |         |
 | options                                                                                             | `react-query`'s `useQuery` options        | ` UseQueryOptions<`<br/>`{ data: TData; },`<br/>`TError>` |         |
 
 ### Type Parameters
 
 
-| Property | Desription                                             | Type              | Default           |
-| -------- | ------------------------------------------------------ | ----------------- | ----------------- |
+| Property | Desription                                          | Type              | Default           |
+| -------- | --------------------------------------------------- | ----------------- | ----------------- |
 | TData    | Result data of the query. Extends [`BaseRecord`](#) | [`BaseRecord`](#) | [`BaseRecord`](#) |
-| TError   | Custom error object that extends [`HttpError`](#)      | [`HttpError`](#)  | [`HttpError`](#)  |
+| TError   | Custom error object that extends [`HttpError`](#)   | [`HttpError`](#)  | [`HttpError`](#)  |
 
 ### Return values
 
-| Description                            | Type                                                                                                                                                                                      |
-| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description                              | Type                                                                                           |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | Result of the `react-query`'s `useQuery` | [`QueryObserverResult<{ data: TData; }>`](https://react-query.tanstack.com/reference/useQuery) |
