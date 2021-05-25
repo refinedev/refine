@@ -133,7 +133,7 @@ const JsonServer = (
         };
     },
 
-    createMany: async (resource, paramsList) => {
+    createMany: async () => {
         throw new Error("createMany not implemented");
     },
 
