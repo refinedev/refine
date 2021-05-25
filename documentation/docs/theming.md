@@ -38,7 +38,7 @@ You should install [`craco-less`](https://github.com/DocSpring/craco-less) and a
 ```bash
 npm install craco-less --save
 ```
-
+<br />
 Then create the `craco.config.js` file: 
 
 ```ts title="craco.config.js"
