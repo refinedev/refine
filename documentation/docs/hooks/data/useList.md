@@ -4,10 +4,9 @@ title: useList
 siderbar_label: useList
 ---
 
-`useList` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries) for retrieving  items from a `resource` with pagination, search, sort, and filtering options.
+`useList` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries) for retrieving  items from a `resource` with pagination, search, sort, and filter configurations.
 
-It uses `getList` method as query function from the `dataProvider` that is passed to `<Admin>`.  
-
+It uses the `getList` method as query function from the `dataProvider` that is passed to `<Admin>`.  
 
 ## Usage
 
@@ -19,27 +18,103 @@ Let'say we have a `posts` resource
         {
             id: 1,
             title: "E-business",
+            status: "draft"
         },
         {
             id: 2,
             title: "Virtual Invoice Avon",
+            status: "published"
         },
         {
             id: 3,
             title: "Powerful Crypto",
+            status: "rejected"
         },
     ];
 }
 ```
+<br />
 
+`useList` passes query config to `getList` method from the `dataProvider`. We'll be using the `dataProvider` from [`@pankod/refine-json-server`](#)
+
+Firstly, we'll use `useList` without passing any query config.
 
 ```tsx
-type ICategory = {
+type IPost = {
     id: string;
     title: string;
+    status: "rejected" | "published" | "draft";
 }
-const categoryQueryResult = useList<ICategory>("categories", [ 1, 2 ]);
+
+const postListQueryResult = useList<IPost>("posts");
 ```
+
+```ts title="postListQueryResult.data"
+{
+    data: [   
+        {
+            id: 3,
+            title: "Powerful Crypto",
+            status: "rejected"
+        },
+        {
+            id: 2,
+            title: "Virtual Invoice Avon",
+            status: "published"
+        },
+        {
+            id: 1,
+            title: "E-business",
+            status: "draft"
+        },
+    ],
+    total: 3
+}
+```
+
+<br />
+
+Although we didn't pass any sort order config to `useList`, data comes in descending order since `getList` has default values for sort order:
+
+```ts
+{   
+    sort: { order: "descend" , field: "id" }
+}
+```
+
+:::caution
+
+If needed, `getList` method from the `dataProvider` has to implement default query configurations since `useList` can work with no config paramaters.
+
+:::
+
+### Query Configuration
+
+#### `pagination`
+Allows to set page and items per page values.
+
+
+Imagine we have 1000 post records:
+
+```ts
+const postListQueryResult = useList<IPost>("posts", { current: 3, pageSize: 8 });
+```
+
+>Listing will start from page 3 showing 8 records.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 :::tip
 `useList` can also accept all `useQuery` options.  

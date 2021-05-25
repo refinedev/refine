@@ -40,6 +40,7 @@ import {
     useSelect,
     useMany,
     useDeleteMany,
+    useList,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -70,6 +71,8 @@ export const PostList = (props: any) => {
     const translate = useTranslate();
 
     const { tableProps, sorter, filters } = useTable<IPost>({
+        initialCurrent: 3,
+        initialPageSize: 8,
         initialSorter: [
             {
                 field: "createdAt",
@@ -77,6 +80,20 @@ export const PostList = (props: any) => {
             },
         ],
     });
+
+    const { data: dataTest } = useList("posts", {
+        pagination: { current: 3, pageSize: 8 },
+        filters: [
+            {
+                field: "status",
+                operator: "eq",
+                value: "draft",
+            },
+        ],
+        sort: { order: "ascend", field: "id" },
+    });
+
+    console.log("uselist data: ", dataTest);
 
     const [selectedRowKeys, setSelectedRowKeys] = React.useState<
         (string | number)[]
