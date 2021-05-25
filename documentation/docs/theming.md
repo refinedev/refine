@@ -96,6 +96,7 @@ You can just change variables values in `less` files. Add these contents to your
 // all less variables could be found in 
 // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
 
+//highlight-next-line
 @primary-color: #1DA57A;
 ```
 
