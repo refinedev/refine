@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import {
     Create,
     Form,
     Input,
     IResourceComponentsProps,
     Select,
+    useApiUrl,
+    useCustom,
     useForm,
     useSelect,
 } from "@pankod/refine";
@@ -27,6 +29,52 @@ export const PostCreate = (props: IResourceComponentsProps) => {
         "write",
     );
 
+    const apiUrl = useApiUrl();
+    const url = `${apiUrl}/posts`;
+
+    const [title, setTitle] = useState("");
+    const [validationStatus, setValidationStatus] = useState<
+        "" | "success" | "warning" | "error" | "validating"
+    >();
+    const [titleHelp, setTitleHelp] = useState<string | undefined>();
+    const { data, refetch } = useCustom<IPost[]>(
+        url,
+        "get",
+        {
+            filters: [
+                {
+                    field: "title",
+                    operator: "eq",
+                    value: title,
+                },
+            ],
+            sort: {
+                field: "id",
+                order: "ascend",
+            },
+        },
+        {
+            enabled: !!title,
+        },
+    );
+
+    useEffect(() => {
+        refetch();
+    }, [title]);
+
+    useEffect(() => {
+        if (data) {
+            const postLength = data.data.length;
+            if (postLength > 0) {
+                setValidationStatus("error");
+                setTitleHelp("'title' is must be unique");
+            } else {
+                setValidationStatus(undefined);
+                setTitleHelp(undefined);
+            }
+        }
+    }, [data]);
+
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
@@ -38,8 +86,10 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                             required: true,
                         },
                     ]}
+                    help={titleHelp}
+                    validateStatus={validationStatus}
                 >
-                    <Input />
+                    <Input onChange={(event) => setTitle(event.target.value)} />
                 </Form.Item>
                 <Form.Item
                     label="Category"
