@@ -3,11 +3,12 @@ import {
     Table,
     TextField,
     useTable,
+    useMany,
     IResourceComponentsProps,
     Space,
     EditButton,
     ShowButton,
-    useMany,
+    ImportButton,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
@@ -21,8 +22,34 @@ export const PostList = (props: IResourceComponentsProps) => {
         enabled: categoryIds.length > 0,
     });
 
+    const Actions = () => (
+        <Space direction="horizontal">
+            <ImportButton
+                mapData={(item) => {
+                    return {
+                        title: item.title,
+                        content: item.content,
+                        status: item.status,
+                        category: {
+                            id: item.categoryId,
+                        },
+                        user: {
+                            id: item.userId,
+                        },
+                    };
+                }}
+                batchSize={1}
+            />
+        </Space>
+    );
+
     return (
-        <List {...props}>
+        <List
+            {...props}
+            pageHeaderProps={{
+                extra: <Actions />,
+            }}
+        >
             <Table {...tableProps} key="id">
                 <Table.Column key="id" dataIndex="id" title="ID" />
                 <Table.Column key="title" dataIndex="title" title="Title" />
