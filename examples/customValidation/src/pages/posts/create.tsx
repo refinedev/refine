@@ -19,7 +19,7 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostCreate = (props: IResourceComponentsProps) => {
-    const { form, formProps, saveButtonProps } = useForm<IPost>();
+    const { formProps, saveButtonProps } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
@@ -32,7 +32,8 @@ export const PostCreate = (props: IResourceComponentsProps) => {
     const apiUrl = useApiUrl();
     const url = `${apiUrl}/posts`;
 
-    const title = form.getFieldValue("title");
+    const [title, setTitle] = useState("");
+
     const { refetch } = useCustom<IPost[]>(
         url,
         "get",
@@ -56,7 +57,6 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                 <Form.Item
                     label="Title"
                     name="title"
-                    validateTrigger="onBlur"
                     rules={[
                         {
                             required: true,
@@ -83,7 +83,7 @@ export const PostCreate = (props: IResourceComponentsProps) => {
                         },
                     ]}
                 >
-                    <Input />
+                    <Input onChange={(event) => setTitle(event.target.value)} />
                 </Form.Item>
                 <Form.Item
                     label="Category"

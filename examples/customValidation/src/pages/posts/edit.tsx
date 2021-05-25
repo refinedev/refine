@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
     Edit,
     Form,
@@ -19,7 +19,7 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostEdit = (props: IResourceComponentsProps) => {
-    const { form, formProps, saveButtonProps, queryResult } = useForm<IPost>();
+    const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -34,7 +34,8 @@ export const PostEdit = (props: IResourceComponentsProps) => {
     const apiUrl = useApiUrl();
     const url = `${apiUrl}/posts`;
 
-    const title = form.getFieldValue("title");
+    const [title, setTitle] = useState("");
+
     const { refetch } = useCustom<IPost[]>(
         url,
         "get",
@@ -44,6 +45,11 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                     field: "title",
                     operator: "eq",
                     value: title,
+                },
+                {
+                    field: "id",
+                    operator: "ne",
+                    value: postData?.id,
                 },
             ],
         },
@@ -58,7 +64,7 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                 <Form.Item
                     label="Title"
                     name="title"
-                    validateTrigger="onBlur"
+                    shouldUpdate
                     rules={[
                         {
                             required: true,
@@ -85,7 +91,7 @@ export const PostEdit = (props: IResourceComponentsProps) => {
                         },
                     ]}
                 >
-                    <Input />
+                    <Input onChange={(event) => setTitle(event.target.value)} />
                 </Form.Item>
                 <Form.Item
                     label="Category"
