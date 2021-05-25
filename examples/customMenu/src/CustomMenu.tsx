@@ -5,7 +5,6 @@ import {
     Icons,
     Link,
     useNavigation,
-    useTranslate,
     useMenu,
     useLogout,
     useTitle,
@@ -16,7 +15,6 @@ export const CustomMenu: React.FC = () => {
     const logout = useLogout();
     const Title = useTitle();
     const { push } = useNavigation();
-    const translate = useTranslate();
     const { menuItems, selectedKey } = useMenu();
 
     return (
@@ -46,7 +44,7 @@ export const CustomMenu: React.FC = () => {
                         key="logout"
                         icon={<Icons.LogoutOutlined />}
                     >
-                        {translate("common:buttons.logout", "Logout")}
+                        Logout
                     </Menu.Item>
                 )}
             </Menu>
