@@ -6,6 +6,8 @@ export * from "./components/antd";
 export * from "./hooks";
 export { Link } from "react-router-dom";
 
+export { DataContext } from "./contexts/data/index";
+
 export { IAuthContext as AuthProvider, Sort, Pagination } from "./interfaces";
 export {
     IDataContext as DataProvider,
