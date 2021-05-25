@@ -19,7 +19,7 @@ export const PostShow = (props: IResourceComponentsProps) => {
     const {
         data: languageData,
         isLoading: languageIsLoading,
-    } = useOne<ILanguage>("languages", record!?.language);
+    } = useOne<ILanguage>("languages", record?.language);
 
     return (
         <Show {...props} isLoading={isLoading && languageIsLoading}>

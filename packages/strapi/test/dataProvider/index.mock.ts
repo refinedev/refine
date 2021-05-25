@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
 import nock from "nock";
 
 nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
