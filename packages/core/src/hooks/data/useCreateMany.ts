@@ -62,7 +62,7 @@ export const useCreateMany = <
                     description: err.message,
                     message: translate(
                         "notifications.createError",
-                        { resource },
+                        { resource, statusCode: err.statusCode },
                         `There was an error creating ${resource} (status code: ${err.statusCode}`,
                     ),
                 });

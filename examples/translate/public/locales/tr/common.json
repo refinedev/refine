@@ -29,12 +29,11 @@
     "warnWhenUnsavedChanges": "Kaydedilmemiş değişiklikleriniz var. Ayrılmak istediğinizden emin misiniz?",
     "notifications": {
         "success": "Başarılı",
-        "error": "Hata",
+        "error": "Hata (hata kodu: {{statusCode}})",
         "undoable": "Geri almak için {{seconds}} saniyeniz var",
         "createSuccess": "{{resource}} başarıyla oluşturuldu",
         "createError": "{{resource}} oluşturulurken hata (hata kodu: {{statusCode}})",
         "deleteSuccess": "{{resource}} başarıyla silindi",
-        "deleteError": "{{resource}} silinirken hata (hata kodu: {{statusCode}})",
         "editSuccess": "{{resource}} başarıyla düzenlendi",
         "editError": "{{resource}} düzenlenirken hata (hata kodu: {{statusCode}})"
     },
