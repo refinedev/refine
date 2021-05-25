@@ -7,12 +7,22 @@ module.exports = {
         {
             type: "category",
             label: "Guides",
-            items: ["multipartUpload", "base64upload", "auth0", "tableSearch", "customPages"],
+            items: [
+                "multipartUpload",
+                "base64upload",
+                "auth0",
+                "tableSearch",
+                "customPages",
+            ],
         },
         {
             type: "category",
             label: "Providers",
             items: ["authProvider", "dataProvider"],
+        },
+        {
+            type: "doc",
+            id: "i18n",
         },
         {
             type: "category",
