@@ -138,9 +138,7 @@ export const useDelete = <
                                     data,
                                     total,
                                     // eslint-disable-next-line prettier/prettier
-                                } = previousQuery as GetListResponse<
-                                    TData
-                                >;
+                                } = previousQuery as GetListResponse<TData>;
 
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
@@ -182,7 +180,7 @@ export const useDelete = <
                     notification.error({
                         key: `${id}-${resource}-notification`,
                         message: translate(
-                            "common:notifications.error",
+                            "notifications.error",
                             { statusCode: err.statusCode },
                             `Error (status code: ${err.statusCode})`,
                         ),
@@ -205,12 +203,9 @@ export const useDelete = <
 
                 notification.success({
                     key: `${id}-${resource}-notification`,
-                    message: translate(
-                        "common:notifications.success",
-                        "Success",
-                    ),
+                    message: translate("notifications.success", "Success"),
                     description: translate(
-                        "common:notifications.deleteSuccess",
+                        "notifications.deleteSuccess",
                         { resource: resourceSingular },
                         `Successfully deleted a ${resourceSingular}`,
                     ),

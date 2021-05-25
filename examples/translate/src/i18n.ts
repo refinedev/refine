@@ -7,7 +7,7 @@ i18n.use(Backend)
     .use(detector)
     .use(initReactI18next)
     .init({
-        whitelist: ["en", "tr"],
+        supportedLngs: ["en", "tr"],
         interpolation: {
             escapeValue: false,
         },

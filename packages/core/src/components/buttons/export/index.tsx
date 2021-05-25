@@ -109,7 +109,7 @@ export const ExportButton: FC<ExportButtonProps> = ({
                 loading={loading}
                 {...rest}
             >
-                {translate("common:buttons.export", "Export")}
+                {translate("buttons.export", "Export")}
             </Button>
         </>
     );

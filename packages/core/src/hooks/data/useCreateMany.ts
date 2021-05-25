@@ -46,14 +46,11 @@ export const useCreateMany = <
             onSuccess: (_, { resource }) => {
                 notification.success({
                     description: translate(
-                        "common:notifications.createSuccess",
+                        "notifications.createSuccess",
                         { resource },
                         "Successfully Created",
                     ),
-                    message: translate(
-                        "common:notifications.success",
-                        "Success",
-                    ),
+                    message: translate("notifications.success", "Success"),
                 });
 
                 getListQueries(resource).forEach((query) => {
@@ -64,7 +61,7 @@ export const useCreateMany = <
                 notification.error({
                     description: err.message,
                     message: translate(
-                        "common:notifications.createError",
+                        "notifications.createError",
                         { resource },
                         `There was an error creating ${resource} (status code: ${err.statusCode}`,
                     ),

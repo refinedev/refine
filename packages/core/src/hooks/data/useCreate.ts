@@ -14,7 +14,7 @@ import { useListResourceQueries, useTranslate, useNotification } from "@hooks";
 export type UseCreateReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {},
+    TVariables = {}
 > = UseMutationResult<
     CreateResponse<TData>,
     TError,
@@ -28,7 +28,7 @@ export type UseCreateReturnType<
 export const useCreate = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {},
+    TVariables = {}
 >(): UseCreateReturnType<TData, TError, TVariables> => {
     const { create } = useContext<IDataContext>(DataContext);
     const getListQueries = useListResourceQueries();
@@ -53,14 +53,11 @@ export const useCreate = <
 
                 notification.success({
                     description: translate(
-                        "common:notifications.createSuccess",
+                        "notifications.createSuccess",
                         { resource },
                         `Successfully created ${resourceSingular}`,
                     ),
-                    message: translate(
-                        "common:notifications.success",
-                        "Success",
-                    ),
+                    message: translate("notifications.success", "Success"),
                 });
 
                 getListQueries(resource).forEach((query) => {
@@ -73,7 +70,7 @@ export const useCreate = <
                 notification.error({
                     description: err.message,
                     message: translate(
-                        "common:notifications.createError",
+                        "notifications.createError",
                         {
                             resource: resourceSingular,
                             statusCode: err.statusCode,

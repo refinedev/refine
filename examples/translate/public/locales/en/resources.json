@@ -1,6 +1,5 @@
 {
     "posts": {
-        "title": "Posts",
         "fields": {
             "id": "Id",
             "title": "Title",
@@ -13,9 +12,5 @@
             },
             "content": "Content"
         }
-    },
-    "create": "Create Post",
-    "edit": "Edit Post",
-    "listTitle": "Posts",
-    "show": "Show Post"
+    }
 }

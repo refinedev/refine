@@ -191,7 +191,7 @@ export const useUpdateMany = <
                     notification.error({
                         key: `${ids}-${resource}-notification`,
                         message: translate(
-                            "common:notifications:updateError",
+                            "notifications:updateError",
                             { resourceSingular },
                             `Error when updating ${resourceSingular} (status code: ${err.statusCode})`,
                         ),
@@ -211,12 +211,9 @@ export const useUpdateMany = <
             onSuccess: (_data, { ids }) => {
                 notification.success({
                     key: `${ids}-${resource}-notification`,
-                    message: translate(
-                        "common:notifications:success",
-                        "Successful",
-                    ),
+                    message: translate("notifications:success", "Successful"),
                     description: translate(
-                        "common:notifications:updateSuccess",
+                        "notifications:updateSuccess",
                         { resourceSingular },
                         `Successfully updated ${resourceSingular}`,
                     ),

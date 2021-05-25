@@ -185,7 +185,7 @@ export const useUpdate = <
                     notification.error({
                         key: `${id}-${resource}-notification`,
                         message: translate(
-                            "common:notifications:updateError",
+                            "notifications:updateError",
                             { resourceSingular },
                             `Error when updating ${resourceSingular} (status code: ${err.statusCode})`,
                         ),
@@ -202,12 +202,9 @@ export const useUpdate = <
             onSuccess: (_data, { id }) => {
                 notification.success({
                     key: `${id}-${resource}-notification`,
-                    message: translate(
-                        "common:notifications:success",
-                        "Successful",
-                    ),
+                    message: translate("notifications:success", "Successful"),
                     description: translate(
-                        "common:notifications:updateSuccess",
+                        "notifications:updateSuccess",
                         { resourceSingular },
                         `Successfully updated ${resourceSingular}`,
                     ),

@@ -45,5 +45,12 @@
     },
     "table": {
         "actions": "Actions"
+    },
+    "posts": {
+        "title": "Posts",
+        "create": "Create Post",
+        "edit": "Edit Post",
+        "listTitle": "Posts",
+        "show": "Show Post"
     }
 }

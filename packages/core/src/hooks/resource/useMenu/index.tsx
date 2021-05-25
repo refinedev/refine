@@ -36,7 +36,7 @@ export const useMenu: () => useMenuReturnType = () => {
                           route: `/`,
                           key: "dashboard",
                           label: translate(
-                              "common:resources.dashboard.title",
+                              "resources.dashboard.title",
                               "Dashboard",
                           ),
                       },
@@ -51,7 +51,7 @@ export const useMenu: () => useMenuReturnType = () => {
                     route: route,
                     key: route,
                     label: translate(
-                        `common:resources.${resource.name}.${
+                        `resources.${resource.name}.${
                             resource.label ?? humanizeString(resource.name)
                         }`,
                         resource.label ?? humanizeString(resource.name),

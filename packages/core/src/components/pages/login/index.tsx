@@ -78,7 +78,7 @@ export const LoginPage: React.FC = () => {
                             <Form.Item
                                 name="username"
                                 label={translate(
-                                    "common:pages.login.username",
+                                    "pages.login.username",
                                     "Username",
                                 )}
                                 rules={[{ required: true }]}
@@ -94,7 +94,7 @@ export const LoginPage: React.FC = () => {
                             <Form.Item
                                 name="password"
                                 label={translate(
-                                    "common:pages.login.password",
+                                    "pages.login.password",
                                     "Password",
                                 )}
                                 rules={[{ required: true }]}
@@ -116,7 +116,7 @@ export const LoginPage: React.FC = () => {
                                 >
                                     <Checkbox>
                                         {translate(
-                                            "common:pages.login.remember",
+                                            "pages.login.remember",
                                             "Remember me",
                                         )}
                                     </Checkbox>
@@ -124,7 +124,7 @@ export const LoginPage: React.FC = () => {
 
                                 <a style={{ float: "right" }} href="">
                                     {translate(
-                                        "common:pages.login.forgotPassword",
+                                        "pages.login.forgotPassword",
                                         "Forgot password?",
                                     )}
                                 </a>
@@ -136,24 +136,18 @@ export const LoginPage: React.FC = () => {
                                     htmlType="submit"
                                     block
                                 >
-                                    {translate(
-                                        "common:pages.login.login",
-                                        "Login",
-                                    )}
+                                    {translate("pages.login.login", "Login")}
                                 </Button>
                             </Form.Item>
                         </Form>
                         <div style={signupSection}>
                             <Text>
                                 {translate(
-                                    "common:pages.login.noAccountText",
+                                    "pages.login.noAccountText",
                                     "Still no account? Please go to",
                                 )}{" "}
                                 <a href="">
-                                    {translate(
-                                        "common:pages.login.signup",
-                                        "Sign up",
-                                    )}
+                                    {translate("pages.login.signup", "Sign up")}
                                 </a>
                             </Text>
                         </div>
