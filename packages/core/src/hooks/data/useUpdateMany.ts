@@ -192,7 +192,10 @@ export const useUpdateMany = <
                         key: `${ids}-${resource}-notification`,
                         message: translate(
                             "notifications.editError",
-                            { resource: resourceSingular },
+                            {
+                                resource: resourceSingular,
+                                statusCode: err.statusCode,
+                            },
                             `Error when updating ${resourceSingular} (status code: ${err.statusCode})`,
                         ),
                         description: err.message,
