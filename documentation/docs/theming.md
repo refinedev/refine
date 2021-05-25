@@ -83,6 +83,8 @@ import "styles/antd.less";
 
 Then, execute `npm start` to start your application. Since `craco-less` is activated, you can load `less` files just like any other `css` file.
 
+## Overriding Variables
+
 There are two approaches to override variables.
 
 ### Variable overrides in `less` files
