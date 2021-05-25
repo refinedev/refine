@@ -60,6 +60,8 @@ module.exports = {
 };
 ```
 
+<br />
+
 Create a less file and import antd styles from `~@pankod/refine/node_modules/antd`:
 
 ```less title="/styles/antd.less"
