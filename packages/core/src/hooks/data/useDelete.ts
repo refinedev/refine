@@ -77,7 +77,7 @@ export const useDelete = <
                 return deleteOne<TData>(resource, id);
             }
 
-            const updatePromise = new Promise<DeleteOneResponse<TData>>(
+            const deletePromise = new Promise<DeleteOneResponse<TData>>(
                 (resolve, reject) => {
                     const updateTimeout = setTimeout(() => {
                         deleteOne<TData>(resource, id)
@@ -105,7 +105,7 @@ export const useDelete = <
                     }
                 },
             );
-            return updatePromise;
+            return deletePromise;
         },
         {
             onMutate: async (deleteParams) => {

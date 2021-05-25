@@ -17,7 +17,7 @@ describe("useUpdateMany Hook", () => {
         );
 
         result.current.mutate({
-            id: ["1", "2"],
+            ids: ["1", "2"],
             values: { id: "1", title: "test" },
         });
         await waitForNextUpdate();
