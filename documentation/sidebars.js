@@ -28,6 +28,8 @@ module.exports = {
                         "hooks/data/useUpdateMany",
                         "hooks/data/useDelete",
                         "hooks/data/useDeleteMany",
+                        "hooks/data/useOne",
+                        "hooks/data/useMany",
                     ],
                 },
                 "useModalForm",
