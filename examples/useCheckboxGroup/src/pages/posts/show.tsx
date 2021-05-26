@@ -19,7 +19,7 @@ export const PostShow = (props: IResourceComponentsProps) => {
 
     const { data: tagsData, isLoading: tagsIsLoading } = useMany<ITag>(
         "tags",
-        record!?.tags,
+        record?.tags,
     );
 
     return (
