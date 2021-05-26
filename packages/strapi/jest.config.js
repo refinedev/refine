@@ -1,6 +1,6 @@
 module.exports = {
     preset: "ts-jest",
     rootDir: "./",
-    name: "nestjsx-crud",
-    displayName: "nestjsx-crud",
+    name: "strapi",
+    displayName: "strapi",
 };

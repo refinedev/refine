@@ -7,7 +7,15 @@ module.exports = {
         {
             type: "category",
             label: "Guides",
-            items: ["multipartUpload", "base64upload", "auth0", "tableSearch", "customPages", "csvExport"],
+            items: [
+                "multipartUpload",
+                "base64upload",
+                "auth0",
+                "tableSearch",
+                "customPages",
+                "theming",
+                "csvExport"
+            ],
         },
         {
             type: "category",
@@ -28,6 +36,9 @@ module.exports = {
                         "hooks/data/useUpdateMany",
                         "hooks/data/useDelete",
                         "hooks/data/useDeleteMany",
+                        "hooks/data/useOne",
+                        "hooks/data/useMany",
+                        "hooks/data/useCustom",
                     ],
                 },
                 "useModalForm",
