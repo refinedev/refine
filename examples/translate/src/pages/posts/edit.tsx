@@ -17,7 +17,7 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostEdit = (props: IResourceComponentsProps) => {
+export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
