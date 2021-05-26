@@ -6,7 +6,7 @@ title: Custom Form Validation
 
 import createForm from '@site/static/img/custom-form-validation.gif';
 
-In refine, we can use the form validation that comes with `antd` with the `rules` prop of the `Form.Item` component.
+In refine, we can use the form validation that comes with `Ant Design` with the [rules](https://ant.design/components/form/#Rule) prop of the [Form.Item](https://ant.design/components/form/#Form.Item) component.
 
 ```tsx
 <Form>
@@ -64,9 +64,9 @@ export const PostCreate = (props: IResourceComponentsProps) => {
     const [title, setTitle] = useState("");
 
     const { refetch } = useCustom<
-    PostUniqueCheckResponse, 
-    HttpError, 
-    PostUniqueCheckRequestQuery
+        PostUniqueCheckResponse,
+        HttpError,
+        PostUniqueCheckRequestQuery
     >
     (
         url,
