@@ -5,11 +5,12 @@ import {
     Input,
     Select,
     useSelect,
+    IResourceComponentsProps,
 } from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
-export const PostCreate = () => {
+export const PostCreate: React.FC<IResourceComponentsProps>  = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<IPost>({

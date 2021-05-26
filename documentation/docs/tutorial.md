@@ -83,15 +83,13 @@ import { Admin } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
-function App() {
+export const App: React.FC = () => {
     return (
         <Admin
             dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
         />
     );
 }
-
-export default App;
 ```
 
 <br/>
@@ -129,7 +127,7 @@ We'll demonstrate how to get data at `/posts` endpoint from `https://refine-fake
 import { Admin, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 
-function App() {
+export const App: React.FC = () => {
     return (
         <Admin
             dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
@@ -139,8 +137,6 @@ function App() {
         </Admin>
     );
 }
-
-export default App;
 ```
 
 <br/>
@@ -178,7 +174,7 @@ import {
 } from "@pankod/refine";
 import { IPost } from "interfaces";
 
-export const PostList = () => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps } = useTable<IPost>();
 
     return (
@@ -265,7 +261,7 @@ import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
 import { PostList } from "./pages";
 
-function App() {
+export const App: React.FC = () => {
     return (
         <Admin
             dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
@@ -275,8 +271,6 @@ function App() {
         </Admin>
     );
 }
-
-export default App;
 ```
 
 <br />
@@ -335,7 +329,7 @@ import {
 //highlight-next-line
 import { IPost, ICategory } from "interfaces";
 
-export const PostList = () => {
+export const PostList: React.FC<IResourceComponentsProps>  = (props) => {
     const { tableProps } = useTable<IPost>();
 
     //highlight-start
@@ -499,7 +493,7 @@ import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
 import { PostList, PostEdit } from "./pages";
 
-function App() {
+export const App: React.FC = () => {
     return (
         <Admin
             dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
@@ -513,8 +507,6 @@ function App() {
         </Admin>
     );
 }
-
-export default App;
 ```
 
 <br />
@@ -538,7 +530,7 @@ import {
     //highlight-end
 } from "@pankod/refine";
 
-export const PostList = () => {
+export const PostList: React.FC<IResourceComponentsProps>  = (props) => {
 ...
     <Table.Column
         title="Actions"
@@ -682,7 +674,7 @@ import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
 import { PostList, PostEdit, PostCreate } from "./pages";
 
-function App() {
+export const App: React.FC = () => {
     return (
         <Admin
             dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
@@ -697,8 +689,6 @@ function App() {
         </Admin>
     );
 }
-
-export default App;
 ```
 
 <br />
@@ -713,7 +703,7 @@ Each component given to `<Resource>` will get passed props with `IResourceCompon
 ```tsx title="components/pages/posts.tsx"
 ...
 //highlight-next-line
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps>  = (props) => {
     const { tableProps } = useTable();
 
     return (
@@ -807,7 +797,7 @@ import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
 import { PostList, PostEdit, PostCreate, PostShow } from "./pages";
 
-function App() {
+export const App: React.FC = () => {
     return (
         <Admin
             dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
@@ -823,8 +813,6 @@ function App() {
         </Admin>
     );
 }
-
-export default App;
 ```
 
 ### Fetching record data
@@ -902,7 +890,7 @@ import {
     //highlight-end
 } from "@pankod/refine";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps>  = (props) => {
     ...
 
     //highlight-start
