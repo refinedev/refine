@@ -43,7 +43,16 @@ Now let's prepare a rule that checks that the title of posts is unique. We have 
 ```
 
 ```tsx
-import { useApiUrl, useCustom } from "@pankod/refine";
+import { useApiUrl, useCustom, HttpError } from "@pankod/refine";
+
+interface PostUniqueCheckResponse {
+    isAvailable: boolean;
+}
+
+interface PostUniqueCheckRequestQuery {
+    title: string;
+}
+
 
 export const PostCreate = (props: IResourceComponentsProps) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
@@ -54,9 +63,8 @@ export const PostCreate = (props: IResourceComponentsProps) => {
 
     const [title, setTitle] = useState("");
 
-    const { refetch } = useCustom<{
-        isAvailable: boolean;
-    }>(
+    const { refetch } = useCustom<PostUniqueCheckResponse, HttpError, PostUniqueCheckRequestQuery>
+    (
         url,
         "get",
         {
@@ -123,4 +131,5 @@ Value must be kept in the state.
 ```tsx
 <Input onChange={(event) => setTitle(event.target.value)} />
 ```
+
 :::
