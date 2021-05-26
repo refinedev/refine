@@ -63,7 +63,11 @@ export const PostCreate = (props: IResourceComponentsProps) => {
 
     const [title, setTitle] = useState("");
 
-    const { refetch } = useCustom<PostUniqueCheckResponse, HttpError, PostUniqueCheckRequestQuery>
+    const { refetch } = useCustom<
+    PostUniqueCheckResponse, 
+    HttpError, 
+    PostUniqueCheckRequestQuery
+    >
     (
         url,
         "get",
