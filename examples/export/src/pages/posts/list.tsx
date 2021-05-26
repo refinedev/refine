@@ -7,12 +7,13 @@ import {
     Space,
     EditButton,
     ShowButton,
+    ExportButton,
     useMany,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps } = useTable<IPost>();
 
     const categoryIds =
@@ -21,8 +22,28 @@ export const PostList = (props: IResourceComponentsProps) => {
         enabled: categoryIds.length > 0,
     });
 
+    const Actions = () => (
+        <Space direction="horizontal">
+            <ExportButton
+                mapData={(item: IPost) => {
+                    return {
+                        id: item.id,
+                        title: item.title,
+                        slug: item.slug,
+                        content: item.content,
+                        status: item.status,
+                        categoryId: item.category.id,
+                        userId: item.user?.id,
+                    };
+                }}
+            />
+        </Space>
+    );
+
     return (
-        <List {...props}>
+        <List {...props} pageHeaderProps={{
+            extra: <Actions />,
+        }}>
             <Table {...tableProps} key="id">
                 <Table.Column key="id" dataIndex="id" title="ID" />
                 <Table.Column key="title" dataIndex="title" title="Title" />
