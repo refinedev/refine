@@ -9,7 +9,7 @@ import { Header } from "components";
 
 const API_URL = "https://refine-fake-rest.pankod.com";
 
-const App = () => {
+const App: React.FC = () => {
     const { t, i18n } = useTranslation(["common", "resources"]);
 
     const i18nProvider = {
