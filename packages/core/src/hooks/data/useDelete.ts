@@ -137,7 +137,6 @@ export const useDelete = <
                                 const {
                                     data,
                                     total,
-                                    // eslint-disable-next-line prettier/prettier
                                 } = previousQuery as GetListResponse<TData>;
 
                                 queryClient.setQueryData(queryKey, {

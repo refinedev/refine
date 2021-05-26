@@ -10,8 +10,8 @@
         "start": "lerna run start --stream --parallel",
         "test": "lerna run test --stream --parallel",
         "test:coverage": "jest --runInBand --silent --ci --coverage",
-        "lint": "tsdx lint packages example",
-        "lint:fix": "npm run lint -- packages example examples --quiet --fix --allow-empty",
+        "lint": "eslint packages example",
+        "lint:fix": "npm run lint -- packages example examples --quiet --fix",
         "build": "lerna run build",
         "bootstrap:docker": "lerna bootstrap -- --production --no-optional"
     },
@@ -38,8 +38,11 @@
     "devDependencies": {
         "@types/react": "^17.0.1",
         "@types/react-dom": "^17.0.0",
-        "eslint": "^7.11.0",
-        "eslint-plugin-prettier": "^3.3.1",
+        "@typescript-eslint/eslint-plugin": "^4.25.0",
+        "@typescript-eslint/parser": "^4.25.0",
+        "eslint": "7.27.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-react": "^7.23.2",
         "husky": "^4.3.8",
         "jest": "^26.6.0",
         "lerna": "^4.0.0",
@@ -47,7 +50,6 @@
         "prettier": "^2.2.1",
         "react": "^17.0.2",
         "react-dom": "^17.0.1",
-        "tsdx": "^0.14.1",
         "typescript": "^3.9.8"
     }
 }
