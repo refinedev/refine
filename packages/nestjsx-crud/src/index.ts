@@ -135,20 +135,8 @@ const NestsxCrud = (
 
         const filters = generateFilter(params.filters);
 
-        // search
-        const searchFilter: CrudFilters = [];
-        const { search } = params;
-        if (search?.value && search.field) {
-            searchFilter.push({
-                field: search.field,
-                operator: CondOperator.CONTAINS_LOW,
-                value: search.value,
-            });
-        }
-
         const query = RequestQueryBuilder.create()
             .setFilter(filters)
-            .setOr(searchFilter)
             .setLimit(pageSize)
             .setPage(current)
             .sortBy(sortBy)
