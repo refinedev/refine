@@ -140,16 +140,17 @@ export const useDeleteMany = <
                                 const {
                                     data,
                                     total,
-                                    // eslint-disable-next-line prettier/prettier
                                 } = previousQuery as GetListResponse<TData>;
 
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: (data ?? []).filter(
                                         (record: TData) =>
-                                            !deleteParams.ids.includes(
-                                                record.id!.toString(),
-                                            ),
+                                            !deleteParams.ids
+                                                .map((i) => i.toString())
+                                                .includes(
+                                                    record.id!.toString(),
+                                                ),
                                     ),
                                     total: total - deleteParams.ids.length,
                                 });

@@ -11,6 +11,7 @@ import {
     Context as UpdateContext,
     ContextQuery,
     HttpError,
+    Identifier,
 } from "../../interfaces";
 import pluralize from "pluralize";
 import {
@@ -22,9 +23,10 @@ import {
 } from "@hooks";
 
 type UpdateParams<T> = {
-    id: string;
+    id: Identifier;
     values: T;
 };
+
 export type UseUpdateReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -113,15 +115,18 @@ export const useUpdate = <
             onMutate: async (variables) => {
                 const previousQueries: ContextQuery[] = [];
 
-                const allQueries = getAllQueries(resource, variables.id);
+                const allQueries = getAllQueries(
+                    resource,
+                    variables.id.toString(),
+                );
 
                 for (const queryItem of allQueries) {
                     const { queryKey } = queryItem;
                     await queryClient.cancelQueries(queryKey);
 
-                    const previousQuery = queryClient.getQueryData<QueryResponse>(
-                        queryKey,
-                    );
+                    const previousQuery = queryClient.getQueryData<
+                        QueryResponse<TData>
+                    >(queryKey);
 
                     if (!(mutationMode === "pessimistic")) {
                         if (previousQuery) {
@@ -184,16 +189,19 @@ export const useUpdate = <
                     notification.error({
                         key: `${id}-${resource}-notification`,
                         message: translate(
-                            "common:notifications:editError",
+                            "common:notifications:updateError",
                             { resourceSingular },
-                            `Error when editing ${resourceSingular} (status code: ${err.statusCode})`,
+                            `Error when updating ${resourceSingular} (status code: ${err.statusCode})`,
                         ),
                         description: err.message,
                     });
                 }
             },
             onSettled: (_data, _error, variables) => {
-                const allQueries = getAllQueries(resource, variables.id);
+                const allQueries = getAllQueries(
+                    resource,
+                    variables.id.toString(),
+                );
                 for (const query of allQueries) {
                     queryClient.invalidateQueries(query.queryKey);
                 }
@@ -206,9 +214,9 @@ export const useUpdate = <
                         "Successful",
                     ),
                     description: translate(
-                        "common:notifications:editSuccess",
+                        "common:notifications:updateSuccess",
                         { resourceSingular },
-                        `Successfully edited ${resourceSingular}`,
+                        `Successfully updated ${resourceSingular}`,
                     ),
                 });
             },

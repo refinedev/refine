@@ -38,6 +38,11 @@
     margin-left: 5px;
 }
 
+.required-block {
+    display: flex;
+    align-items: center;
+}
+
 .footer__links {
     margin-bottom: 20px;
 }

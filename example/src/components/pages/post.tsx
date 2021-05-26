@@ -39,7 +39,6 @@ import {
     Typography,
     useSelect,
     useMany,
-    useDeleteMany,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -68,14 +67,8 @@ interface ICategory {
 
 export const PostList = (props: any) => {
     const translate = useTranslate();
+
     const { tableProps, sorter, filters } = useTable<IPost>({
-        // permanentFilter: [
-        //     {
-        //         field: "createdAt",
-        //         operator: "gte",
-        //         value: "2021-05-17",
-        //     },
-        // ],
         initialSorter: [
             {
                 field: "createdAt",
@@ -83,43 +76,6 @@ export const PostList = (props: any) => {
             },
         ],
     });
-
-    const [selectedRowKeys, setSelectedRowKeys] = React.useState<
-        (string | number)[]
-    >([]);
-
-    const {
-        mutate,
-        isSuccess,
-        isLoading: deleteManyIsLoading,
-    } = useDeleteMany<IPost>("posts");
-
-    const deleteSelectedItems = () => {
-        mutate({ ids: selectedRowKeys });
-    };
-
-    React.useEffect(() => {
-        if (isSuccess) {
-            setSelectedRowKeys([]);
-        }
-    }, [isSuccess]);
-
-    const onSelectChange = (selectedRowKeys: (string | number)[]) => {
-        console.log({ selectedRowKeys });
-        setSelectedRowKeys(selectedRowKeys);
-    };
-
-    const rowSelection = {
-        selectedRowKeys,
-        onChange: onSelectChange,
-        selections: [
-            Table.SELECTION_ALL,
-            Table.SELECTION_INVERT,
-            Table.SELECTION_NONE,
-        ],
-    };
-
-    const hasSelected = selectedRowKeys.length > 0;
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
@@ -181,25 +137,9 @@ export const PostList = (props: any) => {
                 extra,
             }}
         >
-            <div style={{ padding: "16px 8px" }}>
-                <Button
-                    type="primary"
-                    onClick={deleteSelectedItems}
-                    disabled={!hasSelected}
-                    loading={deleteManyIsLoading}
-                >
-                    {translate("common:resources.posts.deleteMany")}
-                </Button>
-                <span style={{ marginLeft: 8 }}>
-                    {hasSelected
-                        ? `Selected ${selectedRowKeys.length} items`
-                        : ""}
-                </span>
-            </div>
             <Table<IPost>
                 {...tableProps}
-                rowSelection={rowSelection}
-                rowKey="id"
+                key="id"
                 pagination={{
                     ...tableProps.pagination,
                     position: ["bottomCenter"],
