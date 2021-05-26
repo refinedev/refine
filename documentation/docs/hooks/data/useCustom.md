@@ -38,16 +38,12 @@ const apiUrl = useApiUrl();
 
 // highlight-start
 const { data, isLoading } = useCustom<IPost[]>(
-    `${apiUrl}/posts/unique-check?title=Foo bar`,
+    `${apiUrl}/posts/unique-check`,
     "get",
     {
-        filters: [
-            {
-                field: "title",
-                operator: "eq",
-                value: "Foo bar",
-            },
-        ],
+        query: {
+            title: "Foo bar",
+        },
     },
 );
 // highlight-end
@@ -57,12 +53,12 @@ const { data, isLoading } = useCustom<IPost[]>(
 
 #### Parameters
 
-| Property     | Description                                                             | Type                                                             | Required |
-| ------------ | ----------------------------------------------------------------------- | ---------------------------------------------------------------- | -------- |
-| url          | URL                                                                     | string                                                           | true     |
-| method       | Method                                                                  | "get", "delete", "head", "options", "post", "put", "patch"       | true     |
-| config       | Query Params                                                            | { sort?: Sort; filters?: CrudFilters; payload?: {}; query?: {} } | false    |
-| queryOptions | [useQuery Options](https://react-query.tanstack.com/reference/useQuery) | object                                                           | false    |
+| Property                                         | Description                                                             | Type                                                             | Required |
+| ------------------------------------------------ | ----------------------------------------------------------------------- | ---------------------------------------------------------------- | -------- |
+| url <div className=" required">Required</div>    | URL                                                                     | string                                                           | true     |
+| method <div className=" required">Required</div> | Method                                                                  | "get", "delete", "head", "options", "post", "put", "patch"       | true     |
+| config                                           | Query Params                                                            | { sort?: Sort; filters?: CrudFilters; payload?: {}; query?: {} } | false    |
+| queryOptions                                     | [useQuery Options](https://react-query.tanstack.com/reference/useQuery) | object                                                           | false    |
 
 #### Type Parameters
 
