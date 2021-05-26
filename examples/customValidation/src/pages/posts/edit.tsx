@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
     Edit,
     Form,
+    HttpError,
     Input,
     IResourceComponentsProps,
     Select,
@@ -17,6 +18,15 @@ import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ICategory } from "interfaces";
+
+interface PostUniqueCheckResponse {
+    isAvailable: boolean;
+}
+
+interface PostUniqueCheckRequestQuery {
+    title: string;
+    id?: string;
+}
 
 export const PostEdit = (props: IResourceComponentsProps) => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
@@ -36,9 +46,11 @@ export const PostEdit = (props: IResourceComponentsProps) => {
 
     const [title, setTitle] = useState("");
 
-    const { refetch } = useCustom<{
-        isAvailable: boolean;
-    }>(
+    const { refetch } = useCustom<
+        PostUniqueCheckResponse,
+        HttpError,
+        PostUniqueCheckRequestQuery
+    >(
         url,
         "get",
         {
