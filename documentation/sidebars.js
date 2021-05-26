@@ -19,6 +19,7 @@ module.exports = {
                 "auth0",
                 "tableSearch",
                 "customPages",
+                "theming",
             ],
         },
         {
