@@ -31,6 +31,7 @@ module.exports = {
                         "hooks/data/useList",
                         "hooks/data/useOne",
                         "hooks/data/useMany",
+                        "hooks/data/useCustom",
                     ],
                 },
                 "useModalForm",

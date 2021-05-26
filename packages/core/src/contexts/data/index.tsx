@@ -13,6 +13,7 @@ export const defaultDataProvider = () => {
         getOne: () => Promise.resolve({ data: { id: 1 } }),
         update: () => Promise.resolve({ data: { id: 1 } }),
         updateMany: () => Promise.resolve({ data: [] }),
+        custom: () => Promise.resolve({ data: {} }),
         getApiUrl: () => "",
     };
 };
@@ -32,6 +33,7 @@ export const DataContextProvider: React.FC<IDataContext> = ({
     deleteOne,
     deleteMany,
     getApiUrl,
+    custom,
     children,
 }) => {
     return (
@@ -47,6 +49,7 @@ export const DataContextProvider: React.FC<IDataContext> = ({
                 deleteOne,
                 deleteMany,
                 getApiUrl,
+                custom,
             }}
         >
             {children}
