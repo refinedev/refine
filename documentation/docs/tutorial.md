@@ -184,10 +184,7 @@ export const PostList = () => {
     return (
         <List>
             <Table {...tableProps} rowKey="id">
-                <Table.Column
-                    dataIndex="title"
-                    title="title"
-                />
+                <Table.Column dataIndex="title" title="title" />
                 <Table.Column
                     dataIndex="status"
                     title="status"
@@ -356,10 +353,7 @@ export const PostList = () => {
     return (
         <List>
             <Table {...tableProps} rowKey="id">
-                <Table.Column
-                    dataIndex="title"
-                    title="title"
-                />
+                <Table.Column dataIndex="title" title="title" />
                 <Table.Column
                     dataIndex="status"
                     title="status"
@@ -778,7 +772,7 @@ export const PostShow = () => {
 
     const { data: categoryData } = useOne<ICategory>(
         "categories",
-        record!.category.id,
+        record?.category.id || "",
         {
             enabled: !!record?.category.id,
         },

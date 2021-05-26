@@ -77,7 +77,7 @@ export const useDelete = <
                 return deleteOne<TData>(resource, id);
             }
 
-            const updatePromise = new Promise<DeleteOneResponse<TData>>(
+            const deletePromise = new Promise<DeleteOneResponse<TData>>(
                 (resolve, reject) => {
                     const updateTimeout = setTimeout(() => {
                         deleteOne<TData>(resource, id)
@@ -105,7 +105,7 @@ export const useDelete = <
                     }
                 },
             );
-            return updatePromise;
+            return deletePromise;
         },
         {
             onMutate: async (deleteParams) => {
@@ -137,10 +137,7 @@ export const useDelete = <
                                 const {
                                     data,
                                     total,
-                                    // eslint-disable-next-line prettier/prettier
-                                } = previousQuery as GetListResponse<
-                                    TData
-                                >;
+                                } = previousQuery as GetListResponse<TData>;
 
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,

@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
+import { useForm } from "antd/lib/form/Form";
 
 import { useResourceWithRoute, useList } from "@hooks";
 import { useSyncWithLocation } from "@hooks/admin";
 import { useNavigation } from "@hooks/navigation";
 import { stringifyTableParams, parseTableParams } from "@definitions/table";
+import { FormProps } from "@components/antd";
 
 import {
     Sort,
@@ -23,15 +25,18 @@ export type useTableProps = {
     initialSorter?: Sort;
     initialFilter?: CrudFilters;
     syncWithLocation?: boolean;
+    onSearch?: (data: any) => CrudFilters | Promise<CrudFilters>;
 };
 
 export type useTableReturnType<TData extends BaseRecord = BaseRecord> = {
+    formProps: FormProps;
     tableProps: TableProps<TData>;
     sorter?: Sort;
     filters?: CrudFilters;
 };
 
 export const useTable = <TData extends BaseRecord = BaseRecord>({
+    onSearch,
     permanentFilter = [],
     initialCurrent = 1,
     initialPageSize = 10,
@@ -41,6 +46,8 @@ export const useTable = <TData extends BaseRecord = BaseRecord>({
     resource: resourceFromProp,
 }: useTableProps = {}): useTableReturnType<TData> => {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
+
+    const [form] = useForm();
 
     if (syncWithLocationContext) {
         syncWithLocation = true;
@@ -86,6 +93,7 @@ export const useTable = <TData extends BaseRecord = BaseRecord>({
 
     const [sorter, setSorter] = useState<Sort | undefined>(defaultSorter);
     const [filters, setFilters] = useState<CrudFilters>(defaultFilter || []);
+    const [extraFilter, setExtraFilter] = useState<CrudFilters>([]);
 
     const {
         current,
@@ -95,7 +103,7 @@ export const useTable = <TData extends BaseRecord = BaseRecord>({
 
     const { data, isFetching } = useList<TData>(resource.name, {
         pagination: { current: current ?? defaultCurrentSF, pageSize },
-        filters: permanentFilter?.concat(filters),
+        filters: permanentFilter.concat(extraFilter, filters),
         sort: sorter,
     });
 
@@ -134,7 +142,18 @@ export const useTable = <TData extends BaseRecord = BaseRecord>({
         }
     };
 
+    const onFinish = async (value: any) => {
+        if (onSearch) {
+            const filters = await onSearch(value);
+            return setExtraFilter(filters);
+        }
+    };
+
     return {
+        formProps: {
+            ...form,
+            onFinish,
+        },
         tableProps: {
             ...tablePropsSunflower,
             dataSource: data?.data,

@@ -74,7 +74,10 @@ export const useCreate = <
                     description: err.message,
                     message: translate(
                         "common:notifications.createError",
-                        { resourceSingular, statusCode: err.statusCode },
+                        {
+                            resource: resourceSingular,
+                            statusCode: err.statusCode,
+                        },
                         `There was an error creating ${resourceSingular} (status code: ${err.statusCode})`,
                     ),
                 });
