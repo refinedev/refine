@@ -280,7 +280,7 @@ const NestsxCrud = (
             case "put":
             case "post":
             case "patch":
-                axiosResponse = await httpClient.post(url, payload);
+                axiosResponse = await httpClient[method](url, payload);
                 break;
             case "delete":
                 axiosResponse = await httpClient.delete(url);
