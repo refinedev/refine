@@ -135,20 +135,8 @@ const NestsxCrud = (
 
         const filters = generateFilter(params.filters);
 
-        // search
-        const searchFilter: CrudFilters = [];
-        const { search } = params;
-        if (search?.value && search.field) {
-            searchFilter.push({
-                field: search.field,
-                operator: CondOperator.CONTAINS_LOW,
-                value: search.value,
-            });
-        }
-
         const query = RequestQueryBuilder.create()
             .setFilter(filters)
-            .setOr(searchFilter)
             .setLimit(pageSize)
             .setPage(current)
             .sortBy(sortBy)
@@ -262,7 +250,7 @@ const NestsxCrud = (
     },
 
     custom: async (url, method, params = {}) => {
-        const { filters, sort, payload, query } = params;
+        const { filters, sort, payload, query, headers } = params;
 
         const requestQueryBuilder = RequestQueryBuilder.create()
             .setFilter(generateFilter(filters))
@@ -273,6 +261,13 @@ const NestsxCrud = (
 
         if (query) {
             requestUrl = `${requestUrl}&${stringify(query)}`;
+        }
+
+        if (headers) {
+            httpClient.defaults.headers = {
+                ...httpClient.defaults.headers,
+                ...headers,
+            };
         }
 
         let axiosResponse;

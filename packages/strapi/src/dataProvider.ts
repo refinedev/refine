@@ -178,7 +178,7 @@ export const DataProvider = (
     },
 
     custom: async (url, method, params = {}) => {
-        const { filters, sort, payload, query } = params;
+        const { filters, sort, payload, query, headers } = params;
 
         let requestUrl = `${url}?`;
 
@@ -198,6 +198,13 @@ export const DataProvider = (
 
         if (query) {
             requestUrl = `${requestUrl}&${stringify(query)}`;
+        }
+
+        if (headers) {
+            httpClient.defaults.headers = {
+                ...httpClient.defaults.headers,
+                ...headers,
+            };
         }
 
         let axiosResponse;

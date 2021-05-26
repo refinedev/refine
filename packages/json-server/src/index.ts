@@ -82,9 +82,6 @@ const JsonServer = (
     getList: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
 
-        // search
-        const q = params.search?.value;
-
         // pagination
         const current = params.pagination?.current || 1;
         const pageSize = params.pagination?.pageSize || 10;
@@ -98,7 +95,6 @@ const JsonServer = (
             _end: current * pageSize,
             _sort: _sort.join(","),
             _order: _order.join(","),
-            q,
         };
 
         const { data, headers } = await httpClient.get(
@@ -198,7 +194,7 @@ const JsonServer = (
     },
 
     custom: async (url, method, params = {}) => {
-        const { filters, sort, payload, query } = params;
+        const { filters, sort, payload, query, headers } = params;
 
         let requestUrl = `${url}?`;
 
@@ -218,6 +214,13 @@ const JsonServer = (
 
         if (query) {
             requestUrl = `${requestUrl}&${stringify(query)}`;
+        }
+
+        if (headers) {
+            httpClient.defaults.headers = {
+                ...httpClient.defaults.headers,
+                ...headers,
+            };
         }
 
         let axiosResponse;
