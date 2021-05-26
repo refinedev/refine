@@ -182,21 +182,21 @@ const postListQueryResult = useList<IPost>("posts", {
 
 **Supported operators**
 
-| Filter              | Description                    |
-| ------------------- | ------------------------------ |
-| `eq`                | Equal                          |
-| `ne`                  | Not equal                      |
-| `lt`                  | Less than                      |
-| `gt`                  | Greater than                   |
-| `lte`                 | Less than or equal to          |
-| `gte`                 | Greater than or equal to       |
-| `in`                  | Included in an array           |
-| `nin`                 | Not included in an array       |
-| `contains`            | Contains                       |
-| `ncontains`           | Doesn't contain                |
-| `containss`           | Contains, case sensitive       |
-| `ncontainss`          | Doesn't contain, case sensitive|
-| `null`                | Is null or not null            |
+| Filter       | Description                     |
+| ------------ | ------------------------------- |
+| `eq`         | Equal                           |
+| `ne`         | Not equal                       |
+| `lt`         | Less than                       |
+| `gt`         | Greater than                    |
+| `lte`        | Less than or equal to           |
+| `gte`        | Greater than or equal to        |
+| `in`         | Included in an array            |
+| `nin`        | Not included in an array        |
+| `contains`   | Contains                        |
+| `ncontains`  | Doesn't contain                 |
+| `containss`  | Contains, case sensitive        |
+| `ncontainss` | Doesn't contain, case sensitive |
+| `null`       | Is null or not null             |
 
 
 
@@ -227,13 +227,39 @@ const postListQueryResult = useList<ICategory>("posts", {}, { enabled: false });
 ## API
 
 ### Parameters
+\
+interface UseListConfig {
+    pagination?: Pagination;
+    search?: Search;
+    sort?: Sort;
+    filters?: CrudFilters;
+}
 
 
-| Property                                                                                            | Description                               | Type                                                        | Default |
-| --------------------------------------------------------------------------------------------------- | ----------------------------------------- | ----------------------------------------------------------- | ------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](#) for API data interactions | `string`                                                    |         |
-| ids <div className="required">Required</div>                                                        | ids of the item in the resource           | `(string` \| `number)[]`                                    |         |
-| options                                                                                             | `react-query`'s `useQuery` options        | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>` |         |
+| Property                                                                                            | Description                                  | Type                                                                                 |
+| --------------------------------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------ |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](#) for API data interactions    | `string`                                                                             |
+| config                                                                                              | Config for pagination, sorting and filtering | [`UseListConfig`](#config-parameters) |  |
+| options                                                                                             | `react-query`'s `useQuery` options           | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                          |
+
+### Config parameters
+
+```ts
+import { SorterResult } from "antd/lib/table/interface";
+
+interface UseListConfig {
+    pagination?: {
+        current?: number;
+        pageSize?: number;
+    };
+    sort?: SorterResult<any> | SorterResult<any>[];
+    filters?: Array<{
+        field: string;
+        operator: CrudOperators;
+        value: any;
+    }>;
+}
+```
 
 ### Type Parameters
 
