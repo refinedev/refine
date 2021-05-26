@@ -9,7 +9,7 @@ import {
 
 const { Text } = Typography;
 
-export const DashboardPage = () => {
+export const DashboardPage: React.FC = () => {
     const identity = useGetIdentity();
     const permissions = usePermissions();
 
