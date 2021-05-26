@@ -11,20 +11,23 @@ import {
     HttpError,
 } from "../../interfaces";
 
-interface UseCustomConfig {
+interface UseCustomConfig<TQuery, TPayload> {
     sort?: Sort;
     filters?: CrudFilters;
-    query?: {};
-    payload?: {};
+    query?: TQuery;
+    payload?: TPayload;
+    headers?: {};
 }
 
 export const useCustom = <
     TData = BaseRecord,
-    TError extends HttpError = HttpError
+    TError extends HttpError = HttpError,
+    TQuery = unknown,
+    TPayload = unknown
 >(
     url: string,
     method: "get" | "delete" | "head" | "options" | "post" | "put" | "patch",
-    config?: UseCustomConfig,
+    config?: UseCustomConfig<TQuery, TPayload>,
     queryOptions?: UseQueryOptions<CustomResponse<TData>, TError>,
 ): QueryObserverResult<CustomResponse<TData>, TError> => {
     const { custom } = useContext<IDataContext>(DataContext);

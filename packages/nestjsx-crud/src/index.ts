@@ -262,7 +262,7 @@ const NestsxCrud = (
     },
 
     custom: async (url, method, params = {}) => {
-        const { filters, sort, payload, query } = params;
+        const { filters, sort, payload, query, headers } = params;
 
         const requestQueryBuilder = RequestQueryBuilder.create()
             .setFilter(generateFilter(filters))
@@ -273,6 +273,13 @@ const NestsxCrud = (
 
         if (query) {
             requestUrl = `${requestUrl}&${stringify(query)}`;
+        }
+
+        if (headers) {
+            httpClient.defaults.headers = {
+                ...httpClient.defaults.headers,
+                ...headers,
+            };
         }
 
         let axiosResponse;
