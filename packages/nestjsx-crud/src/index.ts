@@ -121,20 +121,8 @@ const NestsxCrud = (
             });
         }
 
-        // search
-        const searchFilter: CrudFilters = [];
-        const { search } = params;
-        if (search?.value && search.field) {
-            searchFilter.push({
-                field: search.field,
-                operator: CondOperator.CONTAINS_LOW,
-                value: search.value,
-            });
-        }
-
         const query = RequestQueryBuilder.create()
             .setFilter(crudFilters)
-            .setOr(searchFilter)
             .setLimit(pageSize)
             .setPage(current)
             .sortBy(sortBy)

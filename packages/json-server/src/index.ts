@@ -39,9 +39,6 @@ const JsonServer = (
     getList: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
 
-        // search
-        const q = params.search?.value;
-
         // pagination
         const current = params.pagination?.current || 1;
         const pageSize = params.pagination?.pageSize || 10;
@@ -82,7 +79,6 @@ const JsonServer = (
             _end: current * pageSize,
             _sort: _sort.join(","),
             _order: _order.join(","),
-            q,
         };
 
         const { data, headers } = await httpClient.get(
