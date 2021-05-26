@@ -32,14 +32,10 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     );
 
     return (
-        <Edit
-            {...props}
-            saveButtonProps={saveButtonProps}
-            title={translate("resources:posts.titles.edit")}
-        >
+        <Edit {...props} saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={translate("resources:posts.fields.title")}
+                    label={translate("posts.fields.title")}
                     name="title"
                     rules={[
                         {
@@ -50,7 +46,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("resources:posts.fields.category")}
+                    label={translate("posts.fields.category")}
                     name={["category", "id"]}
                     rules={[
                         {
@@ -61,7 +57,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
                     <Select {...categorySelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("resources:posts.fields.status.title")}
+                    label={translate("posts.fields.status.title")}
                     name="status"
                     rules={[
                         {
@@ -73,19 +69,17 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
                         options={[
                             {
                                 label: translate(
-                                    "resources:posts.fields.status.published",
+                                    "posts.fields.status.published",
                                 ),
                                 value: "published",
                             },
                             {
-                                label: translate(
-                                    "resources:posts.fields.status.draft",
-                                ),
+                                label: translate("posts.fields.status.draft"),
                                 value: "draft",
                             },
                             {
                                 label: translate(
-                                    "resources:posts.fields.status.rejected",
+                                    "posts.fields.status.rejected",
                                 ),
                                 value: "rejected",
                             },
@@ -93,7 +87,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
                     />
                 </Form.Item>
                 <Form.Item
-                    label={translate("resources:posts.fields.content")}
+                    label={translate("posts.fields.content")}
                     name="content"
                     rules={[
                         {

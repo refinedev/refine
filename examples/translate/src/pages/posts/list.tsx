@@ -24,18 +24,18 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     });
 
     return (
-        <List {...props} title={translate("resources:posts.titles.list")}>
+        <List {...props}>
             <Table {...tableProps} key="id">
                 <Table.Column key="id" dataIndex="id" title="ID" />
                 <Table.Column
                     key="title"
                     dataIndex="title"
-                    title={translate("resources:posts.fields.title")}
+                    title={translate("posts.fields.title")}
                 />
                 <Table.Column
                     dataIndex={["category", "id"]}
                     key="category.id"
-                    title={translate("resources:posts.fields.category")}
+                    title={translate("posts.fields.category")}
                     render={(value) => {
                         if (isLoading) {
                             return <TextField value="Loading..." />;
@@ -52,7 +52,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     }}
                 />
                 <Table.Column<IPost>
-                    title={translate("resources:table.actions")}
+                    title={translate("table.actions")}
                     dataIndex="actions"
                     key="actions"
                     render={(_value, record) => (

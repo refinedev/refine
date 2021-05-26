@@ -26,23 +26,17 @@ export const PostShow: React.FC<IResourceComponentsProps> = (props) => {
     });
 
     return (
-        <Show
-            {...props}
-            isLoading={isLoading}
-            title={translate("resources:posts.titles.show")}
-        >
+        <Show {...props} isLoading={isLoading}>
             {record && (
                 <>
                     <Title level={5}>Id</Title>
                     <Text>{record.id}</Text>
 
-                    <Title level={5}>
-                        {translate("resources:posts.fields.title")}
-                    </Title>
+                    <Title level={5}>{translate("posts.fields.title")}</Title>
                     <Text>{record.title}</Text>
 
                     <Title level={5}>
-                        {translate("resources:posts.fields.category")}
+                        {translate("posts.fields.category")}
                     </Title>
                     <Text>
                         {categoryIsLoading
@@ -50,9 +44,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = (props) => {
                             : categoryData?.data.title}
                     </Text>
 
-                    <Title level={5}>
-                        {translate("resources:posts.fields.content")}
-                    </Title>
+                    <Title level={5}>{translate("posts.fields.content")}</Title>
                     <MarkdownField value={record.content} />
                 </>
             )}

@@ -42,5 +42,28 @@
     "backHome": "Ana sayfaya geri dön",
     "tags": {
         "clone": "Kopya"
+    },
+    "posts": {
+        "fields": {
+            "id": "Id",
+            "title": "Başlık",
+            "category": "Kategori",
+            "status": {
+                "title": "Durum",
+                "published": "Yayınlanan",
+                "draft": "Taslak",
+                "rejected": "Reddedildi"
+            },
+            "content": "İçerik"
+        },
+        "titles": {
+            "create": "Gönderi Oluştur",
+            "edit": "Gönderi Düzenle",
+            "list": "Gönderiler",
+            "show": "Gönderi Göster"
+        }
+    },
+    "table": {
+        "actions": "İşlemler"
     }
 }
