@@ -53,7 +53,6 @@ export const useUpdateMany = <
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
 
-    const hede: any = {};
     const resourceSingular = pluralize.singular(resource);
 
     const { notificationDispatch } = useCancelNotification();

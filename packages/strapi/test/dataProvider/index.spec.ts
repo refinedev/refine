@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import axios from "axios";
+// import nock from "nock";
 
 import { DataProvider } from "../../src/dataProvider";
 import "./index.mock";
@@ -6,6 +8,7 @@ import "./index.mock";
 axios.defaults.adapter = require("axios/lib/adapters/http");
 
 describe("dataProvider", () => {
+    const API_URL = "https://refine-strapi.pankod.com";
     const axiosInstance = axios.create();
 
     beforeAll(() => {
@@ -17,14 +20,14 @@ describe("dataProvider", () => {
     // create
     describe("create", () => {
         it("correct response", async () => {
-            const { data } = await DataProvider(
-                "https://refine-strapi.pankod.com",
-                axiosInstance,
-            ).create("posts", {
-                title: "foo",
-                content: "bar",
-                cover: ["116"],
-            });
+            const { data } = await DataProvider(API_URL, axiosInstance).create(
+                "posts",
+                {
+                    title: "foo",
+                    content: "bar",
+                    cover: ["116"],
+                },
+            );
 
             expect(data["title"]).toBe("foo");
             expect(data["content"]).toBe("bar");
@@ -36,7 +39,7 @@ describe("dataProvider", () => {
     describe("deleteMany", () => {
         it("correct response", async () => {
             const { data } = await DataProvider(
-                "https://refine-strapi.pankod.com",
+                API_URL,
                 axiosInstance,
             ).deleteMany("posts", ["46"]);
 
@@ -50,7 +53,7 @@ describe("dataProvider", () => {
     describe("deleteOne", () => {
         it("correct response", async () => {
             const { data } = await DataProvider(
-                "https://refine-strapi.pankod.com",
+                API_URL,
                 axiosInstance,
             ).deleteOne("posts", 47);
 
@@ -63,7 +66,7 @@ describe("dataProvider", () => {
     describe("getList", () => {
         it("correct response", async () => {
             const { data, total } = await DataProvider(
-                "https://refine-strapi.pankod.com",
+                API_URL,
                 axiosInstance,
             ).getList("posts", {});
 
@@ -74,7 +77,7 @@ describe("dataProvider", () => {
 
         it("correct sorting response", async () => {
             const { data, total } = await DataProvider(
-                "https://refine-strapi.pankod.com",
+                API_URL,
                 axiosInstance,
             ).getList("posts", {
                 sort: {
@@ -89,40 +92,40 @@ describe("dataProvider", () => {
         });
 
         it("correct filter response", async () => {
-            const { data } = await DataProvider(
-                "https://refine-strapi.pankod.com",
-                axiosInstance,
-            ).getList("posts", {
-                filters: [
-                    {
-                        field: "title",
-                        operator: "eq",
-                        value: "foo",
-                    },
-                ],
-            });
+            const { data } = await DataProvider(API_URL, axiosInstance).getList(
+                "posts",
+                {
+                    filters: [
+                        {
+                            field: "title",
+                            operator: "eq",
+                            value: "foo",
+                        },
+                    ],
+                },
+            );
 
             expect(data[0]["title"]).toBe("foo");
             expect(data.length).toBe(3);
         });
 
         it("correct filter and sort response", async () => {
-            const { data } = await DataProvider(
-                "https://refine-strapi.pankod.com",
-                axiosInstance,
-            ).getList("posts", {
-                filters: [
-                    {
-                        field: "title",
-                        operator: "eq",
-                        value: "foo",
+            const { data } = await DataProvider(API_URL, axiosInstance).getList(
+                "posts",
+                {
+                    filters: [
+                        {
+                            field: "title",
+                            operator: "eq",
+                            value: "foo",
+                        },
+                    ],
+                    sort: {
+                        field: "id",
+                        order: "descend",
                     },
-                ],
-                sort: {
-                    field: "id",
-                    order: "descend",
                 },
-            });
+            );
 
             expect(data[0]["title"]).toBe("foo");
             expect(data.length).toBe(3);
@@ -133,7 +136,7 @@ describe("dataProvider", () => {
     describe("getMany", () => {
         it("correct response", async () => {
             const { data } = await DataProvider(
-                "https://refine-strapi.pankod.com",
+                API_URL,
                 axiosInstance,
             ).getMany("posts", ["49"]);
 
@@ -146,10 +149,10 @@ describe("dataProvider", () => {
     // getOne
     describe("getOne", () => {
         it("correct response", async () => {
-            const { data } = await DataProvider(
-                "https://refine-strapi.pankod.com",
-                axiosInstance,
-            ).getOne("posts", 49);
+            const { data } = await DataProvider(API_URL, axiosInstance).getOne(
+                "posts",
+                49,
+            );
 
             expect(data["id"]).toBe(49);
             expect(data["title"]).toBe("0001");
@@ -160,12 +163,13 @@ describe("dataProvider", () => {
     // updateOne
     describe("updateOne", () => {
         it("correct response", async () => {
-            const { data } = await DataProvider(
-                "https://refine-strapi.pankod.com",
-                axiosInstance,
-            ).update("posts", 49, {
-                title: "updated",
-            });
+            const { data } = await DataProvider(API_URL, axiosInstance).update(
+                "posts",
+                49,
+                {
+                    title: "updated",
+                },
+            );
             expect(data["id"]).toBe(49);
             expect(data["title"]).toBe("updated");
         });
@@ -175,7 +179,7 @@ describe("dataProvider", () => {
     describe("updateMany", () => {
         it("correct response", async () => {
             const { data } = await DataProvider(
-                "https://refine-strapi.pankod.com",
+                API_URL,
                 axiosInstance,
             ).updateMany("posts", [50, 51], {
                 title: "updated",
@@ -186,6 +190,78 @@ describe("dataProvider", () => {
 
             expect(data[1]["id"]).toBe(51);
             expect(data[1]["title"]).toBe("updated");
+        });
+    });
+
+    describe("custom", () => {
+        it("correct get response", async () => {
+            const response = await DataProvider(API_URL, axios).custom(
+                `${API_URL}/posts`,
+                "get",
+            );
+
+            expect(response.data[0]["id"]).toBe(49);
+            expect(response.data[0]["title"]).toBe("updated");
+        });
+
+        it("correct filter response", async () => {
+            const response = await DataProvider(API_URL, axios).custom(
+                `${API_URL}/posts`,
+                "get",
+                {
+                    filters: [
+                        {
+                            field: "title",
+                            operator: "eq",
+                            value: "foo",
+                        },
+                    ],
+                },
+            );
+
+            expect(response.data[0]["id"]).toBe(52);
+            expect(response.data[0]["title"]).toBe("foo");
+        });
+
+        it("correct sort response", async () => {
+            const response = await DataProvider(API_URL, axios).custom(
+                `${API_URL}/posts`,
+                "get",
+                {
+                    sort: {
+                        field: "id",
+                        order: "ascend",
+                    },
+                },
+            );
+
+            expect(response.data[0]["id"]).toBe(49);
+            expect(response.data[0]["title"]).toBe("updated");
+        });
+
+        it("correct post request", async () => {
+            const response = await DataProvider(API_URL, axios).custom(
+                `${API_URL}/posts`,
+                "post",
+                {
+                    payload: {
+                        title: "test",
+                        content: "test",
+                    },
+                },
+            );
+
+            expect(response.data).toEqual({
+                id: 55,
+                title: "test",
+                content: "test",
+                aaaa: null,
+                published_at: "2021-05-21T13:39:16.446Z",
+                created_at: "2021-05-21T13:39:16.458Z",
+                updated_at: "2021-05-21T13:39:16.458Z",
+                category: null,
+                cover: null,
+            });
         });
     });
 });
