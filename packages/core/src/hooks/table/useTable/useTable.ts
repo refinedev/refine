@@ -66,8 +66,12 @@ export const useTable = <TData extends BaseRecord = BaseRecord>({
     let defaultFilter = initialFilter;
 
     if (syncWithLocation) {
-        const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
-            parseTableParams(search);
+        const {
+            parsedCurrent,
+            parsedPageSize,
+            parsedSorter,
+            parsedFilters,
+        } = parseTableParams(search);
 
         defaultCurrent = parsedCurrent || defaultCurrent;
         defaultPageSize = parsedPageSize || defaultPageSize;
