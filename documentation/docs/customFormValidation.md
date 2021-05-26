@@ -30,7 +30,7 @@ In refine, we can use the form validation that comes with `antd` with the `rules
 </Form>
 ```
 
-In addition to pre-defined rules, we can also prepare **custom rules**.
+In addition to pre-defined rules, we can also prepare **custom rules** with the validator function.
 
 ### Example
 
