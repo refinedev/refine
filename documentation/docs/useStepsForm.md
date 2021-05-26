@@ -23,7 +23,7 @@ import {
     IResourceComponentsProps,
 } from "@pankod/refine";
 
-export const PostCreate = (props: IResourceComponentsProps) => {
+export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     //highlight-start
     const {
         current,
@@ -60,7 +60,7 @@ This hook returns a set of useful values to render steps form. Given `current` v
 Here, each item of `formList` corresponds to one step in form:
 
 ```tsx title="src/pages/posts/create.tsx"
-export const PostCreate = (props: IResourceComponentsProps) => {
+export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
     });
@@ -107,7 +107,7 @@ Refer to [useSelect](#useSelect) documentation for detailed usage.
 You should use `stepsProps` on `<Steps>` component, `formProps` on the `<Form>` component correctly. And as the last step, you should render the `<Steps>` component besides the form like this:
 
 ```tsx title="src/pages/posts/create.tsx"
-export const PostCreate = (props: IResourceComponentsProps) => {
+export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     ...
     <Create
         {...props}
@@ -136,7 +136,7 @@ In this example, we're building a page for creating new resources using `<Create
 To help users navigate between pages in the form, you can use action buttons. Your navigation buttons should use `gotoStep` function that was previously returned from the `useStepsForm` hook.
 
 ```tsx title="src/pages/posts/create.tsx"
-export const PostCreate = (props: IResourceComponentsProps) => {
+export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     ...
     return (
         <Create

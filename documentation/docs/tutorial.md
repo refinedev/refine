@@ -329,7 +329,7 @@ import {
 //highlight-next-line
 import { IPost, ICategory } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps>  = (props) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps } = useTable<IPost>();
 
     //highlight-start
@@ -530,7 +530,7 @@ import {
     //highlight-end
 } from "@pankod/refine";
 
-export const PostList: React.FC<IResourceComponentsProps>  = (props) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
 ...
     <Table.Column
         title="Actions"
@@ -703,7 +703,7 @@ Each component given to `<Resource>` will get passed props with `IResourceCompon
 ```tsx title="components/pages/posts.tsx"
 ...
 //highlight-next-line
-export const PostList: React.FC<IResourceComponentsProps>  = (props) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps } = useTable();
 
     return (
@@ -857,7 +857,7 @@ Since record data is explicit, there is no constraint on how to present that dat
 `<Show>` can also render `edit` and `delete` buttons via `canEdit` and `canDelete` props which can be passed from props of `<PostShow>`
 
 ```tsx
-export const PostShow = (props: IResourceComponentsProps) => {
+export const PostShow: React.FC<IResourceComponentsProps> = (props) => {
     ...
     <Show {...props}>
 }
@@ -890,7 +890,7 @@ import {
     //highlight-end
 } from "@pankod/refine";
 
-export const PostList: React.FC<IResourceComponentsProps>  = (props) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     ...
 
     //highlight-start

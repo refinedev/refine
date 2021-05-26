@@ -21,7 +21,7 @@ import { IPost, ICategory } from "../../interfaces";
 
 const { Step } = Steps;
 
-export const PostCreate: React.FC<IResourceComponentsProps>  = (props) => {
+export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     const {
         current,
         gotoStep,

@@ -13,7 +13,7 @@ import {
 
 // import { IPost, ICategory } from "../../interfaces";
 
-export const UserList: React.FC<IResourceComponentsProps>  = (props) => {
+export const UserList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps } = useTable();
 
     return (

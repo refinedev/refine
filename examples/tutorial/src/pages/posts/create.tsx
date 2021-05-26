@@ -10,7 +10,7 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostCreate: React.FC<IResourceComponentsProps>  = () => {
+export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<IPost>({

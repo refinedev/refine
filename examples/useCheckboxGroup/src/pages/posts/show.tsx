@@ -12,7 +12,7 @@ import { IPost, ITag } from "interfaces";
 
 const { Title, Text } = Typography;
 
-export const PostShow: React.FC<IResourceComponentsProps>  = (props) => {
+export const PostShow: React.FC<IResourceComponentsProps> = (props) => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;

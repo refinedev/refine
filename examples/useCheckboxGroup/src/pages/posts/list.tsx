@@ -13,7 +13,7 @@ import {
 
 import { IPost, ITag } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps>  = (props) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps } = useTable<IPost>();
 
     const { data, isLoading } = useList<ITag>("tags");

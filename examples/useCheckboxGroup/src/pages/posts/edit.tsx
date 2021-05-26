@@ -16,7 +16,7 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ITag } from "interfaces";
 
-export const PostEdit: React.FC<IResourceComponentsProps>  = (props) => {
+export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     const {

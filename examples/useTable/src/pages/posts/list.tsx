@@ -12,7 +12,7 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps>  = (props) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps, sorter, filters } = useTable<IPost>({
         initialSorter: [
             {
