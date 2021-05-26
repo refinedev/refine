@@ -5,7 +5,6 @@ title: CSV Import
 
 import importButton from '@site/static/img/import-button.png';
 
-
 With refine, you can easily add a customizable csv import button for any resource. refine uses [paparse](https://www.papaparse.com/) under the hood to parse csv files.
 
 You can add an `<ImportButton>` on a list page with a mapping function to turn the files data into apis data and it creates the imported resources, using `create` or `createMany` under the hood. Resources are added as one by one (`create`) or as batch (`createMany`) if explicitly configured.
@@ -25,7 +24,7 @@ import {
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     ...
 
     const Actions = () => (
@@ -66,7 +65,7 @@ It has 3 entries. We should map `categoryId` to `category.id` and `userId` to `
 This would make our `<ImportButton>` look like this:
 
 ```tsx title="/src/pages/posts/list.tsx"
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     ...
 
     const Actions = () => (
@@ -104,4 +103,4 @@ And it's done. When you click on the button and provide a csv file of the header
 | resourceName   | Default resource name this button imports to. Inferred from route by default.                       | `string`                                                                                     |
 | mapData        | A mapping function that runs for every record. Mapped data will be included in the request payload. | `(value: BaseRecord, index?: number, array?: BaseRecord[], data?: unknown[][]): BaseRecord;` |
 | paparseOptions | Custom Papa Parse options.                                                                          | [`ParseConfig`](https://www.papaparse.com/docs)                                              |
-| batchSize      | Request batch size. By default, it is 1. If it is more than 1, `createMany` should be implemented.  | `number`                                                                                     |
+| batchSize      | Request batch size. By default, it is 1. If it is more than 1, `createMany` should be implemented on DataProvider.  | `number`                                                                                     |
