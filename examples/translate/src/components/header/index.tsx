@@ -5,6 +5,7 @@ import {
     Icons,
     Dropdown,
     useGetLocale,
+    useSetLocale,
 } from "@pankod/refine";
 import { useTranslation } from "react-i18next";
 
@@ -29,13 +30,14 @@ const languages: Record<string, ILanguage> = {
 export const Header = () => {
     const { i18n } = useTranslation();
     const locale = useGetLocale();
+    const changeLanguage = useSetLocale();
 
     const menu = (
         <Menu selectedKeys={[locale()]}>
             {i18n.languages?.sort().map((lang) => (
                 <Menu.Item
                     key={lang}
-                    onClick={() => i18n.changeLanguage(lang)}
+                    onClick={() => changeLanguage(lang)}
                     icon={
                         <span style={{ marginRight: 8 }}>
                             {languages[lang].flag}
