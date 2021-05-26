@@ -70,10 +70,17 @@ export const PostList = (props: any) => {
 
     const { tableProps, sorter, filters } = useTable<IPost>({
         initialSorter: [
+                               
+            
+            
+            
+            
+            
+            
             {
-                field: "createdAt",
-                order: "descend",
-            },
+                                    field: "createdAt",
+                                    order: "descend",
+                                },
         ],
     });
 
