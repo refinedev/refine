@@ -20,7 +20,7 @@ export const useStrapiUpload = ({ maxCount }: StrapiUploadParams) => {
             files.splice(deleteItemCount);
         }
 
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         setFileList([...fileList, ...files]);
 

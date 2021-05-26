@@ -18,7 +18,7 @@ export const UserShow = (props: IResourceComponentsProps) => {
 
     const { data: categoryData, isLoading: categoryIsLoading } = useOne(
         "categories",
-        record!.category.id,
+        record?.category.id || "",
         {
             enabled: !!record,
         },
