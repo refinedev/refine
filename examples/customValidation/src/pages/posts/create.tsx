@@ -30,21 +30,19 @@ export const PostCreate = (props: IResourceComponentsProps) => {
     );
 
     const apiUrl = useApiUrl();
-    const url = `${apiUrl}/posts`;
+    const url = `${apiUrl}/posts-unique-check`;
 
     const [title, setTitle] = useState("");
 
-    const { refetch } = useCustom<IPost[]>(
+    const { refetch } = useCustom<{
+        isAvailable: boolean;
+    }>(
         url,
         "get",
         {
-            filters: [
-                {
-                    field: "title",
-                    operator: "eq",
-                    value: title,
-                },
-            ],
+            query: {
+                title,
+            },
         },
         {
             enabled: false,
@@ -67,18 +65,13 @@ export const PostCreate = (props: IResourceComponentsProps) => {
 
                                 const { data } = await refetch();
 
-                                if (data) {
-                                    const postLength = data.data.length;
-                                    if (postLength > 0) {
-                                        return Promise.reject(
-                                            new Error(
-                                                "'title' is must be unique",
-                                            ),
-                                        );
-                                    }
+                                if (data && data.data.isAvailable) {
+                                    return Promise.resolve();
                                 }
 
-                                return Promise.resolve();
+                                return Promise.reject(
+                                    new Error("'title' is must be unique"),
+                                );
                             },
                         },
                     ]}
