@@ -11,7 +11,7 @@ import {
 
 const { Title, Text } = Typography;
 
-export const UserShow = (props: IResourceComponentsProps) => {
+export const UserShow: React.FC<IResourceComponentsProps> = (props) => {
     const { queryResult } = useShow();
     const { data, isLoading } = queryResult;
     const record = data?.data;
