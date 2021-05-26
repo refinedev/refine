@@ -73,6 +73,7 @@ const JsonServer = (
         if (filters) {
             filters.map(({ field, operator, value }) => {
                 const mappedOperator = mapOperator(operator);
+                console.log("mapped", mappedOperator)
                 queryFilters[`${field}${mappedOperator}`] = value;
             });
         }

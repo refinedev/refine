@@ -87,10 +87,10 @@ export const PostList = (props: any) => {
             {
                 field: "status",
                 operator: "eq",
-                value: "draft",
+                value: "rejected",
             },
         ],
-        sort: { order: "ascend", field: "id" },
+        sort: { order: "ascend", field: "title" },
     });
 
     console.log("uselist data: ", dataTest);
