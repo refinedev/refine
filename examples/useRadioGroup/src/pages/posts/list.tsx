@@ -12,7 +12,7 @@ import {
 
 import { IPost, ILanguage } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps>  = (props) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps } = useTable<IPost>();
 
     const { data, isLoading } = useList<ILanguage>("languages");
