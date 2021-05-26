@@ -227,14 +227,6 @@ const postListQueryResult = useList<ICategory>("posts", {}, { enabled: false });
 ## API
 
 ### Parameters
-\
-interface UseListConfig {
-    pagination?: Pagination;
-    search?: Search;
-    sort?: Sort;
-    filters?: CrudFilters;
-}
-
 
 | Property                                                                                            | Description                                  | Type                                                                                 |
 | --------------------------------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------ |
@@ -273,4 +265,4 @@ interface UseListConfig {
 
 | Description                              | Type                                                                                             |
 | ---------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| Result of the `react-query`'s `useQuery` | [`QueryObserverResult<{ data: TData[]; }>`](https://react-query.tanstack.com/reference/useQuery) |
+| Result of the `react-query`'s `useQuery` | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`](https://react-query.tanstack.com/reference/useQuery) |
