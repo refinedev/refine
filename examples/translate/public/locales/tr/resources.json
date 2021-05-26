@@ -11,6 +11,15 @@
                 "rejected": "Reddedildi"
             },
             "content": "İçerik"
+        },
+        "titles": {
+            "create": "Gönderi Oluştur",
+            "edit": "Gönderi Düzenle",
+            "list": "Gönderiler",
+            "show": "Gönderi Göster"
         }
+    },
+    "table": {
+        "actions": "İşlemler"
     }
 }

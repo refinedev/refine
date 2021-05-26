@@ -32,7 +32,11 @@ export const PostEdit = (props: IResourceComponentsProps) => {
     );
 
     return (
-        <Edit {...props} saveButtonProps={saveButtonProps}>
+        <Edit
+            {...props}
+            saveButtonProps={saveButtonProps}
+            title={translate("resources:posts.titles.edit")}
+        >
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label={translate("resources:posts.fields.title")}

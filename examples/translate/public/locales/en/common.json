@@ -42,16 +42,5 @@
     "backHome": "Back Home",
     "tags": {
         "clone": "Clone"
-    },
-    "table": {
-        "actions": "Actions"
-    },
-    "posts": {
-        "titles": {
-            "create": "Create Post",
-            "edit": "Edit Post",
-            "list": "Posts",
-            "show": "Show Post"
-        }
     }
 }

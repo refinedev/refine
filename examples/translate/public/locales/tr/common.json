@@ -42,16 +42,5 @@
     "backHome": "Ana sayfaya geri dön",
     "tags": {
         "clone": "Kopya"
-    },
-    "table": {
-        "actions": "İşlemler"
-    },
-    "posts": {
-        "titles": {
-            "create": "Gönderi Oluştur",
-            "edit": "Gönderi Düzenle",
-            "list": "Gönderiler",
-            "show": "Gönderi Göster"
-        }
     }
 }

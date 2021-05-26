@@ -30,7 +30,11 @@ export const PostCreate = (props: IResourceComponentsProps) => {
     );
 
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
+        <Create
+            {...props}
+            saveButtonProps={saveButtonProps}
+            title={translate("resources:posts.titles.create")}
+        >
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label={translate("resources:posts.fields.title")}

@@ -24,7 +24,7 @@ export const PostList = (props: IResourceComponentsProps) => {
     });
 
     return (
-        <List {...props}>
+        <List {...props} title={translate("resources:posts.titles.list")}>
             <Table {...tableProps} key="id">
                 <Table.Column key="id" dataIndex="id" title="ID" />
                 <Table.Column
@@ -52,7 +52,7 @@ export const PostList = (props: IResourceComponentsProps) => {
                     }}
                 />
                 <Table.Column<IPost>
-                    title={translate("common:table.actions")}
+                    title={translate("resources:table.actions")}
                     dataIndex="actions"
                     key="actions"
                     render={(_value, record) => (

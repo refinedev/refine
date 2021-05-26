@@ -21,12 +21,16 @@ export const PostShow = (props: IResourceComponentsProps) => {
     const {
         data: categoryData,
         isLoading: categoryIsLoading,
-    } = useOne<ICategory>("categories", record!?.category.id, {
+    } = useOne<ICategory>("categories", record?.category.id || "", {
         enabled: !!record,
     });
 
     return (
-        <Show {...props} isLoading={isLoading}>
+        <Show
+            {...props}
+            isLoading={isLoading}
+            title={translate("resources:posts.titles.show")}
+        >
             {record && (
                 <>
                     <Title level={5}>Id</Title>
