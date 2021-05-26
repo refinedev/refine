@@ -55,8 +55,8 @@ const { data, isLoading } = useCustom<IPost[]>(
 
 | Property                                         | Description                                                             | Type                                                             | Required |
 | ------------------------------------------------ | ----------------------------------------------------------------------- | ---------------------------------------------------------------- | -------- |
-| url <div className=" required">Required</div>    | URL                                                                     | string                                                           | true     |
-| method <div className=" required">Required</div> | Method                                                                  | "get", "delete", "head", "options", "post", "put", "patch"       | true     |
+| url <div className="required">Required</div>    | URL                                                                     | string                                                           | true     |
+| method <div className="required">Required</div> | Method                                                                  | "get", "delete", "head", "options", "post", "put", "patch"       | true     |
 | config                                           | Query Params                                                            | { sort?: Sort; filters?: CrudFilters; payload?: {}; query?: {} } | false    |
 | queryOptions                                     | [useQuery Options](https://react-query.tanstack.com/reference/useQuery) | object                                                           | false    |
 
