@@ -140,6 +140,10 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
                 {[...routes, ...customRoutes].map((route, i) => (
                     <RouteWithSubRoutes key={i} {...route} />
                 ))}
+
+                <Route path="/resources/:resource?/:action?">
+                    {catchAll ?? <ErrorComponent />}
+                </Route>
                 <Route>{catchAll ?? <ErrorComponent />}</Route>
             </Switch>
         </LayoutWrapper>
