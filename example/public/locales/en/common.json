@@ -8,6 +8,7 @@
     },
     "resources": {
         "categories": {
+            "Categories": "Categories",
             "fields": {
                 "id": "Id",
                 "title": "Title",
@@ -59,6 +60,7 @@
             }
         },
         "posts": {
+            "Posts": "Posts",
             "fields": {
                 "id": "Id",
                 "title": "Title",

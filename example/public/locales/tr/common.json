@@ -8,6 +8,7 @@
     },
     "resources": {
         "categories": {
+            "Categories": "Kategoriler",
             "fields": {
                 "id": "Id",
                 "title": "Başlık",
@@ -59,6 +60,7 @@
             }
         },
         "posts": {
+            "Posts": "Gönderiler",
             "fields": {
                 "id": "Id",
                 "title": "Başlık",
