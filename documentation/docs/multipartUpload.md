@@ -19,7 +19,7 @@ Let's add the cover field to the post creation form.
 ```tsx
 import { normalizeFile } from '@pankod/refine';
 
-export const PostCreate = (props: IResourceComponentsProps) => {
+export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     const apiUrl = useApiUrl();
@@ -148,7 +148,7 @@ Let's add the cover field to the post editing form.
 ```tsx
 import { normalizeFile } from '@pankod/refine';
 
-export const PostEdit = (props: IResourceComponentsProps) => {
+export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     const apiUrl = useApiUrl();
@@ -249,7 +249,7 @@ You may want to disable the "Save" button in the form while the upload continues
 ```tsx
 import { normalizeFile, useFileUploadState } from '@pankod/refine';
 
-export const PostCreate = (props: IResourceComponentsProps) => {
+export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     // highlight-start

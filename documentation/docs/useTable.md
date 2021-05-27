@@ -54,7 +54,7 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     //highlight-next-line
     const { tableProps } = useTable<IPost>();
 
@@ -105,7 +105,7 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps } = useTable<IPost>();
 
     return (
@@ -192,7 +192,7 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     //highlight-next-line
     const { tableProps, sorter } = useTable<IPost>({
         initialSorter: [
@@ -285,7 +285,7 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     //highlight-start
     const { tableProps, sorter, filters } = useTable<IPost>({
         initialSorter: [

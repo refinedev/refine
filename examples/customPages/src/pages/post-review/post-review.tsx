@@ -13,7 +13,7 @@ import { IPost, ICategory } from "interfaces";
 
 const { Title, Text } = Typography;
 
-export const PostReview = () => {
+export const PostReview: React.FC = () => {
     const { data, isLoading } = useList<IPost>("posts", {
         filters: [
             {
@@ -30,7 +30,7 @@ export const PostReview = () => {
     const {
         data: categoryData,
         isLoading: categoryIsLoading,
-    } = useOne<ICategory>("categories", record?.category.id, {
+    } = useOne<ICategory>("categories", record?.category.id || "", {
         enabled: !!record,
     });
 

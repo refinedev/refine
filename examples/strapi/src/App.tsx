@@ -8,7 +8,7 @@ import { TOKEN_KEY } from "./constants";
 
 export const API_URL = "/api";
 
-const App = () => {
+const App: React.FC = () => {
     const axiosInstance = axios.create();
     const strapiAuthHelper = AuthHelper(API_URL);
 

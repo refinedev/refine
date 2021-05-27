@@ -1,9 +1,9 @@
-import { Show, useShow, Typography, Tag, useOne } from "@pankod/refine";
+import { Show, useShow, Typography, Tag, useOne, IResourceComponentsProps } from "@pankod/refine";
 import { IPost, ICategory } from "interfaces";
 
 const { Title, Text } = Typography;
 
-export const PostShow = () => {
+export const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;

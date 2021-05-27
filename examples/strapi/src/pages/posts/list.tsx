@@ -15,7 +15,7 @@ import {
     DeleteButton,
 } from "@pankod/refine";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps, sorter, filters } = useTable({
         initialSorter: [
             {
