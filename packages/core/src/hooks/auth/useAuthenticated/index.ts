@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 
 import { AuthContext } from "@contexts/auth";
-import { useNavigation } from "@hooks/navigation";
 
 import { IAuthContext } from "../../../interfaces";
 

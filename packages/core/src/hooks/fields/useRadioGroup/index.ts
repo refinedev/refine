@@ -30,7 +30,6 @@ export const useRadioGroup = <TData extends BaseRecord = BaseRecord>({
     filters,
     optionLabel = "title",
     optionValue = "id",
-    ...rest
 }: useRadioGroupProps): UseRadioGroupReturnType => {
     const [options, setOptions] = React.useState<Option[]>([]);
 
