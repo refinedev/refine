@@ -2,6 +2,7 @@
 id: useDelete
 title: useDelete
 siderbar_label: useDelete
+description: useDelete data hook from refine is a modified version of react-query's useMutation for delete mutations
 ---
 
 `useDelete` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for delete mutations. It uses `deleteOne` method as mutation function from the `dataProvider` that is passed to `<Admin>`.  

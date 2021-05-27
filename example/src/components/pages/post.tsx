@@ -39,6 +39,7 @@ import {
     Typography,
     useSelect,
     useMany,
+    useList,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -69,6 +70,8 @@ export const PostList = (props: any) => {
     const translate = useTranslate();
 
     const { tableProps, sorter, filters } = useTable<IPost>({
+        initialCurrent: 3,
+        initialPageSize: 8,
         initialSorter: [
             {
                 field: "createdAt",
@@ -76,6 +79,20 @@ export const PostList = (props: any) => {
             },
         ],
     });
+
+    const { data: dataTest } = useList("posts", {
+        pagination: { current: 3, pageSize: 8 },
+        filters: [
+            {
+                field: "status",
+                operator: "eq",
+                value: "rejected",
+            },
+        ],
+        sort: { order: "ascend", field: "title" },
+    });
+
+    console.log("uselist data: ", dataTest);
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
