@@ -242,14 +242,15 @@ const postListQueryResult = useList<ICategory>("posts", {}, { enabled: false });
 ### Config parameters
 
 ```ts
-import { SorterResult } from "antd/lib/table/interface";
-
 interface UseListConfig {
     pagination?: {
         current?: number;
         pageSize?: number;
     };
-    sort?: SorterResult<any> | SorterResult<any>[];
+    sort?: Array<{
+        field: string;
+        order: "asc" | "desc";
+    }>;
     filters?: Array<{
         field: string;
         operator: CrudOperators;
