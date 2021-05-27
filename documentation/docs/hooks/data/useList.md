@@ -11,7 +11,7 @@ It uses the `getList` method as query function from the `dataProvider` that is p
 
 ## Usage
 
-Let'say we have a `posts` resource
+Let's say we have a `posts` resource
 
 ```ts title="https://refine-fake-rest.pankod.com/posts"
 {
