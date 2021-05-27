@@ -1,9 +1,19 @@
 {
     "pages": {
         "login": {
-            "title": "Login",
+            "login": "Login",
+            "signup": "Sign up",
             "username": "Username",
-            "password": "Password"
+            "password": "Password",
+            "remember": "Remember me",
+            "forgotPassword": "Forgot password?",
+            "noAccountText": "Still no account? Please go to"
+        },
+        "error": {
+            "infoText": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
+            "404text": "Sorry, the page you visited does not exist.",
+            "resourceNotFound": "Are you sure you have created the {{resource}} resource.",
+            "backHome": "Back Home"
         }
     },
     "resources": {
