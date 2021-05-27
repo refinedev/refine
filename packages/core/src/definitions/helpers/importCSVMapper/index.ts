@@ -5,13 +5,13 @@ import { MapDataFn } from "../../../components/buttons/import/csvImport.interfac
 type importCSVMapperType = {
     (
         data: unknown[][],
-        mapData: MapDataFn,
-    ): unknown[]
+        mapData?: MapDataFn,
+    ): unknown[];
 };
 
 export const importCSVMapper: importCSVMapperType = (
-    data: unknown[][],
-    mapData: MapDataFn = (item) => item,
+    data,
+    mapData = (item) => item,
 ) => {
     const [headers, ...body] = data;
     return body
