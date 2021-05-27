@@ -34,7 +34,7 @@ In addition to pre-defined rules, we can also prepare **custom rules** with the 
 
 ### Example
 
-Now let's prepare a rule that checks that the title of posts is unique. We have an endpoint like the one below. We will do the uniqueness check here.
+Now let's prepare a rule that checks that the title of posts is unique. We have an endpoint like the below. We will do the uniqueness check here.
 
 ```json title="https://refine-fake-rest.pankod.com/posts-unique-check?title=Example"
 {
