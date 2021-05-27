@@ -36,7 +36,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     return (
         <List
             {...props}
-            //higlight-start
+            //highlight-start
             pageHeaderProps={{
                 extra: <Actions />,
             }}
@@ -98,9 +98,9 @@ And it's done. When you click on the button and provide a csv file of the header
 
 ## `<ImportButton>` Props
 
-| Key            | Description                                                                                         | Type                                                                                         |
-|----------------|-----------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| resourceName   | Default resource name this button imports to. Inferred from route by default.                       | `string`                                                                                     |
-| mapData        | A mapping function that runs for every record. Mapped data will be included in the request payload. | `(value: BaseRecord, index?: number, array?: BaseRecord[], data?: unknown[][]): BaseRecord;` |
-| paparseOptions | Custom Papa Parse options.                                                                          | [`ParseConfig`](https://www.papaparse.com/docs)                                              |
-| batchSize      | Request batch size. By default, it is 1. If it is more than 1, `createMany` should be implemented on DataProvider.  | `number`                                                                                     |
+| Key            | Description                                                                                                        | Type                                                                                         |
+| -------------- | ------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| resourceName   | Default resource name this button imports to. Inferred from route by default.                                      | `string`                                                                                     |
+| mapData        | A mapping function that runs for every record. Mapped data will be included in the request payload.                | `(value: BaseRecord, index?: number, array?: BaseRecord[], data?: unknown[][]): BaseRecord;` |
+| paparseOptions | Custom Papa Parse options.                                                                                         | [`ParseConfig`](https://www.papaparse.com/docs)                                              |
+| batchSize      | Request batch size. By default, it is 1. If it is more than 1, `createMany` should be implemented on DataProvider. | `number`                                                                                     |
