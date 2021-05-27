@@ -80,20 +80,6 @@ export const PostList = (props: any) => {
         ],
     });
 
-    const { data: dataTest } = useList("posts", {
-        pagination: { current: 3, pageSize: 8 },
-        filters: [
-            {
-                field: "status",
-                operator: "eq",
-                value: "rejected",
-            },
-        ],
-        sort: { order: "ascend", field: "title" },
-    });
-
-    console.log("uselist data: ", dataTest);
-
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
 
