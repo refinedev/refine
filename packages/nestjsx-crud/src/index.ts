@@ -15,7 +15,7 @@ import {
     Sort,
     CrudFilters as RefineCrudFilter,
 } from "@pankod/refine";
-import { CrudOperators } from "@pankod/refine/dist/interfaces";
+import { CrudOperators, CrudSorting } from "@pankod/refine/dist/interfaces";
 import { stringify } from "query-string";
 
 type SortBy = QuerySort | QuerySortArr | Array<QuerySort | QuerySortArr>;
@@ -72,36 +72,19 @@ const mapOperator = (operator: CrudOperators): ComparisonOperator => {
     return CondOperator.EQUALS;
 };
 
-const generateSort = (sort?: Sort): SortBy => {
+const generateSort = (sort?: CrudSorting): SortBy => {
     let sortBy: SortBy = { field: "id", order: "DESC" };
     if (sort) {
-        if (Array.isArray(sort)) {
-            const multipleSort: SortBy = [];
-            sort.map(({ field, order }) => {
-                if (field && order) {
-                    multipleSort.push({
-                        field: field as string,
-                        order: order
-                            .replace("end", "")
-                            .toUpperCase() as QuerySortOperator,
-                    });
-                }
-            });
-            sortBy = multipleSort;
-        } else {
-            const { field, order } = sort;
-
+        const multipleSort: SortBy = [];
+        sort.map(({ field, order }) => {
             if (field && order) {
-                sortBy = [
-                    {
-                        field: field as string,
-                        order: order
-                            .replace("end", "")
-                            .toUpperCase() as QuerySortOperator,
-                    },
-                ];
+                multipleSort.push({
+                    field: field,
+                    order: order.toUpperCase() as QuerySortOperator,
+                });
             }
-        }
+        });
+        sortBy = multipleSort;
     }
 
     return sortBy;
