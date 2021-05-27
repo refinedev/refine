@@ -8,6 +8,12 @@
             "remember": "Beni Hatırla",
             "forgotPassword": "Şifremi unuttum",
             "noAccountText": "Hala üye olmadın mı? Hadi tıkla"
+        },
+        "error": {
+            "infoText": "{{action}} sayfasını {{resource}} kaynağına eklemeyi unutmuş olabilirsiniz.",
+            "404text": "Üzgünüz, ziyaret ettiğiniz sayfa mevcut değil.",
+            "resourceNotFound": "{{resource}} kaynağını oluşturduğunuzdan emin misiniz?",
+            "backHome": "Ana sayfaya geri dön"
         }
     },
     "buttons": {
@@ -39,7 +45,6 @@
         "editError": "{{resource}} düzenlenirken hata (hata kodu: {{statusCode}})"
     },
     "loading": "Yükleniyor",
-    "backHome": "Ana sayfaya geri dön",
     "tags": {
         "clone": "Kopya"
     },
