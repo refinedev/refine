@@ -11,7 +11,6 @@ import {
     useMany,
     useDeleteMany,
     Button,
-    useTranslate,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";

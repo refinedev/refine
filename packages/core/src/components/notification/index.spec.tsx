@@ -15,16 +15,6 @@ const mockNotification = [
     },
 ];
 
-const mockSuccessNotification = [
-    {
-        id: "1",
-        resource: "posts",
-        cancelMutation: () => Promise.resolve(),
-        seconds: 0,
-        isRunning: true,
-    },
-];
-
 describe("Cancel Notification", () => {
     it("should render cancel notification successfuly", async () => {
         const { getByText } = render(
