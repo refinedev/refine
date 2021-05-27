@@ -25,15 +25,12 @@ import {
     CategoryList,
     CategoryCreate,
     UserList,
-    TagsList,
-    TagsCreate,
-    TagsEdit,
     DashboardPage,
     ReadyPage,
     TagList,
 } from "./components/pages";
 
-function App() {
+const App: React.FC = () => {
     const [adminProps, demoSidebarProps] = useDemoSidebar({
         defaultTitle: "refine",
         defaultMutationMode: "pessimistic",

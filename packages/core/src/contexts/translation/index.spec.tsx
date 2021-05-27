@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import { renderHook } from "@testing-library/react-hooks";
 import { render } from "@test";
 import { TranslationContextProvider } from "@contexts/translation";
 import { useGetLocale, useTranslate } from "@hooks";
