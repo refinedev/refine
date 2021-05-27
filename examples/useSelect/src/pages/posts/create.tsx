@@ -16,15 +16,17 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostCreate = (props: IResourceComponentsProps) => {
+export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
-        sort: {
-            field: "title",
-            order: "ascend",
-        },
+        sort: [
+            {
+                field: "title",
+                order: "asc",
+            },
+        ],
     });
 
     const [selectedTab, setSelectedTab] = useState<"write" | "preview">(

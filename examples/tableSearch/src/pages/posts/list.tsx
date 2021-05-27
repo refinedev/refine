@@ -19,7 +19,7 @@ import { Dayjs } from "dayjs";
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps, formProps } = useTable<IPost>({
         onSearch: (params: { title: string; createdAt: [Dayjs, Dayjs] }) => {
             const filters: CrudFilters = [];

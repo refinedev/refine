@@ -3,6 +3,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
 import { useForm } from "antd/lib/form/Form";
+import { SorterResult } from "antd/lib/table/interface";
 
 import { useResourceWithRoute, useList } from "@hooks";
 import { useSyncWithLocation } from "@hooks/admin";
@@ -11,10 +12,10 @@ import { stringifyTableParams, parseTableParams } from "@definitions/table";
 import { FormProps } from "@components/antd";
 
 import {
-    Sort,
     ResourceRouterParams,
     BaseRecord,
     CrudFilters,
+    CrudSorting,
 } from "../../../interfaces";
 
 export type useTableProps = {
@@ -22,7 +23,7 @@ export type useTableProps = {
     resource?: string;
     initialCurrent?: number;
     initialPageSize?: number;
-    initialSorter?: Sort;
+    initialSorter?: CrudSorting;
     initialFilter?: CrudFilters;
     syncWithLocation?: boolean;
     onSearch?: (data: any) => CrudFilters | Promise<CrudFilters>;
@@ -31,7 +32,7 @@ export type useTableProps = {
 export type useTableReturnType<TData extends BaseRecord = BaseRecord> = {
     formProps: FormProps;
     tableProps: TableProps<TData>;
-    sorter?: Sort;
+    sorter?: CrudSorting;
     filters?: CrudFilters;
 };
 
@@ -75,8 +76,8 @@ export const useTable = <TData extends BaseRecord = BaseRecord>({
 
         defaultCurrent = parsedCurrent || defaultCurrent;
         defaultPageSize = parsedPageSize || defaultPageSize;
-        defaultSorter = parsedSorter || defaultSorter;
-        defaultFilter = parsedFilters || defaultFilter;
+        defaultSorter = parsedSorter.length ? parsedSorter : defaultSorter;
+        defaultFilter = parsedFilters.length ? parsedFilters : defaultFilter;
     }
 
     const { tableProps: tablePropsSunflower } = useFormTable({
@@ -91,7 +92,7 @@ export const useTable = <TData extends BaseRecord = BaseRecord>({
 
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
-    const [sorter, setSorter] = useState<Sort | undefined>(defaultSorter);
+    const [sorter, setSorter] = useState<CrudSorting>(defaultSorter || []);
     const [filters, setFilters] = useState<CrudFilters>(defaultFilter || []);
     const [extraFilter, setExtraFilter] = useState<CrudFilters>([]);
 
@@ -110,9 +111,9 @@ export const useTable = <TData extends BaseRecord = BaseRecord>({
     const onChange = (
         pagination: TablePaginationConfig,
         filters: Record<string, (string | number | boolean)[] | null>,
-        sorter: Sort,
+        sorter: SorterResult<any> | SorterResult<any>[],
     ) => {
-        // Map Antd:Filter -> Refine:CrudFilter
+        // Map Antd:Filter -> refine:CrudFilter
         const crudFilters: CrudFilters = [];
         Object.keys(filters).map((field) => {
             const value = filters[field];
@@ -126,7 +127,27 @@ export const useTable = <TData extends BaseRecord = BaseRecord>({
             }
         });
         setFilters(crudFilters);
-        setSorter(sorter);
+
+        // Map Antd:Sorter -> refine:CrudSorting
+        const crudSorting: CrudSorting = [];
+        if (Array.isArray(sorter)) {
+            sorter.map((item) => {
+                if (item.field && item.order) {
+                    crudSorting.push({
+                        field: `${item.field}`,
+                        order: item.order.replace("end", "") as "asc" | "desc",
+                    });
+                }
+            });
+        } else {
+            if (sorter.field && sorter.order) {
+                crudSorting.push({
+                    field: `${sorter.field}`,
+                    order: sorter.order.replace("end", "") as "asc" | "desc",
+                });
+            }
+        }
+        setSorter(crudSorting);
 
         tablePropsSunflower.onChange(pagination, filters, sorter);
 
@@ -134,7 +155,7 @@ export const useTable = <TData extends BaseRecord = BaseRecord>({
         if (syncWithLocation) {
             const stringifyParams = stringifyTableParams({
                 pagination,
-                sorter,
+                sorter: crudSorting,
                 filters: crudFilters,
             });
 

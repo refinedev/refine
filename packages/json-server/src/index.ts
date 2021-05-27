@@ -4,9 +4,9 @@ import {
     DataProvider,
     HttpError,
     CrudOperators,
-    Sort,
     CrudFilters,
 } from "@pankod/refine";
+import { CrudSorting } from "@pankod/refine/dist/interfaces";
 
 const axiosInstance = axios.create();
 
@@ -38,23 +38,18 @@ const mapOperator = (operator: CrudOperators): string => {
     return ""; // default "eq"
 };
 
-const generateSort = (sort?: Sort) => {
+const generateSort = (sort?: CrudSorting) => {
     let _sort = ["id"]; // default sorting field
     let _order = ["desc"]; // default sorting
 
-    if (Array.isArray(sort) || sort?.field) {
+    if (sort) {
         _sort = [];
         _order = [];
 
-        if (Array.isArray(sort)) {
-            sort.map((item) => {
-                _sort.push(`${item.field}`);
-                _order.push(`${item.order}`.replace("end", "")); // replace -> [ascend, descend] -> [asc,desc]
-            });
-        } else {
-            _sort.push(`${sort.field}`);
-            _order.push(`${sort.order}`.replace("end", "")); // replace -> [ascend, descend] -> [asc,desc]
-        }
+        sort.map((item) => {
+            _sort.push(item.field);
+            _order.push(item.order);
+        });
     }
 
     return {

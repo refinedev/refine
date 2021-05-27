@@ -7,17 +7,17 @@ import { CSVDownload } from "react-csv";
 import { useResourceWithRoute, useTranslate } from "@hooks";
 import {
     ResourceRouterParams,
-    Sort,
     IDataContext,
     BaseRecord,
     CrudFilters,
+    CrudSorting,
 } from "../../../interfaces";
 import { DataContext } from "@contexts/data";
 import { CSVDownloadProps } from "./csvDownload.interface";
 
 type ExportButtonProps = ButtonProps & {
     resourceName?: string;
-    sorter?: Sort;
+    sorter?: CrudSorting;
     filters?: CrudFilters;
     maxItemCount?: number;
     pageSize?: number;

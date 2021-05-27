@@ -4,7 +4,7 @@ import { QueryObserverResult } from "react-query";
 
 import { useList } from "@hooks";
 import {
-    Sort,
+    CrudSorting,
     BaseRecord,
     Option,
     GetListResponse,
@@ -15,7 +15,7 @@ export type useRadioGroupProps = RadioGroupProps & {
     resource: string;
     optionLabel?: string;
     optionValue?: string;
-    sort?: Sort;
+    sort?: CrudSorting;
     filters?: CrudFilters;
 };
 
@@ -30,7 +30,6 @@ export const useRadioGroup = <TData extends BaseRecord = BaseRecord>({
     filters,
     optionLabel = "title",
     optionValue = "id",
-    ...rest
 }: useRadioGroupProps): UseRadioGroupReturnType => {
     const [options, setOptions] = React.useState<Option[]>([]);
 

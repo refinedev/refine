@@ -6,7 +6,7 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const API_URL = "https://refine-fake-rest.pankod.com";
 
-const App = () => {
+const App: React.FC = () => {
     return (
         <Admin dataProvider={dataProvider(API_URL)}>
             <Resource

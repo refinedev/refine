@@ -12,8 +12,8 @@ import {
 
 // import { IPost, ICategory } from "../../interfaces";
 
-export const UserCreate = (props: IResourceComponentsProps) => {
-    const { form, formProps, saveButtonProps } = useForm();
+export const UserCreate: React.FC<IResourceComponentsProps> = (props) => {
+    const { formProps, saveButtonProps } = useForm();
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>

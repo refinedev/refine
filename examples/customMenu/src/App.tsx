@@ -7,7 +7,7 @@ import { CustomMenu } from "./CustomMenu";
 
 const API_URL = "https://refine-fake-rest.pankod.com";
 
-const App = () => {
+const App: React.FC = () => {
     return (
         <Admin dataProvider={dataProvider(API_URL)} Sider={CustomMenu}>
             <Resource name="posts" list={PostList} />

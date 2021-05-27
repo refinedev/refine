@@ -7,7 +7,6 @@ import {
     EditButton,
     Space,
     useTable,
-    TextField,
     useForm,
     Create,
     Form,
@@ -26,7 +25,7 @@ export const TagsList = (props: any) => {
         initialSorter: [
             {
                 field: "title",
-                order: "ascend",
+                order: "asc",
             },
         ],
     });

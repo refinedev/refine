@@ -3,10 +3,11 @@ import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import React from "react";
 
 const API_URL = "https://refine-fake-rest.pankod.com";
 
-const App = () => {
+const App: React.FC = () => {
     return (
         <Admin dataProvider={dataProvider(API_URL)}>
             <Resource

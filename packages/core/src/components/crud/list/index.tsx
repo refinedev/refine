@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Row, Col, PageHeader, PageHeaderProps } from "antd";
+import { Row, Col, PageHeader, PageHeaderProps } from "antd";
 import humanizeString from "humanize-string";
 import { useParams } from "react-router-dom";
 
