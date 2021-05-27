@@ -40,6 +40,9 @@ export * from "./customComponents";
 // resourceRouterParams
 export * from "./resourceRouterParams";
 
+// resourceErrorRouterParams
+export * from "./resourceErrorRouterParams";
+
 // redirection
 export * from "./redirectionTypes";
 
