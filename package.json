@@ -36,7 +36,6 @@
     "name": "refinejs-repo",
     "author": "Pankod",
     "devDependencies": {
-        "@types/jest": "^26.0.23",
         "@types/react": "^17.0.1",
         "@types/react-dom": "^17.0.0",
         "@typescript-eslint/eslint-plugin": "^4.25.0",
