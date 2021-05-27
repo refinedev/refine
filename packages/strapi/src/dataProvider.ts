@@ -1,12 +1,11 @@
 import axios, { AxiosInstance } from "axios";
 import {
-    Sort,
     DataProvider as IDataProvider,
     HttpError,
     CrudFilters,
+    CrudSorting,
 } from "@pankod/refine";
 import { stringify } from "query-string";
-import { CrudSorting } from "@pankod/refine/dist/interfaces";
 
 const axiosInstance = axios.create();
 

@@ -12,7 +12,6 @@ import {
 import {
     DataProvider,
     HttpError,
-    Sort,
     CrudFilters as RefineCrudFilter,
 } from "@pankod/refine";
 import { CrudOperators, CrudSorting } from "@pankod/refine/dist/interfaces";

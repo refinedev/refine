@@ -22,6 +22,8 @@ export {
     CrudFilter,
     CrudFilters,
     CrudOperators,
+    CrudSorting,
+    CrudSort,
 } from "./interfaces";
 
 // sunflower types
