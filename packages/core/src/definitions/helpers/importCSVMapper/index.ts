@@ -6,7 +6,7 @@ type importCSVMapperType = {
     (
         data: unknown[][],
         mapData: MapDataFn,
-        ): unknown[]
+    ): unknown[]
 };
 
 export const importCSVMapper: importCSVMapperType = (
@@ -14,7 +14,6 @@ export const importCSVMapper: importCSVMapperType = (
     mapData: MapDataFn = (item) => item,
 ) => {
     const [headers, ...body] = data;
-
     return body
         .map((entry) => fromPairs(zip(headers, entry)))
         .map((item, index, array) =>
