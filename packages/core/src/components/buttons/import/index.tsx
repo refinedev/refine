@@ -9,7 +9,7 @@ import {
     useTranslate,
 } from "@hooks";
 import { useParams } from "react-router-dom";
-import { ResourceRouterParams } from "../../../interfaces";
+import { HttpError, ResourceRouterParams } from "../../../interfaces";
 import { parse, ParseConfig } from "papaparse";
 import { MapDataFn } from "./csvImport.interface";
 import { importCSVMapper } from "@definitions";
@@ -36,8 +36,8 @@ export const ImportButton: FC<ImportButtonProps> = ({
     const {
         mutate: mutateCreateMany,
         isLoading: createManyIsLoading,
-    } = useCreateMany();
-    const { mutate: mutateCreate, isLoading: createIsLoading } = useCreate();
+    } = useCreateMany<any, HttpError, unknown>();
+    const { mutate: mutateCreate, isLoading: createIsLoading } = useCreate<any, HttpError, unknown>();
 
     if (resourceName) {
         resource = resourceName;

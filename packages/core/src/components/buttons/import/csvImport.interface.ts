@@ -1,5 +1,3 @@
-import { BaseRecord } from "../../../interfaces";
-
 export interface MapDataFn {
     (
         value: any,
