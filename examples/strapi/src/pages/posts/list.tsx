@@ -1,7 +1,6 @@
 import {
     List,
     Table,
-    TextField,
     useTable,
     IResourceComponentsProps,
     getDefaultSortOrder,
