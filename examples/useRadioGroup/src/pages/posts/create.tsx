@@ -23,10 +23,12 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
         radioGroupProps: languageRadioGroupProps,
     } = useRadioGroup<ILanguage>({
         resource: "languages",
-        sort: {
-            field: "title",
-            order: "ascend",
-        },
+        sort: [
+            {
+                field: "title",
+                order: "asc",
+            },
+        ],
     });
 
     const [selectedTab, setSelectedTab] = useState<"write" | "preview">(

@@ -5,18 +5,16 @@ import { DataContext } from "@contexts/data";
 import {
     GetListResponse,
     IDataContext,
-    Sort,
-    Search,
     CrudFilters,
     Pagination,
     BaseRecord,
     HttpError,
+    CrudSorting,
 } from "../../interfaces";
 
 interface UseListConfig {
     pagination?: Pagination;
-    search?: Search;
-    sort?: Sort;
+    sort?: CrudSorting;
     filters?: CrudFilters;
 }
 
