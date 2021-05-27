@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react-hooks";
 import ReactRouterDom from "react-router-dom";
 
-import { act, MockJSONServer, TestWrapper } from "@test";
+import { act, TestWrapper } from "@test";
 
 import { useLogin } from "./";
 
