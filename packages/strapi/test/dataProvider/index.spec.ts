@@ -79,10 +79,12 @@ describe("dataProvider", () => {
                 API_URL,
                 axiosInstance,
             ).getList("posts", {
-                sort: {
-                    field: "id",
-                    order: "descend",
-                },
+                sort: [
+                    {
+                        field: "id",
+                        order: "desc",
+                    },
+                ],
             });
 
             expect(data[0]["id"]).toBe(53);
@@ -119,10 +121,12 @@ describe("dataProvider", () => {
                             value: "foo",
                         },
                     ],
-                    sort: {
-                        field: "id",
-                        order: "descend",
-                    },
+                    sort: [
+                        {
+                            field: "id",
+                            order: "desc",
+                        },
+                    ],
                 },
             );
 
@@ -227,10 +231,12 @@ describe("dataProvider", () => {
                 `${API_URL}/posts`,
                 "get",
                 {
-                    sort: {
-                        field: "id",
-                        order: "ascend",
-                    },
+                    sort: [
+                        {
+                            field: "id",
+                            order: "asc",
+                        },
+                    ],
                 },
             );
 

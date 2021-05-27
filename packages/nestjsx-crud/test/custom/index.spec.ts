@@ -47,10 +47,12 @@ describe("custom", () => {
             `${API_URL}/users`,
             "get",
             {
-                sort: {
-                    field: "id",
-                    order: "ascend",
-                },
+                sort: [
+                    {
+                        field: "id",
+                        order: "asc",
+                    },
+                ],
             },
         );
 
