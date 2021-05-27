@@ -21,7 +21,7 @@ import {
     file2Base64,
 } from "@pankod/refine";
 
-export const UserCreate = (props: IResourceComponentsProps) => {
+export const UserCreate: React.FC<IResourceComponentsProps> = (props) => {
     const { form, formProps, saveButtonProps } = useForm();
 
     return (

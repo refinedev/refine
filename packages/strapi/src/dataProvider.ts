@@ -1,5 +1,10 @@
 import axios, { AxiosInstance } from "axios";
-import { DataProvider as IDataProvider, HttpError } from "@pankod/refine";
+import {
+    Sort,
+    DataProvider as IDataProvider,
+    HttpError,
+    CrudFilters,
+} from "@pankod/refine";
 import { stringify } from "query-string";
 
 const axiosInstance = axios.create();
@@ -19,41 +24,52 @@ axiosInstance.interceptors.response.use(
     },
 );
 
+const generateSort = (sort?: Sort) => {
+    const _sort = [];
+    if (Array.isArray(sort) || sort?.field) {
+        if (Array.isArray(sort)) {
+            sort.map((item) => {
+                if (item.order) {
+                    const order = item.order.replace("end", "");
+                    _sort.push(`${item.field}:${order}`);
+                }
+            });
+        } else {
+            if (sort.order) {
+                const order = sort.order.replace("end", "");
+                _sort.push(`${sort.field}:${order}`);
+            }
+        }
+    }
+
+    return _sort;
+};
+
+const generateFilter = (filters?: CrudFilters) => {
+    const queryFilters: { [key: string]: string } = {};
+    if (filters) {
+        filters.map(({ field, operator, value }) => {
+            queryFilters[`${field}_${operator}`] = value;
+        });
+    }
+
+    return queryFilters;
+};
+
 export const DataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): IDataProvider => ({
     getList: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
-        const { pagination, sort } = params;
+        const { pagination } = params;
 
         const current = pagination?.current || 1;
         const pageSize = pagination?.pageSize || 10;
 
-        const _sort = [];
-        if (Array.isArray(sort) || sort?.field) {
-            if (Array.isArray(sort)) {
-                sort.map((item) => {
-                    if (item.order) {
-                        const order = item.order.replace("end", "");
-                        _sort.push(`${item.field}:${order}`);
-                    }
-                });
-            } else {
-                if (sort.order) {
-                    const order = sort.order.replace("end", "");
-                    _sort.push(`${sort.field}:${order}`);
-                }
-            }
-        }
-
-        const queryFilters: { [key: string]: string } = {};
-        const { filters } = params;
-        if (filters) {
-            filters.map(({ field, operator, value }) => {
-                queryFilters[`${field}_${operator}`] = value;
-            });
-        }
+        const { sort, filters } = params;
+        const _sort = generateSort(sort);
+        const queryFilters = generateFilter(filters);
 
         const query = {
             _start: (current - 1) * pageSize,
@@ -159,5 +175,55 @@ export const DataProvider = (
 
     getApiUrl: () => {
         return apiUrl;
+    },
+
+    custom: async (url, method, params = {}) => {
+        const { filters, sort, payload, query, headers } = params;
+
+        let requestUrl = `${url}?`;
+
+        if (sort) {
+            const sortQuery = generateSort(sort);
+            if (sortQuery.length > 0) {
+                requestUrl = `${requestUrl}&${stringify({
+                    _sort: sortQuery.join(","),
+                })}`;
+            }
+        }
+
+        if (filters) {
+            const filterQuery = generateFilter(filters);
+            requestUrl = `${requestUrl}&${stringify(filterQuery)}`;
+        }
+
+        if (query) {
+            requestUrl = `${requestUrl}&${stringify(query)}`;
+        }
+
+        if (headers) {
+            httpClient.defaults.headers = {
+                ...httpClient.defaults.headers,
+                ...headers,
+            };
+        }
+
+        let axiosResponse;
+        switch (method) {
+            case "put":
+            case "post":
+            case "patch":
+                axiosResponse = await httpClient[method](url, payload);
+                break;
+            case "delete":
+                axiosResponse = await httpClient.delete(url);
+                break;
+            default:
+                axiosResponse = await httpClient.get(requestUrl);
+                break;
+        }
+
+        const { data } = axiosResponse;
+
+        return Promise.resolve({ data });
     },
 });

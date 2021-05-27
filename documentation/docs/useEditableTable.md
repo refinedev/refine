@@ -32,7 +32,7 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     //highlight-next-line
     const { tableProps, formProps } = useEditableTable<IPost>();
 
@@ -70,7 +70,7 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const {
         tableProps,
         formProps,
@@ -153,7 +153,7 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const {
         tableProps,
         formProps,
@@ -259,7 +259,7 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const {
         tableProps,
         formProps,
