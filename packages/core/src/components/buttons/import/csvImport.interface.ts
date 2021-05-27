@@ -2,9 +2,9 @@ import { BaseRecord } from "../../../interfaces";
 
 export interface MapDataFn {
     (
-        value: BaseRecord,
+        value: any,
         index?: number,
-        array?: BaseRecord[],
-        data?: unknown[][],
-    ): BaseRecord;
+        array?: any[],
+        data?: any[][],
+    ): any;
 }

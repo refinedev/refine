@@ -11,7 +11,7 @@ import {
     ImportButton,
 } from "@pankod/refine";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ICategory, IPostFile } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps } = useTable<IPost>();
@@ -25,7 +25,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const Actions = () => (
         <Space direction="horizontal">
             <ImportButton
-                mapData={(item) => {
+                mapData={(item: IPostFile) => {
                     return {
                         title: item.title,
                         content: item.content,
