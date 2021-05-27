@@ -9,7 +9,6 @@ import {
     BackTop,
     AntdLayout,
     Button,
-    useSetLocale,
 } from "@pankod/refine";
 import { DemoSidebar, useDemoSidebar } from "@pankod/refine-demo-sidebar";
 import "@pankod/refine/dist/styles.min.css";
@@ -33,7 +32,7 @@ import {
     TagList,
 } from "./components/pages";
 
-function App() {
+const App: React.FC = () => {
     const [adminProps, demoSidebarProps] = useDemoSidebar({
         defaultTitle: "refine",
         defaultMutationMode: "pessimistic",
@@ -67,8 +66,7 @@ function App() {
             }),
     };
 
-    const { t, i18n } = useTranslation(["common", "translation"]);
-    const setLocale = useSetLocale();
+    const { t, i18n } = useTranslation();
 
     const i18nProvider = {
         translate: (key: string, params: object) => t(key, params),
@@ -146,10 +144,22 @@ function App() {
                             padding: "24px",
                         }}
                     >
-                        <Button size="middle" onClick={() => setLocale("en")}>
+                        <Button
+                            size="middle"
+                            type={
+                                i18n.language === "en" ? "primary" : undefined
+                            }
+                            onClick={() => i18n.changeLanguage("en")}
+                        >
                             EN
                         </Button>
-                        <Button size="middle" onClick={() => setLocale("tr")}>
+                        <Button
+                            size="middle"
+                            type={
+                                i18n.language === "tr" ? "primary" : undefined
+                            }
+                            onClick={() => i18n.changeLanguage("tr")}
+                        >
                             TR
                         </Button>
                     </div>
@@ -191,6 +201,6 @@ function App() {
             />
         </Admin>
     );
-}
+};
 
 export default App;
