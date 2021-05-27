@@ -53,7 +53,7 @@ describe("definitions/table", () => {
 
     it("parse table params with single sorter correctly", async () => {
         const url =
-            "?current=1&pageSize=10&categoryId__in[]=1&categoryId__in[]=2&sort=id&order=descend";
+            "?current=1&pageSize=10&categoryId__in[]=1&categoryId__in[]=2&sort[]=id&order[]=desc";
 
         const {
             parsedCurrent,
