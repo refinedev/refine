@@ -2,6 +2,7 @@
 id: useUpdate
 title: useUpdate
 siderbar_label: useUpdate
+description: useUpdate data hook from refine is a modified version of react-query's useMutation for update mutations
 ---
 
 `useUpdate` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for update mutations. It uses `update` method as mutation function from the `dataProvider` that is passed to `<Admin>`.  
