@@ -75,14 +75,21 @@ const postListQueryResult = useList<IPost>("posts");
 
 <br />
 
-Although we didn't pass any sort order config to `useList`, data comes in descending order since `getList` has default values for sort order:
+Although we didn't pass any sort order config to `useList`, data comes in descending order according to `id` since `getList` has default values for sort order:
 
 ```ts
 {   
     sort: { order: "descend" , field: "id" }
 }
 ```
-
+:::important
+`getList` has also default values for pagination:
+```ts
+{
+    pagination: { current: 1, pageSize: 10 }
+}
+```
+:::
 :::caution
 
 If needed, `getList` method from the `dataProvider` has to implement default query configurations since `useList` can work with no config paramaters.
