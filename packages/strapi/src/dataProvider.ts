@@ -1,9 +1,9 @@
 import axios, { AxiosInstance } from "axios";
 import {
-    Sort,
     DataProvider as IDataProvider,
     HttpError,
     CrudFilters,
+    CrudSorting,
 } from "@pankod/refine";
 import { stringify } from "query-string";
 
@@ -24,22 +24,15 @@ axiosInstance.interceptors.response.use(
     },
 );
 
-const generateSort = (sort?: Sort) => {
-    const _sort = [];
-    if (Array.isArray(sort) || sort?.field) {
-        if (Array.isArray(sort)) {
-            sort.map((item) => {
-                if (item.order) {
-                    const order = item.order.replace("end", "");
-                    _sort.push(`${item.field}:${order}`);
-                }
-            });
-        } else {
-            if (sort.order) {
-                const order = sort.order.replace("end", "");
-                _sort.push(`${sort.field}:${order}`);
+const generateSort = (sort?: CrudSorting) => {
+    const _sort: string[] = [];
+
+    if (sort) {
+        sort.map((item) => {
+            if (item.order) {
+                _sort.push(`${item.field}:${item.order}`);
             }
-        }
+        });
     }
 
     return _sort;

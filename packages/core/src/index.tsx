@@ -6,7 +6,7 @@ export * from "./components/antd";
 export * from "./hooks";
 export { Link } from "react-router-dom";
 
-export { IAuthContext as AuthProvider, Sort, Pagination } from "./interfaces";
+export { IAuthContext as AuthProvider, Pagination } from "./interfaces";
 export {
     IDataContext as DataProvider,
     ITranslationContext as TranslationProvider,
@@ -22,6 +22,8 @@ export {
     CrudFilter,
     CrudFilters,
     CrudOperators,
+    CrudSorting,
+    CrudSort,
 } from "./interfaces";
 
 // sunflower types
