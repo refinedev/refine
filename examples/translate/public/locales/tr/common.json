@@ -48,7 +48,11 @@
     "tags": {
         "clone": "Kopya"
     },
+    "dashboard": {
+        "title": "Panel"
+    },
     "posts": {
+        "posts": "Gönderiler",
         "fields": {
             "id": "Id",
             "title": "Başlık",

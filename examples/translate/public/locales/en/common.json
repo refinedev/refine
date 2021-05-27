@@ -48,7 +48,11 @@
     "tags": {
         "clone": "Clone"
     },
+    "dashboard": {
+        "title": "Dashboard"
+    },
     "posts": {
+        "posts": "Posts",
         "fields": {
             "id": "Id",
             "title": "Title",
