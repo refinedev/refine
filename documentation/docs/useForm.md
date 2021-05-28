@@ -16,7 +16,7 @@ import { Edit, Form, Input, IResourceComponentsProps, useForm, Select } from "@p
 
 import { IPost } from "interfaces";
 
-export const PostEdit = (props: IResourceComponentsProps) => {
+export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
 
      //highlight-next-line
     const { formProps, saveButtonProps } = useForm<IPost>();

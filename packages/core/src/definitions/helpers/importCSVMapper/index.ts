@@ -1,8 +1,6 @@
-import { ConsoleSqlOutlined } from "@ant-design/icons";
 import zip from "lodash/zip";
 import fromPairs from "lodash/fromPairs";
 import { MapDataFn } from "../../../components/buttons/import/csvImport.interface";
-// import { BaseRecord } from "../../../interfaces";
 
 export const importCSVMapper = (
     data: unknown[][],

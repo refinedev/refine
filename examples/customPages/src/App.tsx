@@ -15,7 +15,7 @@ const AuthenticatedPostReview = () => {
     );
 };
 
-const App = () => {
+const App: React.FC = () => {
     const authProvider: AuthProvider = {
         login: (params: any) => {
             if (params.username === "admin") {

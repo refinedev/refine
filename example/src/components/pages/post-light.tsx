@@ -2,13 +2,11 @@ import * as React from "react";
 import {
     List,
     Table,
-    TextField,
     useTranslate,
     Create,
     Form,
     Input,
     Edit,
-    Show,
     useTable,
     EditButton,
     DeleteButton,

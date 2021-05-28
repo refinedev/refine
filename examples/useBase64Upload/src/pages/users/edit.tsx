@@ -12,8 +12,8 @@ import {
 
 import { IUser } from "../../interfaces";
 
-export const UserEdit = (props: IResourceComponentsProps) => {
-    const { form, formProps, saveButtonProps, queryResult } = useForm<IUser>();
+export const UserEdit: React.FC<IResourceComponentsProps> = (props) => {
+    const { formProps, saveButtonProps } = useForm<IUser>();
 
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>

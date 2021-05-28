@@ -1,7 +1,6 @@
 import {
     List,
     Table,
-    TextField,
     useTable,
     IResourceComponentsProps,
     getDefaultSortOrder,
@@ -15,12 +14,12 @@ import {
     DeleteButton,
 } from "@pankod/refine";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps, sorter, filters } = useTable({
         initialSorter: [
             {
                 field: "id",
-                order: "descend",
+                order: "desc",
             },
         ],
     });
