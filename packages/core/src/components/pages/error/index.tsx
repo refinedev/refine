@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { Button, Result, Typography, Space, Alert } from "antd";
 import { useParams } from "react-router-dom";
 
@@ -16,7 +16,7 @@ export const ErrorComponent: React.FC = () => {
     const params = useParams<ResourceErrorRouterParams>();
     const resource = useResourceWithRoute();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (params.resource) {
             try {
                 const resourceFromRoute = resource(params.resource);
@@ -27,7 +27,7 @@ export const ErrorComponent: React.FC = () => {
                 ) {
                     setErrorMessage(
                         translate(
-                            "pages.error.infoText",
+                            "pages.error.info",
                             {
                                 action: params.action.toUpperCase(),
                                 resource: params.resource.toUpperCase(),
@@ -39,7 +39,7 @@ export const ErrorComponent: React.FC = () => {
             } catch (error) {
                 setErrorMessage(
                     translate(
-                        "pages.error.resourceNotFound",
+                        "pages.error.resource404",
                         {
                             resource: params.resource.toUpperCase(),
                         },
@@ -58,7 +58,7 @@ export const ErrorComponent: React.FC = () => {
                 <Space direction="vertical" size="large">
                     <Text>
                         {translate(
-                            "pages.error.404text",
+                            "pages.error.404",
                             "Sorry, the page you visited does not exist.",
                         )}
                     </Text>
