@@ -1,8 +1,15 @@
 import { useContext } from "react";
 
-import { AdminContext } from "@contexts/admin";
+import { AdminContext} from "@contexts/admin";
+import { IAdminContext } from "src/interfaces";
 
-export const useWarnAboutChange = () => {
+type UseWarnAboutChangeType = () => {
+    warnWhenUnsavedChanges: IAdminContext["warnWhenUnsavedChanges"];
+    warnWhen: IAdminContext["warnWhen"];
+    setWarnWhen: IAdminContext["setWarnWhen"];
+};
+
+export const useWarnAboutChange: UseWarnAboutChangeType = () => {
     const { warnWhenUnsavedChanges, warnWhen, setWarnWhen } = useContext(
         AdminContext,
     );

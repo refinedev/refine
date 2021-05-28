@@ -5,7 +5,7 @@ import { MapDataFn } from "../../../components/buttons/import/csvImport.interfac
 export const importCSVMapper = (
     data: unknown[][],
     mapData: MapDataFn = (item) => item,
-) => {
+): unknown[] => {
     const [headers, ...body] = data;
 
     return body
