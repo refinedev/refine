@@ -22,7 +22,7 @@ import {
     ImportButton,
 } from "@pankod/refine";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ICategory, IPostFile } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     ...
@@ -72,7 +72,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
         <Space direction="horizontal">
             <ImportButton
                 //highlight-start
-                mapData={(item) => {
+                mapData={(item: IPostFile) => {
                     return {
                         title: item.title,
                         content: item.content,
