@@ -12,10 +12,12 @@ export const useLogout = () => {
     } = React.useContext<IAuthContext>(AuthContext);
 
     if (isProvided) {
-        const logout = (redirectPath = "/login") =>
-            logoutFromContext()
+        const logout = (params: any, redirectPath = "/login") =>
+            logoutFromContext(params)
                 .then((data) => {
-                    push(redirectPath);
+                    if(data !== false) {
+                        push(data ? data : redirectPath);
+                    }
                     Promise.resolve(data);
                 })
                 .catch((error) => Promise.reject(error));

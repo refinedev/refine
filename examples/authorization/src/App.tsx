@@ -30,7 +30,7 @@ const App = () => {
 
             return Promise.reject();
         },
-        logout: () => {
+        logout: (params) => {
             localStorage.removeItem("auth");
             return Promise.resolve();
         },

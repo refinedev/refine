@@ -4,6 +4,7 @@ title: Auth Provider
 sidebar_label: Auth Provider
 ---
 import login from '@site/static/img/login.png';
+import logout from '@site/static/img/logout.gif';
 
 `refine` let's you set authentication logic by providing `authProvider` property to `<Admin>` component.
 
@@ -82,7 +83,7 @@ This `authProvider` lets the app work without an authentication requirement. If 
 
 <br />
 
-## Login Flow
+## Login
 
 If an `authProvider` is given, `refine` shows a default login page on `/` and `/login` routes with a login form. Rest of the app won't be accessible until a successful authentication.
 
@@ -109,9 +110,19 @@ After submission, login form calls the `login` method from `authProvider`.
 If an `authProvider` is given, [Resources](#) passed to `<Admin>` as children are only accessible if login is successful. In case of no `authProvider`, they are accessible without authentication.  
 :::
 
-## Logout Flow
+<br />
 
-If authentication is enabled, a logout button appears at the bottom of the side bar menu. When the logout button is clicked, `logout` method from `authProvider` is called and app redirects to `/login` route.
+## Logout
+
+If authentication is enabled, a logout button appears at the bottom of the side bar menu. When the button is clicked, `logout` method from `authProvider` is called and app redirects to `/login` route.
+
+
+<br />
+
+<div>
+    <img src={logout} />
+</div>
+<br/>
 
 :::tip
 Current authentication data needs to be cleaned by the `logout` method. For example if a token is stored in local storage, `logout` must be remove it as shown above.
