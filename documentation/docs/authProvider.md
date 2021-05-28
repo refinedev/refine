@@ -10,6 +10,7 @@ import login from '@site/static/img/login.png';
 
 `authProvider` is an object with methods that `refine` uses when necessary. These methods need to return a Promise. They also can be accessed with specialized hooks.
 
+## Usage
 
 We'll show how to implement basic authentication flow:
 
@@ -81,6 +82,8 @@ This `authProvider` lets the app work without an authentication requirement. If 
 
 <br />
 
+## Login Flow
+
 If an `authProvider` is given, `refine` shows a default login page on `/` and `/login` routes with a login form. Rest of the app won't be accessible until a successful authentication.
 
 <br />
@@ -105,3 +108,12 @@ After submission, login form calls the `login` method from `authProvider`.
 :::important
 If an `authProvider` is given, [Resources](#) passed to `<Admin>` as children are only accessible if login is successful. In case of no `authProvider`, they are accessible without authentication.  
 :::
+
+## Logout Flow
+
+If authentication is enabled, a logout button appears at the bottom of the side bar menu. When the logout button is clicked, `logout` method from `authProvider` is called and app redirects to `/login` route.
+
+:::tip
+Current authentication data needs to be cleaned by the `logout` method. For example if a token is stored in local storage, `logout` must be remove it as shown above.
+:::
+

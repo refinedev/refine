@@ -511,19 +511,19 @@ export const PostEdit = (props: any) => {
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
-        defaultValue: postData?.category.id,
+        defaultValue: postData?.category?.id,
     });
 
     const { selectProps: userSelectProps } = useSelect({
         resource: "users",
         optionLabel: "email",
-        defaultValue: postData?.user.id,
+        defaultValue: postData?.user?.id,
     });
 
     const { selectProps: tagsSelectProps } = useSelect({
         resource: "tags",
         // TODO: tag interface
-        defaultValue: postData?.tags.map((tag: { id: string }) => tag.id),
+        defaultValue: postData?.tags?.map((tag: { id: string }) => tag.id),
     });
 
     const formList = [
