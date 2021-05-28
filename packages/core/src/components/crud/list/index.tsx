@@ -35,7 +35,11 @@ export const List: React.FC<ListProps> = ({
 
     const defaultExtra = canCreate &&
         (createButtonProps || resource.canCreate) && (
-            <CreateButton size="middle" {...createButtonProps} />
+            <CreateButton
+                size="middle"
+                resourceName={resource.name}
+                {...createButtonProps}
+            />
         );
 
     return (
