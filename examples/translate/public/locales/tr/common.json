@@ -7,12 +7,12 @@
             "password": "Şifre",
             "remember": "Beni Hatırla",
             "forgotPassword": "Şifremi unuttum",
-            "noAccountText": "Hala üye olmadın mı? Hadi tıkla"
+            "noAccount": "Hala üye olmadın mı? Hadi tıkla"
         },
         "error": {
-            "infoText": "{{action}} sayfasını {{resource}} kaynağına eklemeyi unutmuş olabilirsiniz.",
-            "404text": "Üzgünüz, ziyaret ettiğiniz sayfa mevcut değil.",
-            "resourceNotFound": "{{resource}} kaynağını oluşturduğunuzdan emin misiniz?",
+            "info": "{{action}} sayfasını {{resource}} kaynağına eklemeyi unutmuş olabilirsiniz.",
+            "404": "Üzgünüz, ziyaret ettiğiniz sayfa mevcut değil.",
+            "resource404": "{{resource}} kaynağını oluşturduğunuzdan emin misiniz?",
             "backHome": "Ana sayfaya geri dön"
         }
     },
