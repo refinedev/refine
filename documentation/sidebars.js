@@ -14,6 +14,7 @@ module.exports = {
                 "tableSearch",
                 "customPages",
                 "theming",
+                "csvExport"
             ],
         },
         {

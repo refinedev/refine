@@ -4,7 +4,7 @@ import { QueryObserverResult } from "react-query";
 
 import { useList } from "@hooks";
 import {
-    Sort,
+    CrudSorting,
     Option,
     BaseRecord,
     GetListResponse,
@@ -15,7 +15,7 @@ export type useCheckboxGroupProps = {
     resource: string;
     optionLabel?: string;
     optionValue?: string;
-    sort?: Sort;
+    sort?: CrudSorting;
     filters?: CrudFilters;
 };
 
