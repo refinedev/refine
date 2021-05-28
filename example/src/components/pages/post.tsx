@@ -39,7 +39,6 @@ import {
     Typography,
     useSelect,
     useMany,
-    useList,
     IResourceComponentsProps,
 } from "@pankod/refine";
 
@@ -76,7 +75,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
         initialSorter: [
             {
                 field: "createdAt",
-                order: "descend",
+                order: "desc",
             },
         ],
     });
