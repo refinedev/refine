@@ -30,7 +30,7 @@ export const ListButton: FC<ListButtonProps> = ({
             {...rest}
         >
             {translate(
-                `${resourceName}.titles.title`,
+                `${resourceName}.titles.list`,
                 humanizeString(resourceName),
             )}
         </Button>

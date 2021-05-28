@@ -7,7 +7,13 @@
             "password": "Şifre",
             "remember": "Beni Hatırla",
             "forgotPassword": "Şifremi unuttum",
-            "noAccountText": "Hala üye olmadın mı? Hadi tıkla"
+            "noAccount": "Hala üye olmadın mı? Hadi tıkla"
+        },
+        "error": {
+            "info": "{{action}} sayfasını {{resource}} kaynağına eklemeyi unutmuş olabilirsiniz.",
+            "404": "Üzgünüz, ziyaret ettiğiniz sayfa mevcut değil.",
+            "resource404": "{{resource}} kaynağını oluşturduğunuzdan emin misiniz?",
+            "backHome": "Ana sayfaya geri dön"
         }
     },
     "buttons": {
@@ -39,8 +45,34 @@
         "editError": "{{resource}} düzenlenirken hata (hata kodu: {{statusCode}})"
     },
     "loading": "Yükleniyor",
-    "backHome": "Ana sayfaya geri dön",
     "tags": {
         "clone": "Kopya"
+    },
+    "dashboard": {
+        "title": "Panel"
+    },
+    "posts": {
+        "posts": "Gönderiler",
+        "fields": {
+            "id": "Id",
+            "title": "Başlık",
+            "category": "Kategori",
+            "status": {
+                "title": "Durum",
+                "published": "Yayınlanan",
+                "draft": "Taslak",
+                "rejected": "Reddedildi"
+            },
+            "content": "İçerik"
+        },
+        "titles": {
+            "create": "Gönderi Oluştur",
+            "edit": "Gönderi Düzenle",
+            "list": "Gönderiler",
+            "show": "Gönderi Göster"
+        }
+    },
+    "table": {
+        "actions": "İşlemler"
     }
 }
