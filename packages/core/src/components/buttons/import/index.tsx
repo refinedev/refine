@@ -11,9 +11,17 @@ import {
 import { useParams } from "react-router-dom";
 import { HttpError, ResourceRouterParams } from "../../../interfaces";
 import { parse, ParseConfig } from "papaparse";
-import { MapDataFn } from "./csvImport.interface";
 import { importCSVMapper } from "@definitions";
 import chunk from "lodash/chunk";
+
+export interface MapDataFn {
+    (
+        value: any,
+        index?: number,
+        array?: any[],
+        data?: any[][],
+    ): any;
+}
 
 type ImportButtonProps = ButtonProps & {
     resourceName?: string;

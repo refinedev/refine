@@ -1,8 +1,8 @@
 import zip from "lodash/zip";
 import fromPairs from "lodash/fromPairs";
-import { MapDataFn } from "../../../components/buttons/import/csvImport.interface";
+import { MapDataFn } from "../../../components/buttons/import";
 
-type importCSVMapperType = {
+export type importCSVMapperType = {
     (
         data: unknown[][],
         mapData?: MapDataFn,
