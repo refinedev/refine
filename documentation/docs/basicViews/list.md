@@ -6,15 +6,15 @@ sidebar_label: List
 
 import list from '@site/static/img/list-component.png'
 
-`<List>` does not contain any logic just for display only. It makes some things easier for us like adds extra functionalities like a create button and title to the page.
+`<List>` provides us a layout for displaying the page. It does not contain any logic. It makes some things easier for us like adds extra functionalities like a create button and title to the page.
 
-Let's examine what `<List>` does, with step-by-step examples.
+Let's examine what `<List>` does with step-by-step examples.
 
 ## Options
 
 ### canCreate and createButtonProps
 
-It adds the create button to your `<List>` component. `refine` adds this button by default. If you want to customize this button you can use `createButtonProps` property.
+`canCreate` allows adding the create button inside the `<List>` component. `canCreate` defaults to `true` so `refine` adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the below code.
 
 ```tsx
 import { List, IResourceComponentsProps } from "@pankod/refine";
@@ -33,7 +33,7 @@ export const List: React.FC<IResourceComponentsProps> = (props) => {
 
 ### title
 
-It adds a title to your component if you don't pass title props it uses resource name by default.
+It allows adding title inside the `<List>` component. if you don't pass title props it uses resource name by default.
 
 ```tsx
 import { List, IResourceComponentsProps } from "@pankod/refine";
@@ -49,7 +49,7 @@ export const List: React.FC<IResourceComponentsProps> = () => {
 
 ### aside
 
-It allows you to add a component to the right of the List component.
+It allows adding a component to the right of the List component.
 
 ```tsx
 import { List, IResourceComponentsProps, Card } from "@pankod/refine";
@@ -135,8 +135,8 @@ export const App: React.FC = () => {
 </div>
 <br/>
 
--   The red square contains [papeHeaderprops](#pageheaderprops).
--   The blue square shows [aside](#aside) components.
+-   The red rectangular contains [papeHeaderprops](#pageheaderprops).
+-   The blue rectangular shows [aside](#aside) components.
 
 ## API Reference
 
