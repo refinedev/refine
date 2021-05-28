@@ -15,7 +15,6 @@ export const Sider: React.FC = () => {
     const [collapsed, setCollapsed] = React.useState(false);
     const logout = useLogout();
     const Title = useTitle();
-    const { push } = useNavigation();
     const translate = useTranslate();
     const { menuItems, selectedKey } = useMenu();
 
@@ -41,7 +40,7 @@ export const Sider: React.FC = () => {
                 {logout && (
                     <Menu.Item
                         onClick={() => {
-                            logout().then(() => push("/login"));
+                            logout();
                         }}
                         key="logout"
                         icon={<LogoutOutlined />}
