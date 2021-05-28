@@ -14,7 +14,12 @@ module.exports = {
                 "tableSearch",
                 "customPages",
                 "theming",
-                "csvExport"
+                "csvExport",
+                {
+                    type: "category",
+                    label: "Basic Views",
+                    items: ["basicViews/list"],
+                },
             ],
         },
         {
