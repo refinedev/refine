@@ -2,6 +2,7 @@
 id: useDeleteMany
 title: useDeleteMany
 siderbar_label: useDeleteMany
+description: useDeleteMany data hook from refine is a modified version of react-query's useMutation for multiple delete mutations
 ---
 
 `useDeleteMany` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for multiple delete mutations. It uses `deleteMany` method as mutation function from the `dataProvider` that is passed to `<Admin>`.  

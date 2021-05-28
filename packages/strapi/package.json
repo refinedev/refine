@@ -38,6 +38,7 @@
   ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "^4.10.1",
+    "@types/jest": "^26.0.23",
     "husky": "^5.2.0",
     "nock": "^13.0.11",
     "size-limit": "^4.10.1",

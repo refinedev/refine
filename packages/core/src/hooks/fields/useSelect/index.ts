@@ -5,7 +5,7 @@ import { QueryObserverResult } from "react-query";
 
 import { useList, useMany } from "@hooks";
 import {
-    Sort,
+    CrudSorting,
     Option,
     BaseRecord,
     GetManyResponse,
@@ -17,7 +17,7 @@ export type UseSelectProps = {
     resource: string;
     optionLabel?: string;
     optionValue?: string;
-    sort?: Sort;
+    sort?: CrudSorting;
     filters?: CrudFilters;
     defaultValue?: string | string[];
 };
@@ -64,10 +64,6 @@ export const useSelect = <TData extends BaseRecord = BaseRecord>(
     const queryResult = useList<TData>(
         resource,
         {
-            search: {
-                field: optionLabel,
-                value: search,
-            },
             sort,
             filters,
         },

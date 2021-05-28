@@ -15,6 +15,7 @@ module.exports = {
                 "customPages",
                 "csvImport",
                 "theming",
+                "csvExport"
             ],
         },
         {
@@ -36,6 +37,7 @@ module.exports = {
                         "hooks/data/useUpdateMany",
                         "hooks/data/useDelete",
                         "hooks/data/useDeleteMany",
+                        "hooks/data/useList",
                         "hooks/data/useOne",
                         "hooks/data/useMany",
                         "hooks/data/useCustom",
