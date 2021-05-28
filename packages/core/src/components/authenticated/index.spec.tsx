@@ -1,7 +1,7 @@
 import React from "react";
-import { wait } from "@testing-library/react"; // highlight-line
+import { wait } from "@testing-library/react";
 
-import { act, MockJSONServer, render, TestWrapper } from "@test";
+import { MockJSONServer, render, TestWrapper } from "@test";
 import { Authenticated } from "./";
 
 const mockAuthProvider = {
