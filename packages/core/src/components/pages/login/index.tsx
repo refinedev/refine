@@ -143,7 +143,7 @@ export const LoginPage: React.FC = () => {
                         <div style={signupSection}>
                             <Text>
                                 {translate(
-                                    "pages.login.noAccountText",
+                                    "pages.login.noAccount",
                                     "Still no account? Please go to",
                                 )}{" "}
                                 <a href="">
