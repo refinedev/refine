@@ -9,8 +9,6 @@
     "resources": {
         "categories": {
             "Categories": "Categories",
-            "title": "Categories",
-            "Create": "Create category",
             "fields": {
                 "id": "Id",
                 "title": "Title",
@@ -18,14 +16,18 @@
             },
             "forms": {
                 "title": "Title"
+            },
+            "titles": {
+                "create": "Create Category",
+                "edit": "Edit Category",
+                "list": "Categories",
+                "show": "Show Category"
             }
         },
         "dashboard": {
             "title": "Dashboard Page"
         },
         "files": {
-            "Files": "Files",
-            "title": "Files",
             "fields": {
                 "id": "Id",
                 "url": "Url",
@@ -36,19 +38,29 @@
             "forms": {
                 "title": "Title",
                 "imageFiles": "Image Files"
+            },
+            "titles": {
+                "create": "Create File",
+                "edit": "Edit File",
+                "list": "Files",
+                "show": "Show File"
             }
         },
         "images": {
-            "Images": "Images",
             "fields": {
                 "id": "Id",
                 "image": "Image",
                 "price": "Price"
+            },
+            "titles": {
+                "create": "Create Image",
+                "edit": "Edit Image",
+                "list": "Images",
+                "show": "Show Image"
             }
         },
         "posts": {
             "Posts": "Posts",
-            "Create": "Create post",
             "fields": {
                 "id": "Id",
                 "title": "Title",
@@ -75,16 +87,27 @@
                 "uploadHintText": "Support for a single upload",
                 "nextButton": "Next",
                 "prevButton": "Prev"
+            },
+            "titles": {
+                "create": "Create Post",
+                "edit": "Edit Post",
+                "list": "Posts",
+                "show": "Show Post"
             }
         },
         "tags": {
-            "Tags": "Tags",
             "fields": {
                 "id": "Id",
                 "title": "Title",
                 "image": "Image"
             },
-            "reload": "Reload"
+            "reload": "Reload",
+            "titles": {
+                "create": "Create Tag",
+                "edit": "Edit Tag",
+                "list": "Tags",
+                "show": "Show Tag"
+            }
         },
         "users": {
             "Users": "Users",

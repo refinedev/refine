@@ -111,7 +111,7 @@ export const useDrawerForm = <
                 if (warnWhen) {
                     const warnWhenConfirm = window.confirm(
                         translate(
-                            "common:warnWhenUnsavedChanges",
+                            "warnWhenUnsavedChanges",
                             "Are you sure you want to leave? You have with unsaved changes.",
                         ),
                     );

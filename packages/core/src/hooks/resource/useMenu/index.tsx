@@ -35,10 +35,7 @@ export const useMenu: () => useMenuReturnType = () => {
                           icon: <DashboardOutlined />,
                           route: `/`,
                           key: "dashboard",
-                          label: translate(
-                              "common:resources.dashboard.title",
-                              "Dashboard",
-                          ),
+                          label: translate("dashboard.title", "Dashboard"),
                       },
                   ]
                 : []),
@@ -51,8 +48,9 @@ export const useMenu: () => useMenuReturnType = () => {
                     route: route,
                     key: route,
                     label: translate(
-                        `common:resources.${resource.name}.${
-                            resource.label ?? humanizeString(resource.name)
+                        `${resource.name}.${
+                            resource.label?.toLowerCase() ??
+                            humanizeString(resource.name).toLowerCase()
                         }`,
                         resource.label ?? humanizeString(resource.name),
                     ),

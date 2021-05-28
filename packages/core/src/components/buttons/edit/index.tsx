@@ -38,7 +38,7 @@ export const EditButton: FC<EditButtonProps> = ({
             icon={<EditOutlined />}
             {...rest}
         >
-            {translate("common:buttons.edit", "Edit")}
+            {translate("buttons.edit", "Edit")}
         </Button>
     );
 };
