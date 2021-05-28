@@ -14,6 +14,7 @@ import {
     Space,
     useForm,
     useEditableTable,
+    IResourceComponentsProps,
     TextField,
     ExportButton,
     ImportButton,
@@ -28,7 +29,7 @@ export interface ICategory {
     title: string;
 }
 
-export const CategoryList = (props: any) => {
+export const CategoryList: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
     const {
         tableProps,
@@ -63,7 +64,9 @@ export const CategoryList = (props: any) => {
     );
 
     return (
-        <List {...props} actionButtons={<Actions />}>
+        <List {...props} pageHeaderProps={{
+            extra: <Actions />
+        }}>
             <Form {...formProps}>
                 <Table
                     {...tableProps}
@@ -164,7 +167,7 @@ export const CategoryList = (props: any) => {
     );
 };
 
-export const CategoryCreate = (props: any) => {
+export const CategoryCreate: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
 
     const { formProps, saveButtonProps } = useForm<
@@ -192,7 +195,7 @@ export const CategoryCreate = (props: any) => {
     );
 };
 
-export const CategoryEdit = (props: any) => {
+export const CategoryEdit: React.FC<IResourceComponentsProps>  = (props) => {
     const translate = useTranslate();
 
     const { formProps, saveButtonProps } = useForm<

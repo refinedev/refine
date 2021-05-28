@@ -3,7 +3,6 @@ import {
     MutationMode,
     TitleProps,
     LayoutProps,
-    SiderProps,
 } from "../../interfaces";
 
 export interface IAdminContext {
@@ -16,7 +15,7 @@ export interface IAdminContext {
     undoableTimeout: number;
     Title: React.FC<TitleProps>;
     Layout: React.FC<LayoutProps>;
-    Sider: React.FC<SiderProps>;
+    Sider: React.FC;
     Header: React.FC;
     Footer: React.FC;
     OffLayoutArea: React.FC;
@@ -30,7 +29,7 @@ export interface IAdminContextProvider {
     undoableTimeout: number;
     Title?: React.FC<TitleProps>;
     Layout?: React.FC<LayoutProps>;
-    Sider?: React.FC<SiderProps>;
+    Sider?: React.FC;
     Header?: React.FC;
     Footer?: React.FC;
     OffLayoutArea?: React.FC;

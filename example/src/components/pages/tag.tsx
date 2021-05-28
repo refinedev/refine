@@ -15,9 +15,10 @@ import {
     Space,
     useForm,
     useDeleteMany,
+    IResourceComponentsProps,
 } from "@pankod/refine";
 
-export const TagList = (props: any) => {
+export const TagList: React.FC<IResourceComponentsProps>  = (props) => {
     const translate = useTranslate();
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -122,7 +123,7 @@ export const TagList = (props: any) => {
     );
 };
 
-export const TagCreate = (props: any) => {
+export const TagCreate: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
     const { formProps, saveButtonProps } = useForm();
 
@@ -153,7 +154,7 @@ export const TagCreate = (props: any) => {
     );
 };
 
-export const TagEdit = (props: any) => {
+export const TagEdit: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
     const { formProps, saveButtonProps } = useForm();
 

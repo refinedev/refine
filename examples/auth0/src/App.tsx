@@ -10,7 +10,7 @@ import { Dashboard } from "pages/dashboard";
 
 const API_URL = "https://refine-fake-rest.pankod.com";
 
-const App = () => {
+const App: React.FC = () => {
     const {
         isLoading,
         isAuthenticated,

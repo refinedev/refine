@@ -8,15 +8,26 @@ import {
 } from "antd/lib/table/interface";
 import mergeWith from "lodash/mergeWith";
 
-export const merge = (object: any, source: any) => {
-    return mergeWith(object, source, (val, src): any => {
+export const merge = <T>(object: T, source: T): T => {
+    return mergeWith(object, source, (val, src) => {
         if (Array.isArray(val)) {
             return val.concat(src);
         }
+
+        return undefined;
     });
 };
 
-export const parseTableParams = (url: string) => {
+export type ParseTableParamsType = {
+    (url: string): {
+        parsedCurrent: number | "" | undefined;
+        parsedPageSize: number | "" | undefined;
+        parsedSorter: SorterResult<any>[];
+        parsedFilters: CrudFilters;
+    }
+}
+
+export const parseTableParams: ParseTableParamsType = (url) => {
     const { current, pageSize, sort, order, ...filters } = qs.parse(
         url.substring(1), // remove first ? character
     );
