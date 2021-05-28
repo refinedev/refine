@@ -111,10 +111,12 @@ It allows us to add some filters while fetching the data. For example, if you wa
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
     //highlight-start
-    sort: {
-        field: "title",
-        order: "ascend",
-    },
+    sort: [
+        {
+            field: "title",
+            order: "asc",
+        },
+    ],
     //highlight-end
 });
 ```

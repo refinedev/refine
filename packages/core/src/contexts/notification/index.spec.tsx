@@ -24,7 +24,7 @@ describe("Notification Reducer", () => {
             const { result, waitForNextUpdate } = renderHook(() =>
                 React.useReducer(notificationReducer, []),
             );
-            const [_, dispatch] = result.current;
+            const [, dispatch] = result.current;
 
             dispatch({ type: "ADD", payload: providerProps.notifications[0] });
 
@@ -50,7 +50,7 @@ describe("Notification Reducer", () => {
                     providerProps.notifications,
                 ),
             );
-            const [_, dispatch] = result.current;
+            const [, dispatch] = result.current;
 
             dispatch({
                 type: "DELETE",
@@ -72,7 +72,7 @@ describe("Notification Reducer", () => {
                     providerProps.notifications,
                 ),
             );
-            const [_, dispatch] = result.current;
+            const [, dispatch] = result.current;
 
             dispatch({
                 type: "DECREASE_NOTIFICATION_SECOND",

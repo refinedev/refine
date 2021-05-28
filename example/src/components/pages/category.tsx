@@ -45,7 +45,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = (props) => {
         initialSorter: [
             {
                 field: "createdAt",
-                order: "descend",
+                order: "desc",
             },
         ],
     });

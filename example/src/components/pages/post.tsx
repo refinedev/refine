@@ -81,20 +81,6 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
         ],
     });
 
-    const { data: dataTest } = useList("posts", {
-        pagination: { current: 3, pageSize: 8 },
-        filters: [
-            {
-                field: "status",
-                operator: "eq",
-                value: "rejected",
-            },
-        ],
-        sort: { order: "ascend", field: "title" },
-    });
-
-    console.log("uselist data: ", dataTest);
-
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
 
@@ -190,8 +176,9 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                         return (
                             <TextField
                                 value={
-                                    data?.data.find((item) => item.id === value)
-                                        ?.title
+                                    data?.data.find(
+                                        (item: ICategory) => item.id === value,
+                                    )?.title
                                 }
                             />
                         );
@@ -286,19 +273,26 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
 
-    const [selectedTab, setSelectedTab] =
-        React.useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+        "write",
+    );
     const { isLoading, onChange } = useFileUploadState();
 
-    const { current, gotoStep, stepsProps, submit, formLoading, formProps } =
-        useStepsForm({
-            warnWhenUnsavedChanges: true,
-            defaultFormValues: () => {
-                return {
-                    status: "published",
-                };
-            },
-        });
+    const {
+        current,
+        gotoStep,
+        stepsProps,
+        submit,
+        formLoading,
+        formProps,
+    } = useStepsForm({
+        warnWhenUnsavedChanges: true,
+        defaultFormValues: () => {
+            return {
+                status: "published",
+            };
+        },
+    });
 
     const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
@@ -508,8 +502,9 @@ export const PostEdit: React.FC<IResourceComponentsProps>  = (props) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
 
-    const [selectedTab, setSelectedTab] =
-        React.useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+        "write",
+    );
     const { onChange, isLoading } = useFileUploadState();
 
     const {

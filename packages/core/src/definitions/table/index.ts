@@ -1,6 +1,6 @@
 import qs, { IStringifyOptions } from "qs";
 
-import { Sort, CrudFilters, CrudOperators } from "../../interfaces";
+import { CrudFilters, CrudOperators, CrudSorting } from "../../interfaces";
 import {
     SorterResult,
     SortOrder,
@@ -18,47 +18,27 @@ export const merge = <T>(object: T, source: T): T => {
     });
 };
 
-export type ParseTableParamsType = {
-    (url: string): {
-        parsedCurrent: number | "" | undefined;
-        parsedPageSize: number | "" | undefined;
-        parsedSorter: SorterResult<any>[];
-        parsedFilters: CrudFilters;
-    }
-}
-
-export const parseTableParams: ParseTableParamsType = (url) => {
+export const parseTableParams = (url: string) => {
     const { current, pageSize, sort, order, ...filters } = qs.parse(
         url.substring(1), // remove first ? character
     );
 
-    let parsedSorter: Sort = [];
+    const parsedSorter: CrudSorting = [];
     if (Array.isArray(sort) && Array.isArray(order)) {
-        const arrSorter: SorterResult<any>[] = [];
+        sort.forEach((item: unknown, index: number) => {
+            const sortOrder = order[index] as "asc" | "desc";
 
-        sort.forEach((item: any, index: any) => {
-            const sortOrder = order[index] as SortOrder;
-            arrSorter.push({
-                field: item,
+            parsedSorter.push({
+                field: `${item}`,
                 order: sortOrder,
             });
         });
-
-        parsedSorter = arrSorter;
-    } else {
-        parsedSorter = [
-            {
-                field: sort as string,
-                order: order as SortOrder,
-            },
-        ];
     }
 
     const parsedFilters: CrudFilters = [];
     Object.keys(filters).map((item) => {
         const [field, operator] = item.split("__");
         const value = filters[item];
-
         parsedFilters.push({
             field,
             operator: operator as CrudOperators,
@@ -76,7 +56,7 @@ export const parseTableParams: ParseTableParamsType = (url) => {
 
 export const stringifyTableParams = (params: {
     pagination: TablePaginationConfig;
-    sorter: Sort;
+    sorter: CrudSorting;
     filters: CrudFilters;
 }): string => {
     const options: IStringifyOptions = {
@@ -87,16 +67,8 @@ export const stringifyTableParams = (params: {
 
     const { pagination, sorter, filters } = params;
 
-    let sortFields;
-    let sortOrders;
-
-    if (Array.isArray(sorter)) {
-        sortFields = sorter.map((item) => item.field);
-        sortOrders = sorter.map((item) => item.order);
-    } else {
-        sortFields = sorter.field;
-        sortOrders = sorter.order;
-    }
+    const sortFields = sorter.map((item) => item.field);
+    const sortOrders = sorter.map((item) => item.order);
 
     const qsSortFields = qs.stringify({ sort: sortFields }, options);
     const qsSortOrders = qs.stringify({ order: sortOrders }, options);
@@ -123,20 +95,16 @@ export const stringifyTableParams = (params: {
 
 export const getDefaultSortOrder = (
     columnName: string,
-    sorter?: Sort,
+    sorter?: CrudSorting,
 ): SortOrder | undefined => {
-    if (Array.isArray(sorter)) {
-        const sortItem = sorter.find((item) => item.field === columnName);
-
-        if (sortItem) {
-            return sortItem.order;
-        }
-
+    if (!sorter) {
         return;
     }
 
-    if (sorter?.field === columnName) {
-        return sorter.order || undefined;
+    const sortItem = sorter.find((item) => item.field === columnName);
+
+    if (sortItem) {
+        return `${sortItem.order}end` as SortOrder;
     }
 
     return;

@@ -1,13 +1,9 @@
-import { SorterResult } from "antd/lib/table/interface";
-
 import { BaseRecord, Identifier } from "../../interfaces";
 
 export interface Pagination {
     current?: number;
     pageSize?: number;
 }
-
-export type Sort = SorterResult<any> | SorterResult<any>[];
 
 export interface Search {
     field?: string;
@@ -53,7 +49,13 @@ export type CrudFilter = {
     value: any;
 };
 
+export type CrudSort = {
+    field: string;
+    order: "asc" | "desc";
+};
+
 export type CrudFilters = CrudFilter[];
+export type CrudSorting = CrudSort[];
 
 export interface CustomResponse<TData = BaseRecord> {
     data: TData;
@@ -100,9 +102,8 @@ export interface IDataContext {
         resource: string,
         params: {
             pagination?: Pagination;
-            search?: Search;
-            sort?: Sort;
-            filters?: CrudFilter[];
+            sort?: CrudSorting;
+            filters?: CrudFilters;
         },
     ) => Promise<GetListResponse<TData>>;
     getMany: <TData extends BaseRecord = BaseRecord>(
@@ -152,7 +153,7 @@ export interface IDataContext {
             | "put"
             | "patch",
         params?: {
-            sort?: Sort;
+            sort?: CrudSorting;
             filters?: CrudFilter[];
             payload?: {};
             query?: {};

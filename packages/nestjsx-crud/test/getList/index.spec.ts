@@ -22,10 +22,12 @@ describe("getList", () => {
             "https://refine-nestjs-crud.pankod.com",
             axios,
         ).getList("posts", {
-            sort: {
-                field: "id",
-                order: "ascend",
-            },
+            sort: [
+                {
+                    field: "id",
+                    order: "asc",
+                },
+            ],
         });
 
         expect(data[0]["id"]).toBe("0215838f-cf6d-49ed-8ee2-1a1350d126e5");
@@ -65,10 +67,12 @@ describe("getList", () => {
                     value: ["ba18b409-7084-4f5f-926c-207eab172f73"],
                 },
             ],
-            sort: {
-                field: "id",
-                order: "ascend",
-            },
+            sort: [
+                {
+                    field: "id",
+                    order: "asc",
+                },
+            ],
         });
 
         expect(data[0]["title"]).toBe("Borders Shirt withdrawal");

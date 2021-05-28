@@ -6,7 +6,6 @@ import {
     IResourceComponentsProps,
     Space,
     EditButton,
-    ShowButton,
     useMany,
 } from "@pankod/refine";
 

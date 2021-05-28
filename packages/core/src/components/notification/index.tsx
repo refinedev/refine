@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, Progress } from "antd";
+import { Button } from "antd";
 
 import { ActionTypes } from "@contexts/notification";
 import { useCancelNotification, useNotification, useTranslate } from "@hooks";
@@ -16,7 +16,7 @@ export const Notification: React.FC<{
 
     const { notificationDispatch } = useCancelNotification();
 
-    const removeNotification = (id: string, resource: string) => {
+    const removeNotification = (id: string) => {
         notificationDispatch({
             type: ActionTypes.REMOVE,
             payload: { id: id },
@@ -29,7 +29,6 @@ export const Notification: React.FC<{
                 if (notificationItem.seconds === 0) {
                     removeNotification(
                         notificationItem.id,
-                        notificationItem.resource,
                     );
 
                     return;

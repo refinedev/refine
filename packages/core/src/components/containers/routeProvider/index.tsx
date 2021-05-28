@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React, { useContext, ReactNode } from "react";
+import React, { useContext } from "react";
 import { Switch, Route, RouteProps, Redirect } from "react-router-dom";
 import {
     LoginPage as DefaultLoginPage,
