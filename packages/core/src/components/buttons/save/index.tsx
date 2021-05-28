@@ -11,7 +11,7 @@ export const SaveButton: FC<SaveButtonProps> = ({ ...rest }) => {
 
     return (
         <Button type="primary" icon={<SaveOutlined />} {...rest}>
-            {translate("common:buttons.save", "Save")}
+            {translate("buttons.save", "Save")}
         </Button>
     );
 };

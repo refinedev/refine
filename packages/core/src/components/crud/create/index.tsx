@@ -31,7 +31,7 @@ export const Create: React.FC<CreateProps> = ({
     resource: resourceFromProps,
 }) => {
     const { goBack } = useNavigation();
-    const t = useTranslate();
+    const translate = useTranslate();
 
     const {
         resource: routeResourceName,
@@ -41,11 +41,9 @@ export const Create: React.FC<CreateProps> = ({
 
     const resource = resourceWithRoute(routeResourceName ?? resourceFromProps);
 
-    const translate = useTranslate();
-
     const tags = [];
     if (idFromRoute) {
-        tags.push(<Tag color="blue">{t("tags.Clone", "Clone")}</Tag>);
+        tags.push(<Tag color="blue">{translate("tags.clone", "Clone")}</Tag>);
     }
 
     return (
@@ -56,7 +54,7 @@ export const Create: React.FC<CreateProps> = ({
             title={
                 title ??
                 translate(
-                    `common:resources.${resource.name}.Create`,
+                    `${resource.name}.titles.create`,
                     `Create ${pluralize.singular(resource.name)}`,
                 )
             }

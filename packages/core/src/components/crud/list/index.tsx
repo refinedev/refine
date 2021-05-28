@@ -46,7 +46,7 @@ export const List: React.FC<ListProps> = ({
                     title={
                         title ??
                         translate(
-                            `common:resources.${resource.name}.title`,
+                            `${resource.name}.titles.list`,
                             humanizeString(resource.name),
                         )
                     }
