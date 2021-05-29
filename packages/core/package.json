@@ -58,7 +58,6 @@
         "@ant-design/icons": "^4.5.0",
         "@types/papaparse": "^5.2.5",
         "antd": "^4.12.2",
-        "axios": "^0.21.1",
         "dayjs": "^1.10.4",
         "humanize-string": "^2.1.0",
         "lodash": "^4.17.21",
