@@ -19,8 +19,9 @@ module.exports = {
                 "auth0",
                 "tableSearch",
                 "customPages",
+                "csvImport",
                 "theming",
-                "csvExport"
+                "csvExport",
             ],
         },
         {
