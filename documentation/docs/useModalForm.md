@@ -7,7 +7,7 @@ siderbar_label: useModalForm
 import createGif from '@site/static/img/create-useModalForm.gif';
 import editGif from '@site/static/img/edit-useModalForm.gif';
 
-The `useModalForm` hook allows you manage a form within Modal. If we look in detail, `useModalForm` uses ant-design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components data scope management under the hood and returns the appropriate values to the components.
+The `useModalForm` hook allows you manage a form within Modal. If we look in detail, `useModalForm` uses Ant Design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components data scope management under the hood and returns the appropriate values to the components.
 
 All we have to do is pass the props it returns to the `<Modal>` and `<Form>` components.
 
