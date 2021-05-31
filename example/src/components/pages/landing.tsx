@@ -104,7 +104,6 @@ export const LandingList: React.FC<IResourceComponentsProps> = (props) => {
                 <Edit
                     {...props}
                     recordItemId={editId}
-                    onModalClose={close}
                     saveButtonProps={{
                         ...saveButtonProps,
                         disabled: isLoading || formLoading,
