@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useState } from "react";
-import { Button, Result, Typography, Space, Alert } from "antd";
+import { Button, Result, Typography, Space, Tooltip } from "antd";
 import { useParams } from "react-router-dom";
+import { InfoCircleOutlined } from "@ant-design/icons";
 
 import { useNavigation, useTranslate, useResourceWithRoute } from "@hooks";
 import { ResourceErrorRouterParams } from "../../../interfaces";
@@ -29,10 +30,10 @@ export const ErrorComponent: React.FC = () => {
                         translate(
                             "pages.error.info",
                             {
-                                action: params.action.toUpperCase(),
-                                resource: params.resource.toUpperCase(),
+                                action: params.action,
+                                resource: params.resource,
                             },
-                            `You may have forgotten to add the "${params.action.toUpperCase()}" component to "${params.resource.toUpperCase()}" resource.`,
+                            `You may have forgotten to add the "${params.action}" component to "${params.resource}" resource.`,
                         ),
                     );
                 }
@@ -41,9 +42,9 @@ export const ErrorComponent: React.FC = () => {
                     translate(
                         "pages.error.resource404",
                         {
-                            resource: params.resource.toUpperCase(),
+                            resource: params.resource,
                         },
-                        `Are you sure you have created the "${params.resource.toUpperCase()}" resource.`,
+                        `Are you sure you have created the "${params.resource}" resource.`,
                     ),
                 );
             }
@@ -56,21 +57,19 @@ export const ErrorComponent: React.FC = () => {
             title="404"
             extra={
                 <Space direction="vertical" size="large">
-                    <Text>
-                        {translate(
-                            "pages.error.404",
-                            "Sorry, the page you visited does not exist.",
+                    <Space>
+                        <Text>
+                            {translate(
+                                "pages.error.404",
+                                "Sorry, the page you visited does not exist.",
+                            )}
+                        </Text>
+                        {errorMessage && (
+                            <Tooltip title={errorMessage}>
+                                <InfoCircleOutlined />
+                            </Tooltip>
                         )}
-                    </Text>
-                    {errorMessage && (
-                        <Alert
-                            message="Informational Notes"
-                            description={errorMessage}
-                            type="info"
-                            showIcon
-                            style={{ textAlign: "left" }}
-                        />
-                    )}
+                    </Space>
                     <Button type="primary" onClick={() => push("/")}>
                         {translate("pages.error.backHome", "Back Home")}
                     </Button>
