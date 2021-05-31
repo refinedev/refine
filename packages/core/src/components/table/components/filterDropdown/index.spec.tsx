@@ -1,13 +1,7 @@
 import React from "react";
 
-import {
-    render,
-    fireEvent,
-} from "@test";
-import {
-    FilterDropdown,
-    FilterDropdownProps,
-} from "./";
+import { render, fireEvent } from "@test";
+import { FilterDropdown, FilterDropdownProps } from "./";
 
 describe("FilterDropdown", () => {
     const confirm = jest.fn();
@@ -19,31 +13,16 @@ describe("FilterDropdown", () => {
         selectedKeys: [],
         setSelectedKeys,
         visible: false,
-        prefixCls:
-            "",
+        prefixCls: "",
         filters: [],
         clearFilters,
     };
 
     it("should render called confirm function successfully if click the filter button", async () => {
-        const {
-            getByText,
-        } = render(
-            <FilterDropdown
-                {...props}
-            />,
-        );
+        const { getByText } = render(<FilterDropdown {...props} />);
 
-        fireEvent.click(
-            getByText(
-                "Filter",
-            ),
-        );
+        fireEvent.click(getByText("Filter"));
 
-        expect(
-            confirm,
-        ).toHaveBeenCalledTimes(
-            1,
-        );
+        expect(confirm).toHaveBeenCalledTimes(1);
     });
 });
