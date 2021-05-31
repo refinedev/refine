@@ -30,7 +30,7 @@ export const CreateButton: FC<CreateButtonProps> = ({
             icon={<PlusSquareOutlined />}
             {...rest}
         >
-            {translate("common:buttons.create", "Create")}
+            {translate("buttons.create", "Create")}
         </Button>
     );
 };

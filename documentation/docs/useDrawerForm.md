@@ -6,7 +6,7 @@ siderbar_label: useDrawerForm
 import createGif from '@site/static/img/create-useDrawerForm.gif';
 import editGif from '@site/static/img/edit-useDrawerForm.gif';
 
-The `useDrawerForm` hook allows you manage a form within Drawer. If we look in detail, `useDrawerForm` uses ant-design [Form](https://ant.design/components/form/) and [Drawer](https://ant.design/components/drawer/) components data scope management under the hood and returns the appropriate values to the components.
+The `useDrawerForm` hook allows you manage a form within Drawer. If we look in detail, `useDrawerForm` uses Ant Design [Form](https://ant.design/components/form/) and [Drawer](https://ant.design/components/drawer/) components data scope management under the hood and returns the appropriate values to the components.
 
 All we have to do is pass the props it returns to the `<Drawer>` and `<Form>` components.
 
@@ -14,9 +14,9 @@ For example, let's look at an example of creating a record with `useDrawerForm`.
 
 ```tsx title="pages/posts/list.tsx"
 import { useDrawerForm, Drawer, Form, Create, Radio } from "@pankod/refine";
-import { IPost } from "../../interfaces";
+import { IPost } from "interfaces";
 
-export const PostList (props) => {
+export const PostList: React.FC (props) => {
 
     //highlight-start
     const {

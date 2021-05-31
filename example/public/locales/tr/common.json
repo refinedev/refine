@@ -19,8 +19,6 @@
     "resources": {
         "categories": {
             "Categories": "Kategoriler",
-            "title": "Kategoriler",
-            "Create": "Kategori oluştur",
             "fields": {
                 "id": "Id",
                 "title": "Başlık",
@@ -28,14 +26,18 @@
             },
             "forms": {
                 "title": "Başlık"
+            },
+            "titles": {
+                "create": "Kategori Oluştur",
+                "edit": "Kategori Düzenle",
+                "list": "Kategoriler",
+                "show": "Kategori Göster"
             }
         },
         "dashboard": {
             "title": "Panel"
         },
         "files": {
-            "Files": "Dosyalar",
-            "title": "Dosyalar",
             "fields": {
                 "id": "Id",
                 "url": "Url",
@@ -46,21 +48,29 @@
             "forms": {
                 "title": "Başlık",
                 "imageFiles": "Resim Dosyaları"
+            },
+            "titles": {
+                "create": "Dosya Oluştur",
+                "edit": "Dosya Düzenle",
+                "list": "Dosyalar",
+                "show": "Dosya Göster"
             }
         },
         "images": {
-            "Images": "Resimler",
-            "title": "Resimler",
             "fields": {
                 "id": "Id",
                 "image": "Resim",
                 "price": "Fiyat"
+            },
+            "titles": {
+                "create": "Resim Oluştur",
+                "edit": "Resim Düzenle",
+                "list": "Resimler",
+                "show": "Resim Göster"
             }
         },
         "posts": {
             "Posts": "Gönderiler",
-            "title": "Gönderiler",
-            "Create": "Gönderi oluştur",
             "fields": {
                 "id": "Id",
                 "title": "Başlık",
@@ -85,18 +95,28 @@
                 "autocomplete": "Otomatik tamamlama(Kullanıcı email arayın)",
                 "nextButton": "Sonraki",
                 "prevButton": "Önceki"
+            },
+            "titles": {
+                "create": "Gönderi Oluştur",
+                "edit": "Gönderi Düzenle",
+                "list": "Gönderiler",
+                "show": "Gönderi Göster"
             }
         },
         "tags": {
-            "Tags": "Etiketler",
-            "title": "Etiketler",
             "Create": "Etiket oluştur",
             "fields": {
                 "id": "Id",
                 "title": "Başlık",
                 "image": "Resim"
             },
-            "reload": "Yenile"
+            "reload": "Yenile",
+            "titles": {
+                "create": "Etiket Oluştur",
+                "edit": "Etiket Düzenle",
+                "list": "Etiketler",
+                "show": "Etiket Göster"
+            }
         },
         "users": {
             "Users": "Kullanıcılar",

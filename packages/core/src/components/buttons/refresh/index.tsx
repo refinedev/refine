@@ -41,7 +41,7 @@ export const RefreshButton: FC<RefreshButtonProps> = ({
             onClick={() => refetch()}
             {...rest}
         >
-            {translate("common:buttons.refresh", "Refresh")}
+            {translate("buttons.refresh", "Refresh")}
         </Button>
     );
 };

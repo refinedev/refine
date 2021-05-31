@@ -6,21 +6,23 @@ module.exports = {
         },
         {
             type: "category",
-            label: "Guides",
+            label: "Guides & Concepts",
             items: [
+                {
+                    type: "category",
+                    label: "Providers",
+                    items: ["authProvider", "dataProvider"],
+                },
+                "i18n",
                 "multipartUpload",
                 "base64upload",
                 "auth0",
                 "tableSearch",
                 "customPages",
+                "csvImport",
                 "theming",
                 "csvExport"
             ],
-        },
-        {
-            type: "category",
-            label: "Providers",
-            items: ["authProvider", "dataProvider"],
         },
         {
             type: "category",
