@@ -2,7 +2,6 @@ import {
     useShow,
     Show,
     Typography,
-    IResourceComponentsProps,
     useOne,
     MarkdownField,
 } from "@pankod/refine";
@@ -11,7 +10,7 @@ import { IPost, ICategory } from "interfaces";
 
 const { Title, Text } = Typography;
 
-export const PostShow: React.FC<IResourceComponentsProps> = (props) => {
+export const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
@@ -24,7 +23,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = (props) => {
     });
 
     return (
-        <Show {...props} isLoading={isLoading}>
+        <Show isLoading={isLoading}>
             {record && (
                 <>
                     <Title level={5}>Id</Title>

@@ -4,7 +4,6 @@ import {
     TextField,
     useTable,
     useMany,
-    IResourceComponentsProps,
     Space,
     EditButton,
     ShowButton,
@@ -13,7 +12,7 @@ import {
 
 import { IPost, ICategory, IPostFile } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     const categoryIds =
@@ -45,7 +44,6 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
 
     return (
         <List
-            {...props}
             pageHeaderProps={{
                 extra: <Actions />,
             }}

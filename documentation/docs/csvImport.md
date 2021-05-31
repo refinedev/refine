@@ -15,20 +15,31 @@ Let's look at an example of adding a custom `<ImportButton>`.
 
 ## Example
 
-Add an `extra` area on `<List>` component to show `<ImportButton>`:
+Add an `extra` area on `<List>` component to show `<ImportButton>`.
 
 ```tsx title="/src/pages/posts/list.tsx"
 import {
-    ...
-    //highlight-next-line
     List,
+    Table,
+    TextField,
+    useTable,
+    useMany,
+    Space,
+    EditButton,
+    ShowButton,
     ImportButton,
 } from "@pankod/refine";
 
 import { IPost, ICategory, IPostFile } from "interfaces";
 
 export const PostList: React.FC = () => {
-    ...
+    const { tableProps } = useTable<IPost>();
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
+        enabled: categoryIds.length > 0,
+    });
 
     const Actions = () => (
         <Space direction="horizontal">
@@ -47,6 +58,30 @@ export const PostList: React.FC = () => {
         >
             ...
 };
+```
+
+```tsx title="/src/interfaces/index.d.ts"
+export interface ICategory {
+    id: string;
+    title: string;
+}
+
+export interface IPostFile {
+    id: string;
+    title: string;
+    content: string;
+    userId: number;
+    categoryId: number;
+    status: "published" | "draft" | "rejected";
+}
+
+export interface IPost {
+    id: string;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: ICategory;
+}
 ```
 
 <div style={{textAlign: "center"}}>
@@ -69,7 +104,13 @@ This would make our `<ImportButton>` look like this:
 
 ```tsx title="/src/pages/posts/list.tsx"
 export const PostList: React.FC = () => {
-    ...
+    const { tableProps } = useTable<IPost>();
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
+        enabled: categoryIds.length > 0,
+    });
 
     const Actions = () => (
         <Space direction="horizontal">
