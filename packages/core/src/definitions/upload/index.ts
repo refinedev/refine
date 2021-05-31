@@ -22,11 +22,13 @@ export function file2Base64(file: UploadFile): Promise<string> {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
 
-        reader.readAsDataURL(file.originFileObj as Blob);
-        reader.onload = () => {
-            return resolve(reader.result as string);
-        };
+        reader.addEventListener("load", () => {
+            if (reader.result) {
+                resolve(reader.result as string);
+            }
+        });
 
+        reader.readAsDataURL(file.originFileObj as Blob);
         reader.onerror = (error) => reject(error);
     });
 }
