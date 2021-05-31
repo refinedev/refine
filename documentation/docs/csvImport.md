@@ -27,7 +27,7 @@ import {
 
 import { IPost, ICategory, IPostFile } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC = () => {
     ...
 
     const Actions = () => (
