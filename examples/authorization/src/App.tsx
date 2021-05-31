@@ -30,11 +30,18 @@ const App = () => {
 
             return Promise.reject();
         },
-        logout: (params) => {
+        logout: () => {
             localStorage.removeItem("auth");
             return Promise.resolve();
         },
-        checkError: () => Promise.resolve(),
+        checkError: (error) => {
+            console.log("error", error);
+            if (error && error.statusCode === 402) {
+                return Promise.reject();
+            }
+
+            return Promise.resolve();
+        },
         checkAuth: () =>
             localStorage.getItem("auth") ? Promise.resolve() : Promise.reject(),
         getPermissions: () => {

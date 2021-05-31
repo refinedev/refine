@@ -38,7 +38,7 @@ export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
         try {
             const redirectPath = await logout(params);
             setAuthenticated(false);
-
+   console.log("resd", redirectPath)
             return Promise.resolve(redirectPath)
         } catch (error) {
             setAuthenticated(true);
