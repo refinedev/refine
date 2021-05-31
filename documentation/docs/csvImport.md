@@ -68,7 +68,7 @@ It has 3 entries. We should map `categoryId` to `category.id` and `userId` to `
 This would make our `<ImportButton>` look like this:
 
 ```tsx title="/src/pages/posts/list.tsx"
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC = () => {
     ...
 
     const Actions = () => (
