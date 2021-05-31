@@ -114,9 +114,9 @@ If an `authProvider` is given, [Resources](#) passed to `<Admin>` as children ar
 
 ## Logout
 
-If authentication is enabled, a logout button appears at the bottom of the side bar menu. When the button is clicked, `logout` method from `authProvider` is called and app redirects to `/login` route.
+If authentication is enabled, a logout button appears at the bottom of the side bar menu. When the button is clicked, `logout` method from `authProvider` is called.  
 
-
+refine redirects the app to `/login` route by default.
 <br />
 
 <div>
@@ -124,7 +124,24 @@ If authentication is enabled, a logout button appears at the bottom of the side 
 </div>
 <br/>
 
+ Redirection url can be customized by returning a route string, or false to disable redirection after logout.
+
+```tsx
+const authProvider: AuthProvider = {
+    ...
+    logout: () => {
+        localStorage.removeItem("auth");
+        // highlight-next-line
+        return Promise.resolve("/custom-url");
+    }
+}
+```
+
 :::tip
-Current authentication data needs to be cleaned by the `logout` method. For example if a token is stored in local storage, `logout` must be remove it as shown above.
+Current authentication data needs to be cleaned by the `logout` method. For example if a token is stored in local storage, `logout` must remove it as shown above.
 :::
+
+
+
+
 

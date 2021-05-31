@@ -9,7 +9,7 @@ import {
     BaseRecord,
     Identifier,
 } from "../../interfaces";
-import { useNotification, useTranslate } from "@hooks";
+import { useCheckError, useNotification, useTranslate } from "@hooks";
 
 export const useOne = <
     TData extends BaseRecord = BaseRecord,
@@ -22,6 +22,7 @@ export const useOne = <
     const { getOne } = useContext<IDataContext>(DataContext);
     const notification = useNotification();
     const translate = useTranslate();
+    const checkError = useCheckError();
 
     const queryResponse = useQuery<GetOneResponse<TData>, TError>(
         [`resource/getOne/${resource}`, { id }],
@@ -29,6 +30,7 @@ export const useOne = <
         {
             ...options,
             onError: (err: TError) => {
+                checkError?.(err);
                 if (options?.onError) {
                     options.onError(err);
                 }

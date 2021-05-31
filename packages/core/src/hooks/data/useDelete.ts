@@ -7,6 +7,7 @@ import {
     useCacheQueries,
     useNotification,
     useTranslate,
+    useCheckError,
 } from "@hooks";
 import { DataContext } from "@contexts/data";
 import { ActionTypes } from "@contexts/notification";
@@ -43,6 +44,7 @@ export const useDelete = <
     undoableTimeoutProp?: number,
     onCancel?: (cancelMutation: () => void) => void,
 ): UseDeleteReturnType<TData, TError> => {
+    const checkError = useCheckError();
     const queryClient = useQueryClient();
     const { deleteOne } = useContext<IDataContext>(DataContext);
     const {
@@ -162,6 +164,7 @@ export const useDelete = <
                 };
             },
             onError: (err: TError, { id }, context) => {
+                checkError?.(err);
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);

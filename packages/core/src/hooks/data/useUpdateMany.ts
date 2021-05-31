@@ -6,6 +6,7 @@ import { DataContext } from "@contexts/data";
 import {
     useCacheQueries,
     useCancelNotification,
+    useCheckError,
     useMutationMode,
     useNotification,
     useTranslate,
@@ -26,7 +27,7 @@ import {
 type UseUpdateManyReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = UseMutationResult<
     UpdateManyResponse<TData>,
     TError,
@@ -37,7 +38,7 @@ type UseUpdateManyReturnType<
 export const useUpdateMany = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 >(
     resource: string,
     mutationModeProp?: MutationMode,
@@ -52,6 +53,7 @@ export const useUpdateMany = <
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
+    const checkError = useCheckError();
 
     const resourceSingular = pluralize.singular(resource);
 
@@ -125,9 +127,10 @@ export const useUpdateMany = <
                     const { queryKey } = queryItem;
                     await queryClient.cancelQueries(queryKey);
 
-                    const previousQuery = queryClient.getQueryData<
-                        QueryResponse<TData>
-                    >(queryKey);
+                    const previousQuery =
+                        queryClient.getQueryData<QueryResponse<TData>>(
+                            queryKey,
+                        );
 
                     if (!(mutationMode === "pessimistic")) {
                         if (previousQuery) {
@@ -174,6 +177,7 @@ export const useUpdateMany = <
                 };
             },
             onError: (err: TError, { ids }, context) => {
+                checkError?.(err);
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
