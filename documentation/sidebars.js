@@ -21,7 +21,7 @@ module.exports = {
                 "customPages",
                 "csvImport",
                 "theming",
-                "csvExport"
+                "csvExport",
             ],
         },
         {

@@ -27,9 +27,7 @@ export const Notification: React.FC<{
         notifications.forEach((notificationItem: INotification) => {
             if (notificationItem.isRunning === true) {
                 if (notificationItem.seconds === 0) {
-                    removeNotification(
-                        notificationItem.id,
-                    );
+                    removeNotification(notificationItem.id);
 
                     return;
                 }

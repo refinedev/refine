@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-    Edit,
-    Form,
-    Input,
-    Select,
-    useForm,
-    useSelect,
-} from "@pankod/refine";
+import { Edit, Form, Input, Select, useForm, useSelect } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";

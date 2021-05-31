@@ -17,4 +17,4 @@ export const App: React.FC = () => {
             />
         </Admin>
     );
-}
+};
