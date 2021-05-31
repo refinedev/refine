@@ -138,13 +138,27 @@ export const PostList: React.FC = () => {
 };
 ```
 
-And it's done. When you click on the button and provide a csv file of the headers `"title","content","status","categoryId","userId"`, it should be mapped and imported. Mapped data is the request payload. Either as part of an array or by itself as part of every request.
+And it's done. When you click on the button and provide a csv file of the headers `"title","content","status","categoryId","userId"`, it should be mapped and imported. Mapped data is the request payload. Either as part of an array or by itself as part of every request. In our example, it fires 4 `POST` requests like this:
+
+```json title="POST https://refine-fake-rest.pankod.com/posts"
+{
+    "title": "dummy title 1",
+    "content": "dummy content 1",
+    "status": "rejected",
+    "category": {
+        "id": "3"
+    },
+    "user": {
+        "id": "8"
+    }
+}
+```
 
 ## `<ImportButton>` Props
 
-| Key            | Description                                                                                                        | Type                                                                                         |
-| -------------- | ------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
-| resourceName   | Default resource name this button imports to. Inferred from route by default.                                      | `string`                                                                                     |
+| Key            | Description                                                                                                        | Type                                                                |
+| -------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
+| resourceName   | Default resource name this button imports to. Inferred from route by default.                                      | `string`                                                            |
 | mapData        | A mapping function that runs for every record. Mapped data will be included in the request payload.                | `(value: any, index?: number, array?: any[], data?: any[][]): any;` |
-| paparseOptions | Custom Papa Parse options.                                                                                         | [`ParseConfig`](https://www.papaparse.com/docs)                                              |
-| batchSize      | Request batch size. By default, it is 1. If it is more than 1, `createMany` should be implemented on DataProvider. | `number`                                                                                     |
+| paparseOptions | Custom Papa Parse options.                                                                                         | [`ParseConfig`](https://www.papaparse.com/docs)                     |
+| batchSize      | Request batch size. By default, it is 1. If it is more than 1, `createMany` should be implemented on DataProvider. | `number`                                                            |
