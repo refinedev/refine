@@ -5,6 +5,10 @@ import { render, fireEvent } from "@test";
 import { FilterDropdown, FilterDropdownProps } from "./";
 
 describe("FilterDropdown", () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
     const confirm = jest.fn();
     const clearFilters = jest.fn();
     const setSelectedKeys = jest.fn();
