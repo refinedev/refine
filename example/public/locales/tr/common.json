@@ -1,9 +1,19 @@
 {
     "pages": {
         "login": {
-            "title": "Giriş",
+            "login": "Giriş",
+            "signup": "Kayıt",
             "username": "Kullanıcı Adı",
-            "password": "Şifre"
+            "password": "Şifre",
+            "remember": "Beni Hatırla",
+            "forgotPassword": "Şifremi unuttum",
+            "noAccount": "Hala üye olmadın mı? Hadi tıkla"
+        },
+        "error": {
+            "info": "{{action}} sayfasını {{resource}} kaynağına eklemeyi unutmuş olabilirsiniz.",
+            "404": "Üzgünüz, ziyaret ettiğiniz sayfa mevcut değil.",
+            "resource404": "{{resource}} kaynağını oluşturduğunuzdan emin misiniz?",
+            "backHome": "Ana sayfaya geri dön"
         }
     },
     "resources": {
