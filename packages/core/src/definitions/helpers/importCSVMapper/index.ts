@@ -1,12 +1,9 @@
 import zip from "lodash/zip";
 import fromPairs from "lodash/fromPairs";
-import { MapDataFn } from "../../../components/buttons/import";
+import { MapDataFn } from "../../../components/buttons/import";
 
 export type importCSVMapperType = {
-    (
-        data: unknown[][],
-        mapData?: MapDataFn,
-    ): unknown[];
+    (data: unknown[][], mapData?: MapDataFn): unknown[];
 };
 
 export const importCSVMapper: importCSVMapperType = (

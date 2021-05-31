@@ -15,12 +15,7 @@ import { importCSVMapper } from "@definitions";
 import chunk from "lodash/chunk";
 
 export interface MapDataFn {
-    (
-        value: any,
-        index?: number,
-        array?: any[],
-        data?: any[][],
-    ): any;
+    (value: any, index?: number, array?: any[], data?: any[][]): any;
 }
 
 type ImportButtonProps = ButtonProps & {
@@ -45,7 +40,11 @@ export const ImportButton: FC<ImportButtonProps> = ({
         mutate: mutateCreateMany,
         isLoading: createManyIsLoading,
     } = useCreateMany<any, HttpError, unknown>();
-    const { mutate: mutateCreate, isLoading: createIsLoading } = useCreate<any, HttpError, unknown>();
+    const { mutate: mutateCreate, isLoading: createIsLoading } = useCreate<
+        any,
+        HttpError,
+        unknown
+    >();
 
     if (resourceName) {
         resource = resourceName;

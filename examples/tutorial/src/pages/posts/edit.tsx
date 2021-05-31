@@ -1,4 +1,12 @@
-import { useForm, Form, Input, Select, Edit, useSelect, IResourceComponentsProps } from "@pankod/refine";
+import {
+    useForm,
+    Form,
+    Input,
+    Select,
+    Edit,
+    useSelect,
+    IResourceComponentsProps,
+} from "@pankod/refine";
 
 import { IPost } from "interfaces";
 

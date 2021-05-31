@@ -41,9 +41,12 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     );
 
     return (
-        <List {...props} pageHeaderProps={{
-            extra: <Actions />,
-        }}>
+        <List
+            {...props}
+            pageHeaderProps={{
+                extra: <Actions />,
+            }}
+        >
             <Table {...tableProps} key="id">
                 <Table.Column key="id" dataIndex="id" title="ID" />
                 <Table.Column key="title" dataIndex="title" title="Title" />
