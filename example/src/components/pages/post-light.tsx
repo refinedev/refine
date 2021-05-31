@@ -69,8 +69,9 @@ export const PostLightList: React.FC<IResourceComponentsProps> = (props) => {
         <>
             <List
                 {...props}
-                isModalShown={createModalShow}
-                actionButtons={actions}
+                pageHeaderProps={{
+                    extra: actions
+                }}
             >
                 <Table
                     {...tableProps}
