@@ -15,13 +15,21 @@ jest.mock("react-router-dom", () => ({
 
 describe("ErrorComponent", () => {
     it("renders subtitle successfully", () => {
-        const { getByText } = render(<ErrorComponent />);
+        const { getByText } = render(<ErrorComponent />, {
+            wrapper: TestWrapper({
+                resources: [{ name: "posts", route: "posts" }],
+            }),
+        });
 
         getByText("Sorry, the page you visited does not exist.");
     });
 
     it("renders button successfully", () => {
-        const { container, getByText } = render(<ErrorComponent />);
+        const { container, getByText } = render(<ErrorComponent />, {
+            wrapper: TestWrapper({
+                resources: [{ name: "posts", route: "posts" }],
+            }),
+        });
 
         expect(container.querySelector("button")).toBeTruthy();
         getByText("Back Home");
