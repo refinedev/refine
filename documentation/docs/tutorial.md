@@ -227,9 +227,9 @@ We wrap `<Table>` with [`<List>`](#) component from `refine`, which adds extra f
 `<List>` is not an obligation at this point. You can prefer to use your own wrapper component.
 :::
 
-`refine` apps uses [ant-design](https://ant.design/components/overview/) components to display data. In this example, we'll use `<Table>` component, which is exposed from ant-design to render a table with one row for each record.
+`refine` apps uses [Ant Design](https://ant.design/components/overview/) components to display data. In this example, we'll use `<Table>` component, which is exposed from Ant Design to render a table with one row for each record.
 
-Refer to [ant-design docs](https://ant.design/components/table/#API) for more detailed information about `<Table>`.
+Refer to [Ant Design docs](https://ant.design/components/table/#API) for more detailed information about `<Table>`.
 
 The render prop of `<Table.Column>` is used to determine how to format and show data. Each `<Table.Column>` maps a different field in the API response, specified by the `dataIndex` prop.
 
@@ -841,7 +841,7 @@ Since record data is explicit, there is no constraint on how to present that dat
 
 ## Adding search and filters
 
-We'll use`<Table.Column>`'s [`filterDropdown`](https://ant.design/components/table/#Column) property from Ant-design and `<FilterDropdown>` component from `refine` to search and filter content.
+We'll use`<Table.Column>`'s [`filterDropdown`](https://ant.design/components/table/#Column) property from Ant Design and `<FilterDropdown>` component from `refine` to search and filter content.
 
 Let's add search and filter feature to category field.
 
