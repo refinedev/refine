@@ -4,7 +4,7 @@ import { QueryObserverResult } from "react-query";
 
 import { useList } from "@hooks";
 import {
-    Sort,
+    CrudSorting,
     BaseRecord,
     Option,
     GetListResponse,
@@ -15,7 +15,7 @@ export type useRadioGroupProps = RadioGroupProps & {
     resource: string;
     optionLabel?: string;
     optionValue?: string;
-    sort?: Sort;
+    sort?: CrudSorting;
     filters?: CrudFilters;
 };
 

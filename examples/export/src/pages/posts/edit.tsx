@@ -1,12 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
-    Create,
+    Edit,
     Form,
     Input,
     IResourceComponentsProps,
+    Select,
     useForm,
-    useRadioGroup,
-    Radio,
+    useSelect,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -14,21 +14,15 @@ import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-import { IPost, ILanguage } from "interfaces";
+import { IPost, ICategory } from "interfaces";
 
-export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+export const PostEdit = (props: IResourceComponentsProps) => {
+    const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
-    const {
-        radioGroupProps: languageRadioGroupProps,
-    } = useRadioGroup<ILanguage>({
-        resource: "languages",
-        sort: [
-            {
-                field: "title",
-                order: "asc",
-            },
-        ],
+    const postData = queryResult?.data?.data;
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+        defaultValue: postData?.category.id,
     });
 
     const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
@@ -36,7 +30,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     );
 
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
+        <Edit {...props} saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
@@ -50,15 +44,41 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Language"
-                    name="language"
+                    label="Category"
+                    name={["category", "id"]}
                     rules={[
                         {
                             required: true,
                         },
                     ]}
                 >
-                    <Radio.Group {...languageRadioGroupProps} />
+                    <Select {...categorySelectProps} />
+                </Form.Item>
+                <Form.Item
+                    label="Status"
+                    name="status"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select
+                        options={[
+                            {
+                                label: "Published",
+                                value: "published",
+                            },
+                            {
+                                label: "Draft",
+                                value: "draft",
+                            },
+                            {
+                                label: "Rejected",
+                                value: "rejected",
+                            },
+                        ]}
+                    />
                 </Form.Item>
                 <Form.Item
                     label="Content"
@@ -80,6 +100,6 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
                     />
                 </Form.Item>
             </Form>
-        </Create>
+        </Edit>
     );
 };

@@ -21,10 +21,12 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
-        sort: {
-            field: "title",
-            order: "ascend",
-        },
+        sort: [
+            {
+                field: "title",
+                order: "asc",
+            },
+        ],
     });
 
     const [selectedTab, setSelectedTab] = useState<"write" | "preview">(

@@ -5,14 +5,14 @@ import { DataContext } from "@contexts/data";
 import {
     CustomResponse,
     IDataContext,
-    Sort,
+    CrudSorting,
     CrudFilters,
     BaseRecord,
     HttpError,
 } from "../../interfaces";
 
 interface UseCustomConfig<TQuery, TPayload> {
-    sort?: Sort;
+    sort?: CrudSorting;
     filters?: CrudFilters;
     query?: TQuery;
     payload?: TPayload;
