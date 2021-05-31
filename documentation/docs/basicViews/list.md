@@ -4,7 +4,8 @@ title: List
 sidebar_label: List
 ---
 
-import list from '@site/static/img/list-component.png'
+import asideUsage from '@site/static/img/aside-usage.png'
+import pageHeaderPropsUsage from '@site/static/img/pageHeaderProps-usage.png'
 
 `<List>` provides us a layout for displaying the page. It does not contain any logic. It makes some things easier for us like adds extra functionalities like a create button and title to the page.
 
@@ -14,36 +15,36 @@ Let's examine what `<List>` does with step-by-step examples.
 
 ### canCreate and createButtonProps
 
-`canCreate` allows adding the create button inside the `<List>` component. `canCreate` defaults to `true` so `refine` adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the below code.
+`canCreate` allows adding the create button inside the `<List>` component. `canCreate` defaults to `true` if you have create resource so refine adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the below code.
 
 ```tsx
-import { List, IResourceComponentsProps } from "@pankod/refine";
+import { List, usePermissions } from "@pankod/refine";
 
-export const List: React.FC<IResourceComponentsProps> = (props) => {
+const { data } = usePermissions();
+
+export const List: React.FC = (props) => {
     return (
         <List
-            canCreate
-            createButtonProps={{ onClick: () => console.log("Hello, refine") }}
+            canCreate={data === "admin"}
+            createButtonProps={{ size: "small" }}
         >
-            <div>...</div>
+            ...
         </List>
     );
 };
 ```
 
+[Refer to `usePermission` documentation for detailed usage. &#8594](#)
+
 ### title
 
-It allows adding title inside the `<List>` component. if you don't pass title props it uses resource name by default.
+It allows adding title inside the `<List>` component. if you don't pass title props it uses singular resource name by default.
 
 ```tsx
-import { List, IResourceComponentsProps } from "@pankod/refine";
+import { List } from "@pankod/refine";
 
-export const List: React.FC<IResourceComponentsProps> = () => {
-    return (
-        <List title="Default Title">
-            <div>...</div>
-        </List>
-    );
+export const List: React.FC = () => {
+    return <List title="Default Title">...</List>;
 };
 ```
 
@@ -52,7 +53,7 @@ export const List: React.FC<IResourceComponentsProps> = () => {
 It allows adding a component to the right of the List component.
 
 ```tsx
-import { List, IResourceComponentsProps, Card } from "@pankod/refine";
+import { List, Card } from "@pankod/refine";
 
 const Aside: React.FC = () => {
     return (
@@ -65,7 +66,7 @@ const Aside: React.FC = () => {
     );
 };
 
-export const List: React.FC<IResourceComponentsProps> = () => {
+export const List: React.FC = () => {
     return (
         <List aside={Aside}>
             <div>...</div>
@@ -74,6 +75,12 @@ export const List: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
+<br/>
+<div>
+    <img src={asideUsage} alt="Aside Usage"/>
+</div>
+<br/>
+
 ### pageHeaderProps
 
 `<List>` uses ant-design `<PageHeader>` components so you can customize with the props of `pageHeaderProps`.
@@ -81,9 +88,9 @@ export const List: React.FC<IResourceComponentsProps> = () => {
 [Refer to `<PageHeader>` documentation for detailed usage. &#8594](https://ant.design/components/page-header/#API)
 
 ```tsx
-import { List, IResourceComponentsProps } from "@pankod/refine";
+import { List } from "@pankod/refine";
 
-export const List: React.FC<IResourceComponentsProps> = () => {
+export const List: React.FC = () => {
     return (
         <List
             pageHeaderProps={{
@@ -91,15 +98,21 @@ export const List: React.FC<IResourceComponentsProps> = () => {
                 subTitle: "Subtitle",
             }}
         >
-            <div>...</div>
+            ...
         </List>
     );
 };
 ```
 
+<br/>
+<div>
+    <img src={pageHeaderPropsUsage} alt="pageHeaderProps Usage"/>
+</div>
+<br/>
+
 ### resource
 
-`<List>` component needs the `resource` property when it is not passed to the `<Resource>` component as property.
+`<List>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<List>` component in a custom page, you can use the `resource` prop.
 
 [Refer to custom pages documentation for detailed usage. &#8594](#)
 
@@ -128,15 +141,6 @@ export const App: React.FC = () => {
     );
 };
 ```
-
-<br/>
-<div>
-    <img src={list} alt="List Component"/>
-</div>
-<br/>
-
--   The red rectangular contains [papeHeaderprops](#pageheaderprops).
--   The blue rectangular shows [aside](#aside) components.
 
 ## API Reference
 
