@@ -130,7 +130,9 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
 };
 ```
 
+:::tip
 `sorter` propuna verdiğimiz `multiple` değeri, çoklu sıralama yapıldığında, bu sütunun sıralamadaki önceliğini belirtir.
+:::
 
 <div style={{textAlign: "center"}}>
     <img src={tableSorting} />
@@ -185,7 +187,6 @@ import {
 import { IPost } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = (props) => {
-    //highlight-next-line
     const { tableProps, sorter } = useTable<IPost>({
         initialSorter: [
             {
@@ -212,12 +213,12 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     title="Content"
                     sorter={{ multiple: 1 }}
                 />
-                //highlight-start
                 <Table.Column
                     dataIndex="status"
                     title="Status"
                     key="status"
                     render={(value) => <TagField value={value} />}
+                    //highlight-start
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Radio.Group>
@@ -227,8 +228,8 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                             </Radio.Group>
                         </FilterDropdown>
                     )}
+                    //highlight-end
                 />
-                //highlight-end
             </Table>
         </List>
     );

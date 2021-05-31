@@ -124,8 +124,15 @@ const JsonServer = (
         };
     },
 
-    createMany: async () => {
-        throw new Error("createMany not implemented");
+    createMany: async (resource, params) => {
+        const response = await Promise.all(
+            params.map(async (param) => {
+                const { data } = await httpClient.post(`${apiUrl}/${resource}`, param);
+                return data;
+            }),
+        );
+
+        return { data: response };
     },
 
     update: async (resource, id, params) => {

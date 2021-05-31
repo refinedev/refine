@@ -86,7 +86,7 @@ export const ImportButton: FC<ImportButtonProps> = ({
                 loading={createIsLoading || createManyIsLoading}
                 {...rest}
             >
-                {translate("common:buttons.import", "Import")}
+                {translate("buttons.import", "Import")}
             </Button>
         </Upload>
     );

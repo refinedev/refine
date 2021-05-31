@@ -179,8 +179,8 @@ export const useDelete = <
                     notification.error({
                         key: `${id}-${resource}-notification`,
                         message: translate(
-                            "common:notifications.error",
-                            { statusCode: err.statusCode },
+                            "notifications.deleteError",
+                            { resource, statusCode: err.statusCode },
                             `Error (status code: ${err.statusCode})`,
                         ),
                         description: err.message,
@@ -202,12 +202,9 @@ export const useDelete = <
 
                 notification.success({
                     key: `${id}-${resource}-notification`,
-                    message: translate(
-                        "common:notifications.success",
-                        "Success",
-                    ),
+                    message: translate("notifications.success", "Success"),
                     description: translate(
-                        "common:notifications.deleteSuccess",
+                        "notifications.deleteSuccess",
                         { resource: resourceSingular },
                         `Successfully deleted a ${resourceSingular}`,
                     ),
