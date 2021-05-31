@@ -51,12 +51,12 @@ const { data, isLoading } = useCustom<PostUniqueCheckResponse>(
 
 #### Parameters
 
-| Property                                        | Description                                                             | Type                                                             | Required |
-| ----------------------------------------------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------- | -------- |
-| url <div className="required">Required</div>    | URL                                                                     | string                                                           | true     |
-| method <div className="required">Required</div> | Method                                                                  | "get", "delete", "head", "options", "post", "put", "patch"       | true     |
-| config                                          | Query Params                                                            | { sort?: Sort; filters?: CrudFilters; payload?: {}; query?: {} } | false    |
-| queryOptions                                    | [useQuery Options](https://react-query.tanstack.com/reference/useQuery) | object                                                           | false    |
+| Property                                        | Description                                                             | Type                                                                     |
+| ----------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| url <div className="required">Required</div>    | URL                                                                     | string                                                                   |
+| method <div className="required">Required</div> | Method                                                                  | ``get``, ``delete``, ``head``, ``options``, ``post``, ``put``, ``patch`` |
+| config                                          | Query Params                                                            | { sort?: Sort; filters?: CrudFilters; payload?: {}; query?: {} }         |
+| queryOptions                                    | [useQuery Options](https://react-query.tanstack.com/reference/useQuery) | object                                                                   |
 
 #### Type Parameters
 
