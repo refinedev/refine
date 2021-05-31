@@ -5,9 +5,9 @@ title: CSV Import
 
 import importButton from '@site/static/img/import-button.png';
 
-With refine, you can easily add a customizable csv import button for any resource. refine uses [paparse](https://www.papaparse.com/) under the hood to parse csv files.
+You can easily import csv files for any resource by using refine' s  customizable  <ImportButton> component.  refine uses [paparse](https://www.papaparse.com/) parser under the hood to parse csv files.
 
-You can add an `<ImportButton>` on a list page with a mapping function to turn the files data into apis data and it creates the imported resources, using `create` or `createMany` under the hood. Resources are added as one by one (`create`) or as batch (`createMany`) if explicitly configured.
+You can add an `<ImportButton>` on a list page with a mapping function to format the files data into API' s data. It creates the imported resources, using `create` or `createMany` data provider methods under the hood. Resources are added as one by one (`create`) or as batch (`createMany`) if explicitly configured.
 
 Let's look at an example of adding a custom `<ImportButton>`.
 
