@@ -17,7 +17,7 @@ For example, let's look at an example of creating a record with `useModalForm`.
 import { useModalForm, Modal, Form, Create, Radio } from "@pankod/refine";
 import { IPost } from "interfaces";
 
-export const PostList (props) => {
+export const PostList: React.FC (props) => {
 
     //highlight-start
     const {
@@ -154,6 +154,9 @@ export const PostList (props) => {
     )
 }
 ```
+The `saveButtonProps` and `deleteButtonProps` can provides functionality to save and delete buttons in the modal.
+
+<br />
 
 :::important
 `refine` doesn't automatically add a edit button by default to the each record in `<PostList>` which opens edit form in `<Modal>` when clicking.
@@ -173,10 +176,9 @@ So, we put the edit buttons on our list. In that way, `<Edit>` form in `<Modal>`
 :::
 
 :::caution
-Don't forget to pass the record id to `show` to fetch the record data. This is necessary for both edit and clone forms. See [actions](#) for more information.
+Don't forget to pass the record id to `show` to fetch the record data. This is necessary for both edit and clone forms.
 :::
 
-The `saveButtonProps` and `deleteButtonProps` can provides functionality to save and delete buttons in the modal.
 
 <div style={{textAlign: "center"}}>
     <img src={editGif} />
