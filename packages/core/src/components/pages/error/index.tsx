@@ -66,7 +66,7 @@ export const ErrorComponent: React.FC = () => {
                         </Text>
                         {errorMessage && (
                             <Tooltip title={errorMessage}>
-                                <InfoCircleOutlined />
+                                <InfoCircleOutlined data-testid="error-component-tooltip" />
                             </Tooltip>
                         )}
                     </Space>
