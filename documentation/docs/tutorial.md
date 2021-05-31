@@ -174,7 +174,7 @@ import {
 } from "@pankod/refine";
 import { IPost } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     return (
@@ -329,7 +329,7 @@ import {
 //highlight-next-line
 import { IPost, ICategory } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC = (props) => {
     const { tableProps } = useTable<IPost>();
 
     //highlight-start
@@ -426,7 +426,7 @@ enabled: categoryIds.length > 0;
 We set a condition to start fetching only when data is available.
 :::
 
-To show category title field, find the title corresponding to the catogory id of the current record in data returned by `useMany`,
+To show category title field, find the title corresponding to the category id of the current record in data returned by `useMany`,
 
 [Refer to `useMany` documentation for detailed usage. &#8594](#)
 
@@ -440,7 +440,7 @@ Let's create a `<PostEdit>` component to edit an existing post. This component w
 import { useForm, Form, Input, Select, Edit, useSelect } from "@pankod/refine";
 import { IPost } from "interfaces";
 
-export const PostEdit = () => {
+export const PostEdit: React.FC = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<IPost>({
@@ -450,7 +450,7 @@ export const PostEdit = () => {
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
-            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
+            <Form {...formProps} layout="vertical">
                 <Form.Item label="Title" name="title">
                     <Input />
                 </Form.Item>
@@ -530,9 +530,9 @@ import {
     //highlight-end
 } from "@pankod/refine";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC = (props) => {
 ...
-    <Table.Column
+    <Table.Column<IPost>
         title="Actions"
         dataIndex="actions"
         render={(
@@ -566,7 +566,7 @@ Similarly `saveButtonProps` includes useful properties for a button to submit a 
 
 [Refer to `useForm` documentation for detailed usage. &#8594](#)
 
-`useSelect` produces props for `<Select>` component from data at another resource. `<Select>` is an Ant-Design component that is exported from `refine` for convenience.
+`useSelect` produces props for `<Select>` component from data at another resource. `<Select>` is an Ant Design component that is exported from `refine` for convenience.
 
 [Refer to `Select` documentation for detailed usage. &#8594](https://ant.design/components/select/)
 
@@ -585,7 +585,7 @@ const { selectProps: categorySelectProps } = useSelect<IPost>({
 
 ### Editing the form
 
-`refine` apps uses [ant-design form components](https://ant.design/components/form/) to handle form management. In this example, we'll use `<Form>` and `<Form.Item>` component, which is exposed from ant-design to manage form inputs.
+`refine` apps uses [Ant Design form components](https://ant.design/components/form/) to handle form management. In this example, we'll use `<Form>` and `<Form.Item>` component, which is exposed from Ant Design to manage form inputs.
 
 We wrap `<Form>` with [`<Edit>`](#) component from `refine` that provides save, delete and refresh buttons that can be used for form actions.
 
@@ -634,7 +634,7 @@ export const PostCreate = () => {
 
     return (
         <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
+            <Form {...formProps} layout="vertical">
                 <Form.Item label="Title" name="title">
                     <Input />
                 </Form.Item>
@@ -690,29 +690,6 @@ export const App: React.FC = () => {
     );
 }
 ```
-
-<br />
-
-:::important
-`refine` doesn't automatically add a _**create**_ button by default on top of the `<PostList>` to give access to the create page which renders the `<PostCreate>` component.
-
-Each component given to `<Resource>` will get passed props with `IResourceComponentsProps` interface. If this props are passed to `<List>` wrapper in `<PostList>` component, `<List>` will render a create button in case a `create` component is passed to `<Resource>`.
-
-[More about **IResourceComponentsProps** &#8594](#)
-
-```tsx title="components/pages/posts.tsx"
-...
-//highlight-next-line
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
-    const { tableProps } = useTable();
-
-    return (
-        //highlight-next-line
-        <List {...props}>
-...
-```
-
-:::
 
 <br />
 
@@ -853,18 +830,6 @@ Since record data is explicit, there is no constraint on how to present that dat
 
 [Refer to `<Show>` documentation for detailed usage. &#8594](#)
 
-:::tip
-`<Show>` can also render `edit` and `delete` buttons via `canEdit` and `canDelete` props which can be passed from props of `<PostShow>`
-
-```tsx
-export const PostShow: React.FC<IResourceComponentsProps> = (props) => {
-    ...
-    <Show {...props}>
-}
-```
-
-:::
-
 <br />
 
 <div style={{textAlign: "center"}}>
@@ -890,7 +855,7 @@ import {
     //highlight-end
 } from "@pankod/refine";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC = (props) => {
     ...
 
     //highlight-start
