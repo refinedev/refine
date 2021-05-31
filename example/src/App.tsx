@@ -9,7 +9,6 @@ import {
     BackTop,
     AntdLayout,
     Button,
-    useSetLocale,
 } from "@pankod/refine";
 import { DemoSidebar, useDemoSidebar } from "@pankod/refine-demo-sidebar";
 import "@pankod/refine/dist/styles.min.css";
@@ -64,8 +63,7 @@ const App: React.FC = () => {
             }),
     };
 
-    const { t, i18n } = useTranslation(["common", "translation"]);
-    const setLocale = useSetLocale();
+    const { t, i18n } = useTranslation();
 
     const i18nProvider = {
         translate: (key: string, params: object) => t(key, params),
@@ -143,10 +141,22 @@ const App: React.FC = () => {
                             padding: "24px",
                         }}
                     >
-                        <Button size="middle" onClick={() => setLocale("en")}>
+                        <Button
+                            size="middle"
+                            type={
+                                i18n.language === "en" ? "primary" : undefined
+                            }
+                            onClick={() => i18n.changeLanguage("en")}
+                        >
                             EN
                         </Button>
-                        <Button size="middle" onClick={() => setLocale("tr")}>
+                        <Button
+                            size="middle"
+                            type={
+                                i18n.language === "tr" ? "primary" : undefined
+                            }
+                            onClick={() => i18n.changeLanguage("tr")}
+                        >
                             TR
                         </Button>
                     </div>
@@ -188,6 +198,6 @@ const App: React.FC = () => {
             />
         </Admin>
     );
-}
+};
 
 export default App;

@@ -9,7 +9,7 @@ describe("BooleanField", () => {
     describe("BooleanField with default props values", () => {
         const initialValues = [true, false, "true", "false", "", undefined];
 
-        const sonuc = ["true", "false", "true", "true", "false", "false"];
+        const results = ["true", "false", "true", "true", "false", "false"];
 
         const iconClass = [
             "anticon-check",
@@ -38,7 +38,7 @@ describe("BooleanField", () => {
                 );
 
                 expect(
-                    await baseDom.findByText(sonuc[index]),
+                    await baseDom.findByText(results[index]),
                 ).toBeInTheDocument();
 
                 expect(

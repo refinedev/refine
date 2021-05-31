@@ -36,7 +36,7 @@ export const Notification: React.FC<{
                 const message = (
                     <span style={{ marginLeft: 20 }}>
                         {translate(
-                            "common:notifications.undoable",
+                            "notifications.undoable",
                             {
                                 seconds: userFriendlySecond(
                                     notificationItem.seconds,
@@ -71,7 +71,7 @@ export const Notification: React.FC<{
                                 );
                             }}
                         >
-                            {translate("common:buttons.undo", "Undo")}
+                            {translate("buttons.undo", "Undo")}
                         </Button>
                     ),
                     duration: 0,

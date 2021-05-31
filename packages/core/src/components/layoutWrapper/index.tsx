@@ -33,7 +33,7 @@ export const LayoutWrapper: FC<LayoutWrapperProps> = ({
         e.preventDefault();
 
         e.returnValue = translate(
-            "common:warnWhenUnsavedChanges",
+            "warnWhenUnsavedChanges",
             "Are you sure you want to leave? You have with unsaved changes.",
         );
 
@@ -61,7 +61,7 @@ export const LayoutWrapper: FC<LayoutWrapperProps> = ({
             <Prompt
                 when={warnWhen}
                 message={translate(
-                    "common:warnWhenUnsavedChanges",
+                    "warnWhenUnsavedChanges",
                     "Are you sure you want to leave? You have with unsaved changes.",
                 )}
             />
