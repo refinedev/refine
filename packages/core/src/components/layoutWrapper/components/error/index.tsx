@@ -14,7 +14,7 @@ export const ErrorComponent: React.FC = () => {
             subTitle="Sorry, the page you visited does not exist."
             extra={
                 <Button type="primary" onClick={() => push("/")}>
-                    {translate("common:backHome", "Back Home")}
+                    {translate("backHome", "Back Home")}
                 </Button>
             }
         />

@@ -1,5 +1,4 @@
 {
-    "root": true,
     "env": {
         "browser": true,
         "es6": true,
@@ -8,7 +7,9 @@
         "commonjs": true
     },
     "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint"],
+    "plugins": [
+        "@typescript-eslint"
+    ],
     "extends": [
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
@@ -16,7 +17,9 @@
     ],
     "overrides": [
         {
-            "files": ["*.js"],
+            "files": [
+                "*.js"
+            ],
             "rules": {
                 "@typescript-eslint/no-var-requires": "off"
             }
@@ -28,5 +31,10 @@
         "@typescript-eslint/explicit-function-return-type": "off",
         "react/prop-types": "off",
         "react/react-in-jsx-scope": "off"
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
     }
 }

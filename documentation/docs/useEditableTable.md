@@ -41,8 +41,8 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
             //highlight-start
             <Form {...formProps}>
                 <Table {...tableProps} key="id">
-                    <Table.Column<IPost> key="id" dataIndex="id" title="ID" />
-                    <Table.Column<IPost> key="title" dataIndex="title" title="Title" />
+                    <Table.Column key="id" dataIndex="id" title="ID" />
+                    <Table.Column key="title" dataIndex="title" title="Title" />
                 </Table>
             //highlight-end
             </Form>
@@ -86,8 +86,8 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
         <List {...props}>
             <Form {...formProps}>
                 <Table {...tableProps} key="id">
-                    <Table.Column<IPost> key="id" dataIndex="id" title="ID" />
-                    <Table.Column<IPost> key="title" dataIndex="title" title="Title" />
+                    <Table.Column key="id" dataIndex="id" title="ID" />
+                    <Table.Column key="title" dataIndex="title" title="Title" />
                     //highlight-start
                     <Table.Column<IPost>
                         title="Actions"
@@ -167,7 +167,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
         <List {...props}>
             <Form {...formProps}>
                 <Table {...tableProps} key="id">
-                    <Table.Column<IPost> key="id" dataIndex="id" title="ID" />
+                    <Table.Column key="id" dataIndex="id" title="ID" />
                     <Table.Column<IPost>
                         key="title"
                         dataIndex="title"
@@ -284,7 +284,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     })}
                     //highlight-end
                 >
-                    <Table.Column<IPost> key="id" dataIndex="id" title="ID" />
+                    <Table.Column key="id" dataIndex="id" title="ID" />
                     <Table.Column<IPost>
                         key="title"
                         dataIndex="title"

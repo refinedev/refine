@@ -46,7 +46,7 @@ export const Sider: React.FC = () => {
                         key="logout"
                         icon={<LogoutOutlined />}
                     >
-                        {translate("common:buttons.logout", "Logout")}
+                        {translate("buttons.logout", "Logout")}
                     </Menu.Item>
                 )}
             </Menu>
