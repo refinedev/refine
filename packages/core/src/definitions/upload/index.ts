@@ -33,6 +33,9 @@ export function file2Base64(file: UploadFile): Promise<string> {
         reader.addEventListener("load", resultHandler, false);
 
         reader.readAsDataURL(file.originFileObj as Blob);
-        reader.onerror = (error) => reject(error);
+        reader.onerror = (error) => {
+            reader.removeEventListener("load", resultHandler, false);
+            return reject(error);
+        };
     });
 }
