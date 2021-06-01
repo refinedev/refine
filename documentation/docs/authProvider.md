@@ -146,12 +146,13 @@ Each time `dataProvider` returns an error, `checkError` method of `authProvider`
 If `checkError` returns a rejected promise, `logout` method is called and users become unauthorized and get redirected to `/login` page by default.
 
 ```tsx
-export default {
+const authProvider: AuthProvider = {
     ...
     logout: () => {
         localStorage.removeItem("auth");
         return Promise.resolve();
     },
+    // highlight-start
     checkError: (error) => {
         const status = error.status;
         if (status === 401) {
@@ -160,6 +161,7 @@ export default {
         }
         return Promise.resolve();
     },
+    // highlight-end
    ...
 };
 ```
@@ -182,3 +184,20 @@ if (status === 401) {
 
 Redirection path given to `checkError` overrides the one on `logout`.
 :::
+
+## Checking Authorization During Navigation
+
+Whenever route changes, `checkAuth` from `authProvider` is called. Navigated path is passed to `checkAuth`. When `checkAuth` returns a rejected promise, authorization is cancelled and the app is redirected to an error page that allows the user to navigate to the root path which shows a login page by default.
+
+Checking the authorization data can be easily done here. For example if the authorization data is stored in the local storage:
+
+```tsx
+const authProvider: AuthProvider = {
+    ...
+    // highlight-start
+    checkAuth: (path) => {
+        localStorage.getItem("auth") ? Promise.resolve() : Promise.reject(),
+    // highlight-end
+   ...
+};
+```
