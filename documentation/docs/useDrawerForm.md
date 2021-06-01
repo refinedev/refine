@@ -187,4 +187,5 @@ The `saveButtonProps` and `deleteButtonProps` can provides functionality to save
 
 <br />
 
-Refer to [codesandbox](https://www.google.com.tr) example for detailed usage.
+[Refer to codesandbox example for detailed usage. &#8594](https://www.google.com.tr)
+

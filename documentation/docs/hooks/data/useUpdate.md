@@ -49,7 +49,7 @@ mutate({ id: 2, values: { title: "New Category Title" } })
 
 :::tip
 `mutate` can also accept lifecycle methods like `onSuccess` and `onError`.  
-[Refer to react-query docs for further information.  &#8594](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
+[Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
 :::
 
 <br/>
@@ -162,4 +162,5 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
  | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
  | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { id: string; values: TVariables; },`<br/>` UpdateContext>`](https://react-query.tanstack.com/reference/useMutation)* |
 
->`*` Refer to documentation for [`UpdateContext`](#)
+>`*` [Refer to for `UpdateContext`. &#8594](#)
+

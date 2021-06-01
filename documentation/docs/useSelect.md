@@ -72,7 +72,7 @@ All we have to do is pass the `selectProps` it returns to the `<Select>` compone
 By default, refine does the search using the `useList` hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://ant.design/components/select/#components-select-demo-search-sort) example.
 :::
 
-`useSelect` uses the `useList` hook for fetching data. Refer to [useList](#) hook for details.
+`useSelect` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](#)
 
 ## Options
 
@@ -87,7 +87,7 @@ const { selectProps } = useSelect({
 
 `resource` property determines API resource endpoint to fetch records from data provider. It returns properly configured `options` values for select options.
 
-Refer to Ant Design [Select](https://ant.design/components/Select) component documentation for detailed info for `options`.
+[Refer to Ant Design `Select` component documentation for detailed info for `options`. &#8594](https://ant.design/components/Select)
 
 ### `defaultValue`
 
@@ -105,7 +105,7 @@ Adds extra `options` to `<Select>` component. It uses `useMany` so `defaultValue
 defaultValue: ["1", "2"],
 ```
 
-Refer to [useMany](#) documentation for detailed usage.
+[Refer to `useMany` documentation for detailed usage. &#8594](#)
 
 :::tip
 Can use `defaultValue` property when edit a record in `<Edit>` component.
