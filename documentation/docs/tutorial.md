@@ -217,7 +217,7 @@ const { tableProps } = useTable<IPost>();
 
 The `tableProps` includes all necessary props for `<Table>` component to show and interact with data properly.
 
-You can find detailed usage of `useTable` from [here](https://doc-refine.pankod.com/docs/useTable).
+You can find detailed usage of `useTable` from [here](useTable.md).
 
 ### Showing and formatting data
 
