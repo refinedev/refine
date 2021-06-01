@@ -6,7 +6,7 @@ import { useNavigation } from "@hooks/navigation";
 
 import { IAuthContext } from "../../../interfaces";
 
-export const useLogin = () => {
+export const useLogin = (): (params: any) => Promise<any> => {
     const { push } = useNavigation();
     const authContext = React.useContext<IAuthContext>(AuthContext);
     const notification = useNotification();

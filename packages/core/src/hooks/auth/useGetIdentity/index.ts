@@ -2,7 +2,7 @@ import React from "react";
 
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
-import { useQuery } from "react-query";
+import { useQuery, UseQueryResult } from "react-query";
 
 /**
  * @example
@@ -21,7 +21,7 @@ import { useQuery } from "react-query";
  * };
  */
 
-export const useGetIdentity = () => {
+export const useGetIdentity = (): UseQueryResult<any, unknown> => {
     const { getUserIdentity } = React.useContext<IAuthContext>(AuthContext);
 
     const queryResponse = useQuery("getUserIdentity", getUserIdentity!, {

@@ -18,9 +18,10 @@ import {
     useModalForm,
     Modal,
     CloneButton,
+    IResourceComponentsProps
 } from "@pankod/refine";
 
-export const LandingList = (props: any) => {
+export const LandingList: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
     const { isLoading } = useFileUploadState();
     const { tableProps } = useTable({
@@ -103,7 +104,6 @@ export const LandingList = (props: any) => {
                 <Edit
                     {...props}
                     recordItemId={editId}
-                    onModalClose={close}
                     saveButtonProps={{
                         ...saveButtonProps,
                         disabled: isLoading || formLoading,
@@ -149,7 +149,7 @@ export const LandingList = (props: any) => {
     );
 };
 
-export const LandingCreate = (props: any) => {
+export const LandingCreate: React.FC<IResourceComponentsProps> = (props: any) => {
     const translate = useTranslate();
 
     const { formProps, saveButtonProps } = useForm({
@@ -187,7 +187,7 @@ export const LandingCreate = (props: any) => {
     );
 };
 
-export const LandingEdit = (props: any) => {
+export const LandingEdit: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
     const { isLoading } = useFileUploadState();
     const { formProps, saveButtonProps, formLoading } = useForm({
