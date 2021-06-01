@@ -3,8 +3,8 @@ id: useModalForm
 title: useModalForm
 ---
 
-import createGif from '@site/static/img/create-useModalForm.gif';
-import editGif from '@site/static/img/edit-useModalForm.gif';
+import createGif from '@site/static/img/guides-and-concepts/hooks/useModalForm/create.gif';
+import editGif from '@site/static/img/guides-and-concepts/hooks/useModalForm/edit.gif';
 
 The `useModalForm` hook allows you manage a form within Modal. If we look in detail, `useModalForm` uses Ant Design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components data scope management under the hood and returns the appropriate values to the components.
 

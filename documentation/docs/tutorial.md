@@ -5,12 +5,12 @@ title: Tutorial
 sidebar_label: Tutorial
 ---
 
-import refineWelcome from '@site/static/img/refine-welcome.png';
-import resourceFirst from '@site/static/img/resource-1.png';
-import resourceSecond from '@site/static/img/resource-2.png';
-import createGif from '@site/static/img/create.gif';
-import editGif from '@site/static/img/edit.gif';
-import showGif from '@site/static/img/show.gif';
+import refineWelcome from '@site/static/img/tutorial/refine-welcome.png';
+import resourceFirst from '@site/static/img/tutorial/resource-1.png';
+import resourceSecond from '@site/static/img/tutorial/resource-2.png';
+import createGif from '@site/static/img/tutorial/create.gif';
+import editGif from '@site/static/img/tutorial/edit.gif';
+import showGif from '@site/static/img/tutorial/show.gif';
 
 We'll show how to create a simple admin app with CRUD operations based on REST API.
 

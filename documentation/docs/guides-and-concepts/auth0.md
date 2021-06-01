@@ -4,7 +4,7 @@ title: Auth0 Login
 sidebar_label: Auth0 Login
 ---
 
-import login from '@site/static/img/auth0-login.gif';
+import login from '@site/static/img/guides-and-concepts/auth0/auth0-login.gif';
 
 
 Auth0 is a flexible, drop-in solution to add authentication and authorization services to your applications. Your team and organization can avoid the cost, time, and risk that comes with building your own solution to authenticate and authorize users. You can check the [document](https://auth0.com/docs) for details.

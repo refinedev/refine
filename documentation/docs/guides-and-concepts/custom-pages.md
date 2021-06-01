@@ -3,8 +3,8 @@ id: custom-pages
 title: Custom Pages
 ---
 
-import basic from '@site/static/img/custom-pages-basic.png'
-import gif from '@site/static/img/custom-pages-gif.gif'
+import basic from '@site/static/img/guides-and-concepts/custom-pages/basic.png'
+import gif from '@site/static/img/guides-and-concepts/custom-pages/gif.gif'
 
 refine allows us to add custom pages to our application. To do this, it is necessary to create an object array with [react-router-dom](https://reactrouter.com/web/api/Route) `<Route>` properties. Then, pass this array as `routes` prop in the `<Admin>` component.
 

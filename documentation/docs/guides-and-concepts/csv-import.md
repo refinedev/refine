@@ -3,7 +3,7 @@ id: csv-import
 title: CSV Import
 ---
 
-import importButton from '@site/static/img/import-button.png';
+import importButton from '@site/static/img/guides-and-concepts/csv-import/import-button.png';
 
 You can easily import csv files for any resource by using refine' s  customizable `<ImportButton>` component.  refine uses [paparse](https://www.papaparse.com/) parser under the hood to parse csv files.
 

@@ -3,7 +3,7 @@ id: useStepsForm
 title: useStepsForm
 ---
 
-import useStepsFormExample from '@site/static/img/use-steps-form-example.gif';
+import useStepsFormExample from '@site/static/img/guides-and-concepts/hooks/useStepsForm/example.gif';
 
 refine's `useStepsForm` hook allows you to split your form under an Ant Design based [Steps](https://ant.design/components/steps/) component and provides you with a few useful values to help you manage your form.
 

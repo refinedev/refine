@@ -2,9 +2,8 @@
 id: useTable
 title: useTable
 ---
-
-import tableSorting from '@site/static/img/table-sorting.gif';
-import filters from '@site/static/img/filters.gif';
+import tableSorting from '@site/static/img/guides-and-concepts/hooks/useTable/table-sorting.gif';
+import filters from '@site/static/img/guides-and-concepts/hooks/useTable/filters.gif';
 
 `useTable` kullanarak, API'dan gelen kayıtlarınız için Ant Design [`<Table>`](https://ant.design/components/table/) component'ine uygun şekilde proplar elde edersiniz. Sayfalama, sıralama, filtreleme gibi özelliklerin tamamı out of the box olarak gelir.
 

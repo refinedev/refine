@@ -3,8 +3,8 @@ id: useSelect
 title: useSelect
 ---
 
-import basicUsage from '@site/static/img/use-select-basic-usage.png'
-import search from '@site/static/img/use-select-search.png'
+import basicUsage from '@site/static/img/guides-and-concepts/hooks/useSelect/basic-usage.png';
+import search from '@site/static/img/guides-and-concepts/hooks/useSelect/search.png';
 
 `useSelect` hook allows you to manage an Ant Design [Select](https://ant.design/components/select/) component when records in a resource needs to be used as select options.
 

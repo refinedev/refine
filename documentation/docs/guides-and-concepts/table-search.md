@@ -3,7 +3,7 @@ id: table-search
 title: Table Search
 ---
 
-import searchForm from '@site/static/img/tableSearch-form.jpg';
+import searchForm from '@site/static/img/guides-and-concepts/table-search/form.jpg';
 
 
 We can make extensive search / filter operations using the `useTable` hook on the listing pages.
