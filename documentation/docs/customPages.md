@@ -6,7 +6,7 @@ title: Custom Pages
 import basic from '@site/static/img/custom-pages-basic.png'
 import gif from '@site/static/img/custom-pages-gif.gif'
 
-`refine` allows us to add custom pages to our application. To do this, it is necessary to create an object array with [react-router-dom](https://reactrouter.com/web/api/Route) `<Route>` properties. Then, pass this array as `routes` prop in the `<Admin>` component.
+refine allows us to add custom pages to our application. To do this, it is necessary to create an object array with [react-router-dom](https://reactrouter.com/web/api/Route) `<Route>` properties. Then, pass this array as `routes` prop in the `<Admin>` component.
 
 ## Public Custom Pages
 
@@ -112,7 +112,7 @@ For authenticated custom page, your application needs an `authProvider`.
 :::
 
 :::danger
-`refine` needs to know in order to manage resources, It recognizes them from the `<Resource>` component you have given to the `<Admin>` component. So, you need to give the resources you use in the custom page to the `<Admin>` component. But you don't need list, create, edit and show pages, you just need to give the name like the below code.
+refine needs to know in order to manage resources, It recognizes them from the `<Resource>` component you have given to the `<Admin>` component. So, you need to give the resources you use in the custom page to the `<Admin>` component. But you don't need list, create, edit and show pages, you just need to give the name like the below code.
 
 ```tsx
 <Resource name="posts" />
@@ -244,7 +244,7 @@ export const PostReview = () => {
 };
 ```
 
-Now we have the data to display the post as we want. Let's use the `<Show>` component of `refine` to show this data.
+Now we have the data to display the post as we want. Let's use the `<Show>` component of refine to show this data.
 
 :::tip
 `<Show>` component is not required, you are free to display the data as you wish.

@@ -159,7 +159,7 @@ const postListQueryResult = useList<IPost>("posts", {
 
 #### `filters`
 
-Allows you to filter queries using `refine`'s filter operators. It is configured via `field`, `operator` and `value` properites.
+Allows you to filter queries using refine's filter operators. It is configured via `field`, `operator` and `value` properites.
 
 ```ts
 const postListQueryResult = useList<IPost>("posts", {
