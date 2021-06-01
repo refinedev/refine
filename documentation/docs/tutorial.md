@@ -536,17 +536,16 @@ export const PostList: React.FC = (props) => {
     <Table.Column<IPost>
         title="Actions"
         dataIndex="actions"
-        render={(
-            _text: string | number,
-            record: {
-                id: string | number;
-            },
-        ): React.ReactNode => {
-            return(
+        render={(_text, record): React.ReactNode => {
+            return (
                 <Space>
-                    <EditButton size="small" recordItemId={record.id} />
+                    <EditButton
+                        size="small"
+                        recordItemId={record.id}
+                    />
                 </Space>
-        )}}
+            );
+        }}
     />
 ...
 }
