@@ -6,7 +6,7 @@ title: useStepsForm
 
 import useStepsFormExample from '@site/static/img/use-steps-form-example.gif';
 
-`refine`'s `useStepsForm` hook allows you to split your form under an Ant Design based [Steps](https://ant.design/components/steps/) component and provides you with a few useful values to help you manage your form.
+refine's `useStepsForm` hook allows you to split your form under an Ant Design based [Steps](https://ant.design/components/steps/) component and provides you with a few useful values to help you manage your form.
 
 All we have to do is to pass the props it returns to our `<Steps>` and `<Form>` components.
 
@@ -99,7 +99,8 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
 :::tip
 Since `category` is a relational data, we use `useSelect` to fetch its data.
 
-Refer to [useSelect](#useSelect) documentation for detailed usage.
+[Refer to `useSelect` documentation for detailed usage. &#8594](#useSelect)
+
 :::
 
 <br />

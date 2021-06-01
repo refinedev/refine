@@ -42,7 +42,7 @@ const categoryQueryResult = useMany<ICategory>("categories", [ 1, 2 ]);
 
 :::tip
 `useMany` can also accept all `useQuery` options.  
-[Refer to react-query docs for further information.  &#8594](https://react-query.tanstack.com/reference/useQuery)
+[Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/reference/useQuery)
 
 - For example, to disable query from running automatically you can set `enabled` to `false`
 
@@ -75,7 +75,7 @@ After query runs `categoryQueryResult` will include the retrieved data:
 
 :::tip
 `useMany` returns the result of `react-query`'s `useQuery`. It includes properties like `isLoading` and `isFetching` with many others.  
-[Refer to react-query docs for further information.  &#8594](https://react-query.tanstack.com/reference/useQuery)
+[Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/reference/useQuery)
 :::
 
 ## API
@@ -92,10 +92,10 @@ After query runs `categoryQueryResult` will include the retrieved data:
 ### Type Parameters
 
 
-| Property | Desription                                          | Type              | Default           |
-| -------- | --------------------------------------------------- | ----------------- | ----------------- |
-| TData    | Result data of the query. Extends [`BaseRecord`](#) | [`BaseRecord`](#) | [`BaseRecord`](#) |
-| TError   | Custom error object that extends [`HttpError`](#)   | [`HttpError`](#)  | [`HttpError`](#)  |
+| Property | Desription                                                                 | Type                                     | Default                                  |
+| -------- | -------------------------------------------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| TData    | Result data of the query. Extends [`BaseRecord`](interfaces.md#baserecord) | [`BaseRecord`](interfaces.md#baserecord) | [`BaseRecord`](interfaces.md#baserecord) |
+| TError   | Custom error object that extends [`HttpError`](interfaces.md#httperror)    | [`HttpError`](interfaces.md#httperror)   | [`HttpError`](interfaces.md#httperror)   |
 
 ### Return values
 

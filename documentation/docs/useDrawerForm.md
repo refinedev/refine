@@ -168,7 +168,7 @@ export const PostList (props) => {
 ```
 
 :::important
-`refine` doesn't automatically add a edit button by default to the each record in `<PostList>` which opens edit form in `<Drawer>` when clicking.
+refine doesn't automatically add a edit button by default to the each record in `<PostList>` which opens edit form in `<Drawer>` when clicking.
 
 So, we put the edit buttons on our list. In that way, `<Edit>` form in `<Drawer>` can fetch data by record `id`.
 
@@ -197,4 +197,5 @@ The `saveButtonProps` and `deleteButtonProps` can provides functionality to save
 
 <br />
 
-Refer to [codesandbox](https://www.google.com.tr) example for detailed usage.
+[Refer to codesandbox example for detailed usage. &#8594](https://www.google.com.tr)
+

@@ -44,7 +44,7 @@ mutate({ id: 2 })
 
 :::tip
 `mutate` can also accept lifecycle methods like `onSuccess` and `onError`.  
-[Refer to react-query docs for further information.  &#8594](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
+[Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
 :::
 
 <br/>
@@ -139,15 +139,16 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 ### Type Parameters
 
-| Property | Desription                                             | Type              | Default           |
-| -------- | ------------------------------------------------------ | ----------------- | ----------------- |
-| TData    | Result data of the mutation. Extends [`BaseRecord`](#) | [`BaseRecord`](#) | [`BaseRecord`](#) |
-| TError   | Custom error object that extends [`HttpError`](#)      | [`HttpError`](#)  | [`HttpError`](#)  |
+| Property | Desription                                                                    | Type                                     | Default                                  |
+| -------- | ----------------------------------------------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| TData    | Result data of the mutation. Extends [`BaseRecord`](interfaces.md#baserecord) | [`BaseRecord`](interfaces.md#baserecord) | [`BaseRecord`](interfaces.md#baserecord) |
+| TError   | Custom error object that extends [`HttpError`](interfaces.md#httperror)       | [`HttpError`](interfaces.md#httperror)   | [`HttpError`](interfaces.md#httperror)   |
 
 ### Return value
 
- | Description                               | Type                                                                                                                                                                      |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+ | Description                               | Type                                                                                                                                                                   |
+ | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
  | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { id: Identifier; },`<br/>` DeleteContext>`](https://react-query.tanstack.com/reference/useMutation) |
 
->`*` Refer to documentation for [`Identifier`](#) and [`DeleteContext`](#)
+>`*` [Refer to documentation for `Identifier` &#8594](#) and [`DeleteContext` &#8594](#)
+

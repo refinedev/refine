@@ -170,7 +170,7 @@ The `saveButtonProps` and `deleteButtonProps` can provides functionality to save
 <br />
 
 :::important
-`refine` doesn't automatically add a edit button by default to the each record in `<PostList>` which opens edit form in `<Modal>` when clicking.
+refine doesn't automatically add a edit button by default to the each record in `<PostList>` which opens edit form in `<Modal>` when clicking.
 
 So, we put the edit buttons on our list. In that way, `<Edit>` form in `<Modal>` can fetch data by record `id`.
 
@@ -195,7 +195,8 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 
 <br />
 
-Refer to [codesandbox](https://www.google.com.tr) example for detailed usage.
+[Refer to codesandbox example for detailed usage. &#8594](https://www.google.com.tr)
+
 
 <!-- Markdowntable olucak.
 Useform ve useModal'ın tüm proplarını aldığını belirtebiliriz.

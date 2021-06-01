@@ -8,7 +8,7 @@ import create from '@site/static/img/multipart-upload-create.jpg';
 import uploadedFile from '@site/static/img/multpipart-upload-uploaded.jpg';
 import edit from '@site/static/img/multipart-upload-edit.jpg';
 
-We'll show you how to upload multiple files with `refine`.
+We'll show you how to upload multiple files with refine.
 
 Let's start with the `creation form` first.
 
