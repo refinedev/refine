@@ -46,7 +46,7 @@ It allows adding title inside the `<List>` component. if you don't pass title pr
 import { List } from "@pankod/refine";
 
 export const List: React.FC = () => {
-    return <List title="Default Title">...</List>;
+    return <List title="Custom Title">...</List>;
 };
 ```
 
