@@ -83,15 +83,13 @@ import { Admin } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
-function App() {
+export const App: React.FC = () => {
     return (
         <Admin
-            dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
+            dataProvider={dataProvider("https://refine-fake-rest.pankod.com")}
         />
     );
 }
-
-export default App;
 ```
 
 <br/>
@@ -129,18 +127,16 @@ We'll demonstrate how to get data at `/posts` endpoint from `https://refine-fake
 import { Admin, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 
-function App() {
+export const App: React.FC = () => {
     return (
         <Admin
-            dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
+            dataProvider={dataProvider("https://refine-fake-rest.pankod.com")}
         >
             //highlight-next-line
             <Resource name="posts" />
         </Admin>
     );
 }
-
-export default App;
 ```
 
 <br/>
@@ -178,7 +174,7 @@ import {
 } from "@pankod/refine";
 import { IPost } from "interfaces";
 
-export const PostList = () => {
+export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     return (
@@ -231,9 +227,9 @@ We wrap `<Table>` with [`<List>`](#) component from `refine`, which adds extra f
 `<List>` is not an obligation at this point. You can prefer to use your own wrapper component.
 :::
 
-`refine` apps uses [ant-design](https://ant.design/components/overview/) components to display data. In this example, we'll use `<Table>` component, which is exposed from ant-design to render a table with one row for each record.
+`refine` apps uses [Ant Design](https://ant.design/components/overview/) components to display data. In this example, we'll use `<Table>` component, which is exposed from Ant Design to render a table with one row for each record.
 
-Refer to [ant-design docs](https://ant.design/components/table/#API) for more detailed information about `<Table>`.
+Refer to [Ant Design docs](https://ant.design/components/table/#API) for more detailed information about `<Table>`.
 
 The render prop of `<Table.Column>` is used to determine how to format and show data. Each `<Table.Column>` maps a different field in the API response, specified by the `dataIndex` prop.
 
@@ -265,18 +261,16 @@ import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
 import { PostList } from "./pages";
 
-function App() {
+export const App: React.FC = () => {
     return (
         <Admin
-            dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
+            dataProvider={dataProvider("https://refine-fake-rest.pankod.com")}
         >
             //highlight-next-line
             <Resource name="posts" list={PostList} />
         </Admin>
     );
 }
-
-export default App;
 ```
 
 <br />
@@ -335,7 +329,7 @@ import {
 //highlight-next-line
 import { IPost, ICategory } from "interfaces";
 
-export const PostList = () => {
+export const PostList: React.FC = (props) => {
     const { tableProps } = useTable<IPost>();
 
     //highlight-start
@@ -432,7 +426,7 @@ enabled: categoryIds.length > 0;
 We set a condition to start fetching only when data is available.
 :::
 
-To show category title field, find the title corresponding to the catogory id of the current record in data returned by `useMany`,
+To show category title field, find the title corresponding to the category id of the current record in data returned by `useMany`,
 
 [Refer to `useMany` documentation for detailed usage. &#8594](#)
 
@@ -446,7 +440,7 @@ Let's create a `<PostEdit>` component to edit an existing post. This component w
 import { useForm, Form, Input, Select, Edit, useSelect } from "@pankod/refine";
 import { IPost } from "interfaces";
 
-export const PostEdit = () => {
+export const PostEdit: React.FC = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<IPost>({
@@ -456,7 +450,7 @@ export const PostEdit = () => {
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
-            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
+            <Form {...formProps} layout="vertical">
                 <Form.Item label="Title" name="title">
                     <Input />
                 </Form.Item>
@@ -499,10 +493,10 @@ import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
 import { PostList, PostEdit } from "./pages";
 
-function App() {
+export const App: React.FC = () => {
     return (
         <Admin
-            dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
+            dataProvider={dataProvider("https://refine-fake-rest.pankod.com")}
         >
             <Resource
                 name="posts"
@@ -513,8 +507,6 @@ function App() {
         </Admin>
     );
 }
-
-export default App;
 ```
 
 <br />
@@ -538,9 +530,9 @@ import {
     //highlight-end
 } from "@pankod/refine";
 
-export const PostList = () => {
+export const PostList: React.FC = (props) => {
 ...
-    <Table.Column
+    <Table.Column<IPost>
         title="Actions"
         dataIndex="actions"
         render={(
@@ -574,7 +566,7 @@ Similarly `saveButtonProps` includes useful properties for a button to submit a 
 
 [Refer to `useForm` documentation for detailed usage. &#8594](#)
 
-`useSelect` produces props for `<Select>` component from data at another resource. `<Select>` is an Ant-Design component that is exported from `refine` for convenience.
+`useSelect` produces props for `<Select>` component from data at another resource. `<Select>` is an Ant Design component that is exported from `refine` for convenience.
 
 [Refer to `Select` documentation for detailed usage. &#8594](https://ant.design/components/select/)
 
@@ -593,7 +585,7 @@ const { selectProps: categorySelectProps } = useSelect<IPost>({
 
 ### Editing the form
 
-`refine` apps uses [ant-design form components](https://ant.design/components/form/) to handle form management. In this example, we'll use `<Form>` and `<Form.Item>` component, which is exposed from ant-design to manage form inputs.
+`refine` apps uses [Ant Design form components](https://ant.design/components/form/) to handle form management. In this example, we'll use `<Form>` and `<Form.Item>` component, which is exposed from Ant Design to manage form inputs.
 
 We wrap `<Form>` with [`<Edit>`](#) component from `refine` that provides save, delete and refresh buttons that can be used for form actions.
 
@@ -642,7 +634,7 @@ export const PostCreate = () => {
 
     return (
         <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} wrapperCol={{ span: 14 }} layout="vertical">
+            <Form {...formProps} layout="vertical">
                 <Form.Item label="Title" name="title">
                     <Input />
                 </Form.Item>
@@ -682,10 +674,10 @@ import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
 import { PostList, PostEdit, PostCreate } from "./pages";
 
-function App() {
+export const App: React.FC = () => {
     return (
         <Admin
-            dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
+            dataProvider={dataProvider("https://refine-fake-rest.pankod.com")}
         >
             <Resource
                 name="posts"
@@ -697,32 +689,7 @@ function App() {
         </Admin>
     );
 }
-
-export default App;
 ```
-
-<br />
-
-:::important
-`refine` doesn't automatically add a _**create**_ button by default on top of the `<PostList>` to give access to the create page which renders the `<PostCreate>` component.
-
-Each component given to `<Resource>` will get passed props with `IResourceComponentsProps` interface. If this props are passed to `<List>` wrapper in `<PostList>` component, `<List>` will render a create button in case a `create` component is passed to `<Resource>`.
-
-[More about **IResourceComponentsProps** &#8594](#)
-
-```tsx title="components/pages/posts.tsx"
-...
-//highlight-next-line
-export const PostList = (props: IResourceComponentsProps) => {
-    const { tableProps } = useTable();
-
-    return (
-        //highlight-next-line
-        <List {...props}>
-...
-```
-
-:::
 
 <br />
 
@@ -807,10 +774,10 @@ import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
 import { PostList, PostEdit, PostCreate, PostShow } from "./pages";
 
-function App() {
+export const App: React.FC = () => {
     return (
         <Admin
-            dataProvider={dataProvider("https://refine-fake-rest.pankod.com/")}
+            dataProvider={dataProvider("https://refine-fake-rest.pankod.com")}
         >
             <Resource
                 name="posts"
@@ -823,8 +790,6 @@ function App() {
         </Admin>
     );
 }
-
-export default App;
 ```
 
 ### Fetching record data
@@ -865,18 +830,6 @@ Since record data is explicit, there is no constraint on how to present that dat
 
 [Refer to `<Show>` documentation for detailed usage. &#8594](#)
 
-:::tip
-`<Show>` can also render `edit` and `delete` buttons via `canEdit` and `canDelete` props which can be passed from props of `<PostShow>`
-
-```tsx
-export const PostShow = (props: IResourceComponentsProps) => {
-    ...
-    <Show {...props}>
-}
-```
-
-:::
-
 <br />
 
 <div style={{textAlign: "center"}}>
@@ -888,7 +841,7 @@ export const PostShow = (props: IResourceComponentsProps) => {
 
 ## Adding search and filters
 
-We'll use`<Table.Column>`'s [`filterDropdown`](https://ant.design/components/table/#Column) property from Ant-design and `<FilterDropdown>` component from `refine` to search and filter content.
+We'll use`<Table.Column>`'s [`filterDropdown`](https://ant.design/components/table/#Column) property from Ant Design and `<FilterDropdown>` component from `refine` to search and filter content.
 
 Let's add search and filter feature to category field.
 
@@ -902,7 +855,7 @@ import {
     //highlight-end
 } from "@pankod/refine";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC = (props) => {
     ...
 
     //highlight-start

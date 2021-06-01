@@ -6,9 +6,7 @@ i18n.use(Backend)
     .use(initReactI18next) // passes i18n down to react-i18next
     .init({
         lng: "en",
-        interpolation: {
-            escapeValue: false, // react already safes from xss
-        },
+        defaultNS: "common",
         backend: {
             loadPath: "/locales/{{lng}}/{{ns}}.json",
         },

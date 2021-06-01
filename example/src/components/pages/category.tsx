@@ -44,7 +44,7 @@ export const CategoryList = (props: any) => {
         initialSorter: [
             {
                 field: "createdAt",
-                order: "descend",
+                order: "desc",
             },
         ],
     });

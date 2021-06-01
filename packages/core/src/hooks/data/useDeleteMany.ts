@@ -183,12 +183,9 @@ export const useDeleteMany = <
             onSuccess: (_data, { ids }) => {
                 notification.success({
                     key: `${ids}-${resource}-notification`,
-                    message: translate(
-                        "common:notifications.success",
-                        "Success",
-                    ),
+                    message: translate("notifications.success", "Success"),
                     description: translate(
-                        "common:notifications.deleteSuccess",
+                        "notifications.deleteSuccess",
                         { resource },
                         `Successfully deleted ${resource}`,
                     ),
@@ -211,8 +208,8 @@ export const useDeleteMany = <
                 notification.error({
                     key: `${ids}-${resource}-notification`,
                     message: translate(
-                        "common:notifications.error",
-                        { statusCode: err.statusCode },
+                        "notifications.deleteError",
+                        { resource, statusCode: err.statusCode },
                         `Error (status code: ${err.statusCode})`,
                     ),
                     description: err.message,

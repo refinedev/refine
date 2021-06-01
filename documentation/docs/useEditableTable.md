@@ -32,7 +32,7 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     //highlight-next-line
     const { tableProps, formProps } = useEditableTable<IPost>();
 
@@ -41,8 +41,8 @@ export const PostList = (props: IResourceComponentsProps) => {
             //highlight-start
             <Form {...formProps}>
                 <Table {...tableProps} key="id">
-                    <Table.Column<IPost> key="id" dataIndex="id" title="ID" />
-                    <Table.Column<IPost> key="title" dataIndex="title" title="Title" />
+                    <Table.Column key="id" dataIndex="id" title="ID" />
+                    <Table.Column key="title" dataIndex="title" title="Title" />
                 </Table>
             //highlight-end
             </Form>
@@ -70,7 +70,7 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const {
         tableProps,
         formProps,
@@ -86,8 +86,8 @@ export const PostList = (props: IResourceComponentsProps) => {
         <List {...props}>
             <Form {...formProps}>
                 <Table {...tableProps} key="id">
-                    <Table.Column<IPost> key="id" dataIndex="id" title="ID" />
-                    <Table.Column<IPost> key="title" dataIndex="title" title="Title" />
+                    <Table.Column key="id" dataIndex="id" title="ID" />
+                    <Table.Column key="title" dataIndex="title" title="Title" />
                     //highlight-start
                     <Table.Column<IPost>
                         title="Actions"
@@ -153,7 +153,7 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const {
         tableProps,
         formProps,
@@ -167,7 +167,7 @@ export const PostList = (props: IResourceComponentsProps) => {
         <List {...props}>
             <Form {...formProps}>
                 <Table {...tableProps} key="id">
-                    <Table.Column<IPost> key="id" dataIndex="id" title="ID" />
+                    <Table.Column key="id" dataIndex="id" title="ID" />
                     <Table.Column<IPost>
                         key="title"
                         dataIndex="title"
@@ -259,7 +259,7 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const {
         tableProps,
         formProps,
@@ -284,7 +284,7 @@ export const PostList = (props: IResourceComponentsProps) => {
                     })}
                     //highlight-end
                 >
-                    <Table.Column<IPost> key="id" dataIndex="id" title="ID" />
+                    <Table.Column key="id" dataIndex="id" title="ID" />
                     <Table.Column<IPost>
                         key="title"
                         dataIndex="title"

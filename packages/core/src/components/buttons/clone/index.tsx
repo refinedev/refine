@@ -39,7 +39,7 @@ export const CloneButton: FC<CloneButtonProps> = ({
             icon={<PlusSquareOutlined />}
             {...rest}
         >
-            {translate("common:buttons.clone", "Clone")}
+            {translate("buttons.clone", "Clone")}
         </Button>
     );
 };

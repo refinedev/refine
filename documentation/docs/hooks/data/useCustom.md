@@ -28,17 +28,15 @@ Let's make a use case. We need to verify that the header in the post resource is
 ```tsx
 import { useCustom, useApiUrl } from "@pankod/refine";
 
-interface IPost {
-    id: string;
-    title: string;
-    content: string;
+interface PostUniqueCheckResponse {
+    isAvailable: boolean;
 }
 
 const apiUrl = useApiUrl();
 
 // highlight-start
-const { data, isLoading } = useCustom<IPost[]>(
-    `${apiUrl}/posts/unique-check`,
+const { data, isLoading } = useCustom<PostUniqueCheckResponse>(
+    `${apiUrl}/posts-unique-check`,
     "get",
     {
         query: {
@@ -53,20 +51,21 @@ const { data, isLoading } = useCustom<IPost[]>(
 
 #### Parameters
 
-| Property                                         | Description                                                             | Type                                                             | Required |
-| ------------------------------------------------ | ----------------------------------------------------------------------- | ---------------------------------------------------------------- | -------- |
-| url <div className="required">Required</div>    | URL                                                                     | string                                                           | true     |
-| method <div className="required">Required</div> | Method                                                                  | "get", "delete", "head", "options", "post", "put", "patch"       | true     |
-| config                                           | Query Params                                                            | { sort?: Sort; filters?: CrudFilters; payload?: {}; query?: {} } | false    |
-| queryOptions                                     | [useQuery Options](https://react-query.tanstack.com/reference/useQuery) | object                                                           | false    |
+| Property                                        | Description                                                             | Type                                                                     |
+| ----------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| url <div className="required">Required</div>    | URL                                                                     | string                                                                   |
+| method <div className="required">Required</div> | Method                                                                  | ``get``, ``delete``, ``head``, ``options``, ``post``, ``put``, ``patch`` |
+| config                                          | Query Params                                                            | { sort?: Sort; filters?: CrudFilters; payload?: {}; query?: {} }         |
+| queryOptions                                    | [useQuery Options](https://react-query.tanstack.com/reference/useQuery) | object                                                                   |
 
 #### Type Parameters
 
-| Property   | Desription                                          | Type              | Default           |
-| ---------- | --------------------------------------------------- | ----------------- | ----------------- |
-| TData      | Result data of the query. Extends [`BaseRecord`](#) | [`BaseRecord`](#) | [`BaseRecord`](#) |
-| TError     | Custom error object that extends [`HttpError`](#)   | [`HttpError`](#)  | [`HttpError`](#)  |
-| TVariables | Values for request function                         | `{}`              | `{}`              |
+| Property | Desription                                          | Type              | Default           |
+| -------- | --------------------------------------------------- | ----------------- | ----------------- |
+| TData    | Result data of the query. Extends [`BaseRecord`](#) | [`BaseRecord`](#) | [`BaseRecord`](#) |
+| TError   | Custom error object that extends [`HttpError`](#)   | [`HttpError`](#)  | [`HttpError`](#)  |
+| TQuery   | Values for query params.                            | [`TQuery`](#)     | unknown           |
+| TPayload | Values for params.                                  | [`TPayload`](#)   | unknown           |
 
 #### Return value
 

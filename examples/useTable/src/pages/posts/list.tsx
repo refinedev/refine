@@ -12,12 +12,12 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps, sorter, filters } = useTable<IPost>({
         initialSorter: [
             {
                 field: "title",
-                order: "ascend",
+                order: "asc",
             },
         ],
         initialFilter: {
@@ -47,8 +47,8 @@ export const PostList = (props: IResourceComponentsProps) => {
                     dataIndex="status"
                     title="Status"
                     key="status"
-                    render={(value) => <TagField value={value} />}
-                    filterDropdown={(props) => (
+                    render={(value: string) => <TagField value={value} />}
+                    filterDropdown={(props: any) => (
                         <FilterDropdown {...props}>
                             <Radio.Group>
                                 <Radio value="published">Published</Radio>

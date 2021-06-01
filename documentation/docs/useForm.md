@@ -4,9 +4,9 @@ id: useForm
 title: useForm
 ---
 
-`useForm` is used to manage forms. It uses Ant-design [Form](https://ant.design/components/form/) data scope management under the hood and returns the required props for managing the form actions.
+`useForm` is used to manage forms. It uses Ant Design [Form](https://ant.design/components/form/) data scope management under the hood and returns the required props for managing the form actions.
 
-## Example
+## Usage
 
 We'll show the basic usage of `useForm` by adding an editing form.
 
@@ -16,7 +16,7 @@ import { Edit, Form, Input, IResourceComponentsProps, useForm, Select } from "@p
 
 import { IPost } from "interfaces";
 
-export const PostEdit = (props: IResourceComponentsProps) => {
+export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
 
      //highlight-next-line
     const { formProps, saveButtonProps } = useForm<IPost>();
@@ -63,7 +63,7 @@ export const PostEdit = (props: IResourceComponentsProps) => {
 const { formProps, saveButtonProps } = useForm<IPost>();
 ```
 
-`formProps` includes all necessary values to manage Ant-design Form components.
+`formProps` includes all necessary values to manage Ant Design Form components.
 
 In the example if you navigate to `/resources/posts/edit/1234` it will manage the data of the post with id `1234` in an editing context. See [Actions](#actions) on how `useForm` determines this is an editing context.
 

@@ -2,6 +2,7 @@
 id: useCreateMany
 title: useCreateMany
 siderbar_label: useCreateMany
+description: useCreateMany data hook from refine is a modified version of react-query's useMutation for multiple create mutations
 ---
 
 `useCreateMany` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for multiple create mutations. It uses `createMany` method as mutation function from the `dataProvider` that is passed to `<Admin>`.  
@@ -51,13 +52,14 @@ mutate({
             title: "Another New Category"
         }
     ]
-}
-)
+})
 ```
 
 :::tip
 `mutate` can also accept lifecycle methods like `onSuccess` and `onError`. [Refer to react-query docs for further information.](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
 :::
+
+<br />
 
 After mutation runs `categories` will be updated as below:
 

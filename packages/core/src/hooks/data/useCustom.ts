@@ -5,7 +5,7 @@ import { DataContext } from "@contexts/data";
 import {
     CustomResponse,
     IDataContext,
-    Sort,
+    CrudSorting,
     CrudFilters,
     BaseRecord,
     HttpError,
@@ -14,7 +14,7 @@ import { useNotification, useCheckError } from "@hooks";
 import { useTranslate } from "@hooks/translate";
 
 interface UseCustomConfig<TQuery, TPayload> {
-    sort?: Sort;
+    sort?: CrudSorting;
     filters?: CrudFilters;
     query?: TQuery;
     payload?: TPayload;

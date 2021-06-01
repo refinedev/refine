@@ -16,17 +16,19 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ILanguage } from "interfaces";
 
-export const PostCreate = (props: IResourceComponentsProps) => {
+export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     const {
         radioGroupProps: languageRadioGroupProps,
     } = useRadioGroup<ILanguage>({
         resource: "languages",
-        sort: {
-            field: "title",
-            order: "ascend",
-        },
+        sort: [
+            {
+                field: "title",
+                order: "asc",
+            },
+        ],
     });
 
     const [selectedTab, setSelectedTab] = useState<"write" | "preview">(

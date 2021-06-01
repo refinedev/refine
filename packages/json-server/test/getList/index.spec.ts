@@ -25,10 +25,12 @@ describe("getList", () => {
             "https://refine-fake-rest.pankod.com",
             axios,
         ).getList("posts", {
-            sort: {
-                field: "id",
-                order: "ascend",
-            },
+            sort: [
+                {
+                    field: "id",
+                    order: "asc",
+                },
+            ],
         });
 
         expect(response.data[0]["id"]).toBe(1);
@@ -66,10 +68,12 @@ describe("getList", () => {
                     value: ["1"],
                 },
             ],
-            sort: {
-                field: "id",
-                order: "ascend",
-            },
+            sort: [
+                {
+                    field: "id",
+                    order: "asc",
+                },
+            ],
         });
 
         expect(response.data[0]["id"]).toBe(67);

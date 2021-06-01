@@ -1,8 +1,16 @@
-import { useForm, Form, Input, Select, Edit, useSelect } from "@pankod/refine";
+import {
+    useForm,
+    Form,
+    Input,
+    Select,
+    Edit,
+    useSelect,
+    IResourceComponentsProps,
+} from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
-export const PostEdit = () => {
+export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<IPost>({

@@ -10,10 +10,12 @@
         "start": "lerna run start --stream --parallel",
         "test": "lerna run test --stream --parallel",
         "test:coverage": "jest --runInBand --silent --ci --coverage",
-        "lint": "eslint packages example",
-        "lint:fix": "npm run lint -- packages example examples --quiet --fix",
+        "lint": "eslint -c ./.eslintrc packages example examples",
+        "prettier": "prettier -c ./.prettierrc '{packages,examples,example}/**/*.{ts,tsx}'",
+        "lint:fix": "npm run lint -- --quiet --fix && npm run prettier -- --write",
         "build": "lerna run build",
-        "bootstrap:docker": "lerna bootstrap -- --production --no-optional"
+        "bootstrap:docker": "lerna bootstrap -- --production --no-optional",
+        "nuke": "rm -rf node_modules; rm -rf example/node_modules; for d in packages/*/node_modules; do echo $d; rm -rf $d; done; for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in examples/*/node_modules; do echo $d; rm -rf $d; done"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx}": [
@@ -25,17 +27,10 @@
             "pre-commit": "lint-staged"
         }
     },
-    "prettier": {
-        "arrowParens": "always",
-        "semi": true,
-        "trailingComma": "all",
-        "singleQuote": false,
-        "printWidth": 80,
-        "tabWidth": 4
-    },
     "name": "refinejs-repo",
     "author": "Pankod",
     "devDependencies": {
+        "@types/jest": "^26.0.23",
         "@types/react": "^17.0.1",
         "@types/react-dom": "^17.0.0",
         "@typescript-eslint/eslint-plugin": "^4.25.0",

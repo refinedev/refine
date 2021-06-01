@@ -20,7 +20,7 @@ import {
 
 import logo from "./refine.svg";
 
-import { useNavigation, useNotification } from "@hooks";
+import { useNavigation, useNotification, useTranslate } from "@hooks";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
 
@@ -36,6 +36,7 @@ export const LoginPage: React.FC = () => {
     const [form] = Form.useForm();
     const { push } = useNavigation();
     const notification = useNotification();
+    const translate = useTranslate();
 
     const { login } = useContext<IAuthContext>(AuthContext);
 
@@ -76,7 +77,10 @@ export const LoginPage: React.FC = () => {
                         >
                             <Form.Item
                                 name="username"
-                                label="Username"
+                                label={translate(
+                                    "pages.login.username",
+                                    "Username",
+                                )}
                                 rules={[{ required: true }]}
                             >
                                 <Input
@@ -89,7 +93,10 @@ export const LoginPage: React.FC = () => {
                             </Form.Item>
                             <Form.Item
                                 name="password"
-                                label="Password"
+                                label={translate(
+                                    "pages.login.password",
+                                    "Password",
+                                )}
                                 rules={[{ required: true }]}
                             >
                                 <Input
@@ -107,11 +114,19 @@ export const LoginPage: React.FC = () => {
                                     valuePropName="checked"
                                     noStyle
                                 >
-                                    <Checkbox>Remember me</Checkbox>
+                                    <Checkbox>
+                                        {translate(
+                                            "pages.login.remember",
+                                            "Remember me",
+                                        )}
+                                    </Checkbox>
                                 </Form.Item>
 
                                 <a style={{ float: "right" }} href="">
-                                    Forgot password?
+                                    {translate(
+                                        "pages.login.forgotPassword",
+                                        "Forgot password?",
+                                    )}
                                 </a>
                             </Form.Item>
                             <Form.Item>
@@ -121,14 +136,19 @@ export const LoginPage: React.FC = () => {
                                     htmlType="submit"
                                     block
                                 >
-                                    Login
+                                    {translate("pages.login.login", "Login")}
                                 </Button>
                             </Form.Item>
                         </Form>
                         <div style={signupSection}>
                             <Text>
-                                Still no account? Please go to{" "}
-                                <a href="">Sign up</a>
+                                {translate(
+                                    "pages.login.noAccount",
+                                    "Still no account? Please go to",
+                                )}{" "}
+                                <a href="">
+                                    {translate("pages.login.signup", "Sign up")}
+                                </a>
                             </Text>
                         </div>
                     </Card>

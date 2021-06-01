@@ -6,7 +6,7 @@ title: useStepsForm
 
 import useStepsFormExample from '@site/static/img/use-steps-form-example.gif';
 
-`refine`'s `useStepsForm` hook allows you to split your form under an ant-design based [Steps](https://ant.design/components/steps/) component and provides you with a few useful values to help you manage your form.
+`refine`'s `useStepsForm` hook allows you to split your form under an Ant Design based [Steps](https://ant.design/components/steps/) component and provides you with a few useful values to help you manage your form.
 
 All we have to do is to pass the props it returns to our `<Steps>` and `<Form>` components.
 
@@ -23,7 +23,7 @@ import {
     IResourceComponentsProps,
 } from "@pankod/refine";
 
-export const PostCreate = (props: IResourceComponentsProps) => {
+export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     //highlight-start
     const {
         current,
@@ -60,7 +60,7 @@ This hook returns a set of useful values to render steps form. Given `current` v
 Here, each item of `formList` corresponds to one step in form:
 
 ```tsx title="src/pages/posts/create.tsx"
-export const PostCreate = (props: IResourceComponentsProps) => {
+export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
     });
@@ -104,10 +104,12 @@ Since `category` is a relational data, we use `useSelect` to fetch its data.
 Refer to [useSelect](#useSelect) documentation for detailed usage.
 :::
 
+<br />
+
 You should use `stepsProps` on `<Steps>` component, `formProps` on the `<Form>` component correctly. And as the last step, you should render the `<Steps>` component besides the form like this:
 
 ```tsx title="src/pages/posts/create.tsx"
-export const PostCreate = (props: IResourceComponentsProps) => {
+export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     ...
     <Create
         {...props}
@@ -133,10 +135,12 @@ export const PostCreate = (props: IResourceComponentsProps) => {
 In this example, we're building a page for creating new resources using `<Create>` component. You can build an edit page with `<Edit>` component, without modifying any code in the rest of this example.
 :::
 
-To help users navigate between pages in the form, you can use action buttons. Your navigation buttons should use `gotoStep` function that was previously returned from the `useStepsForm` hook.
+<br />
+
+To help users navigate between steps in the form, you can use action buttons. Your navigation buttons should use `gotoStep` function that was previously returned from the `useStepsForm` hook.
 
 ```tsx title="src/pages/posts/create.tsx"
-export const PostCreate = (props: IResourceComponentsProps) => {
+export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     ...
     return (
         <Create
@@ -188,8 +192,6 @@ export const PostCreate = (props: IResourceComponentsProps) => {
     ...
 }
 ```
-
-And it's done.
 
 <div style={{textAlign: "center"}}>
     <img src={useStepsFormExample} />

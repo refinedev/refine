@@ -1,10 +1,6 @@
 import React from "react";
-import {
-    MutationMode,
-    TitleProps,
-    LayoutProps,
-    SiderProps,
-} from "../../interfaces";
+import { MutationMode, TitleProps, LayoutProps } from "../../interfaces";
+import { SiderProps } from "antd/lib/layout";
 
 export interface IAdminContext {
     hasDashboard: boolean;

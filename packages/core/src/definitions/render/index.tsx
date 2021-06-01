@@ -1,7 +1,4 @@
 import React from "react";
-import get from "lodash/get";
-
-import { FieldProps } from "../../interfaces";
 
 interface IOptionalComponent {
     optional?: React.ComponentType | false;

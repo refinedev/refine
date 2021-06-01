@@ -6,13 +6,23 @@ module.exports = {
         },
         {
             type: "category",
-            label: "Guides",
-            items: ["multipartUpload", "base64upload", "auth0", "tableSearch", "customPages"],
-        },
-        {
-            type: "category",
-            label: "Providers",
-            items: ["authProvider", "dataProvider"],
+            label: "Guides & Concepts",
+            items: [
+                {
+                    type: "category",
+                    label: "Providers",
+                    items: ["authProvider", "dataProvider"],
+                },
+                "i18n",
+                "multipartUpload",
+                "base64upload",
+                "auth0",
+                "tableSearch",
+                "customPages",
+                "csvImport",
+                "theming",
+                "csvExport",
+            ],
         },
         {
             type: "category",
@@ -28,6 +38,7 @@ module.exports = {
                         "hooks/data/useUpdateMany",
                         "hooks/data/useDelete",
                         "hooks/data/useDeleteMany",
+                        "hooks/data/useList",
                         "hooks/data/useOne",
                         "hooks/data/useMany",
                         "hooks/data/useCustom",

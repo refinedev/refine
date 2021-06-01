@@ -69,7 +69,7 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
                 icon={<DeleteOutlined />}
                 {...rest}
             >
-                {translate("common:buttons.delete", "Delete")}
+                {translate("buttons.delete", "Delete")}
             </Button>
         </Popconfirm>
     );

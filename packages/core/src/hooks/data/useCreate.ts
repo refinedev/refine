@@ -59,14 +59,11 @@ export const useCreate = <
 
                 notification.success({
                     description: translate(
-                        "common:notifications.createSuccess",
+                        "notifications.createSuccess",
                         { resource },
                         `Successfully created ${resourceSingular}`,
                     ),
-                    message: translate(
-                        "common:notifications.success",
-                        "Success",
-                    ),
+                    message: translate("notifications.success", "Success"),
                 });
 
                 getListQueries(resource).forEach((query) => {
@@ -79,7 +76,7 @@ export const useCreate = <
                 notification.error({
                     description: err.message,
                     message: translate(
-                        "common:notifications.createError",
+                        "notifications.createError",
                         {
                             resource: resourceSingular,
                             statusCode: err.statusCode,

@@ -18,15 +18,15 @@ Tabloda göstereceğimiz verinin endpointten şu şekilde geldiğini varsayalım
         "id": 182,
         "title": "A aspernatur rerum molestiae.",
         "content": "Natus molestias incidunt voluptatibus. Libero delectus facilis...",
-        "status": "published",
+        "status": "published"
     },
     {
         "id": 989,
         "title": "A molestiae vel voluptatem enim.",
         "content": "Voluptas consequatur quia beatae. Ipsa est qui culpa deleniti...",
         "status": "draft",
-        "createdAt": "2020-01-28T02:57:58.892Z",
-    },
+        "createdAt": "2020-01-28T02:57:58.892Z"
+    }
 ]
 ```
 
@@ -54,7 +54,7 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     //highlight-next-line
     const { tableProps } = useTable<IPost>();
 
@@ -62,16 +62,8 @@ export const PostList = (props: IResourceComponentsProps) => {
         <List {...props}>
             //highlight-start
             <Table {...tableProps} key="id">
-                <Table.Column
-                    key="id"
-                    dataIndex="id"
-                    title="ID"
-                />
-                <Table.Column
-                    key="title"
-                    dataIndex="title"
-                    title="Title"
-                />
+                <Table.Column key="id" dataIndex="id" title="ID" />
+                <Table.Column key="title" dataIndex="title" title="Title" />
                 <Table.Column
                     key="content"
                     dataIndex="content"
@@ -105,7 +97,7 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps } = useTable<IPost>();
 
     return (
@@ -138,7 +130,9 @@ export const PostList = (props: IResourceComponentsProps) => {
 };
 ```
 
+:::tip
 `sorter` propuna verdiğimiz `multiple` değeri, çoklu sıralama yapıldığında, bu sütunun sıralamadaki önceliğini belirtir.
+:::
 
 <div style={{textAlign: "center"}}>
     <img src={tableSorting} />
@@ -151,13 +145,13 @@ const { tableProps, sorter } = useTable<IPost>({
     initialSorter: [
         {
             field: "title",
-            order: "ascend",
+            order: "asc",
         },
     ],
 });
 ```
 
-`initialSorter` ayarı ile, hangi `field`ın hangi sıralama durumuyla başlayacağını (`"ascend"`, `"descend"`, `undefined`) seçebilirsiniz.
+`initialSorter` ayarı ile, hangi `field`ın hangi sıralama durumuyla başlayacağını (`"asc"`, `"desc"`) seçebilirsiniz.
 
 ## Filtreleme
 
@@ -192,13 +186,12 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostList = (props: IResourceComponentsProps) => {
-    //highlight-next-line
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps, sorter } = useTable<IPost>({
         initialSorter: [
             {
                 field: "title",
-                order: "ascend",
+                order: "asc",
             },
         ],
     });
@@ -220,12 +213,12 @@ export const PostList = (props: IResourceComponentsProps) => {
                     title="Content"
                     sorter={{ multiple: 1 }}
                 />
-                //highlight-start
                 <Table.Column
                     dataIndex="status"
                     title="Status"
                     key="status"
                     render={(value) => <TagField value={value} />}
+                    //highlight-start
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Radio.Group>
@@ -235,8 +228,8 @@ export const PostList = (props: IResourceComponentsProps) => {
                             </Radio.Group>
                         </FilterDropdown>
                     )}
+                    //highlight-end
                 />
-                //highlight-end
             </Table>
         </List>
     );
@@ -257,7 +250,7 @@ const { tableProps, sorter, filters } = useTable<IPost>({
     initialSorter: [
         {
             field: "title",
-            order: "ascend",
+            order: "asc",
         },
     ],
     initialFilter: {
@@ -285,13 +278,13 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostList = (props: IResourceComponentsProps) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     //highlight-start
     const { tableProps, sorter, filters } = useTable<IPost>({
         initialSorter: [
             {
                 field: "title",
-                order: "ascend",
+                order: "asc",
             },
         ],
         initialFilter: {
@@ -346,13 +339,13 @@ export const PostList = (props: IResourceComponentsProps) => {
 
 ## API
 
-| Key | Description | Type |
-| --- | --- | --- |
-| permanentFilter | Varsayılan ve değiştirilemez filtre. | `CrudFilters` |
-| resource | Verilerin listeleneceği resource. Eğer verilmezse, contextten çıkarım yapılır. | `string` |
-| initialCurrent | Varsayılan sayfa indeksi. | `number`  |
-| initialPageSize | Varsayılan sayfa başına gösterilen kayıt sayısı. | `number`  |
-| initialSorter | Varsayılan sıralama. | Sort |
-| initialFilter | Varsayılan filtreleme. | `CrudFilters` |
-| syncWithLocation | Tablodaki sıralamalar, filtreler, sayfa indeksi ve sayfa başına gösterilen kayıt browser history tarafından takip edilir. | `boolean` |
-| onSearch | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form](/docs/table-search). | `Function` |
+| Key              | Description                                                                                                                      | Type          |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| permanentFilter  | Varsayılan ve değiştirilemez filtre.                                                                                             | `CrudFilters` |
+| resource         | Verilerin listeleneceği resource. Eğer verilmezse, contextten çıkarım yapılır.                                                   | `string`      |
+| initialCurrent   | Varsayılan sayfa indeksi.                                                                                                        | `number`      |
+| initialPageSize  | Varsayılan sayfa başına gösterilen kayıt sayısı.                                                                                 | `number`      |
+| initialSorter    | Varsayılan sıralama.                                                                                                             | Sort          |
+| initialFilter    | Varsayılan filtreleme.                                                                                                           | `CrudFilters` |
+| syncWithLocation | Tablodaki sıralamalar, filtreler, sayfa indeksi ve sayfa başına gösterilen kayıt browser history tarafından takip edilir.        | `boolean`     |
+| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form](/docs/table-search).  | `Function`    |

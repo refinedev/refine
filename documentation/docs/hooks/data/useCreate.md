@@ -2,6 +2,7 @@
 id: useCreate
 title: useCreate
 siderbar_label: useCreate
+description: useCreate data hook from refine is a modified version of react-query's useMutation for create mutations
 ---
 
 `useCreate` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for create mutations. It uses `create` method as mutation function from the `dataProvider` that is passed to `<Admin>`.  
@@ -53,7 +54,8 @@ mutate({
 ```
 
 :::tip
-`mutate` can also accept lifecycle methods like `onSuccess` and `onError`. [Refer to react-query docs for further information.](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
+`mutate` can also accept lifecycle methods like `onSuccess` and `onError`.  
+[Refer to react-query docs for further information.](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
 :::
 
 After mutation runs `categories` will be updated as below:

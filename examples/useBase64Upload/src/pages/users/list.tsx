@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import {
     List,
     Table,
@@ -13,7 +11,7 @@ import {
 
 // import { IPost, ICategory } from "../../interfaces";
 
-export const UserList = (props: IResourceComponentsProps) => {
+export const UserList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps } = useTable();
 
     return (

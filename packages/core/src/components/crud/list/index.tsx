@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Row, Col, PageHeader, PageHeaderProps } from "antd";
+import { Row, Col, PageHeader, PageHeaderProps } from "antd";
 import humanizeString from "humanize-string";
 import { useParams } from "react-router-dom";
 
@@ -46,7 +46,7 @@ export const List: React.FC<ListProps> = ({
                     title={
                         title ??
                         translate(
-                            `common:resources.${resource.name}.title`,
+                            `${resource.name}.titles.list`,
                             humanizeString(resource.name),
                         )
                     }
