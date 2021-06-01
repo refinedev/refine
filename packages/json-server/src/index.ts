@@ -127,7 +127,10 @@ const JsonServer = (
     createMany: async (resource, params) => {
         const response = await Promise.all(
             params.map(async (param) => {
-                const { data } = await httpClient.post(`${apiUrl}/${resource}`, param);
+                const { data } = await httpClient.post(
+                    `${apiUrl}/${resource}`,
+                    param,
+                );
                 return data;
             }),
         );

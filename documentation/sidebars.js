@@ -19,8 +19,9 @@ module.exports = {
                 "auth0",
                 "tableSearch",
                 "customPages",
+                "csvImport",
                 "theming",
-                "csvExport"
+                "csvExport",
             ],
         },
         {
@@ -53,6 +54,10 @@ module.exports = {
                 "useRadioGroup",
                 "useForm",
             ],
+        },
+        {
+            type: "doc",
+            id: "interfaceReferences",
         },
     ],
 };

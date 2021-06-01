@@ -1,4 +1,11 @@
-import { Show, useShow, Typography, Tag, useOne, IResourceComponentsProps } from "@pankod/refine";
+import {
+    Show,
+    useShow,
+    Typography,
+    Tag,
+    useOne,
+    IResourceComponentsProps,
+} from "@pankod/refine";
 import { IPost, ICategory } from "interfaces";
 
 const { Title, Text } = Typography;

@@ -55,7 +55,8 @@ mutate({
 
 :::tip
 `mutate` can also accept lifecycle methods like `onSuccess` and `onError`.  
-[Refer to react-query docs for further information.](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
+
+[Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
 :::
 
 After mutation runs `categories` will be updated as below:
@@ -107,14 +108,14 @@ Variables passed to `mutate` must have the type of
 ### Type Parameters
 
 
-| Property   | Desription                                             | Type              | Default           |
-| ---------- | ------------------------------------------------------ | ----------------- | ----------------- |
-| TData      | Result data of the mutation. Extends [`BaseRecord`](#) | [`BaseRecord`](#) | [`BaseRecord`](#) |
-| TError     | Custom error object that extends [`HttpError`](#)      | [`HttpError`](#)  | [`HttpError`](#)  |
-| TVariables | Values for mutation function                           | `{}`              | `{}`              |
+| Property   | Desription                                                                    | Type                                     | Default                                  |
+| ---------- | ----------------------------------------------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| TData      | Result data of the mutation. Extends [`BaseRecord`](interfaces.md#baserecord) | [`BaseRecord`](interfaces.md#baserecord) | [`BaseRecord`](interfaces.md#baserecord) |
+| TError     | Custom error object that extends [`HttpError`](interfaces.md#httperror)       | [`HttpError`](interfaces.md#httperror)   | [`HttpError`](interfaces.md#httperror)   |
+| TVariables | Values for mutation function                                                  | `{}`                                     | `{}`                                     |
 ### Return value
 
-| Description                               | Type                                                                                                                                                                      |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description                               | Type                                                                                                                                                                                   |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { resource: string; values: TVariables; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
 

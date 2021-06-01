@@ -8,7 +8,7 @@ export type FileFieldProps = LinkProps & {
     src: string;
 };
 
-export const FileField = ({ title, src, ...rest }: FileFieldProps) => {
+export const FileField: React.FC<FileFieldProps> = ({ title, src, ...rest }) => {
     return (
         <UrlField value={src} title={title} {...rest}>
             {title ?? src}

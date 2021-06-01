@@ -154,12 +154,13 @@ export const PostList (props) => {
     )
 }
 ```
+
 The `saveButtonProps` and `deleteButtonProps` can provides functionality to save and delete buttons in the modal.
 
 <br />
 
 :::important
-`refine` doesn't automatically add a edit button by default to the each record in `<PostList>` which opens edit form in `<Modal>` when clicking.
+refine doesn't automatically add a edit button by default to the each record in `<PostList>` which opens edit form in `<Modal>` when clicking.
 
 So, we put the edit buttons on our list. In that way, `<Edit>` form in `<Modal>` can fetch data by record `id`.
 
@@ -168,17 +169,15 @@ So, we put the edit buttons on our list. In that way, `<Edit>` form in `<Modal>`
     title="Actions"
     dataIndex="actions"
     key="actions"
-    render={(_value, record) => (
-        <EditButton onClick={() => show(record.id)} />
-    )}
+    render={(_value, record) => <EditButton onClick={() => show(record.id)} />}
 />
 ```
+
 :::
 
 :::caution
 Don't forget to pass the record id to `show` to fetch the record data. This is necessary for both edit and clone forms.
 :::
-
 
 <div style={{textAlign: "center"}}>
     <img src={editGif} />
@@ -186,7 +185,8 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 
 <br />
 
-Refer to [codesandbox](https://www.google.com.tr) example for detailed usage.
+[Refer to codesandbox example for detailed usage. &#8594](https://www.google.com.tr)
+
 
 <!-- Markdowntable olucak.
 Useform ve useModal'ın tüm proplarını aldığını belirtebiliriz.

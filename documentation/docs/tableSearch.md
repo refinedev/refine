@@ -50,7 +50,7 @@ We can give a space between the `Table` and the `Form` by using the `Space` comp
 
 <br />
 
-When the form is submitted, the `onSearch` method runs and we get the search form values. We have to return an object of type `CrudFilters` for this method.
+When the form is submitted, the `onSearch` method runs and we get the search form values. We have to return an object of type [`CrudFilters`](interfaces.md#crudfilters) for this method.
 
 ```tsx
 import { useTable } from "@pankod/refine";
@@ -98,21 +98,3 @@ const { formProps } = useTable<IPost>({
 :::important
 `CrudFilters` types object has `field`, `operator` and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
 :::
-
-**Supported operators:**
-
-| Filter | Description |
-| --- | --- |
-| eq | Equal |
-| ne | Not equal |
-| lt | Less than |
-| gt | Greater than |
-| lte | Less than or equal to |
-| gte | Greater than or equal to |
-| in | Included in an array |
-| nin | Not included in an array |
-| contains | Contains |
-| ncontains | Doesn't contain |
-| containss | Contains, case sensitive |
-| ncontainss | Doesn't contain, case sensitive|
-| null | Is null or not null |

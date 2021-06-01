@@ -13,13 +13,14 @@ import {
     Input,
     getDefaultSortOrder,
     Edit,
+    IResourceComponentsProps,
 } from "@pankod/refine";
 
 export interface ITags {
     title: string;
 }
 
-export const TagsList = (props: any) => {
+export const TagsList: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
     const { tableProps, sorter } = useTable<ITags>({
         initialSorter: [
@@ -72,7 +73,7 @@ export const TagsList = (props: any) => {
     );
 };
 
-export const TagsCreate = (props: any) => {
+export const TagsCreate: React.FC<IResourceComponentsProps>  = (props) => {
     const translate = useTranslate();
 
     const { formProps, saveButtonProps } = useForm<ITags>();
@@ -96,7 +97,7 @@ export const TagsCreate = (props: any) => {
     );
 };
 
-export const TagsEdit = (props: any) => {
+export const TagsEdit: React.FC<IResourceComponentsProps>  = (props) => {
     const translate = useTranslate();
 
     const { formProps, saveButtonProps } = useForm();
