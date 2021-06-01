@@ -8,11 +8,12 @@ import {
     EditButton,
     ShowButton,
     ImportButton,
+    IResourceComponentsProps,
 } from "@pankod/refine";
 
 import { IPost, ICategory, IPostFile } from "interfaces";
 
-export const PostList: React.FC = () => {
+export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IPost>();
 
     const categoryIds =
