@@ -1,4 +1,9 @@
-import { stringifyTableParams, parseTableParams } from "./";
+import {
+    stringifyTableParams,
+    parseTableParams,
+    getDefaultSortOrder,
+    getDefaultFilter,
+} from "./";
 import { TablePaginationConfig } from "@components/antd";
 import { CrudSorting, CrudFilters } from "../../interfaces";
 
@@ -68,5 +73,42 @@ describe("definitions/table", () => {
         expect(parsedFilters).toStrictEqual([
             { field: "categoryId", operator: "in", value: ["1", "2"] },
         ]);
+    });
+
+    it("getDefaultSortOrder", () => {
+        const sorter: CrudSorting = [
+            {
+                field: "title",
+                order: "asc",
+            },
+            {
+                field: "view",
+                order: "desc",
+            },
+        ];
+
+        expect(getDefaultSortOrder("title", sorter)).toEqual("ascend");
+    });
+
+    it("getDefaultFilter", () => {
+        const filters: CrudFilters = [
+            {
+                field: "title",
+                operator: "contains",
+                value: "test",
+            },
+        ];
+        expect(getDefaultFilter("title", filters)).toEqual("test");
+    });
+
+    it("getDefaultFilter empty array", () => {
+        const filters: CrudFilters = [
+            {
+                field: "title",
+                operator: "contains",
+                value: undefined,
+            },
+        ];
+        expect(getDefaultFilter("title", filters)).toEqual([]);
     });
 });
