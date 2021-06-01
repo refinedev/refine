@@ -5,7 +5,7 @@ title: CSV Import
 
 import importButton from '@site/static/img/import-button.png';
 
-You can easily import csv files for any resource by using refine' s  customizable `<ImportButton>` component.  refine uses [paparse](https://www.papaparse.com/) parser under the hood to parse csv files.
+You can easily import csv files for any resource by using refine' s customizable `<ImportButton>` component. refine uses [paparse](https://www.papaparse.com/) parser under the hood to parse csv files.
 
 You can add an `<ImportButton>` on a list page with a mapping function to format the files data into API's data. It creates the imported resources, using `create` or `createMany` data provider methods under the hood.
 
@@ -17,7 +17,7 @@ Let's look at an example of adding a custom `<ImportButton>`.
 
 Add an `extra` area on `<List>` component to show `<ImportButton>`.
 
-```tsx title="/src/pages/posts/list.tsx"
+```tsx title="pages/posts/list.tsx"
 import {
     List,
     Table,
@@ -60,7 +60,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-```tsx title="/src/interfaces/index.d.ts"
+```tsx title="interfaces/index.d.ts"
 export interface ICategory {
     id: string;
     title: string;
@@ -133,7 +133,7 @@ export const PostList: React.FC = () => {
             />
         </Space>
     );
-    
+
     ...
 };
 ```

@@ -67,6 +67,16 @@ export const PostList: React.FC (props) => {
 
 ```
 
+```ts title="interfaces/index.d.ts"
+export interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+```
+
+<br/>
+
 `createButtonProps` allows creating and managing a button above the table.
 
 ```tsx
@@ -154,6 +164,7 @@ export const PostList (props) => {
     )
 }
 ```
+
 The `saveButtonProps` and `deleteButtonProps` can provides functionality to save and delete buttons in the modal.
 
 <br />
@@ -168,17 +179,15 @@ So, we put the edit buttons on our list. In that way, `<Edit>` form in `<Modal>`
     title="Actions"
     dataIndex="actions"
     key="actions"
-    render={(_value, record) => (
-        <EditButton onClick={() => show(record.id)} />
-    )}
+    render={(_value, record) => <EditButton onClick={() => show(record.id)} />}
 />
 ```
+
 :::
 
 :::caution
 Don't forget to pass the record id to `show` to fetch the record data. This is necessary for both edit and clone forms.
 :::
-
 
 <div style={{textAlign: "center"}}>
     <img src={editGif} />

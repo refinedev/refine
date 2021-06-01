@@ -171,6 +171,15 @@ export const PostCreate = (props) => {
 };
 ```
 
+```ts title="interfaces/index.d.ts"
+export interface ICategory {
+    id: string;
+    title: string;
+}
+```
+
+<br/>
+
 Now, we expect the `queryResult` and `defaultValueQueryResult` result to return according to `ICategory` type.
 
 ## API Reference
