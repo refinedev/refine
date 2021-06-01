@@ -7,22 +7,24 @@ sidebar_label: List
 import asideUsage from '@site/static/img/aside-usage.png'
 import pageHeaderPropsUsage from '@site/static/img/pageHeaderProps-usage.png'
 
-`<List>` provides us a layout for displaying the page. It does not contain any logic. It makes some things easier for us like adds extra functionalities like a create button and title to the page.
+`<List>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a create button and title to the page.
 
-Let's examine what `<List>` does with step-by-step examples.
+We' ll show what `<List>` does using properties with examples.
 
-## Options
+## Properties
 
-### canCreate and createButtonProps
+### `canCreate` and `createButtonProps`
 
-`canCreate` allows adding the create button inside the `<List>` component. `canCreate` defaults to `true` if you have create resource so refine adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the below code.
+`canCreate` allows adding the create button inside the `<List>` component. If `<Resource>` is passed a create component refine adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the below code.
+
+Create button redirects to the create page of the resource according to the value it reads from the url.
 
 ```tsx
 import { List, usePermissions } from "@pankod/refine";
 
-const { data } = usePermissions();
-
 export const List: React.FC = (props) => {
+    const { data } = usePermissions();
+
     return (
         <List
             canCreate={data === "admin"}
@@ -36,7 +38,7 @@ export const List: React.FC = (props) => {
 
 [Refer to `usePermission` documentation for detailed usage. &#8594](#)
 
-### title
+### `title`
 
 It allows adding title inside the `<List>` component. if you don't pass title props it uses singular resource name by default.
 
@@ -48,9 +50,9 @@ export const List: React.FC = () => {
 };
 ```
 
-### aside
+### `aside`
 
-It allows adding a component to the right of the List component.
+It allows adding a component to the right of the `<List>` component.
 
 ```tsx
 import { List, Card } from "@pankod/refine";
@@ -81,7 +83,7 @@ export const List: React.FC = () => {
 </div>
 <br/>
 
-### pageHeaderProps
+### `pageHeaderProps`
 
 `<List>` uses ant-design `<PageHeader>` components so you can customize with the props of `pageHeaderProps`.
 
@@ -110,7 +112,7 @@ export const List: React.FC = () => {
 </div>
 <br/>
 
-### resource
+### `resource`
 
 `<List>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<List>` component in a custom page, you can use the `resource` prop.
 
@@ -146,11 +148,11 @@ export const App: React.FC = () => {
 
 ### Properties
 
-| Property          | Description                               | Type                                                                             | Default         |
-| ----------------- | ----------------------------------------- | -------------------------------------------------------------------------------- | --------------- |
-| canCreate         | Adds create button                        | boolean                                                                          | true            |
-| createButtonProps | Adds props for create button              | [ButtonProps](#https://ant.design/components/button/#API) & resourceName: string | `resource.name` |
-| title             | Adds title                                | string                                                                           | -               |
-| aside             | Adds component to right side              | `React.FC`                                                                       | -               |
-| pageHeaderProps   | Passes props for `<PageHeader>`           | [PageHeaderProps](#https://ant.design/components/page-header/#API)               | -               |
-| resource          | [`Resource`](#) for API data interactions | string                                                                           | -               |
+| Property          | Description                               | Type                                                                                   | Default                                                                                                                 |
+| ----------------- | ----------------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| canCreate         | Adds create button                        | `boolean`                                                                              | If `<Resource>` is passed a create component, `true` else `false`                                                       |
+| createButtonProps | Adds props for create button              | [ButtonProps](#https://ant.design/components/button/#API) & `{ resourceName: string }` | `` {type: "default", icon: <PlusSquareOutlined />, onClick: () => history.push(`/resources/${resourceName}/create`)} `` |
+| title             | Adds title                                | `string`                                                                               | Plural of `resource.name`                                                                                               |
+| aside             | Adds component to right side              | `React.FC`                                                                             | `undefined`                                                                                                             |
+| pageHeaderProps   | Passes props for `<PageHeader>`           | [PageHeaderProps](#https://ant.design/components/page-header/#API)                     | { ghost: false, [title](#title), extra: `<CreateButton />` }                                                            |
+| resource          | [`Resource`](#) for API data interactions | `string`                                                                               | Resource name that it reads from the url.                                                                               |
