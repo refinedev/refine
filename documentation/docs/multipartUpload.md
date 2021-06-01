@@ -8,7 +8,7 @@ import create from '@site/static/img/multipart-upload-create.jpg';
 import uploadedFile from '@site/static/img/multpipart-upload-uploaded.jpg';
 import edit from '@site/static/img/multipart-upload-edit.jpg';
 
-We'll show you how to upload multiple files with `refine`.
+We'll show you how to upload multiple files with refine.
 
 Let's start with the `creation form` first.
 
@@ -17,7 +17,7 @@ Let's start with the `creation form` first.
 Let's add the cover field to the post creation form.
 
 ```tsx
-import { normalizeFile } from '@pankod/refine';
+import { normalizeFile } from "@pankod/refine";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
@@ -73,24 +73,24 @@ We can reach the api url by using the `useApiUrl` hook.
 It looks like this.
 
 <>
-    <div style={{textAlign: "center"}}>
-        <img src={create} />
-    </div>
-    <br/>
+
+<div style={{textAlign: "center"}}>
+<img src={create} />
+</div>
+<br/>
 </>
 
 We need now is an upload end-point that accepts multipart uploads. We write this address in the `action` prop of the `Upload` component.
 
 ```json title="[POST] /media/upload"
 {
-    file: binary
+    "file": binary
 }
 ```
 
 :::important
 This end-point should be `Content-type: multipart/form-data` and `Form Data: file: binary`.
 :::
-
 
 This end-point should respond similarly.
 
@@ -101,10 +101,11 @@ This end-point should respond similarly.
 ```
 
 <>
-    <div style={{textAlign: "center"}}>
-        <img src={uploadedFile} />
-    </div>
-    <br/>
+
+<div style={{textAlign: "center"}}>
+<img src={uploadedFile} />
+</div>
+<br/>
 </>
 
 :::important
@@ -115,18 +116,18 @@ This data is sent to the API when form submitted.
 
 ```json title="[POST] https://refine-fake-rest.pankod.com/posts"
 {
-    "title":"Test",
+    "title": "Test",
     "cover": [
         {
-            "uid":"rc-upload-1620630541327-7",
-            "name":"greg-bulla-6RD0mcpY8f8-unsplash.jpg",
-            "url":"https://refine.ams3.digitaloceanspaces.com/78c82c0b2203e670d77372f4c20fc0e2",
-            "type":"image/jpeg",
-            "size":70922,
-            "percent":100,
-            "status":"done"
+            "uid": "rc-upload-1620630541327-7",
+            "name": "greg-bulla-6RD0mcpY8f8-unsplash.jpg",
+            "url": "https://refine.ams3.digitaloceanspaces.com/78c82c0b2203e670d77372f4c20fc0e2",
+            "type": "image/jpeg",
+            "size": 70922,
+            "percent": 100,
+            "status": "done"
         }
-    ],
+    ]
 }
 ```
 
@@ -134,11 +135,11 @@ This data is sent to the API when form submitted.
 The following data are required for the [Antd Upload](https://ant.design/components/upload) component and all should be saved.
 :::
 
-| Property | Description  |
-| -------- | ------------ |
-| uid      | Unique id    |
-| name     | File Name    |
-| url      | Download url |
+| Property | Description                              |
+| -------- | ---------------------------------------- |
+| uid      | Unique id                                |
+| name     | File Name                                |
+| url      | Download url                             |
 | status   | error, success, done, uploading, removed |
 
 ### Edit Form
@@ -146,7 +147,7 @@ The following data are required for the [Antd Upload](https://ant.design/compone
 Let's add the cover field to the post editing form.
 
 ```tsx
-import { normalizeFile } from '@pankod/refine';
+import { normalizeFile } from "@pankod/refine";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
@@ -196,9 +197,10 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
 ```
 
 <>
-    <div style={{textAlign: "center"}}>
-        <img src={edit} />
-    </div>
+
+<div style={{textAlign: "center"}}>
+<img src={edit} />
+</div>
 <br/>
 </>
 
@@ -218,7 +220,7 @@ A request as below is sent for edit form.
             "percent": 100,
             "status": "done"
         }
-    ],
+    ]
 }
 ```
 
@@ -245,9 +247,8 @@ This data is sent to the API when form submitted.
 
 You may want to disable the "Save" button in the form while the upload continues. You can use the `useFileUploadState` hook for this.
 
-
 ```tsx
-import { normalizeFile, useFileUploadState } from '@pankod/refine';
+import { normalizeFile, useFileUploadState } from "@pankod/refine";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
@@ -260,11 +261,14 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
 
     return (
         // highlight-start
-        <Create {...props} saveButtonProps={{
+        <Create
+            {...props}
+            saveButtonProps={{
                 ...saveButtonProps,
                 disabled: isLoading,
-            }}>
-        // highlight-end
+            }}
+        >
+            // highlight-end
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"

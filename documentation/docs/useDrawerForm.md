@@ -158,7 +158,7 @@ export const PostList (props) => {
 ```
 
 :::important
-`refine` doesn't automatically add a edit button by default to the each record in `<PostList>` which opens edit form in `<Drawer>` when clicking.
+refine doesn't automatically add a edit button by default to the each record in `<PostList>` which opens edit form in `<Drawer>` when clicking.
 
 So, we put the edit buttons on our list. In that way, `<Edit>` form in `<Drawer>` can fetch data by record `id`.
 
