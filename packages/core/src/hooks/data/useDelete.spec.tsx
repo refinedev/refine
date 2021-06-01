@@ -55,7 +55,7 @@ describe("useDelete Hook", () => {
         expect(isSuccess).toBeTruthy();
     });
 
-    it("should works width undoable update", async () => {
+    it("should works with undoable update", async () => {
         const { result, waitForNextUpdate, waitFor } = renderHook(
             () => useDelete("posts", "undoable", 0),
             {
