@@ -231,7 +231,6 @@ refine apps uses [Ant Design](https://ant.design/components/overview/) component
 
 [Refer to Ant Design docs for more detailed information about `<Table>`. &#8594](https://ant.design/components/table/#API)
 
-
 The render prop of `<Table.Column>` is used to determine how to format and show data. Each `<Table.Column>` maps a different field in the API response, specified by the `dataIndex` prop.
 
 :::note
@@ -855,6 +854,7 @@ import {
     useSelect
     //highlight-end
 } from "@pankod/refine";
+import { ICategory } from "interfaces";
 
 export const PostList: React.FC = (props) => {
     ...
@@ -905,6 +905,13 @@ export const PostList: React.FC = (props) => {
         </List>
     );
 };
+```
+
+```tsx title="/src/interfaces/index.d.ts"
+export interface ICategory {
+    id: string;
+    title: string;
+}
 ```
 
 `<FilterDropdown>` component serves as a bridge between its child input and refine's `useTable` hook.
