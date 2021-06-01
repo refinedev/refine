@@ -4,7 +4,7 @@ id: theming
 title: Theming With Less
 ---
 
-Ant Design allows you to customize many of its [less variables](https://github.com/Ant Design/Ant Design/blob/master/components/style/themes/default.less). To be able to theme Ant Design, instead of importing Ant Design's compiled css files, you should import its less files and override the values of *less variables* contained within these files. You should configure your bundler for handling less files to override its variables. 
+Ant Design allows you to customize many of its [less variables](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less). To be able to theme Ant Design, instead of importing Ant Design's compiled css files, you should import its less files and override the values of *less variables* contained within these files. You should configure your bundler for handling less files to override its variables. 
 
 [Refer to Ant Design documentation for more information about customizing Ant Design theme.](https://ant.design/docs/react/customize-theme)
 
@@ -89,7 +89,7 @@ Then, execute `npm start` to start your application. Since `craco-less` is activ
 
 ## Overriding Variables
 
-All less variables are found [here](https://github.com/Ant Design/Ant Design/blob/master/components/style/themes/default.less). Some of the major variables you can override:
+All less variables are found [here](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less). Some of the major variables you can override:
 
 ```less
 @primary-color: #1890ff; // primary color for all components
@@ -119,7 +119,7 @@ You can just change variables values in `less` files. Add these contents to your
 @import '~@pankod/refine/node_modules/antd/dist/antd.less';
 // There are some major variables below, 
 // all less variables could be found in 
-// https://github.com/Ant Design/Ant Design/blob/master/components/style/themes/default.less
+// https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
 
 //highlight-next-line
 @primary-color: #1DA57A;
