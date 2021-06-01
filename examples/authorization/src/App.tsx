@@ -41,7 +41,7 @@ const App = () => {
 
             return Promise.resolve();
         },
-        checkAuth: () =>
+        checkAuth: (params) =>
             localStorage.getItem("auth") ? Promise.resolve() : Promise.reject(),
         getPermissions: () => {
             const auth = localStorage.getItem("auth");

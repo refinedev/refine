@@ -15,7 +15,6 @@ export const useCheckError = () => {
             checkErrorFromContext(error)
                 .then(() => Promise.resolve())
                 .catch((redirectPath) => {
-                    console.log("check redirect", redirectPath);
                     return logout && logout(undefined, redirectPath);
                 });
 

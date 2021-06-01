@@ -29,11 +29,9 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     LoginPage,
     customRoutes,
 }) => {
-    const { isAuthenticated, checkAuth, checkError } = useContext<IAuthContext>(
-        AuthContext,
-    );
-    
-     console.log("here")
+    const { isAuthenticated, checkAuth, checkError } =
+        useContext<IAuthContext>(AuthContext);
+
     checkAuth().catch(checkError);
 
     const routes: IRoutesProps[] = [];
