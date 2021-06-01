@@ -10,7 +10,7 @@ export const useLogout = () => {
         React.useContext<IAuthContext>(AuthContext);
 
     if (isProvided) {
-        const logout = (params: any, redirectPath: string) =>
+        const logout = (params?: any, redirectPath?: string) =>
             logoutFromContext(params)
                 .then((data) => {
                     if (data !== false) {

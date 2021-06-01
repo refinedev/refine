@@ -35,8 +35,7 @@ const App = () => {
             return Promise.resolve();
         },
         checkError: (error) => {
-            console.log("error", error);
-            if (error && error.statusCode === 402) {
+            if (error && error.statusCode === 401) {
                 return Promise.reject();
             }
 

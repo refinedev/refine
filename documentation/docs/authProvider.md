@@ -138,6 +138,47 @@ const authProvider: AuthProvider = {
 Current authentication data needs to be cleaned by the `logout` method. For example if a token is stored in local storage, `logout` must remove it as shown above.
 :::
 
-## Catching errors
+<br />
 
-Eachtime 
+## Catching Http Errors
+
+Each time `dataProvider` returns an error, `checkError` method of `authProvider` is called with error object.  
+If `checkError` returns a rejected promise, `logout` method is called and users become unauthorized and get redirected to `/login` page by default.
+
+```tsx
+export default {
+    ...
+    logout: () => {
+        localStorage.removeItem("auth");
+        return Promise.resolve();
+    },
+    checkError: (error) => {
+        const status = error.status;
+        if (status === 401) {
+            localStorage.removeItem('auth');
+            return Promise.reject();
+        }
+        return Promise.resolve();
+    },
+   ...
+};
+```
+
+<br />
+
+In this example, we log the user out when Http error status code is 401.  
+You can decide depending on any error status code you want to check if the users continue to process by returning a resolved promise or they are logged out by rejecting the promise.
+
+:::tip
+You can override the default redirection by giving a path to the rejected promise.
+
+```tsx
+if (status === 401) {
+    localStorage.removeItem("auth");
+    // highlight-next-line
+    return Promise.reject("custom-url");
+}
+```
+
+Redirection path given to `checkError` overrides the one on `logout`.
+:::
