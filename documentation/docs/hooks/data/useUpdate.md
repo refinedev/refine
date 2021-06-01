@@ -150,16 +150,16 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 ### Type Parameters
 
-| Property   | Desription                                             | Type              | Default           |
-| ---------- | ------------------------------------------------------ | ----------------- | ----------------- |
-| TData      | Result data of the mutation. Extends [`BaseRecord`](#) | [`BaseRecord`](#) | [`BaseRecord`](#) |
-| TError     | Custom error object that extends [`HttpError`](#)      | [`HttpError`](#)  | [`HttpError`](#)  |
-| TVariables | Values for mutation function                           | `{}`              | `{}`              |
+| Property   | Desription                                                              | Type                                   | Default                                |
+| ---------- | ----------------------------------------------------------------------- | -------------------------------------- | -------------------------------------- |
+| TData      | Result data of the mutation. Extends [`BaseRecord`](#)                  | [`BaseRecord`](#)                      | [`BaseRecord`](#)                      |
+| TError     | Custom error object that extends [`HttpError`](interfaces.md#httperror) | [`HttpError`](interfaces.md#httperror) | [`HttpError`](interfaces.md#httperror) |
+| TVariables | Values for mutation function                                            | `{}`                                   | `{}`                                   |
 
 ### Return value
 
- | Description                               | Type                                                                                                                                                                   |
- | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+ | Description                               | Type                                                                                                                                                                                    |
+ | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
  | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { id: string; values: TVariables; },`<br/>` UpdateContext>`](https://react-query.tanstack.com/reference/useMutation)* |
 
 >`*` [Refer to for `UpdateContext`. &#8594](#)

@@ -92,10 +92,10 @@ After query runs `categoryQueryResult` will include the retrieved data:
 ### Type Parameters
 
 
-| Property | Desription                                          | Type              | Default           |
-| -------- | --------------------------------------------------- | ----------------- | ----------------- |
-| TData    | Result data of the query. Extends [`BaseRecord`](#) | [`BaseRecord`](#) | [`BaseRecord`](#) |
-| TError   | Custom error object that extends [`HttpError`](#)   | [`HttpError`](#)  | [`HttpError`](#)  |
+| Property | Desription                                                                 | Type                                     | Default                                  |
+| -------- | -------------------------------------------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| TData    | Result data of the query. Extends [`BaseRecord`](interfaces.md#baserecord) | [`BaseRecord`](interfaces.md#baserecord) | [`BaseRecord`](interfaces.md#baserecord) |
+| TError   | Custom error object that extends [`HttpError`](interfaces.md#httperror)    | [`HttpError`](interfaces.md#httperror)   | [`HttpError`](interfaces.md#httperror)   |
 
 ### Return values
 

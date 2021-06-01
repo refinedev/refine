@@ -143,10 +143,10 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 ### Type Parameters
 
-| Property | Desription                                             | Type              | Default           |
-| -------- | ------------------------------------------------------ | ----------------- | ----------------- |
-| TData    | Result data of the mutation. Extends [`BaseRecord`](#) | [`BaseRecord`](#) | [`BaseRecord`](#) |
-| TError   | Custom error object that extends [`HttpError`](#)      | [`HttpError`](#)  | [`HttpError`](#)  |
+| Property | Desription                                                                    | Type                                     | Default                                  |
+| -------- | ----------------------------------------------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| TData    | Result data of the mutation. Extends [`BaseRecord`](interfaces.md#baserecord) | [`BaseRecord`](interfaces.md#baserecord) | [`BaseRecord`](interfaces.md#baserecord) |
+| TError   | Custom error object that extends [`HttpError`](interfaces.md#httperror)       | [`HttpError`](interfaces.md#httperror)   | [`HttpError`](interfaces.md#httperror)   |
 
 ### Return value
 

@@ -55,5 +55,9 @@ module.exports = {
                 "useForm",
             ],
         },
+        {
+            type: "doc",
+            id: "interfaceReferences",
+        },
     ],
 };
