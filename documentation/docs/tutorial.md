@@ -112,7 +112,7 @@ You will see the welcome page.
 import "@pankod/refine/dist/styles.min.css";
 ```
 
-[Refer to theme documentation for further information about importing the default css. &#8594](#)
+[Refer to theme documentation for further information about importing the default css. &#8594](theming.md)
 :::
 
 ## Connect API with Resources
@@ -217,7 +217,7 @@ const { tableProps } = useTable<IPost>();
 
 The `tableProps` includes all necessary props for `<Table>` component to show and interact with data properly.
 
-You can find detailed usage of `useTable` from [here](#).
+You can find detailed usage of `useTable` from [here](useTable.md).
 
 ### Showing and formatting data
 
