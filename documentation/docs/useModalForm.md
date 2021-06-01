@@ -7,9 +7,15 @@ siderbar_label: useModalForm
 import createGif from '@site/static/img/create-useModalForm.gif';
 import editGif from '@site/static/img/edit-useModalForm.gif';
 
-The `useModalForm` hook allows you manage a form within Modal. If we look in detail, `useModalForm` uses Ant Design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components data scope management under the hood and returns the appropriate values to the components.
+The `useModalForm` hook allows you manage a form within a modal. It returns Ant Design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components props.
 
-All we have to do is pass the props it returns to the `<Modal>` and `<Form>` components.
+```ts
+const { modalProps, formProps } = useModalForm<IPost>();
+```
+
+All we have to do is to pass the `modalProps` to `<Modal>` and `formProps` to `<Form>` components.
+
+## Usage
 
 For example, let's look at an example of creating a record with `useModalForm`.
 
@@ -64,7 +70,18 @@ export const PostList: React.FC (props) => {
         </>
     )
 }
+```
 
+```ts title="interfaces/index.d.ts"
+...
+
+export interface IPost {
+    id: string;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: ICategory;
+}
 ```
 
 `createButtonProps` allows creating and managing a button above the table.
@@ -186,7 +203,6 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 <br />
 
 [Refer to codesandbox example for detailed usage. &#8594](https://www.google.com.tr)
-
 
 <!-- Markdowntable olucak.
 Useform ve useModal'ın tüm proplarını aldığını belirtebiliriz.
