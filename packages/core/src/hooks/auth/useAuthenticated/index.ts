@@ -26,10 +26,7 @@ export const useAuthenticated = () => {
         () =>
             checkAuth()
                 .then(() => true)
-                .catch((error) => {
-                    checkError(error);
-                    return false;
-                }),
+                .catch(() => false),
         [],
     );
 

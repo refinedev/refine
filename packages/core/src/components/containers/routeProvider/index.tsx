@@ -32,8 +32,6 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     const { isAuthenticated, checkAuth, checkError } =
         useContext<IAuthContext>(AuthContext);
 
-    checkAuth().catch(checkError);
-
     const routes: IRoutesProps[] = [];
     const RouteHandler = (val: IResourceItem): void => {
         const { list, create, edit, show, canDelete, route, name } = val;
@@ -161,9 +159,6 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
             {customRoutes.map((route, i) => (
                 <RouteWithSubRoutes key={i} {...route} />
             ))}
-            <Route path="/resources/:resource?/:action?">
-                {catchAll ?? <ErrorComponent />}
-            </Route>
             <Route>{catchAll ?? <ErrorComponent />}</Route>
         </Switch>
     );
