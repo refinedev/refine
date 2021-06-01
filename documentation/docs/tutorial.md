@@ -16,7 +16,7 @@ We'll show how to create a simple admin app with CRUD operations based on REST A
 
 ## Setup
 
-Refine uses React under the hood. We’ll use create-react-app to bootstrap an empty React app with Typescript.
+refine uses React under the hood. We’ll use create-react-app to bootstrap an empty React app with Typescript.
 
 To create a new app, run the following commands:
 
@@ -38,7 +38,7 @@ Then open [http://localhost:3000](http://localhost:3000) to see your app.
 
 ## Providing a data source with an API
 
-Refine is designed to consume data from APIs.
+refine is designed to consume data from APIs.
 
 We’ll be using a fake REST API at https://refine-fake-rest.pankod.com/ designed for testing as the data source for the application.
 
@@ -62,7 +62,7 @@ Example response:
 }
 ```
 
-Refine requires a `dataProvider` to use an API for CRUD operations which is an object with a set of certain methods.
+refine requires a `dataProvider` to use an API for CRUD operations which is an object with a set of certain methods.
 
 We'll use `@pankod/refine-json-server` package as a data provider which has predefined methods to communicate with REST APIs.
 
@@ -89,7 +89,7 @@ export const App: React.FC = () => {
             dataProvider={dataProvider("https://refine-fake-rest.pankod.com")}
         />
     );
-}
+};
 ```
 
 <br/>
@@ -136,7 +136,7 @@ export const App: React.FC = () => {
             <Resource name="posts" />
         </Admin>
     );
-}
+};
 ```
 
 <br/>
@@ -144,7 +144,7 @@ export const App: React.FC = () => {
 After adding `<Resource>`, app redirects to a url defined by `name` property.
 
 :::info
-`refine` handles route matching out of the box. More info about [routing](#).
+refine handles route matching out of the box. More info about [routing](#).
 :::
 
 <>
@@ -155,9 +155,9 @@ After adding `<Resource>`, app redirects to a url defined by `name` property.
 <br/>
 </>
 
-You'll see a 404 page since `<Resource>` doesn't handle data fetching on its own. CRUD operations is to be done with `refine` hooks.
+You'll see a 404 page since `<Resource>` doesn't handle data fetching on its own. CRUD operations is to be done with refine hooks.
 
-Components for CRUD operations(list, create, edit, show) should be given to `<Resource>` as props. In this example, we are going to set corresponding custom components to `<Resource>` which uses `refine` hooks to handle data operations and display the list of data.
+Components for CRUD operations(list, create, edit, show) should be given to `<Resource>` as props. In this example, we are going to set corresponding custom components to `<Resource>` which uses refine hooks to handle data operations and display the list of data.
 
 ## Showing and interacting with data
 
@@ -209,7 +209,7 @@ export interface IPost {
 
 ### Fetching and managing data
 
-`useTable` is a hook from `refine` that is responsible for fetching data from API with `<Resource>`'s `name` prop using `refine`'s various helper hooks under the hood.
+`useTable` is a hook from refine that is responsible for fetching data from API with `<Resource>`'s `name` prop using refine's various helper hooks under the hood.
 
 ```tsx
 const { tableProps } = useTable<IPost>();
@@ -221,13 +221,13 @@ You can find detailed usage of `useTable` from [here](#).
 
 ### Showing and formatting data
 
-We wrap `<Table>` with [`<List>`](#) component from `refine`, which adds extra functionalities like a create button and title to the table view.
+We wrap `<Table>` with [`<List>`](#) component from refine, which adds extra functionalities like a create button and title to the table view.
 
 :::tip
 `<List>` is not an obligation at this point. You can prefer to use your own wrapper component.
 :::
 
-`refine` apps uses [Ant Design](https://ant.design/components/overview/) components to display data. In this example, we'll use `<Table>` component, which is exposed from Ant Design to render a table with one row for each record.
+refine apps uses [Ant Design](https://ant.design/components/overview/) components to display data. In this example, we'll use `<Table>` component, which is exposed from Ant Design to render a table with one row for each record.
 
 Refer to [Ant Design docs](https://ant.design/components/table/#API) for more detailed information about `<Table>`.
 
@@ -248,7 +248,7 @@ The render prop of `<Table.Column>` is used to determine how to format and show 
 `value` of render props points to data with key described by `dataIndex`.
 :::
 
-We used `<TextField>`, `<TagField>` and `<DateField>` in `<Table.Column>` to show data in the proper format. These are examples of many more field components from `refine` that are based on ant design components.
+We used `<TextField>`, `<TagField>` and `<DateField>` in `<Table.Column>` to show data in the proper format. These are examples of many more field components from refine that are based on ant design components.
 User has full freedom on how to format and show raw data that comes from render prop including ant design components or custom components.
 
 You can find detailed usage of fields from [here](#).
@@ -270,7 +270,7 @@ export const App: React.FC = () => {
             <Resource name="posts" list={PostList} />
         </Admin>
     );
-}
+};
 ```
 
 <br />
@@ -312,7 +312,7 @@ Each category id references a record at `refine-fake-rest.pankod.com/categories`
 
 <br />
 
-In order to get data from a different resource, we can use a `refine` hook named `useMany`.
+In order to get data from a different resource, we can use a refine hook named `useMany`.
 
 ```tsx title="pages/posts/list.tsx"
 import {
@@ -506,13 +506,13 @@ export const App: React.FC = () => {
             />
         </Admin>
     );
-}
+};
 ```
 
 <br />
 
 :::important
-`refine` doesn't automatically add an _**edit**_ button by default to each record in `<PostList>` to give access to the edit page which renders the `<PostEdit>` component.
+refine doesn't automatically add an _**edit**_ button by default to each record in `<PostList>` to give access to the edit page which renders the `<PostEdit>` component.
 
 We' ll add a new column to `<Table>` in `<PostList>` to show the action button for edit.
 `<EditButton>` from refine can be used to navigate to edit page at `/resources/posts/edit`.
@@ -555,7 +555,7 @@ export const PostList: React.FC = (props) => {
 
 ### Managing the form
 
-`useForm` is another skillful hook from `refine` that is responsible for managing form data like creating and editing.
+`useForm` is another skillful hook from refine that is responsible for managing form data like creating and editing.
 
 ```tsx
 const { formProps, saveButtonProps } = useForm<IPost>();
@@ -566,7 +566,7 @@ Similarly `saveButtonProps` includes useful properties for a button to submit a 
 
 [Refer to `useForm` documentation for detailed usage. &#8594](#)
 
-`useSelect` produces props for `<Select>` component from data at another resource. `<Select>` is an Ant Design component that is exported from `refine` for convenience.
+`useSelect` produces props for `<Select>` component from data at another resource. `<Select>` is an Ant Design component that is exported from refine for convenience.
 
 [Refer to `Select` documentation for detailed usage. &#8594](https://ant.design/components/select/)
 
@@ -585,9 +585,9 @@ const { selectProps: categorySelectProps } = useSelect<IPost>({
 
 ### Editing the form
 
-`refine` apps uses [Ant Design form components](https://ant.design/components/form/) to handle form management. In this example, we'll use `<Form>` and `<Form.Item>` component, which is exposed from Ant Design to manage form inputs.
+refine apps uses [Ant Design form components](https://ant.design/components/form/) to handle form management. In this example, we'll use `<Form>` and `<Form.Item>` component, which is exposed from Ant Design to manage form inputs.
 
-We wrap `<Form>` with [`<Edit>`](#) component from `refine` that provides save, delete and refresh buttons that can be used for form actions.
+We wrap `<Form>` with [`<Edit>`](#) component from refine that provides save, delete and refresh buttons that can be used for form actions.
 
 :::caution Attention
 In edit page, `useForm` hook initializes the form with current record values.
@@ -688,7 +688,7 @@ export const App: React.FC = () => {
             />
         </Admin>
     );
-}
+};
 ```
 
 <br />
@@ -697,7 +697,7 @@ export const App: React.FC = () => {
 
 This part is very similar to [Editing the form](#editing-the-form). Only differences are:
 
--   We wrap `<Form>` with [`<Create>`](#) component from `refine`.
+-   We wrap `<Form>` with [`<Create>`](#) component from refine.
 
 -   Save button submits the form and issues a `POST` request to the REST API.
 
@@ -789,7 +789,7 @@ export const App: React.FC = () => {
             />
         </Admin>
     );
-}
+};
 ```
 
 ### Fetching record data
@@ -798,7 +798,7 @@ export const App: React.FC = () => {
 const { queryResult } = useShow<IPost>();
 ```
 
-`useShow` is another skillful hook from `refine` that is responsible for fetching a single record data.
+`useShow` is another skillful hook from refine that is responsible for fetching a single record data.
 
 The `queryResult` includes fetched data and query state like `isLoading` state.
 
@@ -814,7 +814,7 @@ const { data: categoryData } = useOne<ICategory>(
 );
 ```
 
-`useOne` is a low level hook from `refine` that is also responsible for fetching a single record data for any given resource.
+`useOne` is a low level hook from refine that is also responsible for fetching a single record data for any given resource.
 
 Here, `useOne` is used to fetch a record data from `/resources/categories`.
 
@@ -826,7 +826,7 @@ Difference between `useOne` and `useShow` is that `useShow` is tuned for fetchin
 
 ### Showing the data
 
-Since record data is explicit, there is no constraint on how to present that data. `refine` provides a `<Show>` wrapper component that provides extra features like a `list` and a `refresh` buttons.
+Since record data is explicit, there is no constraint on how to present that data. refine provides a `<Show>` wrapper component that provides extra features like a `list` and a `refresh` buttons.
 
 [Refer to `<Show>` documentation for detailed usage. &#8594](#)
 
@@ -841,7 +841,7 @@ Since record data is explicit, there is no constraint on how to present that dat
 
 ## Adding search and filters
 
-We'll use`<Table.Column>`'s [`filterDropdown`](https://ant.design/components/table/#Column) property from Ant Design and `<FilterDropdown>` component from `refine` to search and filter content.
+We'll use`<Table.Column>`'s [`filterDropdown`](https://ant.design/components/table/#Column) property from Ant Design and `<FilterDropdown>` component from refine to search and filter content.
 
 Let's add search and filter feature to category field.
 
@@ -906,7 +906,7 @@ export const PostList: React.FC = (props) => {
 };
 ```
 
-`<FilterDropdown>` component serves as a bridge between its child input and `refine`'s `useTable` hook.
+`<FilterDropdown>` component serves as a bridge between its child input and refine's `useTable` hook.
 
 It transfers child's input value to `useTable` hook using `filterDropdown`'s embedded props and provides a filter button to start filtering functionality.
 
@@ -918,10 +918,10 @@ In order to let user choose or search a category to filter, we get all categorie
 
 At this point we have an app with basic features implemented using a fake REST API.
 
-[Refer to `dataProvider` documentation for how to connect your own api to `refine`.](#)
+[Refer to `dataProvider` documentation for how to connect your own api to refine.](#)
 
 ## Conclusion
 
-Core functionality of `refine` is based heavily on hooks. This way it provides a wide range of flexibility on data management and UI structure.
+Core functionality of refine is based heavily on hooks. This way it provides a wide range of flexibility on data management and UI structure.
 
-You can develop new features or modify existing behavior based on your needs on top of `refine` codebase.
+You can develop new features or modify existing behavior based on your needs on top of refine codebase.
