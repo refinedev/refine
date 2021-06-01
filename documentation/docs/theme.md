@@ -1,10 +1,9 @@
 ---
-slug: /theming
-id: theming
-title: Theming With Less
+id: theme
+title: Theme
 ---
 
-Ant Design allows you to customize many of its [less variables](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less). To be able to theme Ant Design, instead of importing Ant Design's compiled css files, you should import its less files and override the values of *less variables* contained within these files. You should configure your bundler for handling less files to override its variables. 
+Ant Design allows you to customize many of its [less variables](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less). To be able to theme Ant Design, instead of importing Ant Design's compiled css files, you should import its less files and override the values of *less variables* contained within these files. You should configure your bundler for handling less files to override its variables.
 
 [Refer to Ant Design documentation for more information about customizing Ant Design theme. &#8594](https://ant.design/docs/react/customize-theme)
 
@@ -37,13 +36,13 @@ And in your `package.json` file, update the calls from `react-scripts` to `craco
 
 You can then configure your application with many community maintained CRACO plugins.
 
-You should install [`craco-less`](https://github.com/DocSpring/craco-less) and add it to `craco.config.js` to enable `less` support. 
+You should install [`craco-less`](https://github.com/DocSpring/craco-less) and add it to `craco.config.js` to enable `less` support.
 
 ```bash
 npm install craco-less --save
 ```
 <br />
-Then create the `craco.config.js` file: 
+Then create the `craco.config.js` file:
 
 ```ts title="craco.config.js"
 const CracoLessPlugin = require("craco-less");
@@ -117,8 +116,8 @@ You can just change variables values in `less` files. Add these contents to your
 ```less title="/styles/antd.less"
 @import '~@pankod/refine/node_modules/antd/lib/style/themes/default.less';
 @import '~@pankod/refine/node_modules/antd/dist/antd.less';
-// There are some major variables below, 
-// all less variables could be found in 
+// There are some major variables below,
+// all less variables could be found in
 // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
 
 //highlight-next-line

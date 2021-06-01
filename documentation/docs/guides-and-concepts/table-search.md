@@ -1,6 +1,6 @@
 ---
 slug: /table-search
-id: tableSearch
+id: table-search
 title: Table Search
 ---
 

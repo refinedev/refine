@@ -1,5 +1,5 @@
 ---
-id: base64upload
+id: uploading-base64
 title: Uploading Base64
 sidebar_label: Uploading Base64
 ---
@@ -82,7 +82,7 @@ export const UserCreate: React.FC<IResourceComponentsProps> = (props) => {
 };
 ```
 
-`file2Base64` fonksiyonunu kullanarak dosyaları base64'e çevirebilirsiniz. 
+`file2Base64` fonksiyonunu kullanarak dosyaları base64'e çevirebilirsiniz.
 
 :::tip
 `<Create>` yerine `<Edit>` componenti kullanılarak, kodun kalanında değişiklik yapmadan, düzenleme formu yapılabilir.

@@ -1,5 +1,5 @@
 ---
-id: csvImport
+id: csv-import
 title: CSV Import
 ---
 
@@ -133,7 +133,7 @@ export const PostList: React.FC = () => {
             />
         </Space>
     );
-    
+
     ...
 };
 ```

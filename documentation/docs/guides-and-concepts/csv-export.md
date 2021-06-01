@@ -1,5 +1,5 @@
 ---
-id: csvExport
+id: csv-export
 title: CSV Export
 ---
 

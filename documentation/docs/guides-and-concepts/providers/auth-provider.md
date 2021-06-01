@@ -1,5 +1,5 @@
 ---
-id: authProvider
+id: auth-provider
 title: Auth Provider
 sidebar_label: Auth Provider
 ---

@@ -1,6 +1,5 @@
 ---
-slug: /multipartUpload
-id: multipartUpload
+id: multipart-upload
 title: Multipart Upload
 ---
 
@@ -67,7 +66,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
 ```
 
 :::tip
-We can reach the api url by using the `useApiUrl` hook.  
+We can reach the api url by using the `useApiUrl` hook.
 :::
 
 It looks like this.
