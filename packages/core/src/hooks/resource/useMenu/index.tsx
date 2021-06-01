@@ -48,10 +48,7 @@ export const useMenu: () => useMenuReturnType = () => {
                     route: route,
                     key: route,
                     label: translate(
-                        `${resource.name}.${
-                            resource.label?.toLowerCase() ??
-                            humanizeString(resource.name).toLowerCase()
-                        }`,
+                        `${resource.name}.${resource.name}`,
                         resource.label ?? humanizeString(resource.name),
                     ),
                 };
