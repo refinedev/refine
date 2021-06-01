@@ -31,7 +31,7 @@ type UpdateParams<T> = {
 export type UseUpdateReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = UseMutationResult<
     UpdateResponse<TData>,
     TError,
@@ -42,7 +42,7 @@ export type UseUpdateReturnType<
 export const useUpdate = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 >(
     resource: string,
     mutationModeProp?: MutationMode,
@@ -126,9 +126,10 @@ export const useUpdate = <
                     const { queryKey } = queryItem;
                     await queryClient.cancelQueries(queryKey);
 
-                    const previousQuery = queryClient.getQueryData<
-                        QueryResponse<TData>
-                    >(queryKey);
+                    const previousQuery =
+                        queryClient.getQueryData<QueryResponse<TData>>(
+                            queryKey,
+                        );
 
                     if (!(mutationMode === "pessimistic")) {
                         if (previousQuery) {
@@ -174,7 +175,6 @@ export const useUpdate = <
                 };
             },
             onError: (err: TError, { id }, context) => {
-                checkError?.(err);
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
@@ -189,6 +189,8 @@ export const useUpdate = <
                 });
 
                 if (err.message !== "mutationCancelled") {
+                    checkError?.(err);
+
                     notification.error({
                         key: `${id}-${resource}-notification`,
                         message: translate(

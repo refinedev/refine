@@ -20,6 +20,7 @@ import {
     useMutationMode,
     useCancelNotification,
     useCacheQueries,
+    useCheckError,
 } from "@hooks";
 import { ActionTypes } from "@contexts/notification";
 
@@ -29,7 +30,7 @@ type DeleteParams = {
 
 type UseDeleteManyReturnType<
     TData extends BaseRecord = BaseRecord,
-    TError = HttpError
+    TError = HttpError,
 > = UseMutationResult<
     DeleteManyResponse<TData>,
     TError,
@@ -39,7 +40,7 @@ type UseDeleteManyReturnType<
 
 export const useDeleteMany = <
     TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError
+    TError extends HttpError = HttpError,
 >(
     resource: string,
     mutationModeProp?: MutationMode,
@@ -124,9 +125,10 @@ export const useDeleteMany = <
                     const { queryKey } = queryItem;
                     await queryClient.cancelQueries(queryKey);
 
-                    const previousQuery = queryClient.getQueryData<
-                        QueryResponse<TData>
-                    >(queryKey);
+                    const previousQuery =
+                        queryClient.getQueryData<QueryResponse<TData>>(
+                            queryKey,
+                        );
 
                     if (!(mutationMode === "pessimistic")) {
                         if (previousQuery) {
@@ -138,10 +140,8 @@ export const useDeleteMany = <
                             if (
                                 queryKey.includes(`resource/list/${resource}`)
                             ) {
-                                const {
-                                    data,
-                                    total,
-                                } = previousQuery as GetListResponse<TData>;
+                                const { data, total } =
+                                    previousQuery as GetListResponse<TData>;
 
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
@@ -205,15 +205,19 @@ export const useDeleteMany = <
                         id: ids.toString(),
                     },
                 });
-                notification.error({
-                    key: `${ids}-${resource}-notification`,
-                    message: translate(
-                        "notifications.deleteError",
-                        { resource, statusCode: err.statusCode },
-                        `Error (status code: ${err.statusCode})`,
-                    ),
-                    description: err.message,
-                });
+                if (err.message !== "mutationCancelled") {
+                    checkError?.(err);
+
+                    notification.error({
+                        key: `${ids}-${resource}-notification`,
+                        message: translate(
+                            "notifications.deleteError",
+                            { resource, statusCode: err.statusCode },
+                            `Error (status code: ${err.statusCode})`,
+                        ),
+                        description: err.message,
+                    });
+                }
             },
         },
     );
