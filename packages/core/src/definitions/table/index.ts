@@ -8,11 +8,13 @@ import {
 } from "antd/lib/table/interface";
 import mergeWith from "lodash/mergeWith";
 
-export const merge = (object: any, source: any) => {
-    return mergeWith(object, source, (val, src): any => {
+export const merge = <T>(object: T, source: T): T => {
+    return mergeWith(object, source, (val, src) => {
         if (Array.isArray(val)) {
             return val.concat(src);
         }
+
+        return undefined;
     });
 };
 

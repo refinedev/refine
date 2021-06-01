@@ -2,9 +2,9 @@ import { useContext } from "react";
 
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
-import { useQuery } from "react-query";
+import { useQuery, UseQueryResult } from "react-query";
 
-export const usePermissions = () => {
+export const usePermissions = (): UseQueryResult<any, unknown> => {
     const { getPermissions } = useContext<IAuthContext>(AuthContext);
 
     const queryResponse = useQuery("usePermissions", getPermissions);

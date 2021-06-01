@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 
 import { AuthContext } from "@contexts/auth";
-
 import { IAuthContext } from "../../../interfaces";
 
 /**
@@ -19,7 +18,7 @@ import { IAuthContext } from "../../../interfaces";
  *
  */
 
-export const useAuthenticated = () => {
+export const useAuthenticated = (): () => Promise<boolean> => {
     const { checkAuth, checkError } = useContext<IAuthContext>(AuthContext);
 
     const authenticated = React.useCallback(

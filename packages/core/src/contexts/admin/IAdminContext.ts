@@ -1,6 +1,9 @@
 import React from "react";
-import { MutationMode, TitleProps, LayoutProps } from "../../interfaces";
-import { SiderProps } from "antd/lib/layout";
+import {
+    MutationMode,
+    TitleProps,
+    LayoutProps,
+} from "../../interfaces";
 
 export interface IAdminContext {
     hasDashboard: boolean;
@@ -12,7 +15,7 @@ export interface IAdminContext {
     undoableTimeout: number;
     Title: React.FC<TitleProps>;
     Layout: React.FC<LayoutProps>;
-    Sider: React.FC<SiderProps>;
+    Sider: React.FC;
     Header: React.FC;
     Footer: React.FC;
     OffLayoutArea: React.FC;
@@ -26,7 +29,7 @@ export interface IAdminContextProvider {
     undoableTimeout: number;
     Title?: React.FC<TitleProps>;
     Layout?: React.FC<LayoutProps>;
-    Sider?: React.FC<SiderProps>;
+    Sider?: React.FC;
     Header?: React.FC;
     Footer?: React.FC;
     OffLayoutArea?: React.FC;
