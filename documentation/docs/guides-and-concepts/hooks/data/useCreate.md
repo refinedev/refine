@@ -5,13 +5,13 @@ siderbar_label: useCreate
 description: useCreate data hook from refine is a modified version of react-query's useMutation for create mutations
 ---
 
-`useCreate` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for create mutations. It uses `create` method as mutation function from the `dataProvider` that is passed to `<Admin>`.  
+`useCreate` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for create mutations. It uses `create` method as mutation function from the `dataProvider` that is passed to `<Admin>`.
 
 ## Features
 
-* Shows notifications on success and error.  
+* Shows notifications on success and error.
 
-* Automatically invalidates `list` queries after mutation is succesfully run.  
+* Automatically invalidates `list` queries after mutation is succesfully run.
 [Refer to React Query docs for detailed information &#8594](https://react-query.tanstack.com/guides/invalidations-from-mutations)
 
 ## Usage
@@ -54,7 +54,7 @@ mutate({
 ```
 
 :::tip
-`mutate` can also accept lifecycle methods like `onSuccess` and `onError`.  
+`mutate` can also accept lifecycle methods like `onSuccess` and `onError`.
 
 [Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
 :::
@@ -86,7 +86,7 @@ After mutation runs `categories` will be updated as below:
 }
 ```
 :::note
-Queries that use `/categories` endpoint will be automatically invalidated to show the updated data. For example, data returned from [`useList`](#) will be automatically updated.
+Queries that use `/categories` endpoint will be automatically invalidated to show the updated data. For example, data returned from [`useList`](useList.md) will be automatically updated.
 :::
 
 :::tip

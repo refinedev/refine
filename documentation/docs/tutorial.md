@@ -112,7 +112,7 @@ You will see the welcome page.
 import "@pankod/refine/dist/styles.min.css";
 ```
 
-[Refer to theme documentation for further information about importing the default css. &#8594](theming.md)
+[Refer to theme documentation for further information about importing the default css. &#8594](theme.md)
 :::
 
 ## Connect API with Resources
@@ -217,7 +217,7 @@ const { tableProps } = useTable<IPost>();
 
 The `tableProps` includes all necessary props for `<Table>` component to show and interact with data properly.
 
-You can find detailed usage of `useTable` from [here](useTable.md).
+You can find detailed usage of `useTable` from [here](guides-and-concepts/hooks/useTable.md).
 
 ### Showing and formatting data
 
@@ -428,7 +428,7 @@ We set a condition to start fetching only when data is available.
 
 To show category title field, find the title corresponding to the category id of the current record in data returned by `useMany`,
 
-[Refer to `useMany` documentation for detailed usage. &#8594](#)
+[Refer to `useMany` documentation for detailed usage. &#8594](guides-and-concepts/hooks/data/useMany.md)
 
 ## Editing a record
 
@@ -563,7 +563,7 @@ const { formProps, saveButtonProps } = useForm<IPost>();
 The `formProps` includes all necessary props for `<Form>` component to manage form data properly.
 Similarly `saveButtonProps` includes useful properties for a button to submit a form.
 
-[Refer to `useForm` documentation for detailed usage. &#8594](#)
+[Refer to `useForm` documentation for detailed usage. &#8594](guides-and-concepts/hooks/useForm.md)
 
 `useSelect` produces props for `<Select>` component from data at another resource. `<Select>` is an Ant Design component that is exported from refine for convenience.
 
@@ -580,7 +580,7 @@ const { selectProps: categorySelectProps } = useSelect<IPost>({
 `defaultValue` is used to get the value for the current item independent of search, sort and filter parameters.
 :::
 
-[Refer to `useSelect` documentation for detailed usage. &#8594](#)
+[Refer to `useSelect` documentation for detailed usage. &#8594](guides-and-concepts/hooks/useSelect.md)
 
 ### Editing the form
 
@@ -817,7 +817,7 @@ const { data: categoryData } = useOne<ICategory>(
 
 Here, `useOne` is used to fetch a record data from `/resources/categories`.
 
-[Refer to `useOne` documentation for detailed usage. &#8594](#)
+[Refer to `useOne` documentation for detailed usage. &#8594](guides-and-concepts/hooks/data/useOne.md)
 
 :::caution attention
 Difference between `useOne` and `useShow` is that `useShow` is tuned for fetching data from current resource.
@@ -925,7 +925,7 @@ In order to let user choose or search a category to filter, we get all categorie
 
 At this point we have an app with basic features implemented using a fake REST API.
 
-[Refer to `dataProvider` documentation for how to connect your own api to `refine`. &#8594](#)
+[Refer to `dataProvider` documentation for how to connect your own api to `refine`. &#8594](guides-and-concepts/providers/data-provider.md)
 
 ## Conclusion
 

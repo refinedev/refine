@@ -1,5 +1,4 @@
 ---
-slug: /useRadioGroup
 id: useRadioGroup
 title: useRadioGroup
 ---
@@ -61,7 +60,7 @@ export const PostCreate = (props) => {
 
 All we have to do is pass the `radioGroupProps` it returns to the `<Radio.Group>` component.
 
-`useRadioGroup` uses the `useList` hook for fetching data. [Refer to Ant Design `useList` hook for details. &#8594](#)
+`useRadioGroup` uses the `useList` hook for fetching data. [Refer to Ant Design `useList` hook for details. &#8594](data/useList.md)
 
 ## Options
 

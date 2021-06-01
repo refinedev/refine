@@ -1,5 +1,4 @@
 ---
-slug: /useStepsForm
 id: useStepsForm
 title: useStepsForm
 ---
@@ -101,7 +100,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
 :::tip
 Since `category` is a relational data, we use `useSelect` to fetch its data.
 
-[Refer to `useSelect` documentation for detailed usage. &#8594](#useSelect)
+[Refer to `useSelect` documentation for detailed usage. &#8594](useSelect.md)
 
 :::
 

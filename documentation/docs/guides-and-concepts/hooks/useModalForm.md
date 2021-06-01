@@ -1,7 +1,6 @@
 ---
 id: useModalForm
 title: useModalForm
-siderbar_label: useModalForm
 ---
 
 import createGif from '@site/static/img/create-useModalForm.gif';

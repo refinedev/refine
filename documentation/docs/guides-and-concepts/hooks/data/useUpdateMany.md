@@ -5,13 +5,13 @@ siderbar_label: useUpdateMany
 description: useUpdateMany data hook from refine is a modified version of react-query's useMutation for multiple update mutations
 ---
 
-`useUpdateMany` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for multiple update mutations. It uses `updateMany` method as mutation function from the `dataProvider` that is passed to `<Admin>`.  
+`useUpdateMany` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for multiple update mutations. It uses `updateMany` method as mutation function from the `dataProvider` that is passed to `<Admin>`.
 
 ## Features
 
-* Shows notifications on success, error and cancel. 
+* Shows notifications on success, error and cancel.
 
-* Automatically invalidates `list` and `getOne` queries after mutation is succesfully run.  
+* Automatically invalidates `list` and `getOne` queries after mutation is succesfully run.
 [Refer to React Query docs for detailed information &#8594](https://react-query.tanstack.com/guides/invalidations-from-mutations)
 
 * Supports [mutation mode](#mutation-mode).
@@ -48,7 +48,7 @@ mutate({ ids: [ 1, 2 ], values: { status: "draft" } })
 ```
 
 :::tip
-`mutate` can also accept lifecycle methods like `onSuccess` and `onError`.  
+`mutate` can also accept lifecycle methods like `onSuccess` and `onError`.
 [Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
 :::
 
@@ -75,7 +75,7 @@ After mutation runs `posts` will be updated as below:
 <br/>
 
 :::note
-Queries that use `/posts` endpoint will be automatically invalidated to show the updated data. For example, data returned from [`useList`](#) and [`useOne`](#) will be automatically updated.
+Queries that use `/posts` endpoint will be automatically invalidated to show the updated data. For example, data returned from [`useList`](useList.md) and [`useOne`](useOne.md) will be automatically updated.
 :::
 
 :::tip

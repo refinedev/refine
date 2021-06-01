@@ -348,4 +348,4 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
 | initialSorter    | Varsayılan sıralama.                                                                                                            | [`CrudSorting`](interfaces.md#crudsorting) |
 | initialFilter    | Varsayılan filtreleme.                                                                                                          | [`CrudFilters`](interfaces.md#crudfilters) |
 | syncWithLocation | Tablodaki sıralamalar, filtreler, sayfa indeksi ve sayfa başına gösterilen kayıt browser history tarafından takip edilir.       | `boolean`                                  |
-| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form](/docs/table-search). | `Function`                                 |
+| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form](../table-search.md). | `Function`                                 |

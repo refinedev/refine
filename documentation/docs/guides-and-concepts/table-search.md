@@ -1,5 +1,4 @@
 ---
-slug: /table-search
 id: table-search
 title: Table Search
 ---

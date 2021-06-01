@@ -1,6 +1,6 @@
 ---
+id: useDrawerForm
 title: useDrawerForm
-siderbar_label: useDrawerForm
 ---
 
 import createGif from '@site/static/img/create-useDrawerForm.gif';
