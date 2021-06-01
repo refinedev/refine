@@ -77,15 +77,10 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                         </FilterDropdown>
                     )}
                 />
-                <Table.Column
+                <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
-                    render={(
-                        _text: string | number,
-                        record: {
-                            id: string | number;
-                        },
-                    ): React.ReactNode => {
+                    render={(_text, record): React.ReactNode => {
                         return (
                             <Space>
                                 <EditButton
