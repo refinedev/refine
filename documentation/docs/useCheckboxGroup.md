@@ -58,7 +58,9 @@ export const PostCreate: React.FC = (props) => {
 <br/>
 
 All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.Group>` component.
-`useCheckboxGroup` uses the `useList` hook for fetching data. Refer to [useList](#) hook for details.
+`useCheckboxGroup` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](#)
+
+
 
 <div>
     <img src={basicUsage} />
@@ -77,7 +79,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 `resource` property determines API resource endpoint to fetch records from data provider. It returns properly configured `options` values for checkboxes.
 
-Refer to Ant Design [Checkbox.Group](https://ant.design/components/checkbox) component documentation for detailed info for `options`.
+[Refer to Ant Design Checkbox.Group component documentation for detailed info for `options`. &#8594](https://ant.design/components/checkbox)
 
 ### `optionLabel` and `optionValue`
 

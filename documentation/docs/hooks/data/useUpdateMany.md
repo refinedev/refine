@@ -49,7 +49,7 @@ mutate({ ids: [ 1, 2 ], values: { status: "draft" } })
 
 :::tip
 `mutate` can also accept lifecycle methods like `onSuccess` and `onError`.  
-[Refer to react-query docs for further information.  &#8594](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
+[Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
 :::
 
 <br/>
@@ -163,4 +163,4 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
  | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
  | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { ids: Identifier[]; values: TVariables; },`<br/>` UpdateContext>`](https://react-query.tanstack.com/reference/useMutation)* |
 
->`*` Refer to documentation for [`UpdateContext`](#) and [`Identifier`](#)
+>`*` [Refer to documentation for `UpdateContext` &#8594](#) and [`Identifier` &#8594](#)

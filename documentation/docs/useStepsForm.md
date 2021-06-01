@@ -101,7 +101,8 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
 :::tip
 Since `category` is a relational data, we use `useSelect` to fetch its data.
 
-Refer to [useSelect](#useSelect) documentation for detailed usage.
+[Refer to `useSelect` documentation for detailed usage. &#8594](#useSelect)
+
 :::
 
 <br />

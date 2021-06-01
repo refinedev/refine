@@ -61,7 +61,7 @@ export const PostCreate = (props) => {
 
 All we have to do is pass the `radioGroupProps` it returns to the `<Radio.Group>` component.
 
-`useRadioGroup` uses the `useList` hook for fetching data. Refer to [useList](#) hook for details.
+`useRadioGroup` uses the `useList` hook for fetching data. [Refer to Ant Design `useList` hook for details. &#8594](#)
 
 ## Options
 
@@ -76,7 +76,8 @@ const { radioGroupProps } = useRadioGroup({
 
 `resource` property determines API resource endpoint to fetch records from data provider. It returns properly configured `options` values for radio buttons.
 
-Refer to Ant Design [Radio.Group](https://ant.design/components/radio) component documentation for detailed info for `options`.
+[Refer to Ant Design `Radio.Group` component documentation for detailed info for `options`. &#8594](https://ant.design/components/radio)
+
 
 ### `optionLabel` and `optionValue`
 

@@ -112,7 +112,7 @@ You will see the welcome page.
 import "@pankod/refine/dist/styles.min.css";
 ```
 
-[Refer to theme documentation for further information about importing the default css](#)
+[Refer to theme documentation for further information about importing the default css. &#8594](#)
 :::
 
 ## Connect API with Resources
@@ -229,7 +229,8 @@ We wrap `<Table>` with [`<List>`](#) component from `refine`, which adds extra f
 
 `refine` apps uses [Ant Design](https://ant.design/components/overview/) components to display data. In this example, we'll use `<Table>` component, which is exposed from Ant Design to render a table with one row for each record.
 
-Refer to [Ant Design docs](https://ant.design/components/table/#API) for more detailed information about `<Table>`.
+[Refer to Ant Design docs for more detailed information about `<Table>`. &#8594](https://ant.design/components/table/#API)
+
 
 The render prop of `<Table.Column>` is used to determine how to format and show data. Each `<Table.Column>` maps a different field in the API response, specified by the `dataIndex` prop.
 
@@ -918,7 +919,7 @@ In order to let user choose or search a category to filter, we get all categorie
 
 At this point we have an app with basic features implemented using a fake REST API.
 
-[Refer to `dataProvider` documentation for how to connect your own api to `refine`.](#)
+[Refer to `dataProvider` documentation for how to connect your own api to `refine`. &#8594](#)
 
 ## Conclusion
 
