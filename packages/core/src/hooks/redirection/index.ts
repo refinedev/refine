@@ -2,13 +2,11 @@ import { useCallback } from "react";
 import { IResourceItem } from "@contexts/resource";
 import { useNavigation } from "@hooks/navigation";
 
-export type UseRedirectionAfterSubmissionType = () => (
-    options: {
-        redirect: "show" | "list" | "edit" | false,
-        resource: IResourceItem,
-        id?: string | number | undefined,
-    }
-) => void;
+export type UseRedirectionAfterSubmissionType = () => (options: {
+    redirect: "show" | "list" | "edit" | false;
+    resource: IResourceItem;
+    id?: string | number | undefined;
+}) => void;
 
 export const useRedirectionAfterSubmission: UseRedirectionAfterSubmissionType = () => {
     const { show, edit, list } = useNavigation();

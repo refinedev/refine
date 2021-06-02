@@ -64,9 +64,12 @@ export const CategoryList: React.FC<IResourceComponentsProps> = (props) => {
     );
 
     return (
-        <List {...props} pageHeaderProps={{
-            extra: <Actions />
-        }}>
+        <List
+            {...props}
+            pageHeaderProps={{
+                extra: <Actions />,
+            }}
+        >
             <Form {...formProps}>
                 <Table
                     {...tableProps}
@@ -195,7 +198,7 @@ export const CategoryCreate: React.FC<IResourceComponentsProps> = (props) => {
     );
 };
 
-export const CategoryEdit: React.FC<IResourceComponentsProps>  = (props) => {
+export const CategoryEdit: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
 
     const { formProps, saveButtonProps } = useForm<
