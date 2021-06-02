@@ -1,7 +1,11 @@
 import qs, { IStringifyOptions } from "qs";
 
 import { CrudFilters, CrudOperators, CrudSorting } from "../../interfaces";
-import { SortOrder, TablePaginationConfig } from "antd/lib/table/interface";
+import {
+    SortOrder,
+    TablePaginationConfig,
+    SorterResult,
+} from "antd/lib/table/interface";
 
 export const parseTableParams = (url: string) => {
     const { current, pageSize, sort, order, ...filters } = qs.parse(
@@ -106,4 +110,48 @@ export const getDefaultFilter = (
     }
 
     return undefined;
+};
+
+export const mapAntdSorterToCrudSorting = (
+    sorter: SorterResult<any> | SorterResult<any>[],
+): CrudSorting => {
+    const crudSorting: CrudSorting = [];
+    if (Array.isArray(sorter)) {
+        sorter.map((item) => {
+            if (item.field && item.order) {
+                crudSorting.push({
+                    field: `${item.field}`,
+                    order: item.order.replace("end", "") as "asc" | "desc",
+                });
+            }
+        });
+    } else {
+        if (sorter.field && sorter.order) {
+            crudSorting.push({
+                field: `${sorter.field}`,
+                order: sorter.order.replace("end", "") as "asc" | "desc",
+            });
+        }
+    }
+
+    return crudSorting;
+};
+
+export const mapAntdFilterToCrudFilter = (
+    filters: Record<string, (string | number | boolean)[] | null>,
+): CrudFilters => {
+    const crudFilters: CrudFilters = [];
+    Object.keys(filters).map((field) => {
+        const value = filters[field];
+
+        if (value) {
+            crudFilters.push({
+                field,
+                operator: "in",
+                value,
+            });
+        }
+    });
+
+    return crudFilters;
 };

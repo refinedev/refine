@@ -98,4 +98,33 @@ describe("useTable Hook", () => {
 
         expect(dataSource).toHaveLength(2);
     });
+
+    it("with syncWithLocation", async () => {
+        const { result, waitFor } = renderHook(
+            () =>
+                useTable({
+                    resource: "categories",
+                    syncWithLocation: true,
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [
+                        { name: "posts", route: "posts" },
+                        { name: "categories", route: "categories" },
+                    ],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            return !result.current.tableProps.loading;
+        });
+
+        const {
+            tableProps: { dataSource },
+        } = result.current;
+
+        expect(dataSource).toHaveLength(2);
+    });
 });

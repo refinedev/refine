@@ -3,6 +3,8 @@ import {
     parseTableParams,
     getDefaultSortOrder,
     getDefaultFilter,
+    mapAntdSorterToCrudSorting,
+    mapAntdFilterToCrudFilter,
 } from "./";
 import { TablePaginationConfig } from "@components/antd";
 import { CrudSorting, CrudFilters } from "../../interfaces";
@@ -110,5 +112,58 @@ describe("definitions/table", () => {
             },
         ];
         expect(getDefaultFilter("title", filters)).toEqual([]);
+    });
+
+    it("mapAntdSorterToCrudSorting for array", () => {
+        expect(
+            mapAntdSorterToCrudSorting([
+                {
+                    field: "title",
+                    order: "descend",
+                },
+            ]),
+        ).toMatchInlineSnapshot(`
+            Array [
+              Object {
+                "field": "title",
+                "order": "desc",
+              },
+            ]
+        `);
+    });
+
+    it("mapAntdSorterToCrudSorting", () => {
+        expect(
+            mapAntdSorterToCrudSorting({
+                field: "title",
+                order: "descend",
+            }),
+        ).toMatchInlineSnapshot(`
+            Array [
+              Object {
+                "field": "title",
+                "order": "desc",
+              },
+            ]
+        `);
+    });
+
+    it("mapAntdSorterToCrudSorting", () => {
+        expect(
+            mapAntdFilterToCrudFilter({
+                foo: ["bar", "baz"],
+            }),
+        ).toMatchInlineSnapshot(`
+            Array [
+              Object {
+                "field": "foo",
+                "operator": "in",
+                "value": Array [
+                  "bar",
+                  "baz",
+                ],
+              },
+            ]
+        `);
     });
 });
