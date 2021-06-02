@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 
 import { Button } from "antd";
 
-import { render, TestWrapper, MockJSONServer } from "@test";
+import { render, TestWrapper, MockJSONServer, fireEvent } from "@test";
 import { Edit } from "./";
 
 const renderEdit = (edit: ReactNode) => {
@@ -18,7 +18,9 @@ const renderEdit = (edit: ReactNode) => {
 
 describe("Edit", () => {
     it("should render page successfuly", () => {
-        const { container } = renderEdit(<Edit></Edit>);
+        const { container, queryByTestId } = renderEdit(<Edit />);
+
+        expect(queryByTestId("edit-list-button")).not.toBeNull();
 
         expect(container).toBeTruthy();
     });
@@ -39,7 +41,7 @@ describe("Edit", () => {
     });
 
     it("should render optional buttons with actionButtons prop", () => {
-        const { getByText } = renderEdit(
+        const { getByText, queryByTestId } = renderEdit(
             <Edit
                 actionButtons={
                     <>
@@ -52,6 +54,7 @@ describe("Edit", () => {
 
         getByText("New Save Button");
         getByText("New Delete Button");
+        expect(queryByTestId("edit-delete-button")).toBeNull();
     });
 
     it("should render default title successfuly", () => {
@@ -64,5 +67,137 @@ describe("Edit", () => {
         const { getByText } = renderEdit(<Edit title="New Title" />);
 
         getByText("New Title");
+    });
+
+    it("should render optional mutationMode with mutationModeProp prop", () => {
+        const container = renderEdit(<Edit mutationMode="undoable" />);
+
+        expect(container).toBeTruthy();
+    });
+
+    it("should render optional resource with resource prop", () => {
+        const { getByText } = render(
+            <Route>
+                <Edit resource="posts" />
+            </Route>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts", route: "posts" }],
+                    routerInitialEntries: ["/custom"],
+                }),
+            },
+        );
+
+        getByText("Edit post");
+    });
+
+    it("should render optional recordItemId with resource prop", () => {
+        const { getByText, queryByTestId } = renderEdit(
+            <Edit recordItemId="1" />,
+        );
+
+        getByText("Edit post");
+
+        expect(queryByTestId("edit-list-button")).toBeNull();
+    });
+
+    it("should render delete button ", () => {
+        const { getByText, queryByTestId } = render(
+            <Route path="/resources/:resource/edit/:id">
+                <Edit />
+            </Route>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [
+                        { name: "posts", route: "posts", canDelete: true },
+                    ],
+                    routerInitialEntries: ["/resources/posts/edit/1"],
+                }),
+            },
+        );
+
+        expect(queryByTestId("edit-delete-button")).not.toBeNull();
+
+        getByText("Edit post");
+    });
+
+    it("should not render delete button on resource canDelete false", () => {
+        const { getByText, queryByTestId } = render(
+            <Route path="/resources/:resource/edit/:id">
+                <Edit />
+            </Route>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [
+                        { name: "posts", route: "posts", canDelete: false },
+                    ],
+                    routerInitialEntries: ["/resources/posts/edit/1"],
+                }),
+            },
+        );
+
+        expect(queryByTestId("edit-delete-button")).toBeNull();
+
+        getByText("Edit post");
+    });
+
+    it("should not render delete button on resource canDelete true & canDelete props false on component", () => {
+        const { queryByTestId } = render(
+            <Route path="/resources/:resource/edit/:id">
+                <Edit canDelete={false} />
+            </Route>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [
+                        { name: "posts", route: "posts", canDelete: true },
+                    ],
+                    routerInitialEntries: ["/resources/posts/edit/1"],
+                }),
+            },
+        );
+
+        expect(queryByTestId("edit-delete-button")).toBeNull();
+    });
+
+    it("should render delete button on resource canDelete false & canDelete props true on component", () => {
+        const { queryByTestId } = render(
+            <Route path="/resources/:resource/edit/:id">
+                <Edit canDelete={true} />
+            </Route>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [
+                        { name: "posts", route: "posts", canDelete: false },
+                    ],
+                    routerInitialEntries: ["/resources/posts/edit/1"],
+                }),
+            },
+        );
+
+        expect(queryByTestId("edit-delete-button")).not.toBeNull();
+    });
+
+    fit("should render delete button on resource canDelete false & canDelete props true on component", () => {
+        const { getByText } = render(
+            <Route path="/resources/:resource/edit/:id">
+                <Edit />
+            </Route>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [
+                        { name: "posts", route: "posts", canDelete: true },
+                    ],
+                    routerInitialEntries: ["/resources/posts/edit/1"],
+                }),
+            },
+        );
+
+        fireEvent.click(getByText("Delete"));
     });
 });
