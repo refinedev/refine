@@ -6,7 +6,6 @@ sidebar_label: Auth0 Login
 
 import login from '@site/static/img/guides-and-concepts/auth0/auth0-login.gif';
 
-
 Auth0 is a flexible, drop-in solution to add authentication and authorization services to your applications. Your team and organization can avoid the cost, time, and risk that comes with building your own solution to authenticate and authorize users. You can check the [document](https://auth0.com/docs) for details.
 
 To use auth0 with refine;
@@ -38,7 +37,7 @@ ReactDOM.render(
             clientId="YOUR_CLIENT_ID"
             redirectUri={window.location.origin}
         >
-        <App />
+            <App />
         </Auth0Provider>
         // highlight-end
     </React.StrictMode>,
@@ -49,7 +48,6 @@ ReactDOM.render(
 :::important
 See the [**Auth0 docs**](https://auth0.com/docs) for detailed information and `CLIENT_ID`.
 :::
-
 
 ### Override login page
 
@@ -62,7 +60,7 @@ import { Row, AntdLayout, Card, Typography, Button } from "@pankod/refine";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export const Login: React.FC = () => {
-const { Title } = Typography;
+    const { Title } = Typography;
 
     // highlight-next-line
     const { loginWithRedirect } = useAuth0();
@@ -152,11 +150,11 @@ const App = () => {
 
     return (
         <Admin
-                LoginPage={Login}
-                authProvider={authProvider}
-                dataProvider={dataProvider(API_URL)}
-            >
-        ...
+            LoginPage={Login}
+            authProvider={authProvider}
+            dataProvider={dataProvider(API_URL)}
+        >
+            ...
         </Admin>
     );
 };

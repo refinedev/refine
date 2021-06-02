@@ -58,7 +58,9 @@ Example response:
   },
   "status": "draft",
   "createdAt": "2019-07-25T22:19:18.929Z",
-  "image": []
+  "image": [],
+  "tags": [ 7 ],
+  "language": 2
 }
 ```
 
@@ -329,7 +331,7 @@ import {
 //highlight-next-line
 import { IPost, ICategory } from "interfaces";
 
-export const PostList: React.FC = (props) => {
+export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     //highlight-start
@@ -530,7 +532,7 @@ import {
     //highlight-end
 } from "@pankod/refine";
 
-export const PostList: React.FC = (props) => {
+export const PostList: React.FC = () => {
 ...
     <Table.Column<IPost>
         title="Actions"
@@ -855,7 +857,7 @@ import {
 } from "@pankod/refine";
 import { ICategory } from "interfaces";
 
-export const PostList: React.FC = (props) => {
+export const PostList: React.FC = () => {
     ...
 
     //highlight-start
@@ -865,7 +867,7 @@ export const PostList: React.FC = (props) => {
      //highlight-end
 
     return (
-        <List {...props}>
+        <List>
             <Table {...tableProps} rowKey="id">
                ...
                 <Table.Column

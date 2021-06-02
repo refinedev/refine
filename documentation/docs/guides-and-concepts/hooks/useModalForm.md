@@ -16,7 +16,7 @@ For example, let's look at an example of creating a record with `useModalForm`.
 import { useModalForm, Modal, Form, Create, Radio } from "@pankod/refine";
 import { IPost } from "interfaces";
 
-export const PostList: React.FC (props) => {
+export const PostList: React.FC () => {
 
     //highlight-start
     const {
@@ -44,7 +44,7 @@ export const PostList: React.FC (props) => {
             </List>
             //highlight-start
             <Modal {...modalProps}>
-                <Create {...props} saveButtonProps={saveButtonProps}>
+                <Create saveButtonProps={saveButtonProps}>
                     <Form {...formProps} layout="vertical">
                         <Form.Item label="Title" name="title">
                             <Input />
@@ -102,7 +102,7 @@ Let's learn how to add editing capability to records that will be opening form i
 import { useModalForm, Modal, Form, Create, Radio } from "@pankod/refine";
 import { IPost } from "interfaces";
 
-export const PostList (props) => {
+export const PostList () => {
     const {
         modalProps,
         formProps,
@@ -138,7 +138,6 @@ export const PostList (props) => {
             <Modal {...modalProps}>
             //highlight-next-line
                 <Edit
-                    {...props}
                     saveButtonProps={saveButtonProps}
                     //highlight-start
                     deleteButtonProps={deleteButtonProps}
@@ -195,7 +194,6 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 <br />
 
 [Refer to codesandbox example for detailed usage. &#8594](https://www.google.com.tr)
-
 
 <!-- Markdowntable olucak.
 Useform ve useModal'ın tüm proplarını aldığını belirtebiliriz.

@@ -34,7 +34,7 @@ Let's examine what `useCheckboxGroup` does, with step-by-step examples. Suppose 
 ```tsx title="src/pages/posts/create.tsx"
 import { Form, Checkbox, useCheckboxGroup } from "@pankod/refine";
 
-export const PostCreate: React.FC = (props) => {
+export const PostCreate: React.FC = () => {
     //highlight-start
     const { checkboxGroupProps } = useCheckboxGroup({
         resource: "tags",
@@ -58,8 +58,6 @@ export const PostCreate: React.FC = (props) => {
 
 All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.Group>` component.
 `useCheckboxGroup` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](guides-and-concepts/hooks/data/useList.md)
-
-
 
 <div>
     <img src={basicUsage} />
@@ -131,7 +129,7 @@ import { Form, useCheckboxGroup } from "@pankod/refine";
 //highlight-next-line
 import { ITag } from "interfaces";
 
-export const PostCreate = (props) => {
+export const PostCreate = () => {
     //highlight-next-line
     const { queryResult } = useCheckboxGroup<ITag>({
         resource: "tags",

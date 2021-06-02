@@ -22,7 +22,7 @@ Create button redirects to the create page of the resource according to the valu
 ```tsx
 import { List, usePermissions } from "@pankod/refine";
 
-export const List: React.FC = (props) => {
+export const List: React.FC = () => {
     const { data } = usePermissions();
 
     return (

@@ -49,7 +49,6 @@ export const PostList: React.FC = () => {
 
     return (
         <List
-            {...props}
             //highlight-start
             pageHeaderProps={{
                 extra: <Actions />,
