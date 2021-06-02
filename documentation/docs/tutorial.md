@@ -64,14 +64,14 @@ Example response:
 
 refine requires a `dataProvider` to use an API for CRUD operations which is an object with a set of certain methods.
 
-We'll use `@pankod/refine-json-server` package as a [data provider](dataProvider.md) which has predefined methods to communicate with REST APIs.
+We'll use `@pankod/refine-json-server` package as a [data provider](guides-and-concepts/providers/data-provider.md) which has predefined methods to communicate with REST APIs.
 
 ```
 npm i @pankod/refine-json-server
 ```
 
 :::note
-You can also provide your own custom [data provider](dataProvider.md) to make the connection.
+You can also provide your own custom [data provider](guides-and-concepts/providers/data-provider.md) to make the connection.
 :::
 
 ## Bootstraping the app
