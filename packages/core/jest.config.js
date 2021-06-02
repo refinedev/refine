@@ -26,4 +26,9 @@ module.exports = {
     transform: {
         "^.+\\.svg$": "<rootDir>/test/svgTransform.ts",
     },
+    coveragePathIgnorePatterns: [
+        "<rootDir>/src/index.ts",
+        "<rootDir>/src/components/antd/",
+        "<rootDir>/src/interfaces/",
+    ],
 };

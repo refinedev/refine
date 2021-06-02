@@ -33,7 +33,7 @@ Let's examine what `useRadioGroup` does, with step-by-step examples. Suppose our
 ```tsx title="src/pages/posts/create.tsx"
 import { Form, Radio, useRadioGroup } from "@pankod/refine";
 
-export const PostCreate = (props) => {
+export const PostCreate = () => {
     //highlight-start
     const { radioGroupProps } = useRadioGroup({
         resource: "languages",
@@ -76,7 +76,6 @@ const { radioGroupProps } = useRadioGroup({
 `resource` property determines API resource endpoint to fetch records from data provider. It returns properly configured `options` values for radio buttons.
 
 [Refer to Ant Design `Radio.Group` component documentation for detailed info for `options`. &#8594](https://ant.design/components/radio)
-
 
 ### `optionLabel` and `optionValue`
 
@@ -129,13 +128,22 @@ import { Form, useRadioGroup } from "@pankod/refine";
 //highlight-next-line
 import { ILanguage } from "interfaces";
 
-export const PostCreate = (props) => {
+export const PostCreate = () => {
     //highlight-next-line
     const { queryResult } = useRadioGroup<ILanguage>({
         resource: "languages",
     });
 };
 ```
+
+```ts title="interfaces/index.d.ts"
+export interface ILanguage {
+    id: string;
+    title: string;
+}
+```
+
+<br/>
 
 Now, we expect the `queryResult` result to return according to `ILanguage` type.
 

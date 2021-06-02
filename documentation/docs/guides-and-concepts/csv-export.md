@@ -13,7 +13,7 @@ Let's look at an example of adding a custom `<ExportButton>`.
 
 Add an `extra` area on `<List>` component to show `<ExportButton>`:
 
-```tsx title="/src/pages/posts/list.tsx"
+```tsx title="pages/posts/list.tsx"
 import {
     //highlight-next-lne
     ExportButton,
@@ -21,7 +21,7 @@ import {
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC = () => {
     ...
 
     //highlight-start
@@ -34,7 +34,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
 
     return (
         //highlight-start
-        <List {...props} pageHeaderProps={{
+        <List pageHeaderProps={{
             extra: <Actions />,
         }}>
         //highlight-end

@@ -68,10 +68,8 @@ export const Edit: React.FC<EditProps> = ({
     } = useParams<ResourceRouterParams>();
 
     const resource = resourceWithRoute(routeResourceName ?? resourceFromProps);
-
-    const isDeleteButtonVisible = canDelete
-        ? canDelete
-        : resource.canDelete || deleteButtonProps;
+    const isDeleteButtonVisible =
+        canDelete ?? (resource.canDelete || deleteButtonProps);
 
     return (
         <Row gutter={[16, 16]}>
@@ -90,7 +88,10 @@ export const Edit: React.FC<EditProps> = ({
                         <Row>
                             <Space>
                                 {!recordItemId && (
-                                    <ListButton resourceName={resource.name} />
+                                    <ListButton
+                                        data-testid="edit-list-button"
+                                        resourceName={resource.name}
+                                    />
                                 )}
                                 <RefreshButton
                                     resourceName={resource.name}
@@ -111,6 +112,7 @@ export const Edit: React.FC<EditProps> = ({
                                     <>
                                         {isDeleteButtonVisible && (
                                             <DeleteButton
+                                                data-testid="edit-delete-button"
                                                 mutationMode={mutationMode}
                                                 onSuccess={() => {
                                                     list(

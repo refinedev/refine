@@ -33,11 +33,9 @@ describe("usePermissions Hook", () => {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.resolve(),
-                    checkAuth: () =>
-                        Promise.reject(new Error("Not Authenticated")),
+                    checkAuth: () => Promise.reject("Not Authenticated"),
                     checkError: () => Promise.resolve(),
-                    getPermissions: () =>
-                        Promise.reject(new Error("Not Authenticated")),
+                    getPermissions: () => Promise.reject("Not Authenticated"),
                     logout: () => Promise.resolve(),
                     getUserIdentity: () => Promise.resolve({ id: 1 }),
                 },
@@ -48,6 +46,6 @@ describe("usePermissions Hook", () => {
             return result.current.isError;
         });
 
-        expect(result.current.error).toEqual(new Error("Not Authenticated"));
+        expect(result.current.error).toEqual("Not Authenticated");
     });
 });

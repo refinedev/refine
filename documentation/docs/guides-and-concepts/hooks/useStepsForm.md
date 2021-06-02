@@ -16,13 +16,9 @@ For the sake of simplicity, we're going to build a `Post` create form that consi
 To split your form items under a `<Steps>` component, first import and use `useStepsForm` hook in your page:
 
 ```tsx title="src/pages/posts/create.tsx"
-import {
-    useSelect,
-    useStepsForm,
-    IResourceComponentsProps,
-} from "@pankod/refine";
+import { useSelect, useStepsForm } from "@pankod/refine";
 
-export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
+export const PostCreate: React.FC = () => {
     //highlight-start
     const {
         current,
@@ -34,7 +30,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     } = useStepsForm<IPost>();
     //highlight-end
     ...
-}
+};
 ```
 
 `useStepsForm` is generic over the type form data to help you type check your code.
@@ -48,8 +44,6 @@ export interface ICategory {
 export interface IPost {
     id: string;
     title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
     category: ICategory;
 }
 ```
@@ -59,7 +53,7 @@ This hook returns a set of useful values to render steps form. Given `current` v
 Here, each item of `formList` corresponds to one step in form:
 
 ```tsx title="src/pages/posts/create.tsx"
-export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
+export const PostCreate: React.FC = () => {
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
     });
@@ -94,7 +88,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     ];
     //highlight-end
     ...
-}
+};
 ```
 
 :::tip
@@ -109,10 +103,9 @@ Since `category` is a relational data, we use `useSelect` to fetch its data.
 You should use `stepsProps` on `<Steps>` component, `formProps` on the `<Form>` component correctly. And as the last step, you should render the `<Steps>` component besides the form like this:
 
 ```tsx title="src/pages/posts/create.tsx"
-export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
+export const PostCreate: React.FC = () => {
     ...
     <Create
-        {...props}
         saveButtonProps={saveButtonProps}
     >
         //highlight-start
@@ -140,11 +133,10 @@ In this example, we're building a page for creating new resources using `<Create
 To help users navigate between steps in the form, you can use action buttons. Your navigation buttons should use `gotoStep` function that was previously returned from the `useStepsForm` hook.
 
 ```tsx title="src/pages/posts/create.tsx"
-export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
+export const PostCreate: React.FC = () => {
     ...
     return (
         <Create
-            {...props}
             //highlight-start
             actionButtons={
                 <>
@@ -179,7 +171,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
         >
             <Steps {...stepsProps}>
                 <Step title="About Post" />
-                <Step title="Content" />
+                <Step title="Category" />
             </Steps>
 
             <div style={{ marginTop: 30 }}>
@@ -188,9 +180,9 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
                 </Form>
             </div>
         </Create>
-        );
+    );
     ...
-}
+};
 ```
 
 <div style={{textAlign: "center"}}>

@@ -3,7 +3,6 @@ import {
     Table,
     TextField,
     useTable,
-    IResourceComponentsProps,
     Space,
     EditButton,
     ShowButton,
@@ -12,7 +11,7 @@ import {
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     const categoryIds =
@@ -22,7 +21,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     });
 
     return (
-        <List {...props}>
+        <List>
             <Table {...tableProps} key="id">
                 <Table.Column
                     key="id"

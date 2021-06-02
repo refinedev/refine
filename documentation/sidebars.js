@@ -19,6 +19,11 @@ module.exports = {
                 "guides-and-concepts/i18n",
                 {
                     type: "category",
+                    label: "Basic Views",
+                    items: ["guides-and-concepts/basic-views/list"],
+                },
+                {
+                    type: "category",
                     label: "Hooks",
                     items: [
                         {
