@@ -38,7 +38,7 @@ describe("useEditableTable Hook", () => {
         const examplePost = posts[0];
 
         act(() => {
-            result.current.editButtonProps(examplePost.id.toString()).onClick();
+            result.current.editButtonProps(examplePost.id).onClick();
         });
 
         await waitFor(() => {
