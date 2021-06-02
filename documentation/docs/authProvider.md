@@ -107,6 +107,10 @@ After submission, login form calls the `login` method from `authProvider`.
 If an `authProvider` is given, [Resources](#) passed to `<Admin>` as children are only accessible if login is successful. In case of no `authProvider`, they are accessible without authentication.  
 :::
 
+:::tip
+[Refer to documentation on how to customize default login page.&#8594](#)
+:::
+
 <br />
 
 ## Logout
@@ -156,7 +160,6 @@ const authProvider: AuthProvider = {
     checkError: (error) => {
         const status = error.status;
         if (status === 401) {
-            localStorage.removeItem('auth');
             return Promise.reject();
         }
         return Promise.resolve();
@@ -176,7 +179,6 @@ You can override the default redirection by giving a path to the rejected promis
 
 ```tsx
 if (status === 401) {
-    localStorage.removeItem("auth");
     // highlight-next-line
     return Promise.reject("custom-url");
 }
@@ -185,7 +187,9 @@ if (status === 401) {
 Redirection path given to `checkError` overrides the one on `logout`.
 :::
 
-## Checking Authantication During Navigation
+<br />
+
+## Checking Authentication During Navigation
 
 Whenever route changes, `checkAuth` from `authProvider` is called. When `checkAuth` returns a rejected promise, authentication is cancelled and the app is redirected to an error page that allows the user to navigate to the root path which shows a login page by default.
 
@@ -201,6 +205,8 @@ const authProvider: AuthProvider = {
    ...
 };
 ```
+
+<br />
 
 ## Setting Authorization Credentials
 
@@ -244,7 +250,7 @@ const App = () => {
             },
             ...
         };
-    
+
     return (
         <Admin
             authProvider={authProvider}
@@ -256,24 +262,28 @@ const App = () => {
 }
 ```
 
+:::note
+We recommend to use **axios** as Http client with **@pankod/refine-json-server** data provider. Other Http clients can be also preferred.
+:::
+
 ## Authorization
 
-You may want to require authorization for certain parts of the app based on the permissions that current user have. Permission logic need to be defined in `getPermission` method.  
+You may want to require authorization for certain parts of the app based on the permissions that current user have. Permission logic need to be defined in `getPermission` method.
 
-We will show how to add authorization based on roles determined in `getPermision`.
+We will show how to add authorization based on roles determined in `getPermissions`.
 
 ```tsx title="App.tsx"
 const mockUsers = [
     {
         username: "admin",
         // highlight-next-line
-        roles: ["admin", "super-admin"],
+        roles: ["admin"],
     },
     {
         username: "editor",
          // highlight-next-line
         roles: ["editor"],
-    },
+    }
 ];
 
 const App = () => {
@@ -291,11 +301,11 @@ const App = () => {
             // highlight-end
         };
     ...
-    }
+}
 ```
 
 :::important
-Data that `getPermission` resolves with is accesible by `usePermissions` hook.
+Data that `getPermissions` resolves with is accesible by `usePermissions` hook.
 :::
 
 <br/>
@@ -304,18 +314,17 @@ For example if only admins must be able to create new posts from list page.
 `<List>` can show a button for creating new posts. If it's required that only admins can create new posts, this button must be only accessible to users who has `"admin"` role.
 
 ```tsx
-import {
-    List,
-    usePermissions,
-} from "@pankod/refine";
+import { List, usePermissions } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
     const { data: permissionsData } = usePermissions();
 
-    return (
-        <List canCreate={permissionsData?.includes("admin")}>
-            ...
-        </List>
-    );
+    return <List canCreate={permissionsData?.includes("admin")}>...</List>;
 };
 ```
+
+:::tip
+`usePermissions` returns the result of `react-query`'s `useQuery`. It includes properties like `isLoading` and `isFetching` with many others.  
+[Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/reference/useQuery)
+:::
+:::

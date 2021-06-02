@@ -9,7 +9,7 @@ const API_URL = "https://refine-fake-rest.pankod.com";
 const mockUsers = [
     {
         username: "admin",
-        roles: ["admin", "super-admin"],
+        roles: ["admin"],
     },
     {
         username: "editor",
@@ -41,7 +41,7 @@ const App = () => {
 
             return Promise.resolve();
         },
-        checkAuth: (params) =>
+        checkAuth: () =>
             localStorage.getItem("auth") ? Promise.resolve() : Promise.reject(),
         getPermissions: () => {
             const auth = localStorage.getItem("auth");
