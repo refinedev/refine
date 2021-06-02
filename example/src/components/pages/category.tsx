@@ -153,14 +153,12 @@ export const CategoryList: React.FC<IResourceComponentsProps> = (props) => {
                             return (
                                 <Space>
                                     <EditButton
-                                        {...editButtonProps(
-                                            record.id.toString(),
-                                        )}
+                                        {...editButtonProps(record.id)}
                                         size="small"
                                     />
                                     <DeleteButton
                                         size="small"
-                                        recordItemId={record.id.toString()}
+                                        recordItemId={record.id}
                                     />
                                 </Space>
                             );

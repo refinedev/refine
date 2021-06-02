@@ -87,7 +87,7 @@ Values passed to `mutate` must have the type of
 
 ```tsx
 {
-    ids: (string)[];
+    ids: string[];
     values: TVariables = {};
 }
 ```

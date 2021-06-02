@@ -136,7 +136,7 @@ export const PostLightList: React.FC<IResourceComponentsProps> = (props) => {
                                 />
                                 <CloneButton
                                     onClick={() => {
-                                        createModalShow(record.id.toString());
+                                        createModalShow(record.id);
                                     }}
                                 />
                             </Space>
