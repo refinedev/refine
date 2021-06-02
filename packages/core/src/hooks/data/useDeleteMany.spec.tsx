@@ -17,7 +17,7 @@ describe("useDeleteMany Hook", () => {
         );
 
         result.current.mutate({
-            ids: [1],
+            ids: ["1"],
         });
         await waitForNextUpdate();
 
@@ -42,7 +42,7 @@ describe("useDeleteMany Hook", () => {
         );
 
         result.current.mutate({
-            ids: [1],
+            ids: ["1"],
         });
         await waitForNextUpdate();
 

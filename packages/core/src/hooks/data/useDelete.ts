@@ -21,7 +21,6 @@ import {
     ContextQuery,
     HttpError,
     GetListResponse,
-    Identifier,
 } from "../../interfaces";
 
 type UseDeleteReturnType<
@@ -30,7 +29,7 @@ type UseDeleteReturnType<
 > = UseMutationResult<
     DeleteOneResponse<TData>,
     TError,
-    { id: Identifier },
+    { id: string },
     DeleteContext
 >;
 
@@ -64,7 +63,7 @@ export const useDelete = <
         DeleteOneResponse<TData>,
         TError,
         {
-            id: Identifier;
+            id: string;
         },
         DeleteContext
     >(
@@ -139,10 +138,7 @@ export const useDelete = <
                                     ...previousQuery,
                                     data: (data ?? []).filter(
                                         (record: TData) =>
-                                            !(
-                                                record.id!.toString() ===
-                                                deleteParams.id?.toString()
-                                            ),
+                                            !(record.id === deleteParams.id),
                                     ),
                                     total: total - 1,
                                 });

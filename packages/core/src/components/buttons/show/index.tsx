@@ -8,7 +8,7 @@ import { ResourceRouterParams } from "../../../interfaces";
 
 type ShowButtonProps = ButtonProps & {
     resourceName?: string;
-    recordItemId?: string | number;
+    recordItemId?: string;
 };
 
 export const ShowButton: FC<ShowButtonProps> = ({

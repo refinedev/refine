@@ -7,7 +7,6 @@ import {
     IDataContext,
     HttpError,
     BaseRecord,
-    Identifier,
 } from "../../interfaces";
 import { useNotification, useTranslate } from "@hooks";
 
@@ -16,7 +15,7 @@ export const useOne = <
     TError extends HttpError = HttpError
 >(
     resource: string,
-    id: Identifier,
+    id: string,
     options?: UseQueryOptions<GetOneResponse<TData>, TError>,
 ): QueryObserverResult<GetOneResponse<TData>> => {
     const { getOne } = useContext<IDataContext>(DataContext);

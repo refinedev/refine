@@ -8,7 +8,7 @@ import { ResourceRouterParams } from "../../../interfaces";
 
 type RefreshButtonProps = ButtonProps & {
     resourceName?: string;
-    recordItemId?: string | number;
+    recordItemId?: string;
 };
 
 export const RefreshButton: FC<RefreshButtonProps> = ({

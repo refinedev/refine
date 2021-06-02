@@ -30,7 +30,7 @@ export interface EditProps {
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
     mutationMode?: MutationMode;
-    recordItemId?: string | number;
+    recordItemId?: string;
     pageHeaderProps?: PageHeaderProps;
     canDelete?: boolean;
     deleteButtonProps?: DeleteButtonProps;

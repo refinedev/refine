@@ -13,7 +13,6 @@ import {
 import { ActionTypes } from "@contexts/notification";
 import {
     IDataContext,
-    Identifier,
     BaseRecord,
     UpdateManyResponse,
     HttpError,
@@ -30,7 +29,7 @@ type UseUpdateManyReturnType<
 > = UseMutationResult<
     UpdateManyResponse<TData>,
     TError,
-    { ids: Identifier[]; values: TVariables },
+    { ids: string[]; values: TVariables },
     UpdateContext
 >;
 
@@ -67,12 +66,12 @@ export const useUpdateMany = <
         UpdateManyResponse<TData>,
         TError,
         {
-            ids: Identifier[];
+            ids: string[];
             values: TVariables;
         },
         UpdateContext
     >(
-        ({ ids, values }: { ids: Identifier[]; values: TVariables }) => {
+        ({ ids, values }: { ids: string[]; values: TVariables }) => {
             if (!(mutationMode === "undoable")) {
                 return updateMany<TData, TVariables>(resource, ids, values);
             }
@@ -143,7 +142,7 @@ export const useUpdateMany = <
                                         if (
                                             variables.ids
                                                 .map((i) => i.toString())
-                                                .includes(record.id!.toString())
+                                                .includes(record.id!)
                                         ) {
                                             return {
                                                 ...record,

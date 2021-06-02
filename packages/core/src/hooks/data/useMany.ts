@@ -5,7 +5,6 @@ import { DataContext } from "@contexts/data";
 import {
     IDataContext,
     BaseRecord,
-    Identifier,
     GetManyResponse,
     HttpError,
 } from "../../interfaces";
@@ -17,7 +16,7 @@ export const useMany = <
     TError extends HttpError = HttpError
 >(
     resource: string,
-    ids: Identifier[],
+    ids: string[],
     options?: UseQueryOptions<GetManyResponse<TData>, TError>,
 ): QueryObserverResult<GetManyResponse<TData>> => {
     const { getMany } = useContext<IDataContext>(DataContext);

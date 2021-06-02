@@ -35,7 +35,7 @@ describe("useDrawerForm Hook", () => {
         const { formProps, show } = result.current;
 
         act(() => {
-            show(posts[0].id);
+            show(posts[0].id.toString());
         });
 
         await waitFor(() => {

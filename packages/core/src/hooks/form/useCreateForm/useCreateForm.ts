@@ -30,13 +30,13 @@ export type useCreateForm<
 > = {
     form: FormInstance<TVariables>;
     formProps: FormProps<TVariables>;
-    editId?: string | number;
-    setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
+    editId?: string;
+    setEditId?: Dispatch<SetStateAction<string | undefined>>;
     saveButtonProps: SaveButtonProps;
     formLoading: boolean;
     mutationResult: UseCreateReturnType<TData, TError, TVariables>;
-    setCloneId?: Dispatch<SetStateAction<string | number | undefined>>;
-    cloneId?: string | number;
+    setCloneId?: Dispatch<SetStateAction<string | undefined>>;
+    cloneId?: string;
 };
 
 export type useCreateFormProps<

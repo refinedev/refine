@@ -129,9 +129,9 @@ export const CategoryList: React.FC<IResourceComponentsProps> = (props) => {
                         dataIndex="actions"
                         key="actions"
                         render={(
-                            _text: string | number,
+                            _text: string,
                             record: {
-                                id: string | number;
+                                id: string;
                             },
                         ): React.ReactNode => {
                             if (isEditing(record.id)) {
@@ -153,12 +153,14 @@ export const CategoryList: React.FC<IResourceComponentsProps> = (props) => {
                             return (
                                 <Space>
                                     <EditButton
-                                        {...editButtonProps(record.id)}
+                                        {...editButtonProps(
+                                            record.id.toString(),
+                                        )}
                                         size="small"
                                     />
                                     <DeleteButton
                                         size="small"
-                                        recordItemId={record.id}
+                                        recordItemId={record.id.toString()}
                                     />
                                 </Space>
                             );

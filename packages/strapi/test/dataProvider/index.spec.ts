@@ -54,7 +54,7 @@ describe("dataProvider", () => {
             const { data } = await DataProvider(
                 API_URL,
                 axiosInstance,
-            ).deleteOne("posts", 47);
+            ).deleteOne("posts", "47");
 
             expect(data["id"]).toBe(47);
             expect(data["title"]).toBe("test");
@@ -154,7 +154,7 @@ describe("dataProvider", () => {
         it("correct response", async () => {
             const { data } = await DataProvider(API_URL, axiosInstance).getOne(
                 "posts",
-                49,
+                "49",
             );
 
             expect(data["id"]).toBe(49);
@@ -168,7 +168,7 @@ describe("dataProvider", () => {
         it("correct response", async () => {
             const { data } = await DataProvider(API_URL, axiosInstance).update(
                 "posts",
-                49,
+                "49",
                 {
                     title: "updated",
                 },
@@ -184,7 +184,7 @@ describe("dataProvider", () => {
             const { data } = await DataProvider(
                 API_URL,
                 axiosInstance,
-            ).updateMany("posts", [50, 51], {
+            ).updateMany("posts", ["50", "51"], {
                 title: "updated",
             });
 

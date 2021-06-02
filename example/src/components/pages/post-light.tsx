@@ -112,9 +112,9 @@ export const PostLightList: React.FC<IResourceComponentsProps> = (props) => {
                         dataIndex="actions"
                         key="actions"
                         render={(
-                            _text: string | number,
+                            _text: string,
                             record: {
-                                id: string | number;
+                                id: string;
                             },
                         ): React.ReactNode => (
                             <Space>
@@ -136,7 +136,7 @@ export const PostLightList: React.FC<IResourceComponentsProps> = (props) => {
                                 />
                                 <CloneButton
                                     onClick={() => {
-                                        createModalShow(record.id);
+                                        createModalShow(record.id.toString());
                                     }}
                                 />
                             </Space>

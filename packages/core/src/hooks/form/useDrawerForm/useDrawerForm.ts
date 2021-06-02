@@ -89,7 +89,7 @@ export const useDrawerForm = <
     return {
         ...useFormProps,
         setVisible,
-        show: (id?: string | number) => {
+        show: (id?: string) => {
             setEditId?.(id);
 
             setCloneId?.(id);

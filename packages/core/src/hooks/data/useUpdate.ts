@@ -11,7 +11,6 @@ import {
     Context as UpdateContext,
     ContextQuery,
     HttpError,
-    Identifier,
 } from "../../interfaces";
 import pluralize from "pluralize";
 import {
@@ -23,7 +22,7 @@ import {
 } from "@hooks";
 
 type UpdateParams<T> = {
-    id: Identifier;
+    id: string;
     values: T;
 };
 
@@ -139,10 +138,7 @@ export const useUpdate = <
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: data.map((record: TData) => {
-                                        if (
-                                            record.id!.toString() ===
-                                            variables.id
-                                        ) {
+                                        if (record.id === variables.id) {
                                             return {
                                                 ...variables.values,
                                                 id: variables.id,

@@ -12,7 +12,6 @@ import {
     QueryResponse,
     GetListResponse,
     Context as DeleteContext,
-    Identifier,
 } from "../../interfaces";
 import {
     useNotification,
@@ -24,7 +23,7 @@ import {
 import { ActionTypes } from "@contexts/notification";
 
 type DeleteParams = {
-    ids: (string | number)[];
+    ids: string[];
 };
 
 type UseDeleteManyReturnType<
@@ -33,7 +32,7 @@ type UseDeleteManyReturnType<
 > = UseMutationResult<
     DeleteManyResponse<TData>,
     TError,
-    { ids: Identifier[] },
+    { ids: string[] },
     unknown
 >;
 
@@ -69,7 +68,7 @@ export const useDeleteMany = <
         DeleteParams,
         DeleteContext
     >(
-        ({ ids }: { ids: (string | number)[] }) => {
+        ({ ids }: { ids: string[] }) => {
             if (!(mutationMode === "undoable")) {
                 return deleteMany<TData>(resource, ids);
             }
@@ -141,10 +140,8 @@ export const useDeleteMany = <
                                     data: (data ?? []).filter(
                                         (record: TData) =>
                                             !deleteParams.ids
-                                                .map((i) => i.toString())
-                                                .includes(
-                                                    record.id!.toString(),
-                                                ),
+                                                .map((i) => i)
+                                                .includes(record.id!),
                                     ),
                                     total: total - deleteParams.ids.length,
                                 });

@@ -52,8 +52,8 @@ export type useForm<
 > = {
     form: FormInstance<TVariables>;
     formProps: FormProps<TVariables>;
-    editId?: string | number;
-    setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
+    editId?: string;
+    setEditId?: Dispatch<SetStateAction<string | undefined>>;
     saveButtonProps: ButtonProps & {
         onClick: () => void;
     };
@@ -62,8 +62,8 @@ export type useForm<
         | UseUpdateReturnType<TData, TError, TVariables>
         | UseCreateReturnType<TData, TError, TVariables>;
     formLoading: boolean;
-    setCloneId?: Dispatch<SetStateAction<string | number | undefined>>;
-    cloneId?: string | number;
+    setCloneId?: Dispatch<SetStateAction<string | undefined>>;
+    cloneId?: string;
 };
 
 export const useForm = <
@@ -81,7 +81,7 @@ export const useForm = <
 > => {
     // id state is needed to determine selected record in addition to id parameter from route
     // this could be moved to a custom hook that encapsulates both create and clone form hooks.
-    const [cloneId, setCloneId] = React.useState<string | number>();
+    const [cloneId, setCloneId] = React.useState<string>();
 
     const resourceWithRoute = useResourceWithRoute();
 
