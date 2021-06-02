@@ -4,8 +4,8 @@ title: List
 sidebar_label: List
 ---
 
-import asideUsage from '@site/static/img/aside-usage.png'
-import pageHeaderPropsUsage from '@site/static/img/pageHeaderProps-usage.png'
+import asideUsage from '@site/static/img/guides-and-concepts/basic-views/list/aside.png'
+import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/list/pageHeaderProps.png'
 
 `<List>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a create button and title to the page.
 
