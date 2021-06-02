@@ -15,7 +15,7 @@ import logout from '@site/static/img/logout.gif';
 
 We'll show how to implement basic authentication flow:
 
-```tsx title="src/App.tsx"
+```tsx title="App.tsx"
 import {
     Admin,
     //highlight-next-line
@@ -185,19 +185,137 @@ if (status === 401) {
 Redirection path given to `checkError` overrides the one on `logout`.
 :::
 
-## Checking Authorization During Navigation
+## Checking Authantication During Navigation
 
-Whenever route changes, `checkAuth` from `authProvider` is called. Navigated path is passed to `checkAuth`. When `checkAuth` returns a rejected promise, authorization is cancelled and the app is redirected to an error page that allows the user to navigate to the root path which shows a login page by default.
+Whenever route changes, `checkAuth` from `authProvider` is called. When `checkAuth` returns a rejected promise, authentication is cancelled and the app is redirected to an error page that allows the user to navigate to the root path which shows a login page by default.
 
-Checking the authorization data can be easily done here. For example if the authorization data is stored in the local storage:
+Checking the authentication data can be easily done here. For example if the authentication data is stored in the local storage:
 
 ```tsx
 const authProvider: AuthProvider = {
     ...
     // highlight-start
-    checkAuth: (path) => {
+    checkAuth: () => {
         localStorage.getItem("auth") ? Promise.resolve() : Promise.reject(),
     // highlight-end
    ...
+};
+```
+
+## Setting Authorization Credentials
+
+After user logins, their credentials can be sent along with the API request by configuring the [`dataProvider`](#). A custom `httpClient` can be passed to `dataProvider` to include configurations like cookies, request headers.
+
+We'll show how to add a token got from `login` method to **Authorization** header of **Http** requests.
+
+```tsx title="App.tsx"
+...
+//highlight-next-line
+import axios from "axios";
+
+//highlight-next-line
+const axiosInstance = axios.create();
+
+//highlight-start
+const mockUsers = [
+    { username: "admin", token: "123" },
+    { username: "editor", token: "321" }
+];
+//highlight-end
+
+const App = () => {
+    const authProvider: AuthProvider = {
+        login: ({ username, password }) => {
+                // Suppose we actually send a request to the back end here.
+                const user = mockUsers.find((item) => item.username === username);
+
+                if (user) {
+                    localStorage.setItem("auth", JSON.stringify(user));
+
+                    // highlight-start
+                    axiosInstance.defaults.headers = {
+                        Authorization: `Bearer ${user.token}`,
+                    };
+                    // highlight-end
+
+                    return Promise.resolve();
+                }
+                return Promise.reject();
+            },
+            ...
+        };
+    
+    return (
+        <Admin
+            authProvider={authProvider}
+            // highlight-next-line
+            dataProvider={dataProvider(API_URL, axiosInstance)}>
+            ...
+        </Admin>
+    );
+}
+```
+
+## Authorization
+
+You may want to require authorization for certain parts of the app based on the permissions that current user have. Permission logic need to be defined in `getPermission` method.  
+
+We will show how to add authorization based on roles determined in `getPermision`.
+
+```tsx title="App.tsx"
+const mockUsers = [
+    {
+        username: "admin",
+        // highlight-next-line
+        roles: ["admin", "super-admin"],
+    },
+    {
+        username: "editor",
+         // highlight-next-line
+        roles: ["editor"],
+    },
+];
+
+const App = () => {
+    const authProvider: AuthProvider = {
+            ...
+            // highlight-start
+            getPermissions: () => {
+                const auth = localStorage.getItem("auth");
+                if (auth) {
+                    const parsedUser = JSON.parse(auth);
+                    return Promise.resolve(parsedUser.roles);
+                }
+                return Promise.reject();
+            },
+            // highlight-end
+        };
+    ...
+    }
+```
+
+:::important
+Data that `getPermission` resolves with is accesible by `usePermissions` hook.
+:::
+
+<br/>
+
+For example if only admins must be able to create new posts from list page.
+`<List>` can show a button for creating new posts. If it's required that only admins can create new posts, this button must be only accessible to users who has `"admin"` role.
+
+```tsx
+import {
+    List,
+    usePermissions,
+} from "@pankod/refine";
+
+export const PostList: React.FC = () => {
+    const { data: permissionsData } = usePermissions();
+
+    return (
+        <List canCreate={permissionsData?.includes("admin")}>
+            ...
+        </List>
+    );
 };
 ```
