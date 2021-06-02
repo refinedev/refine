@@ -49,8 +49,8 @@ export const Show: React.FC<ShowProps> = ({
 
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
-    const isDeleteButtonVisible = canDelete ? canDelete : resource.canDelete;
-    const isEditButtonVisible = canEdit ? canEdit : resource.canEdit;
+    const isDeleteButtonVisible = canDelete ?? resource.canDelete;
+    const isEditButtonVisible = canEdit ?? resource.canEdit;
 
     return (
         <PageHeader
@@ -67,11 +67,15 @@ export const Show: React.FC<ShowProps> = ({
                 <Row>
                     <Space key="extra-buttons">
                         {!recordItemId && (
-                            <ListButton resourceName={resource.name} />
+                            <ListButton
+                                data-testid="show-list-button"
+                                resourceName={resource.name}
+                            />
                         )}
                         {isEditButtonVisible && (
                             <EditButton
                                 disabled={isLoading}
+                                data-testid="show-edit-button"
                                 resourceName={resource.name}
                                 recordItemId={recordItemId ?? idFromRoute}
                             />
@@ -79,6 +83,7 @@ export const Show: React.FC<ShowProps> = ({
                         {isDeleteButtonVisible && (
                             <DeleteButton
                                 resourceName={resource.name}
+                                data-testid="show-delete-button"
                                 recordItemId={recordItemId ?? idFromRoute}
                                 onSuccess={() =>
                                     list(resource.route ?? resource.name)

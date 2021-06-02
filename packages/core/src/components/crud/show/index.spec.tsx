@@ -73,4 +73,231 @@ describe("Show", () => {
 
         getByText("Test Aside Component");
     });
+
+    it("should render optional resource with resource prop", () => {
+        const { getByText } = render(
+            <Route>
+                <Show resource="posts" />
+            </Route>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts", route: "posts" }],
+                    routerInitialEntries: ["/custom"],
+                }),
+            },
+        );
+
+        getByText("Show post");
+    });
+
+    it("should render optional recordItemId with resource prop, not render list button", () => {
+        const { getByText, queryByTestId } = renderShow(
+            <Show recordItemId="1" />,
+        );
+
+        getByText("Show post");
+
+        expect(queryByTestId("show-list-button")).toBeNull();
+    });
+
+    describe("render edit button", () => {
+        it("should render edit button", () => {
+            const { getByText, queryByTestId } = render(
+                <Route path="/resources/:resource/show/:id">
+                    <Show />
+                </Route>,
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [
+                            { name: "posts", route: "posts", canEdit: true },
+                        ],
+                        routerInitialEntries: ["/resources/posts/show/1"],
+                    }),
+                },
+            );
+
+            expect(queryByTestId("show-edit-button")).not.toBeNull();
+
+            getByText("Show post");
+        });
+
+        it("should not render edit button on resource canEdit false", () => {
+            const { getByText, queryByTestId } = render(
+                <Route path="/resources/:resource/show/:id">
+                    <Show />
+                </Route>,
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [
+                            { name: "posts", route: "posts", canEdit: false },
+                        ],
+                        routerInitialEntries: ["/resources/posts/show/1"],
+                    }),
+                },
+            );
+
+            expect(queryByTestId("show-edit-button")).toBeNull();
+
+            getByText("Show post");
+        });
+
+        it("should not render edit button on resource canEdit true & canEdit props false on component", () => {
+            const { queryByTestId } = render(
+                <Route path="/resources/:resource/show/:id">
+                    <Show canEdit={false} />
+                </Route>,
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [
+                            { name: "posts", route: "posts", canEdit: true },
+                        ],
+                        routerInitialEntries: ["/resources/posts/show/1"],
+                    }),
+                },
+            );
+
+            expect(queryByTestId("show-edit-button")).toBeNull();
+        });
+
+        it("should render edit button on resource canEdit false & canEdit props true on component", () => {
+            const { queryByTestId } = render(
+                <Route path="/resources/:resource/show/:id">
+                    <Show canEdit={true} />
+                </Route>,
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [
+                            { name: "posts", route: "posts", canEdit: false },
+                        ],
+                        routerInitialEntries: ["/resources/posts/show/1"],
+                    }),
+                },
+            );
+
+            expect(queryByTestId("show-edit-button")).not.toBeNull();
+        });
+
+        it("should render edit button with recordItemId prop", () => {
+            const { getByText, queryByTestId } = render(
+                <Route path="/resources/:resource/show/:id">
+                    <Show recordItemId="1" />
+                </Route>,
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [
+                            { name: "posts", route: "posts", canEdit: true },
+                        ],
+                        routerInitialEntries: ["/resources/posts/show/1"],
+                    }),
+                },
+            );
+
+            expect(queryByTestId("show-edit-button")).not.toBeNull();
+
+            getByText("Show post");
+        });
+    });
+
+    describe("render delete button", () => {
+        it("should render delete button", () => {
+            const { queryByTestId } = render(
+                <Route path="/resources/:resource/show/:id">
+                    <Show />
+                </Route>,
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [
+                            { name: "posts", route: "posts", canDelete: true },
+                        ],
+                        routerInitialEntries: ["/resources/posts/show/1"],
+                    }),
+                },
+            );
+
+            expect(queryByTestId("show-delete-button")).not.toBeNull();
+        });
+
+        it("should not render delete button on resource canDelete false", () => {
+            const { queryByTestId } = render(
+                <Route path="/resources/:resource/show/:id">
+                    <Show />
+                </Route>,
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [
+                            { name: "posts", route: "posts", canDelete: false },
+                        ],
+                        routerInitialEntries: ["/resources/posts/show/1"],
+                    }),
+                },
+            );
+
+            expect(queryByTestId("show-delete-button")).toBeNull();
+        });
+
+        it("should not render delete button on resource canDelete true & canDelete props false on component", () => {
+            const { queryByTestId } = render(
+                <Route path="/resources/:resource/show/:id">
+                    <Show canDelete={false} />
+                </Route>,
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [
+                            { name: "posts", route: "posts", canDelete: true },
+                        ],
+                        routerInitialEntries: ["/resources/posts/show/1"],
+                    }),
+                },
+            );
+
+            expect(queryByTestId("show-delete-button")).toBeNull();
+        });
+
+        it("should render delete button on resource canDelete false & canDelete props true on component", () => {
+            const { queryByTestId } = render(
+                <Route path="/resources/:resource/show/:id">
+                    <Show canDelete={true} />
+                </Route>,
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [
+                            { name: "posts", route: "posts", canDelete: false },
+                        ],
+                        routerInitialEntries: ["/resources/posts/show/1"],
+                    }),
+                },
+            );
+
+            expect(queryByTestId("show-delete-button")).not.toBeNull();
+        });
+
+        it("should render delete button with recordItemId prop", () => {
+            const { queryByTestId } = render(
+                <Route path="/resources/:resource/show/:id">
+                    <Show recordItemId="1" />
+                </Route>,
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [
+                            { name: "posts", route: "posts", canDelete: true },
+                        ],
+                        routerInitialEntries: ["/resources/posts/show/1"],
+                    }),
+                },
+            );
+
+            expect(queryByTestId("show-delete-button")).not.toBeNull();
+        });
+    });
 });

@@ -8,12 +8,13 @@ import {
     useForm,
     getValueFromEvent,
     file2Base64,
+    HttpError,
 } from "@pankod/refine";
 
 import { IUser } from "../../interfaces";
 
 export const UserEdit: React.FC<IResourceComponentsProps> = (props) => {
-    const { formProps, saveButtonProps } = useForm<IUser>();
+    const { formProps, saveButtonProps } = useForm<IUser, HttpError, IUser>();
 
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>
