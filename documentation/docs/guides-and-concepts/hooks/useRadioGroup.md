@@ -137,6 +137,15 @@ export const PostCreate = (props) => {
 };
 ```
 
+```ts title="interfaces/index.d.ts"
+export interface ILanguage {
+    id: string;
+    title: string;
+}
+```
+
+<br/>
+
 Now, we expect the `queryResult` result to return according to `ILanguage` type.
 
 ## API Reference

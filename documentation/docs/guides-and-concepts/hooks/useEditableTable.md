@@ -12,7 +12,7 @@ import rowClickEdit from '@site/static/img/guides-and-concepts/hooks/useEditable
 
 Örneğin, `id` ve `title` değerlerini gösterdiğimiz aşağıdaki `Post` verisini listeleme sayfası yapmak istersek:
 
-```tsx title="/src/interfaces/index.d.ts"
+```tsx title="/interfaces/index.d.ts"
 export interface IPost {
     id: string;
     title: string;
@@ -21,7 +21,7 @@ export interface IPost {
 
 Bu kez, düzenleme özelliğini ekleyebilmek için, `<Table>` componentini bir `<Form>` componenti ile kaplamamız ve `useEditableTable`dan gelen propları ilgili componentlere aktarmamız gerekiyor:
 
-```tsx title="/src/pages/posts/list.tsx"
+```tsx title="/pages/posts/list.tsx"
 import {
     List,
     Table,
@@ -44,7 +44,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     <Table.Column key="id" dataIndex="id" title="ID" />
                     <Table.Column key="title" dataIndex="title" title="Title" />
                 </Table>
-            //highlight-end
+                //highlight-end
             </Form>
         </List>
     );
@@ -53,7 +53,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
 
 Düzenleme butonları için bir sütun ekleyelim:
 
-```tsx title="/src/pages/posts/list.tsx"
+```tsx title="/pages/posts/list.tsx"
 import {
     List,
     Table,
@@ -134,7 +134,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
 
 Şimdiye kadar düzenlenebilir halde değil. Düzenleme olabilecek sütunları, `isEditing` kullanarak şartlı render ile, eğer orada şu an bir düzenleme yapılıyorsa, içinde bir `<Form.Item>` ile göstermeliyiz:
 
-```tsx title="/src/pages/posts/list.tsx"
+```tsx title="/pages/posts/list.tsx"
 import {
     List,
     Table,
@@ -246,7 +246,7 @@ Satıra tıklandığında satırı düzenleme moduna almak için, `<Table>` comp
 
 Satıra tıklandığında, `setEditId` kullanarak o satırı düzenleme moduna alabiliriz:
 
-```tsx title="/src/pages/posts/list.tsx"
+```tsx title="/pages/posts/list.tsx"
 import {
     List,
     Table,

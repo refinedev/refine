@@ -9,25 +9,14 @@ import {
     EmailField,
 } from "@pankod/refine";
 
-// import { IPost, ICategory } from "../../interfaces";
+import { IUser } from "../../interfaces";
 
 export const UserList: React.FC<IResourceComponentsProps> = (props) => {
-    const { tableProps } = useTable();
+    const { tableProps } = useTable<IUser>();
 
     return (
         <List {...props}>
-            <Table
-                {...tableProps}
-                rowKey="id"
-                // pagination={{
-                //     ...tableProps.pagination,
-                //     position: ["bottomCenter"],
-                //     size: "small",
-                // }}
-                // scroll={{
-                //     x: true,
-                // }}
-            >
+            <Table {...tableProps} rowKey="id">
                 <Table.Column
                     key="firstName"
                     dataIndex="firstName"
@@ -44,16 +33,11 @@ export const UserList: React.FC<IResourceComponentsProps> = (props) => {
                     title="Email"
                     render={(value) => <EmailField value={value} />}
                 />
-                <Table.Column
+                <Table.Column<IUser>
                     title="Actions"
                     dataIndex="actions"
                     key="actions"
-                    render={(
-                        _text: string | number,
-                        record: {
-                            id: string;
-                        },
-                    ): React.ReactNode => (
+                    render={(_value, record) => (
                         <Space>
                             <EditButton size="small" recordItemId={record.id} />
                             <DeleteButton
