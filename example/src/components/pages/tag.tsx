@@ -18,7 +18,7 @@ import {
     IResourceComponentsProps,
 } from "@pankod/refine";
 
-export const TagList: React.FC<IResourceComponentsProps>  = (props) => {
+export const TagList: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [loading, setLoading] = useState(false);

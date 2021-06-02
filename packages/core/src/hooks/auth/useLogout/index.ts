@@ -5,7 +5,7 @@ import { IAuthContext } from "../../../interfaces";
 import { useNavigation } from "@hooks/navigation";
 
 type LogoutType = (redirectPath?: string) => Promise<void>;
-type UseLogoutType = () => LogoutType | null;
+type UseLogoutType = () => LogoutType | null;
 
 export const useLogout: UseLogoutType = () => {
     const { push } = useNavigation();
