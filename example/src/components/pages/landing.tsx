@@ -18,7 +18,7 @@ import {
     useModalForm,
     Modal,
     CloneButton,
-    IResourceComponentsProps
+    IResourceComponentsProps,
 } from "@pankod/refine";
 
 export const LandingList: React.FC<IResourceComponentsProps> = (props) => {
@@ -149,7 +149,9 @@ export const LandingList: React.FC<IResourceComponentsProps> = (props) => {
     );
 };
 
-export const LandingCreate: React.FC<IResourceComponentsProps> = (props: any) => {
+export const LandingCreate: React.FC<IResourceComponentsProps> = (
+    props: any,
+) => {
     const translate = useTranslate();
 
     const { formProps, saveButtonProps } = useForm({

@@ -207,6 +207,23 @@ const PostReview = () => {
 };
 ```
 
+```ts title="interfaces/index.d.ts"
+export interface ICategory {
+    id: string;
+    title: string;
+}
+
+export interface IPost {
+    id: string;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: ICategory;
+}
+```
+
+<br/>
+
 We set the filtering process with `filters` then page size set with `pagination` to return only one post.
 
 Post's category is relational. So we will use the post's category "id" to get the category title. Let's use `useOne` to fetch the category we want.

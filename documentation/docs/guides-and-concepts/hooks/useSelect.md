@@ -35,7 +35,7 @@ Let's examine what `useSelect` does, with step-by-step examples. Suppose our `da
 ```tsx title="src/pages/posts/create.tsx"
 import { Form, Select, useSelect } from "@pankod/refine";
 
-export const PostCreate = (props) => {
+export const PostCreate = () => {
     //highlight-start
     const { selectProps } = useSelect({
         resource: "categories",
@@ -161,7 +161,7 @@ import { Form, useSelect } from "@pankod/refine";
 //highlight-next-line
 import { ICategory } from "interfaces";
 
-export const PostCreate = (props) => {
+export const PostCreate = () => {
     //highlight-next-line
     const { queryResult, defaultValueQueryResult } = useSelect<ICategory>({
         resource: "categories",
@@ -169,6 +169,15 @@ export const PostCreate = (props) => {
     });
 };
 ```
+
+```ts title="interfaces/index.d.ts"
+export interface ICategory {
+    id: string;
+    title: string;
+}
+```
+
+<br/>
 
 Now, we expect the `queryResult` and `defaultValueQueryResult` result to return according to `ICategory` type.
 
