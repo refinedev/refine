@@ -495,7 +495,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     );
 };
 
-export const PostEdit: React.FC<IResourceComponentsProps>  = (props) => {
+export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     const { Step } = Steps;
 
     const apiUrl = useApiUrl();
@@ -726,7 +726,7 @@ export const PostEdit: React.FC<IResourceComponentsProps>  = (props) => {
     );
 };
 
-export const PostShow: React.FC<IResourceComponentsProps>  = (props) => {
+export const PostShow: React.FC<IResourceComponentsProps> = (props) => {
     const { queryResult } = useShow();
     const { data, isLoading } = queryResult;
     const record = data?.data;

@@ -73,7 +73,7 @@ export const TagsList: React.FC<IResourceComponentsProps> = (props) => {
     );
 };
 
-export const TagsCreate: React.FC<IResourceComponentsProps>  = (props) => {
+export const TagsCreate: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
 
     const { formProps, saveButtonProps } = useForm<ITags>();
@@ -97,7 +97,7 @@ export const TagsCreate: React.FC<IResourceComponentsProps>  = (props) => {
     );
 };
 
-export const TagsEdit: React.FC<IResourceComponentsProps>  = (props) => {
+export const TagsEdit: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
 
     const { formProps, saveButtonProps } = useForm();

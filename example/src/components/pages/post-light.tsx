@@ -18,7 +18,7 @@ import {
     ExportButton,
     CreateButton,
     CloneButton,
-    IResourceComponentsProps
+    IResourceComponentsProps,
 } from "@pankod/refine";
 
 export const PostLightList: React.FC<IResourceComponentsProps> = (props) => {
@@ -70,7 +70,7 @@ export const PostLightList: React.FC<IResourceComponentsProps> = (props) => {
             <List
                 {...props}
                 pageHeaderProps={{
-                    extra: actions
+                    extra: actions,
                 }}
             >
                 <Table
@@ -199,7 +199,9 @@ export const PostLightList: React.FC<IResourceComponentsProps> = (props) => {
     );
 };
 
-export const PostLightCreate: React.FC<IResourceComponentsProps> = (props: any) => {
+export const PostLightCreate: React.FC<IResourceComponentsProps> = (
+    props: any,
+) => {
     const translate = useTranslate();
 
     const { formProps, saveButtonProps } = useForm();

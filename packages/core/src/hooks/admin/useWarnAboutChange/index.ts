@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { AdminContext} from "@contexts/admin";
+import { AdminContext } from "@contexts/admin";
 import { IAdminContext } from "src/interfaces";
 
 type UseWarnAboutChangeType = () => {
