@@ -15,7 +15,7 @@ All we have to do is to pass the props it returns to our `<Steps>` and `<Form>` 
 
 ## Example
 
-We'll do two examples, one for creating a post and one for editing a post. We will use `useStepsForm` in both. Let's see how `useStepsForm` is used in both.
+We'll do two examples, one for creating a post and one for editing a post. Let's see how `useStepsForm` is used in both.
 
 ### Create
 
