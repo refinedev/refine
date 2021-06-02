@@ -596,7 +596,7 @@ In edit page, `useForm` hook initializes the form with current record values.
 
 We are getting form values from inputs by passing them as child to `<Form.Item>`. Edited input values are automatically set to form data.
 
-Save button submits the form and issues a `PUT` request to the REST API when clicked. After request responses successfully, app will be navigated to listing page on `resources/posts` with updated data.
+Save button submits the form and when clicked it executes the `useUpdate` method provided by the `dataProvider`. After request responses successfully, app will be navigated to listing page on `resources/posts` with updated data.
 
 [Refer to **How editing works?** section for in depth explanation. &#8594](#)
 
@@ -700,7 +700,7 @@ This part is very similar to [Editing the form](#editing-the-form). Only differe
 
 -   We wrap `<Form>` with [`<Create>`](#) component from refine.
 
--   Save button submits the form and issues a `POST` request to the REST API.
+-   Save button submits the form and executes the `useCreate` method provided by the `dataProvider`.
 
 -   Since there can't be a pre-selected value in a create form, we don't pass a `defaultValue` parameter to `useSelect`.
 
