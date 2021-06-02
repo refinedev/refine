@@ -6,10 +6,10 @@ import {
     UrlField,
     useTranslate,
     useTable,
-    IResourceComponentsProps
+    IResourceComponentsProps,
 } from "@pankod/refine";
 
-export const FilesList: React.FC<IResourceComponentsProps>  = (props) => {
+export const FilesList: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
     const { tableProps } = useTable({
         initialPageSize: 20,

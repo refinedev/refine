@@ -10,25 +10,26 @@ Formlarınızdan dosya ve resimleri base64'e encode ederek upload için, [Ant De
 
 Bunu nasıl yapabileceğimizi görmek için basit bir örnek yapalım. Base64 tipinde dosya yüklemesi yapacağımız alanın adı `avatar` olsun.
 
-```tsx title="src/pages/users/create.tsx"
+```tsx title="pages/users/create.tsx"
 import {
     Create,
     Form,
-    IResourceComponentsProps,
     Upload,
+    Input,
     useForm,
     getValueFromEvent,
     file2Base64,
 } from "@pankod/refine";
 
-export const UserCreate: React.FC<IResourceComponentsProps> = (props) => {
-    const { form, formProps, saveButtonProps } = useForm();
+import { IUser } from "../../interfaces";
+
+export const UserCreate: React.FC = (props) => {
+    const { form, formProps, saveButtonProps } = useForm<IUser>();
 
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
+        <Create saveButtonProps={saveButtonProps}>
             <Form
                 {...formProps}
-                wrapperCol={{ span: 24 }}
                 layout="vertical"
                 //highlight-start
                 onFinish={async (values) => {
@@ -58,8 +59,18 @@ export const UserCreate: React.FC<IResourceComponentsProps> = (props) => {
                 }}
                 //highlight-end
             >
-            ...
-                <Form.Item label="avatar">
+                <Form.Item
+                    label="First Name"
+                    name="firstName"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Avatar">
                     <Form.Item
                         name="avatar"
                         valuePropName="fileList"
@@ -72,7 +83,9 @@ export const UserCreate: React.FC<IResourceComponentsProps> = (props) => {
                         ]}
                     >
                         <Upload.Dragger listType="picture" multiple>
-                            <p className="ant-upload-text">Drag & drop a file in this area</p>
+                            <p className="ant-upload-text">
+                                Drag & drop a file in this area
+                            </p>
                         </Upload.Dragger>
                     </Form.Item>
                 </Form.Item>
@@ -80,6 +93,21 @@ export const UserCreate: React.FC<IResourceComponentsProps> = (props) => {
         </Create>
     );
 };
+```
+
+```ts title="interfaces/index.d.ts"
+export interface IUser {
+    id: string;
+    firstName: string;
+    avatar: [
+        {
+            uid: string;
+            name: string;
+            url: string;
+            status: "error" | "success" | "done" | "uploading" | "removed";
+        },
+    ];
+}
 ```
 
 `file2Base64` fonksiyonunu kullanarak dosyaları base64'e çevirebilirsiniz.

@@ -6,10 +6,10 @@ import {
     NumberField,
     useTranslate,
     useTable,
-    IResourceComponentsProps
+    IResourceComponentsProps,
 } from "@pankod/refine";
 
-export const ImagesList: React.FC<IResourceComponentsProps>  = (props) => {
+export const ImagesList: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
     const { tableProps } = useTable({
         initialPageSize: 20,

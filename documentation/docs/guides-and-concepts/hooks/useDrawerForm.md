@@ -66,6 +66,16 @@ export const PostList: React.FC (props) => {
 
 ```
 
+```ts title="interfaces/index.d.ts"
+export interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+```
+
+<br/>
+
 `createButtonProps` allows creating and managing a button above the table.
 
 ```tsx

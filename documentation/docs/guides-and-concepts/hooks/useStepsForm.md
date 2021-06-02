@@ -48,8 +48,6 @@ export interface ICategory {
 export interface IPost {
     id: string;
     title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
     category: ICategory;
 }
 ```
@@ -179,7 +177,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
         >
             <Steps {...stepsProps}>
                 <Step title="About Post" />
-                <Step title="Content" />
+                <Step title="Category" />
             </Steps>
 
             <div style={{ marginTop: 30 }}>

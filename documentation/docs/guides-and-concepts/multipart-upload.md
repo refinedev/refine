@@ -13,18 +13,20 @@ Let's start with the `creation form` first.
 
 ### Create Form
 
-Let's add the cover field to the post creation form.
+Let's add the image field to the post creation form.
 
-```tsx
-import { normalizeFile } from "@pankod/refine";
+```tsx title="pages/posts/create.tsx"
+import { Create, Form, Input, getValueFromEvent, Upload } from "@pankod/refine";
 
-export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
+import { IPost } from "interfaces";
+
+export const PostCreate: React.FC = (props) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     const apiUrl = useApiUrl();
 
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
+        <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
@@ -38,11 +40,11 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
                     <Input />
                 </Form.Item>
                 // highlight-start
-                <Form.Item label="Cover">
+                <Form.Item label="Image">
                     <Form.Item
-                        name="cover"
+                        name="image"
                         valuePropName="fileList"
-                        getValueFromEvent={normalizeFile}
+                        getValueFromEvent={getValueFromEvent}
                         noStyle
                     >
                         <Upload.Dragger
@@ -65,6 +67,23 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
 };
 ```
 
+```ts title="interfaces/index.d.ts"
+export interface IPost {
+    id: string;
+    title: string;
+    image: [
+        {
+            uid: string;
+            name: string;
+            url: string;
+            status: "error" | "success" | "done" | "uploading" | "removed";
+        },
+    ];
+}
+```
+
+<br />
+
 :::tip
 We can reach the api url by using the `useApiUrl` hook.
 :::
@@ -83,7 +102,7 @@ We need now is an upload end-point that accepts multipart uploads. We write this
 
 ```json title="[POST] /media/upload"
 {
-    "file": binary
+    "file": "binary"
 }
 ```
 
@@ -99,16 +118,13 @@ This end-point should respond similarly.
 }
 ```
 
-<>
-
 <div style={{textAlign: "center"}}>
-<img src={uploadedFile} />
+    <img src={uploadedFile} />
 </div>
 <br/>
-</>
 
 :::important
-We have to use the `normalizeFile` method to convert the uploaded files to [Antd UploadFile](https://ant.design/components/upload/#UploadFile) object.
+We have to use the `getValueFromEvent` method to convert the uploaded files to [Antd UploadFile](https://ant.design/components/upload/#UploadFile) object.
 :::
 
 This data is sent to the API when form submitted.
@@ -116,7 +132,7 @@ This data is sent to the API when form submitted.
 ```json title="[POST] https://refine-fake-rest.pankod.com/posts"
 {
     "title": "Test",
-    "cover": [
+    "image": [
         {
             "uid": "rc-upload-1620630541327-7",
             "name": "greg-bulla-6RD0mcpY8f8-unsplash.jpg",
@@ -143,18 +159,20 @@ The following data are required for the [Antd Upload](https://ant.design/compone
 
 ### Edit Form
 
-Let's add the cover field to the post editing form.
+Let's add the image field to the post editing form.
 
-```tsx
-import { normalizeFile } from "@pankod/refine";
+```tsx title="pages/posts/edit.tsx"
+import { Edit, Form, Input, Upload, getValueFromEvent } from "@pankod/refine";
 
-export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
+import { IPost } from "interfaces";
+
+export const PostEdit: React.FC = (props) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     const apiUrl = useApiUrl();
 
     return (
-        <Edit {...props} saveButtonProps={saveButtonProps}>
+        <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
@@ -168,11 +186,11 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
                     <Input />
                 </Form.Item>
                 // highlight-start
-                <Form.Item label="Cover">
+                <Form.Item label="Image">
                     <Form.Item
-                        name="cover"
+                        name="image"
                         valuePropName="fileList"
-                        getValueFromEvent={normalizeFile}
+                        getValueFromEvent={getValueFromEvent}
                         noStyle
                     >
                         <Upload.Dragger
@@ -195,13 +213,10 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
 };
 ```
 
-<>
-
 <div style={{textAlign: "center"}}>
 <img src={edit} />
 </div>
 <br/>
-</>
 
 A request as below is sent for edit form.
 
@@ -209,7 +224,7 @@ A request as below is sent for edit form.
 {
     "id": 1,
     "title": "Test",
-    "cover": [
+    "image": [
         {
             "uid": "rc-upload-1620630541327-7",
             "name": "greg-bulla-6RD0mcpY8f8-unsplash.jpg",
@@ -228,7 +243,7 @@ This data is sent to the API when form submitted.
 ```json title="[PUT] https://refine-fake-rest.pankod.com/posts/1"
 {
     "title": "Test",
-    "cover": [
+    "image": [
         {
             "uid": "rc-upload-1620630541327-7",
             "name": "greg-bulla-6RD0mcpY8f8-unsplash.jpg",
@@ -246,10 +261,19 @@ This data is sent to the API when form submitted.
 
 You may want to disable the "Save" button in the form while the upload continues. You can use the `useFileUploadState` hook for this.
 
-```tsx
-import { normalizeFile, useFileUploadState } from "@pankod/refine";
+```tsx title="pages/posts/create.tsx"
+import {
+    Create,
+    Form,
+    Input,
+    Upload,
+    getValueFromEvent,
+    useFileUploadState,
+} from "@pankod/refine";
 
-export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
+import { IPost } from "interfaces";
+
+export const PostCreate: React.FC = (props) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     // highlight-start
@@ -261,7 +285,6 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     return (
         // highlight-start
         <Create
-            {...props}
             saveButtonProps={{
                 ...saveButtonProps,
                 disabled: isLoading,
@@ -280,11 +303,11 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
                 >
                     <Input />
                 </Form.Item>
-                <Form.Item label="Cover">
+                <Form.Item label="Image">
                     <Form.Item
-                        name="cover"
+                        name="image"
                         valuePropName="fileList"
-                        getValueFromEvent={normalizeFile}
+                        getValueFromEvent={getValueFromEvent}
                         noStyle
                     >
                         <Upload.Dragger
