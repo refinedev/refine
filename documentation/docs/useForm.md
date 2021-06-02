@@ -11,31 +11,31 @@ title: useForm
 We'll show the basic usage of `useForm` by adding an editing form.
 
 ```tsx title="pages/posts/edit.tsx"
-  //highlight-next-line
-import { Edit, Form, Input, IResourceComponentsProps, useForm, Select } from "@pankod/refine";
+//highlight-next-line
+import {
+    Edit,
+    Form,
+    Input,
+    IResourceComponentsProps,
+    useForm,
+    Select,
+} from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
-
-     //highlight-next-line
+    //highlight-next-line
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     return (
-          //highlight-next-line
+        //highlight-next-line
         <Edit {...props} saveButtonProps={saveButtonProps}>
-          //highlight-next-line
+            //highlight-next-line
             <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                >
+                <Form.Item label="Title" name="title">
                     <Input />
                 </Form.Item>
-                <Form.Item
-                    label="Status"
-                    name="status"
-                >
+                <Form.Item label="Status" name="status">
                     <Select
                         options={[
                             {
@@ -73,7 +73,6 @@ Submit functionality is provided by `saveButtonProps` which includes all necessa
 
 `useForm` accepts type parameters for the record in use and for the response type of the mutation. `IPost` in the example represents the record to edit. It is also used as default type for mutation response.
 
-
 ## Actions
 
 `useForm` can handle edit, create and clone actions.
@@ -93,14 +92,15 @@ const { formProps, saveButtonProps } = useForm({ action: "edit" });
 Used for editing an existing record. Form initially will be filled with the data of the record.
 
 `useForm` uses [`useUpdate`](#) under the hood for mutations on edit mode.
+
 ### `action: "create"`
 
 Used for creating a new record that didn't exist before.
 
 `useForm` uses [`useCreate`](#) under the hood for mutations on create mode.
 
-
 ### Clone mode
+
 When creating a new record, `useForm` can initialize the form with the data of an existing record.
 
 `useForm` works on clone mode when route has a `create` and `id` params like `resources/create/1234`.
@@ -109,6 +109,7 @@ Alternatively, if route doesn't have those params, action can be set with `actio
 ```tsx
 const { setCloneId } = useForm();
 ```
+
 :::tip
 If you want to show a form in a modal or drawer where necessary route params might not be there you can use [useModalForm](useModalForm) or [useDrawerForm](useDrawerForm) hook.
 :::
@@ -119,6 +120,7 @@ If you want to show a form in a modal or drawer where necessary route params mig
 ```tsx
 <CloneButton recordItemId={record.id} />
 ```
+
 Also `clone` method from [useNavigation](#) hook can be used too.
 
 ```tsx
@@ -126,39 +128,40 @@ const { clone } = useNavigation()
 
 <Button onClick={() => clone("posts", "push", record.id)} />
 ```
+
 :::
 
 ## API Reference
 
 ### Properties
 
-| Property               | Description                                                                                        | Type                                                              | Default          |
-| ---------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ---------------- |
-| action                 | Type of form mode                                                                                  | `"edit"` \| `"create"`                                            |                  |
-| resource               | [`Resource`](#) for API data interactions                                                          | `string`                                                          |                  |
-| onMutationSuccess      | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful       | `(data: UpdateResponse<M>, variables: any, context: any) => void` |                  |
-| onMutationError        | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error | `(error: any, variables: any, context: any) => void`              |                  |
-| mutationMode           | [Determines when mutations are executed](#)                                                        | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`* |
-| submitOnEnter          | Listen `Enter` key press to submit form                                                            | `boolean`                                                         | `false`          |
-| warnWhenUnsavedChanges | Shows notification when unsaved changes exist                                                      | `boolean`                                                         | `false`*         |
-| redirect               | Page to redirect after succesfull mutation                                                         | ` "show` \| `"edit` \| `"list"` \| `false`                        | `"list"`         |
-| undoableTimeout        | Duration to wait before executing mutations when `mutationMode = "undoable"`                       | `number`                                                          | `5000`*          |
+| Property               | Description                                                                                        | Type                                                              | Default           |
+| ---------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------- |
+| action                 | Type of form mode                                                                                  | `"edit"` \| `"create"`                                            |                   |
+| resource               | [`Resource`](#) for API data interactions                                                          | `string`                                                          |                   |
+| onMutationSuccess      | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful       | `(data: UpdateResponse<M>, variables: any, context: any) => void` |                   |
+| onMutationError        | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error | `(error: any, variables: any, context: any) => void`              |                   |
+| mutationMode           | [Determines when mutations are executed](#)                                                        | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`\* |
+| submitOnEnter          | Listen `Enter` key press to submit form                                                            | `boolean`                                                         | `false`           |
+| warnWhenUnsavedChanges | Shows notification when unsaved changes exist                                                      | `boolean`                                                         | `false`\*         |
+| redirect               | Page to redirect after succesfull mutation                                                         | ` "show` \| `"edit` \| `"list"` \| `false`                        | `"list"`          |
+| undoableTimeout        | Duration to wait before executing mutations when `mutationMode = "undoable"`                       | `number`                                                          | `5000`\*          |
 
->`*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component. `useForm` will use what is passed to `<Admin>` as default and can override locally.
+> `*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component. `useForm` will use what is passed to `<Admin>` as default and can override locally.
 
 <br/>
 
 ### Return values
 
 | Property        | Description                                             | Type                                                                             |
-| --------------- | ------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| form            | Ant design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)               |
-| formProps       | Ant design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                          |
+| --------------- | ------------------------------------------------------- | -------------------------------------------------------------------------------- | --- |
+| form            | Ant Design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)               |
+| formProps       | Ant Design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                          |
 | saveButtonProps | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                  |
 | queryResult     | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)  |
 | mutationResult  | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation) |
 | formLoading     | Loading state of form request                           | `boolean`                                                                        |
 | cloneId         | Record id for clone action                              | `"string"` \| `"number"`                                                         |
 | setCloneId      | `cloneId` setter                                        | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                 |
-| editId          | Record id for edit action                               | `"string"` \| `"number"`                                                         |  |
+| editId          | Record id for edit action                               | `"string"` \| `"number"`                                                         |     |
 | setEditId       | `editId` setter                                         | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                 |
