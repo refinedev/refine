@@ -305,7 +305,7 @@ const App = () => {
 ```
 
 :::important
-Data that `getPermissions` resolves with is accesible by `usePermissions` hook.
+Data that `getPermissions` resolves with is accesible by [`usePermissions`](#) hook.
 :::
 
 <br/>
@@ -313,7 +313,7 @@ Data that `getPermissions` resolves with is accesible by `usePermissions` hook.
 For example if only admins must be able to create new posts from list page.
 `<List>` can show a button for creating new posts. If it's required that only admins can create new posts, this button must be only accessible to users who has `"admin"` role.
 
-```tsx
+```tsx title="pages/post/list"
 import { List, usePermissions } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
@@ -327,4 +327,65 @@ export const PostList: React.FC = () => {
 `usePermissions` returns the result of `react-query`'s `useQuery`. It includes properties like `isLoading` and `isFetching` with many others.  
 [Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/reference/useQuery)
 :::
-:::
+
+<br />
+
+## User Data
+
+User data can be accesible in the app by returning a resolved Promise in `getUserIdentity` method.
+
+```tsx title="App.tsx"
+const App = () => {
+    const authProvider: AuthProvider = {
+        ...
+          // highlight-start
+        getUserIdentity: () => {
+            const auth = localStorage.getItem("auth");
+            if (auth) {
+                const parsedUser = JSON.parse(auth);
+                return Promise.resolve(parsedUser.username);
+            }
+            return Promise.reject();
+        }
+        // highlight-end
+    };
+    ...
+}
+```
+
+<br />
+
+The resolved data can be get using [`useGetIdentity`](#) hook.
+
+```tsx
+import { useGetIdentity } from "@pankod/refine";
+
+const { data: userIdentity } = useGetIdentity();
+// userIdentity: "admin"
+```
+
+<!-- User data will be shown at right top of the app. -->
+
+<!-- Kullanıcı adı ve avatar oluşturulduğu zaman eklenecek.. -->
+
+login: () => Promise.resolve(),
+logout: () => Promise.resolve(),
+checkAuth: () => Promise.resolve(),
+checkError: () => Promise.resolve(),
+getPermissions: () => Promise.resolve(),
+getUserIdentity: () => Promise.resolve(),
+
+## API Reference
+
+### Properties
+
+| Property        | Description                               | Type                                                              | Default   |
+| --------------- | ----------------------------------------- | ----------------------------------------------------------------- | --------- |
+| login           | Log user in                               | `"edit"` \| `"create"`                                            |           |
+| logout          | Log user out                              | `string`                                                          |           |
+| checkAuth       | Check credentials on each route changes   | `(data: UpdateResponse<M>, variables: any, context: any) => void` |           |
+| checkError      | Check if a data provider returns an error | `(error: any, variables: any, context: any) => void`              |           |
+| getPermissions  | Can be use to get user credentials        | `boolean`                                                         | `false`   |
+| getUserIdentity | Can be use to get user identity           | `boolean`                                                         | `false`\* |
+
+> `*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component. `useForm` will use what is passed to `<Admin>` as default and can override locally.

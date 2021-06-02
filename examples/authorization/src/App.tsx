@@ -51,6 +51,14 @@ const App = () => {
             }
             return Promise.reject();
         },
+        getUserIdentity: () => {
+            const auth = localStorage.getItem("auth");
+            if (auth) {
+                const parsedUser = JSON.parse(auth);
+                return Promise.resolve(parsedUser.username);
+            }
+            return Promise.reject();
+        },
     };
 
     return (
