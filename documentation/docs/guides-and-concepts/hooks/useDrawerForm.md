@@ -16,7 +16,7 @@ For example, let's look at an example of creating a record with `useDrawerForm`.
 import { useDrawerForm, Drawer, Form, Create, Radio } from "@pankod/refine";
 import { IPost } from "interfaces";
 
-export const PostList: React.FC (props) => {
+export const PostList: React.FC () => {
 
     //highlight-start
     const {
@@ -44,7 +44,7 @@ export const PostList: React.FC (props) => {
             </List>
             //highlight-start
             <Drawer {...drawerProps}>
-                <Create {...props} saveButtonProps={saveButtonProps}>
+                <Create saveButtonProps={saveButtonProps}>
                     <Form {...formProps} layout="vertical">
                         <Form.Item label="Title" name="title">
                             <Input />
@@ -102,7 +102,7 @@ Let's learn how to add editing capability to records that will be opening form i
 import { useDrawerForm, Drawer, Form, Create, Radio } from "@pankod/refine";
 import { IPost } from "../../interfaces";
 
-export const PostList (props) => {
+export const PostList () => {
     const {
         drawerProps,
         formProps,
@@ -141,7 +141,6 @@ export const PostList (props) => {
             <Drawer {...drawerProps}>
              //highlight-next-line
                 <Edit
-                    {...props}
                     saveButtonProps={saveButtonProps}
                     //highlight-start
                     deleteButtonProps={deleteButtonProps}
@@ -198,4 +197,3 @@ The `saveButtonProps` and `deleteButtonProps` can provides functionality to save
 <br />
 
 [Refer to codesandbox example for detailed usage. &#8594](https://www.google.com.tr)
-

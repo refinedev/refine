@@ -11,24 +11,17 @@ We'll show the basic usage of `useForm` by adding an editing form.
 
 ```tsx title="pages/posts/edit.tsx"
 //highlight-next-line
-import {
-    Edit,
-    Form,
-    Input,
-    IResourceComponentsProps,
-    useForm,
-    Select,
-} from "@pankod/refine";
+import { Edit, Form, Input, useForm, Select } from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
-export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
+export const PostEdit: React.FC = () => {
     //highlight-next-line
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     return (
         //highlight-next-line
-        <Edit {...props} saveButtonProps={saveButtonProps}>
+        <Edit saveButtonProps={saveButtonProps}>
             //highlight-next-line
             <Form {...formProps} layout="vertical">
                 <Form.Item label="Title" name="title">
@@ -99,6 +92,7 @@ const { formProps, saveButtonProps } = useForm({ action: "edit" });
 Used for editing an existing record. Form initially will be filled with the data of the record.
 
 `useForm` uses [`useUpdate`](data/useUpdate.md) under the hood for mutations on edit mode.
+
 ### `action: "create"`
 
 Used for creating a new record that didn't exist before.
