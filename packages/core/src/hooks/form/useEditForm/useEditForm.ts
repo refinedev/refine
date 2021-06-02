@@ -112,7 +112,7 @@ export const useEditForm = <
     const { id: idFromRoute, action } = useParams<ResourceRouterParams>();
     const isEdit = !!editId || action === "edit";
 
-    const id = editId?.toString() ?? idFromRoute;
+    const id = editId ?? idFromRoute;
 
     const queryResult = useOne<TData>(resource.name, id, {
         enabled: isEdit,

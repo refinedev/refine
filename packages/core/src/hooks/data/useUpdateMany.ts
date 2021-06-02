@@ -111,10 +111,7 @@ export const useUpdateMany = <
             onMutate: async (variables) => {
                 const previousQueries: ContextQuery[] = [];
 
-                const allQueries = getAllQueries(
-                    resource,
-                    variables.ids.map(toString),
-                );
+                const allQueries = getAllQueries(resource, variables.ids);
 
                 for (const queryItem of allQueries) {
                     const { queryKey } = queryItem;
@@ -141,7 +138,7 @@ export const useUpdateMany = <
                                     data: data.map((record: TData) => {
                                         if (
                                             variables.ids
-                                                .map((i) => i.toString())
+                                                .map((i) => i)
                                                 .includes(record.id!)
                                         ) {
                                             return {
@@ -198,10 +195,7 @@ export const useUpdateMany = <
                 }
             },
             onSettled: (_data, _error, variables) => {
-                const allQueries = getAllQueries(
-                    resource,
-                    variables.ids.map(toString),
-                );
+                const allQueries = getAllQueries(resource, variables.ids);
                 for (const query of allQueries) {
                     queryClient.invalidateQueries(query.queryKey);
                 }

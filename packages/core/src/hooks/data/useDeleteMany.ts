@@ -92,7 +92,7 @@ export const useDeleteMany = <
                         notificationDispatch({
                             type: ActionTypes.ADD,
                             payload: {
-                                id: ids.toString(),
+                                id: ids,
                                 resource: resource,
                                 cancelMutation: cancelMutation,
                                 seconds: undoableTimeout,
@@ -107,10 +107,7 @@ export const useDeleteMany = <
             onMutate: async (deleteParams) => {
                 const previousQueries: ContextQuery[] = [];
 
-                const allQueries = cacheQueries(
-                    resource,
-                    deleteParams.ids.map(toString),
-                );
+                const allQueries = cacheQueries(resource, deleteParams.ids);
 
                 for (const queryItem of allQueries) {
                     const { queryKey } = queryItem;
@@ -158,10 +155,7 @@ export const useDeleteMany = <
             },
             // Always refetch after error or success:
             onSettled: (_data, _error, variables) => {
-                const allQueries = cacheQueries(
-                    resource,
-                    variables.ids.map(toString),
-                );
+                const allQueries = cacheQueries(resource, variables.ids);
                 for (const query of allQueries) {
                     if (
                         !query.queryKey.includes(`resource/getOne/${resource}`)
@@ -191,7 +185,7 @@ export const useDeleteMany = <
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
                     payload: {
-                        id: ids.toString(),
+                        id: ids,
                     },
                 });
                 notification.error({
