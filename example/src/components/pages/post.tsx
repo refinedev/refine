@@ -39,7 +39,7 @@ import {
     Typography,
     useSelect,
     useMany,
-    useList,
+    IResourceComponentsProps,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -66,7 +66,7 @@ interface ICategory {
     title: string;
 }
 
-export const PostList = (props: any) => {
+export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
 
     const { tableProps, sorter, filters } = useTable<IPost>({
@@ -266,7 +266,7 @@ export const PostList = (props: any) => {
     );
 };
 
-export const PostCreate = (props: any) => {
+export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { Step } = Steps;
 
     const apiUrl = useApiUrl();
@@ -495,7 +495,7 @@ export const PostCreate = (props: any) => {
     );
 };
 
-export const PostEdit = (props: any) => {
+export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     const { Step } = Steps;
 
     const apiUrl = useApiUrl();
@@ -726,7 +726,7 @@ export const PostEdit = (props: any) => {
     );
 };
 
-export const PostShow = (props: any) => {
+export const PostShow: React.FC<IResourceComponentsProps> = (props) => {
     const { queryResult } = useShow();
     const { data, isLoading } = queryResult;
     const record = data?.data;

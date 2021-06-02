@@ -26,11 +26,12 @@ import {
     RefreshButton,
     BooleanField,
     HttpError,
+    IResourceComponentsProps,
 } from "@pankod/refine";
 
 const { Title, Text } = Typography;
 
-export const UserList = (props: any) => {
+export const UserList: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
     const { tableProps } = useTable({
         initialPageSize: 20,
@@ -52,7 +53,6 @@ export const UserList = (props: any) => {
         drawerProps: createDrawerProps,
         show: createShow,
         saveButtonProps: createSaveButtonProps,
-        queryResult: createQueryResult,
     } = useDrawerForm<
         { id: string; firstName: string },
         HttpError,

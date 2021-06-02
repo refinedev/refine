@@ -18,9 +18,10 @@ import {
     ExportButton,
     CreateButton,
     CloneButton,
+    IResourceComponentsProps,
 } from "@pankod/refine";
 
-export const PostLightList = (props: any) => {
+export const PostLightList: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
     const { tableProps, sorter, filters } = useTable({
         initialPageSize: 20,
@@ -68,8 +69,9 @@ export const PostLightList = (props: any) => {
         <>
             <List
                 {...props}
-                isModalShown={createModalShow}
-                actionButtons={actions}
+                pageHeaderProps={{
+                    extra: actions,
+                }}
             >
                 <Table
                     {...tableProps}
@@ -197,7 +199,9 @@ export const PostLightList = (props: any) => {
     );
 };
 
-export const PostLightCreate = (props: any) => {
+export const PostLightCreate: React.FC<IResourceComponentsProps> = (
+    props: any,
+) => {
     const translate = useTranslate();
 
     const { formProps, saveButtonProps } = useForm();

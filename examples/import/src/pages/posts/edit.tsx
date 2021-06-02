@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Edit, Form, Input, Select, useForm, useSelect } from "@pankod/refine";
+import {
+    Edit,
+    Form,
+    Input,
+    IResourceComponentsProps,
+    Select,
+    useForm,
+    useSelect,
+} from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
@@ -8,7 +16,7 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostEdit: React.FC = () => {
+export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
     const postData = queryResult?.data?.data;
