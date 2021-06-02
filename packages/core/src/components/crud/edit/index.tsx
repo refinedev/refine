@@ -7,10 +7,11 @@ import {
     ButtonProps,
     PageHeader,
     PageHeaderProps,
+    Col,
 } from "antd";
 import pluralize from "pluralize";
 
-import { MutationMode, ResourceRouterParams } from "../../../interfaces";
+import { OptionalComponent } from "@definitions";
 import {
     useResourceWithRoute,
     useMutationMode,
@@ -25,6 +26,7 @@ import {
     SaveButton,
 } from "@components";
 
+import { MutationMode, ResourceRouterParams } from "../../../interfaces";
 export interface EditProps {
     title?: string;
     actionButtons?: React.ReactNode;
@@ -35,6 +37,7 @@ export interface EditProps {
     canDelete?: boolean;
     deleteButtonProps?: DeleteButtonProps;
     resource?: string;
+    aside?: React.FC;
 }
 
 export const Edit: React.FC<EditProps> = ({
@@ -48,6 +51,7 @@ export const Edit: React.FC<EditProps> = ({
     pageHeaderProps,
     canDelete,
     resource: resourceFromProps,
+    aside,
 }) => {
     const translate = useTranslate();
     const { goBack, list } = useNavigation();
@@ -59,6 +63,7 @@ export const Edit: React.FC<EditProps> = ({
 
     const {
         resource: routeResourceName,
+        action: routeFromAction,
         id: idFromRoute,
     } = useParams<ResourceRouterParams>();
 
@@ -67,62 +72,73 @@ export const Edit: React.FC<EditProps> = ({
         canDelete ?? (resource.canDelete || deleteButtonProps);
 
     return (
-        <PageHeader
-            ghost={false}
-            onBack={goBack}
-            title={
-                title ??
-                translate(
-                    `${resource.name}.titles.edit`,
-                    `Edit ${pluralize.singular(resource.name)}`,
-                )
-            }
-            extra={
-                <Row>
-                    <Space>
-                        {!recordItemId && (
-                            <ListButton
-                                data-testid="edit-list-button"
-                                resourceName={resource.name}
-                            />
-                        )}
-                        <RefreshButton
-                            resourceName={resource.name}
-                            recordItemId={recordItemId ?? idFromRoute}
-                        />
-                    </Space>
-                </Row>
-            }
-            {...pageHeaderProps}
-        >
-            <Card
-                actions={[
-                    <Space
-                        key="action-buttons"
-                        style={{ float: "right", marginRight: 24 }}
-                    >
-                        {actionButtons ?? (
-                            <>
-                                {isDeleteButtonVisible && (
-                                    <DeleteButton
-                                        data-testid="edit-delete-button"
-                                        mutationMode={mutationMode}
-                                        onSuccess={() => {
-                                            list(
-                                                resource.route ?? resource.name,
-                                            );
-                                        }}
-                                        {...deleteButtonProps}
+        <Row gutter={[16, 16]}>
+            <Col flex="1 1 200px">
+                <PageHeader
+                    ghost={false}
+                    onBack={routeFromAction ? goBack : undefined}
+                    title={
+                        title ??
+                        translate(
+                            `${resource.name}.titles.edit`,
+                            `Edit ${pluralize.singular(resource.name)}`,
+                        )
+                    }
+                    extra={
+                        <Row>
+                            <Space>
+                                {!recordItemId && (
+                                    <ListButton
+                                        data-testid="edit-list-button"
+                                        resourceName={resource.name}
                                     />
                                 )}
-                                <SaveButton {...saveButtonProps} />
-                            </>
-                        )}
-                    </Space>,
-                ]}
-            >
-                {children}
-            </Card>
-        </PageHeader>
+                                <RefreshButton
+                                    resourceName={resource.name}
+                                    recordItemId={recordItemId ?? idFromRoute}
+                                />
+                            </Space>
+                        </Row>
+                    }
+                    {...pageHeaderProps}
+                >
+                    <Card
+                        actions={[
+                            <Space
+                                key="action-buttons"
+                                style={{ float: "right", marginRight: 24 }}
+                            >
+                                {actionButtons ?? (
+                                    <>
+                                        {isDeleteButtonVisible && (
+                                            <DeleteButton
+                                                data-testid="edit-delete-button"
+                                                mutationMode={mutationMode}
+                                                onSuccess={() => {
+                                                    list(
+                                                        resource.route ??
+                                                            resource.name,
+                                                    );
+                                                }}
+                                                {...deleteButtonProps}
+                                            />
+                                        )}
+                                        <SaveButton {...saveButtonProps} />
+                                    </>
+                                )}
+                            </Space>,
+                        ]}
+                    >
+                        {children}
+                    </Card>
+                </PageHeader>
+            </Col>
+
+            {aside && (
+                <Col flex="0 1 300px">
+                    <OptionalComponent optional={aside} />
+                </Col>
+            )}
+        </Row>
     );
 };
