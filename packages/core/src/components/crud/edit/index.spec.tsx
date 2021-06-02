@@ -182,7 +182,7 @@ describe("Edit", () => {
         expect(queryByTestId("edit-delete-button")).not.toBeNull();
     });
 
-    fit("should render delete button on resource canDelete false & canDelete props true on component", () => {
+    it("should render delete button on resource canDelete false & canDelete props true on component", () => {
         const { getByText } = render(
             <Route path="/resources/:resource/edit/:id">
                 <Edit />
