@@ -1,22 +1,7 @@
 import qs, { IStringifyOptions } from "qs";
 
 import { CrudFilters, CrudOperators, CrudSorting } from "../../interfaces";
-import {
-    SorterResult,
-    SortOrder,
-    TablePaginationConfig,
-} from "antd/lib/table/interface";
-import mergeWith from "lodash/mergeWith";
-
-export const merge = <T>(object: T, source: T): T => {
-    return mergeWith(object, source, (val, src) => {
-        if (Array.isArray(val)) {
-            return val.concat(src);
-        }
-
-        return undefined;
-    });
-};
+import { SortOrder, TablePaginationConfig } from "antd/lib/table/interface";
 
 export const parseTableParams = (url: string) => {
     const { current, pageSize, sort, order, ...filters } = qs.parse(
