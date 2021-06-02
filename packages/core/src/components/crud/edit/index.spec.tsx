@@ -182,26 +182,7 @@ describe("Edit", () => {
         expect(queryByTestId("edit-delete-button")).not.toBeNull();
     });
 
-    it("should render delete button on resource canDelete false & canDelete props true on component", () => {
-        const { getByText } = render(
-            <Route path="/resources/:resource/edit/:id">
-                <Edit />
-            </Route>,
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [
-                        { name: "posts", route: "posts", canDelete: true },
-                    ],
-                    routerInitialEntries: ["/resources/posts/edit/1"],
-                }),
-            },
-        );
-
-        fireEvent.click(getByText("Delete"));
-    });
-
-    fit("should render delete button on resource canDelete false & deleteButtonProps props not null on component", () => {
+    it("should render delete button on resource canDelete false & deleteButtonProps props not null on component", () => {
         const { queryByTestId } = render(
             <Route path="/resources/:resource/edit/:id">
                 <Edit deleteButtonProps={{ size: "large" }} />
