@@ -11,9 +11,8 @@ export const defaultProvider: ITranslationContext = {
     },
 };
 
-export const TranslationContext = React.createContext<ITranslationContext>(
-    defaultProvider,
-);
+export const TranslationContext =
+    React.createContext<ITranslationContext>(defaultProvider);
 
 export const TranslationContextProvider: React.FC<ITranslationContext> = ({
     children,

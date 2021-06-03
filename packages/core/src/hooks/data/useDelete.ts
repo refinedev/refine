@@ -26,7 +26,7 @@ import {
 
 type UseDeleteReturnType<
     TData extends BaseRecord = BaseRecord,
-    TError = HttpError
+    TError = HttpError,
 > = UseMutationResult<
     DeleteOneResponse<TData>,
     TError,
@@ -36,7 +36,7 @@ type UseDeleteReturnType<
 
 export const useDelete = <
     TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError
+    TError extends HttpError = HttpError,
 >(
     resource: string,
     mutationModeProp?: MutationMode,
@@ -116,9 +116,10 @@ export const useDelete = <
                     const { queryKey } = queryItem;
                     await queryClient.cancelQueries(queryKey);
 
-                    const previousQuery = queryClient.getQueryData<
-                        QueryResponse<TData>
-                    >(queryKey);
+                    const previousQuery =
+                        queryClient.getQueryData<QueryResponse<TData>>(
+                            queryKey,
+                        );
 
                     if (!(mutationMode === "pessimistic")) {
                         if (previousQuery) {
@@ -130,10 +131,8 @@ export const useDelete = <
                             if (
                                 queryKey.includes(`resource/list/${resource}`)
                             ) {
-                                const {
-                                    data,
-                                    total,
-                                } = previousQuery as GetListResponse<TData>;
+                                const { data, total } =
+                                    previousQuery as GetListResponse<TData>;
 
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,

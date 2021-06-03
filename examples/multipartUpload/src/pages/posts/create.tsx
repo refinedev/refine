@@ -25,9 +25,8 @@ export const PostCreate: React.FC = () => {
         resource: "categories",
     });
 
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
+    const [selectedTab, setSelectedTab] =
+        useState<"write" | "preview">("write");
 
     const apiUrl = useApiUrl();
 

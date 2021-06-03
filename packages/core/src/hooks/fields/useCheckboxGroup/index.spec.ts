@@ -30,8 +30,7 @@ describe("render hook default options", () => {
 
         expect(options).toEqual([
             {
-                label:
-                    "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
                 value: 1,
             },
             { label: "Recusandae consectetur aut atque est.", value: 2 },

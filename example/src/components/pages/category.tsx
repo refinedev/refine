@@ -173,11 +173,8 @@ export const CategoryList: React.FC<IResourceComponentsProps> = (props) => {
 export const CategoryCreate: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
 
-    const { formProps, saveButtonProps } = useForm<
-        ICategory,
-        HttpError,
-        { title: string }
-    >();
+    const { formProps, saveButtonProps } =
+        useForm<ICategory, HttpError, { title: string }>();
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>
@@ -201,11 +198,8 @@ export const CategoryCreate: React.FC<IResourceComponentsProps> = (props) => {
 export const CategoryEdit: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
 
-    const { formProps, saveButtonProps } = useForm<
-        ICategory,
-        HttpError,
-        { title: string }
-    >();
+    const { formProps, saveButtonProps } =
+        useForm<ICategory, HttpError, { title: string }>();
 
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>

@@ -18,10 +18,8 @@ export const EditButton: FC<EditButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const {
-        resource: routeResourceName,
-        id: idFromRoute,
-    } = useParams<ResourceRouterParams>();
+    const { resource: routeResourceName, id: idFromRoute } =
+        useParams<ResourceRouterParams>();
 
     const resourceName = propResourceName ?? routeResourceName;
 

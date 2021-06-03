@@ -13,14 +13,8 @@ export const LayoutWrapper: FC<LayoutWrapperProps> = ({
     children,
     dashboard,
 }) => {
-    const {
-        Layout,
-        Footer,
-        Header,
-        Sider,
-        Title,
-        OffLayoutArea,
-    } = useContext<IAdminContext>(AdminContext);
+    const { Layout, Footer, Header, Sider, Title, OffLayoutArea } =
+        useContext<IAdminContext>(AdminContext);
 
     const translate = useTranslate();
 

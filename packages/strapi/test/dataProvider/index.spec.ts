@@ -138,10 +138,10 @@ describe("dataProvider", () => {
     // getMany
     describe("getMany", () => {
         it("correct response", async () => {
-            const { data } = await DataProvider(
-                API_URL,
-                axiosInstance,
-            ).getMany("posts", ["49"]);
+            const { data } = await DataProvider(API_URL, axiosInstance).getMany(
+                "posts",
+                ["49"],
+            );
 
             expect(data[0]["id"]).toBe(49);
             expect(data[0]["title"]).toBe("0001");

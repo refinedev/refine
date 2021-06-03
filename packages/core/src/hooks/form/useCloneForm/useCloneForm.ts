@@ -16,7 +16,7 @@ import { UseCreateReturnType } from "../../data/useCreate";
 export type useCloneFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = useCreateFormProps<TData, TError, TVariables> & {
     cloneId?: string | number;
 };
@@ -30,7 +30,7 @@ type SaveButtonProps = {
 export type useCloneForm<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = {
     form: FormInstance<TVariables>;
     formProps: FormProps<TVariables>;
@@ -47,7 +47,7 @@ export type useCloneForm<
 export const useCloneForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 >(
     props: useCloneFormProps<TData, TError, TVariables>,
 ): useCloneForm<TData, TError, TVariables> => {

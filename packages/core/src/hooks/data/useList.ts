@@ -20,7 +20,7 @@ interface UseListConfig {
 
 export const useList = <
     TData = BaseRecord,
-    TError extends HttpError = HttpError
+    TError extends HttpError = HttpError,
 >(
     resource: string,
     config?: UseListConfig,
