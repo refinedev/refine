@@ -7,9 +7,9 @@ import basicUsage from '@site/static/img/guides-and-concepts/hooks/useCheckboxGr
 
 `useCheckboxGroup` hook allows you to manage an Ant Design [Checkbox.Group](https://ant.design/components/checkbox/#components-checkbox-demo-group) component when records in a resource needs to be used as checkbox options.
 
-## Example
+## Usage
 
-Let's examine what `useCheckboxGroup` does, with step-by-step examples. Suppose our `dataProvider` has an endpoint that returns tags as follows.
+We'll demonstrate how to get data at `/tags` endpoint from `https://refine-fake-rest.pankod.com` REST API.
 
 ```ts title="https://refine-fake-rest.pankod.com/tags"
 {
@@ -26,17 +26,18 @@ Let's examine what `useCheckboxGroup` does, with step-by-step examples. Suppose 
             id: 3,
             title: "Plum",
         },
-        // ...
     ];
 }
 ```
 
-```tsx title="src/pages/posts/create.tsx"
+```tsx title="pages/posts/create.tsx"
 import { Form, Checkbox, useCheckboxGroup } from "@pankod/refine";
+
+import { ITag } from "interfaces";
 
 export const PostCreate: React.FC = () => {
     //highlight-start
-    const { checkboxGroupProps } = useCheckboxGroup({
+    const { checkboxGroupProps } = useCheckboxGroup<ITag>({
         resource: "tags",
     });
     //highlight-end
@@ -52,6 +53,13 @@ export const PostCreate: React.FC = () => {
         <Form>
     );
 };
+```
+
+```ts title="interfaces/index.d.ts"
+export interface ITag {
+    id: string;
+    title: string;
+}
 ```
 
 <br/>
@@ -97,12 +105,19 @@ Allows you to change the values and appearance of your options. Default values a
 ```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
-    //highlight-next-line
-    filters: { isActive: true },
+    //highlight-start
+    filters: [
+        {
+            field: "title",
+            operator: "eq",
+            value: "Driver Deposit",
+        },
+    ],
+    //highlight-end
 });
 ```
 
-It allows us to add some filters while fetching the data. For example, if you want to list only active records.
+It allows us to add some filters while fetching the data. For example, if you want to get records only with their `title` equal to `"Driver Deposit"`.
 
 ### `sort`
 
@@ -122,47 +137,21 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 It allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
 
-## Add Type
-
-```tsx title="src/pages/posts/create.tsx"
-import { Form, useCheckboxGroup } from "@pankod/refine";
-//highlight-next-line
-import { ITag } from "interfaces";
-
-export const PostCreate = () => {
-    //highlight-next-line
-    const { queryResult } = useCheckboxGroup<ITag>({
-        resource: "tags",
-    });
-};
-```
-
-```ts title="interfaces/index.d.ts"
-export interface ITag {
-    id: string;
-    title: string;
-}
-```
-
-<br/>
-
-Now, we expect the `queryResult` result to return according to `ITag` type.
-
 ## API Reference
 
 ### Properties
 
-| Property                                          | Description                               | Type     | Default   |
-| ------------------------------------------------- | ----------------------------------------- | -------- | --------- |
-| resource <div className="required">Required</div> | [`Resource`](#) for API data interactions | `string` |           |
-| optionValue                                       | Set the option's value                    | `string` | `"id"`    |
-| optionLabel                                       | Set the option's label value              | `string` | `"title"` |
-| filters                                           | Add filters while fetching the data       | ``       |           |
-| sort                                              | Allow us to sort the options              | ``       |           |
+| Property                                          | Description                               | Type                                       | Default   |
+| ------------------------------------------------- | ----------------------------------------- | ------------------------------------------ | --------- |
+| resource <div className="required">Required</div> | [`Resource`](#) for API data interactions | `string`                                   |           |
+| optionValue                                       | Set the option's value                    | `string`                                   | `"id"`    |
+| optionLabel                                       | Set the option's label value              | `string`                                   | `"title"` |
+| filters                                           | Add filters while fetching the data       | [`CrudFilters`](interfaces.md#crudfilters) |           |
+| sort                                              | Allow us to sort the options              | [`CrudSorting`](interfaces.md#crudsorting) |           |
 
 ### Return values
 
-| Property           | Description                     | Type                                                                            |
-| ------------------ | ------------------------------- | ------------------------------------------------------------------------------- |
-| checkboxGroupProps | Ant design checkbox group props | [`Checkbox Group`](https://ant.design/components/checkbox/#Checkbox-Group)      |
-| queryResult        | Result of the query of a record | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery) |
+| Property           | Description                     | Type                                                                                          |
+| ------------------ | ------------------------------- | --------------------------------------------------------------------------------------------- |
+| checkboxGroupProps | Ant design checkbox group props | [`Checkbox Group`](https://ant.design/components/checkbox/#Checkbox-Group)                    |
+| queryResult        | Result of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
