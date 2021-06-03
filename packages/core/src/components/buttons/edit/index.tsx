@@ -8,7 +8,7 @@ import { ResourceRouterParams } from "../../../interfaces";
 
 type EditButtonProps = ButtonProps & {
     resourceName?: string;
-    recordItemId?: string | number;
+    recordItemId?: string;
 };
 
 export const EditButton: FC<EditButtonProps> = ({

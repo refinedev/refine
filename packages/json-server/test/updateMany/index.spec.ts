@@ -11,7 +11,7 @@ describe("updateMany", () => {
         const response = await JsonServer(
             "https://refine-fake-rest.pankod.com",
             axios,
-        ).updateMany("posts", [999], {
+        ).updateMany("posts", ["999"], {
             title: "foo",
             content: "bar",
         });

@@ -104,9 +104,9 @@ export const TagList: React.FC<IResourceComponentsProps> = (props) => {
                     dataIndex="actions"
                     key="actions"
                     render={(
-                        _text: string | number,
+                        _text: string,
                         record: {
-                            id: string | number;
+                            id: string;
                         },
                     ): React.ReactNode => (
                         <Space>

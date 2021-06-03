@@ -18,7 +18,7 @@ export type useCloneFormProps<
     TError extends HttpError = HttpError,
     TVariables = {},
 > = useCreateFormProps<TData, TError, TVariables> & {
-    cloneId?: string | number;
+    cloneId?: string;
 };
 
 type SaveButtonProps = {
@@ -34,14 +34,14 @@ export type useCloneForm<
 > = {
     form: FormInstance<TVariables>;
     formProps: FormProps<TVariables>;
-    editId?: string | number;
-    setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
+    editId?: string;
+    setEditId?: Dispatch<SetStateAction<string | undefined>>;
     saveButtonProps: SaveButtonProps;
     formLoading: boolean;
     mutationResult: UseCreateReturnType<TData, TError, TVariables>;
     queryResult: QueryObserverResult<GetOneResponse<TData>>;
-    setCloneId?: Dispatch<SetStateAction<string | number | undefined>>;
-    cloneId?: string | number;
+    setCloneId?: Dispatch<SetStateAction<string | undefined>>;
+    cloneId?: string;
 };
 
 export const useCloneForm = <
@@ -59,7 +59,7 @@ export const useCloneForm = <
 
     const { id: idFromRoute, action } = useParams<ResourceRouterParams>();
 
-    const id = props.cloneId?.toString() ?? idFromRoute;
+    const id = props.cloneId ?? idFromRoute;
     // Check if clone process comes from useParams or modal
     const isClone = (action === "create" && !!id) || !!id;
 

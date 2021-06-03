@@ -5,7 +5,7 @@ import { useNavigation } from "@hooks/navigation";
 export type UseRedirectionAfterSubmissionType = () => (options: {
     redirect: "show" | "list" | "edit" | false;
     resource: IResourceItem;
-    id?: string | number | undefined;
+    id?: string;
 }) => void;
 
 export const useRedirectionAfterSubmission: UseRedirectionAfterSubmissionType =
@@ -20,7 +20,7 @@ export const useRedirectionAfterSubmission: UseRedirectionAfterSubmissionType =
             }: {
                 redirect: "show" | "list" | "edit" | false;
                 resource: IResourceItem;
-                id?: string | number;
+                id?: string;
             }) => {
                 if (redirect && resource.route) {
                     if (resource.canShow && redirect === "show" && id) {

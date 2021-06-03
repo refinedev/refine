@@ -11,7 +11,7 @@ describe("deleteMany", () => {
         const response = await JsonServer(
             "https://refine-fake-rest.pankod.com",
             axios,
-        ).deleteMany("posts", [10]);
+        ).deleteMany("posts", ["10"]);
 
         const { data } = response;
 

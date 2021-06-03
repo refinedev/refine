@@ -118,7 +118,7 @@ export const useModalForm = <
     return {
         ...useFormProps,
         ...sunflowerUseModal,
-        show: (id?: string | number) => {
+        show: (id?: string) => {
             setEditId && setEditId(id);
 
             setCloneId && setCloneId(id);

@@ -8,7 +8,7 @@ import { ResourceRouterParams } from "../../../interfaces";
 
 type CloneButtonProps = ButtonProps & {
     resourceName?: string;
-    recordItemId?: string | number;
+    recordItemId?: string;
 };
 
 export const CloneButton: FC<CloneButtonProps> = ({
