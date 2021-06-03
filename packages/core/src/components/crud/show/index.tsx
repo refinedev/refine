@@ -22,7 +22,7 @@ export interface ShowProps {
     isLoading?: boolean;
     pageHeaderProps?: PageHeaderProps;
     resource?: string;
-    recordItemId?: string | number;
+    recordItemId?: string;
 }
 
 export const Show: React.FC<ShowProps> = ({

@@ -24,9 +24,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
         enabled: categoryIds.length > 0,
     });
 
-    const [selectedRowKeys, setSelectedRowKeys] = React.useState<
-        (string | number)[]
-    >([]);
+    const [selectedRowKeys, setSelectedRowKeys] = React.useState<string[]>([]);
 
     const {
         mutate,
@@ -46,7 +44,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
         }
     }, [isSuccess]);
 
-    const onSelectChange = (selectedRowKeys: (string | number)[]) => {
+    const onSelectChange = (selectedRowKeys: string[]) => {
         setSelectedRowKeys(selectedRowKeys);
     };
 

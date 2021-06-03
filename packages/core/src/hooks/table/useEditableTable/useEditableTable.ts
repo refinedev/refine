@@ -18,10 +18,10 @@ export type useEditableTableReturnType<
         cancelButtonProps: ButtonProps & {
             onClick: () => void;
         };
-        editButtonProps: (id: string | number) => ButtonProps & {
+        editButtonProps: (id: string) => ButtonProps & {
             onClick: () => void;
         };
-        isEditing: (id: string | number) => boolean;
+        isEditing: (id: string) => boolean;
     };
 
 type useEditableTableProps<
@@ -54,13 +54,13 @@ export const useEditableTable = <
         onClick: () => setEditId && setEditId(undefined),
     };
 
-    const editButtonProps = (id: string | number) => {
+    const editButtonProps = (id: string) => {
         return {
             onClick: () => setEditId && setEditId(id),
         };
     };
 
-    const isEditing = (id: string | number) => id === editId;
+    const isEditing = (id: string) => id === editId;
 
     return {
         ...table,

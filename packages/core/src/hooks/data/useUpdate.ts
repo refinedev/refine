@@ -11,7 +11,6 @@ import {
     Context as UpdateContext,
     ContextQuery,
     HttpError,
-    Identifier,
 } from "../../interfaces";
 import pluralize from "pluralize";
 import {
@@ -23,7 +22,7 @@ import {
 } from "@hooks";
 
 type UpdateParams<T> = {
-    id: Identifier;
+    id: string;
     values: T;
 };
 
@@ -111,10 +110,7 @@ export const useUpdate = <
             onMutate: async (variables) => {
                 const previousQueries: ContextQuery[] = [];
 
-                const allQueries = getAllQueries(
-                    resource,
-                    variables.id.toString(),
-                );
+                const allQueries = getAllQueries(resource, variables.id);
 
                 for (const queryItem of allQueries) {
                     const { queryKey } = queryItem;
@@ -140,10 +136,7 @@ export const useUpdate = <
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: data.map((record: TData) => {
-                                        if (
-                                            record.id!.toString() ===
-                                            variables.id
-                                        ) {
+                                        if (record.id === variables.id) {
                                             return {
                                                 ...variables.values,
                                                 id: variables.id,
@@ -198,10 +191,7 @@ export const useUpdate = <
                 }
             },
             onSettled: (_data, _error, variables) => {
-                const allQueries = getAllQueries(
-                    resource,
-                    variables.id.toString(),
-                );
+                const allQueries = getAllQueries(resource, variables.id);
                 for (const query of allQueries) {
                     queryClient.invalidateQueries(query.queryKey);
                 }
