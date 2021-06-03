@@ -1,8 +1,10 @@
 import React from "react";
 import { wait } from "@testing-library/react";
+import { renderHook } from "@testing-library/react-hooks";
 
-import { MockJSONServer, render, TestWrapper } from "@test";
+import { MockJSONServer, render, TestWrapper, act, fireEvent } from "@test";
 import { RouteProvider } from "./";
+import { useLogin } from "@hooks";
 
 const mockAuthProvider = {
     login: () => Promise.resolve(),
@@ -20,8 +22,25 @@ const mockAuthProvider = {
 };
 
 describe("RouteProvider", () => {
+    const login = (getByLabelText: any, getByText: any) => {
+        fireEvent.change(getByLabelText("Username"), {
+            target: {
+                value: "testtest",
+            },
+        });
+
+        fireEvent.change(getByLabelText("Password"), {
+            target: {
+                value: "testtest",
+            },
+        });
+
+        const loginBtn = getByText("Login");
+        fireEvent.click(loginBtn);
+    };
+
     it("should render resource link successfully", async () => {
-        const { findByText } = render(
+        const { findByText, getByText, getByLabelText } = render(
             <RouteProvider
                 resources={[
                     {
@@ -43,7 +62,9 @@ describe("RouteProvider", () => {
             },
         );
 
-        await wait(async () => {
+        login(getByLabelText, getByText);
+
+        await act(async () => {
             await findByText("Posts");
         });
     });
@@ -53,7 +74,7 @@ describe("RouteProvider", () => {
             <span>Custom Dashboard Page</span>
         );
 
-        const { findByText } = render(
+        const { findByText, getByLabelText, getByText } = render(
             <RouteProvider
                 resources={[
                     {
@@ -76,6 +97,12 @@ describe("RouteProvider", () => {
             },
         );
 
+        login(getByLabelText, getByText);
+
+        await act(async () => {
+            await findByText("Posts");
+        });
+
         await wait(async () => {
             await findByText("Custom Dashboard Page");
         });
@@ -87,7 +114,7 @@ describe("RouteProvider", () => {
         const Edit: React.FC = () => <span>Edit</span>;
         const Show: React.FC = () => <span>Show</span>;
 
-        const { findByText } = render(
+        const { findByText, getByLabelText, getByText } = render(
             <RouteProvider
                 resources={[
                     {
@@ -113,16 +140,14 @@ describe("RouteProvider", () => {
             },
         );
 
+        login(getByLabelText, getByText);
+
         await wait(async () => {
             await findByText("List");
         });
     });
 
     it("should render unauthorized successfully", async () => {
-        mockAuthProvider.checkAuth = jest
-            .fn()
-            .mockImplementation(() => Promise.reject());
-
         const { findByText } = render(
             <RouteProvider
                 resources={[
