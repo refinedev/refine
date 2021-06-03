@@ -58,7 +58,7 @@ describe("useLogout Hook", () => {
         });
 
         await act(async () => {
-            await result.current!("/test");
+            await result.current!({}, "/test");
             expect(logoutMock).toBeCalledTimes(1);
             expect(mHistory.push).toBeCalledWith("/test");
         });
