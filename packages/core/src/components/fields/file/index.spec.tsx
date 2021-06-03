@@ -16,4 +16,14 @@ describe("FileField", () => {
 
         expect(getByTitle(value.title)).toHaveAttribute("href", value.src);
     });
+
+    it("renders an anchor with src", () => {
+        const value = {
+            src: "www.google.com",
+        };
+
+        const { getByText } = render(<FileField src={value.src} />);
+
+        expect(getByText(value.src)).toHaveAttribute("href", value.src);
+    });
 });
