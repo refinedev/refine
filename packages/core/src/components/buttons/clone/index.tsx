@@ -19,10 +19,8 @@ export const CloneButton: FC<CloneButtonProps> = ({
     const { push } = useNavigation();
     const translate = useTranslate();
 
-    const {
-        resource: routeResourceName,
-        id: idFromRoute,
-    } = useParams<ResourceRouterParams>();
+    const { resource: routeResourceName, id: idFromRoute } =
+        useParams<ResourceRouterParams>();
 
     const onButtonClick = () => {
         push(

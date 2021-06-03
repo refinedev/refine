@@ -12,7 +12,7 @@ import { useNotification, useTranslate } from "@hooks";
 
 export const useOne = <
     TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError
+    TError extends HttpError = HttpError,
 >(
     resource: string,
     id: string,

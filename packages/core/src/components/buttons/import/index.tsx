@@ -36,22 +36,17 @@ export const ImportButton: FC<ImportButtonProps> = ({
     const resourceWithRoute = useResourceWithRoute();
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
     let { name: resource } = resourceWithRoute(routeResourceName);
-    const {
-        mutate: mutateCreateMany,
-        isLoading: createManyIsLoading,
-    } = useCreateMany<any, HttpError, unknown>();
-    const { mutate: mutateCreate, isLoading: createIsLoading } = useCreate<
-        any,
-        HttpError,
-        unknown
-    >();
+    const { mutate: mutateCreateMany, isLoading: createManyIsLoading } =
+        useCreateMany<any, HttpError, unknown>();
+    const { mutate: mutateCreate, isLoading: createIsLoading } =
+        useCreate<any, HttpError, unknown>();
 
     if (resourceName) {
         resource = resourceName;
     }
 
     const handleChange = ({ file }: UploadChangeParam) => {
-        parse((file as unknown) as File, {
+        parse(file as unknown as File, {
             complete: ({ data }: { data: unknown[][] }) => {
                 const values = importCSVMapper(data, mapData);
 

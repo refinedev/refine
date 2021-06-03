@@ -19,10 +19,8 @@ export const RefreshButton: FC<RefreshButtonProps> = ({
     const translate = useTranslate();
     const resourceWithRoute = useResourceWithRoute();
 
-    const {
-        resource: routeResourceName,
-        id: idFromRoute,
-    } = useParams<ResourceRouterParams>();
+    const { resource: routeResourceName, id: idFromRoute } =
+        useParams<ResourceRouterParams>();
 
     const resourceName = propResourceName ?? routeResourceName;
 
@@ -31,7 +29,9 @@ export const RefreshButton: FC<RefreshButtonProps> = ({
     const { refetch, isFetching } = useOne(
         resource.name,
         `${recordItemId ?? idFromRoute}`,
-        { enabled: false },
+        {
+            enabled: false,
+        },
     );
 
     return (

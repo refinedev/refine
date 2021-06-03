@@ -19,21 +19,19 @@ import { IPost, ITag } from "interfaces";
 export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
-    const {
-        checkboxGroupProps: tagsCheckboxGroupProps,
-    } = useCheckboxGroup<ITag>({
-        resource: "tags",
-        sort: [
-            {
-                field: "title",
-                order: "asc",
-            },
-        ],
-    });
+    const { checkboxGroupProps: tagsCheckboxGroupProps } =
+        useCheckboxGroup<ITag>({
+            resource: "tags",
+            sort: [
+                {
+                    field: "title",
+                    order: "asc",
+                },
+            ],
+        });
 
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
+    const [selectedTab, setSelectedTab] =
+        useState<"write" | "preview">("write");
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>

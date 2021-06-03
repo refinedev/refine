@@ -15,14 +15,11 @@ export const useDemoSidebar = ({
     defaultTitle,
 }: DemoSidebarParams): [PartialAdminProps, DemoSidebarProps] => {
     const [title, setTitle] = useState<string>(defaultTitle);
-    const [mutationMode, setMutationMode] = useState<MutationMode>(
-        "pessimistic",
-    );
+    const [mutationMode, setMutationMode] =
+        useState<MutationMode>("pessimistic");
     const [syncWithLocation, setSyncWithLocation] = useState<boolean>(false);
-    const [
-        warnWhenUnsavedChanges,
-        setWarnWhenUnsavedChanges,
-    ] = useState<boolean>(false);
+    const [warnWhenUnsavedChanges, setWarnWhenUnsavedChanges] =
+        useState<boolean>(false);
     const [undoableTimeout, setUndoableTimeout] = useState<number>(5000);
 
     const DefaultTitle = () => (

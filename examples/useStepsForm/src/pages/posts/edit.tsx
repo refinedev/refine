@@ -37,9 +37,8 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
         defaultValue: postData?.category.id,
     });
 
-    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
-        "write",
-    );
+    const [selectedTab, setSelectedTab] =
+        React.useState<"write" | "preview">("write");
 
     const formList = [
         <>

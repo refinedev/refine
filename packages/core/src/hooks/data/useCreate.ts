@@ -14,7 +14,7 @@ import { useListResourceQueries, useTranslate, useNotification } from "@hooks";
 export type UseCreateReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = UseMutationResult<
     CreateResponse<TData>,
     TError,
@@ -28,7 +28,7 @@ export type UseCreateReturnType<
 export const useCreate = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 >(): UseCreateReturnType<TData, TError, TVariables> => {
     const { create } = useContext<IDataContext>(DataContext);
     const getListQueries = useListResourceQueries();

@@ -17,13 +17,13 @@ export interface UseDrawerFormConfig extends UseFormConfig {
 export type UseDrawerFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = useFormProps<TData, TError, TVariables> & UseDrawerFormConfig;
 
 export const useDrawerForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 >({
     mutationMode: mutationModeProp,
     ...rest

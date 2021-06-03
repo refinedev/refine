@@ -36,8 +36,7 @@ nock("https://refine-fake-rest.pankod.com:443", { encodedQueryParams: true })
             },
             {
                 id: 998,
-                title:
-                    "Doloribus quis sit enim non aut enim hic rerum quaerat.",
+                title: "Doloribus quis sit enim non aut enim hic rerum quaerat.",
                 slug: "ducimus-id-id",
                 content:
                     "Animi dicta ut eum qui commodi exercitationem eius. Corrupti consequatur tenetur ut facere impedit minus. Dolor necessitatibus ad. Ut ipsam ut accusantium voluptatum. Commodi ut et. Aut explicabo tenetur in. Ullam illum similique natus. Inventore saepe dolorem explicabo. Consequatur sunt minus omnis optio et vero temporibus nihil nisi. Molestiae reprehenderit animi enim nostrum pariatur qui rerum consequatur.",
@@ -51,8 +50,7 @@ nock("https://refine-fake-rest.pankod.com:443", { encodedQueryParams: true })
             },
             {
                 id: 997,
-                title:
-                    "Doloribus veritatis et quidem reiciendis eaque beatae voluptatem.",
+                title: "Doloribus veritatis et quidem reiciendis eaque beatae voluptatem.",
                 slug: "explicabo-ad-earum",
                 content:
                     "Fugiat debitis dignissimos rerum. Sequi fuga et officiis. Ut iusto nulla est quasi labore enim cumque dolor. Quae harum omnis dolorem recusandae quo sunt nesciunt perspiciatis magnam. Aperiam est rerum aliquam provident dolores aliquid pariatur quo. Ut accusamus ipsa impedit recusandae eveniet saepe quia. Dolores fugiat voluptatem maiores suscipit sunt aut natus dicta. Rerum illo non consequatur. Odit doloribus fuga alias placeat sed et. Quam est quaerat ipsum non.",
@@ -108,8 +106,7 @@ nock("https://refine-fake-rest.pankod.com:443", { encodedQueryParams: true })
             },
             {
                 id: 993,
-                title:
-                    "Explicabo facilis quaerat et reprehenderit voluptatibus.",
+                title: "Explicabo facilis quaerat et reprehenderit voluptatibus.",
                 slug: "corporis-temporibus-magnam",
                 content:
                     "Ipsam laudantium delectus quia. Ut voluptatem unde ut et qui iste. Voluptates qui ea temporibus deleniti ut. Nesciunt ratione dolorum quo et sed. Corrupti doloribus vitae consequuntur eveniet non voluptate natus repellat. Amet est sit inventore pariatur animi. Aliquam et mollitia rem. Ducimus recusandae voluptate. Non doloremque soluta nisi ducimus. Harum dolorum incidunt sunt.",
@@ -123,8 +120,7 @@ nock("https://refine-fake-rest.pankod.com:443", { encodedQueryParams: true })
             },
             {
                 id: 992,
-                title:
-                    "Tenetur iusto sapiente minus perspiciatis magni quaerat fugiat ullam.",
+                title: "Tenetur iusto sapiente minus perspiciatis magni quaerat fugiat ullam.",
                 slug: "et-maxime-deserunt",
                 content:
                     "Ut ut voluptatem occaecati explicabo ratione. Illum omnis rerum qui dolorem amet iusto et. Error qui molestiae distinctio. Quos beatae enim vel qui dolorum debitis. Consequatur commodi iste aut dicta. Quam voluptas sunt exercitationem consequuntur repellendus voluptatem. Ullam dolor eaque unde. Est tempora vero quas ea sed omnis. Explicabo explicabo modi eius sapiente omnis quis. Qui deleniti dolor non nisi autem quis.",
@@ -138,8 +134,7 @@ nock("https://refine-fake-rest.pankod.com:443", { encodedQueryParams: true })
             },
             {
                 id: 991,
-                title:
-                    "Doloribus quia id ratione minima autem accusantium dolores.",
+                title: "Doloribus quia id ratione minima autem accusantium dolores.",
                 slug: "debitis-quaerat-quo",
                 content:
                     "Sunt alias quam ut corporis et. Hic sint tempora voluptates voluptatem dolor nisi fugiat architecto in. Rerum est amet. Numquam nemo nostrum. Tempore nostrum et exercitationem quis est ut dolorum. Est mollitia est sunt. Voluptates alias autem qui eos quis est. Vel eum qui doloribus. Sed illo id nulla qui at rerum. Est quis tempore dicta expedita.",
@@ -242,8 +237,7 @@ nock("https://refine-fake-rest.pankod.com:443", {
             },
             {
                 id: 4,
-                title:
-                    "Magnam architecto exercitationem iusto porro dolorem autem.",
+                title: "Magnam architecto exercitationem iusto porro dolorem autem.",
                 slug: "eos-ea-id",
                 content:
                     "Quia et doloremque est et quia. Sit nesciunt aut facilis praesentium. Et ut nostrum ut voluptas. Ipsa ad doloremque rem. Saepe eum ea id facilis ea iure sit. Est laudantium facere sunt odio distinctio placeat eum nemo dolores. Voluptas neque culpa quod sint enim reprehenderit consectetur dolor repudiandae. Ut in ut ab perferendis. Commodi dicta sint voluptatem dolorum eum ut corporis et. Quae fugiat nam animi est dolorem id ut fuga.",
@@ -257,8 +251,7 @@ nock("https://refine-fake-rest.pankod.com:443", {
             },
             {
                 id: 5,
-                title:
-                    "Repellat eligendi et temporibus consequuntur sapiente sit rem voluptatum expedita.",
+                title: "Repellat eligendi et temporibus consequuntur sapiente sit rem voluptatum expedita.",
                 slug: "commodi-quis-quae",
                 content:
                     "Iste fugiat nobis ut enim velit. Numquam tenetur debitis magnam veniam in consequatur. Nemo aut rerum officia dolorem eius enim modi nesciunt. Culpa necessitatibus delectus omnis eos aut voluptatem eos autem deserunt. Voluptatem culpa dolorem est veniam voluptas. Dolorem a non aliquam optio et alias aut illum voluptatum. Qui totam amet at impedit est. Eaque ipsam quam quis corporis minima aliquam ab et. Et neque fugit rem perferendis alias officiis ab maiores. Cupiditate possimus dicta et et accusantium qui provident est dolor.",
@@ -286,8 +279,7 @@ nock("https://refine-fake-rest.pankod.com:443", {
             },
             {
                 id: 7,
-                title:
-                    "Dolorum et quod id est perspiciatis doloremque officia quisquam.",
+                title: "Dolorum et quod id est perspiciatis doloremque officia quisquam.",
                 slug: "tempora-minus-voluptas",
                 content:
                     "Et similique ut aut qui perferendis quod quia quis molestiae. Et sed enim optio laudantium ullam omnis vel eius facere. Adipisci ea est molestiae eum qui dolores deserunt harum. Laudantium et maiores facilis non corrupti aut dolorem. Ullam tempora beatae magni necessitatibus. Quos molestiae dolores dolorum omnis sed. Asperiores voluptas dolorem tempora qui quia voluptatibus officia officia excepturi. Aut laborum eos doloremque possimus tempore. Debitis praesentium veritatis sit architecto et. Earum eos non.",
@@ -329,8 +321,7 @@ nock("https://refine-fake-rest.pankod.com:443", {
             },
             {
                 id: 10,
-                title:
-                    "Quasi porro debitis asperiores qui aspernatur dolorem quia in.",
+                title: "Quasi porro debitis asperiores qui aspernatur dolorem quia in.",
                 slug: "voluptas-doloremque-dolorem",
                 content:
                     "Voluptate aut magni eius. Dolorem nisi numquam neque. Maiores optio enim sapiente in modi sequi qui odio excepturi. In eligendi recusandae. Ut tempora exercitationem sint modi exercitationem. Nisi debitis quam voluptate eum et qui quod mollitia. Consequatur quisquam tenetur ut. Amet distinctio ut id laboriosam a. Autem necessitatibus ratione. Corrupti incidunt voluptas veritatis cum.",
@@ -425,8 +416,7 @@ nock("https://refine-fake-rest.pankod.com:443", {
             },
             {
                 id: 930,
-                title:
-                    "Illum quaerat atque fugit pariatur dolor dicta magnam nulla.",
+                title: "Illum quaerat atque fugit pariatur dolor dicta magnam nulla.",
                 slug: "est-ea-voluptatem",
                 content:
                     "Commodi harum ipsum culpa. Cumque maiores sunt eum autem et corrupti. Sint neque quidem iure quibusdam perferendis aut. Aut inventore et quas dolores iure harum. Explicabo nulla nisi voluptas qui. Ut in ratione tempore. Quo qui sint odit ut nisi vel. Quasi doloribus quia qui inventore. Voluptate accusantium id qui in neque. Id rerum perferendis rerum libero repellat.",
@@ -440,8 +430,7 @@ nock("https://refine-fake-rest.pankod.com:443", {
             },
             {
                 id: 911,
-                title:
-                    "Quia corporis soluta rem inventore unde voluptas quibusdam qui.",
+                title: "Quia corporis soluta rem inventore unde voluptas quibusdam qui.",
                 slug: "eius-et-eum",
                 content:
                     "Nihil voluptatibus dignissimos mollitia velit aspernatur in aliquid rem. Eum culpa vero qui minus. Similique culpa voluptate ea nisi possimus non neque et placeat. Pariatur quo est iusto ea asperiores blanditiis asperiores. Explicabo ab qui tempore repellendus hic. Explicabo quo maiores vero. Libero et voluptatem recusandae amet minima praesentium. Tenetur nostrum ratione non est eos vel. Porro est unde recusandae quasi rem et voluptatem. Debitis sint vitae voluptates laborum.",
@@ -634,8 +623,7 @@ nock("https://refine-fake-rest.pankod.com:443", {
             },
             {
                 id: 305,
-                title:
-                    "Dolores tempora doloremque quia dolorum quaerat qui odio at quis.",
+                title: "Dolores tempora doloremque quia dolorum quaerat qui odio at quis.",
                 slug: "eum-corrupti-molestiae",
                 content:
                     "Aut minima eos voluptas vitae. Consequatur rerum atque error rerum dolorem qui. Qui fugit earum ipsa labore saepe dolores cum nobis atque. Quam quia esse fugiat cum voluptatem possimus. Est harum harum rem. Sint quis ut doloremque. Qui quia ut rem. Fugiat aperiam autem maxime vitae quam ea. Et exercitationem amet quasi. Modi similique quos aut necessitatibus laudantium magni modi.",
@@ -677,8 +665,7 @@ nock("https://refine-fake-rest.pankod.com:443", {
             },
             {
                 id: 376,
-                title:
-                    "Unde ipsum vero alias aut aperiam enim cupiditate ab necessitatibus.",
+                title: "Unde ipsum vero alias aut aperiam enim cupiditate ab necessitatibus.",
                 slug: "consequatur-quos-explicabo",
                 content:
                     "Nesciunt quos autem. Illo soluta aspernatur ut. Omnis aperiam id est ducimus. Aliquid inventore sint vel eius perspiciatis at illo molestiae. Tenetur nisi aut ab. Qui odio non accusamus ut voluptates asperiores in eveniet. Laudantium et voluptatem est labore non sunt. Pariatur qui dolores. At maxime id ipsum corrupti. Maxime aperiam mollitia maxime unde quisquam deserunt ut.",

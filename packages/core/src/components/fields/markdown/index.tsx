@@ -4,8 +4,6 @@ import gfm from "remark-gfm";
 
 import { FieldProps } from "../../../interfaces";
 
-export const MarkdownField: React.FC<FieldProps<string | undefined>> = ({
-    value = "",
-}) => {
+export const MarkdownField: React.FC<FieldProps<string>> = ({ value }) => {
     return <ReactMarkdown plugins={[gfm]}>{value}</ReactMarkdown>;
 };

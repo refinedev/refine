@@ -26,7 +26,7 @@ export type ActionParams = {
 type ActionFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = useCreateFormProps<TData, TError, TVariables> &
     useEditFormProps<TData, TError, TVariables> &
     useCloneFormProps<TData, TError, TVariables>;
@@ -34,13 +34,13 @@ type ActionFormProps<
 type ResourcelessActionFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = Omit<ActionFormProps<TData, TError, TVariables>, "resource">;
 
 export type useFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = ActionParams & {
     resource?: string;
 } & ResourcelessActionFormProps<TData, TError, TVariables>;
@@ -48,7 +48,7 @@ export type useFormProps<
 export type useForm<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = {
     form: FormInstance<TVariables>;
     formProps: FormProps<TVariables>;
@@ -69,7 +69,7 @@ export type useForm<
 export const useForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 >({
     action,
     resource: resourceFromProps,

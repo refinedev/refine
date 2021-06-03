@@ -15,8 +15,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
             category: null,
             cover: {
                 id: 116,
-                name:
-                    "2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                name: "2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                 alternativeText: null,
                 caption: null,
                 width: 1620,
@@ -24,13 +23,10 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                 formats: {
                     large: {
                         ext: ".jpg",
-                        url:
-                            "/uploads/large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                        hash:
-                            "large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                        url: "/uploads/large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                        hash: "large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                         mime: "image/jpeg",
-                        name:
-                            "large_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                        name: "large_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                         path: null,
                         size: 77.34,
                         width: 1000,
@@ -38,13 +34,10 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                     },
                     small: {
                         ext: ".jpg",
-                        url:
-                            "/uploads/small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                        hash:
-                            "small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                        url: "/uploads/small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                        hash: "small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                         mime: "image/jpeg",
-                        name:
-                            "small_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                        name: "small_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                         path: null,
                         size: 25.11,
                         width: 500,
@@ -52,13 +45,10 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                     },
                     medium: {
                         ext: ".jpg",
-                        url:
-                            "/uploads/medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                        hash:
-                            "medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                        url: "/uploads/medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                        hash: "medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                         mime: "image/jpeg",
-                        name:
-                            "medium_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                        name: "medium_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                         path: null,
                         size: 47.26,
                         width: 750,
@@ -66,26 +56,21 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                     },
                     thumbnail: {
                         ext: ".jpg",
-                        url:
-                            "/uploads/thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                        hash:
-                            "thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                        url: "/uploads/thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                        hash: "thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                         mime: "image/jpeg",
-                        name:
-                            "thumbnail_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                        name: "thumbnail_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                         path: null,
                         size: 7.56,
                         width: 234,
                         height: 156,
                     },
                 },
-                hash:
-                    "2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                hash: "2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                 ext: ".jpg",
                 mime: "image/jpeg",
                 size: 160.37,
-                url:
-                    "/uploads/2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                url: "/uploads/2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
                 previewUrl: null,
                 provider: "local",
                 provider_metadata: null,
@@ -139,8 +124,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
             },
             cover: {
                 id: 116,
-                name:
-                    "2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                name: "2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                 alternativeText: null,
                 caption: null,
                 width: 1620,
@@ -148,13 +132,10 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                 formats: {
                     large: {
                         ext: ".jpg",
-                        url:
-                            "/uploads/large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                        hash:
-                            "large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                        url: "/uploads/large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                        hash: "large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                         mime: "image/jpeg",
-                        name:
-                            "large_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                        name: "large_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                         path: null,
                         size: 77.34,
                         width: 1000,
@@ -162,13 +143,10 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                     },
                     small: {
                         ext: ".jpg",
-                        url:
-                            "/uploads/small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                        hash:
-                            "small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                        url: "/uploads/small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                        hash: "small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                         mime: "image/jpeg",
-                        name:
-                            "small_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                        name: "small_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                         path: null,
                         size: 25.11,
                         width: 500,
@@ -176,13 +154,10 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                     },
                     medium: {
                         ext: ".jpg",
-                        url:
-                            "/uploads/medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                        hash:
-                            "medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                        url: "/uploads/medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                        hash: "medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                         mime: "image/jpeg",
-                        name:
-                            "medium_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                        name: "medium_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                         path: null,
                         size: 47.26,
                         width: 750,
@@ -190,26 +165,21 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                     },
                     thumbnail: {
                         ext: ".jpg",
-                        url:
-                            "/uploads/thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                        hash:
-                            "thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                        url: "/uploads/thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                        hash: "thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                         mime: "image/jpeg",
-                        name:
-                            "thumbnail_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                        name: "thumbnail_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                         path: null,
                         size: 7.56,
                         width: 234,
                         height: 156,
                     },
                 },
-                hash:
-                    "2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                hash: "2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                 ext: ".jpg",
                 mime: "image/jpeg",
                 size: 160.37,
-                url:
-                    "/uploads/2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                url: "/uploads/2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
                 previewUrl: null,
                 provider: "local",
                 provider_metadata: null,
@@ -413,8 +383,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                 category: null,
                 cover: {
                     id: 116,
-                    name:
-                        "2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                    name: "2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                     alternativeText: null,
                     caption: null,
                     width: 1620,
@@ -422,13 +391,10 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                     formats: {
                         large: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                            hash:
-                                "large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                            url: "/uploads/large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                            hash: "large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                             mime: "image/jpeg",
-                            name:
-                                "large_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                            name: "large_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                             path: null,
                             size: 77.34,
                             width: 1000,
@@ -436,13 +402,10 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                         },
                         small: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                            hash:
-                                "small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                            url: "/uploads/small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                            hash: "small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                             mime: "image/jpeg",
-                            name:
-                                "small_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                            name: "small_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                             path: null,
                             size: 25.11,
                             width: 500,
@@ -450,13 +413,10 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                         },
                         medium: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                            hash:
-                                "medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                            url: "/uploads/medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                            hash: "medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                             mime: "image/jpeg",
-                            name:
-                                "medium_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                            name: "medium_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                             path: null,
                             size: 47.26,
                             width: 750,
@@ -464,26 +424,21 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                         },
                         thumbnail: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                            hash:
-                                "thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                            url: "/uploads/thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                            hash: "thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                             mime: "image/jpeg",
-                            name:
-                                "thumbnail_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                            name: "thumbnail_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                             path: null,
                             size: 7.56,
                             width: 234,
                             height: 156,
                         },
                     },
-                    hash:
-                        "2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                    hash: "2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                     ext: ".jpg",
                     mime: "image/jpeg",
                     size: 160.37,
-                    url:
-                        "/uploads/2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                    url: "/uploads/2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
                     previewUrl: null,
                     provider: "local",
                     provider_metadata: null,
@@ -560,8 +515,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                 category: null,
                 cover: {
                     id: 116,
-                    name:
-                        "2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                    name: "2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                     alternativeText: null,
                     caption: null,
                     width: 1620,
@@ -569,13 +523,10 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                     formats: {
                         large: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                            hash:
-                                "large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                            url: "/uploads/large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                            hash: "large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                             mime: "image/jpeg",
-                            name:
-                                "large_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                            name: "large_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                             path: null,
                             size: 77.34,
                             width: 1000,
@@ -583,13 +534,10 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                         },
                         small: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                            hash:
-                                "small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                            url: "/uploads/small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                            hash: "small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                             mime: "image/jpeg",
-                            name:
-                                "small_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                            name: "small_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                             path: null,
                             size: 25.11,
                             width: 500,
@@ -597,13 +545,10 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                         },
                         medium: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                            hash:
-                                "medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                            url: "/uploads/medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                            hash: "medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                             mime: "image/jpeg",
-                            name:
-                                "medium_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                            name: "medium_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                             path: null,
                             size: 47.26,
                             width: 750,
@@ -611,26 +556,21 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                         },
                         thumbnail: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                            hash:
-                                "thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                            url: "/uploads/thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                            hash: "thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                             mime: "image/jpeg",
-                            name:
-                                "thumbnail_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                            name: "thumbnail_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                             path: null,
                             size: 7.56,
                             width: 234,
                             height: 156,
                         },
                     },
-                    hash:
-                        "2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                    hash: "2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                     ext: ".jpg",
                     mime: "image/jpeg",
                     size: 160.37,
-                    url:
-                        "/uploads/2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                    url: "/uploads/2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
                     previewUrl: null,
                     provider: "local",
                     provider_metadata: null,
@@ -773,8 +713,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                 category: null,
                 cover: {
                     id: 116,
-                    name:
-                        "2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                    name: "2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                     alternativeText: null,
                     caption: null,
                     width: 1620,
@@ -782,13 +721,10 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                     formats: {
                         large: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                            hash:
-                                "large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                            url: "/uploads/large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                            hash: "large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                             mime: "image/jpeg",
-                            name:
-                                "large_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                            name: "large_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                             path: null,
                             size: 77.34,
                             width: 1000,
@@ -796,13 +732,10 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                         },
                         small: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                            hash:
-                                "small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                            url: "/uploads/small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                            hash: "small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                             mime: "image/jpeg",
-                            name:
-                                "small_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                            name: "small_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                             path: null,
                             size: 25.11,
                             width: 500,
@@ -810,13 +743,10 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                         },
                         medium: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                            hash:
-                                "medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                            url: "/uploads/medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                            hash: "medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                             mime: "image/jpeg",
-                            name:
-                                "medium_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                            name: "medium_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                             path: null,
                             size: 47.26,
                             width: 750,
@@ -824,26 +754,21 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                         },
                         thumbnail: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                            hash:
-                                "thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                            url: "/uploads/thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                            hash: "thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                             mime: "image/jpeg",
-                            name:
-                                "thumbnail_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                            name: "thumbnail_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                             path: null,
                             size: 7.56,
                             width: 234,
                             height: 156,
                         },
                     },
-                    hash:
-                        "2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                    hash: "2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                     ext: ".jpg",
                     mime: "image/jpeg",
                     size: 160.37,
-                    url:
-                        "/uploads/2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                    url: "/uploads/2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
                     previewUrl: null,
                     provider: "local",
                     provider_metadata: null,
@@ -954,8 +879,7 @@ nock("https://refine-strapi.pankod.com:443", {
                 category: null,
                 cover: {
                     id: 116,
-                    name:
-                        "2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                    name: "2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                     alternativeText: null,
                     caption: null,
                     width: 1620,
@@ -963,13 +887,10 @@ nock("https://refine-strapi.pankod.com:443", {
                     formats: {
                         large: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                            hash:
-                                "large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                            url: "/uploads/large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                            hash: "large_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                             mime: "image/jpeg",
-                            name:
-                                "large_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                            name: "large_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                             path: null,
                             size: 77.34,
                             width: 1000,
@@ -977,13 +898,10 @@ nock("https://refine-strapi.pankod.com:443", {
                         },
                         small: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                            hash:
-                                "small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                            url: "/uploads/small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                            hash: "small_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                             mime: "image/jpeg",
-                            name:
-                                "small_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                            name: "small_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                             path: null,
                             size: 25.11,
                             width: 500,
@@ -991,13 +909,10 @@ nock("https://refine-strapi.pankod.com:443", {
                         },
                         medium: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                            hash:
-                                "medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                            url: "/uploads/medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                            hash: "medium_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                             mime: "image/jpeg",
-                            name:
-                                "medium_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                            name: "medium_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                             path: null,
                             size: 47.26,
                             width: 750,
@@ -1005,26 +920,21 @@ nock("https://refine-strapi.pankod.com:443", {
                         },
                         thumbnail: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
-                            hash:
-                                "thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                            url: "/uploads/thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                            hash: "thumbnail_2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                             mime: "image/jpeg",
-                            name:
-                                "thumbnail_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
+                            name: "thumbnail_2021-Triumph-Tiger-850-Sport-First-Look-adv-adventure-touring-motorcycle-1.jpg",
                             path: null,
                             size: 7.56,
                             width: 234,
                             height: 156,
                         },
                     },
-                    hash:
-                        "2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
+                    hash: "2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e",
                     ext: ".jpg",
                     mime: "image/jpeg",
                     size: 160.37,
-                    url:
-                        "/uploads/2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
+                    url: "/uploads/2021_Triumph_Tiger_850_Sport_First_Look_adv_adventure_touring_motorcycle_1_afa38b3e5e.jpg",
                     previewUrl: null,
                     provider: "local",
                     provider_metadata: null,
@@ -1375,8 +1285,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                         },
                         thumbnail: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/thumbnail_maxresdefault_2f97d3be22.jpg",
+                            url: "/uploads/thumbnail_maxresdefault_2f97d3be22.jpg",
                             hash: "thumbnail_maxresdefault_2f97d3be22",
                             mime: "image/jpeg",
                             name: "thumbnail_maxresdefault.jpg",
@@ -1422,13 +1331,10 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                     formats: {
                         thumbnail: {
                             ext: ".png",
-                            url:
-                                "/uploads/thumbnail_Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e.png",
-                            hash:
-                                "thumbnail_Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e",
+                            url: "/uploads/thumbnail_Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e.png",
+                            hash: "thumbnail_Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e",
                             mime: "image/png",
-                            name:
-                                "thumbnail_Screen Shot 2021-05-02 at 01.20.12.png",
+                            name: "thumbnail_Screen Shot 2021-05-02 at 01.20.12.png",
                             path: null,
                             size: 25.67,
                             width: 236,
@@ -1439,8 +1345,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                     ext: ".png",
                     mime: "image/png",
                     size: 47.82,
-                    url:
-                        "/uploads/Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e.png",
+                    url: "/uploads/Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e.png",
                     previewUrl: null,
                     provider: "local",
                     provider_metadata: null,
@@ -1505,8 +1410,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                         },
                         thumbnail: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/thumbnail_maxresdefault_c3653fe7c0.jpg",
+                            url: "/uploads/thumbnail_maxresdefault_c3653fe7c0.jpg",
                             hash: "thumbnail_maxresdefault_c3653fe7c0",
                             mime: "image/jpeg",
                             name: "thumbnail_maxresdefault.jpg",
@@ -1618,13 +1522,10 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                     formats: {
                         thumbnail: {
                             ext: ".png",
-                            url:
-                                "/uploads/thumbnail_Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e.png",
-                            hash:
-                                "thumbnail_Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e",
+                            url: "/uploads/thumbnail_Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e.png",
+                            hash: "thumbnail_Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e",
                             mime: "image/png",
-                            name:
-                                "thumbnail_Screen Shot 2021-05-02 at 01.20.12.png",
+                            name: "thumbnail_Screen Shot 2021-05-02 at 01.20.12.png",
                             path: null,
                             size: 25.67,
                             width: 236,
@@ -1635,8 +1536,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                     ext: ".png",
                     mime: "image/png",
                     size: 47.82,
-                    url:
-                        "/uploads/Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e.png",
+                    url: "/uploads/Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e.png",
                     previewUrl: null,
                     provider: "local",
                     provider_metadata: null,
@@ -1701,8 +1601,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                         },
                         thumbnail: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/thumbnail_maxresdefault_c3653fe7c0.jpg",
+                            url: "/uploads/thumbnail_maxresdefault_c3653fe7c0.jpg",
                             hash: "thumbnail_maxresdefault_c3653fe7c0",
                             mime: "image/jpeg",
                             name: "thumbnail_maxresdefault.jpg",
@@ -1781,8 +1680,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                         },
                         thumbnail: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/thumbnail_maxresdefault_2f97d3be22.jpg",
+                            url: "/uploads/thumbnail_maxresdefault_2f97d3be22.jpg",
                             hash: "thumbnail_maxresdefault_2f97d3be22",
                             mime: "image/jpeg",
                             name: "thumbnail_maxresdefault.jpg",
@@ -1893,13 +1791,10 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                     formats: {
                         thumbnail: {
                             ext: ".png",
-                            url:
-                                "/uploads/thumbnail_Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e.png",
-                            hash:
-                                "thumbnail_Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e",
+                            url: "/uploads/thumbnail_Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e.png",
+                            hash: "thumbnail_Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e",
                             mime: "image/png",
-                            name:
-                                "thumbnail_Screen Shot 2021-05-02 at 01.20.12.png",
+                            name: "thumbnail_Screen Shot 2021-05-02 at 01.20.12.png",
                             path: null,
                             size: 25.67,
                             width: 236,
@@ -1910,8 +1805,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                     ext: ".png",
                     mime: "image/png",
                     size: 47.82,
-                    url:
-                        "/uploads/Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e.png",
+                    url: "/uploads/Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e.png",
                     previewUrl: null,
                     provider: "local",
                     provider_metadata: null,
@@ -1976,8 +1870,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                         },
                         thumbnail: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/thumbnail_maxresdefault_c3653fe7c0.jpg",
+                            url: "/uploads/thumbnail_maxresdefault_c3653fe7c0.jpg",
                             hash: "thumbnail_maxresdefault_c3653fe7c0",
                             mime: "image/jpeg",
                             name: "thumbnail_maxresdefault.jpg",
@@ -2056,8 +1949,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                         },
                         thumbnail: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/thumbnail_maxresdefault_2f97d3be22.jpg",
+                            url: "/uploads/thumbnail_maxresdefault_2f97d3be22.jpg",
                             hash: "thumbnail_maxresdefault_2f97d3be22",
                             mime: "image/jpeg",
                             name: "thumbnail_maxresdefault.jpg",
@@ -2175,13 +2067,10 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                     formats: {
                         thumbnail: {
                             ext: ".png",
-                            url:
-                                "/uploads/thumbnail_Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e.png",
-                            hash:
-                                "thumbnail_Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e",
+                            url: "/uploads/thumbnail_Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e.png",
+                            hash: "thumbnail_Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e",
                             mime: "image/png",
-                            name:
-                                "thumbnail_Screen Shot 2021-05-02 at 01.20.12.png",
+                            name: "thumbnail_Screen Shot 2021-05-02 at 01.20.12.png",
                             path: null,
                             size: 25.67,
                             width: 236,
@@ -2192,8 +2081,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                     ext: ".png",
                     mime: "image/png",
                     size: 47.82,
-                    url:
-                        "/uploads/Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e.png",
+                    url: "/uploads/Screen_Shot_2021_05_02_at_01_20_12_7b74ce0a1e.png",
                     previewUrl: null,
                     provider: "local",
                     provider_metadata: null,
@@ -2258,8 +2146,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
                         },
                         thumbnail: {
                             ext: ".jpg",
-                            url:
-                                "/uploads/thumbnail_maxresdefault_c3653fe7c0.jpg",
+                            url: "/uploads/thumbnail_maxresdefault_c3653fe7c0.jpg",
                             hash: "thumbnail_maxresdefault_c3653fe7c0",
                             mime: "image/jpeg",
                             name: "thumbnail_maxresdefault.jpg",

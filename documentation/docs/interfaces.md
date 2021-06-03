@@ -17,7 +17,19 @@ title: Interface References
 #### CrudOperators
 
 ```ts
-"eq" | "ne" | "lt" | "gt" | "lte" | "gte" | "in" | "nin" | "contains" | "ncontains" | "containss" | "ncontainss" | "null";
+"eq" |
+    "ne" |
+    "lt" |
+    "gt" |
+    "lte" |
+    "gte" |
+    "in" |
+    "nin" |
+    "contains" |
+    "ncontains" |
+    "containss" |
+    "ncontainss" |
+    "null";
 ```
 
 | Type           | Description                     |
@@ -42,10 +54,10 @@ title: Interface References
 
 ### CrudSort
 
-| Key   | Type                  |
-| ----- | --------------------- |
-| field | `string`              |
-| order | `"asc"`  \| ` "desc"` |
+| Key   | Type                 |
+| ----- | -------------------- |
+| field | `string`             |
+| order | `"asc"` \| ` "desc"` |
 
 | `order` type | Description      |
 | ------------ | ---------------- |
@@ -66,6 +78,23 @@ title: Interface References
 | message    | `string` |
 | statusCode | `number` |
 
+## Delete Button Props
+
+ButtonProps
+
+| Key           | Type                                                     |
+| ------------- | -------------------------------------------------------- |
+| resourceName? | `string`                                                 |
+| recordItemId? | `string` \|` number`                                     |
+| recordItemId? | `string` \|` number`                                     |
+| onSuccess?    | `<TData = BaseRecord>(value: { data: TData; }) => void;` |
+| mutationMode? | [`MutationMode`](#mutationmode)                          |
+
+## MutationMode
+
+```ts
+"pessimistic" | "optimistic" | "undoable";
+```
 
 ## UploadedFile
 
