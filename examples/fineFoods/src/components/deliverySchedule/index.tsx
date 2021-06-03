@@ -1,28 +1,42 @@
-import { Typography, AntdList, Avatar } from "@pankod/refine";
+import { Typography, AntdList, useSimpleList } from "@pankod/refine";
 
 export const DeliverySchedule: React.FC = () => {
     const { Title } = Typography;
+
+    const { listProps } = useSimpleList<{
+        title: string;
+        id: string;
+        status: "draft" | "published";
+    }>({
+        resource: "posts",
+        filters: [
+            {
+                field: "status",
+                operator: "eq",
+                value: "published",
+            },
+        ],
+        sorter: [
+            {
+                field: "id",
+                order: "asc",
+            },
+        ],
+
+        pagination: {
+            pageSize: 3,
+        },
+    });
+
     return (
         <>
             <Title level={5}>Upcoming Delivery Schedule</Title>
+
             <AntdList
-                itemLayout="horizontal"
-                dataSource={[1, 2, 3, 4, 5]}
+                {...listProps}
                 renderItem={(item) => (
-                    <AntdList.Item>
-                        <AntdList.Item.Meta
-                            avatar={
-                                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                            }
-                            title="Stepni Doe"
-                            description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-                        />
-                    </AntdList.Item>
+                    <div>{`${item.id} - ${item.title} - ${item.status}`}</div>
                 )}
-                pagination={{
-                    pageSize: 3,
-                    size: "small",
-                }}
             />
         </>
     );
