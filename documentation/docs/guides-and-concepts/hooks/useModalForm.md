@@ -76,17 +76,6 @@ export const PostList: React.FC () => {
 ```
 
 ```ts title="interfaces/index.d.ts"
-...
-
-export interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-}
-```
-
-```ts title="interfaces/index.d.ts"
 export interface IPost {
     id: string;
     title: string;
@@ -242,7 +231,7 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 
 | Key                      | Description                                                  | Type                                                                                                                                                                                  |
 | ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| show                     | Specify a function that can open the modal                   | `(id?: string) => void`                                                                                                                                                               |
+| show                     | A function that can open the modal                           | `(id?: string) => void`                                                                                                                                                               |
 | formProps                | Ant Design form props                                        | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                                               |
 | modalProps               | Props for managed modal                                      | [`ModalProps`](https://ant.design/components/modal/#API)                                                                                                                              |
 | saveButtonProps          | Props for a submit button                                    | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                                                                                                                       |
