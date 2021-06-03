@@ -16,7 +16,7 @@ jest.mock("react-router-dom", () => ({
     useHistory: jest.fn(() => mHistory),
 }));
 
-describe("usePermissions Hook", () => {
+describe("useLogout Hook", () => {
     it("logout and redirect to login", async () => {
         const logoutMock = jest.fn();
 

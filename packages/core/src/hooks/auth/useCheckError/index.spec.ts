@@ -16,31 +16,8 @@ jest.mock("react-router-dom", () => ({
     useHistory: jest.fn(() => mHistory),
 }));
 
-describe("usePermissions Hook", () => {
+describe("useCheckError Hook", () => {
     it("logout and redirect to login if check error rejected", async () => {
-        const logoutMock = jest.fn();
-
-        const { result } = renderHook(() => useCheckError(), {
-            wrapper: TestWrapper({
-                authProvider: {
-                    isProvided: true,
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: logoutMock,
-                    getUserIdentity: () => Promise.resolve(),
-                },
-            }),
-        });
-
-        await act(async () => {
-            await result.current!({ params: "test", redirectPath: "test" });
-            expect(logoutMock).toBeCalledTimes(1);
-        });
-    });
-
-/*     it("logout and redirect to custom path", async () => {
         const logoutMock = jest.fn();
 
         const { result } = renderHook(() => useCheckError(), {
@@ -58,13 +35,13 @@ describe("usePermissions Hook", () => {
         });
 
         await act(async () => {
-            await result.current!("/test");
+            await result.current!();
             expect(logoutMock).toBeCalledTimes(1);
-            expect(mHistory.push).toBeCalledWith("/test");
+            expect(mHistory.push).toBeCalledWith("/login");
         });
     });
 
-    it("logout rejected", async () => {
+    it("logout and redirect to custom path if check error rejected", async () => {
         const logoutMock = jest.fn();
 
         const { result } = renderHook(() => useCheckError(), {
@@ -73,21 +50,18 @@ describe("usePermissions Hook", () => {
                     isProvided: true,
                     login: () => Promise.resolve(),
                     checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
+                    checkError: () => Promise.reject("/customPath"),
                     getPermissions: () => Promise.resolve(),
-                    logout: () => logoutMock(),
+                    logout: logoutMock,
                     getUserIdentity: () => Promise.resolve(),
                 },
             }),
         });
 
         await act(async () => {
-            try {
-                await result.current!();
-                expect(logoutMock).toBeCalledTimes(0);
-            } catch (error) {
-                expect(error).toEqual(new Error("Logout rejected"));
-            }
+            await result.current!();
+            expect(logoutMock).toBeCalledTimes(1);
+            expect(mHistory.push).toBeCalledWith("/customPath");
         });
     });
 
@@ -125,5 +99,5 @@ describe("usePermissions Hook", () => {
         });
 
         expect(result.current).not.toBeNull();
-    }); */
+    });
 });
