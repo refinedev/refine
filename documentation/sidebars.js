@@ -51,6 +51,7 @@ module.exports = {
                         "guides-and-concepts/hooks/useEditableTable",
                         "guides-and-concepts/hooks/useRadioGroup",
                         "guides-and-concepts/hooks/useForm",
+                        "guides-and-concepts/hooks/useMenu",
                     ],
                 },
                 "guides-and-concepts/multipart-upload",
