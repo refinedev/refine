@@ -6,7 +6,7 @@ title: useModalForm
 import createGif from '@site/static/img/guides-and-concepts/hooks/useModalForm/create.gif';
 import editGif from '@site/static/img/guides-and-concepts/hooks/useModalForm/edit.gif';
 
-The `useModalForm` hook allows you manage a form within a modal. It returns Ant Design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components props.
+`useModalForm` hook allows you manage a form within a modal. It returns Ant Design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components props.
 
 ```ts
 const { modalProps, formProps } = useModalForm<IPost>();
