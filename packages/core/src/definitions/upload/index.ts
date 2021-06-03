@@ -8,7 +8,7 @@ interface EventArgs<T = UploadResponse> {
     fileList: Array<UploadFile<T>>;
 }
 
-export const getValueFromEvent = (event: EventArgs) => {
+export const getValueFromEvent = (event: EventArgs): UploadFile[] => {
     const { fileList } = event;
 
     return [...fileList];
@@ -22,11 +22,20 @@ export function file2Base64(file: UploadFile): Promise<string> {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
 
-        reader.readAsDataURL(file.originFileObj as Blob);
-        reader.onload = () => {
-            return resolve(reader.result as string);
+        const resultHandler = () => {
+            if (reader.result) {
+                reader.removeEventListener("load", resultHandler, false);
+
+                resolve(reader.result as string);
+            }
         };
 
-        reader.onerror = (error) => reject(error);
+        reader.addEventListener("load", resultHandler, false);
+
+        reader.readAsDataURL(file.originFileObj as Blob);
+        reader.onerror = (error) => {
+            reader.removeEventListener("load", resultHandler, false);
+            return reject(error);
+        };
     });
 }

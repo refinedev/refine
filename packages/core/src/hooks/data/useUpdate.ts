@@ -65,10 +65,6 @@ export const useUpdate = <
 
     const undoableTimeout = undoableTimeoutProp ?? undoableTimeoutContext;
 
-    if (!resource) {
-        throw new Error("'resource' is required for useUpdate hook.");
-    }
-
     const resourceSingular = pluralize.singular(resource);
 
     const getAllQueries = useCacheQueries();

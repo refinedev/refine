@@ -17,7 +17,7 @@ export interface RouteProviderProps {
     DashboardPage?: React.ElementType;
     LoginPage?: React.FC | false;
     ReadyPage?: React.FC;
-    customRoutes: RouteProps[];
+    customRoutes?: RouteProps[];
 }
 
 type IRoutesProps = RouteProps & { routes?: RouteProps[] };
@@ -27,7 +27,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     catchAll,
     DashboardPage,
     LoginPage,
-    customRoutes,
+    customRoutes = [],
 }) => {
     const { isAuthenticated, checkAuth, checkError } =
         useContext<IAuthContext>(AuthContext);
@@ -49,17 +49,15 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
             routes.push({
                 exact: true,
                 path: `/resources/:resource(${route})/:action(create)/:id?`,
-                component: () => {
-                    return (
-                        <CreateComponent
-                            canCreate={canCreate}
-                            canEdit={canEdit}
-                            canDelete={canDelete}
-                            canShow={canShow}
-                            name={name}
-                        />
-                    );
-                },
+                component: () => (
+                    <CreateComponent
+                        canCreate={canCreate}
+                        canEdit={canEdit}
+                        canDelete={canDelete}
+                        canShow={canShow}
+                        name={name}
+                    />
+                ),
             });
         }
 

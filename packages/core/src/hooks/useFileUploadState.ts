@@ -1,7 +1,12 @@
 import { useCallback, useMemo, useState } from "react";
 import { UploadChangeParam } from "antd/lib/upload";
 
-export const useFileUploadState = () => {
+export type UseFileUploadStateType = () => {
+    isLoading: boolean;
+    onChange: (info: UploadChangeParam) => void;
+};
+
+export const useFileUploadState: UseFileUploadStateType = () => {
     const [isLoading, setIsloading] = useState(false);
 
     const onChange = useCallback((info: UploadChangeParam) => {
@@ -21,8 +26,8 @@ const mapStatusToLoading = (files: UploadChangeParam["fileList"]) => {
     return files.map((file) => {
         switch (file.status) {
             case "uploading":
-            case "error":
                 return true;
+            case "error":
             case "done":
             case "removed":
             case "success":

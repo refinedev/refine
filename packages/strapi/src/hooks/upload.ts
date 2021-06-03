@@ -5,7 +5,16 @@ interface StrapiUploadParams {
     maxCount: number;
 }
 
-export const useStrapiUpload = ({ maxCount }: StrapiUploadParams) => {
+type UseStrapiUploadType = {
+    (uploadParams: StrapiUploadParams): {
+        uploadedFileIds: string[];
+        beforeUpload: (_file: RcFile, files: RcFile[]) => boolean;
+        fileList: UploadFile<any>[];
+        maxCount: number;
+    };
+};
+
+export const useStrapiUpload: UseStrapiUploadType = ({ maxCount }) => {
     const [uploadedFileIds] = useState<string[]>([]);
     const [fileList, setFileList] = useState<UploadFile[]>([]);
 

@@ -63,10 +63,6 @@ export const useUpdateMany = <
 
     const undoableTimeout = undoableTimeoutProp ?? undoableTimeoutContext;
 
-    if (!resource) {
-        throw new Error("'resource' is required for useUpdate hook.");
-    }
-
     const getAllQueries = useCacheQueries();
 
     const mutation = useMutation<

@@ -26,11 +26,12 @@ import {
     RefreshButton,
     BooleanField,
     HttpError,
+    IResourceComponentsProps,
 } from "@pankod/refine";
 
 const { Title, Text } = Typography;
 
-export const UserList = (props: any) => {
+export const UserList: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
     const { tableProps } = useTable({
         initialPageSize: 20,
@@ -52,7 +53,6 @@ export const UserList = (props: any) => {
         drawerProps: createDrawerProps,
         show: createShow,
         saveButtonProps: createSaveButtonProps,
-        queryResult: createQueryResult,
     } = useDrawerForm<
         { id: string; firstName: string },
         HttpError,
@@ -300,11 +300,7 @@ export const UserList = (props: any) => {
                 }}
                 width="400"
             >
-                <Show
-                    {...props}
-                    actionButtons={<RefreshButton recordItemId={showId} />}
-                    title="User Details"
-                >
+                <Show {...props} recordItemId={showId} title="User Details">
                     <Title level={5}>First Name</Title>
                     <Text>{queryResult.data?.data.firstName}</Text>
                     <Title level={5}>Last Name</Title>

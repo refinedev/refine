@@ -1,9 +1,14 @@
 import { useContext } from "react";
 
 import { NotificationContext } from "@contexts/notification";
-import { INotificationContext } from "../../../interfaces";
+import { INotification, INotificationContext } from "../../../interfaces";
 
-export const useCancelNotification = () => {
+export type UseCancelNotificationType = () => {
+    notifications: INotification[];
+    notificationDispatch: React.Dispatch<any>;
+};
+
+export const useCancelNotification: UseCancelNotificationType = () => {
     const {
         notifications,
         notificationDispatch,

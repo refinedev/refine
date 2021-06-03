@@ -60,10 +60,6 @@ export const useDelete = <
 
     const undoableTimeout = undoableTimeoutProp ?? undoableTimeoutContext;
 
-    if (!resource) {
-        throw new Error("'resource' is required for useDelete hook.");
-    }
-
     const cacheQueries = useCacheQueries();
 
     const mutation = useMutation<
@@ -198,7 +194,6 @@ export const useDelete = <
                     if (
                         query.queryKey.includes(`resource/getOne/${resource}`)
                     ) {
-                        console.log("invalidate", query.queryKey);
                         queryClient.invalidateQueries(query.queryKey);
                     }
                 }

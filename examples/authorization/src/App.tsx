@@ -17,7 +17,7 @@ const mockUsers = [
     },
 ];
 
-const App = () => {
+const App: React.FC = () => {
     const authProvider: AuthProvider = {
         login: ({ username, password }) => {
             // Suppose we actually send a request to the back end here.

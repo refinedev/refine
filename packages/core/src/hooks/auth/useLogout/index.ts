@@ -4,13 +4,16 @@ import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
 import { useNavigation } from "@hooks/navigation";
 
-export const useLogout = () => {
+type LogoutType = (params?: any, redirectPath?: string) => Promise<void>;
+type UseLogoutType = () => LogoutType | null;
+
+export const useLogout: UseLogoutType = () => {
     const { push } = useNavigation();
     const { isProvided, logout: logoutFromContext } =
         React.useContext<IAuthContext>(AuthContext);
 
     if (isProvided) {
-        const logout = (params?: any, redirectPath?: string) =>
+        const logout: LogoutType = (params?: any, redirectPath?: string) =>
             logoutFromContext(params)
                 .then((data) => {
                     if (data !== false) {

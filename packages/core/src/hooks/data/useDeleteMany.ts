@@ -63,10 +63,6 @@ export const useDeleteMany = <
 
     const undoableTimeout = undoableTimeoutProp ?? undoableTimeoutContext;
 
-    if (!resource) {
-        throw new Error("'resource' is required for useDelete hook.");
-    }
-
     const queryClient = useQueryClient();
 
     const mutation = useMutation<
@@ -76,8 +72,6 @@ export const useDeleteMany = <
         DeleteContext
     >(
         ({ ids }: { ids: (string | number)[] }) => {
-            console.log("mode", mutationMode);
-
             if (!(mutationMode === "undoable")) {
                 return deleteMany<TData>(resource, ids);
             }
