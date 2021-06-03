@@ -368,6 +368,23 @@ const { data: userIdentity } = useGetIdentity();
 
 <!-- Kullanıcı adı ve avatar oluşturulduğu zaman eklenecek.. -->
 
+<br />
+
+## Hooks and Components
+
+This hooks can be used with `authProvider` authentication and authorization operations.
+
+-   [useAuthenticated](#)
+-   [useCheckError](#)
+-   [useGetIdentity](#)
+-   [useLogin](#)
+-   [useLogout](#)
+-   [usePermissions](#)
+
+-   [Authenticated](#)
+
+<br />
+
 ## API Reference
 
 ### Properties
