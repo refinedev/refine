@@ -121,7 +121,7 @@ export const UserList: React.FC<IResourceComponentsProps> = (props) => {
                         dataIndex="actions"
                         key="actions"
                         render={(
-                            _text: string | number,
+                            _text: string,
                             record: {
                                 id: string;
                             },

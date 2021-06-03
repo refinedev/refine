@@ -10,9 +10,8 @@ type UseWarnAboutChangeType = () => {
 };
 
 export const useWarnAboutChange: UseWarnAboutChangeType = () => {
-    const { warnWhenUnsavedChanges, warnWhen, setWarnWhen } = useContext(
-        AdminContext,
-    );
+    const { warnWhenUnsavedChanges, warnWhen, setWarnWhen } =
+        useContext(AdminContext);
 
     return { warnWhenUnsavedChanges, warnWhen, setWarnWhen };
 };

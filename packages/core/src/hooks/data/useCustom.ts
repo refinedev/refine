@@ -25,7 +25,7 @@ export const useCustom = <
     TData = BaseRecord,
     TError extends HttpError = HttpError,
     TQuery = unknown,
-    TPayload = unknown
+    TPayload = unknown,
 >(
     url: string,
     method: "get" | "delete" | "head" | "options" | "post" | "put" | "patch",

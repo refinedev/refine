@@ -11,13 +11,8 @@ import { Dashboard } from "pages/dashboard";
 const API_URL = "https://refine-fake-rest.pankod.com";
 
 const App: React.FC = () => {
-    const {
-        isLoading,
-        isAuthenticated,
-        user,
-        logout,
-        getIdTokenClaims,
-    } = useAuth0();
+    const { isLoading, isAuthenticated, user, logout, getIdTokenClaims } =
+        useAuth0();
 
     if (isLoading) {
         return <span>loading...</span>;

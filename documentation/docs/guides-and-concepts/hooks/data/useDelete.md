@@ -76,7 +76,7 @@ Variables passed to `mutate` must have the type of
 
 ```tsx
 {
-    id: string | number;
+    id: string;
 }
 ```
 :::
@@ -146,9 +146,9 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 ### Return value
 
- | Description                               | Type                                                                                                                                                                   |
- | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
- | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { id: Identifier; },`<br/>` DeleteContext>`](https://react-query.tanstack.com/reference/useMutation) |
+ | Description                               | Type                                                                                                                                                               |
+ | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+ | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { id: string; },`<br/>` DeleteContext>`](https://react-query.tanstack.com/reference/useMutation) |
 
->`*` [Refer to documentation for `Identifier` &#8594](#) and [`DeleteContext` &#8594](#)
+>`*` [Refer to documentation for [`DeleteContext` &#8594](#)
 

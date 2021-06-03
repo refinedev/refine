@@ -8,7 +8,7 @@ import { ResourceRouterParams } from "../../../interfaces";
 
 type CloneButtonProps = ButtonProps & {
     resourceName?: string;
-    recordItemId?: string | number;
+    recordItemId?: string;
 };
 
 export const CloneButton: FC<CloneButtonProps> = ({
@@ -19,10 +19,8 @@ export const CloneButton: FC<CloneButtonProps> = ({
     const { push } = useNavigation();
     const translate = useTranslate();
 
-    const {
-        resource: routeResourceName,
-        id: idFromRoute,
-    } = useParams<ResourceRouterParams>();
+    const { resource: routeResourceName, id: idFromRoute } =
+        useParams<ResourceRouterParams>();
 
     const onButtonClick = () => {
         push(

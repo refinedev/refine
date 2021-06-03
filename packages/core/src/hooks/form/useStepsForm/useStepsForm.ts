@@ -14,20 +14,20 @@ import { useForm, useFormProps } from "../useForm";
 export type useStepsFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = useForm<TData, TError, TVariables> &
     useStepsFormFromSFReturnType<TData, TVariables>;
 
 export type useStepsFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = useFormProps<TData, TError, TVariables> & UseStepsFormConfig;
 
 export const useStepsForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 >(
     props: useStepsFormProps<TData, TError, TVariables> = {},
 ): useStepsFormReturnType<TData, TError, TVariables> => {

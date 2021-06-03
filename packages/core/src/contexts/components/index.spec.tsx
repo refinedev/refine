@@ -7,9 +7,8 @@ import { ComponentsContext, ComponentsContextProvider } from ".";
 
 describe("ComponentsContext", () => {
     const TestComponent = () => {
-        const { components } = useContext<IComponentsContext>(
-            ComponentsContext,
-        );
+        const { components } =
+            useContext<IComponentsContext>(ComponentsContext);
 
         return <>{components}</>;
     };

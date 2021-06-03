@@ -19,15 +19,13 @@ import { IPost, ITag } from "interfaces";
 export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
-    const {
-        checkboxGroupProps: tagsCheckboxGroupProps,
-    } = useCheckboxGroup<ITag>({
-        resource: "tags",
-    });
+    const { checkboxGroupProps: tagsCheckboxGroupProps } =
+        useCheckboxGroup<ITag>({
+            resource: "tags",
+        });
 
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
+    const [selectedTab, setSelectedTab] =
+        useState<"write" | "preview">("write");
 
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>

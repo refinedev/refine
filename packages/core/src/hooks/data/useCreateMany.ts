@@ -13,7 +13,7 @@ import { useListResourceQueries, useNotification, useTranslate } from "@hooks";
 type UseCreateManyReturnType<
     TData extends BaseRecord = BaseRecord,
     TError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = UseMutationResult<
     CreateManyResponse<TData>,
     TError,
@@ -24,7 +24,7 @@ type UseCreateManyReturnType<
 export const useCreateMany = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 >(): UseCreateManyReturnType<TData, TError, TVariables> => {
     const { createMany } = useContext<IDataContext>(DataContext);
     const getListQueries = useListResourceQueries();

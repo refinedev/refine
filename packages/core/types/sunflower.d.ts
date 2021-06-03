@@ -1,5 +1,6 @@
 import { FormInstance, FormProps, ModalProps } from "../src/components/antd";
 import { UseFormConfig, UseModalFormConfig } from "sunflower-antd";
+
 export interface UseStepsFormConfig extends UseFormConfig {
     defaultCurrent?: number;
     total?: number;
@@ -9,7 +10,7 @@ export interface UseStepsFormConfig extends UseFormConfig {
 export type useModalFormFromSFReturnType<TData, TVariables> = {
     form: FormInstance<TVariables>;
     visible: boolean;
-    show: (id?: string | number) => void;
+    show: (id?: string) => void;
     close: () => void;
     modalProps: ModalProps;
     formProps: FormProps<TVariables>;
