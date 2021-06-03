@@ -31,7 +31,7 @@ export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
 export const useSelect = <TData extends BaseRecord = BaseRecord>(
     props: UseSelectProps,
 ): UseSelectReturnType<TData> => {
-    const [search, setSearch] = React.useState<string | undefined>();
+    const [search, setSearch] = React.useState<CrudFilters>([]);
     const [options, setOptions] = React.useState<Option[]>([]);
     const [selectedOptions, setSelectedOptions] = React.useState<Option[]>([]);
 
@@ -40,7 +40,7 @@ export const useSelect = <TData extends BaseRecord = BaseRecord>(
     const {
         resource,
         sort,
-        filters,
+        filters = [],
         optionLabel = "title",
         optionValue = "id",
     } = props;
@@ -65,7 +65,7 @@ export const useSelect = <TData extends BaseRecord = BaseRecord>(
         resource,
         {
             sort,
-            filters,
+            filters: filters.concat(search),
         },
         {
             enabled: false,
@@ -86,7 +86,13 @@ export const useSelect = <TData extends BaseRecord = BaseRecord>(
     }, [search]);
 
     const onSearch = (value: string) => {
-        setSearch(value);
+        setSearch([
+            {
+                field: optionLabel,
+                operator: "contains",
+                value,
+            },
+        ]);
     };
 
     return {
