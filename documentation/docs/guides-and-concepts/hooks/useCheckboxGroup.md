@@ -117,7 +117,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
 });
 ```
 
-It allows us to add some filters while fetching the data. For example, if you want to get records only with their `title` equal to `"Driver Deposit"`.
+It allows us to add some filters while fetching the data. For example, if you want to list only `title`'s equal to `"Driver Deposit"` records.
 
 ### `sort`
 
