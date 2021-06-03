@@ -368,24 +368,17 @@ const { data: userIdentity } = useGetIdentity();
 
 <!-- Kullanıcı adı ve avatar oluşturulduğu zaman eklenecek.. -->
 
-login: () => Promise.resolve(),
-logout: () => Promise.resolve(),
-checkAuth: () => Promise.resolve(),
-checkError: () => Promise.resolve(),
-getPermissions: () => Promise.resolve(),
-getUserIdentity: () => Promise.resolve(),
-
 ## API Reference
 
 ### Properties
 
-| Property        | Description                               | Type                                                              | Default   |
-| --------------- | ----------------------------------------- | ----------------------------------------------------------------- | --------- |
-| login           | Log user in                               | `"edit"` \| `"create"`                                            |           |
-| logout          | Log user out                              | `string`                                                          |           |
-| checkAuth       | Check credentials on each route changes   | `(data: UpdateResponse<M>, variables: any, context: any) => void` |           |
-| checkError      | Check if a data provider returns an error | `(error: any, variables: any, context: any) => void`              |           |
-| getPermissions  | Can be use to get user credentials        | `boolean`                                                         | `false`   |
-| getUserIdentity | Can be use to get user identity           | `boolean`                                                         | `false`\* |
+| Property                                                                                                 | Description                               | Resolve condition                     |
+| -------------------------------------------------------------------------------------------------------- | ----------------------------------------- | ------------------------------------- |
+| login\* <div className=" required">Required</div>                                                        | Log user in                               | Auth confirms login                   |
+| logout <div className=" required">Required</div>                                                         | Log user out                              | Auth confirms logout                  |
+| checkAuth <div className=" required">Required</div>                                                      | Check credentials on each route changes   | Authentication still persist          |
+| checkError\* <div className=" required">Required</div>                                                   | Check if a data provider returns an error | Data provider doesn't return an error |
+| <div className="required-block"><div>getPermissions</div> <div className="required">Required</div></div> | Can be use to get user credentials        | Authorization roles accepted          |
+| getUserIdentity                                                                                          | Can be use to get user identity           | User identity avaliable to return     |
 
-> `*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component. `useForm` will use what is passed to `<Admin>` as default and can override locally.
+> `*`: These methods accepts whatever passed as parameters.
