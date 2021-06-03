@@ -1,15 +1,13 @@
 import { Row, Col, Card, Space } from "@pankod/refine";
 
+import { DeliveryMap } from "components";
+
 export const DashbaordPage: React.FC = () => {
     return (
         <Row gutter={[16, 16]}>
             <Col md={16}>
-                <Card title="Delivery Map">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Voluptatem odit minus itaque nostrum molestias, totam
-                    voluptates quis quae officiis veritatis dolorum maiores
-                    alias id excepturi dolores. Numquam nisi voluptatem
-                    eligendi.
+                <Card title="Delivery Map" style={{ height: 300 }}>
+                    <DeliveryMap />
                 </Card>
             </Col>
             <Col md={8} xs={24}>
