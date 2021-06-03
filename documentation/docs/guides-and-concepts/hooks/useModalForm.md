@@ -205,9 +205,9 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 
 [Refer to codesandbox example for detailed usage. &#8594](https://www.google.com.tr)
 
-## API
+## API Reference
 
-### Type Parameters
+### Properties
 
 | Key                                              | Description                                                                                                                                                                   | Type                                                                           | Default    |
 | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ---------- |

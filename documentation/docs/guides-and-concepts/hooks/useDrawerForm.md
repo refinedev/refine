@@ -208,9 +208,9 @@ The `saveButtonProps` and `deleteButtonProps` can provides functionality to save
 
 [Refer to codesandbox example for detailed usage. &#8594](https://www.google.com.tr)
 
-## API
+## API Parameters
 
-### Type Parameters
+### Properties
 
 | Key                                              | Description                                                                                                                                                                   | Type                                                                           | Default    |
 | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ---------- |
