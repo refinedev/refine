@@ -87,7 +87,7 @@ Values passed to `mutate` must have the type of
 
 ```tsx
 {
-    ids: (string | number)[];
+    ids: string[];
     values: TVariables = {};
 }
 ```
@@ -159,8 +159,8 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 ### Return value
 
- | Description                               | Type                                                                                                                                                                                           |
- | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
- | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { ids: Identifier[]; values: TVariables; },`<br/>` UpdateContext>`](https://react-query.tanstack.com/reference/useMutation)* |
+ | Description                               | Type                                                                                                                                                                                       |
+ | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+ | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { ids: string[]; values: TVariables; },`<br/>` UpdateContext>`](https://react-query.tanstack.com/reference/useMutation)* |
 
 >`*` `UpdateContext` is an internal type used and [`Identifier` &#8594](#)

@@ -43,7 +43,7 @@ describe("<ImportButton />", () => {
         );
 
         const hiddenFileInput = container.querySelector('input[type="file"]');
-        const files = ({ files: [file] } as unknown) as EventTarget; // TODO: töbe töbe
+        const files = { files: [file] } as unknown as EventTarget; // TODO: töbe töbe
 
         await act(async () => {
             Simulate.change(hiddenFileInput as Element, {

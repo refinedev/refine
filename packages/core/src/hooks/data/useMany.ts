@@ -5,7 +5,6 @@ import { DataContext } from "@contexts/data";
 import {
     IDataContext,
     BaseRecord,
-    Identifier,
     GetManyResponse,
     HttpError,
 } from "../../interfaces";
@@ -14,10 +13,10 @@ import { useTranslate } from "@hooks/translate";
 
 export const useMany = <
     TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError
+    TError extends HttpError = HttpError,
 >(
     resource: string,
-    ids: Identifier[],
+    ids: string[],
     options?: UseQueryOptions<GetManyResponse<TData>, TError>,
 ): QueryObserverResult<GetManyResponse<TData>> => {
     const { getMany } = useContext<IDataContext>(DataContext);

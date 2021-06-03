@@ -9,10 +9,8 @@ export type UseCancelNotificationType = () => {
 };
 
 export const useCancelNotification: UseCancelNotificationType = () => {
-    const {
-        notifications,
-        notificationDispatch,
-    } = useContext<INotificationContext>(NotificationContext);
+    const { notifications, notificationDispatch } =
+        useContext<INotificationContext>(NotificationContext);
 
     return { notifications, notificationDispatch };
 };

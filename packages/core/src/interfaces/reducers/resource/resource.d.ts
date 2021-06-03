@@ -14,7 +14,7 @@ export interface IResourceReducer {
             page: number;
             perPage?: number;
         };
-        selectedIds?: [string | number];
+        selectedIds?: string[];
         total?: number;
     };
 }

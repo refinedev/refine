@@ -21,22 +21,21 @@ import {
     ContextQuery,
     HttpError,
     GetListResponse,
-    Identifier,
 } from "../../interfaces";
 
 type UseDeleteReturnType<
     TData extends BaseRecord = BaseRecord,
-    TError = HttpError
+    TError = HttpError,
 > = UseMutationResult<
     DeleteOneResponse<TData>,
     TError,
-    { id: Identifier },
+    { id: string },
     DeleteContext
 >;
 
 export const useDelete = <
     TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError
+    TError extends HttpError = HttpError,
 >(
     resource: string,
     mutationModeProp?: MutationMode,
@@ -64,7 +63,7 @@ export const useDelete = <
         DeleteOneResponse<TData>,
         TError,
         {
-            id: Identifier;
+            id: string;
         },
         DeleteContext
     >(
@@ -107,18 +106,16 @@ export const useDelete = <
             onMutate: async (deleteParams) => {
                 const previousQueries: ContextQuery[] = [];
 
-                const allQueries = cacheQueries(
-                    resource,
-                    deleteParams.id?.toString(),
-                );
+                const allQueries = cacheQueries(resource, deleteParams.id);
 
                 for (const queryItem of allQueries) {
                     const { queryKey } = queryItem;
                     await queryClient.cancelQueries(queryKey);
 
-                    const previousQuery = queryClient.getQueryData<
-                        QueryResponse<TData>
-                    >(queryKey);
+                    const previousQuery =
+                        queryClient.getQueryData<QueryResponse<TData>>(
+                            queryKey,
+                        );
 
                     if (!(mutationMode === "pessimistic")) {
                         if (previousQuery) {
@@ -130,19 +127,14 @@ export const useDelete = <
                             if (
                                 queryKey.includes(`resource/list/${resource}`)
                             ) {
-                                const {
-                                    data,
-                                    total,
-                                } = previousQuery as GetListResponse<TData>;
+                                const { data, total } =
+                                    previousQuery as GetListResponse<TData>;
 
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: (data ?? []).filter(
                                         (record: TData) =>
-                                            !(
-                                                record.id!.toString() ===
-                                                deleteParams.id?.toString()
-                                            ),
+                                            !(record.id === deleteParams.id),
                                     ),
                                     total: total - 1,
                                 });
@@ -186,7 +178,7 @@ export const useDelete = <
             onSuccess: (_data, { id }) => {
                 const resourceSingular = pluralize.singular(resource);
 
-                const allQueries = cacheQueries(resource, id?.toString());
+                const allQueries = cacheQueries(resource, id);
                 for (const query of allQueries) {
                     if (
                         query.queryKey.includes(`resource/getOne/${resource}`)
@@ -206,10 +198,7 @@ export const useDelete = <
                 });
             },
             onSettled: (_data, _error, variables) => {
-                const allQueries = cacheQueries(
-                    resource,
-                    variables.id?.toString(),
-                );
+                const allQueries = cacheQueries(resource, variables.id);
                 for (const query of allQueries) {
                     if (
                         !query.queryKey.includes(`resource/getOne/${resource}`)
