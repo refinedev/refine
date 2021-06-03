@@ -4,7 +4,7 @@ import { OptionalComponent } from "./";
 
 import { render } from "../../../test";
 describe("OptionalComponent", () => {
-    it("renders correctly with optional", () => {
+    it("renders correctly without optional", () => {
         const { getByText } = render(
             <OptionalComponent>
                 <div>render me</div>
