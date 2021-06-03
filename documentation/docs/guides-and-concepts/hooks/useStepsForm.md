@@ -13,7 +13,7 @@ const { stepsProps, formProps } = useStepsForm<IPost>();
 
 All we have to do is to pass the props it returns to our `<Steps>` and `<Form>` components.
 
-## Example
+## Usage
 
 We'll do two examples, one for creating a post and one for editing a post. Let's see how `useStepsForm` is used in both.
 
@@ -426,3 +426,47 @@ export const PostCreate: React.FC = () => {
     );
 };
 ```
+
+## API Reference
+
+### Properties
+
+| Key                                              | Description                                                                                                                                                                   | Type                                                                           | Default    |
+| ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ---------- |
+| action <div className=" required">Required</div> | Type of form mode                                                                                                                                                             | `"edit"` \| `"create"`                                                         | `"create"` |
+| defaultCurrent                                   | Default step, counting from 0                                                                                                                                                 | `number`                                                                       | `0`        |
+| total                                            | total counting for steps                                                                                                                                                      | `number`                                                                       | `0`        |
+| isBackValidate                                   | should validate if go to prev step                                                                                                                                            | `boolean`                                                                      | `true`     |
+| form                                             | Ant Design form instance                                                                                                                                                      | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance) |            |
+| mutationMode                                     | [Determines when mutations are executed](interfaces.md#mutationmode). If not explicitly configured, it is read from the mutation mode config of the resource in current route | `"pessimistic"` \| `"optimistic"` \| `"undoable"`                              |            |
+| onMutationError                                  | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error                                                                            | `(error: any, variables: any, context: any) => void`                           |            |
+| onMutationSuccess                                | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful                                                                                  | `(data: UpdateResponse<M>, variables: any, context: any) => void`              |            |
+| redirect                                         | Page to redirect after succesfull mutation                                                                                                                                    | `"show` \| `"edit` \| `"list"`\*\*                                             |            |
+| submit                                           | Submit the form                                                                                                                                                               | `(values?: TVariables) => Promise<TData>`                                      |            |
+| submitOnEnter                                    | Listen `Enter` key press to submit form                                                                                                                                       | `boolean`                                                                      | `false`    |
+| undoableTimeout                                  | Duration to wait before executing mutations when `mutationMode = "undoable"`                                                                                                  | `number`                                                                       | `5000`\*   |
+| warnWhenUnsavedChanges                           | Shows notification when unsaved changes exist                                                                                                                                 | `boolean`                                                                      | `false`\*  |
+
+> `*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component. `useModalForm` will use what is passed to `<Admin>` as default and can override locally.
+
+> `**`: If not explicitly configured, default value of `redirect` depends which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). Otherwise if `action` is `edit`, `redirect`s default value is `list`.
+
+### Return Values
+
+| Key                      | Description                                                  | Type                                                                                                                                                                                 |
+| ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| stepsProps               | Ant Design steps props                                       | [`StepsProps`](https://ant.design/components/steps/#API)                                                                                                                             |
+| current                  | Current step, counting from 0.                               | `number`                                                                                                                                                                             |
+| gotoStep                 | Go to the target step                                        | `(step: number) => void`                                                                                                                                                             |
+| formProps                | Ant Design form props                                        | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                                              |
+| form                     | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance)                                                                                                       |
+| formLoading              | Loading status of form                                       | `boolean`                                                                                                                                                                            |
+| defaultFormValuesLoading | DefaultFormValues loading status of form                     | `boolean`                                                                                                                                                                            |
+| submit                   | Submit method, the parameter is the value of the form fields | `() => void`                                                                                                                                                                         |
+| saveButtonProps          | Props for a submit button                                    | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                                                                                                                      |
+| queryResult              | Result of the query of a record                              | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery)                                                                                        |
+| mutationResult           | Result of the mutation triggered by submitting the form      | `UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
+| editId                   | Record id for edit action                                    | `string`                                                                                                                                                                             |
+| setEditId                | `editId` setter                                              | `Dispatch<SetStateAction<` `string` \| `undefined>>`                                                                                                                                 |
+| cloneId                  | Record id for clone action                                   | `string`                                                                                                                                                                             |
+| setCloneId               | `cloneId` setter                                             | `Dispatch<SetStateAction<` `string` \| `undefined>>`                                                                                                                                 |
