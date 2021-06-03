@@ -55,10 +55,8 @@ export {
     useStepsFormFromSFReturnType,
 } from "../../types/sunflower";
 
-export type Identifier = string | number;
-
 export type BaseRecord = {
-    id?: Identifier;
+    id?: string;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
 };

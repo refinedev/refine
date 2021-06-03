@@ -11,7 +11,7 @@ describe("deleteOne", () => {
         const response = await JsonServer(
             "https://refine-fake-rest.pankod.com",
             axios,
-        ).deleteOne("posts", 1);
+        ).deleteOne("posts", "1");
 
         const { data } = response;
 

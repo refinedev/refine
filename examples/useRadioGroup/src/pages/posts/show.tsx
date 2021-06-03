@@ -16,10 +16,8 @@ export const PostShow: React.FC<IResourceComponentsProps> = (props) => {
     const { data, isLoading } = queryResult;
     const record = data?.data;
 
-    const {
-        data: languageData,
-        isLoading: languageIsLoading,
-    } = useOne<ILanguage>("languages", record?.language);
+    const { data: languageData, isLoading: languageIsLoading } =
+        useOne<ILanguage>("languages", record?.language);
 
     return (
         <Show {...props} isLoading={isLoading && languageIsLoading}>

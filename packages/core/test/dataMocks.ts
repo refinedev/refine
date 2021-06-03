@@ -2,9 +2,8 @@ import { IDataContext } from "../src/interfaces";
 
 export const posts = [
     {
-        id: 1,
-        title:
-            "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+        id: "1",
+        title: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
         slug: "ut-ad-et",
         content:
             "Cupiditate labore quaerat cum incidunt vel et consequatur modi illo. Et maxime aut commodi occaecati omnis. Est voluptatem quibusdam aliquam. Esse tenetur omnis eaque. Consequatur necessitatibus illum ipsum aspernatur architecto qui. Ut temporibus qui nobis. Reiciendis est magnam ipsa quasi dolor ipsa error. Et eaque cumque est. Eos et odit corporis delectus aut corrupti tempora velit. Perferendis ratione voluptas corrupti id temporibus nam.",
@@ -14,7 +13,7 @@ export const posts = [
         tags: [16, 31, 45],
     },
     {
-        id: 2,
+        id: "2",
         title: "Recusandae consectetur aut atque est.",
         slug: "consequatur-molestiae-rerum",
         content:

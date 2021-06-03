@@ -29,11 +29,10 @@ describe("useSelect Hook", () => {
         expect(options).toHaveLength(2);
         expect(options).toEqual([
             {
-                label:
-                    "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
-                value: 1,
+                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+                value: "1",
             },
-            { label: "Recusandae consectetur aut atque est.", value: 2 },
+            { label: "Recusandae consectetur aut atque est.", value: "2" },
         ]);
     });
 
@@ -62,11 +61,10 @@ describe("useSelect Hook", () => {
         expect(options).toHaveLength(2);
         expect(options).toEqual([
             {
-                label:
-                    "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
-                value: 1,
+                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+                value: "1",
             },
-            { label: "Recusandae consectetur aut atque est.", value: 2 },
+            { label: "Recusandae consectetur aut atque est.", value: "2" },
         ]);
     });
 
@@ -95,11 +93,10 @@ describe("useSelect Hook", () => {
         expect(options).toHaveLength(2);
         expect(options).toEqual([
             {
-                label:
-                    "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
-                value: 1,
+                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+                value: "1",
             },
-            { label: "Recusandae consectetur aut atque est.", value: 2 },
+            { label: "Recusandae consectetur aut atque est.", value: "2" },
         ]);
     });
 
@@ -128,8 +125,8 @@ describe("useSelect Hook", () => {
 
         expect(options).toHaveLength(2);
         expect(options).toEqual([
-            { label: "ut-ad-et", value: 1 },
-            { label: "consequatur-molestiae-rerum", value: 2 },
+            { label: "ut-ad-et", value: "1" },
+            { label: "consequatur-molestiae-rerum", value: "2" },
         ]);
     });
 
@@ -164,11 +161,10 @@ describe("useSelect Hook", () => {
         expect(options).toHaveLength(2);
         expect(options).toEqual([
             {
-                label:
-                    "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
-                value: 1,
+                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+                value: "1",
             },
-            { label: "Recusandae consectetur aut atque est.", value: 2 },
+            { label: "Recusandae consectetur aut atque est.", value: "2" },
         ]);
     });
 

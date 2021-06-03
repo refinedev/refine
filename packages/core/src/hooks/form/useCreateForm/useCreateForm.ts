@@ -26,23 +26,23 @@ type SaveButtonProps = {
 export type useCreateForm<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = {
     form: FormInstance<TVariables>;
     formProps: FormProps<TVariables>;
-    editId?: string | number;
-    setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
+    editId?: string;
+    setEditId?: Dispatch<SetStateAction<string | undefined>>;
     saveButtonProps: SaveButtonProps;
     formLoading: boolean;
     mutationResult: UseCreateReturnType<TData, TError, TVariables>;
-    setCloneId?: Dispatch<SetStateAction<string | number | undefined>>;
-    cloneId?: string | number;
+    setCloneId?: Dispatch<SetStateAction<string | undefined>>;
+    cloneId?: string;
 };
 
 export type useCreateFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = {
     onMutationSuccess?: (
         data: CreateResponse<TData>,
@@ -63,7 +63,7 @@ export type useCreateFormProps<
 export const useCreateForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 >({
     onMutationSuccess,
     onMutationError,

@@ -14,7 +14,6 @@ import {
 import { ActionTypes } from "@contexts/notification";
 import {
     IDataContext,
-    Identifier,
     BaseRecord,
     UpdateManyResponse,
     HttpError,
@@ -31,7 +30,7 @@ type UseUpdateManyReturnType<
 > = UseMutationResult<
     UpdateManyResponse<TData>,
     TError,
-    { ids: Identifier[]; values: TVariables },
+    { ids: string[]; values: TVariables },
     UpdateContext
 >;
 
@@ -69,12 +68,12 @@ export const useUpdateMany = <
         UpdateManyResponse<TData>,
         TError,
         {
-            ids: Identifier[];
+            ids: string[];
             values: TVariables;
         },
         UpdateContext
     >(
-        ({ ids, values }: { ids: Identifier[]; values: TVariables }) => {
+        ({ ids, values }: { ids: string[]; values: TVariables }) => {
             if (!(mutationMode === "undoable")) {
                 return updateMany<TData, TVariables>(resource, ids, values);
             }
@@ -114,10 +113,7 @@ export const useUpdateMany = <
             onMutate: async (variables) => {
                 const previousQueries: ContextQuery[] = [];
 
-                const allQueries = getAllQueries(
-                    resource,
-                    variables.ids.map(toString),
-                );
+                const allQueries = getAllQueries(resource, variables.ids);
 
                 for (const queryItem of allQueries) {
                     const { queryKey } = queryItem;
@@ -144,9 +140,7 @@ export const useUpdateMany = <
                                     ...previousQuery,
                                     data: data.map((record: TData) => {
                                         if (
-                                            variables.ids
-                                                .map((i) => i.toString())
-                                                .includes(record.id!.toString())
+                                            variables.ids.includes(record.id!)
                                         ) {
                                             return {
                                                 ...record,
@@ -204,10 +198,7 @@ export const useUpdateMany = <
                 }
             },
             onSettled: (_data, _error, variables) => {
-                const allQueries = getAllQueries(
-                    resource,
-                    variables.ids.map(toString),
-                );
+                const allQueries = getAllQueries(resource, variables.ids);
                 for (const query of allQueries) {
                     queryClient.invalidateQueries(query.queryKey);
                 }

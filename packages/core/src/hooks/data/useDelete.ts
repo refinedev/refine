@@ -22,7 +22,6 @@ import {
     ContextQuery,
     HttpError,
     GetListResponse,
-    Identifier,
 } from "../../interfaces";
 
 type UseDeleteReturnType<
@@ -31,7 +30,7 @@ type UseDeleteReturnType<
 > = UseMutationResult<
     DeleteOneResponse<TData>,
     TError,
-    { id: Identifier },
+    { id: string },
     DeleteContext
 >;
 
@@ -66,7 +65,7 @@ export const useDelete = <
         DeleteOneResponse<TData>,
         TError,
         {
-            id: Identifier;
+            id: string;
         },
         DeleteContext
     >(
@@ -109,10 +108,7 @@ export const useDelete = <
             onMutate: async (deleteParams) => {
                 const previousQueries: ContextQuery[] = [];
 
-                const allQueries = cacheQueries(
-                    resource,
-                    deleteParams.id?.toString(),
-                );
+                const allQueries = cacheQueries(resource, deleteParams.id);
 
                 for (const queryItem of allQueries) {
                     const { queryKey } = queryItem;
@@ -140,10 +136,7 @@ export const useDelete = <
                                     ...previousQuery,
                                     data: (data ?? []).filter(
                                         (record: TData) =>
-                                            !(
-                                                record.id!.toString() ===
-                                                deleteParams.id?.toString()
-                                            ),
+                                            !(record.id === deleteParams.id),
                                     ),
                                     total: total - 1,
                                 });
@@ -189,7 +182,7 @@ export const useDelete = <
             onSuccess: (_data, { id }) => {
                 const resourceSingular = pluralize.singular(resource);
 
-                const allQueries = cacheQueries(resource, id?.toString());
+                const allQueries = cacheQueries(resource, id);
                 for (const query of allQueries) {
                     if (
                         query.queryKey.includes(`resource/getOne/${resource}`)
@@ -209,10 +202,7 @@ export const useDelete = <
                 });
             },
             onSettled: (_data, _error, variables) => {
-                const allQueries = cacheQueries(
-                    resource,
-                    variables.id?.toString(),
-                );
+                const allQueries = cacheQueries(resource, variables.id);
                 for (const query of allQueries) {
                     if (
                         !query.queryKey.includes(`resource/getOne/${resource}`)

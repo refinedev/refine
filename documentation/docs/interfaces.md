@@ -86,7 +86,6 @@ ButtonProps
 | ------------- | -------------------------------------------------------- |
 | resourceName? | `string`                                                 |
 | recordItemId? | `string` \|` number`                                     |
-| recordItemId? | `string` \|` number`                                     |
 | onSuccess?    | `<TData = BaseRecord>(value: { data: TData; }) => void;` |
 | mutationMode? | [`MutationMode`](#mutationmode)                          |
 

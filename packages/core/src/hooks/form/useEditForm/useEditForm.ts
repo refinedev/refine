@@ -33,24 +33,24 @@ type SaveButtonProps = {
 export type useEditForm<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = {
     form: FormInstance<TVariables>;
     formProps: FormProps<TVariables>;
-    editId?: string | number;
-    setEditId?: Dispatch<SetStateAction<string | number | undefined>>;
+    editId?: string;
+    setEditId?: Dispatch<SetStateAction<string | undefined>>;
     saveButtonProps: SaveButtonProps;
     queryResult: QueryObserverResult<GetOneResponse<TData>>;
     mutationResult: UseUpdateReturnType<TData, TError, TVariables>;
     formLoading: boolean;
-    setCloneId?: Dispatch<SetStateAction<string | number | undefined>>;
-    cloneId?: string | number;
+    setCloneId?: Dispatch<SetStateAction<string | undefined>>;
+    cloneId?: string;
 };
 
 export type useEditFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = {
     onMutationSuccess?: (
         data: UpdateResponse<TData>,
@@ -73,7 +73,7 @@ export type useEditFormProps<
 export const useEditForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 >({
     onMutationSuccess,
     onMutationError,
@@ -88,7 +88,7 @@ export const useEditForm = <
     TError,
     TVariables
 > => {
-    const [editId, setEditId] = React.useState<string | number>();
+    const [editId, setEditId] = React.useState<string>();
 
     const [formAnt] = Form.useForm();
     const formSF = useFormSF<TData, TVariables>({
@@ -112,7 +112,7 @@ export const useEditForm = <
     const { id: idFromRoute, action } = useParams<ResourceRouterParams>();
     const isEdit = !!editId || action === "edit";
 
-    const id = editId?.toString() ?? idFromRoute;
+    const id = editId ?? idFromRoute;
 
     const queryResult = useOne<TData>(resource.name, id, {
         enabled: isEdit,

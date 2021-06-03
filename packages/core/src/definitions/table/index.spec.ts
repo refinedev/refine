@@ -62,12 +62,8 @@ describe("definitions/table", () => {
         const url =
             "?current=1&pageSize=10&categoryId__in[]=1&categoryId__in[]=2&sort[]=id&order[]=desc";
 
-        const {
-            parsedCurrent,
-            parsedPageSize,
-            parsedSorter,
-            parsedFilters,
-        } = parseTableParams(url);
+        const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
+            parseTableParams(url);
 
         expect(parsedCurrent).toBe(1);
         expect(parsedPageSize).toBe(10);
