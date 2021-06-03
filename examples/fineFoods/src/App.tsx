@@ -9,7 +9,7 @@ import { Header, Title } from "components";
 import "i18n";
 
 const App: React.FC = () => {
-    const API_URL = "https://refine-fake-rest.pankod.com";
+    const API_URL = "https://refine-fake-ecommerce.pankod.com";
     const dataProvider = jsonServerDataProvider(API_URL);
 
     const { t, i18n } = useTranslation();
@@ -35,6 +35,7 @@ const App: React.FC = () => {
                 create={PostCreate}
                 edit={PostEdit}
             />
+            <Resource name="orders" />
         </Admin>
     );
 };

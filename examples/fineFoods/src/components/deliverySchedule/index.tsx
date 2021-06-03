@@ -1,21 +1,11 @@
 import { Typography, AntdList, useSimpleList } from "@pankod/refine";
+import { IOrder } from "interfaces";
 
 export const DeliverySchedule: React.FC = () => {
     const { Title } = Typography;
 
-    const { listProps } = useSimpleList<{
-        title: string;
-        id: string;
-        status: "draft" | "published";
-    }>({
-        resource: "posts",
-        filters: [
-            {
-                field: "status",
-                operator: "eq",
-                value: "published",
-            },
-        ],
+    const { listProps } = useSimpleList<IOrder>({
+        resource: "orders",
         sorter: [
             {
                 field: "id",
@@ -35,7 +25,7 @@ export const DeliverySchedule: React.FC = () => {
             <AntdList
                 {...listProps}
                 renderItem={(item) => (
-                    <div>{`${item.id} - ${item.title} - ${item.status}`}</div>
+                    <div>{`${item.id} - ${item.userId} - ${item.status.text}`}</div>
                 )}
             />
         </>
