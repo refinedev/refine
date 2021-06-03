@@ -9,7 +9,7 @@ import { ButtonProps } from "../../../components/antd";
 export type useEditableTableReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = useTableReturnType<TData> &
     useForm<TData, TError, TVariables> & {
         saveButtonProps: ButtonProps & {
@@ -18,9 +18,7 @@ export type useEditableTableReturnType<
         cancelButtonProps: ButtonProps & {
             onClick: () => void;
         };
-        editButtonProps: (
-            id: string | number,
-        ) => ButtonProps & {
+        editButtonProps: (id: string | number) => ButtonProps & {
             onClick: () => void;
         };
         isEditing: (id: string | number) => boolean;
@@ -29,13 +27,13 @@ export type useEditableTableReturnType<
 type useEditableTableProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = useTableProps & useFormProps<TData, TError, TVariables>;
 
 export const useEditableTable = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 >(
     props: useEditableTableProps<TData, TError, TVariables> = {},
 ): useEditableTableReturnType<TData, TError, TVariables> => {

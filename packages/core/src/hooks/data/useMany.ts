@@ -14,7 +14,7 @@ import { useTranslate } from "@hooks/translate";
 
 export const useMany = <
     TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError
+    TError extends HttpError = HttpError,
 >(
     resource: string,
     ids: Identifier[],

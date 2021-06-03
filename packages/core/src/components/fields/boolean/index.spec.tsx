@@ -60,8 +60,8 @@ describe("BooleanField", () => {
                 </div>,
             );
 
-            const booleanField = baseDom.getByTestId("custom-field")
-                .children[0];
+            const booleanField =
+                baseDom.getByTestId("custom-field").children[0];
             fireEvent.mouseOver(booleanField);
 
             expect(await baseDom.findByText("test")).toBeInTheDocument();
@@ -77,8 +77,8 @@ describe("BooleanField", () => {
                 </div>,
             );
 
-            const booleanField = baseDom.getByTestId("custom-field")
-                .children[0];
+            const booleanField =
+                baseDom.getByTestId("custom-field").children[0];
 
             expect(
                 booleanField.children[0].classList.contains(

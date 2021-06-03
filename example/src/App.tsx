@@ -58,8 +58,7 @@ const App: React.FC = () => {
             Promise.resolve({
                 id: 1,
                 fullName: "Jane Doe",
-                avatar:
-                    "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
+                avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
             }),
     };
 
@@ -82,6 +81,8 @@ const App: React.FC = () => {
             </Authenticated>
         );
     };
+
+    const hede: any = 1;
 
     return (
         <Admin

@@ -19,10 +19,8 @@ export const ShowButton: FC<ShowButtonProps> = ({
     const { show } = useNavigation();
     const translate = useTranslate();
 
-    const {
-        resource: routeResourceName,
-        id: idFromRoute,
-    } = useParams<ResourceRouterParams>();
+    const { resource: routeResourceName, id: idFromRoute } =
+        useParams<ResourceRouterParams>();
 
     const resourceName = propResourceName ?? routeResourceName;
 

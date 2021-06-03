@@ -20,10 +20,8 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
     id,
 }: useShowProps = {}) => {
     const [showId, setShowId] = useState<string>();
-    const {
-        resource: routeResourceName,
-        id: idFromRoute,
-    } = useParams<ResourceRouterParams>();
+    const { resource: routeResourceName, id: idFromRoute } =
+        useParams<ResourceRouterParams>();
 
     const resource = resourceName ?? routeResourceName;
     const resourceId = showId ?? id ?? idFromRoute;
