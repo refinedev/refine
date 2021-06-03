@@ -162,5 +162,5 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
  | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
  | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { id: string; values: TVariables; },`<br/>` UpdateContext>`](https://react-query.tanstack.com/reference/useMutation)* |
 
->`*` [Refer to for `UpdateContext`. &#8594](#)
+>`*` `UpdateContext` is an internal type used.
 
