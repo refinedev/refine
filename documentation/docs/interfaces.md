@@ -5,7 +5,7 @@ title: Interface References
 
 ## CrudFilters
 
-[`CrudFilter`](#crudfilter)
+[`CrudFilter[]`](#crudfilter)
 
 ### CrudFilter
 
@@ -13,6 +13,7 @@ title: Interface References
 | -------- | --------------------------------- |
 | field    | `string`                          |
 | operator | [`CrudOperators`](#crudoperators) |
+| value    |  `any`                            |
 
 #### CrudOperators
 
