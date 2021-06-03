@@ -1,10 +1,8 @@
 import React from "react";
 import { wait } from "@testing-library/react";
-import { renderHook } from "@testing-library/react-hooks";
 
 import { MockJSONServer, render, TestWrapper, act, fireEvent } from "@test";
 import { RouteProvider } from "./";
-import { useLogin } from "@hooks";
 
 const mockAuthProvider = {
     login: () => Promise.resolve(),
