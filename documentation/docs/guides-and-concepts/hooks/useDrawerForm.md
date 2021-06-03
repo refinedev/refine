@@ -14,7 +14,7 @@ const { drawerProps, formProps } = useDrawerForm<IPost>();
 
 All we have to do is to pass the `drawerProps` to `<Drawer>` and `formProps` to `<Form>` components.
 
-## Usage
+## Usage
 
 We'll do two examples, one for creating a post and one for editing a post. Let's see how `useDrawerForm` is used in both.
 
@@ -218,8 +218,8 @@ The `saveButtonProps` and `deleteButtonProps` can provides functionality to save
 | autoSubmitClose                                  | Close drawer after submit                                                                                                                                                     | `boolean`                                                                      |            |
 | form                                             | Ant Design form instance                                                                                                                                                      | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance) |            |
 | mutationMode                                     | [Determines when mutations are executed](interfaces.md#mutationmode). If not explicitly configured, it is read from the mutation mode config of the resource in current route | `"pessimistic"` \| `"optimistic"` \| `"undoable"`                              |            |
-| onMutationError                                  | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error                                                                            | `(error: any, variables: any, context: any) => void`                           |            |
-| onMutationSuccess                                | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful                                                                                  | `(data: UpdateResponse<M>, variables: any, context: any) => void`              |            |
+| onMutationError                                  | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error                                                                            | `(error: TError, variables: TVariables, context: any) => void`                 |            |
+| onMutationSuccess                                | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful                                                                                  | `(data: TData, variables: TVariables, context: any) => void`                   |            |
 | redirect                                         | Page to redirect after succesfull mutation                                                                                                                                    | `"show` \| `"edit` \| `"list"`\*\*                                             |            |
 | submit                                           | Submit the form                                                                                                                                                               | `(values?: TVariables) => Promise<TData>`                                      |            |
 | submitOnEnter                                    | Listen `Enter` key press to submit form                                                                                                                                       | `boolean`                                                                      | `false`    |
