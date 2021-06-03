@@ -17,7 +17,6 @@ import {
     useModalForm,
     EditButton,
     ShowButton,
-    RefreshButton,
     IResourceComponentsProps,
 } from "@pankod/refine";
 
@@ -63,8 +62,6 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     return (
         <>
             <List
-                {...props}
-                canCreate
                 createButtonProps={{
                     onClick: () => {
                         createModalShow();
@@ -98,8 +95,13 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     />
                 </Table>
             </List>
-            <Modal {...createModalProps} footer={null}>
-                <Create {...props} saveButtonProps={createSaveButtonProps}>
+            <Modal {...createModalProps} footer={null} width={1000}>
+                <Create
+                    saveButtonProps={createSaveButtonProps}
+                    pageHeaderProps={{
+                        backIcon: false,
+                    }}
+                >
                     <Form {...createFormProps} layout="vertical">
                         <Form.Item
                             label="Title"
@@ -141,15 +143,17 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     </Form>
                 </Create>
             </Modal>
-            <Modal {...editModalProps} footer={null}>
+            <Modal {...editModalProps} footer={null} width={1000}>
                 <Edit
-                    {...props}
                     recordItemId={editId}
                     saveButtonProps={{
                         ...editSaveButtonProps,
                         disabled: formLoading,
                     }}
                     deleteButtonProps={deleteButtonProps}
+                    pageHeaderProps={{
+                        backIcon: false,
+                    }}
                 >
                     <Form {...editFormProps} layout="vertical">
                         <Form.Item
@@ -195,11 +199,15 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
             <Modal
                 visible={visibleShowModal}
                 onCancel={() => setVisibleShowModal(false)}
+                width={1000}
             >
                 <Show
                     {...props}
                     isLoading={showIsLoading}
-                    actionButtons={<RefreshButton recordItemId={showId} />}
+                    recordItemId={showId}
+                    pageHeaderProps={{
+                        backIcon: false,
+                    }}
                 >
                     <Title level={5}>Id</Title>
                     <Text>{record?.id}</Text>

@@ -155,8 +155,8 @@ const { clone } = useNavigation()
 
 | Property        | Description                                             | Type                                                                             |
 | --------------- | ------------------------------------------------------- | -------------------------------------------------------------------------------- | --- |
-| form            | Ant design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)               |
-| formProps       | Ant design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                          |
+| form            | Ant Design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)               |
+| formProps       | Ant Design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                          |
 | saveButtonProps | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                  |
 | queryResult     | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)  |
 | mutationResult  | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation) |

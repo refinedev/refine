@@ -44,69 +44,84 @@ export const Show: React.FC<ShowProps> = ({
     const resourceWithRoute = useResourceWithRoute();
     const {
         resource: routeResourceName,
+        action: routeFromAction,
         id: idFromRoute,
     } = useParams<ResourceRouterParams>();
 
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
-    const isDeleteButtonVisible = canDelete ? canDelete : resource.canDelete;
-    const isEditButtonVisible = canEdit ? canEdit : resource.canEdit;
+    const isDeleteButtonVisible = canDelete ?? resource.canDelete;
+    const isEditButtonVisible = canEdit ?? resource.canEdit;
 
     return (
-        <PageHeader
-            ghost={false}
-            onBack={goBack}
-            title={
-                title ??
-                translate(
-                    `${resource.name}.titles.show`,
-                    `Show ${pluralize.singular(resource.name)}`,
-                )
-            }
-            extra={
-                <Row>
-                    <Space key="extra-buttons">
-                        {!recordItemId && (
-                            <ListButton resourceName={resource.name} />
-                        )}
-                        {isEditButtonVisible && (
-                            <EditButton
-                                disabled={isLoading}
-                                resourceName={resource.name}
-                                recordItemId={recordItemId ?? idFromRoute}
-                            />
-                        )}
-                        {isDeleteButtonVisible && (
-                            <DeleteButton
-                                resourceName={resource.name}
-                                recordItemId={recordItemId ?? idFromRoute}
-                                onSuccess={() =>
-                                    list(resource.route ?? resource.name)
-                                }
-                            />
-                        )}
-                        <RefreshButton
-                            resourceName={resource.name}
-                            recordItemId={recordItemId ?? idFromRoute}
-                        />
-                    </Space>
-                </Row>
-            }
-            {...pageHeaderProps}
-        >
-            <Row gutter={[16, 16]}>
-                <Col flex="1">
-                    <Card loading={isLoading} actions={[actionButtons]}>
+        <Row gutter={[16, 16]}>
+            <Col flex="1 1 200px">
+                <PageHeader
+                    ghost={false}
+                    onBack={routeFromAction ? goBack : undefined}
+                    title={
+                        title ??
+                        translate(
+                            `${resource.name}.titles.show`,
+                            `Show ${pluralize.singular(resource.name)}`,
+                        )
+                    }
+                    extra={
+                        <Row>
+                            <Space key="extra-buttons">
+                                {!recordItemId && (
+                                    <ListButton
+                                        data-testid="show-list-button"
+                                        resourceName={resource.name}
+                                    />
+                                )}
+                                {isEditButtonVisible && (
+                                    <EditButton
+                                        disabled={isLoading}
+                                        data-testid="show-edit-button"
+                                        resourceName={resource.name}
+                                        recordItemId={
+                                            recordItemId ?? idFromRoute
+                                        }
+                                    />
+                                )}
+                                {isDeleteButtonVisible && (
+                                    <DeleteButton
+                                        resourceName={resource.name}
+                                        data-testid="show-delete-button"
+                                        recordItemId={
+                                            recordItemId ?? idFromRoute
+                                        }
+                                        onSuccess={() =>
+                                            list(
+                                                resource.route ?? resource.name,
+                                            )
+                                        }
+                                    />
+                                )}
+                                <RefreshButton
+                                    resourceName={resource.name}
+                                    recordItemId={recordItemId ?? idFromRoute}
+                                />
+                            </Space>
+                        </Row>
+                    }
+                    {...pageHeaderProps}
+                >
+                    <Card
+                        loading={isLoading}
+                        actions={actionButtons ? [actionButtons] : undefined}
+                    >
                         {children}
                     </Card>
-                </Col>
+                </PageHeader>
+            </Col>
 
-                {aside && (
-                    <Col flex="0 1 300px">
-                        <OptionalComponent optional={aside} />
-                    </Col>
-                )}
-            </Row>
-        </PageHeader>
+            {aside && (
+                <Col flex="0 1 300px">
+                    <OptionalComponent optional={aside} />
+                </Col>
+            )}
+        </Row>
     );
 };

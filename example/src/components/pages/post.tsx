@@ -46,6 +46,7 @@ import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
+import { Aside } from "../aside";
 
 const { Title, Text } = Typography;
 
@@ -476,6 +477,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                     )}
                 </>
             }
+            aside={() => <Aside />}
         >
             <Steps {...stepsProps}>
                 <Step title="Content" />
@@ -681,6 +683,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
         <Edit
             {...props}
             canDelete
+            aside={() => <Aside />}
             actionButtons={
                 <>
                     {current > 0 && (
