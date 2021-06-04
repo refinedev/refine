@@ -58,7 +58,7 @@ export const Edit: React.FC = () => {
 
 ### `title`
 
-It allows adding title inside the `<Edit>` component. if you don't pass title props it uses singular resource name by default. For example, for the "posts" resource, it will look like "Edit post".
+It allows adding title inside the `<Edit>` component. if you don't pass title props it uses "Edit" prefix and singular resource name by default. For example, for the "posts" resource, it will look like "Edit post".
 
 ```tsx
 import { Edit } from "@pankod/refine";
