@@ -15,7 +15,7 @@ We' ll show what `<Edit>` does using properties with examples.
 
 ### `canDelete` and `deleteButtonProps`
 
-`canDelete` allows adding the delete button inside the `<Edit>` component. If `<Resource>` is passed a `canDelete` props refine adds the delete button by default. If you want to customize this button you can use `deleteButtonProps` property like the below code.
+`canDelete` allows adding the delete button inside the `<Edit>` component. If `<Resource>` has `canDelete` prop refine adds the delete button by default. If you want to customize this button you can use `deleteButtonProps` property like the below code.
 
 Delete button when clicked executes the `useDelete` method provided by the `dataProvider`.
 
