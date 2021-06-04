@@ -26,9 +26,59 @@ export const LogoutButton = () => {
     )
 }
 ```
+<br/>
+
+## Redirection after logout
+
+We have 4 options to manage redirection after logout process.
+
+- If promise returned from logout is resolved with nothing, app will be redirected to `/login` route by default. 
+
+- A custom url can be given to callback returned from the `useLogout` hook:
+
+```tsx
+const logout = useLogout();
+logout({}, "custom-url")
+```
+
+<br/>
+
+- A custom url can be resolved from the promise returned from `logout` method of [authProvider](/docs/guides-and-concepts/providers/auth-provider).
+
+```tsx
+const authProvider: AuthProvider = {
+    ...
+    logout: () => {
+        ...
+        return Promise.resolve("custom-url");
+    }
+}
+```
+<br/>
+
+- If promise returned from `logout` method of [authProvider](/docs/guides-and-concepts/providers/auth-provider) is resolved with `false` no redirection occurs.
+
+```tsx
+const authProvider: AuthProvider = {
+    ...
+    logout: () => {
+        ...
+        return Promise.resolve(false);
+    }
+}
+```
+
+<br/>
+
+
+
+:::important 
+Custom url given to callback returned from `useLogout` overrides the one on the `authProvider`.
+:::
+
 
 :::tip
-Callback returned from `useLogout` can accept any kind of object for params since `login` method from `authProvider` doesn't have a restriction on its parameters.
+Callback returned from `useLogout` can accept any kind of object for params since `logout` method from `authProvider` doesn't have a restriction on its parameters.
 :::
 
 :::caution
