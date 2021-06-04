@@ -76,17 +76,6 @@ export const PostList: React.FC () => {
 ```
 
 ```ts title="interfaces/index.d.ts"
-...
-
-export interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-}
-```
-
-```ts title="interfaces/index.d.ts"
 export interface IPost {
     id: string;
     title: string;
@@ -216,9 +205,9 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 
 [Refer to codesandbox example for detailed usage. &#8594](https://www.google.com.tr)
 
-## API
+## API Reference
 
-### Type Parameters
+### Properties
 
 | Key                                              | Description                                                                                                                                                                   | Type                                                                           | Default    |
 | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ---------- |
@@ -226,8 +215,8 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 | autoSubmitClose                                  | Close modal after submit                                                                                                                                                      | `boolean`                                                                      |            |
 | form                                             | Ant Design form instance                                                                                                                                                      | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance) |            |
 | mutationMode                                     | [Determines when mutations are executed](interfaces.md#mutationmode). If not explicitly configured, it is read from the mutation mode config of the resource in current route | `"pessimistic"` \| `"optimistic"` \| `"undoable"`                              |            |
-| onMutationError                                  | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error                                                                            | `(error: any, variables: any, context: any) => void`                           |            |
-| onMutationSuccess                                | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful                                                                                  | `(data: UpdateResponse<M>, variables: any, context: any) => void`              |            |
+| onMutationError                                  | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error                                                                            | `(error: TError, variables: TVariables, context: any) => void`                 |            |
+| onMutationSuccess                                | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful                                                                                  | `(data: TData, variables: TVariables, context: any) => void`                   |            |
 | redirect                                         | Page to redirect after succesfull mutation                                                                                                                                    | `"show` \| `"edit` \| `"list"`\*\*                                             |            |
 | submit                                           | Submit the form                                                                                                                                                               | `(values?: TVariables) => Promise<TData>`                                      |            |
 | submitOnEnter                                    | Listen `Enter` key press to submit form                                                                                                                                       | `boolean`                                                                      | `false`    |
@@ -242,7 +231,7 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 
 | Key                      | Description                                                  | Type                                                                                                                                                                                  |
 | ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| show                     | Specify a function that can open the modal                   | `(id?: string) => void`                                                                                                                                                               |
+| show                     | A function that can open the modal                           | `(id?: string) => void`                                                                                                                                                               |
 | formProps                | Ant Design form props                                        | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                                               |
 | modalProps               | Props for managed modal                                      | [`ModalProps`](https://ant.design/components/modal/#API)                                                                                                                              |
 | saveButtonProps          | Props for a submit button                                    | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                                                                                                                       |
