@@ -15,17 +15,17 @@ export const useLogout: UseLogoutType = () => {
     if (isProvided) {
         const logout: LogoutType = (params?: any, redirectPath?: string) =>
             logoutFromContext(params)
-                .then((data) => {
-                    if (data !== false) {
+                .then((pathFromAuthProvider) => {
+                    if (pathFromAuthProvider !== false) {
                         if (redirectPath) {
                             push(redirectPath);
-                        } else if (data) {
-                            push(data);
+                        } else if (pathFromAuthProvider) {
+                            push(pathFromAuthProvider);
                         } else {
                             push("/login");
                         }
                     }
-                    Promise.resolve(data);
+                    Promise.resolve(pathFromAuthProvider);
                 })
                 .catch((error) => Promise.reject(error));
 
