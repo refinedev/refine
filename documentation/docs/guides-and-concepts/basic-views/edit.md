@@ -233,7 +233,7 @@ export const App: React.FC = () => {
 
 | Property          | Description                                 | Type                                                              | Default                                                                            |
 | ----------------- | ------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| canDelete         | Adds delete button                          | `boolean`                                                         | If `<Resource>` is passed a `canDelete` props, `true` else `false`                 |
+| canDelete         | Adds delete button                          | `boolean`                                                         | If `<Resource>` has `canDelete` prop it is `true` else `false` `false`                 |
 | deleteButtonProps | Adds props for delete button                | [`DeleteButtonProps`](interfaces.md#delete-button-props)          | `<DeleteButton>`                                                                   |
 | saveButtonProps   | Adds props for create button                | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton>`                                                                     |
 | title             | Adds title                                  | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                    |
