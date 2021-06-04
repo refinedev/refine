@@ -10,7 +10,13 @@ export const useResourceWithRoute = (): ((route: string) => IResourceItem) => {
             const resource = resources.find((p) => p.route === route);
 
             if (!resource) {
-                throw new Error(`'${route}' not found on resources."`);
+                const mockResource: IResourceItem = {
+                    name: route,
+                };
+
+                return mockResource;
+
+                // throw new Error(`'${route}' not found on resources."`);
             }
             return resource;
         },

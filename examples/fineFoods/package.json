@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/charts": "^1.1.9",
     "@craco/craco": "^6.1.2",
     "@pankod/refine": "../../packages/core",
     "@pankod/refine-json-server": "../../packages/json-server",
@@ -25,6 +26,7 @@
     "react-markdown": "^6.0.1",
     "react-mde": "^11.1.0",
     "react-scripts": "4.0.3",
+    "tslib": "^2.2.0",
     "typescript": "^4.2.4",
     "web-vitals": "^1.1.1"
   },

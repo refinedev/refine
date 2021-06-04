@@ -1,3 +1,7 @@
+export interface IPost {
+    id: string;
+}
+
 export interface IOrderStatus {
     id: string;
     text: string;
