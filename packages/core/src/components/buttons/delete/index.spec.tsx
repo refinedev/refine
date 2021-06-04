@@ -128,7 +128,7 @@ describe("Delete Button", () => {
         });
     });
     it("should render with custom mutationMode", () => {
-        const createButton = render(
+        const deleteButton = render(
             <Route path="/resources/:resource">
                 <DeleteButton mutationMode="pessimistic" />
             </Route>,
@@ -139,13 +139,13 @@ describe("Delete Button", () => {
                 }),
             },
         );
-        const { getByText } = createButton;
+        const { getByText } = deleteButton;
 
         fireEvent.click(getByText("Delete"));
     });
 
     it("should render with custom resource", () => {
-        const createButton = render(
+        const deleteButton = render(
             <Route path="/resources/:resource">
                 <DeleteButton resourceName="categories" />
             </Route>,
@@ -159,7 +159,7 @@ describe("Delete Button", () => {
                 }),
             },
         );
-        const { getByText } = createButton;
+        const { getByText } = deleteButton;
 
         fireEvent.click(getByText("Delete"));
     });
