@@ -4,12 +4,12 @@ title: Auth Provider
 sidebar_label: Auth Provider
 ---
 
-import login from '@site/static/img/login.png';
-import logout from '@site/static/img/logout.gif';
+import login from '@site/static/img/guides-and-concepts/providers/auth-provider/login.png';
+import logout from '@site/static/img/guides-and-concepts/providers/auth-provider/logout.gif';
 
-`refine` let's you set authentication logic by providing `authProvider` property to `<Admin>` component.
+refine let's you set authentication logic by providing `authProvider` property to `<Admin>` component.
 
-`authProvider` is an object with methods that `refine` uses when necessary. These methods need to return a Promise. They also can be accessed with specialized hooks.
+`authProvider` is an object with methods that refine uses when necessary. These methods need to return a Promise. They also can be accessed with specialized hooks.
 
 ## Usage
 
@@ -65,8 +65,8 @@ const App = () => {
 ```
 
 :::tip
-By default, `refine` doesn't require authentication configuration.  
-If an `authProvider` property is not provided, `refine` will use a default `authProvider`:
+By default, refine doesn't require authentication configuration.  
+If an `authProvider` property is not provided, refine will use a default `authProvider`:
 
 ```tsx
 const defaultProvider = {
@@ -86,7 +86,7 @@ This `authProvider` lets the app work without an authentication requirement. If 
 
 ## Login
 
-If an `authProvider` is given, `refine` shows a default login page on `/` and `/login` routes with a login form. Rest of the app won't be accessible until a successful authentication.
+If an `authProvider` is given, refine shows a default login page on `/` and `/login` routes with a login form. Rest of the app won't be accessible until a successful authentication.
 
 <br />
 
@@ -97,11 +97,11 @@ If an `authProvider` is given, `refine` shows a default login page on `/` and `/
 
 After submission, login form calls the `login` method from `authProvider`.
 
-`refine` expects this method to return a resolved Promise if login is successful, and a rejected Promise if not.
+refine expects this method to return a resolved Promise if login is successful, and a rejected Promise if not.
 
 -   If login is successful, pages that requires authentication becomes accessible.
 
--   If the login fails, default login page from `refine` displays an Error message to the user in a notification.
+-   If the login fails, default login page from refine displays an Error message to the user in a notification.
 
 :::important
 If an `authProvider` is given, [Resources](#) passed to `<Admin>` as children are only accessible if login is successful. In case of no `authProvider`, they are accessible without authentication.  
@@ -146,7 +146,7 @@ Current authentication data needs to be cleaned by the `logout` method. For exam
 
 ## Catching Http Errors
 
-Each time `dataProvider` returns an error, `checkError` method of `authProvider` is called with error object.  
+When `dataProvider` returns an error, `checkError` method of `authProvider` is called with error object.  
 If `checkError` returns a rejected promise, `logout` method is called and users become unauthorized and get redirected to `/login` page by default.
 
 ```tsx
