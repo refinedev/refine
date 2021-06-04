@@ -3,13 +3,7 @@ import { Layout, Menu } from "antd";
 import { LogoutOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-import {
-    useNavigation,
-    useTranslate,
-    useMenu,
-    useLogout,
-    useTitle,
-} from "@hooks";
+import { useTranslate, useMenu, useLogout, useTitle } from "@hooks";
 
 export const Sider: React.FC = () => {
     const [collapsed, setCollapsed] = React.useState(false);

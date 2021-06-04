@@ -22,8 +22,7 @@ export const useLogin = (): ((params: any) => Promise<any>) => {
                 .catch((error: Error) => {
                     notification.error({
                         message: error.name || "Login Error",
-                        description:
-                            error.message || "Invalid username or password",
+                        description: error.message || "Invalid credentials",
                     });
 
                     return Promise.reject(error);
