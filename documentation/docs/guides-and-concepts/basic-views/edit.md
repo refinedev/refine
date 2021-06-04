@@ -58,7 +58,7 @@ export const Edit: React.FC = () => {
 
 ### `title`
 
-It allows adding title inside the `<Edit>` component. if you don't pass title props it uses singular resource name by default.
+It allows adding title inside the `<Edit>` component. if you don't pass title props it uses singular resource name by default. For example, for the "posts" resource, it will look like "Edit post".
 
 ```tsx
 import { Edit } from "@pankod/refine";
@@ -77,11 +77,8 @@ import { Edit, Card } from "@pankod/refine";
 
 const Aside: React.FC = () => {
     return (
-        <Card title="Users Edit Details" extra={<a href="#">More</a>}>
-            <p>
-                You can view personal data of users registered in your system in
-                the user table.
-            </p>
+        <Card title="Post Edit Details" extra={<a href="#">More</a>}>
+            <p>Here you can give useful information about post edit.</p>
         </Card>
     );
 };
@@ -99,9 +96,7 @@ export const Edit: React.FC = () => {
 
 ### `actionButtons`
 
-`<Edit>` uses Ant Design `<Card>` components. The `action` prop of `<Card>` component shows `<SaveButton>` and `<DeleteButton>` depending on your usage. If you want to use other things instead of these buttons, you can use `actionButton` property like the below code.
-
-[Refer to `<Card>` documentation for detailed usage. &#8594](https://ant.design/components/card)
+`<Edit>` uses Ant Design [`<Card>`](https://ant.design/components/card) component. The `action` prop of `<Card>` component shows `<SaveButton>` and `<DeleteButton>` depending on your resource definition on `<Resource>` components. If you want to use other things instead of these buttons, you can use `actionButton` property like the below code.
 
 ```tsx
 import { Edit } from "@pankod/refine";
@@ -130,9 +125,7 @@ export const Edit: React.FC = () => {
 
 ### `pageHeaderProps`
 
-`<Edit>` uses Ant Design `<PageHeader>` components. so you can customize with the props of `pageHeaderProps`. By default, the `extra` prop of `<PageHeader>` component shows `<RefreshButton>` and `<ListButton>` depending on your usage.
-
-[Refer to `<PageHeader>` documentation for detailed usage. &#8594](https://ant.design/components/page-header/#API)
+`<Edit>` uses Ant Design [`<PageHeader>`](https://ant.design/components/page-header/#API) components. so you can customize with the props of `pageHeaderProps`. By default, the `extra` prop of `<PageHeader>` component shows `<RefreshButton>` and `<ListButton>` depending on your resource definition on `<Resource>` component.
 
 ```tsx
 import { Edit } from "@pankod/refine";
@@ -159,7 +152,7 @@ export const Edit: React.FC = () => {
 
 ### `recordItemId`
 
-`<Edit>` component reads the `id` information from the route by default. `recordIdItem` is used when it cannot read the `id` information (when used on a special page, inside a modal or drawer).
+`<Edit>` component reads the `id` information from the route by default. `recordIdItem` is used when it cannot reading from the url (when used on a custom page, modal or drawer).
 
 ```tsx
 import { Edit, Modal, useModalForm } from "@pankod/refine";
@@ -238,15 +231,17 @@ export const App: React.FC = () => {
 
 ### Properties
 
-| Property          | Description                                 | Type                                                              | Default                                                            |
-| ----------------- | ------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------ |
-| canDelete         | Adds delete button                          | `boolean`                                                         | If `<Resource>` is passed a `canDelete` props, `true` else `false` |
-| deleteButtonProps | Adds props for delete button                | [`DeleteButtonProps`](interfaces.md#delete-button-props)          | `<DeleteButton />`                                                 |
-| saveButtonProps   | Adds props for create button                | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton />`                                                   |
-| title             | Adds title                                  | `string`                                                          | Singular of `resource.name`                                        |
-| aside             | Adds component to right side                | `React.FC`                                                        | `undefined`                                                        |
-| actionButtons     | Passes props for `<PageHeader>`             | `React.ReactNode`                                                 | `<SaveButton />` and depending on your usage `<DeleteButton />`    |
-| pageHeaderProps   | Passes props for `<PageHeader>`             | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<CreateButton />` }       |
-| recordItemId      | Record id for `<RefreshButton />`           | `string`                                                          |                                                                    |
-| mutationMode      | [Determines when mutations are executed](#) | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`\*                                                  |
-| resource          | [`Resource`](#) for API data interactions   | `string`                                                          | Resource name that it reads from the url.                          |
+| Property          | Description                                 | Type                                                              | Default                                                                            |
+| ----------------- | ------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| canDelete         | Adds delete button                          | `boolean`                                                         | If `<Resource>` is passed a `canDelete` props, `true` else `false`                 |
+| deleteButtonProps | Adds props for delete button                | [`DeleteButtonProps`](interfaces.md#delete-button-props)          | `<DeleteButton>`                                                                   |
+| saveButtonProps   | Adds props for create button                | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton>`                                                                     |
+| title             | Adds title                                  | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                    |
+| aside             | Adds component to right side                | `React.FC`                                                        | `undefined`                                                                        |
+| actionButtons     | Passes props for `<PageHeader>`             | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
+| pageHeaderProps   | Passes props for `<PageHeader>`             | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }        |
+| recordItemId      | Record id for `<RefreshButton>`           | `string`                                                          |                                                                                    |
+| mutationMode      | [Determines when mutations are executed](#) | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`\*                                                                  |
+| resource          | [`Resource`](#) for API data interactions   | `string`                                                          | Resource name that it reads from the url.                                          |
+
+> `*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component.
