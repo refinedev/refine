@@ -3,7 +3,7 @@ import ReactRouterDom from "react-router-dom";
 
 import { act, TestWrapper } from "@test";
 
-import { useLogout } from "./";
+import { useCheckError } from "./";
 
 const mHistory = {
     push: jest.fn(),
@@ -16,17 +16,17 @@ jest.mock("react-router-dom", () => ({
     useHistory: jest.fn(() => mHistory),
 }));
 
-describe("useLogout Hook", () => {
-    it("logout and redirect to login", async () => {
+describe("useCheckError Hook", () => {
+    it("logout and redirect to login if check error rejected", async () => {
         const logoutMock = jest.fn();
 
-        const { result } = renderHook(() => useLogout(), {
+        const { result } = renderHook(() => useCheckError(), {
             wrapper: TestWrapper({
                 authProvider: {
                     isProvided: true,
                     login: () => Promise.resolve(),
                     checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
+                    checkError: () => Promise.reject(),
                     getPermissions: () => Promise.resolve(),
                     logout: logoutMock,
                     getUserIdentity: () => Promise.resolve(),
@@ -37,19 +37,20 @@ describe("useLogout Hook", () => {
         await act(async () => {
             await result.current!();
             expect(logoutMock).toBeCalledTimes(1);
+            expect(mHistory.push).toBeCalledWith("/login");
         });
     });
 
-    it("logout and redirect to custom path", async () => {
+    it("logout and redirect to custom path if check error rejected", async () => {
         const logoutMock = jest.fn();
 
-        const { result } = renderHook(() => useLogout(), {
+        const { result } = renderHook(() => useCheckError(), {
             wrapper: TestWrapper({
                 authProvider: {
                     isProvided: true,
                     login: () => Promise.resolve(),
                     checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
+                    checkError: () => Promise.reject("/customPath"),
                     getPermissions: () => Promise.resolve(),
                     logout: logoutMock,
                     getUserIdentity: () => Promise.resolve(),
@@ -58,38 +59,14 @@ describe("useLogout Hook", () => {
         });
 
         await act(async () => {
-            await result.current!({}, "/test");
+            await result.current!();
             expect(logoutMock).toBeCalledTimes(1);
-            expect(mHistory.push).toBeCalledWith("/test");
-        });
-    });
-
-    it("logout rejected", async () => {
-        const { result } = renderHook(() => useLogout(), {
-            wrapper: TestWrapper({
-                authProvider: {
-                    isProvided: true,
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.reject(new Error("Logout rejected")),
-                    getUserIdentity: () => Promise.resolve(),
-                },
-            }),
-        });
-
-        await act(async () => {
-            try {
-                await result.current!();
-            } catch (error) {
-                expect(error).toEqual(new Error("Logout rejected"));
-            }
+            expect(mHistory.push).toBeCalledWith("/customPath");
         });
     });
 
     it("should return null if isProvided from AdminContext is false", () => {
-        const { result } = renderHook(() => useLogout(), {
+        const { result } = renderHook(() => useCheckError(), {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.resolve(),
@@ -106,8 +83,8 @@ describe("useLogout Hook", () => {
         expect(result.current).toBeNull();
     });
 
-    it("shoudn't return null if isProvided from AdminContext is true", () => {
-        const { result } = renderHook(() => useLogout(), {
+    it("shouldn't return null if isProvided from AdminContext is true", () => {
+        const { result } = renderHook(() => useCheckError(), {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.resolve(),

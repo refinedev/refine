@@ -36,8 +36,10 @@ export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
 
     const logoutFunc = async (params: any) => {
         try {
-            await logout(params);
+            const redirectPath = await logout(params);
             setAuthenticated(false);
+
+            return Promise.resolve(redirectPath);
         } catch (error) {
             setAuthenticated(true);
             throw error;

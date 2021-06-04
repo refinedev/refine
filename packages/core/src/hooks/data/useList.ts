@@ -11,6 +11,8 @@ import {
     HttpError,
     CrudSorting,
 } from "../../interfaces";
+import { useTranslate } from "@hooks/translate";
+import { useNotification, useCheckError } from "@hooks";
 
 interface UseListConfig {
     pagination?: Pagination;
@@ -27,11 +29,30 @@ export const useList = <
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>,
 ): QueryObserverResult<GetListResponse<TData>, TError> => {
     const { getList } = useContext<IDataContext>(DataContext);
+    const notification = useNotification();
+    const translate = useTranslate();
+    const checkError = useCheckError();
 
     const queryResponse = useQuery<GetListResponse<TData>, TError>(
         [`resource/list/${resource}`, { ...config }],
         () => getList<TData>(resource, { ...config }),
-        queryOptions ?? { keepPreviousData: true },
+        {
+            ...(queryOptions ?? { keepPreviousData: true }),
+            onError: (err: TError) => {
+                checkError?.(err);
+                queryOptions?.onError?.(err);
+
+                notification.error({
+                    key: `${resource}-notification`,
+                    message: translate(
+                        "common:notifications.error",
+                        { statusCode: err.statusCode },
+                        `Error (status code: ${err.statusCode})`,
+                    ),
+                    description: err.message,
+                });
+            },
+        },
     );
 
     return queryResponse;

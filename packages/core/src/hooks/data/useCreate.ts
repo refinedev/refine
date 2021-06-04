@@ -9,7 +9,12 @@ import {
     BaseRecord,
     HttpError,
 } from "../../interfaces";
-import { useListResourceQueries, useTranslate, useNotification } from "@hooks";
+import {
+    useListResourceQueries,
+    useTranslate,
+    useNotification,
+    useCheckError,
+} from "@hooks";
 
 export type UseCreateReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -30,6 +35,7 @@ export const useCreate = <
     TError extends HttpError = HttpError,
     TVariables = {},
 >(): UseCreateReturnType<TData, TError, TVariables> => {
+    const checkError = useCheckError();
     const { create } = useContext<IDataContext>(DataContext);
     const getListQueries = useListResourceQueries();
     const translate = useTranslate();
@@ -65,8 +71,8 @@ export const useCreate = <
                 });
             },
             onError: (err: TError, { resource }) => {
+                checkError?.(err);
                 const resourceSingular = pluralize.singular(resource);
-
                 notification.error({
                     description: err.message,
                     message: translate(

@@ -19,6 +19,7 @@ import {
     useCacheQueries,
     useNotification,
     useTranslate,
+    useCheckError,
 } from "@hooks";
 
 type UpdateParams<T> = {
@@ -55,6 +56,7 @@ export const useUpdate = <
     } = useMutationMode();
     const notification = useNotification();
     const translate = useTranslate();
+    const checkError = useCheckError();
 
     const { notificationDispatch } = useCancelNotification();
 
@@ -176,6 +178,8 @@ export const useUpdate = <
                 });
 
                 if (err.message !== "mutationCancelled") {
+                    checkError?.(err);
+
                     notification.error({
                         key: `${id}-${resource}-notification`,
                         message: translate(

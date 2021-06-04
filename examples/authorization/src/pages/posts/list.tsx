@@ -23,10 +23,10 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
         enabled: categoryIds.length > 0,
     });
 
-    const { data: perssionsData } = usePermissions();
+    const { data: permissionsData } = usePermissions();
 
     return (
-        <List {...props} canCreate={perssionsData?.includes("admin")}>
+        <List {...props} canCreate={permissionsData?.includes("admin")}>
             <Table {...tableProps} key="id">
                 <Table.Column key="id" dataIndex="id" title="ID" />
                 <Table.Column key="title" dataIndex="title" title="Title" />
@@ -57,7 +57,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                         <Space>
                             <EditButton size="small" recordItemId={record.id} />
                             <ShowButton size="small" recordItemId={record.id} />
-                            {perssionsData?.includes("admin") && (
+                            {permissionsData?.includes("admin") && (
                                 <DeleteButton
                                     size="small"
                                     recordItemId={record.id}

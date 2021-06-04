@@ -8,7 +8,7 @@ import {
     GetManyResponse,
     HttpError,
 } from "../../interfaces";
-import { useNotification } from "@hooks";
+import { useNotification, useCheckError } from "@hooks";
 import { useTranslate } from "@hooks/translate";
 
 export const useMany = <
@@ -22,6 +22,7 @@ export const useMany = <
     const { getMany } = useContext<IDataContext>(DataContext);
     const notification = useNotification();
     const translate = useTranslate();
+    const checkError = useCheckError();
 
     const queryResponse = useQuery<GetManyResponse<TData>, TError>(
         [`resource/getMany/${resource}`, ids],
@@ -29,6 +30,7 @@ export const useMany = <
         {
             ...options,
             onError: (err: TError) => {
+                checkError?.(err);
                 options?.onError?.(err);
 
                 notification.error({

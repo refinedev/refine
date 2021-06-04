@@ -4,7 +4,7 @@ import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
 import { useNavigation } from "@hooks/navigation";
 
-type LogoutType = (redirectPath?: string) => Promise<void>;
+type LogoutType = (params?: any, redirectPath?: string) => Promise<void>;
 type UseLogoutType = () => LogoutType | null;
 
 export const useLogout: UseLogoutType = () => {
@@ -13,10 +13,18 @@ export const useLogout: UseLogoutType = () => {
         React.useContext<IAuthContext>(AuthContext);
 
     if (isProvided) {
-        const logout: LogoutType = (redirectPath = "/login") =>
-            logoutFromContext()
+        const logout: LogoutType = (params?: any, redirectPath?: string) =>
+            logoutFromContext(params)
                 .then((data) => {
-                    push(redirectPath);
+                    if (data !== false) {
+                        if (redirectPath) {
+                            push(redirectPath);
+                        } else if (data) {
+                            push(data);
+                        } else {
+                            push("/login");
+                        }
+                    }
                     Promise.resolve(data);
                 })
                 .catch((error) => Promise.reject(error));

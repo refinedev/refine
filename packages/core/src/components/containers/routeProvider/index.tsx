@@ -29,10 +29,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     LoginPage,
     customRoutes = [],
 }) => {
-    const { isAuthenticated, checkAuth, checkError } =
-        useContext<IAuthContext>(AuthContext);
-
-    checkAuth().catch(checkError);
+    const { isAuthenticated } = useContext<IAuthContext>(AuthContext);
 
     const routes: IRoutesProps[] = [];
     const RouteHandler = (val: IResourceItem): void => {
@@ -159,9 +156,6 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
             {customRoutes.map((route, i) => (
                 <RouteWithSubRoutes key={i} {...route} />
             ))}
-            <Route path="/resources/:resource?/:action?">
-                {catchAll ?? <ErrorComponent />}
-            </Route>
             <Route>{catchAll ?? <ErrorComponent />}</Route>
         </Switch>
     );
