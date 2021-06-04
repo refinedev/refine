@@ -3,6 +3,18 @@ export interface IOrderStatus {
     text: string;
 }
 
+export interface IUser {
+    id: string;
+    name: string;
+    surname: string;
+    gender: string;
+    gsm: string;
+    createdAt: string;
+    isActive: boolean;
+    avatar: IFile[];
+    addresses: IAddress[];
+}
+
 export interface IAddress {
     text: string;
     coordinate: [string, string];

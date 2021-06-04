@@ -36,6 +36,7 @@ const App: React.FC = () => {
                 edit={PostEdit}
             />
             <Resource name="orders" />
+            <Resource name="users" />
         </Admin>
     );
 };
