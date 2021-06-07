@@ -7,7 +7,6 @@ import {
     CrudFilters,
     useNavigation,
 } from "@pankod/refine";
-import "./header.css";
 
 import { IPost, IUser } from "interfaces";
 export interface IOptionGroup {

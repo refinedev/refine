@@ -3,7 +3,6 @@ import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import { CategoryList, CategoryShow } from "pages/categories";
 import { UserList, UserShow } from "pages/users";
 
 import { Header } from "components";
@@ -19,11 +18,6 @@ const App: React.FC = () => {
                 create={PostCreate}
                 edit={PostEdit}
                 show={PostShow}
-            />
-            <Resource
-                name="categories"
-                list={CategoryList}
-                show={CategoryShow}
             />
             <Resource name="users" list={UserList} show={UserShow} />
         </Admin>
