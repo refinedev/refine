@@ -11,7 +11,13 @@ import {
     RefreshButton,
     ListButton,
 } from "@components";
-import { useNavigation, useResourceWithRoute, useTranslate } from "@hooks";
+import {
+    useNavigation,
+    useResourceWithRoute,
+    useShowRevisions,
+    useTranslate,
+} from "@hooks";
+import { Revisions } from "@components/revisions";
 
 export interface ShowProps {
     aside?: FC;
@@ -23,6 +29,7 @@ export interface ShowProps {
     pageHeaderProps?: PageHeaderProps;
     resource?: string;
     recordItemId?: string;
+    showRevisions?: boolean;
 }
 
 export const Show: React.FC<ShowProps> = ({
@@ -36,10 +43,17 @@ export const Show: React.FC<ShowProps> = ({
     pageHeaderProps,
     resource: resourceFromProps,
     recordItemId,
+    showRevisions = false,
 }) => {
     const translate = useTranslate();
 
     const { goBack, list } = useNavigation();
+
+    const { showRevisions: showRevisionsContext } = useShowRevisions();
+
+    if (showRevisionsContext) {
+        showRevisions = true;
+    }
 
     const resourceWithRoute = useResourceWithRoute();
     const {
@@ -117,9 +131,12 @@ export const Show: React.FC<ShowProps> = ({
                 </PageHeader>
             </Col>
 
-            {aside && (
+            {(aside || showRevisions) && (
                 <Col flex="0 1 300px">
                     <OptionalComponent optional={aside} />
+                    {showRevisions && (
+                        <Revisions resource={resource.name} id={idFromRoute} />
+                    )}
                 </Col>
             )}
         </Row>

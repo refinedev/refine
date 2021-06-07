@@ -1,18 +1,31 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Timeline, Card, Spin, Alert } from "antd";
 import { EditOutlined, PlusCircleOutlined } from "@ant-design/icons";
+import { useParams } from "react-router";
 import dayjs from "dayjs";
 
 import { useTranslate } from "@hooks/translate";
 import { DataContext } from "@contexts/data";
-import { IDataContext, Revision } from "../../interfaces";
+import { IDataContext, ResourceRouterParams, Revision } from "../../interfaces";
+import { useResourceWithRoute } from "@hooks/resource";
 
 type RevisionProps = {
-    resource: string;
-    id: string;
+    resource?: string;
+    id?: string;
 };
 
-export const Revisions: React.FC<RevisionProps> = ({ resource, id }) => {
+export const Revisions: React.FC<RevisionProps> = ({
+    resource: resourceFromProps,
+    id: idFromProps,
+}) => {
+    const { resource: routeResourceName, id: routeId } =
+        useParams<ResourceRouterParams>();
+
+    const resourceWithRoute = useResourceWithRoute();
+
+    const resource = resourceWithRoute(routeResourceName ?? resourceFromProps);
+    const id = routeId ?? idFromProps;
+
     const translate = useTranslate();
     const [loading, setLoading] = useState(true);
     const [revisionData, setRevisionData] = useState<Revision[]>([]);
@@ -42,9 +55,15 @@ export const Revisions: React.FC<RevisionProps> = ({ resource, id }) => {
         );
     }
 
+    if (!resource || !id) {
+        return (
+            <Alert showIcon type="error" message="Resource or id not found!" />
+        );
+    }
+
     useEffect(() => {
         (async () => {
-            const { data } = await revisions(resource, id);
+            const { data } = await revisions(resource.name, id);
 
             setRevisionData(data);
             setLoading(false);

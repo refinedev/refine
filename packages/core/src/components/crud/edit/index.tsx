@@ -55,7 +55,7 @@ export const Edit: React.FC<EditProps> = ({
     canDelete,
     resource: resourceFromProps,
     aside,
-    showRevisions,
+    showRevisions = false,
 }) => {
     const translate = useTranslate();
     const { goBack, list } = useNavigation();
@@ -144,15 +144,12 @@ export const Edit: React.FC<EditProps> = ({
                 </PageHeader>
             </Col>
 
-            {aside && (
+            {(aside || showRevisions) && (
                 <Col flex="0 1 300px">
                     <OptionalComponent optional={aside} />
-                </Col>
-            )}
-
-            {showRevisions && (
-                <Col flex="0 1 300px">
-                    <Revisions resource={resource.name} id={idFromRoute} />
+                    {showRevisions && (
+                        <Revisions resource={resource.name} id={idFromRoute} />
+                    )}
                 </Col>
             )}
         </Row>

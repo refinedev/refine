@@ -4,6 +4,7 @@ import {
     Form,
     Input,
     IResourceComponentsProps,
+    Revisions,
     Select,
     useForm,
     useSelect,
