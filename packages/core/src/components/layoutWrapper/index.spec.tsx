@@ -44,6 +44,7 @@ describe("LayoutWrapper", () => {
             // Header: CustomHeader,
             Footer: CustomFooter,
             OffLayoutArea: CustomOffLayoutArea,
+            showRevisions: false,
         });
 
         expect(screen.getByText(customSiderContent));
@@ -85,6 +86,7 @@ describe("LayoutWrapper", () => {
             warnWhenUnsavedChanges: false,
             mutationMode: "pessimistic",
             syncWithLocation: false,
+            showRevisions: false,
             undoableTimeout: 5000,
             hasDashboard: false,
             Layout: CustomLayout,
@@ -108,6 +110,7 @@ describe("LayoutWrapper", () => {
             warnWhenUnsavedChanges: false,
             mutationMode: "pessimistic",
             syncWithLocation: false,
+            showRevisions: false,
             undoableTimeout: 5000,
             hasDashboard: false,
             Title: CustomTitle,
