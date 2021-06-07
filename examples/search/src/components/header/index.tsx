@@ -150,7 +150,11 @@ export const Header: React.FC = () => {
                     onSearch={onSearch}
                     filterOption={false}
                 >
-                    <Input.Search size="large" placeholder="Search resources" />
+                    <Input
+                        size="large"
+                        placeholder="Search resources"
+                        allowClear
+                    />
                 </AutoComplete>
             </div>
         </AntdLayout.Header>
