@@ -39,6 +39,8 @@ console.log(menuItems);
 
 ## Usage
 
+### Recreating the default sider menu
+
 We'll show the basic use of `useMenu` to create a custom sider menu that is identical to default sider menu.
 
 We can override the default sider and show a different component in its place by passing a custom component to `<Admin>`s `Sider` prop:
@@ -172,7 +174,7 @@ We render menu items as we wish.
 A logout button that logs the user out and redirects them to `/login` page.
 
 :::tip
-If `logout` (returned from `useLogout` hook) is a truhy value, that means there auth provider is implemented.  
+If `logout` (returned from `useLogout` hook) is a truhy value, that means auth provider is implemented.  
 [Refer to Auth Provider docs for more detailed information. &#8594](guides-and-concepts/providers/auth-provider.md)
 :::
 
