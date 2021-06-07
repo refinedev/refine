@@ -4,16 +4,26 @@ import humanizeString from "humanize-string";
 import { AdminContext } from "@contexts/admin";
 import { DashboardOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { IAdminContext, IResourceItem, IMenuItem } from "../../../interfaces";
-import { useTranslate, useResource, useWarnAboutChange } from "@hooks";
+import {
+    useTranslate,
+    useResource,
+    useWarnAboutChange,
+    usePermissions,
+    useAllowSideBarResources,
+} from "@hooks";
 
 type useMenuReturnType = {
     selectedKey: string;
     resources: IResourceItem[];
-    menuItems: IMenuItem[];
+    allowSideBarResources: IResourceItem[];
+    menuItems?: IMenuItem[];
 };
 
 export const useMenu: () => useMenuReturnType = () => {
     const { resources } = useResource();
+    const { allowSideBarResources } = useAllowSideBarResources();
+    const { data: permissionsData } = usePermissions();
+
     const { setWarnWhen } = useWarnAboutChange();
     const translate = useTranslate();
     const location = useLocation();
@@ -30,36 +40,37 @@ export const useMenu: () => useMenuReturnType = () => {
         () => [
             ...(hasDashboard
                 ? [
-                      {
-                          name: "Dashboard",
-                          icon: <DashboardOutlined />,
-                          route: `/`,
-                          key: "dashboard",
-                          label: translate("dashboard.title", "Dashboard"),
-                      },
-                  ]
+                    {
+                        name: "Dashboard",
+                        icon: <DashboardOutlined />,
+                        route: `/`,
+                        key: "dashboard",
+                        label: translate("dashboard.title", "Dashboard"),
+                    },
+                ]
                 : []),
-            ...resources.map((resource) => {
-                const route = `/resources/${resource.route}`;
-
-                return {
-                    ...resource,
-                    icon: resource.icon ?? <UnorderedListOutlined />,
-                    route: route,
-                    key: route,
-                    label: translate(
-                        `${resource.name}.${resource.name}`,
-                        resource.label ?? humanizeString(resource.name),
-                    ),
-                };
-            }),
+            ...(allowSideBarResources &&
+                allowSideBarResources.map((resource) => {
+                    const route = `/resources/${resource.route}`;
+                    return {
+                        ...resource,
+                        icon: resource.icon ?? <UnorderedListOutlined />,
+                        route: route,
+                        key: route,
+                        label: translate(
+                            `${resource.name}.${resource.name}`,
+                            resource.label ?? humanizeString(resource.name),
+                        ),
+                    };
+                })),
         ],
-        [resources, hasDashboard],
+        [allowSideBarResources, hasDashboard, permissionsData],
     );
 
     return {
         selectedKey,
         resources,
+        allowSideBarResources,
         menuItems,
     };
 };
