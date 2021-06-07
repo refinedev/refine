@@ -1,4 +1,4 @@
-export { usePermissions } from "./usePermissions";
+export { usePermissions, useAllow } from "./usePermissions";
 export { useGetIdentity } from "./useGetIdentity";
 export { useLogout } from "./useLogout";
 export { useLogin } from "./useLogin";
