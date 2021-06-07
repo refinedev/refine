@@ -1,4 +1,4 @@
-import { IDataContext } from "../src/interfaces";
+import { IDataContext, Revision } from "../src/interfaces";
 
 export const posts = [
     {
@@ -25,6 +25,31 @@ export const posts = [
     },
 ];
 
+const revisions: Revision[] = [
+    {
+        id: "1",
+        action: "create",
+        date: "2021-06-07T11:16:05.808Z",
+        resource: "posts",
+        user: {
+            id: "1",
+            firstName: "John",
+            lastName: "Doe",
+        },
+    },
+    {
+        id: "2",
+        action: "edit",
+        date: "2021-06-08T11:16:05.808Z",
+        resource: "posts",
+        user: {
+            id: "2",
+            firstName: "Jane",
+            lastName: "Doe",
+        },
+    },
+];
+
 const MockDataProvider = () => {
     return {
         create: () => Promise.resolve({ data: posts[0] }),
@@ -38,6 +63,7 @@ const MockDataProvider = () => {
         updateMany: () => Promise.resolve({ data: [] }),
         getApiUrl: () => "https://refine-fake-rest.pankod.com",
         custom: () => Promise.resolve({ data: [...posts] }),
+        revisions: () => Promise.resolve({ data: [...revisions] }),
     };
 };
 
