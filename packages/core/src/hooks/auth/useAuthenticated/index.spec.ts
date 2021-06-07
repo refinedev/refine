@@ -6,7 +6,7 @@ import { useAuthenticated } from "./";
 
 describe("useAuthenticated Hook", () => {
     it("returns authenticated true", async () => {
-        const { result } = renderHook(() => useAuthenticated(), {
+        const { result, waitFor } = renderHook(() => useAuthenticated(), {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.resolve(),
@@ -19,15 +19,16 @@ describe("useAuthenticated Hook", () => {
             }),
         });
 
-        await act(async () => {
-            const isAuthenticated = await result;
-            expect(isAuthenticated).toBeTruthy();
+        await waitFor(() => {
+            return result.current?.isFetched;
         });
+
+        expect(result.current?.isSuccess).toBeTruthy();
     });
 
     it("returns authenticated false and called checkError", async () => {
         const checkErrorMock = jest.fn();
-        const { result } = renderHook(() => useAuthenticated(), {
+        const { result, waitFor } = renderHook(() => useAuthenticated(), {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.resolve(),
@@ -41,9 +42,10 @@ describe("useAuthenticated Hook", () => {
             }),
         });
 
-        await act(async () => {
-            const isAuthenticated = await result;
-            expect(isAuthenticated).not.toBeTruthy();
+        await waitFor(() => {
+            return result.current?.isFetched;
         });
+
+        expect(result.current?.isError).toBeTruthy();
     });
 });
