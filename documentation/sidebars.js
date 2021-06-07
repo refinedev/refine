@@ -60,6 +60,7 @@ module.exports = {
                 "guides-and-concepts/custom-pages",
                 "guides-and-concepts/csv-import",
                 "guides-and-concepts/csv-export",
+                "guides-and-concepts/revision-history",
             ],
         },
         {
