@@ -96,6 +96,12 @@ export const Admin: React.FC<AdminProps> = ({
             show: child.props.show,
             list: child.props.list,
             edit: child.props.edit,
+            allowList: child.props.allowList,
+            allowCreate: child.props.allowCreate,
+            allowEdit: child.props.allowEdit,
+            allowShow: child.props.allowShow,
+            allowDelete: child.props.allowDelete,
+            allowSideBar: child.props.allowSideBar,
         });
     });
 

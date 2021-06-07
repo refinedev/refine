@@ -9,10 +9,16 @@ import {
     Tag,
     Row,
     Col,
+    Result,
 } from "antd";
 import pluralize from "pluralize";
 
-import { useNavigation, useResourceWithRoute, useTranslate } from "@hooks";
+import {
+    useNavigation,
+    useResourceWithRoute,
+    useTranslate,
+    useAllow,
+} from "@hooks";
 import { SaveButton } from "@components";
 import { OptionalComponent } from "@definitions";
 
@@ -46,6 +52,7 @@ export const Create: React.FC<CreateProps> = ({
     const resourceWithRoute = useResourceWithRoute();
 
     const resource = resourceWithRoute(routeResourceName ?? resourceFromProps);
+    const { canAllow } = useAllow("allowCreate", resource.name);
 
     const tags = [];
     if (idFromRoute) {
@@ -60,46 +67,61 @@ export const Create: React.FC<CreateProps> = ({
     }
 
     return (
-        <Row gutter={[16, 16]}>
-            <Col flex="1 1 200px">
-                <PageHeader
-                    ghost={false}
-                    onBack={routeFromAction ? goBack : undefined}
-                    tags={tags}
-                    title={
-                        title ??
-                        translate(
-                            `${resource.name}.titles.create`,
-                            `Create ${pluralize.singular(resource.name)}`,
-                        )
-                    }
-                    {...pageHeaderProps}
-                >
-                    <Card
-                        actions={[
-                            <Space
-                                key="action-buttons"
-                                style={{ float: "right", marginRight: 24 }}
+        <>
+            {canAllow ? (
+                <Row gutter={[16, 16]}>
+                    <Col flex="1 1 200px">
+                        <PageHeader
+                            ghost={false}
+                            onBack={routeFromAction ? goBack : undefined}
+                            tags={tags}
+                            title={
+                                title ??
+                                translate(
+                                    `${resource.name}.titles.create`,
+                                    `Create ${pluralize.singular(
+                                        resource.name,
+                                    )}`,
+                                )
+                            }
+                            {...pageHeaderProps}
+                        >
+                            <Card
+                                actions={[
+                                    <Space
+                                        key="action-buttons"
+                                        style={{
+                                            float: "right",
+                                            marginRight: 24,
+                                        }}
+                                    >
+                                        {actionButtons ?? (
+                                            <SaveButton
+                                                {...saveButtonProps}
+                                                htmlType="submit"
+                                            />
+                                        )}
+                                    </Space>,
+                                ]}
                             >
-                                {actionButtons ?? (
-                                    <SaveButton
-                                        {...saveButtonProps}
-                                        htmlType="submit"
-                                    />
-                                )}
-                            </Space>,
-                        ]}
-                    >
-                        {children}
-                    </Card>
-                </PageHeader>
-            </Col>
+                                {children}
+                            </Card>
+                        </PageHeader>
+                    </Col>
 
-            {aside && (
-                <Col flex="0 1 300px">
-                    <OptionalComponent optional={aside} />
-                </Col>
+                    {aside && (
+                        <Col flex="0 1 300px">
+                            <OptionalComponent optional={aside} />
+                        </Col>
+                    )}
+                </Row>
+            ) : (
+                <Result
+                    status="403"
+                    title="403"
+                    subTitle="Sorry, you are not authorized to access this page."
+                />
             )}
-        </Row>
+        </>
     );
 };

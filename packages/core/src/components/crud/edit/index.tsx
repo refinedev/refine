@@ -8,6 +8,7 @@ import {
     PageHeader,
     PageHeaderProps,
     Col,
+    Result,
 } from "antd";
 import pluralize from "pluralize";
 
@@ -17,6 +18,7 @@ import {
     useMutationMode,
     useNavigation,
     useTranslate,
+    useAllow,
 } from "@hooks";
 import {
     DeleteButton,
@@ -71,74 +73,94 @@ export const Edit: React.FC<EditProps> = ({
     const isDeleteButtonVisible =
         canDelete ?? (resource.canDelete || deleteButtonProps);
 
+    const { canAllow } = useAllow("allowEdit", resource.name);
     return (
-        <Row gutter={[16, 16]}>
-            <Col flex="1 1 200px">
-                <PageHeader
-                    ghost={false}
-                    onBack={routeFromAction ? goBack : undefined}
-                    title={
-                        title ??
-                        translate(
-                            `${resource.name}.titles.edit`,
-                            `Edit ${pluralize.singular(resource.name)}`,
-                        )
-                    }
-                    extra={
-                        <Row>
-                            <Space>
-                                {!recordItemId && (
-                                    <ListButton
-                                        data-testid="edit-list-button"
-                                        resourceName={resource.name}
-                                    />
-                                )}
-                                <RefreshButton
-                                    resourceName={resource.name}
-                                    recordItemId={recordItemId ?? idFromRoute}
-                                />
-                            </Space>
-                        </Row>
-                    }
-                    {...pageHeaderProps}
-                >
-                    <Card
-                        actions={[
-                            <Space
-                                key="action-buttons"
-                                style={{ float: "right", marginRight: 24 }}
-                            >
-                                {actionButtons ?? (
-                                    <>
-                                        {isDeleteButtonVisible && (
-                                            <DeleteButton
-                                                data-testid="edit-delete-button"
-                                                mutationMode={mutationMode}
-                                                onSuccess={() => {
-                                                    list(
-                                                        resource.route ??
-                                                            resource.name,
-                                                    );
-                                                }}
-                                                {...deleteButtonProps}
+        <>
+            {canAllow ? (
+                <Row gutter={[16, 16]}>
+                    <Col flex="1 1 200px">
+                        <PageHeader
+                            ghost={false}
+                            onBack={routeFromAction ? goBack : undefined}
+                            title={
+                                title ??
+                                translate(
+                                    `${resource.name}.titles.edit`,
+                                    `Edit ${pluralize.singular(resource.name)}`,
+                                )
+                            }
+                            extra={
+                                <Row>
+                                    <Space>
+                                        {!recordItemId && (
+                                            <ListButton
+                                                data-testid="edit-list-button"
+                                                resourceName={resource.name}
                                             />
                                         )}
-                                        <SaveButton {...saveButtonProps} />
-                                    </>
-                                )}
-                            </Space>,
-                        ]}
-                    >
-                        {children}
-                    </Card>
-                </PageHeader>
-            </Col>
+                                        <RefreshButton
+                                            resourceName={resource.name}
+                                            recordItemId={
+                                                recordItemId ?? idFromRoute
+                                            }
+                                        />
+                                    </Space>
+                                </Row>
+                            }
+                            {...pageHeaderProps}
+                        >
+                            <Card
+                                actions={[
+                                    <Space
+                                        key="action-buttons"
+                                        style={{
+                                            float: "right",
+                                            marginRight: 24,
+                                        }}
+                                    >
+                                        {actionButtons ?? (
+                                            <>
+                                                {isDeleteButtonVisible && (
+                                                    <DeleteButton
+                                                        data-testid="edit-delete-button"
+                                                        mutationMode={
+                                                            mutationMode
+                                                        }
+                                                        onSuccess={() => {
+                                                            list(
+                                                                resource.route ??
+                                                                resource.name,
+                                                            );
+                                                        }}
+                                                        {...deleteButtonProps}
+                                                    />
+                                                )}
+                                                <SaveButton
+                                                    {...saveButtonProps}
+                                                />
+                                            </>
+                                        )}
+                                    </Space>,
+                                ]}
+                            >
+                                {children}
+                            </Card>
+                        </PageHeader>
+                    </Col>
 
-            {aside && (
-                <Col flex="0 1 300px">
-                    <OptionalComponent optional={aside} />
-                </Col>
+                    {aside && (
+                        <Col flex="0 1 300px">
+                            <OptionalComponent optional={aside} />
+                        </Col>
+                    )}
+                </Row>
+            ) : (
+                <Result
+                    status="403"
+                    title="403"
+                    subTitle="Sorry, you are not authorized to access this page."
+                />
             )}
-        </Row>
+        </>
     );
 };

@@ -3,13 +3,7 @@ import { Layout, Menu } from "antd";
 import { LogoutOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-import {
-    useNavigation,
-    useTranslate,
-    useMenu,
-    useLogout,
-    useTitle,
-} from "@hooks";
+import { useTranslate, useMenu, useLogout, useTitle } from "@hooks";
 
 export const Sider: React.FC = () => {
     const [collapsed, setCollapsed] = React.useState(false);
@@ -31,11 +25,12 @@ export const Sider: React.FC = () => {
                 selectedKeys={[selectedKey]}
                 mode="inline"
             >
-                {menuItems.map(({ icon, route, label }) => (
-                    <Menu.Item key={route} icon={icon}>
-                        <Link to={route}>{label}</Link>
-                    </Menu.Item>
-                ))}
+                {menuItems &&
+                    menuItems.map(({ icon, route, label }) => (
+                        <Menu.Item key={route} icon={icon}>
+                            <Link to={route}>{label}</Link>
+                        </Menu.Item>
+                    ))}
 
                 {logout && (
                     <Menu.Item

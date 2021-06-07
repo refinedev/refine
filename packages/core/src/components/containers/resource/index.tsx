@@ -1,12 +1,14 @@
 import React, { ReactNode } from "react";
-import { IResourceComponents } from "../../../interfaces";
+import { IResourceComponents, IResourcePermission } from "../../../interfaces";
 
 export interface OptionsProps {
     label?: string;
     route?: string;
 }
 
-export interface ResourceProps extends IResourceComponents {
+export interface ResourceProps
+    extends IResourceComponents,
+    IResourcePermission {
     name: string;
     canDelete?: boolean;
     icon?: ReactNode;
