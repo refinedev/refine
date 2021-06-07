@@ -20,7 +20,7 @@ describe("useAuthenticated Hook", () => {
         });
 
         await act(async () => {
-            const isAuthenticated = await result.current();
+            const isAuthenticated = await result;
             expect(isAuthenticated).toBeTruthy();
         });
     });
@@ -42,7 +42,7 @@ describe("useAuthenticated Hook", () => {
         });
 
         await act(async () => {
-            const isAuthenticated = await result.current();
+            const isAuthenticated = await result;
             expect(isAuthenticated).not.toBeTruthy();
         });
     });
