@@ -6,11 +6,13 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { CategoryList, CategoryShow } from "pages/categories";
 import { UserList, UserShow } from "pages/users";
 
+import { Header } from "components";
+
 const API_URL = "https://refine-fake-rest.pankod.com";
 
 const App: React.FC = () => {
     return (
-        <Admin dataProvider={dataProvider(API_URL)}>
+        <Admin dataProvider={dataProvider(API_URL)} Header={Header}>
             <Resource
                 name="posts"
                 list={PostList}
