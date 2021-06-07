@@ -11,11 +11,7 @@ refine allows us to add permission to your `Resource`.
 
 To do this, it is necessary to create an object with [`PermissionItem`](#permissionitem) then, pass this object as one of the [`IResource Permission`](#iresource-permission) prop in the `<Resource>` component.
 
-<!-- `useAllow` hook need two parameter. First We have to give our [crud type](#allow-types) then for second parameter Its need our resource name.
-Let's see how `useAllow` is used in Post Crud. -->
-
 ### Post List Page
-
 
 ```tsx title="App.tsx"
 
