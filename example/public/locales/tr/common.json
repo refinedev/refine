@@ -178,5 +178,10 @@
         "updateError": "{{resource}} güncellenirken hata oluştu"
     },
     "loading": "Yükleniyor",
-    "backHome": "Ana sayfaya geri dön"
+    "backHome": "Ana sayfaya geri dön",
+    "revisions": {
+        "revisions": "Revizyonlar",
+        "create": "{{ name }} tarafından {{ date }} oluşturuldu",
+        "edit": "{{ name }} tarafından {{ date }} güncellendi"
+    }
 }

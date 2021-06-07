@@ -74,5 +74,10 @@
     },
     "table": {
         "actions": "İşlemler"
+    },
+    "revisions": {
+        "revisions": "Revizyonlar",
+        "create": "{{ name }} tarafından {{ date }} oluşturuldu",
+        "edit": "{{ name }} tarafından {{ date }} güncellendi"
     }
 }

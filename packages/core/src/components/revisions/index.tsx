@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Timeline, Card, Spin, Alert, Button } from "antd";
+import { Timeline, Card, Spin, Alert } from "antd";
 import { EditOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 
+import { useTranslate } from "@hooks/translate";
 import { DataContext } from "@contexts/data";
 import { IDataContext, Revision } from "../../interfaces";
 
@@ -12,6 +13,7 @@ type RevisionProps = {
 };
 
 export const Revisions: React.FC<RevisionProps> = ({ resource, id }) => {
+    const translate = useTranslate();
     const [loading, setLoading] = useState(true);
     const [revisionData, setRevisionData] = useState<Revision[]>([]);
 
@@ -71,9 +73,16 @@ export const Revisions: React.FC<RevisionProps> = ({ resource, id }) => {
                                     />
                                 }
                             >
-                                {`Created by ${item.user.firstName} ${
-                                    item.user.lastName
-                                } on ${dayjs(item.date).fromNow()}`}
+                                {translate(
+                                    "revisions.create",
+                                    {
+                                        name: `${item.user.firstName} ${item.user.lastName}`,
+                                        date: dayjs(item.date).fromNow(),
+                                    },
+                                    `Created by ${item.user.firstName} ${
+                                        item.user.lastName
+                                    } on ${dayjs(item.date).fromNow()}`,
+                                )}
                             </Timeline.Item>
                         );
                     }
@@ -83,9 +92,16 @@ export const Revisions: React.FC<RevisionProps> = ({ resource, id }) => {
                             key={item.id}
                             dot={<EditOutlined style={{ fontSize: "16px" }} />}
                         >
-                            {`Edited by ${item.user.firstName} ${
-                                item.user.lastName
-                            } on ${dayjs(item.date).fromNow()}`}
+                            {translate(
+                                "revisions.edit",
+                                {
+                                    name: `${item.user.firstName} ${item.user.lastName}`,
+                                    date: dayjs(item.date).fromNow(),
+                                },
+                                `Edited by ${item.user.firstName} ${
+                                    item.user.lastName
+                                } on ${dayjs(item.date).fromNow()}`,
+                            )}
                         </Timeline.Item>
                     );
                 })}
@@ -93,5 +109,9 @@ export const Revisions: React.FC<RevisionProps> = ({ resource, id }) => {
         );
     };
 
-    return <Card title="Revisions">{renderContent()}</Card>;
+    return (
+        <Card title={translate("revisions.revisions", "Revisions")}>
+            {renderContent()}
+        </Card>
+    );
 };
