@@ -55,6 +55,7 @@
         "pluralize": "^8.0.0",
         "qs": "^6.10.1",
         "react-csv": "^2.0.3",
+        "react-hook-form": "^7.8.1",
         "react-markdown": "^5.0.3",
         "react-query": "^3.8.2",
         "react-router-dom": "^5.2.0",

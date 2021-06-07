@@ -1,11 +1,16 @@
-import React, { Dispatch, SetStateAction } from "react";
-import { useForm as useFormSF } from "sunflower-antd";
-import { Form, FormProps, FormInstance } from "antd";
+import React, { Dispatch, SetStateAction, HTMLAttributes } from "react";
+import {
+    useForm as useFormRHF,
+    UseFormReturn as UseFormReturnRHF,
+    UseFormProps as UseFormPropsRHF,
+    FieldValues,
+} from "react-hook-form";
 
 import {
     useCreate,
     useWarnAboutChange,
     useRedirectionAfterSubmission,
+    useResourceWithRoute,
 } from "@hooks";
 import { UseCreateReturnType } from "../../data/useCreate";
 
@@ -13,9 +18,10 @@ import {
     BaseRecord,
     RedirectionTypes,
     CreateResponse,
-    IResourceItem,
     HttpError,
+    ResourceRouterParams,
 } from "../../../interfaces";
+import { useParams } from "react-router-dom";
 
 type SaveButtonProps = {
     disabled: boolean;
@@ -23,13 +29,12 @@ type SaveButtonProps = {
     loading?: boolean;
 };
 
-export type useCreateForm<
+export type useReactHookForm<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {},
-> = {
-    form: FormInstance<TVariables>;
-    formProps: FormProps<TVariables>;
+    TVariables extends FieldValues = FieldValues,
+> = UseFormReturnRHF<TVariables> & {
+    formProps: HTMLAttributes<HTMLFormElement>;
     editId?: string;
     setEditId?: Dispatch<SetStateAction<string | undefined>>;
     saveButtonProps: SaveButtonProps;
@@ -39,11 +44,12 @@ export type useCreateForm<
     cloneId?: string;
 };
 
-export type useCreateFormProps<
+export type useReactHookFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {},
+    TVariables extends FieldValues = FieldValues,
 > = {
+    useFormProps?: UseFormPropsRHF<TVariables>;
     onMutationSuccess?: (
         data: CreateResponse<TData>,
         variables: TVariables,
@@ -57,30 +63,26 @@ export type useCreateFormProps<
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
     redirect?: RedirectionTypes;
-    resource: IResourceItem;
+    resource?: string;
 };
 
-export const useCreateForm = <
+export const useReactHookForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {},
+    TVariables extends FieldValues = FieldValues,
 >({
+    useFormProps,
     onMutationSuccess,
     onMutationError,
     submitOnEnter = false,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect = "edit",
-    resource,
-}: useCreateFormProps<TData, TError, TVariables>): useCreateForm<
+    resource: resourceFromProps,
+}: useReactHookFormProps<TData, TError, TVariables> = {}): useReactHookForm<
     TData,
     TError,
     TVariables
 > => {
-    const [formAnt] = Form.useForm();
-    const formSF = useFormSF<TData, TVariables>({
-        form: formAnt,
-    });
-
     const {
         warnWhenUnsavedChanges: warnWhenUnsavedChangesContext,
         setWarnWhen,
@@ -89,14 +91,33 @@ export const useCreateForm = <
     const warnWhenUnsavedChanges =
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContext;
 
-    const { form } = formSF;
-
     const mutationResult = useCreate<TData, TError, TVariables>();
-    const { mutate, isLoading } = mutationResult;
 
     const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 
-    const onFinish = async (values: TVariables) => {
+    const resourceWithRoute = useResourceWithRoute();
+    const { resource: resourceFromParams } = useParams<ResourceRouterParams>();
+
+    const resourceType = resourceFromProps ?? resourceFromParams;
+
+    const resource = resourceWithRoute(resourceType);
+
+    const reactHookForm = useFormRHF<TVariables>(useFormProps);
+
+    const { handleSubmit, watch } = reactHookForm;
+
+    const watchAllFields = watch();
+
+    React.useEffect(() => {
+        console.log({ watchAllFields });
+        if (warnWhenUnsavedChanges) {
+            setWarnWhen(true);
+        }
+    }, [watchAllFields]);
+
+    const { mutate, isLoading } = mutationResult;
+
+    const onFinish = async (values: any) => {
         setWarnWhen(false);
         mutate(
             { values, resource: resource.name },
@@ -123,34 +144,26 @@ export const useCreateForm = <
         );
     };
 
-    const onKeyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
-        if (submitOnEnter && event.key === "Enter") {
-            form.submit();
-        }
-    };
+    const onSubmit = handleSubmit(onFinish);
 
-    const onValuesChange = (changeValues: object) => {
-        if (changeValues && warnWhenUnsavedChanges) {
-            console.log("warn");
-            setWarnWhen(true);
+    const onFormSubmit = (event: React.BaseSyntheticEvent) => {
+        event.preventDefault();
+        if (!submitOnEnter) {
+            return;
         }
-        return changeValues;
+        onSubmit();
     };
 
     const saveButtonProps = {
         disabled: isLoading,
-        onClick: () => {
-            form.submit();
-        },
+        onClick: onSubmit,
     };
 
     return {
-        ...formSF,
+        ...reactHookForm,
+
         formProps: {
-            ...formSF.formProps,
-            onFinish,
-            onKeyUp,
-            onValuesChange,
+            onSubmit: onFormSubmit,
         },
         saveButtonProps,
         formLoading: isLoading,

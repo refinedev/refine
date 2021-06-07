@@ -149,7 +149,7 @@ export const useEditForm = <
             mutate(
                 { id, values },
                 {
-                    onSuccess: (data, variables, context) => {
+                    onSuccess: (data, _variables, context) => {
                         if (onMutationSuccess) {
                             return onMutationSuccess(data, values, context);
                         }
@@ -163,7 +163,7 @@ export const useEditForm = <
                             });
                         }
                     },
-                    onError: (error: TError, variables, context) => {
+                    onError: (error: TError, _variables, context) => {
                         if (onMutationError) {
                             return onMutationError(error, values, context);
                         }
