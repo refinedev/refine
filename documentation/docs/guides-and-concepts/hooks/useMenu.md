@@ -7,6 +7,34 @@ title: useMenu
 
 ```ts
 const { selectedKey, resources, menuItems } = useMenu();
+
+console.log(menuItems); 
+
+// Example output:
+// [
+//     {
+//         icon: {$$typeof: Symbol(react.element), …},
+//         key: "dashboard",
+//         label: "Dashboard",
+//         name: "Dashboard",
+//         route: "/"
+//     }, {
+//         icon: {$$typeof: Symbol(react.element), …},
+//         key: "/resources/posts",
+//         label: "Posts",
+//         name: "posts",
+//         route: "/resources/posts",
+//         ...
+//     }, {
+//         icon: {$$typeof: Symbol(react.element), …},
+//         key: "/resources/categories",
+//         label: "Categories",
+//         name: "categories",
+//         route: "/resources/categories",
+//         ...
+//     },
+//     ...
+// ]
 ```
 
 ## Usage
@@ -97,6 +125,56 @@ export const CustomMenu: React.FC = () => {
     );
 };
 ```
+
+This is how the default sidebar shows menu items.
+
+```ts title="src/CustomMenu.tsx"
+...
+const [collapsed, setCollapsed] = React.useState(false);
+const logout = useLogout();
+const Title = useTitle();
+const { push } = useNavigation();
+//highlight-next-line
+const { menuItems, selectedKey } = useMenu();
+...
+```
+
+`useMenu` hook is used to get style agnostic menu items.
+
+We get `Title` component with `useTitle` hook, logout functionality with `useLogout` hook, a `push` function from `useNavigation` for directing users to homepage after logging out and a basic boolean state (`collapsed`) for tracking whether the collapsible menu is collapsed or not.
+
+```ts
+{menuItems.map(({ icon, route, label }) => (
+    <Menu.Item key={route} icon={icon}>
+        <Link to={route}>{label}</Link>
+    </Menu.Item>
+))}
+```
+
+We render menu items as we wish.
+
+```ts title="src/CustomMenu.tsx"
+...
+{logout && (
+    <Menu.Item
+        onClick={() => {
+            logout().then(() => push("/login"));
+        }}
+        key="logout"
+        icon={<Icons.LogoutOutlined />}
+    >
+        Logout
+    </Menu.Item>
+)}
+...
+```
+
+A logout button that logs the user out and redirects them to `/login` page.
+
+:::tip
+If `logout` (returned from `useLogout` hook) is a truhy value, that means there auth provider is implemented.
+[Refer to Auth Provider docs for more detailed information. &#8594](guides-and-concepts/providers/auth-provider.md)
+:::
 
 ## API Reference
 
