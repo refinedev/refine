@@ -18,7 +18,18 @@ export interface IResourceComponents {
     show?: React.FunctionComponent<IResourceComponentsProps>;
 }
 
-export interface IResourceItem extends IResourceComponents {
+export interface IResourcePermission {
+    allowList?: PermissionItem;
+    allowCreate?: PermissionItem;
+    allowEdit?: PermissionItem;
+    allowShow?: PermissionItem;
+    allowDelete?: PermissionItem;
+    allowSideBar?: PermissionItem;
+}
+
+export interface IResourceItem
+    extends IResourceComponents,
+        IResourcePermission {
     name: string;
     label?: string;
     route?: string;
@@ -33,3 +44,8 @@ export type IMenuItem = IResourceItem & {
     key: string;
     route: string;
 };
+
+export interface PermissionItem {
+    list: string[];
+    hasPermission: boolean;
+}
