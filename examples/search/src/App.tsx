@@ -3,6 +3,7 @@ import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import { CategoryList, CategoryShow } from "pages/categories";
 
 const API_URL = "https://refine-fake-rest.pankod.com";
 
@@ -15,6 +16,11 @@ const App: React.FC = () => {
                 create={PostCreate}
                 edit={PostEdit}
                 show={PostShow}
+            />
+            <Resource
+                name="categories"
+                list={CategoryList}
+                show={CategoryShow}
             />
         </Admin>
     );
