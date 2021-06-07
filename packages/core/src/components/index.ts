@@ -8,6 +8,7 @@ export * from "./buttons";
 export * from "./pages";
 export * from "./containers";
 export * from "./notification";
+export * from "./revisions";
 
 export { LayoutWrapper } from "./layoutWrapper";
 export { Authenticated } from "./authenticated";
