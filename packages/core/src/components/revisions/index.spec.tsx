@@ -11,7 +11,7 @@ describe("Revisions", () => {
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
+                    resources: [{ name: "posts", route: "posts" }],
                 }),
             },
         );
@@ -30,7 +30,7 @@ describe("Revisions", () => {
         const { getByText } = render(<Revisions resource="posts" id="1" />, {
             wrapper: TestWrapper({
                 dataProvider,
-                resources: [{ name: "posts" }],
+                resources: [{ name: "posts", route: "posts" }],
             }),
         });
 
