@@ -39,6 +39,7 @@ export interface AdminProps {
     ReadyPage?: React.FC;
     mutationMode?: MutationMode;
     syncWithLocation?: boolean;
+    showRevisions?: boolean;
     warnWhenUnsavedChanges?: boolean;
     routes?: RouteProps[];
     configProviderProps?: ConfigProviderProps;
@@ -62,6 +63,7 @@ export const Admin: React.FC<AdminProps> = ({
     i18nProvider = defaultProvider.i18nProvider,
     mutationMode = "pessimistic",
     syncWithLocation = false,
+    showRevisions = false,
     warnWhenUnsavedChanges = false,
     routes = [],
     configProviderProps = defaultConfigProviderProps,
@@ -121,6 +123,7 @@ export const Admin: React.FC<AdminProps> = ({
                                             warnWhenUnsavedChanges
                                         }
                                         syncWithLocation={syncWithLocation}
+                                        showRevisions={showRevisions}
                                         Title={Title}
                                         undoableTimeout={undoableTimeout}
                                         Layout={Layout}

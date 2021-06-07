@@ -17,6 +17,7 @@ import {
     useMutationMode,
     useNavigation,
     useTranslate,
+    useShowRevisions,
 } from "@hooks";
 import {
     DeleteButton,
@@ -24,8 +25,8 @@ import {
     ListButton,
     DeleteButtonProps,
     SaveButton,
+    Revisions,
 } from "@components";
-import { Revisions } from "@components/revisions";
 
 import { MutationMode, ResourceRouterParams } from "../../../interfaces";
 export interface EditProps {
@@ -39,6 +40,7 @@ export interface EditProps {
     deleteButtonProps?: DeleteButtonProps;
     resource?: string;
     aside?: React.FC;
+    showRevisions?: boolean;
 }
 
 export const Edit: React.FC<EditProps> = ({
@@ -53,10 +55,17 @@ export const Edit: React.FC<EditProps> = ({
     canDelete,
     resource: resourceFromProps,
     aside,
+    showRevisions,
 }) => {
     const translate = useTranslate();
     const { goBack, list } = useNavigation();
     const resourceWithRoute = useResourceWithRoute();
+
+    const { showRevisions: showRevisionsContext } = useShowRevisions();
+
+    if (showRevisionsContext) {
+        showRevisions = true;
+    }
 
     const { mutationMode: mutationModeContext } = useMutationMode();
 
@@ -141,9 +150,11 @@ export const Edit: React.FC<EditProps> = ({
                 </Col>
             )}
 
-            <Col flex="0 1 300px">
-                <Revisions resource={resource.name} id={idFromRoute} />
-            </Col>
+            {showRevisions && (
+                <Col flex="0 1 300px">
+                    <Revisions resource={resource.name} id={idFromRoute} />
+                </Col>
+            )}
         </Row>
     );
 };

@@ -8,6 +8,7 @@ export interface IAdminContext {
     mutationMode: MutationMode;
     warnWhenUnsavedChanges: boolean;
     syncWithLocation: boolean;
+    showRevisions: boolean;
     undoableTimeout: number;
     Title: React.FC<TitleProps>;
     Layout: React.FC<LayoutProps>;
@@ -22,6 +23,7 @@ export interface IAdminContextProvider {
     mutationMode: MutationMode;
     warnWhenUnsavedChanges: boolean;
     syncWithLocation: boolean;
+    showRevisions: boolean;
     undoableTimeout: number;
     Title?: React.FC<TitleProps>;
     Layout?: React.FC<LayoutProps>;

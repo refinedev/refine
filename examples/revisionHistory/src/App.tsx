@@ -8,7 +8,7 @@ const API_URL = "https://refine-fake-rest.pankod.com";
 
 const App: React.FC = () => {
     return (
-        <Admin dataProvider={dataProvider(API_URL)}>
+        <Admin dataProvider={dataProvider(API_URL)} showRevisions>
             <Resource
                 name="posts"
                 list={PostList}
