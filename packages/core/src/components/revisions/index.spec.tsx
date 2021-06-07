@@ -16,7 +16,7 @@ describe("Revisions", () => {
             },
         );
 
-        getByText("Revisions");
+        getByText("Revision History");
 
         await wait();
 

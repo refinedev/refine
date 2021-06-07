@@ -76,7 +76,7 @@
         "actions": "Actions"
     },
     "revisions": {
-        "revisions": "Revisions",
+        "revisions": "Revision History",
         "create": "Created by {{ name }} on {{ date }}",
         "edit": "Edited by {{ name }} on {{ date }}"
     }

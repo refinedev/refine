@@ -180,7 +180,7 @@
     "loading": "Yükleniyor",
     "backHome": "Ana sayfaya geri dön",
     "revisions": {
-        "revisions": "Revizyonlar",
+        "revisions": "Revizyon Geçmişi",
         "create": "{{ name }} tarafından {{ date }} oluşturuldu",
         "edit": "{{ name }} tarafından {{ date }} güncellendi"
     }

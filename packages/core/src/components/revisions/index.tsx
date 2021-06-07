@@ -110,7 +110,7 @@ export const Revisions: React.FC<RevisionProps> = ({ resource, id }) => {
     };
 
     return (
-        <Card title={translate("revisions.revisions", "Revisions")}>
+        <Card title={translate("revisions.revisions", "Revision History")}>
             {renderContent()}
         </Card>
     );
