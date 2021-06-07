@@ -247,6 +247,16 @@ const JsonServer = (
 
         return Promise.resolve({ data });
     },
+
+    revisions: async (resource, id) => {
+        const { data } = await httpClient.get(
+            `${apiUrl}/revisions/${resource}/${id}`,
+        );
+
+        return {
+            data,
+        };
+    },
 });
 
 export default JsonServer;
