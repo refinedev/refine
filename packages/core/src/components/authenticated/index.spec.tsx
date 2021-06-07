@@ -10,12 +10,7 @@ const mockAuthProvider = {
     checkError: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
     getPermissions: () => Promise.resolve(["admin"]),
-    getUserIdentity: () =>
-        Promise.resolve({
-            id: 1,
-            fullName: "Jane Doe",
-            avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
-        }),
+    getUserIdentity: () => Promise.resolve(),
 };
 
 describe("Authenticated", () => {

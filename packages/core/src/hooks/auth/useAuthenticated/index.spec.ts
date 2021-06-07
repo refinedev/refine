@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react-hooks";
 
-import { act, TestWrapper } from "@test";
+import { TestWrapper } from "@test";
 
 import { useAuthenticated } from "./";
 
