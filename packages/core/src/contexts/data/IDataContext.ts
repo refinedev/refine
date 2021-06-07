@@ -57,6 +57,22 @@ export type CrudSort = {
 export type CrudFilters = CrudFilter[];
 export type CrudSorting = CrudSort[];
 
+export interface Revision {
+    id: string;
+    action: "create" | "edit";
+    resource: string;
+    date: string;
+    user: {
+        id: string;
+        firstName: string;
+        lastName: string;
+    };
+}
+
+export interface RevisionsResponse {
+    data: Revision[];
+}
+
 export interface CustomResponse<TData = BaseRecord> {
     data: TData;
 }
@@ -160,4 +176,6 @@ export interface IDataContext {
             headers?: {};
         },
     ) => Promise<CustomResponse<TData>>;
+    // TODO: Should be optional
+    revisions?: (resource: string, id: string) => Promise<RevisionsResponse>;
 }

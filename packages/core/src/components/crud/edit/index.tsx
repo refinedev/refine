@@ -25,6 +25,7 @@ import {
     DeleteButtonProps,
     SaveButton,
 } from "@components";
+import { Revisions } from "@components/revisions";
 
 import { MutationMode, ResourceRouterParams } from "../../../interfaces";
 export interface EditProps {
@@ -139,6 +140,10 @@ export const Edit: React.FC<EditProps> = ({
                     <OptionalComponent optional={aside} />
                 </Col>
             )}
+
+            <Col flex="0 1 300px">
+                <Revisions resource={resource.name} id={idFromRoute} />
+            </Col>
         </Row>
     );
 };
