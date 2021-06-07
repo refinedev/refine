@@ -59,6 +59,7 @@ module.exports = {
                 "guides-and-concepts/multipart-upload",
                 "guides-and-concepts/uploading-base64",
                 "guides-and-concepts/auth0",
+                "guides-and-concepts/search",
                 "guides-and-concepts/table-search",
                 "guides-and-concepts/custom-pages",
                 "guides-and-concepts/csv-import",
