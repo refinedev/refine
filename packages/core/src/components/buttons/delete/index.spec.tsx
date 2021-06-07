@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 
-import { fireEvent, render, TestWrapper, act } from "@test";
+import { fireEvent, render, TestWrapper, act, MockJSONServer } from "@test";
 import { DeleteButton } from "./";
 
 describe("Delete Button", () => {
@@ -59,9 +59,14 @@ describe("Delete Button", () => {
         });
 
         it("should confirm Popconfirm successfuly", async () => {
+            const deleteOneMock = jest.fn();
             const deleteButton = render(<DeleteButton />, {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts" }],
+                    dataProvider: {
+                        ...MockJSONServer,
+                        deleteOne: deleteOneMock,
+                    },
                 }),
             });
             const { getByText, getAllByText } = deleteButton;
@@ -78,12 +83,20 @@ describe("Delete Button", () => {
             await act(async () => {
                 fireEvent.click(deleteButtons[1]);
             });
+
+            expect(deleteOneMock).toBeCalledTimes(1);
         });
 
         it("should confirm Popconfirm successfuly with recordItemId", async () => {
+            const deleteOneMock = jest.fn();
+
             const deleteButton = render(<DeleteButton recordItemId="1" />, {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts" }],
+                    dataProvider: {
+                        ...MockJSONServer,
+                        deleteOne: deleteOneMock,
+                    },
                 }),
             });
             const { getByText, getAllByText } = deleteButton;
@@ -100,14 +113,23 @@ describe("Delete Button", () => {
             await act(async () => {
                 fireEvent.click(deleteButtons[1]);
             });
+
+            expect(deleteOneMock).toBeCalledTimes(1);
         });
 
         it("should confirm Popconfirm successfuly with onSuccess", async () => {
+            const deleteOneMock = jest.fn();
+            const onSuccessMock = jest.fn();
+
             const deleteButton = render(
-                <DeleteButton onSuccess={jest.fn()} />,
+                <DeleteButton onSuccess={onSuccessMock} />,
                 {
                     wrapper: TestWrapper({
                         resources: [{ name: "posts" }],
+                        dataProvider: {
+                            ...MockJSONServer,
+                            deleteOne: deleteOneMock,
+                        },
                     }),
                 },
             );
@@ -125,6 +147,8 @@ describe("Delete Button", () => {
             await act(async () => {
                 fireEvent.click(deleteButtons[1]);
             });
+            expect(deleteOneMock).toBeCalledTimes(1);
+            expect(onSuccessMock).toBeCalledTimes(1);
         });
     });
     it("should render with custom mutationMode", () => {
