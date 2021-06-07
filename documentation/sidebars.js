@@ -42,6 +42,7 @@ module.exports = {
                                 "guides-and-concepts/hooks/data/useCustom",
                             ],
                         },
+
                         "guides-and-concepts/hooks/useModalForm",
                         "guides-and-concepts/hooks/useDrawerForm",
                         "guides-and-concepts/hooks/useStepsForm",
@@ -53,6 +54,7 @@ module.exports = {
                         "guides-and-concepts/hooks/useForm",
                     ],
                 },
+                "guides-and-concepts/permission",
                 "guides-and-concepts/multipart-upload",
                 "guides-and-concepts/uploading-base64",
                 "guides-and-concepts/auth0",
