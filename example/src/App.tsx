@@ -53,7 +53,7 @@ const App: React.FC = () => {
             localStorage.getItem("username")
                 ? Promise.resolve()
                 : Promise.reject(),
-        getPermissions: () => Promise.resolve(["admin"]),
+        getPermissions: () => Promise.resolve(["hr"]),
         getUserIdentity: () =>
             Promise.resolve({
                 id: 1,
@@ -82,7 +82,30 @@ const App: React.FC = () => {
         );
     };
 
-    const hede: any = 1;
+    const allowPostList = {
+        list: ["admin", "hr"],
+        hasPermission: true,
+    };
+    const allowPostCreate = {
+        list: ["admin"],
+        hasPermission: true,
+    };
+    const allowPostEdit = {
+        list: ["admin"],
+        hasPermission: true,
+    };
+    const allowPostShow = {
+        list: ["admin", "hr"],
+        hasPermission: true,
+    };
+    const allowPostDelete = {
+        list: ["admin", "hr"],
+        hasPermission: true,
+    };
+    const allowPostSideBar = {
+        list: ["admin", "hr"],
+        hasPermission: false,
+    };
 
     return (
         <Admin
@@ -177,7 +200,12 @@ const App: React.FC = () => {
                 create={PostCreate}
                 edit={PostEdit}
                 show={PostShow}
-                canDelete
+                allowCreate={allowPostCreate}
+                allowEdit={allowPostEdit}
+                allowList={allowPostList}
+                allowShow={allowPostShow}
+                allowDelete={allowPostDelete}
+                allowSideBar={allowPostSideBar}
             />
             <Resource
                 name="categories"
@@ -190,13 +218,7 @@ const App: React.FC = () => {
                 list={UserList}
                 icon={<Icons.UserOutlined />}
             />
-            <Resource
-                name="tags"
-                list={TagList}
-                /* edit={TagsEdit}
-            create={TagsCreate}
-            icon={<Icons.TagsOutlined />} */
-            />
+            <Resource name="tags" list={TagList} />
         </Admin>
     );
 };

@@ -40,6 +40,7 @@ import {
     useSelect,
     useMany,
     IResourceComponentsProps,
+    useAllow,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -69,6 +70,9 @@ interface ICategory {
 
 export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
+    const canAllowCreate = useAllow("allowCreate", "posts").canAllow;
+    const canAllowEdit = useAllow("allowEdit", "posts").canAllow;
+    const canAllowDelete = useAllow("allowCreate", "posts").canAllow;
 
     const { tableProps, sorter, filters } = useTable<IPost>({
         initialCurrent: 3,
@@ -130,7 +134,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                 }}
                 batchSize={null}
             />
-            <CreateButton />
+            {canAllowCreate && <CreateButton />}
         </Space>
     );
 
@@ -249,11 +253,18 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                         },
                     ): React.ReactNode => (
                         <Space>
-                            <EditButton size="small" recordItemId={record.id} />
-                            <DeleteButton
-                                size="small"
-                                recordItemId={record.id}
-                            />
+                            {canAllowEdit && (
+                                <EditButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                            )}
+                            {canAllowDelete && (
+                                <DeleteButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                            )}
                             <ShowButton size="small" recordItemId={record.id} />
                             <CloneButton
                                 size="small"
