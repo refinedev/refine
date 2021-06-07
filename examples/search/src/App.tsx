@@ -4,6 +4,7 @@ import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { CategoryList, CategoryShow } from "pages/categories";
+import { UserList, UserShow } from "pages/users";
 
 const API_URL = "https://refine-fake-rest.pankod.com";
 
@@ -22,6 +23,7 @@ const App: React.FC = () => {
                 list={CategoryList}
                 show={CategoryShow}
             />
+            <Resource name="users" list={UserList} show={UserShow} />
         </Admin>
     );
 };

@@ -7,7 +7,7 @@ import {
     ShowButton,
 } from "@pankod/refine";
 
-import { IPost, ICategory } from "interfaces";
+import { ICategory } from "interfaces";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps } = useTable<ICategory>();
@@ -17,7 +17,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = (props) => {
             <Table {...tableProps} key="id">
                 <Table.Column key="id" dataIndex="id" title="ID" />
                 <Table.Column key="title" dataIndex="title" title="Title" />
-                <Table.Column<IPost>
+                <Table.Column<ICategory>
                     title="Actions"
                     dataIndex="actions"
                     key="actions"
