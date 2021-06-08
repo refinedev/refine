@@ -22,6 +22,7 @@ module.exports = {
                     label: "Basic Views",
                     items: [
                         "guides-and-concepts/basic-views/list",
+                        "guides-and-concepts/basic-views/create",
                         "guides-and-concepts/basic-views/edit",
                     ],
                 },
