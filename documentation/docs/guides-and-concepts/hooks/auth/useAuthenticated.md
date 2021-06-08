@@ -5,7 +5,9 @@ siderbar_label: useAuthenticated
 description: useAuthenticated data hook from refine is a modified version of react-query's useMutation for create mutations
 ---
 
-`useAuthenticated` calls `checkAuth` method from [`authProvider`](/docs/guides-and-concepts/providers/auth-provider) under the hood. It returns the result of react-query's useQuery includes properties like `isSuccess` and `isError` with many others.
+`useAuthenticated` calls `checkAuth` method from [`authProvider`](/docs/guides-and-concepts/providers/auth-provider) under the hood. It returns the result of react-query's useQuery which includes properties like `isSuccess` and `isError` with many others.  
+Data that is resolved from `useAuthenticated` will be returned as the `data` in the query result.
+
 
 ## Usage
 
