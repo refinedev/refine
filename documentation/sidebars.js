@@ -23,6 +23,7 @@ module.exports = {
                     items: [
                         "guides-and-concepts/basic-views/list",
                         "guides-and-concepts/basic-views/show",
+                        "guides-and-concepts/basic-views/edit",
                     ],
                 },
                 {
