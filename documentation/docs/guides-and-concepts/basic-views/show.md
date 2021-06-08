@@ -72,10 +72,9 @@ export const Show: React.FC = () => {
 };
 ```
 
+### `actionButtons`
 
-### `actionButtons` (TODO)
-
-`<Show>` uses Ant Design [`<Card>`](https://ant.design/components/card) component. The `action` prop of `<Card>` component shows `<SaveButton>` and `<DeleteButton>` depending on your resource definition on `<Resource>` components. If you want to use other things instead of these buttons, you can use `actionButton` property like the below code.
+`<Show>` uses Ant Design [`<Card>`](https://ant.design/components/card/) component so you can customize `action` property with the props of `actionButtons`. By default, the `action` prop of `<Card>` component shows nothing in `<Show>` component. If you want to add elements or components to `<Card>`'s `action` property, you can use the `actionButtons` property like the below code.
 
 ```tsx
 import { Show } from "@pankod/refine";
@@ -98,10 +97,22 @@ export const Show: React.FC = () => {
 
 ### `isLoading`
 
+`<Show>` uses Ant Design [`<Card>`](https://ant.design/components/card/) component so you can customize the `isLoading` of the `<Card>` with `isLoading` property like the below code.
+
+```tsx
+import { useState } from "react";
+import { Show, Modal, ShowButton, useShow } from "@pankod/refine";
+
+export const Show: React.FC = () => {
+    const { isLoading } = useOne("categories", "1");
+
+    return <Show isLoading={isLoading}>...</Show>;
+};
+```
 
 ### `pageHeaderProps`
 
-`<Show>` uses Ant Design [`<PageHeader>`](https://ant.design/components/page-header/#API) components. so you can customize with the props of `pageHeaderProps`. By default, the `extra` prop of `<PageHeader>` component shows `<RefreshButton>` and `<ListButton>` depending on your resource definition on `<Resource>` component.
+`<Show>` uses Ant Design [`<PageHeader>`](https://ant.design/components/page-header/#API) components so you can customize with the props of `pageHeaderProps`. By default, the `extra` prop of `<PageHeader>` component shows `<RefreshButton>`, `<ListButton>`, `<EditButton>` and `<DeleteButton>` depending on your resource definition on `<Resource>` component.
 
 ```tsx
 import { Show } from "@pankod/refine";
@@ -114,7 +125,7 @@ export const Show: React.FC = () => {
                 subTitle: "Subtitle",
             }}
         >
-            ...
+            **** ...
         </Show>
     );
 };
@@ -125,18 +136,31 @@ export const Show: React.FC = () => {
 `<Show>` component reads the `id` information from the route by default. `recordIdItem` is used when it cannot reading from the url (when used on a custom page, modal or drawer).
 
 ```tsx
-import { Show, Modal, useModalForm } from "@pankod/refine";
+import { useState } from "react";
+import { Show, Modal, ShowButton, useShow } from "@pankod/refine";
 
 export const Show: React.FC = () => {
-    const { modalProps, ShowId } = useModalForm({
-        action: "Show",
-    });
+    const [visibleShowModal, setVisibleShowModal] = useState<boolean>(false);
+
+    const { queryResult, showId, setShowId } = useShow();
+    const { data, isLoading } = queryResult;
 
     return (
         <>
-            ...
-            <Modal {...modalProps}>
-                <Show recordItemId={ShowId}>...</Show>
+            <ShowButton
+                size="small"
+                onClick={() => {
+                    setShowId(record.id);
+                    setVisibleShowModal(true);
+                }}
+            />
+            <Modal
+                visible={visibleShowModal}
+                onCancel={() => setVisibleShowModal(false)}
+            >
+                <Show recordItemId={showId} isLoading={isLoading}>
+                    // show something with `data`
+                </Show>
             </Modal>
         </>
     );
@@ -158,7 +182,11 @@ import { Admin, Resource, Show } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 
 const CustomPage = () => {
-    return <Show resource="posts">...</Show>;
+    return (
+        <Show resource="posts" recordItemId="ids">
+            ...
+        </Show>
+    );
 };
 
 export const App: React.FC = () => {
