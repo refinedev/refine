@@ -238,8 +238,8 @@ export const App: React.FC = () => {
 
 | Property        | Description                                  | Type                                                              | Default                                                                            |
 | --------------- | -------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| canDelete       | Adds delete button                           | `boolean`                                                         | If `<Resource>` has `canDelete` prop it is `true` else `false` `false`             |
-| canEdit         | Adds delete button                           | `boolean`                                                         | If `<Resource>` has `canDelete` prop it is `true` else `false` `false`             |
+| canDelete       | Adds delete button                           | `boolean`                                                         | If `<Resource>` has `canDelete` prop it is `true` else `false`                     |
+| canEdit         | Adds edit button                             | `boolean`                                                         | If `<Resource>` has `canEdit` prop it is `true` else `false`                       |
 | title           | Adds title                                   | `string`                                                          | `"Show"` prefix and singular of `resource.name`                                    |
 | aside           | Adds component to right side                 | `React.FC`                                                        | `undefined`                                                                        |
 | actionButtons   | Passes to `extra` property of the `<Card>`   | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
