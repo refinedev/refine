@@ -50,6 +50,7 @@ module.exports = {
                                 "guides-and-concepts/hooks/auth/useLogout",
                                 "guides-and-concepts/hooks/auth/useCheckError",
                                 "guides-and-concepts/hooks/auth/useAuthenticated",
+                                "guides-and-concepts/hooks/auth/useGetIdentity",
                             ],
                         },
                         "guides-and-concepts/hooks/useModalForm",

@@ -49,4 +49,50 @@ describe("Authenticated", () => {
             expect(queryByText("Custom Authenticated")).toBeNull();
         });
     });
+
+    it("not authenticated fallback component test", async () => {
+        mockAuthProvider.checkAuth = jest
+            .fn()
+            .mockImplementation(() => Promise.reject());
+
+        const { queryByText } = render(
+            <Authenticated fallback={<div>Error fallback</div>}>
+                Custom Authenticated
+            </Authenticated>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    authProvider: mockAuthProvider,
+                    resources: [{ name: "posts", route: "posts" }],
+                }),
+            },
+        );
+
+        await wait(() => {
+            expect(queryByText("Error fallback"));
+        });
+    });
+
+    it("loading test", async () => {
+        mockAuthProvider.checkAuth = jest
+            .fn()
+            .mockImplementation(() => Promise.reject());
+
+        const { queryByText } = render(
+            <Authenticated loading={<div>loading</div>}>
+                Custom Authenticated
+            </Authenticated>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    authProvider: mockAuthProvider,
+                    resources: [{ name: "posts", route: "posts" }],
+                }),
+            },
+        );
+
+        await wait(() => {
+            expect(queryByText("loading"));
+        });
+    });
 });
