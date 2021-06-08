@@ -7,6 +7,34 @@ title: useMenu
 
 ```ts
 const { selectedKey, resources, menuItems } = useMenu();
+
+console.log(menuItems); 
+
+// Example output:
+// [
+//     {
+//         icon: ReactElement,
+//         key: "dashboard",
+//         label: "Dashboard",
+//         name: "Dashboard",
+//         route: "/"
+//     }, {
+//         icon: ReactElement,
+//         key: "/resources/posts",
+//         label: "Posts",
+//         name: "posts",
+//         route: "/resources/posts",
+//         ...
+//     }, {
+//         icon: ReactElement,
+//         key: "/resources/categories",
+//         label: "Categories",
+//         name: "categories",
+//         route: "/resources/categories",
+//         ...
+//     },
+//     ...
+// ]
 ```
 
 ## Usage
@@ -150,10 +178,8 @@ You can further customize Sider and its appearance.
 
 ## API Reference
 
-### Properties
-
-> `*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component. `useForm` will use what is passed to `<Admin>` as default and can override locally.
-
-<br/>
-
 ### Return values
+
+| Property        | Description                                             | Type                                                             |
+| --------------- | ------------------------------------------------------- | ---------------------------------------------------------------- |
+| setEditId       | `editId` setter                                         | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>` |
