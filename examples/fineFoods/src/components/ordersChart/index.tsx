@@ -5,12 +5,12 @@ import { RadialBarConfig } from "@ant-design/charts/es/radialBar";
 import { IOrderChart } from "interfaces";
 
 export const OrdersChart: React.FC = () => {
-    const { data, isLoading } = useList<IOrderChart>("orderChart");
+    const { data, isLoading } = useList<IOrderChart>("orderStatusChart");
 
     const config: RadialBarConfig = {
         width: 400,
         height: 300,
-        data: data?.data,
+        data: undefined,
         loading: isLoading,
         xField: "status",
         yField: "count",
@@ -37,28 +37,31 @@ export const OrdersChart: React.FC = () => {
 
     const { Title } = Typography;
 
+    let waitingChartData = [];
+    let deliveredChartData = [];
+
     const waitingStatus = ["waiting", "ready", "on the way"];
     const deliveredStatus = ["delivered", "could not be delivered"];
+
+    if (data) {
+        waitingChartData = data.data.filter((item) =>
+            waitingStatus.includes(item.status),
+        );
+
+        deliveredChartData = data.data.filter((item) =>
+            deliveredStatus.includes(item.status),
+        );
+    }
 
     return (
         <>
             <Title level={5}>Orders</Title>
             <Row>
                 <Col md={12}>
-                    <RadialBar
-                        {...config}
-                        data={config.data.filter((item) =>
-                            deliveredStatus.includes(item.status),
-                        )}
-                    />
+                    <RadialBar {...config} data={deliveredChartData} />
                 </Col>
                 <Col md={12}>
-                    <RadialBar
-                        {...config}
-                        data={config.data.filter((item) =>
-                            waitingStatus.includes(item.status),
-                        )}
-                    />
+                    <RadialBar {...config} data={waitingChartData} />
                 </Col>
             </Row>
         </>

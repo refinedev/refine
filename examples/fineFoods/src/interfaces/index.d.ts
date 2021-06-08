@@ -12,6 +12,12 @@ export interface IOrderChart {
         | "could not be delivered";
 }
 
+export interface ISalesChart {
+    date: string;
+    title: "Order Count" | "Order Amount";
+    value: number;
+}
+
 export interface IOrderStatus {
     id: string;
     text:

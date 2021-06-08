@@ -1,6 +1,11 @@
 import { Row, Col, Card, Space } from "@pankod/refine";
 
-import { DeliveryMap, DeliverySchedule, OrdersChart } from "components";
+import {
+    DeliveryMap,
+    DeliverySchedule,
+    OrdersChart,
+    SalesChart,
+} from "components";
 
 export const DashbaordPage: React.FC = () => {
     return (
@@ -19,6 +24,10 @@ export const DashbaordPage: React.FC = () => {
 
                 <Card>
                     <OrdersChart />
+                </Card>
+
+                <Card>
+                    <SalesChart />
                 </Card>
             </Col>
             <Col md={8} xs={24}>
