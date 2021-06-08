@@ -6,6 +6,7 @@ import { DataContext } from "@contexts/data";
 import {
     useCacheQueries,
     useCancelNotification,
+    useCheckError,
     useMutationMode,
     useNotification,
     useTranslate,
@@ -51,6 +52,7 @@ export const useUpdateMany = <
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
+    const checkError = useCheckError();
 
     const resourceSingular = pluralize.singular(resource);
 
@@ -179,6 +181,8 @@ export const useUpdateMany = <
                 });
 
                 if (err.message !== "mutationCancelled") {
+                    checkError?.(err);
+
                     notification.error({
                         key: `${ids}-${resource}-notification`,
                         message: translate(

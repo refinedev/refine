@@ -20,7 +20,10 @@ module.exports = {
                 {
                     type: "category",
                     label: "Basic Views",
-                    items: ["guides-and-concepts/basic-views/list"],
+                    items: [
+                        "guides-and-concepts/basic-views/list",
+                        "guides-and-concepts/basic-views/edit",
+                    ],
                 },
                 {
                     type: "category",

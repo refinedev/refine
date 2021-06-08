@@ -13,3 +13,4 @@ export { LayoutWrapper } from "./layoutWrapper";
 export { Authenticated } from "./authenticated";
 export { default as Icon } from "@ant-design/icons";
 export { Icons };
+export { RouteChangeHandler } from "./routeChangeHandler";

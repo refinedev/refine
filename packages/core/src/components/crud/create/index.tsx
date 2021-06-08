@@ -49,7 +49,14 @@ export const Create: React.FC<CreateProps> = ({
 
     const tags = [];
     if (idFromRoute) {
-        tags.push(<Tag color="blue">{translate("tags.clone", "Clone")}</Tag>);
+        tags.push(
+            <Tag
+                key={`${resource.name}-${idFromRoute}-create-clone-tag`}
+                color="blue"
+            >
+                {translate("tags.clone", "Clone")}
+            </Tag>,
+        );
     }
 
     return (

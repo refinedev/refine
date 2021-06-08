@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Create,
     Form,
@@ -31,6 +31,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
+                    name="title"
                     rules={[
                         {
                             required: true,
@@ -41,20 +42,18 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
                 </Form.Item>
                 <Form.Item
                     label="Category"
+                    name={["category", "id"]}
                     rules={[
                         {
                             required: true,
                         },
                     ]}
                 >
-                    <Select
-                        showSearch
-                        filterOption={false}
-                        {...categorySelectProps}
-                    />
+                    <Select {...categorySelectProps} />
                 </Form.Item>
                 <Form.Item
                     label="Status"
+                    name="status"
                     rules={[
                         {
                             required: true,
@@ -80,6 +79,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
                 </Form.Item>
                 <Form.Item
                     label="Content"
+                    name="content"
                     rules={[
                         {
                             required: true,

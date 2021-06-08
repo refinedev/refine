@@ -23,7 +23,7 @@ export const useMenu: () => useMenuReturnType = () => {
         location.pathname.startsWith(`/resources/${el.route}`),
     );
 
-    setWarnWhen(false);
+    setWarnWhen(false); // TODO move!! to RouteChangeHandlerComponent.
     const selectedKey = `/resources/${selectedResource?.route ?? ""}`;
 
     const menuItems: IMenuItem[] = React.useMemo(

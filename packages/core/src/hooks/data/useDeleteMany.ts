@@ -19,6 +19,7 @@ import {
     useMutationMode,
     useCancelNotification,
     useCacheQueries,
+    useCheckError,
 } from "@hooks";
 import { ActionTypes } from "@contexts/notification";
 
@@ -45,6 +46,7 @@ export const useDeleteMany = <
     undoableTimeoutProp?: number,
     onCancel?: (cancelMutation: () => void) => void,
 ): UseDeleteManyReturnType<TData, TError> => {
+    const checkError = useCheckError();
     const { deleteMany } = useContext<IDataContext>(DataContext);
     const {
         mutationMode: mutationModeContext,
@@ -175,6 +177,7 @@ export const useDeleteMany = <
                 });
             },
             onError: (err, { ids }, context) => {
+                checkError?.(err);
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
@@ -187,15 +190,19 @@ export const useDeleteMany = <
                         id: ids,
                     },
                 });
-                notification.error({
-                    key: `${ids}-${resource}-notification`,
-                    message: translate(
-                        "notifications.deleteError",
-                        { resource, statusCode: err.statusCode },
-                        `Error (status code: ${err.statusCode})`,
-                    ),
-                    description: err.message,
-                });
+                if (err.message !== "mutationCancelled") {
+                    checkError?.(err);
+
+                    notification.error({
+                        key: `${ids}-${resource}-notification`,
+                        message: translate(
+                            "notifications.deleteError",
+                            { resource, statusCode: err.statusCode },
+                            `Error (status code: ${err.statusCode})`,
+                        ),
+                        description: err.message,
+                    });
+                }
             },
         },
     );
