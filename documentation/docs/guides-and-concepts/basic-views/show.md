@@ -80,7 +80,7 @@ export const Show: React.FC = () => {
 
 ### `actionButtons`
 
-`<Show>` uses Ant Design [`<Card>`](https://ant.design/components/card/) component so you can customize `action` property with the props of `actionButtons`. By default, the `action` prop of `<Card>` component shows nothing in `<Show>` component. If you want to add elements or components to `<Card>`'s `action` property, you can use the `actionButtons` property like the below code.
+`<Show>` uses Ant Design [`<Card>`](https://ant.design/components/card/) component so you can customize `action` property with the props of `actionButtons`. By default, the `action` prop of `<Card>` component shows nothing in `<Show>` component.
 
 ```tsx
 import { Show, Space, Button } from "@pankod/refine";
@@ -108,7 +108,7 @@ export const Show: React.FC = () => {
 
 ### `isLoading`
 
-`<Show>` uses Ant Design [`<Card>`](https://ant.design/components/card/) component so you can customize the `isLoading` of the `<Card>` with `isLoading` property like the below code.
+Since `<Show>` uses Ant Design [`<Card>`](https://ant.design/components/card/) component, `isLoading` property can be set like the below.
 
 ```tsx
 import { useState } from "react";
