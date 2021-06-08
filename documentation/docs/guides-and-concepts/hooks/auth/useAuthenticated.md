@@ -15,6 +15,23 @@ We have used this hook in refine's [`<Authenticated>`](#) component that allows 
 
 We' ll demonstrate similar basic implementation like below. Imagine you have public page but want to make specific fields private.
 
+- We have a logic in [`authProvider`](/docs/guides-and-concepts/providers/auth-provider)'s `checkAuth` method like below.
+
+```tsx
+const authProvider: AuthProvider = {
+  ...
+    // highlight-start
+    checkAuth: () => {
+        localStorage.getItem("username")
+                ? Promise.resolve()
+                : Promise.reject(),
+    },
+    // highlight-end
+  ...
+};
+```
+<br/>
+
 - Create a wrapper component that renders children if `checkAuth` method returns Promise resolved.
 
 ```tsx title="components/authenticationChecker"
@@ -38,24 +55,6 @@ export const AuthenticationChecker: React.FC = ({
 ```
 
 <br />
-
-- We have a logic in [`authProvider`](/docs/guides-and-concepts/providers/auth-provider)'s `checkAuth` method like below.
-
-```tsx
-const authProvider: AuthProvider = {
-  ...
-    // highlight-start
-    checkAuth: () => {
-        localStorage.getItem("username")
-                ? Promise.resolve()
-                : Promise.reject(),
-    },
-    // highlight-end
-  ...
-};
-```
-<br/>
-
 
 - Only authenticated users can see the price field.
 
