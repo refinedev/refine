@@ -2,85 +2,48 @@
 id: useGetIdentity
 title: useGetIdentity
 siderbar_label: useGetIdentity
-description: useGetIdentity data hook from refine is a modified version of react-query's useMutation for create mutations
+description: useGetIdentity data hook from refine is a modified version of react-query's useQuery for retrieving user data
 ---
 
-`useGetIdentity` calls `checkAuth` method from [`authProvider`](/docs/guides-and-concepts/providers/auth-provider) under the hood. It returns the result of react-query's useQuery includes properties like `isSuccess` and `isError` with many others.
+`useGetIdentity` calls `getUserIdentity` method from [`authProvider`](/docs/guides-and-concepts/providers/auth-provider) under the hood. It returns the result of react-query's useQuery which includes properties like `isSuccess` and `isError` with many others.  
+Data that is resolved from `getUserIdentity` will be returned as the `data` in the query result.
 
 ## Usage
 
-It can be useful when you want to ask authentication for access [custom pages](/docs/guides-and-concepts/custom-pages) manually.
+It can be useful when you want to get user information anywhere in your code.
 
-We have used this hook in refine's [`<Authenticated>`](#) component that allows only authenticated users can access to the page or any part of code.
 
-We' ll demonstrate similar basic implementation like below. Imagine you have public page but want to make specific fields private.
+Imagine you want to show user name.
 
-- We have a logic in [`authProvider`](/docs/guides-and-concepts/providers/auth-provider)'s `checkAuth` method like below.
+- We have a logic in [`authProvider`](/docs/guides-and-concepts/providers/auth-provider)'s `getUserIdentity` method like below.
 
 ```tsx
 const authProvider: AuthProvider = {
   ...
     // highlight-start
-    checkAuth: () => {
-        localStorage.getItem("username")
-                ? Promise.resolve()
-                : Promise.reject(),
-    },
+    getUserIdentity: () =>
+            Promise.resolve({
+                id: 1,
+                fullName: "Jane Doe",
+            }),
     // highlight-end
   ...
 };
 ```
 <br/>
 
-- Create a wrapper component that renders children if `checkAuth` method returns Promise resolved.
 
-```tsx title="components/authenticationChecker"
+```tsx
 // highlight-next-line
 import { useGetIdentity } from "@pankod/refine";
 
-export const AuthenticationChecker: React.FC = ({
-    children
-}) => {
+export const User: React.FC = () => {
     // highlight-next-line
-    const { isSuccess, isError } = useGetIdentity();
+    const { data: identity } = useGetIdentity<{ id: string; fullName: string}>();
 
-    if (isSuccess) {
-        return <>{children}</>;
-    }
-
-    if (isError) {
-        return null;
-    }
-};
+    return <span>{identity?.fullName}</span>
+}
 ```
-
-<br />
-
-- Only authenticated users can see the price field.
-
-```tsx title="components/postShow"
-import { Typography, Show } from "@pankod/refine";
-
-// highlight-next-line
-import { AuthenticationChecker } from "/components/authenticationChecker"
-
-const { Title, Text } = Typography;
-
-export const PostShow: React.FC = () => (
-    <Show>
-        <Title>Status</Title>
-        <Text>Approved</Text>
-        //highlight-start
-        <AuthenticationChecker>
-            <Title>Price</Title>
-            <Text>20</Text>
-        </AuthenticationChecker>
-        //highlight-end
-    </Show>
-)
-```
-
-
 
 :::caution
 This hook can only be used if `authProvider` is provided.

@@ -4,7 +4,7 @@ import { TestWrapper } from "@test";
 
 import { useGetIdentity } from "./";
 
-describe("usePermissions Hook", () => {
+describe("useGetIdentity Hook", () => {
     it("returns object useGetIdentity", async () => {
         const { result, waitFor } = renderHook(() => useGetIdentity(), {
             wrapper: TestWrapper({
