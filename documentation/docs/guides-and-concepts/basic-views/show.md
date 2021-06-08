@@ -3,9 +3,10 @@ id: show
 title: Show
 ---
 
-<!-- import asideUsage from '@site/static/img/guides-and-concepts/basic-views/edit/aside.png'
-import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/edit/pageHeaderProps.png'
-import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/edit/actionButtons.png' -->
+import asideUsage from '@site/static/img/guides-and-concepts/basic-views/show/aside.png'
+import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/show/pageHeaderProps.png'
+import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/show/actionButtons.png'
+import isLoading from '@site/static/img/guides-and-concepts/basic-views/show/isLoading.png'
 
 `<Show>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a refresh button and title to the page.
 
@@ -61,8 +62,8 @@ import { Show, Card } from "@pankod/refine";
 
 const Aside: React.FC = () => {
     return (
-        <Card title="Post Show Details" extra={<a href="#">More</a>}>
-            <p>Here you can give useful information about post Show.</p>
+        <Card title="Post User Details" extra={<a href="#">More</a>}>
+            <p>Here you can give useful information about post.</p>
         </Card>
     );
 };
@@ -72,21 +73,26 @@ export const Show: React.FC = () => {
 };
 ```
 
+<div>
+    <img src={asideUsage} alt="Aside Usage"/>
+</div>
+<br/>
+
 ### `actionButtons`
 
 `<Show>` uses Ant Design [`<Card>`](https://ant.design/components/card/) component so you can customize `action` property with the props of `actionButtons`. By default, the `action` prop of `<Card>` component shows nothing in `<Show>` component. If you want to add elements or components to `<Card>`'s `action` property, you can use the `actionButtons` property like the below code.
 
 ```tsx
-import { Show } from "@pankod/refine";
+import { Show, Space, Button } from "@pankod/refine";
 
 export const Show: React.FC = () => {
     return (
         <Show
             actionButtons={
-                <>
+                <Space>
                     <Button type="primary">Custom Button 1</Button>
-                    <Button size="small">Custom Button 2</Button>
-                </>
+                    <Button type="default">Custom Button 2</Button>
+                </Space>
             }
         >
             ...
@@ -94,6 +100,11 @@ export const Show: React.FC = () => {
     );
 };
 ```
+
+<div>
+    <img src={actionButtonsUsage} alt="actionButtons Usage"/>
+</div>
+<br/>
 
 ### `isLoading`
 
@@ -110,6 +121,11 @@ export const Show: React.FC = () => {
 };
 ```
 
+<div>
+    <img src={isLoading} alt="isLoading"/>
+</div>
+<br/>
+
 ### `pageHeaderProps`
 
 `<Show>` uses Ant Design [`<PageHeader>`](https://ant.design/components/page-header/#API) components so you can customize with the props of `pageHeaderProps`. By default, the `extra` prop of `<PageHeader>` component shows `<RefreshButton>`, `<ListButton>`, `<EditButton>` and `<DeleteButton>` depending on your resource definition on `<Resource>` component.
@@ -125,11 +141,16 @@ export const Show: React.FC = () => {
                 subTitle: "Subtitle",
             }}
         >
-            **** ...
+            ...
         </Show>
     );
 };
 ```
+
+<div>
+    <img src={pageHeaderPropsUsage} alt="pageHeaderProps Usage"/>
+</div>
+<br/>
 
 ### `recordItemId`
 
@@ -183,7 +204,7 @@ import dataProvider from "@pankod/refine-json-server";
 
 const CustomPage = () => {
     return (
-        <Show resource="posts" recordItemId="ids">
+        <Show resource="posts" recordItemId="postId">
             ...
         </Show>
     );
@@ -215,17 +236,14 @@ export const App: React.FC = () => {
 
 ### Properties
 
-| Property          | Description                                 | Type                                                              | Default                                                                            |
-| ----------------- | ------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| canDelete         | Adds delete button                          | `boolean`                                                         | If `<Resource>` has `canDelete` prop it is `true` else `false` `false`             |
-| deleteButtonProps | Adds props for delete button                | [`DeleteButtonProps`](interfaces.md#delete-button-props)          | `<DeleteButton>`                                                                   |
-| saveButtonProps   | Adds props for create button                | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton>`                                                                     |
-| title             | Adds title                                  | `string`                                                          | `"Show"` prefix and singular of `resource.name`                                    |
-| aside             | Adds component to right side                | `React.FC`                                                        | `undefined`                                                                        |
-| actionButtons     | Passes props for `<PageHeader>`             | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
-| pageHeaderProps   | Passes props for `<PageHeader>`             | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
-| recordItemId      | Record id for `<RefreshButton>`             | `string`                                                          |                                                                                    |
-| mutationMode      | [Determines when mutations are executed](#) | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`\*                                                                  |
-| resource          | [`Resource`](#) for API data interactions   | `string`                                                          | Resource name that it reads from the url.                                          |
-
-> `*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component.
+| Property        | Description                                  | Type                                                              | Default                                                                            |
+| --------------- | -------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| canDelete       | Adds delete button                           | `boolean`                                                         | If `<Resource>` has `canDelete` prop it is `true` else `false` `false`             |
+| canEdit         | Adds delete button                           | `boolean`                                                         | If `<Resource>` has `canDelete` prop it is `true` else `false` `false`             |
+| title           | Adds title                                   | `string`                                                          | `"Show"` prefix and singular of `resource.name`                                    |
+| aside           | Adds component to right side                 | `React.FC`                                                        | `undefined`                                                                        |
+| actionButtons   | Passes to `extra` property of the `<Card>`   | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
+| isLoading       | Passes to `loading` property of the `<Card>` | `boolean`                                                         | `false`                                                                            |
+| pageHeaderProps | Passes props for `<PageHeader>`              | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
+| recordItemId    | Record id for `<RefreshButton>`              | `string`                                                          |                                                                                    |
+| resource        | [`Resource`](#) for API data interactions    | `string`                                                          | Resource name that it reads from the url.                                          |
