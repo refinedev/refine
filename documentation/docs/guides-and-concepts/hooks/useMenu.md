@@ -7,39 +7,38 @@ title: useMenu
 
 ```ts
 const { selectedKey, resources, menuItems } = useMenu();
+```
 
-console.log(menuItems); 
+* `menuItems` is a list of style agnostic menu items. Each of them has a key.
+* `selectedKey` is key of the resource user is viewing at the moment. Inferred from route.
+* `resources` is the list of resources the developer have defined.
 
-// Example output:
-// [
-//     {
-//         icon: ReactElement,
-//         key: "dashboard",
-//         label: "Dashboard",
-//         name: "Dashboard",
-//         route: "/"
-//     }, {
-//         icon: ReactElement,
-//         key: "/resources/posts",
-//         label: "Posts",
-//         name: "posts",
-//         route: "/resources/posts",
-//         ...
-//     }, {
-//         icon: ReactElement,
-//         key: "/resources/categories",
-//         label: "Categories",
-//         name: "categories",
-//         route: "/resources/categories",
-//         ...
-//     },
-//     ...
-// ]
+```ts title="menuItems"
+[
+    {
+        icon: ReactElement,
+        key: "dashboard",
+        label: "Dashboard",
+        name: "Dashboard",
+        route: "/"
+    }, {
+        icon: ReactElement,
+        key: "/resources/posts",
+        label: "Posts",
+        name: "posts",
+        route: "/resources/posts",
+    }, {
+        icon: ReactElement,
+        key: "/resources/categories",
+        label: "Categories",
+        name: "categories",
+        route: "/resources/categories",
+    },
+    ...
+]
 ```
 
 ## Usage
-
-`menuItems` is a list of style agnostic menu items. Each of them has a key. `selectedKey` (inferred from route) is the key of the page/resource user is viewing at the moment. `resources` is the list of resources the developer have defined.
 
 ### Recreating the default sider menu
 
@@ -87,6 +86,7 @@ export const CustomMenu: React.FC = () => {
             <Menu
                 theme="dark"
                 defaultSelectedKeys={["dashboard"]}
+                //highlight-next-line
                 selectedKeys={[selectedKey]}
                 mode="inline"
             >
@@ -180,6 +180,23 @@ You can further customize Sider and its appearance.
 
 ### Return values
 
-| Property        | Description                                             | Type                                                             |
-| --------------- | ------------------------------------------------------- | ---------------------------------------------------------------- |
-| setEditId       | `editId` setter                                         | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>` |
+| Property    | Description                                                                    | Type                             |
+| ----------- | ------------------------------------------------------------------------------ | -------------------------------- |
+| selectedKey | Key of the resource the user is viewing at the moment                          | `string`                         |
+| resources   | List of developer defined resources                                            | [`IResourceItem[]`](#interfaces) |
+| menuItems   | List of keys and routes and some metadata of resources and dashboard if exists | [`IMenuItem[]`](#interfaces)     |
+
+#### Interfaces
+
+```ts
+interface IResourceItem {
+    name: string;
+    label?: string;
+    route?: string;
+    icon?: ReactNode;
+}
+
+type IMenuItem = IResourceItem & {
+    key: string;
+};
+```
