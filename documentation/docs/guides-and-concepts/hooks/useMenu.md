@@ -7,37 +7,11 @@ title: useMenu
 
 ```ts
 const { selectedKey, resources, menuItems } = useMenu();
-
-console.log(menuItems); 
-
-// Example output:
-// [
-//     {
-//         icon: {$$typeof: Symbol(react.element), …},
-//         key: "dashboard",
-//         label: "Dashboard",
-//         name: "Dashboard",
-//         route: "/"
-//     }, {
-//         icon: {$$typeof: Symbol(react.element), …},
-//         key: "/resources/posts",
-//         label: "Posts",
-//         name: "posts",
-//         route: "/resources/posts",
-//         ...
-//     }, {
-//         icon: {$$typeof: Symbol(react.element), …},
-//         key: "/resources/categories",
-//         label: "Categories",
-//         name: "categories",
-//         route: "/resources/categories",
-//         ...
-//     },
-//     ...
-// ]
 ```
 
 ## Usage
+
+`menuItems` is a list of style agnostic menu items. Each of them has a key. `selectedKey` (inferred from route) is the key of the page/resource user is viewing at the moment. `resources` is the list of resources the developer have defined.
 
 ### Recreating the default sider menu
 
@@ -51,6 +25,7 @@ import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList } from "pages/posts";
+//highlight-next-line
 import { CustomMenu } from "./CustomMenu";
 
 const API_URL = "https://refine-fake-rest.pankod.com";
@@ -71,32 +46,16 @@ And we define `<CustomMenu>`:
 
 ```tsx title="src/CustomMenu.tsx"
 import React from "react";
-import {
-    AntdLayout,
-    Menu,
-    Icons,
-    Link,
-    useNavigation,
-    useMenu,
-    useLogout,
-    useTitle,
-} from "@pankod/refine";
+import { AntdLayout, Menu, Link, useMenu, useTitle } from "@pankod/refine";
 
 export const CustomMenu: React.FC = () => {
-    const [collapsed, setCollapsed] = React.useState(false);
-    const logout = useLogout();
     const Title = useTitle();
-    const { push } = useNavigation();
     //highlight-next-line
     const { menuItems, selectedKey } = useMenu();
 
     return (
-        <AntdLayout.Sider
-            collapsible
-            collapsed={collapsed}
-            onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
-        >
-            <Title collapsed={collapsed} />
+        <AntdLayout.Sider>
+            <Title collapsed={false} />
             <Menu
                 theme="dark"
                 defaultSelectedKeys={["dashboard"]}
@@ -110,7 +69,55 @@ export const CustomMenu: React.FC = () => {
                     </Menu.Item>
                 ))}
                 //highlight-end
+            </Menu>
+        </AntdLayout.Sider>
+    );
+};
+```
 
+`useMenu` hook is used to get style agnostic menu items. We render these items in the body of the sider. We get `Title` component with `useTitle` hook.
+
+We can also add a logout button:
+
+```tsx title="src/CustomMenu.tsx"
+import React from "react";
+import {
+    AntdLayout,
+    Menu,
+    Link,
+    useMenu,
+    useTitle,
+    //highlight-start
+    Icons,
+    useNavigation,
+    useLogout,
+    //highlight-end
+} from "@pankod/refine";
+
+export const CustomMenu: React.FC = () => {
+    const Title = useTitle();
+    const { menuItems, selectedKey } = useMenu();
+    //highlight-start
+    const logout = useLogout();
+    const { push } = useNavigation();
+    //highlight-end
+
+    return (
+        <AntdLayout.Sider>
+            <Title collapsed={false} />
+            <Menu
+                theme="dark"
+                defaultSelectedKeys={["dashboard"]}
+                selectedKeys={[selectedKey]}
+                mode="inline"
+            >
+                {menuItems.map(({ icon, route, label }) => (
+                    <Menu.Item key={route} icon={icon}>
+                        <Link to={route}>{label}</Link>
+                    </Menu.Item>
+                ))}
+
+                //highlight-start
                 {logout && (
                     <Menu.Item
                         onClick={() => {
@@ -122,60 +129,23 @@ export const CustomMenu: React.FC = () => {
                         Logout
                     </Menu.Item>
                 )}
+                //highlight-end
             </Menu>
         </AntdLayout.Sider>
     );
 };
 ```
 
-This is how the default sidebar shows menu items.
-
-```ts title="src/CustomMenu.tsx"
-...
-const [collapsed, setCollapsed] = React.useState(false);
-const logout = useLogout();
-const Title = useTitle();
-const { push } = useNavigation();
-//highlight-next-line
-const { menuItems, selectedKey } = useMenu();
-...
-```
-
-`useMenu` hook is used to get style agnostic menu items.
-
-We get `Title` component with `useTitle` hook, logout functionality with `useLogout` hook, a `push` function from `useNavigation` for directing users to homepage after logging out and a basic boolean state (`collapsed`) for tracking whether the collapsible menu is collapsed or not.
-
-```ts
-{menuItems.map(({ icon, route, label }) => (
-    <Menu.Item key={route} icon={icon}>
-        <Link to={route}>{label}</Link>
-    </Menu.Item>
-))}
-```
-
-We render menu items as we wish.
-
-```ts title="src/CustomMenu.tsx"
-...
-{logout && (
-    <Menu.Item
-        onClick={() => {
-            logout().then(() => push("/login"));
-        }}
-        key="logout"
-        icon={<Icons.LogoutOutlined />}
-    >
-        Logout
-    </Menu.Item>
-)}
-...
-```
-
-A logout button that logs the user out and redirects them to `/login` page.
+`useLogout` provides the logout functionality. We also have a `push` function from `useNavigation` for directing users to homepage after logging out.
 
 :::tip
 If `logout` (returned from `useLogout` hook) is a truhy value, that means auth provider is implemented.  
 [Refer to Auth Provider docs for more detailed information. &#8594](guides-and-concepts/providers/auth-provider.md)
+:::
+
+:::tip
+You can further customize Sider and its appearance.  
+[Refer to Ant Design docs for more detailed information about Sider. &#8594](https://ant.design/components/layout/#Layout.Sider)
 :::
 
 ## API Reference
