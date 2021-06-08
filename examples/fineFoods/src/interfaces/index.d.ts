@@ -2,9 +2,24 @@ export interface IPost {
     id: string;
 }
 
+export interface IOrderChart {
+    count: number;
+    status:
+        | "waiting"
+        | "ready"
+        | "on the way"
+        | "delivered"
+        | "could not be delivered";
+}
+
 export interface IOrderStatus {
     id: string;
-    text: string;
+    text:
+        | "waiting"
+        | "ready"
+        | "on the way"
+        | "delivered"
+        | "could not be delivered";
 }
 
 export interface IUser {

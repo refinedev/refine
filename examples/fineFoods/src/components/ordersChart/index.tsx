@@ -1,13 +1,16 @@
-import { Typography, useList } from "@pankod/refine";
+import { Typography, Row, Col, useList } from "@pankod/refine";
 import { RadialBar } from "@ant-design/charts";
+import { RadialBarConfig } from "@ant-design/charts/es/radialBar";
+
+import { IOrderChart } from "interfaces";
 
 export const OrdersChart: React.FC = () => {
-    const { data, isLoading } = useList("orderChart");
+    const { data, isLoading } = useList<IOrderChart>("orderChart");
 
-    const config = {
+    const config: RadialBarConfig = {
         width: 400,
         height: 300,
-        data: data?.data || [],
+        data: data?.data,
         loading: isLoading,
         xField: "status",
         yField: "count",
@@ -34,10 +37,30 @@ export const OrdersChart: React.FC = () => {
 
     const { Title } = Typography;
 
+    const waitingStatus = ["waiting", "ready", "on the way"];
+    const deliveredStatus = ["delivered", "could not be delivered"];
+
     return (
         <>
             <Title level={5}>Orders</Title>
-            <RadialBar {...config} />
+            <Row>
+                <Col md={12}>
+                    <RadialBar
+                        {...config}
+                        data={config.data.filter((item) =>
+                            deliveredStatus.includes(item.status),
+                        )}
+                    />
+                </Col>
+                <Col md={12}>
+                    <RadialBar
+                        {...config}
+                        data={config.data.filter((item) =>
+                            waitingStatus.includes(item.status),
+                        )}
+                    />
+                </Col>
+            </Row>
         </>
     );
 };
