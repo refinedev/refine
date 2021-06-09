@@ -2,6 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 import App from "./App";
+import dayjs from "dayjs";
+
+import WeekDay from "dayjs/plugin/weekday";
+import LocaleData from "dayjs/plugin/localeData";
+
+dayjs.extend(WeekDay);
+dayjs.extend(LocaleData);
 
 ReactDOM.render(
     <React.StrictMode>

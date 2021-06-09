@@ -1,7 +1,14 @@
-import { Typography, useApiUrl, useCustom, Row, Col } from "@pankod/refine";
+import {
+    Typography,
+    useApiUrl,
+    useCustom,
+    Row,
+    Col,
+    DatePicker,
+} from "@pankod/refine";
 import { Line } from "@ant-design/charts";
 import { LineConfig } from "@ant-design/charts/es/line";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 
 import { ISalesChart } from "interfaces";
 import { useEffect, useState } from "react";
@@ -9,9 +16,16 @@ import { useEffect, useState } from "react";
 export const SalesChart: React.FC = () => {
     const [total, setTotal] = useState(0);
     const API_URL = useApiUrl();
+
+    const [dateRange, setDateRange] = useState<[Dayjs, Dayjs]>([
+        dayjs().subtract(7, "days").startOf("day"),
+        dayjs().startOf("day"),
+    ]);
+    const [start, end] = dateRange;
+
     const query = {
-        start: dayjs().subtract(7, "days").startOf("day"),
-        end: dayjs().startOf("day"),
+        start,
+        end,
     };
 
     const url = `${API_URL}/sales`;
@@ -49,6 +63,7 @@ export const SalesChart: React.FC = () => {
     };
 
     const { Title } = Typography;
+    const { RangePicker } = DatePicker;
 
     const formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
@@ -67,6 +82,33 @@ export const SalesChart: React.FC = () => {
             </Row>
 
             <Line {...config} />
+
+            <RangePicker
+                value={dateRange}
+                onChange={(values) => {
+                    setDateRange(values);
+                }}
+                style={{ float: "right", marginTop: 20 }}
+                ranges={{
+                    "This Week": [
+                        dayjs().startOf("week"),
+                        dayjs().endOf("week"),
+                    ],
+                    "Last Month": [
+                        dayjs().startOf("month").subtract(1, "month"),
+                        dayjs().endOf("month").subtract(1, "month"),
+                    ],
+                    "This Month": [
+                        dayjs().startOf("month"),
+                        dayjs().endOf("month"),
+                    ],
+                    "This Year": [
+                        dayjs().startOf("year"),
+                        dayjs().endOf("year"),
+                    ],
+                }}
+                format="YYYY/MM/DD"
+            />
         </>
     );
 };

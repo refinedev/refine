@@ -22,11 +22,11 @@ export const DashbaordPage: React.FC = () => {
                     </Space>
                 </Card>
 
-                <Card>
+                <Card style={{ marginBottom: 10 }}>
                     <OrdersChart />
                 </Card>
 
-                <Card>
+                <Card style={{ marginBottom: 10 }}>
                     <SalesChart />
                 </Card>
             </Col>

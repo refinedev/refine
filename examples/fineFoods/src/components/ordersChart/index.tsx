@@ -1,11 +1,19 @@
-import { Typography, Row, Col, useList } from "@pankod/refine";
+import { useState } from "react";
+import { Typography, Row, Col, useList, DatePicker } from "@pankod/refine";
 import { RadialBar } from "@ant-design/charts";
 import { RadialBarConfig } from "@ant-design/charts/es/radialBar";
+import dayjs, { Dayjs } from "dayjs";
 
 import { IOrderChart } from "interfaces";
 
 export const OrdersChart: React.FC = () => {
     const { data, isLoading } = useList<IOrderChart>("orderStatusChart");
+
+    const [dateRange, setDateRange] = useState<[Dayjs, Dayjs]>([
+        dayjs().subtract(7, "days").startOf("day"),
+        dayjs().startOf("day"),
+    ]);
+    const [start, end] = dateRange;
 
     const config: RadialBarConfig = {
         width: 400,
@@ -36,6 +44,7 @@ export const OrdersChart: React.FC = () => {
     };
 
     const { Title } = Typography;
+    const { RangePicker } = DatePicker;
 
     let waitingChartData = [];
     let deliveredChartData = [];
@@ -64,6 +73,33 @@ export const OrdersChart: React.FC = () => {
                     <RadialBar {...config} data={waitingChartData} />
                 </Col>
             </Row>
+
+            <RangePicker
+                value={dateRange}
+                onChange={(values) => {
+                    setDateRange(values);
+                }}
+                style={{ float: "right", marginTop: 20 }}
+                ranges={{
+                    "This Week": [
+                        dayjs().startOf("week"),
+                        dayjs().endOf("week"),
+                    ],
+                    "Last Month": [
+                        dayjs().startOf("month").subtract(1, "month"),
+                        dayjs().endOf("month").subtract(1, "month"),
+                    ],
+                    "This Month": [
+                        dayjs().startOf("month"),
+                        dayjs().endOf("month"),
+                    ],
+                    "This Year": [
+                        dayjs().startOf("year"),
+                        dayjs().endOf("year"),
+                    ],
+                }}
+                format="YYYY/MM/DD"
+            />
         </>
     );
 };
