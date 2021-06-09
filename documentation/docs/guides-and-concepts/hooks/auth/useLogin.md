@@ -5,7 +5,7 @@ siderbar_label: useLogin
 description: useLogin data hook from refine is a modified version of react-query's useMutation for create mutations
 ---
 
-`useLogin` returns a callback that calls `login` method from `authProvider` under the hood.  
+`useLogin` returns a callback that calls `login` method from [`authProvider`](/docs/guides-and-concepts/providers/auth-provider) under the hood.  
 It authenticates the app if `login` method from `authProvider` resolves and if it rejects shows an error notification. After successful authentication it redirects the app to root.
 
 ## Usage

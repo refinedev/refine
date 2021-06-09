@@ -40,7 +40,7 @@ const authProvider: AuthProvider = {
 // highlight-next-line
 import { useAuthenticated } from "@pankod/refine";
 
-export const AuthenticationChecker: React.FC = ({
+export const IsAuthenticated: React.FC = ({
     children
 }) => {
     // highlight-next-line

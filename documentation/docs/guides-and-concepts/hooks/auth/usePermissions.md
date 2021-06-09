@@ -21,12 +21,7 @@ const authProvider: AuthProvider = {
   ...
     // highlight-start
     getPermissions: () => {
-        const auth = localStorage.getItem("auth");
-        if (auth) {
-            const parsedUser = JSON.parse(auth);
-            return Promise.resolve(parsedUser.roles);
-        }
-        return Promise.reject();
+        return Promise.resolve(["admin"]);
     },
     // highlight-end
   ...
