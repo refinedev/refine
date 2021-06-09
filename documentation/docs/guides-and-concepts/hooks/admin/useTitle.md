@@ -18,13 +18,14 @@ export const App: React.FC = () => {
     return (
         <Admin
             dataProvider={dataProvider("https://refine-fake-rest.pankod.com")}
-            //highlight-next-line
+            //highlight-start
             Title={({ collapsed }) => (
                 <div>
                     {collapsed && <img src="./logo" alt="Logo" />}
                     <span>Custom Title</span>
                 </div>
             )}
+            //highlight-end
         />
     );
 };
@@ -42,6 +43,7 @@ import { AntdLayout, useTitle } from "@pankod/refine";
 
 export const CustomSider: React.FC = () => {
     const [collapsed, setCollapsed] = React.useState(false);
+    //highlight-next-line
     const Title = useTitle();
 
     return (
@@ -50,6 +52,7 @@ export const CustomSider: React.FC = () => {
             collapsed={collapsed}
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
         >
+            //highlight-next-line
             <Title collapsed={collapsed} />
             ...
         </AntdLayout.Sider>
