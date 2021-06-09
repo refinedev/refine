@@ -31,7 +31,7 @@ export const App: React.FC = () => {
 };
 ```
 
-:::information
+:::info
 This `<Title>` we created is used in the `<Sider>` that refine provides by default.
 :::
 <br/>
