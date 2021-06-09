@@ -52,6 +52,7 @@ module.exports = {
                             items: [
                                 "guides-and-concepts/hooks/translate/useTranslate",
                                 "guides-and-concepts/hooks/translate/useSetLocale",
+                                "guides-and-concepts/hooks/translate/useGetLocale",
                             ],
                         },
                         "guides-and-concepts/hooks/useModalForm",
