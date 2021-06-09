@@ -15,7 +15,7 @@ We' ll show what `<Create>` does using properties with examples.
 
 ### `title`
 
-It allows adding title inside the `<Create>` component. if you don't pass title props it uses "Create" prefix and singular resource name by default. For example, for the "posts" resource, it will look like "Create post".
+It allows adding title inside the `<Create>` component. if you don't pass title props it uses "Create" prefix and singular resource name by default. For example, for the `/posts/create` resource, it will look like "Create post".
 
 ```tsx
 import { Create } from "@pankod/refine";
