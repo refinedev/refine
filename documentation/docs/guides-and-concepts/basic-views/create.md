@@ -170,5 +170,3 @@ export const App: React.FC = () => {
 | actionButtons   | Passes props for `<PageHeader>`           | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
 | pageHeaderProps | Passes props for `<PageHeader>`           | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
 | resource        | [`Resource`](#) for API data interactions | `string`                                                          | Resource name that it reads from the url.                                          |
-
-> `*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component.
