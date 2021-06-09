@@ -31,7 +31,7 @@ export const useList = <
     const { getList } = useContext<IDataContext>(DataContext);
     const notification = useNotification();
     const translate = useTranslate();
-    const checkError = useCheckError();
+    const { mutate: checkError } = useCheckError();
 
     const queryResponse = useQuery<GetListResponse<TData>, TError>(
         [`resource/list/${resource}`, { ...config }],
@@ -39,7 +39,7 @@ export const useList = <
         {
             ...(queryOptions ?? { keepPreviousData: true }),
             onError: (err: TError) => {
-                // checkError?.(err);
+                checkError(err);
                 queryOptions?.onError?.(err);
 
                 notification.error({

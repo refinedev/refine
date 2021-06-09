@@ -56,7 +56,7 @@ export const useUpdate = <
     } = useMutationMode();
     const notification = useNotification();
     const translate = useTranslate();
-    const checkError = useCheckError();
+    const { mutate: checkError } = useCheckError();
 
     const { notificationDispatch } = useCancelNotification();
 
@@ -178,7 +178,7 @@ export const useUpdate = <
                 });
 
                 if (err.message !== "mutationCancelled") {
-                    // checkError?.(err);
+                    checkError?.(err);
 
                     notification.error({
                         key: `${id}-${resource}-notification`,

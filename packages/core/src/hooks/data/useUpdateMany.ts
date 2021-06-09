@@ -52,7 +52,7 @@ export const useUpdateMany = <
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
-    const checkError = useCheckError();
+    const { mutate: checkError } = useCheckError();
 
     const resourceSingular = pluralize.singular(resource);
 
@@ -181,7 +181,7 @@ export const useUpdateMany = <
                 });
 
                 if (err.message !== "mutationCancelled") {
-                    // checkError?.(err);
+                    checkError?.(err);
 
                     notification.error({
                         key: `${ids}-${resource}-notification`,

@@ -22,7 +22,7 @@ export const useMany = <
     const { getMany } = useContext<IDataContext>(DataContext);
     const notification = useNotification();
     const translate = useTranslate();
-    const checkError = useCheckError();
+    const { mutate: checkError } = useCheckError();
 
     const queryResponse = useQuery<GetManyResponse<TData>, TError>(
         [`resource/getMany/${resource}`, ids],
@@ -30,7 +30,7 @@ export const useMany = <
         {
             ...options,
             onError: (err: TError) => {
-                // checkError?.(err);
+                checkError(err);
                 options?.onError?.(err);
 
                 notification.error({

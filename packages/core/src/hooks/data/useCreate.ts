@@ -35,7 +35,7 @@ export const useCreate = <
     TError extends HttpError = HttpError,
     TVariables = {},
 >(): UseCreateReturnType<TData, TError, TVariables> => {
-    const checkError = useCheckError();
+    const { mutate: checkError } = useCheckError();
     const { create } = useContext<IDataContext>(DataContext);
     const getListQueries = useListResourceQueries();
     const translate = useTranslate();
@@ -71,7 +71,7 @@ export const useCreate = <
                 });
             },
             onError: (err: TError, { resource }) => {
-                // checkError?.(err);
+                checkError(err);
                 const resourceSingular = pluralize.singular(resource);
                 notification.error({
                     description: err.message,

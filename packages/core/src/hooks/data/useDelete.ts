@@ -43,7 +43,7 @@ export const useDelete = <
     undoableTimeoutProp?: number,
     onCancel?: (cancelMutation: () => void) => void,
 ): UseDeleteReturnType<TData, TError> => {
-    const { checkError } = useCheckError();
+    const { mutate: checkError } = useCheckError();
     const queryClient = useQueryClient();
     const { deleteOne } = useContext<IDataContext>(DataContext);
     const {
@@ -166,7 +166,7 @@ export const useDelete = <
                 });
 
                 if (err.message !== "mutationCancelled") {
-                    checkError?.(err);
+                    checkError(err);
 
                     notification.error({
                         key: `${id}-${resource}-notification`,

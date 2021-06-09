@@ -34,7 +34,7 @@ export const useCustom = <
 ): QueryObserverResult<CustomResponse<TData>, TError> => {
     const { custom } = useContext<IDataContext>(DataContext);
     const notification = useNotification();
-    const checkError = useCheckError();
+    const { mutate: checkError } = useCheckError();
     const translate = useTranslate();
 
     const queryResponse = useQuery<CustomResponse<TData>, TError>(
@@ -43,7 +43,7 @@ export const useCustom = <
         {
             ...(queryOptions ?? { keepPreviousData: true }),
             onError: (err: TError) => {
-                // checkError?.(err);
+                checkError(err);
                 queryOptions?.onError?.(err);
 
                 notification.error({
