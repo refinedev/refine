@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
+import { notification } from "antd";
 import { DataContext } from "@contexts/data";
 import { ActionTypes } from "@contexts/notification";
 import {
@@ -17,7 +18,6 @@ import {
     useMutationMode,
     useCancelNotification,
     useCacheQueries,
-    useNotification,
     useTranslate,
     useCheckError,
 } from "@hooks";
@@ -54,7 +54,6 @@ export const useUpdate = <
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
-    const notification = useNotification();
     const translate = useTranslate();
     const checkError = useCheckError();
 

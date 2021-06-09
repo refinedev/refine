@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
+import { notification } from "antd";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -10,7 +11,7 @@ import {
     BaseRecord,
     HttpError,
 } from "../../interfaces";
-import { useNotification, useCheckError } from "@hooks";
+import { useCheckError } from "@hooks";
 import { useTranslate } from "@hooks/translate";
 
 interface UseCustomConfig<TQuery, TPayload> {
@@ -33,7 +34,6 @@ export const useCustom = <
     queryOptions?: UseQueryOptions<CustomResponse<TData>, TError>,
 ): QueryObserverResult<CustomResponse<TData>, TError> => {
     const { custom } = useContext<IDataContext>(DataContext);
-    const notification = useNotification();
     const checkError = useCheckError();
     const translate = useTranslate();
 

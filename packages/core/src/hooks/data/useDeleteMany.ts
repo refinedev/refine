@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
+import { notification } from "antd";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -14,7 +15,6 @@ import {
     Context as DeleteContext,
 } from "../../interfaces";
 import {
-    useNotification,
     useTranslate,
     useMutationMode,
     useCancelNotification,
@@ -54,7 +54,6 @@ export const useDeleteMany = <
     } = useMutationMode();
 
     const { notificationDispatch } = useCancelNotification();
-    const notification = useNotification();
     const translate = useTranslate();
     const cacheQueries = useCacheQueries();
 
