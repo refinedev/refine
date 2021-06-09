@@ -18,31 +18,6 @@ const { selectedKey, menuItems } = useMenu();
 
 We'll show the basic use of `useMenu` to create a custom sider menu that is identical to default sider menu.
 
-We can override the default sider and show a different component in its place by passing a custom component to `<Admin>`s `Sider` prop:
-
-```tsx title="App.tsx"
-import { Admin, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
-import "@pankod/refine/dist/styles.min.css";
-
-import { PostList } from "pages/posts";
-//highlight-next-line
-import { CustomMenu } from "./CustomMenu";
-
-const API_URL = "https://refine-fake-rest.pankod.com";
-
-const App: React.FC = () => {
-    return (
-        //highlight-next-line
-        <Admin dataProvider={dataProvider(API_URL)} Sider={CustomMenu}>
-            <Resource name="posts" list={PostList} />
-        </Admin>
-    );
-};
-
-export default App;
-```
-
 And we define `<CustomMenu>`:
 
 ```tsx title="src/CustomMenu.tsx"
@@ -78,6 +53,35 @@ export const CustomMenu: React.FC = () => {
 ```
 
 `useMenu` hook is used to get style agnostic menu items. We render these items in the body of the sider. We get `Title` component with `useTitle` hook.
+
+<br />
+
+We can override the default sider and show the custom menu we implemented in its place by passing a the custom component to `<Admin>`s `Sider` prop:
+
+```tsx title="App.tsx"
+import { Admin, Resource } from "@pankod/refine";
+import dataProvider from "@pankod/refine-json-server";
+import "@pankod/refine/dist/styles.min.css";
+
+import { PostList } from "pages/posts";
+//highlight-next-line
+import { CustomMenu } from "./CustomMenu";
+
+const API_URL = "https://refine-fake-rest.pankod.com";
+
+const App: React.FC = () => {
+    return (
+        //highlight-next-line
+        <Admin dataProvider={dataProvider(API_URL)} Sider={CustomMenu}>
+            <Resource name="posts" list={PostList} />
+        </Admin>
+    );
+};
+
+export default App;
+```
+
+<br />
 
 We can also add a logout button:
 
@@ -140,16 +144,16 @@ export const CustomMenu: React.FC = () => {
 
 `useLogout` provides the logout functionality. We also have a `push` function from `useNavigation` for directing users to homepage after logging out.
 
-:::tip
-If `logout` (returned from `useLogout` hook) is a truhy value, that means auth provider is implemented.  
-[Refer to Auth Provider docs for more detailed information. &#8594](guides-and-concepts/providers/auth-provider.md)
+:::caution
+`useLogout` hook can only be used if `authProvider` is provided.  
+[Refer to Auth Provider docs for more detailed information. &#8594](guides-and-concepts/providers/auth-provider.md)  
+[Refer to useLogout docs for more detailed information. &#8594](guides-and-concepts/hooks/auth/useLogout.md)
 :::
 
 :::tip
 You can further customize Sider and its appearance.  
 [Refer to Ant Design docs for more detailed information about Sider. &#8594](https://ant.design/components/layout/#Layout.Sider)
 :::
-
 ## API Reference
 
 ### Return values
