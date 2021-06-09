@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { Button } from "antd";
+import { Button, notification } from "antd";
 
 import { ActionTypes } from "@contexts/notification";
-import { useCancelNotification, useNotification, useTranslate } from "@hooks";
+import { useCancelNotification, useTranslate } from "@hooks";
 import { INotification } from "../../interfaces";
 
 import { NotificationProgress } from "./components";
@@ -11,7 +11,6 @@ import { userFriendlySecond } from "@definitions/helpers";
 export const Notification: React.FC<{
     notifications: INotification[];
 }> = ({ notifications }) => {
-    const notification = useNotification();
     const translate = useTranslate();
 
     const { notificationDispatch } = useCancelNotification();
