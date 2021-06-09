@@ -51,6 +51,7 @@ module.exports = {
                             label: "Translate",
                             items: [
                                 "guides-and-concepts/hooks/translate/useTranslate",
+                                "guides-and-concepts/hooks/translate/useSetLocale",
                             ],
                         },
                         "guides-and-concepts/hooks/useModalForm",
