@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Typography, Row, Col, useList, DatePicker } from "@pankod/refine";
+import {
+    Typography,
+    Row,
+    Col,
+    DatePicker,
+    useApiUrl,
+    useCustom,
+} from "@pankod/refine";
 import { RadialBar } from "@ant-design/charts";
 import { RadialBarConfig } from "@ant-design/charts/es/radialBar";
 import dayjs, { Dayjs } from "dayjs";
@@ -7,13 +14,23 @@ import dayjs, { Dayjs } from "dayjs";
 import { IOrderChart } from "interfaces";
 
 export const OrdersChart: React.FC = () => {
-    const { data, isLoading } = useList<IOrderChart>("orderStatusChart");
-
     const [dateRange, setDateRange] = useState<[Dayjs, Dayjs]>([
         dayjs().subtract(7, "days").startOf("day"),
         dayjs().startOf("day"),
     ]);
+
+    const API_URL = useApiUrl();
     const [start, end] = dateRange;
+
+    const query = {
+        start,
+        end,
+    };
+
+    const url = `${API_URL}/orderStatusChart`;
+    const { data, isLoading } = useCustom<IOrderChart[]>(url, "get", {
+        query,
+    });
 
     const config: RadialBarConfig = {
         width: 400,
