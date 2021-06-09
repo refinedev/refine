@@ -46,6 +46,13 @@ module.exports = {
                                 "guides-and-concepts/hooks/data/useCustom",
                             ],
                         },
+                        {
+                            type: "category",
+                            label: "Translate",
+                            items: [
+                                "guides-and-concepts/hooks/translate/useTranslate",
+                            ],
+                        },
                         "guides-and-concepts/hooks/useModalForm",
                         "guides-and-concepts/hooks/useDrawerForm",
                         "guides-and-concepts/hooks/useStepsForm",
