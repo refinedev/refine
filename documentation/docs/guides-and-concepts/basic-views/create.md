@@ -27,7 +27,7 @@ export const Create: React.FC = () => {
 
 ### `saveButtonProps`
 
-`<Create>` component has a save button by default. If you want to customize this button you can use `saveButtonProps` property like the below code.
+`<Create>` component has a default button that submits the form. If you want to customize this button you can use `saveButtonProps` property like the below code.
 
 Save button submits your form.
 
