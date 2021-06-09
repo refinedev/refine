@@ -45,6 +45,13 @@ module.exports = {
                                 "guides-and-concepts/hooks/data/useCustom",
                             ],
                         },
+                        {
+                            type: "category",
+                            label: "Resource",
+                            items: [
+                                "guides-and-concepts/hooks/resource/useMenu",
+                            ],
+                        },
                         "guides-and-concepts/hooks/useModalForm",
                         "guides-and-concepts/hooks/useDrawerForm",
                         "guides-and-concepts/hooks/useStepsForm",
@@ -54,7 +61,6 @@ module.exports = {
                         "guides-and-concepts/hooks/useEditableTable",
                         "guides-and-concepts/hooks/useRadioGroup",
                         "guides-and-concepts/hooks/useForm",
-                        "guides-and-concepts/hooks/useMenu",
                     ],
                 },
                 "guides-and-concepts/multipart-upload",

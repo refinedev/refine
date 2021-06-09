@@ -6,37 +6,11 @@ title: useMenu
 `useMenu` is used to get menu items of the default sidebar. These items include a link to dashboard page (if it exists) and links to user defined resources (passed as children to `<Admin>`). This hook can be used to build custom menus - which is also used by default sidebar to show menu items.
 
 ```ts
-const { selectedKey, resources, menuItems } = useMenu();
+const { selectedKey, menuItems } = useMenu();
 ```
 
 * `menuItems` is a list of style agnostic menu items. Each of them has a key.
 * `selectedKey` is key of the resource user is viewing at the moment. Inferred from route.
-* `resources` is the list of resources the developer have defined.
-
-```ts title="menuItems"
-[
-    {
-        icon: ReactElement,
-        key: "dashboard",
-        label: "Dashboard",
-        name: "Dashboard",
-        route: "/"
-    }, {
-        icon: ReactElement,
-        key: "/resources/posts",
-        label: "Posts",
-        name: "posts",
-        route: "/resources/posts",
-    }, {
-        icon: ReactElement,
-        key: "/resources/categories",
-        label: "Categories",
-        name: "categories",
-        route: "/resources/categories",
-    },
-    ...
-]
-```
 
 ## Usage
 
@@ -183,7 +157,6 @@ You can further customize Sider and its appearance.
 | Property    | Description                                                                    | Type                             |
 | ----------- | ------------------------------------------------------------------------------ | -------------------------------- |
 | selectedKey | Key of the resource the user is viewing at the moment                          | `string`                         |
-| resources   | List of developer defined resources                                            | [`IResourceItem[]`](#interfaces) |
 | menuItems   | List of keys and routes and some metadata of resources and dashboard if exists | [`IMenuItem[]`](#interfaces)     |
 
 #### Interfaces
