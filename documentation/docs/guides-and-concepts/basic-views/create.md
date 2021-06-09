@@ -100,7 +100,7 @@ export const Create: React.FC = () => {
 
 ### `pageHeaderProps`
 
-`<Create>` uses ant-design `<PageHeader>` components so you can customize with the props of `pageHeaderProps`.
+`<Create>` uses Ant Design `<PageHeader>` components so you can customize with the props of `pageHeaderProps`.
 
 [Refer to `<PageHeader>` documentation for detailed usage. &#8594](https://ant.design/components/page-header/#API)
 
