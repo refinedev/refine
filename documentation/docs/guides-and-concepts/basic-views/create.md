@@ -138,6 +138,7 @@ import { Admin, Resource, Create } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 
 const CustomPage = () => {
+//highlight-next-line
     return <Create resource="posts">...</Create>;
 };
 
