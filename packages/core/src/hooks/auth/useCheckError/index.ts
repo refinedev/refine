@@ -1,4 +1,5 @@
 import React from "react";
+import { useQuery, UseQueryResult, useMutation } from "react-query";
 
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
@@ -10,16 +11,19 @@ export const useCheckError = () => {
 
     const logout = useLogout();
 
-    if (isProvided) {
-        const checkError = (error?: any) =>
-            checkErrorFromContext(error)
-                .then(() => Promise.resolve())
-                .catch((redirectPath) => {
-                    return logout && logout(undefined, redirectPath);
-                });
+    const queryResponse = useMutation("useCheckError", checkErrorFromContext, {
+        onError: (redirectPath?: string) => {
+            console.log("usecheckerror onerror", redirectPath);
+            console.log("usecheckerror logout", logout);
+            logout && logout(undefined, redirectPath);
+        },
+    });
 
-        return checkError;
-    }
+    /* if (isProvided) {
+        return { ...queryResponse, checkError: queryResponse.mutate };
+    } */
 
-    return null;
+    return { ...queryResponse, checkError: queryResponse.mutate };
+
+    // return null;
 };

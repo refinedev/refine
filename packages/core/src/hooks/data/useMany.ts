@@ -30,7 +30,7 @@ export const useMany = <
         {
             ...options,
             onError: (err: TError) => {
-                checkError?.(err);
+                // checkError?.(err);
                 options?.onError?.(err);
 
                 notification.error({

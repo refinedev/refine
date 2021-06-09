@@ -177,7 +177,7 @@ export const useDeleteMany = <
                 });
             },
             onError: (err, { ids }, context) => {
-                checkError?.(err);
+                // checkError?.(err);
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
@@ -191,7 +191,7 @@ export const useDeleteMany = <
                     },
                 });
                 if (err.message !== "mutationCancelled") {
-                    checkError?.(err);
+                    // checkError?.(err);
 
                     notification.error({
                         key: `${ids}-${resource}-notification`,

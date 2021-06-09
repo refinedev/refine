@@ -29,7 +29,7 @@ export const useOne = <
         {
             ...options,
             onError: (err: TError) => {
-                checkError?.(err);
+                // checkError?.(err);
                 if (options?.onError) {
                     options.onError(err);
                 }

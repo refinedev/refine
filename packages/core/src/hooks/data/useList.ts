@@ -39,7 +39,7 @@ export const useList = <
         {
             ...(queryOptions ?? { keepPreviousData: true }),
             onError: (err: TError) => {
-                checkError?.(err);
+                // checkError?.(err);
                 queryOptions?.onError?.(err);
 
                 notification.error({

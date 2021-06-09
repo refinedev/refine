@@ -43,7 +43,7 @@ export const useDelete = <
     undoableTimeoutProp?: number,
     onCancel?: (cancelMutation: () => void) => void,
 ): UseDeleteReturnType<TData, TError> => {
-    const checkError = useCheckError();
+    const { checkError } = useCheckError();
     const queryClient = useQueryClient();
     const { deleteOne } = useContext<IDataContext>(DataContext);
     const {
@@ -71,7 +71,7 @@ export const useDelete = <
     >(
         ({ id }) => {
             if (!(mutationMode === "undoable")) {
-                return deleteOne<TData>(resource, id);
+                return deleteOne<TData>("saçma", id);
             }
 
             const deletePromise = new Promise<DeleteOneResponse<TData>>(

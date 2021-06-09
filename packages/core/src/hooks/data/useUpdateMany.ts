@@ -181,7 +181,7 @@ export const useUpdateMany = <
                 });
 
                 if (err.message !== "mutationCancelled") {
-                    checkError?.(err);
+                    // checkError?.(err);
 
                     notification.error({
                         key: `${ids}-${resource}-notification`,
