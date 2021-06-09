@@ -34,7 +34,9 @@ describe("useCheckError Hook", () => {
             }),
         });
 
-        await result.current!.checkError({});
+        const { mutate: checkError } = result.current!;
+
+        await checkError({});
 
         await waitFor(() => {
             return !result.current?.isLoading;
@@ -61,7 +63,9 @@ describe("useCheckError Hook", () => {
             }),
         });
 
-        await result.current!.checkError({});
+        const { mutate: checkError } = result.current!;
+
+        await checkError({});
 
         await waitFor(() => {
             return !result.current?.isLoading;
@@ -72,40 +76,4 @@ describe("useCheckError Hook", () => {
             expect(mHistory.push).toBeCalledWith("/customPath");
         });
     });
-
-    /* it("should return null if isProvided from AdminContext is false", () => {
-        const { result } = renderHook(() => useCheckError(), {
-            wrapper: TestWrapper({
-                authProvider: {
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve(),
-                    getUserIdentity: () => Promise.resolve(),
-                    isProvided: false,
-                },
-            }),
-        });
-
-        expect(result.current).toBeNull();
-    });
-
-    it("shouldn't return null if isProvided from AdminContext is true", () => {
-        const { result } = renderHook(() => useCheckError(), {
-            wrapper: TestWrapper({
-                authProvider: {
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve(),
-                    getUserIdentity: () => Promise.resolve(),
-                    isProvided: true,
-                },
-            }),
-        });
-
-        expect(result.current).not.toBeNull();
-    }); */
 });
