@@ -1,11 +1,16 @@
 import React from "react";
-import { useMutation } from "react-query";
+import { useMutation, UseMutationResult } from "react-query";
 
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
 import { useLogout } from "@hooks/auth";
 
-export const useCheckError = () => {
+export const useCheckError = (): UseMutationResult<
+    void,
+    string | undefined,
+    any,
+    unknown
+> => {
     const { checkError: checkErrorFromContext } =
         React.useContext<IAuthContext>(AuthContext);
 
