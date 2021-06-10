@@ -36,7 +36,7 @@ export const MyCreateComponent = () => {
 };
 ```
 
-Clicking a button will trigger `useNavigation` `create` method and then redirect to `/resources/posts/create` path.
+Clicking the button will trigger [`useNavigation`](#) `create` method and then redirect to `/resources/posts/create`.
 
 ## API Reference
 
