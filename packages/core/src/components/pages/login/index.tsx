@@ -33,9 +33,7 @@ export const LoginPage: React.FC = () => {
     const [form] = Form.useForm();
     const translate = useTranslate();
 
-    const { mutate: login, data } = useLogin();
-
-    console.log("data", data);
+    const { mutate: login } = useLogin();
 
     const onSubmit = (values: ILoginForm) => {
         login(values);

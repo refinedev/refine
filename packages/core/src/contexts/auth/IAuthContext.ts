@@ -1,5 +1,5 @@
 export interface IAuthContext {
-    login: (params: { username: string; password: string }) => Promise<any>;
+    login: (params: any) => Promise<any>;
     logout: (params?: any) => Promise<void | false | string>;
     checkAuth: (params?: any) => Promise<void>;
     checkError: (error: any) => Promise<void>;
