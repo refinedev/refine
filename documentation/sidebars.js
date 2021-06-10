@@ -68,6 +68,13 @@ module.exports = {
                             label: "Authorization",
                             items: ["guides-and-concepts/hooks/auth/useLogout"],
                         },
+                        {
+                            type: "category",
+                            label: "Navigation",
+                            items: [
+                                "guides-and-concepts/hooks/navigation/useNavigation",
+                            ],
+                        },
                         "guides-and-concepts/hooks/useModalForm",
                         "guides-and-concepts/hooks/useDrawerForm",
                         "guides-and-concepts/hooks/useStepsForm",
