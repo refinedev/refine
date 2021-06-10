@@ -3,7 +3,7 @@ id: useResource
 title: useResource
 ---
 
-`useResource` is used to get <Resource> properties defined as children of `<Admin>` component.
+`useResource` is used to get `<Resource>` properties defined as children of `<Admin>` component.
 
 ```ts
 const resources = useResource();
