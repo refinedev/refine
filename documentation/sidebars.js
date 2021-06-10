@@ -49,6 +49,11 @@ module.exports = {
                         },
                         {
                             type: "category",
+                            label: "Admin",
+                            items: ["guides-and-concepts/hooks/admin/useTitle"],
+                        },
+                        {
+                            type: "category",
                             label: "Translate",
                             items: [
                                 "guides-and-concepts/hooks/translate/useTranslate",
