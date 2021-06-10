@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 import pluralize from "pluralize";
+import { notification } from "antd";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -9,12 +10,7 @@ import {
     BaseRecord,
     HttpError,
 } from "../../interfaces";
-import {
-    useListResourceQueries,
-    useTranslate,
-    useNotification,
-    useCheckError,
-} from "@hooks";
+import { useListResourceQueries, useTranslate, useCheckError } from "@hooks";
 
 export type UseCreateReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -39,7 +35,6 @@ export const useCreate = <
     const { create } = useContext<IDataContext>(DataContext);
     const getListQueries = useListResourceQueries();
     const translate = useTranslate();
-    const notification = useNotification();
     const queryClient = useQueryClient();
 
     const mutation = useMutation<

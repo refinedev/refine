@@ -20,7 +20,12 @@ module.exports = {
                 {
                     type: "category",
                     label: "Basic Views",
-                    items: ["guides-and-concepts/basic-views/list"],
+                    items: [
+                        "guides-and-concepts/basic-views/list",
+                        "guides-and-concepts/basic-views/create",
+                        "guides-and-concepts/basic-views/show",
+                        "guides-and-concepts/basic-views/edit",
+                    ],
                 },
                 {
                     type: "category",
@@ -46,6 +51,27 @@ module.exports = {
                             type: "category",
                             label: "Admin",
                             items: ["guides-and-concepts/hooks/admin/useTitle"],
+                        },
+                        {
+                            type: "category",
+                            label: "Translate",
+                            items: [
+                                "guides-and-concepts/hooks/translate/useTranslate",
+                                "guides-and-concepts/hooks/translate/useSetLocale",
+                                "guides-and-concepts/hooks/translate/useGetLocale",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Resource",
+                            items: [
+                                "guides-and-concepts/hooks/resource/useMenu",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Authorization",
+                            items: ["guides-and-concepts/hooks/auth/useLogout"],
                         },
                         "guides-and-concepts/hooks/useModalForm",
                         "guides-and-concepts/hooks/useDrawerForm",

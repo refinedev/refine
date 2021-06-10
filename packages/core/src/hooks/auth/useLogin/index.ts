@@ -1,7 +1,7 @@
 import React from "react";
+import { notification } from "antd";
 
 import { AuthContext } from "@contexts/auth";
-import { useNotification } from "@hooks";
 import { useNavigation } from "@hooks/navigation";
 
 import { IAuthContext } from "../../../interfaces";
@@ -9,7 +9,6 @@ import { IAuthContext } from "../../../interfaces";
 export const useLogin = (): ((params: any) => Promise<any>) => {
     const { push } = useNavigation();
     const authContext = React.useContext<IAuthContext>(AuthContext);
-    const notification = useNotification();
 
     const login = React.useCallback(
         (params: any) =>
