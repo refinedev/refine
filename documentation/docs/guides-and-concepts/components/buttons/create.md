@@ -5,9 +5,7 @@ title: Create
 
 import defaultUsage from '@site/static/img/guides-and-concepts/components/buttons/create/default.png';
 
-`<CreateButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the create method from [useNavigation](#) under the hood. It can be useful to redirect the app to the create page route of `<Resource>`.
-
-It can be useful to redirect the app to the create page route of `<Resource>`.
+`<CreateButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `create` method from [`useNavigation`](#) under the hood. It can be useful to redirect the app to the create page route of `<Resource>`.
 
 ## Usage
 
