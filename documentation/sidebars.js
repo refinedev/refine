@@ -49,6 +49,15 @@ module.exports = {
                         },
                         {
                             type: "category",
+                            label: "Translate",
+                            items: [
+                                "guides-and-concepts/hooks/translate/useTranslate",
+                                "guides-and-concepts/hooks/translate/useSetLocale",
+                                "guides-and-concepts/hooks/translate/useGetLocale",
+                            ],
+                        },
+                        {
+                            type: "category",
                             label: "Resource",
                             items: [
                                 "guides-and-concepts/hooks/resource/useMenu",
