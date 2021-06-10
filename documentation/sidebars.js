@@ -49,6 +49,11 @@ module.exports = {
                         },
                         {
                             type: "category",
+                            label: "Admin",
+                            items: ["guides-and-concepts/hooks/admin/useTitle"],
+                        },
+                        {
+                            type: "category",
                             label: "Translate",
                             items: [
                                 "guides-and-concepts/hooks/translate/useTranslate",
@@ -84,6 +89,19 @@ module.exports = {
                         "guides-and-concepts/hooks/useEditableTable",
                         "guides-and-concepts/hooks/useRadioGroup",
                         "guides-and-concepts/hooks/useForm",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Components",
+                    items: [
+                        {
+                            type: "category",
+                            label: "Buttons",
+                            items: [
+                                "guides-and-concepts/components/buttons/create-button",
+                            ],
+                        },
                     ],
                 },
                 "guides-and-concepts/multipart-upload",

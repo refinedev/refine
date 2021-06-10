@@ -4,7 +4,7 @@ import humanizeString from "humanize-string";
 import { AdminContext } from "@contexts/admin";
 import { DashboardOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { IAdminContext, IMenuItem } from "../../../interfaces";
-import { useTranslate, useResource, useWarnAboutChange } from "@hooks";
+import { useTranslate, useResource } from "@hooks";
 
 type useMenuReturnType = {
     selectedKey: string;
@@ -13,7 +13,6 @@ type useMenuReturnType = {
 
 export const useMenu: () => useMenuReturnType = () => {
     const { resources } = useResource();
-    const { setWarnWhen } = useWarnAboutChange();
     const translate = useTranslate();
     const location = useLocation();
     const { hasDashboard } = useContext<IAdminContext>(AdminContext);
@@ -22,7 +21,6 @@ export const useMenu: () => useMenuReturnType = () => {
         location.pathname.startsWith(`/resources/${el.route}`),
     );
 
-    setWarnWhen(false); // TODO move!! to RouteChangeHandlerComponent.
     const selectedKey = `/resources/${selectedResource?.route ?? ""}`;
 
     const menuItems: IMenuItem[] = React.useMemo(
