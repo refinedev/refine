@@ -5,8 +5,11 @@ siderbar_label: useLogin
 description: useLogin data hook from refine is a modified version of react-query's useMutation for create mutations
 ---
 
-`useLogin` returns a callback that calls `login` method from [`authProvider`](/docs/guides-and-concepts/providers/auth-provider) under the hood.  
+`useLogin`  calls `login` method from [`authProvider`](/docs/guides-and-concepts/providers/auth-provider) under the hood.  
 It authenticates the app if `login` method from `authProvider` resolves and if it rejects shows an error notification. After successful authentication it redirects the app to root.
+
+It returns the result of react-query's [useMutation](https://react-query.tanstack.com/reference/useMutation). 
+Data that is resolved from `login` will be returned as the `data` in the query result.
 
 ## Usage
 
@@ -17,7 +20,7 @@ If we want to build a custom login page instead of default one that comes with r
 import { useLogin, Form } from "@pankod/refine";
 
 export const LoginPage = () => {
-    const login = useLogin();
+    const { mutate: login } = useLogin();
 
     const onSubmit = async (values) => {
         login(values);
@@ -32,7 +35,11 @@ export const LoginPage = () => {
 ```
 
 :::tip
-Callback returned from `useLogin` can accept any kind of object for values since `login` method from `authProvider` doesn't have a restriction on its parameters.
+`mutate` acquired from `useLogin` can accept any kind of object for values since `login` method from `authProvider` doesn't have a restriction on its parameters.  
+A type parameter for the values can be provided to `useLogin`.
+```tsx
+const { mutate: login } = useLogin<{ username: string; password: string; }>();
+```
 :::
 
 :::caution

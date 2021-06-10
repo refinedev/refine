@@ -27,7 +27,7 @@ export interface ILoginForm {
 export const LoginPage: React.FC = () => {
     const [form] = Form.useForm();
 
-    const { mutate: login } = useLogin();
+    const { mutate: login } = useLogin<ILoginForm>();
 
     const onSubmit = async (values: ILoginForm) => {
         login(values);
