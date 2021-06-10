@@ -1,6 +1,7 @@
 import { Row, Col, Card, Space } from "@pankod/refine";
 
 import {
+    DailyRevenue,
     DeliveryMap,
     DeliverySchedule,
     Orders,
@@ -37,7 +38,7 @@ export const DashbaordPage: React.FC = () => {
                         <Orders />
                     </Card>
                     <Card>
-                        <p>Daily Revune</p>
+                        <DailyRevenue />
                     </Card>
                     <Card>...</Card>
                 </Space>

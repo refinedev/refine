@@ -1,19 +1,13 @@
 import { useEffect, useState } from "react";
-import {
-    Typography,
-    useApiUrl,
-    useCustom,
-    Row,
-    Col,
-    DatePicker,
-} from "@pankod/refine";
-import { Line } from "@ant-design/charts";
-import { LineConfig } from "@ant-design/charts/es/line";
+import { Typography, useApiUrl, useCustom, DatePicker } from "@pankod/refine";
+import { Column } from "@ant-design/charts";
+import { ColumnConfig } from "@ant-design/charts/es/column";
 import dayjs, { Dayjs } from "dayjs";
 
 import { ISalesChart } from "interfaces";
+import styles from "./styles";
 
-export const SalesChart: React.FC = () => {
+export const DailyRevenue: React.FC = () => {
     const [total, setTotal] = useState(0);
     const API_URL = useApiUrl();
 
@@ -46,24 +40,17 @@ export const SalesChart: React.FC = () => {
         }
     }, [data]);
 
-    const config: LineConfig = {
+    const { Title } = Typography;
+    const { RangePicker } = DatePicker;
+
+    const config: ColumnConfig = {
         data: data?.data || [],
         loading: isLoading,
-        padding: "auto",
+        isGroup: true,
         xField: "date",
         yField: "value",
         seriesField: "title",
-        xAxis: {
-            label: {
-                formatter: (value) => {
-                    return dayjs(value).format("YYYY-MM-DD");
-                },
-            },
-        },
     };
-
-    const { Title } = Typography;
-    const { RangePicker } = DatePicker;
 
     const formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
@@ -72,18 +59,15 @@ export const SalesChart: React.FC = () => {
 
     return (
         <>
-            <Row justify="space-between">
-                <Col>
-                    <Title level={5}>Total Sales</Title>
-                </Col>
-                <Col>
-                    <Title level={2}>{formatter.format(total)}</Title>
-                </Col>
-            </Row>
+            <div style={styles.titleArea}>
+                <Title level={5}>Daily Revenue</Title>
+                <span style={styles.count}>{formatter.format(total)}</span>
+            </div>
 
-            <Line {...config} />
+            <Column {...config} />
 
             <RangePicker
+                size="small"
                 value={dateRange}
                 onChange={(values) => {
                     setDateRange(values);
