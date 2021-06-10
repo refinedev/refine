@@ -3,12 +3,11 @@ import { useLocation } from "react-router-dom";
 import humanizeString from "humanize-string";
 import { AdminContext } from "@contexts/admin";
 import { DashboardOutlined, UnorderedListOutlined } from "@ant-design/icons";
-import { IAdminContext, IResourceItem, IMenuItem } from "../../../interfaces";
+import { IAdminContext, IMenuItem } from "../../../interfaces";
 import { useTranslate, useResource, useWarnAboutChange } from "@hooks";
 
 type useMenuReturnType = {
     selectedKey: string;
-    resources: IResourceItem[];
     menuItems: IMenuItem[];
 };
 
@@ -59,7 +58,6 @@ export const useMenu: () => useMenuReturnType = () => {
 
     return {
         selectedKey,
-        resources,
         menuItems,
     };
 };

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import {
+    notification,
     Row,
     Col,
     Layout,
@@ -20,7 +21,7 @@ import {
 
 import logo from "./refine.svg";
 
-import { useNavigation, useNotification, useTranslate } from "@hooks";
+import { useNavigation, useTranslate } from "@hooks";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
 
@@ -35,7 +36,6 @@ export interface ILoginForm {
 export const LoginPage: React.FC = () => {
     const [form] = Form.useForm();
     const { push } = useNavigation();
-    const notification = useNotification();
     const translate = useTranslate();
 
     const { login } = useContext<IAuthContext>(AuthContext);

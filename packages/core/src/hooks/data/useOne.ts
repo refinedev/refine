@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
+import { notification } from "antd";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -8,7 +9,7 @@ import {
     HttpError,
     BaseRecord,
 } from "../../interfaces";
-import { useCheckError, useNotification, useTranslate } from "@hooks";
+import { useCheckError, useTranslate } from "@hooks";
 
 export const useOne = <
     TData extends BaseRecord = BaseRecord,
@@ -19,7 +20,6 @@ export const useOne = <
     options?: UseQueryOptions<GetOneResponse<TData>, TError>,
 ): QueryObserverResult<GetOneResponse<TData>> => {
     const { getOne } = useContext<IDataContext>(DataContext);
-    const notification = useNotification();
     const translate = useTranslate();
     const checkError = useCheckError();
 
