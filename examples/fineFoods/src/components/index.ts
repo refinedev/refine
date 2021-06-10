@@ -6,3 +6,4 @@ export * from "./ordersChart";
 export * from "./salesChart";
 export * from "./orders";
 export * from "./dailyRevenue";
+export * from "./recentActivity";

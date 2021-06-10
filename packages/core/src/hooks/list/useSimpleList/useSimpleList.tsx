@@ -68,6 +68,7 @@ export const useSimpleList = <TData extends BaseRecord = BaseRecord>({
                 current,
                 onChange,
                 size: "small",
+                simple: true,
             },
         },
     };

@@ -6,6 +6,7 @@ import {
     DeliverySchedule,
     Orders,
     OrdersChart,
+    RecentActivity,
     SalesChart,
 } from "components";
 
@@ -40,7 +41,9 @@ export const DashbaordPage: React.FC = () => {
                     <Card>
                         <DailyRevenue />
                     </Card>
-                    <Card>...</Card>
+                    <Card>
+                        <RecentActivity />
+                    </Card>
                 </Space>
             </Col>
         </Row>

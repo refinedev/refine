@@ -6,9 +6,11 @@ import dayjs from "dayjs";
 
 import WeekDay from "dayjs/plugin/weekday";
 import LocaleData from "dayjs/plugin/localeData";
+import LocalizedFormat from "dayjs/plugin/localizedFormat";
 
 dayjs.extend(WeekDay);
 dayjs.extend(LocaleData);
+dayjs.extend(LocalizedFormat);
 
 ReactDOM.render(
     <React.StrictMode>
