@@ -5,9 +5,12 @@ siderbar_label: useCheckError
 description: useCheckError data hook from refine is a modified version of react-query's useMutation for create mutations
 ---
 
-`useCheckError` returns a callback that calls `checkError` method from [`authProvider`](/docs/guides-and-concepts/providers/auth-provider) under the hood.
+`useCheckError`  calls `checkError` method from [`authProvider`](/docs/guides-and-concepts/providers/auth-provider) under the hood.
  If `checkError` returns a rejected promise, `useCheckError` calls the `logout` method of `authProvider` and the app is unauthenticated.
 
+
+It returns the result of react-query's [useMutation](https://react-query.tanstack.com/reference/useMutation). 
+Data that is resolved from `checkError` will be returned as the `data` in the query result.
 ## Usage
 
 Imagine we make a payment request which is declined from API. If error status code is `418`, user needs to be logged out for security reasons.
@@ -16,7 +19,7 @@ Imagine we make a payment request which is declined from API. If error status co
 import { useCheckError } from "@pankod/refine";
 
 // inside a component
-const checkError = useCheckError();
+const { mutate: checkError } = useCheckError();
 
 fetch('http://example.com/payment', { options })
     .then(() => console.log("Success"))
@@ -24,7 +27,7 @@ fetch('http://example.com/payment', { options })
     .catch((error) => checkError(error));
 ```
 
-> Any error passed to the callback will be available in `checkError`.
+> Any error passed to `mutate` function will be available in the `checkError` in the `authProvider`.
 
 <br />
 
@@ -65,16 +68,11 @@ const authProvider: AuthProvider = {
     ...
     checkError: () => {
         ...
-        return Promise.reject("custom-url");
+        return Promise.reject("/custom-url");
     }
 }
 ```
 <br/>
-
-
-:::tip
-Callback returned from `useCheckError` can accept objects that extends `HttpError`.
-:::
 
 :::caution
 This hook can only be used if `authProvider` is provided.

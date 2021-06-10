@@ -39,9 +39,7 @@ const App: React.FC = () => {
                 return Promise.reject();
             }
 
-            console.log("auth chekerror: ", error);
-
-            return Promise.reject("/test");
+            return Promise.resolve();
         },
         checkAuth: () =>
             localStorage.getItem("auth") ? Promise.resolve() : Promise.reject(),
