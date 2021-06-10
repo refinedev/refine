@@ -83,7 +83,13 @@ module.exports = {
                     type: "category",
                     label: "Components",
                     items: [
-                        "guides-and-concepts/components/buttons/create-button",
+                        {
+                            type: "category",
+                            label: "Buttons",
+                            items: [
+                                "guides-and-concepts/components/buttons/create-button",
+                            ],
+                        },
                     ],
                 },
                 "guides-and-concepts/multipart-upload",
