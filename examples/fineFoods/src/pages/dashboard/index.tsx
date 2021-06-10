@@ -3,6 +3,7 @@ import { Row, Col, Card, Space } from "@pankod/refine";
 import {
     DeliveryMap,
     DeliverySchedule,
+    Orders,
     OrdersChart,
     SalesChart,
 } from "components";
@@ -33,8 +34,7 @@ export const DashbaordPage: React.FC = () => {
             <Col md={8} xs={24}>
                 <Space direction="vertical" style={{ width: "100%" }}>
                     <Card>
-                        <p>Total Order: 256</p>
-                        <p>Total Delivery: 253</p>
+                        <Orders />
                     </Card>
                     <Card>
                         <p>Daily Revune</p>
