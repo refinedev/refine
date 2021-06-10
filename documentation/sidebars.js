@@ -84,6 +84,19 @@ module.exports = {
                         "guides-and-concepts/hooks/useForm",
                     ],
                 },
+                {
+                    type: "category",
+                    label: "Components",
+                    items: [
+                        {
+                            type: "category",
+                            label: "Buttons",
+                            items: [
+                                "guides-and-concepts/components/buttons/create-button",
+                            ],
+                        },
+                    ],
+                },
                 "guides-and-concepts/multipart-upload",
                 "guides-and-concepts/uploading-base64",
                 "guides-and-concepts/auth0",
