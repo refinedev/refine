@@ -5,8 +5,11 @@ siderbar_label: useLogout
 description: useLogout data hook from refine is a modified version of react-query's useMutation for create mutations
 ---
 
-`useLogout` returns a callback that calls `logout` method from [`authProvider`](/docs/guides-and-concepts/providers/auth-provider) under the hood.  
+`useLogout` calls `logout` method from [`authProvider`](/docs/guides-and-concepts/providers/auth-provider) under the hood.  
 It unauthenticates the app if `logout` method from `authProvider` resolves and if it rejects keeps authentication state the same, authenticates the app.
+
+It returns the result of react-query's [useMutation](https://react-query.tanstack.com/reference/useMutation). 
+Data that is resolved from `logout` will be returned as the `data` in the query result.
 
 ## Usage
 
@@ -17,7 +20,7 @@ If we want to build a custom logout button instead of default one that comes wit
 import { useLogout, Button } from "@pankod/refine";
 
 export const LogoutButton = () => {
-    const logout = useLogout();
+    const { mutate: logout } = useLogout();
 
     return (
         <Button onClick={() => logout()}>
@@ -38,7 +41,7 @@ We have 4 options to manage redirection after logout process.
 
 ```tsx
 const logout = useLogout();
-logout({}, "custom-url")
+logout("/custom-url")
 ```
 
 <br/>
@@ -50,7 +53,7 @@ const authProvider: AuthProvider = {
     ...
     logout: () => {
         ...
-        return Promise.resolve("custom-url");
+        return Promise.resolve("/custom-url");
     }
 }
 ```

@@ -7,7 +7,7 @@ import { useTranslate, useMenu, useLogout, useTitle } from "@hooks";
 
 export const Sider: React.FC = () => {
     const [collapsed, setCollapsed] = React.useState(false);
-    const logout = useLogout();
+    const { mutate: logout } = useLogout();
     const Title = useTitle();
     const translate = useTranslate();
     const { menuItems, selectedKey } = useMenu();
