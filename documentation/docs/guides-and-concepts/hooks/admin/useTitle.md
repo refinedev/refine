@@ -39,6 +39,7 @@ This `<Title>` we created is used in the `<Sider>` that refine provides by defau
 Now `useTitle` will provides us to access `<Title>` component from various parts of the application, like this:
 
 ```tsx title="src/components/customSider"
+//highlight-next-line
 import { AntdLayout, useTitle } from "@pankod/refine";
 
 export const CustomSider: React.FC = () => {
