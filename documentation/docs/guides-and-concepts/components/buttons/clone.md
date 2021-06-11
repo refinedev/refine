@@ -39,7 +39,7 @@ export const MyCloneComponent = () => {
 Clicking the button will trigger the `clone` method of [`useNavigation`](#) and then redirect the app to `/resources/posts/create/1`.
 
 :::note
-By default, it acquires the id parameter from the route.
+`<CloneButton>` component reads the id information from the route by default.
 :::
 
 ### `resourceName`
