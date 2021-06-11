@@ -27,17 +27,21 @@ Looks like this:
 
 ### `recordItemId`
 
-`recordItemId` is used to append the record id to the end of the path. By default, it acquires the id parameter from the route.
+`recordItemId` is used to append the record id to the end of the path.
 
 ```tsx
 import { EditButton } from "@pankod/refine";
 
 export const MyEditComponent = () => {
-    return <EditButton resourceName="posts" id="1" />;
+    return <EditButton resourceName="posts" recordItemId="1" />;
 };
 ```
 
 Clicking the button will trigger the `edit` method of [`useNavigation`](#) and then redirect the app to `/resources/posts/edit/1`.
+
+:::note
+By default, it acquires the id parameter from the route.
+:::
 
 ### `resourceName`
 
@@ -47,7 +51,7 @@ It is used to redirect the app to the `/edit` endpoint of the given resource nam
 import { EditButton } from "@pankod/refine";
 
 export const MyEditComponent = () => {
-    return <EditButton resourceName="categories" id="2" />;
+    return <EditButton resourceName="categories" recordItemId="2" />;
 };
 ```
 
