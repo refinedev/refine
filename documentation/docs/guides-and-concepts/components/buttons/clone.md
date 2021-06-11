@@ -27,16 +27,20 @@ Looks like this:
 
 ### `recordItemId`
 
-`recordItemId` is used to append the record id to the end of the path. By default, it acquires the id parameter from the route.
+`recordItemId` is used to append the record id to the end of the path.
 
 ```tsx
 import { CloneButton } from "@pankod/refine";
 export const MyCloneComponent = () => {
-    return <CloneButton resourceName="posts" id="1" />;
+    return <CloneButton resourceName="posts" recordItemId="1" />;
 };
 ```
 
 Clicking the button will trigger the `clone` method of [`useNavigation`](#) and then redirect the app to `/resources/posts/create/1`.
+
+:::note
+By default, it acquires the id parameter from the route.
+:::
 
 ### `resourceName`
 
@@ -45,7 +49,7 @@ It is used to redirect the app to the `/create` endpoint of the given resource n
 ```tsx
 import { CloneButton } from "@pankod/refine";
 export const MyCloneComponent = () => {
-    return <CloneButton resourceName="categories" id="2" />;
+    return <CloneButton resourceName="categories" recordItemId="2" />;
 };
 ```
 
