@@ -84,6 +84,7 @@ module.exports = {
                 "guides-and-concepts/auth0",
                 "guides-and-concepts/table-search",
                 "guides-and-concepts/custom-pages",
+                "guides-and-concepts/custom-inputs",
                 "guides-and-concepts/csv-import",
                 "guides-and-concepts/csv-export",
             ],
