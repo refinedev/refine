@@ -36,4 +36,5 @@ It can be useful when used with `saveButtonProps` property from form hooks.
 | -------- | -------------------------------- | ---------------------------------------------------------- | --------------------------------------------------------- |
 | props    | Ant Design button props          | [`ButtonProps`](https://ant.design/components/button/#API) |                                                           |
 | children | Set the button text              | `ReactNode`                                                | `"Save"`                                                  |
+| type     | Set the button type              | `string`                                                   | `"primary"`                                               |
 | icon     | Set the icon component of button | `ReactNode`                                                | [`<SaveOutlined />`](https://ant.design/components/icon/) |
