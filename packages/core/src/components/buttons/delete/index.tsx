@@ -17,7 +17,7 @@ import {
 
 export type DeleteButtonProps = ButtonProps & {
     resourceName?: string;
-    recordItemId?: string | number;
+    recordItemId?: string;
     onSuccess?: (value: DeleteOneResponse) => void;
     mutationMode?: MutationMode;
 };
@@ -36,10 +36,8 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
-    const {
-        resource: routeResourceName,
-        id: idFromRoute,
-    } = useParams<ResourceRouterParams>();
+    const { resource: routeResourceName, id: idFromRoute } =
+        useParams<ResourceRouterParams>();
 
     const resourceName = propResourceName ?? routeResourceName;
 

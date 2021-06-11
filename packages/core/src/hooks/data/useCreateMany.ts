@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
+import { notification } from "antd";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -8,12 +9,12 @@ import {
     CreateManyResponse,
     HttpError,
 } from "../../interfaces";
-import { useListResourceQueries, useNotification, useTranslate } from "@hooks";
+import { useListResourceQueries, useTranslate } from "@hooks";
 
 type UseCreateManyReturnType<
     TData extends BaseRecord = BaseRecord,
     TError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = UseMutationResult<
     CreateManyResponse<TData>,
     TError,
@@ -24,13 +25,12 @@ type UseCreateManyReturnType<
 export const useCreateMany = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 >(): UseCreateManyReturnType<TData, TError, TVariables> => {
     const { createMany } = useContext<IDataContext>(DataContext);
     const getListQueries = useListResourceQueries();
     const translate = useTranslate();
     const queryClient = useQueryClient();
-    const notification = useNotification();
 
     const mutation = useMutation<
         CreateManyResponse<TData>,

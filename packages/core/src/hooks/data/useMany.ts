@@ -1,28 +1,28 @@
 import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
+import { notification } from "antd";
 
 import { DataContext } from "@contexts/data";
 import {
     IDataContext,
     BaseRecord,
-    Identifier,
     GetManyResponse,
     HttpError,
 } from "../../interfaces";
-import { useNotification } from "@hooks";
+import { useCheckError } from "@hooks";
 import { useTranslate } from "@hooks/translate";
 
 export const useMany = <
     TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError
+    TError extends HttpError = HttpError,
 >(
     resource: string,
-    ids: Identifier[],
+    ids: string[],
     options?: UseQueryOptions<GetManyResponse<TData>, TError>,
 ): QueryObserverResult<GetManyResponse<TData>> => {
     const { getMany } = useContext<IDataContext>(DataContext);
-    const notification = useNotification();
     const translate = useTranslate();
+    const checkError = useCheckError();
 
     const queryResponse = useQuery<GetManyResponse<TData>, TError>(
         [`resource/getMany/${resource}`, ids],
@@ -30,6 +30,7 @@ export const useMany = <
         {
             ...options,
             onError: (err: TError) => {
+                checkError?.(err);
                 options?.onError?.(err);
 
                 notification.error({

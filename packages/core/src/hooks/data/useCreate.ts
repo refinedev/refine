@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 import pluralize from "pluralize";
+import { notification } from "antd";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -9,12 +10,12 @@ import {
     BaseRecord,
     HttpError,
 } from "../../interfaces";
-import { useListResourceQueries, useTranslate, useNotification } from "@hooks";
+import { useListResourceQueries, useTranslate, useCheckError } from "@hooks";
 
 export type UseCreateReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = UseMutationResult<
     CreateResponse<TData>,
     TError,
@@ -28,12 +29,12 @@ export type UseCreateReturnType<
 export const useCreate = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 >(): UseCreateReturnType<TData, TError, TVariables> => {
+    const checkError = useCheckError();
     const { create } = useContext<IDataContext>(DataContext);
     const getListQueries = useListResourceQueries();
     const translate = useTranslate();
-    const notification = useNotification();
     const queryClient = useQueryClient();
 
     const mutation = useMutation<
@@ -65,8 +66,8 @@ export const useCreate = <
                 });
             },
             onError: (err: TError, { resource }) => {
+                checkError?.(err);
                 const resourceSingular = pluralize.singular(resource);
-
                 notification.error({
                     description: err.message,
                     message: translate(

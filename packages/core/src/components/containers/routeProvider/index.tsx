@@ -17,7 +17,7 @@ export interface RouteProviderProps {
     DashboardPage?: React.ElementType;
     LoginPage?: React.FC | false;
     ReadyPage?: React.FC;
-    customRoutes: RouteProps[];
+    customRoutes?: RouteProps[];
 }
 
 type IRoutesProps = RouteProps & { routes?: RouteProps[] };
@@ -27,13 +27,9 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     catchAll,
     DashboardPage,
     LoginPage,
-    customRoutes,
+    customRoutes = [],
 }) => {
-    const { isAuthenticated, checkAuth, checkError } = useContext<IAuthContext>(
-        AuthContext,
-    );
-
-    checkAuth().catch(checkError);
+    const { isAuthenticated } = useContext<IAuthContext>(AuthContext);
 
     const routes: IRoutesProps[] = [];
     const RouteHandler = (val: IResourceItem): void => {
@@ -52,17 +48,15 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
             routes.push({
                 exact: true,
                 path: `/resources/:resource(${route})/:action(create)/:id?`,
-                component: () => {
-                    return (
-                        <CreateComponent
-                            canCreate={canCreate}
-                            canEdit={canEdit}
-                            canDelete={canDelete}
-                            canShow={canShow}
-                            name={name}
-                        />
-                    );
-                },
+                component: () => (
+                    <CreateComponent
+                        canCreate={canCreate}
+                        canEdit={canEdit}
+                        canDelete={canDelete}
+                        canShow={canShow}
+                        name={name}
+                    />
+                ),
             });
         }
 
@@ -162,9 +156,6 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
             {customRoutes.map((route, i) => (
                 <RouteWithSubRoutes key={i} {...route} />
             ))}
-            <Route path="/resources/:resource?/:action?">
-                {catchAll ?? <ErrorComponent />}
-            </Route>
             <Route>{catchAll ?? <ErrorComponent />}</Route>
         </Switch>
     );

@@ -17,13 +17,13 @@ export interface UseDrawerFormConfig extends UseFormConfig {
 export type UseDrawerFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = useFormProps<TData, TError, TVariables> & UseDrawerFormConfig;
 
 export const useDrawerForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 >({
     mutationMode: mutationModeProp,
     ...rest
@@ -89,7 +89,7 @@ export const useDrawerForm = <
     return {
         ...useFormProps,
         setVisible,
-        show: (id?: string | number) => {
+        show: (id?: string) => {
             setEditId?.(id);
 
             setCloneId?.(id);

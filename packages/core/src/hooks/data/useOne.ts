@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
+import { notification } from "antd";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -7,21 +8,20 @@ import {
     IDataContext,
     HttpError,
     BaseRecord,
-    Identifier,
 } from "../../interfaces";
-import { useNotification, useTranslate } from "@hooks";
+import { useCheckError, useTranslate } from "@hooks";
 
 export const useOne = <
     TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError
+    TError extends HttpError = HttpError,
 >(
     resource: string,
-    id: Identifier,
+    id: string,
     options?: UseQueryOptions<GetOneResponse<TData>, TError>,
 ): QueryObserverResult<GetOneResponse<TData>> => {
     const { getOne } = useContext<IDataContext>(DataContext);
-    const notification = useNotification();
     const translate = useTranslate();
+    const checkError = useCheckError();
 
     const queryResponse = useQuery<GetOneResponse<TData>, TError>(
         [`resource/getOne/${resource}`, { id }],
@@ -29,6 +29,7 @@ export const useOne = <
         {
             ...options,
             onError: (err: TError) => {
+                checkError?.(err);
                 if (options?.onError) {
                     options.onError(err);
                 }

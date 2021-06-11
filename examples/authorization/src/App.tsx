@@ -9,7 +9,7 @@ const API_URL = "https://refine-fake-rest.pankod.com";
 const mockUsers = [
     {
         username: "admin",
-        roles: ["admin", "super-admin"],
+        roles: ["admin"],
     },
     {
         username: "editor",
@@ -34,7 +34,13 @@ const App: React.FC = () => {
             localStorage.removeItem("auth");
             return Promise.resolve();
         },
-        checkError: () => Promise.resolve(),
+        checkError: (error) => {
+            if (error && error.statusCode === 401) {
+                return Promise.reject();
+            }
+
+            return Promise.resolve();
+        },
         checkAuth: () =>
             localStorage.getItem("auth") ? Promise.resolve() : Promise.reject(),
         getPermissions: () => {
@@ -42,6 +48,14 @@ const App: React.FC = () => {
             if (auth) {
                 const parsedUser = JSON.parse(auth);
                 return Promise.resolve(parsedUser.roles);
+            }
+            return Promise.reject();
+        },
+        getUserIdentity: () => {
+            const auth = localStorage.getItem("auth");
+            if (auth) {
+                const parsedUser = JSON.parse(auth);
+                return Promise.resolve(parsedUser.username);
             }
             return Promise.reject();
         },

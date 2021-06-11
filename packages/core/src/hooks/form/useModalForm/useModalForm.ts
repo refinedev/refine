@@ -22,7 +22,7 @@ type useModalFormConfig = {
 export type useModalFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = useForm<TData, TError, TVariables> &
     useModalFormFromSFReturnType<TData, TVariables> & {
         deleteButtonProps: DeleteButtonProps;
@@ -31,14 +31,14 @@ export type useModalFormReturnType<
 export type useModalFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = useFormProps<TData, TError, TVariables> &
     UseModalFormConfigSF &
     useModalFormConfig;
 export const useModalForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 >({
     mutationMode: mutationModeProp,
     ...rest
@@ -118,7 +118,7 @@ export const useModalForm = <
     return {
         ...useFormProps,
         ...sunflowerUseModal,
-        show: (id?: string | number) => {
+        show: (id?: string) => {
             setEditId && setEditId(id);
 
             setCloneId && setCloneId(id);

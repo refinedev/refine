@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
+import { notification } from "antd";
 
 import {
     useMutationMode,
     useCancelNotification,
     useCacheQueries,
-    useNotification,
     useTranslate,
+    useCheckError,
 } from "@hooks";
 import { DataContext } from "@contexts/data";
 import { ActionTypes } from "@contexts/notification";
@@ -21,28 +22,28 @@ import {
     ContextQuery,
     HttpError,
     GetListResponse,
-    Identifier,
 } from "../../interfaces";
 
 type UseDeleteReturnType<
     TData extends BaseRecord = BaseRecord,
-    TError = HttpError
+    TError = HttpError,
 > = UseMutationResult<
     DeleteOneResponse<TData>,
     TError,
-    { id: Identifier },
+    { id: string },
     DeleteContext
 >;
 
 export const useDelete = <
     TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError
+    TError extends HttpError = HttpError,
 >(
     resource: string,
     mutationModeProp?: MutationMode,
     undoableTimeoutProp?: number,
     onCancel?: (cancelMutation: () => void) => void,
 ): UseDeleteReturnType<TData, TError> => {
+    const checkError = useCheckError();
     const queryClient = useQueryClient();
     const { deleteOne } = useContext<IDataContext>(DataContext);
     const {
@@ -51,16 +52,11 @@ export const useDelete = <
     } = useMutationMode();
 
     const { notificationDispatch } = useCancelNotification();
-    const notification = useNotification();
     const translate = useTranslate();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
     const undoableTimeout = undoableTimeoutProp ?? undoableTimeoutContext;
-
-    if (!resource) {
-        throw new Error("'resource' is required for useDelete hook.");
-    }
 
     const cacheQueries = useCacheQueries();
 
@@ -68,7 +64,7 @@ export const useDelete = <
         DeleteOneResponse<TData>,
         TError,
         {
-            id: Identifier;
+            id: string;
         },
         DeleteContext
     >(
@@ -111,18 +107,16 @@ export const useDelete = <
             onMutate: async (deleteParams) => {
                 const previousQueries: ContextQuery[] = [];
 
-                const allQueries = cacheQueries(
-                    resource,
-                    deleteParams.id?.toString(),
-                );
+                const allQueries = cacheQueries(resource, deleteParams.id);
 
                 for (const queryItem of allQueries) {
                     const { queryKey } = queryItem;
                     await queryClient.cancelQueries(queryKey);
 
-                    const previousQuery = queryClient.getQueryData<
-                        QueryResponse<TData>
-                    >(queryKey);
+                    const previousQuery =
+                        queryClient.getQueryData<QueryResponse<TData>>(
+                            queryKey,
+                        );
 
                     if (!(mutationMode === "pessimistic")) {
                         if (previousQuery) {
@@ -134,19 +128,14 @@ export const useDelete = <
                             if (
                                 queryKey.includes(`resource/list/${resource}`)
                             ) {
-                                const {
-                                    data,
-                                    total,
-                                } = previousQuery as GetListResponse<TData>;
+                                const { data, total } =
+                                    previousQuery as GetListResponse<TData>;
 
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: (data ?? []).filter(
                                         (record: TData) =>
-                                            !(
-                                                record.id!.toString() ===
-                                                deleteParams.id?.toString()
-                                            ),
+                                            !(record.id === deleteParams.id),
                                     ),
                                     total: total - 1,
                                 });
@@ -176,6 +165,8 @@ export const useDelete = <
                 });
 
                 if (err.message !== "mutationCancelled") {
+                    checkError?.(err);
+
                     notification.error({
                         key: `${id}-${resource}-notification`,
                         message: translate(
@@ -190,12 +181,11 @@ export const useDelete = <
             onSuccess: (_data, { id }) => {
                 const resourceSingular = pluralize.singular(resource);
 
-                const allQueries = cacheQueries(resource, id?.toString());
+                const allQueries = cacheQueries(resource, id);
                 for (const query of allQueries) {
                     if (
                         query.queryKey.includes(`resource/getOne/${resource}`)
                     ) {
-                        console.log("invalidate", query.queryKey);
                         queryClient.invalidateQueries(query.queryKey);
                     }
                 }
@@ -211,10 +201,7 @@ export const useDelete = <
                 });
             },
             onSettled: (_data, _error, variables) => {
-                const allQueries = cacheQueries(
-                    resource,
-                    variables.id?.toString(),
-                );
+                const allQueries = cacheQueries(resource, variables.id);
                 for (const query of allQueries) {
                     if (
                         !query.queryKey.includes(`resource/getOne/${resource}`)

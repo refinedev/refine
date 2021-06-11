@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
+import { notification } from "antd";
 import { DataContext } from "@contexts/data";
 import { ActionTypes } from "@contexts/notification";
 import {
@@ -11,26 +12,25 @@ import {
     Context as UpdateContext,
     ContextQuery,
     HttpError,
-    Identifier,
 } from "../../interfaces";
 import pluralize from "pluralize";
 import {
     useMutationMode,
     useCancelNotification,
     useCacheQueries,
-    useNotification,
     useTranslate,
+    useCheckError,
 } from "@hooks";
 
 type UpdateParams<T> = {
-    id: Identifier;
+    id: string;
     values: T;
 };
 
 export type UseUpdateReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = UseMutationResult<
     UpdateResponse<TData>,
     TError,
@@ -41,7 +41,7 @@ export type UseUpdateReturnType<
 export const useUpdate = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 >(
     resource: string,
     mutationModeProp?: MutationMode,
@@ -54,18 +54,14 @@ export const useUpdate = <
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
-    const notification = useNotification();
     const translate = useTranslate();
+    const checkError = useCheckError();
 
     const { notificationDispatch } = useCancelNotification();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
     const undoableTimeout = undoableTimeoutProp ?? undoableTimeoutContext;
-
-    if (!resource) {
-        throw new Error("'resource' is required for useUpdate hook.");
-    }
 
     const resourceSingular = pluralize.singular(resource);
 
@@ -115,18 +111,16 @@ export const useUpdate = <
             onMutate: async (variables) => {
                 const previousQueries: ContextQuery[] = [];
 
-                const allQueries = getAllQueries(
-                    resource,
-                    variables.id.toString(),
-                );
+                const allQueries = getAllQueries(resource, variables.id);
 
                 for (const queryItem of allQueries) {
                     const { queryKey } = queryItem;
                     await queryClient.cancelQueries(queryKey);
 
-                    const previousQuery = queryClient.getQueryData<
-                        QueryResponse<TData>
-                    >(queryKey);
+                    const previousQuery =
+                        queryClient.getQueryData<QueryResponse<TData>>(
+                            queryKey,
+                        );
 
                     if (!(mutationMode === "pessimistic")) {
                         if (previousQuery) {
@@ -143,10 +137,7 @@ export const useUpdate = <
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: data.map((record: TData) => {
-                                        if (
-                                            record.id!.toString() ===
-                                            variables.id
-                                        ) {
+                                        if (record.id === variables.id) {
                                             return {
                                                 ...variables.values,
                                                 id: variables.id,
@@ -186,6 +177,8 @@ export const useUpdate = <
                 });
 
                 if (err.message !== "mutationCancelled") {
+                    checkError?.(err);
+
                     notification.error({
                         key: `${id}-${resource}-notification`,
                         message: translate(
@@ -201,10 +194,7 @@ export const useUpdate = <
                 }
             },
             onSettled: (_data, _error, variables) => {
-                const allQueries = getAllQueries(
-                    resource,
-                    variables.id.toString(),
-                );
+                const allQueries = getAllQueries(resource, variables.id);
                 for (const query of allQueries) {
                     queryClient.invalidateQueries(query.queryKey);
                 }

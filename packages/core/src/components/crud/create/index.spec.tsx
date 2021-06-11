@@ -21,6 +21,15 @@ describe("Create", () => {
         expect(container).toBeTruthy();
     });
 
+    it("should render aside successfuly", async () => {
+        const { container, getByText } = renderCreate(
+            <Create aside={() => <div>i am here</div>} />,
+        );
+
+        getByText("i am here");
+        expect(container).toBeTruthy();
+    });
+
     it("should render default save button successfuly", async () => {
         const { container, getByText } = renderCreate(<Create></Create>);
         expect(container.querySelector("button")).toBeTruthy();
@@ -46,5 +55,40 @@ describe("Create", () => {
         const { getByText } = renderCreate(<Create title="New Title" />);
 
         getByText("New Title");
+    });
+
+    it("should render optional resource with resource prop", () => {
+        const { getByText } = render(
+            <Route>
+                <Create resource="posts" />
+            </Route>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts", route: "posts" }],
+                    routerInitialEntries: ["/custom"],
+                }),
+            },
+        );
+
+        getByText("Create post");
+    });
+
+    it("should render tags", () => {
+        const { getByText } = render(
+            <Route path="/resources/:resource/:action/:id">
+                <Create />
+            </Route>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts", route: "posts" }],
+                    routerInitialEntries: ["/resources/posts/create/1"],
+                }),
+            },
+        );
+
+        getByText("Create post");
+        getByText("Clone");
     });
 });

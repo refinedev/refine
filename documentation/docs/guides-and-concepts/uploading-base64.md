@@ -23,7 +23,7 @@ import {
 
 import { IUser } from "../../interfaces";
 
-export const UserCreate: React.FC = (props) => {
+export const UserCreate: React.FC = () => {
     const { form, formProps, saveButtonProps } = useForm<IUser>();
 
     return (

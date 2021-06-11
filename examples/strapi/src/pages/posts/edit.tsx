@@ -25,9 +25,8 @@ import { TOKEN_KEY } from "../../constants";
 export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     const API_URL = useApiUrl();
 
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
+    const [selectedTab, setSelectedTab] =
+        useState<"write" | "preview">("write");
 
     const { formProps, saveButtonProps } = useForm();
 

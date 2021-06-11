@@ -1,4 +1,4 @@
-import { BaseRecord, Identifier } from "../../interfaces";
+import { BaseRecord } from "../../interfaces";
 
 export interface Pagination {
     current?: number;
@@ -108,11 +108,11 @@ export interface IDataContext {
     ) => Promise<GetListResponse<TData>>;
     getMany: <TData extends BaseRecord = BaseRecord>(
         resource: string,
-        ids: Identifier[],
+        ids: string[],
     ) => Promise<GetManyResponse<TData>>;
     getOne: <TData extends BaseRecord = BaseRecord>(
         resource: string,
-        id: Identifier,
+        id: string,
     ) => Promise<GetOneResponse<TData>>;
     create: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
         resource: string,
@@ -124,21 +124,21 @@ export interface IDataContext {
     ) => Promise<CreateManyResponse<TData>>;
     update: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
         resource: string,
-        id: Identifier,
+        id: string,
         params: TVariables,
     ) => Promise<UpdateResponse<TData>>;
     updateMany: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
         resource: string,
-        ids: Identifier[],
+        ids: string[],
         params: TVariables,
     ) => Promise<UpdateManyResponse<TData>>;
     deleteOne: <TData extends BaseRecord = BaseRecord>(
         resource: string,
-        id: Identifier,
+        id: string,
     ) => Promise<DeleteOneResponse<TData>>;
     deleteMany: <TData extends BaseRecord = BaseRecord>(
         resource: string,
-        ids: Identifier[],
+        ids: string[],
     ) => Promise<DeleteManyResponse<TData>>;
     getApiUrl: () => string;
     // TODO: Should be optional

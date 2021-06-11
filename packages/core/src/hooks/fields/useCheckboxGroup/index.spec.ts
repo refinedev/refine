@@ -27,5 +27,43 @@ describe("render hook default options", () => {
         const { options } = checkboxGroupProps;
 
         expect(options).toHaveLength(2);
+
+        expect(options).toEqual([
+            {
+                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+                value: "1",
+            },
+            { label: "Recusandae consectetur aut atque est.", value: "2" },
+        ]);
+    });
+
+    it("should success data with resource with optionLabel and optionValue", async () => {
+        const { result, waitFor } = renderHook(
+            () =>
+                useCheckboxGroup<{ id: string; slug: string }>({
+                    resource: "posts",
+                    optionLabel: "slug",
+                    optionValue: "id",
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            return result.current.queryResult.isSuccess;
+        });
+
+        const { checkboxGroupProps } = result.current;
+        const { options } = checkboxGroupProps;
+
+        expect(options).toHaveLength(2);
+        expect(options).toEqual([
+            { label: "ut-ad-et", value: "1" },
+            { label: "consequatur-molestiae-rerum", value: "2" },
+        ]);
     });
 });

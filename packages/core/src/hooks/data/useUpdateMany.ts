@@ -1,19 +1,19 @@
 import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 import pluralize from "pluralize";
+import { notification } from "antd";
 
 import { DataContext } from "@contexts/data";
 import {
     useCacheQueries,
     useCancelNotification,
+    useCheckError,
     useMutationMode,
-    useNotification,
     useTranslate,
 } from "@hooks";
 import { ActionTypes } from "@contexts/notification";
 import {
     IDataContext,
-    Identifier,
     BaseRecord,
     UpdateManyResponse,
     HttpError,
@@ -26,25 +26,24 @@ import {
 type UseUpdateManyReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 > = UseMutationResult<
     UpdateManyResponse<TData>,
     TError,
-    { ids: Identifier[]; values: TVariables },
+    { ids: string[]; values: TVariables },
     UpdateContext
 >;
 
 export const useUpdateMany = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {}
+    TVariables = {},
 >(
     resource: string,
     mutationModeProp?: MutationMode,
     undoableTimeoutProp?: number,
     onCancel?: (cancelMutation: () => void) => void,
 ): UseUpdateManyReturnType<TData, TError, TVariables> => {
-    const notification = useNotification();
     const queryClient = useQueryClient();
     const translate = useTranslate();
     const { updateMany } = useContext<IDataContext>(DataContext);
@@ -52,6 +51,7 @@ export const useUpdateMany = <
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
+    const checkError = useCheckError();
 
     const resourceSingular = pluralize.singular(resource);
 
@@ -61,22 +61,18 @@ export const useUpdateMany = <
 
     const undoableTimeout = undoableTimeoutProp ?? undoableTimeoutContext;
 
-    if (!resource) {
-        throw new Error("'resource' is required for useUpdate hook.");
-    }
-
     const getAllQueries = useCacheQueries();
 
     const mutation = useMutation<
         UpdateManyResponse<TData>,
         TError,
         {
-            ids: Identifier[];
+            ids: string[];
             values: TVariables;
         },
         UpdateContext
     >(
-        ({ ids, values }: { ids: Identifier[]; values: TVariables }) => {
+        ({ ids, values }: { ids: string[]; values: TVariables }) => {
             if (!(mutationMode === "undoable")) {
                 return updateMany<TData, TVariables>(resource, ids, values);
             }
@@ -116,18 +112,16 @@ export const useUpdateMany = <
             onMutate: async (variables) => {
                 const previousQueries: ContextQuery[] = [];
 
-                const allQueries = getAllQueries(
-                    resource,
-                    variables.ids.map(toString),
-                );
+                const allQueries = getAllQueries(resource, variables.ids);
 
                 for (const queryItem of allQueries) {
                     const { queryKey } = queryItem;
                     await queryClient.cancelQueries(queryKey);
 
-                    const previousQuery = queryClient.getQueryData<
-                        QueryResponse<TData>
-                    >(queryKey);
+                    const previousQuery =
+                        queryClient.getQueryData<QueryResponse<TData>>(
+                            queryKey,
+                        );
 
                     if (!(mutationMode === "pessimistic")) {
                         if (previousQuery) {
@@ -145,9 +139,7 @@ export const useUpdateMany = <
                                     ...previousQuery,
                                     data: data.map((record: TData) => {
                                         if (
-                                            variables.ids
-                                                .map((i) => i.toString())
-                                                .includes(record.id!.toString())
+                                            variables.ids.includes(record.id!)
                                         ) {
                                             return {
                                                 ...record,
@@ -188,6 +180,8 @@ export const useUpdateMany = <
                 });
 
                 if (err.message !== "mutationCancelled") {
+                    checkError?.(err);
+
                     notification.error({
                         key: `${ids}-${resource}-notification`,
                         message: translate(
@@ -203,10 +197,7 @@ export const useUpdateMany = <
                 }
             },
             onSettled: (_data, _error, variables) => {
-                const allQueries = getAllQueries(
-                    resource,
-                    variables.ids.map(toString),
-                );
+                const allQueries = getAllQueries(resource, variables.ids);
                 for (const query of allQueries) {
                     queryClient.invalidateQueries(query.queryKey);
                 }

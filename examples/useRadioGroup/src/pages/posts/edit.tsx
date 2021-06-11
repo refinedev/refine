@@ -19,15 +19,13 @@ import { IPost, ILanguage } from "interfaces";
 export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
-    const {
-        radioGroupProps: languageRadioGroupProps,
-    } = useRadioGroup<ILanguage>({
-        resource: "languages",
-    });
+    const { radioGroupProps: languageRadioGroupProps } =
+        useRadioGroup<ILanguage>({
+            resource: "languages",
+        });
 
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
+    const [selectedTab, setSelectedTab] =
+        useState<"write" | "preview">("write");
 
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>

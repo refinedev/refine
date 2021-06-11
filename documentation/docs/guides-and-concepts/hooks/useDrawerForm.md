@@ -6,17 +6,25 @@ title: useDrawerForm
 import createGif from '@site/static/img/guides-and-concepts/hooks/useDrawerForm/create.gif';
 import editGif from '@site/static/img/guides-and-concepts/hooks/useDrawerForm/edit.gif';
 
-The `useDrawerForm` hook allows you manage a form within Drawer. If we look in detail, `useDrawerForm` uses Ant Design [Form](https://ant.design/components/form/) and [Drawer](https://ant.design/components/drawer/) components data scope management under the hood and returns the appropriate values to the components.
+`useDrawerForm` hook allows you manage a form within a drawer. It returns Ant Design [Form](https://ant.design/components/form/) and [Drawer](https://ant.design/components/drawer/) components props.
 
-All we have to do is pass the props it returns to the `<Drawer>` and `<Form>` components.
+```ts
+const { drawerProps, formProps } = useDrawerForm<IPost>();
+```
 
-For example, let's look at an example of creating a record with `useDrawerForm`.
+All we have to do is to pass the `drawerProps` to `<Drawer>` and `formProps` to `<Form>` components.
+
+## Usage
+
+We'll do two examples, one for creating a post and one for editing a post. Let's see how `useDrawerForm` is used in both.
+
+### Create Drawer
 
 ```tsx title="pages/posts/list.tsx"
 import { useDrawerForm, Drawer, Form, Create, Radio } from "@pankod/refine";
 import { IPost } from "interfaces";
 
-export const PostList: React.FC (props) => {
+export const PostList: React.FC () => {
 
     //highlight-start
     const {
@@ -44,7 +52,7 @@ export const PostList: React.FC (props) => {
             </List>
             //highlight-start
             <Drawer {...drawerProps}>
-                <Create {...props} saveButtonProps={saveButtonProps}>
+                <Create saveButtonProps={saveButtonProps}>
                     <Form {...formProps} layout="vertical">
                         <Form.Item label="Title" name="title">
                             <Input />
@@ -96,13 +104,15 @@ This code block makes `<Drawer>` appear when you click the button.
 
 <br />
 
+### Edit Drawer
+
 Let's learn how to add editing capability to records that will be opening form in Drawer with using `action` prop.
 
 ```tsx title="pages/posts/list.tsx"
 import { useDrawerForm, Drawer, Form, Create, Radio } from "@pankod/refine";
-import { IPost } from "../../interfaces";
+import { IPost } from "interfaces";
 
-export const PostList (props) => {
+export const PostList () => {
     const {
         drawerProps,
         formProps,
@@ -141,7 +151,6 @@ export const PostList (props) => {
             <Drawer {...drawerProps}>
              //highlight-next-line
                 <Edit
-                    {...props}
                     saveButtonProps={saveButtonProps}
                     //highlight-start
                     deleteButtonProps={deleteButtonProps}
@@ -199,3 +208,46 @@ The `saveButtonProps` and `deleteButtonProps` can provides functionality to save
 
 [Refer to codesandbox example for detailed usage. &#8594](https://www.google.com.tr)
 
+## API Parameters
+
+### Properties
+
+| Key                                              | Description                                                                                                                                                                   | Type                                                                           | Default    |
+| ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ---------- |
+| action <div className=" required">Required</div> | Type of form mode                                                                                                                                                             | `"edit"` \| `"create"`                                                         | `"create"` |
+| autoSubmitClose                                  | Close drawer after submit                                                                                                                                                     | `boolean`                                                                      |            |
+| form                                             | Ant Design form instance                                                                                                                                                      | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance) |            |
+| mutationMode                                     | [Determines when mutations are executed](interfaces.md#mutationmode). If not explicitly configured, it is read from the mutation mode config of the resource in current route | `"pessimistic"` \| `"optimistic"` \| `"undoable"`                              |            |
+| onMutationError                                  | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error                                                                            | `(error: TError, variables: TVariables, context: any) => void`                 |            |
+| onMutationSuccess                                | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful                                                                                  | `(data: TData, variables: TVariables, context: any) => void`                   |            |
+| redirect                                         | Page to redirect after succesfull mutation                                                                                                                                    | `"show` \| `"edit` \| `"list"`\*\*                                             |            |
+| submit                                           | Submit the form                                                                                                                                                               | `(values?: TVariables) => Promise<TData>`                                      |            |
+| submitOnEnter                                    | Listen `Enter` key press to submit form                                                                                                                                       | `boolean`                                                                      | `false`    |
+| undoableTimeout                                  | Duration to wait before executing mutations when `mutationMode = "undoable"`                                                                                                  | `number`                                                                       | `5000`\*   |
+| warnWhenUnsavedChanges                           | Shows notification when unsaved changes exist                                                                                                                                 | `boolean`                                                                      | `false`\*  |
+
+> `*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component. `useDrawerForm` will use what is passed to `<Admin>` as default and can override locally.
+
+> `**`: If not explicitly configured, default value of `redirect` depends which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). Otherwise if `action` is `edit`, `redirect`s default value is `list`.
+
+### Return Value
+
+| Key                      | Description                                                  | Type                                                                                                                                                                                  |
+| ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| show                     | A function that opens the drawer                             | `(id?: string) => void`                                                                                                                                                               |
+| formProps                | Ant Design form props                                        | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                                               |
+| drawerProps              | Props for managed drawer                                     | [`DrawerProps`](https://ant.design/components/drawer/#API)                                                                                                                            |
+| saveButtonProps          | Props for a submit button                                    | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                                                                                                                       |
+| deleteButtonProps        | Adds props for delete button                                 | [`DeleteButtonProps`](interfaces.md#delete-button-props)                                                                                                                              |
+| formLoading              | Loading status of form                                       | `boolean`                                                                                                                                                                             |
+| submit                   | Submit method, the parameter is the value of the form fields | `() => void`                                                                                                                                                                          |
+| visible                  | Whether the drawer is visible or not                         | `boolean`                                                                                                                                                                             |
+| close                    | Specify a function that can close the drawer                 | `() => void`                                                                                                                                                                          |
+| defaultFormValuesLoading | DefaultFormValues loading status of form                     | `boolean`                                                                                                                                                                             |
+| form                     | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance)                                                                                                        |
+| editId                   | Record id for edit action                                    | `string`                                                                                                                                                                              |
+| setEditId                | `editId` setter                                              | `Dispatch<SetStateAction<` `string` \| `undefined>>`                                                                                                                                  |
+| queryResult              | Result of the query of a record                              | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery)                                                                                         |
+| mutationResult           | Result of the mutation triggered by submitting the form      | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
+| setCloneId               | `cloneId` setter                                             | `Dispatch<SetStateAction<` `string` \| `undefined>>`                                                                                                                                  |
+| cloneId                  | Record id for clone action                                   | `string`                                                                                                                                                                              |
