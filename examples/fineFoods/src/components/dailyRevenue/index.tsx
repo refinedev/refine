@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { Typography, useApiUrl, useCustom, DatePicker } from "@pankod/refine";
+import {
+    Typography,
+    useApiUrl,
+    useCustom,
+    DatePicker,
+    NumberField,
+} from "@pankod/refine";
 import { Column } from "@ant-design/charts";
 import { ColumnConfig } from "@ant-design/charts/es/column";
 import dayjs, { Dayjs } from "dayjs";
@@ -50,18 +56,31 @@ export const DailyRevenue: React.FC = () => {
         xField: "date",
         yField: "value",
         seriesField: "title",
+        tooltip: {
+            title: (date) => dayjs(date).format("LL"),
+        },
+        xAxis: {
+            label: {
+                formatter: () => {
+                    return null;
+                },
+            },
+        },
     };
-
-    const formatter = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-    });
 
     return (
         <>
             <div style={styles.titleArea}>
                 <Title level={5}>Daily Revenue</Title>
-                <span style={styles.count}>{formatter.format(total)}</span>
+                <NumberField
+                    style={styles.count}
+                    options={{
+                        currency: "USD",
+                        style: "currency",
+                        notation: "compact",
+                    }}
+                    value={total}
+                />
             </div>
 
             <Column {...config} />

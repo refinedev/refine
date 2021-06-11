@@ -6,6 +6,7 @@ import {
     Row,
     Col,
     DatePicker,
+    NumberField,
 } from "@pankod/refine";
 import { Line } from "@ant-design/charts";
 import { LineConfig } from "@ant-design/charts/es/line";
@@ -53,6 +54,9 @@ export const SalesChart: React.FC = () => {
         xField: "date",
         yField: "value",
         seriesField: "title",
+        tooltip: {
+            title: (date) => dayjs(date).format("LL"),
+        },
         xAxis: {
             label: {
                 formatter: (value) => {
@@ -65,11 +69,6 @@ export const SalesChart: React.FC = () => {
     const { Title } = Typography;
     const { RangePicker } = DatePicker;
 
-    const formatter = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-    });
-
     return (
         <>
             <Row justify="space-between">
@@ -77,7 +76,15 @@ export const SalesChart: React.FC = () => {
                     <Title level={5}>Total Sales</Title>
                 </Col>
                 <Col>
-                    <Title level={2}>{formatter.format(total)}</Title>
+                    <NumberField
+                        style={{ fontSize: 56 }}
+                        options={{
+                            currency: "USD",
+                            style: "currency",
+                            notation: "compact",
+                        }}
+                        value={total}
+                    />
                 </Col>
             </Row>
 

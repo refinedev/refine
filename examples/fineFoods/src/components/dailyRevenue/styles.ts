@@ -10,10 +10,9 @@ const styles: { [key: string]: CSSProperties } = {
         justifyContent: "space-between",
         alignItems: "center",
     },
-
     count: {
         color: "#FA541C",
-        fontSize: 28,
+        fontSize: 56,
         fontWeight: 300,
     },
 };
