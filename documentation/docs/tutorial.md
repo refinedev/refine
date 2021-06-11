@@ -11,92 +11,58 @@ import resourceSecond from '@site/static/img/tutorial/resource-2.png';
 import createGif from '@site/static/img/tutorial/create.gif';
 import editGif from '@site/static/img/tutorial/edit.gif';
 import showGif from '@site/static/img/tutorial/show.gif';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-We'll show how to create a simple admin app with CRUD operations based on REST API.
+## Introduction
 
-## Setup
+This tutorial will go through building a simple *admin panel* for a *CMS-like* application.
 
-refine uses React under the hood. We’ll use create-react-app to bootstrap an empty React app with Typescript.
+Step by step, you're going to learn how to consume a *REST API* and add basic CRUD functionality to your panel leveraging the unique capabilities of **refine**.
 
-To create a new app, run the following commands:
+Let's begin by setting up a new **refine** project.
+
+## Setting up
+
+There are two alternative methods to set up a **refine** application.
+
+The recommended way is using the [superplate](https://github.com/pankod/superplate) tool. *superplate*'s *CLI wizard* will let you create and customize your application in seconds.
+
+Alternatively, you may use the *create-react-app* tool to create an empty *React* application and then add **refine** module via *npm*.
+
+
+<Tabs
+  defaultValue="superplate"
+  values={[
+    {label: 'use superplate', value: 'superplate'},
+    {label: 'use create-react-app', value: 'create-react-app'}
+  ]}>
+  <TabItem value="create-react-app">
+
+
+First, run the *create-react-app* tool to bootstrap an empty *React project*.
 
 ```
 npx create-react-app tutorial --template typescript
 ```
 
+:::note
+*--template typescript* flag will ensure that the Typescript language is selected.
+:::
+Navigate to the project folder and install **refine** with the following *npm* command:
+
 ```
 npm i @pankod/refine
-```
+``` 
 
-Then navigate to the project folder and launch it:
+Next, start your project with:
 
 ```
 npm run start
 ```
 
-Then open [http://localhost:3000](http://localhost:3000) to see your app.
-
-## Providing a data source with an API
-
-refine is designed to consume data from APIs.
-
-We’ll be using a fake REST API at https://refine-fake-rest.pankod.com/ designed for testing as the data source for the application.
-
-Example response:
-
-```ts title="https://refine-fake-rest.pankod.com/posts/1"
-{
-  "id": 1,
-  "title": "Quis a ex quos.",
-  "slug": "eligendi-similique-autem",
-  "content": "Sapiente et nesciunt harum corrupti sequi iusto. Debitis explicabo beatae maiores assumenda. Quia velit quam inventore omnis in doloribus et modi aut. Aut deserunt est molestias sunt fugit rerum natus. Consequuntur quam porro doloribus vel nulla non. Suscipit ut deleniti. Consequatur repellat accusamus. Expedita eos hic amet fugit. Magni odio consequatur aut pariatur error eaque culpa. Officiis minus id et.",
-  "category": {
-    "id": 26
-  },
-  "user": {
-    "id": 32
-  },
-  "status": "draft",
-  "createdAt": "2019-07-25T22:19:18.929Z",
-  "image": []
-}
-```
-
-refine requires a `dataProvider` to use an API for CRUD operations which is an object with a set of certain methods.
-
-We'll use `@pankod/refine-json-server` package as a data provider which has predefined methods to communicate with REST APIs.
-
-```
-npm i @pankod/refine-json-server
-```
-
-:::note
-You can also provide your own custom data provider to make the connection.
-:::
-
-## Bootstraping the app
-
-Change `App.tsx` with the following code:
-
-```tsx title="src/App.tsx"
-import { Admin } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
-import "@pankod/refine/dist/styles.min.css";
-
-export const App: React.FC = () => {
-    return (
-        <Admin
-            dataProvider={dataProvider("https://refine-fake-rest.pankod.com")}
-        />
-    );
-};
-```
-
-<br/>
-
-`<Admin/>` is the root component of a refine application. We provide a `dataProvider` with a REST API url as we mention above.
-
-You will see the welcome page.
+Your **refine** application should be up and running!  
+Point your browser to [http://localhost:3000](http://localhost:3000) to access it. You will see the welcome page.
 
 <>
 
@@ -105,22 +71,166 @@ You will see the welcome page.
 </div>
 <br/>
 </>
+  
+  
+  </TabItem>
+  <TabItem value="superplate">
+  
 
-:::tip
+First, run the **superplate** with the following command:
 
-```tsx
-import "@pankod/refine/dist/styles.min.css";
+```
+npx superplate-cli@alpha tutorial
 ```
 
-[Refer to theme documentation for further information about importing the default css. &#8594](theme.md)
+Select the following options to complete the *CLI wizard*:
+
+``` 
+? Select your project type:
+❯ refine
+
+? What will be the name of your app:
+tutorial
+
+? Package manager:
+❯ Npm
+
+? Do you want to customize the theme?:
+❯ No (Ant Design default theme)
+
+? Data Provider :
+❯ Custom JSON rest API
+
+? Auth Provider : 
+❯ Custom
+
+? Do you want to add an example page?:
+❯ No
+
+? i18n - Internationalization: 
+❯ No
+```
+
+Next, navigate to the project folder and start your project with:
+
+```
+npm run dev
+```
+
+Your **refine** application should be up and running!  
+Point your browser to [http://localhost:3000](http://localhost:3000) to access it. You will see the welcome page.
+
+<>
+
+<div style={{textAlign: "center"}}>
+    <img  width="75%" src={refineWelcome} />
+</div>
+<br/>
+</>
+  
+</TabItem>
+</Tabs>
+
+
+## About Fake REST API
+
+**refine** is designed to consume data from APIs. 
+
+For the sake of this tutorial, we will provide you a fully working, *fake REST API* located at https://refine-fake-rest.pankod.com/. You may take a look at available [resources and routes of the API](https://refine-fake-rest.pankod.com/) before proceeding to the next step.
+
+
+## Using a Dataprovider
+
+Dataproviders are **refine** components making it possible to consume different API's and data services conveniently. To consume our *Fake REST API*, we'll use the **"Simple REST Dataprovider"**.
+
+Run the following command to install the required package:
+
+```
+npm i @pankod/refine-json-server
+```
+
+:::note
+
+Fake REST API is based on [JSON Server Project](https://github.com/typicode/json-server). **Simple REST Dataprovider** is fully compatible with the REST rules and methods of the **JSON Server**.
+:::
+:::note
+
+**refine** includes many out-of-the-box data providers to use in your projects like
+
+* Simple REST API
+* NestJS CRUD
+* Strapi etc.
+
+Please refer to the documentation if you need connecting to a custom data source by creating your Dataprovider.
 :::
 
-## Connect API with Resources
 
-We'll start forming our app by adding a `<Resource>` component as a child.
-A `<Resource>` represents an endpoint in the API by given name property. `name` property of `<Resource />` should be one of the endpoints in your API.
+## Bootstrapping the App
 
-We'll demonstrate how to get data at `/posts` endpoint from `https://refine-fake-rest.pankod.com` REST API.
+Replace the contents of `App.tsx` with the following code:
+
+```tsx title="src/App.tsx"
+import { Admin } from "@pankod/refine";
+import dataProvider from "@pankod/refine-json-server";
+import "@pankod/refine/dist/styles.min.css";
+
+const App: React.FC = () => {
+    return (
+        <Admin
+            dataProvider={dataProvider("https://refine-fake-rest.pankod.com")}
+        />
+    );
+};
+
+export default App;
+```
+
+<br/>
+
+`<Admin/>` is the root component of a **refine** application. Using the `dataprovider` prop, we made our **Simple REST Dataprovider** available to the entire application.
+
+
+## Adding Resources
+
+Now we are ready to start connecting to our API by adding a `<Resource>` to our application. 
+
+Let's add **/posts/** endpoint from our API as a `<Resource />`. First take a look to the raw API response for the request made to the **/posts/** route: 
+
+<details><summary>Show response</summary>
+<p>
+
+```ts title="GET https://refine-fake-rest.pankod.com/posts/"
+[
+  {
+    "id": 1,
+    "title": "Eius ea autem sapiente placeat fuga voluptas quos quae.",
+    "slug": "beatae-esse-dolor",
+    "content": "Explicabo nihil delectus. Nam aliquid sunt numquam...",
+    "category": {
+      "id": 24
+    },
+    "user": {
+      "id": 7
+    },
+    "status": "draft",
+    "createdAt": "2021-03-13T03:09:30.186Z",
+    "image": [],
+    "tags": [
+      7,
+      4
+    ],
+    "language": 2
+  },
+  ...
+]
+```
+
+</p>
+</details>
+
+<br/>
+
+Now, add the highlighted code to your `App.tsx` to connect to the endpoint.
 
 ```tsx title="src/App.tsx"
 //highlight-next-line
@@ -141,11 +251,11 @@ export const App: React.FC = () => {
 
 <br/>
 
-After adding `<Resource>`, app redirects to a url defined by `name` property.
-
 :::info
-refine handles route matching out of the box. More info about [routing](#).
+A `<Resource/>` is a child component of `<Admin/>` representing an API Endpoint. The `name` property of `<Resource/>` should match one of the endpoints in your API!
 :::
+
+Instead of showing the welcome page, the application should redirect now to an URL defined by the `name` property. Open your application to confirm that the URL is routed to **/resources/posts**:
 
 <>
 
@@ -155,13 +265,32 @@ refine handles route matching out of the box. More info about [routing](#).
 <br/>
 </>
 
-You'll see a 404 page since `<Resource>` doesn't handle data fetching on its own. CRUD operations is to be done with refine hooks.
+You'll still see a **404** error page because no **Page** component is assigned to our `<Resource>` yet. 
 
-Components for CRUD operations(list, create, edit, show) should be given to `<Resource>` as props. In this example, we are going to set corresponding custom components to `<Resource>` which uses refine hooks to handle data operations and display the list of data.
+:::note
+A `<Resource>` uses **Page** components to handle data and perform rendering. **Page** components are passed to a `<Resource>` using props.
+For basic *CRUD* operations, there are **four** predefined props: **list**, **create**, **edit** and **show**.
+:::
 
-## Showing and interacting with data
+Let's create a **Page** component to fetch **posts** and display them as a table. Later, we will pass the component as the **list** prop to our `<Resource>`.
 
-Let's create a `PostList` component to fetch and show posts data. This component will be passed as `list` prop to `<Resource>`
+## Creating a List Page 
+
+First, we'll need an interface to work with the data from the API endpoint. 
+
+Create a new folder *"interface"* under *"/src"* if you don't already have one. Then create a *"index.d.ts"* file with the following code:
+
+```ts title="interfaces/index.d.ts"
+export interface IPost {
+    title: string;
+    status: "published" | "draft" | "rejected";
+    createdAt: string;
+}
+```
+
+We'll be using **title**, **status** and **createdAt** fields of every **post** record.
+
+Now, create a new folder *"pages/posts"* under *"/src"*. Under that folder, create a *"list.tsx"* file with the following code:
 
 ```tsx title="pages/posts/list.tsx"
 import {
@@ -176,7 +305,6 @@ import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
-
     return (
         <List>
             <Table {...tableProps} rowKey="id">
@@ -197,63 +325,38 @@ export const PostList: React.FC = () => {
 };
 ```
 
-```ts title="interfaces/index.d.ts"
-export interface IPost {
-    title: string;
-    status: "published" | "draft" | "rejected";
-    createdAt: string;
-}
-```
-
 <br/>
 
-### Fetching and managing data
+Let's break down the `<PostList/>` component to understand what's going on here:
 
-`useTable` is a hook from refine that is responsible for fetching data from API with `<Resource>`'s `name` prop using refine's various helper hooks under the hood.
-
-```tsx
-const { tableProps } = useTable<IPost>();
-```
-
-The `tableProps` includes all necessary props for `<Table>` component to show and interact with data properly.
-
-You can find detailed usage of `useTable` from [here](guides-and-concepts/hooks/useTable.md).
-
-### Showing and formatting data
-
-We wrap `<Table>` with [`<List>`](#) component from refine, which adds extra functionalities like a create button and title to the table view.
-
-:::tip
-`<List>` is not an obligation at this point. You can prefer to use your own wrapper component.
-:::
-
-refine apps uses [Ant Design](https://ant.design/components/overview/) components to display data. In this example, we'll use `<Table>` component, which is exposed from Ant Design to render a table with one row for each record.
-
-[Refer to Ant Design docs for more detailed information about `<Table>`. &#8594](https://ant.design/components/table/#API)
-
-The render prop of `<Table.Column>` is used to determine how to format and show data. Each `<Table.Column>` maps a different field in the API response, specified by the `dataIndex` prop.
+✳️ `<Table/>` is a native **Ant Design** component. It renders records row by row as a table. 
+`<Table/>` expects a `rowKey` prop as the unique key of the records. 
 
 :::note
-
-```tsx
-<Table.Column
-    // highlight-next-line
-    dataIndex="title"
-    title="title"
-    // highlight-next-line
-    render={(value) => <TextField value={value} />}
-/>
-```
-
-`value` of render props points to data with key described by `dataIndex`.
+**refine** uses [Ant Design](https://ant.design/components/overview/) components to render data. 
+You may refer to [Ant Design Docs](https://ant.design/components/table/#API) for further information about the `<Table/>` component.
 :::
 
-We used `<TextField>`, `<TagField>` and `<DateField>` in `<Table.Column>` to show data in the proper format. These are examples of many more field components from refine that are based on ant design components.
-User has full freedom on how to format and show raw data that comes from render prop including ant design components or custom components.
+✳️  `useTable<IPost>();` is passed to the `<Table/>` component as `{...tableProps}`. 
 
-You can find detailed usage of fields from [here](#).
+This is the point where the ✨real magic✨  happens!
 
-After creating the `<PostList>` component, now it's time to add it to `<Resource>`.
+**refine** hook `useTable()` fetches data from API and wraps them with various helper hooks required for the `<Table/>` component. Data interaction functions like **sorting**, **filtering**, and **pagination** will be instantly available on the `<Table/>` with this single line of code.
+
+:::note
+**refine** depends heavily on hooks and `useTable()` is only one among many others.
+On [useTable() Documentation](guides-and-concepts/hooks/useTable.md) you may find more information about the usage of this hook.
+:::
+
+✳️ `<Table.Column>` components are used for mapping and formatting each field shown on the `<Table/>`. `dataIndex` prop maps the field to a matching key from the API response. `render` prop is used to choose the appropriate **Field** component for the given data type. 
+
+:::note
+The example uses `<TagField>` and `<DateField>` components. To get the full list of available components, you may refer to the [Field Components Documentation](#).
+:::
+
+✳️ `<List>` is a **refine** component. It acts as a wrapper to `<Table>` to add some extras like *Create Button* and *title*. 
+ 
+Finally, we are ready to add `<PostList>` to our `<Resource>`. Add the highlighted line to your `App.tsx`
 
 ```tsx title="src/App.tsx"
 import { Admin, Resource } from "@pankod/refine";
@@ -275,15 +378,19 @@ export const App: React.FC = () => {
 
 <br />
 
-We can now list `/posts` data successfully as shown below.
+Open your application in your browser. You will see **posts** are displayed correctly in a table structure and event the pagination works out-of-the box. 
+
+On the next step, we are going to add a category field to the table which involves handling data relationships. 
 
 <>
-
 <div style={{textAlign: "center"}}>
     <img src={resourceSecond} />
 </div>
 <br/>
 </>
+
+<br/><br/><br/><br/><br/>
+
 
 ## Handling relationships
 
@@ -329,7 +436,7 @@ import {
 //highlight-next-line
 import { IPost, ICategory } from "interfaces";
 
-export const PostList: React.FC = (props) => {
+export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     //highlight-start
@@ -530,7 +637,7 @@ import {
     //highlight-end
 } from "@pankod/refine";
 
-export const PostList: React.FC = (props) => {
+export const PostList: React.FC = () => {
 ...
     <Table.Column<IPost>
         title="Actions"
@@ -594,7 +701,7 @@ In edit page, `useForm` hook initializes the form with current record values.
 
 We are getting form values from inputs by passing them as child to `<Form.Item>`. Edited input values are automatically set to form data.
 
-Save button submits the form and issues a `PUT` request to the REST API when clicked. After request responses successfully, app will be navigated to listing page on `resources/posts` with updated data.
+Save button submits the form and when clicked it executes the `useUpdate` method provided by the `dataProvider`. After request responses successfully, app will be navigated to listing page on `resources/posts` with updated data.
 
 [Refer to **How editing works?** section for in depth explanation. &#8594](#)
 
@@ -698,7 +805,7 @@ This part is very similar to [Editing the form](#editing-the-form). Only differe
 
 -   We wrap `<Form>` with [`<Create>`](#) component from refine.
 
--   Save button submits the form and issues a `POST` request to the REST API.
+-   Save button submits the form and executes the `useCreate` method provided by the `dataProvider`.
 
 -   Since there can't be a pre-selected value in a create form, we don't pass a `defaultValue` parameter to `useSelect`.
 
@@ -855,7 +962,7 @@ import {
 } from "@pankod/refine";
 import { ICategory } from "interfaces";
 
-export const PostList: React.FC = (props) => {
+export const PostList: React.FC = () => {
     ...
 
     //highlight-start
@@ -865,7 +972,7 @@ export const PostList: React.FC = (props) => {
      //highlight-end
 
     return (
-        <List {...props}>
+        <List>
             <Table {...tableProps} rowKey="id">
                ...
                 <Table.Column
