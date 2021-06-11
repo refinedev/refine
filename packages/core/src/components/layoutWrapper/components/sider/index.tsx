@@ -4,9 +4,12 @@ import { LogoutOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
 import { useTranslate, useMenu, useLogout, useTitle } from "@hooks";
+import { AuthContext } from "@contexts/auth";
+import { IAuthContext } from "src/interfaces";
 
 export const Sider: React.FC = () => {
     const [collapsed, setCollapsed] = React.useState(false);
+    const { isProvided } = React.useContext<IAuthContext>(AuthContext);
     const { mutate: logout } = useLogout();
     const Title = useTitle();
     const translate = useTranslate();
@@ -31,7 +34,7 @@ export const Sider: React.FC = () => {
                     </Menu.Item>
                 ))}
 
-                {logout && (
+                {isProvided && (
                     <Menu.Item
                         onClick={() => {
                             logout();

@@ -14,11 +14,11 @@ export const useCheckError = (): UseMutationResult<
     const { checkError: checkErrorFromContext } =
         React.useContext<IAuthContext>(AuthContext);
 
-    const logout = useLogout();
+    const { mutate: logout } = useLogout();
 
     const queryResponse = useMutation("useCheckError", checkErrorFromContext, {
         onError: (redirectPath?: string) => {
-            logout && logout(undefined, redirectPath);
+            logout && logout({ redirectPath });
         },
     });
 
