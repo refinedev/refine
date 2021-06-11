@@ -5,7 +5,7 @@ title: Edit
 
 import defaultUsage from '@site/static/img/guides-and-concepts/components/buttons/edit/default.png';
 
-`<EditButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `edit` method from [`useNavigation`](#) under the hood. It can be useful to redirect the app to the edit page route of `<Resource>`.
+`<EditButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `edit` method from [`useNavigation`](#) under the hood. It can be useful to redirect the app to the edit page with the record id route of `<Resource>`.
 
 ## Usage
 
