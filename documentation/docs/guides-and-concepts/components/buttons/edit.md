@@ -40,7 +40,7 @@ export const MyEditComponent = () => {
 Clicking the button will trigger the `edit` method of [`useNavigation`](#) and then redirect the app to `/resources/posts/edit/1`.
 
 :::note
-By default, it acquires the id parameter from the route.
+`<EditButton>` component reads the id information from the route by default.
 :::
 
 ### `resourceName`
