@@ -1,20 +1,8 @@
 import React from "react";
-import {
-    Link,
-    Menu,
-    useMenu,
-    useNavigation,
-    useTranslate,
-    useLogout,
-    useTitle,
-    Icons,
-} from "@pankod/refine";
+import { Link, Menu, useMenu, useTitle } from "@pankod/refine";
 
 export const CustomMenu: React.FC = () => {
-    const logout = useLogout();
     const Title = useTitle();
-    const { push } = useNavigation();
-    const translate = useTranslate();
     const { menuItems, selectedKey } = useMenu();
 
     return (
@@ -31,18 +19,6 @@ export const CustomMenu: React.FC = () => {
                         <Link to={route}>{label}</Link>
                     </Menu.Item>
                 ))}
-
-                {logout && (
-                    <Menu.Item
-                        onClick={() => {
-                            logout().then(() => push("/login"));
-                        }}
-                        key="logout"
-                        icon={<Icons.LogoutOutlined />}
-                    >
-                        {translate("common:buttons.logout", "Logout")}
-                    </Menu.Item>
-                )}
             </Menu>
         </>
     );
