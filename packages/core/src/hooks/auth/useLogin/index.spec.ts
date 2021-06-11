@@ -18,7 +18,7 @@ jest.mock("react-router-dom", () => ({
 
 describe("useLogin Hook", () => {
     it("succeed login", async () => {
-        const { result } = renderHook(() => useLogin(), {
+        const { result, waitFor } = renderHook(() => useLogin(), {
             wrapper: TestWrapper({
                 authProvider: {
                     login: ({ username }) => {
@@ -37,14 +37,19 @@ describe("useLogin Hook", () => {
             }),
         });
 
-        await act(async () => {
-            await result.current({ username: "test" });
+        const { mutate: login } = result.current!;
+
+        await login({ username: "test" });
+
+        await waitFor(() => {
+            return !result.current?.isLoading;
         });
+
         expect(mHistory.push).toBeCalledWith("/");
     });
 
     it("fail login", async () => {
-        const { result } = renderHook(() => useLogin(), {
+        const { result, waitFor } = renderHook(() => useLogin(), {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.reject(new Error("Wrong username")),
@@ -57,12 +62,16 @@ describe("useLogin Hook", () => {
             }),
         });
 
-        await act(async () => {
-            try {
-                await result.current({ username: "demo" });
-            } catch (error) {
-                expect(error).toEqual(new Error("Wrong username"));
-            }
+        const { mutate: login } = result.current!;
+
+        await login({ username: "demo" });
+
+        await waitFor(() => {
+            return !result.current?.isLoading;
         });
+
+        const { error } = result.current!;
+
+        expect(error).toEqual(new Error("Wrong username"));
     });
 });

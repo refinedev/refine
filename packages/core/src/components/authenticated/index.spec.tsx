@@ -10,12 +10,7 @@ const mockAuthProvider = {
     checkError: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
     getPermissions: () => Promise.resolve(["admin"]),
-    getUserIdentity: () =>
-        Promise.resolve({
-            id: 1,
-            fullName: "Jane Doe",
-            avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
-        }),
+    getUserIdentity: () => Promise.resolve(),
 };
 
 describe("Authenticated", () => {
@@ -52,6 +47,52 @@ describe("Authenticated", () => {
 
         await wait(() => {
             expect(queryByText("Custom Authenticated")).toBeNull();
+        });
+    });
+
+    it("not authenticated fallback component test", async () => {
+        mockAuthProvider.checkAuth = jest
+            .fn()
+            .mockImplementation(() => Promise.reject());
+
+        const { queryByText } = render(
+            <Authenticated fallback={<div>Error fallback</div>}>
+                Custom Authenticated
+            </Authenticated>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    authProvider: mockAuthProvider,
+                    resources: [{ name: "posts", route: "posts" }],
+                }),
+            },
+        );
+
+        await wait(() => {
+            expect(queryByText("Error fallback"));
+        });
+    });
+
+    it("loading test", async () => {
+        mockAuthProvider.checkAuth = jest
+            .fn()
+            .mockImplementation(() => Promise.reject());
+
+        const { queryByText } = render(
+            <Authenticated loading={<div>loading</div>}>
+                Custom Authenticated
+            </Authenticated>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    authProvider: mockAuthProvider,
+                    resources: [{ name: "posts", route: "posts" }],
+                }),
+            },
+        );
+
+        await wait(() => {
+            expect(queryByText("loading"));
         });
     });
 });

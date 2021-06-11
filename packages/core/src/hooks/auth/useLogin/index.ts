@@ -1,4 +1,5 @@
 import React from "react";
+import { useMutation, UseMutationResult } from "react-query";
 import { notification } from "antd";
 
 import { AuthContext } from "@contexts/auth";
@@ -6,29 +7,31 @@ import { useNavigation } from "@hooks/navigation";
 
 import { IAuthContext } from "../../../interfaces";
 
-export const useLogin = (): ((params: any) => Promise<any>) => {
+export const useLogin = <TVariables = any>(): UseMutationResult<
+    any,
+    Error,
+    TVariables,
+    unknown
+> => {
     const { push } = useNavigation();
-    const authContext = React.useContext<IAuthContext>(AuthContext);
+    const { login: loginFromContext } =
+        React.useContext<IAuthContext>(AuthContext);
 
-    const login = React.useCallback(
-        (params: any) =>
-            authContext
-                .login(params)
-                .then((response) => {
-                    push("/");
-                    return Promise.resolve(response);
-                })
-                .catch((error: Error) => {
-                    notification.error({
-                        message: error.name || "Login Error",
-                        description:
-                            error.message || "Invalid username or password",
-                    });
-
-                    return Promise.reject(error);
-                }),
-        [push, authContext, notification],
+    const queryResponse = useMutation<any, Error, TVariables, unknown>(
+        "useLogin",
+        loginFromContext,
+        {
+            onSuccess: () => {
+                push("/");
+            },
+            onError: (error: Error) => {
+                notification.error({
+                    message: error?.name || "Login Error",
+                    description: error?.message || "Invalid credentials",
+                });
+            },
+        },
     );
 
-    return login;
+    return queryResponse;
 };

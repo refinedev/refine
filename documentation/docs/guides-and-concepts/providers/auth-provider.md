@@ -133,7 +133,7 @@ const authProvider: AuthProvider = {
     logout: () => {
         localStorage.removeItem("auth");
         // highlight-next-line
-        return Promise.resolve("/custom-url");
+        return Promise.resolve("custom-url");
     }
 }
 ```

@@ -10,7 +10,8 @@ import {
 const { Text } = Typography;
 
 export const DashboardPage: React.FC = () => {
-    const identity = useGetIdentity();
+    const { data: identity } =
+        useGetIdentity<{ id: string; fullName: string; avatar: string }>();
     const permissions = usePermissions();
 
     return (
@@ -21,7 +22,7 @@ export const DashboardPage: React.FC = () => {
                     style={{ height: "300px", borderRadius: "15px" }}
                     headStyle={{ textAlign: "center" }}
                 >
-                    <Text>{JSON.stringify(identity.userIdentity)}</Text>
+                    <Text>{JSON.stringify(identity?.fullName)}</Text>
                 </Card>
             </Col>
             <Col span={6}>
@@ -30,7 +31,7 @@ export const DashboardPage: React.FC = () => {
                     style={{ height: "300px", borderRadius: "15px" }}
                     headStyle={{ textAlign: "center" }}
                 >
-                    <Text>{JSON.stringify(permissions.permissions)}</Text>
+                    <Text>{JSON.stringify(permissions.data)}</Text>
                 </Card>
             </Col>
         </Row>
