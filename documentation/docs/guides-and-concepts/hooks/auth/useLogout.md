@@ -6,7 +6,7 @@ description: useLogout data hook from refine is a modified version of react-quer
 ---
 
 `useLogout` calls `logout` method from [`authProvider`](/docs/guides-and-concepts/providers/auth-provider) under the hood.  
-It unauthenticates the app if `logout` method from `authProvider` resolves and if it rejects keeps authentication state the same, authenticates the app.
+It unauthenticates the app if `logout` method from `authProvider` resolves and if it rejects keeps authentication state the same.
 
 It returns the result of react-query's [useMutation](https://react-query.tanstack.com/reference/useMutation). 
 Data that is resolved from `logout` will be returned as the `data` in the query result.
@@ -37,11 +37,11 @@ We have 4 options to manage redirection after logout process.
 
 - If promise returned from logout is resolved with nothing, app will be redirected to `/login` route by default. 
 
-- A custom url can be given to callback returned from the `useLogout` hook:
+- A custom url can be given to mutate function from the `useLogout` hook:
 
 ```tsx
-const logout = useLogout();
-logout("/custom-url")
+const { mutate: logout } = useLogout();
+logout({ redirectPath:"/custom-url" })
 ```
 
 <br/>
@@ -76,12 +76,16 @@ const authProvider: AuthProvider = {
 
 
 :::important 
-Custom url given to callback returned from `useLogout` overrides the one on the `authProvider`.
+Custom url given to mutae function from `useLogout` overrides the one on the `authProvider`.
 :::
 
+:::tip
+`mutate` acquired from `useLogout` can accept any kind of object for values since `logout` method from `authProvider` doesn't have a restriction on its parameters.
+```
+:::
 
 :::tip
-Callback returned from `useLogout` can accept any kind of object for params since `logout` method from `authProvider` doesn't have a restriction on its parameters.
+Mutate function returned from `useLogout` can accept any kind of object for params since `logout` method from `authProvider` doesn't have a restriction on its parameters.
 :::
 
 :::caution
