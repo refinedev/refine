@@ -6,12 +6,12 @@ import { useTranslate } from "@hooks";
 
 type SaveButtonProps = ButtonProps & {};
 
-export const SaveButton: FC<SaveButtonProps> = ({ ...rest }) => {
+export const SaveButton: FC<SaveButtonProps> = ({ children, ...rest }) => {
     const translate = useTranslate();
 
     return (
         <Button type="primary" icon={<SaveOutlined />} {...rest}>
-            {translate("buttons.save", "Save")}
+            {children ?? translate("buttons.save", "Save")}
         </Button>
     );
 };
