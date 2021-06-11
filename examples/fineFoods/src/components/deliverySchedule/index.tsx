@@ -79,7 +79,15 @@ export const DeliverySchedule: React.FC = () => {
     return (
         <>
             <Title level={5}>Upcoming Delivery Schedule</Title>
-            <AntdList {...listProps} renderItem={renderItem} />
+            <AntdList
+                {...listProps}
+                renderItem={renderItem}
+                pagination={{
+                    ...listProps.pagination,
+                    size: "small",
+                    simple: true,
+                }}
+            />
         </>
     );
 };

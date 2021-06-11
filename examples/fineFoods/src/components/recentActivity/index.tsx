@@ -72,7 +72,15 @@ export const RecentActivity: React.FC = () => {
     return (
         <>
             <Title level={5}>Recent Activity</Title>
-            <AntdList {...listProps} renderItem={renderItem} />
+            <AntdList
+                {...listProps}
+                renderItem={renderItem}
+                pagination={{
+                    ...listProps.pagination,
+                    size: "small",
+                    simple: true,
+                }}
+            />
         </>
     );
 };

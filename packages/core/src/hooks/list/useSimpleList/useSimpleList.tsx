@@ -67,8 +67,6 @@ export const useSimpleList = <TData extends BaseRecord = BaseRecord>({
                 pageSize,
                 current,
                 onChange,
-                size: "small",
-                simple: true,
             },
         },
     };
