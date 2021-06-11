@@ -81,11 +81,6 @@ Custom url given to mutae function from `useLogout` overrides the one on the `au
 
 :::tip
 `mutate` acquired from `useLogout` can accept any kind of object for values since `logout` method from `authProvider` doesn't have a restriction on its parameters.
-```
-:::
-
-:::tip
-Mutate function returned from `useLogout` can accept any kind of object for params since `logout` method from `authProvider` doesn't have a restriction on its parameters.
 :::
 
 :::caution
