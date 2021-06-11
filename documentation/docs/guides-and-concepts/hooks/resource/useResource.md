@@ -32,4 +32,4 @@ interface IResourceItem {
 }
 ```
 
-> `canCreate`, `canShow` or `canEdit` properties are defined automatically if `create`, `list` or `edit` components are defined on `<Resource>` components props in `<Admin>` components children.
+> `canCreate`, `canShow` or `canEdit` properties are defined automatically if `create`, `show` or `edit` components are defined on `<Resource>` components props in `<Admin>` components children.
