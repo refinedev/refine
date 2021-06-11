@@ -3,7 +3,7 @@ id: useNavigation
 title: useNavigation
 ---
 
-`useNavigation` is a modified version of `useHistory` from [react-router-dom](https://reactrouter.com/web/api/Hooks/usehistory). It also help refine's crud pages navigations.
+`useNavigation` is a modified version of `useHistory` from [react-router-dom](https://reactrouter.com/web/api/Hooks/usehistory). It also helps refine's crud pages navigations.
 
 ```tsx
 const { create, edit, clone, show, list, push, replace, goBack } = useNavigation();
@@ -75,4 +75,3 @@ Clicking the button will trigger the edit method of useNavigation and then redir
 ```tsx title="History Type"
  export type HistoryType = "push" | "replace";
 ```
-
