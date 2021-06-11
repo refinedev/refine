@@ -44,7 +44,7 @@ const App: React.FC = () => {
 
             return Promise.reject(new Error("Invalid username or password"));
         },
-        logout: (params: any) => {
+        logout: (params) => {
             console.log({ params });
             localStorage.removeItem("username");
             return Promise.resolve();

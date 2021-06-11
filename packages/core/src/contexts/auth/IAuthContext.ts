@@ -1,6 +1,13 @@
+export type TLogoutVariables = {
+    redirectPath?: string;
+    [key: string]: any;
+} | void;
+
+export type TLogoutData = void | false | string;
+
 export interface IAuthContext {
     login: (params: any) => Promise<any>;
-    logout: (params?: any) => Promise<void | false | string>;
+    logout: (params: TLogoutVariables) => Promise<TLogoutData>;
     checkAuth: (params?: any) => Promise<void>;
     checkError: (error: any) => Promise<void>;
     getPermissions: (params?: any) => Promise<any>;

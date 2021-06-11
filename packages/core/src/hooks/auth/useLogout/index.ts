@@ -2,16 +2,17 @@ import React from "react";
 import { useMutation, UseMutationResult } from "react-query";
 
 import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "../../../interfaces";
+import {
+    IAuthContext,
+    TLogoutVariables,
+    TLogoutData,
+} from "../../../interfaces";
 import { useNavigation } from "@hooks/navigation";
 
-type LogoutType = (params?: any, redirectPath?: string) => Promise<void>;
-type UseLogoutType = () => LogoutType | null;
-
 export const useLogout = (): UseMutationResult<
-    void | false | string,
-    any,
-    string | void,
+    TLogoutData,
+    unknown,
+    TLogoutVariables,
     unknown
 > => {
     const { push } = useNavigation();
@@ -19,12 +20,12 @@ export const useLogout = (): UseMutationResult<
         React.useContext<IAuthContext>(AuthContext);
 
     const queryResponse = useMutation<
-        void | false | string,
-        any,
-        string | void,
-        any
+        TLogoutData,
+        unknown,
+        TLogoutVariables,
+        unknown
     >("useLogout", logoutFromContext, {
-        onSuccess: (redirectPathFromAuth, redirectPath) => {
+        onSuccess: (redirectPathFromAuth, { redirectPath } = {}) => {
             if (redirectPathFromAuth !== false) {
                 if (redirectPath) {
                     push(redirectPath);
@@ -38,26 +39,4 @@ export const useLogout = (): UseMutationResult<
     });
 
     return queryResponse;
-
-    /*  if (isProvided) {
-        const logout: LogoutType = (params?: any, redirectPath?: string) =>
-            logoutFromContext(params)
-                .then((pathFromAuthProvider) => {
-                    if (pathFromAuthProvider !== false) {
-                        if (redirectPath) {
-                            push(redirectPath);
-                        } else if (pathFromAuthProvider) {
-                            push(pathFromAuthProvider);
-                        } else {
-                            push("/login");
-                        }
-                    }
-                    Promise.resolve(pathFromAuthProvider);
-                })
-                .catch((error) => Promise.reject(error));
-
-        return logout;
-    }
-
-    return null; */
 };
