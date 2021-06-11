@@ -13,9 +13,9 @@ const resources = useResource();
 
 ### Return value
 
-| Description                                           | Type                             |
-| ----------------------------------------------------- | -------------------------------- |
-| Key of the resource the user is viewing at the moment | [`IResourceItem[]`](#interfaces) |
+| Description | Type                             |
+| ----------- | -------------------------------- |
+| Resources   | [`IResourceItem[]`](#interfaces) |
 
 #### Interfaces
 
@@ -31,3 +31,5 @@ interface IResourceItem {
     canDelete?: boolean;
 }
 ```
+
+> `canCreate`, `canShow` or `canEdit` properties are defined automatically if `create`, `list` or `edit` components are defined on `<Resource>` components props in `<Admin>` components children.
