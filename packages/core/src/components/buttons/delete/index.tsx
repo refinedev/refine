@@ -48,9 +48,10 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
     return (
         <Popconfirm
             key="delete"
-            okText="Delete"
+            okText={translate("buttons.delete", "Delete")}
+            cancelText={translate("buttons.cancel", "Cancel")}
             okType="danger"
-            title="Are you sure?"
+            title={translate("buttons.confirm", "Are you sure?")}
             okButtonProps={{ disabled: isLoading }}
             onConfirm={(): void => {
                 mutateAsync({ id: recordItemId ?? idFromRoute }).then(
