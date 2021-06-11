@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
+import { notification } from "antd";
 
 import {
     useMutationMode,
     useCancelNotification,
     useCacheQueries,
-    useNotification,
     useTranslate,
     useCheckError,
 } from "@hooks";
@@ -52,7 +52,6 @@ export const useDelete = <
     } = useMutationMode();
 
     const { notificationDispatch } = useCancelNotification();
-    const notification = useNotification();
     const translate = useTranslate();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;

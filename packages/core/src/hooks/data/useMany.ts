@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
+import { notification } from "antd";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -8,7 +9,7 @@ import {
     GetManyResponse,
     HttpError,
 } from "../../interfaces";
-import { useNotification, useCheckError } from "@hooks";
+import { useCheckError } from "@hooks";
 import { useTranslate } from "@hooks/translate";
 
 export const useMany = <
@@ -20,7 +21,6 @@ export const useMany = <
     options?: UseQueryOptions<GetManyResponse<TData>, TError>,
 ): QueryObserverResult<GetManyResponse<TData>> => {
     const { getMany } = useContext<IDataContext>(DataContext);
-    const notification = useNotification();
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
 

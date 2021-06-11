@@ -2,7 +2,7 @@
 id: useLogout
 title: useLogout
 siderbar_label: useLogout
-description: useLogout data hook from refine is a modified version of react-query's useMutation for create mutations
+description: useLogout data hook from refine is a modified version of react-query's useMutation for unauthentication.
 ---
 
 `useLogout` calls `logout` method from [`authProvider`](/docs/guides-and-concepts/providers/auth-provider) under the hood.  

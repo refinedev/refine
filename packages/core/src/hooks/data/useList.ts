@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
+import { notification } from "antd";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -12,7 +13,7 @@ import {
     CrudSorting,
 } from "../../interfaces";
 import { useTranslate } from "@hooks/translate";
-import { useNotification, useCheckError } from "@hooks";
+import { useCheckError } from "@hooks";
 
 interface UseListConfig {
     pagination?: Pagination;
@@ -29,7 +30,6 @@ export const useList = <
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>,
 ): QueryObserverResult<GetListResponse<TData>, TError> => {
     const { getList } = useContext<IDataContext>(DataContext);
-    const notification = useNotification();
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
 

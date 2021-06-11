@@ -1,8 +1,8 @@
 import React from "react";
 import { useMutation, UseMutationResult } from "react-query";
+import { notification } from "antd";
 
 import { AuthContext } from "@contexts/auth";
-import { useNotification } from "@hooks";
 import { useNavigation } from "@hooks/navigation";
 
 import { IAuthContext } from "../../../interfaces";
@@ -16,7 +16,6 @@ export const useLogin = <TVariables = any>(): UseMutationResult<
     const { push } = useNavigation();
     const { login: loginFromContext } =
         React.useContext<IAuthContext>(AuthContext);
-    const notification = useNotification();
 
     const queryResponse = useMutation<any, Error, TVariables, unknown>(
         "useLogin",
