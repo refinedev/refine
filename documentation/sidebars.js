@@ -78,6 +78,7 @@ module.exports = {
                             label: "Resource",
                             items: [
                                 "guides-and-concepts/hooks/resource/useMenu",
+                                "guides-and-concepts/hooks/resource/useResource",
                             ],
                         },
                         "guides-and-concepts/hooks/useModalForm",
