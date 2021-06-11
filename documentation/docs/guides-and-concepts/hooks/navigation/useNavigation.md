@@ -42,7 +42,7 @@ Clicking the button will trigger the edit method of useNavigation and then redir
 
 - `resource` is used to redirect the app to the given resource name.
 - `type` is used to set [navigation type](#interface).
-- `id` is used to append to the end of the path.
+- `id` is used to append the record id to the end of the path.
 
 
 ## API Reference
