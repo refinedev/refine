@@ -3,15 +3,74 @@ id: useNavigation
 title: useNavigation
 ---
 
-`useNavigation` is a modified version of `useHistory` from [react-router-dom](https://reactrouter.com/web/api/Hooks/usehistory). It also helps refine's crud pages navigations.
+`refine` uses [`React Router`](https://reactrouter.com/web/api/Hooks) and comes with all redirects out of the box. It allows you to manage your routing operations in refine. Using this hook, you can manage all the routing operations of your application very easily.
 
 ```tsx
 const { create, edit, clone, show, list, push, replace, goBack } = useNavigation();
 ```
 
+:::tip
+`useNavigation` uses React Router's [useHistory](https://reactrouter.com/web/api/Hooks/usehistory) hook.
+:::
+
 
 ### Usage
-Let's show how we can use `edit`.
+We will make a button for each method to use. First, let's imagine that we have a post list and we want to be redirected to this page. To do this we will use the list hook.
+
+## List
+```tsx
+import { Button } from "antd";
+//highlight-next-line
+import { useNavigation } from "@hooks";
+
+export const MyListButton = () => {
+
+    //highlight-next-line
+    const { list } = useNavigation();
+
+    return (
+        <Button
+            onClick={(): void =>
+                //highlight-next-line
+                list("posts")
+            }
+        >
+            Navigate to Post List Page
+        </Button>
+    );
+};
+```
+
+### Create
+
+If we want to go to the post creation page to create a new post, we can use the create hook.
+
+```tsx
+import { Button } from "antd";
+//highlight-next-line
+import { useNavigation } from "@hooks";
+
+export const MyCreateButton = () => {
+
+    //highlight-next-line
+    const { create } = useNavigation();
+
+    return (
+        <Button
+            onClick={(): void =>
+                //highlight-next-line
+                create("posts")
+            }
+        >
+            Navigate to Create Page
+        </Button>
+    );
+};
+```
+
+### Edit
+
+Now let's see what we should do if we want to go to the editing page of one of our posts.
 
 ```tsx
 import { Button } from "antd";
@@ -35,14 +94,118 @@ export const MyEditButton = () => {
     );
 };
 ```
+We used the `edit` to navigate to the post edit page, but you can see the differences in using it. `edit` requires the id property from us and clicking the button will trigger the edit method of useNavigation and then redirect the app to `/resources/posts/edit/1` 
 
-Clicking the button will trigger the edit method of useNavigation and then redirect the app to `/resources/posts/edit/1` 
+:::caution Attention
+There is something we should pay attention to here. We need to give the `id` of which post we want to edit.
+:::
+
+:::tip
+You can also give a `type` property to the methods. You can look here to see the [properties.](#properties)
+:::
+
+### Show
+
+Next up we have the `show`. Do you want to show more than the information shown on the page with our posts, this is where "show" comes into play. Let's look at our example to drill down on any post and remember we'll still need an `id` property!
+
+```tsx
+import { Button } from "antd";
+//highlight-next-line
+import { useNavigation } from "@hooks";
+
+export const MyShowButton = () => {
+
+    //highlight-next-line
+    const { show } = useNavigation();
+
+    return (
+        <Button
+            onClick={(): void =>
+                //highlight-next-line
+                show("posts", "push", "1")
+            }
+        >
+            Navigate to Show Page
+        </Button>
+    );
+};
+```
+:::tip
+If you want to return to the post list page. You can use `goBack` hook.
+:::
+### Clone
+
+Finally, if we have the resources to clone a post and we want to go to this page, we will use `clone` with a record id.
+
+```tsx
+import { Button } from "antd";
+//highlight-next-line
+import { useNavigation } from "@hooks";
+
+export const MyCloneButton = () => {
+
+    //highlight-next-line
+    const { clone } = useNavigation();
+
+    return (
+        <Button
+            onClick={(): void =>
+                //highlight-next-line
+                show("posts", "push", "1")
+            }
+        >
+            Navigate to Clone Page
+        </Button>
+    );
+};
+```
+
+### Push, Replace and GoBack
+
+If we do not want to use the above methods and want to redirect ourselves, we should use `push` or `replace` methods and also we can use `goBack` to return to previous page. You can check out the differences between them [here](#return-values).
 
 
+```tsx
+import { Button } from "antd";
+//highlight-next-line
+import { useNavigation } from "@hooks";
 
-- `resource` is used to redirect the app to the given resource name.
-- `type` is used to set [navigation type](#interface).
-- `id` is used to append the record id to the end of the path.
+export const MyHistoryButtons = () => {
+
+    //highlight-next-line
+    const { push, replace, goBack } = useNavigation();
+
+    return (
+        <>
+            <Button
+                onClick={(): void =>
+                    //highlight-next-line
+                    push("posts")
+                }
+            >
+                Push to posts Page
+            </Button>
+            <Button
+                onClick={(): void =>
+                    //highlight-next-line
+                    replace("posts")
+                }
+            >
+                Replaces to posts Page
+            </Button>
+             <Button
+                onClick={(): void =>
+                    //highlight-next-line
+                    goBack("posts")
+                }
+            >
+                Go back to previous Page
+            </Button>
+        </>
+    );
+};
+
+```
 
 
 ## API Reference
