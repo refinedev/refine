@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
+import { notification } from "antd";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -10,6 +11,8 @@ import {
     BaseRecord,
     HttpError,
 } from "../../interfaces";
+import { useCheckError } from "@hooks";
+import { useTranslate } from "@hooks/translate";
 
 interface UseCustomConfig<TQuery, TPayload> {
     sort?: CrudSorting;
@@ -31,11 +34,29 @@ export const useCustom = <
     queryOptions?: UseQueryOptions<CustomResponse<TData>, TError>,
 ): QueryObserverResult<CustomResponse<TData>, TError> => {
     const { custom } = useContext<IDataContext>(DataContext);
+    const checkError = useCheckError();
+    const translate = useTranslate();
 
     const queryResponse = useQuery<CustomResponse<TData>, TError>(
         [`custom/${method}-${url}`, { ...config }],
         () => custom<TData>(url, method, { ...config }),
-        queryOptions ?? { keepPreviousData: true },
+        {
+            ...(queryOptions ?? { keepPreviousData: true }),
+            onError: (err: TError) => {
+                checkError?.(err);
+                queryOptions?.onError?.(err);
+
+                notification.error({
+                    key: `${method}-notification`,
+                    message: translate(
+                        "common:notifications.error",
+                        { statusCode: err.statusCode },
+                        `Error (status code: ${err.statusCode})`,
+                    ),
+                    description: err.message,
+                });
+            },
+        },
     );
 
     return queryResponse;

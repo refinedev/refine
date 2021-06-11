@@ -5,7 +5,7 @@ title: Interface References
 
 ## CrudFilters
 
-[`CrudFilter`](#crudfilter)
+[`CrudFilter[]`](#crudfilter)
 
 ### CrudFilter
 
@@ -13,6 +13,7 @@ title: Interface References
 | -------- | --------------------------------- |
 | field    | `string`                          |
 | operator | [`CrudOperators`](#crudoperators) |
+| value    |  `any`                            |
 
 #### CrudOperators
 
@@ -85,7 +86,6 @@ ButtonProps
 | Key           | Type                                                     |
 | ------------- | -------------------------------------------------------- |
 | resourceName? | `string`                                                 |
-| recordItemId? | `string` \|` number`                                     |
 | recordItemId? | `string` \|` number`                                     |
 | onSuccess?    | `<TData = BaseRecord>(value: { data: TData; }) => void;` |
 | mutationMode? | [`MutationMode`](#mutationmode)                          |

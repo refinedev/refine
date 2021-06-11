@@ -44,10 +44,6 @@ describe("useAuthenticated Hook", () => {
         await act(async () => {
             const isAuthenticated = await result.current();
             expect(isAuthenticated).not.toBeTruthy();
-            expect(checkErrorMock).toBeCalledTimes(1);
-            expect(checkErrorMock).toBeCalledWith(
-                new Error("Not Authenticated"),
-            );
         });
     });
 });

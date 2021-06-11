@@ -14,7 +14,11 @@ import {
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { AdminContextProvider } from "@contexts/admin";
 import { NotificationContextProvider } from "@contexts/notification";
-import { RouteProvider, ReadyPage as DefaultReadyPage } from "@components";
+import {
+    RouteProvider,
+    ReadyPage as DefaultReadyPage,
+    RouteChangeHandler,
+} from "@components";
 import { OptionalComponent, defaultConfigProviderProps } from "@definitions";
 import {
     MutationMode,
@@ -127,14 +131,19 @@ export const Admin: React.FC<AdminProps> = ({
                                         hasDashboard={!!DashboardPage}
                                     >
                                         <Router>
-                                            <RouteProvider
-                                                resources={resources}
-                                                catchAll={catchAll}
-                                                DashboardPage={DashboardPage}
-                                                LoginPage={LoginPage}
-                                                ReadyPage={ReadyPage}
-                                                customRoutes={routes}
-                                            />
+                                            <>
+                                                <RouteProvider
+                                                    resources={resources}
+                                                    catchAll={catchAll}
+                                                    DashboardPage={
+                                                        DashboardPage
+                                                    }
+                                                    LoginPage={LoginPage}
+                                                    ReadyPage={ReadyPage}
+                                                    customRoutes={routes}
+                                                />
+                                                <RouteChangeHandler />
+                                            </>
                                         </Router>
                                     </AdminContextProvider>
                                 </NotificationContextProvider>

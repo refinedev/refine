@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
+import { notification } from "antd";
 
 import {
     useMutationMode,
     useCancelNotification,
     useCacheQueries,
-    useNotification,
     useTranslate,
+    useCheckError,
 } from "@hooks";
 import { DataContext } from "@contexts/data";
 import { ActionTypes } from "@contexts/notification";
@@ -42,6 +43,7 @@ export const useDelete = <
     undoableTimeoutProp?: number,
     onCancel?: (cancelMutation: () => void) => void,
 ): UseDeleteReturnType<TData, TError> => {
+    const checkError = useCheckError();
     const queryClient = useQueryClient();
     const { deleteOne } = useContext<IDataContext>(DataContext);
     const {
@@ -50,7 +52,6 @@ export const useDelete = <
     } = useMutationMode();
 
     const { notificationDispatch } = useCancelNotification();
-    const notification = useNotification();
     const translate = useTranslate();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
@@ -164,6 +165,8 @@ export const useDelete = <
                 });
 
                 if (err.message !== "mutationCancelled") {
+                    checkError?.(err);
+
                     notification.error({
                         key: `${id}-${resource}-notification`,
                         message: translate(
