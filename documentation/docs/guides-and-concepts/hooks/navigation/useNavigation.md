@@ -41,7 +41,7 @@ Clicking the button will trigger the edit method of useNavigation and then redir
 
 
 - `resource` is used to redirect the app to the given resource name.
-- `type` is used to [navigation type](#interface).
+- `type` is used to set [navigation type](#interface).
 - `id` is used to append to the end of the path.
 
 
@@ -75,5 +75,4 @@ Clicking the button will trigger the edit method of useNavigation and then redir
 ```tsx title="History Type"
  export type HistoryType = "push" | "replace";
 ```
-
 
