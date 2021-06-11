@@ -80,11 +80,6 @@ module.exports = {
                                 "guides-and-concepts/hooks/resource/useMenu",
                             ],
                         },
-                        {
-                            type: "category",
-                            label: "Authorization",
-                            items: ["guides-and-concepts/hooks/auth/useLogout"],
-                        },
                         "guides-and-concepts/hooks/useModalForm",
                         "guides-and-concepts/hooks/useDrawerForm",
                         "guides-and-concepts/hooks/useStepsForm",
