@@ -36,7 +36,7 @@ export const MyEditButton = () => {
 };
 ```
 
-Clicking the button will trigger the edit method of useNavigation and then redirect to `/resources/posts/edit/1` 
+Clicking the button will trigger the edit method of useNavigation and then redirect the app to `/resources/posts/edit/1` 
 
 
 
@@ -75,6 +75,5 @@ Clicking the button will trigger the edit method of useNavigation and then redir
 ```tsx title="History Type"
  export type HistoryType = "push" | "replace";
 ```
-
 
 
