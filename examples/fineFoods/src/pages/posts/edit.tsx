@@ -19,9 +19,8 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     const { formProps } = useForm<IPost>();
     const t = useTranslate();
 
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
+    const [selectedTab, setSelectedTab] =
+        useState<"write" | "preview">("write");
 
     return (
         <Edit {...props}>
