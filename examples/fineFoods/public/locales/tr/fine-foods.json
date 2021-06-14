@@ -1,0 +1,33 @@
+{
+  "dashboard": {
+    "deliveryMap": {
+      "title": "Teslimat Haritası"
+    },
+    "upcomingDeliverySchedule": {
+      "title": "Yaklaşan Teslimatlar"
+    },
+    "orders": {
+      "title": "Siparişler"
+    },
+    "totalSales": {
+      "title": "Toplam Satışlar"
+    },
+    "orderCountCard": {
+      "totalOrder": "Toplam Sipariş",
+      "totalDelivered": "Toplam Teslimat"
+    },
+    "dailyRevenue": {
+      "title": "Günlük Gelir"
+    },
+    "recentActivity": {
+      "title": "Son Aktiviteler"
+    }
+  },
+  "orderStatuses": {
+    "waiting": "Bekliyor",
+    "ready": "Hazır",
+    "on the way": "Yolda",
+    "delivered": "Teslim Edildi",
+    "could not be delivered": "Teslim Edilemedi"
+  }
+}

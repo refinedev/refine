@@ -1,4 +1,5 @@
 import { Row, Col, Card, Space } from "@pankod/refine";
+import { useTranslation } from "react-i18next";
 
 import {
     DailyRevenue,
@@ -11,10 +12,15 @@ import {
 } from "components";
 
 export const DashbaordPage: React.FC = () => {
+    const { t } = useTranslation(["fine-foods"]);
+
     return (
         <Row gutter={[16, 16]}>
             <Col md={16}>
-                <Card title="Delivery Map" style={{ marginBottom: 10 }}>
+                <Card
+                    title={t("dashboard.deliveryMap.title")}
+                    style={{ marginBottom: 10 }}
+                >
                     <Space
                         direction="vertical"
                         size="large"

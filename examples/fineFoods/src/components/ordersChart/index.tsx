@@ -6,6 +6,7 @@ import {
     DatePicker,
     useApiUrl,
     useCustom,
+    useTranslate,
 } from "@pankod/refine";
 import { RadialBar } from "@ant-design/charts";
 import { RadialBarConfig } from "@ant-design/charts/es/radialBar";
@@ -14,6 +15,8 @@ import dayjs, { Dayjs } from "dayjs";
 import { IOrderChart } from "interfaces";
 
 export const OrdersChart: React.FC = () => {
+    const t = useTranslate();
+
     const [dateRange, setDateRange] = useState<[Dayjs, Dayjs]>([
         dayjs().subtract(7, "days").startOf("day"),
         dayjs().startOf("day"),
@@ -88,7 +91,7 @@ export const OrdersChart: React.FC = () => {
 
     return (
         <>
-            <Title level={5}>Orders</Title>
+            <Title level={5}>{t("fine-foods:dashboard.orders.title")}</Title>
             <Row>
                 <Col md={12}>
                     <RadialBar {...chartConfig.waiting} />

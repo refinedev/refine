@@ -13,7 +13,7 @@ const App: React.FC = () => {
     const API_URL = "https://api.finefoods.refine.dev";
     const dataProvider = jsonServerDataProvider(API_URL);
 
-    const { t, i18n } = useTranslation();
+    const { t, i18n } = useTranslation(["common", "fine-foods"]);
 
     const i18nProvider = {
         translate: (key: string, params: object) => t(key, params),

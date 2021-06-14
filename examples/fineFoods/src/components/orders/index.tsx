@@ -5,12 +5,14 @@ import {
     useApiUrl,
     useCustom,
     Spin,
+    useTranslate,
 } from "@pankod/refine";
 import { IOrderTotalCount } from "interfaces";
 
 import styles from "./styles";
 
 export const Orders: React.FC = () => {
+    const t = useTranslate();
     const { Title } = Typography;
 
     const API_URL = useApiUrl();
@@ -23,7 +25,7 @@ export const Orders: React.FC = () => {
             <Row gutter={[16, 0]}>
                 <Col md={12}>
                     <Title style={styles.title} level={5}>
-                        Total Order
+                        {t("fine-foods:dashboard.orderCountCard.totalOrder")}
                     </Title>
                     <div style={styles.countArea}>
                         <span style={styles.count}>
@@ -34,7 +36,9 @@ export const Orders: React.FC = () => {
                 </Col>
                 <Col md={12}>
                     <Title style={styles.title} level={5}>
-                        Total Delivered
+                        {t(
+                            "fine-foods:dashboard.orderCountCard.totalDelivered",
+                        )}
                     </Title>
                     <div style={styles.countArea}>
                         <span style={styles.count}>

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
     Typography,
     useApiUrl,
@@ -7,6 +7,7 @@ import {
     Col,
     DatePicker,
     NumberField,
+    useTranslate,
 } from "@pankod/refine";
 import { Line } from "@ant-design/charts";
 import { LineConfig } from "@ant-design/charts/es/line";
@@ -15,6 +16,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { ISalesChart } from "interfaces";
 
 export const SalesChart: React.FC = () => {
+    const t = useTranslate();
     const API_URL = useApiUrl();
 
     const [dateRange, setDateRange] = useState<[Dayjs, Dayjs]>([
@@ -75,7 +77,9 @@ export const SalesChart: React.FC = () => {
         <>
             <Row justify="space-between">
                 <Col>
-                    <Title level={5}>Total Sales</Title>
+                    <Title level={5}>
+                        {t("fine-foods:dashboard.totalSales.title")}
+                    </Title>
                 </Col>
                 <Col>
                     <NumberField

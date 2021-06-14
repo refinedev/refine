@@ -1,10 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
     Typography,
     useApiUrl,
     useCustom,
     DatePicker,
     NumberField,
+    useTranslate,
 } from "@pankod/refine";
 import { Column } from "@ant-design/charts";
 import { ColumnConfig } from "@ant-design/charts/es/column";
@@ -14,6 +15,7 @@ import { ISalesChart } from "interfaces";
 import styles from "./styles";
 
 export const DailyRevenue: React.FC = () => {
+    const t = useTranslate();
     const API_URL = useApiUrl();
 
     const [dateRange, setDateRange] = useState<[Dayjs, Dayjs]>([
@@ -72,7 +74,9 @@ export const DailyRevenue: React.FC = () => {
     return (
         <>
             <div style={styles.titleArea}>
-                <Title level={5}>Daily Revenue</Title>
+                <Title level={5}>
+                    {t("fine-foods:dashboard.dailyRevenue.title")}
+                </Title>
                 <NumberField
                     style={styles.count}
                     options={{
