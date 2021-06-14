@@ -5,7 +5,7 @@ title: Refresh
 
 import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/refresh/usage.png';
 
-`<RefreshButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It executes the [`useOne`](../../hooks/data/useOne.md) method provided by your dataProvider.
+`<RefreshButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses to update the data shown on the page via [`useOne`](../../hooks/data/useOne.md) method provided by your dataProvider.
 
 ## Usage
 
