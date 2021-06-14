@@ -3,24 +3,38 @@ id: create-button
 title: Create
 ---
 
-import defaultUsage from '@site/static/img/guides-and-concepts/components/buttons/create/default.png';
+import listUsage from '@site/static/img/guides-and-concepts/components/buttons/create/usage.png';
 
 `<CreateButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `create` method from [`useNavigation`](#) under the hood. It can be useful to redirect the app to the create page route of `<Resource>`.
 
 ## Usage
 
 ```tsx
-import { CreateButton } from "@pankod/refine";
+//highlight-next-line
+import { List, Table, CreateButton, useTable } from "@pankod/refine";
 
-export const MyCreateComponent = () => {
-    return <CreateButton />;
+import { IPost } from "interfaces";
+
+export const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+
+    return (
+        //highlight-start
+        <List pageHeaderProps={{ extra: <CreateButton /> }}>
+            //highlight-end
+            <Table {...tableProps} key="id">
+                <Table.Column key="id" dataIndex="id" title="ID" />
+                <Table.Column key="title" dataIndex="title" title="Title" />
+            </Table>
+        </List>
+    );
 };
 ```
 
 Looks like this:
 
 <div>
-    <img  width="20%" src={defaultUsage} alt="Default Create Button" />
+    <img src={listUsage} alt="Default Create Button" />
 </div>
 
 ## Properties
