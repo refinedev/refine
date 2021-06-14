@@ -55,7 +55,7 @@ export const useUpdate = <
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
     const translate = useTranslate();
-    const checkError = useCheckError();
+    const { mutate: checkError } = useCheckError();
 
     const { notificationDispatch } = useCancelNotification();
 

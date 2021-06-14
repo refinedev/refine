@@ -126,7 +126,7 @@ Let's make a custom page for posts. On this page, the editor can approve or reje
 
 Before starting the example, let's assume that our `dataProvider` has an endpoint that returns posts as following.
 
-```ts title="https://refine-fake-rest.pankod.com/posts"
+```ts title="https://api.fake-rest.refine.dev/posts"
 {
     [
         {
@@ -166,7 +166,7 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 const App = () => {
     return (
         <Admin
-            dataProvider={dataProvider("https://refine-fake-rest.pankod.com")}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
         >
             <Resource
                 name="posts"
@@ -343,7 +343,7 @@ import { PostReview } from "pages/post-review";
 const App = () => {
     return (
         <Admin
-            dataProvider={dataProvider("https://refine-fake-rest.pankod.com")}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             //highlight-start
             routes={[
                 {

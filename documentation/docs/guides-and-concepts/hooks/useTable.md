@@ -12,7 +12,7 @@ import filters from '@site/static/img/guides-and-concepts/hooks/useTable/filters
 
 Tabloda göstereceğimiz verinin endpointten şu şekilde geldiğini varsayalım:
 
-```json title="https://refine-fake-rest.pankod.com/posts"
+```json title="https://api.fake-rest.refine.dev/posts"
 [
     {
         "id": 182,

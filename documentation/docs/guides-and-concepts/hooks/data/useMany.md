@@ -11,7 +11,7 @@ description: useMany data hook from refine is a modified version of react-query'
 
 Let'say we have a `categories` resource
 
-```ts title="https://refine-fake-rest.pankod.com/categories"
+```ts title="https://api.fake-rest.refine.dev/categories"
 {
     [
         {
