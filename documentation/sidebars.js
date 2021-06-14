@@ -101,6 +101,8 @@ module.exports = {
                             label: "Buttons",
                             items: [
                                 "guides-and-concepts/components/buttons/create-button",
+                                "guides-and-concepts/components/buttons/import-button",
+                                "guides-and-concepts/components/buttons/export-button",
                             ],
                         },
                     ],
