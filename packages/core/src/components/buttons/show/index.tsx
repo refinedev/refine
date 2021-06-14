@@ -27,7 +27,7 @@ export const ShowButton: FC<ShowButtonProps> = ({
     return (
         <Button
             onClick={(): void =>
-                show(resourceName, "push", recordItemId ?? idFromRoute)
+                show(resourceName, recordItemId ?? idFromRoute)
             }
             type="default"
             icon={<EyeOutlined />}

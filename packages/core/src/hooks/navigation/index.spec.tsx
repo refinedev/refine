@@ -37,37 +37,37 @@ describe("useNavigation Hook", () => {
     });
 
     it("navigation edit with push", async () => {
-        result.current.edit("posts", "push", "1");
+        result.current.edit("posts", "1", "push");
 
         expect(mHistory.push).toBeCalledWith("/resources/posts/edit/1");
     });
 
     it("navigation edit with replace", async () => {
-        result.current.edit("posts", "replace", "1");
+        result.current.edit("posts", "1", "replace");
 
         expect(mHistory.replace).toBeCalledWith("/resources/posts/edit/1");
     });
 
     it("navigation clone with push", async () => {
-        result.current.clone("posts", "push", "1");
+        result.current.clone("posts", "1", "push");
 
         expect(mHistory.push).toBeCalledWith("/resources/posts/create/1");
     });
 
     it("navigation clone with replace", async () => {
-        result.current.clone("posts", "replace", "1");
+        result.current.clone("posts", "1", "replace");
 
         expect(mHistory.replace).toBeCalledWith("/resources/posts/create/1");
     });
 
     it("navigation show with push", async () => {
-        result.current.show("posts", "push", "1");
+        result.current.show("posts", "1", "push");
 
         expect(mHistory.push).toBeCalledWith("/resources/posts/show/1");
     });
 
     it("navigation show with replace", async () => {
-        result.current.show("posts", "replace", "1");
+        result.current.show("posts", "1", "replace");
 
         expect(mHistory.replace).toBeCalledWith("/resources/posts/show/1");
     });
