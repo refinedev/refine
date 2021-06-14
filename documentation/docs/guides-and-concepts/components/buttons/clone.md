@@ -17,6 +17,7 @@ import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
+
     return (
         <List>
             <Table {...tableProps} key="id">
@@ -37,6 +38,13 @@ export const PostList: React.FC = () => {
 };
 ```
 
+```ts
+export interface IPost {
+    id: string;
+    title: string;
+}
+```
+
 Looks like this:
 
 <div>
@@ -47,7 +55,7 @@ Looks like this:
 
 ### `recordItemId`
 
-`recordItemId` is used to append the record id to the end of the path.
+`recordItemId` is used to append the record id to the end of the route path.
 
 ```tsx
 import { CloneButton } from "@pankod/refine";
@@ -82,8 +90,8 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](#) and 
 | Property     | Description                                   | Type                                                                                                             | Default                                                         |
 | ------------ | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
 | props        | Ant Design button props                       | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; recordItemId?: string; }` |                                                                 |
-| resourceName | Determines which resource to use for redirect | `string`                                                                                                         | Resource name acquired from route                               |
-| recordItemId | Add `id` to the end of the URL                | `string`                                                                                                         | Record id acquired from route                                   |
+| resourceName | Determines which resource to use for redirect | `string`                                                                                                         | Resource name that it reads from route                          |
+| recordItemId | Add `id` to the end of the URL                | `string`                                                                                                         | Record id that it reads from route                              |
 | children     | Set the button text                           | `ReactNode`                                                                                                      | `"Clone"`                                                       |
 | icon         | Set the icon component of button              | `ReactNode`                                                                                                      | [`<PlusSquareOutlined />`](https://ant.design/components/icon/) |
 | onClick      | Set the handler to handle click event         | `(event) => void`                                                                                                | Triggers navigation for redirect to the create page of resource |
