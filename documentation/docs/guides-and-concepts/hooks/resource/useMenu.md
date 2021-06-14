@@ -67,7 +67,7 @@ import { PostList } from "pages/posts";
 //highlight-next-line
 import { CustomMenu } from "./CustomMenu";
 
-const API_URL = "https://refine-fake-rest.pankod.com";
+const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (

@@ -88,7 +88,7 @@ const App: React.FC = () => {
     return (
         <Admin
             authProvider={authProvider}
-            dataProvider={dataProvider("https://refine-fake-rest.pankod.com")}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             DashboardPage={DashboardPage}
             ReadyPage={ReadyPage}
             i18nProvider={i18nProvider}
