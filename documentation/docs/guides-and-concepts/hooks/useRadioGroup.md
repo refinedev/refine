@@ -9,9 +9,9 @@ import basicUsage from '@site/static/img/guides-and-concepts/hooks/useRadioGroup
 
 ## Usage
 
-We'll demonstrate how to get data at `/languages` endpoint from `https://refine-fake-rest.pankod.com` REST API.
+We'll demonstrate how to get data at `/languages` endpoint from `https://api.fake-rest.refine.dev` REST API.
 
-```ts title="https://refine-fake-rest.pankod.com/languages"
+```ts title="https://api.fake-rest.refine.dev/languages"
 {
     [
         {

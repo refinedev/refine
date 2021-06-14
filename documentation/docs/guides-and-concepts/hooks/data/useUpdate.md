@@ -21,7 +21,7 @@ description: useUpdate data hook from refine is a modified version of react-quer
 
 Let'say we have a `categories` resource
 
-```ts title="https://refine-fake-rest.pankod.com/categories"
+```ts title="https://api.fake-rest.refine.dev/categories"
 {
     [
         {
@@ -56,7 +56,7 @@ mutate({ id: 2, values: { title: "New Category Title" } })
 
 After mutation runs `categories` will be updated as below:
 
-```ts title="https://refine-fake-rest.pankod.com/categories"
+```ts title="https://api.fake-rest.refine.dev/categories"
 {
     [
         {

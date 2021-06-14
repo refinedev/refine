@@ -129,7 +129,7 @@ We have to use the `getValueFromEvent` method to convert the uploaded files to [
 
 This data is sent to the API when form submitted.
 
-```json title="[POST] https://refine-fake-rest.pankod.com/posts"
+```json title="[POST] https://api.fake-rest.refine.dev/posts"
 {
     "title": "Test",
     "image": [
@@ -220,7 +220,7 @@ export const PostEdit: React.FC = () => {
 
 A request as below is sent for edit form.
 
-```json title="[GET] https://refine-fake-rest.pankod.com/posts/1"
+```json title="[GET] https://api.fake-rest.refine.dev/posts/1"
 {
     "id": 1,
     "title": "Test",
@@ -240,7 +240,7 @@ A request as below is sent for edit form.
 
 This data is sent to the API when form submitted.
 
-```json title="[PUT] https://refine-fake-rest.pankod.com/posts/1"
+```json title="[PUT] https://api.fake-rest.refine.dev/posts/1"
 {
     "title": "Test",
     "image": [

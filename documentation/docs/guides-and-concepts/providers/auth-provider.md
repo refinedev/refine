@@ -23,7 +23,7 @@ import {
 } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 
-const API_URL = "https://refine-fake-rest.pankod.com";
+const API_URL = "https://api.fake-rest.refine.dev";
 const mockUsers = [{ username: "admin" }, { username: "editor" }];
 
 const App = () => {
