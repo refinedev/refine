@@ -8,7 +8,7 @@ axios.defaults.adapter = require("axios/lib/adapters/http");
 describe("auth", () => {
     describe("login", () => {
         it("correct response", async () => {
-            const { login } = AuthHelper("https://refine-strapi.pankod.com");
+            const { login } = AuthHelper("https://api.strapi.refine.dev");
 
             const { data } = await login("demo", "demo123");
 
@@ -20,7 +20,7 @@ describe("auth", () => {
 
     describe("me", () => {
         it("correct response", async () => {
-            const { me } = AuthHelper("https://refine-strapi.pankod.com");
+            const { me } = AuthHelper("https://api.strapi.refine.dev");
 
             const token =
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjE5OTUzODU5LCJleHAiOjE2MjI1NDU4NTl9.hndbp-vtQ65VPafTE05E6Wbg0OKzNJnSKyBRjO9MHg4";

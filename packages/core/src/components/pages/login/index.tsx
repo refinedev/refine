@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
-    notification,
     Row,
     Col,
     Layout,
@@ -21,12 +20,9 @@ import {
 
 import logo from "./refine.svg";
 
-import { useNavigation, useTranslate } from "@hooks";
-import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "../../../interfaces";
+import { useLogin, useTranslate } from "@hooks";
 
 const { Text } = Typography;
-
 export interface ILoginForm {
     username: string;
     password: string;
@@ -35,20 +31,12 @@ export interface ILoginForm {
 
 export const LoginPage: React.FC = () => {
     const [form] = Form.useForm();
-    const { push } = useNavigation();
     const translate = useTranslate();
 
-    const { login } = useContext<IAuthContext>(AuthContext);
+    const { mutate: login } = useLogin();
 
     const onSubmit = (values: ILoginForm) => {
-        login(values)
-            .then(() => push("/"))
-            .catch(() => {
-                notification.error({
-                    message: "Login Error",
-                    description: "Invalid username or password",
-                });
-            });
+        login(values);
     };
 
     const CardTitle = (

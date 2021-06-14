@@ -49,6 +49,18 @@ module.exports = {
                         },
                         {
                             type: "category",
+                            label: "Authorization",
+                            items: [
+                                "guides-and-concepts/hooks/auth/useLogin",
+                                "guides-and-concepts/hooks/auth/useLogout",
+                                "guides-and-concepts/hooks/auth/useCheckError",
+                                "guides-and-concepts/hooks/auth/useAuthenticated",
+                                "guides-and-concepts/hooks/auth/useGetIdentity",
+                                "guides-and-concepts/hooks/auth/usePermissions",
+                            ],
+                        },
+                        {
+                            type: "category",
                             label: "Admin",
                             items: ["guides-and-concepts/hooks/admin/useTitle"],
                         },
@@ -66,12 +78,8 @@ module.exports = {
                             label: "Resource",
                             items: [
                                 "guides-and-concepts/hooks/resource/useMenu",
+                                "guides-and-concepts/hooks/resource/useResource",
                             ],
-                        },
-                        {
-                            type: "category",
-                            label: "Authorization",
-                            items: ["guides-and-concepts/hooks/auth/useLogout"],
                         },
                         "guides-and-concepts/hooks/useModalForm",
                         "guides-and-concepts/hooks/useDrawerForm",
@@ -94,6 +102,9 @@ module.exports = {
                             items: [
                                 "guides-and-concepts/components/buttons/create-button",
                                 "guides-and-concepts/components/buttons/list-button",
+                                "guides-and-concepts/components/buttons/show-button",
+                                "guides-and-concepts/components/buttons/edit-button",
+                                "guides-and-concepts/components/buttons/clone-button",
                             ],
                         },
                     ],

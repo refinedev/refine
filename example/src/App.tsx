@@ -44,7 +44,8 @@ const App: React.FC = () => {
 
             return Promise.reject(new Error("Invalid username or password"));
         },
-        logout: () => {
+        logout: (params) => {
+            console.log({ params });
             localStorage.removeItem("username");
             return Promise.resolve();
         },
@@ -87,7 +88,7 @@ const App: React.FC = () => {
     return (
         <Admin
             authProvider={authProvider}
-            dataProvider={dataProvider("https://refine-fake-rest.pankod.com")}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             DashboardPage={DashboardPage}
             ReadyPage={ReadyPage}
             i18nProvider={i18nProvider}

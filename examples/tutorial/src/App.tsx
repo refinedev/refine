@@ -5,9 +5,7 @@ import "@pankod/refine/dist/styles.min.css";
 
 export const App: React.FC = () => {
     return (
-        <Admin
-            dataProvider={dataProvider("https://refine-fake-rest.pankod.com")}
-        >
+        <Admin dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
             <Resource
                 name="posts"
                 list={PostList}
