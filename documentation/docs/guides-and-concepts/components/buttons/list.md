@@ -3,24 +3,49 @@ id: list-button
 title: List
 ---
 
-import defaultUsage from '@site/static/img/guides-and-concepts/components/buttons/list/default.png';
+import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/list/usage.png';
 
 `<ListButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `list` method from [useNavigation](#) under the hood. It can be useful to redirect the app to the list page route of `<Resource>`.
 
 ## Usage
 
 ```tsx
-import { ListButton } from "@pankod/refine";
+//highlight-next-line
+import { useShow, Show, Typography, ListButton } from "@pankod/refine";
 
-export const MyListComponent = () => {
-    return <ListButton />;
+import { IPost } from "interfaces";
+
+const { Title, Text } = Typography;
+
+export const PostShow: React.FC = () => {
+    const { queryResult } = useShow<IPost>();
+    const { data, isLoading } = queryResult;
+    const record = data?.data;
+
+    return (
+        //highlight-next-line
+        <Show isLoading={isLoading} pageHeaderProps={{ extra: <ListButton /> }}>
+            <Title level={5}>Id</Title>
+            <Text>{record?.id}</Text>
+
+            <Title level={5}>Title</Title>
+            <Text>{record?.title}</Text>
+        </Show>
+    );
 };
+```
+
+```ts
+export interface IPost {
+    id: string;
+    title: string;
+}
 ```
 
 Looks like this:
 
 <div>
-    <img  width="20%" src={defaultUsage} alt="Default List Button" />
+    <img src={tableUsage} alt="Default List Button" />
 </div>
 <br/>
 
