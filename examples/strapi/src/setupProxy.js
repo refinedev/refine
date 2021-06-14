@@ -4,7 +4,7 @@ module.exports = function (app) {
     app.use(
         "/api",
         createProxyMiddleware({
-            target: "https://refine-strapi.pankod.com",
+            target: "https://api.strapi.refine.dev",
             changeOrigin: true,
             pathRewrite: { "^/api": "" },
         }),

@@ -1,6 +1,6 @@
 import nock from "nock";
 
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/posts", { title: "foo", content: "bar", cover: ["116"] })
     .reply(
         200,
@@ -104,7 +104,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
         ],
     );
 
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .delete("/posts/46")
     .reply(
         200,
@@ -213,7 +213,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
         ],
     );
 
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .delete("/posts/47")
     .reply(
         200,
@@ -322,7 +322,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
         ],
     );
 
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .get("/posts")
     .query({ _limit: "10", _start: "0" })
     .reply(
@@ -473,7 +473,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
         ],
     );
 
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .get("/posts/count")
     .reply(200, "5", [
         "Server",
@@ -498,7 +498,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
         "16ms",
     ]);
 
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .get("/posts")
     .query({ _limit: "10", _sort: "id%3Adesc", _start: "0" })
     .reply(
@@ -649,7 +649,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
         ],
     );
 
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .get("/posts/count")
     .reply(200, "5", [
         "Server",
@@ -674,7 +674,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
         "17ms",
     ]);
 
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .get("/posts")
     .query({ _limit: "10", _start: "0", title_eq: "foo" })
     .reply(
@@ -803,7 +803,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
         ],
     );
 
-nock("https://refine-strapi.pankod.com:443", {
+nock("https://api.strapi.refine.dev:443", {
     encodedQueryParams: true,
 })
     .get("/posts/count")
@@ -830,7 +830,7 @@ nock("https://refine-strapi.pankod.com:443", {
         "15ms",
     ]);
 
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .get("/posts/count")
     .reply(200, "5", [
         "Server",
@@ -855,7 +855,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
         "16ms",
     ]);
 
-nock("https://refine-strapi.pankod.com:443", {
+nock("https://api.strapi.refine.dev:443", {
     encodedQueryParams: true,
 })
     .get("/posts")
@@ -991,7 +991,7 @@ nock("https://refine-strapi.pankod.com:443", {
         ],
     );
 
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .get("/posts")
     .query({ id_in: "49" })
     .reply(
@@ -1033,7 +1033,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
         ],
     );
 
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .get("/posts/49")
     .reply(
         200,
@@ -1072,7 +1072,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
         ],
     );
 
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .put("/posts/49", { title: "updated" })
     .reply(
         200,
@@ -1111,7 +1111,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
         ],
     );
 
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .put("/posts/50", { title: "updated" })
     .reply(
         200,
@@ -1150,7 +1150,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
         ],
     );
 
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .put("/posts/51", { title: "updated" })
     .reply(
         200,
@@ -1189,7 +1189,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
         ],
     );
 
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .get("/posts")
     .query({})
     .reply(
@@ -1459,7 +1459,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
         ],
     );
 
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .get("/posts")
     .query({ _sort: "id%3Aasc" })
     .reply(
@@ -1728,7 +1728,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
             "58ms",
         ],
     );
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .get("/posts")
     .query({ _sort: "id%3Aasc" })
     .reply(
@@ -1998,7 +1998,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
         ],
     );
 
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/posts", { title: "test", content: "test" })
     .reply(
         200,
@@ -2037,7 +2037,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
         ],
     );
 
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .get("/posts")
     .query({ title_eq: "foo" })
     .reply(

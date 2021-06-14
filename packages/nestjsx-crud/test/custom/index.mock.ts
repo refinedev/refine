@@ -1,5 +1,5 @@
 import nock from "nock";
-nock("https://refine-nestjs-crud.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.nestjsx-crud.refine.dev:443", { encodedQueryParams: true })
     .get("/users")
     .query({ "sort%5B0%5D": "id%2CDESC" })
     .reply(
@@ -145,7 +145,7 @@ nock("https://refine-nestjs-crud.pankod.com:443", { encodedQueryParams: true })
         ],
     );
 
-nock("https://refine-nestjs-crud.pankod.com:443", {
+nock("https://api.nestjsx-crud.refine.dev:443", {
     encodedQueryParams: true,
 })
     .get("/users")
@@ -186,7 +186,7 @@ nock("https://refine-nestjs-crud.pankod.com:443", {
         ],
     );
 
-nock("https://refine-nestjs-crud.pankod.com:443", {
+nock("https://api.nestjsx-crud.refine.dev:443", {
     encodedQueryParams: true,
 })
     .get("/users")
@@ -333,7 +333,7 @@ nock("https://refine-nestjs-crud.pankod.com:443", {
             'W/"aec-N8NOZff74xNCqkItTdP8D2MOPUM"',
         ],
     );
-nock("https://refine-nestjs-crud.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.nestjsx-crud.refine.dev:443", { encodedQueryParams: true })
     .post("/users", {
         firstName: "test",
         lastName: "test",
