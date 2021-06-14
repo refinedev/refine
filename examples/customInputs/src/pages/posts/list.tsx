@@ -35,14 +35,8 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                             return <TextField value="Loading..." />;
                         }
 
-                        return (
-                            <TextField
-                                value={
-                                    data?.data.find((item) => item.id === value)
-                                        ?.title
-                                }
-                            />
-                        );
+                        return data?.data.find((item) => item.id === value)
+                            ?.title;
                     }}
                 />
                 <Table.Column<IPost>
