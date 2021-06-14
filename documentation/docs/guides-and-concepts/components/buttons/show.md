@@ -3,24 +3,44 @@ id: show-button
 title: Show
 ---
 
-import defaultUsage from '@site/static/img/guides-and-concepts/components/buttons/show/default.png';
+import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/show/usage.png';
 
 `<ShowButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `show` method from [useNavigation](#) under the hood. It can be useful for redirect the app to the show page with the record id route of `<Resource>`.
 
 ## Usage
 
 ```tsx
-import { ShowButton } from "@pankod/refine";
+//highlight-next-line
+import { List, Table, ShowButton, useTable } from "@pankod/refine";
 
-export const MyShowComponent = () => {
-    return <ShowButton />;
+import { IPost } from "interfaces";
+
+export const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+    return (
+        <List>
+            <Table {...tableProps} key="id">
+                <Table.Column key="id" dataIndex="id" title="ID" />
+                <Table.Column key="title" dataIndex="title" title="Title" />
+                <Table.Column<IPost>
+                    title="Actions"
+                    dataIndex="actions"
+                    key="actions"
+                    render={(_value, record) => (
+                        // highlight-next-line
+                        <ShowButton size="small" recordItemId={record.id} />
+                    )}
+                />
+            </Table>
+        </List>
+    );
 };
 ```
 
 Looks like this:
 
 <div>
-    <img  width="20%" src={defaultUsage} alt="Default Show Button" />
+    <img src={tableUsage} alt="Default Show Button" />
 </div>
 
 ## Properties
