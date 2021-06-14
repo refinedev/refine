@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
     Typography,
     Row,
@@ -35,8 +35,9 @@ export const OrdersChart: React.FC = () => {
     const config: RadialBarConfig = {
         width: 400,
         height: 300,
-        data: undefined,
+        data: [],
         loading: isLoading,
+        animation: false,
         xField: "status",
         yField: "count",
         radius: 0.8,
@@ -63,31 +64,37 @@ export const OrdersChart: React.FC = () => {
     const { Title } = Typography;
     const { RangePicker } = DatePicker;
 
-    let waitingChartData = [];
-    let deliveredChartData = [];
-
     const waitingStatus = ["waiting", "ready", "on the way"];
     const deliveredStatus = ["delivered", "could not be delivered"];
 
-    if (data) {
-        waitingChartData = data.data.filter((item) =>
-            waitingStatus.includes(item.status),
-        );
-
-        deliveredChartData = data.data.filter((item) =>
-            deliveredStatus.includes(item.status),
-        );
-    }
+    const chartConfig = useMemo(() => {
+        return {
+            waiting: {
+                ...config,
+                data:
+                    data?.data.filter((item) =>
+                        waitingStatus.includes(item.status),
+                    ) || [],
+            },
+            delivered: {
+                ...config,
+                data:
+                    data?.data.filter((item) =>
+                        deliveredStatus.includes(item.status),
+                    ) || [],
+            },
+        };
+    }, [data]);
 
     return (
         <>
             <Title level={5}>Orders</Title>
             <Row>
                 <Col md={12}>
-                    <RadialBar {...config} data={deliveredChartData} />
+                    <RadialBar {...chartConfig.waiting} />
                 </Col>
                 <Col md={12}>
-                    <RadialBar {...config} data={waitingChartData} />
+                    <RadialBar {...chartConfig.delivered} />
                 </Col>
             </Row>
 
