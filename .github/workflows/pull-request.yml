@@ -87,14 +87,14 @@ jobs:
             --set ingress.tls[0].secretName=${{ env.branch }}-${{ env.domain }} \
             --set ingress.tls[0].hosts[0]=${{ env.branch }}-${{ env.domain }} \
         env:
-          domain: "refine.pankod.com"
+          domain: "refine.dev"
           branch: ${{ steps.substring-pr-branch-name.outputs.substring }}
 
       - name: Send custom variable to Meercode Build
         uses: meercodeio/meercode-custom-variable@0.1.0
         with:
           meercode-token: ${{ secrets.MEERCODE_TOKEN }}
-          url: 'https://${{ steps.substring-pr-branch-name.outputs.substring }}-refine.pankod.com'
+          url: 'https://${{ steps.substring-pr-branch-name.outputs.substring }}.refine.dev'
       - uses: tzkhan/pr-update-action@v2
         with:
           repo-token: "${{ secrets.PANKOD_BOT_TOKEN }}"
@@ -102,4 +102,4 @@ jobs:
           head-branch-regex: '[a-z\d-_.\\/]+'
           body-template: |
             Test me! '%basebranch%'
-            [Link to %headbranch%](https://${{ steps.substring-pr-branch-name.outputs.substring }}-refine.pankod.com)
+            [Link to %headbranch%](https://${{ steps.substring-pr-branch-name.outputs.substring }}.refine.dev)
