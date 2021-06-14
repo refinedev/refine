@@ -141,7 +141,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                 extra,
             }}
         >
-            {/* <Table<IPost>
+            <Table<IPost>
                 {...tableProps}
                 key="id"
                 pagination={{
@@ -262,19 +262,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                         </Space>
                     )}
                 />
-            </Table> */}
-            <br />
-            <br />
-            <br />
-            <br />
-            <div style={{ display: "flex", justifyContent: "center" }}>
-                <DeleteButton />
-            </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+            </Table>
         </List>
     );
 };
