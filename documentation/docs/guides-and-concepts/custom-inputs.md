@@ -16,16 +16,14 @@ refine uses Ant Design's [`<Form>`](https://ant.design/components/form/) compone
 
 In this example we'll demonstrate how to use custom input fields for markdown data by adding a markdown editor to edit and create forms.
 
-```tsx
+```tsx title="/src/pages/posts/edit.tsx"
 import React, { useState } from "react";
 import {
     Edit,
     Form,
     Input,
     IResourceComponentsProps,
-    Select,
     useForm,
-    useSelect,
 } from "@pankod/refine";
 
 //highlight-start
@@ -37,16 +35,10 @@ import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
 
-import { IPost, ICategory } from "interfaces";
+import { IPost } from "interfaces";
 
-export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
-
-    const postData = queryResult?.data?.data;
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-        defaultValue: postData?.category.id,
-    });
+export const PostEdit: React.FC = (props) => {
+    const { formProps, saveButtonProps } = useForm<IPost>();
 
     //highlight-start
     const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
@@ -67,43 +59,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
                     ]}
                 >
                     <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name={["category", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Status"
-                    name="status"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                            {
-                                label: "Rejected",
-                                value: "rejected",
-                            },
-                        ]}
-                    />
                 </Form.Item>
                 //highlight-start
                 <Form.Item
