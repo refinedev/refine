@@ -102,6 +102,7 @@ module.exports = {
                             items: [
                                 "guides-and-concepts/components/buttons/create-button",
                                 "guides-and-concepts/components/buttons/show-button",
+                                "guides-and-concepts/components/buttons/edit-button",
                                 "guides-and-concepts/components/buttons/clone-button",
                             ],
                         },
