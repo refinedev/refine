@@ -1,6 +1,6 @@
 import nock from "nock";
 
-nock("https://refine-fake-rest.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.fake-rest.refine.dev:443", { encodedQueryParams: true })
     .post("/posts", { id: 1001, title: "foo", content: "bar" })
     .reply(201, { id: 1001, title: "foo", content: "bar" }, [
         "Server",
@@ -28,7 +28,7 @@ nock("https://refine-fake-rest.pankod.com:443", { encodedQueryParams: true })
         "Access-Control-Expose-Headers",
         "Location",
         "Location",
-        "http://refine-fake-rest.pankod.com/posts/1001",
+        "http://api.fake-rest.refine.dev/posts/1001",
         "X-Content-Type-Options",
         "nosniff",
         "ETag",

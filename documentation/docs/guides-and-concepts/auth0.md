@@ -116,7 +116,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import { Login } from "pages/login";
 
-const API_URL = "https://refine-fake-rest.pankod.com";
+const API_URL = "https://api.fake-rest.refine.dev";
 
 const App = () => {
     const { isLoading, isAuthenticated, user, logout } = useAuth0();

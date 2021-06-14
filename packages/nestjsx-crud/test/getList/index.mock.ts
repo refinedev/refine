@@ -1,6 +1,6 @@
 import nock from "nock";
 
-nock("https://refine-nestjs-crud.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.nestjsx-crud.refine.dev:443", { encodedQueryParams: true })
     .get("/posts")
     .query({ limit: "10", page: "1", "sort%5B0%5D": "id%2CDESC", offset: "0" })
     .reply(
@@ -393,7 +393,7 @@ nock("https://refine-nestjs-crud.pankod.com:443", { encodedQueryParams: true })
         ],
     );
 
-nock("https://refine-nestjs-crud.pankod.com:443", {
+nock("https://api.nestjsx-crud.refine.dev:443", {
     encodedQueryParams: true,
 })
     .get("/posts")
@@ -793,7 +793,7 @@ nock("https://refine-nestjs-crud.pankod.com:443", {
         ],
     );
 
-nock("https://refine-nestjs-crud.pankod.com:443", {
+nock("https://api.nestjsx-crud.refine.dev:443", {
     encodedQueryParams: true,
 })
     .get("/posts")
@@ -943,7 +943,7 @@ nock("https://refine-nestjs-crud.pankod.com:443", {
         ],
     );
 
-nock("https://refine-nestjs-crud.pankod.com:443", {
+nock("https://api.nestjsx-crud.refine.dev:443", {
     encodedQueryParams: true,
 })
     .get("/posts")

@@ -1,18 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { useAuthenticated } from "@hooks";
 
-export type AuthenticatedProps = {};
+export type AuthenticatedProps = {
+    fallback?: React.ReactNode;
+    loading?: React.ReactNode;
+};
 
-export const Authenticated: React.FC<AuthenticatedProps> = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-    const checkAuth = useAuthenticated();
+export const Authenticated: React.FC<AuthenticatedProps> = ({
+    children,
+    fallback,
+    loading,
+}) => {
+    const { isSuccess, isLoading, isError } = useAuthenticated();
 
-    React.useEffect(() => {
-        checkAuth().then((isAuthenticated) => {
-            setIsAuthenticated(isAuthenticated);
-        });
-    }, [checkAuth]);
+    if (isLoading) {
+        return <>{loading}</> || null;
+    }
+    if (isError) {
+        return <>{fallback}</> || null;
+    }
+    if (isSuccess) {
+        return <>{children}</>;
+    }
 
-    return isAuthenticated ? <>{children}</> : null;
+    return null;
 };

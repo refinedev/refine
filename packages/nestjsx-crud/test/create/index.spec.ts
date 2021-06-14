@@ -8,7 +8,7 @@ axios.defaults.adapter = require("axios/lib/adapters/http");
 describe("create", () => {
     it("correct response", async () => {
         const { data } = await JsonServer(
-            "https://refine-nestjs-crud.pankod.com",
+            "https://api.nestjsx-crud.refine.dev",
             axios,
         ).create("posts", {
             title: "foo",
