@@ -3,24 +3,44 @@ id: clone-button
 title: Clone
 ---
 
-import defaultUsage from '@site/static/img/guides-and-concepts/components/buttons/clone/default.png';
+import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/clone/usage.png';
 
 `<CloneButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `clone` method from [useNavigation](#) under the hood. It can be useful for redirect the app to the create page with the record id route of `<Resource>`.
 
 ## Usage
 
 ```tsx
-import { CloneButton } from "@pankod/refine";
+//highlight-next-line
+import { List, Table, CloneButton, useTable } from "@pankod/refine";
 
-export const MyCloneComponent = () => {
-    return <CloneButton />;
+import { IPost } from "interfaces";
+
+export const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+    return (
+        <List>
+            <Table {...tableProps} key="id">
+                <Table.Column key="id" dataIndex="id" title="ID" />
+                <Table.Column key="title" dataIndex="title" title="Title" />
+                <Table.Column<IPost>
+                    title="Actions"
+                    dataIndex="actions"
+                    key="actions"
+                    render={(_value, record) => (
+                        // highlight-next-line
+                        <CloneButton size="small" recordItemId={record.id} />
+                    )}
+                />
+            </Table>
+        </List>
+    );
 };
 ```
 
 Looks like this:
 
 <div>
-    <img  width="20%" src={defaultUsage} alt="Default Clone Button" />
+    <img src={tableUsage} alt="Default Clone Button" />
 </div>
 
 ## Properties
