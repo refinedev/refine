@@ -79,12 +79,25 @@ module.exports = {
                         "guides-and-concepts/hooks/useForm",
                     ],
                 },
+                {
+                    type: "category",
+                    label: "Components",
+                    items: [
+                        {
+                            type: "category",
+                            label: "Inputs",
+                            items: [
+                                "guides-and-concepts/components/inputs/custom-inputs",
+                            ],
+                        },
+                    ],
+                },
                 "guides-and-concepts/multipart-upload",
                 "guides-and-concepts/uploading-base64",
                 "guides-and-concepts/auth0",
                 "guides-and-concepts/table-search",
                 "guides-and-concepts/custom-pages",
-                "guides-and-concepts/custom-inputs",
+                // "guides-and-concepts/custom-inputs",
                 "guides-and-concepts/csv-import",
                 "guides-and-concepts/csv-export",
             ],
