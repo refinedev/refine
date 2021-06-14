@@ -32,14 +32,11 @@ export const RecentActivity: React.FC = () => {
     });
 
     const renderItem = (item: IOrder) => {
+        const user = data?.data.find((user: IUser) => user.id === item.userId);
         const renderUser = () => {
             if (isLoading) {
                 return <span>loading...</span>;
             }
-
-            const user = data?.data.find(
-                (user: IUser) => user.id === item.userId,
-            );
 
             return `${user.name} ${user.surname}`;
         };
@@ -47,7 +44,11 @@ export const RecentActivity: React.FC = () => {
         return (
             <Row style={styles.row} align="bottom">
                 <Col md={14} style={styles.userArea}>
-                    <Avatar size={32} icon={<Icons.UserOutlined />} />
+                    <Avatar
+                        src={user?.avatar[0].url}
+                        size={32}
+                        icon={<Icons.UserOutlined />}
+                    />
 
                     <div style={styles.userInfo}>
                         <div>

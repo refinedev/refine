@@ -26,8 +26,9 @@ export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
 
     const loginFunc = async (params: any) => {
         try {
-            await login(params);
+            const result = await login(params);
             setAuthenticated(true);
+            return Promise.resolve(result);
         } catch (error) {
             setAuthenticated(false);
             throw error;

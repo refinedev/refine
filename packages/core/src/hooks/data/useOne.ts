@@ -21,7 +21,7 @@ export const useOne = <
 ): QueryObserverResult<GetOneResponse<TData>> => {
     const { getOne } = useContext<IDataContext>(DataContext);
     const translate = useTranslate();
-    const checkError = useCheckError();
+    const { mutate: checkError } = useCheckError();
 
     const queryResponse = useQuery<GetOneResponse<TData>, TError>(
         [`resource/getOne/${resource}`, { id }],
@@ -29,7 +29,7 @@ export const useOne = <
         {
             ...options,
             onError: (err: TError) => {
-                checkError?.(err);
+                checkError(err);
                 if (options?.onError) {
                     options.onError(err);
                 }

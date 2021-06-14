@@ -26,11 +26,11 @@ export interface ILoginForm {
 
 export const LoginPage: React.FC = () => {
     const [form] = Form.useForm();
-    const login = useLogin();
+
+    const { mutate: login } = useLogin<ILoginForm>();
 
     const onSubmit = async (values: ILoginForm) => {
-        console.log(values);
-        login(values).catch(() => false);
+        login(values);
     };
 
     const CardTitle = (

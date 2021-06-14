@@ -12,19 +12,19 @@ const App: React.FC = () => {
     const API_URL = "https://refine-fake-ecommerce.pankod.com";
     const dataProvider = jsonServerDataProvider(API_URL);
 
-    const { t, i18n } = useTranslation();
+    /* const { t, i18n } = useTranslation(); */
 
-    const i18nProvider = {
+    /*  const i18nProvider = {
         translate: (key: string, params: object) => t(key, params),
         changeLocale: (lang: string) => i18n.changeLanguage(lang),
         getLocale: () => i18n.language,
-    };
+    }; */
 
     return (
         <Admin
             dataProvider={dataProvider}
             authProvider={authProvider}
-            i18nProvider={i18nProvider}
+            /* i18nProvider={i18nProvider} */
             Header={Header}
             Title={Title}
             DashboardPage={DashbaordPage}
