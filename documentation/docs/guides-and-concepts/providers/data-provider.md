@@ -7,36 +7,39 @@ sidebar_label: Data Provider
 import dpFlow from '@site/static/img/guides-and-concepts/providers/data-provider/flow.png';
 
 
-## Overwiew
+## Overview
 
 A data provider is the place where a refine app communicates with an API.  
-Data providers can also be defined as adapters for refine making it possible to consume different API's and data services conveniently.  
-It makes HTTP requests and returns response data back using predefined methods.
+Data providers also act as adapters for refine making it possible to consume different API's and data services conveniently.  
+A data provider makes HTTP requests and returns response data back using predefined methods.
 
 
-Data provider must include following methods:
+A data provider must include following methods:
 
 ```tsx
-create: (resource, params) => Promise,
-createMany: (resource, params) => Promise,
-deleteOne: (resource, id) => Promise,
-deleteMany: (resource, ids) => Promise,
-getList: (resource, params) => Promise,
-getMany: (resource, ids) => Promise,
-getOne: (resource, id) => Promise,
-update: (resource, id, params) => Promise,
-updateMany: (resource, ids, params) => Promise,
-custom: (url, method, params = {}) => Promise,
-getApiUrl: () => "",
+const dataProvider = {
+    create: (resource, params) => Promise,
+    createMany: (resource, params) => Promise,
+    deleteOne: (resource, id) => Promise,
+    deleteMany: (resource, ids) => Promise,
+    getList: (resource, params) => Promise,
+    getMany: (resource, ids) => Promise,
+    getOne: (resource, id) => Promise,
+    update: (resource, id, params) => Promise,
+    updateMany: (resource, ids, params) => Promise,
+    custom: (url, method, params = {}) => Promise,
+    getApiUrl: () => "",
+}
 ```
 
 
 <br/>
 
+:::important
 **refine** consumes this methods using [data hooks](#guides-and-concepts/hooks/data/useCreate).
 
 Data hooks are used to operate CRUD actions like creating a new record, listing a resource or deleting a record etc..
-
+:::
 
 :::note
 Data hooks uses [React Query](https://react-query.tanstack.com/) to manage data fetching. React Query handles important concerns like caching, invalidation, loading states etc..
@@ -61,13 +64,11 @@ To activate data provider in refine, we have to pass the `dataProvider` to `<Adm
 
 ```tsx title="src/App.tsx"
 import { Admin } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
-
-const API_URL = "https://refine-fake-rest.pankod.com";
+import dataProvider from "./dataProvider";
 
 const App: React.FC = () => {
     return (
-        <Admin dataProvider={dataProvider(API_URL)}>
+        <Admin dataProvider={dataProvider}>
            ...
         </Admin>
     );
@@ -75,15 +76,89 @@ const App: React.FC = () => {
 ```
 
 
+## Creating a data provider
+We'll build **"Simple REST Dataprovider"** of `@pankod/refine-json-server` from scratch to show the logic of how data provider methods interact with the API.
 
-We'll build `@pankod/refine-json-server` data provider from scratch to show the logic of how data provider methods interact with the API.
+We will provide you a fully working, *fake REST API* located at https://api.fake-rest.refine.dev . You may take a look at available [resources and routes of the API](https://api.fake-rest.refine.dev) before proceeding to the next step.  
+Our **"Simple REST Dataprovider"** will be consuming this *Fake REST API*.
 
- 
-Let's start by create `getList` method.
+
+:::note
+Fake REST API is based on [JSON Server Project](https://github.com/typicode/json-server). **Simple REST Dataprovider** is fully compatible with the REST rules and methods of the **JSON Server**.
+:::
+
+:::note
+**refine** includes many out-of-the-box data providers to use in your projects like
+
+* Simple REST API
+* NestJS CRUD
+* Strapi etc.
+:::
+
+<br />
+
+First let's build a method that returns our data provider. 
+```ts title="@pankod/refine-json-server/src/index.ts"
+import axios, { AxiosInstance } from "axios";
+import { DataProvider } from "./interfaces/dataProvider.ts";
+
+const axiosInstance = axios.create();
+
+const SimpleRestDataProvider = (
+    apiUrl: string,
+    httpClient: AxiosInstance = axiosInstance,
+): DataProvider => ({
+    create: (resource, params) => Promise,
+    createMany: (resource, params) => Promise,
+    deleteOne: (resource, id) => Promise,
+    deleteMany: (resource, ids) => Promise,
+    getList: (resource, params) => Promise,
+    getMany: (resource, ids) => Promise,
+    getOne: (resource, id) => Promise,
+    update: (resource, id, params) => Promise,
+    updateMany: (resource, ids, params) => Promise,
+    custom: (url, method, params = {}) => Promise,
+    getApiUrl: () => "",
+})
+```
+> [Refer to types section for types used](#types)
+
+It will take the API URL as a parameter and an optional HTTP client. We will use **axios** as default HTTP client.
+
+<br/>
+
+### `create`
+
+Creates a single item in a resource.
+
+```tsx title="@pankod/refine-json-server/src/index.ts"
+create: async (resource, params) => {
+    const url = `${apiUrl}/${resource}`;
+
+    const { data } = await httpClient.post(url, params);
+
+    return {
+        data,
+    };
+},
+```
+
+```ts title="useCreate.ts"
+create("posts", { title: "Hello World", status: "approved"})
+/*
+    {
+        data: { id: 1, title: "Hello World", status: "approved" }
+    }
+*/
+```
+
+```ts
+const { mutate, isLoading, data } = useCreate()
+```
 
 ### `getList`
 
-It's used to get collection of resource.
+It's used to retrieve a collection of items in A resource.
 
 ```tsx title="@pankod/refine-json-server/src/index.ts"
 const JsonServer = (
@@ -106,7 +181,7 @@ const JsonServer = (
     },
 
     ...
-)
+})
 ```
 
 ```ts

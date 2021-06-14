@@ -83,8 +83,6 @@ const App: React.FC = () => {
         );
     };
 
-    const hede: any = 1;
-
     return (
         <Admin
             authProvider={authProvider}
