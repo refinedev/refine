@@ -24,16 +24,15 @@ export const PostList: React.FC = () => {
             <Table {...tableProps} key="id">
                 <Table.Column key="id" dataIndex="id" title="ID" />
                 <Table.Column key="title" dataIndex="title" title="Title" />
-                //highlight-start
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
                     key="actions"
                     render={(_value, record) => (
+                        //highlight-next-line
                         <DeleteButton size="small" recordItemId={record.id} />
                     )}
                 />
-                //highlight-end
             </Table>
         </List>
     );
@@ -63,7 +62,7 @@ When click it opens the confirmation window for confirming like this:
 
 ### `recordItemId`
 
-`recordItemId` allows us to manage which data is deleted.
+`recordItemId` allows us to manage which record will delete.
 
 ```tsx
 import { DeleteButton } from "@pankod/refine";
@@ -184,8 +183,8 @@ export const PostList: React.FC = () => {
 | Property     | Description                                                                                  | Type                                                                                                                           | Default                                                                        |
 | ------------ | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | props        | Ant Design button props                                                                      | [`ButtonProps`](https://ant.design/components/button/#API) & [`DeleteButtonProps`](../../../interfaces.md#delete-button-props) |                                                                                |
-| resourceName | Determines which resource to use for delete                                                  | `string`                                                                                                                       | Resource name acquired from route                                              |
-| recordItemId | Determines which id to use for delete                                                        | `string`                                                                                                                       | Record id acquired from route                                                  |
+| resourceName | Determines which resource to use for delete                                                  | `string`                                                                                                                       | Resource name that it reads from route                                         |
+| recordItemId | Determines which id to use for delete                                                        | `string`                                                                                                                       | Record id that it reads from route                                             |
 | onSuccess    | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful | `(value: DeleteOneResponse) => void`                                                                                           |                                                                                |
 | mutationMode | Determines when mutations are executed.                                                      | `"pessimistic"` \| `"optimistic"` \| `"undoable"`                                                                              |                                                                                |
 | children     | Set the button text                                                                          | `ReactNode`                                                                                                                    | `"Delete"`                                                                     |
