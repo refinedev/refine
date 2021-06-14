@@ -9,7 +9,7 @@ import { Header, Title } from "components";
 import "i18n";
 
 const App: React.FC = () => {
-    const API_URL = "https://refine-fake-ecommerce.pankod.com";
+    const API_URL = "https://api.finefoods.refine.dev";
     const dataProvider = jsonServerDataProvider(API_URL);
 
     /* const { t, i18n } = useTranslation(); */
