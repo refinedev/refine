@@ -19,7 +19,7 @@ siderbar_label: useCustom
 
 Let's make a use case. We need to verify that the header in the post resource is unique. For this, we have an end-point similar to the one below.
 
-```json title="https://refine-fake-rest.pankod.com/posts/unique-check?title=Foo bar"
+```json title="https://api.fake-rest.refine.dev/posts/unique-check?title=Foo bar"
 {
     "isAvailable": true
 }

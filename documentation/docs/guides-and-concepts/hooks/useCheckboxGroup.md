@@ -9,9 +9,9 @@ import basicUsage from '@site/static/img/guides-and-concepts/hooks/useCheckboxGr
 
 ## Usage
 
-We'll demonstrate how to get data at `/tags` endpoint from `https://refine-fake-rest.pankod.com` REST API.
+We'll demonstrate how to get data at `/tags` endpoint from `https://api.fake-rest.refine.dev` REST API.
 
-```ts title="https://refine-fake-rest.pankod.com/tags"
+```ts title="https://api.fake-rest.refine.dev/tags"
 {
     [
         {

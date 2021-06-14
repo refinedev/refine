@@ -11,7 +11,7 @@ description: useOne data hook from refine is a modified version of react-query's
 
 Let's say we have a `categories` resource
 
-```ts title="https://refine-fake-rest.pankod.com/categories"
+```ts title="https://api.fake-rest.refine.dev/categories"
 {
     [
         {

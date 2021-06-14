@@ -78,6 +78,7 @@ module.exports = {
                             label: "Resource",
                             items: [
                                 "guides-and-concepts/hooks/resource/useMenu",
+                                "guides-and-concepts/hooks/resource/useResource",
                             ],
                         },
                         "guides-and-concepts/hooks/useModalForm",
@@ -101,6 +102,12 @@ module.exports = {
                             items: [
                                 "guides-and-concepts/components/buttons/create-button",
                                 "guides-and-concepts/components/buttons/delete-button",
+                                "guides-and-concepts/components/buttons/refresh-button",
+                                "guides-and-concepts/components/buttons/save-button",
+                                "guides-and-concepts/components/buttons/list-button",
+                                "guides-and-concepts/components/buttons/show-button",
+                                "guides-and-concepts/components/buttons/edit-button",
+                                "guides-and-concepts/components/buttons/clone-button",
                             ],
                         },
                     ],

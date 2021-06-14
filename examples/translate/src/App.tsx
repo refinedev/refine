@@ -7,7 +7,7 @@ import "i18n";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Header } from "components";
 
-const API_URL = "https://refine-fake-rest.pankod.com";
+const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     const { t, i18n } = useTranslation();

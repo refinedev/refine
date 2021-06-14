@@ -1,6 +1,6 @@
 import nock from "nock";
 
-nock("https://refine-nestjs-crud.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.nestjsx-crud.refine.dev:443", { encodedQueryParams: true })
     .get("/posts/6536e986-e500-4933-b154-b51d60d702c2")
     .reply(
         200,

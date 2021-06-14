@@ -62,9 +62,9 @@ jobs:
             --set ingress.tls[0].secretName=${{ env.domain }} \
             --set ingress.tls[0].hosts[0]=${{ env.domain }} \
         env:
-          domain: 'refine.develop.pankod.com'
+          domain: 'develop.refine.dev'
       - name: Send custom variable to Meercode Build
         uses: meercodeio/meercode-custom-variable@0.1.0
         with:
           meercode-token: ${{ secrets.MEERCODE_TOKEN }}
-          url: 'https://refine.develop.pankod.com'
+          url: 'https://develop.refine.dev'

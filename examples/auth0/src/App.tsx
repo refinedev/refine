@@ -8,7 +8,7 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Login } from "pages/login";
 import { Dashboard } from "pages/dashboard";
 
-const API_URL = "https://refine-fake-rest.pankod.com";
+const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     const { isLoading, isAuthenticated, user, logout, getIdTokenClaims } =

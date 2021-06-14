@@ -139,7 +139,7 @@ export const PostList: React.FC = () => {
 
 And it's done. When you click on the button and provide a csv file of the headers `"title","content","status","categoryId","userId"`, it should be mapped and imported. Mapped data is the request payload. Either as part of an array or by itself as part of every request. In our example, it fires 4 `POST` requests like this:
 
-```json title="POST https://refine-fake-rest.pankod.com/posts"
+```json title="POST https://api.fake-rest.refine.dev/posts"
 {
     "title": "dummy title 1",
     "content": "dummy content 1",
