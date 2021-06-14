@@ -3,24 +3,53 @@ id: edit-button
 title: Edit
 ---
 
-import defaultUsage from '@site/static/img/guides-and-concepts/components/buttons/edit/default.png';
+import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/edit/usage.png';
 
 `<EditButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `edit` method from [`useNavigation`](#) under the hood. It can be useful to redirect the app to the edit page route of `<Resource>`.
 
 ## Usage
 
 ```tsx
-import { EditButton } from "@pankod/refine";
+//highlight-next-line
+import { List, Table, EditButton, useTable } from "@pankod/refine";
 
-export const MyEditComponent = () => {
-    return <EditButton />;
+import { IPost } from "interfaces";
+
+export const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+
+    return (
+        <List>
+            <Table {...tableProps} key="id">
+                <Table.Column key="id" dataIndex="id" title="ID" />
+                <Table.Column key="title" dataIndex="title" title="Title" />
+                //highlight-start
+                <Table.Column<IPost>
+                    title="Actions"
+                    dataIndex="actions"
+                    key="actions"
+                    render={(_value, record) => (
+                        <EditButton size="small" recordItemId={record.id} />
+                    )}
+                />
+                //highlight-end
+            </Table>
+        </List>
+    );
 };
+```
+
+```ts
+export interface IPost {
+    id: string;
+    title: string;
+}
 ```
 
 Looks like this:
 
 <div>
-    <img  width="20%" src={defaultUsage} alt="Default Edit Button" />
+    <img  src={tableUsage} alt="Table usage for delete button" />
 </div>
 
 ## Properties
