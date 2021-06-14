@@ -49,6 +49,23 @@ module.exports = {
                         },
                         {
                             type: "category",
+                            label: "Authorization",
+                            items: [
+                                "guides-and-concepts/hooks/auth/useLogin",
+                                "guides-and-concepts/hooks/auth/useLogout",
+                                "guides-and-concepts/hooks/auth/useCheckError",
+                                "guides-and-concepts/hooks/auth/useAuthenticated",
+                                "guides-and-concepts/hooks/auth/useGetIdentity",
+                                "guides-and-concepts/hooks/auth/usePermissions",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Admin",
+                            items: ["guides-and-concepts/hooks/admin/useTitle"],
+                        },
+                        {
+                            type: "category",
                             label: "Translate",
                             items: [
                                 "guides-and-concepts/hooks/translate/useTranslate",
@@ -61,12 +78,8 @@ module.exports = {
                             label: "Resource",
                             items: [
                                 "guides-and-concepts/hooks/resource/useMenu",
+                                "guides-and-concepts/hooks/resource/useResource",
                             ],
-                        },
-                        {
-                            type: "category",
-                            label: "Authorization",
-                            items: ["guides-and-concepts/hooks/auth/useLogout"],
                         },
                         "guides-and-concepts/hooks/useModalForm",
                         "guides-and-concepts/hooks/useDrawerForm",
@@ -83,6 +96,13 @@ module.exports = {
                     type: "category",
                     label: "Components",
                     items: [
+                        {
+                            type: "category",
+                            label: "Buttons",
+                            items: [
+                                "guides-and-concepts/components/buttons/create-button",
+                            ],
+                        },
                         {
                             type: "category",
                             label: "Inputs",

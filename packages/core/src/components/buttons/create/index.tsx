@@ -12,6 +12,7 @@ export type CreateButtonProps = ButtonProps & {
 
 export const CreateButton: FC<CreateButtonProps> = ({
     resourceName,
+    children,
     ...rest
 }) => {
     const translate = useTranslate();
@@ -24,13 +25,8 @@ export const CreateButton: FC<CreateButtonProps> = ({
     };
 
     return (
-        <Button
-            onClick={onButtonClick}
-            type="default"
-            icon={<PlusSquareOutlined />}
-            {...rest}
-        >
-            {translate("buttons.create", "Create")}
+        <Button onClick={onButtonClick} icon={<PlusSquareOutlined />} {...rest}>
+            {children ?? translate("buttons.create", "Create")}
         </Button>
     );
 };

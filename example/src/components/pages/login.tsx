@@ -22,11 +22,11 @@ export const LoginPage: React.FC = () => {
     const { Title } = Typography;
 
     const [form] = Form.useForm();
-    const login = useLogin();
+    const { mutate: login } = useLogin();
     const translate = useTranslate();
 
     const onSubmit = async (values: ILoginForm) => {
-        login(values).catch(() => false);
+        login(values);
     };
 
     return (
