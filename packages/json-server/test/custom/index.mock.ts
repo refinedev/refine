@@ -1,6 +1,6 @@
 import nock from "nock";
 
-nock("https://refine-fake-rest.pankod.com:443", {
+nock("https://api.fake-rest.refine.dev:443", {
     encodedQueryParams: true,
 })
     .get("/users")
@@ -993,7 +993,7 @@ nock("https://refine-fake-rest.pankod.com:443", {
         ],
     );
 
-nock("https://refine-fake-rest.pankod.com:443", {
+nock("https://api.fake-rest.refine.dev:443", {
     encodedQueryParams: true,
 })
     .post("/users", {
@@ -1039,7 +1039,7 @@ nock("https://refine-fake-rest.pankod.com:443", {
             "Access-Control-Expose-Headers",
             "Location",
             "Location",
-            "http://refine-fake-rest.pankod.com/users/51",
+            "http://api.fake-rest.refine.dev/users/51",
             "X-Content-Type-Options",
             "nosniff",
             "ETag",
@@ -1047,7 +1047,7 @@ nock("https://refine-fake-rest.pankod.com:443", {
         ],
     );
 
-nock("https://refine-fake-rest.pankod.com:443", {
+nock("https://api.fake-rest.refine.dev:443", {
     encodedQueryParams: true,
 })
     .get("/users")
@@ -2040,7 +2040,7 @@ nock("https://refine-fake-rest.pankod.com:443", {
         ],
     );
 
-nock("https://refine-fake-rest.pankod.com:443", {
+nock("https://api.fake-rest.refine.dev:443", {
     encodedQueryParams: true,
 })
     .get("/users")

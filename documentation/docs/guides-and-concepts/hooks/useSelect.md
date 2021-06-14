@@ -10,9 +10,9 @@ import search from '@site/static/img/guides-and-concepts/hooks/useSelect/search.
 
 ## Usage
 
-We'll demonstrate how to get data at `/categories` endpoint from `https://refine-fake-rest.pankod.com` REST API.
+We'll demonstrate how to get data at `/categories` endpoint from `https://api.fake-rest.refine.dev` REST API.
 
-```ts title="https://refine-fake-rest.pankod.com/categories"
+```ts title="https://api.fake-rest.refine.dev/categories"
 {
     [
         {
