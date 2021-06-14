@@ -30,8 +30,20 @@ const App: React.FC = () => {
             Title={Title}
             DashboardPage={DashbaordPage}
         >
-            <Resource name="orders" list={OrderList} />
-            <Resource name="users" list={UserList} />
+            <Resource
+                options={{
+                    label: t("fine-foods:orders.title"),
+                }}
+                name="orders"
+                list={OrderList}
+            />
+            <Resource
+                options={{
+                    label: t("fine-foods:users.title"),
+                }}
+                name="users"
+                list={UserList}
+            />
         </Admin>
     );
 };

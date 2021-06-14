@@ -29,5 +29,19 @@
     "on the way": "On the way",
     "delivered": "Delivered",
     "could not be delivered": "Could not be delivered"
+  },
+  "orders": {
+    "title": "Orders",
+    "fields": {
+      "id": "ID",
+      "createdAt": "CreatedAt"
+    }
+  },
+  "users": {
+    "title": "Users",
+    "fields": {
+      "id": "ID",
+      "createdAt": "CreatedAt"
+    }
   }
 }
