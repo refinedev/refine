@@ -1,7 +1,3 @@
-export interface IPost {
-    id: string;
-}
-
 export interface IOrderChart {
     count: number;
     status:

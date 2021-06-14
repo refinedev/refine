@@ -3,7 +3,8 @@ import "styles/antd.less";
 import jsonServerDataProvider from "@pankod/refine-json-server";
 import { authProvider } from "authProvider";
 import { DashbaordPage } from "./pages/dashboard";
-import { PostList, PostCreate, PostEdit } from "./pages/posts";
+import { OrderList } from "./pages/orders";
+import { UserList } from "./pages/users";
 import { useTranslation } from "react-i18next";
 import { Header, Title } from "components";
 import "i18n";
@@ -29,14 +30,8 @@ const App: React.FC = () => {
             Title={Title}
             DashboardPage={DashbaordPage}
         >
-            <Resource
-                name="posts"
-                list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
-            />
-            <Resource name="orders" />
-            <Resource name="users" />
+            <Resource name="orders" list={OrderList} />
+            <Resource name="users" list={UserList} />
         </Admin>
     );
 };
