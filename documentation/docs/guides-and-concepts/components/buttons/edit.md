@@ -23,16 +23,15 @@ export const PostList: React.FC = () => {
             <Table {...tableProps} key="id">
                 <Table.Column key="id" dataIndex="id" title="ID" />
                 <Table.Column key="title" dataIndex="title" title="Title" />
-                //highlight-start
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
                     key="actions"
                     render={(_value, record) => (
+                        //highlight-next-line
                         <EditButton size="small" recordItemId={record.id} />
                     )}
                 />
-                //highlight-end
             </Table>
         </List>
     );
@@ -56,7 +55,7 @@ Looks like this:
 
 ### `recordItemId`
 
-`recordItemId` is used to append the record id to the end of the path.
+`recordItemId` is used to append the record id to the end of the route path.
 
 ```tsx
 import { EditButton } from "@pankod/refine";
@@ -93,8 +92,8 @@ Clicking the button will trigger the `edit` method of [`useNavigation`](#) and t
 | Property     | Description                                   | Type                                                                                                             | Default                                                       |
 | ------------ | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
 | props        | Ant Design button props                       | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; recordItemId?: string; }` |                                                               |
-| resourceName | Determines which resource to use for redirect | `string`                                                                                                         | Resource name acquired from route                             |
-| recordItemId | Add `id` to the end of the URL                | `string`                                                                                                         | Record id acquired from route                                 |
+| resourceName | Determines which resource to use for redirect | `string`                                                                                                         | Resource name that it reads from route                             |
+| recordItemId | Add `id` to the end of the URL                | `string`                                                                                                         | Record id that it reads from route                                 |
 | children     | Set the button text                           | `ReactNode`                                                                                                      | `"Edit"`                                                      |
 | icon         | Set the icon component of button              | `ReactNode`                                                                                                      | [`<EditOutlined />`](https://ant.design/components/icon/)     |
 | onClick      | Set the handler to handle click event         | `(event) => void`                                                                                                | Triggers navigation for redirect to the edit page of resource |
