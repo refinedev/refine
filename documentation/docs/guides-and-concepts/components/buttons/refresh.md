@@ -3,24 +3,52 @@ id: refresh-button
 title: Refresh
 ---
 
-import defaultUsage from '@site/static/img/guides-and-concepts/components/buttons/refresh/default.png';
+import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/refresh/usage.png';
 
 `<RefreshButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It executes the [`useOne`](../../hooks/data/useOne.md) method provided by your dataProvider.
 
 ## Usage
 
 ```tsx
-import { RefreshButton } from "@pankod/refine";
+//highlight-next-line
+import { useShow, Show, Typography, RefreshButton } from "@pankod/refine";
 
-export const MyRefreshComponent = () => {
-    return <RefreshButton />;
+import { IPost } from "interfaces";
+
+const { Title, Text } = Typography;
+
+export const PostShow: React.FC = () => {
+    const { queryResult } = useShow<IPost>();
+    const { data, isLoading } = queryResult;
+    const record = data?.data;
+
+    return (
+        <Show
+            isLoading={isLoading}
+            //highlight-next-line
+            pageHeaderProps={{ extra: <RefreshButton /> }}
+        >
+            <Title level={5}>Id</Title>
+            <Text>{record?.id}</Text>
+
+            <Title level={5}>Title</Title>
+            <Text>{record?.title}</Text>
+        </Show>
+    );
 };
+```
+
+```ts
+export interface IPost {
+    id: string;
+    title: string;
+}
 ```
 
 Looks like this:
 
 <div>
-    <img  width="20%" src={defaultUsage} alt="Default Refresh Button" />
+    <img src={tableUsage} alt="Default Refresh Button" />
 </div>
 
 ## Properties
