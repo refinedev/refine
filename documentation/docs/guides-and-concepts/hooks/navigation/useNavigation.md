@@ -15,9 +15,12 @@ const { create, edit, clone, show, list, push, replace, goBack } = useNavigation
 
 
 ### Usage
-We will make a button for each method to use. First, let's imagine that we have a post list and we want to be redirected to this page. To do this we will use the list hook.
+We will make a button for each method to use.
 
 ## List
+
+Let's imagine that we have a post list and we want to be redirected to this page. To do this we will use the list hook.
+
 ```tsx
 import { Button } from "antd";
 //highlight-next-line
@@ -70,7 +73,7 @@ export const MyCreateButton = () => {
 
 ### Edit
 
-Now let's see what we should do if we want to go to the editing page of one of our posts.
+Let's see what we should do if we want to go to the editing page of one of our posts.
 
 ```tsx
 import { Button } from "antd";
@@ -86,7 +89,7 @@ export const MyEditButton = () => {
         <Button
             onClick={(): void =>
                 //highlight-next-line
-                edit("posts", "push", "1")
+                edit("posts", "1")
             }
         >
             Navigate to Edit Page
@@ -106,7 +109,7 @@ You can also give a `type` property to the methods. You can look here to see the
 
 ### Show
 
-Next up we have the `show`. Do you want to show more than the information shown on the page with our posts, this is where "show" comes into play. Let's look at our example to drill down on any post and remember we'll still need an `id` property!
+If you want to show the detail of your posts you can use show and you need `id` for show.
 
 ```tsx
 import { Button } from "antd";
@@ -122,7 +125,7 @@ export const MyShowButton = () => {
         <Button
             onClick={(): void =>
                 //highlight-next-line
-                show("posts", "push", "1")
+                show("posts", "1")
             }
         >
             Navigate to Show Page
@@ -130,12 +133,17 @@ export const MyShowButton = () => {
     );
 };
 ```
+
+:::caution Attention
+There is something we should pay attention to here. We need to give the `id` of which post we want to show.
+:::
+
 :::tip
-If you want to return to the post list page. You can use `goBack` hook.
+If you want to return to previous page. You can use `goBack` hook.
 :::
 ### Clone
 
-Finally, if we have the resources to clone a post and we want to go to this page, we will use `clone` with a record id.
+If we have the resources to clone a post and we want to go to this page, we will use `clone` with a record id.
 
 ```tsx
 import { Button } from "antd";
@@ -151,7 +159,7 @@ export const MyCloneButton = () => {
         <Button
             onClick={(): void =>
                 //highlight-next-line
-                show("posts", "push", "1")
+                clone("posts", "1")
             }
         >
             Navigate to Clone Page
@@ -159,6 +167,10 @@ export const MyCloneButton = () => {
     );
 };
 ```
+
+:::caution Attention
+There is something we should pay attention to here. We need to give the `id` of which post we want to clone.
+:::
 
 ### Push, Replace and GoBack
 
