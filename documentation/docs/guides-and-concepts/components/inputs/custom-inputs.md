@@ -3,8 +3,7 @@ id: custom-inputs
 title: Custom Inputs
 ---
 
-import markdownInput from '@site/static/img/guides-and-concepts/custom-inputs/markdown-input.png';
-
+import markdownInput from '@site/static/img/guides-and-concepts/components/inputs/custom-inputs/markdown-input.png';
 
 You can use custom components in table columns and form fields for working with custom data. For some data types, displaying and editing as plain text may cause user experience problems. Examples where custom component usage may be useful include: markdown (with markdown editor), json based rich text (draft, quill like editors), html (a wysiwyg html editor).
 
