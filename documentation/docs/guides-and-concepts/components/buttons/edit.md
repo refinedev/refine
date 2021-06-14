@@ -27,7 +27,7 @@ export const PostList: React.FC = () => {
                     title="Actions"
                     dataIndex="actions"
                     key="actions"
-                    render={(_value, record) => (
+                    render={(_, record) => (
                         //highlight-next-line
                         <EditButton size="small" recordItemId={record.id} />
                     )}
