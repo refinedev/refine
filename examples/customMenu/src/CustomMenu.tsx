@@ -1,24 +1,19 @@
 import React from "react";
-import {
-    AntdLayout,
-    Menu,
-    Link,
-    useMenu,
-    useTitle,
-    Icons,
-    useNavigation,
-    useLogout,
-} from "@pankod/refine";
+
+import { AntdLayout, Menu, Link, useMenu, useTitle } from "@pankod/refine";
 
 export const CustomMenu: React.FC = () => {
+    const [collapsed, setCollapsed] = React.useState(false);
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
-    const logout = useLogout();
-    const { push } = useNavigation();
 
     return (
-        <AntdLayout.Sider>
-            <Title collapsed={false} />
+        <AntdLayout.Sider
+            collapsible
+            collapsed={collapsed}
+            onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
+        >
+            <Title collapsed={collapsed} />
             <Menu
                 theme="dark"
                 defaultSelectedKeys={["dashboard"]}
@@ -30,18 +25,6 @@ export const CustomMenu: React.FC = () => {
                         <Link to={route}>{label}</Link>
                     </Menu.Item>
                 ))}
-
-                {logout && (
-                    <Menu.Item
-                        onClick={() => {
-                            logout().then(() => push("/login"));
-                        }}
-                        key="logout"
-                        icon={<Icons.LogoutOutlined />}
-                    >
-                        Logout
-                    </Menu.Item>
-                )}
             </Menu>
         </AntdLayout.Sider>
     );

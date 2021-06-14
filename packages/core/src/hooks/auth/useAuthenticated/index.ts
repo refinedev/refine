@@ -1,18 +1,15 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
+import { useQuery, UseQueryResult } from "react-query";
 
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
 
-export const useAuthenticated = (): (() => Promise<boolean>) => {
+export const useAuthenticated = (): UseQueryResult<void, unknown> => {
     const { checkAuth } = useContext<IAuthContext>(AuthContext);
 
-    const authenticated = React.useCallback(
-        () =>
-            checkAuth()
-                .then(() => true)
-                .catch(() => false),
-        [],
-    );
+    const queryResponse = useQuery("useAuthenticated", checkAuth, {
+        enabled: !!checkAuth,
+    });
 
-    return authenticated;
+    return queryResponse;
 };

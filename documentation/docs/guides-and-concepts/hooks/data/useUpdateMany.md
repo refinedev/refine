@@ -21,7 +21,7 @@ description: useUpdateMany data hook from refine is a modified version of react-
 
 Let'say we have a `posts` resource
 
-```ts title="https://refine-fake-rest.pankod.com/posts"
+```ts title="https://api.fake-rest.refine.dev/posts"
 {
     [
         {
@@ -56,7 +56,7 @@ mutate({ ids: [ 1, 2 ], values: { status: "draft" } })
 
 After mutation runs `posts` will be updated as below:
 
-```ts title="https://refine-fake-rest.pankod.com/posts"
+```ts title="https://api.fake-rest.refine.dev/posts"
 {
     [
         {

@@ -9,7 +9,7 @@ axios.defaults.adapter = require("axios/lib/adapters/http");
 describe("updateMany", () => {
     it("correct response", async () => {
         const response = await JsonServer(
-            "https://refine-fake-rest.pankod.com",
+            "https://api.fake-rest.refine.dev",
             axios,
         ).updateMany("posts", ["999"], {
             title: "foo",

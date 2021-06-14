@@ -46,7 +46,7 @@ export const useDeleteMany = <
     undoableTimeoutProp?: number,
     onCancel?: (cancelMutation: () => void) => void,
 ): UseDeleteManyReturnType<TData, TError> => {
-    const checkError = useCheckError();
+    const { mutate: checkError } = useCheckError();
     const { deleteMany } = useContext<IDataContext>(DataContext);
     const {
         mutationMode: mutationModeContext,
@@ -176,7 +176,6 @@ export const useDeleteMany = <
                 });
             },
             onError: (err, { ids }, context) => {
-                checkError?.(err);
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
@@ -190,7 +189,7 @@ export const useDeleteMany = <
                     },
                 });
                 if (err.message !== "mutationCancelled") {
-                    checkError?.(err);
+                    checkError(err);
 
                     notification.error({
                         key: `${ids}-${resource}-notification`,

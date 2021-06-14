@@ -1,6 +1,6 @@
 import nock from "nock";
 
-nock("https://refine-fake-rest.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.fake-rest.refine.dev:443", { encodedQueryParams: true })
     .get("/posts")
     .query({ id: ["1", "2", "3"] })
     .reply(
