@@ -13,7 +13,7 @@ It uses the `getList` method as query function from the `dataProvider` that is p
 
 Let's say we have a `posts` resource
 
-```ts title="https://refine-fake-rest.pankod.com/posts"
+```ts title="https://api.fake-rest.refine.dev/posts"
 {
     [
         {

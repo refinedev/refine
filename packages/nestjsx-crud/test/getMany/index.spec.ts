@@ -8,7 +8,7 @@ axios.defaults.adapter = require("axios/lib/adapters/http");
 describe("getMany", () => {
     it("correct response", async () => {
         const { data } = await JsonServer(
-            "https://refine-nestjs-crud.pankod.com",
+            "https://api.nestjsx-crud.refine.dev",
             axios,
         ).getMany("posts", [
             "6536e986-e500-4933-b154-b51d60d702c2",

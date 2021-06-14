@@ -5,7 +5,7 @@ import "@pankod/refine/dist/styles.min.css";
 import { PostList } from "pages/posts";
 import React from "react";
 
-const API_URL = "https://refine-fake-rest.pankod.com";
+const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (

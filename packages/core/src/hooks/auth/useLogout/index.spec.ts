@@ -20,7 +20,7 @@ describe("useLogout Hook", () => {
     it("logout and redirect to login", async () => {
         const logoutMock = jest.fn();
 
-        const { result } = renderHook(() => useLogout(), {
+        const { result, waitFor } = renderHook(() => useLogout(), {
             wrapper: TestWrapper({
                 authProvider: {
                     isProvided: true,
@@ -34,8 +34,15 @@ describe("useLogout Hook", () => {
             }),
         });
 
+        const { mutate: logout } = result.current!;
+
+        await logout();
+
+        await waitFor(() => {
+            return !result.current?.isLoading;
+        });
+
         await act(async () => {
-            await result.current!();
             expect(logoutMock).toBeCalledTimes(1);
         });
     });
@@ -43,7 +50,7 @@ describe("useLogout Hook", () => {
     it("logout and redirect to custom path", async () => {
         const logoutMock = jest.fn();
 
-        const { result } = renderHook(() => useLogout(), {
+        const { result, waitFor } = renderHook(() => useLogout(), {
             wrapper: TestWrapper({
                 authProvider: {
                     isProvided: true,
@@ -57,15 +64,22 @@ describe("useLogout Hook", () => {
             }),
         });
 
+        const { mutate: logout } = result.current!;
+
+        await logout({ redirectPath: "/custom-path" });
+
+        await waitFor(() => {
+            return !result.current?.isLoading;
+        });
+
         await act(async () => {
-            await result.current!({}, "/test");
             expect(logoutMock).toBeCalledTimes(1);
-            expect(mHistory.push).toBeCalledWith("/test");
+            expect(mHistory.push).toBeCalledWith("/custom-path");
         });
     });
 
     it("logout rejected", async () => {
-        const { result } = renderHook(() => useLogout(), {
+        const { result, waitFor } = renderHook(() => useLogout(), {
             wrapper: TestWrapper({
                 authProvider: {
                     isProvided: true,
@@ -79,48 +93,16 @@ describe("useLogout Hook", () => {
             }),
         });
 
-        await act(async () => {
-            try {
-                await result.current!();
-            } catch (error) {
-                expect(error).toEqual(new Error("Logout rejected"));
-            }
-        });
-    });
+        const { mutate: logout } = result.current!;
 
-    it("should return null if isProvided from AdminContext is false", () => {
-        const { result } = renderHook(() => useLogout(), {
-            wrapper: TestWrapper({
-                authProvider: {
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve(),
-                    getUserIdentity: () => Promise.resolve(),
-                    isProvided: false,
-                },
-            }),
+        await logout();
+
+        await waitFor(() => {
+            return !result.current?.isLoading;
         });
 
-        expect(result.current).toBeNull();
-    });
+        const { error } = result.current!;
 
-    it("shoudn't return null if isProvided from AdminContext is true", () => {
-        const { result } = renderHook(() => useLogout(), {
-            wrapper: TestWrapper({
-                authProvider: {
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve(),
-                    getUserIdentity: () => Promise.resolve(),
-                    isProvided: true,
-                },
-            }),
-        });
-
-        expect(result.current).not.toBeNull();
+        expect(error).toEqual(new Error("Logout rejected"));
     });
 });

@@ -11,7 +11,7 @@ export const RouteChangeHandler: FC = () => {
     const location = useLocation();
 
     useEffect(() => {
-        checkAuth();
+        checkAuth().catch(() => false);
         setWarnWhen(false);
     }, [location.pathname]);
 
