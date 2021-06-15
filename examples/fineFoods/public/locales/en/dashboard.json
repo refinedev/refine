@@ -1,0 +1,24 @@
+{
+  "deliveryMap": {
+    "title": "Delivery Map"
+  },
+  "upcomingDeliverySchedule": {
+    "title": "Upcoming Delivery Schedule"
+  },
+  "orders": {
+    "title": "Orders"
+  },
+  "totalSales": {
+    "title": "Total Sales"
+  },
+  "orderCountCard": {
+    "totalOrder": "Total Order",
+    "totalDelivered": "Total Delivered"
+  },
+  "dailyRevenue": {
+    "title": "Daily Revenue"
+  },
+  "recentActivity": {
+    "title": "Recent Activity"
+  }
+}
