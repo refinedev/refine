@@ -16,7 +16,7 @@ export const useNavigation = () => {
             : history.replace(`/resources/${resourceName.route}/create`);
     };
 
-    const edit = (resource: string, type: HistoryType = "push", id: string) => {
+    const edit = (resource: string, id: string, type: HistoryType = "push") => {
         const resourceName = resourceWithRoute(resource);
 
         type === "push"
@@ -26,8 +26,8 @@ export const useNavigation = () => {
 
     const clone = (
         resource: string,
-        type: HistoryType = "push",
         id: string,
+        type: HistoryType = "push",
     ) => {
         const resourceName = resourceWithRoute(resource);
 
@@ -36,7 +36,7 @@ export const useNavigation = () => {
             : history.replace(`/resources/${resourceName.route}/create/${id}`);
     };
 
-    const show = (resource: string, type: HistoryType = "push", id: string) => {
+    const show = (resource: string, id: string, type: HistoryType = "push") => {
         const resourceName = resourceWithRoute(resource);
 
         type === "push"

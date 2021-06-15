@@ -1,6 +1,11 @@
 module.exports = {
     someSidebar: [
         {
+            type: "category",
+            label: "Getting Started",
+            items: ["getting-started/overview"],
+        },
+        {
             type: "doc",
             id: "tutorial",
         },
@@ -81,6 +86,18 @@ module.exports = {
                                 "guides-and-concepts/hooks/resource/useResource",
                             ],
                         },
+                        {
+                            type: "category",
+                            label: "Authorization",
+                            items: ["guides-and-concepts/hooks/auth/useLogout"],
+                        },
+                        {
+                            type: "category",
+                            label: "Navigation",
+                            items: [
+                                "guides-and-concepts/hooks/navigation/useNavigation",
+                            ],
+                        },
                         "guides-and-concepts/hooks/useModalForm",
                         "guides-and-concepts/hooks/useDrawerForm",
                         "guides-and-concepts/hooks/useStepsForm",
@@ -101,6 +118,15 @@ module.exports = {
                             label: "Buttons",
                             items: [
                                 "guides-and-concepts/components/buttons/create-button",
+                                "guides-and-concepts/components/buttons/import-button",
+                                "guides-and-concepts/components/buttons/export-button",
+                                "guides-and-concepts/components/buttons/delete-button",
+                                "guides-and-concepts/components/buttons/refresh-button",
+                                "guides-and-concepts/components/buttons/save-button",
+                                "guides-and-concepts/components/buttons/list-button",
+                                "guides-and-concepts/components/buttons/show-button",
+                                "guides-and-concepts/components/buttons/edit-button",
+                                "guides-and-concepts/components/buttons/clone-button",
                             ],
                         },
                     ],
@@ -108,7 +134,10 @@ module.exports = {
                 {
                     type: "category",
                     label: "Fields",
-                    items: ["guides-and-concepts/fields/markdown"],
+                    items: [
+                        "guides-and-concepts/fields/markdown",
+                        "guides-and-concepts/fields/boolean",
+                    ],
                 },
                 "guides-and-concepts/multipart-upload",
                 "guides-and-concepts/uploading-base64",

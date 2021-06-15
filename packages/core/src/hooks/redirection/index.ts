@@ -24,11 +24,11 @@ export const useRedirectionAfterSubmission: UseRedirectionAfterSubmissionType =
             }) => {
                 if (redirect && resource.route) {
                     if (resource.canShow && redirect === "show" && id) {
-                        return show(resource.route, "push", id);
+                        return show(resource.route, id);
                     }
 
                     if (resource.canEdit && redirect === "edit" && id) {
-                        return edit(resource.route, "push", id);
+                        return edit(resource.route, id);
                     }
 
                     return list(resource.route, "push");
