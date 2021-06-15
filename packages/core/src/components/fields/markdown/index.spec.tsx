@@ -14,4 +14,13 @@ describe("MarkdownField", () => {
         expect(container.querySelector("strong")).toBeTruthy();
         getByText("MarkdownField Test");
     });
+    it("render markdown with undefined value should show empty string", () => {
+        const { container } = render(
+            <div data-testid="custom-field">
+                <MarkdownField value={undefined} />
+            </div>,
+        );
+
+        expect(container).toBeTruthy();
+    });
 });
