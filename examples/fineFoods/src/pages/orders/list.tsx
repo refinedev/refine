@@ -101,31 +101,50 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
     return (
         <Row gutter={[16, 16]}>
             <Col md={5}>
-                <Card title="Filter">
+                <Card title={t("orders:filter.title")}>
                     <Form layout="vertical" {...formProps}>
-                        <Form.Item label="Search" name="q">
-                            <Input prefix={<Icons.SearchOutlined />} />
+                        <Form.Item
+                            label={t("orders:filter.search.label")}
+                            name="q"
+                        >
+                            <Input
+                                placeholder={t(
+                                    "orders:filter.search.placeholder",
+                                )}
+                                prefix={<Icons.SearchOutlined />}
+                            />
                         </Form.Item>
-                        <Form.Item label="Store" name="store">
+                        <Form.Item
+                            label={t("orders:filter.store.label")}
+                            name="store"
+                        >
                             <Select
                                 {...storeSelectProps}
                                 allowClear
-                                placeholder="Search Stores"
+                                placeholder={t(
+                                    "orders:filter.store.placeholder",
+                                )}
                             />
                         </Form.Item>
-                        <Form.Item label="User" name="user">
+                        <Form.Item
+                            label={t("orders:filter.user.label")}
+                            name="user"
+                        >
                             <Select
                                 {...userSelectProps}
                                 allowClear
-                                placeholder="Search Users"
+                                placeholder={t("orders:filter.title")}
                             />
                         </Form.Item>
-                        <Form.Item label="Created At" name="createdAt">
+                        <Form.Item
+                            label={t("orders:filter.createdAt.label")}
+                            name="createdAt"
+                        >
                             <RangePicker />
                         </Form.Item>
                         <Form.Item>
                             <Button htmlType="submit" type="primary">
-                                Filter
+                                {t("orders:filter.submit")}
                             </Button>
                         </Form.Item>
                     </Form>

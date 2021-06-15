@@ -6,6 +6,26 @@
     "store": "Store",
     "user": "User",
     "products": "Products",
-    "createdAt": "CreatedAt"
+    "createdAt": "CreatedAt",
+    "amount": "Amount"
+  },
+  "filter": {
+    "title": "Filters",
+    "search": {
+      "label": "Search",
+      "placeholder": "Order Number, User, etc."
+    },
+    "store": {
+      "label": "Store",
+      "placeholder": "Search Stores"
+    },
+    "user": {
+      "label": "User",
+      "placeholder": "Search Users"
+    },
+    "createdAt": {
+      "label": "Created At"
+    },
+    "submit": "Filter"
   }
 }
