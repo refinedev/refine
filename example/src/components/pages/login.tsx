@@ -9,9 +9,8 @@ import {
     Input,
     Button,
     useTranslate,
+    useLogin,
 } from "@pankod/refine";
-
-import { useLogin } from "@pankod/refine";
 
 export interface ILoginForm {
     username: string;

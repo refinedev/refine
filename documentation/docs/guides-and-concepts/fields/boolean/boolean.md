@@ -1,5 +1,0 @@
----
-id: boolean
-title: Boolean
-
----
