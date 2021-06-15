@@ -1,6 +1,11 @@
 module.exports = {
     someSidebar: [
         {
+            type: "category",
+            label: "Getting Started",
+            items: ["getting-started/overview"],
+        },
+        {
             type: "doc",
             id: "tutorial",
         },
