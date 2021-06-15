@@ -20,9 +20,13 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                 order: "asc",
             },
         ],
-        initialFilter: {
-            status: ["draft"],
-        },
+        initialFilter: [
+            {
+                field: "status",
+                operator: "eq",
+                value: "draft",
+            },
+        ],
         syncWithLocation: true,
     });
 

@@ -1,6 +1,11 @@
 module.exports = {
     someSidebar: [
         {
+            type: "category",
+            label: "Getting Started",
+            items: ["getting-started/overview"],
+        },
+        {
             type: "doc",
             id: "tutorial",
         },
@@ -81,6 +86,18 @@ module.exports = {
                                 "guides-and-concepts/hooks/resource/useResource",
                             ],
                         },
+                        {
+                            type: "category",
+                            label: "Authorization",
+                            items: ["guides-and-concepts/hooks/auth/useLogout"],
+                        },
+                        {
+                            type: "category",
+                            label: "Navigation",
+                            items: [
+                                "guides-and-concepts/hooks/navigation/useNavigation",
+                            ],
+                        },
                         "guides-and-concepts/hooks/useModalForm",
                         "guides-and-concepts/hooks/useDrawerForm",
                         "guides-and-concepts/hooks/useStepsForm",
@@ -113,6 +130,11 @@ module.exports = {
                             ],
                         },
                     ],
+                },
+                {
+                    type: "category",
+                    label: "Fields",
+                    items: ["guides-and-concepts/fields/boolean"],
                 },
                 "guides-and-concepts/multipart-upload",
                 "guides-and-concepts/uploading-base64",
