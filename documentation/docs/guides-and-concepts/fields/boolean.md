@@ -11,7 +11,7 @@ This field is used to display boolean values and uses tooltip values from ant-de
 
 # Usage
 
-Let's see how to use `BooleanField` with the example in the post list.
+Let's see how to use `<BooleanField>` with the example in the post list.
 
 ```tsx
 import { List, Table, BooleanField, Icons } from "@pankod/refine";
