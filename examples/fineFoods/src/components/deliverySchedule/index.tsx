@@ -44,7 +44,7 @@ export const DeliverySchedule: React.FC = () => {
                 return <span>loading...</span>;
             }
 
-            return `${user.name} ${user.surname}`;
+            return user.fullName;
         };
 
         return (

@@ -31,8 +31,9 @@ export interface IOrderStatus {
 
 export interface IUser {
     id: string;
-    name: string;
-    surname: string;
+    firstName: string;
+    lastName: string;
+    fullName: string;
     gender: string;
     gsm: string;
     createdAt: string;
