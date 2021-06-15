@@ -3,7 +3,7 @@ id: email
 title: Email
 ---
 
-import emailField from '@site/static/img/guides-and-concepts/fields/email/emailfield.png'
+import emailField from '@site/static/img/guides-and-concepts/fields/email/emailField.png'
 
 This field is used to display email values and uses [`<Link>`](https://ant.design/components/typography/#FAQ) in `<Typography>` from Ant Design.
 
