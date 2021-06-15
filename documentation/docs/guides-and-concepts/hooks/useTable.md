@@ -2,6 +2,7 @@
 id: useTable
 title: useTable
 ---
+
 import tableSorting from '@site/static/img/guides-and-concepts/hooks/useTable/table-sorting.gif';
 import filters from '@site/static/img/guides-and-concepts/hooks/useTable/filters.gif';
 
@@ -43,22 +44,16 @@ export interface IPost {
 `id`, `title` ve `content` değerlerini gösterdiğimiz bir listeleme sayfası yapmak istersek:
 
 ```tsx title="/src/pages/posts/list.tsx"
-import {
-    List,
-    Table,
-    TextField,
-    useTable,
-    IResourceComponentsProps,
-} from "@pankod/refine";
+import { List, Table, TextField, useTable } from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC = () => {
     //highlight-next-line
     const { tableProps } = useTable<IPost>();
 
     return (
-        <List {...props}>
+        <List>
             //highlight-start
             <Table {...tableProps} key="id">
                 <Table.Column key="id" dataIndex="id" title="ID" />
@@ -86,21 +81,15 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
 Bir sütuna sıralama özelliği eklemek için, ilgili `<Table.Column>` componentine [sorter](https://ant.design/components/table/#components-table-demo-head) propu verilir.
 
 ```tsx title="/src/pages/posts/list.tsx"
-import {
-    List,
-    Table,
-    TextField,
-    useTable,
-    IResourceComponentsProps,
-} from "@pankod/refine";
+import { List, Table, TextField, useTable } from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     return (
-        <List {...props}>
+        <List>
             <Table {...tableProps} key="id">
                 <Table.Column
                     key="id"
@@ -179,13 +168,12 @@ import {
     TagField,
     //highlight-end
     useTable,
-    IResourceComponentsProps,
     getDefaultSortOrder,
 } from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC = () => {
     const { tableProps, sorter } = useTable<IPost>({
         initialSorter: [
             {
@@ -196,7 +184,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     });
 
     return (
-        <List {...props}>
+        <List>
             <Table {...tableProps} key="id">
                 <Table.Column key="id" dataIndex="id" title="ID" sorter />
                 <Table.Column
@@ -271,13 +259,12 @@ import {
     //highlight-next-line
     getDefaultFilter,
     useTable,
-    IResourceComponentsProps,
     getDefaultSortOrder,
 } from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC = () => {
     //highlight-start
     const { tableProps, sorter, filters } = useTable<IPost>({
         initialSorter: [
@@ -293,7 +280,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     //highlight-end
 
     return (
-        <List {...props}>
+        <List>
             <Table {...tableProps} key="id">
                 <Table.Column key="id" dataIndex="id" title="ID" sorter />
                 <Table.Column

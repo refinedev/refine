@@ -9,4 +9,10 @@ describe("TagField", () => {
 
         getByText("true");
     });
+
+    it("renders boolean values correctly", () => {
+        const { queryByText } = render(<TagField value={undefined} />);
+
+        expect(queryByText("true")).toBeNull();
+    });
 });

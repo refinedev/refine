@@ -11,7 +11,7 @@ describe("getMany", () => {
         const response = await JsonServer(
             "https://refine-fake-rest.pankod.com",
             axios,
-        ).getMany("posts", [1, 2, 3]);
+        ).getMany("posts", ["1", "2", "3"]);
 
         const { data } = response;
 

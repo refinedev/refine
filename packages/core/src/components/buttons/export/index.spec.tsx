@@ -1,40 +1,36 @@
 import React from "react";
 
-import { fireEvent, render, TestWrapper } from "@test";
+import { act, fireEvent, render, TestWrapper, MockJSONServer } from "@test";
 import { ExportButton } from "./";
 
 describe("Export Button", () => {
-    const fetchData = jest.fn();
-
     it("should render button successfuly", () => {
-        const exportButton = render(
-            <ExportButton onClick={() => fetchData()} />,
-            {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
-        const { container, getByText } = exportButton;
+        const { findByText } = render(<ExportButton />, {
+            wrapper: TestWrapper({
+                resources: [{ name: "posts" }],
+            }),
+        });
 
-        expect(container).toBeTruthy();
-
-        getByText("Export");
+        findByText("Export");
     });
 
-    it("should render called function successfully if click the button", () => {
-        const exportButton = render(
-            <ExportButton onClick={() => fetchData()} />,
+    it("should export correctly", async () => {
+        window.open = jest.fn();
+
+        const { getByTestId } = render(
+            <ExportButton maxItemCount={1} data-testid="btn" />,
             {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts" }],
+                    dataProvider: MockJSONServer,
                 }),
             },
         );
-        const { getByText } = exportButton;
 
-        fireEvent.click(getByText("Export"));
+        await act(async () => {
+            fireEvent.click(getByTestId("btn"));
+        });
 
-        expect(fetchData).toHaveBeenCalledTimes(1);
+        expect(window.open).toBeCalled();
     });
 });

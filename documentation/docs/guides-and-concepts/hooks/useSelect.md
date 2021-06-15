@@ -8,9 +8,9 @@ import search from '@site/static/img/guides-and-concepts/hooks/useSelect/search.
 
 `useSelect` hook allows you to manage an Ant Design [Select](https://ant.design/components/select/) component when records in a resource needs to be used as select options.
 
-## Example
+## Usage
 
-Let's examine what `useSelect` does, with step-by-step examples. Suppose our `dataProvider` has an endpoint that returns categories as follows.
+We'll demonstrate how to get data at `/categories` endpoint from `https://refine-fake-rest.pankod.com` REST API.
 
 ```ts title="https://refine-fake-rest.pankod.com/categories"
 {
@@ -27,17 +27,18 @@ Let's examine what `useSelect` does, with step-by-step examples. Suppose our `da
             id: 3,
             title: "Unbranded",
         },
-        // ...
     ];
 }
 ```
 
-```tsx title="src/pages/posts/create.tsx"
+```tsx title="pages/posts/create.tsx"
 import { Form, Select, useSelect } from "@pankod/refine";
 
-export const PostCreate = (props) => {
+import { ICategory } from "interfaces";
+
+export const PostCreate = () => {
     //highlight-start
-    const { selectProps } = useSelect({
+    const { selectProps } = useSelect<ICategory>({
         resource: "categories",
     });
     //highlight-end
@@ -53,6 +54,13 @@ export const PostCreate = (props) => {
         <Form>
     );
 };
+```
+
+```ts title="interfaces/index.d.ts"
+export interface ICategory {
+    id: string;
+    title: string;
+}
 ```
 
 <div>
@@ -129,8 +137,15 @@ Allows you to change the values and appearance of your options. Default values a
 ```tsx
 const { selectProps } = useSelect({
     resource: "categories",
-    //highlight-next-line
-    filters: { isActive: true },
+    //highlight-start
+    filters: [
+        {
+            field: "isActive",
+            operator: "eq",
+            value: true,
+        },
+    ],
+    //highlight-end
 });
 ```
 
@@ -154,50 +169,23 @@ const { selectProps } = useSelect({
 
 It allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
 
-## Add Type
-
-```tsx title="src/pages/posts/create.tsx"
-import { Form, useSelect } from "@pankod/refine";
-//highlight-next-line
-import { ICategory } from "interfaces";
-
-export const PostCreate = (props) => {
-    //highlight-next-line
-    const { queryResult, defaultValueQueryResult } = useSelect<ICategory>({
-        resource: "categories",
-        defaultValue: ["1", "2"],
-    });
-};
-```
-
-```ts title="interfaces/index.d.ts"
-export interface ICategory {
-    id: string;
-    title: string;
-}
-```
-
-<br/>
-
-Now, we expect the `queryResult` and `defaultValueQueryResult` result to return according to `ICategory` type.
-
 ## API Reference
 
 ### Properties
 
-| Property                                          | Description                               | Type                        | Default   |
-| ------------------------------------------------- | ----------------------------------------- | --------------------------- | --------- |
-| resource <div className="required">Required</div> | [`Resource`](#) for API data interactions | `string`                    |           |
-| defaultValue                                      | Adds extra `options`                      | `string` \| `Array<string>` |           |
-| optionValue                                       | Set the option's value                    | `string`                    | `"id"`    |
-| optionLabel                                       | Set the option's label value              | `string`                    | `"title"` |
-| filters                                           | Add filters while fetching the data       | ``                          |           |
-| sort                                              | Allow us to sort the options              | ``                          |           |
+| Property                                          | Description                               | Type                                       | Default   |
+| ------------------------------------------------- | ----------------------------------------- | ------------------------------------------ | --------- |
+| resource <div className="required">Required</div> | [`Resource`](#) for API data interactions | `string`                                   |           |
+| defaultValue                                      | Adds extra `options`                      | `string` \| `Array<string>`                |           |
+| optionValue                                       | Set the option's value                    | `string`                                   | `"id"`    |
+| optionLabel                                       | Set the option's label value              | `string`                                   | `"title"` |
+| filters                                           | Add filters while fetching the data       | [`CrudFilters`](interfaces.md#crudfilters) |           |
+| sort                                              | Allow us to sort the options              | [`CrudSorting`](interfaces.md#crudsorting) |           |
 
 ### Return values
 
-| Property                | Description                                    | Type                                                                            |
-| ----------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------- |
-| selectProps             | Ant design Select props                        | [`Select`](https://ant.design/components/Select/#Selec)                         |
-| queryResult             | Result of the query of a record                | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery) |
-| defaultValueQueryResult | Result of the query of a `defaultValue` record | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery) |
+| Property                | Description                                    | Type                                                                                          |
+| ----------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| selectProps             | Ant design Select props                        | [`Select`](https://ant.design/components/select/#API)                                         |
+| queryResult             | Result of the query of a record                | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+| defaultValueQueryResult | Result of the query of a `defaultValue` record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |

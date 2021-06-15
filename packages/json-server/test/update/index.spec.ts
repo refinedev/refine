@@ -11,7 +11,7 @@ describe("update", () => {
         const response = await JsonServer(
             "https://refine-fake-rest.pankod.com",
             axios,
-        ).update("posts", 1000, {
+        ).update("posts", "1000", {
             id: 1001,
             title: "foo",
             content: "bar",

@@ -121,7 +121,7 @@ export const UserList: React.FC<IResourceComponentsProps> = (props) => {
                         dataIndex="actions"
                         key="actions"
                         render={(
-                            _text: string | number,
+                            _text: string,
                             record: {
                                 id: string;
                             },
@@ -300,11 +300,7 @@ export const UserList: React.FC<IResourceComponentsProps> = (props) => {
                 }}
                 width="400"
             >
-                <Show
-                    {...props}
-                    actionButtons={<RefreshButton recordItemId={showId} />}
-                    title="User Details"
-                >
+                <Show {...props} recordItemId={showId} title="User Details">
                     <Title level={5}>First Name</Title>
                     <Text>{queryResult.data?.data.firstName}</Text>
                     <Title level={5}>Last Name</Title>

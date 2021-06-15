@@ -8,7 +8,7 @@ import { ResourceRouterParams } from "../../../interfaces";
 
 type ShowButtonProps = ButtonProps & {
     resourceName?: string;
-    recordItemId?: string | number;
+    recordItemId?: string;
 };
 
 export const ShowButton: FC<ShowButtonProps> = ({
@@ -19,10 +19,8 @@ export const ShowButton: FC<ShowButtonProps> = ({
     const { show } = useNavigation();
     const translate = useTranslate();
 
-    const {
-        resource: routeResourceName,
-        id: idFromRoute,
-    } = useParams<ResourceRouterParams>();
+    const { resource: routeResourceName, id: idFromRoute } =
+        useParams<ResourceRouterParams>();
 
     const resourceName = propResourceName ?? routeResourceName;
 

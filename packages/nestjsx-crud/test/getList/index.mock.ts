@@ -29,8 +29,7 @@ nock("https://refine-nestjs-crud.pankod.com:443", { encodedQueryParams: true })
                     updatedAt: "2021-04-05T14:24:13.817Z",
                     category: {
                         id: "bf70b5ce-7848-4fa9-b95c-bcd2f6b3605c",
-                        title:
-                            "Antarctica (the Territory South Of 60 Deg S) Parse Senior",
+                        title: "Antarctica (the Territory South Of 60 Deg S) Parse Senior",
                         createdAt: "2021-04-05T14:24:13.817Z",
                         updatedAt: "2021-04-05T14:24:13.817Z",
                     },

@@ -11,7 +11,7 @@ describe("getOne", () => {
         const response = await JsonServer(
             "https://refine-fake-rest.pankod.com",
             axios,
-        ).getOne("posts", 1);
+        ).getOne("posts", "1");
 
         const { data } = response;
 

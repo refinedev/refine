@@ -7,19 +7,23 @@ import {
     PageHeader,
     PageHeaderProps,
     Tag,
+    Row,
+    Col,
 } from "antd";
 import pluralize from "pluralize";
 
 import { useNavigation, useResourceWithRoute, useTranslate } from "@hooks";
 import { SaveButton } from "@components";
-import { ResourceRouterParams } from "../../../interfaces";
+import { OptionalComponent } from "@definitions";
 
+import { ResourceRouterParams } from "../../../interfaces";
 export interface CreateProps {
     title?: string;
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
     pageHeaderProps?: PageHeaderProps;
     resource?: string;
+    aside?: React.FC;
 }
 
 export const Create: React.FC<CreateProps> = ({
@@ -29,12 +33,14 @@ export const Create: React.FC<CreateProps> = ({
     children,
     pageHeaderProps,
     resource: resourceFromProps,
+    aside,
 }) => {
     const { goBack } = useNavigation();
     const translate = useTranslate();
 
     const {
         resource: routeResourceName,
+        action: routeFromAction,
         id: idFromRoute,
     } = useParams<ResourceRouterParams>();
     const resourceWithRoute = useResourceWithRoute();
@@ -43,40 +49,57 @@ export const Create: React.FC<CreateProps> = ({
 
     const tags = [];
     if (idFromRoute) {
-        tags.push(<Tag color="blue">{translate("tags.clone", "Clone")}</Tag>);
+        tags.push(
+            <Tag
+                key={`${resource.name}-${idFromRoute}-create-clone-tag`}
+                color="blue"
+            >
+                {translate("tags.clone", "Clone")}
+            </Tag>,
+        );
     }
 
     return (
-        <PageHeader
-            ghost={false}
-            onBack={goBack}
-            tags={tags}
-            title={
-                title ??
-                translate(
-                    `${resource.name}.titles.create`,
-                    `Create ${pluralize.singular(resource.name)}`,
-                )
-            }
-            {...pageHeaderProps}
-        >
-            <Card
-                actions={[
-                    <Space
-                        key="action-buttons"
-                        style={{ float: "right", marginRight: 24 }}
+        <Row gutter={[16, 16]}>
+            <Col flex="1 1 200px">
+                <PageHeader
+                    ghost={false}
+                    onBack={routeFromAction ? goBack : undefined}
+                    tags={tags}
+                    title={
+                        title ??
+                        translate(
+                            `${resource.name}.titles.create`,
+                            `Create ${pluralize.singular(resource.name)}`,
+                        )
+                    }
+                    {...pageHeaderProps}
+                >
+                    <Card
+                        actions={[
+                            <Space
+                                key="action-buttons"
+                                style={{ float: "right", marginRight: 24 }}
+                            >
+                                {actionButtons ?? (
+                                    <SaveButton
+                                        {...saveButtonProps}
+                                        htmlType="submit"
+                                    />
+                                )}
+                            </Space>,
+                        ]}
                     >
-                        {actionButtons ?? (
-                            <SaveButton
-                                {...saveButtonProps}
-                                htmlType="submit"
-                            />
-                        )}
-                    </Space>,
-                ]}
-            >
-                {children}
-            </Card>
-        </PageHeader>
+                        {children}
+                    </Card>
+                </PageHeader>
+            </Col>
+
+            {aside && (
+                <Col flex="0 1 300px">
+                    <OptionalComponent optional={aside} />
+                </Col>
+            )}
+        </Row>
     );
 };

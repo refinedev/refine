@@ -8,8 +8,7 @@ nock("https://refine-fake-rest.pankod.com:443", { encodedQueryParams: true })
         [
             {
                 id: 1,
-                title:
-                    "Deleniti et quasi architecto hic quam et tempora vero quo.",
+                title: "Deleniti et quasi architecto hic quam et tempora vero quo.",
                 slug: "nobis-aut-eligendi",
                 content:
                     "Accusantium sed nam odio ut non qui. Maxime quaerat sed ducimus corrupti consequatur. Facere numquam ut reprehenderit quaerat quia. Recusandae quibusdam asperiores atque architecto quod praesentium sit non. Aut neque repellat veniam veritatis qui et vel alias debitis. Amet eius omnis dolores. Sint sed magni. Dolor eius maiores asperiores et. Et modi illum eius quisquam maxime at vel qui. Sit dolore officiis aliquid quia labore.",
@@ -21,8 +20,7 @@ nock("https://refine-fake-rest.pankod.com:443", { encodedQueryParams: true })
             },
             {
                 id: 2,
-                title:
-                    "Ea possimus ullam voluptatum blanditiis fugiat odit molestiae et.",
+                title: "Ea possimus ullam voluptatum blanditiis fugiat odit molestiae et.",
                 slug: "excepturi-qui-sed",
                 content:
                     "Omnis maiores qui voluptas nihil. Quo natus eum hic aut. Id sit sed sed ut. Ex temporibus autem omnis est quas pariatur. Itaque perferendis sequi nobis dolor rerum quidem qui nostrum nihil. Et debitis eveniet et. Perspiciatis id nobis ut sint voluptatem numquam tempora eveniet. Eius qui quidem temporibus qui explicabo impedit dolor. Fugiat itaque pariatur assumenda molestiae. Et deserunt quibusdam ut tenetur id officia et molestias facilis.",

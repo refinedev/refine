@@ -6,9 +6,19 @@ title: useModalForm
 import createGif from '@site/static/img/guides-and-concepts/hooks/useModalForm/create.gif';
 import editGif from '@site/static/img/guides-and-concepts/hooks/useModalForm/edit.gif';
 
-The `useModalForm` hook allows you manage a form within Modal. If we look in detail, `useModalForm` uses Ant Design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components data scope management under the hood and returns the appropriate values to the components.
+`useModalForm` hook allows you manage a form within a modal. It returns Ant Design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components props.
 
-All we have to do is pass the props it returns to the `<Modal>` and `<Form>` components.
+```ts
+const { modalProps, formProps } = useModalForm<IPost>();
+```
+
+All we have to do is to pass the `modalProps` to `<Modal>` and `formProps` to `<Form>` components.
+
+## Usage
+
+We'll do two examples, one for creating a post and one for editing a post. Let's see how `useModalForm` is used in both.
+
+### Create Modal
 
 For example, let's look at an example of creating a record with `useModalForm`.
 
@@ -16,7 +26,7 @@ For example, let's look at an example of creating a record with `useModalForm`.
 import { useModalForm, Modal, Form, Create, Radio } from "@pankod/refine";
 import { IPost } from "interfaces";
 
-export const PostList: React.FC (props) => {
+export const PostList: React.FC () => {
 
     //highlight-start
     const {
@@ -44,7 +54,7 @@ export const PostList: React.FC (props) => {
             </List>
             //highlight-start
             <Modal {...modalProps}>
-                <Create {...props} saveButtonProps={saveButtonProps}>
+                <Create saveButtonProps={saveButtonProps}>
                     <Form {...formProps} layout="vertical">
                         <Form.Item label="Title" name="title">
                             <Input />
@@ -63,7 +73,6 @@ export const PostList: React.FC (props) => {
         </>
     )
 }
-
 ```
 
 ```ts title="interfaces/index.d.ts"
@@ -96,13 +105,15 @@ This code block makes `<Modal>` appear when you click the button.
 
 <br />
 
+### Edit Modal
+
 Let's learn how to add editing capability to records that will be opening form in Modal with using `action` prop.
 
 ```tsx title="pages/posts/list.tsx"
 import { useModalForm, Modal, Form, Create, Radio } from "@pankod/refine";
 import { IPost } from "interfaces";
 
-export const PostList (props) => {
+export const PostList () => {
     const {
         modalProps,
         formProps,
@@ -116,7 +127,6 @@ export const PostList (props) => {
         //highlight-next-line
         action: "edit",
     });
-
 
     return (
         <>
@@ -138,7 +148,6 @@ export const PostList (props) => {
             <Modal {...modalProps}>
             //highlight-next-line
                 <Edit
-                    {...props}
                     saveButtonProps={saveButtonProps}
                     //highlight-start
                     deleteButtonProps={deleteButtonProps}
@@ -196,45 +205,46 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 
 [Refer to codesandbox example for detailed usage. &#8594](https://www.google.com.tr)
 
+## API Reference
 
-<!-- Markdowntable olucak.
-Useform ve useModal'ın tüm proplarını aldığını belirtebiliriz.
+### Properties
 
-`useModalForm` expects argument with the following keys:
+| Key                                              | Description                                                                                                                                                                   | Type                                                                           | Default    |
+| ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ---------- |
+| action <div className=" required">Required</div> | Type of form mode                                                                                                                                                             | `"edit"` \| `"create"`                                                         | `"create"` |
+| autoSubmitClose                                  | Close modal after submit                                                                                                                                                      | `boolean`                                                                      |            |
+| form                                             | Ant Design form instance                                                                                                                                                      | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance) |            |
+| mutationMode                                     | [Determines when mutations are executed](interfaces.md#mutationmode). If not explicitly configured, it is read from the mutation mode config of the resource in current route | `"pessimistic"` \| `"optimistic"` \| `"undoable"`                              |            |
+| onMutationError                                  | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error                                                                            | `(error: TError, variables: TVariables, context: any) => void`                 |            |
+| onMutationSuccess                                | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful                                                                                  | `(data: TData, variables: TVariables, context: any) => void`                   |            |
+| redirect                                         | Page to redirect after succesfull mutation                                                                                                                                    | `"show` \| `"edit` \| `"list"`\*\*                                             |            |
+| submit                                           | Submit the form                                                                                                                                                               | `(values?: TVariables) => Promise<TData>`                                      |            |
+| submitOnEnter                                    | Listen `Enter` key press to submit form                                                                                                                                       | `boolean`                                                                      | `false`    |
+| undoableTimeout                                  | Duration to wait before executing mutations when `mutationMode = "undoable"`                                                                                                  | `number`                                                                       | `5000`\*   |
+| warnWhenUnsavedChanges                           | Shows notification when unsaved changes exist                                                                                                                                 | `boolean`                                                                      | `false`\*  |
 
--   `action`: lorem lorem
--   `autoSubmitClose`: lorem lorem
--   `defaultFormValues`: lorem lorem
--   `defaultVisible`: lorem lorem
--   `form`: lorem lorem
--   `mutationMode`: lorem lorem
--   `onMutationError`: lorem lorem
--   `onMutationSuccess`: lorem lorem
--   `redirect`: lorem lorem
--   `submit`: lorem lorem
--   `submitOnEnter`: lorem lorem
--   `undoableTimeout`: lorem lorem
--   `warnWhenUnsavedChanges`: lorem lorem
+> `*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component. `useModalForm` will use what is passed to `<Admin>` as default and can override locally.
 
-The return value of `useModalForm` is an object, using the following keys:
+> `**`: If not explicitly configured, default value of `redirect` depends which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). Otherwise if `action` is `edit`, `redirect`s default value is `list`.
 
--   `show`: lorem lorem
--   `formProps`: lorem lorem
--   `modalProps`: lorem lorem
--   `saveButtonProps`: lorem lorem
--   `deleteButtonProps`: lorem lorem
--   `formLoading`: lorem lorem
--   `submit`: lorem lorem
--   `initialValues`: lorem lorem
--   `visible`: lorem lorem
--   `close`: lorem lorem
--   `defaultFormValuesLoading`: lorem lorem
--   `formValues`: lorem lorem
--   `formResult`: lorem lorem
--   `form`: lorem lorem
--   `editId`: lorem lorem
--   `setEditId`: lorem lorem
--   `queryResult`: lorem lorem
--   `mutationResult`: lorem lorem
--   `setCloneId`: lorem lorem
--   `cloneId`: lorem lorem -->
+### Return Value
+
+| Key                      | Description                                                  | Type                                                                                                                                                                                  |
+| ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| show                     | A function that can open the modal                           | `(id?: string) => void`                                                                                                                                                               |
+| formProps                | Ant Design form props                                        | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                                               |
+| modalProps               | Props for managed modal                                      | [`ModalProps`](https://ant.design/components/modal/#API)                                                                                                                              |
+| saveButtonProps          | Props for a submit button                                    | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                                                                                                                       |
+| deleteButtonProps        | Adds props for delete button                                 | [`DeleteButtonProps`](interfaces.md#delete-button-props)                                                                                                                              |
+| formLoading              | Loading status of form                                       | `boolean`                                                                                                                                                                             |
+| submit                   | Submit method, the parameter is the value of the form fields | `() => void`                                                                                                                                                                          |
+| visible                  | Whether the modal dialog is visible or not                   | `boolean`                                                                                                                                                                             |
+| close                    | Specify a function that can close the modal                  | `() => void`                                                                                                                                                                          |
+| defaultFormValuesLoading | DefaultFormValues loading status of form                     | `boolean`                                                                                                                                                                             |
+| form                     | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance)                                                                                                        |
+| editId                   | Record id for edit action                                    | `string`                                                                                                                                                                              |
+| setEditId                | `editId` setter                                              | `Dispatch<SetStateAction<` `string` \| `undefined>>`                                                                                                                                  |
+| queryResult              | Result of the query of a record                              | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery)                                                                                         |
+| mutationResult           | Result of the mutation triggered by submitting the form      | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
+| setCloneId               | `cloneId` setter                                             | `Dispatch<SetStateAction<` `string` \| `undefined>>`                                                                                                                                  |
+| cloneId                  | Record id for clone action                                   | `string`                                                                                                                                                                              |

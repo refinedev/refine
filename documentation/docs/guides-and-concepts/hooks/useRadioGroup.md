@@ -7,9 +7,9 @@ import basicUsage from '@site/static/img/guides-and-concepts/hooks/useRadioGroup
 
 `useRadioGroup` hook allows you to manage an Ant Design [Radio.Group](https://ant.design/components/radio/#components-radio-demo-radiogroup-with-name) component when records in a resource needs to be used as radio options.
 
-## Example
+## Usage
 
-Let's examine what `useRadioGroup` does, with step-by-step examples. Suppose our `dataProvider` has an endpoint that returns languages as follows.
+We'll demonstrate how to get data at `/languages` endpoint from `https://refine-fake-rest.pankod.com` REST API.
 
 ```ts title="https://refine-fake-rest.pankod.com/languages"
 {
@@ -30,12 +30,14 @@ Let's examine what `useRadioGroup` does, with step-by-step examples. Suppose our
 }
 ```
 
-```tsx title="src/pages/posts/create.tsx"
+```tsx title="pages/posts/create.tsx"
 import { Form, Radio, useRadioGroup } from "@pankod/refine";
 
-export const PostCreate = (props) => {
+import { ILanguage } from "interfaces";
+
+export const PostCreate = () => {
     //highlight-start
-    const { radioGroupProps } = useRadioGroup({
+    const { radioGroupProps } = useRadioGroup<ILanguage>({
         resource: "languages",
     });
     //highlight-end
@@ -51,6 +53,13 @@ export const PostCreate = (props) => {
         <Form>
     );
 };
+```
+
+```ts title="interfaces/index.d.ts"
+export interface ILanguage {
+    id: string;
+    title: string;
+}
 ```
 
 <div>
@@ -77,7 +86,6 @@ const { radioGroupProps } = useRadioGroup({
 
 [Refer to Ant Design `Radio.Group` component documentation for detailed info for `options`. &#8594](https://ant.design/components/radio)
 
-
 ### `optionLabel` and `optionValue`
 
 ```tsx
@@ -97,12 +105,19 @@ Allows you to change the values and appearance of your options. Default values a
 ```tsx
 const { radioGroupProps } = useRadioGroup({
     resource: "languages",
-    //highlight-next-line
-    filters: { isActive: true },
+    //highlight-start
+    filters: [
+        {
+            field: "title",
+            operator: "eq",
+            value: "German",
+        },
+    ],
+    //highlight-end
 });
 ```
 
-It allows us to add some filters while fetching the data. For example, if you want to list only active records.
+It allows us to add some filters while fetching the data. For example, if you want to list only `title`'s equal to `"German"` records.
 
 ### `sort`
 
@@ -122,47 +137,21 @@ const { radioGroupProps } = useRadioGroup({
 
 It allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
 
-## Add Type
-
-```tsx title="src/pages/posts/create.tsx"
-import { Form, useRadioGroup } from "@pankod/refine";
-//highlight-next-line
-import { ILanguage } from "interfaces";
-
-export const PostCreate = (props) => {
-    //highlight-next-line
-    const { queryResult } = useRadioGroup<ILanguage>({
-        resource: "languages",
-    });
-};
-```
-
-```ts title="interfaces/index.d.ts"
-export interface ILanguage {
-    id: string;
-    title: string;
-}
-```
-
-<br/>
-
-Now, we expect the `queryResult` result to return according to `ILanguage` type.
-
 ## API Reference
 
 ### Properties
 
-| Property                                          | Description                               | Type     | Default   |
-| ------------------------------------------------- | ----------------------------------------- | -------- | --------- |
-| resource <div className="required">Required</div> | [`Resource`](#) for API data interactions | `string` |           |
-| optionValue                                       | Set the option's value                    | `string` | `"id"`    |
-| optionLabel                                       | Set the option's label value              | `string` | `"title"` |
-| filters                                           | Add filters while fetching the data       | ``       |           |
-| sort                                              | Allow us to sort the options              | ``       |           |
+| Property                                          | Description                               | Type                                       | Default   |
+| ------------------------------------------------- | ----------------------------------------- | ------------------------------------------ | --------- |
+| resource <div className="required">Required</div> | [`Resource`](#) for API data interactions | `string`                                   |           |
+| optionValue                                       | Set the option's value                    | `string`                                   | `"id"`    |
+| optionLabel                                       | Set the option's label value              | `string`                                   | `"title"` |
+| filters                                           | Add filters while fetching the data       | [`CrudFilters`](interfaces.md#crudfilters) |           |
+| sort                                              | Allow us to sort the options              | [`CrudSorting`](interfaces.md#crudsorting) |           |
 
 ### Return values
 
-| Property        | Description                     | Type                                                                            |
-| --------------- | ------------------------------- | ------------------------------------------------------------------------------- |
-| radioGroupProps | Ant design radio group props    | [`Radio Group`](https://ant.design/components/radio/#RadioGroup)                |
-| queryResult     | Result of the query of a record | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery) |
+| Property        | Description                     | Type                                                                                          |
+| --------------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
+| radioGroupProps | Ant design radio group props    | [`Radio Group`](https://ant.design/components/radio/#RadioGroup)                              |
+| queryResult     | Result of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |

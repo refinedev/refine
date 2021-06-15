@@ -46,6 +46,7 @@ import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
+import { Aside } from "../aside";
 
 const { Title, Text } = Typography;
 
@@ -242,9 +243,9 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     dataIndex="actions"
                     key="actions"
                     render={(
-                        _text: string | number,
+                        _text: string,
                         record: {
-                            id: string | number;
+                            id: string;
                         },
                     ): React.ReactNode => (
                         <Space>
@@ -272,26 +273,19 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
 
-    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
-        "write",
-    );
+    const [selectedTab, setSelectedTab] =
+        React.useState<"write" | "preview">("write");
     const { isLoading, onChange } = useFileUploadState();
 
-    const {
-        current,
-        gotoStep,
-        stepsProps,
-        submit,
-        formLoading,
-        formProps,
-    } = useStepsForm({
-        warnWhenUnsavedChanges: true,
-        defaultFormValues: () => {
-            return {
-                status: "published",
-            };
-        },
-    });
+    const { current, gotoStep, stepsProps, submit, formLoading, formProps } =
+        useStepsForm({
+            warnWhenUnsavedChanges: true,
+            defaultFormValues: () => {
+                return {
+                    status: "published",
+                };
+            },
+        });
 
     const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
@@ -476,6 +470,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                     )}
                 </>
             }
+            aside={() => <Aside />}
         >
             <Steps {...stepsProps}>
                 <Step title="Content" />
@@ -501,9 +496,8 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     const apiUrl = useApiUrl();
     const translate = useTranslate();
 
-    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
-        "write",
-    );
+    const [selectedTab, setSelectedTab] =
+        React.useState<"write" | "preview">("write");
     const { onChange, isLoading } = useFileUploadState();
 
     const {
@@ -523,19 +517,19 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
-        defaultValue: postData?.category.id,
+        defaultValue: postData?.category?.id,
     });
 
     const { selectProps: userSelectProps } = useSelect({
         resource: "users",
         optionLabel: "email",
-        defaultValue: postData?.user.id,
+        defaultValue: postData?.user?.id,
     });
 
     const { selectProps: tagsSelectProps } = useSelect({
         resource: "tags",
         // TODO: tag interface
-        defaultValue: postData?.tags.map((tag: { id: string }) => tag.id),
+        defaultValue: postData?.tags?.map((tag: { id: string }) => tag.id),
     });
 
     const formList = [
@@ -681,6 +675,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
         <Edit
             {...props}
             canDelete
+            aside={() => <Aside />}
             actionButtons={
                 <>
                     {current > 0 && (

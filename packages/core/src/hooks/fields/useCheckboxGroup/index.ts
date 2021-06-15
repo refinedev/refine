@@ -19,12 +19,11 @@ export type useCheckboxGroupProps = {
     filters?: CrudFilters;
 };
 
-export type UseCheckboxGroupReturnType<
-    TData extends BaseRecord = BaseRecord
-> = {
-    checkboxGroupProps: CheckboxGroupProps;
-    queryResult: QueryObserverResult<GetListResponse<TData>>;
-};
+export type UseCheckboxGroupReturnType<TData extends BaseRecord = BaseRecord> =
+    {
+        checkboxGroupProps: CheckboxGroupProps;
+        queryResult: QueryObserverResult<GetListResponse<TData>>;
+    };
 
 export const useCheckboxGroup = <TData extends BaseRecord = BaseRecord>({
     resource,

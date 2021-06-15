@@ -8,7 +8,12 @@ import { SorterResult } from "antd/lib/table/interface";
 import { useResourceWithRoute, useList } from "@hooks";
 import { useSyncWithLocation } from "@hooks/admin";
 import { useNavigation } from "@hooks/navigation";
-import { stringifyTableParams, parseTableParams } from "@definitions/table";
+import {
+    stringifyTableParams,
+    parseTableParams,
+    mapAntdSorterToCrudSorting,
+    mapAntdFilterToCrudFilter,
+} from "@definitions/table";
 import { FormProps } from "@components/antd";
 
 import {
@@ -67,12 +72,8 @@ export const useTable = <TData extends BaseRecord = BaseRecord>({
     let defaultFilter = initialFilter;
 
     if (syncWithLocation) {
-        const {
-            parsedCurrent,
-            parsedPageSize,
-            parsedSorter,
-            parsedFilters,
-        } = parseTableParams(search);
+        const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
+            parseTableParams(search);
 
         defaultCurrent = parsedCurrent || defaultCurrent;
         defaultPageSize = parsedPageSize || defaultPageSize;
@@ -114,39 +115,11 @@ export const useTable = <TData extends BaseRecord = BaseRecord>({
         sorter: SorterResult<any> | SorterResult<any>[],
     ) => {
         // Map Antd:Filter -> refine:CrudFilter
-        const crudFilters: CrudFilters = [];
-        Object.keys(filters).map((field) => {
-            const value = filters[field];
-
-            if (value) {
-                crudFilters.push({
-                    field,
-                    operator: "in",
-                    value,
-                });
-            }
-        });
+        const crudFilters = mapAntdFilterToCrudFilter(filters);
         setFilters(crudFilters);
 
         // Map Antd:Sorter -> refine:CrudSorting
-        const crudSorting: CrudSorting = [];
-        if (Array.isArray(sorter)) {
-            sorter.map((item) => {
-                if (item.field && item.order) {
-                    crudSorting.push({
-                        field: `${item.field}`,
-                        order: item.order.replace("end", "") as "asc" | "desc",
-                    });
-                }
-            });
-        } else {
-            if (sorter.field && sorter.order) {
-                crudSorting.push({
-                    field: `${sorter.field}`,
-                    order: sorter.order.replace("end", "") as "asc" | "desc",
-                });
-            }
-        }
+        const crudSorting = mapAntdSorterToCrudSorting(sorter);
         setSorter(crudSorting);
 
         tablePropsSunflower.onChange(pagination, filters, sorter);

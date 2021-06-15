@@ -20,7 +20,7 @@ import { Create, Form, Input, getValueFromEvent, Upload } from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
-export const PostCreate: React.FC = (props) => {
+export const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     const apiUrl = useApiUrl();
@@ -166,7 +166,7 @@ import { Edit, Form, Input, Upload, getValueFromEvent } from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
-export const PostEdit: React.FC = (props) => {
+export const PostEdit: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     const apiUrl = useApiUrl();
@@ -273,7 +273,7 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostCreate: React.FC = (props) => {
+export const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     // highlight-start

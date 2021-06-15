@@ -21,7 +21,7 @@ import {
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC = () => {
     ...
 
     //highlight-start
@@ -34,7 +34,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
 
     return (
         //highlight-start
-        <List {...props} pageHeaderProps={{
+        <List pageHeaderProps={{
             extra: <Actions />,
         }}>
         //highlight-end
