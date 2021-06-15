@@ -12,7 +12,7 @@ i18n.use(Backend)
             loadPath: "/locales/{{lng}}/{{ns}}.json",
         },
         defaultNS: "common",
-        ns: ["common", "fine-foods"],
+        ns: ["common", "dashboard", "enum", "orders", "users"],
         fallbackLng: ["en", "tr"],
     });
 

@@ -66,7 +66,7 @@ export const DeliverySchedule: React.FC = () => {
                             >{`(${item.productIds.length} items)`}</Text>
                         </div>
                         <Text style={styles.status}>
-                            {t(`fine-foods:orderStatuses.${item.status.text}`)}
+                            {t(`enum:orderStatuses.${item.status.text}`)}
                         </Text>
                     </div>
                 </Col>
@@ -83,7 +83,7 @@ export const DeliverySchedule: React.FC = () => {
     return (
         <>
             <Title level={5}>
-                {t("dashboard.upcomingDeliverySchedule.title")}
+                {t("dashboard:upcomingDeliverySchedule.title")}
             </Title>
             <AntdList
                 {...listProps}

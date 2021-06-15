@@ -1,0 +1,7 @@
+{
+  "title": "Siparişler",
+  "fields": {
+    "id": "ID",
+    "createdAt": "Oluşturma Tarihi"
+  }
+}

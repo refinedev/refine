@@ -12,13 +12,13 @@ import {
 } from "components";
 
 export const DashbaordPage: React.FC = () => {
-    const { t } = useTranslation(["fine-foods"]);
+    const { t } = useTranslation();
 
     return (
         <Row gutter={[16, 16]}>
             <Col md={16}>
                 <Card
-                    title={t("dashboard.deliveryMap.title")}
+                    title={t("dashboard:deliveryMap.title")}
                     style={{ marginBottom: 10 }}
                 >
                     <Space

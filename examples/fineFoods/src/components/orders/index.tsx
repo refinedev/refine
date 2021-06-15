@@ -25,7 +25,7 @@ export const Orders: React.FC = () => {
             <Row gutter={[16, 0]}>
                 <Col md={12}>
                     <Title style={styles.title} level={5}>
-                        {t("fine-foods:dashboard.orderCountCard.totalOrder")}
+                        {t("dashboard:orderCountCard.totalOrder")}
                     </Title>
                     <div style={styles.countArea}>
                         <span style={styles.count}>
@@ -36,9 +36,7 @@ export const Orders: React.FC = () => {
                 </Col>
                 <Col md={12}>
                     <Title style={styles.title} level={5}>
-                        {t(
-                            "fine-foods:dashboard.orderCountCard.totalDelivered",
-                        )}
+                        {t("dashboard:orderCountCard.totalDelivered")}
                     </Title>
                     <div style={styles.countArea}>
                         <span style={styles.count}>

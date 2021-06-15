@@ -13,7 +13,7 @@ const App: React.FC = () => {
     const API_URL = "https://api.finefoods.refine.dev";
     const dataProvider = jsonServerDataProvider(API_URL);
 
-    const { t, i18n } = useTranslation(["common", "fine-foods"]);
+    const { t, i18n } = useTranslation();
 
     const i18nProvider = {
         translate: (key: string, params: object) => t(key, params),
@@ -32,14 +32,14 @@ const App: React.FC = () => {
         >
             <Resource
                 options={{
-                    label: t("fine-foods:orders.title"),
+                    label: t("orders:title"),
                 }}
                 name="orders"
                 list={OrderList}
             />
             <Resource
                 options={{
-                    label: t("fine-foods:users.title"),
+                    label: t("users:title"),
                 }}
                 name="users"
                 list={UserList}

@@ -29,7 +29,7 @@ export const UserList: React.FC<IResourceComponentsProps> = (props) => {
                 <Table.Column
                     key="id"
                     dataIndex="id"
-                    title={t("fine-foods:users.fields:id")}
+                    title={t("users:fields.id")}
                     render={(value) => <TextField value={value} />}
                     defaultSortOrder={getDefaultSortOrder("id", sorter)}
                     sorter
@@ -37,7 +37,7 @@ export const UserList: React.FC<IResourceComponentsProps> = (props) => {
                 <Table.Column
                     key="created_at"
                     dataIndex="created_at"
-                    title={t("fine-foods:users.fields:createdAt")}
+                    title={t("users:fields.createdAt")}
                     render={(value) => (
                         <DateField value={value} format="YYYY-MM-DD HH:mm:ss" />
                     )}

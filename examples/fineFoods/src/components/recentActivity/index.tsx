@@ -59,7 +59,7 @@ export const RecentActivity: React.FC = () => {
                             </Text>
                         </div>
                         <Text style={styles.status}>
-                            {t(`fine-foods:orderStatuses.${item.status.text}`)}
+                            {t(`enum:orderStatuses.${item.status.text}`)}
                         </Text>
                     </div>
                 </Col>
@@ -74,9 +74,7 @@ export const RecentActivity: React.FC = () => {
 
     return (
         <>
-            <Title level={5}>
-                {t("fine-foods:dashboard.recentActivity.title")}
-            </Title>
+            <Title level={5}>{t("dashboard:recentActivity.title")}</Title>
             <AntdList
                 {...listProps}
                 renderItem={renderItem}

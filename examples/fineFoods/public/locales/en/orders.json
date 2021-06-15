@@ -1,0 +1,7 @@
+{
+  "title": "Orders",
+  "fields": {
+    "id": "ID",
+    "createdAt": "CreatedAt"
+  }
+}

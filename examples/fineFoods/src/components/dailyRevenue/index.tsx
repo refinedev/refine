@@ -74,9 +74,7 @@ export const DailyRevenue: React.FC = () => {
     return (
         <>
             <div style={styles.titleArea}>
-                <Title level={5}>
-                    {t("fine-foods:dashboard.dailyRevenue.title")}
-                </Title>
+                <Title level={5}>{t("dashboard:dailyRevenue.title")}</Title>
                 <NumberField
                     style={styles.count}
                     options={{

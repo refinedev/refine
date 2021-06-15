@@ -1,0 +1,7 @@
+{
+  "title": "Kullanıcılar",
+  "fields": {
+    "id": "ID",
+    "createdAt": "Oluşturma Tarihi"
+  }
+}
