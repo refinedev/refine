@@ -14,13 +14,14 @@ This field is used to display boolean values and uses [`<Tooltip>`](https://ant.
 Let's see how to use `<BooleanField>` with the example in the post list.
 
 ```tsx
+//highlight-next-line 
 import { List, Table, BooleanField, Icons } from "@pankod/refine";
 
-export const PostList: React.FC = (props) => {
+export const PostList: React.FC = () => {
     const { CloseCircleOutlined, CheckCircleOutlined } = Icons;
 
     return (
-        <List {...props}>
+        <List>
             <Table key="id">
                 //highlight-next-line
                 ...
@@ -48,7 +49,7 @@ export const PostList: React.FC = (props) => {
 
 <br/>
 <div>
-    <img src={booleanField} alt="Aside Usage"/>
+    <img src={booleanField} alt="BooleanField Usage"/>
 </div>
 
 
