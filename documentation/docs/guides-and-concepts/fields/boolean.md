@@ -9,7 +9,7 @@ This field is used to display boolean values and uses tooltip values from ant-de
 
 [Refer to `<Tooltip>` documentation for detailed usage. &#8594](https://ant.design/components/tooltip/#header)
 
-# Usage
+## Usage
 
 Let's see how to use `BooleanField` with the example in the post list.
 
