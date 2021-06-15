@@ -1,6 +1,6 @@
 import React from "react";
 
-import { IDataContext } from "../../interfaces";
+import { IDataContext, IDataContextProvider } from "../../interfaces";
 
 export const defaultDataProvider = () => {
     return {
@@ -21,8 +21,7 @@ export const defaultDataProvider = () => {
 export const DataContext = React.createContext<IDataContext>(
     defaultDataProvider() as IDataContext,
 );
-
-export const DataContextProvider: React.FC<IDataContext> = ({
+export const DataContextProvider: React.FC<IDataContextProvider> = ({
     getList,
     getMany,
     create,
@@ -33,8 +32,8 @@ export const DataContextProvider: React.FC<IDataContext> = ({
     deleteOne,
     deleteMany,
     getApiUrl,
-    custom,
     children,
+    custom = (defaultDataProvider() as IDataContext).custom,
 }) => {
     return (
         <DataContext.Provider
