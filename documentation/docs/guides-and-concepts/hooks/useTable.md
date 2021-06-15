@@ -240,9 +240,13 @@ const { tableProps, sorter, filters } = useTable<IPost>({
             order: "asc",
         },
     ],
-    initialFilter: {
-        status: ["draft"],
-    },
+    initialFilter: [
+        {
+            field: "status",
+            operator: "eq",
+            value: "draft",
+        },
+    ],
 });
 ...
 ```
@@ -273,9 +277,13 @@ export const PostList: React.FC = () => {
                 order: "asc",
             },
         ],
-        initialFilter: {
-            status: ["draft"],
-        },
+        initialFilter: [
+            {
+                field: "status",
+                operator: "eq",
+                value: "draft",
+            },
+        ],
     });
     //highlight-end
 
