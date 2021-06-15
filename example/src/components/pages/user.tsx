@@ -294,7 +294,6 @@ export const UserList: React.FC<IResourceComponentsProps> = (props) => {
                 }}
                 width="400"
             >
-                {console.log("queryResult.data?.data", queryResult.data?.data)}
                 <Show {...props} recordItemId={showId} title="User Details">
                     <Title level={5}>First Name</Title>
                     <Text>{queryResult.data?.data.firstName}</Text>
