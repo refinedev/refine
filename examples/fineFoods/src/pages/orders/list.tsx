@@ -193,13 +193,16 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
                             title={t("orders:fields.products")}
                             render={(_, record) => (
                                 <Popover
-                                    content={record.products.map((product) => (
-                                        <div key={product.id}>
-                                            {" "}
-                                            - {product.name}
-                                        </div>
-                                    ))}
-                                    title="Products"
+                                    content={
+                                        <ul>
+                                            {record.products.map((product) => (
+                                                <li key={product.id}>
+                                                    {product.name}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    }
+                                    title="Productssss"
                                     trigger="hover"
                                 >
                                     {`${record.products.length} Items`}
