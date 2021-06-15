@@ -61,6 +61,6 @@ export const PostList: React.FC = (props) => {
 | value                | Field value                                | `unknown`                                                            |                                                            |
 | valueLabelTrue       | If there is a value, it is the text to use | `string`                                                             | `"true"`                                                   |
 | valueLabelFalse      | If there no value, it is the text to use   | `string`                                                             | `"false"`                                                  |
-| trueIcon             | If there is a value, it is the icon to use | `React.FC | object`                                                  | [`<CheckOutlined />`](https://ant.design/components/icon/) |
-| falseIcon            | If there no value, it is the icon to use.  | `React.FC | object`                                                  | [`<CloseOutlined />`](https://ant.design/components/icon/) |
+| trueIcon             | If there is a value, it is the icon to use | `React.FC` \| `object`                                               | [`<CheckOutlined />`](https://ant.design/components/icon/) |
+| falseIcon            | If there no value, it is the icon to use.  | `React.FC` \| `object`                                               | [`<CloseOutlined />`](https://ant.design/components/icon/) |
 | AbstractTooltipProps | ant-design `Tooltip` props                 | [`AbstractTooltipProps`](https://ant.design/components/tooltip/#API) |                                                            |
