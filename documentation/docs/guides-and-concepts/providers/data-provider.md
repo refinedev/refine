@@ -131,34 +131,347 @@ It will take the API URL as a parameter and an optional HTTP client. We will use
 
 Creates a single item in a resource.
 
-```tsx title="@pankod/refine-json-server/src/index.ts"
-create: async (resource, params) => {
-    const url = `${apiUrl}/${resource}`;
+```ts title="@pankod/refine-json-server/src/index.ts"
+const SimpleRestDataProvider = (
+    apiUrl: string,
+    httpClient: AxiosInstance = axiosInstance,
+): DataProvider => ({
+    ...
+    // highlight-start
+    create: async (resource, params) => {
+        const url = `${apiUrl}/${resource}`;
+    
+        const { data } = await httpClient.post(url, params);
+    
+        return {
+            data,
+        };
+    },
+    // highlight-end
+    ...
+})
 
-    const { data } = await httpClient.post(url, params);
-
-    return {
-        data,
-    };
-},
 ```
 
-```ts title="useCreate.ts"
-create("posts", { title: "Hello World", status: "approved"})
-/*
-    {
-        data: { id: 1, title: "Hello World", status: "approved" }
-    }
-*/
-```
+<br/>
+
+**refine** will consume this `create` method using `useCreate` data hook.
 
 ```ts
-const { mutate, isLoading, data } = useCreate()
+import { useCreate } from "@pankod/refine";
+
+const { mutate } = useCreate();
+
+mutate({
+    resource: "categories",
+    values: {
+        title: "New Category",
+    }
+})
 ```
+> [Refer to useCreate documentation for more information. &#8594](guides-and-concepts/hooks/data/useCreate.md)
+
+### `createMany`
+
+Creates multiple items in a resource.
+
+```ts title="@pankod/refine-json-server/src/index.ts"
+const SimpleRestDataProvider = (
+    apiUrl: string,
+    httpClient: AxiosInstance = axiosInstance,
+): DataProvider => ({
+    ...
+    // highlight-start
+    createMany: async (resource, params) => {
+        const response = await Promise.all(
+            params.map(async (param) => {
+                const { data } = await httpClient.post(
+                    `${apiUrl}/${resource}`,
+                    param,
+                );
+                return data;
+            }),
+        );
+
+        return { data: response };
+    },
+    // highlight-end
+    ...
+})
+
+```
+
+
+<br/>
+
+**refine** will consume this `createMany` method using `useCreateMany` data hook.
+
+```ts
+import { useCreateMany } from "@pankod/refine";
+
+const { mutate } = useCreateMany();
+
+mutate({
+    resource: "categories",
+    values: [
+        {
+            title: "New Category",
+        },
+        {
+            title: "Another New Category"
+        }
+    ]
+})
+```
+> [Refer to useCreateMany documentation for more information. &#8594](guides-and-concepts/hooks/data/useCreateMany.md)
+
+### `deleteOne`
+
+Deletes an item in a resource.
+
+```ts title="@pankod/refine-json-server/src/index.ts"
+const SimpleRestDataProvider = (
+    apiUrl: string,
+    httpClient: AxiosInstance = axiosInstance,
+): DataProvider => ({
+    ...
+    // highlight-start
+    deleteOne: async (resource, id) => {
+        const url = `${apiUrl}/${resource}/${id}`;
+
+        const { data } = await httpClient.delete(url);
+
+        return {
+            data,
+        };
+    },
+    // highlight-end
+    ...
+})
+
+```
+
+
+<br/>
+
+**refine** will consume this `deleteOne` method using `useDelete` data hook.
+
+```ts
+import { useDelete } from "@pankod/refine";
+
+const { mutate } = useDelete("categories");
+
+mutate({ id: 2 })
+```
+> [Refer to useDelete documentation for more information. &#8594](guides-and-concepts/hooks/data/useDelete.md)
+
+### `deleteMany`
+
+Deletes multiple items in a resource.
+
+```ts title="@pankod/refine-json-server/src/index.ts"
+const SimpleRestDataProvider = (
+    apiUrl: string,
+    httpClient: AxiosInstance = axiosInstance,
+): DataProvider => ({
+    ...
+    // highlight-start
+    deleteMany: async (resource, ids) => {
+        const response = await Promise.all(
+            ids.map(async (id) => {
+                const { data } = await httpClient.delete(
+                    `${apiUrl}/${resource}/${id}`,
+                );
+                return data;
+            }),
+        );
+        return { data: response };
+    },
+    // highlight-end
+    ...
+})
+
+```
+
+
+<br/>
+
+**refine** will consume this `deleteMany` method using `useDeleteMany` data hook.
+
+```ts
+import { useDeleteMany } from "@pankod/refine";
+
+const { mutate } = useDeleteMany("categories");
+
+mutate({ ids: [ 2, 3 ] })
+```
+> [Refer to useDeleteMany documentation for more information. &#8594](guides-and-concepts/hooks/data/useDeleteMany.md)
+
+### `update`
+
+Updates an item in a resource.
+
+```ts title="@pankod/refine-json-server/src/index.ts"
+const SimpleRestDataProvider = (
+    apiUrl: string,
+    httpClient: AxiosInstance = axiosInstance,
+): DataProvider => ({
+    ...
+    // highlight-start
+    update: async (resource, id, params) => {
+        const url = `${apiUrl}/${resource}/${id}`;
+
+        const { data } = await httpClient.patch(url, params);
+
+        return {
+            data,
+        };
+    },
+    // highlight-end
+    ...
+})
+
+```
+
+
+<br/>
+
+**refine** will consume this `update` method using `useUpdate` data hook.
+
+```ts
+import { useUpdate } from "@pankod/refine";
+
+const { mutate } = useUpdate("categories");
+
+mutate({ id: 2, values: { title: "New Category Title" } })
+```
+> [Refer to useUpdate documentation for more information. &#8594](guides-and-concepts/hooks/data/useUpdate.md)
+
+### `updateMany`
+
+Updates multiple items in a resource.
+
+```ts title="@pankod/refine-json-server/src/index.ts"
+const SimpleRestDataProvider = (
+    apiUrl: string,
+    httpClient: AxiosInstance = axiosInstance,
+): DataProvider => ({
+    ...
+    // highlight-start
+    updateMany: async (resource, ids, params) => {
+        const response = await Promise.all(
+            ids.map(async (id) => {
+                const { data } = await httpClient.patch(
+                    `${apiUrl}/${resource}/${id}`,
+                    params,
+                );
+                return data;
+            }),
+        );
+
+        return { data: response };
+    },
+    // highlight-end
+    ...
+})
+
+```
+
+
+<br/>
+
+**refine** will consume this `updateMany` method using `useUpdateMany` data hook.
+
+```ts
+import { useUpdateMany } from "@pankod/refine";
+
+cconst { mutate } = useUpdateMany("posts");
+
+mutate({ ids: [ 1, 2 ], values: { status: "draft" } })
+```
+> [Refer to useUpdateMany documentation for more information. &#8594](guides-and-concepts/hooks/data/useUpdateMany.md)
+
+### `getOne`
+
+Retrieves a single item in a resource.
+
+```ts title="@pankod/refine-json-server/src/index.ts"
+const SimpleRestDataProvider = (
+    apiUrl: string,
+    httpClient: AxiosInstance = axiosInstance,
+): DataProvider => ({
+    ...
+    // highlight-start
+    getOne: async (resource, id) => {
+        const url = `${apiUrl}/${resource}/${id}`;
+
+        const { data } = await httpClient.get(url);
+
+        return {
+            data,
+        };
+    },
+    // highlight-end
+    ...
+})
+
+```
+
+
+<br/>
+
+**refine** will consume this `getOne` method using `useOne` data hook.
+
+```ts
+import { useOne } from "@pankod/refine";
+
+const { data } = useOne<ICategory>("categories", 1);
+```
+> [Refer to useOne documentation for more information. &#8594](guides-and-concepts/hooks/data/useOne.md)
+
+### `getMany`
+
+Retrieves multiple items in a resource.
+
+```ts title="@pankod/refine-json-server/src/index.ts"
+const SimpleRestDataProvider = (
+    apiUrl: string,
+    httpClient: AxiosInstance = axiosInstance,
+): DataProvider => ({
+    ...
+    // highlight-start
+    getMany: async (resource, ids) => {
+        const { data } = await httpClient.get(
+            `${apiUrl}/${resource}?${stringify({ id: ids })}`,
+        );
+
+        return {
+            data,
+        };
+    },
+    // highlight-end
+    ...
+})
+
+```
+
+
+<br/>
+
+**refine** will consume this `getMany` method using `useMany` data hook.
+
+```ts
+import { useMany } from "@pankod/refine";
+
+const { data } = useMany("categories", [ 1, 2 ]);
+```
+> [Refer to useMany documentation for more information. &#8594](guides-and-concepts/hooks/data/useMany.md)
+
+
 
 ### `getList`
 
-It's used to retrieve a collection of items in A resource.
+Retrieves a collection of items in a resource.
 
 ```tsx title="@pankod/refine-json-server/src/index.ts"
 const JsonServer = (
