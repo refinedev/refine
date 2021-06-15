@@ -757,6 +757,78 @@ const { data } = useList("posts", {
 Refer to [useList filter docs](/docs/guides-and-concepts/hooks/data/useList#filters) to see list of filter operators 
 
 
+### `custom`
+
+We'll add a method to handle requests with custom parameters like URL, CRUD methods and configs.
+
+```ts title="@pankod/refine-json-server/src/index.ts"
+const SimpleRestDataProvider = (
+    apiUrl: string,
+    httpClient: AxiosInstance = axiosInstance,
+): DataProvider => ({
+ custom: async (url, method, params = {}) => {
+        const { filters, sort, payload, query, headers } = params;
+
+        let requestUrl = `${url}?`;
+
+        if (sort) {
+            const { _sort, _order } = generateSort(sort);
+            const sortQuery = {
+                _sort: _sort.join(","),
+                _order: _order.join(","),
+            };
+            requestUrl = `${requestUrl}&${stringify(sortQuery)}`;
+        }
+
+        if (filters) {
+            const filterQuery = generateFilter(filters);
+            requestUrl = `${requestUrl}&${stringify(filterQuery)}`;
+        }
+
+        if (query) {
+            requestUrl = `${requestUrl}&${stringify(query)}`;
+        }
+
+        if (headers) {
+            httpClient.defaults.headers = {
+                ...httpClient.defaults.headers,
+                ...headers,
+            };
+        }
+
+        let axiosResponse;
+        switch (method) {
+            case "put":
+            case "post":
+            case "patch":
+                axiosResponse = await httpClient[method](url, payload);
+                break;
+            case "delete":
+                axiosResponse = await httpClient.delete(url);
+                break;
+            default:
+                axiosResponse = await httpClient.get(requestUrl);
+                break;
+        }
+
+        const { data } = axiosResponse;
+
+        return Promise.resolve({ data });
+    },
+ }
+```
+
+
+<br/>
+
+**refine** will consume this `getOne` method using `useOne` data hook.
+
+```ts
+import { useOne } from "@pankod/refine";
+
+const { data } = useOne<ICategory>("categories", 1);
+```
+> [Refer to useOne documentation for more information. &#8594](guides-and-concepts/hooks/data/useOne.md)
 
 
 
