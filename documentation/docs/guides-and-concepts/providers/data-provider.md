@@ -474,13 +474,250 @@ const { data } = useMany("categories", [ 1, 2 ]);
 Retrieves a collection of items in a resource.
 
 ```tsx title="@pankod/refine-json-server/src/index.ts"
-const JsonServer = (
+const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     getList: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
-   
+
+        const { data, headers } = await httpClient.get(
+            `${url}`,
+        );
+
+        const total = +headers["x-total-count"];
+
+        return {
+            data,
+            total,
+        };
+    },
+```
+<br />
+
+**refine** will consume this `getList` method using `useList` data hook.
+
+```ts
+import { useList } from "@pankod/refine";
+
+const { data } = useList("posts");
+```
+> [Refer to useList documentation for more information. &#8594](guides-and-concepts/hooks/data/useList.md)
+
+
+<br />
+
+**Adding pagination**
+
+We'll send start and end parameters to list a certain size of items.
+
+```tsx title="@pankod/refine-json-server/src/index.ts"
+ //highlight-next-line
+import { stringify } from "query-string";
+
+const SimpleRestDataProvider = (
+    apiUrl: string,
+    httpClient: AxiosInstance = axiosInstance,
+): DataProvider => ({
+    getList: async (resource, params) => {
+        const url = `${apiUrl}/${resource}`;
+        
+        //highlight-start
+        const current = params.pagination?.current || 1;
+        const pageSize = params.pagination?.pageSize || 10;
+        //highlight-end
+
+         //highlight-start
+        const query = {
+            _start: (current - 1) * pageSize,
+            _end: current * pageSize,
+        };
+         //highlight-end
+
+        const { data, headers } = await httpClient.get(
+             //highlight-next-line
+            `${url}?${stringify(query)}`,
+        );
+
+        const total = +headers["x-total-count"];
+
+        return {
+            data,
+            total,
+        };
+    },
+```
+
+<br />
+
+
+```ts
+const { data } = useList("posts", { 
+    //highlight-next-line
+    pagination: { current: 1, pageSize: 10 } );
+```
+
+>Listing will start from page 1 showing 10 records.
+
+
+<br />
+
+**Adding sorting**
+
+We'll sort records by speficified order and field.
+
+```tsx title="@pankod/refine-json-server/src/index.ts"
+ //highlight-start
+const generateSort = (sort?: CrudSorting) => {
+    let _sort = ["id"]; // default sorting field
+    let _order = ["desc"]; // default sorting
+
+    if (sort) {
+        _sort = [];
+        _order = [];
+
+        sort.map((item) => {
+            _sort.push(item.field);
+            _order.push(item.order);
+        });
+    }
+
+    return {
+        _sort,
+        _order,
+    };
+};
+//highlight-end
+
+const SimpleRestDataProvider = (
+    apiUrl: string,
+    httpClient: AxiosInstance = axiosInstance,
+): DataProvider => ({
+    getList: async (resource, params) => {
+        const url = `${apiUrl}/${resource}`;
+        
+        const current = params.pagination?.current || 1;
+        const pageSize = params.pagination?.pageSize || 10;
+
+        //highlight-next-line
+        const { _sort, _order } = generateSort(params.sort);
+         
+        const query = {
+            _start: (current - 1) * pageSize,
+            _end: current * pageSize,
+            //highlight-start
+            _sort: _sort.join(","),
+            _order: _order.join(","),
+            //highlight-end
+        };
+
+        const { data, headers } = await httpClient.get(
+            `${url}?${stringify(query)}`,
+        );
+
+        const total = +headers["x-total-count"];
+
+        return {
+            data,
+            total,
+        };
+    },
+```
+<br />
+
+Since our API accepts a certain parameter format like  `_sort` and `_order` we need to transform parameters.
+
+So we added `generateSort` method to transform sort parameters.
+
+<br />
+
+
+```ts
+const { data } = useList("posts", { 
+    pagination: { current: 1, pageSize: 10 },
+    //highlight-next-line
+    sort: [{ order: "asc", field: "title" }] );
+```
+>Listing starts from ascending alphabetical order on title field.
+
+<br />
+
+**Adding filtering**
+
+Allows you to filter queries using refine's filter operators. It is configured via field, operator and value properites.
+
+```tsx title="@pankod/refine-json-server/src/index.ts"
+const generateSort = (sort?: CrudSorting) => {
+    let _sort = ["id"]; // default sorting field
+    let _order = ["desc"]; // default sorting
+
+    if (sort) {
+        _sort = [];
+        _order = [];
+
+        sort.map((item) => {
+            _sort.push(item.field);
+            _order.push(item.order);
+        });
+    }
+
+    return {
+        _sort,
+        _order,
+    };
+};
+
+//highlight-start
+const mapOperator = (operator: CrudOperators): string => {
+    switch (operator) {
+        case "ne":
+        case "gte":
+        case "lte":
+            return `_${operator}`;
+        case "contains":
+            return "_like";
+    }
+
+    return ""; // default "eq"
+};
+//highlight-end
+
+ //highlight-start
+const generateFilter = (filters?: CrudFilters) => {
+    const queryFilters: { [key: string]: string } = {};
+    if (filters) {
+        filters.map(({ field, operator, value }) => {
+            const mappedOperator = mapOperator(operator);
+            queryFilters[`${field}${mappedOperator}`] = value;
+        });
+    }
+
+    return queryFilters;
+};
+//highlight-end
+
+const SimpleRestDataProvider = (
+    apiUrl: string,
+    httpClient: AxiosInstance = axiosInstance,
+): DataProvider => ({
+    getList: async (resource, params) => {
+        const url = `${apiUrl}/${resource}`;
+        
+        const current = params.pagination?.current || 1;
+        const pageSize = params.pagination?.pageSize || 10;
+       
+        const { _sort, _order } = generateSort(params.sort);
+
+         //highlight-next-line
+        const queryFilters = generateFilter(params.filters);
+
+        const query = {
+            _start: (current - 1) * pageSize,
+            _end: current * pageSize,
+            _sort: _sort.join(","),
+            _order: _order.join(","),
+        };
+
         const { data, headers } = await httpClient.get(
             `${url}?${stringify(query)}&${stringify(queryFilters)}`,
         );
@@ -492,47 +729,33 @@ const JsonServer = (
             total,
         };
     },
-
-    ...
-})
 ```
+<br />
+
+Since our API accepts a certain parameter format to filter the data, we need to transform parameters.
+
+So we added `generateFilter` and `mapOperator` methods to transform filter parameters.
+
 
 ```ts
-dataProvider.getList('posts', {
-    pagination: { page: 1, perPage: 5 },
-    sort: { field: 'title', order: 'ASC' },
-    filter: { author_id: 12 },
-});
-
+const { data } = useList("posts", { 
+    pagination: { current: 1, pageSize: 10 },
+    sort: [{ order: "asc", field: "title" }],
+    //highlight-start
+    filters: [
+        {
+            field: "status",
+            operator: "eq",
+            value: "rejected",
+        },
+    ],
+    //highlight-end
+    );
 ```
+>Only lists records which status equal to "rejected".
 
-```ts
- {
-     data: [
-         { id: 126, title: "allo?", author_id: 12 },
-         { id: 127, title: "bien le bonjour", author_id: 12 },
-         { id: 124, title: "good day sunshine", author_id: 12 },
-         { id: 123, title: "hello, world", author_id: 12 },
-         { id: 125, title: "howdy partner", author_id: 12 },
-     ],
-     total: 27
- }
-```
+Refer to [useList filter docs](/docs/guides-and-concepts/hooks/data/useList#filters) to see list of filter operators 
 
-```ts
-GET http://path.to.my.api/posts?sort=["title","ASC"]&range=[0, 4]&filter={"author_id":12}
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Range: posts 0-4/27
-[
-    { "id": 126, "title": "allo?", "author_id": 12 },
-    { "id": 127, "title": "bien le bonjour", "author_id": 12 },
-    { "id": 124, "title": "good day sunshine", "author_id": 12 },
-    { "id": 123, "title": "hello, world", "author_id": 12 },
-    { "id": 125, "title": "howdy partner", "author_id": 12 }
-]
-```
 
 
 
