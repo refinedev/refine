@@ -114,6 +114,11 @@ module.exports = {
                         },
                     ],
                 },
+                {
+                    type: "category",
+                    label: "Fields",
+                    items: ["guides-and-concepts/fields/boolean"],
+                },
                 "guides-and-concepts/multipart-upload",
                 "guides-and-concepts/uploading-base64",
                 "guides-and-concepts/auth0",

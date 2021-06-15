@@ -23,7 +23,6 @@ import {
     Space,
     Radio,
     Typography,
-    RefreshButton,
     BooleanField,
     HttpError,
     IResourceComponentsProps,
@@ -284,12 +283,7 @@ export const UserList: React.FC<IResourceComponentsProps> = (props) => {
                                     required: true,
                                 },
                             ]}
-                        >
-                            <Radio.Group>
-                                <Radio value={true}>Enable</Radio>
-                                <Radio value={false}>Disable</Radio>
-                            </Radio.Group>
-                        </Form.Item>
+                        ></Form.Item>
                     </Form>
                 </Create>
             </Drawer>
@@ -308,9 +302,7 @@ export const UserList: React.FC<IResourceComponentsProps> = (props) => {
                     <Title level={5}>Email</Title>
                     <Text>{queryResult.data?.data.email}</Text>
                     <Title level={5}>Status</Title>
-                    <BooleanField
-                        value={queryResult.data?.data.staus}
-                    ></BooleanField>
+                    <BooleanField value={queryResult.data?.data.status} />
                 </Show>
             </Drawer>
         </>
