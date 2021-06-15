@@ -5,7 +5,7 @@ title: Boolean
 
 import booleanField from '@site/static/img/guides-and-concepts/fields/boolean/booleanfield.png'
 
-This field is used to display boolean values and uses tooltip values from ant-design.
+This field is used to display boolean values and uses [`<Tooltip>`](https://ant.design/components/tooltip/) values from Ant Design.
 
 [Refer to `<Tooltip>` documentation for detailed usage. &#8594](https://ant.design/components/tooltip/#header)
 
