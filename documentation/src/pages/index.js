@@ -33,7 +33,7 @@ function Home() {
                                 styles.heroBannerLogo,
                                 "margin-vert--md",
                             )}
-                            src="img/pankod_footer_logo.png"
+                            src="img/refine_logo.png"
                             alt="logo-icon"
                         />
                     </div>

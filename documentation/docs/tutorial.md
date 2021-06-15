@@ -165,7 +165,7 @@ Please refer to the documentation if you need connecting to a custom data source
 :::
 
 
-## Bootstrapping the App
+## Bootstrapping the Application
 
 Replace the contents of `App.tsx` with the following code:
 
@@ -255,7 +255,7 @@ export const App: React.FC = () => {
 A `<Resource/>` is a child component of `<Admin/>` representing an API Endpoint. The `name` property of `<Resource/>` should match one of the endpoints in your API!
 :::
 
-Instead of showing the welcome page, the application should redirect now to an URL defined by the `name` property. Open your application to confirm that the URL is routed to **/resources/posts**:
+Instead of showing the welcome page, the application should redirect now to an URL defined by the `name` property. Open your application to check that the URL is routed to **/resources/posts**:
 
 <>
 

@@ -12,7 +12,7 @@ const siteConfig = {
   baseUrl: '/',
  projectName: 'refine',
   organizationName: 'pankod',
-  favicon: 'img/footer_icon.png',
+  favicon: 'img/refine_favicon.png',
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -32,16 +32,21 @@ const siteConfig = {
     ],
   ],
   themeConfig: {
+    colorMode: {
+      // "light" | "dark"
+      defaultMode: "dark",
+      disableSwitch: false
+    },
     image: 'img/footer_icon.png',
     algolia: {
       apiKey: '3b7cf26a19755c7de95bcb3632edd314',
       indexName: 'refine',
     },
     navbar: {
-      title: 'refine',
+      title: '',
       logo: {
         alt: 'refine Logo',
-        src: 'img/pankod_footer_logo.png',
+        src: 'img/refine_logo.png',
       },
       items: [
         { to: 'docs', label: 'Docs', position: 'right' },
