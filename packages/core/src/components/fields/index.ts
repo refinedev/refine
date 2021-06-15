@@ -8,4 +8,3 @@ export { FileField } from "./file";
 export { UrlField } from "./url";
 export { NumberField } from "./number";
 export { MarkdownField } from "./markdown";
-export { RichtextField } from "./richtext";
