@@ -27,7 +27,7 @@ const languages: Record<string, ILanguage> = {
     },
 };
 
-export const Header = () => {
+export const Header: React.FC = () => {
     const { i18n } = useTranslation();
     const locale = useGetLocale();
     const changeLanguage = useSetLocale();
