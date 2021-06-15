@@ -31,7 +31,7 @@ export const EditButton: FC<EditButtonProps> = ({
     return (
         <Button
             onClick={(): void => {
-                edit(resourceName, "push", id);
+                edit(resourceName, id);
             }}
             icon={<EditOutlined />}
             {...rest}
