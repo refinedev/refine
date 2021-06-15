@@ -1,7 +1,7 @@
 {
   "title": "Siparişler",
   "fields": {
-    "id": "ID",
+    "orderNumber": "Sipariş Numarası",
     "createdAt": "Oluşturma Tarihi"
   }
 }

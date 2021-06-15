@@ -61,6 +61,15 @@ export interface IEvent {
     name: string;
 }
 
+export interface IStore {
+    id: string;
+    title: string;
+    isActive: boolean;
+    createdAt: string;
+    address: IAddress;
+    products: IProduct[];
+}
+
 export interface ICourier {
     id: string;
     name: string;
@@ -75,10 +84,28 @@ export interface IOrder {
     id: string;
     userId: string;
     createdAt: string;
-    productIds: string[];
+    products: IProduct[];
     status: IOrderStatus;
     adress: IAddress;
-    storeId: string;
+    storeId: IStore;
     courier: {};
     events: IEvent[];
+}
+
+export interface IProduct {
+    id: number;
+    name: string;
+    isActive: boolean;
+    description: string;
+    images: IFile[];
+    createdAt: string;
+    price: number;
+    category: ICategory;
+    stock: 496;
+}
+
+export interface ICategory {
+    id: number;
+    title: string;
+    isActive: boolean;
 }

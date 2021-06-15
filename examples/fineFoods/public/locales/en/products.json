@@ -1,0 +1,7 @@
+{
+  "title": "Products",
+  "fields": {
+    "id": "ID",
+    "createdAt": "CreatedAt"
+  }
+}

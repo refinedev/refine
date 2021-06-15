@@ -63,7 +63,7 @@ export const DeliverySchedule: React.FC = () => {
                             </Text>
                             <Text
                                 style={styles.userInfo__productLength}
-                            >{`(${item.productIds.length} items)`}</Text>
+                            >{`(${item.products.length} items)`}</Text>
                         </div>
                         <Text style={styles.status}>
                             {t(`enum:orderStatuses.${item.status.text}`)}

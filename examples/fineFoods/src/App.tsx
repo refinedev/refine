@@ -44,6 +44,13 @@ const App: React.FC = () => {
                 name="users"
                 list={UserList}
             />
+            <Resource
+                options={{
+                    label: t("products:title"),
+                }}
+                name="products"
+            />
+            <Resource name="stores" />
         </Admin>
     );
 };
