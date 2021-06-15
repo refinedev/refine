@@ -12,17 +12,20 @@ This field is used to display dates and uses [`Day.js`](https://day.js.org/docs/
 Let's see how to use `<DateField>` with the example in the post list.
 
 ```tsx
-//highlight-next-line 
+//highlight-next-line
 import { List, Table, DateField } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
+    interface IPost {
+        id: string;
+        createdAt: string;
+    }
 
     return (
         <List>
             <Table key="id">
-                //highlight-next-line 
-                ...
-                <Table.Column
+                //highlight-next-line ...
+                <Table.Column<IPost>
                     dataIndex="createdAt"
                     title="Created At"
                     key="createdAt"
