@@ -145,7 +145,7 @@ module.exports = {
                         "guides-and-concepts/fields/boolean",
                         "guides-and-concepts/fields/email",
                         "guides-and-concepts/fields/markdown",
-                        "guides-and-concepts/fields/boolean",
+                        "guides-and-concepts/fields/tag",
                     ],
                 },
                 "guides-and-concepts/multipart-upload",
