@@ -34,7 +34,7 @@ export const PostList: React.FC = () => {
                 <Table.Column
                     dataIndex="status"
                     title="status"
-                    render={(value) => <TagField value={value} />}
+                    render={(value: string) => <TagField value={value} />}
                 />
                 //highlight-end
             </Table>
