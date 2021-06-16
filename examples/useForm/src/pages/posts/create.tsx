@@ -16,7 +16,7 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
+export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -27,30 +27,8 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
         useState<"write" | "preview">("write");
 
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
+        <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name={["category", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...categorySelectProps} />
-                </Form.Item>
                 <Form.Item
                     label="Status"
                     name="status"
@@ -76,6 +54,28 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
                             },
                         ]}
                     />
+                </Form.Item>
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Category"
+                    name={["category", "id"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select {...categorySelectProps} />
                 </Form.Item>
                 <Form.Item
                     label="Content"
