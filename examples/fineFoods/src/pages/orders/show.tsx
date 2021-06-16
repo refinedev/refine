@@ -10,6 +10,7 @@ import {
     AntdList,
     Avatar,
     Timeline,
+    Card,
     IResourceComponentsProps,
 } from "@pankod/refine";
 import dayjs from "dayjs";
@@ -48,22 +49,6 @@ export const OrderShow: React.FC<IResourceComponentsProps> = (props) => {
                     <DateField value={record.createdAt} format="LLL" />
                     <Title level={5}>Address</Title>
                     <Text>{record.adress.text}</Text>
-                    <Title underline level={3}>
-                        Order History
-                    </Title>
-                    <Timeline style={{ marginTop: 20 }}>
-                        {record.events.map((event, index) => (
-                            <Timeline.Item key={index}>
-                                <>
-                                    {event.name}
-                                    <small style={{ marginLeft: 10 }}>
-                                        ({dayjs(event.date).format("LLL")})
-                                    </small>
-                                </>
-                            </Timeline.Item>
-                        ))}
-                    </Timeline>
-                    ,
                 </Col>
 
                 <Col md={8}>
@@ -157,8 +142,38 @@ export const OrderShow: React.FC<IResourceComponentsProps> = (props) => {
         );
     };
 
+    const Aside: React.FC = () => {
+        if (!record) {
+            return null;
+        }
+
+        return (
+            <Timeline style={{ marginTop: 20 }}>
+                {record.events.map((event, index) => (
+                    <Timeline.Item key={index}>
+                        <>
+                            {event.name}
+                            <small style={{ marginLeft: 10 }}>
+                                ({dayjs(event.date).format("LLL")})
+                            </small>
+                        </>
+                    </Timeline.Item>
+                ))}
+            </Timeline>
+        );
+    };
+
     return (
-        <Show {...props} title="Order Detail" isLoading={isLoading}>
+        <Show
+            {...props}
+            Aside={
+                <Card title="Order History">
+                    <Aside />
+                </Card>
+            }
+            title="Order Detail"
+            isLoading={isLoading}
+        >
             {record && renderContent()}
         </Show>
     );
