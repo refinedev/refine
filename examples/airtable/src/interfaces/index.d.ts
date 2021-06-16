@@ -1,6 +1,7 @@
 export interface ICategory {
     id: string;
     title: string;
+    active: boolean;
 }
 
 export interface IPost {

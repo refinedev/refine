@@ -1,5 +1,3 @@
-import axios, { AxiosInstance } from "axios";
-import { stringify } from "query-string";
 import {
     DataProvider,
     HttpError,
@@ -7,8 +5,9 @@ import {
     CrudFilters,
 } from "@pankod/refine";
 import { CrudSorting } from "@pankod/refine/dist/interfaces";
+import { AirtableBase } from "airtable/lib/airtable_base";
 
-const axiosInstance = axios.create();
+/* const axiosInstance = axios.create();
 
 axiosInstance.interceptors.response.use(
     (response) => {
@@ -23,7 +22,7 @@ axiosInstance.interceptors.response.use(
 
         return Promise.reject(customError);
     },
-);
+); */
 
 const mapOperator = (operator: CrudOperators): string => {
     switch (operator) {
@@ -39,23 +38,10 @@ const mapOperator = (operator: CrudOperators): string => {
 };
 
 const generateSort = (sort?: CrudSorting) => {
-    let _sort = ["id"]; // default sorting field
-    let _order = ["desc"]; // default sorting
-
-    if (sort) {
-        _sort = [];
-        _order = [];
-
-        sort.map((item) => {
-            _sort.push(item.field);
-            _order.push(item.order);
-        });
-    }
-
-    return {
-        _sort,
-        _order,
-    };
+    return sort?.map((item) => ({
+        field: item.field,
+        direction: item.order,
+    }));
 };
 
 const generateFilter = (filters?: CrudFilters) => {
@@ -70,62 +56,62 @@ const generateFilter = (filters?: CrudFilters) => {
     return queryFilters;
 };
 
-const Airtable = (
+const AirtableDataProvider = (
     apiUrl: string,
-    httpClient: AxiosInstance = axiosInstance,
+    airtableClient: AirtableBase,
 ): DataProvider => ({
     getList: async (resource, params) => {
-        const url = `${apiUrl}/${resource}`;
-
+        console.log(resource, params);
         // pagination
         const current = params.pagination?.current || 1;
         const pageSize = params.pagination?.pageSize || 10;
 
-        const { _sort, _order } = generateSort(params.sort);
+        const sort = generateSort(params.sort);
 
         const queryFilters = generateFilter(params.filters);
 
-        const query = {
-            _start: (current - 1) * pageSize,
-            _end: current * pageSize,
-            _sort: _sort.join(","),
-            _order: _order.join(","),
-        };
+        const { all } = airtableClient(resource).select({
+            pageSize: 100,
+            sort,
+        });
 
-        const { data, headers } = await httpClient.get(
-            `${url}?${stringify(query)}&${stringify(queryFilters)}`,
-        );
-
-        const total = +headers["x-total-count"];
+        const data = await all();
 
         return {
-            data,
-            total,
+            data: data
+                .slice((current - 1) * pageSize, current * pageSize)
+                .map((p) => p.fields) as any,
+            total: data.length,
         };
     },
 
     getMany: async (resource, ids) => {
-        const { data } = await httpClient.get(
+        throw Error("not implemented");
+        /* const { data } = await httpClient.get(
             `${apiUrl}/${resource}?${stringify({ id: ids })}`,
         );
 
         return {
             data,
-        };
+        }; */
     },
 
     create: async (resource, params) => {
-        const url = `${apiUrl}/${resource}`;
+        const { save } = await airtableClient(resource).create(params);
+
+        /*  const url = `${apiUrl}/${resource}`;
 
         const { data } = await httpClient.post(url, params);
 
         return {
             data,
-        };
+        }; */
     },
 
     createMany: async (resource, params) => {
-        const response = await Promise.all(
+        throw Error("not implemented");
+
+        /*   const response = await Promise.all(
             params.map(async (param) => {
                 const { data } = await httpClient.post(
                     `${apiUrl}/${resource}`,
@@ -135,21 +121,25 @@ const Airtable = (
             }),
         );
 
-        return { data: response };
+        return { data: response }; */
     },
 
     update: async (resource, id, params) => {
-        const url = `${apiUrl}/${resource}/${id}`;
+        throw Error("not implemented");
+
+        /*  const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await httpClient.patch(url, params);
 
         return {
             data,
-        };
+        }; */
     },
 
     updateMany: async (resource, ids, params) => {
-        const response = await Promise.all(
+        throw Error("not implemented");
+
+        /*  const response = await Promise.all(
             ids.map(async (id) => {
                 const { data } = await httpClient.patch(
                     `${apiUrl}/${resource}/${id}`,
@@ -159,31 +149,37 @@ const Airtable = (
             }),
         );
 
-        return { data: response };
+        return { data: response }; */
     },
 
     getOne: async (resource, id) => {
-        const url = `${apiUrl}/${resource}/${id}`;
+        throw Error("not implemented");
+
+        /*  const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await httpClient.get(url);
 
         return {
             data,
-        };
+        }; */
     },
 
     deleteOne: async (resource, id) => {
-        const url = `${apiUrl}/${resource}/${id}`;
+        throw Error("not implemented");
+
+        /*  const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await httpClient.delete(url);
 
         return {
             data,
-        };
+        }; */
     },
 
     deleteMany: async (resource, ids) => {
-        const response = await Promise.all(
+        throw Error("not implemented");
+
+        /* const response = await Promise.all(
             ids.map(async (id) => {
                 const { data } = await httpClient.delete(
                     `${apiUrl}/${resource}/${id}`,
@@ -191,7 +187,7 @@ const Airtable = (
                 return data;
             }),
         );
-        return { data: response };
+        return { data: response }; */
     },
 
     getApiUrl: () => {
@@ -199,54 +195,8 @@ const Airtable = (
     },
 
     custom: async (url, method, params = {}) => {
-        const { filters, sort, payload, query, headers } = params;
-
-        let requestUrl = `${url}?`;
-
-        if (sort) {
-            const { _sort, _order } = generateSort(sort);
-            const sortQuery = {
-                _sort: _sort.join(","),
-                _order: _order.join(","),
-            };
-            requestUrl = `${requestUrl}&${stringify(sortQuery)}`;
-        }
-
-        if (filters) {
-            const filterQuery = generateFilter(filters);
-            requestUrl = `${requestUrl}&${stringify(filterQuery)}`;
-        }
-
-        if (query) {
-            requestUrl = `${requestUrl}&${stringify(query)}`;
-        }
-
-        if (headers) {
-            httpClient.defaults.headers = {
-                ...httpClient.defaults.headers,
-                ...headers,
-            };
-        }
-
-        let axiosResponse;
-        switch (method) {
-            case "put":
-            case "post":
-            case "patch":
-                axiosResponse = await httpClient[method](url, payload);
-                break;
-            case "delete":
-                axiosResponse = await httpClient.delete(url);
-                break;
-            default:
-                axiosResponse = await httpClient.get(requestUrl);
-                break;
-        }
-
-        const { data } = axiosResponse;
-
-        return Promise.resolve({ data });
+        throw Error("not implemented");
     },
 });
 
-export default Airtable;
+export default AirtableDataProvider;
