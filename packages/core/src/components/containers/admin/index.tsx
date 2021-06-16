@@ -22,7 +22,7 @@ import {
 import { OptionalComponent, defaultConfigProviderProps } from "@definitions";
 import {
     MutationMode,
-    IDataContext,
+    IDataContextProvider,
     IAuthContext,
     I18nProvider,
     LayoutProps,
@@ -31,7 +31,7 @@ import {
 
 export interface AdminProps {
     authProvider?: IAuthContext;
-    dataProvider: IDataContext;
+    dataProvider: IDataContextProvider;
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
     LoginPage?: React.FC | false;
