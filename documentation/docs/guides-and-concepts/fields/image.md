@@ -21,8 +21,11 @@ export const PostList: React.FC = () => {
     return (
         <List>
             <Table<IPost> rowKey="id">
-                //highlight-next-line
-                ...
+                <Table.Column
+                    dataIndex="title"
+                    title="Title"
+                    key="title"
+                />
                 <Table.Column<IPost>
                     key="image"
                     title="Image"
