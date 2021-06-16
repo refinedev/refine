@@ -14,7 +14,7 @@ import {
 import { useNavigation, useResourceWithRoute, useTranslate } from "@hooks";
 
 export interface ShowProps {
-    aside?: FC;
+    Aside?: React.ReactNode;
     title?: string;
     canEdit?: boolean;
     canDelete?: boolean;
@@ -26,7 +26,7 @@ export interface ShowProps {
 }
 
 export const Show: React.FC<ShowProps> = ({
-    aside,
+    Aside,
     title,
     canEdit,
     canDelete,
@@ -117,11 +117,7 @@ export const Show: React.FC<ShowProps> = ({
                 </PageHeader>
             </Col>
 
-            {aside && (
-                <Col flex="0 1 300px">
-                    <OptionalComponent optional={aside} />
-                </Col>
-            )}
+            {Aside && <Col flex="0 1 300px">{Aside}</Col>}
         </Row>
     );
 };

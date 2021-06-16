@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
+import { FormProps } from "antd/lib/form";
+
 import { useForm } from "antd/lib/form/Form";
 import { SorterResult } from "antd/lib/table/interface";
 
@@ -14,7 +16,6 @@ import {
     mapAntdSorterToCrudSorting,
     mapAntdFilterToCrudFilter,
 } from "@definitions/table";
-import { FormProps } from "@components/antd";
 
 import {
     ResourceRouterParams,
@@ -23,7 +24,7 @@ import {
     CrudSorting,
 } from "../../../interfaces";
 
-export type useTableProps = {
+export type useTableProps<TSearchVariables = unknown> = {
     permanentFilter?: CrudFilters;
     resource?: string;
     initialCurrent?: number;
@@ -31,17 +32,23 @@ export type useTableProps = {
     initialSorter?: CrudSorting;
     initialFilter?: CrudFilters;
     syncWithLocation?: boolean;
-    onSearch?: (data: any) => CrudFilters | Promise<CrudFilters>;
+    onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
 };
 
-export type useTableReturnType<TData extends BaseRecord = BaseRecord> = {
-    formProps: FormProps;
+export type useTableReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TSearchVariables = unknown,
+> = {
+    searchFormProps: FormProps<TSearchVariables>;
     tableProps: TableProps<TData>;
     sorter?: CrudSorting;
     filters?: CrudFilters;
 };
 
-export const useTable = <TData extends BaseRecord = BaseRecord>({
+export const useTable = <
+    TData extends BaseRecord = BaseRecord,
+    TSearchVariables = unknown,
+>({
     onSearch,
     permanentFilter = [],
     initialCurrent = 1,
@@ -50,10 +57,13 @@ export const useTable = <TData extends BaseRecord = BaseRecord>({
     initialFilter,
     syncWithLocation = false,
     resource: resourceFromProp,
-}: useTableProps = {}): useTableReturnType<TData> => {
+}: useTableProps<TSearchVariables> = {}): useTableReturnType<
+    TData,
+    TSearchVariables
+> => {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
-    const [form] = useForm();
+    const [form] = useForm<TSearchVariables>();
 
     if (syncWithLocationContext) {
         syncWithLocation = true;
@@ -144,7 +154,7 @@ export const useTable = <TData extends BaseRecord = BaseRecord>({
     };
 
     return {
-        formProps: {
+        searchFormProps: {
             ...form,
             onFinish,
         },

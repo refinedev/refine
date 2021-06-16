@@ -143,6 +143,8 @@ module.exports = {
                     label: "Fields",
                     items: [
                         "guides-and-concepts/fields/boolean",
+                        "guides-and-concepts/fields/image",
+                        "guides-and-concepts/fields/date",
                         "guides-and-concepts/fields/email",
                         "guides-and-concepts/fields/markdown",
                         "guides-and-concepts/fields/tag",
