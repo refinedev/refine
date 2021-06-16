@@ -7,7 +7,7 @@ import searchForm from '@site/static/img/guides-and-concepts/table-search/form.j
 
 We can make extensive search / filter operations using the `useTable` hook on the listing pages.
 
-First, we create a form by extracting `formProps` from `useTable`. We will use this form for search / filtering.
+First, we create a form by extracting `searchFormProps` from `useTable`. We will use this form for search / filtering.
 
 ```tsx title="pages/list.tsx"
 import {
@@ -23,12 +23,12 @@ import {
 
 const { RangePicker } = DatePicker;
 
-const { formProps } = useTable<IPost>();
+const { searchFormProps } = useTable<IPost>();
 
 return (
     <List>
         <Space direction="vertical" size="large">
-            <Form layout="inline" {...formProps}>
+            <Form layout="inline" {...searchFormProps}>
                 <Form.Item label="Title" name="title">
                     <Input placeholder="Title" />
                 </Form.Item>
@@ -73,8 +73,8 @@ When the form is submitted, the `onSearch` method runs and we get the search for
 ...
 import { Dayjs } from "dayjs";
 
-const { formProps } = useTable<IPost>({
-    onSearch: (params: { title: string; createdAt: [Dayjs, Dayjs] }) => {
+const { searchFormProps } = useTable<IPost, { title: string; createdAt: [Dayjs, Dayjs] }>({
+    onSearch: (params) => {
         const filters: CrudFilters = [];
         const { title, createdAt } = params;
 

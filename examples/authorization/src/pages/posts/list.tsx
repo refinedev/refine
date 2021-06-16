@@ -14,7 +14,7 @@ import {
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IPost>();
 
     const categoryIds =
@@ -26,13 +26,12 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { data: permissionsData } = usePermissions();
 
     return (
-        <List {...props} canCreate={permissionsData?.includes("admin")}>
-            <Table {...tableProps} key="id">
-                <Table.Column key="id" dataIndex="id" title="ID" />
-                <Table.Column key="title" dataIndex="title" title="Title" />
+        <List canCreate={permissionsData?.includes("admin")}>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" />
                 <Table.Column
                     dataIndex={["category", "id"]}
-                    key="category.id"
                     title="Category"
                     render={(value) => {
                         if (isLoading) {
@@ -52,8 +51,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
-                    key="actions"
-                    render={(_value, record) => (
+                    render={(_, record) => (
                         <Space>
                             <EditButton size="small" recordItemId={record.id} />
                             <ShowButton size="small" recordItemId={record.id} />

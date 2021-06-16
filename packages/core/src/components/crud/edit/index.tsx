@@ -37,7 +37,7 @@ export interface EditProps {
     canDelete?: boolean;
     deleteButtonProps?: DeleteButtonProps;
     resource?: string;
-    aside?: React.FC;
+    Aside?: React.ReactNode;
 }
 
 export const Edit: React.FC<EditProps> = ({
@@ -51,7 +51,7 @@ export const Edit: React.FC<EditProps> = ({
     pageHeaderProps,
     canDelete,
     resource: resourceFromProps,
-    aside,
+    Aside,
 }) => {
     const translate = useTranslate();
     const { goBack, list } = useNavigation();
@@ -134,11 +134,7 @@ export const Edit: React.FC<EditProps> = ({
                 </PageHeader>
             </Col>
 
-            {aside && (
-                <Col flex="0 1 300px">
-                    <OptionalComponent optional={aside} />
-                </Col>
-            )}
+            {Aside && <Col flex="0 1 300px">{Aside}</Col>}
         </Row>
     );
 };

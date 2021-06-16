@@ -19,7 +19,7 @@ const mockUsers = [
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
-        login: ({ username, password }) => {
+        login: ({ username, password, remember }) => {
             // Suppose we actually send a request to the back end here.
             const user = mockUsers.find((item) => item.username === username);
 
