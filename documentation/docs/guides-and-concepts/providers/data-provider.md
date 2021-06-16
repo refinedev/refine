@@ -150,8 +150,17 @@ const SimpleRestDataProvider = (
     // highlight-end
     ...
 })
-
 ```
+
+<br/>
+
+#### Parameter Types
+
+| Name     | Type         | Default |
+| -------- | ------------ | ------- |
+| resource | `string`     |         |
+| params   | `TVariables` | `{}`    |
+> `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/guides-and-concepts/hooks/data/useCreate#type-parameters) to type `params`
 
 <br/>
 
@@ -170,6 +179,8 @@ mutate({
 })
 ```
 > [Refer to useCreate documentation for more information. &#8594](guides-and-concepts/hooks/data/useCreate.md)
+
+<br />
 
 ### `createMany`
 
@@ -198,9 +209,18 @@ const SimpleRestDataProvider = (
     // highlight-end
     ...
 })
-
 ```
 
+
+<br/>
+
+#### Parameter Types
+
+| Name     | Type           | Default |
+| -------- | -------------- | ------- |
+| resource | `string`       |         |
+| params   | `TVariables[]` | `{}`    |
+> TVariables is a user defined type which can be passed to [`useCreateMany`](/docs/guides-and-concepts/hooks/data/ManyMany) to type `params`
 
 <br/>
 
@@ -225,6 +245,8 @@ mutate({
 ```
 > [Refer to useCreateMany documentation for more information. &#8594](guides-and-concepts/hooks/data/useCreateMany.md)
 
+<br />
+
 ### `deleteOne`
 
 Deletes an item in a resource.
@@ -248,9 +270,13 @@ const SimpleRestDataProvider = (
     // highlight-end
     ...
 })
-
 ```
+<br/>
 
+| Name     | Type     | Default |
+| -------- | -------- | ------- |
+| resource | `string` |         |
+| id       | `string` |         |
 
 <br/>
 
@@ -264,6 +290,8 @@ const { mutate } = useDelete("categories");
 mutate({ id: 2 })
 ```
 > [Refer to useDelete documentation for more information. &#8594](guides-and-concepts/hooks/data/useDelete.md)
+
+<br />
 
 ### `deleteMany`
 
@@ -290,9 +318,14 @@ const SimpleRestDataProvider = (
     // highlight-end
     ...
 })
-
 ```
 
+<br/>
+
+| Name     | Type       | Default |
+| -------- | ---------- | ------- |
+| resource | `string`   |         |
+| ids      | `string[]` |         |
 
 <br/>
 
@@ -306,6 +339,8 @@ const { mutate } = useDeleteMany("categories");
 mutate({ ids: [ 2, 3 ] })
 ```
 > [Refer to useDeleteMany documentation for more information. &#8594](guides-and-concepts/hooks/data/useDeleteMany.md)
+
+<br />
 
 ### `update`
 
@@ -330,9 +365,18 @@ const SimpleRestDataProvider = (
     // highlight-end
     ...
 })
-
 ```
 
+<br/>
+
+#### Parameter Types
+
+| Name     | Type         | Default |
+| -------- | ------------ | ------- |
+| resource | `string`     |         |
+| id       | `string`     |         |
+| params   | `TVariables` | `{}`    |
+> `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/guides-and-concepts/hooks/data/useUpdate#type-parameters) to type `params`
 
 <br/>
 
@@ -346,6 +390,8 @@ const { mutate } = useUpdate("categories");
 mutate({ id: 2, values: { title: "New Category Title" } })
 ```
 > [Refer to useUpdate documentation for more information. &#8594](guides-and-concepts/hooks/data/useUpdate.md)
+
+<br />
 
 ### `updateMany`
 
@@ -374,9 +420,18 @@ const SimpleRestDataProvider = (
     // highlight-end
     ...
 })
-
 ```
 
+<br/>
+
+#### Parameter Types
+
+| Name     | Type         | Default |
+| -------- | ------------ | ------- |
+| resource | `string`     |         |
+| ids      | `string[]`   |         |
+| params   | `TVariables` | `{}`    |
+> TVariables is a user defined type which can be passed to [`useUpdateMany`](/docs/guides-and-concepts/hooks/data/useUpdateMany#type-parameters) to type `params`
 
 <br/>
 
@@ -390,6 +445,8 @@ cconst { mutate } = useUpdateMany("posts");
 mutate({ ids: [ 1, 2 ], values: { status: "draft" } })
 ```
 > [Refer to useUpdateMany documentation for more information. &#8594](guides-and-concepts/hooks/data/useUpdateMany.md)
+
+<br />
 
 ### `getOne`
 
@@ -414,9 +471,16 @@ const SimpleRestDataProvider = (
     // highlight-end
     ...
 })
-
 ```
 
+<br />
+
+#### Parameter Types
+
+| Name     | Type     | Default |
+| -------- | -------- | ------- |
+| resource | `string` |         |
+| id       | `string` |         |
 
 <br/>
 
@@ -428,6 +492,9 @@ import { useOne } from "@pankod/refine";
 const { data } = useOne<ICategory>("categories", 1);
 ```
 > [Refer to useOne documentation for more information. &#8594](guides-and-concepts/hooks/data/useOne.md)
+
+
+<br/>
 
 ### `getMany`
 
@@ -452,9 +519,16 @@ const SimpleRestDataProvider = (
     // highlight-end
     ...
 })
-
 ```
 
+<br />
+
+#### Parameter Types
+
+| Name     | Type       | Default |
+| -------- | ---------- | ------- |
+| resource | `string`   |         |
+| ids      | `string[]` |         |
 
 <br/>
 
@@ -467,6 +541,7 @@ const { data } = useMany("categories", [ 1, 2 ]);
 ```
 > [Refer to useMany documentation for more information. &#8594](guides-and-concepts/hooks/data/useMany.md)
 
+<br />
 
 
 ### `getList`
@@ -554,7 +629,7 @@ const SimpleRestDataProvider = (
 ```ts
 const { data } = useList("posts", { 
     //highlight-next-line
-    pagination: { current: 1, pageSize: 10 } );
+    pagination: { current: 1, pageSize: 10 } });
 ```
 
 >Listing will start from page 1 showing 10 records.
@@ -565,6 +640,7 @@ const { data } = useList("posts", {
 **Adding sorting**
 
 We'll sort records by speficified order and field.
+> [CrudSorting](/docs/interfaceReferences#crudoperators)
 
 ```tsx title="@pankod/refine-json-server/src/index.ts"
  //highlight-start
@@ -636,7 +712,7 @@ So we added `generateSort` method to transform sort parameters.
 const { data } = useList("posts", { 
     pagination: { current: 1, pageSize: 10 },
     //highlight-next-line
-    sort: [{ order: "asc", field: "title" }] );
+    sort: [{ order: "asc", field: "title" }] });
 ```
 >Listing starts from ascending alphabetical order on title field.
 
@@ -644,7 +720,7 @@ const { data } = useList("posts", {
 
 **Adding filtering**
 
-Allows you to filter queries using refine's filter operators. It is configured via field, operator and value properites.
+Allows you to filter queries using [refine's filter operators](/docs/interfaceReferences#crudoperators). It is configured via field, operator and value properites.
 
 ```tsx title="@pankod/refine-json-server/src/index.ts"
 const generateSort = (sort?: CrudSorting) => {
@@ -736,6 +812,7 @@ Since our API accepts a certain parameter format to filter the data, we need to 
 
 So we added `generateFilter` and `mapOperator` methods to transform filter parameters.
 
+[Refer to list of filter operators &#8594](/docs/interfaceReferences#crudoperators)
 
 ```ts
 const { data } = useList("posts", { 
@@ -750,16 +827,20 @@ const { data } = useList("posts", {
         },
     ],
     //highlight-end
-    );
+});
 ```
 >Only lists records which status equal to "rejected".
 
-Refer to [useList filter docs](/docs/guides-and-concepts/hooks/data/useList#filters) to see list of filter operators 
 
+
+
+<br />
 
 ### `custom`
 
-We'll add a method to handle requests with custom parameters like URL, CRUD methods and configs.
+We'll add a method to handle requests with custom parameters like URL, CRUD methods and configs.  
+It's useful if you have non-stantard REST API endpoints or want to make a connection with external resources.
+
 
 ```ts title="@pankod/refine-json-server/src/index.ts"
 const SimpleRestDataProvider = (
@@ -818,17 +899,33 @@ const SimpleRestDataProvider = (
  }
 ```
 
+<br />
+
+#### Parameter Types
+
+| Name | Type                                                                                                                                                                 |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| url      | `string`                                                                                                                                                             |
+| method   | ``get``, ``delete``, ``head``, ``options``, ``post``, ``put``, ``patch``                                                                                             |
+| params   | { `sort?:` [`CrudSorting`](interfaces.md#crudsorting); `filters?:` [`CrudFilters`](interfaces.md#crudfilters); `payload?: {}`; `query?: {}`; `headers?: {}`; } |
+                                                                                                                          
 
 <br/>
 
-**refine** will consume this `getOne` method using `useOne` data hook.
+**refine** will consume this `custom` method using `useCustom` data hook.
 
 ```ts
-import { useOne } from "@pankod/refine";
-
-const { data } = useOne<ICategory>("categories", 1);
+const { data, isLoading } = useCustom(
+    `${apiUrl}/posts-unique-check`,
+    "get",
+    {
+        query: {
+            title: "Foo bar",
+        },
+    },
+);
 ```
-> [Refer to useOne documentation for more information. &#8594](guides-and-concepts/hooks/data/useOne.md)
+> [Refer to useCustom documentation for more information. &#8594](guides-and-concepts/hooks/data/useCustom.md)
 
 
 
