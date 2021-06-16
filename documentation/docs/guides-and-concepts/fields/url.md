@@ -9,65 +9,50 @@ This field lets you embed a link. It uses [Ant Design's <Typography.Link\>](http
 
 Let's see how to use `<UrlField>` with an example:
 
-```tsx
+```tsx title="pages/posts/list.tsx"
 import * as React from "react";
-import {
-    List,
-    Table,
-    //highlight-next-line
-    UrlField,
-    useTranslate,
-    useTable,
-    IResourceComponentsProps,
-} from "@pankod/refine";
 
-export const FilesList: React.FC<IResourceComponentsProps> = (props) => {
-    const translate = useTranslate();
-    const { tableProps } = useTable({
-        initialPageSize: 20,
-    });
+import { List, Table, useTable, UrlField } from "@pankod/refine";
+
+export const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+
     return (
-        <List {...props}>
-            <Table
-                {...tableProps}
-                pagination={{
-                    ...tableProps.pagination,
-                    position: ["bottomCenter"],
-                    size: "small",
-                }}
-            >
-                <Table.Column
-                    key="id"
-                    dataIndex="id"
-                    title={translate("common:resources.files.fields.id")}
+        <List>
+            <Table<IPost> {...tableProps} key="id">
+                <Table.Column<IPost>
+                    dataIndex="title"
+                    title="Title"
+                    key="title"
                 />
-                //highlight-start
-                <Table.Column
-                    key="url"
-                    dataIndex="url"
-                    title="Test UrlField"
-                    render={(value) => {
-                        return (
-                            <UrlField
-                                value={value}
-                                target="_blank"
-                                title="test title"
-                            />
-                        );
-                    }}
+                <Table.Column<IPost>
+                    dataIndex={["image", "0", "url"]}
+                    title={"Image"}
+                    key="image"
+                    render={(value: string) => <UrlField value={value} />}
                 />
-                //highlight-end
             </Table>
         </List>
     );
 };
 ```
 
+```ts title="interfaces/index.d.ts"
+interface IPost {
+    title: string;
+    image: IImage[];
+}
+
+interface IImage {
+    url: string;
+}
+```
+
 ## API Reference
 
 ### Properties
 
-| Property | Description                  | Type         |
-| -------- | ---------------------------- | ------------ |
-| value    | Url for link to reference to | `string`     |
-| children | What to show instead of url  | `ReactNode|` |
+| Property | Description                  | Type        |
+| -------- | ---------------------------- | ----------- |
+| value    | Url for link to reference to | `string`    |
+| children | What to show instead of url  | `ReactNode` |
