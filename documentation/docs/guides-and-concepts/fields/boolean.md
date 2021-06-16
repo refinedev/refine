@@ -5,7 +5,7 @@ title: Boolean
 
 import booleanField from '@site/static/img/guides-and-concepts/fields/boolean/booleanfield.png'
 
-This field is used to display boolean values and uses [`<Tooltip>`](https://ant.design/components/tooltip/) values from Ant Design.
+This field is used to display boolean values and uses `<Tooltip>` values from Ant Design.
 
 [Refer to `<Tooltip>` documentation for detailed usage. &#8594](https://ant.design/components/tooltip/#header)
 
@@ -14,14 +14,15 @@ This field is used to display boolean values and uses [`<Tooltip>`](https://ant.
 Let's see how to use `<BooleanField>` with the example in the post list.
 
 ```tsx
+//highlight-next-line 
 import { List, Table, BooleanField, Icons } from "@pankod/refine";
 
-export const PostList: React.FC = (props) => {
+export const PostList: React.FC = () => {
     const { CloseCircleOutlined, CheckCircleOutlined } = Icons;
 
     return (
-        <List {...props}>
-            <Table key="id">
+        <List>
+            <Table rowKey="id">
                 //highlight-next-line
                 ...
                 <Table.Column
@@ -48,7 +49,7 @@ export const PostList: React.FC = (props) => {
 
 <br/>
 <div>
-    <img src={booleanField} alt="Aside Usage"/>
+    <img src={booleanField} alt="BooleanField Usage"/>
 </div>
 
 
@@ -63,4 +64,4 @@ export const PostList: React.FC = (props) => {
 | valueLabelFalse      | If there no value, it is the text to use   | `string`                                                             | `"false"`                                                  |
 | trueIcon             | If there is a value, it is the icon to use | `React.FC` \| `object`                                               | [`<CheckOutlined />`](https://ant.design/components/icon/) |
 | falseIcon            | If there no value, it is the icon to use.  | `React.FC` \| `object`                                               | [`<CloseOutlined />`](https://ant.design/components/icon/) |
-| AbstractTooltipProps | ant-design `Tooltip` props                 | [`AbstractTooltipProps`](https://ant.design/components/tooltip/#API) |                                                            |
+| AbstractTooltipProps | Ant Design `Tooltip` props                 | [`AbstractTooltipProps`](https://ant.design/components/tooltip/#API) |                                                            |

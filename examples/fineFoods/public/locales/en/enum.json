@@ -1,0 +1,9 @@
+{
+  "orderStatuses": {
+    "waiting": "Waiting",
+    "ready": "Ready",
+    "on the way": "On the way",
+    "delivered": "Delivered",
+    "could not be delivered": "Could not be delivered"
+  }
+}

@@ -1,6 +1,11 @@
 module.exports = {
     someSidebar: [
         {
+            type: "category",
+            label: "Getting Started",
+            items: ["getting-started/overview"],
+        },
+        {
             type: "doc",
             id: "tutorial",
         },
@@ -124,6 +129,13 @@ module.exports = {
                                 "guides-and-concepts/components/buttons/clone-button",
                             ],
                         },
+                        {
+                            type: "category",
+                            label: "Inputs",
+                            items: [
+                                "guides-and-concepts/components/inputs/custom-inputs",
+                            ],
+                        },
                     ],
                 },
                 {
@@ -132,6 +144,10 @@ module.exports = {
                     items: [
                         "guides-and-concepts/fields/boolean",
                         "guides-and-concepts/fields/url",
+                        "guides-and-concepts/fields/image",
+                        "guides-and-concepts/fields/date",
+                        "guides-and-concepts/fields/email",
+                        "guides-and-concepts/fields/markdown",
                     ],
                 },
                 "guides-and-concepts/multipart-upload",

@@ -11,12 +11,11 @@ import {
     Modal,
     Space,
     Typography,
-    MarkdownField,
+    EditButton,
+    ShowButton,
     useTable,
     useShow,
     useModalForm,
-    EditButton,
-    ShowButton,
     IResourceComponentsProps,
 } from "@pankod/refine";
 
@@ -24,7 +23,7 @@ import { IPost } from "interfaces";
 
 const { Title, Text } = Typography;
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IPost>();
 
     // Create Modal
@@ -68,14 +67,14 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     },
                 }}
             >
-                <Table {...tableProps} key="id">
-                    <Table.Column key="id" dataIndex="id" title="ID" />
-                    <Table.Column key="title" dataIndex="title" title="Title" />
+                <Table {...tableProps} rowKey="id">
+                    <Table.Column dataIndex="id" title="ID" />
+                    <Table.Column dataIndex="title" title="Title" />
                     <Table.Column<IPost>
                         title="Actions"
                         dataIndex="actions"
                         key="actions"
-                        render={(_value, record) => (
+                        render={(_, record) => (
                             <Space>
                                 <EditButton
                                     size="small"
@@ -104,17 +103,6 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                 >
                     <Form {...createFormProps} layout="vertical">
                         <Form.Item
-                            label="Title"
-                            name="title"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                        <Form.Item
                             label="Status"
                             name="status"
                             rules={[
@@ -139,6 +127,17 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                                     },
                                 ]}
                             />
+                        </Form.Item>
+                        <Form.Item
+                            label="Title"
+                            name="title"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
                         </Form.Item>
                     </Form>
                 </Create>
@@ -157,17 +156,6 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                 >
                     <Form {...editFormProps} layout="vertical">
                         <Form.Item
-                            label="Title"
-                            name="title"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                        <Form.Item
                             label="Status"
                             name="status"
                             rules={[
@@ -193,6 +181,17 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                                 ]}
                             />
                         </Form.Item>
+                        <Form.Item
+                            label="Title"
+                            name="title"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
                     </Form>
                 </Edit>
             </Modal>
@@ -202,7 +201,6 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                 width={1000}
             >
                 <Show
-                    {...props}
                     isLoading={showIsLoading}
                     recordItemId={showId}
                     pageHeaderProps={{
@@ -212,13 +210,11 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     <Title level={5}>Id</Title>
                     <Text>{record?.id}</Text>
 
+                    <Title level={5}>Status</Title>
+                    <Text>{record?.status}</Text>
+
                     <Title level={5}>Title</Title>
                     <Text>{record?.title}</Text>
-
-                    <Title level={5}>Content</Title>
-                    <MarkdownField
-                        value={record?.content ?? "Cannot found content"}
-                    />
                 </Show>
             </Modal>
         </>
