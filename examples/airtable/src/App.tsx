@@ -6,7 +6,7 @@ import Airtable from "airtable";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import { CategoryList } from "pages/categories";
+import { CategoryList, CategoryCreate } from "pages/categories";
 
 const API_URL = "https://api.airtable.com/v0";
 
@@ -30,7 +30,11 @@ const App: React.FC = () => {
                 edit={PostEdit}
                 show={PostShow}
             />
-            <Resource name="categories" list={CategoryList} />
+            <Resource
+                name="categories"
+                list={CategoryList}
+                create={CategoryCreate}
+            />
         </Admin>
     );
 };

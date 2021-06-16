@@ -4,7 +4,7 @@ import {
     CrudOperators,
     CrudFilters,
 } from "@pankod/refine";
-import { CrudSorting } from "@pankod/refine/dist/interfaces";
+import { BaseRecord, CrudSorting } from "@pankod/refine/dist/interfaces";
 import { AirtableBase } from "airtable/lib/airtable_base";
 
 /* const axiosInstance = axios.create();
@@ -87,111 +87,70 @@ const AirtableDataProvider = (
 
     getMany: async (resource, ids) => {
         throw Error("not implemented");
-        /* const { data } = await httpClient.get(
-            `${apiUrl}/${resource}?${stringify({ id: ids })}`,
-        );
-
-        return {
-            data,
-        }; */
     },
 
     create: async (resource, params) => {
-        const { save } = await airtableClient(resource).create(params);
-
-        /*  const url = `${apiUrl}/${resource}`;
-
-        const { data } = await httpClient.post(url, params);
+        const { fields } = await airtableClient<any>(resource).create(params);
 
         return {
-            data,
-        }; */
+            data: fields,
+        };
     },
 
     createMany: async (resource, params) => {
-        throw Error("not implemented");
+        const data = await airtableClient<any>(resource).create(params);
 
-        /*   const response = await Promise.all(
-            params.map(async (param) => {
-                const { data } = await httpClient.post(
-                    `${apiUrl}/${resource}`,
-                    param,
-                );
-                return data;
-            }),
-        );
-
-        return { data: response }; */
+        return {
+            data: data as any,
+        };
     },
 
     update: async (resource, id, params) => {
-        throw Error("not implemented");
-
-        /*  const url = `${apiUrl}/${resource}/${id}`;
-
-        const { data } = await httpClient.patch(url, params);
+        const data = await airtableClient<any>(resource).update(id, params);
 
         return {
-            data,
-        }; */
+            data: data as any,
+        };
     },
 
     updateMany: async (resource, ids, params) => {
-        throw Error("not implemented");
+        const requestParams = ids.map((id) => ({
+            id,
+            fields: { ...params },
+        }));
+        const data = await airtableClient<any>(resource).update(requestParams);
 
-        /*  const response = await Promise.all(
-            ids.map(async (id) => {
-                const { data } = await httpClient.patch(
-                    `${apiUrl}/${resource}/${id}`,
-                    params,
-                );
-                return data;
-            }),
-        );
-
-        return { data: response }; */
+        return {
+            data: data as any,
+        };
     },
 
     getOne: async (resource, id) => {
-        throw Error("not implemented");
-
-        /*  const url = `${apiUrl}/${resource}/${id}`;
-
-        const { data } = await httpClient.get(url);
+        const { fields } = await airtableClient<any>(resource).find(id);
 
         return {
-            data,
-        }; */
+            data: fields,
+        };
     },
 
     deleteOne: async (resource, id) => {
-        throw Error("not implemented");
-
-        /*  const url = `${apiUrl}/${resource}/${id}`;
-
-        const { data } = await httpClient.delete(url);
+        const { fields } = await airtableClient<any>(resource).destroy(id);
 
         return {
-            data,
-        }; */
+            data: fields,
+        };
     },
 
     deleteMany: async (resource, ids) => {
-        throw Error("not implemented");
+        const data = await airtableClient<any>(resource).destroy(ids);
 
-        /* const response = await Promise.all(
-            ids.map(async (id) => {
-                const { data } = await httpClient.delete(
-                    `${apiUrl}/${resource}/${id}`,
-                );
-                return data;
-            }),
-        );
-        return { data: response }; */
+        return {
+            data: data as any,
+        };
     },
 
     getApiUrl: () => {
-        return apiUrl;
+        throw Error("not implemented");
     },
 
     custom: async (url, method, params = {}) => {
