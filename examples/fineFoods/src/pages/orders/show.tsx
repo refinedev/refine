@@ -9,8 +9,10 @@ import {
     Icons,
     AntdList,
     Avatar,
+    Timeline,
     IResourceComponentsProps,
 } from "@pankod/refine";
+import dayjs from "dayjs";
 
 import { OrderStatus } from "components";
 import { IOrder } from "interfaces";
@@ -30,13 +32,10 @@ export const OrderShow: React.FC<IResourceComponentsProps> = (props) => {
                         <Title underline level={3}>
                             Order
                         </Title>
-
                         <Title level={5}>Order Number</Title>
                         <Text>{record.orderNumber}</Text>
-
                         <Title level={5}>Status</Title>
                         <OrderStatus status={record.status.text} />
-
                         <Title level={5}>Amount</Title>
                         <NumberField
                             options={{
@@ -46,12 +45,26 @@ export const OrderShow: React.FC<IResourceComponentsProps> = (props) => {
                             }}
                             value={record.amount}
                         />
-
                         <Title level={5}>Created At</Title>
                         <DateField value={record.createdAt} format="LLL" />
-
                         <Title level={5}>Address</Title>
                         <Text>{record.adress.text}</Text>
+                        <Title underline level={3}>
+                            Order History
+                        </Title>
+                        <Timeline style={{ marginTop: 20 }}>
+                            {record.events.map((event, index) => (
+                                <Timeline.Item key={index}>
+                                    <>
+                                        {event.name}
+                                        <small style={{ marginLeft: 10 }}>
+                                            ({dayjs(event.date).format("LLL")})
+                                        </small>
+                                    </>
+                                </Timeline.Item>
+                            ))}
+                        </Timeline>
+                        ,
                     </Col>
 
                     <Col md={8}>
