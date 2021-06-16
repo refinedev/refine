@@ -35,28 +35,6 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const formList = [
         <>
             <Form.Item
-                label="Title"
-                name="title"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-            <Form.Item
-                label="Category"
-                name={["category", "id"]}
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Select {...categorySelectProps} />
-            </Form.Item>
-            <Form.Item
                 label="Status"
                 name="status"
                 rules={[
@@ -81,6 +59,28 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 />
+            </Form.Item>
+            <Form.Item
+                label="Title"
+                name="title"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+            <Form.Item
+                label="Category"
+                name={["category", "id"]}
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Select {...categorySelectProps} />
             </Form.Item>
         </>,
         <>
