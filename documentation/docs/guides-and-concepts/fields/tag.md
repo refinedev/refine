@@ -11,7 +11,7 @@ This field lets you display a value in a tag. It uses and Ant Design's [`<Tag>`]
 
 Let's see how to use it in a basic list page:
 
-```tsx
+```tsx title="pages/posts/list.tsx"
 import {
     List,
     //highlight-next-line
@@ -41,6 +41,13 @@ export const PostList: React.FC = () => {
         </List>
     );
 };
+```
+
+```ts title="interfaces/index.d.ts"
+export interface IPost {
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
 ```
 
 <br/>
