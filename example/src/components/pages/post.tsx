@@ -40,6 +40,7 @@ import {
     useSelect,
     useMany,
     IResourceComponentsProps,
+    ImageField,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -51,15 +52,14 @@ import { Aside } from "../aside";
 const { Title, Text } = Typography;
 
 interface IPost {
+    id: string;
     title: string;
-    slug: string;
-    status: "published" | "draft" | "rejected";
-    createdAt: string;
-    category: ICategory;
-    user: {
-        id: string;
-    };
-    tags: [{ id: string }];
+    image: [
+        {
+            name: string;
+            url: string;
+        },
+    ];
 }
 
 interface ICategory {
@@ -81,12 +81,12 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
         ],
     });
 
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    // const categoryIds =
+    //     tableProps?.dataSource?.map((item) => item.category.id) ?? [];
 
-    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
-        enabled: categoryIds.length > 0,
-    });
+    // const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
+    //     enabled: categoryIds.length > 0,
+    // });
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
@@ -133,7 +133,6 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
             <CreateButton />
         </Space>
     );
-
     return (
         <List
             {...props}
@@ -143,13 +142,25 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
         >
             <Table<IPost>
                 {...tableProps}
-                key="id"
+                rowKey="id"
                 pagination={{
                     ...tableProps.pagination,
                     position: ["bottomCenter"],
                     size: "small",
                 }}
             >
+                <Table.Column<IPost>
+                    key="image"
+                    title="Image"
+                    dataIndex="image"
+                    render={(_, record) => (
+                        <ImageField
+                            value={record.image[0].url}
+                            title={record.image[0].name}
+                            width={200}
+                        />
+                    )}
+                />
                 <Table.Column
                     dataIndex="title"
                     title={translate("common:resources.posts.fields.title")}
@@ -159,7 +170,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     }}
                     defaultSortOrder={getDefaultSortOrder("title", sorter)}
                 />
-                <Table.Column
+                {/* <Table.Column
                     dataIndex="slug"
                     title={translate("common:resources.posts.fields.slug")}
                     key="slug"
@@ -198,6 +209,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                         filters,
                     )}
                 />
+
                 <Table.Column
                     dataIndex="status"
                     title={translate(
@@ -237,7 +249,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                         multiple: 2,
                     }}
                     defaultSortOrder={getDefaultSortOrder("createdAt", sorter)}
-                />
+                /> */}
                 <Table.Column
                     title={translate("common:table.actions", "Actions")}
                     dataIndex="actions"
@@ -491,234 +503,225 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
 };
 
 export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
-    const { Step } = Steps;
-
-    const apiUrl = useApiUrl();
-    const translate = useTranslate();
-
-    const [selectedTab, setSelectedTab] =
-        React.useState<"write" | "preview">("write");
-    const { onChange, isLoading } = useFileUploadState();
-
-    const {
-        current,
-        gotoStep,
-        stepsProps,
-        submit,
-        formLoading,
-        formProps,
-        queryResult,
-    } = useStepsForm<IPost>({
-        warnWhenUnsavedChanges: true,
-        redirect: "list",
-        mutationMode: "pessimistic",
-    });
-
-    const postData = queryResult?.data?.data;
-    const { selectProps: categorySelectProps } = useSelect({
-        resource: "categories",
-        defaultValue: postData?.category?.id,
-    });
-
-    const { selectProps: userSelectProps } = useSelect({
-        resource: "users",
-        optionLabel: "email",
-        defaultValue: postData?.user?.id,
-    });
-
-    const { selectProps: tagsSelectProps } = useSelect({
-        resource: "tags",
-        // TODO: tag interface
-        defaultValue: postData?.tags?.map((tag: { id: string }) => tag.id),
-    });
-
-    const formList = [
-        <>
-            <Form.Item
-                label={translate("common:resources.posts.fields.title")}
-                name="title"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-            <Form.Item
-                label={translate("common:resources.posts.fields.content")}
-                name="content"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <ReactMde
-                    selectedTab={selectedTab}
-                    onTabChange={setSelectedTab}
-                    generateMarkdownPreview={(markdown) =>
-                        Promise.resolve(<ReactMarkdown source={markdown} />)
-                    }
-                />
-            </Form.Item>
-            <Form.Item
-                label={translate("common:resources.posts.fields.status.title")}
-                name="status"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Select
-                    options={[
-                        {
-                            label: translate(
-                                "common:resources.posts.fields.status.published",
-                            ),
-                            value: "published",
-                        },
-                        {
-                            label: translate(
-                                "common:resources.posts.fields.status.draft",
-                            ),
-                            value: "draft",
-                        },
-                        {
-                            label: translate(
-                                "common:resources.posts.fields.status.rejected",
-                            ),
-                            value: "rejected",
-                        },
-                    ]}
-                />
-            </Form.Item>
-            <Form.Item label={translate("common:resources.posts.fields.image")}>
-                <Form.Item
-                    name="images"
-                    valuePropName="fileList"
-                    getValueFromEvent={getValueFromEvent}
-                    noStyle
-                >
-                    <Upload.Dragger
-                        name="file"
-                        action={`${apiUrl}/media/upload`}
-                        listType="picture"
-                        maxCount={5}
-                        multiple
-                        onChange={onChange}
-                    >
-                        <p className="ant-upload-text">
-                            {translate("common:upload.title")}
-                        </p>
-                        <p className="ant-upload-hint">
-                            {translate("common:upload.description")}
-                        </p>
-                    </Upload.Dragger>
-                </Form.Item>
-            </Form.Item>
-        </>,
-
-        <>
-            <Form.Item
-                label={translate("common:resources.posts.fields.category")}
-                name={["category", "id"]}
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Select
-                    mode="multiple"
-                    placeholder="Select Category"
-                    {...categorySelectProps}
-                />
-            </Form.Item>
-            <Form.Item
-                label={translate("common:resources.posts.fields.user")}
-                name={["user", "id"]}
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-                help="Autocomplete (search user email)"
-            >
-                <Select {...userSelectProps} />
-            </Form.Item>
-            <Form.Item
-                label={translate("common:resources.posts.fields.tags")}
-                name="tags"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-                // TODO: Tags Interface
-                getValueProps={(tags?: { id: string }[]) => {
-                    return { value: tags?.map((tag) => tag.id) };
-                }}
-                getValueFromEvent={(args: string[]) => {
-                    return args.map((item) => ({
-                        id: item,
-                    }));
-                }}
-            >
-                <Select mode="multiple" {...tagsSelectProps} />
-            </Form.Item>
-        </>,
-    ];
-
-    return (
-        <Edit
-            {...props}
-            canDelete
-            aside={() => <Aside />}
-            actionButtons={
-                <>
-                    {current > 0 && (
-                        <Button onClick={() => gotoStep(current - 1)}>
-                            {translate(
-                                "common:resources.posts.forms.prevButton",
-                            )}
-                        </Button>
-                    )}
-                    {current < formList.length - 1 && (
-                        <Button onClick={() => gotoStep(current + 1)}>
-                            {translate(
-                                "common:resources.posts.forms.nextButton",
-                            )}
-                        </Button>
-                    )}
-                    {current === formList.length - 1 && (
-                        <SaveButton
-                            style={{ marginRight: 10 }}
-                            loading={isLoading || formLoading}
-                            onClick={() => submit()}
-                            disabled={formLoading}
-                        />
-                    )}
-                </>
-            }
-        >
-            <Steps {...stepsProps}>
-                <Step title="Content" />
-                <Step title="Relations" />
-            </Steps>
-
-            <div style={{ marginTop: 60 }}>
-                <Form
-                    {...formProps}
-                    wrapperCol={{ span: 24 }}
-                    layout="vertical"
-                >
-                    {formList[current]}
-                </Form>
-            </div>
-        </Edit>
-    );
+    return <div></div>;
+    //     const { Step } = Steps;
+    //     const apiUrl = useApiUrl();
+    //     const translate = useTranslate();
+    //     const [selectedTab, setSelectedTab] =
+    //         React.useState<"write" | "preview">("write");
+    //     const { onChange, isLoading } = useFileUploadState();
+    //     const {
+    //         current,
+    //         gotoStep,
+    //         stepsProps,
+    //         submit,
+    //         formLoading,
+    //         formProps,
+    //         queryResult,
+    //     } = useStepsForm<IPost>({
+    //         warnWhenUnsavedChanges: true,
+    //         redirect: "list",
+    //         mutationMode: "pessimistic",
+    //     });
+    //     const postData = queryResult?.data?.data;
+    //     const { selectProps: categorySelectProps } = useSelect({
+    //         resource: "categories",
+    //         defaultValue: postData?.category?.id,
+    //     });
+    //     const { selectProps: userSelectProps } = useSelect({
+    //         resource: "users",
+    //         optionLabel: "email",
+    //         defaultValue: postData?.user?.id,
+    //     });
+    //     const { selectProps: tagsSelectProps } = useSelect({
+    //         resource: "tags",
+    //         // TODO: tag interface
+    //         defaultValue: postData?.tags?.map((tag: { id: string }) => tag.id),
+    //     });
+    //     const formList = [
+    //         <>
+    //             <Form.Item
+    //                 label={translate("common:resources.posts.fields.title")}
+    //                 name="title"
+    //                 rules={[
+    //                     {
+    //                         required: true,
+    //                     },
+    //                 ]}
+    //             >
+    //                 <Input />
+    //             </Form.Item>
+    //             <Form.Item
+    //                 label={translate("common:resources.posts.fields.content")}
+    //                 name="content"
+    //                 rules={[
+    //                     {
+    //                         required: true,
+    //                     },
+    //                 ]}
+    //             >
+    //                 <ReactMde
+    //                     selectedTab={selectedTab}
+    //                     onTabChange={setSelectedTab}
+    //                     generateMarkdownPreview={(markdown) =>
+    //                         Promise.resolve(<ReactMarkdown source={markdown} />)
+    //                     }
+    //                 />
+    //             </Form.Item>
+    //             <Form.Item
+    //                 label={translate("common:resources.posts.fields.status.title")}
+    //                 name="status"
+    //                 rules={[
+    //                     {
+    //                         required: true,
+    //                     },
+    //                 ]}
+    //             >
+    //                 <Select
+    //                     options={[
+    //                         {
+    //                             label: translate(
+    //                                 "common:resources.posts.fields.status.published",
+    //                             ),
+    //                             value: "published",
+    //                         },
+    //                         {
+    //                             label: translate(
+    //                                 "common:resources.posts.fields.status.draft",
+    //                             ),
+    //                             value: "draft",
+    //                         },
+    //                         {
+    //                             label: translate(
+    //                                 "common:resources.posts.fields.status.rejected",
+    //                             ),
+    //                             value: "rejected",
+    //                         },
+    //                     ]}
+    //                 />
+    //             </Form.Item>
+    //             <Form.Item label={translate("common:resources.posts.fields.image")}>
+    //                 <Form.Item
+    //                     name="images"
+    //                     valuePropName="fileList"
+    //                     getValueFromEvent={getValueFromEvent}
+    //                     noStyle
+    //                 >
+    //                     <Upload.Dragger
+    //                         name="file"
+    //                         action={`${apiUrl}/media/upload`}
+    //                         listType="picture"
+    //                         maxCount={5}
+    //                         multiple
+    //                         onChange={onChange}
+    //                     >
+    //                         <p className="ant-upload-text">
+    //                             {translate("common:upload.title")}
+    //                         </p>
+    //                         <p className="ant-upload-hint">
+    //                             {translate("common:upload.description")}
+    //                         </p>
+    //                     </Upload.Dragger>
+    //                 </Form.Item>
+    //             </Form.Item>
+    //         </>,
+    //         <>
+    //             <Form.Item
+    //                 label={translate("common:resources.posts.fields.category")}
+    //                 name={["category", "id"]}
+    //                 rules={[
+    //                     {
+    //                         required: true,
+    //                     },
+    //                 ]}
+    //             >
+    //                 <Select
+    //                     mode="multiple"
+    //                     placeholder="Select Category"
+    //                     {...categorySelectProps}
+    //                 />
+    //             </Form.Item>
+    //             <Form.Item
+    //                 label={translate("common:resources.posts.fields.user")}
+    //                 name={["user", "id"]}
+    //                 rules={[
+    //                     {
+    //                         required: true,
+    //                     },
+    //                 ]}
+    //                 help="Autocomplete (search user email)"
+    //             >
+    //                 <Select {...userSelectProps} />
+    //             </Form.Item>
+    //             <Form.Item
+    //                 label={translate("common:resources.posts.fields.tags")}
+    //                 name="tags"
+    //                 rules={[
+    //                     {
+    //                         required: true,
+    //                     },
+    //                 ]}
+    //                 // TODO: Tags Interface
+    //                 getValueProps={(tags?: { id: string }[]) => {
+    //                     return { value: tags?.map((tag) => tag.id) };
+    //                 }}
+    //                 getValueFromEvent={(args: string[]) => {
+    //                     return args.map((item) => ({
+    //                         id: item,
+    //                     }));
+    //                 }}
+    //             >
+    //                 <Select mode="multiple" {...tagsSelectProps} />
+    //             </Form.Item>
+    //         </>,
+    //     ];
+    //     return (
+    //         <Edit
+    //             {...props}
+    //             canDelete
+    //             aside={() => <Aside />}
+    //             actionButtons={
+    //                 <>
+    //                     {current > 0 && (
+    //                         <Button onClick={() => gotoStep(current - 1)}>
+    //                             {translate(
+    //                                 "common:resources.posts.forms.prevButton",
+    //                             )}
+    //                         </Button>
+    //                     )}
+    //                     {current < formList.length - 1 && (
+    //                         <Button onClick={() => gotoStep(current + 1)}>
+    //                             {translate(
+    //                                 "common:resources.posts.forms.nextButton",
+    //                             )}
+    //                         </Button>
+    //                     )}
+    //                     {current === formList.length - 1 && (
+    //                         <SaveButton
+    //                             style={{ marginRight: 10 }}
+    //                             loading={isLoading || formLoading}
+    //                             onClick={() => submit()}
+    //                             disabled={formLoading}
+    //                         />
+    //                     )}
+    //                 </>
+    //             }
+    //         >
+    //             <Steps {...stepsProps}>
+    //                 <Step title="Content" />
+    //                 <Step title="Relations" />
+    //             </Steps>
+    //             <div style={{ marginTop: 60 }}>
+    //                 <Form
+    //                     {...formProps}
+    //                     wrapperCol={{ span: 24 }}
+    //                     layout="vertical"
+    //                 >
+    //                     {formList[current]}
+    //                 </Form>
+    //             </div>
+    //         </Edit>
+    //     );
 };
 
 export const PostShow: React.FC<IResourceComponentsProps> = (props) => {
