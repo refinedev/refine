@@ -17,11 +17,11 @@ import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-import { IPost, ICategory } from "../../interfaces";
+import { IPost, ICategory } from "interfaces";
 
 const { Step } = Steps;
 
-export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
+export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { current, gotoStep, stepsProps, formProps, saveButtonProps } =
         useStepsForm<IPost>();
 
@@ -108,7 +108,6 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
 
     return (
         <Create
-            {...props}
             actionButtons={
                 <>
                     {current > 0 && (
