@@ -99,6 +99,17 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 <Create saveButtonProps={createSaveButtonProps}>
                     <Form {...createFormProps} layout="vertical">
                         <Form.Item
+                            label="Title"
+                            name="title"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
                             label="Status"
                             name="status"
                             rules={[
@@ -123,17 +134,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                     },
                                 ]}
                             />
-                        </Form.Item>
-                        <Form.Item
-                            label="Title"
-                            name="title"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
                         </Form.Item>
                     </Form>
                 </Create>
@@ -149,6 +149,17 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 >
                     <Form {...editFormProps} layout="vertical">
                         <Form.Item
+                            label="Title"
+                            name="title"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
                             label="Status"
                             name="status"
                             rules={[
@@ -173,17 +184,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                     },
                                 ]}
                             />
-                        </Form.Item>
-                        <Form.Item
-                            label="Title"
-                            name="title"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
                         </Form.Item>
                     </Form>
                 </Edit>
