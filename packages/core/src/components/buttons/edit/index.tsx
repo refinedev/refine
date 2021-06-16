@@ -14,6 +14,7 @@ type EditButtonProps = ButtonProps & {
 export const EditButton: FC<EditButtonProps> = ({
     resourceName: propResourceName,
     recordItemId,
+    children,
     ...rest
 }) => {
     const translate = useTranslate();
@@ -30,13 +31,12 @@ export const EditButton: FC<EditButtonProps> = ({
     return (
         <Button
             onClick={(): void => {
-                edit(resourceName, "push", id);
+                edit(resourceName, id);
             }}
-            type="default"
             icon={<EditOutlined />}
             {...rest}
         >
-            {translate("buttons.edit", "Edit")}
+            {children ?? translate("buttons.edit", "Edit")}
         </Button>
     );
 };

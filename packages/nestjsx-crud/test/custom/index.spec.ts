@@ -7,7 +7,7 @@ import "./index.mock";
 axios.defaults.adapter = require("axios/lib/adapters/http");
 
 describe("custom", () => {
-    const API_URL = "https://refine-nestjs-crud.pankod.com";
+    const API_URL = "https://api.nestjsx-crud.refine.dev";
 
     it("correct get response", async () => {
         const response = await JsonServer(API_URL, axios).custom?.(

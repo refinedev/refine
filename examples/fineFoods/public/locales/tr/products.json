@@ -1,0 +1,7 @@
+{
+  "title": "Ürünler",
+  "fields": {
+    "id": "ID",
+    "createdAt": "Oluşturma Tarihi"
+  }
+}

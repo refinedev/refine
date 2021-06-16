@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
     Typography,
     Row,
@@ -6,6 +6,7 @@ import {
     DatePicker,
     useApiUrl,
     useCustom,
+    useTranslate,
 } from "@pankod/refine";
 import { RadialBar } from "@ant-design/charts";
 import { RadialBarConfig } from "@ant-design/charts/es/radialBar";
@@ -14,6 +15,8 @@ import dayjs, { Dayjs } from "dayjs";
 import { IOrderChart } from "interfaces";
 
 export const OrdersChart: React.FC = () => {
+    const t = useTranslate();
+
     const [dateRange, setDateRange] = useState<[Dayjs, Dayjs]>([
         dayjs().subtract(7, "days").startOf("day"),
         dayjs().startOf("day"),
@@ -35,8 +38,9 @@ export const OrdersChart: React.FC = () => {
     const config: RadialBarConfig = {
         width: 400,
         height: 300,
-        data: undefined,
+        data: [],
         loading: isLoading,
+        animation: false,
         xField: "status",
         yField: "count",
         radius: 0.8,
@@ -63,31 +67,37 @@ export const OrdersChart: React.FC = () => {
     const { Title } = Typography;
     const { RangePicker } = DatePicker;
 
-    let waitingChartData = [];
-    let deliveredChartData = [];
-
     const waitingStatus = ["waiting", "ready", "on the way"];
     const deliveredStatus = ["delivered", "could not be delivered"];
 
-    if (data) {
-        waitingChartData = data.data.filter((item) =>
-            waitingStatus.includes(item.status),
-        );
-
-        deliveredChartData = data.data.filter((item) =>
-            deliveredStatus.includes(item.status),
-        );
-    }
+    const chartConfig = useMemo(() => {
+        return {
+            waiting: {
+                ...config,
+                data:
+                    data?.data.filter((item) =>
+                        waitingStatus.includes(item.status),
+                    ) || [],
+            },
+            delivered: {
+                ...config,
+                data:
+                    data?.data.filter((item) =>
+                        deliveredStatus.includes(item.status),
+                    ) || [],
+            },
+        };
+    }, [data]);
 
     return (
         <>
-            <Title level={5}>Orders</Title>
+            <Title level={5}>{t("dashboard:orders.title")}</Title>
             <Row>
                 <Col md={12}>
-                    <RadialBar {...config} data={deliveredChartData} />
+                    <RadialBar {...chartConfig.waiting} />
                 </Col>
                 <Col md={12}>
-                    <RadialBar {...config} data={waitingChartData} />
+                    <RadialBar {...chartConfig.delivered} />
                 </Col>
             </Row>
 

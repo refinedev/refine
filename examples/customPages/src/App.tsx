@@ -5,7 +5,7 @@ import "@pankod/refine/dist/styles.min.css";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { PostReview } from "pages/post-review";
 
-const API_URL = "https://refine-fake-rest.pankod.com";
+const API_URL = "https://api.fake-rest.refine.dev";
 
 const AuthenticatedPostReview = () => {
     return (

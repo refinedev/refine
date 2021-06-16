@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import {
     Typography,
     useApiUrl,
@@ -7,6 +7,7 @@ import {
     Col,
     DatePicker,
     NumberField,
+    useTranslate,
 } from "@pankod/refine";
 import { Line } from "@ant-design/charts";
 import { LineConfig } from "@ant-design/charts/es/line";
@@ -15,7 +16,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { ISalesChart } from "interfaces";
 
 export const SalesChart: React.FC = () => {
-    const [total, setTotal] = useState(0);
+    const t = useTranslate();
     const API_URL = useApiUrl();
 
     const [dateRange, setDateRange] = useState<[Dayjs, Dayjs]>([
@@ -34,37 +35,40 @@ export const SalesChart: React.FC = () => {
         query,
     });
 
-    useEffect(() => {
-        if (data) {
-            setTotal(
-                data.data.reduce((acc, item) => {
-                    if (item.title === "Order Amount") {
-                        return acc + item.value;
-                    }
-                    return acc;
-                }, 0),
-            );
-        }
-    }, [data]);
+    const total = useMemo(
+        () =>
+            data?.data.reduce((acc, item) => {
+                if (item.title === "Order Amount") {
+                    return acc + item.value;
+                }
+                return acc;
+            }, 0) || 0,
+        [data],
+    );
 
-    const config: LineConfig = {
-        data: data?.data || [],
-        loading: isLoading,
-        padding: "auto",
-        xField: "date",
-        yField: "value",
-        seriesField: "title",
-        tooltip: {
-            title: (date) => dayjs(date).format("LL"),
-        },
-        xAxis: {
-            label: {
-                formatter: (value) => {
-                    return dayjs(value).format("YYYY-MM-DD");
+    const config = useMemo(() => {
+        const config: LineConfig = {
+            data: data?.data || [],
+            loading: isLoading,
+            animation: false,
+            padding: "auto",
+            xField: "date",
+            yField: "value",
+            seriesField: "title",
+            tooltip: {
+                title: (date) => dayjs(date).format("LL"),
+            },
+            xAxis: {
+                label: {
+                    formatter: (value) => {
+                        return dayjs(value).format("YYYY-MM-DD");
+                    },
                 },
             },
-        },
-    };
+        };
+
+        return config;
+    }, [data]);
 
     const { Title } = Typography;
     const { RangePicker } = DatePicker;
@@ -73,7 +77,7 @@ export const SalesChart: React.FC = () => {
         <>
             <Row justify="space-between">
                 <Col>
-                    <Title level={5}>Total Sales</Title>
+                    <Title level={5}>{t("dashboard:totalSales.title")}</Title>
                 </Col>
                 <Col>
                     <NumberField

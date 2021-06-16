@@ -26,7 +26,7 @@ export const TagList: React.FC<IResourceComponentsProps> = (props) => {
         initialPageSize: 20,
     });
 
-    const { mutate, isSuccess, isLoading } = useDeleteMany("tags");
+    const { isSuccess, isLoading } = useDeleteMany("tags");
 
     const start = () => {
         console.log("selectedRowKeys", selectedRowKeys);

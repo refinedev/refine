@@ -3,13 +3,14 @@ import "styles/antd.less";
 import jsonServerDataProvider from "@pankod/refine-json-server";
 import { authProvider } from "authProvider";
 import { DashbaordPage } from "./pages/dashboard";
-import { PostList, PostCreate, PostEdit } from "./pages/posts";
+import { OrderList } from "./pages/orders";
+import { UserList } from "./pages/users";
 import { useTranslation } from "react-i18next";
 import { Header, Title } from "components";
 import "i18n";
 
 const App: React.FC = () => {
-    const API_URL = "https://refine-fake-ecommerce.pankod.com";
+    const API_URL = "https://api.finefoods.refine.dev";
     const dataProvider = jsonServerDataProvider(API_URL);
 
     const { t, i18n } = useTranslation();
@@ -30,13 +31,26 @@ const App: React.FC = () => {
             DashboardPage={DashbaordPage}
         >
             <Resource
-                name="posts"
-                list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
+                options={{
+                    label: t("orders:title"),
+                }}
+                name="orders"
+                list={OrderList}
             />
-            <Resource name="orders" />
-            <Resource name="users" />
+            <Resource
+                options={{
+                    label: t("users:title"),
+                }}
+                name="users"
+                list={UserList}
+            />
+            <Resource
+                options={{
+                    label: t("products:title"),
+                }}
+                name="products"
+            />
+            <Resource name="stores" />
         </Admin>
     );
 };

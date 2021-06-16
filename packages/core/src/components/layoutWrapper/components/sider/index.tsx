@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout, Menu } from "antd";
 import { LogoutOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { useTranslate, useMenu, useLogout, useTitle } from "@hooks";
 import { AuthContext } from "@contexts/auth";
@@ -14,6 +14,7 @@ export const Sider: React.FC = () => {
     const Title = useTitle();
     const translate = useTranslate();
     const { menuItems, selectedKey } = useMenu();
+    const history = useHistory();
 
     return (
         <Layout.Sider
@@ -27,21 +28,23 @@ export const Sider: React.FC = () => {
                 defaultSelectedKeys={["dashboard"]}
                 selectedKeys={[selectedKey]}
                 mode="inline"
+                onClick={({ key }) => {
+                    if (key === "logout") {
+                        logout();
+                        return;
+                    }
+
+                    history.push(key);
+                }}
             >
                 {menuItems.map(({ icon, route, label }) => (
                     <Menu.Item key={route} icon={icon}>
-                        <Link to={route}>{label}</Link>
+                        {label}
                     </Menu.Item>
                 ))}
 
                 {isProvided && (
-                    <Menu.Item
-                        onClick={() => {
-                            logout();
-                        }}
-                        key="logout"
-                        icon={<LogoutOutlined />}
-                    >
+                    <Menu.Item key="logout" icon={<LogoutOutlined />}>
                         {translate("buttons.logout", "Logout")}
                     </Menu.Item>
                 )}

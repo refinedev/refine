@@ -98,10 +98,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
                         name="cover"
                         valuePropName="fileList"
                         getValueProps={(data) =>
-                            getValueProps(
-                                data,
-                                "https://refine-strapi.pankod.com",
-                            )
+                            getValueProps(data, "https://api.strapi.refine.dev")
                         }
                         noStyle
                     >

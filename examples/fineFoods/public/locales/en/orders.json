@@ -1,0 +1,11 @@
+{
+  "title": "Orders",
+  "fields": {
+    "orderNumber": "Order Number",
+    "status": "Status",
+    "store": "Store",
+    "user": "User",
+    "products": "Products",
+    "createdAt": "CreatedAt"
+  }
+}

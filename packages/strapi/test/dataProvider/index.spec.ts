@@ -7,7 +7,7 @@ import "./index.mock";
 axios.defaults.adapter = require("axios/lib/adapters/http");
 
 describe("dataProvider", () => {
-    const API_URL = "https://refine-strapi.pankod.com";
+    const API_URL = "https://api.strapi.refine.dev";
     const axiosInstance = axios.create();
 
     beforeAll(() => {

@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import {
     Typography,
     useApiUrl,
     useCustom,
     DatePicker,
     NumberField,
+    useTranslate,
 } from "@pankod/refine";
 import { Column } from "@ant-design/charts";
 import { ColumnConfig } from "@ant-design/charts/es/column";
@@ -14,7 +15,7 @@ import { ISalesChart } from "interfaces";
 import styles from "./styles";
 
 export const DailyRevenue: React.FC = () => {
-    const [total, setTotal] = useState(0);
+    const t = useTranslate();
     const API_URL = useApiUrl();
 
     const [dateRange, setDateRange] = useState<[Dayjs, Dayjs]>([
@@ -33,45 +34,47 @@ export const DailyRevenue: React.FC = () => {
         query,
     });
 
-    useEffect(() => {
-        if (data) {
-            setTotal(
-                data.data.reduce((acc, item) => {
-                    if (item.title === "Order Amount") {
-                        return acc + item.value;
-                    }
-                    return acc;
-                }, 0),
-            );
-        }
-    }, [data]);
+    const total = useMemo(
+        () =>
+            data?.data.reduce((acc, item) => {
+                if (item.title === "Order Amount") {
+                    return acc + item.value;
+                }
+                return acc;
+            }, 0) || 0,
+        [data],
+    );
 
     const { Title } = Typography;
     const { RangePicker } = DatePicker;
 
-    const config: ColumnConfig = {
-        data: data?.data || [],
-        loading: isLoading,
-        isGroup: true,
-        xField: "date",
-        yField: "value",
-        seriesField: "title",
-        tooltip: {
-            title: (date) => dayjs(date).format("LL"),
-        },
-        xAxis: {
-            label: {
-                formatter: () => {
-                    return null;
+    const config = useMemo(() => {
+        const config: ColumnConfig = {
+            data: data?.data || [],
+            loading: isLoading,
+            isGroup: true,
+            xField: "date",
+            yField: "value",
+            seriesField: "title",
+            tooltip: {
+                title: (date) => dayjs(date).format("LL"),
+            },
+            xAxis: {
+                label: {
+                    formatter: () => {
+                        return null;
+                    },
                 },
             },
-        },
-    };
+        };
+
+        return config;
+    }, [data]);
 
     return (
         <>
             <div style={styles.titleArea}>
-                <Title level={5}>Daily Revenue</Title>
+                <Title level={5}>{t("dashboard:dailyRevenue.title")}</Title>
                 <NumberField
                     style={styles.count}
                     options={{

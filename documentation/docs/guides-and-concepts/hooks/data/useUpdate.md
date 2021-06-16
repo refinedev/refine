@@ -21,7 +21,7 @@ description: useUpdate data hook from refine is a modified version of react-quer
 
 Let'say we have a `categories` resource
 
-```ts title="https://refine-fake-rest.pankod.com/categories"
+```ts title="https://api.fake-rest.refine.dev/categories"
 {
     [
         {
@@ -56,7 +56,7 @@ mutate({ id: 2, values: { title: "New Category Title" } })
 
 After mutation runs `categories` will be updated as below:
 
-```ts title="https://refine-fake-rest.pankod.com/categories"
+```ts title="https://api.fake-rest.refine.dev/categories"
 {
     [
         {
@@ -162,5 +162,5 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
  | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
  | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { id: string; values: TVariables; },`<br/>` UpdateContext>`](https://react-query.tanstack.com/reference/useMutation)* |
 
->`*` [Refer to for `UpdateContext`. &#8594](#)
+>`*` `UpdateContext` is an internal type used.
 

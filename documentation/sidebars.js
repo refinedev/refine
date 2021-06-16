@@ -1,6 +1,11 @@
 module.exports = {
     someSidebar: [
         {
+            type: "category",
+            label: "Getting Started",
+            items: ["getting-started/overview"],
+        },
+        {
             type: "doc",
             id: "tutorial",
         },
@@ -78,6 +83,19 @@ module.exports = {
                             label: "Resource",
                             items: [
                                 "guides-and-concepts/hooks/resource/useMenu",
+                                "guides-and-concepts/hooks/resource/useResource",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Authorization",
+                            items: ["guides-and-concepts/hooks/auth/useLogout"],
+                        },
+                        {
+                            type: "category",
+                            label: "Navigation",
+                            items: [
+                                "guides-and-concepts/hooks/navigation/useNavigation",
                             ],
                         },
                         "guides-and-concepts/hooks/useModalForm",
@@ -100,8 +118,34 @@ module.exports = {
                             label: "Buttons",
                             items: [
                                 "guides-and-concepts/components/buttons/create-button",
+                                "guides-and-concepts/components/buttons/import-button",
+                                "guides-and-concepts/components/buttons/export-button",
+                                "guides-and-concepts/components/buttons/delete-button",
+                                "guides-and-concepts/components/buttons/refresh-button",
+                                "guides-and-concepts/components/buttons/save-button",
+                                "guides-and-concepts/components/buttons/list-button",
+                                "guides-and-concepts/components/buttons/show-button",
+                                "guides-and-concepts/components/buttons/edit-button",
+                                "guides-and-concepts/components/buttons/clone-button",
                             ],
                         },
+                        {
+                            type: "category",
+                            label: "Inputs",
+                            items: [
+                                "guides-and-concepts/components/inputs/custom-inputs",
+                            ],
+                        },
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Fields",
+                    items: [
+                        "guides-and-concepts/fields/boolean",
+                        "guides-and-concepts/fields/email",
+                        "guides-and-concepts/fields/markdown",
+                        "guides-and-concepts/fields/boolean",
                     ],
                 },
                 "guides-and-concepts/multipart-upload",

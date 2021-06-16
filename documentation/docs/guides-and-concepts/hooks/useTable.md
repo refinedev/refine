@@ -12,7 +12,7 @@ import filters from '@site/static/img/guides-and-concepts/hooks/useTable/filters
 
 Tabloda göstereceğimiz verinin endpointten şu şekilde geldiğini varsayalım:
 
-```json title="https://refine-fake-rest.pankod.com/posts"
+```json title="https://api.fake-rest.refine.dev/posts"
 [
     {
         "id": 182,
@@ -240,9 +240,13 @@ const { tableProps, sorter, filters } = useTable<IPost>({
             order: "asc",
         },
     ],
-    initialFilter: {
-        status: ["draft"],
-    },
+    initialFilter: [
+        {
+            field: "status",
+            operator: "eq",
+            value: "draft",
+        },
+    ],
 });
 ...
 ```
@@ -273,9 +277,13 @@ export const PostList: React.FC = () => {
                 order: "asc",
             },
         ],
-        initialFilter: {
-            status: ["draft"],
-        },
+        initialFilter: [
+            {
+                field: "status",
+                operator: "eq",
+                value: "draft",
+            },
+        ],
     });
     //highlight-end
 

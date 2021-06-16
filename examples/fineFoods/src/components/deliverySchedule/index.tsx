@@ -7,12 +7,15 @@ import {
     useSimpleList,
     useMany,
     Icons,
+    useTranslate,
 } from "@pankod/refine";
 
 import styles from "./styles";
 import { IOrder, IUser } from "interfaces";
 
 export const DeliverySchedule: React.FC = () => {
+    const t = useTranslate();
+
     const { Title, Text } = Typography;
 
     const { listProps } = useSimpleList<IOrder>({
@@ -35,22 +38,23 @@ export const DeliverySchedule: React.FC = () => {
     });
 
     const renderItem = (item: IOrder) => {
+        const user = data?.data.find((user: IUser) => user.id === item.userId);
         const renderUser = () => {
             if (isLoading) {
                 return <span>loading...</span>;
             }
 
-            const user = data?.data.find(
-                (user: IUser) => user.id === item.userId,
-            );
-
-            return `${user.name} ${user.surname}`;
+            return user.fullName;
         };
 
         return (
             <Row style={styles.row} align="bottom">
                 <Col md={10} style={styles.userArea}>
-                    <Avatar size={32} icon={<Icons.UserOutlined />} />
+                    <Avatar
+                        src={user?.avatar[0].url}
+                        size={32}
+                        icon={<Icons.UserOutlined />}
+                    />
 
                     <div style={styles.userInfo}>
                         <div>
@@ -59,11 +63,11 @@ export const DeliverySchedule: React.FC = () => {
                             </Text>
                             <Text
                                 style={styles.userInfo__productLength}
-                            >{`(${item.productIds.length} items)`}</Text>
+                            >{`(${item.products.length} items)`}</Text>
                         </div>
-                        <Text
-                            style={styles.status}
-                        >{`${item.status.text}`}</Text>
+                        <Text style={styles.status}>
+                            {t(`enum:orderStatuses.${item.status.text}`)}
+                        </Text>
                     </div>
                 </Col>
                 <Col md={14}>
@@ -78,7 +82,9 @@ export const DeliverySchedule: React.FC = () => {
 
     return (
         <>
-            <Title level={5}>Upcoming Delivery Schedule</Title>
+            <Title level={5}>
+                {t("dashboard:upcomingDeliverySchedule.title")}
+            </Title>
             <AntdList
                 {...listProps}
                 renderItem={renderItem}

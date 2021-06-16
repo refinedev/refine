@@ -7,6 +7,7 @@ import {
     useSimpleList,
     useMany,
     Icons,
+    useTranslate,
 } from "@pankod/refine";
 import dayjs from "dayjs";
 
@@ -14,6 +15,7 @@ import styles from "./styles";
 import { IOrder, IUser } from "interfaces";
 
 export const RecentActivity: React.FC = () => {
+    const t = useTranslate();
     const { Title, Text } = Typography;
 
     const { listProps } = useSimpleList<IOrder>({
@@ -32,22 +34,23 @@ export const RecentActivity: React.FC = () => {
     });
 
     const renderItem = (item: IOrder) => {
+        const user = data?.data.find((user: IUser) => user.id === item.userId);
         const renderUser = () => {
             if (isLoading) {
                 return <span>loading...</span>;
             }
 
-            const user = data?.data.find(
-                (user: IUser) => user.id === item.userId,
-            );
-
-            return `${user.name} ${user.surname}`;
+            return user.fullName;
         };
 
         return (
             <Row style={styles.row} align="bottom">
                 <Col md={14} style={styles.userArea}>
-                    <Avatar size={32} icon={<Icons.UserOutlined />} />
+                    <Avatar
+                        src={user?.avatar[0].url}
+                        size={32}
+                        icon={<Icons.UserOutlined />}
+                    />
 
                     <div style={styles.userInfo}>
                         <div>
@@ -55,9 +58,9 @@ export const RecentActivity: React.FC = () => {
                                 {renderUser()}
                             </Text>
                         </div>
-                        <Text
-                            style={styles.status}
-                        >{`${item.status.text}`}</Text>
+                        <Text style={styles.status}>
+                            {t(`enum:orderStatuses.${item.status.text}`)}
+                        </Text>
                     </div>
                 </Col>
                 <Col md={10}>
@@ -71,7 +74,7 @@ export const RecentActivity: React.FC = () => {
 
     return (
         <>
-            <Title level={5}>Recent Activity</Title>
+            <Title level={5}>{t("dashboard:recentActivity.title")}</Title>
             <AntdList
                 {...listProps}
                 renderItem={renderItem}

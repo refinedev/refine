@@ -1,5 +1,4 @@
 import "node_modules/antd/dist/antd.css";
-import "node_modules/antd/es/date-picker/style/index.css";
 
 export * from "./components";
 export * from "./components/antd";
