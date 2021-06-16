@@ -3,6 +3,8 @@ id: tag
 title: Tag
 ---
 
+import tagField from '@site/static/img/guides-and-concepts/fields/tag/tagField.png';
+
 This field lets you display a value in a tag. It uses and Ant Design's [`<Tag>`](https://ant.design/components/tag/) component.
 
 ## Usage
@@ -41,12 +43,17 @@ export const PostList: React.FC = () => {
 };
 ```
 
+<br/>
+<div>
+    <img src={tagField} alt="A tag field example"/>
+</div>
+
 ## API Reference
 
 ### Properties
 
 | Property | Description | Type              |
 | -------- | ----------- | ----------------- |
-| value    | Email value | `React.ReactNode` |
+| value    | Tag content | `React.ReactNode` |
 
 [Refer to rest Link props &#8594](https://ant.design/components/tag/#API)
