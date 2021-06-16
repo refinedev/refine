@@ -68,7 +68,7 @@ export const Edit: React.FC = () => {
 };
 ```
 
-### `aside`
+### `Aside`
 
 It allows adding a component to the right of the `<Edit>` component.
 
@@ -84,7 +84,7 @@ const Aside: React.FC = () => {
 };
 
 export const Edit: React.FC = () => {
-    return <Edit aside={Aside}>...</Edit>;
+    return <Edit Aside={Aside}>...</Edit>;
 };
 ```
 
@@ -233,14 +233,14 @@ export const App: React.FC = () => {
 
 | Property          | Description                                 | Type                                                              | Default                                                                            |
 | ----------------- | ------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| canDelete         | Adds delete button                          | `boolean`                                                         | If `<Resource>` has `canDelete` prop it is `true` else `false` `false`                 |
+| canDelete         | Adds delete button                          | `boolean`                                                         | If `<Resource>` has `canDelete` prop it is `true` else `false` `false`             |
 | deleteButtonProps | Adds props for delete button                | [`DeleteButtonProps`](interfaces.md#delete-button-props)          | `<DeleteButton>`                                                                   |
 | saveButtonProps   | Adds props for create button                | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton>`                                                                     |
 | title             | Adds title                                  | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                    |
-| aside             | Adds component to right side                | `React.FC`                                                        | `undefined`                                                                        |
+| aside             | Adds component to right side                | `React.ReactNode`                                                 | `undefined`                                                                        |
 | actionButtons     | Passes props for `<PageHeader>`             | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
-| pageHeaderProps   | Passes props for `<PageHeader>`             | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }        |
-| recordItemId      | Record id for `<RefreshButton>`           | `string`                                                          |                                                                                    |
+| pageHeaderProps   | Passes props for `<PageHeader>`             | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
+| recordItemId      | Record id for `<RefreshButton>`             | `string`                                                          |                                                                                    |
 | mutationMode      | [Determines when mutations are executed](#) | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`\*                                                                  |
 | resource          | [`Resource`](#) for API data interactions   | `string`                                                          | Resource name that it reads from the url.                                          |
 

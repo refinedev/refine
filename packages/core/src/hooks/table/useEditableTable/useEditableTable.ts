@@ -10,7 +10,8 @@ export type useEditableTableReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = useTableReturnType<TData> &
+    TSearchVariables = unknown,
+> = useTableReturnType<TData, TSearchVariables> &
     useForm<TData, TError, TVariables> & {
         saveButtonProps: ButtonProps & {
             onClick: () => void;
@@ -28,16 +29,23 @@ type useEditableTableProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = useTableProps & useFormProps<TData, TError, TVariables>;
+    TSearchVariables = unknown,
+> = useTableProps<TSearchVariables> & useFormProps<TData, TError, TVariables>;
 
 export const useEditableTable = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
+    TSearchVariables = unknown,
 >(
-    props: useEditableTableProps<TData, TError, TVariables> = {},
-): useEditableTableReturnType<TData, TError, TVariables> => {
-    const table = useTable<TData>({ ...props });
+    props: useEditableTableProps<
+        TData,
+        TError,
+        TVariables,
+        TSearchVariables
+    > = {},
+): useEditableTableReturnType<TData, TError, TVariables, TSearchVariables> => {
+    const table = useTable<TData, TSearchVariables>({ ...props });
     const edit = useForm<TData, TError, TVariables>({
         ...props,
         action: "edit",

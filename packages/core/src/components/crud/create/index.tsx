@@ -23,7 +23,7 @@ export interface CreateProps {
     saveButtonProps?: ButtonProps;
     pageHeaderProps?: PageHeaderProps;
     resource?: string;
-    aside?: React.FC;
+    Aside?: React.ReactNode;
 }
 
 export const Create: React.FC<CreateProps> = ({
@@ -33,7 +33,7 @@ export const Create: React.FC<CreateProps> = ({
     children,
     pageHeaderProps,
     resource: resourceFromProps,
-    aside,
+    Aside,
 }) => {
     const { goBack } = useNavigation();
     const translate = useTranslate();
@@ -95,11 +95,7 @@ export const Create: React.FC<CreateProps> = ({
                 </PageHeader>
             </Col>
 
-            {aside && (
-                <Col flex="0 1 300px">
-                    <OptionalComponent optional={aside} />
-                </Col>
-            )}
+            {Aside && <Col flex="0 1 300px">{Aside}</Col>}
         </Row>
     );
 };

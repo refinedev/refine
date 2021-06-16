@@ -44,12 +44,8 @@ describe("<List/>", () => {
         });
 
         it("should render asideComponent with aside prop", async () => {
-            const asideComponent = () => {
-                return <p>Aside</p>;
-            };
-
             const { getByText } = renderList(
-                <List aside={asideComponent}></List>,
+                <List Aside={<p>Aside</p>}></List>,
             );
             getByText("Aside");
         });
