@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
     Edit,
     Form,
@@ -7,6 +8,11 @@ import {
     useForm,
     useSelect,
 } from "@pankod/refine";
+
+import ReactMarkdown from "react-markdown";
+import ReactMde from "react-mde";
+
+import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -20,9 +26,34 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         defaultValue: postData?.category.id,
     });
 
+    const [selectedTab, setSelectedTab] =
+        useState<"write" | "preview">("write");
+
     return (
         <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Category"
+                    name={["category", "id"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select {...categorySelectProps} />
+                </Form.Item>
                 <Form.Item
                     label="Status"
                     name="status"
@@ -50,26 +81,23 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                     />
                 </Form.Item>
                 <Form.Item
-                    label="Title"
-                    name="title"
+                    label="Content"
+                    name="content"
                     rules={[
                         {
                             required: true,
                         },
                     ]}
                 >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name={["category", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...categorySelectProps} />
+                    <ReactMde
+                        selectedTab={selectedTab}
+                        onTabChange={setSelectedTab}
+                        generateMarkdownPreview={(markdown) =>
+                            Promise.resolve(
+                                <ReactMarkdown>{markdown}</ReactMarkdown>,
+                            )
+                        }
+                    />
                 </Form.Item>
             </Form>
         </Edit>
