@@ -218,7 +218,7 @@ const SimpleRestDataProvider = (
 | -------- | -------------- | ------- |
 | resource | `string`       |         |
 | params   | `TVariables[]` | `{}`    |
-> TVariables is a user defined type which can be passed to [`useCreateMany`](/docs/guides-and-concepts/hooks/data/createMany) to type `params`
+> TVariables is a user defined type which can be passed to [`useCreateMany`](/docs/guides-and-concepts/hooks/data/useCreateMany) to type `params`
 
 <br/>
 
