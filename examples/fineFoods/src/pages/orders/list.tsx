@@ -18,8 +18,7 @@ import {
     useSelect,
     Button,
     CrudFilters,
-    Row,
-    Col,
+    FormProps,
 } from "@pankod/refine";
 import { Dayjs } from "dayjs";
 
@@ -87,6 +86,92 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
 
     const t = useTranslate();
 
+    return (
+        <List
+            {...props}
+            Aside={
+                <Card title="Filter">
+                    <Filter formProps={formProps} />
+                </Card>
+            }
+        >
+            <Table {...tableProps} rowKey="id">
+                <Table.Column
+                    key="orderNumber"
+                    dataIndex="orderNumber"
+                    title={t("orders:fields.orderNumber")}
+                    render={(value) => <TextField value={value} />}
+                />
+                <Table.Column
+                    key="status.text"
+                    dataIndex={["status", "text"]}
+                    title={t("orders:fields.status")}
+                    render={(value) => {
+                        return <span>{value}</span>;
+                    }}
+                    defaultSortOrder={getDefaultSortOrder("status", sorter)}
+                    sorter
+                />
+                <Table.Column
+                    align="right"
+                    key="amount"
+                    dataIndex="amount"
+                    title={t("orders:fields.amount")}
+                    defaultSortOrder={getDefaultSortOrder("amount", sorter)}
+                    sorter
+                    render={(value) => {
+                        return (
+                            <NumberField
+                                options={{
+                                    currency: "USD",
+                                    style: "currency",
+                                    notation: "compact",
+                                }}
+                                value={value}
+                            />
+                        );
+                    }}
+                />
+                <Table.Column
+                    key="store.id"
+                    dataIndex={["store", "title"]}
+                    title={t("orders:fields.store")}
+                />
+                <Table.Column
+                    key="user.fullName"
+                    dataIndex={["user", "fullName"]}
+                    title={t("orders:fields.user")}
+                />
+                <Table.Column<IOrder>
+                    key="products"
+                    dataIndex="products"
+                    title={t("orders:fields.products")}
+                    render={(_, record) => (
+                        <Popover
+                            content={record.products.map((product) => (
+                                <div key={product.id}> - {product.name}</div>
+                            ))}
+                            title="Products"
+                            trigger="hover"
+                        >
+                            {`${record.products.length} Items`}
+                        </Popover>
+                    )}
+                />
+                <Table.Column
+                    key="createdAt"
+                    dataIndex="createdAt"
+                    title={t("orders:fields.createdAt")}
+                    render={(value) => <DateField value={value} format="LLL" />}
+                    sorter
+                />
+            </Table>
+        </List>
+    );
+};
+
+const Filter: React.FC<{ formProps: FormProps }> = (props) => {
+    const { formProps } = props;
     const { selectProps: storeSelectProps } = useSelect<IStore>({
         resource: "stores",
     });
@@ -99,125 +184,32 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
     const { RangePicker } = DatePicker;
 
     return (
-        <Row gutter={[16, 16]}>
-            <Col md={5}>
-                <Card title="Filter">
-                    <Form layout="vertical" {...formProps}>
-                        <Form.Item label="Search" name="q">
-                            <Input prefix={<Icons.SearchOutlined />} />
-                        </Form.Item>
-                        <Form.Item label="Store" name="store">
-                            <Select
-                                {...storeSelectProps}
-                                allowClear
-                                placeholder="Search Stores"
-                            />
-                        </Form.Item>
-                        <Form.Item label="User" name="user">
-                            <Select
-                                {...userSelectProps}
-                                allowClear
-                                placeholder="Search Users"
-                            />
-                        </Form.Item>
-                        <Form.Item label="Created At" name="createdAt">
-                            <RangePicker />
-                        </Form.Item>
-                        <Form.Item>
-                            <Button htmlType="submit" type="primary">
-                                Filter
-                            </Button>
-                        </Form.Item>
-                    </Form>
-                </Card>
-            </Col>
-
-            <Col md={19}>
-                <List {...props}>
-                    <Table {...tableProps} rowKey="id">
-                        <Table.Column
-                            key="orderNumber"
-                            dataIndex="orderNumber"
-                            title={t("orders:fields.orderNumber")}
-                            render={(value) => <TextField value={value} />}
-                        />
-                        <Table.Column
-                            key="status.text"
-                            dataIndex={["status", "text"]}
-                            title={t("orders:fields.status")}
-                            render={(value) => {
-                                return <span>{value}</span>;
-                            }}
-                            defaultSortOrder={getDefaultSortOrder(
-                                "status",
-                                sorter,
-                            )}
-                            sorter
-                        />
-                        <Table.Column
-                            align="right"
-                            key="amount"
-                            dataIndex="amount"
-                            title={t("orders:fields.amount")}
-                            defaultSortOrder={getDefaultSortOrder(
-                                "amount",
-                                sorter,
-                            )}
-                            sorter
-                            render={(value) => {
-                                return (
-                                    <NumberField
-                                        options={{
-                                            currency: "USD",
-                                            style: "currency",
-                                            notation: "compact",
-                                        }}
-                                        value={value}
-                                    />
-                                );
-                            }}
-                        />
-                        <Table.Column
-                            key="store.id"
-                            dataIndex={["store", "title"]}
-                            title={t("orders:fields.store")}
-                        />
-                        <Table.Column
-                            key="user.fullName"
-                            dataIndex={["user", "fullName"]}
-                            title={t("orders:fields.user")}
-                        />
-                        <Table.Column<IOrder>
-                            key="products"
-                            dataIndex="products"
-                            title={t("orders:fields.products")}
-                            render={(_, record) => (
-                                <Popover
-                                    content={record.products.map((product) => (
-                                        <div key={product.id}>
-                                            {" "}
-                                            - {product.name}
-                                        </div>
-                                    ))}
-                                    title="Products"
-                                    trigger="hover"
-                                >
-                                    {`${record.products.length} Items`}
-                                </Popover>
-                            )}
-                        />
-                        <Table.Column
-                            key="createdAt"
-                            dataIndex="createdAt"
-                            title={t("orders:fields.createdAt")}
-                            render={(value) => (
-                                <DateField value={value} format="LLL" />
-                            )}
-                            sorter
-                        />
-                    </Table>
-                </List>
-            </Col>
-        </Row>
+        <Form layout="vertical" {...formProps}>
+            <Form.Item label="Search" name="q">
+                <Input prefix={<Icons.SearchOutlined />} />
+            </Form.Item>
+            <Form.Item label="Store" name="store">
+                <Select
+                    {...storeSelectProps}
+                    allowClear
+                    placeholder="Search Stores"
+                />
+            </Form.Item>
+            <Form.Item label="User" name="user">
+                <Select
+                    {...userSelectProps}
+                    allowClear
+                    placeholder="Search Users"
+                />
+            </Form.Item>
+            <Form.Item label="Created At" name="createdAt">
+                <RangePicker />
+            </Form.Item>
+            <Form.Item>
+                <Button htmlType="submit" type="primary">
+                    Filter
+                </Button>
+            </Form.Item>
+        </Form>
     );
 };

@@ -470,7 +470,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                     )}
                 </>
             }
-            aside={() => <Aside />}
+            Aside={() => <Aside />}
         >
             <Steps {...stepsProps}>
                 <Step title="Content" />
@@ -675,7 +675,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
         <Edit
             {...props}
             canDelete
-            aside={() => <Aside />}
+            Aside={() => <Aside />}
             actionButtons={
                 <>
                     {current > 0 && (

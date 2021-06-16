@@ -23,7 +23,7 @@ describe("Create", () => {
 
     it("should render aside successfuly", async () => {
         const { container, getByText } = renderCreate(
-            <Create aside={() => <div>i am here</div>} />,
+            <Create Aside={<div>i am here</div>} />,
         );
 
         getByText("i am here");
