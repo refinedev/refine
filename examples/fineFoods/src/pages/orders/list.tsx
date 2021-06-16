@@ -20,7 +20,10 @@ import {
     CrudFilters,
     Row,
     Col,
+    Space,
+    ShowButton,
 } from "@pankod/refine";
+import { OrderStatus } from "components";
 import { Dayjs } from "dayjs";
 
 import { IOrder, IStore } from "interfaces";
@@ -133,7 +136,9 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
                             <Select
                                 {...userSelectProps}
                                 allowClear
-                                placeholder={t("orders:filter.title")}
+                                placeholder={t(
+                                    "orders:filter.user.placeholder",
+                                )}
                             />
                         </Form.Item>
                         <Form.Item
@@ -165,7 +170,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
                             dataIndex={["status", "text"]}
                             title={t("orders:fields.status")}
                             render={(value) => {
-                                return <span>{value}</span>;
+                                return <OrderStatus status={value} />;
                             }}
                             defaultSortOrder={getDefaultSortOrder(
                                 "status",
@@ -221,7 +226,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
                                             ))}
                                         </ul>
                                     }
-                                    title="Productssss"
+                                    title="Products"
                                     trigger="hover"
                                 >
                                     {`${record.products.length} Items`}
@@ -236,6 +241,19 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
                                 <DateField value={value} format="LLL" />
                             )}
                             sorter
+                        />
+                        <Table.Column<IOrder>
+                            title="Actions"
+                            dataIndex="actions"
+                            key="actions"
+                            render={(_value, record) => (
+                                <Space>
+                                    <ShowButton
+                                        size="small"
+                                        recordItemId={record.id}
+                                    />
+                                </Space>
+                            )}
                         />
                     </Table>
                 </List>

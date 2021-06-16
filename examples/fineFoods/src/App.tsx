@@ -3,7 +3,7 @@ import "styles/antd.less";
 import jsonServerDataProvider from "@pankod/refine-json-server";
 import { authProvider } from "authProvider";
 import { DashbaordPage } from "./pages/dashboard";
-import { OrderList } from "./pages/orders";
+import { OrderList, OrderShow } from "./pages/orders";
 import { UserList } from "./pages/users";
 import { useTranslation } from "react-i18next";
 import { Header, Title } from "components";
@@ -36,6 +36,7 @@ const App: React.FC = () => {
                 }}
                 name="orders"
                 list={OrderList}
+                show={OrderShow}
             />
             <Resource
                 options={{

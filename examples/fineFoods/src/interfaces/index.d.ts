@@ -83,14 +83,16 @@ export interface ICourier {
 }
 export interface IOrder {
     id: string;
-    userId: string;
+    user: IUser;
     createdAt: string;
     products: IProduct[];
     status: IOrderStatus;
     adress: IAddress;
-    storeId: IStore;
+    store: IStore;
     courier: {};
     events: IEvent[];
+    orderNumber: number;
+    amount: number;
 }
 
 export interface IProduct {
