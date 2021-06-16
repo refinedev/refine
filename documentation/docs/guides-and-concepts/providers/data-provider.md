@@ -27,7 +27,7 @@ const dataProvider = {
     getOne: (resource, id) => Promise,
     update: (resource, id, params) => Promise,
     updateMany: (resource, ids, params) => Promise,
-    custom: (url, method, params = {}) => Promise,
+    custom?: (url, method, params = {}) => Promise,
     getApiUrl: () => "",
 }
 ```
@@ -152,7 +152,6 @@ const SimpleRestDataProvider = (
 })
 ```
 
-<br/>
 
 #### Parameter Types
 
@@ -212,7 +211,6 @@ const SimpleRestDataProvider = (
 ```
 
 
-<br/>
 
 #### Parameter Types
 
@@ -220,7 +218,7 @@ const SimpleRestDataProvider = (
 | -------- | -------------- | ------- |
 | resource | `string`       |         |
 | params   | `TVariables[]` | `{}`    |
-> TVariables is a user defined type which can be passed to [`useCreateMany`](/docs/guides-and-concepts/hooks/data/ManyMany) to type `params`
+> TVariables is a user defined type which can be passed to [`useCreateMany`](/docs/guides-and-concepts/hooks/data/createMany) to type `params`
 
 <br/>
 
@@ -271,7 +269,8 @@ const SimpleRestDataProvider = (
     ...
 })
 ```
-<br/>
+
+#### Parameter Types
 
 | Name     | Type     | Default |
 | -------- | -------- | ------- |
@@ -287,7 +286,7 @@ import { useDelete } from "@pankod/refine";
 
 const { mutate } = useDelete("categories");
 
-mutate({ id: 2 })
+mutate({ id: "2" })
 ```
 > [Refer to useDelete documentation for more information. &#8594](guides-and-concepts/hooks/data/useDelete.md)
 
@@ -320,7 +319,7 @@ const SimpleRestDataProvider = (
 })
 ```
 
-<br/>
+#### Parameter Types
 
 | Name     | Type       | Default |
 | -------- | ---------- | ------- |
@@ -336,7 +335,7 @@ import { useDeleteMany } from "@pankod/refine";
 
 const { mutate } = useDeleteMany("categories");
 
-mutate({ ids: [ 2, 3 ] })
+mutate({ ids: [ "2", "3" ] })
 ```
 > [Refer to useDeleteMany documentation for more information. &#8594](guides-and-concepts/hooks/data/useDeleteMany.md)
 
@@ -367,7 +366,6 @@ const SimpleRestDataProvider = (
 })
 ```
 
-<br/>
 
 #### Parameter Types
 
@@ -387,7 +385,7 @@ import { useUpdate } from "@pankod/refine";
 
 const { mutate } = useUpdate("categories");
 
-mutate({ id: 2, values: { title: "New Category Title" } })
+mutate({ id: "2", values: { title: "New Category Title" } })
 ```
 > [Refer to useUpdate documentation for more information. &#8594](guides-and-concepts/hooks/data/useUpdate.md)
 
@@ -422,7 +420,6 @@ const SimpleRestDataProvider = (
 })
 ```
 
-<br/>
 
 #### Parameter Types
 
@@ -442,7 +439,7 @@ import { useUpdateMany } from "@pankod/refine";
 
 cconst { mutate } = useUpdateMany("posts");
 
-mutate({ ids: [ 1, 2 ], values: { status: "draft" } })
+mutate({ ids: [ "1", "2" ], values: { status: "draft" } })
 ```
 > [Refer to useUpdateMany documentation for more information. &#8594](guides-and-concepts/hooks/data/useUpdateMany.md)
 
@@ -473,7 +470,6 @@ const SimpleRestDataProvider = (
 })
 ```
 
-<br />
 
 #### Parameter Types
 
@@ -521,7 +517,6 @@ const SimpleRestDataProvider = (
 })
 ```
 
-<br />
 
 #### Parameter Types
 
@@ -568,7 +563,16 @@ const SimpleRestDataProvider = (
         };
     },
 ```
-<br />
+
+#### Parameter Types
+
+| Name   | Type                                                                                                                                                                      |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| url    | `string`                                                                                                                                                                  |
+| params | { `pagination?:` [`Pagination`](interfaces.md#pagination); `sort?:` [`CrudSorting`](interfaces.md#crudsorting); `filters?:` [`CrudFilters`](interfaces.md#crudfilters); } |
+                                                                                                                          
+
+<br/>
 
 **refine** will consume this `getList` method using `useList` data hook.
 
@@ -838,7 +842,7 @@ const { data } = useList("posts", {
 
 ### `custom`
 
-We'll add a method to handle requests with custom parameters like URL, CRUD methods and configs.  
+An optional method named `custom` can be added to handle requests with custom parameters like URL, CRUD methods and configs.  
 It's useful if you have non-stantard REST API endpoints or want to make a connection with external resources.
 
 
@@ -899,15 +903,14 @@ const SimpleRestDataProvider = (
  }
 ```
 
-<br />
 
 #### Parameter Types
 
-| Name | Type                                                                                                                                                                 |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| url      | `string`                                                                                                                                                             |
-| method   | ``get``, ``delete``, ``head``, ``options``, ``post``, ``put``, ``patch``                                                                                             |
-| params   | { `sort?:` [`CrudSorting`](interfaces.md#crudsorting); `filters?:` [`CrudFilters`](interfaces.md#crudfilters); `payload?: {}`; `query?: {}`; `headers?: {}`; } |
+| Name   | Type                                                                                                                                                           |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| url    | `string`                                                                                                                                                       |
+| method | ``get``, ``delete``, ``head``, ``options``, ``post``, ``put``, ``patch``                                                                                       |
+| params | { `sort?:` [`CrudSorting`](interfaces.md#crudsorting); `filters?:` [`CrudFilters`](interfaces.md#crudfilters); `payload?: {}`; `query?: {}`; `headers?: {}`; } |
                                                                                                                           
 
 <br/>
@@ -927,17 +930,29 @@ const { data, isLoading } = useCustom(
 ```
 > [Refer to useCustom documentation for more information. &#8594](guides-and-concepts/hooks/data/useCustom.md)
 
+### Error Format
 
+**refine** expects errors to be extended from [`HttpError`](interfaces.md#httperror).  
+Axios interceptor can be used to transform the error from response before Axios returns the response to your code. Interceptors are methods which are triggered before the main method.
 
+```ts title="@pankod/refine-json-server/src/index.ts"
+...
+axiosInstance.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    (error) => {
+        const customError: HttpError = {
+            ...error,
+            message: error.response?.data?.message,
+            statusCode: error.response?.status,
+        };
 
-
-
-
-
-
-
-
-
+        return Promise.reject(customError);
+    },
+);
+...
+```
 
 
 

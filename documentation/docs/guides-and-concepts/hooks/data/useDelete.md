@@ -39,7 +39,7 @@ Let'say we have a `categories` resource
 ```tsx
 const { mutate } = useDelete("categories");
 
-mutate({ id: 2 })
+mutate({ id: "2" })
 ```
 
 :::tip
