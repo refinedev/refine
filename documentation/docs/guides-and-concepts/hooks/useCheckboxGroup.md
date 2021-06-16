@@ -155,3 +155,12 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 | ------------------ | ------------------------------- | --------------------------------------------------------------------------------------------- |
 | checkboxGroupProps | Ant design checkbox group props | [`Checkbox Group`](https://ant.design/components/checkbox/#Checkbox-Group)                    |
 | queryResult        | Result of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+
+## Live Codesandbox Example
+
+<iframe src="https://codesandbox.io/embed/refine-use-checkbox-group-example-2sijn?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Fedit.tsx&theme=dark&view=preview"
+     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+     title="refine-use-checkbox-group-example"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>

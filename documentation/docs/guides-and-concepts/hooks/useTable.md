@@ -343,3 +343,12 @@ export const PostList: React.FC = () => {
 | initialFilter    | Varsayılan filtreleme.                                                                                                          | [`CrudFilters`](interfaces.md#crudfilters) |
 | syncWithLocation | Tablodaki sıralamalar, filtreler, sayfa indeksi ve sayfa başına gösterilen kayıt browser history tarafından takip edilir.       | `boolean`                                  |
 | onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form](../table-search.md). | `Function`                                 |
+
+## Live Codesandbox Example
+
+<iframe src="https://codesandbox.io/embed/refine-use-table-example-ule39?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Flist.tsx&theme=dark&view=preview"
+     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+     title="refine-use-table-example"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
