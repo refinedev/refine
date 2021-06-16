@@ -29,9 +29,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = (props) => {
         return (
             <Row gutter={[16, 16]}>
                 <Col md={8}>
-                    <Title underline level={3}>
-                        Order
-                    </Title>
+                    <Title level={4}>Order</Title>
                     <Title level={5}>Order Number</Title>
                     <Text>{record.orderNumber}</Text>
                     <Title level={5}>Status</Title>
@@ -52,9 +50,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = (props) => {
                 </Col>
 
                 <Col md={8}>
-                    <Title underline level={3}>
-                        Products
-                    </Title>
+                    <Title level={4}>Products</Title>
 
                     <AntdList
                         itemLayout="horizontal"
@@ -87,9 +83,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = (props) => {
                 </Col>
 
                 <Col md={4}>
-                    <Title underline level={3}>
-                        User
-                    </Title>
+                    <Title level={4}>User</Title>
 
                     <Title level={5}>ID</Title>
                     <Text>{record.user.id}</Text>
@@ -115,9 +109,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = (props) => {
                 </Col>
 
                 <Col md={4}>
-                    <Title underline level={3}>
-                        Store
-                    </Title>
+                    <Title level={4}>Store</Title>
 
                     <Title level={5}>ID</Title>
                     <Text>{record.store.id}</Text>
