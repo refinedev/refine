@@ -42,7 +42,7 @@ export const Create: React.FC = () => {
 
 
 
-### `aside`
+### `Aside`
 
 It allows adding a component to the right of the `<Edit>` component.
 
@@ -58,7 +58,7 @@ const Aside: React.FC = () => {
 };
 
 export const Create: React.FC = () => {
-    return <Create aside={Aside}>...</Create>;
+    return <Create Aside={Aside}>...</Create>;
 };
 ```
 
@@ -166,7 +166,7 @@ export const App: React.FC = () => {
 | --------------- | ----------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | saveButtonProps | Adds props for create button              | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton>`                                                                     |
 | title           | Adds title                                | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                    |
-| aside           | Adds component to right side              | `React.FC`                                                        | `undefined`                                                                        |
+| Aside           | Adds component to right side              | `React.ReactNode`                                                 | `undefined`                                                                        |
 | actionButtons   | Passes props for `<PageHeader>`           | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
 | pageHeaderProps | Passes props for `<PageHeader>`           | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
 | resource        | [`Resource`](#) for API data interactions | `string`                                                          | Resource name that it reads from the url.                                          |

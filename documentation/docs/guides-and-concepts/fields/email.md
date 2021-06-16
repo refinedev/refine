@@ -20,7 +20,7 @@ export const UserList: React.FC = () => {
 
     return (
         <List>
-            <Table key="id">
+            <Table rowKey="id">
                 //highlight-next-line
                 ...
                  <Table.Column
