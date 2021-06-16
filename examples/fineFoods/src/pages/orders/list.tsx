@@ -98,7 +98,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
         <List
             {...props}
             Aside={
-                <Card title="Filter">
+                <Card title={t("orders:filter.title")}>
                     <Filter formProps={searchFormProps} />
                 </Card>
             }

@@ -120,3 +120,8 @@ export interface IOrderFilterVariables {
     createdAt: [Dayjs, Dayjs];
     status: string;
 }
+
+export interface IUserFilterVariables {
+    q: string;
+    status: boolean;
+}

@@ -2,6 +2,22 @@
   "title": "Users",
   "fields": {
     "id": "ID",
+    "avatar": "Avatar",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "gender": "Gender",
+    "gsm": "Gsm Number",
     "createdAt": "CreatedAt"
+  },
+  "filter": {
+    "title": "Filters",
+    "search": {
+      "label": "Search",
+      "placeholder": "FirstName, lastName, gsm, etc."
+    },
+    "createdAt": {
+      "label": "Created At"
+    },
+    "submit": "Filter"
   }
 }
