@@ -41,9 +41,10 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
             store: string;
             user: string;
             createdAt: [Dayjs, Dayjs];
+            status: string;
         }) => {
             const filters: CrudFilters = [];
-            const { q, store, user, createdAt } = params;
+            const { q, store, user, createdAt, status } = params;
 
             if (q) {
                 filters.push({
@@ -66,6 +67,14 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
                     field: "user.id",
                     operator: "eq",
                     value: user,
+                });
+            }
+
+            if (status) {
+                filters.push({
+                    field: "status.text",
+                    operator: "eq",
+                    value: status,
                 });
             }
 
@@ -115,6 +124,45 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
                                     "orders:filter.search.placeholder",
                                 )}
                                 prefix={<Icons.SearchOutlined />}
+                            />
+                        </Form.Item>
+                        <Form.Item
+                            label={t("orders:filter.status.label")}
+                            name="status"
+                        >
+                            <Select
+                                allowClear
+                                options={[
+                                    {
+                                        label: t("enum:orderStatuses.waiting"),
+                                        value: "waiting",
+                                    },
+                                    {
+                                        label: t("enum:orderStatuses.ready"),
+                                        value: "ready",
+                                    },
+                                    {
+                                        label: t(
+                                            "enum:orderStatuses.on the way",
+                                        ),
+                                        value: "on the way",
+                                    },
+                                    {
+                                        label: t(
+                                            "enum:orderStatuses.delivered",
+                                        ),
+                                        value: "delivered",
+                                    },
+                                    {
+                                        label: t(
+                                            "enum:orderStatuses.could not be delivered",
+                                        ),
+                                        value: "could not be delivered",
+                                    },
+                                ]}
+                                placeholder={t(
+                                    "orders:filter.status.placeholder",
+                                )}
                             />
                         </Form.Item>
                         <Form.Item
