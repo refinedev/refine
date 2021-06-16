@@ -129,6 +129,13 @@ module.exports = {
                                 "guides-and-concepts/components/buttons/clone-button",
                             ],
                         },
+                        {
+                            type: "category",
+                            label: "Inputs",
+                            items: [
+                                "guides-and-concepts/components/inputs/custom-inputs",
+                            ],
+                        },
                     ],
                 },
                 {
