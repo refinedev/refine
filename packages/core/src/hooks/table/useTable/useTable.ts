@@ -24,7 +24,7 @@ import {
     CrudSorting,
 } from "../../../interfaces";
 
-export type useTableProps = {
+export type useTableProps<TSearchVariables = unknown> = {
     permanentFilter?: CrudFilters;
     resource?: string;
     initialCurrent?: number;
@@ -32,14 +32,14 @@ export type useTableProps = {
     initialSorter?: CrudSorting;
     initialFilter?: CrudFilters;
     syncWithLocation?: boolean;
-    onSearch?: (data: any) => CrudFilters | Promise<CrudFilters>;
+    onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
 };
 
 export type useTableReturnType<
     TData extends BaseRecord = BaseRecord,
     TSearchVariables = unknown,
 > = {
-    formProps: FormProps<TSearchVariables>;
+    searchFormProps: FormProps<TSearchVariables>;
     tableProps: TableProps<TData>;
     sorter?: CrudSorting;
     filters?: CrudFilters;
@@ -57,7 +57,10 @@ export const useTable = <
     initialFilter,
     syncWithLocation = false,
     resource: resourceFromProp,
-}: useTableProps = {}): useTableReturnType<TData, TSearchVariables> => {
+}: useTableProps<TSearchVariables> = {}): useTableReturnType<
+    TData,
+    TSearchVariables
+> => {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
     const [form] = useForm<TSearchVariables>();
@@ -151,7 +154,7 @@ export const useTable = <
     };
 
     return {
-        formProps: {
+        searchFormProps: {
             ...form,
             onFinish,
         },

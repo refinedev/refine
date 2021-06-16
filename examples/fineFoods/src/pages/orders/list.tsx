@@ -20,24 +20,21 @@ import {
     CrudFilters,
     FormProps,
 } from "@pankod/refine";
-import { Dayjs } from "dayjs";
 
-import { IOrder, IStore } from "interfaces";
+import { IOrder, IStore, IOrderFilterVariables } from "interfaces";
 
 export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
-    const { tableProps, sorter, formProps } = useTable<IOrder>({
+    const { tableProps, sorter, searchFormProps } = useTable<
+        IOrder,
+        IOrderFilterVariables
+    >({
         initialSorter: [
             {
                 field: "id",
                 order: "desc",
             },
         ],
-        onSearch: (params: {
-            q: string;
-            store: string;
-            user: string;
-            createdAt: [Dayjs, Dayjs];
-        }) => {
+        onSearch: (params) => {
             const filters: CrudFilters = [];
             const { q, store, user, createdAt } = params;
 
@@ -91,7 +88,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
             {...props}
             Aside={
                 <Card title="Filter">
-                    <Filter formProps={formProps} />
+                    <Filter formProps={searchFormProps} />
                 </Card>
             }
         >
