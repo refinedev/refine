@@ -1,0 +1,7 @@
+{
+  "title": "Siparişler",
+  "fields": {
+    "orderNumber": "Sipariş Numarası",
+    "createdAt": "Oluşturma Tarihi"
+  }
+}

@@ -13,9 +13,9 @@ dayjs.extend(LocaleData);
 dayjs.extend(LocalizedFormat);
 
 ReactDOM.render(
-    <React.StrictMode>
+    <React.Suspense fallback="loading">
         <App />
-    </React.StrictMode>,
+    </React.Suspense>,
     document.getElementById("root"),
 );
 

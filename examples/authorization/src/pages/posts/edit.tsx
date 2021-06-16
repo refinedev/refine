@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Edit,
     Form,
@@ -16,7 +16,7 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
+export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
     const postData = queryResult?.data?.data;
@@ -26,10 +26,10 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     });
 
     const [selectedTab, setSelectedTab] =
-        React.useState<"write" | "preview">("write");
+        useState<"write" | "preview">("write");
 
     return (
-        <Edit {...props} saveButtonProps={saveButtonProps}>
+        <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
@@ -51,11 +51,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
                         },
                     ]}
                 >
-                    <Select
-                        showSearch
-                        filterOption={false}
-                        {...categorySelectProps}
-                    />
+                    <Select {...categorySelectProps} />
                 </Form.Item>
                 <Form.Item
                     label="Status"

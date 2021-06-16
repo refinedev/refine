@@ -5,7 +5,7 @@ title: Boolean
 
 import booleanField from '@site/static/img/guides-and-concepts/fields/boolean/booleanfield.png'
 
-This field is used to display boolean values and uses [`<Tooltip>`](https://ant.design/components/tooltip/) values from Ant Design.
+This field is used to display boolean values and uses `<Tooltip>` values from Ant Design.
 
 [Refer to `<Tooltip>` documentation for detailed usage. &#8594](https://ant.design/components/tooltip/#header)
 
@@ -63,4 +63,4 @@ export const PostList: React.FC = (props) => {
 | valueLabelFalse      | If there no value, it is the text to use   | `string`                                                             | `"false"`                                                  |
 | trueIcon             | If there is a value, it is the icon to use | `React.FC` \| `object`                                               | [`<CheckOutlined />`](https://ant.design/components/icon/) |
 | falseIcon            | If there no value, it is the icon to use.  | `React.FC` \| `object`                                               | [`<CloseOutlined />`](https://ant.design/components/icon/) |
-| AbstractTooltipProps | ant-design `Tooltip` props                 | [`AbstractTooltipProps`](https://ant.design/components/tooltip/#API) |                                                            |
+| AbstractTooltipProps | Ant Design `Tooltip` props                 | [`AbstractTooltipProps`](https://ant.design/components/tooltip/#API) |                                                            |
