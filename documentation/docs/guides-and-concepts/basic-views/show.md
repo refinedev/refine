@@ -53,7 +53,7 @@ export const Show: React.FC = () => {
 };
 ```
 
-### `aside`
+### `Aside`
 
 It allows adding a component to the right of the `<Show>` component.
 
@@ -69,7 +69,7 @@ const Aside: React.FC = () => {
 };
 
 export const Show: React.FC = () => {
-    return <Show aside={Aside}>...</Show>;
+    return <Show Aside={Aside}>...</Show>;
 };
 ```
 
@@ -241,7 +241,7 @@ export const App: React.FC = () => {
 | canDelete       | Adds delete button                           | `boolean`                                                         | If `<Resource>` has `canDelete` prop it is `true` else `false`                     |
 | canEdit         | Adds edit button                             | `boolean`                                                         | If `<Resource>` has `canEdit` prop it is `true` else `false`                       |
 | title           | Adds title                                   | `string`                                                          | `"Show"` prefix and singular of `resource.name`                                    |
-| aside           | Adds component to right side                 | `React.FC`                                                        | `undefined`                                                                        |
+| Aside           | Adds component to right side                 | `React.ReactNode`                                                 | `undefined`                                                                        |
 | actionButtons   | Passes to `extra` property of the `<Card>`   | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
 | isLoading       | Passes to `loading` property of the `<Card>` | `boolean`                                                         | `false`                                                                            |
 | pageHeaderProps | Passes props for `<PageHeader>`              | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
