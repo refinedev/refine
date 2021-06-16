@@ -15,15 +15,13 @@ Let's see how to use `<DateField>` with the example in the post list.
 //highlight-next-line
 import { List, Table, DateField } from "@pankod/refine";
 
+import { IPost } from "interfaces";
+
 export const PostList: React.FC = () => {
-    interface IPost {
-        id: string;
-        createdAt: string;
-    }
 
     return (
         <List>
-            <Table key="id">
+            <Table rowKey="id">
                 //highlight-next-line ...
                 <Table.Column<IPost>
                     dataIndex="createdAt"
@@ -38,6 +36,13 @@ export const PostList: React.FC = () => {
         </List>
     );
 };
+```
+
+```ts title="interfaces/index.d.ts"
+export interface IPost {   
+    id: string;    
+    createdAt: string;
+}
 ```
 
 <br/>
