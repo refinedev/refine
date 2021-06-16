@@ -4,13 +4,12 @@ import humanizeString from "humanize-string";
 import { useParams } from "react-router-dom";
 
 import { useResourceWithRoute, useTranslate } from "@hooks";
-import { OptionalComponent } from "@definitions";
 import { CreateButton } from "@components";
 import { ResourceRouterParams, CreateButtonProps } from "../../../interfaces";
 
 export interface ListProps {
     canCreate?: boolean;
-    aside?: React.FC;
+    Aside?: React.ReactNode;
     title?: string;
     createButtonProps?: CreateButtonProps;
     pageHeaderProps?: PageHeaderProps;
@@ -19,7 +18,7 @@ export interface ListProps {
 
 export const List: React.FC<ListProps> = ({
     canCreate = true,
-    aside,
+    Aside,
     title,
     children,
     createButtonProps,
@@ -61,11 +60,7 @@ export const List: React.FC<ListProps> = ({
                 </PageHeader>
             </Col>
 
-            {aside && (
-                <Col flex="0 1 300px">
-                    <OptionalComponent optional={aside} />
-                </Col>
-            )}
+            {Aside && <Col flex="0 1 300px">{Aside}</Col>}
         </Row>
     );
 };

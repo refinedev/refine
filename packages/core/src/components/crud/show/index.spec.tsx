@@ -68,7 +68,7 @@ describe("Show", () => {
 
     it("should render with aside component", () => {
         const { getByText } = renderShow(
-            <Show aside={() => <div>Test Aside Component</div>} />,
+            <Show Aside={<div>Test Aside Component</div>} />,
         );
 
         getByText("Test Aside Component");

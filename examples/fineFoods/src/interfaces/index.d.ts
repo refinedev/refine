@@ -112,3 +112,11 @@ export interface ICategory {
     title: string;
     isActive: boolean;
 }
+
+export interface IOrderFilterVariables {
+    q: string;
+    store: string;
+    user: string;
+    createdAt: [Dayjs, Dayjs];
+    status: string;
+}
