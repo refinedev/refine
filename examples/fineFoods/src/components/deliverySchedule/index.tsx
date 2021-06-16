@@ -7,12 +7,15 @@ import {
     useSimpleList,
     useMany,
     Icons,
+    useTranslate,
 } from "@pankod/refine";
 
 import styles from "./styles";
 import { IOrder, IUser } from "interfaces";
 
 export const DeliverySchedule: React.FC = () => {
+    const t = useTranslate();
+
     const { Title, Text } = Typography;
 
     const { listProps } = useSimpleList<IOrder>({
@@ -41,7 +44,7 @@ export const DeliverySchedule: React.FC = () => {
                 return <span>loading...</span>;
             }
 
-            return `${user.name} ${user.surname}`;
+            return user.fullName;
         };
 
         return (
@@ -60,11 +63,11 @@ export const DeliverySchedule: React.FC = () => {
                             </Text>
                             <Text
                                 style={styles.userInfo__productLength}
-                            >{`(${item.productIds.length} items)`}</Text>
+                            >{`(${item.products.length} items)`}</Text>
                         </div>
-                        <Text
-                            style={styles.status}
-                        >{`${item.status.text}`}</Text>
+                        <Text style={styles.status}>
+                            {t(`enum:orderStatuses.${item.status.text}`)}
+                        </Text>
                     </div>
                 </Col>
                 <Col md={14}>
@@ -79,7 +82,9 @@ export const DeliverySchedule: React.FC = () => {
 
     return (
         <>
-            <Title level={5}>Upcoming Delivery Schedule</Title>
+            <Title level={5}>
+                {t("dashboard:upcomingDeliverySchedule.title")}
+            </Title>
             <AntdList
                 {...listProps}
                 renderItem={renderItem}

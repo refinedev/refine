@@ -62,6 +62,11 @@ const generateFilter = (filters?: CrudFilters) => {
     const queryFilters: { [key: string]: string } = {};
     if (filters) {
         filters.map(({ field, operator, value }) => {
+            if (field === "q") {
+                queryFilters[field] = value;
+                return;
+            }
+
             const mappedOperator = mapOperator(operator);
             queryFilters[`${field}${mappedOperator}`] = value;
         });

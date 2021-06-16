@@ -1,9 +1,21 @@
 import { logoStyles } from "./style";
 
-export const Title: React.FC = () => {
+type TitleProps = {
+    collapsed: boolean;
+};
+
+export const Title: React.FC<TitleProps> = ({ collapsed }) => {
     return (
         <div style={logoStyles}>
-            <img src="/images/fine-foods.svg" width="138" />
+            {collapsed ? (
+                <img
+                    src="/images/fine-foods-collapsed.svg"
+                    height="25"
+                    width="18"
+                />
+            ) : (
+                <img src="/images/fine-foods.svg" height="48" width="138" />
+            )}
         </div>
     );
 };
