@@ -198,17 +198,17 @@ describe("dataProvider", () => {
 
     describe("custom", () => {
         it("correct get response", async () => {
-            const response = await DataProvider(API_URL, axios).custom?.(
+            const response = await DataProvider(API_URL, axios).custom!(
                 `${API_URL}/posts`,
                 "get",
             );
 
-            expect(response?.data[0]["id"]).toBe(49);
-            expect(response?.data[0]["title"]).toBe("updated");
+            expect(response.data[0]["id"]).toBe(49);
+            expect(response.data[0]["title"]).toBe("updated");
         });
 
         it("correct filter response", async () => {
-            const response = await DataProvider(API_URL, axios).custom?.(
+            const response = await DataProvider(API_URL, axios).custom!(
                 `${API_URL}/posts`,
                 "get",
                 {
@@ -222,12 +222,12 @@ describe("dataProvider", () => {
                 },
             );
 
-            expect(response?.data[0]["id"]).toBe(52);
-            expect(response?.data[0]["title"]).toBe("foo");
+            expect(response.data[0]["id"]).toBe(52);
+            expect(response.data[0]["title"]).toBe("foo");
         });
 
         it("correct sort response", async () => {
-            const response = await DataProvider(API_URL, axios).custom?.(
+            const response = await DataProvider(API_URL, axios).custom!(
                 `${API_URL}/posts`,
                 "get",
                 {
@@ -240,12 +240,12 @@ describe("dataProvider", () => {
                 },
             );
 
-            expect(response?.data[0]["id"]).toBe(49);
-            expect(response?.data[0]["title"]).toBe("updated");
+            expect(response.data[0]["id"]).toBe(49);
+            expect(response.data[0]["title"]).toBe("updated");
         });
 
         it("correct post request", async () => {
-            const response = await DataProvider(API_URL, axios).custom?.(
+            const response = await DataProvider(API_URL, axios).custom!(
                 `${API_URL}/posts`,
                 "post",
                 {
@@ -256,7 +256,7 @@ describe("dataProvider", () => {
                 },
             );
 
-            expect(response?.data).toEqual({
+            expect(response.data).toEqual({
                 id: 55,
                 title: "test",
                 content: "test",
