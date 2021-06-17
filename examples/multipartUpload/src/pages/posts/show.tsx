@@ -40,7 +40,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
             <MarkdownField value={record?.content} />
 
             <Title level={5}>Images</Title>
-            <Space>
+            <Space wrap>
                 {record?.image.map((img) => (
                     <ImageField
                         key={img.name}
