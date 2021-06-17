@@ -11,9 +11,28 @@ refine let's you set authentication logic by providing `authProvider` property t
 
 `authProvider` is an object with methods that refine uses when necessary. These methods need to return a Promise. They also can be accessed with specialized hooks.
 
+An auth provider must include following methods:
+
+```tsx
+const authProvider = {
+    login: () => Promise.resolve(),
+    logout: () => Promise.resolve(),
+    checkAuth: () => Promise.resolve(),
+    checkError: () => Promise.resolve(),
+    getPermissions: () => Promise.resolve(),
+    getUserIdentity: () => Promise.resolve()
+};
+```
+
+:::important
+refine consumes this methods using [authorization hooks]((#guides-and-concepts/hooks/auth/useLogin)).
+Authorization hooks are used to manage authentication and authorization operations like login, logout and catching Http errors etc.
+:::
+
 ## Usage
 
-We'll show how to implement basic authentication flow:
+To use auth provider in refine, we have to pass the authProvider to `<Admin />` component.
+
 
 ```tsx title="App.tsx"
 import {
@@ -22,36 +41,15 @@ import {
     AuthProvider,
 } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
+//highlight-next-line
+import authProvider from "./auth-provider";
 
 const API_URL = "https://api.fake-rest.refine.dev";
-const mockUsers = [{ username: "admin" }, { username: "editor" }];
+
+
 
 const App = () => {
-    //highlight-start
-    const authProvider: AuthProvider = {
-        login: ({ username, password }) => {
-            // Suppose we actually send a request to the back end here.
-            const user = mockUsers.find((item) => item.username === username);
-
-            if (user) {
-                localStorage.setItem("auth", JSON.stringify(user));
-                return Promise.resolve();
-            }
-
-            return Promise.reject();
-        },
-        logout: () => {
-            localStorage.removeItem("auth");
-            return Promise.resolve();
-        },
-        checkError: () => Promise.resolve(),
-        checkAuth: () =>
-            localStorage.getItem("auth") ? Promise.resolve() : Promise.reject(),
-        getPermissions: () => Promise.resolve(),
-        getUserIdentity: () => Promise.resolve(),
-    };
-    //highlight-end
-
+   
     return (
         <Admin
             //highlight-next-line
@@ -64,44 +62,80 @@ const App = () => {
 };
 ```
 
-:::tip
 By default, refine doesn't require authentication configuration.  
-If an `authProvider` property is not provided, refine will use a default `authProvider`:
+
+If an `authProvider` property is not provided, refine will use a default `authProvider`. This default `authProvider` lets the app work without an authentication requirement.  
+If your app doesn't require authentication, no further setup is necessary for the app to work.
+
+
+## Creating an auth provider
+We'll build a simple auth provider from scratch to show the logic of how auth provider methods interact with the app.
+
+
+
+### `login`
+
+**refine** expects this method to return a resolved Promise if login is successful, and a rejected Promise if not.
+
+-   If login is successful, pages that requires authentication becomes accessible.
+
+-   If the login fails, refine displays an error message to the user in a notification.
+
+<br />
+
+Here we show an example `login` method that stores auth data in localStorage.
+For sake of simplicity, we'll use mock data and check the user credentials from local storage.
+
+```tsx title="auth-provider.ts"
+const mockUsers = [{ username: "admin" }, { username: "editor" }];
+
+const authProvider = {
+    //highlight-start
+    login: ({ username, password, remember }) => {
+        // Suppose we actually send a request to the back end here.
+        const user = mockUsers.find((item) => item.username === username);
+
+        if (user) {
+            localStorage.setItem("auth", JSON.stringify(user));
+            return Promise.resolve();
+        }
+
+        return Promise.reject();
+    }
+    //highlight-end
+}
+```
+<br />
+
+`login` method will be accessible via `useLogin` auth hook.
 
 ```tsx
-const defaultProvider = {
-    login: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
+import { useLogin } from "@pankod/refine";
+
+const { mutate: login } = useLogin();
+
+login(values);
 ```
 
-This `authProvider` lets the app work without an authentication requirement. If your app doesn't require authentication, no further setup is necessary for the app to work.
-:::
+>[Refer to useLogin documentation for more information. &#8594](guides-and-concepts/hooks/auth/useLogin.md)
 
 <br />
 
-## Login
+#### Default login page
 
-If an `authProvider` is given, refine shows a default login page on `/` and `/login` routes with a login form. Rest of the app won't be accessible until a successful authentication.
+ If an `authProvider` is given, refine shows a default login page on `"/"` and `"/login"` routes with a login form if a custom `LoginPage` is not provided.
+Rest of the app won't be accessible until a successful authentication.  
+After submission, login form calls the `login` method from `authProvider`.
 
 <br />
+
 
 <div style={{textAlign: "center"}}>
     <img style={{width: "50%"}} src={login} />
 </div>
-<br/>
 
-After submission, login form calls the `login` method from `authProvider`.
-
-refine expects this method to return a resolved Promise if login is successful, and a rejected Promise if not.
-
--   If login is successful, pages that requires authentication becomes accessible.
-
--   If the login fails, default login page from refine displays an Error message to the user in a notification.
+<br />
+<br />
 
 :::important
 If an `authProvider` is given, [Resources](#) passed to `<Admin>` as children are only accessible if login is successful. In case of no `authProvider`, they are accessible without authentication.  
