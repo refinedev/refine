@@ -165,7 +165,7 @@ module.exports = {
         {
             type: "category",
             label: "Examples",
-            items: ["examples/useDeleteMany"],
+            items: ["examples/useUpdateMany", "examples/useDeleteMany"],
         },
         {
             type: "doc",
