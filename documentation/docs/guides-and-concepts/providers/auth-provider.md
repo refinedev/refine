@@ -83,6 +83,9 @@ We'll build a simple auth provider from scratch to show the logic of how auth pr
 
 <br />
 
+
+
+
 Here we show an example `login` method that stores auth data in localStorage.
 For sake of simplicity, we'll use mock data and check the user credentials from local storage.
 
@@ -117,6 +120,16 @@ const { mutate: login } = useLogin();
 login(values);
 ```
 
+:::tip
+`mutate` acquired from `useLogin` can accept any kind of object for values since `login` method from `authProvider` doesn't have a restriction on its parameters.  
+A type parameter for the values can be provided to `useLogin`.
+```tsx
+const { mutate: login } = useLogin<{ username: string; password: string; remember: boolean; }>();
+```
+:::
+
+
+
 >[Refer to useLogin documentation for more information. &#8594](guides-and-concepts/hooks/auth/useLogin.md)
 
 <br />
@@ -147,7 +160,57 @@ If an `authProvider` is given, [Resources](#) passed to `<Admin>` as children ar
 
 <br />
 
-## Logout
+### `logout`
+
+**refine** expects this method to return a resolved Promise if logout is successful, and a rejected Promise if not.
+
+-   If logout is successful, pages that requires authentication becomes unaccessible.
+
+-   If the logout fails, refine displays an error message to the user in a notification.
+
+<br />
+
+Here we show an example `logout` that removes auth data from local storage and returns a resolved promise.
+
+```tsx title="auth-provider.ts"
+const authProvider = {
+    ...
+    //highlight-start
+    logout: () => {
+        localStorage.removeItem("auth");
+        return Promise.resolve();
+    }
+    //highlight-end
+    ...
+}
+```
+
+
+<br />
+
+`logout` method will be accessible via `useLogout` auth hook.
+
+```tsx
+import { useLogout } from "@pankod/refine";
+
+const { mutate: logout } = useLogout();
+
+logout();
+```
+
+
+:::tip
+`mutate` acquired from `useLogout` can accept any kind of object for values since `logout` method from `authProvider` doesn't have a restriction on its parameters.  
+
+:::
+
+
+>[Refer to useLogout documentation for more information. &#8594](guides-and-concepts/hooks/auth/useLogout.md)
+
+<br />
+
+
+#### Default logout button
 
 If authentication is enabled, a logout button appears at the bottom of the side bar menu. When the button is clicked, `logout` method from `authProvider` is called.
 
@@ -159,6 +222,8 @@ refine redirects the app to `/login` route by default.
 </div>
 <br/>
 
+
+#### Redirection after logout
 Redirection url can be customized by returning a route string, or false to disable redirection after logout.
 
 ```tsx
@@ -171,6 +236,7 @@ const authProvider: AuthProvider = {
     }
 }
 ```
+
 
 :::tip
 Current authentication data needs to be cleaned by the `logout` method. For example if a token is stored in local storage, `logout` must remove it as shown above.
