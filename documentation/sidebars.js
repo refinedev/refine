@@ -149,7 +149,6 @@ module.exports = {
                         "guides-and-concepts/fields/date",
                         "guides-and-concepts/fields/email",
                         "guides-and-concepts/fields/markdown",
-                        "guides-and-concepts/fields/number",
                         "guides-and-concepts/fields/tag",
                         "guides-and-concepts/fields/text",
                     ],
@@ -166,7 +165,7 @@ module.exports = {
         {
             type: "category",
             label: "Examples",
-            items: ["examples/useUpdateMany"],
+            items: ["examples/useUpdateMany", "examples/useDeleteMany"],
         },
         {
             type: "doc",
