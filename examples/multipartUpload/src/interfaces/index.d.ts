@@ -1,4 +1,9 @@
-import { UploadedFile } from "@pankod/refine";
+export interface UploadFile {
+    name: string;
+    url: string;
+    size: number;
+    uid: string;
+}
 
 export interface ICategory {
     id: string;
@@ -10,6 +15,6 @@ export interface IPost {
     title: string;
     content: string;
     status: "published" | "draft" | "rejected";
-    image: UploadedFile[];
+    image: UploadFile[];
     category: ICategory;
 }
