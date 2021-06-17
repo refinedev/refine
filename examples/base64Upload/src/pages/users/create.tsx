@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    Edit,
+    Create,
     Form,
     Input,
     IResourceComponentsProps,
@@ -11,16 +11,16 @@ import {
     HttpError,
 } from "@pankod/refine";
 
-import { IUser } from "../../interfaces";
+import { IUser, IUserVariable } from "interfaces";
 
-export const UserEdit: React.FC<IResourceComponentsProps> = (props) => {
-    const { formProps, saveButtonProps } = useForm<IUser, HttpError, IUser>();
+export const UserCreate: React.FC<IResourceComponentsProps> = () => {
+    const { formProps, saveButtonProps } =
+        useForm<IUser, HttpError, IUserVariable>();
 
     return (
-        <Edit {...props} saveButtonProps={saveButtonProps}>
+        <Create saveButtonProps={saveButtonProps}>
             <Form
                 {...formProps}
-                wrapperCol={{ span: 24 }}
                 layout="vertical"
                 onFinish={async (values) => {
                     const base64Files = [];
@@ -93,17 +93,13 @@ export const UserEdit: React.FC<IResourceComponentsProps> = (props) => {
                             },
                         ]}
                     >
-                        <Upload.Dragger
-                            listType="picture"
-                            multiple
-                            beforeUpload={() => false}
-                        >
+                        <Upload.Dragger listType="picture" multiple>
                             <p className="ant-upload-text">Title</p>
                             <p className="ant-upload-hint">Upload</p>
                         </Upload.Dragger>
                     </Form.Item>
                 </Form.Item>
             </Form>
-        </Edit>
+        </Create>
     );
 };

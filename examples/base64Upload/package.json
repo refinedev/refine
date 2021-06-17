@@ -1,5 +1,5 @@
 {
-  "name": "refine-use-base64-upload-example",
+  "name": "refine-base64-upload-example",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
