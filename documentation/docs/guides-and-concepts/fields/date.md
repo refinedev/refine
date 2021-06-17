@@ -56,5 +56,5 @@ export interface IPost {
 
 | Property                                            | Description                                                         | Type                                            | Default |
 | --------------------------------------------------- | ------------------------------------------------------------------- | ----------------------------------------------- | ------- |
-| value <div className="required">Required</div>      | Date value                                                          | `string` \| `number` \| `Date` \| `dayjs.Dayjs` |         |
+| value   <div className="required">Required</div>    | Date value                                                          | `string` \| `number` \| `Date` \| `dayjs.Dayjs` |         |
 | [format](https://day.js.org/docs/en/display/format) | Get the formatted date according to the string of tokens passed in. | `string` \| `undefined`                         | `"L"`   |
