@@ -8,7 +8,7 @@ import {
     IResourceComponentsProps,
     useForm,
     useTranslate,
-    getValueFromEvent,
+    normalizeFile,
     useApiUrl,
 } from "@pankod/refine";
 
@@ -94,7 +94,8 @@ export const UserEdit: React.FC<IResourceComponentsProps> = (props) => {
                     <Form.Item
                         name="avatar"
                         valuePropName="fileList"
-                        getValueFromEvent={getValueFromEvent}
+                        // getValueFromEvent={getValueFromEvent}
+                        normalize={normalizeFile}
                         noStyle
                     >
                         <Upload.Dragger
