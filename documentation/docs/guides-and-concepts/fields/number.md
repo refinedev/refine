@@ -2,7 +2,7 @@
 id: number
 title: Number
 ---
-import numberField from '@site/static/img/guides-and-concepts/fields/number/numberfield.png'
+import numberField from '@site/static/img/guides-and-concepts/fields/number/numberField.png'
 
 
 This field is used to display a number formatted according to the browser locale, right aligned. and uses [`Intl`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) to display date format.
