@@ -201,7 +201,6 @@ logout();
 
 :::tip
 `mutate` acquired from `useLogout` can accept any kind of object for values since `logout` method from `authProvider` doesn't have a restriction on its parameters.  
-
 :::
 
 
@@ -227,7 +226,7 @@ refine redirects the app to `/login` route by default.
 Redirection url can be customized by returning a route string, or false to disable redirection after logout.
 
 ```tsx
-const authProvider: AuthProvider = {
+const authProvider = {
     ...
     logout: () => {
         localStorage.removeItem("auth");
@@ -244,13 +243,18 @@ Current authentication data needs to be cleaned by the `logout` method. For exam
 
 <br />
 
-## Catching Http Errors
+### `checkError`
 
-When `dataProvider` returns an error, `checkError` method of `authProvider` is called with error object.  
+
+When a `dataProvider` method returns an error, `checkError` is called with the error object.  
 If `checkError` returns a rejected promise, `logout` method is called and users become unauthorized and get redirected to `/login` page by default.
 
-```tsx
-const authProvider: AuthProvider = {
+
+In this example, we log the user out when HTTP error status code is `401`.  
+You can decide depending on any error status code you want to check if the users continue to process by returning a resolved promise or they are logged out by rejecting the promise.
+
+```tsx title="auth-provider.ts"
+const authProvider = {
     ...
     logout: () => {
         localStorage.removeItem("auth");
@@ -258,8 +262,7 @@ const authProvider: AuthProvider = {
     },
     // highlight-start
     checkError: (error) => {
-        const status = error.status;
-        if (status === 401) {
+        if (error.status === 401) {
             return Promise.reject();
         }
         return Promise.resolve();
@@ -268,35 +271,56 @@ const authProvider: AuthProvider = {
    ...
 };
 ```
+<br />
+
+
+`checkError` method will be accessible via `useCheckError` auth hook.
+
+```tsx
+import { useCheckError } from "@pankod/refine";
+
+const { mutate: checkError } = useCheckError();
+
+checkError(error);
+```
+:::tip
+`mutate` acquired from `useLogout` can accept any kind of object for values since `logout` method from `authProvider` doesn't have a restriction on its parameters.  
+:::
+
+
+>[Refer to useCheckError documentation for more information. &#8594](guides-and-concepts/hooks/auth/useCheckError.md)
 
 <br />
 
-In this example, we log the user out when Http error status code is 401.  
-You can decide depending on any error status code you want to check if the users continue to process by returning a resolved promise or they are logged out by rejecting the promise.
+#### Redirection after error
 
-:::tip
 You can override the default redirection by giving a path to the rejected promise.
 
 ```tsx
-if (status === 401) {
-    // highlight-next-line
-    return Promise.reject("custom-url");
+checkError: (error) => {
+    if (error.status === 401) {
+        // highlight-next-line
+        return Promise.reject("custom-url");
+    }
+    ...
 }
 ```
 
+:::important
 Redirection path given to `checkError` overrides the one on `logout`.
 :::
 
 <br />
 
-## Checking Authentication During Navigation
+### `checkAuth`
 
-Whenever route changes, `checkAuth` from `authProvider` is called. When `checkAuth` returns a rejected promise, authentication is cancelled and the app is redirected to an error page that allows the user to navigate to the root path which shows a login page by default.
+Whenever route changes, `checkAuth` from `authProvider` is called.  
+When `checkAuth` returns a rejected promise, authentication is cancelled and the app is redirected to an error page that allows the user to navigate to the root path which shows a login page by default.
 
 Checking the authentication data can be easily done here. For example if the authentication data is stored in the local storage:
 
-```tsx
-const authProvider: AuthProvider = {
+```tsx title="auth-provider.ts"
+const authProvider = {
     ...
     // highlight-start
     checkAuth: () => {
@@ -305,6 +329,21 @@ const authProvider: AuthProvider = {
    ...
 };
 ```
+
+<br />
+
+`checkAuth` method will be accessible via `useAuthenticaion` auth hook.
+
+```tsx
+import { useAuthentication } from "@pankod/refine";
+
+const { isSuccess, isLoading, isError } = useAuthenticated();
+```
+
+>[Refer to useAuthentication documentation for more information. &#8594](guides-and-concepts/hooks/auth/useAuthentication.md)
+
+<br />
+
 
 <br />
 
