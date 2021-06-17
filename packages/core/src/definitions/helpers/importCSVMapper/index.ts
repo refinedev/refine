@@ -1,19 +1,18 @@
 import zip from "lodash/zip";
 import fromPairs from "lodash/fromPairs";
-import { MapDataFn } from "../../../components/buttons/import";
+import { MapDataFn } from "../../../hooks/import";
 
-export type importCSVMapperType = {
-    (data: unknown[][], mapData?: MapDataFn): unknown[];
-};
-
-export const importCSVMapper: importCSVMapperType = (
-    data,
-    mapData = (item) => item,
-) => {
+export const importCSVMapper = <
+    TItem = unknown,
+    TVariables extends TItem = TItem,
+>(
+    data: unknown[][],
+    mapData: MapDataFn<TItem, TVariables>,
+): TVariables[] => {
     const [headers, ...body] = data;
     return body
         .map((entry) => fromPairs(zip(headers, entry)))
-        .map((item, index, array) =>
-            mapData.call(undefined, item, index, array, data),
+        .map((item: any, index, array: any) =>
+            mapData.call(undefined, item, index, array),
         );
 };

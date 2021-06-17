@@ -1,93 +1,38 @@
-import React, { FC } from "react";
+import React, { PropsWithChildren, ReactElement } from "react";
 import { Button, ButtonProps, Upload } from "antd";
-import { UploadChangeParam } from "antd/lib/upload";
-import { ImportOutlined } from "@ant-design/icons";
-import {
-    useCreate,
-    useCreateMany,
-    useResourceWithRoute,
-    useTranslate,
-} from "@hooks";
-import { useParams } from "react-router-dom";
-import { HttpError, ResourceRouterParams } from "../../../interfaces";
-import { parse, ParseConfig } from "papaparse";
-import { importCSVMapper } from "@definitions";
-import chunk from "lodash/chunk";
+import { useTranslate, useImport } from "@hooks";
+import { MapDataFn } from "../../../interfaces";
+import { ParseConfig } from "papaparse";
 
-export interface MapDataFn {
-    (value: any, index?: number, array?: any[], data?: any[][]): any;
-}
+type ImportButtonProps<TItem, TVariables extends TItem = TItem> =
+    ButtonProps & {
+        resourceName?: string;
+        mapData?: MapDataFn<TItem, TVariables>;
+        paparseOptions?: ParseConfig;
+        batchSize?: number | null;
+    };
 
-type ImportButtonProps = ButtonProps & {
-    resourceName?: string;
-    mapData?: MapDataFn;
-    paparseOptions?: ParseConfig;
-    batchSize?: number | null;
-};
-
-export const ImportButton: FC<ImportButtonProps> = ({
+export const ImportButton = <TItem, TVariables extends TItem = TItem>({
     resourceName,
-    mapData = (data) => data,
+    mapData,
     batchSize = 1,
     paparseOptions,
     ...rest
-}) => {
+}: PropsWithChildren<ImportButtonProps<TItem, TVariables>>): ReactElement<
+    any,
+    any
+> => {
     const translate = useTranslate();
-    const resourceWithRoute = useResourceWithRoute();
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-    let { name: resource } = resourceWithRoute(routeResourceName);
-    const { mutate: mutateCreateMany, isLoading: createManyIsLoading } =
-        useCreateMany<any, HttpError, unknown>();
-    const { mutate: mutateCreate, isLoading: createIsLoading } =
-        useCreate<any, HttpError, unknown>();
-
-    if (resourceName) {
-        resource = resourceName;
-    }
-
-    const handleChange = ({ file }: UploadChangeParam) => {
-        parse(file as unknown as File, {
-            complete: ({ data }: { data: unknown[][] }) => {
-                const values = importCSVMapper(data, mapData);
-
-                if (batchSize === null) {
-                    mutateCreateMany({
-                        resource,
-                        values,
-                    });
-                } else if (batchSize === 1) {
-                    values.forEach((value) => {
-                        mutateCreate({
-                            resource,
-                            values: value,
-                        });
-                    });
-                } else {
-                    chunk(values, batchSize).forEach((batch) => {
-                        mutateCreateMany({
-                            resource,
-                            values: batch,
-                        });
-                    });
-                }
-            },
-            ...paparseOptions,
-        });
-    };
+    const { uploadProps, buttonProps } = useImport({
+        resourceName,
+        mapData,
+        batchSize,
+        paparseOptions,
+    });
 
     return (
-        <Upload
-            onChange={handleChange}
-            showUploadList={false}
-            beforeUpload={() => false}
-            accept=".csv"
-        >
-            <Button
-                type="default"
-                icon={<ImportOutlined />}
-                loading={createIsLoading || createManyIsLoading}
-                {...rest}
-            >
+        <Upload {...uploadProps}>
+            <Button {...buttonProps} {...rest}>
                 {translate("buttons.import", "Import")}
             </Button>
         </Upload>

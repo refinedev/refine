@@ -49,6 +49,9 @@ export * from "./redirectionTypes";
 // upload
 export * from "./upload";
 
+// mapData
+export * from "./mapDataFn";
+
 // sunflower types
 export {
     useModalFormFromSFReturnType,
