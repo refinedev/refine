@@ -2,12 +2,16 @@
   "title": "Users",
   "fields": {
     "id": "ID",
-    "avatar": "Avatar",
+    "avatar": {
+      "label": "Avatar",
+      "description": "Click or drag avatar image to this area to upload."
+    },
     "firstName": "First Name",
     "lastName": "Last Name",
     "gender": "Gender",
     "gsm": "Gsm Number",
-    "createdAt": "CreatedAt"
+    "createdAt": "CreatedAt",
+    "isActive": "Is Active"
   },
   "filter": {
     "title": "Filters",

@@ -4,7 +4,7 @@ import jsonServerDataProvider from "@pankod/refine-json-server";
 import { authProvider } from "authProvider";
 import { DashbaordPage } from "./pages/dashboard";
 import { OrderList, OrderShow } from "./pages/orders";
-import { UserList } from "./pages/users";
+import { UserList, UserEdit } from "./pages/users";
 import { useTranslation } from "react-i18next";
 import { Header, Title } from "components";
 import "i18n";
@@ -44,6 +44,7 @@ const App: React.FC = () => {
                 }}
                 name="users"
                 list={UserList}
+                edit={UserEdit}
             />
             <Resource
                 options={{

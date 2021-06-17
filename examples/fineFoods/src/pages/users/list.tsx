@@ -5,29 +5,24 @@ import {
     useTable,
     useTranslate,
     IResourceComponentsProps,
-    getDefaultSortOrder,
     DateField,
-    Popover,
     Card,
     Input,
     Icons,
     Form,
     DatePicker,
-    Select,
-    NumberField,
-    useSelect,
     Button,
     CrudFilters,
     Space,
     ShowButton,
+    EditButton,
     FormProps,
 } from "@pankod/refine";
-import { OrderStatus } from "components";
 
-import { IUser, IStore, IUserFilterVariables } from "interfaces";
+import { IUser, IUserFilterVariables } from "interfaces";
 
 export const UserList: React.FC<IResourceComponentsProps> = (props) => {
-    const { tableProps, sorter, searchFormProps } = useTable<
+    const { tableProps, searchFormProps } = useTable<
         IUser,
         IUserFilterVariables
     >({
@@ -82,7 +77,7 @@ export const UserList: React.FC<IResourceComponentsProps> = (props) => {
                     align="center"
                     key="avatar"
                     dataIndex={["avatar"]}
-                    title={t("users:fields.avatar")}
+                    title={t("users:fields.avatar.label")}
                     render={(value) => <Avatar src={value[0].url} />}
                 />
                 <Table.Column
@@ -113,6 +108,7 @@ export const UserList: React.FC<IResourceComponentsProps> = (props) => {
                     key="actions"
                     render={(_value, record) => (
                         <Space>
+                            <EditButton size="small" recordItemId={record.id} />
                             <ShowButton size="small" recordItemId={record.id} />
                         </Space>
                     )}
