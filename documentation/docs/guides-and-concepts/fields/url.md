@@ -19,7 +19,7 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
-            <Table<IPost> {...tableProps} key="id">
+            <Table<IPost> {...tableProps} rowKey="id">
                 <Table.Column<IPost>
                     dataIndex="title"
                     title="Title"
