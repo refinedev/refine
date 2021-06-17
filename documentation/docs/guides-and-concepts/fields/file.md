@@ -54,7 +54,6 @@ interface IPost {
     image: [
         {
             url: string;
-            name: string;
         },
     ];
 }
