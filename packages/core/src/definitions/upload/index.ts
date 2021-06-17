@@ -14,6 +14,21 @@ export const getValueFromEvent = (event: EventArgs): UploadFile[] => {
     return [...fileList];
 };
 
+export const normalizeFile = (event: EventArgs) => {
+    const { fileList } = event;
+
+    return fileList.map((item) => {
+        let { url } = item;
+        const { uid, name, response, type, size, percent, status } = item;
+
+        if (response) {
+            url = response.fileUrl;
+        }
+
+        return { uid, name, url, type, size, percent, status };
+    });
+};
+
 export interface UploadFileWithBase64 extends UploadFile {
     base64String?: string;
 }
