@@ -1,6 +1,6 @@
 {
-  "short_name": "refine useEditableTable example",
-  "name": "refine useEditableTable example",
+  "short_name": "refine useEditableTable example app",
+  "name": "refine useEditableTable example app",
   "icons": [
     {
       "src": "favicon.ico",
