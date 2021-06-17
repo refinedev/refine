@@ -114,7 +114,7 @@ This end-point should respond similarly.
 
 ```json title="[POST] /media/upload"
 {
-    "fileUrl": "https://example.com/uploaded-file.jpeg"
+    "url": "https://example.com/uploaded-file.jpeg"
 }
 ```
 
