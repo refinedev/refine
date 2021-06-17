@@ -1,6 +1,6 @@
 {
-  "short_name": "Refine Example App",
-  "name": "Refine Example App",
+  "short_name": "refine useDeleteMany example app",
+  "name": "refine useDeleteMany example app",
   "icons": [
     {
       "src": "favicon.ico",
