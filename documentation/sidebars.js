@@ -161,6 +161,11 @@ module.exports = {
             ],
         },
         {
+            type: "category",
+            label: "Examples",
+            items: ["examples/useUpdateMany"],
+        },
+        {
             type: "doc",
             id: "interfaceReferences",
         },
