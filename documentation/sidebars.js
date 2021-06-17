@@ -147,6 +147,7 @@ module.exports = {
                         "guides-and-concepts/fields/date",
                         "guides-and-concepts/fields/email",
                         "guides-and-concepts/fields/markdown",
+                        "guides-and-concepts/fields/number",
                         "guides-and-concepts/fields/tag",
                         "guides-and-concepts/fields/text",
                     ],
