@@ -96,7 +96,7 @@ export interface IOrder {
 }
 
 export interface IProduct {
-    id: number;
+    id: string;
     name: string;
     isActive: boolean;
     description: string;
@@ -108,7 +108,7 @@ export interface IProduct {
 }
 
 export interface ICategory {
-    id: number;
+    id: string;
     title: string;
     isActive: boolean;
 }

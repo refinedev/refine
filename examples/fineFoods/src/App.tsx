@@ -5,6 +5,7 @@ import { authProvider } from "authProvider";
 import { DashbaordPage } from "./pages/dashboard";
 import { OrderList, OrderShow } from "./pages/orders";
 import { UserList, UserEdit } from "./pages/users";
+import { ProductList } from "./pages/products";
 import { useTranslation } from "react-i18next";
 import { Header, Title } from "components";
 import "i18n";
@@ -51,6 +52,7 @@ const App: React.FC = () => {
                     label: t("products:title"),
                 }}
                 name="products"
+                list={ProductList}
             />
             <Resource name="stores" />
         </Admin>
