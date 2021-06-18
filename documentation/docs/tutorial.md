@@ -131,9 +131,7 @@ import dataProvider from "@pankod/refine-json-server";
 
 export const App: React.FC = () => {
     return (
-        <Admin
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        >
+        <Admin dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
             //highlight-next-line
             <Resource name="posts" />
         </Admin>
@@ -265,9 +263,7 @@ import { PostList } from "./pages";
 
 export const App: React.FC = () => {
     return (
-        <Admin
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        >
+        <Admin dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
             //highlight-next-line
             <Resource name="posts" list={PostList} />
         </Admin>
@@ -497,9 +493,7 @@ import { PostList, PostEdit } from "./pages";
 
 export const App: React.FC = () => {
     return (
-        <Admin
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        >
+        <Admin dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
             <Resource
                 name="posts"
                 list={PostList}
@@ -677,9 +671,7 @@ import { PostList, PostEdit, PostCreate } from "./pages";
 
 export const App: React.FC = () => {
     return (
-        <Admin
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        >
+        <Admin dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
             <Resource
                 name="posts"
                 list={PostList}
@@ -777,9 +769,7 @@ import { PostList, PostEdit, PostCreate, PostShow } from "./pages";
 
 export const App: React.FC = () => {
     return (
-        <Admin
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        >
+        <Admin dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
             <Resource
                 name="posts"
                 list={PostList}
@@ -934,3 +924,12 @@ At this point we have an app with basic features implemented using a fake REST A
 Core functionality of refine is based heavily on hooks. This way it provides a wide range of flexibility on data management and UI structure.
 
 You can develop new features or modify existing behavior based on your needs on top of refine codebase.
+
+## Live Codesandbox Example
+
+<iframe src="https://codesandbox.io/embed/refine-tutorial-cmqrr?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+    title="refine-tutorial"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
