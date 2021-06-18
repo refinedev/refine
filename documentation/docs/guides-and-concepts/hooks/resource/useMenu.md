@@ -104,7 +104,7 @@ export const CustomMenu: React.FC = () => {
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
     //highlight-start
-    const logout = useLogout();
+    const { mutate: logout } = useLogout();
     const { push } = useNavigation();
     //highlight-end
 
