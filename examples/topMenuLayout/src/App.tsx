@@ -1,4 +1,4 @@
-import { Admin, Resource, AntdLayout, Link } from "@pankod/refine";
+import { Refine, Resource, AntdLayout, Link } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -9,7 +9,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Admin
+        <Refine
             dataProvider={dataProvider(API_URL)}
             Layout={({ children, Footer, OffLayoutArea }) => (
                 <AntdLayout>
@@ -43,7 +43,7 @@ const App: React.FC = () => {
             )}
         >
             <Resource name="posts" list={PostList} />
-        </Admin>
+        </Refine>
     );
 };
 

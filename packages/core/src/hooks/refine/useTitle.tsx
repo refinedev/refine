@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { AdminContext } from "@contexts/admin";
+import { RefineContext } from "@contexts/refine";
 import { TitleProps } from "../../interfaces";
 
 export const useTitle: () => React.FC<TitleProps> = () => {
-    const { Title } = useContext(AdminContext);
+    const { Title } = useContext(RefineContext);
 
     return Title;
 };

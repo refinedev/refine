@@ -1,4 +1,4 @@
-import { Admin, Resource } from "@pankod/refine";
+import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 import { useTranslation } from "react-i18next";
 import "@pankod/refine/dist/styles.min.css";
@@ -19,7 +19,7 @@ const App: React.FC = () => {
     };
 
     return (
-        <Admin
+        <Refine
             dataProvider={dataProvider(API_URL)}
             i18nProvider={i18nProvider}
             Header={Header}
@@ -31,7 +31,7 @@ const App: React.FC = () => {
                 edit={PostEdit}
                 show={PostShow}
             />
-        </Admin>
+        </Refine>
     );
 };
 

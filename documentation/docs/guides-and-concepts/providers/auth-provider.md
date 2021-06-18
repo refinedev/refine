@@ -7,7 +7,7 @@ sidebar_label: Auth Provider
 import login from '@site/static/img/guides-and-concepts/providers/auth-provider/login.png';
 import logout from '@site/static/img/guides-and-concepts/providers/auth-provider/logout.gif';
 
-refine let's you set authentication logic by providing `authProvider` property to `<Admin>` component.
+refine let's you set authentication logic by providing `authProvider` property to `<Refine>` component.
 
 `authProvider` is an object with methods that refine uses when necessary. These methods need to return a Promise. They also can be accessed with specialized hooks.
 
@@ -17,7 +17,7 @@ We'll show how to implement basic authentication flow:
 
 ```tsx title="App.tsx"
 import {
-    Admin,
+    Refine,
     //highlight-next-line
     AuthProvider,
 } from "@pankod/refine";
@@ -53,13 +53,13 @@ const App = () => {
     //highlight-end
 
     return (
-        <Admin
+        <Refine
             //highlight-next-line
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
         >
             ...
-        </Admin>
+        </Refine>
     );
 };
 ```
@@ -104,7 +104,7 @@ refine expects this method to return a resolved Promise if login is successful, 
 -   If the login fails, default login page from refine displays an Error message to the user in a notification.
 
 :::important
-If an `authProvider` is given, [Resources](#) passed to `<Admin>` as children are only accessible if login is successful. In case of no `authProvider`, they are accessible without authentication.  
+If an `authProvider` is given, [Resources](#) passed to `<Refine>` as children are only accessible if login is successful. In case of no `authProvider`, they are accessible without authentication.  
 :::
 
 :::tip
@@ -252,12 +252,12 @@ const App = () => {
         };
 
     return (
-        <Admin
+        <Refine
             authProvider={authProvider}
             // highlight-next-line
             dataProvider={dataProvider(API_URL, axiosInstance)}>
             ...
-        </Admin>
+        </Refine>
     );
 }
 ```
