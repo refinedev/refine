@@ -43,7 +43,7 @@ Let'say we have a `categories` resource
 ```tsx
 const { mutate } = useDeleteMany("categories");
 
-mutate({ ids: [ 2, 3 ] })
+mutate({ ids: [ "2", "3" ] })
 ```
 
 :::tip

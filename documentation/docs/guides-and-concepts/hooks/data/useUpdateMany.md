@@ -44,7 +44,7 @@ type PostMutationResult = {
 
 const { mutate } = useUpdateMany<PostMutationResult>("posts");
 
-mutate({ ids: [ 1, 2 ], values: { status: "draft" } })
+mutate({ ids: [ "1", "2" ], values: { status: "draft" } })
 ```
 
 :::tip

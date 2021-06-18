@@ -70,7 +70,7 @@ export const useDelete = <
     >(
         ({ id }) => {
             if (!(mutationMode === "undoable")) {
-                return deleteOne<TData>("saçma", id);
+                return deleteOne<TData>(resource, id);
             }
 
             const deletePromise = new Promise<DeleteOneResponse<TData>>(
