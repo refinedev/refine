@@ -66,8 +66,10 @@ module.exports = {
                         },
                         {
                             type: "category",
-                            label: "Admin",
-                            items: ["guides-and-concepts/hooks/admin/useTitle"],
+                            label: "Refine",
+                            items: [
+                                "guides-and-concepts/hooks/refine/useTitle",
+                            ],
                         },
                         {
                             type: "category",
@@ -165,7 +167,12 @@ module.exports = {
         {
             type: "category",
             label: "Examples",
-            items: ["examples/useUpdateMany", "examples/useDeleteMany"],
+            items: [
+                "examples/useUpdateMany",
+                "examples/useDeleteMany",
+                "examples/customLogin",
+                "examples/customFooter",
+            ],
         },
         {
             type: "doc",

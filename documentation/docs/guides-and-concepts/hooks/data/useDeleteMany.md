@@ -5,7 +5,7 @@ siderbar_label: useDeleteMany
 description: useDeleteMany data hook from refine is a modified version of react-query's useMutation for multiple delete mutations
 ---
 
-`useDeleteMany` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for multiple delete mutations. It uses `deleteMany` method as mutation function from the `dataProvider` that is passed to `<Admin>`.
+`useDeleteMany` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for multiple delete mutations. It uses `deleteMany` method as mutation function from the `dataProvider` that is passed to `<Refine>`.
 
 ## Features
 
@@ -43,7 +43,7 @@ Let'say we have a `categories` resource
 ```tsx
 const { mutate } = useDeleteMany("categories");
 
-mutate({ ids: [ 2, 3 ] })
+mutate({ ids: [ "2", "3" ] })
 ```
 
 :::tip
@@ -137,7 +137,7 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 | undoableTimeoutProp                                 | Duration to wait before executing the mutation when `mutationModeProp = "undoable"` | `number`                                         | `5000ms`*        |
 | onCancel                                            | Callback that runs when undo button is clicked on `mutationModeProp = "undoable"`   | `(cancelMutation: () => void) => void`           |                  |
 
->`*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component. `useDeleteMany` will use what is passed to `<Admin>` as default and can override locally.
+>`*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useDeleteMany` will use what is passed to `<Refine>` as default and can override locally.
 
 <br/>
 

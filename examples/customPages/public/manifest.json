@@ -1,6 +1,6 @@
 {
-  "short_name": "custom pages example",
-  "name": "custom pages example",
+  "short_name": "custom pages example app",
+  "name": "custom pages example app",
   "icons": [
     {
       "src": "favicon.ico",

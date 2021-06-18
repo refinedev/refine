@@ -3,7 +3,7 @@ id: useMenu
 title: useMenu
 ---
 
-`useMenu` is used to get menu items of the default sidebar. These items include a link to dashboard page (if it exists) and links to user defined resources (passed as children to `<Admin>`). This hook can be used to build custom menus - which is also used by default sidebar to show menu items.
+`useMenu` is used to get menu items of the default sidebar. These items include a link to dashboard page (if it exists) and links to user defined resources (passed as children to `<Refine>`). This hook can be used to build custom menus - which is also used by default sidebar to show menu items.
 
 ```ts
 const { selectedKey, menuItems } = useMenu();
@@ -56,10 +56,10 @@ export const CustomMenu: React.FC = () => {
 
 <br />
 
-We can override the default sider and show the custom menu we implemented in its place by passing a the custom component to `<Admin>`s `Sider` prop:
+We can override the default sider and show the custom menu we implemented in its place by passing a the custom component to `<Refine>`s `Sider` prop:
 
 ```tsx title="App.tsx"
-import { Admin, Resource } from "@pankod/refine";
+import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -72,9 +72,9 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         //highlight-next-line
-        <Admin dataProvider={dataProvider(API_URL)} Sider={CustomMenu}>
+        <Refine dataProvider={dataProvider(API_URL)} Sider={CustomMenu}>
             <Resource name="posts" list={PostList} />
-        </Admin>
+        </Refine>
     );
 };
 
@@ -104,7 +104,7 @@ export const CustomMenu: React.FC = () => {
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
     //highlight-start
-    const logout = useLogout();
+    const { mutate: logout } = useLogout();
     const { push } = useNavigation();
     //highlight-end
 

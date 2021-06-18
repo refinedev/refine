@@ -12,11 +12,11 @@ import createGif from '@site/static/img/tutorial/create.gif';
 import editGif from '@site/static/img/tutorial/edit.gif';
 import showGif from '@site/static/img/tutorial/show.gif';
 
-We'll show how to create a simple admin app with CRUD operations based on REST API.
+We'll show how to create a simple **refine** app with CRUD operations based on REST API.
 
 ## Setup
 
-refine uses React under the hood. We’ll use create-react-app to bootstrap an empty React app with Typescript.
+**refine** uses React under the hood. We’ll use create-react-app to bootstrap an empty React app with Typescript.
 
 To create a new app, run the following commands:
 
@@ -81,13 +81,13 @@ You can also provide your own custom [data provider](guides-and-concepts/provide
 Change `App.tsx` with the following code:
 
 ```tsx title="src/App.tsx"
-import { Admin } from "@pankod/refine";
+import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
 export const App: React.FC = () => {
     return (
-        <Admin
+        <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
         />
     );
@@ -96,7 +96,7 @@ export const App: React.FC = () => {
 
 <br/>
 
-`<Admin/>` is the root component of a refine application. We provide a `dataProvider` with a REST API url as we mention above.
+`<Refine/>` is the root component of a refine application. We provide a `dataProvider` with a REST API url as we mention above.
 
 You will see the welcome page.
 
@@ -126,17 +126,15 @@ We'll demonstrate how to get data at `/posts` endpoint from `https://api.fake-re
 
 ```tsx title="src/App.tsx"
 //highlight-next-line
-import { Admin, Resource } from "@pankod/refine";
+import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 
 export const App: React.FC = () => {
     return (
-        <Admin
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        >
+        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
             //highlight-next-line
             <Resource name="posts" />
-        </Admin>
+        </Refine>
     );
 };
 ```
@@ -258,19 +256,17 @@ You can find detailed usage of fields from [here](#).
 After creating the `<PostList>` component, now it's time to add it to `<Resource>`.
 
 ```tsx title="src/App.tsx"
-import { Admin, Resource } from "@pankod/refine";
+import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
 import { PostList } from "./pages";
 
 export const App: React.FC = () => {
     return (
-        <Admin
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        >
+        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
             //highlight-next-line
             <Resource name="posts" list={PostList} />
-        </Admin>
+        </Refine>
     );
 };
 ```
@@ -490,23 +486,21 @@ After creating the `<PostEdit>` component, now it's time to add it to `<Resource
 <br />
 
 ```tsx title="src/App.tsx"
-import { Admin, Resource } from "@pankod/refine";
+import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
 import { PostList, PostEdit } from "./pages";
 
 export const App: React.FC = () => {
     return (
-        <Admin
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        >
+        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
             <Resource
                 name="posts"
                 list={PostList}
                 //highlight-next-line
                 edit={PostEdit}
             />
-        </Admin>
+        </Refine>
     );
 };
 ```
@@ -670,16 +664,14 @@ After creating the `<PostCreate>` component, add it to `<Resource>`.
 <br />
 
 ```tsx title="src/App.tsx"
-import { Admin, Resource } from "@pankod/refine";
+import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
 import { PostList, PostEdit, PostCreate } from "./pages";
 
 export const App: React.FC = () => {
     return (
-        <Admin
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        >
+        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
             <Resource
                 name="posts"
                 list={PostList}
@@ -687,7 +679,7 @@ export const App: React.FC = () => {
                 //highlight-next-line
                 create={PostCreate}
             />
-        </Admin>
+        </Refine>
     );
 };
 ```
@@ -770,16 +762,14 @@ After creating the `<PostShow>` component, add it to `<Resource>`.
 <br />
 
 ```tsx title="src/App.tsx"
-import { Admin, Resource } from "@pankod/refine";
+import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
 import { PostList, PostEdit, PostCreate, PostShow } from "./pages";
 
 export const App: React.FC = () => {
     return (
-        <Admin
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        >
+        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
             <Resource
                 name="posts"
                 list={PostList}
@@ -788,7 +778,7 @@ export const App: React.FC = () => {
                 //highlight-next-line
                 show={PostShow}
             />
-        </Admin>
+        </Refine>
     );
 };
 ```
@@ -934,3 +924,12 @@ At this point we have an app with basic features implemented using a fake REST A
 Core functionality of refine is based heavily on hooks. This way it provides a wide range of flexibility on data management and UI structure.
 
 You can develop new features or modify existing behavior based on your needs on top of refine codebase.
+
+## Live Codesandbox Example
+
+<iframe src="https://codesandbox.io/embed/refine-tutorial-cmqrr?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+    title="refine-tutorial"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>

@@ -1,5 +1,6 @@
 import React from "react";
 import { useMutation, UseMutationResult } from "react-query";
+import { notification } from "antd";
 
 import { AuthContext } from "@contexts/auth";
 import {
@@ -11,7 +12,7 @@ import { useNavigation } from "@hooks/navigation";
 
 export const useLogout = (): UseMutationResult<
     TLogoutData,
-    unknown,
+    Error,
     TLogoutVariables,
     unknown
 > => {
@@ -21,7 +22,7 @@ export const useLogout = (): UseMutationResult<
 
     const queryResponse = useMutation<
         TLogoutData,
-        unknown,
+        Error,
         TLogoutVariables,
         unknown
     >("useLogout", logoutFromContext, {
@@ -35,6 +36,13 @@ export const useLogout = (): UseMutationResult<
                     push("/login");
                 }
             }
+        },
+        onError: (error: Error) => {
+            notification.error({
+                message: error?.name || "Logout Error",
+                description:
+                    error?.message || "Something went wrong during logout",
+            });
         },
     });
 

@@ -1,6 +1,6 @@
 {
-  "short_name": "refine custom login",
-  "name": "refine custom login",
+  "short_name": "refine custom login example app",
+  "name": "refine custom login example app",
   "icons": [
     {
       "src": "favicon.ico",

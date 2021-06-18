@@ -10,7 +10,7 @@ describe("custom", () => {
     const API_URL = "https://api.nestjsx-crud.refine.dev";
 
     it("correct get response", async () => {
-        const response = await JsonServer(API_URL, axios).custom(
+        const response = await JsonServer(API_URL, axios).custom!(
             `${API_URL}/users`,
             "get",
         );
@@ -22,7 +22,7 @@ describe("custom", () => {
     });
 
     it("correct filter response", async () => {
-        const response = await JsonServer(API_URL, axios).custom(
+        const response = await JsonServer(API_URL, axios).custom!(
             `${API_URL}/users`,
             "get",
             {
@@ -43,7 +43,7 @@ describe("custom", () => {
     });
 
     it("correct sort response", async () => {
-        const response = await JsonServer(API_URL, axios).custom(
+        const response = await JsonServer(API_URL, axios).custom!(
             `${API_URL}/users`,
             "get",
             {
@@ -64,7 +64,7 @@ describe("custom", () => {
     });
 
     it("correct post request", async () => {
-        const response = await JsonServer(API_URL, axios).custom(
+        const response = await JsonServer(API_URL, axios).custom!(
             `${API_URL}/users`,
             "post",
             {
