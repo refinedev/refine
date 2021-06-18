@@ -25,7 +25,7 @@ const authProvider = {
 ```
 
 :::important
-**refine** consumes this methods using [authorization hooks]((guides-and-concepts/hooks/auth/useLogin)).
+**refine** consumes this methods using [authorization hooks](guides-and-concepts/hooks/auth/useLogin.md).
 Authorization hooks are used to manage authentication and authorization operations like login, logout and catching Http errors etc.
 :::
 
