@@ -13,7 +13,7 @@ import {
 
 import { IStore } from "interfaces";
 
-export const StoreList: React.FC<IResourceComponentsProps> = (props) => {
+export const StoreList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IStore>({
         initialSorter: [
             {
@@ -26,7 +26,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = (props) => {
     const t = useTranslate();
 
     return (
-        <List {...props}>
+        <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     key="id"

@@ -8,10 +8,10 @@ import {
     PageHeader,
     PageHeaderProps,
     Col,
+    Spin,
 } from "antd";
 import pluralize from "pluralize";
 
-import { OptionalComponent } from "@definitions";
 import {
     useResourceWithRoute,
     useMutationMode,
@@ -38,6 +38,7 @@ export interface EditProps {
     deleteButtonProps?: DeleteButtonProps;
     resource?: string;
     Aside?: React.ReactNode;
+    isLoading?: boolean;
 }
 
 export const Edit: React.FC<EditProps> = ({
@@ -52,6 +53,7 @@ export const Edit: React.FC<EditProps> = ({
     canDelete,
     resource: resourceFromProps,
     Aside,
+    isLoading,
 }) => {
     const translate = useTranslate();
     const { goBack, list } = useNavigation();
@@ -102,35 +104,37 @@ export const Edit: React.FC<EditProps> = ({
                     }
                     {...pageHeaderProps}
                 >
-                    <Card
-                        actions={[
-                            <Space
-                                key="action-buttons"
-                                style={{ float: "right", marginRight: 24 }}
-                            >
-                                {actionButtons ?? (
-                                    <>
-                                        {isDeleteButtonVisible && (
-                                            <DeleteButton
-                                                data-testid="edit-delete-button"
-                                                mutationMode={mutationMode}
-                                                onSuccess={() => {
-                                                    list(
-                                                        resource.route ??
-                                                            resource.name,
-                                                    );
-                                                }}
-                                                {...deleteButtonProps}
-                                            />
-                                        )}
-                                        <SaveButton {...saveButtonProps} />
-                                    </>
-                                )}
-                            </Space>,
-                        ]}
-                    >
-                        {children}
-                    </Card>
+                    <Spin spinning={isLoading}>
+                        <Card
+                            actions={[
+                                <Space
+                                    key="action-buttons"
+                                    style={{ float: "right", marginRight: 24 }}
+                                >
+                                    {actionButtons ?? (
+                                        <>
+                                            {isDeleteButtonVisible && (
+                                                <DeleteButton
+                                                    data-testid="edit-delete-button"
+                                                    mutationMode={mutationMode}
+                                                    onSuccess={() => {
+                                                        list(
+                                                            resource.route ??
+                                                                resource.name,
+                                                        );
+                                                    }}
+                                                    {...deleteButtonProps}
+                                                />
+                                            )}
+                                            <SaveButton {...saveButtonProps} />
+                                        </>
+                                    )}
+                                </Space>,
+                            ]}
+                        >
+                            {children}
+                        </Card>
+                    </Spin>
                 </PageHeader>
             </Col>
 

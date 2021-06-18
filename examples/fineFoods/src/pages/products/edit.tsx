@@ -15,9 +15,13 @@ import {
 
 import { ICategory, IUser } from "interfaces";
 
-export const ProductEdit: React.FC<IResourceComponentsProps> = (props) => {
+export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
-    const { formProps, saveButtonProps } = useForm<IUser>();
+    const {
+        formProps,
+        saveButtonProps,
+        queryResult: { isFetching },
+    } = useForm<IUser>();
 
     const apiUrl = useApiUrl();
 
@@ -26,8 +30,14 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = (props) => {
     });
 
     return (
-        <Edit {...props} saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
+        <Edit isLoading={isFetching} saveButtonProps={saveButtonProps}>
+            <Form
+                {...formProps}
+                layout="vertical"
+                initialValues={{
+                    isActive: true,
+                }}
+            >
                 <Form.Item
                     label={t("products:fields.name")}
                     name="name"
@@ -55,9 +65,7 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = (props) => {
                     name="isActive"
                     valuePropName="checked"
                 >
-                    <Checkbox value={true}>
-                        {t("products:fields.isActive")}
-                    </Checkbox>
+                    <Checkbox>{t("products:fields.isActive")}</Checkbox>
                 </Form.Item>
                 <Form.Item
                     label={t("products:fields.price")}

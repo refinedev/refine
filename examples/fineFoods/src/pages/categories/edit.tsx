@@ -10,13 +10,23 @@ import {
 
 import { ICategory } from "interfaces";
 
-export const CategoryEdit: React.FC<IResourceComponentsProps> = (props) => {
+export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
-    const { formProps, saveButtonProps } = useForm<ICategory>();
+    const {
+        formProps,
+        saveButtonProps,
+        queryResult: { isFetching },
+    } = useForm<ICategory>();
 
     return (
-        <Edit {...props} saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
+        <Edit isLoading={isFetching} saveButtonProps={saveButtonProps}>
+            <Form
+                {...formProps}
+                layout="vertical"
+                initialValues={{
+                    isActive: true,
+                }}
+            >
                 <Form.Item
                     label={t("categories:fields.title")}
                     name="title"
@@ -33,9 +43,7 @@ export const CategoryEdit: React.FC<IResourceComponentsProps> = (props) => {
                     name="isActive"
                     valuePropName="checked"
                 >
-                    <Checkbox value={true}>
-                        {t("categories:fields.isActive")}
-                    </Checkbox>
+                    <Checkbox>{t("categories:fields.isActive")}</Checkbox>
                 </Form.Item>
             </Form>
         </Edit>
