@@ -1,22 +1,10 @@
-import { UploadFile } from "antd/lib/upload/interface";
+import { UploadFile, UploadChangeParam } from "antd/lib/upload/interface";
 
-interface UploadResponse {
-    fileUrl: string;
-}
-interface EventArgs<T = UploadResponse> {
-    file: UploadFile<T>;
-    fileList: Array<UploadFile<T>>;
-}
-
-export const getValueFromEvent = (event: EventArgs): UploadFile[] => {
+export const getValueFromEvent = (event: UploadChangeParam): UploadFile[] => {
     const { fileList } = event;
 
     return [...fileList];
 };
-
-export interface UploadFileWithBase64 extends UploadFile {
-    base64String?: string;
-}
 
 export function file2Base64(file: UploadFile): Promise<string> {
     return new Promise((resolve, reject) => {

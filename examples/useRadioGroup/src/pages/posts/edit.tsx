@@ -16,7 +16,7 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ILanguage } from "interfaces";
 
-export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
+export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     const { radioGroupProps: languageRadioGroupProps } =
@@ -28,7 +28,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
         useState<"write" | "preview">("write");
 
     return (
-        <Edit {...props} saveButtonProps={saveButtonProps}>
+        <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"

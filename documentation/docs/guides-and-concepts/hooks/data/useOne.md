@@ -43,7 +43,7 @@ const categoryQueryResult = useOne<ICategory>("categories", 1);
 - For example, to disable query from running automatically you can set `enabled` to `false`
 
 ```tsx
-const categoryQueryResult = useOne<ICategory>("categories", 1, { enabled: false });
+const categoryQueryResult = useOne<ICategory>("categories", "1", { enabled: false });
 ```
 :::
 
@@ -76,7 +76,7 @@ After query runs `categoryQueryResult` will include the retrieved data:
 | Property                                                                                            | Description                               | Type                                                      | Default |
 | --------------------------------------------------------------------------------------------------- | ----------------------------------------- | --------------------------------------------------------- | ------- |
 | <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](#) for API data interactions | `string`                                                  |         |
-| id <div className="required">Required</div>                                                         | id of the item in the resource            | `string` \| `number`                                      |         |
+| id <div className="required">Required</div>                                                         | id of the item in the resource            | `string`                                                  |         |
 | options                                                                                             | `react-query`'s `useQuery` options        | ` UseQueryOptions<`<br/>`{ data: TData; },`<br/>`TError>` |         |
 
 ### Type Parameters

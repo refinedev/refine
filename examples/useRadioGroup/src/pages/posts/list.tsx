@@ -12,27 +12,25 @@ import {
 
 import { IPost, ILanguage } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IPost>();
 
     const { data, isLoading } = useList<ILanguage>("languages");
+
     return (
-        <List {...props}>
-            <Table {...tableProps} key="id">
+        <List>
+            <Table {...tableProps} rowKey="id">
                 <Table.Column
-                    key="id"
                     dataIndex="id"
                     title="ID"
                     render={(value) => <TextField value={value} />}
                 />
                 <Table.Column
-                    key="title"
                     dataIndex="title"
                     title="Title"
                     render={(value) => <TextField value={value} />}
                 />
                 <Table.Column
-                    key="language"
                     dataIndex="language"
                     title="Language"
                     render={(value: string) => {
@@ -53,8 +51,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
-                    key="actions"
-                    render={(_value, record) => (
+                    render={(_, record) => (
                         <Space>
                             <EditButton size="small" recordItemId={record.id} />
                             <ShowButton size="small" recordItemId={record.id} />

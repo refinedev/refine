@@ -47,7 +47,7 @@ const categoryQueryResult = useMany<ICategory>("categories", [ 1, 2 ]);
 - For example, to disable query from running automatically you can set `enabled` to `false`
 
 ```tsx
-const categoryQueryResult = useMany<ICategory>("categories", [ 1, 2 ]), { enabled: false };
+const categoryQueryResult = useMany<ICategory>("categories", [ "1", "2" ]), { enabled: false };
 ```
 :::
 
@@ -86,7 +86,7 @@ After query runs `categoryQueryResult` will include the retrieved data:
 | Property                                                                                            | Description                               | Type                                                        | Default |
 | --------------------------------------------------------------------------------------------------- | ----------------------------------------- | ----------------------------------------------------------- | ------- |
 | <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](#) for API data interactions | `string`                                                    |         |
-| ids <div className="required">Required</div>                                                        | ids of the item in the resource           | `(string` \| `number)[]`                                    |         |
+| ids <div className="required">Required</div>                                                        | ids of the item in the resource           | `(string)[]`                                                |         |
 | options                                                                                             | `react-query`'s `useQuery` options        | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>` |         |
 
 ### Type Parameters

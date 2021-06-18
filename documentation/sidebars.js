@@ -143,7 +143,9 @@ module.exports = {
                     label: "Fields",
                     items: [
                         "guides-and-concepts/fields/boolean",
+                        "guides-and-concepts/fields/url",
                         "guides-and-concepts/fields/image",
+                        "guides-and-concepts/fields/file",
                         "guides-and-concepts/fields/date",
                         "guides-and-concepts/fields/email",
                         "guides-and-concepts/fields/markdown",
@@ -159,6 +161,11 @@ module.exports = {
                 "guides-and-concepts/csv-import",
                 "guides-and-concepts/csv-export",
             ],
+        },
+        {
+            type: "category",
+            label: "Examples",
+            items: ["examples/useUpdateMany", "examples/useDeleteMany"],
         },
         {
             type: "doc",

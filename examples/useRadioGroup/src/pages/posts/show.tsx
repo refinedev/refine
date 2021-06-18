@@ -11,16 +11,18 @@ import { IPost, ILanguage } from "interfaces";
 
 const { Title, Text } = Typography;
 
-export const PostShow: React.FC<IResourceComponentsProps> = (props) => {
+export const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
 
     const { data: languageData, isLoading: languageIsLoading } =
-        useOne<ILanguage>("languages", record?.language);
+        useOne<ILanguage>("languages", record?.language || "", {
+            enabled: !!record,
+        });
 
     return (
-        <Show {...props} isLoading={isLoading && languageIsLoading}>
+        <Show isLoading={isLoading && languageIsLoading}>
             {record && (
                 <>
                     <Title level={5}>Id</Title>
@@ -29,12 +31,10 @@ export const PostShow: React.FC<IResourceComponentsProps> = (props) => {
                     <Title level={5}>Title</Title>
                     <Text>{record.title}</Text>
 
-                    <Title level={5}>Tags</Title>
+                    <Title level={5}>Language</Title>
                     <Text>{languageData?.data.title}</Text>
 
-                    <Title level={5} style={{ marginTop: "20px" }}>
-                        Content
-                    </Title>
+                    <Title level={5}>Content</Title>
                     <MarkdownField value={record.content} />
                 </>
             )}
