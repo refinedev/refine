@@ -3,7 +3,7 @@ id: theme
 title: Theme
 ---
 
-Ant Design allows you to customize many of its [less variables](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less). To be able to theme Ant Design, instead of importing Ant Design's compiled css files, you should import its less files and override the values of *less variables* contained within these files. You should configure your bundler for handling less files to override its variables.
+Ant Design allows you to customize many of its [less variables](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less). To be able to theme Ant Design, instead of importing Ant Design's compiled css files, you should import its less files and override the values of _less variables_ contained within these files. You should configure your bundler for handling less files to override its variables.
 
 [Refer to Ant Design documentation for more information about customizing Ant Design theme. &#8594](https://ant.design/docs/react/customize-theme)
 
@@ -41,6 +41,7 @@ You should install [`craco-less`](https://github.com/DocSpring/craco-less) and a
 ```bash
 npm install craco-less --save
 ```
+
 <br />
 Then create the `craco.config.js` file:
 
@@ -68,8 +69,8 @@ module.exports = {
 Create a less file and import antd styles from `~@pankod/refine/node_modules/antd`:
 
 ```less title="/styles/antd.less"
-@import '~@pankod/refine/node_modules/antd/lib/style/themes/default.less';
-@import '~@pankod/refine/node_modules/antd/dist/antd.less';
+@import "~@pankod/refine/node_modules/antd/lib/style/themes/default.less";
+@import "~@pankod/refine/node_modules/antd/dist/antd.less";
 ```
 
 And import the `less` file in `App.tsx`:
@@ -104,7 +105,7 @@ All less variables are found [here](https://github.com/ant-design/ant-design/blo
 @border-radius-base: 2px; // major border radius
 @border-color-base: #d9d9d9; // major border color
 @box-shadow-base: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
-  0 9px 28px 8px rgba(0, 0, 0, 0.05); // major shadow for layers
+    0 9px 28px 8px rgba(0, 0, 0, 0.05); // major shadow for layers
 ```
 
 There are two approaches to override variables.
@@ -114,14 +115,14 @@ There are two approaches to override variables.
 You can just change variables values in `less` files. Add these contents to your `/styles/antd.less` file:
 
 ```less title="/styles/antd.less"
-@import '~@pankod/refine/node_modules/antd/lib/style/themes/default.less';
-@import '~@pankod/refine/node_modules/antd/dist/antd.less';
+@import "~@pankod/refine/node_modules/antd/lib/style/themes/default.less";
+@import "~@pankod/refine/node_modules/antd/dist/antd.less";
 // There are some major variables below,
 // all less variables could be found in
 // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
 
 //highlight-next-line
-@primary-color: #1DA57A;
+@primary-color: #1da57a;
 ```
 
 ### Variable overrides in `craco.config.js`
@@ -150,3 +151,12 @@ module.exports = {
 ```
 
 All variable overrides configured in `lessOptions.modifyVars` always have higher precedence than overrides in `less` files.
+
+## Live Codesandbox Example
+
+<iframe src="https://codesandbox.io/embed/refine-custom-theme-example-3mrbr?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+    title="refine-custom-theme-example"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
