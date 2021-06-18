@@ -18,8 +18,8 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = (props) => {
         <Create {...props} saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={t("stores:fields.name")}
-                    name="name"
+                    label={t("stores:fields.title")}
+                    name="title"
                     rules={[
                         {
                             required: true,
