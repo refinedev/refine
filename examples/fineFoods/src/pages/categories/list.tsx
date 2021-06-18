@@ -44,7 +44,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = (props) => {
                     render={(value) => <BooleanField value={value} />}
                 />
                 <Table.Column<ICategory>
-                    title="Actions"
+                    title={t("common:table.actions")}
                     dataIndex="actions"
                     key="actions"
                     render={(_value, record) => (

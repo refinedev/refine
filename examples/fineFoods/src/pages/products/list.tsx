@@ -76,7 +76,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = (props) => {
                     sorter
                 />
                 <Table.Column<IProduct>
-                    title="Actions"
+                    title={t("common:table.actions")}
                     dataIndex="actions"
                     key="actions"
                     render={(_value, record) => (

@@ -178,7 +178,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
                     sorter
                 />
                 <Table.Column<IOrder>
-                    title="Actions"
+                    title={t("common:table.actions")}
                     dataIndex="actions"
                     key="actions"
                     render={(_value, record) => (

@@ -2,6 +2,26 @@
   "title": "Kullanıcılar",
   "fields": {
     "id": "ID",
-    "createdAt": "Oluşturma Tarihi"
+    "avatar": {
+      "label": "Avatar",
+      "description": "Yüklemek için avatar resmini bu alana tıklayın veya sürükleyin."
+    },
+    "firstName": "Adı",
+    "lastName": "Soyadı",
+    "gender": "Cinsiyet",
+    "gsm": "GSM Numarası",
+    "createdAt": "Oluşturma Tarihi",
+    "isActive": "Aktif"
+  },
+  "filter": {
+    "title": "Filtreler",
+    "search": {
+      "label": "Ara",
+      "placeholder": "Adı, soyadı, gsm numarası vs."
+    },
+    "createdAt": {
+      "label": "Oluşturma Tarihi"
+    },
+    "submit": "Filtrele"
   }
 }

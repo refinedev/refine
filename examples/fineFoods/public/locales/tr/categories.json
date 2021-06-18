@@ -1,0 +1,8 @@
+{
+  "title": "Kategoriler",
+  "fields": {
+    "id": "ID",
+    "title": "Başlık",
+    "isActive": "Aktif"
+  }
+}

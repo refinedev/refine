@@ -52,7 +52,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = (props) => {
                     sorter
                 />
                 <Table.Column<IStore>
-                    title="Actions"
+                    title={t("common:table.actions")}
                     dataIndex="actions"
                     key="actions"
                     render={(_value, record) => (
