@@ -6,6 +6,7 @@ import {
     useTranslate,
     IResourceComponentsProps,
     DateField,
+    BooleanField,
     Card,
     Input,
     Icons,
@@ -94,6 +95,12 @@ export const UserList: React.FC<IResourceComponentsProps> = (props) => {
                     key="gender"
                     dataIndex="gender"
                     title={t("users:fields.gender")}
+                />
+                <Table.Column
+                    key="isActive"
+                    dataIndex="isActive"
+                    title={t("products:fields.isActive")}
+                    render={(value) => <BooleanField value={value} />}
                 />
                 <Table.Column
                     key="createdAt"

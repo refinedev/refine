@@ -1,30 +1,36 @@
 import {
-    Edit,
+    Create,
     Form,
     Input,
     Select,
-    Checkbox,
     Upload,
     IResourceComponentsProps,
     useForm,
     useTranslate,
     useApiUrl,
+    useSelect,
     getValueFromEvent,
+    Checkbox,
 } from "@pankod/refine";
 
-import { IUser } from "interfaces";
+import { ICategory, IUser } from "interfaces";
 
-export const UserEdit: React.FC<IResourceComponentsProps> = (props) => {
+export const ProductCreate: React.FC<IResourceComponentsProps> = (props) => {
     const t = useTranslate();
     const { formProps, saveButtonProps } = useForm<IUser>();
+
     const apiUrl = useApiUrl();
 
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+    });
+
     return (
-        <Edit {...props} saveButtonProps={saveButtonProps}>
+        <Create {...props} saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={t("users:fields.firstName")}
-                    name="firstName"
+                    label={t("products:fields.name")}
+                    name="name"
                     rules={[
                         {
                             required: true,
@@ -34,66 +40,52 @@ export const UserEdit: React.FC<IResourceComponentsProps> = (props) => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={t("users:fields.lastName")}
-                    name="lastName"
+                    label={t("products:fields.description")}
+                    name="description"
                     rules={[
                         {
                             required: true,
                         },
                     ]}
                 >
-                    <Input />
+                    <Input.TextArea />
                 </Form.Item>
                 <Form.Item
-                    label={t("users:fields.gsm")}
-                    name="gsm"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label={t("users:fields.gender")}
-                    name="gender"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select
-                        options={[
-                            {
-                                label: "Male",
-                                value: "Male",
-                            },
-                            {
-                                label: "Female",
-                                value: "Female",
-                            },
-                        ]}
-                    />
-                </Form.Item>
-                <Form.Item
-                    label={t("users:fields.isActive")}
+                    label={t("products:fields.isActive")}
                     name="isActive"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
                     valuePropName="checked"
                 >
                     <Checkbox value={true}>
-                        {t("users:fields.isActive")}
+                        {t("products:fields.isActive")}
                     </Checkbox>
                 </Form.Item>
-                <Form.Item label={t("users:fields.avatar.label")}>
+                <Form.Item
+                    label={t("products:fields.price")}
+                    name="price"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+
+                <Form.Item
+                    label={t("products:fields.category")}
+                    name={["category", "id"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select {...categorySelectProps} />
+                </Form.Item>
+
+                <Form.Item label={t("products:fields.images.label")}>
                     <Form.Item
-                        name="avatar"
+                        name="images"
                         valuePropName="fileList"
                         getValueFromEvent={getValueFromEvent}
                         noStyle
@@ -106,12 +98,12 @@ export const UserEdit: React.FC<IResourceComponentsProps> = (props) => {
                             multiple
                         >
                             <p className="ant-upload-text">
-                                {t("users:fields:avatar.description")}
+                                {t("products:fields:images.description")}
                             </p>
                         </Upload.Dragger>
                     </Form.Item>
                 </Form.Item>
             </Form>
-        </Edit>
+        </Create>
     );
 };

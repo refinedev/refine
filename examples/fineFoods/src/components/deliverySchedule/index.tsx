@@ -26,9 +26,10 @@ export const DeliverySchedule: React.FC = () => {
                 order: "asc",
             },
         ],
-
         pagination: {
             pageSize: 3,
+            size: "small",
+            simple: true,
         },
     });
 
@@ -85,15 +86,7 @@ export const DeliverySchedule: React.FC = () => {
             <Title level={5}>
                 {t("dashboard:upcomingDeliverySchedule.title")}
             </Title>
-            <AntdList
-                {...listProps}
-                renderItem={renderItem}
-                pagination={{
-                    ...listProps.pagination,
-                    size: "small",
-                    simple: true,
-                }}
-            />
+            <AntdList {...listProps} renderItem={renderItem} />
         </>
     );
 };

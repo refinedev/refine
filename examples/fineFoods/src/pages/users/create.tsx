@@ -3,7 +3,7 @@ import {
     Form,
     Input,
     Select,
-    Checkbox,
+    Radio,
     Upload,
     IResourceComponentsProps,
     useForm,
@@ -11,6 +11,8 @@ import {
     useApiUrl,
     getValueFromEvent,
 } from "@pankod/refine";
+
+import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IUser } from "interfaces";
 
@@ -85,11 +87,8 @@ export const UserEdit: React.FC<IResourceComponentsProps> = (props) => {
                             required: true,
                         },
                     ]}
-                    valuePropName="checked"
                 >
-                    <Checkbox value={true}>
-                        {t("users:fields.isActive")}
-                    </Checkbox>
+                    <Radio value={true}>{t("users:fields.isActive")}</Radio>
                 </Form.Item>
                 <Form.Item label={t("users:fields.avatar.label")}>
                     <Form.Item

@@ -8,6 +8,7 @@ import {
     Space,
     ShowButton,
     NumberField,
+    BooleanField,
     EditButton,
 } from "@pankod/refine";
 
@@ -60,6 +61,12 @@ export const ProductList: React.FC<IResourceComponentsProps> = (props) => {
                     key="category"
                     dataIndex={["category", "title"]}
                     title={t("products:fields.category")}
+                />
+                <Table.Column
+                    key="isActive"
+                    dataIndex="isActive"
+                    title={t("products:fields.isActive")}
+                    render={(value) => <BooleanField value={value} />}
                 />
                 <Table.Column
                     key="createdAt"
