@@ -171,6 +171,7 @@ module.exports = {
                 "examples/useUpdateMany",
                 "examples/useDeleteMany",
                 "examples/customLogin",
+                "examples/customFooter",
             ],
         },
         {
