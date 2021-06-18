@@ -8,7 +8,7 @@ import { useForm } from "antd/lib/form/Form";
 import { SorterResult } from "antd/lib/table/interface";
 
 import { useResourceWithRoute, useList } from "@hooks";
-import { useSyncWithLocation } from "@hooks/admin";
+import { useSyncWithLocation } from "@hooks/refine";
 import { useNavigation } from "@hooks/navigation";
 import {
     stringifyTableParams,

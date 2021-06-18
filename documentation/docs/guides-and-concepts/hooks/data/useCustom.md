@@ -4,7 +4,7 @@ title: useCustom
 siderbar_label: useCustom
 ---
 
-`useCustom` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/reference/useQuery) for custom requests. It uses the `custom` method from the `dataProvider` that is passed to `<Admin>`.
+`useCustom` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/reference/useQuery) for custom requests. It uses the `custom` method from the `dataProvider` that is passed to `<Refine>`.
 
 :::danger attention
 `useCustom` should **not** be used when creating, updating, or deleting a resource, as it will be with a [query invalidation](https://react-query.tanstack.com/guides/query-invalidation) problem. For these, the [useCreate](useCreate.md), useUpdate and [useDelete](useDelete.md) hooks should be used.

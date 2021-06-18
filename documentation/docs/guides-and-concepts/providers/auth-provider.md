@@ -7,7 +7,7 @@ sidebar_label: Auth Provider
 import login from '@site/static/img/guides-and-concepts/providers/auth-provider/login.png';
 import logout from '@site/static/img/guides-and-concepts/providers/auth-provider/logout.gif';
 
-**refine** let's you set authentication logic by providing `authProvider` property to `<Admin>` component.
+**refine** let's you set authentication logic by providing `authProvider` property to `<Refine>` component.
 
 `authProvider` is an object with methods that **refine** uses when necessary. These methods need to return a Promise. They also can be accessed with specialized hooks.
 
@@ -36,7 +36,7 @@ To use auth provider in **refine**, we have to pass the authProvider to `<Admin 
 
 ```tsx title="App.tsx"
 import {
-    Admin,
+    Refine,
     //highlight-next-line
     AuthProvider,
 } from "@pankod/refine";
@@ -51,13 +51,13 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App = () => {
    
     return (
-        <Admin
+        <Refine
             //highlight-next-line
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
         >
             ...
-        </Admin>
+        </Refine>
     );
 };
 ```
@@ -151,7 +151,7 @@ After submission, login form calls the `login` method from `authProvider`.
 <br />
 
 :::important
-If an `authProvider` is given, [Resources](#) passed to `<Admin>` as children are only accessible if login is successful. In case of no `authProvider`, they are accessible without authentication.  
+If an `authProvider` is given, [Resources](#) passed to `<Refine>` as children are only accessible if login is successful. In case of no `authProvider`, they are accessible without authentication.  
 :::
 
 :::tip
@@ -343,7 +343,6 @@ const { isSuccess, isLoading, isError, refetch: checkAuth } = useAuthenticated()
 >[Refer to useAuthenticated documentation for more information. &#8594](guides-and-concepts/hooks/auth/useAuthenticated.md)
 
 <br />
-
 
 ### `getPermissions`
 

@@ -226,7 +226,7 @@ The `saveButtonProps` and `deleteButtonProps` can provides functionality to save
 | undoableTimeout                                  | Duration to wait before executing mutations when `mutationMode = "undoable"`                                                                                                  | `number`                                                                       | `5000`\*   |
 | warnWhenUnsavedChanges                           | Shows notification when unsaved changes exist                                                                                                                                 | `boolean`                                                                      | `false`\*  |
 
-> `*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component. `useDrawerForm` will use what is passed to `<Admin>` as default and can override locally.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useDrawerForm` will use what is passed to `<Refine>` as default and can override locally.
 
 > `**`: If not explicitly configured, default value of `redirect` depends which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). Otherwise if `action` is `edit`, `redirect`s default value is `list`.
 

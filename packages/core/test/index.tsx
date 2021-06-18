@@ -8,8 +8,8 @@ import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { IDataContext, IAuthContext, I18nProvider } from "../src/interfaces";
 import { MemoryRouter } from "react-router-dom";
 import { TranslationContextProvider } from "@contexts/translation";
-import { AdminContextProvider } from "@contexts/admin";
-import { IAdminContextProvider } from "@contexts/admin/IAdminContext";
+import { RefineContextProvider } from "@contexts/refine";
+import { IRefineContextProvider } from "@contexts/refine/IRefineContext";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -27,7 +27,7 @@ interface ITestWrapperProps {
     resources?: IResourceItem[];
     children?: React.ReactNode;
     routerInitialEntries?: string[];
-    adminProvider?: IAdminContextProvider;
+    refineProvider?: IRefineContextProvider;
 }
 
 export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
@@ -36,7 +36,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     resources,
     i18nProvider,
     routerInitialEntries,
-    adminProvider,
+    refineProvider,
 }) => {
     // eslint-disable-next-line react/display-name
     return ({ children }): React.ReactElement => {
@@ -78,10 +78,10 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
             withNotification
         );
 
-        const withAdmin = adminProvider ? (
-            <AdminContextProvider {...adminProvider}>
+        const withRefine = refineProvider ? (
+            <RefineContextProvider {...refineProvider}>
                 {withAuth}
-            </AdminContextProvider>
+            </RefineContextProvider>
         ) : (
             withAuth
         );
@@ -89,7 +89,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
         return (
             <MemoryRouter initialEntries={routerInitialEntries}>
                 <QueryClientProvider client={queryClient}>
-                    {withAdmin}
+                    {withRefine}
                 </QueryClientProvider>
             </MemoryRouter>
         );

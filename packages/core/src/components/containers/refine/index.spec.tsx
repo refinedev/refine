@@ -3,7 +3,7 @@ import { Row } from "antd";
 
 import { render, MockJSONServer } from "@test";
 
-import { Admin } from "./index";
+import { Refine } from "./index";
 
 const mockAuthProvider = {
     login: (params: any) => {
@@ -30,10 +30,10 @@ const mockAuthProvider = {
         }),
 };
 
-describe("Admin Container", () => {
+describe("Refine Container", () => {
     it("should render without resource", async () => {
         const { getByText } = render(
-            <Admin
+            <Refine
                 authProvider={mockAuthProvider}
                 dataProvider={MockJSONServer}
             />,
@@ -55,7 +55,7 @@ describe("Admin Container", () => {
             );
         };
         const { getByTestId, getByText } = render(
-            <Admin
+            <Refine
                 authProvider={mockAuthProvider}
                 dataProvider={MockJSONServer}
                 ReadyPage={readyPage}
