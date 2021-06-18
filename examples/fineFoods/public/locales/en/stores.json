@@ -1,5 +1,8 @@
 {
   "title": "Stores",
+  "show": {
+    "title": "Store Detail"
+  },
   "fields": {
     "id": "ID",
     "title": "Title",

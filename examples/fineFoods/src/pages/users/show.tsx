@@ -49,7 +49,7 @@ export const UserShow: React.FC<IResourceComponentsProps> = (props) => {
     };
 
     return (
-        <Show {...props} title="User Detail" isLoading={isLoading}>
+        <Show {...props} title={t("users:show.title")} isLoading={isLoading}>
             {record && renderContent()}
         </Show>
     );

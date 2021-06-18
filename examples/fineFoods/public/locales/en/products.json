@@ -1,5 +1,8 @@
 {
   "title": "Products",
+  "show": {
+    "title": "Product Detail"
+  },
   "fields": {
     "id": "ID",
     "name": "Name",

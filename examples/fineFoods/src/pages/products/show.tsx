@@ -54,7 +54,7 @@ export const ProductShow: React.FC<IResourceComponentsProps> = (props) => {
     };
 
     return (
-        <Show {...props} title="Product Detail" isLoading={isLoading}>
+        <Show {...props} title={t("products:show.title")} isLoading={isLoading}>
             {record && renderContent()}
         </Show>
     );

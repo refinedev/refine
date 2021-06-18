@@ -38,7 +38,7 @@ export const StoreShow: React.FC<IResourceComponentsProps> = (props) => {
     };
 
     return (
-        <Show {...props} title="Store Detail" isLoading={isLoading}>
+        <Show {...props} title={t("stores:show.title")} isLoading={isLoading}>
             {record && renderContent()}
         </Show>
     );

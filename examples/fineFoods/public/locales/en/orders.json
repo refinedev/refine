@@ -1,5 +1,8 @@
 {
   "title": "Orders",
+  "show": {
+    "title": "Order Detail"
+  },
   "fields": {
     "orderNumber": "Order Number",
     "status": "Status",

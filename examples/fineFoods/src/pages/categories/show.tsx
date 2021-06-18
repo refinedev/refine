@@ -3,7 +3,6 @@ import {
     Show,
     Typography,
     BooleanField,
-    DateField,
     IResourceComponentsProps,
     useTranslate,
 } from "@pankod/refine";
@@ -21,11 +20,11 @@ export const CategoryShow: React.FC<IResourceComponentsProps> = (props) => {
     const renderContent = () => {
         return (
             <>
-                <Title level={5}>{t("stores:fields.id")}</Title>
+                <Title level={5}>{t("categories:fields.id")}</Title>
                 <Text>{record.id}</Text>
-                <Title level={5}>{t("stores:fields.title")}</Title>
+                <Title level={5}>{t("categories:fields.title")}</Title>
                 <Text>{record.title}</Text>
-                <Title level={5}>{t("stores:fields.isActive")}</Title>
+                <Title level={5}>{t("categories:fields.isActive")}</Title>
                 <Text>
                     <BooleanField value={record.isActive} />
                 </Text>
@@ -34,7 +33,11 @@ export const CategoryShow: React.FC<IResourceComponentsProps> = (props) => {
     };
 
     return (
-        <Show {...props} title="Store Detail" isLoading={isLoading}>
+        <Show
+            {...props}
+            title={t("categories:show.title")}
+            isLoading={isLoading}
+        >
             {record && renderContent()}
         </Show>
     );

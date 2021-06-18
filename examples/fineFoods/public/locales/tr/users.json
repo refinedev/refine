@@ -1,5 +1,8 @@
 {
   "title": "Kullanıcılar",
+  "show": {
+    "title": "Kullanıcı Detay"
+  },
   "fields": {
     "id": "ID",
     "avatar": {

@@ -1,5 +1,8 @@
 {
   "title": "Users",
+  "show": {
+    "title": "User Detail"
+  },
   "fields": {
     "id": "ID",
     "avatar": {

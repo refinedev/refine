@@ -1,5 +1,8 @@
 {
   "title": "Siparişler",
+  "show": {
+    "title": "Sipariş Detay"
+  },
   "fields": {
     "orderNumber": "Sipariş Numarası",
     "status": "Sipariş Durumu",
