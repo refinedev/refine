@@ -1,0 +1,8 @@
+{
+  "title": "Categories",
+  "fields": {
+    "id": "ID",
+    "title": "Title",
+    "isActive": "Active"
+  }
+}

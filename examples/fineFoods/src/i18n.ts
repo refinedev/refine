@@ -20,6 +20,7 @@ i18n.use(Backend)
             "users",
             "products",
             "stores",
+            "categories",
         ],
         fallbackLng: ["en", "tr"],
     });

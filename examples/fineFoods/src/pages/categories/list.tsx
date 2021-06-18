@@ -4,21 +4,20 @@ import {
     useTable,
     useTranslate,
     IResourceComponentsProps,
-    DateField,
     Space,
     ShowButton,
     BooleanField,
     EditButton,
 } from "@pankod/refine";
 
-import { IStore } from "interfaces";
+import { ICategory } from "interfaces";
 
-export const StoreList: React.FC<IResourceComponentsProps> = (props) => {
-    const { tableProps } = useTable<IStore>({
+export const CategoryList: React.FC<IResourceComponentsProps> = (props) => {
+    const { tableProps } = useTable<ICategory>({
         initialSorter: [
             {
-                field: "id",
-                order: "desc",
+                field: "title",
+                order: "asc",
             },
         ],
     });
@@ -31,27 +30,20 @@ export const StoreList: React.FC<IResourceComponentsProps> = (props) => {
                 <Table.Column
                     key="id"
                     dataIndex="id"
-                    title={t("stores:fields.id")}
+                    title={t("categories:fields.id")}
                 />
                 <Table.Column
                     key="title"
                     dataIndex="title"
-                    title={t("stores:fields.title")}
+                    title={t("categories:fields.title")}
                 />
                 <Table.Column
                     key="isActive"
                     dataIndex="isActive"
-                    title={t("stores:fields.isActive")}
+                    title={t("categories:fields.isActive")}
                     render={(value) => <BooleanField value={value} />}
                 />
-                <Table.Column
-                    key="createdAt"
-                    dataIndex="createdAt"
-                    title={t("stores:fields.createdAt")}
-                    render={(value) => <DateField value={value} format="LLL" />}
-                    sorter
-                />
-                <Table.Column<IStore>
+                <Table.Column<ICategory>
                     title="Actions"
                     dataIndex="actions"
                     key="actions"

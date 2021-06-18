@@ -12,6 +12,12 @@ import {
     ProductShow,
 } from "./pages/products";
 import { StoreCreate, StoreEdit, StoreList, StoreShow } from "./pages/stores";
+import {
+    CategoryCreate,
+    CategoryEdit,
+    CategoryList,
+    CategoryShow,
+} from "./pages/categories";
 import { useTranslation } from "react-i18next";
 import { Header, Title } from "components";
 import "i18n";
@@ -74,7 +80,16 @@ const App: React.FC = () => {
                 create={StoreCreate}
                 show={StoreShow}
             />
-            <Resource name="categories" />
+            <Resource
+                name="categories"
+                options={{
+                    label: t("categories:title"),
+                }}
+                list={CategoryList}
+                edit={CategoryEdit}
+                create={CategoryCreate}
+                show={CategoryShow}
+            />
         </Admin>
     );
 };
