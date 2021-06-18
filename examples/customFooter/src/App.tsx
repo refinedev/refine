@@ -10,7 +10,19 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            Footer={() => <div>Custom Footer Content</div>}
+            Footer={() => (
+                <div
+                    style={{
+                        backgroundColor: "white",
+                        height: "64px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    Custom Footer Content
+                </div>
+            )}
         >
             <Resource name="posts" list={PostList} />
         </Refine>
