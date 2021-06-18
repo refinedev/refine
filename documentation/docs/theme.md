@@ -154,11 +154,7 @@ All variable overrides configured in `lessOptions.modifyVars` always have higher
 
 ## Live Codesandbox Example
 
-:::danger
-You can't preview it because Codesandbox doesn't support `less`. If you want to preview it you can clone the [source code](https://github.com/pankod/refine/tree/master/examples/customTheme) and run it on your local.
-:::
-
-<iframe src="https://codesandbox.io/embed/refine-custom-theme-example-3mrbr?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=editor"
+<iframe src="https://codesandbox.io/embed/refine-custom-theme-example-3mrbr?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-custom-theme-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
