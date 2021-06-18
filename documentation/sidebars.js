@@ -168,9 +168,10 @@ module.exports = {
             type: "category",
             label: "Examples",
             items: [
-                "examples/customFooter",
                 "examples/useUpdateMany",
                 "examples/useDeleteMany",
+                "examples/customLogin",
+                "examples/customFooter",
             ],
         },
         {

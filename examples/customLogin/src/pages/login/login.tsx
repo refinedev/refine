@@ -24,7 +24,7 @@ export interface ILoginForm {
     remember: boolean;
 }
 
-export const LoginPage: React.FC = () => {
+export const Login: React.FC = () => {
     const [form] = Form.useForm();
 
     const { mutate: login } = useLogin<ILoginForm>();
@@ -35,12 +35,15 @@ export const LoginPage: React.FC = () => {
 
     const CardTitle = (
         <div className="login-header">
-            <img src="refine.svg" alt="Logo" />
+            <img src="./refine.svg" alt="Logo" />
         </div>
     );
 
     return (
-        <AntdLayout className="login-background">
+        <AntdLayout
+            className="login-background"
+            style={{ backgroundImage: "url('./background.svg')" }}
+        >
             <Row
                 justify="center"
                 align="middle"
@@ -94,7 +97,7 @@ export const LoginPage: React.FC = () => {
                                     <Checkbox>Remember me</Checkbox>
                                 </Form.Item>
 
-                                <a style={{ float: "right" }} href="">
+                                <a style={{ float: "right" }} href="#">
                                     Forgot password?
                                 </a>
                             </Form.Item>
@@ -112,7 +115,7 @@ export const LoginPage: React.FC = () => {
                         <div className="signup-section">
                             <Text>
                                 Still no account? Please go to{" "}
-                                <a href="">Sign up</a>
+                                <a href="#">Sign up</a>
                             </Text>
                         </div>
                     </Card>
