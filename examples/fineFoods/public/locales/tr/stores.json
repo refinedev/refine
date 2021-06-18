@@ -1,0 +1,12 @@
+{
+  "title": "Mağazalar",
+  "show": {
+    "title": "Mağaza Detay"
+  },
+  "fields": {
+    "id": "ID",
+    "title": "Başlık",
+    "isActive": "Aktif",
+    "createdAt": "Oluşturma Tarihi"
+  }
+}

@@ -18,8 +18,11 @@ import {
     useSelect,
     Button,
     CrudFilters,
+    Space,
+    ShowButton,
     FormProps,
 } from "@pankod/refine";
+import { OrderStatus } from "components";
 
 import { IOrder, IStore, IOrderFilterVariables } from "interfaces";
 
@@ -36,7 +39,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
         ],
         onSearch: (params) => {
             const filters: CrudFilters = [];
-            const { q, store, user, createdAt } = params;
+            const { q, store, user, createdAt, status } = params;
 
             if (q) {
                 filters.push({
@@ -59,6 +62,14 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
                     field: "user.id",
                     operator: "eq",
                     value: user,
+                });
+            }
+
+            if (status) {
+                filters.push({
+                    field: "status.text",
+                    operator: "eq",
+                    value: status,
                 });
             }
 
@@ -87,7 +98,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
         <List
             {...props}
             Aside={
-                <Card title="Filter">
+                <Card title={t("orders:filter.title")}>
                     <Filter formProps={searchFormProps} />
                 </Card>
             }
@@ -104,7 +115,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
                     dataIndex={["status", "text"]}
                     title={t("orders:fields.status")}
                     render={(value) => {
-                        return <span>{value}</span>;
+                        return <OrderStatus status={value} />;
                     }}
                     defaultSortOrder={getDefaultSortOrder("status", sorter)}
                     sorter
@@ -145,9 +156,13 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
                     title={t("orders:fields.products")}
                     render={(_, record) => (
                         <Popover
-                            content={record.products.map((product) => (
-                                <div key={product.id}> - {product.name}</div>
-                            ))}
+                            content={
+                                <ul>
+                                    {record.products.map((product) => (
+                                        <li key={product.id}>{product.name}</li>
+                                    ))}
+                                </ul>
+                            }
                             title="Products"
                             trigger="hover"
                         >
@@ -162,12 +177,24 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
                     render={(value) => <DateField value={value} format="LLL" />}
                     sorter
                 />
+                <Table.Column<IOrder>
+                    title={t("common:table.actions")}
+                    dataIndex="actions"
+                    key="actions"
+                    render={(_value, record) => (
+                        <Space>
+                            <ShowButton size="small" recordItemId={record.id} />
+                        </Space>
+                    )}
+                />
             </Table>
         </List>
     );
 };
 
 const Filter: React.FC<{ formProps: FormProps }> = (props) => {
+    const t = useTranslate();
+
     const { formProps } = props;
     const { selectProps: storeSelectProps } = useSelect<IStore>({
         resource: "stores",
@@ -182,29 +209,65 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
 
     return (
         <Form layout="vertical" {...formProps}>
-            <Form.Item label="Search" name="q">
-                <Input prefix={<Icons.SearchOutlined />} />
+            <Form.Item label={t("orders:filter.search.label")} name="q">
+                <Input
+                    placeholder={t("orders:filter.search.placeholder")}
+                    prefix={<Icons.SearchOutlined />}
+                />
             </Form.Item>
-            <Form.Item label="Store" name="store">
+            <Form.Item label={t("orders:filter.status.label")} name="status">
+                <Select
+                    allowClear
+                    options={[
+                        {
+                            label: t("enum:orderStatuses.waiting"),
+                            value: "waiting",
+                        },
+                        {
+                            label: t("enum:orderStatuses.ready"),
+                            value: "ready",
+                        },
+                        {
+                            label: t("enum:orderStatuses.on the way"),
+                            value: "on the way",
+                        },
+                        {
+                            label: t("enum:orderStatuses.delivered"),
+                            value: "delivered",
+                        },
+                        {
+                            label: t(
+                                "enum:orderStatuses.could not be delivered",
+                            ),
+                            value: "could not be delivered",
+                        },
+                    ]}
+                    placeholder={t("orders:filter.status.placeholder")}
+                />
+            </Form.Item>
+            <Form.Item label={t("orders:filter.store.label")} name="store">
                 <Select
                     {...storeSelectProps}
                     allowClear
-                    placeholder="Search Stores"
+                    placeholder={t("orders:filter.store.placeholder")}
                 />
             </Form.Item>
-            <Form.Item label="User" name="user">
+            <Form.Item label={t("orders:filter.user.label")} name="user">
                 <Select
                     {...userSelectProps}
                     allowClear
-                    placeholder="Search Users"
+                    placeholder={t("orders:filter.user.placeholder")}
                 />
             </Form.Item>
-            <Form.Item label="Created At" name="createdAt">
+            <Form.Item
+                label={t("orders:filter.createdAt.label")}
+                name="createdAt"
+            >
                 <RangePicker />
             </Form.Item>
             <Form.Item>
                 <Button htmlType="submit" type="primary">
-                    Filter
+                    {t("orders:filter.submit")}
                 </Button>
             </Form.Item>
         </Form>

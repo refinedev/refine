@@ -3,8 +3,21 @@ import "styles/antd.less";
 import jsonServerDataProvider from "@pankod/refine-json-server";
 import { authProvider } from "authProvider";
 import { DashbaordPage } from "./pages/dashboard";
-import { OrderList } from "./pages/orders";
-import { UserList } from "./pages/users";
+import { OrderList, OrderShow } from "./pages/orders";
+import { UserList, UserEdit, UserShow } from "./pages/users";
+import {
+    ProductCreate,
+    ProductEdit,
+    ProductList,
+    ProductShow,
+} from "./pages/products";
+import { StoreCreate, StoreEdit, StoreList, StoreShow } from "./pages/stores";
+import {
+    CategoryCreate,
+    CategoryEdit,
+    CategoryList,
+    CategoryShow,
+} from "./pages/categories";
 import { useTranslation } from "react-i18next";
 import { Header, Title } from "components";
 import "i18n";
@@ -36,6 +49,7 @@ const App: React.FC = () => {
                 }}
                 name="orders"
                 list={OrderList}
+                show={OrderShow}
             />
             <Resource
                 options={{
@@ -43,14 +57,39 @@ const App: React.FC = () => {
                 }}
                 name="users"
                 list={UserList}
+                edit={UserEdit}
+                show={UserShow}
             />
             <Resource
                 options={{
                     label: t("products:title"),
                 }}
                 name="products"
+                list={ProductList}
+                edit={ProductEdit}
+                create={ProductCreate}
+                show={ProductShow}
             />
-            <Resource name="stores" />
+            <Resource
+                name="stores"
+                options={{
+                    label: t("stores:title"),
+                }}
+                list={StoreList}
+                edit={StoreEdit}
+                create={StoreCreate}
+                show={StoreShow}
+            />
+            <Resource
+                name="categories"
+                options={{
+                    label: t("categories:title"),
+                }}
+                list={CategoryList}
+                edit={CategoryEdit}
+                create={CategoryCreate}
+                show={CategoryShow}
+            />
         </Refine>
     );
 };
