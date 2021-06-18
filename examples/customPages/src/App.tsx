@@ -17,9 +17,9 @@ const AuthenticatedPostReview = () => {
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
-        login: (params: any) => {
-            if (params.username === "admin") {
-                localStorage.setItem("username", params.username);
+        login: ({ username, password, remember }) => {
+            if (username === "admin") {
+                localStorage.setItem("username", username);
                 return Promise.resolve();
             }
 
