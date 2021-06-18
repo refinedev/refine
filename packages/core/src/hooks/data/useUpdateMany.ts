@@ -40,8 +40,8 @@ export const useUpdateMany = <
     TVariables = {},
 >(
     resource: string,
-    mutationModeProp?: MutationMode,
-    undoableTimeoutProp?: number,
+    mutationMode?: MutationMode,
+    undoableTimeout?: number,
     onCancel?: (cancelMutation: () => void) => void,
 ): UseUpdateManyReturnType<TData, TError, TVariables> => {
     const queryClient = useQueryClient();
@@ -57,9 +57,10 @@ export const useUpdateMany = <
 
     const { notificationDispatch } = useCancelNotification();
 
-    const mutationMode = mutationModeProp ?? mutationModeContext;
+    const mutationModePropOrContext = mutationMode ?? mutationModeContext;
 
-    const undoableTimeout = undoableTimeoutProp ?? undoableTimeoutContext;
+    const undoableTimeoutPropOrContext =
+        undoableTimeout ?? undoableTimeoutContext;
 
     const getAllQueries = useCacheQueries();
 
@@ -73,7 +74,7 @@ export const useUpdateMany = <
         UpdateContext
     >(
         ({ ids, values }: { ids: string[]; values: TVariables }) => {
-            if (!(mutationMode === "undoable")) {
+            if (!(mutationModePropOrContext === "undoable")) {
                 return updateMany<TData, TVariables>(resource, ids, values);
             }
 
@@ -83,7 +84,7 @@ export const useUpdateMany = <
                         updateMany<TData, TVariables>(resource, ids, values)
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
-                    }, undoableTimeout);
+                    }, undoableTimeoutPropOrContext);
 
                     const cancelMutation = () => {
                         clearTimeout(updateTimeout);
@@ -99,7 +100,7 @@ export const useUpdateMany = <
                                 id: ids,
                                 resource: resource,
                                 cancelMutation: cancelMutation,
-                                seconds: undoableTimeout,
+                                seconds: undoableTimeoutPropOrContext,
                             },
                         });
                     }
@@ -123,7 +124,7 @@ export const useUpdateMany = <
                             queryKey,
                         );
 
-                    if (!(mutationMode === "pessimistic")) {
+                    if (!(mutationModePropOrContext === "pessimistic")) {
                         if (previousQuery) {
                             previousQueries.push({
                                 query: previousQuery,

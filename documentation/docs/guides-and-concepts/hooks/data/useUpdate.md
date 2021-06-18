@@ -110,7 +110,7 @@ const { mutate } = useUpdate("categories", "optimistic");
 
 
 ## Custom method on mutation cancellation
-You can pass a custom cancel callback to `useUpdate`. That callback is triggered when undo button is clicked when  `mutationModeProp = "undoable"`.
+You can pass a custom cancel callback to `useUpdate`. That callback is triggered when undo button is clicked when  `mutationMode = "undoable"`.
 
 :::caution
 Default behaviour on undo action includes notifications. If a custom callback is passed this notification will not appear.
@@ -137,12 +137,12 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 ### Parameters
 
 
-| Property                                            | Description                                                                         | Type                                             | Default          |
-| --------------------------------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------ | ---------------- |
-| resource  <div className=" required">Required</div> | [`Resource`](#) for API data interactions                                           | `string`                                         |                  |
-| mutationModeProp                                    | [Determines when mutations are executed](#)                                         | ` "pessimistic` \| `"optimistic` \| `"undoable"` | `"pessimistic"`* |
-| undoableTimeoutProp                                 | Duration to wait before executing the mutation when `mutationModeProp = "undoable"` | `number`                                         | `5000ms`*        |
-| onCancel                                            | Callback that runs when undo button is clicked on `mutationModeProp = "undoable"`   | `(cancelMutation: () => void) => void`           |                  |
+| Property                                            | Description                                                                     | Type                                             | Default          |
+| --------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------ | ---------------- |
+| resource  <div className=" required">Required</div> | [`Resource`](#) for API data interactions                                       | `string`                                         |                  |
+| mutationMode                                        | [Determines when mutations are executed](#)                                     | ` "pessimistic` \| `"optimistic` \| `"undoable"` | `"pessimistic"`* |
+| undoableTimeout                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"` | `number`                                         | `5000ms`*        |
+| onCancel                                            | Callback that runs when undo button is clicked on `mutationMode = "undoable"`   | `(cancelMutation: () => void) => void`           |                  |
 
 >`*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useUpdate` will use what is passed to `<Refine>` as default and can override locally.
 
