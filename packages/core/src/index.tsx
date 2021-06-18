@@ -7,7 +7,7 @@ export { Link } from "react-router-dom";
 
 export { IAuthContext as AuthProvider, Pagination } from "./interfaces";
 export {
-    IDataContext as DataProvider,
+    IDataContextProvider as DataProvider,
     ITranslationContext as TranslationProvider,
     I18nProvider,
     MutationMode,

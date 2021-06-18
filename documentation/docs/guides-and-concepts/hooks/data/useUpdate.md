@@ -44,7 +44,7 @@ type CategoryMutationResult = {
 
 const { mutate } = useUpdate<CategoryMutationResult>("categories");
 
-mutate({ id: 2, values: { title: "New Category Title" } })
+mutate({ id: "2", values: { title: "New Category Title" } })
 ```
 
 :::tip
