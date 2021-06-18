@@ -4,7 +4,7 @@ import { MapDataFn } from "../../../interfaces";
 
 export const importCSVMapper = <TItem = any, TVariables extends TItem = TItem>(
     data: any[][],
-    mapData: MapDataFn<TItem, TVariables>,
+    mapData: MapDataFn<TItem, TVariables> = (item) => item as any,
 ): TVariables[] => {
     const [headers, ...body] = data;
     return body
