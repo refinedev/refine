@@ -23,7 +23,8 @@ const App: React.FC = () => {
             return Promise.resolve();
         },
         logout: async () => {
-            logout();
+            logout({ returnTo: window.location.origin });
+            return Promise.resolve("/");
         },
         checkError: () => Promise.resolve(),
         checkAuth: async () => {
