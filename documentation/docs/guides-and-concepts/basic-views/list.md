@@ -119,7 +119,7 @@ export const List: React.FC = () => {
 [Refer to custom pages documentation for detailed usage. &#8594](#)
 
 ```tsx
-import { Admin, Resource, List } from "@pankod/refine";
+import { Refine, Resource, List } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 
 const CustomPage = () => {
@@ -128,7 +128,7 @@ const CustomPage = () => {
 
 export const App: React.FC = () => {
     return (
-        <Admin
+        <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
             routes={[
                 {
@@ -139,7 +139,7 @@ export const App: React.FC = () => {
             ]}
         >
             <Resource name="posts" />
-        </Admin>
+        </Refine>
     );
 };
 ```

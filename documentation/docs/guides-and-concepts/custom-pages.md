@@ -6,21 +6,21 @@ title: Custom Pages
 import basic from '@site/static/img/guides-and-concepts/custom-pages/basic.png'
 import gif from '@site/static/img/guides-and-concepts/custom-pages/gif.gif'
 
-refine allows us to add custom pages to our application. To do this, it is necessary to create an object array with [react-router-dom](https://reactrouter.com/web/api/Route) `<Route>` properties. Then, pass this array as `routes` prop in the `<Admin>` component.
+refine allows us to add custom pages to our application. To do this, it is necessary to create an object array with [react-router-dom](https://reactrouter.com/web/api/Route) `<Route>` properties. Then, pass this array as `routes` prop in the `<Refine>` component.
 
 ## Public Custom Pages
 
 It allows creating custom pages that everyone can access via path.
 
 ```tsx title="src/App.tsx"
-import { Admin } from "@pankod/refine";
+import { Refine } from "@pankod/refine";
 
 //highlight-end
 import { CustomPage } from "pages/custom-page";
 
 const App = () => {
     return (
-        <Admin
+        <Refine
             //highlight-start
             routes={[
                 {
@@ -32,7 +32,7 @@ const App = () => {
             //highlight-end
         >
             ...
-        </Admin>
+        </Refine>
     );
 };
 
@@ -47,7 +47,7 @@ It allows creating custom pages that only authenticated users can access via pat
 
 ```tsx title="src/App.tsx"
 //highlight-next-line
-import { Admin, Authenticated, AuthProvider } from "@pankod/refine";
+import { Refine, Authenticated, AuthProvider } from "@pankod/refine";
 
 import { CustomPage } from "pages/custom-page";
 
@@ -83,7 +83,7 @@ const AuthenticatedCustomPage = () => {
 //highlight-end
 const App = () => {
     return (
-        <Admin
+        <Refine
             authProvider={authProvider}
             routes={[
                 {
@@ -95,7 +95,7 @@ const App = () => {
             ]}
         >
             ...
-        </Admin>
+        </Refine>
     );
 };
 
@@ -112,7 +112,7 @@ For authenticated custom page, your application needs an `authProvider`.
 :::
 
 :::danger
-refine needs to know in order to manage resources, It recognizes them from the `<Resource>` component you have given to the `<Admin>` component. So, you need to give the resources you use in the custom page to the `<Admin>` component. But you don't need list, create, edit and show pages, you just need to give the name like the below code.
+refine needs to know in order to manage resources, It recognizes them from the `<Resource>` component you have given to the `<Refine>` component. So, you need to give the resources you use in the custom page to the `<Refine>` component. But you don't need list, create, edit and show pages, you just need to give the name like the below code.
 
 ```tsx
 <Resource name="posts" />
@@ -157,7 +157,7 @@ Before starting the example, let's assume that our `dataProvider` has an endpoin
 First, we will create the post's CRUD pages and bootstrap the app.
 
 ```tsx title="src/App.tsx"
-import { Admin } from "@pankod/refine";
+import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -165,7 +165,7 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const App = () => {
     return (
-        <Admin
+        <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
         >
             <Resource
@@ -175,7 +175,7 @@ const App = () => {
                 edit={PostEdit}
                 show={PostShow}
             />
-        </Admin>
+        </Refine>
     );
 };
 
@@ -329,10 +329,10 @@ export const PostReview = () => {
 };
 ```
 
-Then, pass this `<PostReview>` as routes prop in the `<Admin>` component:
+Then, pass this `<PostReview>` as routes prop in the `<Refine>` component:
 
 ```tsx title="src/App.tsx"
-import { Admin } from "@pankod/refine";
+import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -342,7 +342,7 @@ import { PostReview } from "pages/post-review";
 
 const App = () => {
     return (
-        <Admin
+        <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             //highlight-start
             routes={[
@@ -361,7 +361,7 @@ const App = () => {
                 edit={PostEdit}
                 show={PostShow}
             />
-        </Admin>
+        </Refine>
     );
 };
 
@@ -486,3 +486,12 @@ export const PostReview = () => {
     <img src={gif} />
 </div>
 <br/>
+
+## Live Codesandbox Example
+
+<iframe src="https://codesandbox.io/embed/custom-pages-example-956pz?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+    title="custom-pages-example"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>

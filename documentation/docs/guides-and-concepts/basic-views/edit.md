@@ -198,7 +198,7 @@ export const Edit: React.FC = () => {
 [Refer to custom pages documentation for detailed usage. &#8594](#)
 
 ```tsx
-import { Admin, Resource, Edit } from "@pankod/refine";
+import { Refine, Resource, Edit } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 
 const CustomPage = () => {
@@ -207,7 +207,7 @@ const CustomPage = () => {
 
 export const App: React.FC = () => {
     return (
-        <Admin
+        <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
             routes={[
                 {
@@ -218,7 +218,7 @@ export const App: React.FC = () => {
             ]}
         >
             <Resource name="posts" />
-        </Admin>
+        </Refine>
     );
 };
 ```
@@ -244,4 +244,4 @@ export const App: React.FC = () => {
 | mutationMode      | [Determines when mutations are executed](#) | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`\*                                                                  |
 | resource          | [`Resource`](#) for API data interactions   | `string`                                                          | Resource name that it reads from the url.                                          |
 
-> `*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component.
