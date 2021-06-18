@@ -165,7 +165,11 @@ module.exports = {
         {
             type: "category",
             label: "Examples",
-            items: ["examples/useUpdateMany", "examples/useDeleteMany"],
+            items: [
+                "examples/customFooter",
+                "examples/useUpdateMany",
+                "examples/useDeleteMany",
+            ],
         },
         {
             type: "doc",
