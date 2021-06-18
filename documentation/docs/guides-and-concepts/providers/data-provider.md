@@ -36,7 +36,7 @@ const dataProvider = {
 <br/>
 
 :::important
-**refine** consumes this methods using [data hooks](#guides-and-concepts/hooks/data/useCreate).
+**refine** consumes this methods using [data hooks](guides-and-concepts/hooks/data/useCreate.md).
 
 Data hooks are used to operate CRUD actions like creating a new record, listing a resource or deleting a record etc..
 :::
@@ -47,6 +47,7 @@ Data hooks uses [React Query](https://react-query.tanstack.com/) to manage data 
 
 
 
+<br/>
 <br/>
 <br/>
 
@@ -62,7 +63,7 @@ Data hooks uses [React Query](https://react-query.tanstack.com/) to manage data 
 
 To activate data provider in refine, we have to pass the `dataProvider` to `<Admin />` component.
 
-```tsx title="src/App.tsx"
+```tsx title="App.tsx"
 import { Admin } from "@pankod/refine";
 import dataProvider from "./dataProvider";
 
@@ -98,7 +99,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 <br />
 
 First let's build a method that returns our data provider. 
-```ts title="@pankod/refine-json-server/src/index.ts"
+```ts title="dataProvider.ts"
 import axios, { AxiosInstance } from "axios";
 import { DataProvider } from "./interfaces/dataProvider.ts";
 
@@ -121,7 +122,6 @@ const SimpleRestDataProvider = (
     getApiUrl: () => "",
 })
 ```
-> [Refer to types section for types used](#types)
 
 It will take the API URL as a parameter and an optional HTTP client. We will use **axios** as default HTTP client.
 
@@ -131,7 +131,7 @@ It will take the API URL as a parameter and an optional HTTP client. We will use
 
 Creates a single item in a resource.
 
-```ts title="@pankod/refine-json-server/src/index.ts"
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -185,7 +185,7 @@ mutate({
 
 Creates multiple items in a resource.
 
-```ts title="@pankod/refine-json-server/src/index.ts"
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -249,7 +249,7 @@ mutate({
 
 Deletes an item in a resource.
 
-```ts title="@pankod/refine-json-server/src/index.ts"
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -296,7 +296,7 @@ mutate({ id: "2" })
 
 Deletes multiple items in a resource.
 
-```ts title="@pankod/refine-json-server/src/index.ts"
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -345,7 +345,7 @@ mutate({ ids: [ "2", "3" ] })
 
 Updates an item in a resource.
 
-```ts title="@pankod/refine-json-server/src/index.ts"
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -395,7 +395,7 @@ mutate({ id: "2", values: { title: "New Category Title" } })
 
 Updates multiple items in a resource.
 
-```ts title="@pankod/refine-json-server/src/index.ts"
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -449,7 +449,7 @@ mutate({ ids: [ "1", "2" ], values: { status: "draft" } })
 
 Retrieves a single item in a resource.
 
-```ts title="@pankod/refine-json-server/src/index.ts"
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -496,7 +496,7 @@ const { data } = useOne<ICategory>("categories", 1);
 
 Retrieves multiple items in a resource.
 
-```ts title="@pankod/refine-json-server/src/index.ts"
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -543,7 +543,7 @@ const { data } = useMany("categories", [ 1, 2 ]);
 
 Retrieves a collection of items in a resource.
 
-```tsx title="@pankod/refine-json-server/src/index.ts"
+```tsx title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -590,7 +590,7 @@ const { data } = useList("posts");
 
 We'll send start and end parameters to list a certain size of items.
 
-```tsx title="@pankod/refine-json-server/src/index.ts"
+```tsx title="dataProvider.ts"
  //highlight-next-line
 import { stringify } from "query-string";
 
@@ -646,7 +646,7 @@ const { data } = useList("posts", {
 We'll sort records by speficified order and field.
 > [CrudSorting](/docs/interfaceReferences#crudoperators)
 
-```tsx title="@pankod/refine-json-server/src/index.ts"
+```tsx title="dataProvider.ts"
  //highlight-start
 const generateSort = (sort?: CrudSorting) => {
     let _sort = ["id"]; // default sorting field
@@ -726,7 +726,7 @@ const { data } = useList("posts", {
 
 Allows you to filter queries using [refine's filter operators](/docs/interfaceReferences#crudoperators). It is configured via field, operator and value properites.
 
-```tsx title="@pankod/refine-json-server/src/index.ts"
+```tsx title="dataProvider.ts"
 const generateSort = (sort?: CrudSorting) => {
     let _sort = ["id"]; // default sorting field
     let _order = ["desc"]; // default sorting
@@ -846,7 +846,7 @@ An optional method named `custom` can be added to handle requests with custom pa
 It's useful if you have non-stantard REST API endpoints or want to make a connection with external resources.
 
 
-```ts title="@pankod/refine-json-server/src/index.ts"
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -935,7 +935,7 @@ const { data, isLoading } = useCustom(
 **refine** expects errors to be extended from [`HttpError`](interfaces.md#httperror).  
 Axios interceptor can be used to transform the error from response before Axios returns the response to your code. Interceptors are methods which are triggered before the main method.
 
-```ts title="@pankod/refine-json-server/src/index.ts"
+```ts title="dataProvider.ts"
 ...
 axiosInstance.interceptors.response.use(
     (response) => {
