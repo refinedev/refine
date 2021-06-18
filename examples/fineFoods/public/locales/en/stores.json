@@ -1,0 +1,9 @@
+{
+  "title": "Stores",
+  "fields": {
+    "id": "ID",
+    "title": "Title",
+    "isActive": "Active",
+    "createdAt": "CreatedAt"
+  }
+}

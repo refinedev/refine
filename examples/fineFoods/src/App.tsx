@@ -6,6 +6,7 @@ import { DashbaordPage } from "./pages/dashboard";
 import { OrderList, OrderShow } from "./pages/orders";
 import { UserList, UserEdit } from "./pages/users";
 import { ProductCreate, ProductEdit, ProductList } from "./pages/products";
+import { StoreCreate, StoreEdit, StoreList } from "./pages/stores";
 import { useTranslation } from "react-i18next";
 import { Header, Title } from "components";
 import "i18n";
@@ -56,7 +57,15 @@ const App: React.FC = () => {
                 edit={ProductEdit}
                 create={ProductCreate}
             />
-            <Resource name="stores" />
+            <Resource
+                name="stores"
+                options={{
+                    label: t("stores:title"),
+                }}
+                list={StoreList}
+                edit={StoreEdit}
+                create={StoreCreate}
+            />
             <Resource name="categories" />
         </Admin>
     );
