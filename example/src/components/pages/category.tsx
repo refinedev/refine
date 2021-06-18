@@ -13,6 +13,7 @@ import {
     SaveButton,
     Space,
     useForm,
+    useImport,
     useEditableTable,
     IResourceComponentsProps,
     TextField,
@@ -31,6 +32,7 @@ export interface ICategory {
 
 export const CategoryList: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
+    const importProps = useImport();
     const {
         tableProps,
         sorter,
@@ -58,7 +60,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = (props) => {
                 pageSize={100}
                 maxItemCount={300}
             />
-            <ImportButton />
+            <ImportButton {...importProps} />
             <CreateButton />
         </Space>
     );

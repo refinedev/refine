@@ -1,7 +1,5 @@
-import React from "react";
-import { ButtonProps } from "antd";
-import { ImportOutlined } from "@ant-design/icons";
-import { UploadChangeParam, UploadProps } from "antd/lib/upload";
+import { ButtonProps, UploadProps } from "antd";
+import { UploadChangeParam } from "antd/lib/upload";
 import { useCreate, useCreateMany, useResourceWithRoute } from "@hooks";
 import { useParams } from "react-router-dom";
 import {
@@ -24,7 +22,7 @@ type ImportOptions<TItem, TVariables extends TItem = TItem> = {
 };
 
 export const useImport = <
-    TItem extends unknown = unknown,
+    TItem = any,
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables extends TItem = TItem,
@@ -99,7 +97,6 @@ export const useImport = <
         },
         buttonProps: {
             type: "default",
-            icon: <ImportOutlined />,
             loading: mutationResult.isLoading,
         },
         mutationResult,

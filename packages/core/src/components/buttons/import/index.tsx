@@ -1,39 +1,25 @@
-import React, { PropsWithChildren, ReactElement } from "react";
-import { Button, ButtonProps, Upload } from "antd";
-import { useTranslate, useImport } from "@hooks";
-import { MapDataFn } from "../../../interfaces";
-import { ParseConfig } from "papaparse";
+import React from "react";
+import { Button, ButtonProps, Upload, UploadProps } from "antd";
+import { ImportOutlined } from "@ant-design/icons";
+import { useTranslate } from "@hooks";
 
-type ImportButtonProps<TItem, TVariables extends TItem = TItem> =
-    ButtonProps & {
-        resourceName?: string;
-        mapData?: MapDataFn<TItem, TVariables>;
-        paparseOptions?: ParseConfig;
-        batchSize?: number | null;
-    };
+type ImportButtonProps = ButtonProps & {
+    uploadProps: UploadProps;
+    buttonProps: ButtonProps;
+};
 
-export const ImportButton = <TItem, TVariables extends TItem = TItem>({
-    resourceName,
-    mapData,
-    batchSize = 1,
-    paparseOptions,
+export const ImportButton: React.FC<ImportButtonProps> = ({
+    uploadProps,
+    buttonProps,
+    children,
     ...rest
-}: PropsWithChildren<ImportButtonProps<TItem, TVariables>>): ReactElement<
-    any,
-    any
-> => {
+}) => {
     const translate = useTranslate();
-    const { uploadProps, buttonProps } = useImport({
-        resourceName,
-        mapData,
-        batchSize,
-        paparseOptions,
-    });
 
     return (
         <Upload {...uploadProps}>
-            <Button {...buttonProps} {...rest}>
-                {translate("buttons.import", "Import")}
+            <Button icon={<ImportOutlined />} {...buttonProps} {...rest}>
+                {children ?? translate("buttons.import", "Import")}
             </Button>
         </Upload>
     );

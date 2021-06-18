@@ -40,6 +40,7 @@ import {
     useSelect,
     useMany,
     IResourceComponentsProps,
+    useImport,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -69,6 +70,22 @@ interface ICategory {
 
 export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
+
+    const importProps = useImport({
+        mapData: (item) => {
+            return {
+                title: item.title,
+                content: item.content,
+                status: item.status,
+                category: {
+                    id: item.categoryId,
+                },
+                user: {
+                    id: item.userId,
+                },
+            };
+        },
+    });
 
     const { tableProps, sorter, filters } = useTable<IPost>({
         initialCurrent: 3,
@@ -114,22 +131,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     };
                 }}
             />
-            <ImportButton
-                mapData={(item) => {
-                    return {
-                        title: item.title,
-                        content: item.content,
-                        status: item.status,
-                        category: {
-                            id: item.categoryId,
-                        },
-                        user: {
-                            id: item.userId,
-                        },
-                    };
-                }}
-                batchSize={null}
-            />
+            <ImportButton {...importProps} />
             <CreateButton />
         </Space>
     );

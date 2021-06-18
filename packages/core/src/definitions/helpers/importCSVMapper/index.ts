@@ -1,12 +1,9 @@
 import zip from "lodash/zip";
 import fromPairs from "lodash/fromPairs";
-import { MapDataFn } from "../../../hooks/import";
+import { MapDataFn } from "../../../interfaces";
 
-export const importCSVMapper = <
-    TItem = unknown,
-    TVariables extends TItem = TItem,
->(
-    data: unknown[][],
+export const importCSVMapper = <TItem = any, TVariables extends TItem = TItem>(
+    data: any[][],
     mapData: MapDataFn<TItem, TVariables>,
 ): TVariables[] => {
     const [headers, ...body] = data;
