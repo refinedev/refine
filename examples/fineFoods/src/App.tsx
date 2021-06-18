@@ -4,7 +4,7 @@ import jsonServerDataProvider from "@pankod/refine-json-server";
 import { authProvider } from "authProvider";
 import { DashbaordPage } from "./pages/dashboard";
 import { OrderList, OrderShow } from "./pages/orders";
-import { UserList, UserEdit } from "./pages/users";
+import { UserList, UserEdit, UserShow } from "./pages/users";
 import {
     ProductCreate,
     ProductEdit,
@@ -52,6 +52,7 @@ const App: React.FC = () => {
                 name="users"
                 list={UserList}
                 edit={UserEdit}
+                show={UserShow}
             />
             <Resource
                 options={{

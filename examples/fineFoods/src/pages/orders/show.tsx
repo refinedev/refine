@@ -6,7 +6,7 @@ import {
     Typography,
     NumberField,
     DateField,
-    Icons,
+    BooleanField,
     AntdList,
     Avatar,
     Timeline,
@@ -96,15 +96,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = (props) => {
 
                     <Title level={5}>Active</Title>
                     <Text>
-                        {record.user.isActive ? (
-                            <Icons.CheckCircleOutlined
-                                style={{ fontSize: 22, color: "#52C41A" }}
-                            />
-                        ) : (
-                            <Icons.CloseOutlined
-                                style={{ fontSize: 22, color: "#F5222D" }}
-                            />
-                        )}
+                        <BooleanField value={record.user.isActive} />
                     </Text>
                 </Col>
 
@@ -119,15 +111,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = (props) => {
 
                     <Title level={5}>Active</Title>
                     <Text>
-                        {record.store.isActive ? (
-                            <Icons.CheckCircleOutlined
-                                style={{ fontSize: 22, color: "#52C41A" }}
-                            />
-                        ) : (
-                            <Icons.CloseOutlined
-                                style={{ fontSize: 22, color: "#F5222D" }}
-                            />
-                        )}
+                        <BooleanField value={record.store.isActive} />
                     </Text>
                 </Col>
             </Row>
