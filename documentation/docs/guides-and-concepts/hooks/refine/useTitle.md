@@ -3,20 +3,20 @@ id: useTitle
 title: useTitle
 ---
 
-`useTitle` returns a component that calls the `<Title>` passed to the `<Admin>`. In this way, it becomes easier for us to access this component in various parts of the application.
+`useTitle` returns a component that calls the `<Title>` passed to the `<Refine>`. In this way, it becomes easier for us to access this component in various parts of the application.
 
 ## Usage
 
 Normally refine provides a default title. If we want to build a custom title instead of default one that comes with refine, we overwrite it like this:
 
 ```tsx title="src/App.tsx"
-import { Admin } from "@pankod/refine";
+import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
 export const App: React.FC = () => {
     return (
-        <Admin
+        <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             //highlight-start
             Title={({ collapsed }) => (

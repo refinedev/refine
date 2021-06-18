@@ -1,4 +1,4 @@
-import { Admin, Resource } from "@pankod/refine";
+import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -8,7 +8,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Admin dataProvider={dataProvider(API_URL)}>
+        <Refine dataProvider={dataProvider(API_URL)}>
             <Resource
                 name="users"
                 list={UserList}
@@ -16,7 +16,7 @@ const App: React.FC = () => {
                 edit={UserEdit}
                 show={UserShow}
             />
-        </Admin>
+        </Refine>
     );
 };
 

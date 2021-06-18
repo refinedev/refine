@@ -2,7 +2,7 @@ import { renderHook } from "@testing-library/react-hooks";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
-import { useWarnAboutChange } from "./";
+import { useWarnAboutChange } from ".";
 
 describe("useWarnAboutChange Hook", () => {
     it("returns context value correctly", async () => {

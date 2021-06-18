@@ -7,13 +7,13 @@ interface DemoSidebarParams {
     defaultMutationMode: MutationMode;
 }
 
-interface PartialAdminProps {
+interface PartialRefineProps {
     Title: React.FC<TitleProps>;
 }
 
 export const useDemoSidebar = ({
     defaultTitle,
-}: DemoSidebarParams): [PartialAdminProps, DemoSidebarProps] => {
+}: DemoSidebarParams): [PartialRefineProps, DemoSidebarProps] => {
     const [title, setTitle] = useState<string>(defaultTitle);
     const [mutationMode, setMutationMode] =
         useState<MutationMode>("pessimistic");
@@ -42,7 +42,7 @@ export const useDemoSidebar = ({
         </Link>
     );
 
-    const adminProps = {
+    const refineProps = {
         Title: DefaultTitle,
         mutationMode,
         syncWithLocation,
@@ -63,5 +63,5 @@ export const useDemoSidebar = ({
         onUndoableTimeoutChange: setUndoableTimeout,
     };
 
-    return [adminProps, demoSidebarProps];
+    return [refineProps, demoSidebarProps];
 };

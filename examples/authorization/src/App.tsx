@@ -1,4 +1,4 @@
-import { Admin, Resource, AuthProvider } from "@pankod/refine";
+import { Refine, Resource, AuthProvider } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -62,7 +62,10 @@ const App: React.FC = () => {
     };
 
     return (
-        <Admin authProvider={authProvider} dataProvider={dataProvider(API_URL)}>
+        <Refine
+            authProvider={authProvider}
+            dataProvider={dataProvider(API_URL)}
+        >
             <Resource
                 name="posts"
                 list={PostList}
@@ -70,7 +73,7 @@ const App: React.FC = () => {
                 edit={PostEdit}
                 show={PostShow}
             />
-        </Admin>
+        </Refine>
     );
 };
 
