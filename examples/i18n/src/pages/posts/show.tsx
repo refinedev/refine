@@ -5,6 +5,7 @@ import {
     IResourceComponentsProps,
     useOne,
     MarkdownField,
+    useTranslate,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
@@ -12,6 +13,7 @@ import { IPost, ICategory } from "interfaces";
 const { Title, Text } = Typography;
 
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
+    const translate = useTranslate();
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
@@ -26,15 +28,15 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
             <Title level={5}>Id</Title>
             <Text>{record?.id}</Text>
 
-            <Title level={5}>Title</Title>
+            <Title level={5}>{translate("posts.fields.title")}</Title>
             <Text>{record?.title}</Text>
 
-            <Title level={5}>Category</Title>
+            <Title level={5}>{translate("posts.fields.category")}</Title>
             <Text>
                 {categoryIsLoading ? "Loading..." : categoryData?.data.title}
             </Text>
 
-            <Title level={5}>Content</Title>
+            <Title level={5}>{translate("posts.fields.content")}</Title>
             <MarkdownField value={record?.content} />
         </Show>
     );

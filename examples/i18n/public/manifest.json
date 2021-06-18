@@ -1,6 +1,6 @@
 {
-  "short_name": "refine translate example",
-  "name": "refine translate example",
+  "short_name": "refine i18n example",
+  "name": "refine i18n example",
   "icons": [
     {
       "src": "favicon.ico",

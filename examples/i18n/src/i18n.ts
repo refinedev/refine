@@ -13,9 +13,6 @@ i18n.use(Backend)
         },
         defaultNS: "common",
         fallbackLng: ["en", "tr"],
-        react: {
-            useSuspense: false,
-        },
     });
 
 export default i18n;
