@@ -1,4 +1,4 @@
-import { Admin, Resource } from "@pankod/refine";
+import { Refine, Resource } from "@pankod/refine";
 import "styles/antd.less";
 import jsonServerDataProvider from "@pankod/refine-json-server";
 import { authProvider } from "authProvider";
@@ -22,7 +22,7 @@ const App: React.FC = () => {
     };
 
     return (
-        <Admin
+        <Refine
             dataProvider={dataProvider}
             authProvider={authProvider}
             i18nProvider={i18nProvider}
@@ -51,7 +51,7 @@ const App: React.FC = () => {
                 name="products"
             />
             <Resource name="stores" />
-        </Admin>
+        </Refine>
     );
 };
 

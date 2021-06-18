@@ -14,7 +14,7 @@ import {
 
 import { IPost } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC<IResourceComponentsProps> = () => {
     const {
         tableProps,
         formProps,
@@ -26,11 +26,11 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     } = useEditableTable<IPost>();
 
     return (
-        <List {...props}>
+        <List>
             <Form {...formProps}>
                 <Table
                     {...tableProps}
-                    key="id"
+                    rowKey="id"
                     onRow={(record) => ({
                         onClick: (event: any) => {
                             if (event.target.nodeName === "TD") {
@@ -39,13 +39,12 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                         },
                     })}
                 >
-                    <Table.Column<IPost> key="id" dataIndex="id" title="ID" />
+                    <Table.Column dataIndex="id" title="ID" />
                     <Table.Column<IPost>
-                        key="title"
                         dataIndex="title"
                         title="Title"
-                        render={(value, data: any) => {
-                            if (isEditing(data.id)) {
+                        render={(value, record) => {
+                            if (isEditing(record.id)) {
                                 return (
                                     <Form.Item
                                         name="title"
@@ -61,8 +60,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     <Table.Column<IPost>
                         title="Actions"
                         dataIndex="actions"
-                        key="actions"
-                        render={(_text, record) => {
+                        render={(_, record) => {
                             if (isEditing(record.id)) {
                                 return (
                                     <Space>
@@ -80,12 +78,10 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                                 );
                             }
                             return (
-                                <Space>
-                                    <EditButton
-                                        {...editButtonProps(record.id)}
-                                        size="small"
-                                    />
-                                </Space>
+                                <EditButton
+                                    {...editButtonProps(record.id)}
+                                    size="small"
+                                />
                             );
                         }}
                     />

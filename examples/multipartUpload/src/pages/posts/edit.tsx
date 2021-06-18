@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+    IResourceComponentsProps,
     Edit,
     Form,
     Input,
@@ -18,7 +19,7 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostEdit: React.FC = () => {
+export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
     const postData = queryResult?.data?.data;

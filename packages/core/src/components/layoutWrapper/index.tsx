@@ -2,8 +2,8 @@ import React, { FC, useContext, useEffect } from "react";
 import { Prompt } from "react-router-dom";
 
 import { useTranslate, useWarnAboutChange } from "@hooks";
-import { AdminContext } from "@contexts/admin/";
-import { IAdminContext } from "@contexts/admin/IAdminContext";
+import { RefineContext } from "@contexts/refine";
+import { IRefineContext } from "@contexts/refine/IRefineContext";
 
 export interface LayoutWrapperProps {
     dashboard?: boolean;
@@ -14,7 +14,7 @@ export const LayoutWrapper: FC<LayoutWrapperProps> = ({
     dashboard,
 }) => {
     const { Layout, Footer, Header, Sider, Title, OffLayoutArea } =
-        useContext<IAdminContext>(AdminContext);
+        useContext<IRefineContext>(RefineContext);
 
     const translate = useTranslate();
 

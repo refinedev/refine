@@ -71,7 +71,7 @@ export const PostList: React.FC = () => {
 ```
 
 :::tip
-`<Admin>` componentine verilen `<Resource>` üzerindeki bir sayfada, `useTable` hangi kaynağın gösterileceğinin çıkarımını otomatik olarak yapar. Başka bir kaynağın verilerini göstermek isterseniz, `useTable(options)` hookunun aldığı opsiyon nesnesindeki `resource: string` opsiyonu ile başka bir `resource`a ait endpointten gelen verileri gösterebilirsiniz. Eğer `resource` opsiyonu verilmişse, `syncWithLocation` çalışmaz.
+`<Refine>` componentine verilen `<Resource>` üzerindeki bir sayfada, `useTable` hangi kaynağın gösterileceğinin çıkarımını otomatik olarak yapar. Başka bir kaynağın verilerini göstermek isterseniz, `useTable(options)` hookunun aldığı opsiyon nesnesindeki `resource: string` opsiyonu ile başka bir `resource`a ait endpointten gelen verileri gösterebilirsiniz. Eğer `resource` opsiyonu verilmişse, `syncWithLocation` çalışmaz.
 
 `useTable`, verdiğiniz kaynağın verilerini çekerken `useMany` kullanır.
 :::

@@ -8,7 +8,7 @@ export * from "./istate";
 // contexts
 export * from "../contexts/data/IDataContext";
 export * from "../contexts/auth/IAuthContext";
-export * from "../contexts/admin/IAdminContext";
+export * from "../contexts/refine/IRefineContext";
 export * from "../contexts/translation/ITranslationContext";
 export * from "../contexts/components/IComponentsContext";
 export * from "../contexts/notification/INotificationContext";

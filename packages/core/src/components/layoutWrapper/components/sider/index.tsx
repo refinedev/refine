@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { Layout, Menu } from "antd";
 import { LogoutOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
@@ -8,8 +8,8 @@ import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "src/interfaces";
 
 export const Sider: React.FC = () => {
-    const [collapsed, setCollapsed] = React.useState(false);
-    const { isProvided } = React.useContext<IAuthContext>(AuthContext);
+    const [collapsed, setCollapsed] = useState<boolean>(false);
+    const { isProvided } = useContext<IAuthContext>(AuthContext);
     const { mutate: logout } = useLogout();
     const Title = useTitle();
     const translate = useTranslate();
@@ -19,6 +19,7 @@ export const Sider: React.FC = () => {
     return (
         <Layout.Sider
             collapsible
+            breakpoint="md"
             collapsed={collapsed}
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
         >
@@ -34,7 +35,7 @@ export const Sider: React.FC = () => {
                         return;
                     }
 
-                    history.push(key);
+                    history.push(key as string);
                 }}
             >
                 {menuItems.map(({ icon, route, label }) => (
