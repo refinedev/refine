@@ -7,9 +7,9 @@ sidebar_label: Auth Provider
 import login from '@site/static/img/guides-and-concepts/providers/auth-provider/login.png';
 import logout from '@site/static/img/guides-and-concepts/providers/auth-provider/logout.gif';
 
-refine let's you set authentication logic by providing `authProvider` property to `<Admin>` component.
+**refine** let's you set authentication logic by providing `authProvider` property to `<Admin>` component.
 
-`authProvider` is an object with methods that refine uses when necessary. These methods need to return a Promise. They also can be accessed with specialized hooks.
+`authProvider` is an object with methods that **refine** uses when necessary. These methods need to return a Promise. They also can be accessed with specialized hooks.
 
 An auth provider must include following methods:
 
@@ -25,13 +25,13 @@ const authProvider = {
 ```
 
 :::important
-refine consumes this methods using [authorization hooks]((#guides-and-concepts/hooks/auth/useLogin)).
+**refine** consumes this methods using [authorization hooks]((#guides-and-concepts/hooks/auth/useLogin)).
 Authorization hooks are used to manage authentication and authorization operations like login, logout and catching Http errors etc.
 :::
 
 ## Usage
 
-To use auth provider in refine, we have to pass the authProvider to `<Admin />` component.
+To use auth provider in **refine**, we have to pass the authProvider to `<Admin />` component.
 
 
 ```tsx title="App.tsx"
@@ -62,9 +62,9 @@ const App = () => {
 };
 ```
 
-By default, refine doesn't require authentication configuration.  
+By default, **refine** doesn't require authentication configuration.  
 
-If an `authProvider` property is not provided, refine will use a default `authProvider`. This default `authProvider` lets the app work without an authentication requirement.  
+If an `authProvider` property is not provided, **refine** will use a default `authProvider`. This default `authProvider` lets the app work without an authentication requirement.  
 If your app doesn't require authentication, no further setup is necessary for the app to work.
 
 
@@ -79,7 +79,7 @@ We'll build a simple auth provider from scratch to show the logic of how auth pr
 
 -   If login is successful, pages that requires authentication becomes accessible.
 
--   If the login fails, refine displays an error message to the user in a notification.
+-   If the login fails, **refine** displays an error message to the user in a notification.
 
 <br />
 
@@ -166,7 +166,7 @@ If an `authProvider` is given, [Resources](#) passed to `<Admin>` as children ar
 
 -   If logout is successful, pages that requires authentication becomes unaccessible.
 
--   If the logout fails, refine displays an error message to the user in a notification.
+-   If the logout fails, **refine** displays an error message to the user in a notification.
 
 <br />
 
@@ -213,7 +213,7 @@ logout();
 
 If authentication is enabled, a logout button appears at the bottom of the side bar menu. When the button is clicked, `logout` method from `authProvider` is called.
 
-refine redirects the app to `/login` route by default.
+**refine** redirects the app to `/login` route by default.
 <br />
 
 <div>
@@ -321,7 +321,7 @@ Checking the authentication data can be easily done here. For example if the aut
 
 ```tsx title="auth-provider.ts"
 const authProvider = {
-    ...
+   ...
     // highlight-start
     checkAuth: () => {
         localStorage.getItem("auth") ? Promise.resolve() : Promise.reject(),
@@ -332,18 +332,115 @@ const authProvider = {
 
 <br />
 
-`checkAuth` method will be accessible via `useAuthenticaion` auth hook.
+`checkAuth` method will be accessible via `useAuthenticated` auth hook.
 
 ```tsx
-import { useAuthentication } from "@pankod/refine";
+import { useAuthenticated } from "@pankod/refine";
 
-const { isSuccess, isLoading, isError } = useAuthenticated();
+const { isSuccess, isLoading, isError, refetch: checkAuth } = useAuthenticated();
 ```
 
->[Refer to useAuthentication documentation for more information. &#8594](guides-and-concepts/hooks/auth/useAuthentication.md)
+>[Refer to useAuthenticated documentation for more information. &#8594](guides-and-concepts/hooks/auth/useAuthenticated.md)
 
 <br />
 
+
+### `getPermissions`
+
+You may want to require authorization for certain parts of the app based on the permissions that current user have. Permission logic can be defined in `getPermission` method.
+
+We will show how to add authorization based on roles determined in `getPermissions`.
+
+```tsx title="auth-provider.ts"
+const mockUsers = [
+    {
+        username: "admin",
+        // highlight-next-line
+        roles: ["admin"],
+    },
+    {
+        username: "editor",
+         // highlight-next-line
+        roles: ["editor"],
+    }
+];
+
+const authProvider = {
+...
+    // highlight-start
+    getPermissions: () => {
+        const auth = localStorage.getItem("auth");
+        if (auth) {
+            const parsedUser = JSON.parse(auth);
+            return Promise.resolve(parsedUser.roles);
+        }
+        return Promise.reject();
+    },
+    // highlight-end
+ ...   
+};
+```
+
+<br/>
+
+
+Data that `getPermissions` resolves with is accesible by [`usePermissions`](#) hook.
+
+
+For example if only admins must be able to create new posts from list page.
+`<List>` can show a button for creating new posts. If it's required that only admins can create new posts, this button must be only accessible to users who has `"admin"` role.
+
+```tsx title="pages/post/list"
+import { List, usePermissions } from "@pankod/refine";
+
+export const PostList: React.FC = () => {
+    const { data: permissionsData } = usePermissions();
+
+    return <List canCreate={permissionsData?.includes("admin")}>...</List>;
+};
+```
+
+> [Refer to usePermissions documentation for more information. &#8594](guides-and-concepts/hooks/auth/usePermissions.md)
+
+<br/>
+
+
+### `getUserIdentity`
+
+User data can be accessed within the app by returning a resolved Promise in `getUserIdentity` method.
+
+```tsx title="auth-provider.ts"
+const authProvider = {
+...
+        // highlight-start
+    getUserIdentity: () => {
+        const auth = localStorage.getItem("auth");
+        if (auth) {
+            const parsedUser = JSON.parse(auth);
+            return Promise.resolve(parsedUser.username);
+        }
+        return Promise.reject();
+    }
+    // highlight-end
+};
+```
+
+<br />
+
+The resolved data can be get using [`useGetIdentity`](#) hook.
+
+```tsx
+import { useGetIdentity } from "@pankod/refine";
+
+const { data: userIdentity } = useGetIdentity();
+// userIdentity: "admin"
+```
+
+> [Refer to useGetIdentity documentation for more information. &#8594](guides-and-concepts/hooks/auth/useGetIdentity.md)
+
+<!-- User data will be shown at right top of the app. -->
+
+<!-- Kullanıcı adı ve avatar oluşturulduğu zaman eklenecek.. -->
 
 <br />
 
@@ -351,7 +448,7 @@ const { isSuccess, isLoading, isError } = useAuthenticated();
 
 After user logins, their credentials can be sent along with the API request by configuring the [`dataProvider`](#). A custom `httpClient` can be passed to `dataProvider` to include configurations like cookies, request headers.
 
-We'll show how to add a token got from `login` method to **Authorization** header of **Http** requests.
+We'll show how to add a token got from `login` method to **Authorization** header of **HTTP** requests.
 
 ```tsx title="App.tsx"
 ...
@@ -405,109 +502,7 @@ const App = () => {
 We recommend to use **axios** as Http client with **@pankod/refine-json-server** data provider. Other Http clients can be also preferred.
 :::
 
-## Authorization
 
-You may want to require authorization for certain parts of the app based on the permissions that current user have. Permission logic need to be defined in `getPermission` method.
-
-We will show how to add authorization based on roles determined in `getPermissions`.
-
-```tsx title="App.tsx"
-const mockUsers = [
-    {
-        username: "admin",
-        // highlight-next-line
-        roles: ["admin"],
-    },
-    {
-        username: "editor",
-         // highlight-next-line
-        roles: ["editor"],
-    }
-];
-
-const App = () => {
-    const authProvider: AuthProvider = {
-            ...
-            // highlight-start
-            getPermissions: () => {
-                const auth = localStorage.getItem("auth");
-                if (auth) {
-                    const parsedUser = JSON.parse(auth);
-                    return Promise.resolve(parsedUser.roles);
-                }
-                return Promise.reject();
-            },
-            // highlight-end
-        };
-    ...
-}
-```
-
-:::important
-Data that `getPermissions` resolves with is accesible by [`usePermissions`](#) hook.
-:::
-
-<br/>
-
-For example if only admins must be able to create new posts from list page.
-`<List>` can show a button for creating new posts. If it's required that only admins can create new posts, this button must be only accessible to users who has `"admin"` role.
-
-```tsx title="pages/post/list"
-import { List, usePermissions } from "@pankod/refine";
-
-export const PostList: React.FC = () => {
-    const { data: permissionsData } = usePermissions();
-
-    return <List canCreate={permissionsData?.includes("admin")}>...</List>;
-};
-```
-
-:::tip
-`usePermissions` returns the result of `react-query`'s `useQuery`. It includes properties like `isLoading` and `isFetching` with many others.  
-[Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/reference/useQuery)
-:::
-
-<br />
-
-## User Data
-
-User data can be accesible in the app by returning a resolved Promise in `getUserIdentity` method.
-
-```tsx title="App.tsx"
-const App = () => {
-    const authProvider: AuthProvider = {
-        ...
-          // highlight-start
-        getUserIdentity: () => {
-            const auth = localStorage.getItem("auth");
-            if (auth) {
-                const parsedUser = JSON.parse(auth);
-                return Promise.resolve(parsedUser.username);
-            }
-            return Promise.reject();
-        }
-        // highlight-end
-    };
-    ...
-}
-```
-
-<br />
-
-The resolved data can be get using [`useGetIdentity`](#) hook.
-
-```tsx
-import { useGetIdentity } from "@pankod/refine";
-
-const { data: userIdentity } = useGetIdentity();
-// userIdentity: "admin"
-```
-
-<!-- User data will be shown at right top of the app. -->
-
-<!-- Kullanıcı adı ve avatar oluşturulduğu zaman eklenecek.. -->
-
-<br />
 
 ## Hooks and Components
 
@@ -519,7 +514,6 @@ This hooks can be used with `authProvider` authentication and authorization oper
 -   [useLogin](#)
 -   [useLogout](#)
 -   [usePermissions](#)
-
 -   [Authenticated](#)
 
 <br />
@@ -530,14 +524,15 @@ This hooks can be used with `authProvider` authentication and authorization oper
 
 | Property                                                                                                 | Description                               | Resolve condition                     |
 | -------------------------------------------------------------------------------------------------------- | ----------------------------------------- | ------------------------------------- |
-| login\* <div className=" required">Required</div>                                                        | Log user in                               | Auth confirms login                   |
+| login <div className=" required">Required</div>                                                        | Log user in                               | Auth confirms login                   |
 | logout <div className=" required">Required</div>                                                         | Log user out                              | Auth confirms logout                  |
 | checkAuth <div className=" required">Required</div>                                                      | Check credentials on each route changes   | Authentication still persist          |
-| checkError\* <div className=" required">Required</div>                                                   | Check if a data provider returns an error | Data provider doesn't return an error |
+| checkError <div className=" required">Required</div>                                                   | Check if a data provider returns an error | Data provider doesn't return an error |
 | <div className="required-block"><div>getPermissions</div> <div className="required">Required</div></div> | Can be use to get user credentials        | Authorization roles accepted          |
 | getUserIdentity                                                                                          | Can be use to get user identity           | User identity avaliable to return     |
 
-> `*`: These methods accepts whatever passed as parameters.
+
+<br />
 
 ## Live Codesandbox Example
 
