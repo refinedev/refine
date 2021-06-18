@@ -1,7 +1,7 @@
 import React from "react";
 import { MutationMode, TitleProps, LayoutProps } from "../../interfaces";
 
-export interface IAdminContext {
+export interface IRefineContext {
     hasDashboard: boolean;
     warnWhen: boolean;
     setWarnWhen: (value: boolean) => void;
@@ -17,7 +17,7 @@ export interface IAdminContext {
     OffLayoutArea: React.FC;
 }
 
-export interface IAdminContextProvider {
+export interface IRefineContextProvider {
     hasDashboard: boolean;
     mutationMode: MutationMode;
     warnWhenUnsavedChanges: boolean;

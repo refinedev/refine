@@ -1,14 +1,14 @@
 import React from "react";
 import { LayoutWrapper } from "@components/layoutWrapper";
-import { IAdminContextProvider } from "../../contexts/admin/IAdminContext";
+import { IRefineContextProvider } from "../../contexts/refine/IRefineContext";
 import { render, screen, TestWrapper, MockJSONServer } from "@test";
 import { Route } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { LayoutProps } from "src/interfaces";
 
-const renderWithAdminContext = (
+const renderWithRefineContext = (
     children: React.ReactNode,
-    adminProvider: IAdminContextProvider,
+    adminProvider: IRefineContextProvider,
 ) => {
     return render(<Route path="/">{children}</Route>, {
         wrapper: TestWrapper({
@@ -34,7 +34,7 @@ describe("LayoutWrapper", () => {
         const customOffLayoutAreaContent = "customOffLayoutAreaContent";
         const CustomOffLayoutArea = () => <p>{customOffLayoutAreaContent}</p>;
 
-        renderWithAdminContext(<LayoutWrapper />, {
+        renderWithRefineContext(<LayoutWrapper />, {
             warnWhenUnsavedChanges: false,
             mutationMode: "pessimistic",
             syncWithLocation: false,
@@ -81,7 +81,7 @@ describe("LayoutWrapper", () => {
         const customOffLayoutAreaContent = "customOffLayoutAreaContent";
         const CustomOffLayoutArea = () => <p>{customOffLayoutAreaContent}</p>;
 
-        const { getByText } = renderWithAdminContext(<LayoutWrapper />, {
+        const { getByText } = renderWithRefineContext(<LayoutWrapper />, {
             warnWhenUnsavedChanges: false,
             mutationMode: "pessimistic",
             syncWithLocation: false,
@@ -104,7 +104,7 @@ describe("LayoutWrapper", () => {
         const customTitleContent = "customTitleContent";
         const CustomTitle = () => <p>{customTitleContent}</p>;
 
-        const { getByText } = renderWithAdminContext(<LayoutWrapper />, {
+        const { getByText } = renderWithRefineContext(<LayoutWrapper />, {
             warnWhenUnsavedChanges: false,
             mutationMode: "pessimistic",
             syncWithLocation: false,

@@ -112,6 +112,8 @@ Clicking the `Login with Auth0` button, you will be directed to the auth0 login 
 In refine, Authentication and Authorization processes are performed with the auth provider. Let's write a provider for Auth0.
 
 ```tsx title="App.tsx"
+import { Refine } from "@pankod/refine";
+
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { Login } from "pages/login";
@@ -149,13 +151,13 @@ const App = () => {
     // highlight-end
 
     return (
-        <Admin
+        <Refine
             LoginPage={Login}
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
         >
             ...
-        </Admin>
+        </Refine>
     );
 };
 

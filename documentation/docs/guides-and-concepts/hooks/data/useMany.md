@@ -5,7 +5,7 @@ siderbar_label: useMany
 description: useMany data hook from refine is a modified version of react-query's useQuery for retrieving multiple items from a resource
 ---
 
-`useMany` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries) for retrieving multiple items from a `resource`. It uses `getMany` method as query function from the `dataProvider` that is passed to `<Admin>`.  
+`useMany` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries) for retrieving multiple items from a `resource`. It uses `getMany` method as query function from the `dataProvider` that is passed to `<Refine>`.  
 
 ## Usage
 

@@ -1,4 +1,4 @@
-import { Admin, Resource, AuthProvider } from "@pankod/refine";
+import { Refine, Resource, AuthProvider } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -49,7 +49,7 @@ const App: React.FC = () => {
 
     return (
         <>
-            <Admin
+            <Refine
                 DashboardPage={Dashboard}
                 LoginPage={Login}
                 authProvider={authProvider}
@@ -62,7 +62,7 @@ const App: React.FC = () => {
                     edit={PostEdit}
                     show={PostShow}
                 />
-            </Admin>
+            </Refine>
         </>
     );
 };
