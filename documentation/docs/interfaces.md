@@ -13,7 +13,7 @@ title: Interface References
 | -------- | --------------------------------- |
 | field    | `string`                          |
 | operator | [`CrudOperators`](#crudoperators) |
-| value    |  `any`                            |
+| value    | `any`                             |
 
 #### CrudOperators
 
@@ -64,6 +64,13 @@ title: Interface References
 | ------------ | ---------------- |
 | `"asc"`      | Ascending order  |
 | `"desc"`     | Descending order |
+
+## Pagination
+
+| Key      | Type     |
+| -------- | -------- |
+| current  | `number` |
+| pageSize | `number` |
 
 ## BaseRecord
 

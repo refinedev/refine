@@ -12,7 +12,7 @@ import {
     TranslationContextProvider,
 } from "@contexts/translation";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
-import { AdminContextProvider } from "@contexts/admin";
+import { RefineContextProvider } from "@contexts/refine";
 import { NotificationContextProvider } from "@contexts/notification";
 import {
     RouteProvider,
@@ -22,16 +22,16 @@ import {
 import { OptionalComponent, defaultConfigProviderProps } from "@definitions";
 import {
     MutationMode,
-    IDataContext,
+    IDataContextProvider,
     IAuthContext,
     I18nProvider,
     LayoutProps,
     TitleProps,
 } from "../../../interfaces";
 
-export interface AdminProps {
+export interface RefineProps {
     authProvider?: IAuthContext;
-    dataProvider: IDataContext;
+    dataProvider: IDataContextProvider;
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
     LoginPage?: React.FC | false;
@@ -51,7 +51,7 @@ export interface AdminProps {
     Title?: React.FC<TitleProps>;
 }
 
-export const Admin: React.FC<AdminProps> = ({
+export const Refine: React.FC<RefineProps> = ({
     authProvider,
     dataProvider,
     DashboardPage,
@@ -115,7 +115,7 @@ export const Admin: React.FC<AdminProps> = ({
                         <TranslationContextProvider i18nProvider={i18nProvider}>
                             <ConfigProvider {...configProviderProps}>
                                 <NotificationContextProvider>
-                                    <AdminContextProvider
+                                    <RefineContextProvider
                                         mutationMode={mutationMode}
                                         warnWhenUnsavedChanges={
                                             warnWhenUnsavedChanges
@@ -145,7 +145,7 @@ export const Admin: React.FC<AdminProps> = ({
                                                 <RouteChangeHandler />
                                             </>
                                         </Router>
-                                    </AdminContextProvider>
+                                    </RefineContextProvider>
                                 </NotificationContextProvider>
                             </ConfigProvider>
                         </TranslationContextProvider>

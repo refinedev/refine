@@ -161,3 +161,68 @@ export interface IDataContext {
         },
     ) => Promise<CustomResponse<TData>>;
 }
+
+export interface IDataContextProvider {
+    getList: <TData extends BaseRecord = BaseRecord>(
+        resource: string,
+        params: {
+            pagination?: Pagination;
+            sort?: CrudSorting;
+            filters?: CrudFilters;
+        },
+    ) => Promise<GetListResponse<TData>>;
+    getMany: <TData extends BaseRecord = BaseRecord>(
+        resource: string,
+        ids: string[],
+    ) => Promise<GetManyResponse<TData>>;
+    getOne: <TData extends BaseRecord = BaseRecord>(
+        resource: string,
+        id: string,
+    ) => Promise<GetOneResponse<TData>>;
+    create: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        resource: string,
+        params: TVariables,
+    ) => Promise<CreateResponse<TData>>;
+    createMany: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        resource: string,
+        params: TVariables[],
+    ) => Promise<CreateManyResponse<TData>>;
+    update: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        resource: string,
+        id: string,
+        params: TVariables,
+    ) => Promise<UpdateResponse<TData>>;
+    updateMany: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        resource: string,
+        ids: string[],
+        params: TVariables,
+    ) => Promise<UpdateManyResponse<TData>>;
+    deleteOne: <TData extends BaseRecord = BaseRecord>(
+        resource: string,
+        id: string,
+    ) => Promise<DeleteOneResponse<TData>>;
+    deleteMany: <TData extends BaseRecord = BaseRecord>(
+        resource: string,
+        ids: string[],
+    ) => Promise<DeleteManyResponse<TData>>;
+    getApiUrl: () => string;
+    // TODO: Should be optional
+    custom?: <TData extends BaseRecord = BaseRecord>(
+        url: string,
+        method:
+            | "get"
+            | "delete"
+            | "head"
+            | "options"
+            | "post"
+            | "put"
+            | "patch",
+        params?: {
+            sort?: CrudSorting;
+            filters?: CrudFilter[];
+            payload?: {};
+            query?: {};
+            headers?: {};
+        },
+    ) => Promise<CustomResponse<TData>>;
+}

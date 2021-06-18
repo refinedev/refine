@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { IAdminContext, IAdminContextProvider } from "./IAdminContext";
+import { IRefineContext, IRefineContextProvider } from "./IRefineContext";
 import {
     Layout as DefaultLayout,
     Header as DefaultHeader,
@@ -10,7 +10,7 @@ import {
     Title as DefaultTitle,
 } from "@components/layoutWrapper/components";
 
-export const AdminContext = React.createContext<IAdminContext>({
+export const RefineContext = React.createContext<IRefineContext>({
     hasDashboard: false,
     mutationMode: "pessimistic",
     warnWhenUnsavedChanges: false,
@@ -26,7 +26,7 @@ export const AdminContext = React.createContext<IAdminContext>({
     OffLayoutArea: DefaultOffLayoutArea,
 });
 
-export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
+export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
     hasDashboard,
     mutationMode,
     warnWhenUnsavedChanges,
@@ -42,7 +42,7 @@ export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
 }) => {
     const [warnWhen, setWarnWhen] = useState(false);
     return (
-        <AdminContext.Provider
+        <RefineContext.Provider
             value={{
                 hasDashboard,
                 mutationMode,
@@ -60,6 +60,6 @@ export const AdminContextProvider: React.FC<IAdminContextProvider> = ({
             }}
         >
             {children}
-        </AdminContext.Provider>
+        </RefineContext.Provider>
     );
 };

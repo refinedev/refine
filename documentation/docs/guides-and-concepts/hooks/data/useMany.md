@@ -5,7 +5,7 @@ siderbar_label: useMany
 description: useMany data hook from refine is a modified version of react-query's useQuery for retrieving multiple items from a resource
 ---
 
-`useMany` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries) for retrieving multiple items from a `resource`. It uses `getMany` method as query function from the `dataProvider` that is passed to `<Admin>`.  
+`useMany` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries) for retrieving multiple items from a `resource`. It uses `getMany` method as query function from the `dataProvider` that is passed to `<Refine>`.  
 
 ## Usage
 
@@ -47,7 +47,7 @@ const categoryQueryResult = useMany<ICategory>("categories", [ 1, 2 ]);
 - For example, to disable query from running automatically you can set `enabled` to `false`
 
 ```tsx
-const categoryQueryResult = useMany<ICategory>("categories", [ 1, 2 ]), { enabled: false };
+const categoryQueryResult = useMany<ICategory>("categories", [ "1", "2" ]), { enabled: false };
 ```
 :::
 
@@ -86,7 +86,7 @@ After query runs `categoryQueryResult` will include the retrieved data:
 | Property                                                                                            | Description                               | Type                                                        | Default |
 | --------------------------------------------------------------------------------------------------- | ----------------------------------------- | ----------------------------------------------------------- | ------- |
 | <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](#) for API data interactions | `string`                                                    |         |
-| ids <div className="required">Required</div>                                                        | ids of the item in the resource           | `(string` \| `number)[]`                                    |         |
+| ids <div className="required">Required</div>                                                        | ids of the item in the resource           | `(string)[]`                                                |         |
 | options                                                                                             | `react-query`'s `useQuery` options        | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>` |         |
 
 ### Type Parameters

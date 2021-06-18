@@ -198,7 +198,7 @@ describe("dataProvider", () => {
 
     describe("custom", () => {
         it("correct get response", async () => {
-            const response = await DataProvider(API_URL, axios).custom(
+            const response = await DataProvider(API_URL, axios).custom!(
                 `${API_URL}/posts`,
                 "get",
             );
@@ -208,7 +208,7 @@ describe("dataProvider", () => {
         });
 
         it("correct filter response", async () => {
-            const response = await DataProvider(API_URL, axios).custom(
+            const response = await DataProvider(API_URL, axios).custom!(
                 `${API_URL}/posts`,
                 "get",
                 {
@@ -227,7 +227,7 @@ describe("dataProvider", () => {
         });
 
         it("correct sort response", async () => {
-            const response = await DataProvider(API_URL, axios).custom(
+            const response = await DataProvider(API_URL, axios).custom!(
                 `${API_URL}/posts`,
                 "get",
                 {
@@ -245,7 +245,7 @@ describe("dataProvider", () => {
         });
 
         it("correct post request", async () => {
-            const response = await DataProvider(API_URL, axios).custom(
+            const response = await DataProvider(API_URL, axios).custom!(
                 `${API_URL}/posts`,
                 "post",
                 {

@@ -19,8 +19,8 @@ import { Dayjs } from "dayjs";
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
-    const { tableProps, formProps } = useTable<
+export const PostList: React.FC<IResourceComponentsProps> = () => {
+    const { tableProps, searchFormProps } = useTable<
         IPost,
         { title: string; createdAt: [Dayjs, Dayjs] }
     >({
@@ -64,13 +64,12 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { RangePicker } = DatePicker;
 
     return (
-        <List {...props}>
+        <List>
             <Space direction="vertical" size="large">
-                <Form layout="inline" {...formProps}>
+                <Form layout="inline" {...searchFormProps}>
                     <Form.Item label="Title" name="title">
                         <Input placeholder="Title" />
                     </Form.Item>
-
                     <Form.Item label="Created At" name="createdAt">
                         <RangePicker />
                     </Form.Item>
@@ -81,13 +80,12 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                         </Button>
                     </Form.Item>
                 </Form>
-                <Table {...tableProps} key="id">
-                    <Table.Column key="id" dataIndex="id" title="ID" />
-                    <Table.Column key="title" dataIndex="title" title="Title" />
+                <Table {...tableProps} rowKey="id">
+                    <Table.Column dataIndex="id" title="ID" />
+                    <Table.Column dataIndex="title" title="Title" />
                     <Table.Column
                         dataIndex="createdAt"
                         title="Created At"
-                        key="createdAt"
                         render={(value) => (
                             <DateField format="LLL" value={value} />
                         )}
@@ -115,7 +113,6 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     <Table.Column<IPost>
                         title="Actions"
                         dataIndex="actions"
-                        key="actions"
                         render={(_value, record) => (
                             <Space>
                                 <EditButton
