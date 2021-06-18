@@ -1,6 +1,6 @@
 {
-  "short_name": "refine useBase64Upload Example",
-  "name": "refine useBase64Upload Example",
+  "short_name": "refine useBase64Upload example app",
+  "name": "refine useBase64Upload example app",
   "icons": [
     {
       "src": "favicon.ico",
