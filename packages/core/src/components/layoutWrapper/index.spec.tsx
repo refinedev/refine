@@ -8,14 +8,14 @@ import { LayoutProps } from "src/interfaces";
 
 const renderWithRefineContext = (
     children: React.ReactNode,
-    adminProvider: IRefineContextProvider,
+    refineProvider: IRefineContextProvider,
 ) => {
     return render(<Route path="/">{children}</Route>, {
         wrapper: TestWrapper({
             dataProvider: MockJSONServer,
             resources: [{ name: "posts", route: "posts" }],
             routerInitialEntries: ["/"],
-            adminProvider,
+            refineProvider,
         }),
     });
 };
