@@ -102,6 +102,7 @@ module.exports = {
                         "guides-and-concepts/hooks/useDrawerForm",
                         "guides-and-concepts/hooks/useStepsForm",
                         "guides-and-concepts/hooks/useTable",
+                        "guides-and-concepts/hooks/useSimpleList",
                         "guides-and-concepts/hooks/useCheckboxGroup",
                         "guides-and-concepts/hooks/useSelect",
                         "guides-and-concepts/hooks/useEditableTable",
