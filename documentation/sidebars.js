@@ -167,6 +167,7 @@ module.exports = {
                 "examples/useDeleteMany",
                 "examples/customLogin",
                 "examples/customFooter",
+                "examples/customSider",
             ],
         },
         {
