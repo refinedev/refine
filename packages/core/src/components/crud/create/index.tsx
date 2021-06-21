@@ -11,12 +11,12 @@ import {
     Col,
     Spin,
 } from "antd";
-import pluralize from "pluralize";
 
 import { useNavigation, useResourceWithRoute, useTranslate } from "@hooks";
 import { SaveButton } from "@components";
-
+import { userFriendlyResourceName } from "@definitions";
 import { ResourceRouterParams } from "../../../interfaces";
+
 export interface CreateProps {
     title?: string;
     actionButtons?: React.ReactNode;
@@ -72,7 +72,10 @@ export const Create: React.FC<CreateProps> = ({
                         title ??
                         translate(
                             `${resource.name}.titles.create`,
-                            `Create ${pluralize.singular(resource.name)}`,
+                            `Create ${userFriendlyResourceName(
+                                resource.name,
+                                "singular",
+                            )}`,
                         )
                     }
                     {...pageHeaderProps}
