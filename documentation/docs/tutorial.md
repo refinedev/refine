@@ -217,7 +217,7 @@ const { tableProps } = useTable<IPost>();
 
 The `tableProps` includes all necessary props for `<Table>` component to show and interact with data properly.
 
-You can find detailed usage of `useTable` from [here](guides-and-concepts/hooks/useTable.md).
+You can find detailed usage of `useTable` from [here](hooks/table/useTable.md).
 
 ### Showing and formatting data
 
@@ -426,7 +426,7 @@ We set a condition to start fetching only when data is available.
 
 To show category title field, find the title corresponding to the category id of the current record in data returned by `useMany`,
 
-[Refer to `useMany` documentation for detailed usage. &#8594](guides-and-concepts/hooks/data/useMany.md)
+[Refer to `useMany` documentation for detailed usage. &#8594](hooks/data/useMany.md)
 
 ## Editing a record
 
@@ -559,7 +559,7 @@ const { formProps, saveButtonProps } = useForm<IPost>();
 The `formProps` includes all necessary props for `<Form>` component to manage form data properly.
 Similarly `saveButtonProps` includes useful properties for a button to submit a form.
 
-[Refer to `useForm` documentation for detailed usage. &#8594](guides-and-concepts/hooks/useForm.md)
+[Refer to `useForm` documentation for detailed usage. &#8594](hooks/form/useForm.md)
 
 `useSelect` produces props for `<Select>` component from data at another resource. `<Select>` is an Ant Design component that is exported from refine for convenience.
 
@@ -576,7 +576,7 @@ const { selectProps: categorySelectProps } = useSelect<IPost>({
 `defaultValue` is used to get the value for the current item independent of search, sort and filter parameters.
 :::
 
-[Refer to `useSelect` documentation for detailed usage. &#8594](guides-and-concepts/hooks/useSelect.md)
+[Refer to `useSelect` documentation for detailed usage. &#8594](hooks/field/useSelect.md)
 
 ### Editing the form
 
@@ -809,7 +809,7 @@ const { data: categoryData } = useOne<ICategory>(
 
 Here, `useOne` is used to fetch a record data from `/resources/categories`.
 
-[Refer to `useOne` documentation for detailed usage. &#8594](guides-and-concepts/hooks/data/useOne.md)
+[Refer to `useOne` documentation for detailed usage. &#8594](hooks/data/useOne.md)
 
 :::caution attention
 Difference between `useOne` and `useShow` is that `useShow` is tuned for fetching data from current resource.

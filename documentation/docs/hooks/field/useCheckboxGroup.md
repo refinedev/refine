@@ -3,7 +3,7 @@ id: useCheckboxGroup
 title: useCheckboxGroup
 ---
 
-import basicUsage from '@site/static/img/guides-and-concepts/hooks/useCheckboxGroup/basic.png';
+import basicUsage from '@site/static/img/hooks/useCheckboxGroup/basic.png';
 
 `useCheckboxGroup` hook allows you to manage an Ant Design [Checkbox.Group](https://ant.design/components/checkbox/#components-checkbox-demo-group) component when records in a resource needs to be used as checkbox options.
 
@@ -65,7 +65,7 @@ export interface ITag {
 <br/>
 
 All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.Group>` component.
-`useCheckboxGroup` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](guides-and-concepts/hooks/data/useList.md)
+`useCheckboxGroup` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](hooks/data/useList.md)
 
 <div>
     <img src={basicUsage} />

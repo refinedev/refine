@@ -3,7 +3,7 @@ id: useStepsForm
 title: useStepsForm
 ---
 
-import useStepsFormExample from '@site/static/img/guides-and-concepts/hooks/useStepsForm/example.gif';
+import useStepsFormExample from '@site/static/img/hooks/useStepsForm/example.gif';
 
 `useStepsForm` hook allows you to split your form under an Ant Design based [Steps](https://ant.design/components/steps/) component and provides you with a few useful functionalities to help you manage your form.
 
@@ -116,7 +116,7 @@ export const PostCreate: React.FC = () => {
 :::tip
 Since `category` is a relational data, we use `useSelect` to fetch its data.
 
-[Refer to `useSelect` documentation for detailed usage. &#8594](useSelect.md)
+[Refer to `useSelect` documentation for detailed usage. &#8594](../field/useSelect.md)
 
 :::
 

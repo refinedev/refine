@@ -3,8 +3,8 @@ id: useEditableTable
 title: useEditableTable
 ---
 
-import editButton from '@site/static/img/guides-and-concepts/hooks/useEditableTable/edit-button.gif';
-import rowClickEdit from '@site/static/img/guides-and-concepts/hooks/useEditableTable/row-click-edit.gif';
+import editButton from '@site/static/img/hooks/useEditableTable/edit-button.gif';
+import rowClickEdit from '@site/static/img/hooks/useEditableTable/row-click-edit.gif';
 
 `useEditableTable`, [`useTable`](useTable.md)ın sağladığı özelliklerin üzerine, tablo üzerinde düzenleme özelliğini kolaylıkla implemente edebilmenizi sağlar. `useEditableTable`, Ant Design'ın [`<Table>`](https://ant.design/components/table/) ve [`<Form>`](https://ant.design/components/form/) componentlerinde kullanılabilen proplar döndürür.
 

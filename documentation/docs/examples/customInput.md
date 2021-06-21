@@ -1,6 +1,6 @@
 ---
-id: customInputs
-title: customInputs
+id: customInput
+title: Custom Input
 ---
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/customInputs)

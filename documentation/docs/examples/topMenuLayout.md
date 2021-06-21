@@ -1,6 +1,6 @@
 ---
 id: topMenuLayout
-title: topMenuLayout
+title: Top Menu Layout
 ---
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/topMenuLayout)

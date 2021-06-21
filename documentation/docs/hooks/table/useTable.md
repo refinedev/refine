@@ -3,8 +3,8 @@ id: useTable
 title: useTable
 ---
 
-import tableSorting from '@site/static/img/guides-and-concepts/hooks/useTable/table-sorting.gif';
-import filters from '@site/static/img/guides-and-concepts/hooks/useTable/filters.gif';
+import tableSorting from '@site/static/img/hooks/useTable/table-sorting.gif';
+import filters from '@site/static/img/hooks/useTable/filters.gif';
 
 `useTable` kullanarak, API'dan gelen kayıtlarınız için Ant Design [`<Table>`](https://ant.design/components/table/) component'ine uygun şekilde proplar elde edersiniz. Sayfalama, sıralama, filtreleme gibi özelliklerin tamamı out of the box olarak gelir.
 
@@ -342,7 +342,7 @@ export const PostList: React.FC = () => {
 | initialSorter    | Varsayılan sıralama.                                                                                                            | [`CrudSorting`](interfaces.md#crudsorting) |
 | initialFilter    | Varsayılan filtreleme.                                                                                                          | [`CrudFilters`](interfaces.md#crudfilters) |
 | syncWithLocation | Tablodaki sıralamalar, filtreler, sayfa indeksi ve sayfa başına gösterilen kayıt browser history tarafından takip edilir.       | `boolean`                                  |
-| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form](../table-search.md). | `Function`                                 |
+| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form](../../guides-and-concepts/table/table-search.md). | `Function`                                 |
 
 ## Live Codesandbox Example
 

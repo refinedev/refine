@@ -3,8 +3,8 @@ id: useSelect
 title: useSelect
 ---
 
-import basicUsage from '@site/static/img/guides-and-concepts/hooks/useSelect/basic-usage.png';
-import search from '@site/static/img/guides-and-concepts/hooks/useSelect/search.png';
+import basicUsage from '@site/static/img/hooks/useSelect/basic-usage.png';
+import search from '@site/static/img/hooks/useSelect/search.png';
 
 `useSelect` hook allows you to manage an Ant Design [Select](https://ant.design/components/select/) component when records in a resource needs to be used as select options.
 
@@ -79,7 +79,7 @@ All we have to do is pass the `selectProps` it returns to the `<Select>` compone
 By default, refine does the search using the `useList` hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://ant.design/components/select/#components-select-demo-search-sort) example.
 :::
 
-`useSelect` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](data/useList.md)
+`useSelect` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](../data/useList.md)
 
 ## Options
 
@@ -112,7 +112,7 @@ Adds extra `options` to `<Select>` component. It uses `useMany` so `defaultValue
 defaultValue: ["1", "2"],
 ```
 
-[Refer to `useMany` documentation for detailed usage. &#8594](data/useMany.md)
+[Refer to `useMany` documentation for detailed usage. &#8594](../data/useMany.md)
 
 :::tip
 Can use `defaultValue` property when edit a record in `<Edit>` component.
