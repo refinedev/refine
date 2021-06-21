@@ -11,40 +11,6 @@ module.exports = {
         },
         {
             type: "category",
-            label: "Guides & Concepts",
-            items: [
-                {
-                    type: "category",
-                    label: "Upload",
-                    items: [
-                        "guides-and-concepts/upload/multipart-upload",
-                        "guides-and-concepts/upload/base64-upload",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Auth",
-                    items: ["guides-and-concepts/auth/auth0"],
-                },
-                {
-                    type: "category",
-                    label: "Table",
-                    items: ["guides-and-concepts/table/table-search"],
-                },
-                {
-                    type: "category",
-                    label: "Import - Export",
-                    items: [
-                        "guides-and-concepts/import-export/csv-import",
-                        "guides-and-concepts/import-export/csv-export",
-                    ],
-                },
-                "guides-and-concepts/custom-pages",
-            ],
-        },
-
-        {
-            type: "category",
             label: "API References",
             items: [
                 {
@@ -203,7 +169,39 @@ module.exports = {
                 },
             ],
         },
-
+        {
+            type: "category",
+            label: "Guides & Concepts",
+            items: [
+                {
+                    type: "category",
+                    label: "Upload",
+                    items: [
+                        "guides-and-concepts/upload/multipart-upload",
+                        "guides-and-concepts/upload/base64-upload",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Auth",
+                    items: ["guides-and-concepts/auth/auth0"],
+                },
+                {
+                    type: "category",
+                    label: "Table",
+                    items: ["guides-and-concepts/table/table-search"],
+                },
+                {
+                    type: "category",
+                    label: "Import - Export",
+                    items: [
+                        "guides-and-concepts/import-export/csv-import",
+                        "guides-and-concepts/import-export/csv-export",
+                    ],
+                },
+                "guides-and-concepts/custom-pages",
+            ],
+        },
         {
             type: "category",
             label: "Examples",
