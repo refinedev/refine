@@ -14,7 +14,7 @@ import chunk from "lodash/chunk";
 import { UseCreateReturnType } from "@hooks/data/useCreate";
 import { UseCreateManyReturnType } from "@hooks/data/useCreateMany";
 
-type ImportOptions<TItem, TVariables extends TItem = TItem> = {
+type ImportOptions<TItem, TVariables = any> = {
     resourceName?: string;
     mapData?: MapDataFn<TItem, TVariables>;
     paparseOptions?: ParseConfig;
@@ -25,10 +25,10 @@ export const useImport = <
     TItem = any,
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables extends TItem = TItem,
+    TVariables = any,
 >({
     resourceName,
-    mapData = (item) => item as TVariables,
+    mapData = (item) => item as unknown as TVariables,
     paparseOptions,
     batchSize,
 }: ImportOptions<TItem, TVariables> = {}): {

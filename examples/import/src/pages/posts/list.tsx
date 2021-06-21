@@ -4,6 +4,7 @@ import {
     TextField,
     useTable,
     useMany,
+    useImport,
     Space,
     EditButton,
     ShowButton,
@@ -22,24 +23,26 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         enabled: categoryIds.length > 0,
     });
 
+    const importProps = useImport<IPostFile>({
+        mapData: (item) => {
+            return {
+                title: item.title,
+                content: item.content,
+                status: item.status,
+                category: {
+                    id: item.categoryId,
+                },
+                user: {
+                    id: item.userId,
+                },
+            };
+        },
+        batchSize: 1,
+    });
+
     const Actions = () => (
         <Space direction="horizontal">
-            <ImportButton
-                mapData={(item: IPostFile) => {
-                    return {
-                        title: item.title,
-                        content: item.content,
-                        status: item.status,
-                        category: {
-                            id: item.categoryId,
-                        },
-                        user: {
-                            id: item.userId,
-                        },
-                    };
-                }}
-                batchSize={1}
-            />
+            <ImportButton {...importProps} />
         </Space>
     );
 

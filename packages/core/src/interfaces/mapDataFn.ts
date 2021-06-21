@@ -1,3 +1,3 @@
-export interface MapDataFn<TItem, TVariables extends TItem = TItem> {
+export interface MapDataFn<TItem, TVariables> {
     (item: TItem, index?: number, items?: TItem[]): TVariables;
 }
