@@ -26,7 +26,7 @@ import { OrderStatus } from "components";
 
 import { IOrder, IStore, IOrderFilterVariables } from "interfaces";
 
-export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
+export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter, searchFormProps } = useTable<
         IOrder,
         IOrderFilterVariables
@@ -96,7 +96,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = (props) => {
 
     return (
         <List
-            {...props}
             Aside={
                 <Card title={t("orders:filter.title")}>
                     <Filter formProps={searchFormProps} />

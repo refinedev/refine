@@ -12,7 +12,7 @@ import {
 
 import { ICategory } from "interfaces";
 
-export const CategoryList: React.FC<IResourceComponentsProps> = (props) => {
+export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<ICategory>({
         initialSorter: [
             {
@@ -25,7 +25,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = (props) => {
     const t = useTranslate();
 
     return (
-        <List {...props}>
+        <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     key="id"

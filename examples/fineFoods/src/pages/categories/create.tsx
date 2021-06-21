@@ -10,13 +10,19 @@ import {
 
 import { ICategory } from "interfaces";
 
-export const CategoryCreate: React.FC<IResourceComponentsProps> = (props) => {
+export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const { formProps, saveButtonProps } = useForm<ICategory>();
 
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
+        <Create saveButtonProps={saveButtonProps}>
+            <Form
+                {...formProps}
+                layout="vertical"
+                initialValues={{
+                    isActive: true,
+                }}
+            >
                 <Form.Item
                     label={t("categories:fields.title")}
                     name="title"
@@ -33,9 +39,7 @@ export const CategoryCreate: React.FC<IResourceComponentsProps> = (props) => {
                     name="isActive"
                     valuePropName="checked"
                 >
-                    <Checkbox value={true}>
-                        {t("categories:fields.isActive")}
-                    </Checkbox>
+                    <Checkbox>{t("categories:fields.isActive")}</Checkbox>
                 </Form.Item>
             </Form>
         </Create>

@@ -22,7 +22,7 @@ import {
 
 import { IUser, IUserFilterVariables } from "interfaces";
 
-export const UserList: React.FC<IResourceComponentsProps> = (props) => {
+export const UserList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, searchFormProps } = useTable<
         IUser,
         IUserFilterVariables
@@ -61,7 +61,6 @@ export const UserList: React.FC<IResourceComponentsProps> = (props) => {
 
     return (
         <List
-            {...props}
             Aside={
                 <Card title={t("users:filter.title")}>
                     <Filter formProps={searchFormProps} />
