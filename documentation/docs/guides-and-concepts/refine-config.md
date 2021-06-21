@@ -125,3 +125,24 @@ const App: React.FC = () => {
 
 
 [Refer to mutation mode docs for further information. &#8594](#)
+
+### `undoableTimeout`
+
+Duration in miliseconds for timeout period for cancelling mutations in **undoable** mode. Mutations can be cancelled during this period. This period can also be set on supported data hooks. The one set in hooks will override the value set with `undoableTimeout`. `undoableTimeout` has a default value of `5000`.
+
+```tsx title="App.tsx"
+...
+
+const App: React.FC = () => {
+    return (
+        <Refine
+            dataProvider={dataProvider(API_URL)}
+            mutationMode="undoable"
+            //highlight-next-line
+            undoableTimeout={3500}
+        >
+         ...
+        </Refine>
+    );
+};
+```
