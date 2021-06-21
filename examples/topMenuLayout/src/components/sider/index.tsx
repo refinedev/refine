@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Menu, useMenu, useTitle } from "@pankod/refine";
 
-export const CustomMenu: React.FC = () => {
+export const CustomSider: React.FC = () => {
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
 

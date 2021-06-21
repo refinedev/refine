@@ -3,7 +3,7 @@ import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList } from "pages/posts";
-import { CustomMenu } from "./CustomMenu";
+import { CustomSider } from "components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -14,7 +14,7 @@ const App: React.FC = () => {
             Layout={({ children, Footer, OffLayoutArea }) => (
                 <AntdLayout>
                     <AntdLayout.Header>
-                        <CustomMenu />
+                        <CustomSider />
                     </AntdLayout.Header>
                     <AntdLayout.Content className="site-layout">
                         <AntdLayout.Content>
@@ -28,17 +28,8 @@ const App: React.FC = () => {
                 </AntdLayout>
             )}
             Title={() => (
-                <Link to="/">
-                    <a
-                        href="/"
-                        style={{
-                            float: "left",
-                            minWidth: "70px",
-                            textAlign: "center",
-                        }}
-                    >
-                        refine
-                    </a>
+                <Link to="/" style={{ float: "left", marginRight: "10px" }}>
+                    <img src="/refine.svg" alt="Refine" />
                 </Link>
             )}
         >

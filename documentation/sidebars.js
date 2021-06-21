@@ -163,10 +163,12 @@ module.exports = {
             type: "category",
             label: "Examples",
             items: [
+                "examples/topMenuLayout",
                 "examples/useUpdateMany",
                 "examples/useDeleteMany",
                 "examples/customLogin",
                 "examples/customFooter",
+                "examples/customSider",
                 "examples/customInputs",
             ],
         },
