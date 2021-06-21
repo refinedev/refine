@@ -101,6 +101,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                     <Filter formProps={searchFormProps} />
                 </Card>
             }
+            title={t("orders:title")}
         >
             <Table {...tableProps} rowKey="id">
                 <Table.Column
