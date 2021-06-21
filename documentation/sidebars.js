@@ -13,6 +13,7 @@ module.exports = {
             type: "category",
             label: "Guides & Concepts",
             items: [
+                "guides-and-concepts/refine-config",
                 {
                     type: "category",
                     label: "Providers",
