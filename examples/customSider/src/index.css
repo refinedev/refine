@@ -1,0 +1,11 @@
+.title-container {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-container strong {
+    color: white;
+    font-size: 18px;
+}
