@@ -1,6 +1,6 @@
 {
-  "short_name": "pankod/refine strapi example",
-  "name": "Refine Strapi Example App",
+  "short_name": "refine strapi example app",
+  "name": "refine strapi example app",
   "icons": [
     {
       "src": "favicon.ico",
