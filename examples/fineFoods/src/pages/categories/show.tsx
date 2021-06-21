@@ -11,10 +11,10 @@ import { ICategory } from "interfaces";
 
 const { Title, Text } = Typography;
 
-export const CategoryShow: React.FC<IResourceComponentsProps> = (props) => {
+export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const { queryResult } = useShow<ICategory>();
-    const { data, isLoading } = queryResult;
+    const { data, isFetching } = queryResult;
     const record = data?.data;
 
     const renderContent = () => {
@@ -33,11 +33,7 @@ export const CategoryShow: React.FC<IResourceComponentsProps> = (props) => {
     };
 
     return (
-        <Show
-            {...props}
-            title={t("categories:show.title")}
-            isLoading={isLoading}
-        >
+        <Show title={t("categories:show.title")} isLoading={isFetching}>
             {record && renderContent()}
         </Show>
     );

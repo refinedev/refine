@@ -14,14 +14,24 @@ import {
 
 import { IUser } from "interfaces";
 
-export const UserEdit: React.FC<IResourceComponentsProps> = (props) => {
+export const UserEdit: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
-    const { formProps, saveButtonProps } = useForm<IUser>();
+    const {
+        formProps,
+        saveButtonProps,
+        queryResult: { isFetching },
+    } = useForm<IUser>();
     const apiUrl = useApiUrl();
 
     return (
-        <Edit {...props} saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
+        <Edit isLoading={isFetching} saveButtonProps={saveButtonProps}>
+            <Form
+                {...formProps}
+                layout="vertical"
+                initialValues={{
+                    isActive: true,
+                }}
+            >
                 <Form.Item
                     label={t("users:fields.firstName")}
                     name="firstName"
@@ -87,9 +97,7 @@ export const UserEdit: React.FC<IResourceComponentsProps> = (props) => {
                     ]}
                     valuePropName="checked"
                 >
-                    <Checkbox value={true}>
-                        {t("users:fields.isActive")}
-                    </Checkbox>
+                    <Checkbox>{t("users:fields.isActive")}</Checkbox>
                 </Form.Item>
                 <Form.Item label={t("users:fields.avatar.label")}>
                     <Form.Item

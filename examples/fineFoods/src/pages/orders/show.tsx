@@ -20,9 +20,9 @@ import { IOrder } from "interfaces";
 
 const { Title, Text } = Typography;
 
-export const OrderShow: React.FC<IResourceComponentsProps> = (props) => {
+export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IOrder>();
-    const { data, isLoading } = queryResult;
+    const { data, isFetching } = queryResult;
     const record = data?.data;
 
     const renderContent = () => {
@@ -141,14 +141,13 @@ export const OrderShow: React.FC<IResourceComponentsProps> = (props) => {
 
     return (
         <Show
-            {...props}
             Aside={
                 <Card title="Order History">
                     <Aside />
                 </Card>
             }
             title="Order Detail"
-            isLoading={isLoading}
+            isLoading={isFetching}
         >
             {record && renderContent()}
         </Show>

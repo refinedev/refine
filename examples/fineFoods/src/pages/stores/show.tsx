@@ -15,7 +15,7 @@ const { Title, Text } = Typography;
 export const StoreShow: React.FC<IResourceComponentsProps> = (props) => {
     const t = useTranslate();
     const { queryResult } = useShow<IStore>();
-    const { data, isLoading } = queryResult;
+    const { data, isFetching } = queryResult;
     const record = data?.data;
 
     const renderContent = () => {
@@ -38,7 +38,7 @@ export const StoreShow: React.FC<IResourceComponentsProps> = (props) => {
     };
 
     return (
-        <Show {...props} title={t("stores:show.title")} isLoading={isLoading}>
+        <Show title={t("stores:show.title")} isLoading={isFetching}>
             {record && renderContent()}
         </Show>
     );
