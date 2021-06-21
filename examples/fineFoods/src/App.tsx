@@ -5,6 +5,7 @@ import { authProvider } from "authProvider";
 import { DashbaordPage } from "./pages/dashboard";
 import { OrderList, OrderShow } from "./pages/orders";
 import { UserList, UserEdit, UserShow } from "./pages/users";
+import { CourierList } from "./pages/couriers";
 import {
     ProductCreate,
     ProductEdit,
@@ -89,6 +90,13 @@ const App: React.FC = () => {
                 edit={CategoryEdit}
                 create={CategoryCreate}
                 show={CategoryShow}
+            />
+            <Resource
+                name="couriers"
+                options={{
+                    label: t("couriers:title"),
+                }}
+                list={CourierList}
             />
         </Refine>
     );

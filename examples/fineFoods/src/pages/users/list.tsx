@@ -66,6 +66,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                     <Filter formProps={searchFormProps} />
                 </Card>
             }
+            title={t("users:title")}
         >
             <Table {...tableProps} rowKey="id">
                 <Table.Column
