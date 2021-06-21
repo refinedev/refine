@@ -54,7 +54,6 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List
-            canCreate
             createButtonProps={{
                 onClick: () => {
                     show();
@@ -62,7 +61,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
             }}
             title={t("couriers:title")}
         >
-            <Drawer {...editDrawerProps}>
+            <Drawer {...editDrawerProps} width={600}>
                 <Edit
                     saveButtonProps={editSaveButtonProps}
                     deleteButtonProps={deleteButtonProps}
