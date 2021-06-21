@@ -4,6 +4,8 @@ title: <Refine> Component
 sidebar_label: <Refine>
 ---
 
+import warnwhen from '@site/static/img/warnwhen.png';
+
 `<Refine>` component is the entry point of a **refine** app. It is where the most high level configuration of the app occurs.
 It requires only a [`dataProvider`](/docs/guides-and-concepts/providers/data-provider) to bootstrap the app. After adding a `dataProvider` `<Resource>`'s can be added as children.
 
@@ -128,7 +130,9 @@ const App: React.FC = () => {
 
 ### `undoableTimeout`
 
-Duration in miliseconds for timeout period for cancelling mutations in **undoable** mode. Mutations can be cancelled during this period. This period can also be set on supported data hooks. The one set in hooks will override the value set with `undoableTimeout`. `undoableTimeout` has a default value of `5000`.
+Duration in miliseconds for timeout period for cancelling mutations in **undoable** mode. Mutations can be cancelled during this period. This period can also be set on supported data hooks.  
+The one set in hooks will override the value set with `undoableTimeout`.  
+`undoableTimeout` has a default value of `5000`.
 
 ```tsx title="App.tsx"
 ...
@@ -146,3 +150,219 @@ const App: React.FC = () => {
     );
 };
 ```
+
+<br />
+
+### `syncWithLocation`
+
+List query parameter values can be edited manually by typing directly in the URL. To activate this feature `syncWithLocation` needs to be set to `true`.
+
+When `syncWithLocation` is active, URL on the listing page shows query parameters like below:
+
+```
+/resources/posts?current=1&pageSize=8&sort[]=createdAt&order[]=desc
+```
+
+Users are able to change current page, items count per page, sort and filter parameters.
+
+Default value is `false`.
+
+<br />
+
+### `warnWhenUnsavedChanges`
+
+When you have unsaved changes and try to leave the current page, **refine** shows a confirmation modal box.
+To activate this feature, set the `warnWhenUnsavedChanges` to `true`.
+
+<br />
+
+
+<div style={{textAlign: "center",  backgroundColor:"#efefef",  padding: "13px 10px 10px"}}>
+
+<img src={warnwhen} />
+
+</div>
+<br/>
+
+Default value is `false`.
+
+<br />
+
+### `configProviderProps`
+
+Ant Design's [ConfigProvider](https://ant.design/components/config-provider) which includes default configurations can be change using `configProviderProps`. 
+
+[Props for Ant Design's ConfigProvider &#8594](https://ant.design/components/config-provider/#API)
+
+For example, Layout direction can be set to other way:
+
+```tsx title="App.tsx"
+...
+const App: React.FC = () => 
+    (
+        <Refine
+            dataProvider={dataProvider(API_URL)}
+            //highlight-start
+            configProviderProps={{
+                direction: "rtl"
+            }}
+            //highlight-end
+        >
+         ...
+        </Refine>
+    );
+```
+
+<br />
+
+### `LoginPage`
+
+**refine** has a default login page form which is served on `/login` route when `authProvider` config is provided.
+
+Custom login component can be passed to `LoginPage` prop.
+
+```tsx title="App.tsx"
+...
+const CustomLoginPage = () => <div> Custom Login Page </div>;
+
+const App: React.FC = () => 
+    (
+        <Refine
+            dataProvider={dataProvider(API_URL)}
+            //highlight-start
+            LoginPage={CustomLoginPage}
+            //highlight-end
+        >
+         ...
+        </Refine>
+    );
+```
+<br />
+
+### `DashboardPage`
+
+A custom dashboard page can be passed to `DashboardPage` prop which is accessible on root route.  
+The dashboard item will appear at the top of the sider menu.
+
+First `<Resource>` will be shown if no `DashboardPage` is given.
+
+
+```tsx title="App.tsx"
+...
+const CustomDashboardPage = () => <div> Custom Dashboard Page </div>;
+
+const App: React.FC = () => 
+    (
+        <Refine
+            dataProvider={dataProvider(API_URL)}
+            //highlight-start
+            DashboardPage={CustomDashboardPage}
+            //highlight-end
+        >
+         ...
+        </Refine>
+    );
+```
+
+<br />
+
+### `ReadyPage`
+
+**refine** shows a default ready page on root route when no `<Resource>` is passed to `<Refine>` component as a child.
+
+Custom ready page component can be set by passing to `ReadyPage` prop.
+
+```tsx title="App.tsx"
+...
+const CustomReadyPage = () => <div> Custom Ready Page </div>;
+
+const App: React.FC = () => 
+    (
+        <Refine
+            dataProvider={dataProvider(API_URL)}
+            //highlight-start
+            ReadyPage={CustomReadyPage}
+            //highlight-end
+        >
+         ...
+        </Refine>
+    );
+```
+
+<br />
+
+### `Sider`
+
+The default sidebar can be customized by using refine hooks and passing custom component to `Sider` prop.
+
+https://ant.design/components/layout/#Layout.Sider
+
+[Refer to useMenu hook documentation for detailed sidebar customization. &#8594](docs/hooks/resource/useMenu.md)
+
+
+### `Footer`
+
+The default app footer can be customized by passing `Footer` prop.
+
+
+```tsx title="App.tsx"
+import {
+    Refine,
+    //highlight-next-line
+    AntdLayout,
+} from "@pankod/refine";
+...
+const App: React.FC = () => 
+    (
+        <Refine
+            dataProvider={dataProvider(API_URL)}
+            //highlight-start
+            Footer={() => (
+                <AntdLayout.Footer style={{ textAlign: "center" }}>
+                    Custom Footer
+                </AntdLayout.Footer>
+        )}
+            //highlight-end
+        >
+         ...
+        </Refine>
+    );
+```
+
+### `Layout`
+
+Default page Layout can be customized by passing `Layout` prop.
+
+
+```tsx title="App.tsx"
+...
+
+const App: React.FC = () => 
+    (
+        <Refine
+            dataProvider={dataProvider(API_URL)}
+            //highlight-start
+            Layout={({ children, Sider, Header, Footer, OffLayoutArea }) => (
+                <AntdLayout
+                    style={{ minHeight: "100vh", flexDirection: "row" }}
+                >
+                    <Sider />
+                    <AntdLayout className="site-layout">
+                        <Header />
+                        <AntdLayout.Content>
+                            <div style={{ padding: 24, minHeight: 360 }}>
+                                {children}
+                            </div>
+                        </AntdLayout.Content>
+                        <Footer />
+                    </AntdLayout>
+                    <OffLayoutArea />
+                </AntdLayout>
+            )}
+            //highlight-end
+        >
+         ...
+        </Refine>
+    );
+```
+
