@@ -24,7 +24,6 @@ export const RefineContext = React.createContext<IRefineContext>({
     Footer: DefaultFooter,
     Layout: DefaultLayout,
     OffLayoutArea: DefaultOffLayoutArea,
-    reactQueryClientConfig: {},
 });
 
 export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
@@ -40,7 +39,6 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
     Sider = DefaultSider,
     Footer = DefaultFooter,
     OffLayoutArea = DefaultOffLayoutArea,
-    reactQueryClientConfig = {},
 }) => {
     const [warnWhen, setWarnWhen] = useState(false);
     return (
@@ -59,7 +57,6 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
                 Sider,
                 Footer,
                 OffLayoutArea,
-                reactQueryClientConfig,
             }}
         >
             {children}

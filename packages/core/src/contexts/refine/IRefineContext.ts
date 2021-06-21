@@ -1,5 +1,5 @@
 import React from "react";
-import { QueryObserverOptions } from "react-query";
+
 import { MutationMode, TitleProps, LayoutProps } from "../../interfaces";
 
 export interface IRefineContext {
@@ -16,7 +16,6 @@ export interface IRefineContext {
     Header: React.FC;
     Footer: React.FC;
     OffLayoutArea: React.FC;
-    reactQueryClientConfig: QueryObserverOptions;
 }
 
 export interface IRefineContextProvider {
@@ -31,5 +30,4 @@ export interface IRefineContextProvider {
     Header?: React.FC;
     Footer?: React.FC;
     OffLayoutArea?: React.FC;
-    reactQueryClientConfig?: QueryObserverOptions;
 }
