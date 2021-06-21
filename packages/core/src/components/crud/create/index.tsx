@@ -35,7 +35,7 @@ export const Create: React.FC<CreateProps> = ({
     pageHeaderProps,
     resource: resourceFromProps,
     Aside,
-    isLoading,
+    isLoading = false,
 }) => {
     const { goBack } = useNavigation();
     const translate = useTranslate();

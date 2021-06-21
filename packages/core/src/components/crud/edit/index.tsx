@@ -53,7 +53,7 @@ export const Edit: React.FC<EditProps> = ({
     canDelete,
     resource: resourceFromProps,
     Aside,
-    isLoading,
+    isLoading = false,
 }) => {
     const translate = useTranslate();
     const { goBack, list } = useNavigation();
