@@ -1,9 +1,8 @@
-import React from "react";
-
+import React, { useState } from "react";
 import { AntdLayout, Menu, Link, useMenu, useTitle } from "@pankod/refine";
 
-export const CustomMenu: React.FC = () => {
-    const [collapsed, setCollapsed] = React.useState(false);
+export const CustomSider: React.FC = () => {
+    const [collapsed, setCollapsed] = useState<boolean>(false);
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
 
