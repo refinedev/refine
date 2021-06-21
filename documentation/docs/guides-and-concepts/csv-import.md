@@ -132,7 +132,6 @@ export const PostList: React.FC = () => {
             />
         </Space>
     );
-
     ...
 };
 ```

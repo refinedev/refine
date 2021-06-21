@@ -104,6 +104,7 @@ module.exports = {
                         "guides-and-concepts/hooks/useEditableTable",
                         "guides-and-concepts/hooks/useRadioGroup",
                         "guides-and-concepts/hooks/useForm",
+                        "guides-and-concepts/hooks/useImport",
                     ],
                 },
                 {
@@ -155,7 +156,6 @@ module.exports = {
                 "guides-and-concepts/auth0",
                 "guides-and-concepts/table-search",
                 "guides-and-concepts/custom-pages",
-                "guides-and-concepts/csv-import",
                 "guides-and-concepts/csv-export",
             ],
         },
