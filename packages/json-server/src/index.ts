@@ -39,23 +39,22 @@ const mapOperator = (operator: CrudOperators): string => {
 };
 
 const generateSort = (sort?: CrudSorting) => {
-    let _sort = ["id"]; // default sorting field
-    let _order = ["desc"]; // default sorting
-
-    if (sort) {
-        _sort = [];
-        _order = [];
+    if (sort && sort.length > 0) {
+        const _sort: string[] = [];
+        const _order: string[] = [];
 
         sort.map((item) => {
             _sort.push(item.field);
             _order.push(item.order);
         });
+
+        return {
+            _sort,
+            _order,
+        };
     }
 
-    return {
-        _sort,
-        _order,
-    };
+    return;
 };
 
 const generateFilter = (filters?: CrudFilters) => {
@@ -86,16 +85,24 @@ const JsonServer = (
         const current = params.pagination?.current || 1;
         const pageSize = params.pagination?.pageSize || 10;
 
-        const { _sort, _order } = generateSort(params.sort);
-
         const queryFilters = generateFilter(params.filters);
 
-        const query = {
+        const query: {
+            _start: number;
+            _end: number;
+            _sort?: string;
+            _order?: string;
+        } = {
             _start: (current - 1) * pageSize,
             _end: current * pageSize,
-            _sort: _sort.join(","),
-            _order: _order.join(","),
         };
+
+        const generatedSort = generateSort(params.sort);
+        if (generatedSort) {
+            const { _sort, _order } = generatedSort;
+            query._sort = _sort.join(",");
+            query._order = _order.join(",");
+        }
 
         const { data, headers } = await httpClient.get(
             `${url}?${stringify(query)}&${stringify(queryFilters)}`,
@@ -209,12 +216,15 @@ const JsonServer = (
         let requestUrl = `${url}?`;
 
         if (sort) {
-            const { _sort, _order } = generateSort(sort);
-            const sortQuery = {
-                _sort: _sort.join(","),
-                _order: _order.join(","),
-            };
-            requestUrl = `${requestUrl}&${stringify(sortQuery)}`;
+            const generatedSort = generateSort(sort);
+            if (generatedSort) {
+                const { _sort, _order } = generatedSort;
+                const sortQuery = {
+                    _sort: _sort.join(","),
+                    _order: _order.join(","),
+                };
+                requestUrl = `${requestUrl}&${stringify(sortQuery)}`;
+            }
         }
 
         if (filters) {
