@@ -203,6 +203,7 @@ module.exports = {
                 "examples/customFooter",
                 "examples/customSider",
                 "examples/customInput",
+                "examples/strapi",
             ],
         },
         {
