@@ -170,6 +170,7 @@ module.exports = {
                 "examples/customFooter",
                 "examples/customSider",
                 "examples/customInputs",
+                "examples/offLayoutArea",
             ],
         },
         {
