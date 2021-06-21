@@ -17,7 +17,7 @@ export interface ListProps {
 }
 
 export const List: React.FC<ListProps> = ({
-    canCreate = true,
+    canCreate,
     Aside,
     title,
     children,
@@ -32,15 +32,17 @@ export const List: React.FC<ListProps> = ({
 
     const resource = resourceWithRoute(routeResourceName ?? resourceFromProps);
 
-    const defaultExtra = canCreate &&
-        (createButtonProps || resource.canCreate) && (
-            <CreateButton
-                size="middle"
-                resourceName={resource.name}
-                {...createButtonProps}
-            />
-        );
+    const isCreateButtonVisible =
+        canCreate ?? (resource.canCreate || createButtonProps);
 
+    const defaultExtra = isCreateButtonVisible && (
+        <CreateButton
+            size="middle"
+            resourceName={resource.name}
+            data-testid="list-create-button"
+            {...createButtonProps}
+        />
+    );
     return (
         <Row gutter={[16, 16]}>
             <Col flex="1 1 200px">

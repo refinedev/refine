@@ -15,7 +15,7 @@ import {
 
 import { ICategory, IUser } from "interfaces";
 
-export const ProductCreate: React.FC<IResourceComponentsProps> = (props) => {
+export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const { formProps, saveButtonProps } = useForm<IUser>();
 
@@ -26,8 +26,14 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = (props) => {
     });
 
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
+        <Create saveButtonProps={saveButtonProps}>
+            <Form
+                {...formProps}
+                layout="vertical"
+                initialValues={{
+                    isActive: true,
+                }}
+            >
                 <Form.Item
                     label={t("products:fields.name")}
                     name="name"
@@ -55,9 +61,7 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = (props) => {
                     name="isActive"
                     valuePropName="checked"
                 >
-                    <Checkbox value={true}>
-                        {t("products:fields.isActive")}
-                    </Checkbox>
+                    <Checkbox>{t("products:fields.isActive")}</Checkbox>
                 </Form.Item>
                 <Form.Item
                     label={t("products:fields.price")}

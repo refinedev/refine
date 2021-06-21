@@ -168,6 +168,7 @@ module.exports = {
                 "examples/customLogin",
                 "examples/customFooter",
                 "examples/customSider",
+                "examples/customInputs",
             ],
         },
         {

@@ -1,0 +1,19 @@
+{
+  "title": "Couriers",
+  "show": {
+    "title": "Courier Detail"
+  },
+  "fields": {
+    "id": "ID",
+    "avatar": {
+      "label": "Avatar",
+      "description": "Click or drag avatar image to this area to upload."
+    },
+    "name": "Name",
+    "surname": "Surname",
+    "gender": "Gender",
+    "gsm": "Gsm Number",
+    "createdAt": "CreatedAt",
+    "isActive": "Is Active"
+  }
+}
