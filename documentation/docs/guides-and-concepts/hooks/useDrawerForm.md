@@ -41,6 +41,7 @@ export const PostList: React.FC () => {
         <>
             <List
                 //highlight-start
+                canCreate
                 createButtonProps={{
                     onClick: () => {
                         show();

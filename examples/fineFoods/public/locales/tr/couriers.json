@@ -1,0 +1,16 @@
+{
+  "title": "Kuryeler",
+  "fields": {
+    "id": "ID",
+    "avatar": {
+      "label": "Avatar",
+      "description": "Yüklemek için avatar resmini bu alana tıklayın veya sürükleyin."
+    },
+    "name": "Adı",
+    "surname": "Soyadı",
+    "gender": "Cinsiyet",
+    "gsm": "Gsm Numarsı",
+    "createdAt": "Oluşturma Tarihi",
+    "isActive": "Aktif"
+  }
+}
