@@ -90,11 +90,6 @@ module.exports = {
                         },
                         {
                             type: "category",
-                            label: "Authorization",
-                            items: ["guides-and-concepts/hooks/auth/useLogout"],
-                        },
-                        {
-                            type: "category",
                             label: "Navigation",
                             items: [
                                 "guides-and-concepts/hooks/navigation/useNavigation",
@@ -167,7 +162,12 @@ module.exports = {
         {
             type: "category",
             label: "Examples",
-            items: ["examples/useUpdateMany", "examples/useDeleteMany"],
+            items: [
+                "examples/useUpdateMany",
+                "examples/useDeleteMany",
+                "examples/customLogin",
+                "examples/customFooter",
+            ],
         },
         {
             type: "doc",

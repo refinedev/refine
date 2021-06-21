@@ -6,6 +6,7 @@ import {
     useOne,
     IResourceComponentsProps,
 } from "@pankod/refine";
+
 import { IPost, ICategory } from "interfaces";
 
 const { Title, Text } = Typography;

@@ -17,7 +17,7 @@ import {
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IPost>();
 
     const categoryIds =
@@ -35,7 +35,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     });
 
     return (
-        <List {...props}>
+        <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="title" title="title" />
                 <Table.Column
@@ -80,7 +80,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
-                    render={(_text, record): React.ReactNode => {
+                    render={(_, record) => {
                         return (
                             <Space>
                                 <EditButton
