@@ -15,7 +15,7 @@ const App: React.FC = () => {
             Sider={CustomSider}
             Title={({ collapsed }) => (
                 <div className="title-container">
-                    {collapsed && <strong>Refine</strong>}
+                    {collapsed && <img src="/short-refine.svg" alt="Refine" />}
                     {!collapsed && <img src="/refine.svg" alt="Refine" />}
                 </div>
             )}

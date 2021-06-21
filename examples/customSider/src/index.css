@@ -5,7 +5,6 @@
     justify-content: center;
 }
 
-.title-container strong {
-    color: white;
-    font-size: 18px;
+.title-container img {
+    max-height: 36px;
 }
