@@ -3,7 +3,7 @@ id: useRadioGroup
 title: useRadioGroup
 ---
 
-import basicUsage from '@site/static/img/guides-and-concepts/hooks/useRadioGroup/basic-usage.png';
+import basicUsage from '@site/static/img/hooks/useRadioGroup/basic-usage.png';
 
 `useRadioGroup` hook allows you to manage an Ant Design [Radio.Group](https://ant.design/components/radio/#components-radio-demo-radiogroup-with-name) component when records in a resource needs to be used as radio options.
 
@@ -69,7 +69,7 @@ export interface ILanguage {
 
 All we have to do is pass the `radioGroupProps` it returns to the `<Radio.Group>` component.
 
-`useRadioGroup` uses the `useList` hook for fetching data. [Refer to Ant Design `useList` hook for details. &#8594](data/useList.md)
+`useRadioGroup` uses the `useList` hook for fetching data. [Refer to Ant Design `useList` hook for details. &#8594](../data/useList.md)
 
 ## Options
 

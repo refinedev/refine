@@ -1,7 +1,6 @@
 ---
 id: auth0
 title: Auth0 Login
-sidebar_label: Auth0 Login
 ---
 
 import login from '@site/static/img/guides-and-concepts/auth0/auth0-login.gif';

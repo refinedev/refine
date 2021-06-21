@@ -36,7 +36,7 @@ const dataProvider = {
 <br/>
 
 :::important
-**refine** consumes this methods using [data hooks](guides-and-concepts/hooks/data/useCreate.md).
+**refine** consumes this methods using [data hooks](hooks/data/useCreate.md).
 
 Data hooks are used to operate CRUD actions like creating a new record, listing a resource or deleting a record etc..
 :::
@@ -159,7 +159,7 @@ const SimpleRestDataProvider = (
 | -------- | ------------ | ------- |
 | resource | `string`     |         |
 | params   | `TVariables` | `{}`    |
-> `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/guides-and-concepts/hooks/data/useCreate#type-parameters) to type `params`
+> `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/hooks/data/useCreate#type-parameters) to type `params`
 
 <br/>
 
@@ -177,7 +177,7 @@ mutate({
     }
 })
 ```
-> [Refer to useCreate documentation for more information. &#8594](guides-and-concepts/hooks/data/useCreate.md)
+> [Refer to useCreate documentation for more information. &#8594](hooks/data/useCreate.md)
 
 <br />
 
@@ -218,7 +218,7 @@ const SimpleRestDataProvider = (
 | -------- | -------------- | ------- |
 | resource | `string`       |         |
 | params   | `TVariables[]` | `{}`    |
-> TVariables is a user defined type which can be passed to [`useCreateMany`](/docs/guides-and-concepts/hooks/data/useCreateMany) to type `params`
+> TVariables is a user defined type which can be passed to [`useCreateMany`](/docs/hooks/data/useCreateMany) to type `params`
 
 <br/>
 
@@ -241,7 +241,7 @@ mutate({
     ]
 })
 ```
-> [Refer to useCreateMany documentation for more information. &#8594](guides-and-concepts/hooks/data/useCreateMany.md)
+> [Refer to useCreateMany documentation for more information. &#8594](hooks/data/useCreateMany.md)
 
 <br />
 
@@ -288,7 +288,7 @@ const { mutate } = useDelete("categories");
 
 mutate({ id: "2" })
 ```
-> [Refer to useDelete documentation for more information. &#8594](guides-and-concepts/hooks/data/useDelete.md)
+> [Refer to useDelete documentation for more information. &#8594](hooks/data/useDelete.md)
 
 <br />
 
@@ -337,7 +337,7 @@ const { mutate } = useDeleteMany("categories");
 
 mutate({ ids: [ "2", "3" ] })
 ```
-> [Refer to useDeleteMany documentation for more information. &#8594](guides-and-concepts/hooks/data/useDeleteMany.md)
+> [Refer to useDeleteMany documentation for more information. &#8594](hooks/data/useDeleteMany.md)
 
 <br />
 
@@ -374,7 +374,7 @@ const SimpleRestDataProvider = (
 | resource | `string`     |         |
 | id       | `string`     |         |
 | params   | `TVariables` | `{}`    |
-> `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/guides-and-concepts/hooks/data/useUpdate#type-parameters) to type `params`
+> `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/hooks/data/useUpdate#type-parameters) to type `params`
 
 <br/>
 
@@ -387,7 +387,7 @@ const { mutate } = useUpdate("categories");
 
 mutate({ id: "2", values: { title: "New Category Title" } })
 ```
-> [Refer to useUpdate documentation for more information. &#8594](guides-and-concepts/hooks/data/useUpdate.md)
+> [Refer to useUpdate documentation for more information. &#8594](hooks/data/useUpdate.md)
 
 <br />
 
@@ -428,7 +428,7 @@ const SimpleRestDataProvider = (
 | resource | `string`     |         |
 | ids      | `string[]`   |         |
 | params   | `TVariables` | `{}`    |
-> TVariables is a user defined type which can be passed to [`useUpdateMany`](/docs/guides-and-concepts/hooks/data/useUpdateMany#type-parameters) to type `params`
+> TVariables is a user defined type which can be passed to [`useUpdateMany`](/docs/hooks/data/useUpdateMany#type-parameters) to type `params`
 
 <br/>
 
@@ -441,7 +441,7 @@ cconst { mutate } = useUpdateMany("posts");
 
 mutate({ ids: [ "1", "2" ], values: { status: "draft" } })
 ```
-> [Refer to useUpdateMany documentation for more information. &#8594](guides-and-concepts/hooks/data/useUpdateMany.md)
+> [Refer to useUpdateMany documentation for more information. &#8594](hooks/data/useUpdateMany.md)
 
 <br />
 
@@ -487,7 +487,7 @@ import { useOne } from "@pankod/refine";
 
 const { data } = useOne<ICategory>("categories", 1);
 ```
-> [Refer to useOne documentation for more information. &#8594](guides-and-concepts/hooks/data/useOne.md)
+> [Refer to useOne documentation for more information. &#8594](hooks/data/useOne.md)
 
 
 <br/>
@@ -534,7 +534,7 @@ import { useMany } from "@pankod/refine";
 
 const { data } = useMany("categories", [ 1, 2 ]);
 ```
-> [Refer to useMany documentation for more information. &#8594](guides-and-concepts/hooks/data/useMany.md)
+> [Refer to useMany documentation for more information. &#8594](hooks/data/useMany.md)
 
 <br />
 
@@ -581,7 +581,7 @@ import { useList } from "@pankod/refine";
 
 const { data } = useList("posts");
 ```
-> [Refer to useList documentation for more information. &#8594](guides-and-concepts/hooks/data/useList.md)
+> [Refer to useList documentation for more information. &#8594](hooks/data/useList.md)
 
 
 <br />
@@ -928,7 +928,7 @@ const { data, isLoading } = useCustom(
     },
 );
 ```
-> [Refer to useCustom documentation for more information. &#8594](guides-and-concepts/hooks/data/useCustom.md)
+> [Refer to useCustom documentation for more information. &#8594](hooks/data/useCustom.md)
 
 ### Error Format
 

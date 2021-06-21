@@ -1,38 +1,40 @@
 ---
-id: useDrawerForm
-title: useDrawerForm
+id: useModalForm
+title: useModalForm
 ---
 
-import createGif from '@site/static/img/guides-and-concepts/hooks/useDrawerForm/create.gif';
-import editGif from '@site/static/img/guides-and-concepts/hooks/useDrawerForm/edit.gif';
+import createGif from '@site/static/img/hooks/useModalForm/create.gif';
+import editGif from '@site/static/img/hooks/useModalForm/edit.gif';
 
-`useDrawerForm` hook allows you manage a form within a drawer. It returns Ant Design [Form](https://ant.design/components/form/) and [Drawer](https://ant.design/components/drawer/) components props.
+`useModalForm` hook allows you manage a form within a modal. It returns Ant Design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components props.
 
 ```ts
-const { drawerProps, formProps } = useDrawerForm<IPost>();
+const { modalProps, formProps } = useModalForm<IPost>();
 ```
 
-All we have to do is to pass the `drawerProps` to `<Drawer>` and `formProps` to `<Form>` components.
+All we have to do is to pass the `modalProps` to `<Modal>` and `formProps` to `<Form>` components.
 
 ## Usage
 
-We'll do two examples, one for creating a post and one for editing a post. Let's see how `useDrawerForm` is used in both.
+We'll do two examples, one for creating a post and one for editing a post. Let's see how `useModalForm` is used in both.
 
-### Create Drawer
+### Create Modal
+
+For example, let's look at an example of creating a record with `useModalForm`.
 
 ```tsx title="pages/posts/list.tsx"
-import { useDrawerForm, Drawer, Form, Create, Radio } from "@pankod/refine";
+import { useModalForm, Modal, Form, Create, Radio } from "@pankod/refine";
 import { IPost } from "interfaces";
 
 export const PostList: React.FC () => {
 
     //highlight-start
     const {
+        modalProps,
         formProps,
-        drawerProps,
         show,
         saveButtonProps,
-    } = useDrawerForm<IPost>({
+    } = useModalForm<IPost>({
         action: "create",
     });
     //highlight-end
@@ -51,7 +53,7 @@ export const PostList: React.FC () => {
                 ...
             </List>
             //highlight-start
-            <Drawer {...drawerProps}>
+            <Modal {...modalProps}>
                 <Create saveButtonProps={saveButtonProps}>
                     <Form {...formProps} layout="vertical">
                         <Form.Item label="Title" name="title">
@@ -66,12 +68,11 @@ export const PostList: React.FC () => {
                         </Form.Item>
                     </Form>
                 </Create>
-            </Drawer>
+            </Modal>
             //highlight-end
         </>
     )
 }
-
 ```
 
 ```ts title="interfaces/index.d.ts"
@@ -94,9 +95,9 @@ export interface IPost {
     }}
 ```
 
-This code block makes `<Drawer>` appear when you click the button.
+This code block makes `<Modal>` appear when you click the button.
 
-`saveButtonProps` allows us to manage save button in the drawer.
+`saveButtonProps` allows us to manage save button in the modal.
 
 <div style={{textAlign: "center"}}>
     <img src={createGif} />
@@ -104,25 +105,25 @@ This code block makes `<Drawer>` appear when you click the button.
 
 <br />
 
-### Edit Drawer
+### Edit Modal
 
-Let's learn how to add editing capability to records that will be opening form in Drawer with using `action` prop.
+Let's learn how to add editing capability to records that will be opening form in Modal with using `action` prop.
 
 ```tsx title="pages/posts/list.tsx"
-import { useDrawerForm, Drawer, Form, Create, Radio } from "@pankod/refine";
+import { useModalForm, Modal, Form, Create, Radio } from "@pankod/refine";
 import { IPost } from "interfaces";
 
 export const PostList () => {
     const {
-        drawerProps,
+        modalProps,
         formProps,
         show,
         saveButtonProps,
         //highlight-start
         deleteButtonProps,
         editId,
-        //highlight-end
-    } = useDrawerForm<IPost>({
+         //highlight-end
+    } = useModalForm<IPost>({
         //highlight-next-line
         action: "edit",
     });
@@ -138,18 +139,14 @@ export const PostList () => {
                         key="actions"
                         render={(_value, record) => (
                             //highlight-start
-                            <EditButton
-                                size="small"
-                                recordItemId={record.id}
-                                onClick={() => show(record.id)}
-                            />
+                            <EditButton onClick={() => show(record.id)} />
                             //highlight-end
                         )}
                     />
                 </Table>
             </List>
-            <Drawer {...drawerProps}>
-             //highlight-next-line
+            <Modal {...modalProps}>
+            //highlight-next-line
                 <Edit
                     saveButtonProps={saveButtonProps}
                     //highlight-start
@@ -170,35 +167,35 @@ export const PostList () => {
                         </Form.Item>
                     </Form>
                 </Edit>
-            </Drawer>
+            </Modal>
         </>
     )
 }
 ```
 
-:::important
-refine doesn't automatically add a edit button by default to the each record in `<PostList>` which opens edit form in `<Drawer>` when clicking.
+The `saveButtonProps` and `deleteButtonProps` can provides functionality to save and delete buttons in the modal.
 
-So, we put the edit buttons on our list. In that way, `<Edit>` form in `<Drawer>` can fetch data by record `id`.
+<br />
+
+:::important
+refine doesn't automatically add a edit button by default to the each record in `<PostList>` which opens edit form in `<Modal>` when clicking.
+
+So, we put the edit buttons on our list. In that way, `<Edit>` form in `<Modal>` can fetch data by record `id`.
 
 ```tsx
 <Table.Column<IPost>
     title="Actions"
     dataIndex="actions"
     key="actions"
-    render={(_value, record) => (
-        <EditButton
-            size="small"
-            recordItemId={record.id}
-            onClick={() => show(record.id)}
-        />
-    )}
+    render={(_value, record) => <EditButton onClick={() => show(record.id)} />}
 />
 ```
 
 :::
 
-The `saveButtonProps` and `deleteButtonProps` can provides functionality to save and delete buttons in the drawer.
+:::caution
+Don't forget to pass the record id to `show` to fetch the record data. This is necessary for both edit and clone forms.
+:::
 
 <div style={{textAlign: "center"}}>
     <img src={editGif} />
@@ -208,14 +205,14 @@ The `saveButtonProps` and `deleteButtonProps` can provides functionality to save
 
 [Refer to codesandbox example for detailed usage. &#8594](https://www.google.com.tr)
 
-## API Parameters
+## API Reference
 
 ### Properties
 
 | Key                                              | Description                                                                                                                                                                   | Type                                                                           | Default    |
 | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ---------- |
 | action <div className=" required">Required</div> | Type of form mode                                                                                                                                                             | `"edit"` \| `"create"`                                                         | `"create"` |
-| autoSubmitClose                                  | Close drawer after submit                                                                                                                                                     | `boolean`                                                                      |            |
+| autoSubmitClose                                  | Close modal after submit                                                                                                                                                      | `boolean`                                                                      |            |
 | form                                             | Ant Design form instance                                                                                                                                                      | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance) |            |
 | mutationMode                                     | [Determines when mutations are executed](interfaces.md#mutationmode). If not explicitly configured, it is read from the mutation mode config of the resource in current route | `"pessimistic"` \| `"optimistic"` \| `"undoable"`                              |            |
 | onMutationError                                  | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error                                                                            | `(error: TError, variables: TVariables, context: any) => void`                 |            |
@@ -226,7 +223,7 @@ The `saveButtonProps` and `deleteButtonProps` can provides functionality to save
 | undoableTimeout                                  | Duration to wait before executing mutations when `mutationMode = "undoable"`                                                                                                  | `number`                                                                       | `5000`\*   |
 | warnWhenUnsavedChanges                           | Shows notification when unsaved changes exist                                                                                                                                 | `boolean`                                                                      | `false`\*  |
 
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useDrawerForm` will use what is passed to `<Refine>` as default and can override locally.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useModalForm` will use what is passed to `<Refine>` as default and can override locally.
 
 > `**`: If not explicitly configured, default value of `redirect` depends which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). Otherwise if `action` is `edit`, `redirect`s default value is `list`.
 
@@ -234,15 +231,15 @@ The `saveButtonProps` and `deleteButtonProps` can provides functionality to save
 
 | Key                      | Description                                                  | Type                                                                                                                                                                                  |
 | ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| show                     | A function that opens the drawer                             | `(id?: string) => void`                                                                                                                                                               |
+| show                     | A function that can open the modal                           | `(id?: string) => void`                                                                                                                                                               |
 | formProps                | Ant Design form props                                        | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                                               |
-| drawerProps              | Props for managed drawer                                     | [`DrawerProps`](https://ant.design/components/drawer/#API)                                                                                                                            |
+| modalProps               | Props for managed modal                                      | [`ModalProps`](https://ant.design/components/modal/#API)                                                                                                                              |
 | saveButtonProps          | Props for a submit button                                    | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                                                                                                                       |
 | deleteButtonProps        | Adds props for delete button                                 | [`DeleteButtonProps`](interfaces.md#delete-button-props)                                                                                                                              |
 | formLoading              | Loading status of form                                       | `boolean`                                                                                                                                                                             |
 | submit                   | Submit method, the parameter is the value of the form fields | `() => void`                                                                                                                                                                          |
-| visible                  | Whether the drawer is visible or not                         | `boolean`                                                                                                                                                                             |
-| close                    | Specify a function that can close the drawer                 | `() => void`                                                                                                                                                                          |
+| visible                  | Whether the modal dialog is visible or not                   | `boolean`                                                                                                                                                                             |
+| close                    | Specify a function that can close the modal                  | `() => void`                                                                                                                                                                          |
 | defaultFormValuesLoading | DefaultFormValues loading status of form                     | `boolean`                                                                                                                                                                             |
 | form                     | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance)                                                                                                        |
 | editId                   | Record id for edit action                                    | `string`                                                                                                                                                                              |
@@ -254,9 +251,9 @@ The `saveButtonProps` and `deleteButtonProps` can provides functionality to save
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-use-drawer-form-example-582w1?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Flist.tsx&theme=dark&view=preview"
+   <iframe src="https://codesandbox.io/embed/refine-use-modal-form-example-qbi4m?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Flist.tsx&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-     title="refine-use-drawer-form-example"
+     title="refine-use-modal-form-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>

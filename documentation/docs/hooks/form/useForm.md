@@ -91,13 +91,13 @@ const { formProps, saveButtonProps } = useForm({ action: "edit" });
 
 Used for editing an existing record. Form initially will be filled with the data of the record.
 
-`useForm` uses [`useUpdate`](data/useUpdate.md) under the hood for mutations on edit mode.
+`useForm` uses [`useUpdate`](../../hooks/data/useUpdate.md) under the hood for mutations on edit mode.
 
 ### `action: "create"`
 
 Used for creating a new record that didn't exist before.
 
-`useForm` uses [`useCreate`](data/useCreate.md) under the hood for mutations on create mode.
+`useForm` uses [`useCreate`](../data/useCreate.md) under the hood for mutations on create mode.
 
 ### Clone mode
 
