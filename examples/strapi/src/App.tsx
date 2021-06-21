@@ -4,9 +4,7 @@ import axios from "axios";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit } from "pages/posts";
-import { TOKEN_KEY } from "./constants";
-
-export const API_URL = "/api";
+import { TOKEN_KEY, API_URL } from "./constants";
 
 const App: React.FC = () => {
     const axiosInstance = axios.create();
