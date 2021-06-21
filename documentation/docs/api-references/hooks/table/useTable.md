@@ -342,7 +342,7 @@ export const PostList: React.FC = () => {
 | initialSorter    | Varsayılan sıralama.                                                                                                            | [`CrudSorting`](interfaces.md#crudsorting) |
 | initialFilter    | Varsayılan filtreleme.                                                                                                          | [`CrudFilters`](interfaces.md#crudfilters) |
 | syncWithLocation | Tablodaki sıralamalar, filtreler, sayfa indeksi ve sayfa başına gösterilen kayıt browser history tarafından takip edilir.       | `boolean`                                  |
-| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form](../../guides-and-concepts/table/table-search.md). | `Function`                                 |
+| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form](../../../guides-and-concepts/table/table-search.md). | `Function`                                 |
 
 ## Live Codesandbox Example
 

@@ -5,7 +5,7 @@ siderbar_label: useCheckError
 description: useCheckError data hook from refine is a modified version of react-query's useMutation for create mutations
 ---
 
-`useCheckError`  calls `checkError` method from [`authProvider`](/docs/guides-and-concepts/providers/auth-provider) under the hood.
+`useCheckError`  calls `checkError` method from [`authProvider`](/docs/api-references/providers/auth-provider) under the hood.
  If `checkError` returns a rejected promise, `useCheckError` calls the `logout` method of `authProvider` and the app is unauthenticated.
 
 
@@ -31,7 +31,7 @@ fetch('http://example.com/payment', { options })
 
 <br />
 
-We have a logic in [`authProvider`](/docs/guides-and-concepts/providers/auth-provider)'s `checkError` method like below.
+We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `checkError` method like below.
 
 ```tsx
 const authProvider: AuthProvider = {
@@ -61,7 +61,7 @@ We have 2 options to manage redirection after logout process.
 
 - If promise returned from `checkError` is rejected with nothing, app will be redirected to `/login` route by default. 
 
-- The promise returned from `checkError` method of [`authProvider`](/docs/guides-and-concepts/providers/auth-provider) can reject with a custom url.
+- The promise returned from `checkError` method of [`authProvider`](/docs/api-references/providers/auth-provider) can reject with a custom url.
 
 ```tsx
 const authProvider: AuthProvider = {

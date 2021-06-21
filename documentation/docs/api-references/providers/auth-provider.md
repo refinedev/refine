@@ -25,7 +25,7 @@ const authProvider = {
 ```
 
 :::important
-**refine** consumes this methods using [authorization hooks](hooks/auth/useLogin.md).
+**refine** consumes this methods using [authorization hooks](api-references/hooks/auth/useLogin.md).
 Authorization hooks are used to manage authentication and authorization operations like login, logout and catching Http errors etc.
 :::
 
@@ -130,7 +130,7 @@ const { mutate: login } = useLogin<{ username: string; password: string; remembe
 
 
 
->[Refer to useLogin documentation for more information. &#8594](hooks/auth/useLogin.md)
+>[Refer to useLogin documentation for more information. &#8594](api-references/hooks/auth/useLogin.md)
 
 <br />
 
@@ -204,7 +204,7 @@ logout();
 :::
 
 
->[Refer to useLogout documentation for more information. &#8594](hooks/auth/useLogout.md)
+>[Refer to useLogout documentation for more information. &#8594](api-references/hooks/auth/useLogout.md)
 
 <br />
 
@@ -288,7 +288,7 @@ checkError(error);
 :::
 
 
->[Refer to useCheckError documentation for more information. &#8594](hooks/auth/useCheckError.md)
+>[Refer to useCheckError documentation for more information. &#8594](api-references/hooks/auth/useCheckError.md)
 
 <br />
 
@@ -340,7 +340,7 @@ import { useAuthenticated } from "@pankod/refine";
 const { isSuccess, isLoading, isError, refetch: checkAuth } = useAuthenticated();
 ```
 
->[Refer to useAuthenticated documentation for more information. &#8594](hooks/auth/useAuthenticated.md)
+>[Refer to useAuthenticated documentation for more information. &#8594](api-references/hooks/auth/useAuthenticated.md)
 
 <br />
 
@@ -399,7 +399,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-> [Refer to usePermissions documentation for more information. &#8594](hooks/auth/usePermissions.md)
+> [Refer to usePermissions documentation for more information. &#8594](api-references/hooks/auth/usePermissions.md)
 
 <br/>
 
@@ -435,7 +435,7 @@ const { data: userIdentity } = useGetIdentity();
 // userIdentity: "admin"
 ```
 
-> [Refer to useGetIdentity documentation for more information. &#8594](hooks/auth/useGetIdentity.md)
+> [Refer to useGetIdentity documentation for more information. &#8594](api-references/hooks/auth/useGetIdentity.md)
 
 <!-- User data will be shown at right top of the app. -->
 

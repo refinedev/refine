@@ -146,8 +146,8 @@ export const CustomMenu: React.FC = () => {
 
 :::caution
 `useLogout` hook can only be used if `authProvider` is provided.  
-[Refer to Auth Provider docs for more detailed information. &#8594](guides-and-concepts/providers/auth-provider.md)  
-[Refer to useLogout docs for more detailed information. &#8594](hooks/auth/useLogout.md)
+[Refer to Auth Provider docs for more detailed information. &#8594](../../providers/auth-provider.md)  
+[Refer to useLogout docs for more detailed information. &#8594](api-references/hooks/auth/useLogout.md)
 :::
 
 :::tip
