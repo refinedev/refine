@@ -23,7 +23,7 @@ export const ReadyPage: React.FC = () => {
                 </p>
                 <p>
                     Now you can add a &lt;Resource&gt; as child of
-                    &lt;Admin&gt;.
+                    &lt;Refine&gt;.
                 </p>
             </Col>
         </Row>

@@ -79,10 +79,13 @@ export const PostReview: React.FC = () => {
         >
             <Title level={5}>Status</Title>
             <Text>{record?.status}</Text>
+
             <Title level={5}>Title</Title>
             <Text>{record?.title}</Text>
+
             <Title level={5}>Category</Title>
             <Text>{categoryData?.data.title}</Text>
+
             <Title level={5}>Content</Title>
             <MarkdownField value={record?.content} />
         </Show>

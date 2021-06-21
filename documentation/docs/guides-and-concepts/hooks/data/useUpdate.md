@@ -5,7 +5,7 @@ siderbar_label: useUpdate
 description: useUpdate data hook from refine is a modified version of react-query's useMutation for update mutations
 ---
 
-`useUpdate` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for update mutations. It uses `update` method as mutation function from the `dataProvider` that is passed to `<Admin>`.
+`useUpdate` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for update mutations. It uses `update` method as mutation function from the `dataProvider` that is passed to `<Refine>`.
 
 ## Features
 
@@ -44,7 +44,7 @@ type CategoryMutationResult = {
 
 const { mutate } = useUpdate<CategoryMutationResult>("categories");
 
-mutate({ id: 2, values: { title: "New Category Title" } })
+mutate({ id: "2", values: { title: "New Category Title" } })
 ```
 
 :::tip
@@ -144,7 +144,7 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 | undoableTimeoutProp                                 | Duration to wait before executing the mutation when `mutationModeProp = "undoable"` | `number`                                         | `5000ms`*        |
 | onCancel                                            | Callback that runs when undo button is clicked on `mutationModeProp = "undoable"`   | `(cancelMutation: () => void) => void`           |                  |
 
->`*`: These props have default values in `AdminContext` and can also be set on **<[Admin](#)>** component. `useUpdate` will use what is passed to `<Admin>` as default and can override locally.
+>`*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useUpdate` will use what is passed to `<Refine>` as default and can override locally.
 
 <br/>
 

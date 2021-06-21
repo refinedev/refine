@@ -112,6 +112,8 @@ Clicking the `Login with Auth0` button, you will be directed to the auth0 login 
 In refine, Authentication and Authorization processes are performed with the auth provider. Let's write a provider for Auth0.
 
 ```tsx title="App.tsx"
+import { Refine } from "@pankod/refine";
+
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { Login } from "pages/login";
@@ -149,13 +151,13 @@ const App = () => {
     // highlight-end
 
     return (
-        <Admin
+        <Refine
             LoginPage={Login}
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
         >
             ...
-        </Admin>
+        </Refine>
     );
 };
 
@@ -181,3 +183,12 @@ We can use the `isAuthenticated` method, which returns the authentication status
 #### getUserIdentity
 
 We can use it with the `user` from the `useAuth0` hook.
+
+## Live Codesandbox Example
+
+<iframe src="https://codesandbox.io/embed/refine-auth0-example-ussft?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+    title="refine-auth0-example"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>

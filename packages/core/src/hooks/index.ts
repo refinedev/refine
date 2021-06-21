@@ -5,7 +5,7 @@ export * from "./notification";
 export * from "./useFileUploadState";
 export * from "./useListResourceQueries";
 export * from "./translate";
-export * from "./admin";
+export * from "./refine";
 export * from "./table";
 export * from "./form";
 export * from "./redirection";
