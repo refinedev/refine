@@ -13,7 +13,6 @@ module.exports = {
             type: "category",
             label: "API References",
             items: [
-                "guides-and-concepts/refine-config",
                 {
                     type: "category",
                     label: "Providers",
@@ -118,6 +117,8 @@ module.exports = {
                     type: "category",
                     label: "Components",
                     items: [
+                        "api-references/components/refine-config",
+
                         {
                             type: "category",
                             label: "Basic Views",
