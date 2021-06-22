@@ -1,6 +1,6 @@
 ---
 id: offLayoutArea
-title: offLayoutArea
+title: Off Layout Area
 ---
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/offLayoutArea)
