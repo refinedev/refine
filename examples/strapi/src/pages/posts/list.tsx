@@ -84,7 +84,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     )}
                     sorter
                 />
-                <Table.Column<{ id: number }>
+                <Table.Column<{ id: string }>
                     title="Actions"
                     dataIndex="actions"
                     key="actions"

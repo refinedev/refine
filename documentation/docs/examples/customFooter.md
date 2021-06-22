@@ -1,6 +1,6 @@
 ---
 id: customFooter
-title: customFooter
+title: Custom Footer
 ---
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/customFooter)
