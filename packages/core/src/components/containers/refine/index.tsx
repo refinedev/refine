@@ -137,9 +137,6 @@ export const Refine: React.FC<RefineProps> = ({
                                         Header={Header}
                                         OffLayoutArea={OffLayoutArea}
                                         hasDashboard={!!DashboardPage}
-                                        reactQueryClientConfig={
-                                            reactQueryClientConfig
-                                        }
                                     >
                                         <Router>
                                             <>
