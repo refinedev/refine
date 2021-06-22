@@ -13,7 +13,7 @@ export const Layout: React.FC<LayoutProps> = ({
     return (
         <AntLayout style={{ minHeight: "100vh", flexDirection: "row" }}>
             <Sider />
-            <AntLayout className="site-layout">
+            <AntLayout style={{ marginLeft: 200 }}>
                 <Header />
                 <AntLayout.Content>
                     <div style={{ padding: 24, minHeight: 360 }}>
