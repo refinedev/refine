@@ -299,6 +299,7 @@ https://ant.design/components/layout/#Layout.Sider
 
 [Refer to useMenu hook documentation for detailed sidebar customization. &#8594](docs/hooks/resource/useMenu.md)
 
+<br />
 
 ### `Footer`
 
@@ -306,22 +307,15 @@ The default app footer can be customized by passing `Footer` prop.
 
 
 ```tsx title="App.tsx"
-import {
-    Refine,
-    //highlight-next-line
-    AntdLayout,
-} from "@pankod/refine";
 ...
+const CustomFooter = () => <div>Custom Footer</div>;
+
 const App: React.FC = () => 
     (
         <Refine
             dataProvider={dataProvider(API_URL)}
             //highlight-start
-            Footer={() => (
-                <AntdLayout.Footer style={{ textAlign: "center" }}>
-                    Custom Footer
-                </AntdLayout.Footer>
-        )}
+            Footer={CustomFooter}
             //highlight-end
         >
          ...
@@ -329,10 +323,39 @@ const App: React.FC = () =>
     );
 ```
 
+<br />
+
+### `Header`
+
+The default app header can be customized by passing `Header` prop.
+
+
+```tsx title="App.tsx"
+...
+const CustomHeader = () => <div>Custom Header</div>;
+
+const App: React.FC = () => 
+    (
+        <Refine
+            dataProvider={dataProvider(API_URL)}
+            //highlight-start
+            Header={CustomHeader}
+            //highlight-end
+        >
+         ...
+        </Refine>
+    );
+```
+
+<br />
+
 ### `Layout`
 
-Default page Layout can be customized by passing `Layout` prop.
+Default layout can be customized by passing `Layout` prop.
 
+**refine** uses [Ant Design Layout](https://ant.design/components/layout/) components by default. 
+
+Layout prop will receive individual layout components as props.
 
 ```tsx title="App.tsx"
 ...
@@ -342,7 +365,7 @@ const App: React.FC = () =>
         <Refine
             dataProvider={dataProvider(API_URL)}
             //highlight-start
-            Layout={({ children, Sider, Header, Footer, OffLayoutArea }) => (
+            Layout={({ children, Sider, Footer, Header, OffLayoutArea }) => (
                 <AntdLayout
                     style={{ minHeight: "100vh", flexDirection: "row" }}
                 >
@@ -366,3 +389,77 @@ const App: React.FC = () =>
     );
 ```
 
+<br />
+
+A completely custom layout can also be implemented instead of the  **refine**'s default [Ant Design based layout](https://ant.design/components/layout) like below.
+
+```tsx title="App.tsx"
+...
+const App: React.FC = () => 
+    (
+        <Refine
+            dataProvider={dataProvider(API_URL)}
+            //highlight-start
+            Layout={({ children }) => (
+                <div style={{display: "flex", flexDirection: "column"}} >
+                    <div>Custom Layout</div>
+                    <div>{children}</div>
+                </div>
+            )}
+            //highlight-end
+        >
+         ...
+        </Refine>
+    );
+```
+> `children` will be what is passed as component for the route in a Resource(list, edit..) or a custom route.
+
+<br />
+
+
+### `OffLayoutArea`
+
+The component wanted to be placed out of app layout structure can be set by passing to `OffLayoutArea` prop.
+
+```tsx title="App.tsx"
+//highlight-next-line
+import { Refine, BackTop } from "@pankod/refine";
+...
+const App: React.FC = () => 
+    (
+        <Refine
+            dataProvider={dataProvider(API_URL)}
+            //highlight-next-line
+            OffLayoutArea={() => <BackTop />}
+        >
+         ...
+        </Refine>
+    );
+```
+
+<br />
+
+### `Title`
+
+The app title can be set by passing `Title` prop.
+
+
+```tsx title="App.tsx"
+...
+
+const CustomTitle = ({collapsed}) => <div>{collapsed ? "Collapsed Title" : "Full Title"}</div>;
+
+const App: React.FC = () => 
+    (
+        <Refine
+            dataProvider={dataProvider(API_URL)}
+            //highlight-start
+            Title={CustomTitle}
+            //highlight-end
+        >
+         ...
+        </Refine>
+    );
+```
+
+<br />
