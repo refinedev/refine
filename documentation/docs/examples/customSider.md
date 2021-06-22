@@ -1,6 +1,6 @@
 ---
 id: customSider
-title: customSider
+title: Custom Sider
 ---
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/customSider)

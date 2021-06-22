@@ -71,9 +71,8 @@ const mapOperator = (operator: CrudOperators): ComparisonOperator => {
     return CondOperator.EQUALS;
 };
 
-const generateSort = (sort?: CrudSorting): SortBy => {
-    let sortBy: SortBy = { field: "id", order: "DESC" };
-    if (sort) {
+const generateSort = (sort?: CrudSorting): SortBy | undefined => {
+    if (sort && sort.length > 0) {
         const multipleSort: SortBy = [];
         sort.map(({ field, order }) => {
             if (field && order) {
@@ -83,10 +82,10 @@ const generateSort = (sort?: CrudSorting): SortBy => {
                 });
             }
         });
-        sortBy = multipleSort;
+        return multipleSort;
     }
 
-    return sortBy;
+    return;
 };
 
 const generateFilter = (filters?: RefineCrudFilter): CrudFilters => {
@@ -113,19 +112,20 @@ const NestsxCrud = (
         const current = params.pagination?.current || 1;
         const pageSize = params.pagination?.pageSize || 10;
 
-        const sortBy = generateSort(params.sort);
-
         const filters = generateFilter(params.filters);
 
         const query = RequestQueryBuilder.create()
             .setFilter(filters)
             .setLimit(pageSize)
             .setPage(current)
-            .sortBy(sortBy)
-            .setOffset((current - 1) * pageSize)
-            .query();
+            .setOffset((current - 1) * pageSize);
 
-        const { data } = await httpClient.get(`${url}?${query}`);
+        const sortBy = generateSort(params.sort);
+        if (sortBy) {
+            query.sortBy(sortBy);
+        }
+
+        const { data } = await httpClient.get(`${url}?${query.query()}`);
 
         return {
             data: data.data,
@@ -234,12 +234,16 @@ const NestsxCrud = (
     custom: async (url, method, params = {}) => {
         const { filters, sort, payload, query, headers } = params;
 
-        const requestQueryBuilder = RequestQueryBuilder.create()
-            .setFilter(generateFilter(filters))
-            .sortBy(generateSort(sort))
-            .query();
+        const requestQueryBuilder = RequestQueryBuilder.create().setFilter(
+            generateFilter(filters),
+        );
 
-        let requestUrl = `${url}?${requestQueryBuilder}`;
+        const sortBy = generateSort(sort);
+        if (sortBy) {
+            requestQueryBuilder.sortBy(sortBy);
+        }
+
+        let requestUrl = `${url}?${requestQueryBuilder.query()}`;
 
         if (query) {
             requestUrl = `${requestUrl}&${stringify(query)}`;

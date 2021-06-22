@@ -1,6 +1,6 @@
 ---
 id: customLogin
-title: customLogin
+title: Custom Login Page
 ---
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/customLogin)

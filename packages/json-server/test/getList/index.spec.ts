@@ -13,9 +13,9 @@ describe("getList", () => {
             axios,
         ).getList("posts", {});
 
-        expect(response.data[0]["id"]).toBe(1000);
+        expect(response.data[0]["id"]).toBe(1);
         expect(response.data[0]["title"]).toBe(
-            "Et ratione rerum eos optio id nihil.",
+            "Mollitia ipsam nisi in porro velit asperiores et quaerat dolorem.",
         );
         expect(response.total).toBe(1000);
     });
@@ -34,7 +34,9 @@ describe("getList", () => {
         });
 
         expect(response.data[0]["id"]).toBe(1);
-        expect(response.data[0]["title"]).toBe("Unde illum cupiditate ut.");
+        expect(response.data[0]["title"]).toBe(
+            "Mollitia ipsam nisi in porro velit asperiores et quaerat dolorem.",
+        );
         expect(response.total).toBe(1000);
     });
 
@@ -53,7 +55,7 @@ describe("getList", () => {
         });
 
         expect(response.data[0]["category"]["id"]).toBe(1);
-        expect(response.total).toBe(18);
+        expect(response.total).toBe(17);
     });
 
     it("correct filter and sort response", async () => {
@@ -76,7 +78,7 @@ describe("getList", () => {
             ],
         });
 
-        expect(response.data[0]["id"]).toBe(67);
-        expect(response.total).toBe(18);
+        expect(response.data[0]["id"]).toBe(44);
+        expect(response.total).toBe(17);
     });
 });
