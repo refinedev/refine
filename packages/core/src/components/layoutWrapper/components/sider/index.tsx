@@ -22,12 +22,6 @@ export const Sider: React.FC = () => {
             breakpoint="md"
             collapsed={collapsed}
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
-            style={{
-                overflow: "auto",
-                height: "100vh",
-                position: "fixed",
-                left: 0,
-            }}
         >
             <Title collapsed={collapsed} />
             <Menu
