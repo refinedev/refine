@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
     Create,
     Form,
-    getValueFromEvent,
     Input,
     Upload,
     IResourceComponentsProps,
@@ -18,6 +17,7 @@ import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ICategory, ITags } from "interfaces";
+import { normalizeFile } from "utility/normalize";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
@@ -127,7 +127,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                     <Form.Item
                         name="images"
                         valuePropName="fileList"
-                        getValueFromEvent={getValueFromEvent}
+                        normalize={normalizeFile}
                         noStyle
                     >
                         <Upload.Dragger

@@ -5,6 +5,8 @@ import {
     Input,
     IResourceComponentsProps,
     Select,
+    Upload,
+    useApiUrl,
     useForm,
     useSelect,
 } from "@pankod/refine";
@@ -15,9 +17,11 @@ import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ICategory, ITags } from "interfaces";
+import { normalizeFile } from "utility/normalize";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
+    const apiUrl = useApiUrl();
 
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -121,6 +125,26 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                             )
                         }
                     />
+                </Form.Item>
+                <Form.Item label="Images">
+                    <Form.Item
+                        name="images"
+                        valuePropName="fileList"
+                        normalize={normalizeFile}
+                        noStyle
+                    >
+                        <Upload.Dragger
+                            name="file"
+                            action={`${apiUrl}/media/upload`}
+                            listType="picture"
+                            maxCount={5}
+                            multiple
+                        >
+                            <p className="ant-upload-text">
+                                Drag & drop a file in this area
+                            </p>
+                        </Upload.Dragger>
+                    </Form.Item>
                 </Form.Item>
             </Form>
         </Edit>
