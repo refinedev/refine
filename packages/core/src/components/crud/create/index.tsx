@@ -9,14 +9,14 @@ import {
     Tag,
     Row,
     Col,
+    Spin,
 } from "antd";
-import pluralize from "pluralize";
 
 import { useNavigation, useResourceWithRoute, useTranslate } from "@hooks";
 import { SaveButton } from "@components";
-import { OptionalComponent } from "@definitions";
-
+import { userFriendlyResourceName } from "@definitions";
 import { ResourceRouterParams } from "../../../interfaces";
+
 export interface CreateProps {
     title?: string;
     actionButtons?: React.ReactNode;
@@ -24,6 +24,7 @@ export interface CreateProps {
     pageHeaderProps?: PageHeaderProps;
     resource?: string;
     Aside?: React.ReactNode;
+    isLoading?: boolean;
 }
 
 export const Create: React.FC<CreateProps> = ({
@@ -34,6 +35,7 @@ export const Create: React.FC<CreateProps> = ({
     pageHeaderProps,
     resource: resourceFromProps,
     Aside,
+    isLoading = false,
 }) => {
     const { goBack } = useNavigation();
     const translate = useTranslate();
@@ -70,28 +72,33 @@ export const Create: React.FC<CreateProps> = ({
                         title ??
                         translate(
                             `${resource.name}.titles.create`,
-                            `Create ${pluralize.singular(resource.name)}`,
+                            `Create ${userFriendlyResourceName(
+                                resource.name,
+                                "singular",
+                            )}`,
                         )
                     }
                     {...pageHeaderProps}
                 >
-                    <Card
-                        actions={[
-                            <Space
-                                key="action-buttons"
-                                style={{ float: "right", marginRight: 24 }}
-                            >
-                                {actionButtons ?? (
-                                    <SaveButton
-                                        {...saveButtonProps}
-                                        htmlType="submit"
-                                    />
-                                )}
-                            </Space>,
-                        ]}
-                    >
-                        {children}
-                    </Card>
+                    <Spin spinning={isLoading}>
+                        <Card
+                            actions={[
+                                <Space
+                                    key="action-buttons"
+                                    style={{ float: "right", marginRight: 24 }}
+                                >
+                                    {actionButtons ?? (
+                                        <SaveButton
+                                            {...saveButtonProps}
+                                            htmlType="submit"
+                                        />
+                                    )}
+                                </Space>,
+                            ]}
+                        >
+                            {children}
+                        </Card>
+                    </Spin>
                 </PageHeader>
             </Col>
 

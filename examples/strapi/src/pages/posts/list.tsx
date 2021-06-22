@@ -14,7 +14,7 @@ import {
     DeleteButton,
 } from "@pankod/refine";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter, filters } = useTable({
         initialSorter: [
             {
@@ -32,25 +32,21 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     });
 
     return (
-        <List {...props}>
+        <List>
             <Table
                 {...tableProps}
                 rowKey="id"
                 pagination={{
                     ...tableProps.pagination,
-                    position: ["bottomCenter"],
-                    size: "small",
                 }}
             >
                 <Table.Column
-                    key="id"
                     dataIndex="id"
                     title="ID"
                     defaultSortOrder={getDefaultSortOrder("id", sorter)}
                     sorter
                 />
                 <Table.Column
-                    key="title"
                     dataIndex="title"
                     title="Title"
                     defaultSortOrder={getDefaultSortOrder("title", sorter)}
@@ -76,7 +72,6 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     )}
                 />
                 <Table.Column
-                    key="created_at"
                     dataIndex="created_at"
                     title="Created At"
                     render={(value) => (
@@ -84,11 +79,10 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     )}
                     sorter
                 />
-                <Table.Column<{ id: number }>
+                <Table.Column<{ id: string }>
                     title="Actions"
                     dataIndex="actions"
-                    key="actions"
-                    render={(_value, record) => (
+                    render={(_, record) => (
                         <Space>
                             <EditButton size="small" recordItemId={record.id} />
                             <DeleteButton

@@ -14,7 +14,7 @@ import {
 
 import { IProduct } from "interfaces";
 
-export const ProductList: React.FC<IResourceComponentsProps> = (props) => {
+export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IProduct>({
         initialSorter: [
             {
@@ -27,7 +27,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = (props) => {
     const t = useTranslate();
 
     return (
-        <List {...props}>
+        <List title={t("products:title")}>
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     key="id"

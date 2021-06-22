@@ -125,3 +125,14 @@ export interface IUserFilterVariables {
     q: string;
     status: boolean;
 }
+
+export interface ICourier {
+    id: string;
+    name: string;
+    surname: string;
+    gender: string;
+    gsm: string;
+    createdAt: string;
+    isActive: boolean;
+    avatar: IFile[];
+}

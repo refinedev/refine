@@ -10,13 +10,23 @@ import {
 
 import { IStore } from "interfaces";
 
-export const StoreEdit: React.FC<IResourceComponentsProps> = (props) => {
+export const StoreEdit: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
-    const { formProps, saveButtonProps } = useForm<IStore>();
+    const {
+        formProps,
+        saveButtonProps,
+        queryResult: { isFetching },
+    } = useForm<IStore>();
 
     return (
-        <Edit {...props} saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
+        <Edit isLoading={isFetching} saveButtonProps={saveButtonProps}>
+            <Form
+                {...formProps}
+                layout="vertical"
+                initialValues={{
+                    isActive: true,
+                }}
+            >
                 <Form.Item
                     label={t("stores:fields.title")}
                     name="title"
@@ -33,9 +43,7 @@ export const StoreEdit: React.FC<IResourceComponentsProps> = (props) => {
                     name="isActive"
                     valuePropName="checked"
                 >
-                    <Checkbox value={true}>
-                        {t("stores:fields.isActive")}
-                    </Checkbox>
+                    <Checkbox>{t("stores:fields.isActive")}</Checkbox>
                 </Form.Item>
             </Form>
         </Edit>

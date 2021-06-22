@@ -13,10 +13,10 @@ import { IUser } from "interfaces";
 
 const { Title, Text } = Typography;
 
-export const UserShow: React.FC<IResourceComponentsProps> = (props) => {
+export const UserShow: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const { queryResult } = useShow<IUser>();
-    const { data, isLoading } = queryResult;
+    const { data, isFetching } = queryResult;
     const record = data?.data;
 
     const renderContent = () => {
@@ -49,7 +49,7 @@ export const UserShow: React.FC<IResourceComponentsProps> = (props) => {
     };
 
     return (
-        <Show {...props} title={t("users:show.title")} isLoading={isLoading}>
+        <Show title={t("users:show.title")} isLoading={isFetching}>
             {record && renderContent()}
         </Show>
     );

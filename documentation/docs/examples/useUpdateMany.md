@@ -1,6 +1,6 @@
 ---
 id: useUpdateMany
-title: useUpdateMany
+title: Table useUpdateMany
 ---
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/useUpdateMany)

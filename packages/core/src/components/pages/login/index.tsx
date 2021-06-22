@@ -30,14 +30,10 @@ export interface ILoginForm {
 }
 
 export const LoginPage: React.FC = () => {
-    const [form] = Form.useForm();
+    const [form] = Form.useForm<ILoginForm>();
     const translate = useTranslate();
 
-    const { mutate: login } = useLogin();
-
-    const onSubmit = (values: ILoginForm) => {
-        login(values);
-    };
+    const { mutate: login } = useLogin<ILoginForm>();
 
     const CardTitle = (
         <div style={loginHeader}>
@@ -56,12 +52,16 @@ export const LoginPage: React.FC = () => {
             >
                 <Col xs={22}>
                     <Card style={loginCard} title={CardTitle}>
-                        <Form
-                            className="ant-form-vertical"
+                        <Form<ILoginForm>
+                            layout="vertical"
                             form={form}
-                            name="control-hooks"
-                            onFinish={onSubmit}
+                            onFinish={(values) => {
+                                login(values);
+                            }}
                             requiredMark={false}
+                            initialValues={{
+                                remember: false,
+                            }}
                         >
                             <Form.Item
                                 name="username"
@@ -110,7 +110,10 @@ export const LoginPage: React.FC = () => {
                                     </Checkbox>
                                 </Form.Item>
 
-                                <a style={{ float: "right" }} href="">
+                                <a
+                                    style={{ float: "right" }}
+                                    href="javascript:void(0);"
+                                >
                                     {translate(
                                         "pages.login.forgotPassword",
                                         "Forgot password?",

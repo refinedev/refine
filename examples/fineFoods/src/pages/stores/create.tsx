@@ -10,13 +10,19 @@ import {
 
 import { IStore } from "interfaces";
 
-export const StoreCreate: React.FC<IResourceComponentsProps> = (props) => {
+export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const { formProps, saveButtonProps } = useForm<IStore>();
 
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
+        <Create saveButtonProps={saveButtonProps}>
+            <Form
+                {...formProps}
+                layout="vertical"
+                initialValues={{
+                    isActive: true,
+                }}
+            >
                 <Form.Item
                     label={t("stores:fields.title")}
                     name="title"
@@ -33,9 +39,7 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = (props) => {
                     name="isActive"
                     valuePropName="checked"
                 >
-                    <Checkbox value={true}>
-                        {t("stores:fields.isActive")}
-                    </Checkbox>
+                    <Checkbox>{t("stores:fields.isActive")}</Checkbox>
                 </Form.Item>
             </Form>
         </Create>
