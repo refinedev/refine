@@ -1,6 +1,6 @@
 {
-  "short_name": "Refine Example App",
-  "name": "Refine Example App",
+  "short_name": "refine nestjsx crud example app",
+  "name": "refine nestjsx crud example app",
   "icons": [
     {
       "src": "favicon.ico",
