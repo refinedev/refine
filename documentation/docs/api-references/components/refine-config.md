@@ -7,7 +7,7 @@ sidebar_label: <Refine>
 import warnwhen from '@site/static/img/warnwhen.png';
 
 `<Refine>` component is the entry point of a **refine** app. It is where the most high level configuration of the app occurs.
-It requires only a [`dataProvider`](/docs/guides-and-concepts/providers/data-provider) to bootstrap the app. After adding a `dataProvider` `<Resource>`'s can be added as children.
+It requires only a [`dataProvider`](api-references/providers/data-provider.md) to bootstrap the app. After adding a `dataProvider` `<Resource>`'s can be added as children.
 
 ```tsx title="App.tsx"
 import { Refine, Resource } from "@pankod/refine";
@@ -47,7 +47,7 @@ Data providers also act as adapters for refine making it possible to consume dif
 A data provider makes HTTP requests and returns response data back using predefined methods.  
 
 
-[Refer to Data Provider documentation for detailed information. &#8594](guides-and-concepts/providers/data-provider.md)
+[Refer to Data Provider documentation for detailed information. &#8594](api-references/providers/data-provider.md)
 
 <br />
 
@@ -55,7 +55,7 @@ A data provider makes HTTP requests and returns response data back using predefi
 
 `authProvider` handles authentication logic e.g. login, logout flow and checking user credentials. It is an object with methods that refine uses when necessary.
 
-[Refer to Auth Provider documentation for detailed information. &#8594](guides-and-concepts/providers/auth-provider.md)
+[Refer to Auth Provider documentation for detailed information. &#8594](api-references/providers/auth-provider.md)
 
 <br />
 
@@ -63,7 +63,7 @@ A data provider makes HTTP requests and returns response data back using predefi
 
 `i18nProvider` prop lets you add i18n support to your app using any i18n framework.
 
-[Refer to i18n documentation for detailed information. &#8594](guides-and-concepts/i18n.md)
+[Refer to i18n documentation for detailed information. &#8594](api-references/providers/i18n-provider.md)
 
 <br />
 
@@ -297,7 +297,7 @@ The default sidebar can be customized by using refine hooks and passing custom c
 
 https://ant.design/components/layout/#Layout.Sider
 
-[Refer to useMenu hook documentation for detailed sidebar customization. &#8594](docs/hooks/resource/useMenu.md)
+[Refer to useMenu hook documentation for detailed sidebar customization. &#8594](api-references/hooks/resource/useMenu.md)
 
 <br />
 
