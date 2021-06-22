@@ -179,8 +179,8 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 | defaultValue                                      | Adds extra `options`                      | `string` \| `Array<string>`                |           |
 | optionValue                                       | Set the option's value                    | `string`                                   | `"id"`    |
 | optionLabel                                       | Set the option's label value              | `string`                                   | `"title"` |
-| filters                                           | Add filters while fetching the data       | [`CrudFilters`](interfaces.md#crudfilters) |           |
-| sort                                              | Allow us to sort the options              | [`CrudSorting`](interfaces.md#crudsorting) |           |
+| filters                                           | Add filters while fetching the data       | [`CrudFilters`](../../interfaces.md#crudfilters) |           |
+| sort                                              | Allow us to sort the options              | [`CrudSorting`](../../interfaces.md#crudsorting) |           |
 
 ### Return values
 

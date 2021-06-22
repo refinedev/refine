@@ -165,6 +165,7 @@ module.exports = {
                                 "api-references/components/fields/text",
                             ],
                         },
+                        "api-references/interfaceReferences",
                     ],
                 },
             ],
@@ -200,6 +201,7 @@ module.exports = {
                     ],
                 },
                 "guides-and-concepts/custom-pages",
+                "guides-and-concepts/theme",
             ],
         },
         {
@@ -214,14 +216,6 @@ module.exports = {
                 "examples/customSider",
                 "examples/customInput",
             ],
-        },
-        {
-            type: "doc",
-            id: "interfaceReferences",
-        },
-        {
-            type: "doc",
-            id: "theme",
         },
     ],
 };

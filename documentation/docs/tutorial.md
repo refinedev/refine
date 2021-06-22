@@ -114,7 +114,7 @@ You will see the welcome page.
 import "@pankod/refine/dist/styles.min.css";
 ```
 
-[Refer to theme documentation for further information about importing the default css. &#8594](theme.md)
+[Refer to theme documentation for further information about importing the default css. &#8594](guides-and-concepts/theme.md)
 :::
 
 ## Connect API with Resources

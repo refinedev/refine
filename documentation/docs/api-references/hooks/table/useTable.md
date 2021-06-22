@@ -335,12 +335,12 @@ export const PostList: React.FC = () => {
 
 | Key              | Description                                                                                                                     | Type                                       |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| permanentFilter  | Varsayılan ve değiştirilemez filtre.                                                                                            | [`CrudFilters`](interfaces.md#crudfilters) |
+| permanentFilter  | Varsayılan ve değiştirilemez filtre.                                                                                            | [`CrudFilters`](../../interfaces.md#crudfilters) |
 | resource         | Verilerin listeleneceği resource. Eğer verilmezse, contextten çıkarım yapılır.                                                  | `string`                                   |
 | initialCurrent   | Varsayılan sayfa indeksi.                                                                                                       | `number`                                   |
 | initialPageSize  | Varsayılan sayfa başına gösterilen kayıt sayısı.                                                                                | `number`                                   |
-| initialSorter    | Varsayılan sıralama.                                                                                                            | [`CrudSorting`](interfaces.md#crudsorting) |
-| initialFilter    | Varsayılan filtreleme.                                                                                                          | [`CrudFilters`](interfaces.md#crudfilters) |
+| initialSorter    | Varsayılan sıralama.                                                                                                            | [`CrudSorting`](../../interfaces.md#crudsorting) |
+| initialFilter    | Varsayılan filtreleme.                                                                                                          | [`CrudFilters`](../../interfaces.md#crudfilters) |
 | syncWithLocation | Tablodaki sıralamalar, filtreler, sayfa indeksi ve sayfa başına gösterilen kayıt browser history tarafından takip edilir.       | `boolean`                                  |
 | onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form](../../../guides-and-concepts/table/table-search.md). | `Function`                                 |
 

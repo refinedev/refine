@@ -55,15 +55,15 @@ const { data, isLoading } = useCustom<PostUniqueCheckResponse>(
 | ----------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | url <div className="required">Required</div>    | URL                                                                     | string                                                                                                                              |
 | method <div className="required">Required</div> | Method                                                                  | ``get``, ``delete``, ``head``, ``options``, ``post``, ``put``, ``patch``                                                            |
-| config                                          | Query Params                                                            | { sort?: [CrudSorting](interfaces.md#crudsorting); filters?: [`CrudFilters`](interfaces.md#crudfilters); payload?: {}; query?: {} } |
+| config                                          | Query Params                                                            | { sort?: [CrudSorting](../../interfaces.md#crudsorting); filters?: [`CrudFilters`](../../interfaces.md#crudfilters); payload?: {}; query?: {} } |
 | queryOptions                                    | [useQuery Options](https://react-query.tanstack.com/reference/useQuery) | object                                                                                                                              |
 
 #### Type Parameters
 
 | Property | Desription                                                                 | Type                                     | Default                                  |
 | -------- | -------------------------------------------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| TData    | Result data of the query. Extends [`BaseRecord`](interfaces.md#baserecord) | [`BaseRecord`](interfaces.md#baserecord) | [`BaseRecord`](interfaces.md#baserecord) |
-| TError   | Custom error object that extends [`HttpError`](interfaces.md#httperror)    | [`HttpError`](interfaces.md#httperror)   | [`HttpError`](interfaces.md#httperror)   |
+| TData    | Result data of the query. Extends [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) |
+| TError   | Custom error object that extends [`HttpError`](../../interfaces.md#httperror)    | [`HttpError`](../../interfaces.md#httperror)   | [`HttpError`](../../interfaces.md#httperror)   |
 | TQuery   | Values for query params.                                                   | [`TQuery`](#)                            | unknown                                  |
 | TPayload | Values for params.                                                         | [`TPayload`](#)                          | unknown                                  |
 

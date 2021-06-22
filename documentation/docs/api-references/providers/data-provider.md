@@ -569,7 +569,7 @@ const SimpleRestDataProvider = (
 | Name   | Type                                                                                                                                                                      |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | url    | `string`                                                                                                                                                                  |
-| params | { `pagination?:` [`Pagination`](interfaces.md#pagination); `sort?:` [`CrudSorting`](interfaces.md#crudsorting); `filters?:` [`CrudFilters`](interfaces.md#crudfilters); } |
+| params | { `pagination?:` [`Pagination`](../../api-references/interfaces.md#pagination); `sort?:` [`CrudSorting`](../../api-references/interfaces.md#crudsorting); `filters?:` [`CrudFilters`](../../api-references/interfaces.md#crudfilters); } |
                                                                                                                           
 
 <br/>
@@ -644,7 +644,7 @@ const { data } = useList("posts", {
 **Adding sorting**
 
 We'll sort records by speficified order and field.
-> [CrudSorting](/docs/interfaceReferences#crudoperators)
+> [CrudSorting](/docs/api-references/interfaceReferences#crudoperators)
 
 ```tsx title="dataProvider.ts"
  //highlight-start
@@ -724,7 +724,7 @@ const { data } = useList("posts", {
 
 **Adding filtering**
 
-Allows you to filter queries using [refine's filter operators](/docs/interfaceReferences#crudoperators). It is configured via field, operator and value properites.
+Allows you to filter queries using [refine's filter operators](/docs/api-references/interfaceReferences#crudoperators). It is configured via field, operator and value properites.
 
 ```tsx title="dataProvider.ts"
 const generateSort = (sort?: CrudSorting) => {
@@ -816,7 +816,7 @@ Since our API accepts a certain parameter format to filter the data, we need to 
 
 So we added `generateFilter` and `mapOperator` methods to transform filter parameters.
 
-[Refer to list of filter operators &#8594](/docs/interfaceReferences#crudoperators)
+[Refer to list of filter operators &#8594](/docs/api-references/interfaceReferences#crudoperators)
 
 ```ts
 const { data } = useList("posts", { 
@@ -910,7 +910,7 @@ const SimpleRestDataProvider = (
 | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | url    | `string`                                                                                                                                                       |
 | method | ``get``, ``delete``, ``head``, ``options``, ``post``, ``put``, ``patch``                                                                                       |
-| params | { `sort?:` [`CrudSorting`](interfaces.md#crudsorting); `filters?:` [`CrudFilters`](interfaces.md#crudfilters); `payload?: {}`; `query?: {}`; `headers?: {}`; } |
+| params | { `sort?:` [`CrudSorting`](../../api-references/interfaces.md#crudsorting); `filters?:` [`CrudFilters`](../../api-references/interfaces.md#crudfilters); `payload?: {}`; `query?: {}`; `headers?: {}`; } |
                                                                                                                           
 
 <br/>
@@ -932,7 +932,7 @@ const { data, isLoading } = useCustom(
 
 ### Error Format
 
-**refine** expects errors to be extended from [`HttpError`](interfaces.md#httperror).  
+**refine** expects errors to be extended from [`HttpError`](../../api-references/interfaces.md#httperror).  
 Axios interceptor can be used to transform the error from response before Axios returns the response to your code. Interceptors are methods which are triggered before the main method.
 
 ```ts title="dataProvider.ts"

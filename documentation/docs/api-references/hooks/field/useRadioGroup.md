@@ -146,8 +146,8 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 | resource <div className="required">Required</div> | [`Resource`](#) for API data interactions | `string`                                   |           |
 | optionValue                                       | Set the option's value                    | `string`                                   | `"id"`    |
 | optionLabel                                       | Set the option's label value              | `string`                                   | `"title"` |
-| filters                                           | Add filters while fetching the data       | [`CrudFilters`](interfaces.md#crudfilters) |           |
-| sort                                              | Allow us to sort the options              | [`CrudSorting`](interfaces.md#crudsorting) |           |
+| filters                                           | Add filters while fetching the data       | [`CrudFilters`](../../interfaces.md#crudfilters) |           |
+| sort                                              | Allow us to sort the options              | [`CrudSorting`](../../interfaces.md#crudsorting) |           |
 
 ### Return values
 
