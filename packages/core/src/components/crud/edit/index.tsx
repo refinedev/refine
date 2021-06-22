@@ -10,7 +10,6 @@ import {
     Col,
     Spin,
 } from "antd";
-import pluralize from "pluralize";
 
 import {
     useResourceWithRoute,
@@ -25,8 +24,9 @@ import {
     DeleteButtonProps,
     SaveButton,
 } from "@components";
-
+import { userFriendlyResourceName } from "@definitions";
 import { MutationMode, ResourceRouterParams } from "../../../interfaces";
+
 export interface EditProps {
     title?: string;
     actionButtons?: React.ReactNode;
@@ -83,7 +83,10 @@ export const Edit: React.FC<EditProps> = ({
                         title ??
                         translate(
                             `${resource.name}.titles.edit`,
-                            `Edit ${pluralize.singular(resource.name)}`,
+                            `Edit ${userFriendlyResourceName(
+                                resource.name,
+                                "singular",
+                            )}`,
                         )
                     }
                     extra={

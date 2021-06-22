@@ -217,6 +217,7 @@ module.exports = {
                 "examples/customInputs",
                 "examples/offLayoutArea",
                 "examples/customInput",
+                "examples/strapi",
             ],
         },
     ],

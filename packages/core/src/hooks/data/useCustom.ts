@@ -41,7 +41,7 @@ export const useCustom = <
         [`custom/${method}-${url}`, { ...config }],
         () => custom<TData>(url, method, { ...config }),
         {
-            ...(queryOptions ?? { keepPreviousData: true }),
+            ...queryOptions,
             onError: (err: TError) => {
                 checkError(err);
                 queryOptions?.onError?.(err);
