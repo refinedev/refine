@@ -14,7 +14,7 @@ import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ICategory, ITags } from "interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
@@ -23,6 +23,11 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
         defaultValue: postData?.category.id,
+    });
+
+    const { selectProps: tagsSelectProps } = useSelect<ITags>({
+        resource: "tags",
+        defaultValue: postData?.tags.map((tag) => tag.id),
     });
 
     const [selectedTab, setSelectedTab] =
@@ -52,6 +57,25 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                     ]}
                 >
                     <Select {...categorySelectProps} />
+                </Form.Item>
+                <Form.Item
+                    label="Tags"
+                    name="tags"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                    getValueProps={(tags?: { id: string }[]) => {
+                        return { value: tags?.map((tag) => tag.id) };
+                    }}
+                    getValueFromEvent={(args: string[]) => {
+                        return args.map((item) => ({
+                            id: item,
+                        }));
+                    }}
+                >
+                    <Select mode="multiple" {...tagsSelectProps} />
                 </Form.Item>
                 <Form.Item
                     label="Status"

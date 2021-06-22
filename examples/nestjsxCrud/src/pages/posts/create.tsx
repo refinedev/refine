@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import {
     Create,
     Form,
+    getValueFromEvent,
     Input,
+    Upload,
     IResourceComponentsProps,
     Select,
     useForm,
     useSelect,
+    useApiUrl,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -14,13 +17,18 @@ import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ICategory, ITags } from "interfaces";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
+    const apiUrl = useApiUrl();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
+    });
+
+    const { selectProps: tagsSelectProps } = useSelect<ITags>({
+        resource: "tags",
     });
 
     const [selectedTab, setSelectedTab] =
@@ -50,6 +58,25 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                     ]}
                 >
                     <Select {...categorySelectProps} />
+                </Form.Item>
+                <Form.Item
+                    label="Tags"
+                    name="tags"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                    getValueProps={(tags?: { id: string }[]) => {
+                        return { value: tags?.map((tag) => tag.id) };
+                    }}
+                    getValueFromEvent={(args: string[]) => {
+                        return args.map((item) => ({
+                            id: item,
+                        }));
+                    }}
+                >
+                    <Select mode="multiple" {...tagsSelectProps} />
                 </Form.Item>
                 <Form.Item
                     label="Status"
@@ -95,6 +122,26 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                             )
                         }
                     />
+                </Form.Item>
+                <Form.Item label="Images">
+                    <Form.Item
+                        name="images"
+                        valuePropName="fileList"
+                        getValueFromEvent={getValueFromEvent}
+                        noStyle
+                    >
+                        <Upload.Dragger
+                            name="file"
+                            action={`${apiUrl}/media/upload`}
+                            listType="picture"
+                            maxCount={5}
+                            multiple
+                        >
+                            <p className="ant-upload-text">
+                                Drag & drop a file in this area
+                            </p>
+                        </Upload.Dragger>
+                    </Form.Item>
                 </Form.Item>
             </Form>
         </Create>
