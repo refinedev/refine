@@ -37,17 +37,17 @@ Feature/Capability Key:
 | [Menu](https://ant.design/components/menu/)              |    [🔵](https://ant.design/components/menu/)     |
 | [Pagination](https://ant.design/components/pagination/)  | [🔵](https://ant.design/components/pagination/)  |
 | [PageHeader](https://ant.design/components/page-header/) | [🔵](https://ant.design/components/page-header/) |
-| [Steps](https://ant.design/components/steps/)            |          [✅](../hooks/form/useStepsForm.md)          |
+| [Steps](https://ant.design/components/steps/)            |          [✅](../api-references/hooks/form/useStepsForm.md)          |
 
 ### Data Entry
 
 |                                                              |                       Hooks                       |                                                          |                      Hooks                      |
 | ------------------------------------------------------------ | :-----------------------------------------------: | -------------------------------------------------------- | :---------------------------------------------: |
-| [AutoComplete](https://ant.design/components/auto-complete/) | [🔵](https://ant.design/components/auto-complete/) | [Radio](https://ant.design/components/radio/)            |      [✅](../hooks/field/useRadioGroup.md)       |
-| [Checkbox](https://ant.design/components/checkbox/)          |      [✅](../hooks/field/useCheckboxGroup.md)      | [Switch](https://ant.design/components/switch/)          |   [🔵](https://ant.design/components/switch/)    |
+| [AutoComplete](https://ant.design/components/auto-complete/) | [🔵](https://ant.design/components/auto-complete/) | [Radio](https://ant.design/components/radio/)            |      [✅](../api-references/hooks/field/useRadioGroup.md)       |
+| [Checkbox](https://ant.design/components/checkbox/)          |      [✅](../api-references/hooks/field/useCheckboxGroup.md)      | [Switch](https://ant.design/components/switch/)          |   [🔵](https://ant.design/components/switch/)    |
 | [Cascader](https://ant.design/components/cascader/)          |   [🔵](https://ant.design/components/cascader/)    | [Slider](https://ant.design/components/slider/)          |   [🔵](https://ant.design/components/slider/)    |
-| [DatePicker](https://ant.design/components/date-picker/)     |  [🔵](https://ant.design/components/date-picker/)  | [Select](https://ant.design/components/select/)          |        [✅](../hooks/field/useSelect.md)         |
-| [Form](https://ant.design/components/form/)                  |           [✅](../hooks/form/useForm.md)           | [TreeSelect](https://ant.design/components/tree-select/) | [🔵](https://ant.design/components/tree-select)  |
+| [DatePicker](https://ant.design/components/date-picker/)     |  [🔵](https://ant.design/components/date-picker/)  | [Select](https://ant.design/components/select/)          |        [✅](../api-references/hooks/field/useSelect.md)         |
+| [Form](https://ant.design/components/form/)                  |           [✅](../api-references/hooks/form/useForm.md)           | [TreeSelect](https://ant.design/components/tree-select/) | [🔵](https://ant.design/components/tree-select)  |
 | [InputNumber](https://ant.design/components/input-number/)   | [🔵](https://ant.design/components/input-number/)  | [Transfer](https://ant.design/components/transfer/)      |  [🔵](https://ant.design/components/transfer/)   |
 | [Input](https://ant.design/components/input/)                |     [🔵](https://ant.design/components/input/)     | [TimePicker](https://ant.design/components/time-picker/) | [🔵](https://ant.design/components/time-picker/) |
 | [Mentions](https://ant.design/components/mentions/)          |   [🔵](https://ant.design/components/mentions/)    | [Upload](https://ant.design/components/upload/)          |   [🔵](https://ant.design/components/upload/)    |
@@ -65,7 +65,7 @@ Feature/Capability Key:
 | [Card](https://ant.design/components/card/)                 |     [🔵](https://ant.design/components/card/)     | [Timeline](https://ant.design/components/timeline/)   | [🔵](https://ant.design/components/timeline/)  |
 | [Calendar](https://ant.design/components/calendar/)         |   [🔵](https://ant.design/components/calendar/)   | [Tag](https://ant.design/components/tag/)             |    [🔵](https://ant.design/components/tag/)    |
 | [Descriptions](https://ant.design/components/descriptions/) | [🔵](https://ant.design/components/descriptions/) | [Tabs](https://ant.design/components/tabs/)           |   [🔵](https://ant.design/components/tabs/)    |
-| [Empty](https://ant.design/components/empty/)               |    [🔵](https://ant.design/components/empty/)     | [Table](https://ant.design/components/table/)         |        [✅](../hooks/table/useTable.md)        |
+| [Empty](https://ant.design/components/empty/)               |    [🔵](https://ant.design/components/empty/)     | [Table](https://ant.design/components/table/)         |        [✅](../api-references/hooks/table/useTable.md)        |
 | [Image](https://ant.design/components/image/)               |    [🔵](https://ant.design/components/image/)     |
 
 ### Feedback
@@ -73,8 +73,8 @@ Feature/Capability Key:
 |                                                             |                      Hooks                       |
 | ----------------------------------------------------------- | :----------------------------------------------: |
 | [Alert](https://ant.design/components/alert/)               |    [🔵](https://ant.design/components/alert/)     |
-| [Drawer](https://ant.design/components/drawer/)             |       [✅](../hooks/form/useDrawerForm.md)        |
-| [Modal](https://ant.design/components/modal/)               |        [✅](../hooks/form/useModalForm.md)        |
+| [Drawer](https://ant.design/components/drawer/)             |       [✅](../api-references/hooks/form/useDrawerForm.md)        |
+| [Modal](https://ant.design/components/modal/)               |        [✅](../api-references/hooks/form/useModalForm.md)        |
 | [Message](https://ant.design/components/message/)           |   [🔵](https://ant.design/components/message/)    |
 | [Notification](https://ant.design/components/notification/) | [🔵](https://ant.design/components/notification/) |
 | [Progress](https://ant.design/components/progress/)         |   [🔵](https://ant.design/components/progress/)   |

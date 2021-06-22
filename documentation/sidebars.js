@@ -11,17 +11,169 @@ module.exports = {
         },
         {
             type: "category",
-            label: "Guides & Concepts",
+            label: "API References",
             items: [
                 {
                     type: "category",
                     label: "Providers",
                     items: [
-                        "guides-and-concepts/providers/auth-provider",
-                        "guides-and-concepts/providers/data-provider",
-                        "guides-and-concepts/providers/i18n-provider",
+                        "api-references/providers/auth-provider",
+                        "api-references/providers/data-provider",
+                        "api-references/providers/i18n-provider",
                     ],
                 },
+                {
+                    type: "category",
+                    label: "Hooks",
+                    items: [
+                        {
+                            type: "category",
+                            label: "Data",
+                            items: [
+                                "api-references/hooks/data/useCreate",
+                                "api-references/hooks/data/useCreateMany",
+                                "api-references/hooks/data/useUpdate",
+                                "api-references/hooks/data/useUpdateMany",
+                                "api-references/hooks/data/useDelete",
+                                "api-references/hooks/data/useDeleteMany",
+                                "api-references/hooks/data/useList",
+                                "api-references/hooks/data/useOne",
+                                "api-references/hooks/data/useMany",
+                                "api-references/hooks/data/useCustom",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Authorization",
+                            items: [
+                                "api-references/hooks/auth/useLogin",
+                                "api-references/hooks/auth/useLogout",
+                                "api-references/hooks/auth/useCheckError",
+                                "api-references/hooks/auth/useAuthenticated",
+                                "api-references/hooks/auth/useGetIdentity",
+                                "api-references/hooks/auth/usePermissions",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Form",
+                            items: [
+                                "api-references/hooks/form/useForm",
+                                "api-references/hooks/form/useModalForm",
+                                "api-references/hooks/form/useDrawerForm",
+                                "api-references/hooks/form/useStepsForm",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Table",
+                            items: [
+                                "api-references/hooks/table/useTable",
+                                "api-references/hooks/table/useEditableTable",
+                            ],
+                        },
+
+                        {
+                            type: "category",
+                            label: "Field",
+                            items: [
+                                "api-references/hooks/field/useCheckboxGroup",
+                                "api-references/hooks/field/useSelect",
+                                "api-references/hooks/field/useRadioGroup",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Refine",
+                            items: ["api-references/hooks/refine/useTitle"],
+                        },
+                        {
+                            type: "category",
+                            label: "Translate",
+                            items: [
+                                "api-references/hooks/translate/useTranslate",
+                                "api-references/hooks/translate/useSetLocale",
+                                "api-references/hooks/translate/useGetLocale",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Resource",
+                            items: [
+                                "api-references/hooks/resource/useMenu",
+                                "api-references/hooks/resource/useResource",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Navigation",
+                            items: [
+                                "api-references/hooks/navigation/useNavigation",
+                            ],
+                        },
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Components",
+                    items: [
+                        {
+                            type: "category",
+                            label: "Basic Views",
+                            items: [
+                                "api-references/components/basic-views/list",
+                                "api-references/components/basic-views/create",
+                                "api-references/components/basic-views/show",
+                                "api-references/components/basic-views/edit",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Buttons",
+                            items: [
+                                "api-references/components/buttons/create-button",
+                                "api-references/components/buttons/import-button",
+                                "api-references/components/buttons/export-button",
+                                "api-references/components/buttons/delete-button",
+                                "api-references/components/buttons/refresh-button",
+                                "api-references/components/buttons/save-button",
+                                "api-references/components/buttons/list-button",
+                                "api-references/components/buttons/show-button",
+                                "api-references/components/buttons/edit-button",
+                                "api-references/components/buttons/clone-button",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Inputs",
+                            items: [
+                                "api-references/components/inputs/custom-inputs",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Fields",
+                            items: [
+                                "api-references/components/fields/boolean",
+                                "api-references/components/fields/url",
+                                "api-references/components/fields/image",
+                                "api-references/components/fields/file",
+                                "api-references/components/fields/date",
+                                "api-references/components/fields/email",
+                                "api-references/components/fields/markdown",
+                                "api-references/components/fields/tag",
+                                "api-references/components/fields/text",
+                            ],
+                        },
+                        "api-references/interfaceReferences",
+                    ],
+                },
+            ],
+        },
+        {
+            type: "category",
+            label: "Guides & Concepts",
+            items: [
                 {
                     type: "category",
                     label: "Upload",
@@ -49,147 +201,7 @@ module.exports = {
                     ],
                 },
                 "guides-and-concepts/custom-pages",
-            ],
-        },
-        {
-            type: "category",
-            label: "Hooks",
-            items: [
-                {
-                    type: "category",
-                    label: "Data",
-                    items: [
-                        "hooks/data/useCreate",
-                        "hooks/data/useCreateMany",
-                        "hooks/data/useUpdate",
-                        "hooks/data/useUpdateMany",
-                        "hooks/data/useDelete",
-                        "hooks/data/useDeleteMany",
-                        "hooks/data/useList",
-                        "hooks/data/useOne",
-                        "hooks/data/useMany",
-                        "hooks/data/useCustom",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Authorization",
-                    items: [
-                        "hooks/auth/useLogin",
-                        "hooks/auth/useLogout",
-                        "hooks/auth/useCheckError",
-                        "hooks/auth/useAuthenticated",
-                        "hooks/auth/useGetIdentity",
-                        "hooks/auth/usePermissions",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Form",
-                    items: [
-                        "hooks/form/useForm",
-                        "hooks/form/useModalForm",
-                        "hooks/form/useDrawerForm",
-                        "hooks/form/useStepsForm",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Table",
-                    items: [
-                        "hooks/table/useTable",
-                        "hooks/table/useEditableTable",
-                    ],
-                },
-
-                {
-                    type: "category",
-                    label: "Field",
-                    items: [
-                        "hooks/field/useCheckboxGroup",
-                        "hooks/field/useSelect",
-                        "hooks/field/useRadioGroup",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Refine",
-                    items: ["hooks/refine/useTitle"],
-                },
-                {
-                    type: "category",
-                    label: "Translate",
-                    items: [
-                        "hooks/translate/useTranslate",
-                        "hooks/translate/useSetLocale",
-                        "hooks/translate/useGetLocale",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Resource",
-                    items: [
-                        "hooks/resource/useMenu",
-                        "hooks/resource/useResource",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Navigation",
-                    items: ["hooks/navigation/useNavigation"],
-                },
-            ],
-        },
-        {
-            type: "category",
-            label: "Components",
-            items: [
-                {
-                    type: "category",
-                    label: "Basic Views",
-                    items: [
-                        "components/basic-views/list",
-                        "components/basic-views/create",
-                        "components/basic-views/show",
-                        "components/basic-views/edit",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Buttons",
-                    items: [
-                        "components/buttons/create-button",
-                        "components/buttons/import-button",
-                        "components/buttons/export-button",
-                        "components/buttons/delete-button",
-                        "components/buttons/refresh-button",
-                        "components/buttons/save-button",
-                        "components/buttons/list-button",
-                        "components/buttons/show-button",
-                        "components/buttons/edit-button",
-                        "components/buttons/clone-button",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Inputs",
-                    items: ["components/inputs/custom-inputs"],
-                },
-                {
-                    type: "category",
-                    label: "Fields",
-                    items: [
-                        "components/fields/boolean",
-                        "components/fields/url",
-                        "components/fields/image",
-                        "components/fields/file",
-                        "components/fields/date",
-                        "components/fields/email",
-                        "components/fields/markdown",
-                        "components/fields/tag",
-                        "components/fields/text",
-                    ],
-                },
+                "guides-and-concepts/theme",
             ],
         },
         {
@@ -203,15 +215,8 @@ module.exports = {
                 "examples/customFooter",
                 "examples/customSider",
                 "examples/customInput",
+                "examples/strapi",
             ],
-        },
-        {
-            type: "doc",
-            id: "interfaceReferences",
-        },
-        {
-            type: "doc",
-            id: "theme",
         },
     ],
 };

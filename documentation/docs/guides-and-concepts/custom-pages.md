@@ -107,7 +107,7 @@ Only authenticated users can access this page via `/custom-page` path.
 :::caution attention
 For authenticated custom page, your application needs an `authProvider`.
 
-[Refer to authProvider for more detailed information. &#8594](providers/auth-provider.md)
+[Refer to authProvider for more detailed information. &#8594](../api-references/providers/auth-provider.md)
 
 :::
 
@@ -184,7 +184,7 @@ export default App;
 
 Now, let's create the custom page with the name `<PostReview>`. We will use the props of `useList`, `filter` and `pagination`, to fetch a post with "draft" status.
 
-[Refer to `useList` documentation for detailed usage. &#8594](hooks/data/useList.md)
+[Refer to `useList` documentation for detailed usage. &#8594](api-references/hooks/data/useList.md)
 
 ```tsx title="src/pages/post-review.tsx"
 import { useList } from "@pankod/refine";
@@ -377,7 +377,7 @@ Now our page looks like this:
 
 Now let's put in approve and reject buttons to change the status of the post shown on the page. When these buttons are clicled, we will change the status of the post using `useUpdate`.
 
-[Refer to `useUpdate` documentation for detailed usage. &#8594](hooks/data/useUpdate.md)
+[Refer to `useUpdate` documentation for detailed usage. &#8594](api-references/hooks/data/useUpdate.md)
 
 ```tsx title="src/pages/post-review.tsx"
 import {
