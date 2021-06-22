@@ -463,3 +463,32 @@ const App: React.FC = () =>
 ```
 
 <br />
+
+### `reactQueryClientConfig`
+
+Config for query options in the React Query client that **refine** uses.
+
+**refine** uses some defaults that applies to all queries:
+
+```ts
+{
+    refetchOnWindowFocus: false,
+    keepPreviousData: true,
+}
+```
+[Refer to useQuery documentation for detailed information on query options. &#8594](https://react-query.tanstack.com/reference/useQuery)
+
+
+```tsx
+...
+const App: React.FC = () => 
+    (
+        <Refine
+            dataProvider={dataProvider(API_URL)}
+            //highlight-next-line
+            reactQueryClientConfig={{ keepPreviousData: false }}
+        >
+         ...
+        </Refine>
+    );
+```
