@@ -110,7 +110,7 @@ const App: React.FC = () => {
                     style={{ minHeight: "100vh", flexDirection: "row" }}
                 >
                     <Sider />
-                    <AntdLayout className="site-layout">
+                    <AntdLayout style={{ marginLeft: 200 }}>
                         <Header />
                         <AntdLayout.Content>
                             <div style={{ padding: 24, minHeight: 360 }}>

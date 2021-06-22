@@ -11,6 +11,12 @@ export const CustomSider: React.FC = () => {
             collapsible
             collapsed={collapsed}
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
+            style={{
+                overflow: "auto",
+                height: "100vh",
+                position: "fixed",
+                left: 0,
+            }}
         >
             <Title collapsed={collapsed} />
             <Menu
