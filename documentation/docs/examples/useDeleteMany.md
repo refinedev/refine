@@ -1,6 +1,6 @@
 ---
 id: useDeleteMany
-title: useDeleteMany
+title: Table useDeleteMany
 ---
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/useDeleteMany)

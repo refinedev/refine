@@ -26,7 +26,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
 
     return (
-        <List>
+        <List title={t("stores:title")}>
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     key="id"
