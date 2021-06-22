@@ -44,12 +44,12 @@ export const useImport = <
     let { name: resource } = resourceWithRoute(routeResourceName);
 
     const createManyMutationResult = useCreateMany<TData, TError, TVariables>();
-    const createMutaitonResult = useCreate<TData, TError, TVariables>();
+    const createMutationResult = useCreate<TData, TError, TVariables>();
 
     let mutationResult;
 
     if (batchSize === 1) {
-        mutationResult = createMutaitonResult;
+        mutationResult = createMutationResult;
     } else {
         mutationResult = createManyMutationResult;
     }
@@ -70,7 +70,7 @@ export const useImport = <
                     });
                 } else if (batchSize === 1) {
                     values.forEach((value) => {
-                        createMutaitonResult.mutate({
+                        createMutationResult.mutate({
                             resource,
                             values: value,
                         });

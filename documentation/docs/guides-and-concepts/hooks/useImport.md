@@ -155,10 +155,28 @@ And it's done. When you click on the button and provide a csv file of the header
 
 ### `useImport` Return Values
 
-| Property        | Description                     | Type                                                                                          |
-| --------------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
-| radioGroupProps | Ant design radio group props    | [`Radio Group`](https://ant.design/components/radio/#RadioGroup)                              |
-| queryResult     | Result of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+| Property       | Description                                                     | Type                                                                                                        |
+| -------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| uploadProps    | Props to pass to Ant Design's `<Upload>` component              | [`<Upload>`](https://ant.design/components/upload/#API)                                                     |
+| buttonProps    | Props to pass to Ant Design's `<Button>` component              | [`<Button>`](https://ant.design/components/button/#API)                                                     |
+| mutationResult | Result of the mutation/mutations of creating imported resources | [`UseCreateReturnType`](interfaces.md#baserecord)  \| [`UseCreateManyReturnType`](interfaces.md#baserecord) |
+
+### `useImport` Type Parameters
+
+| Property   | Desription                                                                               | Default                                  |
+| ---------- | ---------------------------------------------------------------------------------------- | ---------------------------------------- |
+| TItem      | Interface of parsed csv data                                                             | `any`                                    |
+| TData      | Result type of the data query type that extends [`BaseRecord`](interfaces.md#baserecord) | [`BaseRecord`](interfaces.md#baserecord) |
+| TError     | Custom error object that extends [`HttpError`](interfaces.md#httperror)                  | [`HttpError`](interfaces.md#httperror)   |
+| TVariables | Result data of the query                                                                 | `any`                                    |
+
+### `<ImportButton>` Props
+
+| Property    | Description                      | Type                                                       | Default     |
+| ----------- | -------------------------------- | ---------------------------------------------------------- | ----------- |
+| uploadProps | Set the button type              | [`UploadProps`](https://ant.design/components/upload/#API) | `undefined` |
+| buttonProps | Set the icon component of button | [`ButtonProps`](https://ant.design/components/button/#API) | `undefined` |
+| children    | Set the button text              | `ReactNode`                                                | `"Import"`  |
 
 ## Live Codesandbox Example
 
