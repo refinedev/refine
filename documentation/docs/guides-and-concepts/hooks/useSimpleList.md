@@ -6,7 +6,7 @@ title: useSimpleList
 import useSimpleList from '@site/static/img/guides-and-concepts/hooks/useSimpleList/useSimpleList.png';
 
 
-By using `useTable` you get props for your records from API in accordance with Ant Design `<List>`component. All features such as pagination, sorting come out of the box.
+By using `useSimpleList` you get props for your records from API in accordance with Ant Design `<List>`component. All features such as pagination, sorting come out of the box.
 
 [Refer to Ant Design docs for `<List>`component information &#8594](https://ant.design/components/list/#header)
 
@@ -151,4 +151,3 @@ You can use `AntdList.Item` and `AntdList.Item.Meta` like `<List>` component fro
 | sorter    | Allows to sort records by speficified order and field        | [`CrudSorting`](interfaces.md#crudsorting)\| `undefined` |                                          |
 | filter    | Allows you to filter queries using refine's filter operators | [`CrudFilters`](interfaces.md#crudfilters)\| `undefined` |                                          |
 | listProps | Ant Design `<List>` props                                    | [`listProps`](https://ant.design/components/list/#API)   |                                          |
-
