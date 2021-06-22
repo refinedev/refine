@@ -1,10 +1,10 @@
 import React from "react";
 import { Row, Col, PageHeader, PageHeaderProps } from "antd";
-import humanizeString from "humanize-string";
 import { useParams } from "react-router-dom";
 
 import { useResourceWithRoute, useTranslate } from "@hooks";
 import { CreateButton } from "@components";
+import { userFriendlyResourceName } from "@definitions";
 import { ResourceRouterParams, CreateButtonProps } from "../../../interfaces";
 
 export interface ListProps {
@@ -52,7 +52,7 @@ export const List: React.FC<ListProps> = ({
                         title ??
                         translate(
                             `${resource.name}.titles.list`,
-                            humanizeString(resource.name),
+                            userFriendlyResourceName(resource.name, "plural"),
                         )
                     }
                     extra={defaultExtra}
