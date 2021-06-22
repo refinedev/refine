@@ -370,7 +370,7 @@ const App: React.FC = () =>
                     style={{ minHeight: "100vh", flexDirection: "row" }}
                 >
                     <Sider />
-                    <AntdLayout className="site-layout">
+                    <AntdLayout>
                         <Header />
                         <AntdLayout.Content>
                             <div style={{ padding: 24, minHeight: 360 }}>
@@ -466,7 +466,7 @@ const App: React.FC = () =>
 
 ### `reactQueryClientConfig`
 
-Config for query options in the React Query client that **refine** uses.
+Config for React Query client that **refine** uses.
 
 **refine** uses some defaults that applies to all queries:
 
@@ -476,7 +476,7 @@ Config for query options in the React Query client that **refine** uses.
     keepPreviousData: true,
 }
 ```
-[Refer to useQuery documentation for detailed information on query options. &#8594](https://react-query.tanstack.com/reference/useQuery)
+[Refer to QueryClient documentation for detailed information. &#8594](https://react-query.tanstack.com/reference/QueryClient#queryclient)
 
 
 ```tsx
