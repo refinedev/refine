@@ -90,6 +90,7 @@ export const PostList: React.FC = () => {
 
     const categoryIds =
         listProps?.dataSource?.map((item) => item.category.id) ?? [];
+
     const { data } = useMany<ICategory>("categories", categoryIds, {
         enabled: categoryIds.length > 0,
     });
