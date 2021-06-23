@@ -99,7 +99,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 
 //highlight-next-line
-import "i18n";
+import "./i18n";
 
 ReactDOM.render(
     <React.StrictMode>
