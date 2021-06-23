@@ -5,7 +5,7 @@ title: CSV Import
 
 import importButton from '@site/static/img/guides-and-concepts/csv-import/import-button.png';
 
-You can easily import csv files for any resource by using refine's customizable `useImport` hook, optionally with `<ImportButton>` component. `useImport` hook returns the necessary props for `<ImportButton>` component. refine uses [paparse](https://www.papaparse.com/) parser under the hood to parse csv files.
+You can easily import csv files for any resource by using **refine**'s customizable `useImport` hook, optionally with `<ImportButton>` component. `useImport` hook returns the necessary props for `<ImportButton>` component. **refine** uses [paparse](https://www.papaparse.com/) parser under the hood to parse csv files.
 
 You can call `useImport` hook and add an `<ImportButton>` with props returned from `useImport` on a list page, configured with a mapping function to format the files data into API's data. When the button gets triggered, it creates the imported resources using `create` or `createMany` data provider methods under the hood.
 
