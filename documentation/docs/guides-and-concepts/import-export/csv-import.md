@@ -5,7 +5,7 @@ title: CSV Import
 
 import importButton from '@site/static/img/guides-and-concepts/csv-import/import-button.png';
 
-You can easily import csv files for any resource by using refine' s customizable `useImport` hook, optionally with `<ImportButton>` component. `useImport` hook returns the necessary props for `<ImportButton>` component. refine uses [paparse](https://www.papaparse.com/) parser under the hood to parse csv files.
+You can easily import csv files for any resource by using refine's customizable `useImport` hook, optionally with `<ImportButton>` component. `useImport` hook returns the necessary props for `<ImportButton>` component. refine uses [paparse](https://www.papaparse.com/) parser under the hood to parse csv files.
 
 You can call `useImport` hook and add an `<ImportButton>` with props returned from `useImport` on a list page, configured with a mapping function to format the files data into API's data. When the button gets triggered, it creates the imported resources using `create` or `createMany` data provider methods under the hood.
 
@@ -161,15 +161,15 @@ And it's done. When you click on the button and provide a csv file of the header
 | -------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | uploadProps    | Props to pass to Ant Design's `<Upload>` component              | [`<Upload>`](https://ant.design/components/upload/#API)                                                     |
 | buttonProps    | Props to pass to Ant Design's `<Button>` component              | [`<Button>`](https://ant.design/components/button/#API)                                                     |
-| mutationResult | Result of the mutation/mutations of creating imported resources | [`UseCreateReturnType`](interfaces.md#baserecord)  \| [`UseCreateManyReturnType`](interfaces.md#baserecord) |
+| mutationResult | Result of the mutation/mutations of creating imported resources | [`UseCreateReturnType`](api-references/interfaces.md#baserecord)  \| [`UseCreateManyReturnType`](api-references/interfaces.md#baserecord) |
 
 ### `useImport` Type Parameters
 
 | Property   | Desription                                                                               | Default                                  |
 | ---------- | ---------------------------------------------------------------------------------------- | ---------------------------------------- |
 | TItem      | Interface of parsed csv data                                                             | `any`                                    |
-| TData      | Result type of the data query type that extends [`BaseRecord`](interfaces.md#baserecord) | [`BaseRecord`](interfaces.md#baserecord) |
-| TError     | Custom error object that extends [`HttpError`](interfaces.md#httperror)                  | [`HttpError`](interfaces.md#httperror)   |
+| TData      | Result type of the data query type that extends [`BaseRecord`](api-references/interfaces.md#baserecord) | [`BaseRecord`](api-references/interfaces.md#baserecord) |
+| TError     | Custom error object that extends [`HttpError`](api-references/interfaces.md#httperror)                  | [`HttpError`](api-references/interfaces.md#httperror)   |
 | TVariables | Result data of the query                                                                 | `any`                                    |
 
 ### `<ImportButton>` Props
