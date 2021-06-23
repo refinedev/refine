@@ -12,7 +12,7 @@ const siteConfig = {
     baseUrl: "/",
     projectName: "refine",
     organizationName: "pankod",
-    favicon: "img/footer_icon.png",
+    favicon: "img/refine_favicon.png",
     presets: [
         [
             "@docusaurus/preset-classic",
