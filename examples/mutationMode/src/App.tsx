@@ -1,4 +1,5 @@
-import { Refine, Resource } from "@pankod/refine";
+import { Refine, Resource, BackTop } from "@pankod/refine";
+import { DemoSidebar, useDemoSidebar } from "@pankod/refine-demo-sidebar";
 import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -7,8 +8,22 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
+    const [refineProps, demoSidebarProps] = useDemoSidebar({
+        defaultTitle: "refine",
+        defaultMutationMode: "pessimistic",
+    });
+
     return (
-        <Refine dataProvider={dataProvider(API_URL)}>
+        <Refine
+            dataProvider={dataProvider(API_URL)}
+            OffLayoutArea={() => (
+                <>
+                    <BackTop />
+                    <DemoSidebar {...demoSidebarProps} />
+                </>
+            )}
+            {...refineProps}
+        >
             <Resource
                 name="posts"
                 list={PostList}
