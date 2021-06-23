@@ -295,7 +295,7 @@ const App: React.FC = () =>
 
 The default sidebar can be customized by using refine hooks and passing custom component to `Sider` prop.
 
-https://ant.design/components/layout/#Layout.Sider
+**refine** uses [Ant Design Sider](https://ant.design/components/layout/#Layout.Sider) component by default. 
 
 [Refer to useMenu hook documentation for detailed sidebar customization. &#8594](docs/hooks/resource/useMenu.md)
 
