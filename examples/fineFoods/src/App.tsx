@@ -21,7 +21,6 @@ import {
 } from "./pages/categories";
 import { useTranslation } from "react-i18next";
 import { Header, Title } from "components";
-import "i18n";
 
 const App: React.FC = () => {
     const API_URL = "https://api.finefoods.refine.dev";
