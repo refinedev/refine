@@ -2,7 +2,11 @@ import React from "react";
 import { ConfigProvider } from "antd";
 import { ConfigProviderProps } from "antd/lib/config-provider";
 import { BrowserRouter as Router, RouteProps } from "react-router-dom";
-import { QueryClientProvider, QueryClient } from "react-query";
+import {
+    QueryClientProvider,
+    QueryClient,
+    QueryObserverOptions,
+} from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 import { AuthContextProvider } from "@contexts/auth";
@@ -49,6 +53,7 @@ export interface RefineProps {
     Footer?: React.FC;
     OffLayoutArea?: React.FC;
     Title?: React.FC<TitleProps>;
+    reactQueryClientConfig?: QueryObserverOptions;
 }
 
 export const Refine: React.FC<RefineProps> = ({
@@ -72,11 +77,14 @@ export const Refine: React.FC<RefineProps> = ({
     Header,
     Footer,
     OffLayoutArea,
+    reactQueryClientConfig,
 }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
             queries: {
                 refetchOnWindowFocus: false,
+                keepPreviousData: true,
+                ...reactQueryClientConfig,
             },
         },
     });

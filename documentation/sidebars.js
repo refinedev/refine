@@ -225,6 +225,7 @@ module.exports = {
                 "examples/customSider",
                 "examples/customInput",
                 "examples/strapi",
+                "examples/nestjsxCrud",
             ],
         },
     ],

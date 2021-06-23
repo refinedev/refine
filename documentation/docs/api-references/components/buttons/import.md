@@ -7,7 +7,7 @@ import importButton from '@site/static/img/hooks/useImport/import-button.png';
 
 `<ImportButton>` uses Ant Design's [`<Button>`][Button] and [`<Upload>`][Upload] components. It wraps a [`<Button>`][Button] component with an [`<Upload>`][Upload] component and accepts props for [`<Button>`][Button] and [`<Upload>`][Upload] components separately.
 
-It is compatible with [`useImport`](useImport) hook and is meant to be used with this hook.
+It is compatible with [`useImport`][useImport] hook and is meant to be used with this hook.
 
 ## Usage
 
@@ -69,6 +69,6 @@ Looks like this:
 | buttonProps | Set the icon component of button | [`ButtonProps`](https://ant.design/components/button/#API) | `undefined` |
 | children    | Set the button text              | `ReactNode`                                                | `"Import"`  |
 
-[useImport]: /docs/api-references/hooks/import-export/useImport
+[useImport]: /api-references/hooks/import-export/useImport.md
 [Button]: https://ant.design/components/button/
 [Upload]: https://ant.design/components/upload/
