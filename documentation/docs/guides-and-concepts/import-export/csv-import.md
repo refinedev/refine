@@ -9,8 +9,6 @@ You can easily import csv files for any resource by using refine's customizable 
 
 You can call `useImport` hook and add an `<ImportButton>` with props returned from `useImport` on a list page, configured with a mapping function to format the files data into API's data. When the button gets triggered, it creates the imported resources using `create` or `createMany` data provider methods under the hood.
 
-<!-- Resources are added as one by one (`create`) or as batch (`createMany`) if explicitly configured with [`batchSize`](#importbutton-props) option. By default, `batchSize` is 1. If it is more than 1, createMany should be implemented on DataProvider. -->
-
 ## Usage
 
 Let's look at an example of adding a custom import button:
@@ -143,42 +141,6 @@ And it's done. When you click on the button and provide a csv file of the header
     }
 }
 ```
-
-## API Reference
-
-### `useImport` Options
-
-| Key            | Description                                                                                                        | Type                                                                |
-| -------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
-| resourceName   | Default resource name this button imports to. Inferred from route by default.                                      | `string`                                                            |
-| mapData        | A mapping function that runs for every record. Mapped data will be included in the request payload.                | `(value: any, index?: number, array?: any[], data?: any[][]): any;` |
-| paparseOptions | Custom Papa Parse options.                                                                                         | [`ParseConfig`](https://www.papaparse.com/docs)                     |
-| batchSize      | Request batch size. By default, it is 1. If it is more than 1, `createMany` should be implemented on DataProvider. | `number`                                                            |
-
-### `useImport` Return Values
-
-| Property       | Description                                                     | Type                                                                                                        |
-| -------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| uploadProps    | Props to pass to Ant Design's `<Upload>` component              | [`<Upload>`](https://ant.design/components/upload/#API)                                                     |
-| buttonProps    | Props to pass to Ant Design's `<Button>` component              | [`<Button>`](https://ant.design/components/button/#API)                                                     |
-| mutationResult | Result of the mutation/mutations of creating imported resources | [`UseCreateReturnType`](api-references/interfaces.md#baserecord)  \| [`UseCreateManyReturnType`](api-references/interfaces.md#baserecord) |
-
-### `useImport` Type Parameters
-
-| Property   | Desription                                                                               | Default                                  |
-| ---------- | ---------------------------------------------------------------------------------------- | ---------------------------------------- |
-| TItem      | Interface of parsed csv data                                                             | `any`                                    |
-| TData      | Result type of the data query type that extends [`BaseRecord`](api-references/interfaces.md#baserecord) | [`BaseRecord`](api-references/interfaces.md#baserecord) |
-| TError     | Custom error object that extends [`HttpError`](api-references/interfaces.md#httperror)                  | [`HttpError`](api-references/interfaces.md#httperror)   |
-| TVariables | Result data of the query                                                                 | `any`                                    |
-
-### `<ImportButton>` Props
-
-| Property    | Description                      | Type                                                       | Default     |
-| ----------- | -------------------------------- | ---------------------------------------------------------- | ----------- |
-| uploadProps | Set the button type              | [`UploadProps`](https://ant.design/components/upload/#API) | `undefined` |
-| buttonProps | Set the icon component of button | [`ButtonProps`](https://ant.design/components/button/#API) | `undefined` |
-| children    | Set the button text              | `ReactNode`                                                | `"Import"`  |
 
 ## Live Codesandbox Example
 
