@@ -117,6 +117,8 @@ module.exports = {
                     type: "category",
                     label: "Components",
                     items: [
+                        "api-references/components/refine-config",
+
                         {
                             type: "category",
                             label: "Basic Views",
