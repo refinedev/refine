@@ -6,69 +6,16 @@
  */
 
 const siteConfig = {
-  title: 'Refine',
-  tagline: 'Admin panel. Reimagined.',
-  url: 'https://pankod.github.io',
-  baseUrl: '/',
- projectName: 'refine',
-  organizationName: 'pankod',
-  favicon: 'img/refine_favicon.png',
-  presets: [
-    [
-      '@docusaurus/preset-classic',
-      {
-        docs: {
-          path: './docs',
-          sidebarPath: require.resolve('./sidebars.js'),
-          editUrl:
-            'https://github.com/pankod/refine/tree/master/documentation',
-          showLastUpdateAuthor: true,
-          showLastUpdateTime: true,
-        },
-        theme: {
-          customCss: require.resolve('./src/css/custom.css'),
-        },
-      },
-    ],
-  ],
-  themeConfig: {
-    colorMode: {
-      // "light" | "dark"
-      defaultMode: "dark",
-      disableSwitch: false
-    },
-    image: 'img/footer_icon.png',
-    algolia: {
-      apiKey: '3b7cf26a19755c7de95bcb3632edd314',
-      indexName: 'refine',
-    },
-    navbar: {
-      title: '',
-      logo: {
-        alt: 'refine Logo',
-        src: 'img/refine_logo.png',
-      },
-      items: [
-        { to: 'docs', label: 'Docs', position: 'right' },
-        {
-          href: 'https://github.com/pankod/refine',
-          label: 'GitHub',
-          position: 'right',
-        },
-      ],
-    },
-    footer: {
-      style: 'dark',
-      links: [
-        {
-          title: 'Docs',
-          items: [
-           
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
+    title: "Refine",
+    tagline: "Refine. Reimagined.",
+    url: "https://pankod.github.io",
+    baseUrl: "/",
+    projectName: "refine",
+    organizationName: "pankod",
+    favicon: "img/footer_icon.png",
+    presets: [
+        [
+            "@docusaurus/preset-classic",
             {
                 docs: {
                     path: "./docs",
@@ -91,10 +38,10 @@ const siteConfig = {
             indexName: "refine",
         },
         navbar: {
-            title: "refine",
+            title: "",
             logo: {
                 alt: "refine Logo",
-                src: "img/pankod_footer_logo.png",
+                src: "img/refine_logo.png",
             },
             items: [
                 { to: "docs", label: "Docs", position: "right" },
