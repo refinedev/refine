@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    Admin,
+    Refine,
     Resource,
     AuthProvider,
     Icons,
@@ -30,7 +30,7 @@ import {
 } from "./components/pages";
 
 const App: React.FC = () => {
-    const [adminProps, demoSidebarProps] = useDemoSidebar({
+    const [refineProps, demoSidebarProps] = useDemoSidebar({
         defaultTitle: "refine",
         defaultMutationMode: "pessimistic",
     });
@@ -44,7 +44,8 @@ const App: React.FC = () => {
 
             return Promise.reject(new Error("Invalid username or password"));
         },
-        logout: () => {
+        logout: (params) => {
+            console.log({ params });
             localStorage.removeItem("username");
             return Promise.resolve();
         },
@@ -82,12 +83,10 @@ const App: React.FC = () => {
         );
     };
 
-    const hede: any = 1;
-
     return (
-        <Admin
+        <Refine
             authProvider={authProvider}
-            dataProvider={dataProvider("https://refine-fake-rest.pankod.com")}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             DashboardPage={DashboardPage}
             ReadyPage={ReadyPage}
             i18nProvider={i18nProvider}
@@ -169,7 +168,7 @@ const App: React.FC = () => {
                     <DemoSidebar {...demoSidebarProps} />
                 </>
             )}
-            {...adminProps}
+            {...refineProps}
         >
             <Resource
                 name="posts"
@@ -197,7 +196,7 @@ const App: React.FC = () => {
             create={TagsCreate}
             icon={<Icons.TagsOutlined />} */
             />
-        </Admin>
+        </Refine>
     );
 };
 

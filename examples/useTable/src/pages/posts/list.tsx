@@ -8,11 +8,12 @@ import {
     useTable,
     IResourceComponentsProps,
     getDefaultSortOrder,
+    FilterDropdownProps,
 } from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter, filters } = useTable<IPost>({
         initialSorter: [
             {
@@ -20,25 +21,27 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                 order: "asc",
             },
         ],
-        initialFilter: {
-            status: ["draft"],
-        },
+        initialFilter: [
+            {
+                field: "status",
+                operator: "eq",
+                value: "draft",
+            },
+        ],
         syncWithLocation: true,
     });
 
     return (
-        <List {...props}>
-            <Table {...tableProps} key="id">
-                <Table.Column key="id" dataIndex="id" title="ID" sorter />
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" sorter />
                 <Table.Column
-                    key="title"
                     dataIndex="title"
                     title="Title"
                     sorter={{ multiple: 2 }}
                     defaultSortOrder={getDefaultSortOrder("title", sorter)}
                 />
                 <Table.Column
-                    key="content"
                     dataIndex="content"
                     title="Content"
                     sorter={{ multiple: 1 }}
@@ -46,9 +49,8 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                 <Table.Column
                     dataIndex="status"
                     title="Status"
-                    key="status"
                     render={(value: string) => <TagField value={value} />}
-                    filterDropdown={(props: any) => (
+                    filterDropdown={(props: FilterDropdownProps) => (
                         <FilterDropdown {...props}>
                             <Radio.Group>
                                 <Radio value="published">Published</Radio>

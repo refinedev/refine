@@ -23,7 +23,7 @@ describe("Create", () => {
 
     it("should render aside successfuly", async () => {
         const { container, getByText } = renderCreate(
-            <Create aside={() => <div>i am here</div>} />,
+            <Create Aside={<div>i am here</div>} />,
         );
 
         getByText("i am here");
@@ -48,7 +48,7 @@ describe("Create", () => {
     it("should render default title successfuly", async () => {
         const { getByText } = renderCreate(<Create />);
 
-        getByText("Create post");
+        getByText("Create Post");
     });
 
     it("should render optional title with title prop", async () => {
@@ -71,7 +71,7 @@ describe("Create", () => {
             },
         );
 
-        getByText("Create post");
+        getByText("Create Post");
     });
 
     it("should render tags", () => {
@@ -88,7 +88,7 @@ describe("Create", () => {
             },
         );
 
-        getByText("Create post");
+        getByText("Create Post");
         getByText("Clone");
     });
 });

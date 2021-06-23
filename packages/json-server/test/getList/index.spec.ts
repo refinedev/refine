@@ -9,20 +9,20 @@ axios.defaults.adapter = require("axios/lib/adapters/http");
 describe("getList", () => {
     it("correct response", async () => {
         const response = await JsonServer(
-            "https://refine-fake-rest.pankod.com",
+            "https://api.fake-rest.refine.dev",
             axios,
         ).getList("posts", {});
 
-        expect(response.data[0]["id"]).toBe(1000);
+        expect(response.data[0]["id"]).toBe(1);
         expect(response.data[0]["title"]).toBe(
-            "Et ratione rerum eos optio id nihil.",
+            "Mollitia ipsam nisi in porro velit asperiores et quaerat dolorem.",
         );
         expect(response.total).toBe(1000);
     });
 
     it("correct sorting response", async () => {
         const response = await JsonServer(
-            "https://refine-fake-rest.pankod.com",
+            "https://api.fake-rest.refine.dev",
             axios,
         ).getList("posts", {
             sort: [
@@ -34,13 +34,15 @@ describe("getList", () => {
         });
 
         expect(response.data[0]["id"]).toBe(1);
-        expect(response.data[0]["title"]).toBe("Unde illum cupiditate ut.");
+        expect(response.data[0]["title"]).toBe(
+            "Mollitia ipsam nisi in porro velit asperiores et quaerat dolorem.",
+        );
         expect(response.total).toBe(1000);
     });
 
     it("correct filter response", async () => {
         const response = await JsonServer(
-            "https://refine-fake-rest.pankod.com",
+            "https://api.fake-rest.refine.dev",
             axios,
         ).getList("posts", {
             filters: [
@@ -53,12 +55,12 @@ describe("getList", () => {
         });
 
         expect(response.data[0]["category"]["id"]).toBe(1);
-        expect(response.total).toBe(18);
+        expect(response.total).toBe(17);
     });
 
     it("correct filter and sort response", async () => {
         const response = await JsonServer(
-            "https://refine-fake-rest.pankod.com",
+            "https://api.fake-rest.refine.dev",
             axios,
         ).getList("posts", {
             filters: [
@@ -76,7 +78,7 @@ describe("getList", () => {
             ],
         });
 
-        expect(response.data[0]["id"]).toBe(67);
-        expect(response.total).toBe(18);
+        expect(response.data[0]["id"]).toBe(44);
+        expect(response.total).toBe(17);
     });
 });

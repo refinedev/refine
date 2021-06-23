@@ -8,7 +8,7 @@ axios.defaults.adapter = require("axios/lib/adapters/http");
 describe("deleteOne", () => {
     it("correct response", async () => {
         const { data } = await JsonServer(
-            "https://refine-nestjs-crud.pankod.com",
+            "https://api.nestjsx-crud.refine.dev",
             axios,
         ).deleteOne("posts", "99d8ae54-432c-48d4-a385-f0ff4665e448");
 

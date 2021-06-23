@@ -11,13 +11,12 @@ import {
     Drawer,
     Space,
     Typography,
-    MarkdownField,
+    EditButton,
+    ShowButton,
+    DeleteButton,
     useTable,
     useShow,
     useDrawerForm,
-    EditButton,
-    ShowButton,
-    RefreshButton,
     IResourceComponentsProps,
 } from "@pankod/refine";
 
@@ -25,7 +24,7 @@ import { IPost } from "../../interfaces";
 
 const { Title, Text } = Typography;
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IPost>();
 
     // Create Drawer
@@ -62,7 +61,6 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     return (
         <>
             <List
-                {...props}
                 canCreate
                 createButtonProps={{
                     onClick: () => {
@@ -70,14 +68,14 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     },
                 }}
             >
-                <Table {...tableProps} key="id">
-                    <Table.Column key="id" dataIndex="id" title="ID" />
-                    <Table.Column key="title" dataIndex="title" title="Title" />
+                <Table {...tableProps} rowKey="id">
+                    <Table.Column dataIndex="id" title="ID" />
+                    <Table.Column dataIndex="title" title="Title" />
                     <Table.Column<IPost>
                         title="Actions"
                         dataIndex="actions"
                         key="actions"
-                        render={(_value, record) => (
+                        render={(_, record) => (
                             <Space>
                                 <EditButton
                                     size="small"
@@ -98,7 +96,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                 </Table>
             </List>
             <Drawer {...createDrawerProps}>
-                <Create {...props} saveButtonProps={createSaveButtonProps}>
+                <Create saveButtonProps={createSaveButtonProps}>
                     <Form {...createFormProps} layout="vertical">
                         <Form.Item
                             label="Title"
@@ -142,7 +140,6 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
             </Drawer>
             <Drawer {...editDrawerProps}>
                 <Edit
-                    {...props}
                     recordItemId={editId}
                     saveButtonProps={{
                         ...editSaveButtonProps,
@@ -197,20 +194,17 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                 width="500"
             >
                 <Show
-                    {...props}
                     isLoading={showIsLoading}
-                    actionButtons={<RefreshButton recordItemId={showId} />}
+                    actionButtons={<DeleteButton recordItemId={showId} />}
                 >
                     <Title level={5}>Id</Title>
                     <Text>{record?.id}</Text>
 
+                    <Title level={5}>Status</Title>
+                    <Text>{record?.status}</Text>
+
                     <Title level={5}>Title</Title>
                     <Text>{record?.title}</Text>
-
-                    <Title level={5}>Content</Title>
-                    <MarkdownField
-                        value={record?.content ?? "Cannot found content"}
-                    />
                 </Show>
             </Drawer>
         </>

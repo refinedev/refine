@@ -1,15 +1,15 @@
-import { Admin, Resource, BackTop } from "@pankod/refine";
+import { Refine, Resource, BackTop } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList } from "pages/posts";
 import React from "react";
 
-const API_URL = "https://refine-fake-rest.pankod.com";
+const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Admin
+        <Refine
             dataProvider={dataProvider(API_URL)}
             OffLayoutArea={() => (
                 <>
@@ -18,7 +18,7 @@ const App: React.FC = () => {
             )}
         >
             <Resource name="posts" list={PostList} />
-        </Admin>
+        </Refine>
     );
 };
 

@@ -7,22 +7,22 @@ import "./index.mock";
 axios.defaults.adapter = require("axios/lib/adapters/http");
 
 describe("custom", () => {
-    const API_URL = "https://refine-nestjs-crud.pankod.com";
+    const API_URL = "https://api.nestjsx-crud.refine.dev";
 
     it("correct get response", async () => {
-        const response = await JsonServer(API_URL, axios).custom(
+        const response = await JsonServer(API_URL, axios).custom!(
             `${API_URL}/users`,
             "get",
         );
 
         expect(response.data[0]["id"]).toBe(
-            "f5372c43-58b8-49ba-8c5b-7d8c48ecc233",
+            "35a97005-ffe9-4867-9108-58c00d8ebfa8",
         );
-        expect(response.data[0]["email"]).toBe("meghan.Sipes@hotmail.com");
+        expect(response.data[0]["email"]).toBe("nolan85@hotmail.com");
     });
 
     it("correct filter response", async () => {
-        const response = await JsonServer(API_URL, axios).custom(
+        const response = await JsonServer(API_URL, axios).custom!(
             `${API_URL}/users`,
             "get",
             {
@@ -30,20 +30,20 @@ describe("custom", () => {
                     {
                         field: "email",
                         operator: "eq",
-                        value: "meghan.Sipes@hotmail.com",
+                        value: "nolan85@hotmail.com",
                     },
                 ],
             },
         );
 
         expect(response.data[0]["id"]).toBe(
-            "f5372c43-58b8-49ba-8c5b-7d8c48ecc233",
+            "35a97005-ffe9-4867-9108-58c00d8ebfa8",
         );
-        expect(response.data[0]["email"]).toBe("meghan.Sipes@hotmail.com");
+        expect(response.data[0]["email"]).toBe("nolan85@hotmail.com");
     });
 
     it("correct sort response", async () => {
-        const response = await JsonServer(API_URL, axios).custom(
+        const response = await JsonServer(API_URL, axios).custom!(
             `${API_URL}/users`,
             "get",
             {
@@ -57,14 +57,14 @@ describe("custom", () => {
         );
 
         expect(response.data[0]["id"]).toBe(
-            "009c075f-5bec-4ec5-8b0f-e88613352419",
+            "0396774e-c41f-41a7-98db-39e0a709ef72",
         );
 
-        expect(response.data[0]["email"]).toBe("maximilian_Hand21@hotmail.com");
+        expect(response.data[0]["email"]).toBe("margot.Ritchie@yahoo.com");
     });
 
     it("correct post request", async () => {
-        const response = await JsonServer(API_URL, axios).custom(
+        const response = await JsonServer(API_URL, axios).custom!(
             `${API_URL}/users`,
             "post",
             {
@@ -78,13 +78,13 @@ describe("custom", () => {
         );
 
         expect(response.data).toEqual({
-            id: "b7175fc8-3ab8-4e49-9034-8b63763e7b67",
+            id: "44e3c8e9-d95a-4423-bf9a-c40407e059af",
             firstName: "test",
             lastName: "test",
             email: "test@mail.com",
             status: true,
-            createdAt: "2021-05-21T12:39:35.258Z",
-            updatedAt: "2021-05-21T12:39:35.258Z",
+            createdAt: "2021-06-21T12:20:05.530Z",
+            updatedAt: "2021-06-21T12:20:05.530Z",
         });
     });
 });

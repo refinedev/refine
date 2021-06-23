@@ -1,2 +1,5 @@
-export { ICategory } from "./ICategory";
-export { IPost } from "./IPost";
+export interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}

@@ -1,4 +1,0 @@
----
-id: useLogout
-title: useLogout
----

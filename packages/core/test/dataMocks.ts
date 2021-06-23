@@ -36,7 +36,7 @@ const MockDataProvider = () => {
         getOne: () => Promise.resolve({ data: posts[0] }),
         update: () => Promise.resolve({ data: posts[0] }),
         updateMany: () => Promise.resolve({ data: [] }),
-        getApiUrl: () => "https://refine-fake-rest.pankod.com",
+        getApiUrl: () => "https://api.fake-rest.refine.dev",
         custom: () => Promise.resolve({ data: [...posts] }),
     };
 };

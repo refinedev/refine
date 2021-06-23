@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
     Edit,
     Form,
@@ -8,9 +9,14 @@ import {
     useSelect,
 } from "@pankod/refine";
 
+import ReactMarkdown from "react-markdown";
+import ReactMde from "react-mde";
+
+import "react-mde/lib/styles/css/react-mde-all.css";
+
 import { IPost, ICategory } from "interfaces";
 
-export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
+export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
     const postData = queryResult?.data?.data;
@@ -20,8 +26,11 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
         defaultValue: postData?.category.id,
     });
 
+    const [selectedTab, setSelectedTab] =
+        useState<"write" | "preview">("write");
+
     return (
-        <Edit {...props} saveButtonProps={saveButtonProps}>
+        <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
@@ -69,6 +78,25 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
                                 value: "rejected",
                             },
                         ]}
+                    />
+                </Form.Item>
+                <Form.Item
+                    label="Content"
+                    name="content"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <ReactMde
+                        selectedTab={selectedTab}
+                        onTabChange={setSelectedTab}
+                        generateMarkdownPreview={(markdown) =>
+                            Promise.resolve(
+                                <ReactMarkdown>{markdown}</ReactMarkdown>,
+                            )
+                        }
                     />
                 </Form.Item>
             </Form>

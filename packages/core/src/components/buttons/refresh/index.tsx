@@ -14,6 +14,7 @@ type RefreshButtonProps = ButtonProps & {
 export const RefreshButton: FC<RefreshButtonProps> = ({
     resourceName: propResourceName,
     recordItemId,
+    children,
     ...rest
 }) => {
     const translate = useTranslate();
@@ -36,12 +37,11 @@ export const RefreshButton: FC<RefreshButtonProps> = ({
 
     return (
         <Button
-            type="default"
             icon={<RedoOutlined spin={isFetching} />}
             onClick={() => refetch()}
             {...rest}
         >
-            {translate("buttons.refresh", "Refresh")}
+            {children ?? translate("buttons.refresh", "Refresh")}
         </Button>
     );
 };

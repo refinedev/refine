@@ -25,12 +25,12 @@ describe("useMenu Hook", () => {
         );
     });
 
-    it("returns dashboard if hasDashboard from AdminContext is true", async () => {
+    it("returns dashboard if hasDashboard from RefineContext is true", async () => {
         const { result } = renderHook(() => useMenu(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
                 resources: [{ name: "posts" }],
-                adminProvider: {
+                refineProvider: {
                     mutationMode: "pessimistic",
                     warnWhenUnsavedChanges: false,
                     syncWithLocation: false,
@@ -58,11 +58,11 @@ describe("useMenu Hook", () => {
         );
     });
 
-    it("doesnt return dashboard if hasDashboard from AdminContext is false", async () => {
+    it("doesnt return dashboard if hasDashboard from RefineContext is false", async () => {
         const { result } = renderHook(() => useMenu(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
-                adminProvider: {
+                refineProvider: {
                     mutationMode: "pessimistic",
                     warnWhenUnsavedChanges: false,
                     syncWithLocation: false,

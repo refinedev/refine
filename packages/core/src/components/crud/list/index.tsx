@@ -1,16 +1,15 @@
 import React from "react";
 import { Row, Col, PageHeader, PageHeaderProps } from "antd";
-import humanizeString from "humanize-string";
 import { useParams } from "react-router-dom";
 
 import { useResourceWithRoute, useTranslate } from "@hooks";
-import { OptionalComponent } from "@definitions";
 import { CreateButton } from "@components";
+import { userFriendlyResourceName } from "@definitions";
 import { ResourceRouterParams, CreateButtonProps } from "../../../interfaces";
 
 export interface ListProps {
     canCreate?: boolean;
-    aside?: React.FC;
+    Aside?: React.ReactNode;
     title?: string;
     createButtonProps?: CreateButtonProps;
     pageHeaderProps?: PageHeaderProps;
@@ -18,8 +17,8 @@ export interface ListProps {
 }
 
 export const List: React.FC<ListProps> = ({
-    canCreate = true,
-    aside,
+    canCreate,
+    Aside,
     title,
     children,
     createButtonProps,
@@ -33,15 +32,17 @@ export const List: React.FC<ListProps> = ({
 
     const resource = resourceWithRoute(routeResourceName ?? resourceFromProps);
 
-    const defaultExtra = canCreate &&
-        (createButtonProps || resource.canCreate) && (
-            <CreateButton
-                size="middle"
-                resourceName={resource.name}
-                {...createButtonProps}
-            />
-        );
+    const isCreateButtonVisible =
+        canCreate ?? (resource.canCreate || createButtonProps);
 
+    const defaultExtra = isCreateButtonVisible && (
+        <CreateButton
+            size="middle"
+            resourceName={resource.name}
+            data-testid="list-create-button"
+            {...createButtonProps}
+        />
+    );
     return (
         <Row gutter={[16, 16]}>
             <Col flex="1 1 200px">
@@ -51,7 +52,7 @@ export const List: React.FC<ListProps> = ({
                         title ??
                         translate(
                             `${resource.name}.titles.list`,
-                            humanizeString(resource.name),
+                            userFriendlyResourceName(resource.name, "plural"),
                         )
                     }
                     extra={defaultExtra}
@@ -61,11 +62,7 @@ export const List: React.FC<ListProps> = ({
                 </PageHeader>
             </Col>
 
-            {aside && (
-                <Col flex="0 1 300px">
-                    <OptionalComponent optional={aside} />
-                </Col>
-            )}
+            {Aside && <Col flex="0 1 300px">{Aside}</Col>}
         </Row>
     );
 };

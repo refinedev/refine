@@ -42,11 +42,11 @@ export const useDeleteMany = <
     TError extends HttpError = HttpError,
 >(
     resource: string,
-    mutationModeProp?: MutationMode,
-    undoableTimeoutProp?: number,
+    mutationMode?: MutationMode,
+    undoableTimeout?: number,
     onCancel?: (cancelMutation: () => void) => void,
 ): UseDeleteManyReturnType<TData, TError> => {
-    const checkError = useCheckError();
+    const { mutate: checkError } = useCheckError();
     const { deleteMany } = useContext<IDataContext>(DataContext);
     const {
         mutationMode: mutationModeContext,
@@ -57,9 +57,10 @@ export const useDeleteMany = <
     const translate = useTranslate();
     const cacheQueries = useCacheQueries();
 
-    const mutationMode = mutationModeProp ?? mutationModeContext;
+    const mutationModePropOrContext = mutationMode ?? mutationModeContext;
 
-    const undoableTimeout = undoableTimeoutProp ?? undoableTimeoutContext;
+    const undoableTimeoutPropOrContext =
+        undoableTimeout ?? undoableTimeoutContext;
 
     const queryClient = useQueryClient();
 
@@ -70,7 +71,7 @@ export const useDeleteMany = <
         DeleteContext
     >(
         ({ ids }: { ids: string[] }) => {
-            if (!(mutationMode === "undoable")) {
+            if (!(mutationModePropOrContext === "undoable")) {
                 return deleteMany<TData>(resource, ids);
             }
 
@@ -80,7 +81,7 @@ export const useDeleteMany = <
                         deleteMany<TData>(resource, ids)
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
-                    }, undoableTimeout);
+                    }, undoableTimeoutPropOrContext);
 
                     const cancelMutation = () => {
                         clearTimeout(updateTimeout);
@@ -96,7 +97,7 @@ export const useDeleteMany = <
                                 id: ids,
                                 resource: resource,
                                 cancelMutation: cancelMutation,
-                                seconds: undoableTimeout,
+                                seconds: undoableTimeoutPropOrContext,
                             },
                         });
                     }
@@ -119,7 +120,7 @@ export const useDeleteMany = <
                             queryKey,
                         );
 
-                    if (!(mutationMode === "pessimistic")) {
+                    if (!(mutationModePropOrContext === "pessimistic")) {
                         if (previousQuery) {
                             previousQueries.push({
                                 query: previousQuery,
@@ -176,7 +177,6 @@ export const useDeleteMany = <
                 });
             },
             onError: (err, { ids }, context) => {
-                checkError?.(err);
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
@@ -190,7 +190,7 @@ export const useDeleteMany = <
                     },
                 });
                 if (err.message !== "mutationCancelled") {
-                    checkError?.(err);
+                    checkError(err);
 
                     notification.error({
                         key: `${ids}-${resource}-notification`,

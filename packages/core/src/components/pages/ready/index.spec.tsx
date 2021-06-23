@@ -18,6 +18,6 @@ describe("ReadyPage", () => {
         getByText("refine");
         getByText("Welcome to refine");
         getByText("Your application is properly configured.");
-        getByText("Now you can add a <Resource> as child of <Admin>.");
+        getByText("Now you can add a <Resource> as child of <Refine>.");
     });
 });
