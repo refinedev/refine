@@ -84,13 +84,38 @@ i18n.use(Backend)
         },
         defaultNS: "common",
         fallbackLng: ["en", "tr"],
-        react: {
-            useSuspense: false, // if not using Suspense
-        },
     });
 
 export default i18n;
 ```
+
+### Wraping app with React.Suspense
+
+We will import the i18n instance we created and wrap the application with `React.Suspense`.
+
+```tsx title="src/index.tsx"
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+
+//highlight-next-line
+import "i18n";
+
+ReactDOM.render(
+    <React.StrictMode>
+        //highlight-start
+        <React.Suspense fallback="loading">
+            <App />
+        </React.Suspense>
+        //highlight-end
+    </React.StrictMode>,
+    document.getElementById("root"),
+);
+```
+
+:::tip
+We use `React.Suspense` because it improves performance by preventing the app from rendering unnecessarily.
+:::
 
 ### Creating i18n Provider
 
@@ -101,8 +126,6 @@ import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
 import { useTranslation } from "react-i18next";
-//highlight-next-line
-import "./i18n";
 
 import { PostList } from "pages/posts";
 
