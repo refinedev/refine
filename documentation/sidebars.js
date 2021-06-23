@@ -215,6 +215,7 @@ module.exports = {
                 "examples/customFooter",
                 "examples/customSider",
                 "examples/customInput",
+                "examples/offLayoutArea",
                 "examples/strapi",
                 "examples/nestjsxCrud",
             ],

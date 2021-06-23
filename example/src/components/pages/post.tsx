@@ -72,7 +72,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
 
     const { tableProps, sorter, filters } = useTable<IPost>({
         initialCurrent: 3,
-        initialPageSize: 8,
+        initialPageSize: 50,
         initialSorter: [
             {
                 field: "createdAt",

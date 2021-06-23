@@ -16,7 +16,7 @@ const App: React.FC = () => {
                     <AntdLayout.Header>
                         <CustomSider />
                     </AntdLayout.Header>
-                    <AntdLayout.Content className="site-layout">
+                    <AntdLayout.Content>
                         <AntdLayout.Content>
                             <div style={{ padding: 24, minHeight: 360 }}>
                                 {children}
