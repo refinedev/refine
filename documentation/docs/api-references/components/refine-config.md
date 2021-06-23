@@ -486,7 +486,13 @@ const App: React.FC = () =>
         <Refine
             dataProvider={dataProvider(API_URL)}
             //highlight-next-line
-            reactQueryClientConfig={{ keepPreviousData: false }}
+            reactQueryClientConfig={{
+                defaultOptions: {
+                    queries: {
+                        staleTime: Infinity,
+                    },
+                },
+            }}
         >
          ...
         </Refine>
