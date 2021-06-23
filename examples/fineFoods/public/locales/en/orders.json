@@ -1,0 +1,38 @@
+{
+  "title": "Orders",
+  "show": {
+    "title": "Order Detail"
+  },
+  "fields": {
+    "orderNumber": "Order Number",
+    "status": "Status",
+    "store": "Store",
+    "user": "User",
+    "products": "Products",
+    "createdAt": "CreatedAt",
+    "amount": "Amount"
+  },
+  "filter": {
+    "title": "Filters",
+    "search": {
+      "label": "Search",
+      "placeholder": "Order Number, User, etc."
+    },
+    "status": {
+      "label": "Status",
+      "placeholder": "Order Status"
+    },
+    "store": {
+      "label": "Store",
+      "placeholder": "Search Stores"
+    },
+    "user": {
+      "label": "User",
+      "placeholder": "Search Users"
+    },
+    "createdAt": {
+      "label": "Created At"
+    },
+    "submit": "Filter"
+  }
+}

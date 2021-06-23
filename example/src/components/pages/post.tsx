@@ -72,7 +72,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
 
     const { tableProps, sorter, filters } = useTable<IPost>({
         initialCurrent: 3,
-        initialPageSize: 8,
+        initialPageSize: 50,
         initialSorter: [
             {
                 field: "createdAt",
@@ -470,7 +470,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                     )}
                 </>
             }
-            aside={() => <Aside />}
+            Aside={() => <Aside />}
         >
             <Steps {...stepsProps}>
                 <Step title="Content" />
@@ -675,7 +675,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
         <Edit
             {...props}
             canDelete
-            aside={() => <Aside />}
+            Aside={() => <Aside />}
             actionButtons={
                 <>
                     {current > 0 && (

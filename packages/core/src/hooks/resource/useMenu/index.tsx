@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { useLocation } from "react-router-dom";
-import humanizeString from "humanize-string";
-import { AdminContext } from "@contexts/admin";
 import { DashboardOutlined, UnorderedListOutlined } from "@ant-design/icons";
-import { IAdminContext, IMenuItem } from "../../../interfaces";
+
+import { RefineContext } from "@contexts/refine";
+import { IRefineContext, IMenuItem } from "../../../interfaces";
 import { useTranslate, useResource } from "@hooks";
+import { userFriendlyResourceName } from "@definitions";
 
 type useMenuReturnType = {
     selectedKey: string;
@@ -15,7 +16,7 @@ export const useMenu: () => useMenuReturnType = () => {
     const { resources } = useResource();
     const translate = useTranslate();
     const location = useLocation();
-    const { hasDashboard } = useContext<IAdminContext>(AdminContext);
+    const { hasDashboard } = useContext<IRefineContext>(RefineContext);
 
     const selectedResource = resources.find((el) =>
         location.pathname.startsWith(`/resources/${el.route}`),
@@ -46,7 +47,8 @@ export const useMenu: () => useMenuReturnType = () => {
                     key: route,
                     label: translate(
                         `${resource.name}.${resource.name}`,
-                        resource.label ?? humanizeString(resource.name),
+                        resource.label ??
+                            userFriendlyResourceName(resource.name, "plural"),
                     ),
                 };
             }),

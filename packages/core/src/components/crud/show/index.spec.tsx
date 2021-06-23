@@ -57,7 +57,7 @@ describe("Show", () => {
     it("should render default title successfuly", () => {
         const { getByText } = renderShow(<Show />);
 
-        getByText("Show post");
+        getByText("Show Post");
     });
 
     it("should render optional title with title prop", () => {
@@ -68,7 +68,7 @@ describe("Show", () => {
 
     it("should render with aside component", () => {
         const { getByText } = renderShow(
-            <Show aside={() => <div>Test Aside Component</div>} />,
+            <Show Aside={<div>Test Aside Component</div>} />,
         );
 
         getByText("Test Aside Component");
@@ -88,7 +88,7 @@ describe("Show", () => {
             },
         );
 
-        getByText("Show post");
+        getByText("Show Post");
     });
 
     it("should render optional recordItemId with resource prop, not render list button", () => {
@@ -96,7 +96,7 @@ describe("Show", () => {
             <Show recordItemId="1" />,
         );
 
-        getByText("Show post");
+        getByText("Show Post");
 
         expect(queryByTestId("show-list-button")).toBeNull();
     });
@@ -120,7 +120,7 @@ describe("Show", () => {
 
             expect(queryByTestId("show-edit-button")).not.toBeNull();
 
-            getByText("Show post");
+            getByText("Show Post");
         });
 
         it("should not render edit button on resource canEdit false", () => {
@@ -141,7 +141,7 @@ describe("Show", () => {
 
             expect(queryByTestId("show-edit-button")).toBeNull();
 
-            getByText("Show post");
+            getByText("Show Post");
         });
 
         it("should not render edit button on resource canEdit true & canEdit props false on component", () => {
@@ -200,7 +200,7 @@ describe("Show", () => {
 
             expect(queryByTestId("show-edit-button")).not.toBeNull();
 
-            getByText("Show post");
+            getByText("Show Post");
         });
     });
 

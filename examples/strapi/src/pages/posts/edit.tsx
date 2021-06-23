@@ -22,7 +22,7 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { TOKEN_KEY } from "../../constants";
 
-export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
+export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const API_URL = useApiUrl();
 
     const [selectedTab, setSelectedTab] =
@@ -39,7 +39,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     });
 
     return (
-        <Edit {...props} saveButtonProps={saveButtonProps}>
+        <Edit saveButtonProps={saveButtonProps}>
             <Form
                 {...formProps}
                 layout="vertical"
@@ -63,6 +63,18 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
                     <Input />
                 </Form.Item>
                 <Form.Item
+                    wrapperCol={{ span: 8 }}
+                    label="Category"
+                    name={["category", "id"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select {...selectProps} />
+                </Form.Item>
+                <Form.Item
                     label="Content"
                     name="content"
                     rules={[
@@ -81,28 +93,11 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
                         }
                     />
                 </Form.Item>
-                <Form.Item
-                    wrapperCol={{ span: 8 }}
-                    label="Category"
-                    name={["category", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...selectProps} />
-                </Form.Item>
                 <Form.Item label="Cover">
                     <Form.Item
                         name="cover"
                         valuePropName="fileList"
-                        getValueProps={(data) =>
-                            getValueProps(
-                                data,
-                                "https://refine-strapi.pankod.com",
-                            )
-                        }
+                        getValueProps={(data) => getValueProps(data, API_URL)}
                         noStyle
                     >
                         <Upload.Dragger

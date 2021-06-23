@@ -1,10 +1,8 @@
-import React, { FC } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import { Card, Col, PageHeader, PageHeaderProps, Row, Space } from "antd";
-import pluralize from "pluralize";
+import { Card, Col, PageHeader, PageHeaderProps, Row, Space, Spin } from "antd";
 
 import { ResourceRouterParams } from "../../../interfaces";
-import { OptionalComponent } from "@definitions";
 import {
     EditButton,
     DeleteButton,
@@ -12,9 +10,10 @@ import {
     ListButton,
 } from "@components";
 import { useNavigation, useResourceWithRoute, useTranslate } from "@hooks";
+import { userFriendlyResourceName } from "@definitions";
 
 export interface ShowProps {
-    aside?: FC;
+    Aside?: React.ReactNode;
     title?: string;
     canEdit?: boolean;
     canDelete?: boolean;
@@ -26,12 +25,12 @@ export interface ShowProps {
 }
 
 export const Show: React.FC<ShowProps> = ({
-    aside,
+    Aside,
     title,
     canEdit,
     canDelete,
     actionButtons,
-    isLoading,
+    isLoading = false,
     children,
     pageHeaderProps,
     resource: resourceFromProps,
@@ -63,7 +62,10 @@ export const Show: React.FC<ShowProps> = ({
                         title ??
                         translate(
                             `${resource.name}.titles.show`,
-                            `Show ${pluralize.singular(resource.name)}`,
+                            `Show ${userFriendlyResourceName(
+                                resource.name,
+                                "singular",
+                            )}`,
                         )
                     }
                     extra={
@@ -108,20 +110,19 @@ export const Show: React.FC<ShowProps> = ({
                     }
                     {...pageHeaderProps}
                 >
-                    <Card
-                        loading={isLoading}
-                        actions={actionButtons ? [actionButtons] : undefined}
-                    >
-                        {children}
-                    </Card>
+                    <Spin spinning={isLoading}>
+                        <Card
+                            actions={
+                                actionButtons ? [actionButtons] : undefined
+                            }
+                        >
+                            {children}
+                        </Card>
+                    </Spin>
                 </PageHeader>
             </Col>
 
-            {aside && (
-                <Col flex="0 1 300px">
-                    <OptionalComponent optional={aside} />
-                </Col>
-            )}
+            {Aside && <Col flex="0 1 300px">{Aside}</Col>}
         </Row>
     );
 };

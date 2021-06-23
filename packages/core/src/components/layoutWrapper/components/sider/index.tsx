@@ -1,26 +1,25 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { Layout, Menu } from "antd";
 import { LogoutOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-import {
-    useNavigation,
-    useTranslate,
-    useMenu,
-    useLogout,
-    useTitle,
-} from "@hooks";
+import { useTranslate, useMenu, useLogout, useTitle } from "@hooks";
+import { AuthContext } from "@contexts/auth";
+import { IAuthContext } from "src/interfaces";
 
 export const Sider: React.FC = () => {
-    const [collapsed, setCollapsed] = React.useState(false);
-    const logout = useLogout();
+    const [collapsed, setCollapsed] = useState<boolean>(false);
+    const { isProvided } = useContext<IAuthContext>(AuthContext);
+    const { mutate: logout } = useLogout();
     const Title = useTitle();
     const translate = useTranslate();
     const { menuItems, selectedKey } = useMenu();
+    const history = useHistory();
 
     return (
         <Layout.Sider
             collapsible
+            breakpoint="md"
             collapsed={collapsed}
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
         >
@@ -30,21 +29,23 @@ export const Sider: React.FC = () => {
                 defaultSelectedKeys={["dashboard"]}
                 selectedKeys={[selectedKey]}
                 mode="inline"
+                onClick={({ key }) => {
+                    if (key === "logout") {
+                        logout();
+                        return;
+                    }
+
+                    history.push(key as string);
+                }}
             >
                 {menuItems.map(({ icon, route, label }) => (
                     <Menu.Item key={route} icon={icon}>
-                        <Link to={route}>{label}</Link>
+                        {label}
                     </Menu.Item>
                 ))}
 
-                {logout && (
-                    <Menu.Item
-                        onClick={() => {
-                            logout();
-                        }}
-                        key="logout"
-                        icon={<LogoutOutlined />}
-                    >
+                {isProvided && (
+                    <Menu.Item key="logout" icon={<LogoutOutlined />}>
                         {translate("buttons.logout", "Logout")}
                     </Menu.Item>
                 )}

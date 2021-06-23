@@ -14,6 +14,7 @@ type CloneButtonProps = ButtonProps & {
 export const CloneButton: FC<CloneButtonProps> = ({
     resourceName,
     recordItemId,
+    children,
     ...rest
 }) => {
     const { push } = useNavigation();
@@ -31,13 +32,8 @@ export const CloneButton: FC<CloneButtonProps> = ({
     };
 
     return (
-        <Button
-            onClick={onButtonClick}
-            type="default"
-            icon={<PlusSquareOutlined />}
-            {...rest}
-        >
-            {translate("buttons.clone", "Clone")}
+        <Button onClick={onButtonClick} icon={<PlusSquareOutlined />} {...rest}>
+            {children ?? translate("buttons.clone", "Clone")}
         </Button>
     );
 };

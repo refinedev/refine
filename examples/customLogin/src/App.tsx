@@ -1,17 +1,17 @@
-import { Admin, Resource, AuthProvider } from "@pankod/refine";
+import { Refine, Resource, AuthProvider } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import { LoginPage } from "pages/login/loginPage";
+import { Login } from "pages/login";
 
-const API_URL = "https://refine-fake-rest.pankod.com";
+const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
-        login: (params: any) => {
-            if (params.username === "admin") {
-                localStorage.setItem("username", params.username);
+        login: ({ username, password, remember }) => {
+            if (username === "admin") {
+                localStorage.setItem("username", username);
                 return Promise.resolve();
             }
 
@@ -30,10 +30,10 @@ const App: React.FC = () => {
     };
 
     return (
-        <Admin
+        <Refine
             dataProvider={dataProvider(API_URL)}
             authProvider={authProvider}
-            LoginPage={LoginPage}
+            LoginPage={Login}
         >
             <Resource
                 name="posts"
@@ -42,7 +42,7 @@ const App: React.FC = () => {
                 edit={PostEdit}
                 show={PostShow}
             />
-        </Admin>
+        </Refine>
     );
 };
 

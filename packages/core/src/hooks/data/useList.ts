@@ -31,15 +31,15 @@ export const useList = <
 ): QueryObserverResult<GetListResponse<TData>, TError> => {
     const { getList } = useContext<IDataContext>(DataContext);
     const translate = useTranslate();
-    const checkError = useCheckError();
+    const { mutate: checkError } = useCheckError();
 
     const queryResponse = useQuery<GetListResponse<TData>, TError>(
         [`resource/list/${resource}`, { ...config }],
         () => getList<TData>(resource, { ...config }),
         {
-            ...(queryOptions ?? { keepPreviousData: true }),
+            ...queryOptions,
             onError: (err: TError) => {
-                checkError?.(err);
+                checkError(err);
                 queryOptions?.onError?.(err);
 
                 notification.error({

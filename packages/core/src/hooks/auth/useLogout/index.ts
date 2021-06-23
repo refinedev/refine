@@ -1,36 +1,50 @@
 import React from "react";
+import { useMutation, UseMutationResult } from "react-query";
+import { notification } from "antd";
 
 import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "../../../interfaces";
+import {
+    IAuthContext,
+    TLogoutVariables,
+    TLogoutData,
+} from "../../../interfaces";
 import { useNavigation } from "@hooks/navigation";
 
-type LogoutType = (params?: any, redirectPath?: string) => Promise<void>;
-type UseLogoutType = () => LogoutType | null;
-
-export const useLogout: UseLogoutType = () => {
+export const useLogout = (): UseMutationResult<
+    TLogoutData,
+    Error,
+    TLogoutVariables,
+    unknown
+> => {
     const { push } = useNavigation();
-    const { isProvided, logout: logoutFromContext } =
+    const { logout: logoutFromContext } =
         React.useContext<IAuthContext>(AuthContext);
 
-    if (isProvided) {
-        const logout: LogoutType = (params?: any, redirectPath?: string) =>
-            logoutFromContext(params)
-                .then((data) => {
-                    if (data !== false) {
-                        if (redirectPath) {
-                            push(redirectPath);
-                        } else if (data) {
-                            push(data);
-                        } else {
-                            push("/login");
-                        }
-                    }
-                    Promise.resolve(data);
-                })
-                .catch((error) => Promise.reject(error));
+    const queryResponse = useMutation<
+        TLogoutData,
+        Error,
+        TLogoutVariables,
+        unknown
+    >("useLogout", logoutFromContext, {
+        onSuccess: (redirectPathFromAuth, { redirectPath } = {}) => {
+            if (redirectPathFromAuth !== false) {
+                if (redirectPath) {
+                    push(redirectPath);
+                } else if (redirectPathFromAuth) {
+                    push(redirectPathFromAuth);
+                } else {
+                    push("/login");
+                }
+            }
+        },
+        onError: (error: Error) => {
+            notification.error({
+                message: error?.name || "Logout Error",
+                description:
+                    error?.message || "Something went wrong during logout",
+            });
+        },
+    });
 
-        return logout;
-    }
-
-    return null;
+    return queryResponse;
 };

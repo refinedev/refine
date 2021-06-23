@@ -14,6 +14,7 @@ type ShowButtonProps = ButtonProps & {
 export const ShowButton: FC<ShowButtonProps> = ({
     resourceName: propResourceName,
     recordItemId,
+    children,
     ...rest
 }) => {
     const { show } = useNavigation();
@@ -27,13 +28,12 @@ export const ShowButton: FC<ShowButtonProps> = ({
     return (
         <Button
             onClick={(): void =>
-                show(resourceName, "push", recordItemId ?? idFromRoute)
+                show(resourceName, recordItemId ?? idFromRoute)
             }
-            type="default"
             icon={<EyeOutlined />}
             {...rest}
         >
-            {translate("buttons.show", "Show")}
+            {children ?? translate("buttons.show", "Show")}
         </Button>
     );
 };

@@ -1,4 +1,5 @@
 import {
+    IResourceComponentsProps,
     List,
     Table,
     TextField,
@@ -11,7 +12,7 @@ import {
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostList: React.FC = () => {
+export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IPost>();
 
     const categoryIds =
@@ -22,24 +23,21 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
-            <Table {...tableProps} key="id">
+            <Table {...tableProps} rowKey="id">
                 <Table.Column
-                    key="id"
                     dataIndex="id"
                     title="ID"
                     render={(value) => <TextField value={value} />}
                 />
                 <Table.Column
-                    key="title"
                     dataIndex="title"
                     title="Title"
                     render={(value) => <TextField value={value} />}
                 />
                 <Table.Column
                     dataIndex={["category", "id"]}
-                    key="category.id"
                     title="Category"
-                    render={(value) => {
+                    render={(value: string) => {
                         if (isLoading) {
                             return <TextField value="Loading..." />;
                         }
@@ -57,8 +55,7 @@ export const PostList: React.FC = () => {
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
-                    key="actions"
-                    render={(_value, record) => (
+                    render={(_, record) => (
                         <Space>
                             <EditButton size="small" recordItemId={record.id} />
                             <ShowButton size="small" recordItemId={record.id} />

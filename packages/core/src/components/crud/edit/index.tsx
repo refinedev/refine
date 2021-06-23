@@ -8,10 +8,9 @@ import {
     PageHeader,
     PageHeaderProps,
     Col,
+    Spin,
 } from "antd";
-import pluralize from "pluralize";
 
-import { OptionalComponent } from "@definitions";
 import {
     useResourceWithRoute,
     useMutationMode,
@@ -25,8 +24,9 @@ import {
     DeleteButtonProps,
     SaveButton,
 } from "@components";
-
+import { userFriendlyResourceName } from "@definitions";
 import { MutationMode, ResourceRouterParams } from "../../../interfaces";
+
 export interface EditProps {
     title?: string;
     actionButtons?: React.ReactNode;
@@ -37,7 +37,8 @@ export interface EditProps {
     canDelete?: boolean;
     deleteButtonProps?: DeleteButtonProps;
     resource?: string;
-    aside?: React.FC;
+    Aside?: React.ReactNode;
+    isLoading?: boolean;
 }
 
 export const Edit: React.FC<EditProps> = ({
@@ -51,7 +52,8 @@ export const Edit: React.FC<EditProps> = ({
     pageHeaderProps,
     canDelete,
     resource: resourceFromProps,
-    aside,
+    Aside,
+    isLoading = false,
 }) => {
     const translate = useTranslate();
     const { goBack, list } = useNavigation();
@@ -81,7 +83,10 @@ export const Edit: React.FC<EditProps> = ({
                         title ??
                         translate(
                             `${resource.name}.titles.edit`,
-                            `Edit ${pluralize.singular(resource.name)}`,
+                            `Edit ${userFriendlyResourceName(
+                                resource.name,
+                                "singular",
+                            )}`,
                         )
                     }
                     extra={
@@ -102,43 +107,41 @@ export const Edit: React.FC<EditProps> = ({
                     }
                     {...pageHeaderProps}
                 >
-                    <Card
-                        actions={[
-                            <Space
-                                key="action-buttons"
-                                style={{ float: "right", marginRight: 24 }}
-                            >
-                                {actionButtons ?? (
-                                    <>
-                                        {isDeleteButtonVisible && (
-                                            <DeleteButton
-                                                data-testid="edit-delete-button"
-                                                mutationMode={mutationMode}
-                                                onSuccess={() => {
-                                                    list(
-                                                        resource.route ??
-                                                            resource.name,
-                                                    );
-                                                }}
-                                                {...deleteButtonProps}
-                                            />
-                                        )}
-                                        <SaveButton {...saveButtonProps} />
-                                    </>
-                                )}
-                            </Space>,
-                        ]}
-                    >
-                        {children}
-                    </Card>
+                    <Spin spinning={isLoading}>
+                        <Card
+                            actions={[
+                                <Space
+                                    key="action-buttons"
+                                    style={{ float: "right", marginRight: 24 }}
+                                >
+                                    {actionButtons ?? (
+                                        <>
+                                            {isDeleteButtonVisible && (
+                                                <DeleteButton
+                                                    data-testid="edit-delete-button"
+                                                    mutationMode={mutationMode}
+                                                    onSuccess={() => {
+                                                        list(
+                                                            resource.route ??
+                                                                resource.name,
+                                                        );
+                                                    }}
+                                                    {...deleteButtonProps}
+                                                />
+                                            )}
+                                            <SaveButton {...saveButtonProps} />
+                                        </>
+                                    )}
+                                </Space>,
+                            ]}
+                        >
+                            {children}
+                        </Card>
+                    </Spin>
                 </PageHeader>
             </Col>
 
-            {aside && (
-                <Col flex="0 1 300px">
-                    <OptionalComponent optional={aside} />
-                </Col>
-            )}
+            {Aside && <Col flex="0 1 300px">{Aside}</Col>}
         </Row>
     );
 };

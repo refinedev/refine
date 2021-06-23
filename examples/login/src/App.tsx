@@ -1,11 +1,11 @@
-import { Admin, Resource, AuthProvider } from "@pankod/refine";
+import { Refine, Resource, AuthProvider } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostEdit, PostShow } from "pages/posts";
 import { DashboardPage } from "pages/dashboard";
 
-const API_URL = "https://refine-fake-rest.pankod.com";
+const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
@@ -36,7 +36,7 @@ const App: React.FC = () => {
     };
 
     return (
-        <Admin
+        <Refine
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
             DashboardPage={DashboardPage}
@@ -47,7 +47,7 @@ const App: React.FC = () => {
                 edit={PostEdit}
                 show={PostShow}
             />
-        </Admin>
+        </Refine>
     );
 };
 

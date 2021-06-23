@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
-    notification,
     Row,
     Col,
     Layout,
@@ -21,12 +20,9 @@ import {
 
 import logo from "./refine.svg";
 
-import { useNavigation, useTranslate } from "@hooks";
-import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "../../../interfaces";
+import { useLogin, useTranslate } from "@hooks";
 
 const { Text } = Typography;
-
 export interface ILoginForm {
     username: string;
     password: string;
@@ -34,22 +30,10 @@ export interface ILoginForm {
 }
 
 export const LoginPage: React.FC = () => {
-    const [form] = Form.useForm();
-    const { push } = useNavigation();
+    const [form] = Form.useForm<ILoginForm>();
     const translate = useTranslate();
 
-    const { login } = useContext<IAuthContext>(AuthContext);
-
-    const onSubmit = (values: ILoginForm) => {
-        login(values)
-            .then(() => push("/"))
-            .catch(() => {
-                notification.error({
-                    message: "Login Error",
-                    description: "Invalid username or password",
-                });
-            });
-    };
+    const { mutate: login } = useLogin<ILoginForm>();
 
     const CardTitle = (
         <div style={loginHeader}>
@@ -68,12 +52,16 @@ export const LoginPage: React.FC = () => {
             >
                 <Col xs={22}>
                     <Card style={loginCard} title={CardTitle}>
-                        <Form
-                            className="ant-form-vertical"
+                        <Form<ILoginForm>
+                            layout="vertical"
                             form={form}
-                            name="control-hooks"
-                            onFinish={onSubmit}
+                            onFinish={(values) => {
+                                login(values);
+                            }}
                             requiredMark={false}
+                            initialValues={{
+                                remember: false,
+                            }}
                         >
                             <Form.Item
                                 name="username"
@@ -122,7 +110,10 @@ export const LoginPage: React.FC = () => {
                                     </Checkbox>
                                 </Form.Item>
 
-                                <a style={{ float: "right" }} href="">
+                                <a
+                                    style={{ float: "right" }}
+                                    href="javascript:void(0);"
+                                >
                                     {translate(
                                         "pages.login.forgotPassword",
                                         "Forgot password?",

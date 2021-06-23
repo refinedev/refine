@@ -17,11 +17,11 @@ import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-import { IPost, ICategory } from "../../interfaces";
+import { IPost, ICategory } from "interfaces";
 
 const { Step } = Steps;
 
-export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
+export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const {
         current,
         gotoStep,
@@ -116,7 +116,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
 
     return (
         <Edit
-            {...props}
             actionButtons={
                 <>
                     {current > 0 && (
@@ -149,11 +148,13 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
                     <Step title="Content" />
                 </Steps>
 
-                <div style={{ marginTop: 30 }}>
-                    <Form {...formProps} layout="vertical">
-                        {formList[current]}
-                    </Form>
-                </div>
+                <Form
+                    {...formProps}
+                    layout="vertical"
+                    style={{ marginTop: 30 }}
+                >
+                    {formList[current]}
+                </Form>
             </Form>
         </Edit>
     );

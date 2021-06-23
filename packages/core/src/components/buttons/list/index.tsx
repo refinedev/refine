@@ -13,6 +13,7 @@ type ListButtonProps = ButtonProps & {
 
 export const ListButton: FC<ListButtonProps> = ({
     resourceName: propResourceName,
+    children,
     ...rest
 }) => {
     const { list } = useNavigation();
@@ -25,14 +26,14 @@ export const ListButton: FC<ListButtonProps> = ({
     return (
         <Button
             onClick={(): void => list(resourceName, "push")}
-            type="default"
             icon={<BarsOutlined />}
             {...rest}
         >
-            {translate(
-                `${resourceName}.titles.list`,
-                humanizeString(resourceName),
-            )}
+            {children ??
+                translate(
+                    `${resourceName}.titles.list`,
+                    humanizeString(resourceName),
+                )}
         </Button>
     );
 };

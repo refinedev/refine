@@ -44,8 +44,8 @@ export const useUpdate = <
     TVariables = {},
 >(
     resource: string,
-    mutationModeProp?: MutationMode,
-    undoableTimeoutProp?: number,
+    mutationMode?: MutationMode,
+    undoableTimeout?: number,
     onCancel?: (cancelMutation: () => void) => void,
 ): UseUpdateReturnType<TData, TError, TVariables> => {
     const queryClient = useQueryClient();
@@ -55,13 +55,14 @@ export const useUpdate = <
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
     const translate = useTranslate();
-    const checkError = useCheckError();
+    const { mutate: checkError } = useCheckError();
 
     const { notificationDispatch } = useCancelNotification();
 
-    const mutationMode = mutationModeProp ?? mutationModeContext;
+    const mutationModePropOrContext = mutationMode ?? mutationModeContext;
 
-    const undoableTimeout = undoableTimeoutProp ?? undoableTimeoutContext;
+    const undoableTimeoutPropOrContext =
+        undoableTimeout ?? undoableTimeoutContext;
 
     const resourceSingular = pluralize.singular(resource);
 
@@ -74,7 +75,7 @@ export const useUpdate = <
         UpdateContext
     >(
         ({ id, values }) => {
-            if (!(mutationMode === "undoable")) {
+            if (!(mutationModePropOrContext === "undoable")) {
                 return update<TData, TVariables>(resource, id, values);
             }
             const updatePromise = new Promise<UpdateResponse<TData>>(
@@ -83,7 +84,7 @@ export const useUpdate = <
                         update<TData, TVariables>(resource, id, values)
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
-                    }, undoableTimeout);
+                    }, undoableTimeoutPropOrContext);
 
                     const cancelMutation = () => {
                         clearTimeout(updateTimeout);
@@ -99,7 +100,7 @@ export const useUpdate = <
                                 id: id,
                                 resource: resource,
                                 cancelMutation: cancelMutation,
-                                seconds: undoableTimeout,
+                                seconds: undoableTimeoutPropOrContext,
                             },
                         });
                     }
@@ -122,7 +123,7 @@ export const useUpdate = <
                             queryKey,
                         );
 
-                    if (!(mutationMode === "pessimistic")) {
+                    if (!(mutationModePropOrContext === "pessimistic")) {
                         if (previousQuery) {
                             previousQueries.push({
                                 query: previousQuery,

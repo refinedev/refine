@@ -9,21 +9,22 @@ import {
     Tag,
     Row,
     Col,
+    Spin,
 } from "antd";
-import pluralize from "pluralize";
 
 import { useNavigation, useResourceWithRoute, useTranslate } from "@hooks";
 import { SaveButton } from "@components";
-import { OptionalComponent } from "@definitions";
-
+import { userFriendlyResourceName } from "@definitions";
 import { ResourceRouterParams } from "../../../interfaces";
+
 export interface CreateProps {
     title?: string;
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
     pageHeaderProps?: PageHeaderProps;
     resource?: string;
-    aside?: React.FC;
+    Aside?: React.ReactNode;
+    isLoading?: boolean;
 }
 
 export const Create: React.FC<CreateProps> = ({
@@ -33,7 +34,8 @@ export const Create: React.FC<CreateProps> = ({
     children,
     pageHeaderProps,
     resource: resourceFromProps,
-    aside,
+    Aside,
+    isLoading = false,
 }) => {
     const { goBack } = useNavigation();
     const translate = useTranslate();
@@ -70,36 +72,37 @@ export const Create: React.FC<CreateProps> = ({
                         title ??
                         translate(
                             `${resource.name}.titles.create`,
-                            `Create ${pluralize.singular(resource.name)}`,
+                            `Create ${userFriendlyResourceName(
+                                resource.name,
+                                "singular",
+                            )}`,
                         )
                     }
                     {...pageHeaderProps}
                 >
-                    <Card
-                        actions={[
-                            <Space
-                                key="action-buttons"
-                                style={{ float: "right", marginRight: 24 }}
-                            >
-                                {actionButtons ?? (
-                                    <SaveButton
-                                        {...saveButtonProps}
-                                        htmlType="submit"
-                                    />
-                                )}
-                            </Space>,
-                        ]}
-                    >
-                        {children}
-                    </Card>
+                    <Spin spinning={isLoading}>
+                        <Card
+                            actions={[
+                                <Space
+                                    key="action-buttons"
+                                    style={{ float: "right", marginRight: 24 }}
+                                >
+                                    {actionButtons ?? (
+                                        <SaveButton
+                                            {...saveButtonProps}
+                                            htmlType="submit"
+                                        />
+                                    )}
+                                </Space>,
+                            ]}
+                        >
+                            {children}
+                        </Card>
+                    </Spin>
                 </PageHeader>
             </Col>
 
-            {aside && (
-                <Col flex="0 1 300px">
-                    <OptionalComponent optional={aside} />
-                </Col>
-            )}
+            {Aside && <Col flex="0 1 300px">{Aside}</Col>}
         </Row>
     );
 };

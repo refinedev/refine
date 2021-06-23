@@ -15,7 +15,7 @@ import {
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IPost>();
 
     const categoryIds =
@@ -24,7 +24,9 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
         enabled: categoryIds.length > 0,
     });
 
-    const [selectedRowKeys, setSelectedRowKeys] = React.useState<string[]>([]);
+    const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>(
+        [],
+    );
 
     const {
         mutate,
@@ -34,7 +36,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
 
     const updateSelectedItems = () => {
         mutate({
-            ids: selectedRowKeys,
+            ids: selectedRowKeys.map(String),
             values: {
                 status: "draft",
             },
@@ -47,7 +49,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
         }
     }, [isSuccess]);
 
-    const onSelectChange = (selectedRowKeys: string[]) => {
+    const onSelectChange = (selectedRowKeys: React.Key[]) => {
         setSelectedRowKeys(selectedRowKeys);
     };
 
@@ -64,7 +66,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const hasSelected = selectedRowKeys.length > 0;
 
     return (
-        <List {...props}>
+        <List>
             <div style={{ padding: "16px 8px" }}>
                 <Button
                     type="primary"
@@ -81,9 +83,9 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                 </span>
             </div>
             <Table {...tableProps} rowSelection={rowSelection} rowKey="id">
-                <Table.Column key="id" dataIndex="id" title="ID" />
-                <Table.Column key="title" dataIndex="title" title="Title" />
-                <Table.Column key="status" dataIndex="status" title="Status" />
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column dataIndex="status" title="Status" />
                 <Table.Column
                     dataIndex={["category", "id"]}
                     key="category.id"
@@ -106,8 +108,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
-                    key="actions"
-                    render={(_value, record) => (
+                    render={(_, record) => (
                         <Space>
                             <EditButton size="small" recordItemId={record.id} />
                             <ShowButton size="small" recordItemId={record.id} />

@@ -1,6 +1,6 @@
 import nock from "nock";
 
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/auth/local", { identifier: "demo", password: "demo123" })
     .reply(
         200,
@@ -55,7 +55,7 @@ nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
         ],
     );
 
-nock("https://refine-strapi.pankod.com:443", { encodedQueryParams: true })
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .get("/users/me")
     .reply(
         200,
