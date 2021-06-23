@@ -26,19 +26,20 @@ export const DeliverySchedule: React.FC = () => {
                 order: "asc",
             },
         ],
-
         pagination: {
             pageSize: 3,
+            size: "small",
+            simple: true,
         },
     });
 
-    const userIds = listProps?.dataSource?.map((item) => item.userId) ?? [];
+    const userIds = listProps?.dataSource?.map((item) => item.user.id) ?? [];
     const { data, isLoading } = useMany<IUser>("users", userIds, {
         enabled: userIds.length > 0,
     });
 
     const renderItem = (item: IOrder) => {
-        const user = data?.data.find((user: IUser) => user.id === item.userId);
+        const user = data?.data.find((user: IUser) => user.id === item.user.id);
         const renderUser = () => {
             if (isLoading) {
                 return <span>loading...</span>;
@@ -85,15 +86,7 @@ export const DeliverySchedule: React.FC = () => {
             <Title level={5}>
                 {t("dashboard:upcomingDeliverySchedule.title")}
             </Title>
-            <AntdList
-                {...listProps}
-                renderItem={renderItem}
-                pagination={{
-                    ...listProps.pagination,
-                    size: "small",
-                    simple: true,
-                }}
-            />
+            <AntdList {...listProps} renderItem={renderItem} />
         </>
     );
 };

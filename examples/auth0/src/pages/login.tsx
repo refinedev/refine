@@ -1,39 +1,68 @@
 import React from "react";
-import { Row, AntdLayout, Card, Typography, Button } from "@pankod/refine";
+import { Row, Col, AntdLayout, Card, Typography, Button } from "@pankod/refine";
 import { useAuth0 } from "@auth0/auth0-react";
 
-export const Login: React.FC = () => {
-    const { Title } = Typography;
+const { Text } = Typography;
 
+export const Login: React.FC = () => {
     const { loginWithRedirect } = useAuth0();
 
+    const CardTitle = (
+        <div
+            style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "60px",
+            }}
+        >
+            <img src="./refine.svg" alt="Logo" />
+        </div>
+    );
+
     return (
-        <AntdLayout>
+        <AntdLayout
+            style={{
+                backgroundColor: "#eff7f7",
+                backgroundImage: `url("./background.svg")`,
+            }}
+        >
             <Row
                 justify="center"
+                align="middle"
                 style={{
-                    display: "flex",
-                    alignContent: "center",
                     height: "100vh",
                 }}
             >
-                <Card>
-                    <Title
-                        level={3}
+                <Col xs={22}>
+                    <Card
                         style={{
-                            textAlign: "center",
+                            maxWidth: "400px",
+                            margin: "auto",
                         }}
+                        title={CardTitle}
                     >
-                        Login
-                    </Title>
-                    <Button
-                        onClick={() => loginWithRedirect()}
-                        size="large"
-                        type="primary"
-                    >
-                        Login with Auth0
-                    </Button>
-                </Card>
+                        <Button
+                            type="primary"
+                            size="large"
+                            htmlType="submit"
+                            block
+                            onClick={() => loginWithRedirect()}
+                        >
+                            Login
+                        </Button>
+                        <br />
+                        <br />
+                        <div
+                            style={{ textAlign: "center", padding: "10px 0px" }}
+                        >
+                            <Text>
+                                Still no account? Please go to
+                                <a href="#"> Sign up</a>
+                            </Text>
+                        </div>
+                    </Card>
+                </Col>
             </Row>
         </AntdLayout>
     );

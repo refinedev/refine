@@ -1,7 +1,19 @@
 {
   "title": "Products",
+  "show": {
+    "title": "Product Detail"
+  },
   "fields": {
     "id": "ID",
+    "name": "Name",
+    "description": "Description",
+    "isActive": "Active",
+    "price": "Price",
+    "category": "Category",
+    "images": {
+      "label": "Images",
+      "description": "Click or drag avatar image to this area to upload."
+    },
     "createdAt": "CreatedAt"
   }
 }

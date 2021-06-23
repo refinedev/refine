@@ -37,7 +37,7 @@ export const useList = <
         [`resource/list/${resource}`, { ...config }],
         () => getList<TData>(resource, { ...config }),
         {
-            ...(queryOptions ?? { keepPreviousData: true }),
+            ...queryOptions,
             onError: (err: TError) => {
                 checkError(err);
                 queryOptions?.onError?.(err);

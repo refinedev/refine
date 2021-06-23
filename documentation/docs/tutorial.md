@@ -12,11 +12,11 @@ import createGif from '@site/static/img/tutorial/create.gif';
 import editGif from '@site/static/img/tutorial/edit.gif';
 import showGif from '@site/static/img/tutorial/show.gif';
 
-We'll show how to create a simple admin app with CRUD operations based on REST API.
+We'll show how to create a simple **refine** app with CRUD operations based on REST API.
 
 ## Setup
 
-refine uses React under the hood. We’ll use create-react-app to bootstrap an empty React app with Typescript.
+**refine** uses React under the hood. We’ll use create-react-app to bootstrap an empty React app with Typescript.
 
 To create a new app, run the following commands:
 
@@ -66,14 +66,14 @@ Example response:
 
 refine requires a `dataProvider` to use an API for CRUD operations which is an object with a set of certain methods.
 
-We'll use `@pankod/refine-json-server` package as a [data provider](guides-and-concepts/providers/data-provider.md) which has predefined methods to communicate with REST APIs.
+We'll use `@pankod/refine-json-server` package as a [data provider](api-references/providers/data-provider.md) which has predefined methods to communicate with REST APIs.
 
 ```
 npm i @pankod/refine-json-server
 ```
 
 :::note
-You can also provide your own custom [data provider](guides-and-concepts/providers/data-provider.md) to make the connection.
+You can also provide your own custom [data provider](api-references/providers/data-provider.md) to make the connection.
 :::
 
 ## Bootstraping the app
@@ -81,13 +81,13 @@ You can also provide your own custom [data provider](guides-and-concepts/provide
 Change `App.tsx` with the following code:
 
 ```tsx title="src/App.tsx"
-import { Admin } from "@pankod/refine";
+import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
 export const App: React.FC = () => {
     return (
-        <Admin
+        <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
         />
     );
@@ -96,7 +96,7 @@ export const App: React.FC = () => {
 
 <br/>
 
-`<Admin/>` is the root component of a refine application. We provide a `dataProvider` with a REST API url as we mention above.
+`<Refine/>` is the root component of a refine application. We provide a `dataProvider` with a REST API url as we mention above.
 
 You will see the welcome page.
 
@@ -114,7 +114,7 @@ You will see the welcome page.
 import "@pankod/refine/dist/styles.min.css";
 ```
 
-[Refer to theme documentation for further information about importing the default css. &#8594](theme.md)
+[Refer to theme documentation for further information about importing the default css. &#8594](guides-and-concepts/theme.md)
 :::
 
 ## Connect API with Resources
@@ -126,17 +126,15 @@ We'll demonstrate how to get data at `/posts` endpoint from `https://api.fake-re
 
 ```tsx title="src/App.tsx"
 //highlight-next-line
-import { Admin, Resource } from "@pankod/refine";
+import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 
 export const App: React.FC = () => {
     return (
-        <Admin
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        >
+        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
             //highlight-next-line
             <Resource name="posts" />
-        </Admin>
+        </Refine>
     );
 };
 ```
@@ -219,7 +217,7 @@ const { tableProps } = useTable<IPost>();
 
 The `tableProps` includes all necessary props for `<Table>` component to show and interact with data properly.
 
-You can find detailed usage of `useTable` from [here](guides-and-concepts/hooks/useTable.md).
+You can find detailed usage of `useTable` from [here](api-references/hooks/table/useTable.md).
 
 ### Showing and formatting data
 
@@ -258,19 +256,17 @@ You can find detailed usage of fields from [here](#).
 After creating the `<PostList>` component, now it's time to add it to `<Resource>`.
 
 ```tsx title="src/App.tsx"
-import { Admin, Resource } from "@pankod/refine";
+import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
 import { PostList } from "./pages";
 
 export const App: React.FC = () => {
     return (
-        <Admin
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        >
+        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
             //highlight-next-line
             <Resource name="posts" list={PostList} />
-        </Admin>
+        </Refine>
     );
 };
 ```
@@ -430,7 +426,7 @@ We set a condition to start fetching only when data is available.
 
 To show category title field, find the title corresponding to the category id of the current record in data returned by `useMany`,
 
-[Refer to `useMany` documentation for detailed usage. &#8594](guides-and-concepts/hooks/data/useMany.md)
+[Refer to `useMany` documentation for detailed usage. &#8594](api-references/hooks/data/useMany.md)
 
 ## Editing a record
 
@@ -490,23 +486,21 @@ After creating the `<PostEdit>` component, now it's time to add it to `<Resource
 <br />
 
 ```tsx title="src/App.tsx"
-import { Admin, Resource } from "@pankod/refine";
+import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
 import { PostList, PostEdit } from "./pages";
 
 export const App: React.FC = () => {
     return (
-        <Admin
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        >
+        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
             <Resource
                 name="posts"
                 list={PostList}
                 //highlight-next-line
                 edit={PostEdit}
             />
-        </Admin>
+        </Refine>
     );
 };
 ```
@@ -519,7 +513,7 @@ refine doesn't automatically add an _**edit**_ button by default to each record 
 We' ll add a new column to `<Table>` in `<PostList>` to show the action button for edit.
 `<EditButton>` from refine can be used to navigate to edit page at `/resources/posts/edit`.
 
-You can find detailed usage of `<EditButton>` from [here](#).
+You can find detailed usage of `<EditButton>` from [here](api-references/components/buttons/edit.md).
 
 <br />
 
@@ -565,7 +559,7 @@ const { formProps, saveButtonProps } = useForm<IPost>();
 The `formProps` includes all necessary props for `<Form>` component to manage form data properly.
 Similarly `saveButtonProps` includes useful properties for a button to submit a form.
 
-[Refer to `useForm` documentation for detailed usage. &#8594](guides-and-concepts/hooks/useForm.md)
+[Refer to `useForm` documentation for detailed usage. &#8594](api-references/hooks/form/useForm.md)
 
 `useSelect` produces props for `<Select>` component from data at another resource. `<Select>` is an Ant Design component that is exported from refine for convenience.
 
@@ -582,7 +576,7 @@ const { selectProps: categorySelectProps } = useSelect<IPost>({
 `defaultValue` is used to get the value for the current item independent of search, sort and filter parameters.
 :::
 
-[Refer to `useSelect` documentation for detailed usage. &#8594](guides-and-concepts/hooks/useSelect.md)
+[Refer to `useSelect` documentation for detailed usage. &#8594](api-references/hooks/field/useSelect.md)
 
 ### Editing the form
 
@@ -670,16 +664,14 @@ After creating the `<PostCreate>` component, add it to `<Resource>`.
 <br />
 
 ```tsx title="src/App.tsx"
-import { Admin, Resource } from "@pankod/refine";
+import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
 import { PostList, PostEdit, PostCreate } from "./pages";
 
 export const App: React.FC = () => {
     return (
-        <Admin
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        >
+        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
             <Resource
                 name="posts"
                 list={PostList}
@@ -687,7 +679,7 @@ export const App: React.FC = () => {
                 //highlight-next-line
                 create={PostCreate}
             />
-        </Admin>
+        </Refine>
     );
 };
 ```
@@ -770,16 +762,14 @@ After creating the `<PostShow>` component, add it to `<Resource>`.
 <br />
 
 ```tsx title="src/App.tsx"
-import { Admin, Resource } from "@pankod/refine";
+import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 //highlight-next-line
 import { PostList, PostEdit, PostCreate, PostShow } from "./pages";
 
 export const App: React.FC = () => {
     return (
-        <Admin
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        >
+        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
             <Resource
                 name="posts"
                 list={PostList}
@@ -788,7 +778,7 @@ export const App: React.FC = () => {
                 //highlight-next-line
                 show={PostShow}
             />
-        </Admin>
+        </Refine>
     );
 };
 ```
@@ -819,7 +809,7 @@ const { data: categoryData } = useOne<ICategory>(
 
 Here, `useOne` is used to fetch a record data from `/resources/categories`.
 
-[Refer to `useOne` documentation for detailed usage. &#8594](guides-and-concepts/hooks/data/useOne.md)
+[Refer to `useOne` documentation for detailed usage. &#8594](api-references/hooks/data/useOne.md)
 
 :::caution attention
 Difference between `useOne` and `useShow` is that `useShow` is tuned for fetching data from current resource.
@@ -927,10 +917,19 @@ In order to let user choose or search a category to filter, we get all categorie
 
 At this point we have an app with basic features implemented using a fake REST API.
 
-[Refer to `dataProvider` documentation for how to connect your own api to `refine`. &#8594](guides-and-concepts/providers/data-provider.md)
+[Refer to `dataProvider` documentation for how to connect your own api to `refine`. &#8594](api-references/providers/data-provider.md)
 
 ## Conclusion
 
 Core functionality of refine is based heavily on hooks. This way it provides a wide range of flexibility on data management and UI structure.
 
 You can develop new features or modify existing behavior based on your needs on top of refine codebase.
+
+## Live Codesandbox Example
+
+<iframe src="https://codesandbox.io/embed/refine-tutorial-cmqrr?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+    title="refine-tutorial"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>

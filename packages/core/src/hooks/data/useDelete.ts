@@ -39,8 +39,8 @@ export const useDelete = <
     TError extends HttpError = HttpError,
 >(
     resource: string,
-    mutationModeProp?: MutationMode,
-    undoableTimeoutProp?: number,
+    mutationMode?: MutationMode,
+    undoableTimeout?: number,
     onCancel?: (cancelMutation: () => void) => void,
 ): UseDeleteReturnType<TData, TError> => {
     const { mutate: checkError } = useCheckError();
@@ -54,9 +54,10 @@ export const useDelete = <
     const { notificationDispatch } = useCancelNotification();
     const translate = useTranslate();
 
-    const mutationMode = mutationModeProp ?? mutationModeContext;
+    const mutationModePropOrContext = mutationMode ?? mutationModeContext;
 
-    const undoableTimeout = undoableTimeoutProp ?? undoableTimeoutContext;
+    const undoableTimeoutPropOrContext =
+        undoableTimeout ?? undoableTimeoutContext;
 
     const cacheQueries = useCacheQueries();
 
@@ -69,8 +70,8 @@ export const useDelete = <
         DeleteContext
     >(
         ({ id }) => {
-            if (!(mutationMode === "undoable")) {
-                return deleteOne<TData>("saçma", id);
+            if (!(mutationModePropOrContext === "undoable")) {
+                return deleteOne<TData>(resource, id);
             }
 
             const deletePromise = new Promise<DeleteOneResponse<TData>>(
@@ -79,7 +80,7 @@ export const useDelete = <
                         deleteOne<TData>(resource, id)
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
-                    }, undoableTimeout);
+                    }, undoableTimeoutPropOrContext);
 
                     const cancelMutation = () => {
                         clearTimeout(updateTimeout);
@@ -95,7 +96,7 @@ export const useDelete = <
                                 id,
                                 resource: resource,
                                 cancelMutation: cancelMutation,
-                                seconds: undoableTimeout,
+                                seconds: undoableTimeoutPropOrContext,
                             },
                         });
                     }
@@ -118,7 +119,7 @@ export const useDelete = <
                             queryKey,
                         );
 
-                    if (!(mutationMode === "pessimistic")) {
+                    if (!(mutationModePropOrContext === "pessimistic")) {
                         if (previousQuery) {
                             previousQueries.push({
                                 query: previousQuery,

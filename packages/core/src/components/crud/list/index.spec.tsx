@@ -55,21 +55,151 @@ describe("<List/>", () => {
             getByText("New Title");
         });
 
-        // xit("should wrap with given component", async () => {
-        //     const { container } = render(
-        //         <List component={"section"} resourceName="posts">
-        //             <Table rowKey="id">
-        //                 <Column key="title" title="Title" dataIndex="title" />
-        //             </Table>
-        //         </List>,
-        //         {
-        //             wrapper: TestWrapper({
-        //                 dataProvider: MockJSONServer,
-        //                 resources: [{ name: "posts" }],
-        //             }),
-        //         },
-        //     );
-        //     expect(container.querySelector("section")).toBeTruthy();
-        // });
+        describe("render create button", () => {
+            it("should create edit button", () => {
+                const { getByText, queryByTestId } = render(
+                    <Route path="/resources/:resource">
+                        <List />
+                    </Route>,
+                    {
+                        wrapper: TestWrapper({
+                            dataProvider: MockJSONServer,
+                            resources: [
+                                {
+                                    name: "posts",
+                                    route: "posts",
+                                    canCreate: true,
+                                },
+                            ],
+                            routerInitialEntries: ["/resources/posts"],
+                        }),
+                    },
+                );
+
+                expect(queryByTestId("list-create-button")).not.toBeNull();
+
+                getByText("Posts");
+            });
+
+            it("should not render create button on resource canCreate false", () => {
+                const { getByText, queryByTestId } = render(
+                    <Route path="/resources/:resource">
+                        <List />
+                    </Route>,
+                    {
+                        wrapper: TestWrapper({
+                            dataProvider: MockJSONServer,
+                            resources: [
+                                {
+                                    name: "posts",
+                                    route: "posts",
+                                    canCreate: false,
+                                },
+                            ],
+                            routerInitialEntries: ["/resources/posts"],
+                        }),
+                    },
+                );
+
+                expect(queryByTestId("list-create-button")).toBeNull();
+
+                getByText("Posts");
+            });
+
+            it("should render create button on resource canCreate false & createButtonProps props not null on component", () => {
+                const { getByText, queryByTestId } = render(
+                    <Route path="/resources/:resource">
+                        <List createButtonProps={{ size: "large" }} />
+                    </Route>,
+                    {
+                        wrapper: TestWrapper({
+                            dataProvider: MockJSONServer,
+                            resources: [
+                                {
+                                    name: "posts",
+                                    route: "posts",
+                                },
+                            ],
+                            routerInitialEntries: ["/resources/posts"],
+                        }),
+                    },
+                );
+
+                expect(queryByTestId("list-create-button")).not.toBeNull();
+
+                getByText("Posts");
+            });
+
+            it("should render create button on resource canCreate true & createButtonProps props not null on component", () => {
+                const { getByText, queryByTestId } = render(
+                    <Route path="/resources/:resource">
+                        <List createButtonProps={{ size: "large" }} />
+                    </Route>,
+                    {
+                        wrapper: TestWrapper({
+                            dataProvider: MockJSONServer,
+                            resources: [
+                                {
+                                    name: "posts",
+                                    route: "posts",
+                                    canCreate: true,
+                                },
+                            ],
+                            routerInitialEntries: ["/resources/posts"],
+                        }),
+                    },
+                );
+
+                expect(queryByTestId("list-create-button")).not.toBeNull();
+
+                getByText("Posts");
+            });
+
+            it("should not render create button on resource canCreate true & canCreate props false on component", () => {
+                const { queryByTestId } = render(
+                    <Route path="/resources/:resource">
+                        <List canCreate={false} />
+                    </Route>,
+                    {
+                        wrapper: TestWrapper({
+                            dataProvider: MockJSONServer,
+                            resources: [
+                                {
+                                    name: "posts",
+                                    route: "posts",
+                                    canCreate: true,
+                                },
+                            ],
+                            routerInitialEntries: ["/resources/posts"],
+                        }),
+                    },
+                );
+
+                expect(queryByTestId("list-create-button")).toBeNull();
+            });
+
+            it("should render create button on resource canCreate false & canCreate props true on component", () => {
+                const { queryByTestId } = render(
+                    <Route path="/resources/:resource">
+                        <List canCreate={true} />
+                    </Route>,
+                    {
+                        wrapper: TestWrapper({
+                            dataProvider: MockJSONServer,
+                            resources: [
+                                {
+                                    name: "posts",
+                                    route: "posts",
+                                    canCreate: false,
+                                },
+                            ],
+                            routerInitialEntries: ["/resources/posts"],
+                        }),
+                    },
+                );
+
+                expect(queryByTestId("list-create-button")).not.toBeNull();
+            });
+        });
     });
 });

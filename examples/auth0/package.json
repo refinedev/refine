@@ -1,5 +1,5 @@
 {
-  "name": "refine-auth0-example-app",
+  "name": "refine-auth0-example",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -23,7 +23,7 @@ import {
 
 import { TOKEN_KEY } from "../../constants";
 
-export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
+export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const API_URL = useApiUrl();
 
     const [selectedTab, setSelectedTab] =
@@ -42,7 +42,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
     });
 
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
+        <Create saveButtonProps={saveButtonProps}>
             <Form
                 {...formProps}
                 layout="vertical"
@@ -66,6 +66,18 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
                     <Input />
                 </Form.Item>
                 <Form.Item
+                    wrapperCol={{ span: 8 }}
+                    label="Category"
+                    name={["category", "id"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select {...selectProps} />
+                </Form.Item>
+                <Form.Item
                     label="Content"
                     name="content"
                     rules={[
@@ -84,25 +96,11 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
                         }
                     />
                 </Form.Item>
-                <Form.Item
-                    wrapperCol={{ span: 8 }}
-                    label="Category"
-                    name={["category", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...selectProps} />
-                </Form.Item>
                 <Form.Item label="Cover">
                     <Form.Item
                         name="cover"
                         valuePropName="fileList"
-                        getValueProps={(data) =>
-                            getValueProps(data, "https://api.strapi.refine.dev")
-                        }
+                        getValueProps={(data) => getValueProps(data, API_URL)}
                         noStyle
                     >
                         <Upload.Dragger

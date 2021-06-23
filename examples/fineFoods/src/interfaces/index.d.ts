@@ -83,18 +83,20 @@ export interface ICourier {
 }
 export interface IOrder {
     id: string;
-    userId: string;
+    user: IUser;
     createdAt: string;
     products: IProduct[];
     status: IOrderStatus;
     adress: IAddress;
-    storeId: IStore;
+    store: IStore;
     courier: {};
     events: IEvent[];
+    orderNumber: number;
+    amount: number;
 }
 
 export interface IProduct {
-    id: number;
+    id: string;
     name: string;
     isActive: boolean;
     description: string;
@@ -106,7 +108,7 @@ export interface IProduct {
 }
 
 export interface ICategory {
-    id: number;
+    id: string;
     title: string;
     isActive: boolean;
 }
@@ -116,4 +118,21 @@ export interface IOrderFilterVariables {
     store: string;
     user: string;
     createdAt: [Dayjs, Dayjs];
+    status: string;
+}
+
+export interface IUserFilterVariables {
+    q: string;
+    status: boolean;
+}
+
+export interface ICourier {
+    id: string;
+    name: string;
+    surname: string;
+    gender: string;
+    gsm: string;
+    createdAt: string;
+    isActive: boolean;
+    avatar: IFile[];
 }

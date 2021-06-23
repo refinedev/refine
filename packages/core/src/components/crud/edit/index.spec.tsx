@@ -69,7 +69,7 @@ describe("Edit", () => {
     it("should render default title successfuly", () => {
         const { getByText } = renderEdit(<Edit />);
 
-        getByText("Edit post");
+        getByText("Edit Post");
     });
 
     it("should render optional title with title prop", () => {
@@ -98,7 +98,7 @@ describe("Edit", () => {
             },
         );
 
-        getByText("Edit post");
+        getByText("Edit Post");
     });
 
     it("should render optional recordItemId with resource prop", () => {
@@ -106,7 +106,7 @@ describe("Edit", () => {
             <Edit recordItemId="1" />,
         );
 
-        getByText("Edit post");
+        getByText("Edit Post");
 
         expect(queryByTestId("edit-list-button")).toBeNull();
     });
@@ -130,7 +130,7 @@ describe("Edit", () => {
 
             expect(queryByTestId("edit-delete-button")).not.toBeNull();
 
-            getByText("Edit post");
+            getByText("Edit Post");
         });
 
         it("should not render delete button on resource canDelete false", () => {
@@ -151,7 +151,7 @@ describe("Edit", () => {
 
             expect(queryByTestId("edit-delete-button")).toBeNull();
 
-            getByText("Edit post");
+            getByText("Edit Post");
         });
 
         it("should not render delete button on resource canDelete true & canDelete props false on component", () => {

@@ -1,0 +1,11 @@
+{
+  "title": "Kategoriler",
+  "show": {
+    "title": "Kategori Detay"
+  },
+  "fields": {
+    "id": "ID",
+    "title": "Başlık",
+    "isActive": "Aktif"
+  }
+}

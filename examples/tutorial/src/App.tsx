@@ -1,11 +1,14 @@
-import { Admin, Resource } from "@pankod/refine";
+import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
-import { PostList, PostEdit, PostCreate, PostShow } from "./pages";
 import "@pankod/refine/dist/styles.min.css";
 
-export const App: React.FC = () => {
+import { PostList, PostEdit, PostCreate, PostShow } from "./pages";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const App: React.FC = () => {
     return (
-        <Admin dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
+        <Refine dataProvider={dataProvider(API_URL)}>
             <Resource
                 name="posts"
                 list={PostList}
@@ -13,6 +16,8 @@ export const App: React.FC = () => {
                 create={PostCreate}
                 show={PostShow}
             />
-        </Admin>
+        </Refine>
     );
 };
+
+export default App;
