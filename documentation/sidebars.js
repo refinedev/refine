@@ -258,6 +258,7 @@ module.exports = {
                         "examples/customization/customFooter",
                         "examples/customization/customSider",
                         "examples/customization/customInput",
+                        "examples/customization/offLayoutArea",
                     ],
                 },
                 {
