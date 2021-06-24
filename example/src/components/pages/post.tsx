@@ -70,7 +70,16 @@ interface ICategory {
 export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
 
-    const { tableProps, sorter, filters } = useTable<IPost>({});
+    const { tableProps, sorter, filters } = useTable<IPost>({
+        initialCurrent: 3,
+        initialPageSize: 50,
+        initialSorter: [
+            {
+                field: "createdAt",
+                order: "desc",
+            },
+        ],
+    });
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];

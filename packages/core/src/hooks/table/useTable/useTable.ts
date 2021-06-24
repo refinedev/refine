@@ -55,7 +55,7 @@ export const useTable = <
     initialPageSize = 10,
     initialSorter,
     initialFilter,
-    syncWithLocation = false,
+    syncWithLocation: syncWithLocationProp = false,
     resource: resourceFromProp,
 }: useTableProps<TSearchVariables> = {}): useTableReturnType<
     TData,
@@ -65,9 +65,7 @@ export const useTable = <
 
     const [form] = useForm<TSearchVariables>();
 
-    if (syncWithLocationContext) {
-        syncWithLocation = true;
-    }
+    let syncWithLocation = syncWithLocationProp || syncWithLocationContext;
 
     // disable syncWithLocation for custom resource tables
     if (resourceFromProp) {
