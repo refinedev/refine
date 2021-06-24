@@ -86,7 +86,7 @@ export const Login: React.FC = () => {
                                             style={{ color: "#00000040" }}
                                         />
                                     }
-                                    maxLength={11}
+                                    maxLength={10}
                                     placeholder="(___)___-____"
                                 />
                             </Form.Item>
