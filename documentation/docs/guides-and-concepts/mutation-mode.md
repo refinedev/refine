@@ -62,19 +62,23 @@ Mutation mode can be set application-wide in [`<Refine>`](#) component.
 
 <br />
 
-It can also be set in [supported data hooks](#supported-data-hooks) for fine-grained configuration. 
+It can also be set in [supported data hooks and form hooks](#supported-data-hooks) and for fine-grained configuration. 
 
 ```tsx
 const { mutate } = useUpdate("categories", "optimistic");
 ```
 > Mutation mode passed to `<Refine>` will be overriden by the mutation mode passed to a data hook.
 
-### Supported data hooks
+### Supported hooks
 
 - [`useUpdate` &#8594](api-references/hooks/data/useUpdate.md)   
 - [`useUpdateMany` &#8594](api-references/hooks/data/useUpdateMany.md)  
 - [`useDelete` &#8594](api-references/hooks/data/useDelete.md)  
 - [`useDeleteMany` &#8594](api-references/hooks/data/useDeleteMany.md)
+- [`useForm` &#8594](api-references/hooks/form/useForm.md)
+- [`useModalForm` &#8594](api-references/hooks/form/useModalForm.md)
+- [`useDrawerForm` &#8594](api-references/hooks/form/useDrawerForm.md)
+- [`useStepsForm` &#8594](api-references/hooks/form/useStepsForm.md)
 
 
 <br />
