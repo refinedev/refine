@@ -61,7 +61,7 @@ Looks like this:
 
 ## API Reference
 
-### `<ImportButton>` Props
+### Properties
 
 | Property    | Description                      | Type                                                       | Default     |
 | ----------- | -------------------------------- | ---------------------------------------------------------- | ----------- |
