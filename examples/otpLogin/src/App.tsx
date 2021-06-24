@@ -9,21 +9,21 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
-        login: ({ username, password, remember }) => {
-            if (username === "admin") {
-                localStorage.setItem("username", username);
+        login: ({ gsmNumber, code }) => {
+            if (code === "1234") {
+                localStorage.setItem("gsmNumber", gsmNumber);
                 return Promise.resolve();
             }
 
-            return Promise.reject();
+            return Promise.reject({ message: "Login code: 1234" });
         },
         logout: () => {
-            localStorage.removeItem("username");
+            localStorage.removeItem("gsmNumber");
             return Promise.resolve();
         },
         checkError: () => Promise.resolve(),
         checkAuth: () =>
-            localStorage.getItem("username")
+            localStorage.getItem("gsmNumber")
                 ? Promise.resolve()
                 : Promise.reject(),
         getPermissions: () => Promise.resolve(["admin"]),
