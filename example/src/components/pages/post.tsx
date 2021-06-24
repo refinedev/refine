@@ -70,16 +70,7 @@ interface ICategory {
 export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
 
-    const { tableProps, sorter, filters } = useTable<IPost>({
-        initialCurrent: 3,
-        initialPageSize: 8,
-        initialSorter: [
-            {
-                field: "createdAt",
-                order: "desc",
-            },
-        ],
-    });
+    const { tableProps, sorter, filters } = useTable<IPost>({});
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
@@ -511,7 +502,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     } = useStepsForm<IPost>({
         warnWhenUnsavedChanges: true,
         redirect: "list",
-        mutationMode: "pessimistic",
     });
 
     const postData = queryResult?.data?.data;
