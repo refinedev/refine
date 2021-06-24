@@ -1,11 +1,18 @@
 import React from "react";
-import { Row, Col, AntdLayout, Card, Typography, Button } from "@pankod/refine";
-import { useAuth0 } from "@auth0/auth0-react";
+import {
+    Row,
+    Col,
+    AntdLayout,
+    Card,
+    Typography,
+    Button,
+    useLogin,
+} from "@pankod/refine";
 
 const { Text } = Typography;
 
 export const Login: React.FC = () => {
-    const { loginWithRedirect } = useAuth0();
+    const { mutate: login } = useLogin();
 
     const CardTitle = (
         <div
@@ -47,7 +54,7 @@ export const Login: React.FC = () => {
                             size="large"
                             htmlType="submit"
                             block
-                            onClick={() => loginWithRedirect()}
+                            onClick={() => login(null)}
                         >
                             Login
                         </Button>
