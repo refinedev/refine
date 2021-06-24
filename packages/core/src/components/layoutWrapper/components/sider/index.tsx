@@ -1,9 +1,14 @@
 import React, { useState, useContext } from "react";
 import { Layout, Menu } from "antd";
 import { LogoutOutlined } from "@ant-design/icons";
-import { useHistory } from "react-router-dom";
 
-import { useTranslate, useMenu, useLogout, useTitle } from "@hooks";
+import {
+    useTranslate,
+    useMenu,
+    useLogout,
+    useTitle,
+    useNavigation,
+} from "@hooks";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "src/interfaces";
 
@@ -14,7 +19,7 @@ export const Sider: React.FC = () => {
     const Title = useTitle();
     const translate = useTranslate();
     const { menuItems, selectedKey } = useMenu();
-    const history = useHistory();
+    const { push } = useNavigation();
 
     return (
         <Layout.Sider
@@ -35,7 +40,7 @@ export const Sider: React.FC = () => {
                         return;
                     }
 
-                    history.push(key as string);
+                    push(key as string);
                 }}
             >
                 {menuItems.map(({ icon, route, label }) => (
