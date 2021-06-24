@@ -1,36 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Row,
     Col,
     AntdLayout,
     Card,
-    Typography,
     Form,
     Input,
     Button,
-    Checkbox,
     Icons,
 } from "@pankod/refine";
 import "./styles.css";
 
 import { useLogin } from "@pankod/refine";
 
-const { UserOutlined, LockOutlined } = Icons;
-const { Text } = Typography;
-
+const { PhoneOutlined, NumberOutlined } = Icons;
 export interface ILoginForm {
-    username: string;
-    password: string;
-    remember: boolean;
+    gsmNumber: string;
+    code: string;
 }
 
 export const Login: React.FC = () => {
+    const [current, setCurrent] = useState<number>(0);
     const [form] = Form.useForm();
 
     const { mutate: login } = useLogin<ILoginForm>();
 
     const onSubmit = async (values: ILoginForm) => {
         login(values);
+    };
+
+    const handleSend = () => {
+        form.validateFields(["gsmNumber"])
+            .then(() => setCurrent(current + 1))
+            .catch(() => null);
     };
 
     const CardTitle = (
@@ -56,52 +58,67 @@ export const Login: React.FC = () => {
                         <Form
                             className="ant-form-vertical"
                             form={form}
-                            name="control-hooks"
-                            onFinish={onSubmit}
                             requiredMark={false}
+                            onFinish={onSubmit}
                         >
                             <Form.Item
-                                name="username"
-                                label="Username"
-                                rules={[{ required: true }]}
+                                hidden={current === 1}
+                                name="gsmNumber"
+                                label="Gsm Number"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: "GSM no is required",
+                                    },
+                                ]}
                             >
                                 <Input
                                     prefix={
-                                        <UserOutlined
+                                        <PhoneOutlined
                                             style={{ color: "#00000040" }}
                                         />
                                     }
+                                    maxLength={11}
+                                    placeholder="(___)___-____"
                                 />
                             </Form.Item>
                             <Form.Item
-                                name="password"
-                                label="Password"
-                                rules={[{ required: true }]}
+                                className="login-buttons"
+                                hidden={current === 1}
+                            >
+                                <Button
+                                    type="primary"
+                                    size="large"
+                                    block
+                                    onClick={handleSend}
+                                >
+                                    Send
+                                </Button>
+                            </Form.Item>
+                            <Form.Item
+                                hidden={current === 0}
+                                name="code"
+                                label="Code"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: "Code is required",
+                                    },
+                                ]}
                             >
                                 <Input
                                     type="password"
                                     prefix={
-                                        <LockOutlined
+                                        <NumberOutlined
                                             style={{ color: "#00000040" }}
                                         />
                                     }
                                 />
                             </Form.Item>
-                            <Form.Item>
-                                <Form.Item
-                                    name="remember"
-                                    valuePropName="checked"
-                                    initialValue={true}
-                                    noStyle
-                                >
-                                    <Checkbox>Remember me</Checkbox>
-                                </Form.Item>
-
-                                <a style={{ float: "right" }} href="#">
-                                    Forgot password?
-                                </a>
-                            </Form.Item>
-                            <Form.Item>
+                            <Form.Item
+                                className="login-buttons"
+                                hidden={current === 0}
+                            >
                                 <Button
                                     type="primary"
                                     size="large"
@@ -112,12 +129,6 @@ export const Login: React.FC = () => {
                                 </Button>
                             </Form.Item>
                         </Form>
-                        <div className="signup-section">
-                            <Text>
-                                Still no account? Please go to{" "}
-                                <a href="#">Sign up</a>
-                            </Text>
-                        </div>
                     </Card>
                 </Col>
             </Row>

@@ -1,11 +1,7 @@
 .login-card {
     max-width: 400px;
     margin: auto;
-}
-
-.signup-section {
-    text-align: center;
-    padding: 10px 0px;
+    border-radius: 10px;
 }
 
 .login-header {
@@ -17,4 +13,8 @@
 
 .login-background {
     background-color: #eff7f7;
+}
+
+.login-buttons {
+    margin-top: 30px;
 }
