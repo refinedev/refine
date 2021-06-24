@@ -64,7 +64,7 @@ export const Login: React.FC = () => {
                 <Col xs={22}>
                     <Card className="login-card" title={CardTitle}>
                         <Form
-                            className="ant-form-vertical"
+                            layout="vertical"
                             form={form}
                             requiredMark={false}
                             onFinish={onSubmit}
@@ -76,7 +76,7 @@ export const Login: React.FC = () => {
                                 rules={[
                                     {
                                         required: true,
-                                        message: "GSM no is required",
+                                        message: "Gsm number is required",
                                     },
                                 ]}
                             >
