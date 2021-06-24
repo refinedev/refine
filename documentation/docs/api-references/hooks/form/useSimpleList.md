@@ -149,6 +149,6 @@ You can use `AntdList.Item` and `AntdList.Item.Meta` like `<List>` component fro
 | Key       | Description                                                  | Type                                                     | Default                                  |
 | --------- | ------------------------------------------------------------ | -------------------------------------------------------- | ---------------------------------------- |
 | resource  | The resource to list the data                                | `string` \| `undefined`                                  | Resource name that it reads from the url |
-| sorter    | Allows to sort records by speficified order and field        | [`CrudSorting`](interfaces.md#crudsorting)\| `undefined` |                                          |
-| filter    | Allows you to filter queries using refine's filter operators | [`CrudFilters`](interfaces.md#crudfilters)\| `undefined` |                                          |
+| sorter    | Allows to sort records by speficified order and field        | [`CrudSorting`](/api-references/interfaces.md#crudsorting)\| `undefined` |                                          |
+| filter    | Allows you to filter queries using refine's filter operators | [`CrudFilters`](/api-references/interfaces.md#crudfilters)\| `undefined` |                                          |
 | listProps | Ant Design `<List>` props                                    | [`listProps`](https://ant.design/components/list/#API)   |                                          |

@@ -5,7 +5,9 @@ import { BrowserRouter as Router, RouteProps } from "react-router-dom";
 import {
     QueryClientProvider,
     QueryClient,
-    QueryObserverOptions,
+    QueryCache,
+    MutationCache,
+    DefaultOptions,
 } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
@@ -33,6 +35,11 @@ import {
     TitleProps,
 } from "../../../interfaces";
 
+interface QueryClientConfig {
+    queryCache?: QueryCache;
+    mutationCache?: MutationCache;
+    defaultOptions?: DefaultOptions;
+}
 export interface RefineProps {
     authProvider?: IAuthContext;
     dataProvider: IDataContextProvider;
@@ -53,7 +60,7 @@ export interface RefineProps {
     Footer?: React.FC;
     OffLayoutArea?: React.FC;
     Title?: React.FC<TitleProps>;
-    reactQueryClientConfig?: QueryObserverOptions;
+    reactQueryClientConfig?: QueryClientConfig;
 }
 
 export const Refine: React.FC<RefineProps> = ({
@@ -80,11 +87,13 @@ export const Refine: React.FC<RefineProps> = ({
     reactQueryClientConfig,
 }) => {
     const queryClient = new QueryClient({
+        ...reactQueryClientConfig,
         defaultOptions: {
+            ...reactQueryClientConfig?.defaultOptions,
             queries: {
                 refetchOnWindowFocus: false,
                 keepPreviousData: true,
-                ...reactQueryClientConfig,
+                ...reactQueryClientConfig?.defaultOptions?.queries,
             },
         },
     });
