@@ -21,6 +21,7 @@ export interface ILoginForm {
 
 export const Login: React.FC = () => {
     const [current, setCurrent] = useState<number>(0);
+    const [loading, setLoading] = useState<boolean>(false);
     const [form] = Form.useForm();
 
     const { mutate: login } = useLogin<ILoginForm>();
@@ -30,9 +31,16 @@ export const Login: React.FC = () => {
     };
 
     const handleSend = () => {
+        setLoading(true);
+
         form.validateFields(["gsmNumber"])
-            .then(() => setCurrent(current + 1))
-            .catch(() => null);
+            .then(() =>
+                setTimeout(() => {
+                    setCurrent(current + 1);
+                    setLoading(false);
+                }, 1000),
+            )
+            .catch(() => setLoading(false));
     };
 
     const CardTitle = (
@@ -91,6 +99,7 @@ export const Login: React.FC = () => {
                                     size="large"
                                     block
                                     onClick={handleSend}
+                                    loading={loading}
                                 >
                                     Send
                                 </Button>
