@@ -4,14 +4,13 @@ import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
+
 const App: React.FC = () => {
+    const API_TOKEN = "keywoytODSr6xAqfg";
+    const BASE_ID = "appKYl1H4k9g73sBT";
+
     return (
-        <Refine
-            dataProvider={dataProvider(
-                "keywoytODSr6xAqfg",
-                "appKYl1H4k9g73sBT",
-            )}
-        >
+        <Refine dataProvider={dataProvider(API_TOKEN, BASE_ID)}>
             <Resource
                 name="posts"
                 list={PostList}
