@@ -22,9 +22,13 @@ import {
     useCheckError,
 } from "@hooks";
 
-type UpdateParams<T> = {
+type UpdateParams<TVariables> = {
     id: string;
-    values: T;
+    resource: string;
+    mutationMode?: MutationMode;
+    undoableTimeout?: number;
+    onCancel?: (cancelMutation: () => void) => void;
+    values: TVariables;
 };
 
 export type UseUpdateReturnType<
@@ -42,12 +46,7 @@ export const useUpdate = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
->(
-    resource: string,
-    mutationMode?: MutationMode,
-    undoableTimeout?: number,
-    onCancel?: (cancelMutation: () => void) => void,
-): UseUpdateReturnType<TData, TError, TVariables> => {
+>(): UseUpdateReturnType<TData, TError, TVariables> => {
     const queryClient = useQueryClient();
     const { update } = useContext<IDataContext>(DataContext);
     const {
@@ -59,13 +58,6 @@ export const useUpdate = <
 
     const { notificationDispatch } = useCancelNotification();
 
-    const mutationModePropOrContext = mutationMode ?? mutationModeContext;
-
-    const undoableTimeoutPropOrContext =
-        undoableTimeout ?? undoableTimeoutContext;
-
-    const resourceSingular = pluralize.singular(resource);
-
     const getAllQueries = useCacheQueries();
 
     const mutation = useMutation<
@@ -74,7 +66,13 @@ export const useUpdate = <
         UpdateParams<TVariables>,
         UpdateContext
     >(
-        ({ id, values }) => {
+        ({ id, values, resource, mutationMode, undoableTimeout, onCancel }) => {
+            const mutationModePropOrContext =
+                mutationMode ?? mutationModeContext;
+
+            const undoableTimeoutPropOrContext =
+                undoableTimeout ?? undoableTimeoutContext;
+
             if (!(mutationModePropOrContext === "undoable")) {
                 return update<TData, TVariables>(resource, id, values);
             }
@@ -109,10 +107,13 @@ export const useUpdate = <
             return updatePromise;
         },
         {
-            onMutate: async (variables) => {
+            onMutate: async ({ resource, id, mutationMode, values }) => {
                 const previousQueries: ContextQuery[] = [];
 
-                const allQueries = getAllQueries(resource, variables.id);
+                const allQueries = getAllQueries(resource, id);
+
+                const mutationModePropOrContext =
+                    mutationMode ?? mutationModeContext;
 
                 for (const queryItem of allQueries) {
                     const { queryKey } = queryItem;
@@ -140,13 +141,10 @@ export const useUpdate = <
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: data.map((record: TData) => {
-                                        if (
-                                            record.id?.toString() ===
-                                            variables.id
-                                        ) {
+                                        if (record.id?.toString() === id) {
                                             return {
-                                                ...variables.values,
-                                                id: variables.id,
+                                                ...values,
+                                                id: id,
                                             };
                                         }
                                         return record;
@@ -156,7 +154,7 @@ export const useUpdate = <
                                 queryClient.setQueryData(queryKey, {
                                     data: {
                                         ...previousQuery.data,
-                                        ...variables.values,
+                                        ...values,
                                     },
                                 });
                             }
@@ -168,7 +166,7 @@ export const useUpdate = <
                     previousQueries: previousQueries,
                 };
             },
-            onError: (err: TError, { id }, context) => {
+            onError: (err: TError, { id, resource }, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
@@ -185,6 +183,8 @@ export const useUpdate = <
                 if (err.message !== "mutationCancelled") {
                     checkError?.(err);
 
+                    const resourceSingular = pluralize.singular(resource);
+
                     notification.error({
                         key: `${id}-${resource}-notification`,
                         message: translate(
@@ -199,13 +199,15 @@ export const useUpdate = <
                     });
                 }
             },
-            onSettled: (_data, _error, variables) => {
-                const allQueries = getAllQueries(resource, variables.id);
+            onSettled: (_data, _error, { id, resource }) => {
+                const allQueries = getAllQueries(resource, id);
                 for (const query of allQueries) {
                     queryClient.invalidateQueries(query.queryKey);
                 }
             },
-            onSuccess: (_data, { id }) => {
+            onSuccess: (_data, { id, resource }) => {
+                const resourceSingular = pluralize.singular(resource);
+
                 notification.success({
                     key: `${id}-${resource}-notification`,
                     message: translate("notifications.success", "Successful"),

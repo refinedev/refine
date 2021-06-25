@@ -129,11 +129,7 @@ export const useEditForm = <
         };
     }, [data, id, isFetching]);
 
-    const mutationResult = useUpdate<TData, TError, TVariables>(
-        resource.name,
-        mutationMode,
-        undoableTimeout,
-    );
+    const mutationResult = useUpdate<TData, TError, TVariables>();
 
     const { mutate, isLoading: isLoadingMutation } = mutationResult;
 
@@ -147,9 +143,15 @@ export const useEditForm = <
         // Required to make onSuccess vs callbacks to work if component unmounts i.e. on route change
         setTimeout(() => {
             mutate(
-                { id, values },
                 {
-                    onSuccess: (data, variables, context) => {
+                    id,
+                    values,
+                    resource: resource.name,
+                    mutationMode,
+                    undoableTimeout,
+                },
+                {
+                    onSuccess: (data, _, context) => {
                         if (onMutationSuccess) {
                             return onMutationSuccess(data, values, context);
                         }
