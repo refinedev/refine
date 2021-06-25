@@ -1,6 +1,6 @@
 ---
 id: refine-config
-title: <Refine> Component
+title: <Refine>
 sidebar_label: <Refine>
 ---
 
