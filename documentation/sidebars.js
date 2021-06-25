@@ -211,6 +211,7 @@ module.exports = {
                         "guides-and-concepts/import-export/csv-export",
                     ],
                 },
+                "guides-and-concepts/mutation-mode",
                 "guides-and-concepts/custom-pages",
                 "guides-and-concepts/theme",
             ],

@@ -513,7 +513,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     } = useStepsForm<IPost>({
         warnWhenUnsavedChanges: true,
         redirect: "list",
-        mutationMode: "pessimistic",
     });
 
     const postData = queryResult?.data?.data;

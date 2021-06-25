@@ -100,17 +100,13 @@ Determines the mode with which the mutation runs.
 ```tsx
 const { mutate } = useUpdateMany("posts", "optimistic");
 ```
- `pessimistic` : The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfuly.
-
- `optimistic` : The mutation is applied locally, redirection and UI updates are executed immediately as if mutation is succesful. If mutation returns with error, UI updates accordingly.
-
- `undoable`: The mutation is applied locally, redirection and UI updates are executed immediately as if mutation is succesful. Waits for a customizable amount of timeout before mutation is applied. During the timeout, mutation can be cancelled from the notification with an undo button and UI will revert back accordingly.
 
 
-[Refer to mutation mode docs for further information. &#8594](#)
+
+[Refer to mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
 
 
-## Custom method on mutation cancellation
+### Custom method on mutation cancellation
 You can pass a custom cancel callback to `useUpdateMany`. That callback is triggered when undo button is clicked when  `mutationMode = "undoable"`.
 
 :::caution
@@ -138,11 +134,11 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 ### Parameters
 
 
-| Property                                            | Description                                                                         | Type                                             | Default          |
-| --------------------------------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------ | ---------------- |
-| resource  <div className=" required">Required</div> | [`Resource`](#) for API data interactions                                           | `string`                                         |                  |
-| mutationMode                                    | [Determines when mutations are executed](#)                                         | ` "pessimistic` \| `"optimistic` \| `"undoable"` | `"pessimistic"`* |
-| undoableTimeout                                 | Duration to wait before executing the mutation when `mutationMode = "undoable"` | `number`                                         | `5000ms`*        |
+| Property                                            | Description                                                                     | Type                                             | Default          |
+| --------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------ | ---------------- |
+| resource  <div className=" required">Required</div> | [`Resource`](#) for API data interactions                                       | `string`                                         |                  |
+| mutationMode                                        | [Determines when mutations are executed](#)                                     | ` "pessimistic` \| `"optimistic` \| `"undoable"` | `"pessimistic"`* |
+| undoableTimeout                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"` | `number`                                         | `5000ms`*        |
 | onCancel                                            | Callback that runs when undo button is clicked on `mutationMode = "undoable"`   | `(cancelMutation: () => void) => void`           |                  |
 
 >`*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useUpdateMany` will use what is passed to `<Refine>` as default and can override locally.
@@ -151,11 +147,11 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 ### Type Parameters
 
-| Property   | Desription                                                                    | Type                                     | Default                                  |
-| ---------- | ----------------------------------------------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| Property   | Desription                                                                          | Type                                           | Default                                        |
+| ---------- | ----------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
 | TData      | Result data of the mutation. Extends [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) |
 | TError     | Custom error object that extends [`HttpError`](../../interfaces.md#httperror)       | [`HttpError`](../../interfaces.md#httperror)   | [`HttpError`](../../interfaces.md#httperror)   |
-| TVariables | Values for mutation function                                                  | `{}`                                     | `{}`                                     |
+| TVariables | Values for mutation function                                                        | `{}`                                           | `{}`                                           |
 
 ### Return value
 

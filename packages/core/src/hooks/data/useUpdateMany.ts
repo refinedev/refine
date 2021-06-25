@@ -140,7 +140,9 @@ export const useUpdateMany = <
                                     ...previousQuery,
                                     data: data.map((record: TData) => {
                                         if (
-                                            variables.ids.includes(record.id!)
+                                            variables.ids.includes(
+                                                record.id!.toString(),
+                                            )
                                         ) {
                                             return {
                                                 ...record,
