@@ -6,10 +6,12 @@ import {
     Card,
     Typography,
     Button,
+    Icons,
     useLogin,
 } from "@pankod/refine";
 
 const { Text } = Typography;
+const { GoogleOutlined } = Icons;
 
 export const Login: React.FC = () => {
     const { mutate: login } = useLogin();
@@ -52,11 +54,12 @@ export const Login: React.FC = () => {
                         <Button
                             type="primary"
                             size="large"
-                            htmlType="submit"
+                            // htmlType="submit"
                             block
+                            icon={<GoogleOutlined />}
                             onClick={() => login(undefined)}
                         >
-                            Login
+                            Login with Google
                         </Button>
                         <br />
                         <br />
