@@ -74,12 +74,14 @@ mutate({
 ```
 > Mutation mode passed to `<Refine>` will be overriden by the mutation mode passed to a data hook.
 
-### Supported hooks
+### Supported data hooks
 
 - [`useUpdate` &#8594](api-references/hooks/data/useUpdate.md)   
 - [`useUpdateMany` &#8594](api-references/hooks/data/useUpdateMany.md)  
 - [`useDelete` &#8594](api-references/hooks/data/useDelete.md)  
 - [`useDeleteMany` &#8594](api-references/hooks/data/useDeleteMany.md)
+### Supported form hooks
+
 - [`useForm` &#8594](api-references/hooks/form/useForm.md)
 - [`useModalForm` &#8594](api-references/hooks/form/useModalForm.md)
 - [`useDrawerForm` &#8594](api-references/hooks/form/useDrawerForm.md)
