@@ -3,6 +3,7 @@ import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import { Login } from "pages/login";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -32,6 +33,7 @@ const App: React.FC = () => {
         <Refine
             dataProvider={dataProvider(API_URL)}
             authProvider={authProvider}
+            LoginPage={Login}
         >
             <Resource
                 name="posts"
