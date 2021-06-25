@@ -65,16 +65,23 @@ Mutation mode can be set application-wide in [`<Refine>`](#) component.
 It can also be set in supported [data hooks](https://docs-mu-doc-refine.pankod.com/docs/api-references/hooks/data/useUpdate#mutation-mode) and [form hooks](https://docs-mu-doc-refine.pankod.com/docs/api-references/hooks/form/useForm#properties ) for fine-grained configuration. 
 
 ```tsx
-const { mutate } = useUpdate("categories", "optimistic");
+const { mutate } = useUpdate();
+
+mutate({
+    resource: "categories",
+    mutationMode: "optimistic",
+});
 ```
 > Mutation mode passed to `<Refine>` will be overriden by the mutation mode passed to a data hook.
 
-### Supported hooks
+### Supported data hooks
 
 - [`useUpdate` &#8594](api-references/hooks/data/useUpdate.md)   
 - [`useUpdateMany` &#8594](api-references/hooks/data/useUpdateMany.md)  
 - [`useDelete` &#8594](api-references/hooks/data/useDelete.md)  
 - [`useDeleteMany` &#8594](api-references/hooks/data/useDeleteMany.md)
+### Supported form hooks
+
 - [`useForm` &#8594](api-references/hooks/form/useForm.md)
 - [`useModalForm` &#8594](api-references/hooks/form/useModalForm.md)
 - [`useDrawerForm` &#8594](api-references/hooks/form/useDrawerForm.md)
