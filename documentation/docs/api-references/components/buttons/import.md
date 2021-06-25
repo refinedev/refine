@@ -5,9 +5,7 @@ title: Import
 
 import importButton from '@site/static/img/hooks/useImport/import-button.png';
 
-`<ImportButton>` uses Ant Design's [`<Button>`][Button] and [`<Upload>`][Upload] components. It wraps a [`<Button>`][Button] component with an [`<Upload>`][Upload] component and accepts props for [`<Button>`][Button] and [`<Upload>`][Upload] components separately.
-
-It is compatible with [`useImport`][useImport] hook and is meant to be used with this hook.
+`<ImportButton>` is compatible with [`useImport`][useImport] hook and is meant to be used as it's upload button. It uses Ant Design's [`<Button>`][Button] and [`<Upload>`][Upload] components. It wraps a [`<Button>`][Button] component with an [`<Upload>`][Upload] component and accepts props for [`<Button>`][Button] and [`<Upload>`][Upload] components separately.
 
 ## Usage
 
