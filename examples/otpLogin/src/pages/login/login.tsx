@@ -43,6 +43,68 @@ export const Login: React.FC = () => {
         </div>
     );
 
+    const renderGSMForm = () => (
+        <Form layout="vertical" requiredMark={false} onFinish={onGsmFormSubmit}>
+            <Form.Item
+                name="gsmNumber"
+                label="Gsm Number"
+                rules={[
+                    {
+                        required: true,
+                        message: "Gsm number is required",
+                    },
+                ]}
+            >
+                <Input
+                    prefix={<PhoneOutlined style={{ color: "#00000040" }} />}
+                    maxLength={10}
+                    placeholder="(___)___-____"
+                />
+            </Form.Item>
+            <Form.Item className="login-buttons">
+                <Button
+                    type="primary"
+                    size="large"
+                    htmlType="submit"
+                    block
+                    loading={loading}
+                >
+                    Send
+                </Button>
+            </Form.Item>
+        </Form>
+    );
+
+    const renderCodeForm = () => (
+        <Form
+            layout="vertical"
+            requiredMark={false}
+            onFinish={onCodeFormSubmit}
+        >
+            <Form.Item
+                name="code"
+                label="Code"
+                rules={[
+                    {
+                        required: true,
+                        message: "Code is required",
+                    },
+                ]}
+            >
+                <Input
+                    type="password"
+                    maxLength={4}
+                    prefix={<NumberOutlined style={{ color: "#00000040" }} />}
+                />
+            </Form.Item>
+            <Form.Item className="login-buttons">
+                <Button type="primary" size="large" htmlType="submit" block>
+                    Login
+                </Button>
+            </Form.Item>
+        </Form>
+    );
+
     return (
         <AntdLayout
             className="login-background"
@@ -57,83 +119,9 @@ export const Login: React.FC = () => {
             >
                 <Col xs={22}>
                     <Card className="login-card" title={CardTitle}>
-                        {current === "gsmNumber" && (
-                            <Form
-                                layout="vertical"
-                                requiredMark={false}
-                                onFinish={onGsmFormSubmit}
-                            >
-                                <Form.Item
-                                    name="gsmNumber"
-                                    label="Gsm Number"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: "Gsm number is required",
-                                        },
-                                    ]}
-                                >
-                                    <Input
-                                        prefix={
-                                            <PhoneOutlined
-                                                style={{ color: "#00000040" }}
-                                            />
-                                        }
-                                        maxLength={10}
-                                        placeholder="(___)___-____"
-                                    />
-                                </Form.Item>
-                                <Form.Item className="login-buttons">
-                                    <Button
-                                        type="primary"
-                                        size="large"
-                                        htmlType="submit"
-                                        block
-                                        loading={loading}
-                                    >
-                                        Send
-                                    </Button>
-                                </Form.Item>
-                            </Form>
-                        )}
-                        {current === "code" && (
-                            <Form
-                                layout="vertical"
-                                requiredMark={false}
-                                onFinish={onCodeFormSubmit}
-                            >
-                                <Form.Item
-                                    name="code"
-                                    label="Code"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: "Code is required",
-                                        },
-                                    ]}
-                                >
-                                    <Input
-                                        type="password"
-                                        maxLength={4}
-                                        prefix={
-                                            <NumberOutlined
-                                                style={{ color: "#00000040" }}
-                                            />
-                                        }
-                                    />
-                                </Form.Item>
-                                <Form.Item className="login-buttons">
-                                    <Button
-                                        type="primary"
-                                        size="large"
-                                        htmlType="submit"
-                                        block
-                                    >
-                                        Login
-                                    </Button>
-                                </Form.Item>
-                            </Form>
-                        )}
+                        {current === "gsmNumber"
+                            ? renderGSMForm()
+                            : renderCodeForm()}
                     </Card>
                 </Col>
             </Row>
