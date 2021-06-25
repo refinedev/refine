@@ -117,7 +117,9 @@ export const useUpdate = <
 
                 for (const queryItem of allQueries) {
                     const { queryKey } = queryItem;
-                    await queryClient.cancelQueries(queryKey);
+                    await queryClient.cancelQueries(queryKey, undefined, {
+                        silent: true,
+                    });
 
                     const previousQuery =
                         queryClient.getQueryData<QueryResponse<TData>>(
@@ -139,7 +141,7 @@ export const useUpdate = <
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: data.map((record: TData) => {
-                                        if (record.id === id) {
+                                        if (record.id?.toString() === id) {
                                             return {
                                                 ...values,
                                                 id: id,

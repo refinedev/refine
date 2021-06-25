@@ -148,7 +148,9 @@ export const useUpdateMany = <
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: data.map((record: TData) => {
-                                        if (ids.includes(record.id!)) {
+                                        if (
+                                            ids.includes(record.id!.toString())
+                                        ) {
                                             return {
                                                 ...record,
                                                 ...values,

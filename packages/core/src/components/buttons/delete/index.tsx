@@ -44,7 +44,9 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
 
     const resource = resourceWithRoute(resourceName);
 
-    const { mutateAsync, isLoading } = useDelete();
+    const { mutateAsync, isLoading, variables } = useDelete();
+
+    const id = recordItemId ?? idFromRoute;
 
     return (
         <Popconfirm
@@ -56,7 +58,7 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
             okButtonProps={{ disabled: isLoading }}
             onConfirm={(): void => {
                 mutateAsync({
-                    id: recordItemId ?? idFromRoute,
+                    id: id,
                     resource: resource.name,
                     mutationMode,
                 }).then((value) => {
@@ -66,7 +68,7 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
         >
             <Button
                 danger
-                loading={isLoading}
+                loading={id === variables?.id && isLoading}
                 icon={<DeleteOutlined />}
                 {...rest}
             >
