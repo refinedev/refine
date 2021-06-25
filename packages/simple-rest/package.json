@@ -19,16 +19,16 @@
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
-  "name": "@pankod/refine-json-server",
+  "name": "@pankod/refine-simple-rest",
   "author": "Pankod",
-  "module": "dist/refine-json-server.esm.js",
+  "module": "dist/refine-simple-rest.esm.js",
   "size-limit": [
     {
-      "path": "dist/refine-json-server.cjs.production.min.js",
+      "path": "dist/refine-simple-rest.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/refine-json-server.esm.js",
+      "path": "dist/refine-simple-rest.esm.js",
       "limit": "10 KB"
     }
   ],

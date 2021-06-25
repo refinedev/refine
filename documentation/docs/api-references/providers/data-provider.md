@@ -78,7 +78,7 @@ const App: React.FC = () => {
 
 
 ## Creating a data provider
-We'll build **"Simple REST Dataprovider"** of `@pankod/refine-json-server` from scratch to show the logic of how data provider methods interact with the API.
+We'll build **"Simple REST Dataprovider"** of `@pankod/refine-simple-rest` from scratch to show the logic of how data provider methods interact with the API.
 
 We will provide you a fully working, *fake REST API* located at https://api.fake-rest.refine.dev . You may take a look at available [resources and routes of the API](https://api.fake-rest.refine.dev) before proceeding to the next step.  
 Our **"Simple REST Dataprovider"** will be consuming this *Fake REST API*.
