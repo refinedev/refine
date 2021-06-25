@@ -23,7 +23,7 @@
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1",
     "@pankod/refine": "../packages/core",
-    "@pankod/refine-json-server": "../packages/json-server",
+    "@pankod/refine-simple-rest": "../packages/json-server",
     "@pankod/refine-demo-sidebar": "../packages/demo-sidebar",
     "@pankod/refine-nestjsx-crud": "../packages/nestjsx-crud",
     "react": "../node_modules/react",

@@ -200,7 +200,7 @@ export const Show: React.FC = () => {
 
 ```tsx
 import { Refine, Resource, Show } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 
 const CustomPage = () => {
     return (
