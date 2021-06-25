@@ -1,6 +1,6 @@
 ---
 id: auth0
-title: auth0
+title: Auth0
 ---
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/auth0)

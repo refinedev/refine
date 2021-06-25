@@ -1,6 +1,6 @@
 ---
 id: otpLogin
-title: Otp Login
+title: OTP Login
 ---
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/otpLogin)
