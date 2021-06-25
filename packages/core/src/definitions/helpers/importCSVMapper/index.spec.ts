@@ -36,14 +36,13 @@ describe("importCSVMapper", () => {
             transformedData[0],
             0,
             transformedData,
-            rawData,
         );
+
         expect(mapperFn).toHaveBeenNthCalledWith(
             2,
             transformedData[1],
             1,
             transformedData,
-            rawData,
         );
     });
 });
