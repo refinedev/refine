@@ -54,7 +54,7 @@ export const Login: React.FC = () => {
                             size="large"
                             htmlType="submit"
                             block
-                            onClick={() => login(null)}
+                            onClick={() => login(undefined)}
                         >
                             Login
                         </Button>
