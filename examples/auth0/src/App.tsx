@@ -11,8 +11,14 @@ import { Header } from "components";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    const { isLoading, isAuthenticated, user, logout, getIdTokenClaims } =
-        useAuth0();
+    const {
+        isLoading,
+        loginWithRedirect,
+        isAuthenticated,
+        user,
+        logout,
+        getIdTokenClaims,
+    } = useAuth0();
 
     if (isLoading) {
         return <span>loading...</span>;
@@ -20,6 +26,7 @@ const App: React.FC = () => {
 
     const authProvider: AuthProvider = {
         login: async () => {
+            loginWithRedirect();
             return Promise.resolve();
         },
         logout: async () => {
