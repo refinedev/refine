@@ -3,7 +3,7 @@ id: useImport
 title: useImport
 ---
 
-`useImport` hook allows you to handle your csv import logic easily. It gives you the props to pass to Ant Design's [`<Upload>`][Upload] and [`<Button>`][Button] components and handles the upload logic. It uses [`paparse`][papaparse] under the hood to parse `csv` files. It's return type is compatible with [`<ImportButton>`][ImportButton]. It can also be further customized by using it with Ant Design's [`<Upload>`][Upload] and [`<Button>`][Button] props.
+`useImport` hook allows you to handle your csv import logic easily. It gives you the props to pass to Ant Design's [`<Upload>`][Upload] and [`<Button>`][Button] components and handles the upload logic. It uses [`papaparse`][papaparse] under the hood to parse `csv` files. It's return type is compatible with [`<ImportButton>`][ImportButton]. It can also be further customized by using it with Ant Design's [`<Upload>`][Upload] and [`<Button>`][Button] props.
 
 ```ts
 const { uploadProps, buttonProps, mutationResult } = useImport(options);
@@ -39,7 +39,7 @@ And the interface `IPostFile` would fit well to the parsed output above:
 ```ts title="interfaces.d.ts"
 export interface IPostFile {
     title: string;
-    categoryId: number;
+    categoryId: string;
 }
 ```
 
@@ -192,8 +192,8 @@ export interface IPostFile {
     title: string;
     status: string;
     content: string;
-    categoryId: number;
-    userId: number;
+    categoryId: string;
+    userId: string;
 }
 ```
 
@@ -207,7 +207,7 @@ Now, parsed data is mapped to conform our APIs requirements.
 | -------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
 | resourceName   | Default resource name this button imports to. Inferred from route by default.                                      | `string`                                                            |
 | mapData        | A mapping function that runs for every record. Mapped data will be included in the request payload.                | `(value: any, index?: number, array?: any[], data?: any[][]): any;` |
-| paparseOptions | Custom Papa Parse options.                                                                                         | [`ParseConfig`][papaparse]                                          |
+| papaparseOptions | Custom Papa Parse options.                                                                                         | [`ParseConfig`][papaparse]                                          |
 | batchSize      | Request batch size. By default, it is 1. If it is more than 1, `createMany` should be implemented on DataProvider. | `number`                                                            |
 
 ### `useImport` Return Values

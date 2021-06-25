@@ -16,9 +16,10 @@ import {
     List, 
     Table, 
     useTable, 
+    //highlight-start
     useImport, 
-    //highlight-next-line
     ImportButton 
+    //highlight-end
 } from "@pankod/refine";
 
 import { IPost, IPostFile } from "interfaces";
@@ -63,11 +64,11 @@ Looks like this:
 
 ### Properties
 
-| Property    | Description                      | Type                                                       | Default     |
-| ----------- | -------------------------------- | ---------------------------------------------------------- | ----------- |
-| uploadProps | Set the button type              | [`UploadProps`](https://ant.design/components/upload/#API) | `undefined` |
-| buttonProps | Set the icon component of button | [`ButtonProps`](https://ant.design/components/button/#API) | `undefined` |
-| children    | Set the button text              | `ReactNode`                                                | `"Import"`  |
+| Property    | Description                      | Type                                                       | Default    |
+| ----------- | -------------------------------- | ---------------------------------------------------------- | ---------- |
+| uploadProps | Set the button type              | [`UploadProps`](https://ant.design/components/upload/#API) |            |
+| buttonProps | Set the icon component of button | [`ButtonProps`](https://ant.design/components/button/#API) |            |
+| children    | Set the button text              | `ReactNode`                                                | `"Import"` |
 
 [useImport]: /api-references/hooks/import-export/useImport.md
 [Button]: https://ant.design/components/button/
