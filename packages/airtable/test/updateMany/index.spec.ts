@@ -12,7 +12,7 @@ describe("updateMany", () => {
 
         const { data } = response;
 
-        expect(data[0].fields["title"]).toBe("Hello World!!!");
-        expect(data[1].fields["title"]).toBe("Hello World!!!");
+        expect(data[0]["title"]).toBe("Hello World!!!");
+        expect(data[1]["title"]).toBe("Hello World!!!");
     });
 });

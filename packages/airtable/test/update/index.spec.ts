@@ -12,6 +12,6 @@ describe("update", () => {
 
         const { data } = response;
 
-        expect(data.fields["title"]).toBe("Hello World!!");
+        expect(data["title"]).toBe("Hello World!!");
     });
 });
