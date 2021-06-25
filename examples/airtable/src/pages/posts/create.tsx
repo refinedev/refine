@@ -42,7 +42,8 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
                 </Form.Item>
                 <Form.Item
                     label="Category"
-                    name={"category"}
+                    name="category"
+                    normalize={(value) => [value]}
                     rules={[
                         {
                             required: true,

@@ -61,26 +61,35 @@ const AirtableDataProvider = (
         },
 
         create: async (resource, params) => {
-            const { fields } = await base<any>(resource).create(params);
+            const { id, fields } = await base(resource).create(params);
 
             return {
-                data: fields,
+                data: {
+                    id: id,
+                    ...fields,
+                } as any,
             };
         },
 
         createMany: async (resource, params) => {
-            const data = await base<any>(resource).create(params);
+            const data = await base(resource).create(params);
 
             return {
-                data: data as any,
+                data: data.map((p) => ({
+                    id: p.id,
+                    ...p.fields,
+                })) as any,
             };
         },
 
         update: async (resource, id, params) => {
-            const data = await base<any>(resource).update(id, params);
+            const { fields } = await base(resource).update(id, params);
 
             return {
-                data: data as any,
+                data: {
+                    id,
+                    ...fields,
+                } as any,
             };
         },
 
@@ -89,43 +98,55 @@ const AirtableDataProvider = (
                 id,
                 fields: { ...params },
             }));
-            const data = await base<any>(resource).update(requestParams);
+            const data = await base(resource).update(requestParams);
 
             return {
-                data: data as any,
+                data: data.map((p) => ({
+                    id: p.id,
+                    ...p.fields,
+                })) as any,
             };
         },
 
         getOne: async (resource, id) => {
-            const { fields } = await base<any>(resource).find(id);
+            const { fields } = await base(resource).find(id);
 
             return {
-                data: fields,
+                data: {
+                    id,
+                    ...fields,
+                } as any,
             };
         },
 
         deleteOne: async (resource, id) => {
-            const { fields } = await base<any>(resource).destroy(id);
+            const { fields } = await base(resource).destroy(id);
 
             return {
-                data: fields,
+                data: {
+                    id,
+                    ...fields,
+                } as any,
             };
         },
 
         deleteMany: async (resource, ids) => {
-            const data = await base<any>(resource).destroy(ids);
+            const data = await base(resource).destroy(ids);
 
             return {
-                data: data as any,
+                data: data.map((p) => ({
+                    id: p.id,
+                    ...p.fields,
+                })) as any,
             };
         },
 
         getApiUrl: () => {
-            throw Error("not implemented");
+            throw Error("Not implemented on refine-airtable data provider.");
         },
 
         custom: async () => {
-            throw Error("not implemented");
+            throw Error("Not implemented on refine-airtable data provider.");
         },
     };
 };
