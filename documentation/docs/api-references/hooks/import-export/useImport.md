@@ -25,11 +25,11 @@ This file should be parsed as:
 [
     {
         title: "dummy title 1",
-        content: "3",
+        categoryId: "3",
     },
     {
         title: "dummy title 2",
-        content: "44",
+        categoryId: "44",
     }
 ]
 ```
