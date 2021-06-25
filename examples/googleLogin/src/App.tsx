@@ -6,6 +6,7 @@ import axios from "axios";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Login } from "pages/login";
+import { Header } from "components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 const clientId =
@@ -17,7 +18,7 @@ const App: React.FC = () => {
             Authorization: `Bearer ${response.tokenId}`,
         };
 
-        localStorage.setItem("user", response.profileObj);
+        localStorage.setItem("user", JSON.stringify(response.profileObj));
         localStorage.setItem("expiresAt", response.tokenObj.expires_at);
     };
 
@@ -30,7 +31,6 @@ const App: React.FC = () => {
 
     const { signOut, loaded: logoutLoaded } = useGoogleLogout({
         clientId,
-        redirectUri: "/",
     });
 
     if (!signLoaded && !logoutLoaded) {
@@ -51,6 +51,7 @@ const App: React.FC = () => {
         checkError: () => Promise.resolve(),
         checkAuth: async () => {
             const expiresAt = localStorage.getItem("expiresAt");
+            console.log("expiresAt: ", expiresAt);
             if (expiresAt) {
                 return new Date().getTime() / 1000 < +expiresAt
                     ? Promise.resolve()
@@ -73,6 +74,7 @@ const App: React.FC = () => {
             dataProvider={dataProvider(API_URL, axios)}
             authProvider={authProvider}
             LoginPage={Login}
+            Header={Header}
         >
             <Resource
                 name="posts"

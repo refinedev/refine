@@ -10,3 +10,8 @@ export interface IPost {
     status: "published" | "draft" | "rejected";
     category: ICategory;
 }
+
+export interface IUser {
+    name: string;
+    imageUrl: string;
+}
