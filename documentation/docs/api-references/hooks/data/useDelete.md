@@ -133,7 +133,6 @@ const { mutate } = useDelete();
 mutate({ 
     resource: "categories",
     id: "1",
-
     // highlight-start
     mutationMode: "undoable",
     undoableTimeout: 7500,
