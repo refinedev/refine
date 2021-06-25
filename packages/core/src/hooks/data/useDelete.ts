@@ -24,25 +24,28 @@ import {
     GetListResponse,
 } from "../../interfaces";
 
+type DeleteParams = {
+    id: string;
+    resource: string;
+    mutationMode?: MutationMode;
+    undoableTimeout?: number;
+    onCancel?: (cancelMutation: () => void) => void;
+};
+
 type UseDeleteReturnType<
     TData extends BaseRecord = BaseRecord,
     TError = HttpError,
 > = UseMutationResult<
     DeleteOneResponse<TData>,
     TError,
-    { id: string },
+    DeleteParams,
     DeleteContext
 >;
 
 export const useDelete = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
->(
-    resource: string,
-    mutationMode?: MutationMode,
-    undoableTimeout?: number,
-    onCancel?: (cancelMutation: () => void) => void,
-): UseDeleteReturnType<TData, TError> => {
+>(): UseDeleteReturnType<TData, TError> => {
     const { mutate: checkError } = useCheckError();
     const queryClient = useQueryClient();
     const { deleteOne } = useContext<IDataContext>(DataContext);
@@ -54,22 +57,21 @@ export const useDelete = <
     const { notificationDispatch } = useCancelNotification();
     const translate = useTranslate();
 
-    const mutationModePropOrContext = mutationMode ?? mutationModeContext;
-
-    const undoableTimeoutPropOrContext =
-        undoableTimeout ?? undoableTimeoutContext;
-
     const cacheQueries = useCacheQueries();
 
     const mutation = useMutation<
         DeleteOneResponse<TData>,
         TError,
-        {
-            id: string;
-        },
+        DeleteParams,
         DeleteContext
     >(
-        ({ id }) => {
+        ({ id, mutationMode, undoableTimeout, resource, onCancel }) => {
+            const mutationModePropOrContext =
+                mutationMode ?? mutationModeContext;
+
+            const undoableTimeoutPropOrContext =
+                undoableTimeout ?? undoableTimeoutContext;
+
             if (!(mutationModePropOrContext === "undoable")) {
                 return deleteOne<TData>(resource, id);
             }
@@ -105,10 +107,13 @@ export const useDelete = <
             return deletePromise;
         },
         {
-            onMutate: async (deleteParams) => {
+            onMutate: async ({ id, resource, mutationMode }) => {
                 const previousQueries: ContextQuery[] = [];
 
-                const allQueries = cacheQueries(resource, deleteParams.id);
+                const allQueries = cacheQueries(resource, id);
+
+                const mutationModePropOrContext =
+                    mutationMode ?? mutationModeContext;
 
                 for (const queryItem of allQueries) {
                     const { queryKey } = queryItem;
@@ -136,7 +141,7 @@ export const useDelete = <
                                     ...previousQuery,
                                     data: (data ?? []).filter(
                                         (record: TData) =>
-                                            !(record.id === deleteParams.id),
+                                            !(record.id?.toString() === id),
                                     ),
                                     total: total - 1,
                                 });
@@ -151,7 +156,7 @@ export const useDelete = <
                     previousQueries: previousQueries,
                 };
             },
-            onError: (err: TError, { id }, context) => {
+            onError: (err: TError, { id, resource }, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
@@ -168,18 +173,23 @@ export const useDelete = <
                 if (err.message !== "mutationCancelled") {
                     checkError(err);
 
+                    const resourceSingular = pluralize.singular(resource);
+
                     notification.error({
                         key: `${id}-${resource}-notification`,
                         message: translate(
                             "notifications.deleteError",
-                            { resource, statusCode: err.statusCode },
+                            {
+                                resource: resourceSingular,
+                                statusCode: err.statusCode,
+                            },
                             `Error (status code: ${err.statusCode})`,
                         ),
                         description: err.message,
                     });
                 }
             },
-            onSuccess: (_data, { id }) => {
+            onSuccess: (_data, { id, resource }) => {
                 const resourceSingular = pluralize.singular(resource);
 
                 const allQueries = cacheQueries(resource, id);
@@ -201,8 +211,8 @@ export const useDelete = <
                     ),
                 });
             },
-            onSettled: (_data, _error, variables) => {
-                const allQueries = cacheQueries(resource, variables.id);
+            onSettled: (_data, _error, { id, resource }) => {
+                const allQueries = cacheQueries(resource, id);
                 for (const query of allQueries) {
                     if (
                         !query.queryKey.includes(`resource/getOne/${resource}`)

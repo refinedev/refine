@@ -1,9 +1,10 @@
-import React, { ReactNode } from "react";
-import { Route } from "react-router-dom";
+import React from "react";
 import { render, TestWrapper, MockJSONServer } from "@test";
 import { act, Simulate } from "react-dom/test-utils";
+import { renderHook } from "@testing-library/react-hooks";
 
 import { ImportButton } from ".";
+import { useImport } from "@hooks/import";
 
 const parseMock = jest.fn();
 
@@ -13,24 +14,37 @@ jest.mock("papaparse", () => {
     };
 });
 
-const customRender = (show: ReactNode) => {
-    return render(<Route path="/resources/:resource/">{show}</Route>, {
-        wrapper: TestWrapper({
-            dataProvider: MockJSONServer,
-            resources: [{ name: "categories", route: "categories" }],
-            routerInitialEntries: ["/resources/categories/"],
-        }),
-    });
-};
-
-describe("<ImportButton />", () => {
+describe("<ImportButton /> usage with useImport", () => {
     it("should render without crashing", () => {
-        const result = customRender(<ImportButton>Test</ImportButton>);
+        const {
+            result: { current: importProps },
+        } = renderHook(() => useImport(), {
+            wrapper: TestWrapper({
+                dataProvider: MockJSONServer,
+                resources: [{ name: "categories" }],
+            }),
+        });
+
+        const result = render(
+            <ImportButton {...importProps}>Test</ImportButton>,
+        );
+
         expect(result).toBeTruthy();
     });
 
-    it("should trigger parse", async () => {
-        const { container } = customRender(<ImportButton>Test</ImportButton>);
+    it("should trigger parse when used with useImport hook", async () => {
+        const {
+            result: { current: importProps },
+        } = renderHook(() => useImport(), {
+            wrapper: TestWrapper({
+                dataProvider: MockJSONServer,
+                resources: [{ name: "categories" }],
+            }),
+        });
+
+        const { container } = render(
+            <ImportButton {...importProps}>Test</ImportButton>,
+        );
 
         const file = new File(
             [

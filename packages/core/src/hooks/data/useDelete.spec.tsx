@@ -7,7 +7,7 @@ import { useDelete } from "./useDelete";
 describe("useDelete Hook", () => {
     it("should works with pessimistic update", async () => {
         const { result, waitForNextUpdate, waitFor } = renderHook(
-            () => useDelete("posts", "pessimistic"),
+            () => useDelete(),
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
@@ -18,6 +18,8 @@ describe("useDelete Hook", () => {
 
         result.current.mutate({
             id: "1",
+            resource: "posts",
+            mutationMode: "pessimistic",
         });
         await waitForNextUpdate();
 
@@ -32,7 +34,7 @@ describe("useDelete Hook", () => {
 
     it("should works with optimistic update", async () => {
         const { result, waitForNextUpdate, waitFor } = renderHook(
-            () => useDelete("posts", "optimistic"),
+            () => useDelete(),
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
@@ -43,6 +45,8 @@ describe("useDelete Hook", () => {
 
         result.current.mutate({
             id: "1",
+            resource: "posts",
+            mutationMode: "optimistic",
         });
         await waitForNextUpdate();
 
@@ -57,7 +61,7 @@ describe("useDelete Hook", () => {
 
     it("should works with undoable update", async () => {
         const { result, waitForNextUpdate, waitFor } = renderHook(
-            () => useDelete("posts", "undoable", 0),
+            () => useDelete(),
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
@@ -68,6 +72,9 @@ describe("useDelete Hook", () => {
 
         result.current.mutate({
             id: "1",
+            resource: "posts",
+            mutationMode: "undoable",
+            undoableTimeout: 0,
         });
         await waitForNextUpdate();
 

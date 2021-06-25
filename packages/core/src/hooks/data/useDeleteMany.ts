@@ -22,9 +22,14 @@ import {
     useCheckError,
 } from "@hooks";
 import { ActionTypes } from "@contexts/notification";
+import pluralize from "pluralize";
 
-type DeleteParams = {
+type DeleteManyParams = {
     ids: string[];
+    resource: string;
+    mutationMode?: MutationMode;
+    undoableTimeout?: number;
+    onCancel?: (cancelMutation: () => void) => void;
 };
 
 type UseDeleteManyReturnType<
@@ -33,19 +38,14 @@ type UseDeleteManyReturnType<
 > = UseMutationResult<
     DeleteManyResponse<TData>,
     TError,
-    { ids: string[] },
+    DeleteManyParams,
     unknown
 >;
 
 export const useDeleteMany = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
->(
-    resource: string,
-    mutationMode?: MutationMode,
-    undoableTimeout?: number,
-    onCancel?: (cancelMutation: () => void) => void,
-): UseDeleteManyReturnType<TData, TError> => {
+>(): UseDeleteManyReturnType<TData, TError> => {
     const { mutate: checkError } = useCheckError();
     const { deleteMany } = useContext<IDataContext>(DataContext);
     const {
@@ -57,20 +57,26 @@ export const useDeleteMany = <
     const translate = useTranslate();
     const cacheQueries = useCacheQueries();
 
-    const mutationModePropOrContext = mutationMode ?? mutationModeContext;
-
-    const undoableTimeoutPropOrContext =
-        undoableTimeout ?? undoableTimeoutContext;
-
     const queryClient = useQueryClient();
 
     const mutation = useMutation<
         DeleteManyResponse<TData>,
         TError,
-        DeleteParams,
+        DeleteManyParams,
         DeleteContext
     >(
-        ({ ids }: { ids: string[] }) => {
+        ({
+            resource,
+            ids,
+            mutationMode,
+            undoableTimeout,
+            onCancel,
+        }: DeleteManyParams) => {
+            const mutationModePropOrContext =
+                mutationMode ?? mutationModeContext;
+
+            const undoableTimeoutPropOrContext =
+                undoableTimeout ?? undoableTimeoutContext;
             if (!(mutationModePropOrContext === "undoable")) {
                 return deleteMany<TData>(resource, ids);
             }
@@ -106,10 +112,12 @@ export const useDeleteMany = <
             return updatePromise;
         },
         {
-            onMutate: async (deleteParams) => {
+            onMutate: async ({ ids, resource, mutationMode }) => {
+                const mutationModePropOrContext =
+                    mutationMode ?? mutationModeContext;
                 const previousQueries: ContextQuery[] = [];
 
-                const allQueries = cacheQueries(resource, deleteParams.ids);
+                const allQueries = cacheQueries(resource, ids);
 
                 for (const queryItem of allQueries) {
                     const { queryKey } = queryItem;
@@ -137,11 +145,11 @@ export const useDeleteMany = <
                                     ...previousQuery,
                                     data: (data ?? []).filter(
                                         (record: TData) =>
-                                            !deleteParams.ids.includes(
-                                                record.id!,
+                                            !ids.includes(
+                                                record.id!.toString(),
                                             ),
                                     ),
-                                    total: total - deleteParams.ids.length,
+                                    total: total - ids.length,
                                 });
                             } else {
                                 queryClient.removeQueries(queryKey);
@@ -155,8 +163,8 @@ export const useDeleteMany = <
                 };
             },
             // Always refetch after error or success:
-            onSettled: (_data, _error, variables) => {
-                const allQueries = cacheQueries(resource, variables.ids);
+            onSettled: (_data, _error, { resource, ids }) => {
+                const allQueries = cacheQueries(resource, ids);
                 for (const query of allQueries) {
                     if (
                         !query.queryKey.includes(`resource/getOne/${resource}`)
@@ -165,18 +173,20 @@ export const useDeleteMany = <
                     }
                 }
             },
-            onSuccess: (_data, { ids }) => {
+            onSuccess: (_data, { ids, resource }) => {
+                const resourceSingular = pluralize.singular(resource);
+
                 notification.success({
                     key: `${ids}-${resource}-notification`,
                     message: translate("notifications.success", "Success"),
                     description: translate(
                         "notifications.deleteSuccess",
-                        { resource },
+                        { resource: resourceSingular },
                         `Successfully deleted ${resource}`,
                     ),
                 });
             },
-            onError: (err, { ids }, context) => {
+            onError: (err, { ids, resource }, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
@@ -191,12 +201,16 @@ export const useDeleteMany = <
                 });
                 if (err.message !== "mutationCancelled") {
                     checkError(err);
+                    const resourceSingular = pluralize.singular(resource);
 
                     notification.error({
                         key: `${ids}-${resource}-notification`,
                         message: translate(
                             "notifications.deleteError",
-                            { resource, statusCode: err.statusCode },
+                            {
+                                resource: resourceSingular,
+                                statusCode: err.statusCode,
+                            },
                             `Error (status code: ${err.statusCode})`,
                         ),
                         description: err.message,

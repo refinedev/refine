@@ -104,6 +104,7 @@ export const CustomMenu: React.FC = () => {
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
     //highlight-start
+    const { isProvided } = useContext<IAuthContext>(AuthContext);
     const { mutate: logout } = useLogout();
     const { push } = useNavigation();
     //highlight-end
@@ -116,6 +117,14 @@ export const CustomMenu: React.FC = () => {
                 defaultSelectedKeys={["dashboard"]}
                 selectedKeys={[selectedKey]}
                 mode="inline"
+                onClick={({ key }) => {
+                    if (key === "logout") {
+                        logout();
+                        return;
+                    }
+
+                    push(key as string);
+                }}
             >
                 {menuItems.map(({ icon, route, label }) => (
                     <Menu.Item key={route} icon={icon}>
@@ -124,14 +133,8 @@ export const CustomMenu: React.FC = () => {
                 ))}
 
                 //highlight-start
-                {logout && (
-                    <Menu.Item
-                        onClick={() => {
-                            logout().then(() => push("/login"));
-                        }}
-                        key="logout"
-                        icon={<Icons.LogoutOutlined />}
-                    >
+                {isProvided && (
+                    <Menu.Item key="logout" icon={<Icons.LogoutOutlined />}>
                         Logout
                     </Menu.Item>
                 )}

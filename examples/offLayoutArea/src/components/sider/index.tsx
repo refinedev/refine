@@ -9,6 +9,7 @@ export const FixedSider: React.FC = () => {
     return (
         <AntdLayout.Sider
             collapsible
+            breakpoint="md"
             collapsed={collapsed}
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
             style={{

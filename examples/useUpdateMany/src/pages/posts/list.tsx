@@ -32,10 +32,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         mutate,
         isSuccess,
         isLoading: updateManyIsLoading,
-    } = useUpdateMany<IPost>("posts");
+    } = useUpdateMany<IPost>();
 
     const updateSelectedItems = () => {
         mutate({
+            resource: "posts",
             ids: selectedRowKeys.map(String),
             values: {
                 status: "draft",

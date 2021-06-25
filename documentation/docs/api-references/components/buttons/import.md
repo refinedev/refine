@@ -3,34 +3,49 @@ id: import-button
 title: Import
 ---
 
-import usage from '@site/static/img/guides-and-concepts/components/buttons/import/usage.png';
+import importButton from '@site/static/img/hooks/useImport/import-button.png';
 
-You can easily import csv files for any resource by using refine's customizable `<ImportButton>` component. refine uses `paparse` parser under the hood to parse csv files.
+`<ImportButton>` is compatible with [`useImport`][useImport] hook and is meant to be used as it's upload button. It uses Ant Design's [`<Button>`][Button] and [`<Upload>`][Upload] components. It wraps a [`<Button>`][Button] component with an [`<Upload>`][Upload] component and accepts props for [`<Button>`][Button] and [`<Upload>`][Upload] components separately.
 
 ## Usage
 
-```tsx
-//highlight-next-line
-import { List, Table, ImportButton, useTable } from "@pankod/refine";
+```tsx title="/src/pages/posts/list.tsx"
+import { 
+    List, 
+    Table, 
+    useTable, 
+    //highlight-start
+    useImport, 
+    ImportButton 
+    //highlight-end
+} from "@pankod/refine";
 
-import { IPost } from "interfaces";
+import { IPost, IPostFile } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
+    //highlight-next-line
+    const importProps = useImport<IPostFile>();
+
     return (
-        //highlight-next-line
-        <List pageHeaderProps={{ extra: <ImportButton /> }}>
-            <Table {...tableProps} key="id">
-                <Table.Column key="id" dataIndex="id" title="ID" />
-                <Table.Column key="title" dataIndex="title" title="Title" />
+        <List
+            pageHeaderProps={{
+                //highlight-next-line
+                extra: <ImportButton {...importProps} />,
+            }}
+        >
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" />
             </Table>
         </List>
     );
 };
+
 ```
 
-```ts
+```ts title="/src/interfaces.d.ts"
 export interface IPost {
     id: string;
     title: string;
@@ -40,5 +55,19 @@ export interface IPost {
 Looks like this:
 
 <div>
-    <img src={usage} alt="Default Import Button" />
+    <img  src={importButton} alt="Import button" />
 </div>
+
+## API Reference
+
+### Properties
+
+| Property    | Description                      | Type                                                       | Default    |
+| ----------- | -------------------------------- | ---------------------------------------------------------- | ---------- |
+| uploadProps | Set the button type              | [`UploadProps`](https://ant.design/components/upload/#API) |            |
+| buttonProps | Set the icon component of button | [`ButtonProps`](https://ant.design/components/button/#API) |            |
+| children    | Set the button text              | `ReactNode`                                                | `"Import"` |
+
+[useImport]: /api-references/hooks/import-export/useImport.md
+[Button]: https://ant.design/components/button/
+[Upload]: https://ant.design/components/upload/
