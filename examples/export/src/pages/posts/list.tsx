@@ -7,6 +7,7 @@ import {
     Space,
     EditButton,
     ShowButton,
+    useExport,
     ExportButton,
     useMany,
 } from "@pankod/refine";
@@ -22,21 +23,23 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
         enabled: categoryIds.length > 0,
     });
 
+    const exportProps = useExport({
+        mapData: (item: IPost) => {
+            return {
+                id: item.id,
+                title: item.title,
+                slug: item.slug,
+                content: item.content,
+                status: item.status,
+                categoryId: item.category.id,
+                userId: item.user?.id,
+            };
+        },
+    });
+
     const Actions = () => (
         <Space direction="horizontal">
-            <ExportButton
-                mapData={(item: IPost) => {
-                    return {
-                        id: item.id,
-                        title: item.title,
-                        slug: item.slug,
-                        content: item.content,
-                        status: item.status,
-                        categoryId: item.category.id,
-                        userId: item.user?.id,
-                    };
-                }}
-            />
+            <ExportButton />
         </Space>
     );
 
