@@ -10,6 +10,9 @@ import {
     CrudFilters,
 } from "../../interfaces";
 import { DataContext } from "@contexts/data";
+import { userFriendlyResourceName } from "@definitions";
+import { ExportToCsv, Options } from "export-to-csv";
+import dayjs from "dayjs";
 
 type UseExportOptionsType<
     TData extends BaseRecord = BaseRecord,
@@ -21,6 +24,7 @@ type UseExportOptionsType<
     filters?: CrudFilters;
     maxItemCount?: number;
     pageSize?: number;
+    exportOptions?: Options;
 };
 
 type UseExportReturnType = {};
@@ -34,11 +38,10 @@ export const useExport = <
     filters,
     maxItemCount,
     pageSize = 20,
-    mapData,
+    mapData = (item) => item as any,
+    exportOptions,
 }: UseExportOptionsType<TData, TVariables>): UseExportReturnType => {
     const [isLoading, setIsLoading] = useState(false);
-    const [isFileReady, setIsFileReady] = useState(false);
-    const [exportData, setExportData] = useState<BaseRecord[]>([]);
 
     const resourceWithRoute = useResourceWithRoute();
 
@@ -49,12 +52,16 @@ export const useExport = <
         resource = resourceName;
     }
 
+    console.log(
+        `${userFriendlyResourceName(resource, "plural")}-${dayjs().format(
+            "YYYY-MM-DD-HH:mm:ss",
+        )}`,
+    );
+
     const { getList } = useContext<IDataContext>(DataContext);
 
     const fetchData = async () => {
         setIsLoading(true);
-        setIsFileReady(false);
-        setExportData([]);
 
         const rawData: BaseRecord[] = [];
 
@@ -86,8 +93,16 @@ export const useExport = <
             preparingData = false;
         }
 
-        setExportData(mapData ? rawData.map(mapData as any) : rawData);
-        setIsFileReady(true);
+        const csvExporter = new ExportToCsv({
+            title: `${userFriendlyResourceName(
+                resource,
+                "plural",
+            )}-${dayjs().format("YYYY-MM-DD-HH:mm:ss")}`,
+            useKeysAsHeaders: true,
+            ...exportOptions,
+        });
+        csvExporter.generateCsv(rawData.map(mapData as any));
+
         setIsLoading(false);
     };
 

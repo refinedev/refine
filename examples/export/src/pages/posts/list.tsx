@@ -24,7 +24,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     });
 
     const exportProps = useExport({
-        mapData: (item: IPost) => {
+        mapData: (item) => {
             return {
                 id: item.id,
                 title: item.title,
@@ -37,17 +37,11 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
         },
     });
 
-    const Actions = () => (
-        <Space direction="horizontal">
-            <ExportButton />
-        </Space>
-    );
-
     return (
         <List
             {...props}
             pageHeaderProps={{
-                extra: <Actions />,
+                extra: <ExportButton {...exportProps} />,
             }}
         >
             <Table {...tableProps} key="id">
