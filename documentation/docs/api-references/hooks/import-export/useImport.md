@@ -100,8 +100,8 @@ import {
     useImport,
     Button,
     Icons,
-    //highlight-end
     Upload,
+     //highlight-end
 } from "@pankod/refine";
 
 //highlight-next-line
@@ -111,7 +111,7 @@ import { IPost, IPostFile } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
-
+     //highlight-next-line
     const { buttonProps, uploadProps } = useImport<IPostFile>();
 
     return (
