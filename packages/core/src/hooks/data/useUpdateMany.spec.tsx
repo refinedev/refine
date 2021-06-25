@@ -7,7 +7,7 @@ import { useUpdateMany } from "./useUpdateMany";
 describe("useUpdateMany Hook", () => {
     it("with rest json server", async () => {
         const { result, waitForNextUpdate, waitFor } = renderHook(
-            () => useUpdateMany("posts"),
+            () => useUpdateMany(),
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
@@ -17,6 +17,7 @@ describe("useUpdateMany Hook", () => {
         );
 
         result.current.mutate({
+            resource: "posts",
             ids: ["1", "2"],
             values: { id: "1", title: "test" },
         });
@@ -33,7 +34,7 @@ describe("useUpdateMany Hook", () => {
 
     it("should works with pessimistic update", async () => {
         const { result, waitForNextUpdate, waitFor } = renderHook(
-            () => useUpdateMany("posts", "pessimistic"),
+            () => useUpdateMany(),
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
@@ -43,6 +44,8 @@ describe("useUpdateMany Hook", () => {
         );
 
         result.current.mutate({
+            resource: "posts",
+            mutationMode: "pessimistic",
             ids: ["1", "2"],
             values: { id: "1", title: "test" },
         });
@@ -59,7 +62,7 @@ describe("useUpdateMany Hook", () => {
 
     it("should works with optimistic update", async () => {
         const { result, waitForNextUpdate, waitFor } = renderHook(
-            () => useUpdateMany("posts", "optimistic"),
+            () => useUpdateMany(),
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
@@ -69,6 +72,8 @@ describe("useUpdateMany Hook", () => {
         );
 
         result.current.mutate({
+            resource: "posts",
+            mutationMode: "optimistic",
             ids: ["1", "2"],
             values: { id: "1", title: "test" },
         });
@@ -85,7 +90,7 @@ describe("useUpdateMany Hook", () => {
 
     it("should works with undoable update", async () => {
         const { result, waitForNextUpdate, waitFor } = renderHook(
-            () => useUpdateMany("posts", "undoable", 0),
+            () => useUpdateMany(),
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
@@ -96,6 +101,9 @@ describe("useUpdateMany Hook", () => {
 
         result.current.mutate({
             ids: ["1", "2"],
+            resource: "posts",
+            mutationMode: "undoable",
+            undoableTimeout: 0,
             values: { id: "1", title: "test" },
         });
         await waitForNextUpdate();

@@ -37,9 +37,9 @@ Let'say we have a `categories` resource
 ```
 
 ```tsx
-const { mutate } = useDelete("categories");
+const { mutate } = useDelete();
 
-mutate({ id: "2" })
+mutate({ resource: "categories", id: "2" });
 ```
 
 :::tip
@@ -77,6 +77,10 @@ Variables passed to `mutate` must have the type of
 ```tsx
 {
     id: string;
+    resource: string;
+    mutationMode?: MutationMode;
+    undoableTimeout?: number;
+    onCancel?: (cancelMutation: () => void) => void;
 }
 ```
 :::
@@ -86,7 +90,15 @@ Variables passed to `mutate` must have the type of
 Determines the mode with which the mutation runs.
 
 ```tsx
-const { mutate } = useDelete("categories", "optimistic");
+const { mutate } = useDelete();
+
+
+mutate({ 
+    resource: "categories", 
+    // highlight-next-line
+    mutationMode: "optimistic",
+});
+
 ```
  `pessimistic` : The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfuly.
 
@@ -109,12 +121,26 @@ Default behaviour on undo action includes notifications. If a custom callback is
 Passed callback will receive a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on `undoable` mode.
 
 ```tsx
+// highlight-start
 const customOnCancel = (cancelMutation) => {
     cancelMutation()
     // rest of custom cancel logic...
 }
+// highlight-end
 
-const { mutate } = useDelete("categories", "undoable", 7500, customOnCancel);
+const { mutate } = useDelete();
+
+mutate({ 
+    resource: "categories",
+    id: "1",
+
+    // highlight-start
+    mutationMode: "undoable",
+    undoableTimeout: 7500,
+    onCancel: customOnCancel
+    // highlight-end
+});
+
 ```
 After 7.5 seconds the mutation will be executed. The mutation can be cancelled within that 7.5 seconds. If cancelled `customOnCancel` will be executed and the request will not be sent.
 :::

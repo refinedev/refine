@@ -23,6 +23,15 @@ import {
     Context as UpdateContext,
 } from "../../interfaces";
 
+type UpdateManyParams<TVariables> = {
+    ids: string[];
+    resource: string;
+    mutationMode?: MutationMode;
+    undoableTimeout?: number;
+    onCancel?: (cancelMutation: () => void) => void;
+    values: TVariables;
+};
+
 type UseUpdateManyReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -30,7 +39,7 @@ type UseUpdateManyReturnType<
 > = UseMutationResult<
     UpdateManyResponse<TData>,
     TError,
-    { ids: string[]; values: TVariables },
+    UpdateManyParams<TVariables>,
     UpdateContext
 >;
 
@@ -38,12 +47,7 @@ export const useUpdateMany = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
->(
-    resource: string,
-    mutationMode?: MutationMode,
-    undoableTimeout?: number,
-    onCancel?: (cancelMutation: () => void) => void,
-): UseUpdateManyReturnType<TData, TError, TVariables> => {
+>(): UseUpdateManyReturnType<TData, TError, TVariables> => {
     const queryClient = useQueryClient();
     const translate = useTranslate();
     const { updateMany } = useContext<IDataContext>(DataContext);
@@ -53,27 +57,30 @@ export const useUpdateMany = <
     } = useMutationMode();
     const { mutate: checkError } = useCheckError();
 
-    const resourceSingular = pluralize.singular(resource);
-
     const { notificationDispatch } = useCancelNotification();
-
-    const mutationModePropOrContext = mutationMode ?? mutationModeContext;
-
-    const undoableTimeoutPropOrContext =
-        undoableTimeout ?? undoableTimeoutContext;
 
     const getAllQueries = useCacheQueries();
 
     const mutation = useMutation<
         UpdateManyResponse<TData>,
         TError,
-        {
-            ids: string[];
-            values: TVariables;
-        },
+        UpdateManyParams<TVariables>,
         UpdateContext
     >(
-        ({ ids, values }: { ids: string[]; values: TVariables }) => {
+        ({
+            ids,
+            values,
+            resource,
+            onCancel,
+            mutationMode,
+            undoableTimeout,
+        }: UpdateManyParams<TVariables>) => {
+            const mutationModePropOrContext =
+                mutationMode ?? mutationModeContext;
+
+            const undoableTimeoutPropOrContext =
+                undoableTimeout ?? undoableTimeoutContext;
+
             if (!(mutationModePropOrContext === "undoable")) {
                 return updateMany<TData, TVariables>(resource, ids, values);
             }
@@ -110,10 +117,12 @@ export const useUpdateMany = <
         },
 
         {
-            onMutate: async (variables) => {
+            onMutate: async ({ resource, ids, values, mutationMode }) => {
                 const previousQueries: ContextQuery[] = [];
+                const mutationModePropOrContext =
+                    mutationMode ?? mutationModeContext;
 
-                const allQueries = getAllQueries(resource, variables.ids);
+                const allQueries = getAllQueries(resource, ids);
 
                 for (const queryItem of allQueries) {
                     const { queryKey } = queryItem;
@@ -139,12 +148,10 @@ export const useUpdateMany = <
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: data.map((record: TData) => {
-                                        if (
-                                            variables.ids.includes(record.id!)
-                                        ) {
+                                        if (ids.includes(record.id!)) {
                                             return {
                                                 ...record,
-                                                ...variables.values,
+                                                ...values,
                                             };
                                         }
                                         return record;
@@ -154,7 +161,7 @@ export const useUpdateMany = <
                                 queryClient.setQueryData(queryKey, {
                                     data: {
                                         ...previousQuery.data,
-                                        ...variables.values,
+                                        ...values,
                                     },
                                 });
                             }
@@ -166,7 +173,7 @@ export const useUpdateMany = <
                     previousQueries: previousQueries,
                 };
             },
-            onError: (err: TError, { ids }, context) => {
+            onError: (err: TError, { ids, resource }, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
@@ -183,6 +190,8 @@ export const useUpdateMany = <
                 if (err.message !== "mutationCancelled") {
                     checkError?.(err);
 
+                    const resourceSingular = pluralize.singular(resource);
+
                     notification.error({
                         key: `${ids}-${resource}-notification`,
                         message: translate(
@@ -197,13 +206,15 @@ export const useUpdateMany = <
                     });
                 }
             },
-            onSettled: (_data, _error, variables) => {
-                const allQueries = getAllQueries(resource, variables.ids);
+            onSettled: (_data, _error, { ids, resource }) => {
+                const allQueries = getAllQueries(resource, ids);
                 for (const query of allQueries) {
                     queryClient.invalidateQueries(query.queryKey);
                 }
             },
-            onSuccess: (_data, { ids }) => {
+            onSuccess: (_data, { ids, resource }) => {
+                const resourceSingular = pluralize.singular(resource);
+
                 notification.success({
                     key: `${ids}-${resource}-notification`,
                     message: translate("notifications.success", "Successful"),
