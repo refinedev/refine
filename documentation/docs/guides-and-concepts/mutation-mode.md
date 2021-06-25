@@ -62,7 +62,7 @@ Mutation mode can be set application-wide in [`<Refine>`](#) component.
 
 <br />
 
-It can also be set in [supported data hooks and form hooks](#supported-data-hooks) for fine-grained configuration. 
+It can also be set in supported [data hooks](https://docs-mu-doc-refine.pankod.com/docs/api-references/hooks/data/useUpdate#mutation-mode) and [form hooks](https://docs-mu-doc-refine.pankod.com/docs/api-references/hooks/form/useForm#properties ) for fine-grained configuration. 
 
 ```tsx
 const { mutate } = useUpdate("categories", "optimistic");
