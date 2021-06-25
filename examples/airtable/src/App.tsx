@@ -6,8 +6,8 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
 
 const App: React.FC = () => {
-    const API_TOKEN = "keywoytODSr6xAqfg";
-    const BASE_ID = "appKYl1H4k9g73sBT";
+    const API_TOKEN = "keyI18pnBeEMfPAIb";
+    const BASE_ID = "appkLVJ25X9ZP1P2l";
 
     return (
         <Refine dataProvider={dataProvider(API_TOKEN, BASE_ID)}>
@@ -19,7 +19,7 @@ const App: React.FC = () => {
                 show={PostShow}
             />
             <Resource
-                name="categories"
+                name="category"
                 list={CategoryList}
                 create={CategoryCreate}
                 edit={CategoryEdit}
