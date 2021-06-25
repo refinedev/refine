@@ -10,7 +10,7 @@ export const useResourceWithRoute = (): ((route: string) => IResourceItem) => {
             const resource = resources.find((p) => p.route === route);
 
             if (!resource) {
-                throw new Error(`'${route}' not found on resources."`);
+                return { name: route } as IResourceItem;
             }
             return resource;
         },
