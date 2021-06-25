@@ -5,17 +5,13 @@ title: CSV Import
 
 import importButton from '@site/static/img/guides-and-concepts/csv-import/import-button.png';
 
-You can easily import csv files for any resource by using refine' s customizable `<ImportButton>` component. refine uses [paparse](https://www.papaparse.com/) parser under the hood to parse csv files.
+You can easily import csv files for any resource by using **refine**'s customizable `useImport` hook, optionally with `<ImportButton>` component. `useImport` hook returns the necessary props for `<ImportButton>` component. **refine** uses [paparse](https://www.papaparse.com/) parser under the hood to parse csv files.
 
-You can add an `<ImportButton>` on a list page with a mapping function to format the files data into API's data. It creates the imported resources, using `create` or `createMany` data provider methods under the hood.
+You can call `useImport` hook and add an `<ImportButton>` with props returned from `useImport` on a list page, configured with a mapping function to format the files data into API's data. When the button gets triggered, it creates the imported resources using `create` or `createMany` data provider methods under the hood.
 
-Resources are added as one by one (`create`) or as batch (`createMany`) if explicitly configured with [`batchSize`](#importbutton-props) option. By default, `batchSize` is 1. If it is more than 1, createMany should be implemented on DataProvider.
+## Usage
 
-Let's look at an example of adding a custom `<ImportButton>`.
-
-## Example
-
-Add an `extra` area on `<List>` component to show `<ImportButton>`.
+Let's look at an example of adding a custom import button:
 
 ```tsx title="pages/posts/list.tsx"
 import {
@@ -24,6 +20,7 @@ import {
     TextField,
     useTable,
     useMany,
+    useImport,
     Space,
     EditButton,
     ShowButton,
@@ -41,17 +38,14 @@ export const PostList: React.FC = () => {
         enabled: categoryIds.length > 0,
     });
 
-    const Actions = () => (
-        <Space direction="horizontal">
-            <ImportButton />
-        </Space>
-    );
+    //highlight-next-line
+    const importProps = useImport<IPostFile>();
 
     return (
         <List
             //highlight-start
             pageHeaderProps={{
-                extra: <Actions />,
+                extra: <ImportButton {...importProps} />,
             }}
             //highlight-end
         >
@@ -99,7 +93,7 @@ We should map csv data into `Post` data. Assume that this is the csv file conten
 
 It has 3 entries. We should map `categoryId` to `category.id` and `userId` to `user.id`. Since these are objects, we store any relational data as their id in CSV.
 
-This would make our `<ImportButton>` look like this:
+This would make our `useImport` call look like this:
 
 ```tsx title="/src/pages/posts/list.tsx"
 export const PostList: React.FC = () => {
@@ -111,30 +105,25 @@ export const PostList: React.FC = () => {
         enabled: categoryIds.length > 0,
     });
 
-    const Actions = () => (
-        <Space direction="horizontal">
-            <ImportButton
-                //highlight-start
-                mapData={(item: IPostFile) => {
-                    return {
-                        title: item.title,
-                        content: item.content,
-                        status: item.status,
-                        category: {
-                            id: item.categoryId,
-                        },
-                        user: {
-                            id: item.userId,
-                        },
-                    };
-                }}
-                //highlight-end
-            />
-        </Space>
-    );
-
+    const importProps = useImport<IPostFile>({
+        //highlight-start
+        mapData: (item) => {
+            return {
+                title: item.title,
+                content: item.content,
+                status: item.status,
+                category: {
+                    id: item.categoryId,
+                },
+                user: {
+                    id: item.userId,
+                },
+            };
+        },
+        //highlight-end
+    });
     ...
-};
+}
 ```
 
 And it's done. When you click on the button and provide a csv file of the headers `"title","content","status","categoryId","userId"`, it should be mapped and imported. Mapped data is the request payload. Either as part of an array or by itself as part of every request. In our example, it fires 4 `POST` requests like this:
@@ -153,11 +142,11 @@ And it's done. When you click on the button and provide a csv file of the header
 }
 ```
 
-## `<ImportButton>` Props
+## Live Codesandbox Example
 
-| Key            | Description                                                                                                        | Type                                                                |
-| -------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
-| resourceName   | Default resource name this button imports to. Inferred from route by default.                                      | `string`                                                            |
-| mapData        | A mapping function that runs for every record. Mapped data will be included in the request payload.                | `(value: any, index?: number, array?: any[], data?: any[][]): any;` |
-| paparseOptions | Custom Papa Parse options.                                                                                         | [`ParseConfig`](https://www.papaparse.com/docs)                     |
-| batchSize      | Request batch size. By default, it is 1. If it is more than 1, `createMany` should be implemented on DataProvider. | `number`                                                            |
+<iframe src="https://codesandbox.io/embed/refine-import-example-jdng8?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Flist.tsx&theme=dark&view=preview"
+    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+    title="refine-import-example"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
