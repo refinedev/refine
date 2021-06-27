@@ -223,6 +223,11 @@ module.exports = {
                 },
                 {
                     type: "category",
+                    label: "Auth Provider",
+                    items: ["examples/auth-provider/google-auth"],
+                },
+                {
+                    type: "category",
                     label: "Form",
                     items: [
                         "examples/form/useForm",
