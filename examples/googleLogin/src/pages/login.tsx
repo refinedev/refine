@@ -9,12 +9,23 @@ import {
     Icons,
     useLogin,
 } from "@pankod/refine";
+import { useGoogleLogin, GoogleLoginResponse } from "react-google-login";
 
 const { Text } = Typography;
 const { GoogleOutlined } = Icons;
 
+const clientId =
+    "149954872426-ga5qkfj6v6fjr98p4lbakvf8u6mgtnp6.apps.googleusercontent.com";
+
 export const Login: React.FC = () => {
-    const { mutate: login } = useLogin();
+    const { mutate: login } = useLogin<GoogleLoginResponse>();
+
+    const { signIn } = useGoogleLogin({
+        onSuccess: (response) => login(response as GoogleLoginResponse),
+        clientId,
+        isSignedIn: true,
+        cookiePolicy: "single_host_origin",
+    });
 
     const CardTitle = (
         <div
@@ -54,10 +65,9 @@ export const Login: React.FC = () => {
                         <Button
                             type="primary"
                             size="large"
-                            // htmlType="submit"
                             block
                             icon={<GoogleOutlined />}
-                            onClick={() => login(undefined)}
+                            onClick={() => signIn()}
                         >
                             Login with Google
                         </Button>

@@ -1,3 +1,5 @@
+import { GoogleLoginResponse } from "react-google-login";
+
 export interface ICategory {
     id: string;
     title: string;
@@ -11,7 +13,4 @@ export interface IPost {
     category: ICategory;
 }
 
-export interface IUser {
-    name: string;
-    imageUrl: string;
-}
+export type IUser = GoogleLoginResponse["profileObj"];
