@@ -136,7 +136,7 @@ Point your browser to [http://localhost:3000](http://localhost:3000) to access i
 
 **refine** is designed to consume data from APIs. 
 
-For the sake of this tutorial, we will provide you a fully working, *fake REST API* located at https://refine-fake-rest.pankod.com/. You may take a look at available [resources and routes of the API](https://refine-fake-rest.pankod.com/) before proceeding to the next step.
+For the sake of this tutorial, we will provide you a fully working, *fake REST API* located at https://api.fake-rest.refine.dev/. You may take a look at available [resources and routes of the API](https://api.fake-rest.refine.dev/) before proceeding to the next step.
 
 
 ## Using a Dataprovider
@@ -146,19 +146,21 @@ Dataproviders are **refine** components making it possible to consume different 
 Run the following command to install the required package:
 
 ```
-npm i @pankod/refine-json-server
+npm i @pankod/refine-simple-rest
 ```
 
 :::note
 
 Fake REST API is based on [JSON Server Project](https://github.com/typicode/json-server). **Simple REST Dataprovider** is fully compatible with the REST rules and methods of the **JSON Server**.
 :::
+
 :::note
 
 **refine** includes many out-of-the-box data providers to use in your projects like
 
 * Simple REST API
 * NestJS CRUD
+* Airtable
 * Strapi etc.
 
 Please refer to the documentation if you need connecting to a custom data source by creating your Dataprovider.
@@ -172,7 +174,7 @@ Replace the contents of `App.tsx` with the following code:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
 const App: React.FC = () => {
@@ -189,7 +191,6 @@ export default App;
 <br/>
 
 `<Refine/>` is the root component of a **refine** application. Using the `dataprovider` prop, we made our **Simple REST Dataprovider** available to the entire application.
-
 
 ## Adding Resources
 
@@ -236,7 +237,7 @@ Now, add the highlighted code to your `App.tsx` to connect to the endpoint.
 ```tsx title="src/App.tsx"
 //highlight-next-line
 import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 
 export const App: React.FC = () => {
     return (
@@ -344,7 +345,7 @@ This is the point where the ✨real magic✨  happens!
 
 :::note
 **refine** depends heavily on hooks and `useTable()` is only one among many others.
-On [useTable() Documentation](guides-and-concepts/hooks/useTable.md) you may find more information about the usage of this hook.
+On [useTable() Documentation](api-references/hooks/table/useTable.md) you may find more information about the usage of this hook.
 :::
 
 ✳️ `<Table.Column>` components are used for mapping and formatting each field shown on the `<Table/>`. `dataIndex` prop maps the field to a matching key from the API response. `render` prop is used to choose the appropriate **Field** component for the given data type. 
@@ -359,7 +360,7 @@ Finally, we are ready to add `<PostList>` to our `<Resource>`. Add the highlight
 
 ```tsx title="src/App.tsx"
 import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 //highlight-next-line
 import { PostList } from "./pages";
 
@@ -769,7 +770,7 @@ Now we can add the newly created component to our `<Resource>` with `edit` prop:
 
 ```tsx title="src/App.tsx"
 import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 //highlight-next-line
 import { PostList, PostShow, PostEdit } from "./pages";
 
@@ -916,7 +917,7 @@ After creating the `<PostCreate>` component, add it to `<Resource>` with `create
 
 ```tsx title="src/App.tsx"
 import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 //highlight-next-line
 import { PostList, PostShow, PostEdit, PostCreate } from "./pages";
 
@@ -958,7 +959,6 @@ We should notice some minor differences from the edit example:
 <br/>
 
 ## Deleting a record
-
 
 
 ## Live Codesandbox Example

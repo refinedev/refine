@@ -66,18 +66,18 @@ module.exports = {
 
 <br />
 
-Create a less file and import antd styles from `~@pankod/refine/node_modules/antd`:
+Create a less file and import antd styles from `node_modules/antd`:
 
 ```less title="/styles/antd.less"
-@import "~@pankod/refine/node_modules/antd/lib/style/themes/default.less";
-@import "~@pankod/refine/node_modules/antd/dist/antd.less";
+@import '~antd/lib/style/themes/default.less';
+@import '~antd/dist/antd.less';
 ```
 
 And import the `less` file in `App.tsx`:
 
 ```tsx title="App.tsx"
 import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 
 //highlight-next-line
 import "styles/antd.less";
@@ -115,8 +115,9 @@ There are two approaches to override variables.
 You can just change variables values in `less` files. Add these contents to your `/styles/antd.less` file:
 
 ```less title="/styles/antd.less"
-@import "~@pankod/refine/node_modules/antd/lib/style/themes/default.less";
-@import "~@pankod/refine/node_modules/antd/dist/antd.less";
+@import '~antd/lib/style/themes/default.less';
+@import '~antd/dist/antd.less';
+
 // There are some major variables below,
 // all less variables could be found in
 // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less

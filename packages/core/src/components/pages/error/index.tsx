@@ -19,32 +19,20 @@ export const ErrorComponent: React.FC = () => {
 
     useLayoutEffect(() => {
         if (params.resource) {
-            try {
-                const resourceFromRoute = resource(params.resource);
-                if (
-                    params.action &&
-                    actionTypes.includes(params.action) &&
-                    !resourceFromRoute[params.action]
-                ) {
-                    setErrorMessage(
-                        translate(
-                            "pages.error.info",
-                            {
-                                action: params.action,
-                                resource: params.resource,
-                            },
-                            `You may have forgotten to add the "${params.action}" component to "${params.resource}" resource.`,
-                        ),
-                    );
-                }
-            } catch (error) {
+            const resourceFromRoute = resource(params.resource);
+            if (
+                params.action &&
+                actionTypes.includes(params.action) &&
+                !resourceFromRoute[params.action]
+            ) {
                 setErrorMessage(
                     translate(
-                        "pages.error.resource404",
+                        "pages.error.info",
                         {
+                            action: params.action,
                             resource: params.resource,
                         },
-                        `Are you sure you have created the "${params.resource}" resource.`,
+                        `You may have forgotten to add the "${params.action}" component to "${params.resource}" resource.`,
                     ),
                 );
             }

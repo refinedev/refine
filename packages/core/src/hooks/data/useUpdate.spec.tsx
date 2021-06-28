@@ -7,7 +7,7 @@ import { useUpdate } from "./useUpdate";
 describe("useUpdate Hook", () => {
     it("should works with pessimistic update", async () => {
         const { result, waitForNextUpdate, waitFor } = renderHook(
-            () => useUpdate("posts", "pessimistic"),
+            () => useUpdate(),
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
@@ -17,6 +17,8 @@ describe("useUpdate Hook", () => {
         );
 
         result.current.mutate({
+            resource: "posts",
+            mutationMode: "pessimistic",
             id: "1",
             values: { id: "1", title: "test" },
         });
@@ -33,7 +35,7 @@ describe("useUpdate Hook", () => {
 
     it("should works with optimistic update", async () => {
         const { result, waitForNextUpdate, waitFor } = renderHook(
-            () => useUpdate("posts", "optimistic"),
+            () => useUpdate(),
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
@@ -43,6 +45,8 @@ describe("useUpdate Hook", () => {
         );
 
         result.current.mutate({
+            resource: "posts",
+            mutationMode: "optimistic",
             id: "1",
             values: { id: "1", title: "optimistic test" },
         });
@@ -59,7 +63,7 @@ describe("useUpdate Hook", () => {
 
     it("should works with undoable update", async () => {
         const { result, waitForNextUpdate, waitFor } = renderHook(
-            () => useUpdate("posts", "undoable", 0),
+            () => useUpdate(),
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
@@ -69,8 +73,11 @@ describe("useUpdate Hook", () => {
         );
 
         result.current.mutate({
+            resource: "posts",
+            mutationMode: "undoable",
+            undoableTimeout: 0,
             id: "1",
-            values: { id: "1", title: "optimistic test" },
+            values: { id: "1", title: "undoable test" },
         });
         await waitForNextUpdate();
 

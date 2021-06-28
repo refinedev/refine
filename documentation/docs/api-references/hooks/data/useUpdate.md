@@ -42,9 +42,13 @@ type CategoryMutationResult = {
     title: string;
 }
 
-const { mutate } = useUpdate<CategoryMutationResult>("categories");
+const { mutate } = useUpdate<CategoryMutationResult>();
 
-mutate({ id: "2", values: { title: "New Category Title" } })
+mutate({ 
+    resource: "categories", 
+    id: "2",
+    values: { title: "New Category Title" }
+});
 ```
 
 :::tip
@@ -86,8 +90,12 @@ Values passed to `mutate` must have the type of
 
 ```tsx
 {
+    resource: string;
     id: string;
     values: TVariables = {};
+    mutationMode?: MutationMode;
+    undoableTimeout?: number;
+    onCancel?: (cancelMutation: () => void) => void;
 }
 ```
 :::
@@ -97,19 +105,23 @@ Values passed to `mutate` must have the type of
 Determines the mode with which the mutation runs.
 
 ```tsx
-const { mutate } = useUpdate("categories", "optimistic");
+const { mutate } = useUpdate();
+
+mutate({
+    resource: "categories",
+    id: "2",
+    values: { title: "New Category Title" },
+    // highlight-next-line
+    mutationMode: "optimistic",
+});
 ```
- `pessimistic` : The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfuly.
-
- `optimistic` : The mutation is applied locally, redirection and UI updates are executed immediately as if mutation is succesful. If mutation returns with error, UI updates accordingly.
-
- `undoable`: The mutation is applied locally, redirection and UI updates are executed immediately as if mutation is succesful. Waits for a customizable amount of timeout before mutation is applied. During the timeout, mutation can be cancelled from the notification with an undo button and UI will revert back accordingly.
 
 
-[Refer to mutation mode docs for further information. &#8594](#)
+
+[Refer to mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
 
 
-## Custom method on mutation cancellation
+### Custom method on mutation cancellation
 You can pass a custom cancel callback to `useUpdate`. That callback is triggered when undo button is clicked when  `mutationMode = "undoable"`.
 
 :::caution
@@ -120,12 +132,25 @@ Default behaviour on undo action includes notifications. If a custom callback is
 Passed callback will receive a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on `undoable` mode.
 
 ```tsx
+// highlight-start
 const customOnCancel = (cancelMutation) => {
     cancelMutation()
     // rest of custom cancel logic...
 }
+// highlight-end
 
-const { mutate } = useUpdate("categories", "undoable", 7500, customOnCancel);
+const { mutate } = useUpdate();
+
+mutate({ 
+    resource: "categories",
+    id: "2",
+    values: { title: "New Category Title" },
+    // highlight-start
+    mutationMode: "undoable",
+    undoableTimeout: 7500,
+    onCancel: customOnCancel
+    // highlight-end
+});
 ```
 After 7.5 seconds the mutation will be executed. The mutation can be cancelled within that 7.5 seconds. If cancelled `customOnCancel` will be executed and the request will not be sent.
 :::
@@ -150,17 +175,17 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 ### Type Parameters
 
-| Property   | Desription                                                              | Type                                   | Default                                |
-| ---------- | ----------------------------------------------------------------------- | -------------------------------------- | -------------------------------------- |
-| TData      | Result data of the mutation. Extends [`BaseRecord`](#)                  | [`BaseRecord`](#)                      | [`BaseRecord`](#)                      |
+| Property   | Desription                                                                    | Type                                         | Default                                      |
+| ---------- | ----------------------------------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| TData      | Result data of the mutation. Extends [`BaseRecord`](#)                        | [`BaseRecord`](#)                            | [`BaseRecord`](#)                            |
 | TError     | Custom error object that extends [`HttpError`](../../interfaces.md#httperror) | [`HttpError`](../../interfaces.md#httperror) | [`HttpError`](../../interfaces.md#httperror) |
-| TVariables | Values for mutation function                                            | `{}`                                   | `{}`                                   |
+| TVariables | Values for mutation function                                                  | `{}`                                         | `{}`                                         |
 
 ### Return value
 
  | Description                               | Type                                                                                                                                                                                    |
  | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
- | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { id: string; values: TVariables; },`<br/>` UpdateContext>`](https://react-query.tanstack.com/reference/useMutation)* |
+ | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { resource:string; id: string; values: TVariables; },`<br/>` UpdateContext>`](https://react-query.tanstack.com/reference/useMutation)* |
 
 >`*` `UpdateContext` is an internal type used.
 

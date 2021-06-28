@@ -11,7 +11,7 @@ Normally refine provides a default title. If we want to build a custom title ins
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
 export const App: React.FC = () => {
@@ -50,6 +50,7 @@ export const CustomSider: React.FC = () => {
     return (
         <AntdLayout.Sider
             collapsible
+            breakpoint="md"
             collapsed={collapsed}
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
         >

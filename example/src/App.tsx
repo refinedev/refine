@@ -13,7 +13,7 @@ import {
 import { DemoSidebar, useDemoSidebar } from "@pankod/refine-demo-sidebar";
 import "@pankod/refine/dist/styles.min.css";
 
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -110,7 +110,7 @@ const App: React.FC = () => {
                     style={{ minHeight: "100vh", flexDirection: "row" }}
                 >
                     <Sider />
-                    <AntdLayout className="site-layout">
+                    <AntdLayout>
                         <Header />
                         <AntdLayout.Content>
                             <div style={{ padding: 24, minHeight: 360 }}>

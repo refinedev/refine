@@ -40,6 +40,8 @@ import {
     useSelect,
     useMany,
     IResourceComponentsProps,
+    useImport,
+    useCreate,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -70,9 +72,25 @@ interface ICategory {
 export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
 
+    const importProps = useImport({
+        mapData: (item) => {
+            return {
+                title: item.title,
+                content: item.content,
+                status: item.status,
+                category: {
+                    id: item.categoryId,
+                },
+                user: {
+                    id: item.userId,
+                },
+            };
+        },
+    });
+
     const { tableProps, sorter, filters } = useTable<IPost>({
         initialCurrent: 3,
-        initialPageSize: 8,
+        initialPageSize: 50,
         initialSorter: [
             {
                 field: "createdAt",
@@ -114,22 +132,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     };
                 }}
             />
-            <ImportButton
-                mapData={(item) => {
-                    return {
-                        title: item.title,
-                        content: item.content,
-                        status: item.status,
-                        category: {
-                            id: item.categoryId,
-                        },
-                        user: {
-                            id: item.userId,
-                        },
-                    };
-                }}
-                batchSize={null}
-            />
+            <ImportButton {...importProps} />
             <CreateButton />
         </Space>
     );
@@ -511,7 +514,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     } = useStepsForm<IPost>({
         warnWhenUnsavedChanges: true,
         redirect: "list",
-        mutationMode: "pessimistic",
     });
 
     const postData = queryResult?.data?.data;

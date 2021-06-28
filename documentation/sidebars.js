@@ -111,12 +111,22 @@ module.exports = {
                                 "api-references/hooks/navigation/useNavigation",
                             ],
                         },
+                        {
+                            type: "category",
+                            label: "Import - Export",
+                            items: [
+                                "api-references/hooks/import-export/useImport",
+                                // "api-references/hooks/import-export/csv-export",
+                            ],
+                        },
                     ],
                 },
                 {
                     type: "category",
                     label: "Components",
                     items: [
+                        "api-references/components/refine-config",
+
                         {
                             type: "category",
                             label: "Basic Views",
@@ -132,11 +142,12 @@ module.exports = {
                             label: "Buttons",
                             items: [
                                 "api-references/components/buttons/create-button",
-                                "api-references/components/buttons/import-button",
                                 "api-references/components/buttons/export-button",
                                 "api-references/components/buttons/delete-button",
                                 "api-references/components/buttons/refresh-button",
                                 "api-references/components/buttons/save-button",
+                                "api-references/components/buttons/import-button",
+                                // "api-references/components/buttons/export-button",
                                 "api-references/components/buttons/list-button",
                                 "api-references/components/buttons/show-button",
                                 "api-references/components/buttons/edit-button",
@@ -200,6 +211,7 @@ module.exports = {
                         "guides-and-concepts/import-export/csv-export",
                     ],
                 },
+                "guides-and-concepts/mutation-mode",
                 "guides-and-concepts/custom-pages",
                 "guides-and-concepts/theme",
             ],
@@ -208,15 +220,77 @@ module.exports = {
             type: "category",
             label: "Examples",
             items: [
-                "examples/topMenuLayout",
-                "examples/useUpdateMany",
-                "examples/useDeleteMany",
-                "examples/customLogin",
-                "examples/customFooter",
-                "examples/customSider",
-                "examples/customInput",
-                "examples/strapi",
-                "examples/nestjsxCrud",
+                "examples/tutorial-example",
+                "examples/authorization",
+                "examples/i18n",
+                {
+                    type: "category",
+                    label: "Data Provider",
+                    items: [
+                        "examples/data-provider/strapi",
+                        "examples/data-provider/nestjsxCrud",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Auth Provider",
+                    items: [
+                        "examples/auth-provider/auth0",
+                        "examples/auth-provider/otpLogin",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Form",
+                    items: [
+                        "examples/form/useForm",
+                        "examples/form/useModalForm",
+                        "examples/form/useDrawerForm",
+                        "examples/form/useStepsForm",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Table",
+                    items: [
+                        "examples/table/useTable",
+                        "examples/table/useEditableTable",
+                        "examples/table/useUpdateMany",
+                        "examples/table/useDeleteMany",
+                        "examples/table/tableSearch",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Field",
+                    items: [
+                        "examples/field/useCheckboxGroup",
+                        "examples/field/useSelect",
+                        "examples/field/useRadioGroup",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Customization",
+                    items: [
+                        "examples/customization/topMenuLayout",
+                        "examples/customization/customLogin",
+                        "examples/customization/customFooter",
+                        "examples/customization/customSider",
+                        "examples/customization/customInput",
+                        "examples/customization/offLayoutArea",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Upload",
+                    items: [
+                        "examples/upload/multipartUpload",
+                        "examples/upload/base64Upload",
+                    ],
+                },
+                "examples/customPages",
+                "examples/customTheme",
             ],
         },
     ],

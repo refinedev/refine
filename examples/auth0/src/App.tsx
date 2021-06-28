@@ -1,5 +1,5 @@
 import { Refine, Resource, AuthProvider } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
@@ -11,8 +11,14 @@ import { Header } from "components";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    const { isLoading, isAuthenticated, user, logout, getIdTokenClaims } =
-        useAuth0();
+    const {
+        isLoading,
+        loginWithRedirect,
+        isAuthenticated,
+        user,
+        logout,
+        getIdTokenClaims,
+    } = useAuth0();
 
     if (isLoading) {
         return <span>loading...</span>;
@@ -20,6 +26,7 @@ const App: React.FC = () => {
 
     const authProvider: AuthProvider = {
         login: async () => {
+            loginWithRedirect();
             return Promise.resolve();
         },
         logout: async () => {
