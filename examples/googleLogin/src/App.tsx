@@ -1,5 +1,5 @@
 import { Refine, Resource, AuthProvider } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 import { useGoogleLogout, GoogleLoginResponse } from "react-google-login";
 import axios from "axios";
