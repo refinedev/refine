@@ -292,6 +292,7 @@ module.exports = {
                 },
                 "examples/customPages",
                 "examples/customTheme",
+                "examples/javascript",
             ],
         },
     ],
