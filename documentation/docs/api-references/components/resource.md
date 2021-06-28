@@ -65,6 +65,10 @@ const PostList: React.FC<IResourceComponentsProps> = (props) => {
 The values of `canCreate`, `canEdit` and `canShow` are determined by whether associated components are passed to the `<Resource>`.  
 `name` and `canDelete` are the values passed to the `<Resource>`.
 
+:::tip
+This props can be get by using [useResource](api-references/hooks/resource/useResource.md) hook.
+:::
+
 :::important
 `<Resource>` components must be placed as children to the <[Refine](api-references/components/refine-config.md)> component.
 :::
