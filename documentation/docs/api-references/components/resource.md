@@ -113,3 +113,45 @@ The component passed to `edit` will be rendered on `/resources/posts/edit/:id` r
 
 The component passed to `show` will be rendered on `/resources/posts/show/:id` route.
 
+
+### `canDelete`
+This value will be passed to all CRUD pages defined to `<Resource>`.
+
+:::tip
+**refine**'s <[Edit](api-references/components/basic-views/edit.md)> component uses `canDelete` value to show delete button in the edit form.
+:::
+
+### `icon`
+
+An icon element can be passed as props for the icon in the menu.
+
+```tsx
+<Resource
+    ...
+    //highlight-next-line           
+    icon={<CustomIcon />}
+/>
+```
+
+### `options`
+
+Menu item name and route on clicking can be customized.
+
+```tsx
+<Resource
+    ...
+    //highlight-next-line           
+    options={{ label: "custom", route: "/custom" }}
+/>
+ ```
+
+#### `label`
+
+Custom menu item name
+#### `route`
+
+Custom route name
+
+
+
+
