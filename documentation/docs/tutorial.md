@@ -146,7 +146,7 @@ Dataproviders are **refine** components making it possible to consume different 
 Run the following command to install the required package:
 
 ```
-npm i @pankod/refine-json-server
+npm i @pankod/refine-simple-rest
 ```
 
 :::note
@@ -160,6 +160,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 
 * Simple REST API
 * NestJS CRUD
+* Airtable
 * Strapi etc.
 
 Please refer to the documentation if you need connecting to a custom data source by creating your Dataprovider.
@@ -173,7 +174,7 @@ Replace the contents of `App.tsx` with the following code:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
 const App: React.FC = () => {
@@ -237,7 +238,7 @@ Now, add the highlighted code to your `App.tsx` to connect to the endpoint.
 ```tsx title="src/App.tsx"
 //highlight-next-line
 import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 
 export const App: React.FC = () => {
     return (
@@ -360,7 +361,7 @@ Finally, we are ready to add `<PostList>` to our `<Resource>`. Add the highlight
 
 ```tsx title="src/App.tsx"
 import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 //highlight-next-line
 import { PostList } from "./pages";
 
@@ -594,7 +595,7 @@ After creating the `<PostEdit>` component, now it's time to add it to `<Resource
 
 ```tsx title="src/App.tsx"
 import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 //highlight-next-line
 import { PostList, PostEdit } from "./pages";
 
@@ -772,7 +773,7 @@ After creating the `<PostCreate>` component, add it to `<Resource>`.
 
 ```tsx title="src/App.tsx"
 import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 //highlight-next-line
 import { PostList, PostEdit, PostCreate } from "./pages";
 
@@ -870,7 +871,7 @@ After creating the `<PostShow>` component, add it to `<Resource>`.
 
 ```tsx title="src/App.tsx"
 import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 //highlight-next-line
 import { PostList, PostEdit, PostCreate, PostShow } from "./pages";
 

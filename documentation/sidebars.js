@@ -233,6 +233,14 @@ module.exports = {
                 },
                 {
                     type: "category",
+                    label: "Auth Provider",
+                    items: [
+                        "examples/auth-provider/auth0",
+                        "examples/auth-provider/otpLogin",
+                    ],
+                },
+                {
+                    type: "category",
                     label: "Form",
                     items: [
                         "examples/form/useForm",
@@ -281,7 +289,6 @@ module.exports = {
                         "examples/upload/base64Upload",
                     ],
                 },
-                "examples/auth0",
                 "examples/customPages",
                 "examples/customTheme",
             ],

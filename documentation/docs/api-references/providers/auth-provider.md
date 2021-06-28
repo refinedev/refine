@@ -40,7 +40,7 @@ import {
     //highlight-next-line
     AuthProvider,
 } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 //highlight-next-line
 import authProvider from "./auth-provider";
 
@@ -498,7 +498,7 @@ const App = () => {
 ```
 
 :::note
-We recommend to use **axios** as Http client with **@pankod/refine-json-server** data provider. Other Http clients can be also preferred.
+We recommend to use **axios** as Http client with **@pankod/refine-simple-rest** data provider. Other Http clients can be also preferred.
 :::
 
 

@@ -77,7 +77,7 @@ And import the `less` file in `App.tsx`:
 
 ```tsx title="App.tsx"
 import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 
 //highlight-next-line
 import "styles/antd.less";

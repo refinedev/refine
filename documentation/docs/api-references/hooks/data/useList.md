@@ -37,7 +37,7 @@ Let's say we have a `posts` resource
 
 <br />
 
-`useList` passes query config to `getList` method from the `dataProvider`. We'll be using the `dataProvider` from [`@pankod/refine-json-server`](#)
+`useList` passes query config to `getList` method from the `dataProvider`. We'll be using the `dataProvider` from [`@pankod/refine-simple-rest`](#)
 
 Firstly, we'll use `useList` without passing any query config.
 
