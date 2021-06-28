@@ -44,7 +44,7 @@ const App: React.FC = () => {
         getUserIdentity: async () => {
             if (user) {
                 return Promise.resolve({
-                    name: user.name,
+                    ...user,
                     avatar: user.picture,
                 });
             }
