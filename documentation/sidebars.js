@@ -229,6 +229,7 @@ module.exports = {
                     items: [
                         "examples/data-provider/strapi",
                         "examples/data-provider/nestjsxCrud",
+                        "examples/data-provider/airtable",
                     ],
                 },
                 {
