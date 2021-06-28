@@ -6,7 +6,7 @@ import { useGetIdentity } from "@hooks";
 export const Header: React.FC = () => {
     const { data: user } = useGetIdentity();
 
-    const shouldRenderHeader = user && user.name && user.avatar;
+    const shouldRenderHeader = user && (user.name || user.avatar);
 
     return shouldRenderHeader ? (
         <Layout.Header
@@ -19,8 +19,10 @@ export const Header: React.FC = () => {
                 backgroundColor: "#FFF",
             }}
         >
-            <Typography.Text strong>{user.name}</Typography.Text>
-            <Avatar src={user.avatar} style={{ marginLeft: "16px" }} />
+            {user.name && <Typography.Text strong>{user.name}</Typography.Text>}
+            {user.avatar && (
+                <Avatar src={user.avatar} style={{ marginLeft: "16px" }} />
+            )}
         </Layout.Header>
     ) : null;
 };
