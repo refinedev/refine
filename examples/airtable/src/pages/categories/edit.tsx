@@ -9,11 +9,11 @@ import {
 
 import { ICategory } from "interfaces";
 
-export const CategoryEdit: React.FC<IResourceComponentsProps> = (props) => {
+export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<ICategory>();
 
     return (
-        <Edit {...props} saveButtonProps={saveButtonProps}>
+        <Edit saveButtonProps={saveButtonProps}>
             <Form
                 {...formProps}
                 layout="vertical"
