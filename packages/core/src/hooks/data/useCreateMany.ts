@@ -11,7 +11,7 @@ import {
 } from "../../interfaces";
 import { useListResourceQueries, useTranslate } from "@hooks";
 
-type UseCreateManyReturnType<
+export type UseCreateManyReturnType<
     TData extends BaseRecord = BaseRecord,
     TError = HttpError,
     TVariables = {},

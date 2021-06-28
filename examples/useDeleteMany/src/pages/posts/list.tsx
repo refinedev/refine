@@ -32,10 +32,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         mutate,
         isSuccess,
         isLoading: deleteManyIsLoading,
-    } = useDeleteMany<IPost>("posts");
+    } = useDeleteMany<IPost>();
 
     const deleteSelectedItems = () => {
         mutate({
+            resource: "posts",
             ids: selectedRowKeys.map(String),
         });
     };
