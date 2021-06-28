@@ -237,6 +237,7 @@ module.exports = {
                     items: [
                         "examples/auth-provider/auth0",
                         "examples/auth-provider/otpLogin",
+                        "examples/auth-provider/google-auth",
                     ],
                 },
                 {
