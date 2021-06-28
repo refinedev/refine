@@ -6,7 +6,6 @@ import axios from "axios";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Login } from "pages/login";
-import { Header } from "components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 const clientId =
@@ -28,7 +27,10 @@ const App: React.FC = () => {
                 Authorization: `Bearer ${tokenId}`,
             };
 
-            localStorage.setItem("user", JSON.stringify(profileObj));
+            localStorage.setItem(
+                "user",
+                JSON.stringify({ ...profileObj, avatar: profileObj.imageUrl }),
+            );
             localStorage.setItem("expiresAt", tokenObj.expires_at.toString());
 
             return Promise.resolve();
@@ -65,7 +67,6 @@ const App: React.FC = () => {
             dataProvider={dataProvider(API_URL, axios)}
             authProvider={authProvider}
             LoginPage={Login}
-            Header={Header}
         >
             <Resource
                 name="posts"
