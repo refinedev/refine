@@ -120,7 +120,7 @@ export const List: React.FC = () => {
 
 ```tsx
 import { Refine, Resource, List } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 
 const CustomPage = () => {
     return <List resource="posts">...</List>;

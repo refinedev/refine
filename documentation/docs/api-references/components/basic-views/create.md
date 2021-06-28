@@ -134,7 +134,7 @@ export const Create: React.FC = () => {
 
 ```tsx
 import { Refine, Resource, Create } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 
 const CustomPage = () => {
 //highlight-next-line
