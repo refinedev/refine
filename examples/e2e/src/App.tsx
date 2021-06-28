@@ -8,7 +8,10 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine dataProvider={dataProvider(API_URL)}>
+        <Refine
+            dataProvider={dataProvider(API_URL)}
+            DashboardPage={DashBoardPage}
+        >
             <Resource
                 name="posts"
                 list={PostList}
@@ -21,3 +24,5 @@ const App: React.FC = () => {
 };
 
 export default App;
+
+const DashBoardPage = () => <div>Dashboard</div>;
