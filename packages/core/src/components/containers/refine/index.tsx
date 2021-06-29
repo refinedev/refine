@@ -117,11 +117,7 @@ export const Refine: React.FC<RefineProps> = ({
     });
 
     if (resources.length === 0) {
-        return (
-            <OptionalComponent optional={ReadyPage}>
-                <DefaultReadyPage />
-            </OptionalComponent>
-        );
+        return ReadyPage ? <ReadyPage /> : <DefaultReadyPage />;
     }
 
     return (

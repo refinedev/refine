@@ -147,11 +147,9 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
             <Route
                 exact
                 path={["/", "/login"]}
-                component={() => (
-                    <OptionalComponent optional={LoginPage}>
-                        <DefaultLoginPage />
-                    </OptionalComponent>
-                )}
+                component={() =>
+                    LoginPage ? <LoginPage /> : <DefaultLoginPage />
+                }
             />
             {customRoutes.map((route, i) => (
                 <RouteWithSubRoutes key={i} {...route} />
