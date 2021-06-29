@@ -1,5 +1,6 @@
 import React from "react";
 import { useMutation, UseMutationResult } from "react-query";
+import { useLocation } from "react-router-dom";
 import { notification } from "antd";
 
 import { AuthContext } from "@contexts/auth";
@@ -13,16 +14,19 @@ export const useLogin = <TVariables = any>(): UseMutationResult<
     TVariables,
     unknown
 > => {
-    const { push } = useNavigation();
+    const { replace } = useNavigation();
     const { login: loginFromContext } =
         React.useContext<IAuthContext>(AuthContext);
+
+    const location = useLocation<{ from: string }>();
+    const { from } = location.state || { from: { pathname: "/" } };
 
     const queryResponse = useMutation<any, Error, TVariables, unknown>(
         "useLogin",
         loginFromContext,
         {
             onSuccess: () => {
-                push("/");
+                replace(from);
             },
             onError: (error: Error) => {
                 notification.error({

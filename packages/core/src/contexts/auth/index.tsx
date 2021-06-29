@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useQueryClient } from "react-query";
 
 import { IAuthContext } from "../../interfaces";
 
@@ -23,6 +24,11 @@ export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
     children,
 }) => {
     const [isAuthenticated, setAuthenticated] = useState(false);
+    const queryClient = useQueryClient();
+
+    useEffect(() => {
+        queryClient.invalidateQueries("useAuthenticated");
+    }, [isAuthenticated]);
 
     const loginFunc = async (params: any) => {
         try {
@@ -48,6 +54,7 @@ export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
     };
 
     const checkAuthFunc = async (params: any) => {
+        console.log("checkAuthFunc");
         try {
             await checkAuth(params);
             setAuthenticated(true);
