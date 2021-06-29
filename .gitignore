@@ -22,3 +22,5 @@ yarn-error.log*
 # eslint cache
 example/.eslintcache
 example/.cache
+
+examples/package-lock.json
