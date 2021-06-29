@@ -8,35 +8,59 @@ import {
     EditButton,
     ShowButton,
     useMany,
+    useSelect,
     Form,
     Input,
     Button,
     DatePicker,
     CrudFilters,
     DateField,
+    Card,
+    Icons,
+    Select,
+    Tag,
+    FormProps,
 } from "@pankod/refine";
-import { Dayjs } from "dayjs";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ICategory, IPostFilterVariables } from "interfaces";
+
+const { RangePicker } = DatePicker;
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, searchFormProps } = useTable<
         IPost,
-        { title: string; createdAt: [Dayjs, Dayjs] }
+        IPostFilterVariables
     >({
         onSearch: (params) => {
             const filters: CrudFilters = [];
-            const { title, createdAt } = params;
+            const { q, category, status, createdAt } = params;
 
-            if (title) {
+            if (q) {
                 filters.push({
-                    field: "title",
-                    operator: "contains",
-                    value: title,
+                    field: "q",
+                    operator: "eq",
+                    value: q,
+                });
+            }
+
+            if (category) {
+                filters.push({
+                    field: "category.id",
+                    operator: "eq",
+                    value: category,
+                });
+            }
+
+            if (status) {
+                filters.push({
+                    field: "status",
+                    operator: "eq",
+                    value: status,
                 });
             }
 
             if (createdAt) {
+                console.log(createdAt);
                 filters.push(
                     {
                         field: "createdAt",
@@ -61,73 +85,126 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         enabled: categoryIds.length > 0,
     });
 
-    const { RangePicker } = DatePicker;
+    return (
+        <List
+            Aside={
+                <Card title="Filters">
+                    <Filter formProps={searchFormProps} />
+                </Card>
+            }
+        >
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column
+                    dataIndex="status"
+                    title="Status"
+                    render={(value) => {
+                        let color;
+                        switch (value) {
+                            case "published":
+                                color = "green";
+                                break;
+                            case "rejected":
+                                color = "red";
+                                break;
+                            case "draft":
+                                color = "blue";
+                                break;
+                            default:
+                                color = "";
+                                break;
+                        }
+                        return <Tag color={color}>{value}</Tag>;
+                    }}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="Created At"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                />
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    key="category.id"
+                    title="Category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+
+                        return (
+                            <TextField
+                                value={
+                                    data?.data.find((item) => item.id === value)
+                                        ?.title
+                                }
+                            />
+                        );
+                    }}
+                />
+                <Table.Column<IPost>
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_, record) => (
+                        <Space>
+                            <EditButton size="small" recordItemId={record.id} />
+                            <ShowButton size="small" recordItemId={record.id} />
+                        </Space>
+                    )}
+                />
+            </Table>
+        </List>
+    );
+};
+
+const Filter: React.FC<{ formProps: FormProps }> = ({ formProps }) => {
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+    });
 
     return (
-        <List>
-            <Space direction="vertical" size="large">
-                <Form layout="inline" {...searchFormProps}>
-                    <Form.Item label="Title" name="title">
-                        <Input placeholder="Title" />
-                    </Form.Item>
-                    <Form.Item label="Created At" name="createdAt">
-                        <RangePicker />
-                    </Form.Item>
-
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit">
-                            Search
-                        </Button>
-                    </Form.Item>
-                </Form>
-                <Table {...tableProps} rowKey="id">
-                    <Table.Column dataIndex="id" title="ID" />
-                    <Table.Column dataIndex="title" title="Title" />
-                    <Table.Column
-                        dataIndex="createdAt"
-                        title="Created At"
-                        render={(value) => (
-                            <DateField format="LLL" value={value} />
-                        )}
-                    />
-                    <Table.Column
-                        dataIndex={["category", "id"]}
-                        key="category.id"
-                        title="Category"
-                        render={(value) => {
-                            if (isLoading) {
-                                return <TextField value="Loading..." />;
-                            }
-
-                            return (
-                                <TextField
-                                    value={
-                                        data?.data.find(
-                                            (item) => item.id === value,
-                                        )?.title
-                                    }
-                                />
-                            );
-                        }}
-                    />
-                    <Table.Column<IPost>
-                        title="Actions"
-                        dataIndex="actions"
-                        render={(_value, record) => (
-                            <Space>
-                                <EditButton
-                                    size="small"
-                                    recordItemId={record.id}
-                                />
-                                <ShowButton
-                                    size="small"
-                                    recordItemId={record.id}
-                                />
-                            </Space>
-                        )}
-                    />
-                </Table>
-            </Space>
-        </List>
+        <Form layout="vertical" {...formProps}>
+            <Form.Item label="Search" name="q">
+                <Input
+                    placeholder="ID, Title, Content, etc."
+                    prefix={<Icons.SearchOutlined />}
+                />
+            </Form.Item>
+            <Form.Item label="Status" name="status">
+                <Select
+                    allowClear
+                    options={[
+                        {
+                            label: "Published",
+                            value: "published",
+                        },
+                        {
+                            label: "Draft",
+                            value: "draft",
+                        },
+                        {
+                            label: "Rejected",
+                            value: "rejected",
+                        },
+                    ]}
+                    placeholder="Post Status"
+                />
+            </Form.Item>
+            <Form.Item label="Category" name="category">
+                <Select
+                    {...categorySelectProps}
+                    allowClear
+                    placeholder="Search Categories"
+                />
+            </Form.Item>
+            <Form.Item label="Created At" name="createdAt">
+                <RangePicker />
+            </Form.Item>
+            <Form.Item>
+                <Button htmlType="submit" type="primary">
+                    Filter
+                </Button>
+            </Form.Item>
+        </Form>
     );
 };

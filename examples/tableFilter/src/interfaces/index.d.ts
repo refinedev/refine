@@ -10,3 +10,10 @@ export interface IPost {
     status: "published" | "draft";
     category: ICategory;
 }
+
+export interface IPostFilterVariables {
+    q: string;
+    category: string;
+    status: string;
+    createdAt: [Dayjs, Dayjs];
+}
