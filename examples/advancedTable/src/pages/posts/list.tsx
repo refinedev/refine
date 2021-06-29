@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
     List,
     Table,
@@ -8,9 +9,14 @@ import {
     EditButton,
     ShowButton,
     useMany,
+    MarkdownField,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
+
+const expandedRowRender = (value: IPost) => {
+    return <MarkdownField value={value.content} />;
+};
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IPost>();
@@ -23,7 +29,13 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List>
-            <Table {...tableProps} rowKey="id">
+            <Table<IPost>
+                expandable={{
+                    expandedRowRender,
+                }}
+                {...tableProps}
+                rowKey="id"
+            >
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column dataIndex="title" title="Title" />
                 <Table.Column
