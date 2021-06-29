@@ -12,9 +12,11 @@ import {
     Button,
     MarkdownField,
     SaveButton,
+    CreateButton,
     useMany,
     useEditableTable,
     useSelect,
+    useDeleteMany,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -27,6 +29,9 @@ import { IPost, ICategory } from "interfaces";
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const [selectedTab, setSelectedTab] =
         useState<"write" | "preview">("write");
+    const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>(
+        [],
+    );
 
     const {
         tableProps,
@@ -47,6 +52,41 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         resource: "categories",
         defaultValue: categoryIds,
     });
+
+    const {
+        mutate,
+        isSuccess,
+        isLoading: deleteManyIsLoading,
+    } = useDeleteMany<IPost>();
+
+    const deleteSelectedItems = () => {
+        mutate({
+            resource: "posts",
+            ids: selectedRowKeys.map(String),
+        });
+    };
+
+    React.useEffect(() => {
+        if (isSuccess) {
+            setSelectedRowKeys([]);
+        }
+    }, [isSuccess]);
+
+    const onSelectChange = (selectedRowKeys: React.Key[]) => {
+        setSelectedRowKeys(selectedRowKeys);
+    };
+
+    const rowSelection = {
+        selectedRowKeys,
+        onChange: onSelectChange,
+        selections: [
+            Table.SELECTION_ALL,
+            Table.SELECTION_INVERT,
+            Table.SELECTION_NONE,
+        ],
+    };
+
+    const hasSelected = selectedRowKeys.length > 0;
 
     const expandedRowRender = (value: IPost) => {
         if (isEditing(value.id)) {
@@ -75,16 +115,33 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     };
 
     return (
-        <List>
+        <List
+            pageHeaderProps={{
+                extra: (
+                    <>
+                        <Button
+                            danger
+                            onClick={deleteSelectedItems}
+                            disabled={!hasSelected}
+                            loading={deleteManyIsLoading}
+                        >
+                            {`Delete selected ${selectedRowKeys.length} items`}
+                        </Button>
+                        <CreateButton />
+                    </>
+                ),
+            }}
+        >
             <Form {...formProps}>
                 <Table<IPost>
                     expandable={{
                         expandedRowRender,
                     }}
+                    rowSelection={rowSelection}
                     {...tableProps}
                     rowKey="id"
                 >
-                    <Table.Column dataIndex="id" title="ID" />
+                    <Table.Column dataIndex="id" title="ID" align="center" />
                     <Table.Column<IPost>
                         dataIndex="title"
                         title="Title"
