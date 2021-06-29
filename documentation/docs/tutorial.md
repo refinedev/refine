@@ -791,6 +791,8 @@ export const App: React.FC = () => {
 };
 ```
 
+<br />
+
 We are going to need an *edit* button on each row to diplay the `<PostEdit>` component. **refine** doesn't automatically adds one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
 
 ```tsx title="components/pages/posts.tsx"
