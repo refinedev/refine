@@ -1,3 +1,5 @@
+const { isConstructorDeclaration } = require("typescript");
+
 describe("list page", () => {
     beforeEach(() => {
         cy.visit("/resources/posts");
@@ -47,6 +49,38 @@ describe("list page", () => {
             cy.get("@createButton").click();
 
             cy.location("pathname").should("eq", "/resources/posts/create");
+        });
+    });
+    describe("Edit button", () => {
+        beforeEach(() => {
+            cy.get(".ant-table-row").as("rows");
+            cy.get("@rows").first().as("firstRow");
+            cy.get("@firstRow")
+                .find("button.ant-btn")
+                .contains("Edit")
+                .as("editButton");
+        });
+
+        it("should render edit button with correct icon", () => {
+            cy.get("@editButton").siblings(".anticon-edit");
+        });
+
+        it("should navigate to create page route on create button click", () => {
+            cy.location("pathname").should("eq", "/resources/posts");
+
+            cy.get("@firstRow")
+                .find(".ant-table-cell")
+                .first()
+                .then(($td) => {
+                    const id = parseFloat($td.text());
+
+                    cy.get("@editButton").click();
+
+                    cy.location("pathname").should(
+                        "eq",
+                        `/resources/posts/edit/${id}`,
+                    );
+                });
         });
     });
 });
