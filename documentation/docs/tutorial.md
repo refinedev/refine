@@ -376,7 +376,7 @@ export const App: React.FC = () => {
 
 <br />
 
-Open your application in your browser. You will see **posts** are displayed correctly in a table structure and event the pagination works out-of-the box. 
+Open your application in your browser. You will see **posts** are displayed correctly in a table structure and even the pagination works out-of-the box. 
 
 On the next step, we are going to add a category field to the table which involves handling data relationships. 
 
