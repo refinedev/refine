@@ -65,7 +65,7 @@ describe("list page", () => {
             cy.get("@editButton").siblings(".anticon-edit");
         });
 
-        it("should navigate to create page route on create button click", () => {
+        it("should navigate to edit page route on edit button click", () => {
             cy.location("pathname").should("eq", "/resources/posts");
 
             cy.get("@firstRow")
@@ -79,6 +79,38 @@ describe("list page", () => {
                     cy.location("pathname").should(
                         "eq",
                         `/resources/posts/edit/${id}`,
+                    );
+                });
+        });
+    });
+    describe("Show button", () => {
+        beforeEach(() => {
+            cy.get(".ant-table-row").as("rows");
+            cy.get("@rows").first().as("firstRow");
+            cy.get("@firstRow")
+                .find("button.ant-btn")
+                .contains("Show")
+                .as("showButton");
+        });
+
+        it("should render show button with correct icon", () => {
+            cy.get("@showButton").siblings(".anticon-eye");
+        });
+
+        it("should navigate to show page route on show button click", () => {
+            cy.location("pathname").should("eq", "/resources/posts");
+
+            cy.get("@firstRow")
+                .find(".ant-table-cell")
+                .first()
+                .then(($td) => {
+                    const id = parseFloat($td.text());
+
+                    cy.get("@showButton").click();
+
+                    cy.location("pathname").should(
+                        "eq",
+                        `/resources/posts/show/${id}`,
                     );
                 });
         });
