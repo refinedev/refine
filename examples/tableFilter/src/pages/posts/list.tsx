@@ -60,7 +60,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             }
 
             if (createdAt) {
-                console.log(createdAt);
                 filters.push(
                     {
                         field: "createdAt",
