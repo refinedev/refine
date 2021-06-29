@@ -27,4 +27,26 @@ describe("list page", () => {
             });
         });
     });
+
+    it("should render default title correctly", () => {
+        cy.get(".ant-page-header-heading-title").contains("Posts");
+    });
+
+    describe("Create button", () => {
+        beforeEach(() => {
+            cy.get('[data-testid="list-create-button"]').as("createButton");
+        });
+
+        it("should render create button", () => {
+            cy.get("@createButton").contains("Create");
+        });
+
+        it("should navigate to create page route on create button click", () => {
+            cy.location("pathname").should("eq", "/resources/posts");
+
+            cy.get("@createButton").click();
+
+            cy.location("pathname").should("eq", "/resources/posts/create");
+        });
+    });
 });
