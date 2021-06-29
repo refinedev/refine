@@ -766,6 +766,8 @@ export const PostEdit: React.FC = () => {
 };
 ```
 
+<br />
+
 Now we can add the newly created component to our `<Resource>` with `edit` prop:
 
 ```tsx title="src/App.tsx"
