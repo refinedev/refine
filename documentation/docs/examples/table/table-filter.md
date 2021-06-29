@@ -1,11 +1,11 @@
 ---
-id: tableSearch
-title: Table Search
+id: tableFilter
+title: Table Filter
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/tableSearch)
+[View Source](https://github.com/pankod/refine/tree/master/examples/tableFilter)
 
-<iframe src="https://codesandbox.io/embed/refine-table-search-example-pjdnk?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Flist.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-table-search-example-i2ojz?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Flist.tsx&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-table-search-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

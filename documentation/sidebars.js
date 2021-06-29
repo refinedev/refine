@@ -259,7 +259,7 @@ module.exports = {
                         "examples/table/useEditableTable",
                         "examples/table/useUpdateMany",
                         "examples/table/useDeleteMany",
-                        "examples/table/tableSearch",
+                        "examples/table/tableFilter",
                     ],
                 },
                 {
