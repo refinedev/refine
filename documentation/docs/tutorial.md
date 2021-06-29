@@ -190,7 +190,7 @@ export default App;
 
 <br/>
 
-`<Refine/>` is the root component of a **refine** application. Using the `dataprovider` prop, we made our **Simple REST Dataprovider** available to the entire application.
+`<Refine/>` is the root component of a **refine** application. Using the `dataProvider` prop, we made our **Simple REST Dataprovider** available to the entire application.
 
 ## Adding Resources
 
