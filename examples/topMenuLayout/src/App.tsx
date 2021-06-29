@@ -1,5 +1,5 @@
 import { Refine, Resource, AntdLayout, Link } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList } from "pages/posts";

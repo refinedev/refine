@@ -1,6 +1,6 @@
 import { Refine, Resource } from "@pankod/refine";
 import "styles/antd.less";
-import jsonServerDataProvider from "@pankod/refine-json-server";
+import jsonServerDataProvider from "@pankod/refine-simple-rest";
 import { authProvider } from "authProvider";
 import { DashbaordPage } from "./pages/dashboard";
 import { OrderList, OrderShow } from "./pages/orders";

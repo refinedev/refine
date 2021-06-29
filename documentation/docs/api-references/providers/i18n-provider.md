@@ -30,7 +30,7 @@ After creating a `i18nProvider`, you can pass it to the `<Refine>` component.
 
 ```tsx title="src/App.tsx"
 import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 
 import i18nProvider from "./i18nProvider";
 
@@ -123,7 +123,7 @@ Next, we will include the i18n instance and create the `i18nProvider` using `rea
 
 ```tsx title="src/App.tsx"
 import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 //highlight-next-line
 import { useTranslation } from "react-i18next";
 
@@ -484,7 +484,7 @@ Now, we will pass `<Header>` to the `<Refine>` component as a prop.
 
 ```tsx title="src/App.tsx"
 import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 import { useTranslation } from "react-i18next";
 import "./i18n";
 

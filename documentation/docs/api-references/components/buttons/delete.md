@@ -141,7 +141,7 @@ export const PostList: React.FC = () => {
 
 Determines the mode in which the mutation the `<DeleteButton>` will execute.
 
-[Refer to mutation mode docs for further information. &#8594](#)
+[Refer to mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
 
 ```tsx
 import { List, Table, DeleteButton, useTable } from "@pankod/refine";

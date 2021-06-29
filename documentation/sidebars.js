@@ -126,7 +126,7 @@ module.exports = {
                     label: "Components",
                     items: [
                         "api-references/components/refine-config",
-
+                        "api-references/components/resource",
                         {
                             type: "category",
                             label: "Basic Views",
@@ -211,6 +211,7 @@ module.exports = {
                         "guides-and-concepts/import-export/csv-export",
                     ],
                 },
+                "guides-and-concepts/mutation-mode",
                 "guides-and-concepts/custom-pages",
                 "guides-and-concepts/theme",
             ],
@@ -228,6 +229,16 @@ module.exports = {
                     items: [
                         "examples/data-provider/strapi",
                         "examples/data-provider/nestjsxCrud",
+                        "examples/data-provider/airtable",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Auth Provider",
+                    items: [
+                        "examples/auth-provider/auth0",
+                        "examples/auth-provider/otpLogin",
+                        "examples/auth-provider/google-auth",
                     ],
                 },
                 {
@@ -248,7 +259,7 @@ module.exports = {
                         "examples/table/useEditableTable",
                         "examples/table/useUpdateMany",
                         "examples/table/useDeleteMany",
-                        "examples/table/tableSearch",
+                        "examples/table/tableFilter",
                     ],
                 },
                 {
@@ -280,9 +291,9 @@ module.exports = {
                         "examples/upload/base64Upload",
                     ],
                 },
-                "examples/auth0",
                 "examples/customPages",
                 "examples/customTheme",
+                "examples/javascript",
             ],
         },
     ],

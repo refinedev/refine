@@ -181,7 +181,7 @@ export const Edit: React.FC = () => {
 
 Determines the mode in which the mutation the `<DeleteButton>` will execute.
 
-[Refer to mutation mode docs for further information. &#8594](#)
+[Refer to mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
 
 ```tsx
 import { Edit } from "@pankod/refine";
@@ -199,7 +199,7 @@ export const Edit: React.FC = () => {
 
 ```tsx
 import { Refine, Resource, Edit } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 
 const CustomPage = () => {
     return <Edit resource="posts">...</Edit>;
@@ -234,7 +234,7 @@ export const App: React.FC = () => {
 | Property          | Description                                 | Type                                                              | Default                                                                            |
 | ----------------- | ------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | canDelete         | Adds delete button                          | `boolean`                                                         | If `<Resource>` has `canDelete` prop it is `true` else `false` `false`             |
-| deleteButtonProps | Adds props for delete button                | [`DeleteButtonProps`](../../interfaces.md#delete-button-props)          | `<DeleteButton>`                                                                   |
+| deleteButtonProps | Adds props for delete button                | [`DeleteButtonProps`](../../interfaces.md#delete-button-props)    | `<DeleteButton>`                                                                   |
 | saveButtonProps   | Adds props for create button                | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton>`                                                                     |
 | title             | Adds title                                  | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                    |
 | aside             | Adds component to right side                | `React.ReactNode`                                                 | `undefined`                                                                        |

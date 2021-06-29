@@ -1,12 +1,11 @@
 import { Refine, Resource, AuthProvider } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Login } from "pages/login";
-import { Header } from "components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -43,7 +42,12 @@ const App: React.FC = () => {
         },
         getPermissions: () => Promise.resolve(),
         getUserIdentity: async () => {
-            return Promise.resolve(user);
+            if (user) {
+                return Promise.resolve({
+                    ...user,
+                    avatar: user.picture,
+                });
+            }
         },
     };
 
@@ -58,7 +62,6 @@ const App: React.FC = () => {
     return (
         <>
             <Refine
-                Header={Header}
                 LoginPage={Login}
                 authProvider={authProvider}
                 dataProvider={dataProvider(API_URL, axios)}

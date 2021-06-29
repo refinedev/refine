@@ -47,28 +47,6 @@ describe("ErrorComponent", () => {
         expect(mHistory.push).toBeCalledWith("/");
     });
 
-    it("renders error messages if resources not found", async () => {
-        const { getByTestId, findByText } = render(
-            <Route path="/resources/:resource?">
-                <ErrorComponent />
-            </Route>,
-            {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts", route: "posts" }],
-                    routerInitialEntries: ["/resources/shops"],
-                }),
-            },
-        );
-
-        fireEvent.mouseOver(getByTestId("error-component-tooltip"));
-
-        expect(
-            await findByText(
-                `Are you sure you have created the "shops" resource.`,
-            ),
-        ).toBeInTheDocument();
-    });
-
     it("renders error messages if resources action's not found", async () => {
         const { getByTestId, findByText } = render(
             <Route path="/resources/:resource?/:action?">

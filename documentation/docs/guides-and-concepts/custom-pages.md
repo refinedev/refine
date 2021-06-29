@@ -158,7 +158,7 @@ First, we will create the post's CRUD pages and bootstrap the app.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -333,7 +333,7 @@ Then, pass this `<PostReview>` as routes prop in the `<Refine>` component:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";

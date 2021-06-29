@@ -41,6 +41,7 @@ import {
     useMany,
     IResourceComponentsProps,
     useImport,
+    useCreate,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -513,7 +514,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     } = useStepsForm<IPost>({
         warnWhenUnsavedChanges: true,
         redirect: "list",
-        mutationMode: "pessimistic",
     });
 
     const postData = queryResult?.data?.data;
