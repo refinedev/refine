@@ -8,7 +8,6 @@ import {
 } from "@components";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
-import { OptionalComponent } from "@definitions";
 import { IResourceItem } from "@contexts/resource";
 
 export interface RouteProviderProps {

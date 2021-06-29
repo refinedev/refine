@@ -25,7 +25,7 @@ import {
     ReadyPage as DefaultReadyPage,
     RouteChangeHandler,
 } from "@components";
-import { OptionalComponent, defaultConfigProviderProps } from "@definitions";
+import { defaultConfigProviderProps } from "@definitions";
 import {
     MutationMode,
     IDataContextProvider,
