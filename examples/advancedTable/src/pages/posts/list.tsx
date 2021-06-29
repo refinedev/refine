@@ -3,23 +3,39 @@ import {
     List,
     Table,
     TextField,
-    useTable,
-    IResourceComponentsProps,
-    Space,
+    Form,
     EditButton,
-    ShowButton,
-    useMany,
+    IResourceComponentsProps,
+    Input,
+    Select,
+    Space,
+    Button,
     MarkdownField,
+    SaveButton,
+    useMany,
+    useEditableTable,
+    useSelect,
 } from "@pankod/refine";
+
+import ReactMarkdown from "react-markdown";
+import ReactMde from "react-mde";
+
+import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ICategory } from "interfaces";
 
-const expandedRowRender = (value: IPost) => {
-    return <MarkdownField value={value.content} />;
-};
-
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps } = useTable<IPost>();
+    const [selectedTab, setSelectedTab] =
+        useState<"write" | "preview">("write");
+
+    const {
+        tableProps,
+        formProps,
+        isEditing,
+        saveButtonProps,
+        cancelButtonProps,
+        editButtonProps,
+    } = useEditableTable<IPost>();
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
@@ -27,46 +43,126 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         enabled: categoryIds.length > 0,
     });
 
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+        defaultValue: categoryIds,
+    });
+
+    const expandedRowRender = (value: IPost) => {
+        if (isEditing(value.id)) {
+            return (
+                <Form.Item
+                    name="content"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <ReactMde
+                        selectedTab={selectedTab}
+                        onTabChange={setSelectedTab}
+                        generateMarkdownPreview={(markdown) =>
+                            Promise.resolve(
+                                <ReactMarkdown>{markdown}</ReactMarkdown>,
+                            )
+                        }
+                    />
+                </Form.Item>
+            );
+        }
+        return <MarkdownField value={value.content} />;
+    };
+
     return (
         <List>
-            <Table<IPost>
-                expandable={{
-                    expandedRowRender,
-                }}
-                {...tableProps}
-                rowKey="id"
-            >
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-                <Table.Column
-                    dataIndex={["category", "id"]}
-                    title="Category"
-                    render={(value) => {
-                        if (isLoading) {
-                            return <TextField value="Loading..." />;
-                        }
-
-                        return (
-                            <TextField
-                                value={
-                                    data?.data.find((item) => item.id === value)
-                                        ?.title
-                                }
-                            />
-                        );
+            <Form {...formProps}>
+                <Table<IPost>
+                    expandable={{
+                        expandedRowRender,
                     }}
-                />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton size="small" recordItemId={record.id} />
-                            <ShowButton size="small" recordItemId={record.id} />
-                        </Space>
-                    )}
-                />
-            </Table>
+                    {...tableProps}
+                    rowKey="id"
+                >
+                    <Table.Column dataIndex="id" title="ID" />
+                    <Table.Column<IPost>
+                        dataIndex="title"
+                        title="Title"
+                        render={(value, record) => {
+                            if (isEditing(record.id)) {
+                                return (
+                                    <Form.Item
+                                        name="title"
+                                        style={{ margin: 0 }}
+                                    >
+                                        <Input />
+                                    </Form.Item>
+                                );
+                            }
+                            return <TextField value={value} />;
+                        }}
+                    />
+                    <Table.Column<IPost>
+                        dataIndex={["category", "id"]}
+                        title="Category"
+                        render={(value, record) => {
+                            if (isEditing(record.id)) {
+                                return (
+                                    <Form.Item
+                                        name={["category", "id"]}
+                                        style={{ margin: 0 }}
+                                    >
+                                        <Select {...categorySelectProps} />
+                                    </Form.Item>
+                                );
+                            }
+
+                            if (isLoading) {
+                                return <TextField value="Loading..." />;
+                            }
+
+                            return (
+                                <TextField
+                                    value={
+                                        data?.data.find(
+                                            (item) => item.id === value,
+                                        )?.title
+                                    }
+                                />
+                            );
+                        }}
+                    />
+                    <Table.Column<IPost>
+                        title="Actions"
+                        dataIndex="actions"
+                        width={200}
+                        render={(_, record) => {
+                            if (isEditing(record.id)) {
+                                return (
+                                    <Space>
+                                        <SaveButton
+                                            {...saveButtonProps}
+                                            size="small"
+                                        />
+                                        <Button
+                                            {...cancelButtonProps}
+                                            size="small"
+                                        >
+                                            Cancel
+                                        </Button>
+                                    </Space>
+                                );
+                            }
+                            return (
+                                <EditButton
+                                    {...editButtonProps(record.id)}
+                                    size="small"
+                                />
+                            );
+                        }}
+                    />
+                </Table>
+            </Form>
         </List>
     );
 };
