@@ -392,7 +392,7 @@ On the next step, we are going to add a category field to the table which involv
 
 ## Handling relationships
 
-Remember that the records from `/posts`endpoind had an category id field:
+Remember that the records from `/posts` endpoint had a category id field:
 
 ```ts title="https://api.fake-rest.refine.dev/posts/1"
 ...
