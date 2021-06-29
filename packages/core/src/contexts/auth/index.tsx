@@ -54,7 +54,6 @@ export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
     };
 
     const checkAuthFunc = async (params: any) => {
-        console.log("checkAuthFunc");
         try {
             await checkAuth(params);
             setAuthenticated(true);
