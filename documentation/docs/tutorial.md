@@ -982,4 +982,4 @@ Our tutorial is complete. Below you'll find a live Codesandbox example displayin
 
 * [Check the Guides & Concept section to learn generic solutions to common problems &#8594](api-references/providers/auth-provider)
 
-* [Check example section for code snippets &#8594](examples/topMenuLayout)
+* [Check example section for code snippets &#8594](examples/customization/topMenuLayout.md)
