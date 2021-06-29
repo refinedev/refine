@@ -40,7 +40,7 @@ export const useExport = <
     pageSize = 20,
     mapData = (item) => item as any,
     exportOptions,
-}: UseExportOptionsType<TData, TVariables>): UseExportReturnType => {
+}: UseExportOptionsType<TData, TVariables> = {}): UseExportReturnType => {
     const [isLoading, setIsLoading] = useState(false);
 
     const resourceWithRoute = useResourceWithRoute();
@@ -52,11 +52,10 @@ export const useExport = <
         resource = resourceName;
     }
 
-    console.log(
-        `${userFriendlyResourceName(resource, "plural")}-${dayjs().format(
-            "YYYY-MM-DD-HH:mm:ss",
-        )}`,
-    );
+    const filename = `${userFriendlyResourceName(
+        resource,
+        "plural",
+    )}-${dayjs().format("Posts-2021-06-29-14-14-14")}`;
 
     const { getList } = useContext<IDataContext>(DataContext);
 
@@ -94,10 +93,7 @@ export const useExport = <
         }
 
         const csvExporter = new ExportToCsv({
-            title: `${userFriendlyResourceName(
-                resource,
-                "plural",
-            )}-${dayjs().format("YYYY-MM-DD-HH:mm:ss")}`,
+            filename,
             useKeysAsHeaders: true,
             ...exportOptions,
         });

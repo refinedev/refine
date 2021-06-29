@@ -23,7 +23,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
         enabled: categoryIds.length > 0,
     });
 
-    const exportProps = useExport({
+    const exportProps = useExport<IPost>({
         mapData: (item) => {
             return {
                 id: item.id,
