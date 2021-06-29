@@ -88,8 +88,8 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 
     const hasSelected = selectedRowKeys.length > 0;
 
-    const expandedRowRender = (value: IPost) => {
-        if (isEditing(value.id)) {
+    const expandedRowRender = (record: IPost) => {
+        if (isEditing(record.id)) {
             return (
                 <Form.Item
                     name="content"
@@ -111,24 +111,21 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 </Form.Item>
             );
         }
-        return <MarkdownField value={value.content} />;
+        return <MarkdownField value={record.content} />;
     };
 
     return (
         <List
             pageHeaderProps={{
-                extra: (
-                    <>
-                        <Button
-                            danger
-                            onClick={deleteSelectedItems}
-                            disabled={!hasSelected}
-                            loading={deleteManyIsLoading}
-                        >
-                            {`Delete selected ${selectedRowKeys.length} items`}
-                        </Button>
-                        <CreateButton />
-                    </>
+                subTitle: hasSelected && (
+                    <Button
+                        danger
+                        onClick={deleteSelectedItems}
+                        disabled={!hasSelected}
+                        loading={deleteManyIsLoading}
+                    >
+                        {`Delete selected ${selectedRowKeys.length} items`}
+                    </Button>
                 ),
             }}
         >
