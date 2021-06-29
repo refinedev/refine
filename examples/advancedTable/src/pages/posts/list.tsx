@@ -140,6 +140,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     rowSelection={rowSelection}
                     {...tableProps}
                     rowKey="id"
+                    scroll={{ x: 400 }}
                 >
                     <Table.Column dataIndex="id" title="ID" align="center" />
                     <Table.Column<IPost>
