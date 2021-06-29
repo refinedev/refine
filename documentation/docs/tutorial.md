@@ -758,7 +758,7 @@ export const PostEdit: React.FC = () => {
                     />
                 </Form.Item>
                 <Form.Item label="Category" name={["category", "id"]}>
-                    <Select {...categForySelectProps} />
+                    <Select {...categorySelectProps} />
                 </Form.Item>
             </Form>
         </Edit>
