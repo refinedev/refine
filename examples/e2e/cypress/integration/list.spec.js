@@ -1,5 +1,3 @@
-const { isConstructorDeclaration } = require("typescript");
-
 describe("list page", () => {
     beforeEach(() => {
         cy.visit("/resources/posts");
