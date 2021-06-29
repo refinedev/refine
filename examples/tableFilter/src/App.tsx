@@ -3,7 +3,6 @@ import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import React from "react";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
