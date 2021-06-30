@@ -9,6 +9,7 @@ describe("create page", () => {
             "statusInput",
         );
         cy.get("textarea.mde-text").as("markdownArea");
+        cy.get("button.ant-btn-primary").contains("Save").as("saveButton");
     });
 
     it("should render form items with title", () => {
@@ -29,7 +30,12 @@ describe("create page", () => {
             .find(".ant-form-item-label")
             .contains("Content");
     });
-    it("should render form items title", () => {
+
+    it("should render save button with icon", () => {
+        cy.get("@saveButton").siblings(".anticon-save");
+    });
+
+    it("redirects to edit with filled values after submitting the form", () => {
         cy.get("@titleInput").type("Test title");
 
         cy.get("@categoryInput").click();
@@ -37,6 +43,7 @@ describe("create page", () => {
             .parents(".ant-select-dropdown")
             .find(".ant-select-item")
             .first()
+            .as("selectedCategory", { log: true })
             .click();
 
         cy.get("@statusInput").click();
@@ -47,5 +54,15 @@ describe("create page", () => {
             .click();
 
         cy.get("@markdownArea").type("Test content");
+
+        cy.get("@saveButton").click();
+
+        cy.location().should((location) => {
+            expect(location.pathname).contains("resources/posts/edit");
+        });
+
+        cy.get("@titleInput").should("have.value", "Test title");
+
+        cy.get("@categoryInput", { log: true });
     });
 });
