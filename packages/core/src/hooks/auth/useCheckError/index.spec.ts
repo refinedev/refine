@@ -43,7 +43,7 @@ describe("useCheckError Hook", () => {
         });
 
         expect(logoutMock).toBeCalledTimes(1);
-        expect(mHistory.push).toBeCalledWith("/login");
+        expect(mHistory.push).toBeCalledWith("/login", undefined);
     });
 
     it("logout and redirect to custom path if check error rejected", async () => {
@@ -73,7 +73,7 @@ describe("useCheckError Hook", () => {
 
         await act(async () => {
             expect(logoutMock).toBeCalledTimes(1);
-            expect(mHistory.push).toBeCalledWith("/customPath");
+            expect(mHistory.push).toBeCalledWith("/customPath", undefined);
         });
     });
 });

@@ -156,7 +156,10 @@ describe("RouteProvider", () => {
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
-                    authProvider: mockAuthProvider,
+                    authProvider: {
+                        ...mockAuthProvider,
+                        checkAuth: () => Promise.reject(),
+                    },
                     resources: [
                         {
                             name: "posts",
