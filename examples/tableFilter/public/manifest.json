@@ -1,6 +1,6 @@
 {
-  "short_name": "refine table search example app",
-  "name": "refine table search example app",
+  "short_name": "refine table filter example app",
+  "name": "refine table filter example app",
   "icons": [
     {
       "src": "favicon.ico",
