@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { QueryObserverResult } from "react-query";
 
@@ -10,6 +10,12 @@ import {
     GetOneResponse,
 } from "../../interfaces";
 
+export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
+    queryResult: QueryObserverResult<GetOneResponse<TData>>;
+    showId?: string;
+    setShowId: React.Dispatch<React.SetStateAction<string | undefined>>;
+};
+
 export type useShowProps = {
     resource?: string;
     id?: string;
@@ -18,8 +24,9 @@ export type useShowProps = {
 export const useShow = <TData extends BaseRecord = BaseRecord>({
     resource: resourceName,
     id,
-}: useShowProps = {}) => {
+}: useShowProps): useShowReturnType<TData> => {
     const [showId, setShowId] = useState<string>();
+
     const { resource: routeResourceName, id: idFromRoute } =
         useParams<ResourceRouterParams>();
 
@@ -31,7 +38,7 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
     });
 
     return {
-        queryResult: queryResult as QueryObserverResult<GetOneResponse<TData>>,
+        queryResult,
         showId,
         setShowId,
     };
