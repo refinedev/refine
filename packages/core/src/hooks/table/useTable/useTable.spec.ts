@@ -127,4 +127,26 @@ describe("useTable Hook", () => {
 
         expect(dataSource).toHaveLength(2);
     });
+
+    it("should success data with resource", async () => {
+        const { result, waitFor } = renderHook(
+            () =>
+                useTable({
+                    resource: "categories",
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [
+                        { name: "posts", route: "posts" },
+                        { name: "categories", route: "categories" },
+                    ],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            return result.current.tableQueryResult.isSuccess;
+        });
+    });
 });
