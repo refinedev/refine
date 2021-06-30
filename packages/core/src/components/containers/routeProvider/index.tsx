@@ -10,6 +10,7 @@ import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
 import { OptionalComponent } from "@definitions";
 import { IResourceItem } from "@contexts/resource";
+import { useAuthenticated } from "@hooks/auth";
 
 export interface RouteProviderProps {
     resources: IResourceItem[];
@@ -29,7 +30,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     LoginPage,
     customRoutes = [],
 }) => {
-    const { isAuthenticated } = useContext<IAuthContext>(AuthContext);
+    const { isSuccess, isLoading } = useAuthenticated();
 
     const routes: IRoutesProps[] = [];
     const RouteHandler = (val: IResourceItem): void => {
@@ -156,11 +157,27 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
             {customRoutes.map((route, i) => (
                 <RouteWithSubRoutes key={i} {...route} />
             ))}
-            <Route>{catchAll ?? <ErrorComponent />}</Route>
+
+            <Route
+                render={({ location }) => {
+                    if (isLoading) {
+                        return null;
+                    }
+
+                    return (
+                        <Redirect
+                            to={{
+                                pathname: "/",
+                                state: { from: location },
+                            }}
+                        />
+                    );
+                }}
+            />
         </Switch>
     );
 
-    return isAuthenticated ? renderAuthorized() : renderUnauthorized();
+    return isSuccess ? renderAuthorized() : renderUnauthorized();
 };
 
 export const RouteProvider = React.memo(RouteProviderBase);
