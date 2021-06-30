@@ -1,36 +1,20 @@
 import React from "react";
 
-import { act, fireEvent, render, TestWrapper, MockJSONServer } from "@test";
+import { screen, render } from "@test";
 import { ExportButton } from "./";
 
-describe("Export Button", () => {
-    it("should render button successfuly", () => {
-        const { findByText } = render(<ExportButton />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
-        });
+describe("<ExportButton/>", () => {
+    it("should render", () => {
+        const { findByText } = render(<ExportButton />);
 
         findByText("Export");
     });
 
-    it("should export correctly", async () => {
+    it("should have text 'Export'", async () => {
         window.open = jest.fn();
 
-        const { getByTestId } = render(
-            <ExportButton maxItemCount={1} data-testid="btn" />,
-            {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                    dataProvider: MockJSONServer,
-                }),
-            },
-        );
+        render(<ExportButton data-testid="btn" />);
 
-        await act(async () => {
-            fireEvent.click(getByTestId("btn"));
-        });
-
-        expect(window.open).toBeCalled();
+        screen.getByText("Export");
     });
 });

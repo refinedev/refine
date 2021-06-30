@@ -27,7 +27,10 @@ type UseExportOptionsType<
     exportOptions?: Options;
 };
 
-type UseExportReturnType = {};
+type UseExportReturnType = {
+    loading: boolean;
+    onClick: () => Promise<void>;
+};
 
 export const useExport = <
     TData extends BaseRecord = BaseRecord,
@@ -97,6 +100,7 @@ export const useExport = <
             useKeysAsHeaders: true,
             ...exportOptions,
         });
+
         csvExporter.generateCsv(rawData.map(mapData as any));
 
         setIsLoading(false);
