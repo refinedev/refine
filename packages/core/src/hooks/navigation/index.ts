@@ -53,11 +53,11 @@ export const useNavigation = () => {
     };
 
     const push = (path: string, state?: unknown) => {
-        history.push(`${state ?? path}`);
+        history.push(path, state);
     };
 
     const replace = (path: string, state?: unknown) => {
-        history.replace(`${state ?? path}`);
+        history.replace(path, state);
     };
 
     const goBack = () => {

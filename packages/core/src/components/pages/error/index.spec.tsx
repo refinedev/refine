@@ -44,7 +44,7 @@ describe("ErrorComponent", () => {
 
         fireEvent.click(getByText("Back Home"));
 
-        expect(mHistory.push).toBeCalledWith("/");
+        expect(mHistory.push).toBeCalledWith("/", undefined);
     });
 
     it("renders error messages if resources action's not found", async () => {
