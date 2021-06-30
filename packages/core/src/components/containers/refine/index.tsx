@@ -45,7 +45,7 @@ export interface RefineProps {
     dataProvider: IDataContextProvider;
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
-    LoginPage?: React.FC | false;
+    LoginPage?: React.FC;
     DashboardPage?: React.FC;
     ReadyPage?: React.FC;
     mutationMode?: MutationMode;
