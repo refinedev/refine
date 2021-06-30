@@ -260,6 +260,7 @@ module.exports = {
                         "examples/table/useUpdateMany",
                         "examples/table/useDeleteMany",
                         "examples/table/tableSearch",
+                        "examples/table/advancedTable",
                     ],
                 },
                 {
