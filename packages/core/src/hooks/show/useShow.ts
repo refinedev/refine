@@ -24,7 +24,7 @@ export type useShowProps = {
 export const useShow = <TData extends BaseRecord = BaseRecord>({
     resource: resourceName,
     id,
-}: useShowProps): useShowReturnType<TData> => {
+}: useShowProps = {}): useShowReturnType<TData> => {
     const [showId, setShowId] = useState<string>();
 
     const { resource: routeResourceName, id: idFromRoute } =
