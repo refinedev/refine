@@ -1,3 +1,12 @@
+const getItemFromSelectDropdown = (selector) =>
+    cy.get(selector).parents(".ant-select-dropdown").find(".ant-select-item");
+
+const getTitleOfFormItem = (selector) =>
+    cy
+        .get(selector)
+        .parents(".ant-row.ant-form-item")
+        .find(".ant-form-item-label");
+
 describe("create page", () => {
     beforeEach(() => {
         cy.visit("/resources/posts/create");
@@ -13,22 +22,10 @@ describe("create page", () => {
     });
 
     it("should render form items with title", () => {
-        cy.get("@titleInput")
-            .parents(".ant-row.ant-form-item")
-            .find(".ant-form-item-label")
-            .contains("Title");
-        cy.get("@categoryInput")
-            .parents(".ant-row.ant-form-item")
-            .find(".ant-form-item-label")
-            .contains("Category");
-        cy.get("@statusInput")
-            .parents(".ant-row.ant-form-item")
-            .find(".ant-form-item-label")
-            .contains("Status");
-        cy.get("@markdownArea")
-            .parents(".ant-row.ant-form-item")
-            .find(".ant-form-item-label")
-            .contains("Content");
+        getTitleOfFormItem("@titleInput").contains("Title");
+        getTitleOfFormItem("@categoryInput").contains("Category");
+        getTitleOfFormItem("@statusInput").contains("Status");
+        getTitleOfFormItem("@markdownArea").contains("Content");
     });
 
     it("should render save button with icon", () => {
@@ -36,33 +33,63 @@ describe("create page", () => {
     });
 
     it("redirects to edit with filled values after submitting the form", () => {
-        cy.get("@titleInput").type("Test title");
+        const selectedStatus = "Rejected";
+        const titleText = "Test title";
+        const markdownContent = "Test content";
 
+        // set title
+        cy.log("set title input value");
+        cy.get("@titleInput").type(titleText);
+
+        // select category input and save for later use
+        cy.log("select category input value");
         cy.get("@categoryInput").click();
-        cy.get("div#category_id_list")
-            .parents(".ant-select-dropdown")
-            .find(".ant-select-item")
+        getItemFromSelectDropdown("div#category_id_list")
             .first()
-            .as("selectedCategory", { log: true })
+            .then((div) => {
+                cy.wrap(div[0]).as("selectedCategory");
+            })
             .click();
 
+        // select status input
+        cy.log("select status input value");
         cy.get("@statusInput").click();
-        cy.get("div#status_list")
-            .parents(".ant-select-dropdown")
-            .find(".ant-select-item")
-            .first()
+        getItemFromSelectDropdown("div#status_list")
+            .contains(selectedStatus)
             .click();
 
-        cy.get("@markdownArea").type("Test content");
+        // set markdown content
+        cy.log("set markdown editor value");
+        cy.get("@markdownArea").type(markdownContent);
 
+        // Trigger submit button and check if successfully created and then navigate to edit page.
+        cy.log("Should create and navigate to edit page");
         cy.get("@saveButton").click();
-
         cy.location().should((location) => {
             expect(location.pathname).contains("resources/posts/edit");
         });
 
-        cy.get("@titleInput").should("have.value", "Test title");
+        cy.get("@titleInput").should("have.value", titleText);
 
-        cy.get("@categoryInput", { log: true });
+        //Compare category value in Edit page with one selected at Create page
+        cy.log(
+            "check if category value in Edit page is same as created at Create page",
+        );
+        cy.get("@categoryInput", { log: true })
+            .parent()
+            .siblings(".ant-select-selection-item")
+            .then((div) => {
+                cy.get("@selectedCategory").then((selectedCategory) => {
+                    expect(selectedCategory.innerText).eq(div[0].innerText);
+                });
+            });
+
+        //status input
+        cy.get("@statusInput")
+            .parent()
+            .siblings(".ant-select-selection-item")
+            .contains(selectedStatus);
+
+        cy.get("@markdownArea").should("have.value", markdownContent);
     });
 });
