@@ -39,7 +39,12 @@ export const useSimpleList = <TData extends BaseRecord = BaseRecord>({
         defaultPageSize = listProps.pagination.pageSize;
     }
 
-    const [current, setCurrent] = useState(1);
+    let defaultCurrent = 1;
+    if (listProps.pagination && listProps.pagination.current) {
+        defaultCurrent = listProps.pagination.current;
+    }
+
+    const [current, setCurrent] = useState(defaultCurrent);
     const [pageSize, setPageSize] = useState(defaultPageSize);
 
     const { data, isFetching } = useList<TData>(resource.name, {

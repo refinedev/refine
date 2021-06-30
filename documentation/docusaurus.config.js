@@ -12,7 +12,7 @@ const siteConfig = {
     baseUrl: "/",
     projectName: "refine",
     organizationName: "pankod",
-    favicon: "img/footer_icon.png",
+    favicon: "img/refine_favicon.png",
     presets: [
         [
             "@docusaurus/preset-classic",
@@ -38,10 +38,10 @@ const siteConfig = {
             indexName: "refine",
         },
         navbar: {
-            title: "refine",
+            title: "",
             logo: {
                 alt: "refine Logo",
-                src: "img/pankod_footer_logo.png",
+                src: "img/refine_logo.png",
             },
             items: [
                 { to: "docs", label: "Docs", position: "right" },

@@ -30,10 +30,7 @@ import {
 } from "./components/pages";
 
 const App: React.FC = () => {
-    const [refineProps, demoSidebarProps] = useDemoSidebar({
-        defaultTitle: "refine",
-        defaultMutationMode: "pessimistic",
-    });
+    const [refineProps, demoSidebarProps] = useDemoSidebar();
 
     const authProvider: AuthProvider = {
         login: (params: any) => {

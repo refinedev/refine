@@ -61,7 +61,10 @@ describe("Clone Button", () => {
 
         fireEvent.click(getByText("Clone"));
 
-        expect(mHistory.push).toBeCalledWith("/resources/posts/create/1");
+        expect(mHistory.push).toBeCalledWith(
+            "/resources/posts/create/1",
+            undefined,
+        );
     });
 
     it("should edit page redirect clone route called function successfully if click the button", () => {
@@ -80,7 +83,10 @@ describe("Clone Button", () => {
 
         fireEvent.click(getByText("Clone"));
 
-        expect(mHistory.push).toBeCalledWith("/resources/posts/create/1");
+        expect(mHistory.push).toBeCalledWith(
+            "/resources/posts/create/1",
+            undefined,
+        );
     });
 
     it("should custom resource and recordItemId redirect clone route called function successfully if click the button", () => {
@@ -99,6 +105,9 @@ describe("Clone Button", () => {
 
         fireEvent.click(getByText("Clone"));
 
-        expect(mHistory.push).toBeCalledWith("/resources/categories/create/1");
+        expect(mHistory.push).toBeCalledWith(
+            "/resources/categories/create/1",
+            undefined,
+        );
     });
 });

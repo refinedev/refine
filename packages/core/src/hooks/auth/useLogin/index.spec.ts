@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react-hooks";
 import ReactRouterDom from "react-router-dom";
 
-import { act, TestWrapper } from "@test";
+import { TestWrapper } from "@test";
 
 import { useLogin } from "./";
 
@@ -45,7 +45,7 @@ describe("useLogin Hook", () => {
             return !result.current?.isLoading;
         });
 
-        expect(mHistory.push).toBeCalledWith("/");
+        expect(mHistory.replace).toBeCalledWith({ pathname: "/" }, undefined);
     });
 
     it("fail login", async () => {

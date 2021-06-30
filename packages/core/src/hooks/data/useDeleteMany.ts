@@ -121,7 +121,9 @@ export const useDeleteMany = <
 
                 for (const queryItem of allQueries) {
                     const { queryKey } = queryItem;
-                    await queryClient.cancelQueries(queryKey);
+                    await queryClient.cancelQueries(queryKey, undefined, {
+                        silent: true,
+                    });
 
                     const previousQuery =
                         queryClient.getQueryData<QueryResponse<TData>>(

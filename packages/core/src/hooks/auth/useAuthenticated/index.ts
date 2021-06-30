@@ -9,6 +9,7 @@ export const useAuthenticated = (): UseQueryResult<void, unknown> => {
 
     const queryResponse = useQuery("useAuthenticated", checkAuth, {
         enabled: !!checkAuth,
+        retry: false,
     });
 
     return queryResponse;
