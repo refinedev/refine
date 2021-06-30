@@ -12,7 +12,6 @@ import {
     Button,
     MarkdownField,
     SaveButton,
-    CreateButton,
     useMany,
     useEditableTable,
     useSelect,
