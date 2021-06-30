@@ -44,7 +44,7 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
 
     const resource = resourceWithRoute(resourceName);
 
-    const { mutateAsync, isLoading, variables } = useDelete();
+    const { mutate, isLoading, variables } = useDelete();
 
     const id = recordItemId ?? idFromRoute;
 
@@ -57,13 +57,18 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
             title={translate("buttons.confirm", "Are you sure?")}
             okButtonProps={{ disabled: isLoading }}
             onConfirm={(): void => {
-                mutateAsync({
-                    id: id,
-                    resource: resource.name,
-                    mutationMode,
-                }).then((value) => {
-                    onSuccess && onSuccess(value);
-                });
+                mutate(
+                    {
+                        id: id,
+                        resource: resource.name,
+                        mutationMode,
+                    },
+                    {
+                        onSuccess: (value) => {
+                            onSuccess && onSuccess(value);
+                        },
+                    },
+                );
             }}
         >
             <Button
