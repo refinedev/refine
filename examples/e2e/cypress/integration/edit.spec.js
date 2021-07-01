@@ -1,10 +1,19 @@
+const getTitleOfFormItem = (selector) =>
+    cy
+        .get(selector)
+        .parents(".ant-row.ant-form-item")
+        .find(".ant-form-item-label");
+
 describe("edit page", () => {
     /* beforeEach(() => {}); */
     it("should navigate to edit with correct form values", () => {
         cy.visit("/resources/posts");
 
+        cy.intercept("GET", "/categories?id=*").as("getCategory");
+
         cy.get(".ant-table-row").as("rows");
-        cy.get("@rows")
+        cy.wait("@getCategory")
+            .get("@rows")
             .first()
             .as("firstRow")
             .then(($tr) => {
@@ -24,27 +33,32 @@ describe("edit page", () => {
             cy.get("input#title.ant-input").should("have.value", title);
         });
 
-        cy.get("@category").then((category) => {
-            cy.get("input#category_id.ant-select-selection-search-input")
-                .parent()
-                .siblings(".ant-select-selection-item")
-                .then((div) => {
-                    expect(category).eq(div[0].innerText);
-                    /* cy.get("@selectedCategory").then((selectedCategory) => {
-                        expect(selectedCategory.innerText).eq(div[0].innerText);
-                    }); */
-                });
-        });
+        cy.wait("@getCategory")
+            .get("@category")
+            .then((category) => {
+                cy.get("input#category_id.ant-select-selection-search-input")
+                    .parent()
+                    .siblings(".ant-select-selection-item")
+                    .then((div) => {
+                        expect(category).eq(div[0].innerText);
+                    });
+            });
     });
+    it("should render form items with title", () => {
+        cy.visit("/resources/posts/edit/1");
+        cy.get("input#title.ant-input").as("titleInput");
+        cy.get("input#category_id.ant-select-selection-search-input").as(
+            "categoryInput",
+        );
+        cy.get("input#status.ant-select-selection-search-input").as(
+            "statusInput",
+        );
+        cy.get("textarea.mde-text").as("markdownArea");
+        cy.get("button.ant-btn-primary").contains("Save").as("saveButton");
 
-    /*   cy.get('div').should(($div) => {
-        // access the native DOM element
-        expect($div.get(0).innerText).to.eq('foobarbaz')
-      })
-       */
-
-    /* it("should navigate to list with edited values", () => {
-        cy.visit("/resources/posts/edit");
-
-    }); */
+        getTitleOfFormItem("@titleInput").contains("Title");
+        getTitleOfFormItem("@categoryInput").contains("Category");
+        getTitleOfFormItem("@statusInput").contains("Status");
+        getTitleOfFormItem("@markdownArea").contains("Content");
+    });
 });
