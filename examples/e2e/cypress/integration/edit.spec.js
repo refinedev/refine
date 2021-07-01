@@ -5,7 +5,6 @@ const getTitleOfFormItem = (selector) =>
         .find(".ant-form-item-label");
 
 describe("edit page", () => {
-    /* beforeEach(() => {}); */
     it("should navigate to edit with correct form values", () => {
         cy.visit("/resources/posts");
 
@@ -60,5 +59,19 @@ describe("edit page", () => {
         getTitleOfFormItem("@categoryInput").contains("Category");
         getTitleOfFormItem("@statusInput").contains("Status");
         getTitleOfFormItem("@markdownArea").contains("Content");
+    });
+
+    before(() => {
+        cy.visit("/resources/posts/edit/1");
+    });
+    it.only("should render edited items on list correctly", () => {
+        const titleText = "Test Title";
+        cy.intercept("GET", "/categories?id=*").as("getCategory");
+
+        cy.wait("@getCategory")
+            .get("input#title.ant-input")
+            .type(" ")
+            .type(titleText);
+        cy.get("button.ant-btn-primary").contains("Save").click();
     });
 });
