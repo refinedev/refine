@@ -206,16 +206,14 @@ export const App: React.FC = () => {
 To show data in the drawer, you can do it similarly by replacing `<Modal>` with `<Drawer>`.
 :::
 
-
-
 ## API Reference
 
 ### Properties
 
-| Property | Description                                                          | Type     | Default |
-| -------- | -------------------------------------------------------------------- | -------- | ------- |
-| resource | [`Resource`](../../components/resource.md) for API data interactions | `string` |         |
-| id       | Record id for fetching                                               | `string` |         |
+| Property | Description                                                          | Type     | Default                                  |
+| -------- | -------------------------------------------------------------------- | -------- | ---------------------------------------- |
+| resource | [`Resource`](../../components/resource.md) for API data interactions | `string` | Resource name that it reads from the url |
+| id       | Record id for fetching                                               | `string` | Id that it reads from the url            |
 
 ### Return values
 
