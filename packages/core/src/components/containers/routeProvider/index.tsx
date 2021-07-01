@@ -8,7 +8,6 @@ import {
 } from "@components";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
-import { OptionalComponent } from "@definitions";
 import { IResourceItem } from "@contexts/resource";
 import { useAuthenticated } from "@hooks/auth";
 
@@ -148,11 +147,9 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
             <Route
                 exact
                 path={["/", "/login"]}
-                component={() => (
-                    <OptionalComponent optional={LoginPage}>
-                        <DefaultLoginPage />
-                    </OptionalComponent>
-                )}
+                component={() =>
+                    LoginPage ? <LoginPage /> : <DefaultLoginPage />
+                }
             />
             {customRoutes.map((route, i) => (
                 <RouteWithSubRoutes key={i} {...route} />
