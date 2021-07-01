@@ -29,7 +29,7 @@ type UseExportOptionsType<
 
 type UseExportReturnType = {
     loading: boolean;
-    onClick: () => Promise<void>;
+    triggerExport: () => Promise<void>;
 };
 
 export const useExport = <
@@ -58,19 +58,19 @@ export const useExport = <
     const filename = `${userFriendlyResourceName(
         resource,
         "plural",
-    )}-${dayjs().format("Posts-2021-06-29-14-14-14")}`;
+    )}-${dayjs().format("Posts-YYYY-MM-DD-HH-mm-ss")}`;
 
     const { getList } = useContext<IDataContext>(DataContext);
 
-    const fetchData = async () => {
+    const triggerExport = async () => {
         setIsLoading(true);
 
-        const rawData: BaseRecord[] = [];
+        let rawData: BaseRecord[] = [];
 
         let current = 1;
         let preparingData = true;
         while (preparingData) {
-            const { data } = await getList<TData>(resource, {
+            const { data, total } = await getList<TData>(resource, {
                 filters,
                 sort: sorter,
                 pagination: {
@@ -85,14 +85,16 @@ export const useExport = <
                 rawData.push(...data);
 
                 if (maxItemCount && rawData.length >= maxItemCount) {
-                    rawData.slice(0, maxItemCount);
+                    rawData = rawData.slice(0, maxItemCount);
+                    preparingData = false;
+                }
+
+                if (total === rawData.length) {
                     preparingData = false;
                 }
 
                 continue;
             }
-
-            preparingData = false;
         }
 
         const csvExporter = new ExportToCsv({
@@ -108,6 +110,6 @@ export const useExport = <
 
     return {
         loading: isLoading,
-        onClick: fetchData,
+        triggerExport,
     };
 };
