@@ -26,4 +26,4 @@
 
 import { getRow } from "../integration/utils";
 
-Cypress.Commands.add("getRow", getRow);
+// Cypress.Commands.add("getRow", getRow);
