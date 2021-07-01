@@ -23,7 +23,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
         enabled: categoryIds.length > 0,
     });
 
-    const exportProps = useExport<IPost>({
+    const { triggerExport, loading } = useExport<IPost>({
         mapData: (item) => {
             return {
                 id: item.id,
@@ -41,7 +41,9 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
         <List
             {...props}
             pageHeaderProps={{
-                extra: <ExportButton {...exportProps} />,
+                extra: (
+                    <ExportButton onClick={triggerExport} loading={loading} />
+                ),
             }}
         >
             <Table {...tableProps} key="id">

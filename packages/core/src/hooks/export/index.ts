@@ -58,7 +58,7 @@ export const useExport = <
     const filename = `${userFriendlyResourceName(
         resource,
         "plural",
-    )}-${dayjs().format("Posts-YYYY-MM-DD-HH-mm-ss")}`;
+    )}-${dayjs().format("YYYY-MM-DD-HH-mm-ss")}`;
 
     const { getList } = useContext<IDataContext>(DataContext);
 

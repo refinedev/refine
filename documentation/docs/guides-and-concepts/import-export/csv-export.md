@@ -3,13 +3,13 @@ id: csv-export
 title: CSV Export
 ---
 
-With **refine**, you can easily create an export button that dumps resources' records to a `csv` file from any button by using [`useExport`][useExport] hook with required configurations. Which resources' records to download from can be configured and unless explicitly specified, it is inferred from current route.
+With **refine**, you can easily add export functionality to dump resources' records to a `csv` file from anywhere, including buttons. By using [`useExport`][useExport] hook with desired configurations, you can turn any button into an export button.  Which resources' records to export can be configured and unless explicitly specified, it is inferred from current route of browser.
 
 ## Usage
 
 Let's see an example:
 
-```tsx title=""
+```tsx title="pages/posts/list.tsx"
 import {
     List,
     Table,
@@ -26,13 +26,15 @@ export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     //highlight-next-line
-    const exportButtonProps = useExport();
+    const { triggerExport, loading } = useExport<IPost>();
 
     return (
         <List
             pageHeaderProps={{
-                //highlight-next-line
-                extra: <ExportButton {...exportButtonProps} />,
+                extra: (
+                    //highlight-next-line
+                    <ExportButton onClick={triggerExport} loading={loading} />
+                ),
             }}
         >
             <Table {...tableProps} key="id">
@@ -42,11 +44,14 @@ export const PostList: React.FC = () => {
         </List>
     );
 };
+
 ```
 
 After this setup is done, when the user clicks the button, download process will initialize.
 
-`useExport` returns two props: `loading: boolean` and `onClick: () => void`. These props match with Ant Design's [`<Button>`][Button] components interface. `<ExportButton>` is just an Ant Design [`<Button>`][Button] with default icon and children, serving only presentational purposes.
+Manually running the `triggerExport` function is another option.
+
+`useExport` returns two props: `loading: boolean` and `triggerExport: async () => void`. These props can be used with Ant Design's [`<Button>`][Button] components to create an export button. In this example, `<ExportButton>` is used and it's just an Ant Design [`<Button>`][Button] with default icon and children, serving only presentational purposes.
 
 > [Refer to useExport docs for more detailed information and export settings. &#8594][useExport]
 

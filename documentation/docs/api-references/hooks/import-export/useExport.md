@@ -3,12 +3,12 @@ id: useExport
 title: useExport
 ---
 
-`useExport` hook allows you to make your resources exportable. It gives you the props to pass to any Ant Design [`<Button>`][Button] to make it an export button.
+`useExport` hook allows you to make your resources exportable.
 
 This hook accepts [`export-to-csv`][export-to-csv]'s options to create `csv` files.
 
 ```ts
-const { onClick, loading } = useExport(options);
+const { triggerExport, loading } = useExport(options);
 ```
 
 ## Usage
@@ -35,7 +35,7 @@ Suppose we have this endpoint:
 ]
 ```
 
-To make an export button for this endpoint, we call `useExport` hook to create an export button.
+To enable export functionality for this endpoint, we can use `useExport` hook to create an export button.
 
 ```tsx title="src/pages/posts/list.tsx"
 import {
@@ -54,13 +54,15 @@ export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     //highlight-next-line
-    const exportProps = useExport<IPost>();
+    const { triggerExport, loading } = useExport<IPost>();
 
     return (
         <List
             pageHeaderProps={{
-                //highlight-next-line
-                extra: <ExportButton {...exportProps} />,
+                extra: (
+                    //highlight-next-line
+                    <ExportButton onClick={triggerExport} loading={loading} />
+                ),
             }}
         >
             <Table {...tableProps} key="id">
@@ -87,7 +89,7 @@ In examples, instead of [`<Button>`][Button], [`<ExportButton>`][ExportButton] i
 [Refer to ExportButton docs for more detailed information. &#8594][ExportButton]
 :::
 
-When the user clicks the button, hook fetches all the data in the resource and downloads it as a `csv` file with these contents:
+When the user clicks the button, `triggerExport` fetches all the data in the resource and downloads it as a `csv` file with these contents:
 
 ```csv title="Posts-2021-06-29-14-40-14.csv"
 id,title,slug,content,status,categoryId,userId
@@ -139,7 +141,7 @@ We have `category` and `user` fields as possible relational data keys. Their dat
 We can save `category.id` as `categoryId` and `user.id` as `userId`. Thus using a mapping function that looks like this:
 
 ```ts
-const exportProps = useExport<IPost>({
+const { triggerExport, loading } = useExport<IPost>({
     mapData: (item) => {
         return {
             id: item.id,
@@ -196,6 +198,13 @@ You can pass more options to further customize exporting process.
 | sorter        | Sort records                                                                                                               | [`CrudSorting`][CrudSorting] \| `undefined`                                      |  |
 | filter        | Filter records                                                                                                             | [`CrudFilters`][CrudFilters] \| `undefined`                                      |  |
 | exportOptions | Exporting options                                                                                                          | [`Options`][export-to-csv#api] \| `undefined`                                      |  |
+
+### `useExport` Return Values
+
+| Key           | Description                                                                                                                | Type                                                                             |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| loading  | Default resource name this button imports to. Inferred from route by default                                               | `boolean`                                                                         | `false`
+| triggerExport       | When invoked, starts the exporting process                           | `async () => void` |
 
 [Button]: https://ant.design/components/button/
 [ExportButton]: api-references/components/buttons/export.md
