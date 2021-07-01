@@ -23,3 +23,7 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+import { getRow } from "../integration/utils";
+
+Cypress.Commands.add("getRow", getRow);
