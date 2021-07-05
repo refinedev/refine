@@ -217,7 +217,7 @@ const postListQueryResult = useList<IPost>("posts", {
 -   For example, to disable query from running automatically you can set `enabled` to `false`
 
 ```tsx
-const postListQueryResult = useList<ICategory>("posts", {}, { enabled: false });
+const postListQueryResult = useList<IPost>("posts", {}, { enabled: false });
 ```
 
 :::
