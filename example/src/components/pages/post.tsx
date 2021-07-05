@@ -49,6 +49,7 @@ import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
 import { Aside } from "../aside";
+import { useExport } from "@pankod/refine";
 
 const { Title, Text } = Typography;
 
@@ -113,25 +114,27 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
         defaultValue: getDefaultFilter("category.id", filters),
     });
 
+    const { triggerExport, loading } = useExport({
+        sorter,
+        filters,
+        pageSize: 100,
+        maxItemCount: 300,
+        mapData: (item) => {
+            return {
+                id: item.id,
+                title: item.title,
+                slug: item.slug,
+                content: item.content,
+                status: item.status,
+                categoryId: item.category.id,
+                userId: item.user?.id,
+            };
+        },
+    });
+
     const extra = (
         <Space direction="horizontal">
-            <ExportButton
-                sorter={sorter}
-                filters={filters}
-                pageSize={100}
-                maxItemCount={300}
-                mapData={(item) => {
-                    return {
-                        id: item.id,
-                        title: item.title,
-                        slug: item.slug,
-                        content: item.content,
-                        status: item.status,
-                        categoryId: item.category.id,
-                        userId: item.user?.id,
-                    };
-                }}
-            />
+            <ExportButton loading={loading} onClick={triggerExport} />
             <ImportButton {...importProps} />
             <CreateButton />
         </Space>

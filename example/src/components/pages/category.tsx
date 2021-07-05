@@ -14,6 +14,7 @@ import {
     Space,
     useForm,
     useImport,
+    useExport,
     useEditableTable,
     IResourceComponentsProps,
     TextField,
@@ -52,14 +53,16 @@ export const CategoryList: React.FC<IResourceComponentsProps> = (props) => {
         ],
     });
 
+    const { loading, triggerExport } = useExport({
+        sorter,
+        filters,
+        pageSize: 100,
+        maxItemCount: 300,
+    });
+
     const Actions: React.FC = () => (
         <Space direction="horizontal">
-            <ExportButton
-                sorter={sorter}
-                filters={filters}
-                pageSize={100}
-                maxItemCount={300}
-            />
+            <ExportButton onClick={triggerExport} loading={loading} />
             <ImportButton {...importProps} />
             <CreateButton />
         </Space>
