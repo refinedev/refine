@@ -74,7 +74,7 @@ describe("edit page", () => {
         cy.get(".ant-table-row").contains(titleText);
     });
 
-    it.only("should render delete infobox and delete succesfully", () => {
+    it("should render delete infobox and delete succesfully", () => {
         cy.get("button.ant-btn-dangerous").contains("Delete").click();
 
         cy.get(".ant-popover button.ant-btn-dangerous")
