@@ -1,25 +1,17 @@
-const getTitleOfFormItem = (selector) =>
-    cy
-        .get(selector)
-        .parents(".ant-row.ant-form-item")
-        .find(".ant-form-item-label");
-
+import { getTitleOfFormItem } from "../integration/utils";
 describe("edit page", () => {
     beforeEach(() => {
         cy.visit("/resources/posts");
 
         cy.intercept("GET", "/categories?id=*").as("getCategory");
 
-        cy.get(".ant-table-row").as("rows");
-        cy.wait("@getCategory")
-            .get("@rows")
-            .first()
-            .as("firstRow")
-            .then(($tr) => {
-                cy.wrap($tr[0].children[0].innerText).as("id");
-                cy.wrap($tr[0].children[1].innerText).as("title");
-                cy.wrap($tr[0].children[2].innerText).as("category");
-            });
+        cy.getFirstRow({
+            categoryInterception: "@getCategory",
+            firstRowAlias: "firstRow",
+            idAlias: "id",
+            titleAlias: "title",
+            categoryAlias: "category",
+        });
 
         cy.get("@firstRow")
             .find("button.ant-btn")
@@ -65,10 +57,8 @@ describe("edit page", () => {
     it("should render edited items on list correctly", () => {
         const titleText = "Test Title";
 
-        cy.wait("@getCategory")
-            .get("input#title.ant-input")
-            .clear()
-            .type(titleText);
+        cy.wait("@getCategory");
+        cy.get("input#title.ant-input").clear().type(titleText);
         cy.get("button.ant-btn-primary").contains("Save").click();
 
         cy.get(".ant-table-row").contains(titleText);
@@ -83,8 +73,8 @@ describe("edit page", () => {
 
         cy.intercept("GET", "/posts*").as("getPosts");
 
-        cy.wait("@getPosts")
-            .get(".ant-table-row")
+        cy.wait("@getPosts");
+        cy.get(".ant-table-row")
             .children("td:first-child")
             .then((ids) => {
                 cy.get("@id").then((id) => {

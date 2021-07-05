@@ -1,14 +1,12 @@
-const getItemFromSelectDropdown = (selector) =>
-    cy.get(selector).parents(".ant-select-dropdown").find(".ant-select-item");
-
-const getTitleOfFormItem = (selector) =>
-    cy
-        .get(selector)
-        .parents(".ant-row.ant-form-item")
-        .find(".ant-form-item-label");
+import {
+    getTitleOfFormItem,
+    getItemFromSelectDropdown,
+} from "../integration/utils";
 
 describe("create page", () => {
     beforeEach(() => {
+        cy.intercept("GET", "/categories?id=*").as("getCategory");
+
         cy.visit("/resources/posts/create");
         cy.get("input#title.ant-input").as("titleInput");
         cy.get("input#category_id.ant-select-selection-search-input").as(
@@ -20,7 +18,6 @@ describe("create page", () => {
         cy.get("textarea.mde-text").as("markdownArea");
         cy.get("button.ant-btn-primary").contains("Save").as("saveButton");
     });
-
     it("should render form items with title", () => {
         getTitleOfFormItem("@titleInput").contains("Title");
         getTitleOfFormItem("@categoryInput").contains("Category");
@@ -75,7 +72,9 @@ describe("create page", () => {
         cy.log(
             "check if category value in Edit page is same as created at Create page",
         );
-        cy.get("@categoryInput", { log: true })
+
+        cy.wait("@getCategory");
+        cy.get("@categoryInput")
             .parent()
             .siblings(".ant-select-selection-item")
             .then((div) => {

@@ -24,6 +24,24 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import { getRow } from "../integration/utils";
-
-// Cypress.Commands.add("getRow", getRow);
+Cypress.Commands.add(
+    "getFirstRow",
+    ({
+        categoryInterception = "@getCategory",
+        firstRowAlias = "firstRow",
+        idAlias = "id",
+        titleAlias = "title",
+        categoryAlias = "category",
+    }) => {
+        cy.get(".ant-table-row").as("rows");
+        cy.wait(categoryInterception);
+        cy.get("@rows")
+            .first()
+            .as(firstRowAlias)
+            .then(($tr) => {
+                cy.wrap($tr[0].children[0].innerText).as(idAlias);
+                cy.wrap($tr[0].children[1].innerText).as(titleAlias);
+                cy.wrap($tr[0].children[2].innerText).as(categoryAlias);
+            });
+    },
+);
