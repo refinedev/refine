@@ -81,19 +81,15 @@ export const useExport = <
 
             current++;
 
-            if (data.length > 0) {
-                rawData.push(...data);
+            rawData.push(...data);
 
-                if (maxItemCount && rawData.length >= maxItemCount) {
-                    rawData = rawData.slice(0, maxItemCount);
-                    preparingData = false;
-                }
+            if (maxItemCount && rawData.length >= maxItemCount) {
+                rawData = rawData.slice(0, maxItemCount);
+                preparingData = false;
+            }
 
-                if (total === rawData.length) {
-                    preparingData = false;
-                }
-
-                continue;
+            if (total === rawData.length) {
+                preparingData = false;
             }
         }
 

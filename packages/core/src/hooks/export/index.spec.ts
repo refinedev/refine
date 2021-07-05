@@ -80,4 +80,54 @@ describe("useExport Hook", () => {
 
         expect(generateCsvMock).toBeCalledWith([posts[0]]);
     });
+
+    it("should work with custom pageSize", async () => {
+        const { result } = renderHook(
+            () =>
+                useExport({
+                    pageSize: 1,
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await act(async () => {
+            await result.current.triggerExport();
+        });
+
+        expect(generateCsvMock).toBeCalledWith(posts);
+    });
+
+    it("should work with custom mapData", async () => {
+        const { result } = renderHook(
+            () =>
+                useExport({
+                    mapData: (item) => ({
+                        id: item.id,
+                        title: item.title,
+                    }),
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await act(async () => {
+            await result.current.triggerExport();
+        });
+
+        expect(generateCsvMock).toBeCalledWith(
+            posts.map((post) => ({
+                id: post.id,
+                title: post.title,
+            })),
+        );
+    });
 });
