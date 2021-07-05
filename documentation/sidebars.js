@@ -297,5 +297,9 @@ module.exports = {
                 "examples/javascript",
             ],
         },
+        {
+            type: "doc",
+            id: "contributing",
+        },
     ],
 };
