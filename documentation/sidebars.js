@@ -98,6 +98,11 @@ module.exports = {
                         },
                         {
                             type: "category",
+                            label: "Show",
+                            items: ["api-references/hooks/show/useShow"],
+                        },
+                        {
+                            type: "category",
                             label: "Resource",
                             items: [
                                 "api-references/hooks/resource/useMenu",
@@ -259,6 +264,7 @@ module.exports = {
                         "examples/table/useEditableTable",
                         "examples/table/useUpdateMany",
                         "examples/table/useDeleteMany",
+                        "examples/table/advancedTable",
                         "examples/table/tableFilter",
                     ],
                 },

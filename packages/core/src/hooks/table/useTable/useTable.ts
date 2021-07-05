@@ -3,6 +3,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
 import { FormProps } from "antd/lib/form";
+import { QueryObserverResult } from "react-query";
 
 import { useForm } from "antd/lib/form/Form";
 import { SorterResult } from "antd/lib/table/interface";
@@ -22,6 +23,7 @@ import {
     BaseRecord,
     CrudFilters,
     CrudSorting,
+    GetListResponse,
 } from "../../../interfaces";
 
 export type useTableProps<TSearchVariables = unknown> = {
@@ -41,6 +43,7 @@ export type useTableReturnType<
 > = {
     searchFormProps: FormProps<TSearchVariables>;
     tableProps: TableProps<TData>;
+    tableQueryResult: QueryObserverResult<GetListResponse<TData>>;
     sorter?: CrudSorting;
     filters?: CrudFilters;
 };
@@ -111,11 +114,12 @@ export const useTable = <
         defaultCurrent: defaultCurrentSF,
     } = tablePropsSunflower.pagination;
 
-    const { data, isFetching } = useList<TData>(resource.name, {
+    const queryResult = useList<TData>(resource.name, {
         pagination: { current: current ?? defaultCurrentSF, pageSize },
         filters: permanentFilter.concat(extraFilter, filters),
         sort: sorter,
     });
+    const { data, isFetching } = queryResult;
 
     const onChange = (
         pagination: TablePaginationConfig,
@@ -168,6 +172,7 @@ export const useTable = <
                 position: ["bottomCenter"],
             },
         },
+        tableQueryResult: queryResult,
         sorter,
         filters: permanentFilter?.concat(filters),
     };
