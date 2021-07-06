@@ -1,8 +1,10 @@
+import { exactMatchRegexp } from "../integration/utils";
+
 describe("sider menu item", () => {
     beforeEach(() => {
         cy.visit("/");
         cy.get("aside.ant-layout-sider").as("sider");
-        cy.get("@sider").contains("Posts").as("posts");
+        cy.get("@sider").contains(exactMatchRegexp("Posts")).as("posts");
     });
 
     it("finds posts item", () => {
@@ -10,6 +12,7 @@ describe("sider menu item", () => {
             .should("have.class", "ant-menu-title-content")
             .as("posts-item");
     });
+
     it("posts with icon", () => {
         cy.get("@sider").find(".anticon-unordered-list");
     });

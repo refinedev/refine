@@ -51,6 +51,7 @@ describe("list page", () => {
             cy.location("pathname").should("eq", "/resources/posts/create");
         });
     });
+
     describe("Edit button", () => {
         beforeEach(() => {
             cy.get(".ant-table-row").as("rows");
@@ -83,6 +84,7 @@ describe("list page", () => {
                 });
         });
     });
+
     describe("Show button", () => {
         beforeEach(() => {
             cy.get(".ant-table-row").as("rows");

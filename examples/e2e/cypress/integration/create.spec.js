@@ -21,6 +21,7 @@ describe("create page", () => {
             .contains(exactMatchRegexp("Save"))
             .as("saveButton");
     });
+
     it("should render form items with title", () => {
         getTitleOfFormItem("@titleInput").should("have.text", "Title");
         getTitleOfFormItem("@categoryInput").should("have.text", "Category");
