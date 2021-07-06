@@ -34,7 +34,7 @@ const siteConfig = {
     themeConfig: {
         image: "img/footer_icon.png",
         algolia: {
-            apiKey: "3b7cf26a19755c7de95bcb3632edd314",
+            apiKey: "fbebca5afe7376dbef2995691670b708",
             indexName: "refine",
         },
         navbar: {

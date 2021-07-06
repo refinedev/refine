@@ -25,7 +25,7 @@ import {
     ReadyPage as DefaultReadyPage,
     RouteChangeHandler,
 } from "@components";
-import { OptionalComponent, defaultConfigProviderProps } from "@definitions";
+import { defaultConfigProviderProps } from "@definitions";
 import {
     MutationMode,
     IDataContextProvider,
@@ -45,7 +45,7 @@ export interface RefineProps {
     dataProvider: IDataContextProvider;
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
-    LoginPage?: React.FC | false;
+    LoginPage?: React.FC;
     DashboardPage?: React.FC;
     ReadyPage?: React.FC;
     mutationMode?: MutationMode;
@@ -117,11 +117,7 @@ export const Refine: React.FC<RefineProps> = ({
     });
 
     if (resources.length === 0) {
-        return (
-            <OptionalComponent optional={ReadyPage}>
-                <DefaultReadyPage />
-            </OptionalComponent>
-        );
+        return ReadyPage ? <ReadyPage /> : <DefaultReadyPage />;
     }
 
     return (
