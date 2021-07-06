@@ -1,3 +1,5 @@
+import { exactMatchRegexp } from "../integration/utils";
+
 describe("list page", () => {
     beforeEach(() => {
         cy.visit("/resources/posts");
@@ -29,7 +31,7 @@ describe("list page", () => {
     });
 
     it("should render default title correctly", () => {
-        cy.get(".ant-page-header-heading-title").contains("Posts");
+        cy.get(".ant-page-header-heading-title").should("have.text", "Posts");
     });
 
     describe("Create button", () => {
@@ -38,7 +40,7 @@ describe("list page", () => {
         });
 
         it("should render create button", () => {
-            cy.get("@createButton").contains("Create");
+            cy.get("@createButton").should("have.text", "Create");
         });
 
         it("should navigate to create page route on create button click", () => {
@@ -55,7 +57,7 @@ describe("list page", () => {
             cy.get("@rows").first().as("firstRow");
             cy.get("@firstRow")
                 .find("button.ant-btn")
-                .contains("Edit")
+                .contains(exactMatchRegexp("Edit"))
                 .as("editButton");
         });
 
@@ -87,7 +89,7 @@ describe("list page", () => {
             cy.get("@rows").first().as("firstRow");
             cy.get("@firstRow")
                 .find("button.ant-btn")
-                .contains("Show")
+                .contains(exactMatchRegexp("Show"))
                 .as("showButton");
         });
 

@@ -1,4 +1,4 @@
-export const getRows = () => cy.get(".ant-table-row").as("rows");
+export const exactMatchRegexp = (word) => new RegExp(`(?:^|\W)${word}(?:$|\W)`);
 
 export const getTitleOfFormItem = (selector) =>
     cy
