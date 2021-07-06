@@ -123,6 +123,12 @@ export const useCreateForm = <
         );
     };
 
+    React.useEffect(() => {
+        return () => {
+            form.resetFields();
+        };
+    }, []);
+
     const onKeyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
         if (submitOnEnter && event.key === "Enter") {
             form.submit();
