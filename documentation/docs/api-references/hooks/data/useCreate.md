@@ -9,14 +9,14 @@ description: useCreate data hook from refine is a modified version of react-quer
 
 ## Features
 
-* Shows notifications on success and error.
+* Shows notifications after a mutation succeeds or fails.
 
 * Automatically invalidates `list` queries after mutation is succesfully run.
 [Refer to React Query docs for detailed information &#8594](https://react-query.tanstack.com/guides/invalidations-from-mutations)
 
 ## Usage
 
-Let'say we have a `categories` resource
+Let'say we have a resource named `categories`
 
 ```ts title="https://api.fake-rest.refine.dev/categories"
 {
@@ -90,11 +90,11 @@ Queries that use `/categories` endpoint will be automatically invalidated to sho
 :::
 
 :::tip
-`useCreate` returns `react-query`'s `useMutation` result. It includes `mutate` with  [many other properties](https://react-query.tanstack.com/reference/useMutation).
+`useCreate` returns `react-query`'s `useMutation` result. Which includes [a lot properties](https://react-query.tanstack.com/reference/useMutation), one of which being mutate.
 :::
 
 :::important
-Variables passed to `mutate` must have the type of
+Variables passed to `mutate` must have these types.
 
 ```tsx
 {
