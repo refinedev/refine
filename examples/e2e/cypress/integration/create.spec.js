@@ -1,6 +1,7 @@
 import {
     getTitleOfFormItem,
     getItemFromSelectDropdown,
+    exactMatchRegexp,
 } from "../integration/utils";
 
 describe("create page", () => {
@@ -16,13 +17,15 @@ describe("create page", () => {
             "statusInput",
         );
         cy.get("textarea.mde-text").as("markdownArea");
-        cy.get("button.ant-btn-primary").contains("Save").as("saveButton");
+        cy.get("button.ant-btn-primary")
+            .contains(exactMatchRegexp("Save"))
+            .as("saveButton");
     });
     it("should render form items with title", () => {
-        getTitleOfFormItem("@titleInput").contains("Title");
-        getTitleOfFormItem("@categoryInput").contains("Category");
-        getTitleOfFormItem("@statusInput").contains("Status");
-        getTitleOfFormItem("@markdownArea").contains("Content");
+        getTitleOfFormItem("@titleInput").should("have.text", "Title");
+        getTitleOfFormItem("@categoryInput").should("have.text", "Category");
+        getTitleOfFormItem("@statusInput").should("have.text", "Status");
+        getTitleOfFormItem("@markdownArea").should("have.text", "Content");
     });
 
     it("should render save button with icon", () => {
@@ -52,7 +55,7 @@ describe("create page", () => {
         cy.log("select status input value");
         cy.get("@statusInput").click();
         getItemFromSelectDropdown("div#status_list")
-            .contains(selectedStatus)
+            .contains(exactMatchRegexp(selectedStatus))
             .click();
 
         // set markdown content
@@ -87,7 +90,7 @@ describe("create page", () => {
         cy.get("@statusInput")
             .parent()
             .siblings(".ant-select-selection-item")
-            .contains(selectedStatus);
+            .contains(exactMatchRegexp(selectedStatus));
 
         cy.get("@markdownArea").should("have.value", markdownContent);
     });
