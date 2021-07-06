@@ -29,7 +29,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
         useState<"write" | "preview">("write");
 
     return (
-        <Edit {...props} saveButtonProps={saveButtonProps}>
+        <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
