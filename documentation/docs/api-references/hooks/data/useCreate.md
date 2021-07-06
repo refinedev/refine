@@ -90,7 +90,7 @@ Queries that use `/categories` endpoint will be automatically invalidated to sho
 :::
 
 :::tip
-`useCreate` returns `react-query`'s `useMutation` result. Which includes [a lot of properties](https://react-query.tanstack.com/reference/useMutation), one of which being `mutate`.
+`useCreate` returns `react-query`'s `useMutation` result. Which includes [a lot properties](https://react-query.tanstack.com/reference/useMutation), one of which being `mutate`.
 :::
 
 :::important
