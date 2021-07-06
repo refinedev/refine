@@ -22,7 +22,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = (props) => {
         });
 
     return (
-        <Show {...props} isLoading={isLoading}>
+        <Show isLoading={isLoading}>
             {record && (
                 <>
                     <Title level={5}>Id</Title>
