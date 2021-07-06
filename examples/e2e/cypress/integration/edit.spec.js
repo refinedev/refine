@@ -5,38 +5,56 @@ describe("edit page", () => {
 
         cy.intercept("GET", "/categories?id=*").as("getCategory");
 
-        cy.getFirstRow({
-            categoryInterception: "@getCategory",
-            firstRowAlias: "firstRow",
-            idAlias: "id",
-            titleAlias: "title",
-            categoryAlias: "category",
-        });
+        cy.intercept("GET", "/posts/*").as("getPost");
 
-        cy.get("@firstRow")
+        cy.wait("@getCategory");
+        cy.get(".ant-table-row")
+            .first()
             .find("button.ant-btn")
             .contains(exactMatchRegexp("Edit"))
-            .as("editButton");
-
-        cy.get("@editButton").click();
+            .click();
     });
 
-    it("should navigate to edit with correct form values", () => {
+    it.only("should navigate to edit with correct form values", () => {
         // check inputs in edit page
-        cy.get("@title").then((title) => {
+        cy.wait("@getPost").then((postRes) => {
+            const {
+                title,
+                status,
+                category,
+                category: { id },
+                content,
+            } = postRes.response.body;
+
             cy.get("input#title.ant-input").should("have.value", title);
+            /* cy.get("input#status.ant-select-selection-search-input")
+                .parent()
+                .siblings(".ant-select-selection-item")
+                .should("have.value", status); */
+            // console.log({ title, status, category: { id } });
+            cy.get("input#category_id.ant-select-selection-search-input")
+                .parent()
+                .siblings(".ant-select-selection-item")
+                .then((div) => {
+                    console.log("div", div);
+                    expect(id.toString()).eq(div[0].innerText);
+                });
         });
 
-        cy.wait("@getCategory")
-            .get("@category")
-            .then((category) => {
-                cy.get("input#category_id.ant-select-selection-search-input")
-                    .parent()
-                    .siblings(".ant-select-selection-item")
-                    .then((div) => {
-                        expect(category).eq(div[0].innerText);
-                    });
-            });
+        /* cy.get("@title").then((title) => {
+            cy.get("input#title.ant-input").should("have.value", title);
+        }); */
+
+        /* cy.wait("@getCategory");
+        cy.get("@category").then((category) => {
+            cy.get("input#category_id.ant-select-selection-search-input")
+                .parent()
+                .siblings(".ant-select-selection-item")
+                .then((div) => {
+                    console.log("div", div);
+                    expect(category).eq(div[0].innerText);
+                });
+        }); */
     });
     it("should render form items with label", () => {
         cy.get("input#title.ant-input").as("titleInput");
