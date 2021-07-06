@@ -1,3 +1,5 @@
+import { exactMatchRegexp } from "../integration/utils";
+
 describe("Show", () => {
     beforeEach(() => {
         cy.visit("/resources/posts");
@@ -14,7 +16,7 @@ describe("Show", () => {
         });
         cy.get("@firstRow")
             .find("button.ant-btn")
-            .contains("Show")
+            .contains(exactMatchRegexp("Show"))
             .as("showButton");
 
         cy.get("@showButton").click();
@@ -25,17 +27,14 @@ describe("Show", () => {
 
         cy.get(".ant-card-body").within(() => {
             cy.get("@id").then((id) => {
-                cy.contains(id);
-                console.log("id: ", id);
+                cy.contains(exactMatchRegexp(id));
             });
 
             cy.get("@title").then((title) => {
-                cy.contains(title);
-                console.log("title: ", title);
+                cy.contains(exactMatchRegexp(title));
             });
             cy.get("@category").then((category) => {
-                cy.contains(category);
-                console.log("category: ", category);
+                cy.contains(exactMatchRegexp(category));
             });
         });
     });
