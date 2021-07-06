@@ -28,11 +28,8 @@ npm run start
 
 Now all packages run in watch mode. You can start one of the example projects in `/examples/*` or `/example` directories and when you change a file in any of the packages in `/packages/*`, it should re-compile and example gets automatically reloaded.
 
-One caveat here, since examples aren't [Lerna][Lerna] packages, if you want to run one of them, you should delete the `package-lock.json` and run `npm install` in the example's directory you work on:
-
 ```bash
 cd examples/base
-rm -rf package-lock.json
 npm install
 npm run start
 ```
