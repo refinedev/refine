@@ -47,6 +47,37 @@ npm install
 npm run start
 ```
 
+## Running tests
+
+`npm run test` command runs tests for all packages. If you're working on a package (e.g. `/packages/core`), you can run tests only for that package:
+
+```bash
+cd packages/core
+npm run test
+```
+
+Or you can do it for a specific file:
+
+```bash
+npm run test -- /src/hooks/export/index.spec.ts
+```
+
+Also, to run a specific file's tests in watch mode:
+
+```bash
+npm run test -- --watch /src/hooks/export/index.spec.ts
+```
+
+Get coverage report for that file:
+
+```bash
+npm run test -- --coverage /src/hooks/export/index.spec.ts
+```
+
+When you run the command that produces coverage report, go to `/coverage/lcov-report/index.html` file to see coverage results. If you run this command in `/packages/core` directory, then coverage report will be generated in `/packages/core/coverage`.
+
+Please make sure you contribute well tested code.
+
 [Lerna]: https://github.com/lerna/lerna
 [Docusaurus]: https://docusaurus.io/
 [Issues]: https://github.com/pankod/refine/issues
