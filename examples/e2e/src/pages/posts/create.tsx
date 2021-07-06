@@ -27,7 +27,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
         useState<"write" | "preview">("write");
 
     return (
-        <Create {...props} saveButtonProps={saveButtonProps}>
+        <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
