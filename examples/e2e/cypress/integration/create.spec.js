@@ -65,6 +65,7 @@ describe("create page", () => {
         // Trigger submit button and check if successfully created and then navigate to edit page.
         cy.log("Should create and navigate to edit page");
         cy.get("@saveButton").click();
+
         cy.location().should((location) => {
             expect(location.pathname).contains("resources/posts/edit");
         });

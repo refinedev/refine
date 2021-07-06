@@ -6,35 +6,29 @@ describe("Show", () => {
 
         cy.intercept("GET", "/categories?id=*").as("getCategory");
         cy.intercept("GET", "/categories/*").as("getCategories");
+        cy.intercept("GET", "/posts/*").as("getPost");
 
-        cy.getFirstRow({
-            categoryInterception: "@getCategory",
-            firstRowAlias: "firstRow",
-            idAlias: "id",
-            titleAlias: "title",
-            categoryAlias: "category",
-        });
-        cy.get("@firstRow")
+        cy.get(".ant-table-row")
+            .first()
             .find("button.ant-btn")
             .contains(exactMatchRegexp("Show"))
-            .as("showButton");
-
-        cy.get("@showButton").click();
+            .click();
     });
 
     it("render record data correctly upon navigation to show page from list with show button", () => {
         cy.wait("@getCategories");
 
-        cy.get(".ant-card-body").within(() => {
-            cy.get("@id").then((id) => {
-                cy.contains(exactMatchRegexp(id));
-            });
+        cy.wait("@getPost").then((postRes) => {
+            const { title, content, id } = postRes.response.body;
 
-            cy.get("@title").then((title) => {
+            cy.get(".ant-card-body").within(() => {
+                cy.contains(exactMatchRegexp(id));
                 cy.contains(exactMatchRegexp(title));
-            });
-            cy.get("@category").then((category) => {
-                cy.contains(exactMatchRegexp(category));
+                cy.contains(content);
+
+                cy.contains(exactMatchRegexp("Category"))
+                    .siblings("span.ant-typography")
+                    .should("not.be.empty");
             });
         });
     });
