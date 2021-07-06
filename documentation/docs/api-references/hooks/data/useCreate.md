@@ -59,7 +59,7 @@ mutate({
 [Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
 :::
 
-After mutation runs `categories` will be updated as below:
+After the mutation runs `categories` will be updated as below:
 
 ```ts title="https://api.fake-rest.refine.dev/categories"
 {
@@ -90,7 +90,7 @@ Queries that use `/categories` endpoint will be automatically invalidated to sho
 :::
 
 :::tip
-`useCreate` returns `react-query`'s `useMutation` result. Which includes [a lot properties](https://react-query.tanstack.com/reference/useMutation), one of which being mutate.
+`useCreate` returns `react-query`'s `useMutation` result. Which includes [a lot properties](https://react-query.tanstack.com/reference/useMutation), one of which being `mutate`.
 :::
 
 :::important
