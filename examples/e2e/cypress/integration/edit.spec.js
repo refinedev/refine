@@ -1,4 +1,4 @@
-import { getTitleOfFormItem } from "../integration/utils";
+import { getTitleOfFormItem, exactMatchRegexp } from "../integration/utils";
 describe("edit page", () => {
     beforeEach(() => {
         cy.visit("/resources/posts");
@@ -15,7 +15,7 @@ describe("edit page", () => {
 
         cy.get("@firstRow")
             .find("button.ant-btn")
-            .contains("Edit")
+            .contains(exactMatchRegexp("Edit"))
             .as("editButton");
 
         cy.get("@editButton").click();
@@ -47,28 +47,38 @@ describe("edit page", () => {
             "statusInput",
         );
         cy.get("textarea.mde-text").as("markdownArea");
-        cy.get("button.ant-btn-primary").contains("Save").as("saveButton");
+        cy.get("button.ant-btn-primary")
+            .contains(exactMatchRegexp("Save"))
+            .as("saveButton");
 
-        getTitleOfFormItem("@titleInput").contains("Title");
-        getTitleOfFormItem("@categoryInput").contains("Category");
-        getTitleOfFormItem("@statusInput").contains("Status");
-        getTitleOfFormItem("@markdownArea").contains("Content");
+        getTitleOfFormItem("@titleInput").contains(exactMatchRegexp("Title"));
+        getTitleOfFormItem("@categoryInput").contains(
+            exactMatchRegexp("Category"),
+        );
+        getTitleOfFormItem("@statusInput").contains(exactMatchRegexp("Status"));
+        getTitleOfFormItem("@markdownArea").contains(
+            exactMatchRegexp("Content"),
+        );
     });
     it("should render edited items on list correctly", () => {
         const titleText = "Test Title";
 
         cy.wait("@getCategory");
         cy.get("input#title.ant-input").clear().type(titleText);
-        cy.get("button.ant-btn-primary").contains("Save").click();
+        cy.get("button.ant-btn-primary")
+            .contains(exactMatchRegexp("Save"))
+            .click();
 
         cy.get(".ant-table-row").contains(titleText);
     });
 
     it("should render delete infobox and delete succesfully", () => {
-        cy.get("button.ant-btn-dangerous").contains("Delete").click();
+        cy.get("button.ant-btn-dangerous")
+            .contains(exactMatchRegexp("Delete"))
+            .click();
 
         cy.get(".ant-popover button.ant-btn-dangerous")
-            .contains("Delete")
+            .contains(exactMatchRegexp("Delete"))
             .click();
 
         cy.intercept("GET", "/posts*").as("getPosts");
