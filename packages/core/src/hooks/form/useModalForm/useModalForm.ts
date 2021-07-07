@@ -137,7 +137,6 @@ export const useModalForm = <
             ...modalProps,
             width: "1000px",
             okButtonProps: saveButtonPropsSF,
-            destroyOnClose: true,
             title: translate(
                 `${resource.name}.titles.${rest.action}`,
                 `${userFriendlyResourceName(
