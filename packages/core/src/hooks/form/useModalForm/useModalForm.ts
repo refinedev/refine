@@ -110,7 +110,6 @@ export const useModalForm = <
             if (!(mutationMode === "pessimistic")) {
                 close();
             }
-            form.resetFields();
         },
         loading: formLoading,
     };
