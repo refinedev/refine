@@ -107,7 +107,7 @@ Assume we have this endpoint with some relational data:
 
 ```json
 [
-      {
+ {
     "id": 2,
     "title": "Et architecto et aut ex.",
     "slug": "dolorum-et-quia",
