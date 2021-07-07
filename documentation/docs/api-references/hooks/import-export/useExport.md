@@ -85,7 +85,7 @@ export interface IPost {
 ```
 
 :::info
-In examples, instead of [`<Button>`][Button], [`<ExportButton>`][ExportButton] is used. [`<ExportButton>`][ExportButton] is nothing more than a default Ant Design [`<Button>`][Button] with an icon and a default text.  
+In examples, instead of [<Button\>][Button], [<ExportButton\>][ExportButton] is used. [<ExportButton\>][ExportButton] is nothing more than a default Ant Design [<Button\>][Button] with an icon and a default text.  
 
 [Refer to ExportButton docs for more detailed information. &#8594][ExportButton]
 :::
@@ -198,14 +198,14 @@ You can pass more options to further customize exporting process.
 | pageSize      | Requests to fetch data are made as batches by page size. By default, it is 20. Used for `getList` method of `DataProvider` | `number`                                                                         |
 | sorter        | Sort records                                                                                                               | [`CrudSorting`][CrudSorting] \| `undefined`                                      |  |
 | filter        | Filter records                                                                                                             | [`CrudFilters`][CrudFilters] \| `undefined`                                      |  |
-| exportOptions | Exporting options                                                                                                          | [`Options`][export-to-csv#api] \| `undefined`                                      |  |
+| exportOptions | Exporting options                                                                                                          | [`Options`][export-to-csv#api] \| `undefined`                                    |  |
 
 ### `useExport` Return Values
 
-| Key           | Description                                                                                                                | Type                                                                             |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| loading  | Default resource name this button imports to. Inferred from route by default                                               | `boolean`                                                                         | `false`
-| triggerExport       | When invoked, starts the exporting process                           | `async () => void` |
+| Key           | Description                                | Type               |
+| ------------- | ------------------------------------------ | ------------------ |
+| loading       | True when there is an export process       | `boolean`          |
+| triggerExport | When invoked, starts the exporting process | `async () => void` |
 
 [Button]: https://ant.design/components/button/
 [ExportButton]: api-references/components/buttons/export.md
