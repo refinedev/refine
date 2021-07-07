@@ -28,14 +28,7 @@ export const PostLightList: React.FC<IResourceComponentsProps> = (props) => {
         initialPageSize: 20,
     });
 
-    const {
-        modalProps,
-        formProps,
-        saveButtonProps,
-        show,
-        deleteButtonProps,
-        editId,
-    } = useModalForm({
+    const { modalProps, formProps, show } = useModalForm({
         action: "edit",
         mutationMode: "undoable",
     });
@@ -43,7 +36,6 @@ export const PostLightList: React.FC<IResourceComponentsProps> = (props) => {
     const {
         modalProps: createModalProps,
         formProps: createFormProps,
-        saveButtonProps: createSaveButtonProps,
         show: createModalShow,
     } = useModalForm({ action: "create" });
 
@@ -147,56 +139,43 @@ export const PostLightList: React.FC<IResourceComponentsProps> = (props) => {
                     />
                 </Table>
             </List>
-            <Modal {...modalProps} footer={null}>
-                <Edit
-                    {...props}
-                    recordItemId={editId}
-                    deleteButtonProps={deleteButtonProps}
-                    saveButtonProps={saveButtonProps}
+            <Modal {...modalProps}>
+                <Form
+                    {...formProps}
+                    wrapperCol={{ span: 14 }}
+                    layout="vertical"
                 >
-                    <Form
-                        {...formProps}
-                        wrapperCol={{ span: 14 }}
-                        layout="vertical"
+                    <Form.Item
+                        label={translate("common:resources.posts.fields.title")}
+                        name="title"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
                     >
-                        <Form.Item
-                            label={translate(
-                                "common:resources.posts.fields.title",
-                            )}
-                            name="title"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                    </Form>
-                </Edit>
+                        <Input />
+                    </Form.Item>
+                </Form>
             </Modal>
-            <Modal {...createModalProps} footer={null}>
-                <Create {...props} saveButtonProps={createSaveButtonProps}>
-                    <Form
-                        {...createFormProps}
-                        wrapperCol={{ span: 14 }}
-                        layout="vertical"
+            <Modal {...createModalProps}>
+                <Form
+                    {...createFormProps}
+                    wrapperCol={{ span: 14 }}
+                    layout="vertical"
+                >
+                    <Form.Item
+                        label={translate("common:resources.posts.fields.title")}
+                        name="title"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
                     >
-                        <Form.Item
-                            label={translate(
-                                "common:resources.posts.fields.title",
-                            )}
-                            name="title"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                    </Form>
-                </Create>
+                        <Input />
+                    </Form.Item>
+                </Form>
             </Modal>
         </>
     );

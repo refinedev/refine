@@ -23,21 +23,11 @@ import {
 
 export const LandingList: React.FC<IResourceComponentsProps> = (props) => {
     const translate = useTranslate();
-    const { isLoading } = useFileUploadState();
     const { tableProps } = useTable({
         initialPageSize: 20,
     });
 
-    const {
-        modalProps,
-        formProps,
-        saveButtonProps,
-        show,
-        close,
-        editId,
-        deleteButtonProps,
-        formLoading,
-    } = useModalForm({
+    const { modalProps, formProps, show } = useModalForm({
         action: "edit",
         mutationMode: "pessimistic",
         warnWhenUnsavedChanges: true,
@@ -100,50 +90,38 @@ export const LandingList: React.FC<IResourceComponentsProps> = (props) => {
                     />
                 </Table>
             </List>
-            <Modal {...modalProps} footer={null}>
-                <Edit
-                    {...props}
-                    recordItemId={editId}
-                    saveButtonProps={{
-                        ...saveButtonProps,
-                        disabled: isLoading || formLoading,
-                    }}
-                    deleteButtonProps={deleteButtonProps}
+            <Modal {...modalProps}>
+                <Form
+                    {...formProps}
+                    wrapperCol={{ span: 14 }}
+                    layout="vertical"
                 >
-                    <Form
-                        {...formProps}
-                        wrapperCol={{ span: 14 }}
-                        layout="vertical"
+                    <Form.Item
+                        label={translate("common:resources.posts.fields.title")}
+                        name="title"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
                     >
-                        <Form.Item
-                            label={translate(
-                                "common:resources.posts.fields.title",
-                            )}
-                            name="title"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                        <Form.Item
-                            label={translate(
-                                "common:resources.posts.fields.content",
-                            )}
-                            name="content"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                            initialValue=""
-                        >
-                            <ReactQuill theme="snow" />
-                        </Form.Item>
-                    </Form>
-                </Edit>
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label={translate(
+                            "common:resources.posts.fields.content",
+                        )}
+                        name="content"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                        initialValue=""
+                    >
+                        <ReactQuill theme="snow" />
+                    </Form.Item>
+                </Form>
             </Modal>
         </>
     );
