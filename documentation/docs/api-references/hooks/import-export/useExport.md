@@ -85,7 +85,8 @@ export interface IPost {
 ```
 
 :::info
-In examples, instead of [`<Button>`][Button], [`<ExportButton>`][ExportButton] is used. [`<ExportButton>`][ExportButton] is nothing more than a default Ant Design [`<Button>`][Button] with an icon and a default text.
+In examples, instead of [`<Button>`][Button], [`<ExportButton>`][ExportButton] is used. [`<ExportButton>`][ExportButton] is nothing more than a default Ant Design [`<Button>`][Button] with an icon and a default text.  
+
 [Refer to ExportButton docs for more detailed information. &#8594][ExportButton]
 :::
 
