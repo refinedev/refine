@@ -64,7 +64,7 @@ export const PostEdit: React.FC = (props) => {
     );
 
     return (
-        <Edit {...props} saveButtonProps={saveButtonProps}>
+        <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
