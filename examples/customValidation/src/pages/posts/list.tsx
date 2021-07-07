@@ -22,7 +22,7 @@ export const PostList: React.FC = (props) => {
     });
 
     return (
-        <List {...props}>
+        <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column dataIndex="title" title="Title" />
