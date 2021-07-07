@@ -13,6 +13,7 @@ import {
     ShowButton,
     Space,
     useForm,
+    useExport,
     Modal,
     useModalForm,
     ExportButton,
@@ -46,21 +47,23 @@ export const PostLightList: React.FC<IResourceComponentsProps> = (props) => {
         show: createModalShow,
     } = useModalForm({ action: "create" });
 
+    const { triggerExport, loading } = useExport({
+        sorter,
+        filters,
+        pageSize: 100,
+        maxItemCount: 300,
+        mapData: (item) => {
+            return {
+                id: item.id,
+                title: item.title,
+                slug: item.slug,
+            };
+        },
+    });
+
     const actions = (
         <Space direction="horizontal">
-            <ExportButton
-                sorter={sorter}
-                filters={filters}
-                pageSize={100}
-                maxItemCount={300}
-                mapData={(item) => {
-                    return {
-                        id: item.id,
-                        title: item.title,
-                        slug: item.slug,
-                    };
-                }}
-            />
+            <ExportButton loading={loading} onClick={triggerExport} />
             <CreateButton onClick={() => createModalShow()} />
         </Space>
     );
