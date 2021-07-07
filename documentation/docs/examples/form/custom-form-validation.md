@@ -49,7 +49,7 @@ interface PostUniqueCheckResponse {
 interface PostUniqueCheckRequestQuery {
     title: string;
 }
-export const PostCreate = (props: IResourceComponentsProps) => {
+export const PostCreate = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
     // highlight-start
     const apiUrl = useApiUrl();
