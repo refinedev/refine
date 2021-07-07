@@ -10,6 +10,7 @@ import {
     useMutationMode,
     useTranslate,
     useWarnAboutChange,
+    useResourceWithRoute,
 } from "../../../hooks";
 import {
     BaseRecord,
@@ -111,7 +112,10 @@ export const useModalForm = <
         loading: formLoading,
     };
 
-    const { resource } = useParams<ResourceRouterParams>();
+    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
+
+    const resourceWithRoute = useResourceWithRoute();
+    const resource = resourceWithRoute(rest.resource ?? routeResourceName);
 
     return {
         ...useFormProps,
@@ -135,9 +139,9 @@ export const useModalForm = <
             okButtonProps: saveButtonPropsSF,
             destroyOnClose: true,
             title: translate(
-                `${resource}.titles.${rest.action}`,
+                `${resource.name}.titles.${rest.action}`,
                 `${userFriendlyResourceName(
-                    `${rest.action} ${resource}`,
+                    `${rest.action} ${resource.name}`,
                     "singular",
                 )}`,
             ),
