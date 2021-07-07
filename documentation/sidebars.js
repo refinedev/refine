@@ -254,6 +254,7 @@ module.exports = {
                         "examples/form/useModalForm",
                         "examples/form/useDrawerForm",
                         "examples/form/useStepsForm",
+                        "examples/form/custom-form-validation",
                     ],
                 },
                 {
