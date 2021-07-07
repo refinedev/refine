@@ -47,7 +47,7 @@ export const Create: React.FC<CreateProps> = ({
     } = useParams<ResourceRouterParams>();
     const resourceWithRoute = useResourceWithRoute();
 
-    const resource = resourceWithRoute(routeResourceName ?? resourceFromProps);
+    const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
     const tags = [];
     if (idFromRoute) {
