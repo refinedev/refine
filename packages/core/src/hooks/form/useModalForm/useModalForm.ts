@@ -138,6 +138,7 @@ export const useModalForm = <
             bodyStyle: {
                 paddingTop: "55px",
             },
+            footer: null,
             onCancel: () => {
                 if (warnWhen) {
                     const warnWhenConfirm = window.confirm(
