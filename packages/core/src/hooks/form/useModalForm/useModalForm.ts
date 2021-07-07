@@ -29,7 +29,10 @@ export type useModalFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = useForm<TData, TError, TVariables> &
+> = Omit<
+    useForm<TData, TError, TVariables>,
+    "saveButtonProps" | "deleteButtonProps"
+> &
     useModalFormFromSFReturnType<TData, TVariables>;
 
 export type useModalFormProps<
