@@ -793,7 +793,7 @@ export const App: React.FC = () => {
 
 <br />
 
-We are going to need an *edit* button on each row to diplay the `<PostEdit>` component. **refine** doesn't automatically adds one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
+We are going to need an *edit* button on each row to display the `<PostEdit>` component. **refine** doesn't automatically adds one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
 
 ```tsx title="components/pages/posts.tsx"
 import {
@@ -963,6 +963,74 @@ We should notice some minor differences from the edit example:
 <br/>
 
 ## Deleting a record
+
+Deleting a record can be done in two ways.
+
+First way is adding an delete button on each row since *refine* doesn't automatically adds one, so we have to update our `<PostList>` component to add a `<DeleteButton>` for each record:
+
+
+
+```tsx title="components/pages/posts.tsx"
+import {
+    ...
+    //highlight-next-line
+    DeleteButton
+} from "@pankod/refine";
+
+export const PostList: React.FC = () => {
+...
+    <Table.Column<IPost>
+        title="Actions"
+        dataIndex="actions"
+        render={(_text, record): React.ReactNode => {
+            return (
+                <Space>
+                    ...
+                    //highlight-start
+                    <DeleteButton
+                        size="small"
+                        recordItemId={record.id}
+                    />
+                    //highlight-end
+                </Space>
+            );
+        }}
+    />
+...
+}
+```
+
+[Refer to `<DeleteButton>` documentation for detailed usage information. &#8594](api-references/components/buttons/delete.md)
+
+
+You can try yourself that the delete buttons will delete each record when click and confirmed.
+
+The second way is showing delete button in `<PostEdit>` component. To show delete button in edit page, `canDelete` prop need to be passed to `<Resource>` component
+
+
+```tsx title="src/App.tsx"
+import { Refine, Resource } from "@pankod/refine";
+import dataProvider from "@pankod/refine-simple-rest";
+import { PostList, PostShow, PostEdit, PostCreate } from "./pages";
+
+export const App: React.FC = () => {
+    return (
+        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
+            <Resource
+                name="posts"
+                list={PostList}
+                show={PostShow}
+                edit={PostEdit}
+                create={PostCreate}
+                //highlight-next-line
+                canDelete
+            />
+        </Refine>
+    );
+};
+```
+
+After adding `canDelete` prop, `<DeleteButton>` will appear in edit form.
 
 
 ## Live Codesandbox Example
