@@ -28,7 +28,6 @@ export const PostList: React.FC = (props) => {
                 <Table.Column dataIndex="title" title="Title" />
                 <Table.Column
                     dataIndex={["category", "id"]}
-                    
                     title="Category"
                     render={(value) => {
                         if (isLoading) {
