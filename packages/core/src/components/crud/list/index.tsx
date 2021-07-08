@@ -30,7 +30,7 @@ export const List: React.FC<ListProps> = ({
     const translate = useTranslate();
     const resourceWithRoute = useResourceWithRoute();
 
-    const resource = resourceWithRoute(routeResourceName ?? resourceFromProps);
+    const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
     const isCreateButtonVisible =
         canCreate ?? (resource.canCreate || createButtonProps);

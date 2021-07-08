@@ -13,6 +13,7 @@ import {
     ShowButton,
     Space,
     useForm,
+    useExport,
     Modal,
     useModalForm,
     ExportButton,
@@ -27,14 +28,7 @@ export const PostLightList: React.FC<IResourceComponentsProps> = (props) => {
         initialPageSize: 20,
     });
 
-    const {
-        modalProps,
-        formProps,
-        saveButtonProps,
-        show,
-        deleteButtonProps,
-        editId,
-    } = useModalForm({
+    const { modalProps, formProps, show } = useModalForm({
         action: "edit",
         mutationMode: "undoable",
     });
@@ -42,25 +36,26 @@ export const PostLightList: React.FC<IResourceComponentsProps> = (props) => {
     const {
         modalProps: createModalProps,
         formProps: createFormProps,
-        saveButtonProps: createSaveButtonProps,
         show: createModalShow,
     } = useModalForm({ action: "create" });
 
+    const { triggerExport, loading } = useExport({
+        sorter,
+        filters,
+        pageSize: 100,
+        maxItemCount: 300,
+        mapData: (item) => {
+            return {
+                id: item.id,
+                title: item.title,
+                slug: item.slug,
+            };
+        },
+    });
+
     const actions = (
         <Space direction="horizontal">
-            <ExportButton
-                sorter={sorter}
-                filters={filters}
-                pageSize={100}
-                maxItemCount={300}
-                mapData={(item) => {
-                    return {
-                        id: item.id,
-                        title: item.title,
-                        slug: item.slug,
-                    };
-                }}
-            />
+            <ExportButton loading={loading} onClick={triggerExport} />
             <CreateButton onClick={() => createModalShow()} />
         </Space>
     );
@@ -144,56 +139,43 @@ export const PostLightList: React.FC<IResourceComponentsProps> = (props) => {
                     />
                 </Table>
             </List>
-            <Modal {...modalProps} footer={null}>
-                <Edit
-                    {...props}
-                    recordItemId={editId}
-                    deleteButtonProps={deleteButtonProps}
-                    saveButtonProps={saveButtonProps}
+            <Modal {...modalProps}>
+                <Form
+                    {...formProps}
+                    wrapperCol={{ span: 14 }}
+                    layout="vertical"
                 >
-                    <Form
-                        {...formProps}
-                        wrapperCol={{ span: 14 }}
-                        layout="vertical"
+                    <Form.Item
+                        label={translate("common:resources.posts.fields.title")}
+                        name="title"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
                     >
-                        <Form.Item
-                            label={translate(
-                                "common:resources.posts.fields.title",
-                            )}
-                            name="title"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                    </Form>
-                </Edit>
+                        <Input />
+                    </Form.Item>
+                </Form>
             </Modal>
-            <Modal {...createModalProps} footer={null}>
-                <Create {...props} saveButtonProps={createSaveButtonProps}>
-                    <Form
-                        {...createFormProps}
-                        wrapperCol={{ span: 14 }}
-                        layout="vertical"
+            <Modal {...createModalProps}>
+                <Form
+                    {...createFormProps}
+                    wrapperCol={{ span: 14 }}
+                    layout="vertical"
+                >
+                    <Form.Item
+                        label={translate("common:resources.posts.fields.title")}
+                        name="title"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
                     >
-                        <Form.Item
-                            label={translate(
-                                "common:resources.posts.fields.title",
-                            )}
-                            name="title"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                    </Form>
-                </Create>
+                        <Input />
+                    </Form.Item>
+                </Form>
             </Modal>
         </>
     );

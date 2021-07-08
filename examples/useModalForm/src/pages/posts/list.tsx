@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import {
     List,
-    Create,
-    Edit,
-    Show,
     Table,
     Form,
     Select,
@@ -30,7 +27,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     const {
         modalProps: createModalProps,
         formProps: createFormProps,
-        saveButtonProps: createSaveButtonProps,
         show: createModalShow,
     } = useModalForm<IPost>({
         action: "create",
@@ -40,11 +36,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     const {
         modalProps: editModalProps,
         formProps: editFormProps,
-        saveButtonProps: editSaveButtonProps,
         show: editModalShow,
-        editId,
-        deleteButtonProps,
-        formLoading,
     } = useModalForm<IPost>({
         action: "edit",
         warnWhenUnsavedChanges: true,
@@ -53,9 +45,9 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     // Show Modal
     const [visibleShowModal, setVisibleShowModal] = useState<boolean>(false);
 
-    const { queryResult, showId, setShowId } = useShow<IPost>();
+    const { queryResult, setShowId } = useShow<IPost>();
 
-    const { data: showQueryResult, isLoading: showIsLoading } = queryResult;
+    const { data: showQueryResult } = queryResult;
     const record = showQueryResult?.data;
 
     return (
@@ -94,128 +86,101 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     />
                 </Table>
             </List>
-            <Modal {...createModalProps} footer={null} width={1000}>
-                <Create
-                    saveButtonProps={createSaveButtonProps}
-                    pageHeaderProps={{
-                        backIcon: false,
-                    }}
-                >
-                    <Form {...createFormProps} layout="vertical">
-                        <Form.Item
-                            label="Title"
-                            name="title"
-                            rules={[
+            <Modal {...createModalProps}>
+                <Form {...createFormProps} layout="vertical">
+                    <Form.Item
+                        label="Title"
+                        name="title"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label="Status"
+                        name="status"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Select
+                            options={[
                                 {
-                                    required: true,
+                                    label: "Published",
+                                    value: "published",
+                                },
+                                {
+                                    label: "Draft",
+                                    value: "draft",
+                                },
+                                {
+                                    label: "Rejected",
+                                    value: "rejected",
                                 },
                             ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                        <Form.Item
-                            label="Status"
-                            name="status"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Select
-                                options={[
-                                    {
-                                        label: "Published",
-                                        value: "published",
-                                    },
-                                    {
-                                        label: "Draft",
-                                        value: "draft",
-                                    },
-                                    {
-                                        label: "Rejected",
-                                        value: "rejected",
-                                    },
-                                ]}
-                            />
-                        </Form.Item>
-                    </Form>
-                </Create>
+                        />
+                    </Form.Item>
+                </Form>
             </Modal>
-            <Modal {...editModalProps} footer={null} width={1000}>
-                <Edit
-                    recordItemId={editId}
-                    saveButtonProps={{
-                        ...editSaveButtonProps,
-                        disabled: formLoading,
-                    }}
-                    deleteButtonProps={deleteButtonProps}
-                    pageHeaderProps={{
-                        backIcon: false,
-                    }}
-                >
-                    <Form {...editFormProps} layout="vertical">
-                        <Form.Item
-                            label="Title"
-                            name="title"
-                            rules={[
+            <Modal {...editModalProps}>
+                <Form {...editFormProps} layout="vertical">
+                    <Form.Item
+                        label="Title"
+                        name="title"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label="Status"
+                        name="status"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Select
+                            options={[
                                 {
-                                    required: true,
+                                    label: "Published",
+                                    value: "published",
+                                },
+                                {
+                                    label: "Draft",
+                                    value: "draft",
+                                },
+                                {
+                                    label: "Rejected",
+                                    value: "rejected",
                                 },
                             ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                        <Form.Item
-                            label="Status"
-                            name="status"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Select
-                                options={[
-                                    {
-                                        label: "Published",
-                                        value: "published",
-                                    },
-                                    {
-                                        label: "Draft",
-                                        value: "draft",
-                                    },
-                                    {
-                                        label: "Rejected",
-                                        value: "rejected",
-                                    },
-                                ]}
-                            />
-                        </Form.Item>
-                    </Form>
-                </Edit>
+                        />
+                    </Form.Item>
+                </Form>
             </Modal>
             <Modal
                 visible={visibleShowModal}
                 onCancel={() => setVisibleShowModal(false)}
-                width={1000}
+                title="Show post"
             >
-                <Show
-                    isLoading={showIsLoading}
-                    recordItemId={showId}
-                    pageHeaderProps={{
-                        backIcon: false,
-                    }}
-                >
-                    <Title level={5}>Id</Title>
-                    <Text>{record?.id}</Text>
+                <Title level={5}>Id</Title>
+                <Text>{record?.id}</Text>
 
-                    <Title level={5}>Status</Title>
-                    <Text>{record?.status}</Text>
+                <Title level={5}>Status</Title>
+                <Text>{record?.status}</Text>
 
-                    <Title level={5}>Title</Title>
-                    <Text>{record?.title}</Text>
-                </Show>
+                <Title level={5}>Title</Title>
+                <Text>{record?.title}</Text>
             </Modal>
         </>
     );
