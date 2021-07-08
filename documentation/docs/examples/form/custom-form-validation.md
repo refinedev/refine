@@ -35,7 +35,7 @@ In addition to pre-defined rules, we can also prepare **custom rules** with the 
 
 Now let's prepare a rule that checks that the title of posts is unique. We have an endpoint like the below. We will do the uniqueness check here.
 
-```json title="https://refine-fake-rest.pankod.com/posts-unique-check?title=Example"
+```json title="https://api.fake-rest.refine.dev/posts-unique-check?title=Example"
 {
     "isAvailable": true
 }
