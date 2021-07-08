@@ -171,6 +171,7 @@ export const useTable = <
                 size: "small",
                 position: ["bottomCenter"],
             },
+            scroll: { x: 1 },
         },
         tableQueryResult: queryResult,
         sorter,
