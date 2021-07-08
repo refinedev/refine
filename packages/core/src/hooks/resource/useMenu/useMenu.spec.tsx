@@ -83,4 +83,62 @@ describe("useMenu Hook", () => {
             ]),
         );
     });
+
+    it("should show label correctly", async () => {
+        const i18nProvider = {
+            translate: (key: string) => {
+                const translations: Record<string, string> = {
+                    "posts.posts": "Dummy Label",
+                    "users.users": "Dummy Label",
+                };
+
+                return translations[key];
+            },
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            changeLocale: async () => {},
+            getLocale: () => "en",
+        };
+
+        const { result } = renderHook(() => useMenu(), {
+            wrapper: TestWrapper({
+                dataProvider: MockJSONServer,
+                i18nProvider,
+                refineProvider: {
+                    mutationMode: "pessimistic",
+                    warnWhenUnsavedChanges: false,
+                    syncWithLocation: false,
+                    undoableTimeout: 20000,
+                    hasDashboard: false,
+                },
+                resources: [
+                    { name: "posts" },
+                    { name: "categories", label: "categories label text" },
+                    { name: "users", label: "users label text" },
+                ],
+            }),
+        });
+
+        expect(result.current.menuItems).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    name: "posts",
+                    route: "/resources/undefined",
+                    key: "/resources/undefined",
+                    label: "Dummy Label",
+                }),
+                expect.objectContaining({
+                    name: "categories",
+                    route: "/resources/undefined",
+                    key: "/resources/undefined",
+                    label: "categories label text",
+                }),
+                expect.objectContaining({
+                    name: "users",
+                    route: "/resources/undefined",
+                    key: "/resources/undefined",
+                    label: "users label text",
+                }),
+            ]),
+        );
+    });
 });
