@@ -93,7 +93,11 @@ export const UserCreate: React.FC<IResourceComponentsProps> = () => {
                             },
                         ]}
                     >
-                        <Upload.Dragger listType="picture" multiple>
+                        <Upload.Dragger
+                            listType="picture"
+                            multiple
+                            beforeUpload={() => false}
+                        >
                             <p className="ant-upload-text">Title</p>
                             <p className="ant-upload-hint">Upload</p>
                         </Upload.Dragger>
