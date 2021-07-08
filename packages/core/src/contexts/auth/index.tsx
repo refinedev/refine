@@ -27,7 +27,7 @@ export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
     const queryClient = useQueryClient();
 
     useEffect(() => {
-        queryClient.invalidateQueries("useAuthenticated");
+        queryClient.invalidateQueries(["useAuthenticated"]);
     }, [isAuthenticated]);
 
     const loginFunc = async (params: any) => {

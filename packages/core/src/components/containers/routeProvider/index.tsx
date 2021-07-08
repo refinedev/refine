@@ -29,7 +29,9 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     LoginPage,
     customRoutes = [],
 }) => {
-    const { isSuccess, isLoading } = useAuthenticated();
+    const { isSuccess, isLoading } = useAuthenticated({
+        from: "routeProvider",
+    });
 
     const routes: IRoutesProps[] = [];
     const RouteHandler = (val: IResourceItem): void => {
