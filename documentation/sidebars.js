@@ -216,6 +216,11 @@ module.exports = {
                         "guides-and-concepts/import-export/csv-export",
                     ],
                 },
+                {
+                    type: "category",
+                    label: "Form",
+                    items: ["guides-and-concepts/forms/custom-form-validation"],
+                },
                 "guides-and-concepts/mutation-mode",
                 "guides-and-concepts/custom-pages",
                 "guides-and-concepts/theme",
@@ -254,6 +259,7 @@ module.exports = {
                         "examples/form/useModalForm",
                         "examples/form/useDrawerForm",
                         "examples/form/useStepsForm",
+                        "examples/form/custom-form-validation",
                     ],
                 },
                 {
