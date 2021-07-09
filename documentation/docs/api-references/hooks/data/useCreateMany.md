@@ -11,12 +11,12 @@ description: useCreateMany data hook from refine is a modified version of react-
 
 * Shows notifications after the mutation succeeds or fails.
 
-* Automatically invalidates `list` queries after the mutation is succesfully run.
+* Automatically invalidates the `list` queries after the mutation is succesfully run.
 [Refer to React Query docs for detailed information &#8594](https://react-query.tanstack.com/guides/invalidations-from-mutations)
 
 ## Usage
 
-Let'say we have a resource named `categories`. 
+Let's say that we have a resource named `categories`. 
 
 ```ts title="https://api.fake-rest.refine.dev/categories"
 {
@@ -92,7 +92,7 @@ Queries that use `/categories` endpoint will be automatically invalidated to sho
 :::
 
 :::tip
-`useCreateMany` returns `react-query`'s `useMutation` result. Which includes [a lot of properties](https://react-query.tanstack.com/reference/useMutation), one of which being `mutate`.
+`useCreateMany` returns `react-query`'s `useMutation` result which includes [a lot of properties](https://react-query.tanstack.com/reference/useMutation), one of which being `mutate`.
 :::
 
 :::important
