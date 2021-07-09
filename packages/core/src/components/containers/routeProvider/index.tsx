@@ -1,15 +1,15 @@
 /* eslint-disable react/display-name */
 import React, { useContext } from "react";
 import { Switch, Route, RouteProps, Redirect } from "react-router-dom";
+import { useQuery } from "react-query";
+
 import {
     LoginPage as DefaultLoginPage,
     ErrorComponent,
     LayoutWrapper,
 } from "@components";
 import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "../../../interfaces";
-import { IResourceItem } from "@contexts/resource";
-import { useAuthenticated } from "@hooks/auth";
+import { IAuthContext, IResourceItem } from "../../../interfaces";
 
 export interface RouteProviderProps {
     resources: IResourceItem[];
@@ -29,7 +29,23 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     LoginPage,
     customRoutes = [],
 }) => {
-    const { isSuccess, isLoading } = useAuthenticated();
+    const { checkAuth } = useContext<IAuthContext>(AuthContext);
+
+    const { isSuccess, isLoading } = useQuery(
+        ["useAuthenticated", { type: "routeProvider" }],
+        checkAuth,
+        {
+            retry: false,
+        },
+    );
+
+    if (isLoading) {
+        return (
+            <Switch>
+                <Route />
+            </Switch>
+        );
+    }
 
     const routes: IRoutesProps[] = [];
     const RouteHandler = (val: IResourceItem): void => {

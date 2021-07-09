@@ -19,25 +19,8 @@ const mockAuthProvider = {
 };
 
 describe("RouteProvider", () => {
-    const login = (getByLabelText: any, getByText: any) => {
-        fireEvent.change(getByLabelText("Username"), {
-            target: {
-                value: "testtest",
-            },
-        });
-
-        fireEvent.change(getByLabelText("Password"), {
-            target: {
-                value: "testtest",
-            },
-        });
-
-        const loginBtn = getByText("Login");
-        fireEvent.click(loginBtn);
-    };
-
     it("should render resource link successfully", async () => {
-        const { findByText, getByText, getByLabelText } = render(
+        const { findByText } = render(
             <RouteProvider
                 resources={[
                     {
@@ -58,8 +41,6 @@ describe("RouteProvider", () => {
                 }),
             },
         );
-
-        login(getByLabelText, getByText);
 
         await act(async () => {
             await findByText("Posts");
@@ -94,8 +75,6 @@ describe("RouteProvider", () => {
             },
         );
 
-        login(getByLabelText, getByText);
-
         await act(async () => {
             await findByText("Posts");
         });
@@ -111,7 +90,7 @@ describe("RouteProvider", () => {
         const Edit: React.FC = () => <span>Edit</span>;
         const Show: React.FC = () => <span>Show</span>;
 
-        const { findByText, getByLabelText, getByText } = render(
+        const { findByText } = render(
             <RouteProvider
                 resources={[
                     {
@@ -136,8 +115,6 @@ describe("RouteProvider", () => {
                 }),
             },
         );
-
-        login(getByLabelText, getByText);
 
         await wait(async () => {
             await findByText("List");

@@ -1,5 +1,6 @@
 import React from "react";
 import { wait } from "@testing-library/react";
+import ReactRouterDom from "react-router-dom";
 
 import { MockJSONServer, render, TestWrapper } from "@test";
 import { Authenticated } from "./";
@@ -12,6 +13,17 @@ const mockAuthProvider = {
     getPermissions: () => Promise.resolve(["admin"]),
     getUserIdentity: () => Promise.resolve(),
 };
+
+const mHistory = {
+    push: jest.fn(),
+    replace: jest.fn(),
+    goBack: jest.fn(),
+};
+
+jest.mock("react-router-dom", () => ({
+    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
+    useHistory: jest.fn(() => mHistory),
+}));
 
 describe("Authenticated", () => {
     it("should render children successfully", async () => {
@@ -47,6 +59,7 @@ describe("Authenticated", () => {
 
         await wait(() => {
             expect(queryByText("Custom Authenticated")).toBeNull();
+            expect(mHistory.replace).toBeCalledTimes(1);
         });
     });
 
