@@ -5,11 +5,11 @@ siderbar_label: useMany
 description: useMany data hook from refine is a modified version of react-query's useQuery for retrieving multiple items from a resource
 ---
 
-`useMany` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries) for retrieving multiple items from a `resource`. It uses `getMany` method as query function from the `dataProvider` that is passed to `<Refine>`.  
+`useMany` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries) used for retrieving multiple items from a `resource`. It uses `getMany` method as query function from the `dataProvider` which is passed to `<Refine>`.  
 
 ## Usage
 
-Let'say we have a `categories` resource
+Let's say that we have a resource named `categories`.
 
 ```ts title="https://api.fake-rest.refine.dev/categories"
 {
@@ -53,7 +53,7 @@ const categoryQueryResult = useMany<ICategory>("categories", [ "1", "2" ]), { en
 
 <br />
 
-After query runs `categoryQueryResult` will include the retrieved data:
+After query runs, the `categoryQueryResult` will include the retrieved data:
 
 
 ```json title="categoryQueryResult.data"
@@ -74,7 +74,7 @@ After query runs `categoryQueryResult` will include the retrieved data:
 
 
 :::tip
-`useMany` returns the result of `react-query`'s `useQuery`. It includes properties like `isLoading` and `isFetching` with many others.  
+`useMany` returns the result of `react-query`'s `useQuery` which includes properties such as `isLoading` and `isFetching`.  
 [Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/reference/useQuery)
 :::
 
