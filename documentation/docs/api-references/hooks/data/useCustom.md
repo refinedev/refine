@@ -4,20 +4,21 @@ title: useCustom
 siderbar_label: useCustom
 ---
 
-`useCustom` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/reference/useQuery) for custom requests. It uses the `custom` method from the `dataProvider` that is passed to `<Refine>`.
+`useCustom` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/reference/useQuery) used for custom requests. It uses the `custom` method from the `dataProvider` which is passed to `<Refine>`.
 
 :::danger attention
-`useCustom` should **not** be used when creating, updating, or deleting a resource, as it will be with a [query invalidation](https://react-query.tanstack.com/guides/query-invalidation) problem. For these, the [useCreate](useCreate.md), useUpdate and [useDelete](useDelete.md) hooks should be used.
+`useCustom`, unlike other data hooks, does not update the application state. Because of this reason, if you use the `useCustom` while creating, updating or deleting a resource you will need to manually update the application state. 
+For these, [useCreate](useCreate.md), useUpdate(useUpdate.md) and [useDelete](useDelete.md) hooks should be used instead.
 :::
 
 ### Features
 
--   You can send a request to any link, using all methods (`get, delete, head, options, post, put, patch`).
+-   You can send a request to any link, using any of the methods (`get, delete, head, options, post, put, patch`).
 -   You can send comprehensive requests to resources with `Sort` and `Filter` parameters.
 
 ### Usage
 
-Let's make a use case. We need to verify that the header in the post resource is unique. For this, we have an end-point similar to the one below.
+Let's make a use case. Lets say that we need to verify that the header in the post resource is unique. For this, we have an end-point similar to the one below.
 
 ```json title="https://api.fake-rest.refine.dev/posts/unique-check?title=Foo bar"
 {
