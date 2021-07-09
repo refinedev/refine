@@ -12,9 +12,7 @@ export const Authenticated: React.FC<AuthenticatedProps> = ({
     fallback,
     loading,
 }) => {
-    const { isSuccess, isLoading, isError } = useAuthenticated({
-        from: "authenticated",
-    });
+    const { isSuccess, isLoading, isError } = useAuthenticated();
 
     if (isLoading) {
         return <>{loading}</> || null;
