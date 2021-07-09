@@ -1,4 +1,10 @@
-import { Refine, Resource, AuthProvider, Authenticated } from "@pankod/refine";
+import {
+    Refine,
+    Resource,
+    AuthProvider,
+    Authenticated,
+    LoginPage,
+} from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -31,7 +37,9 @@ const App: React.FC = () => {
         },
         checkError: () => Promise.resolve(),
         checkAuth: () =>
-            localStorage.getItem("auth") ? Promise.resolve() : Promise.reject(),
+            localStorage.getItem("username")
+                ? Promise.resolve()
+                : Promise.reject(),
         getPermissions: () => Promise.resolve(["admin"]),
     };
 
