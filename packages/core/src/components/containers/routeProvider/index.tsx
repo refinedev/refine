@@ -29,9 +29,10 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     LoginPage,
     customRoutes = [],
 }) => {
-    const { checkAuth } = useContext<IAuthContext>(AuthContext);
+    const { checkAuth, isAuthenticated } =
+        useContext<IAuthContext>(AuthContext);
 
-    const { isSuccess, isLoading } = useQuery(
+    const { isLoading } = useQuery(
         ["useAuthenticated", { type: "routeProvider" }],
         checkAuth,
         {
@@ -190,7 +191,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         </Switch>
     );
 
-    return isSuccess ? renderAuthorized() : renderUnauthorized();
+    return isAuthenticated ? renderAuthorized() : renderUnauthorized();
 };
 
 export const RouteProvider = React.memo(RouteProviderBase);
