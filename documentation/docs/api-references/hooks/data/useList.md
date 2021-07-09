@@ -37,7 +37,7 @@ Let's say that we have a resource named `posts`
 
 <br />
 
-`useList` passes query config to the `getList` method from the `dataProvider`. We'll be using the `dataProvider` from [`@pankod/refine-simple-rest`](#)
+`useList` passes the query configuration to `getList` method from the `dataProvider`. We will be using the `dataProvider` from [`@pankod/refine-simple-rest`](#)
 
 First of all, we will use `useList` without passing any query configurations.
 
@@ -96,7 +96,7 @@ Although we didn't pass any sort order configurations to `useList`, data comes i
 :::
 :::caution
 
-If needed, `getList` method from the `dataProvider` has to implement default query configurations since `useList` can't work with no config paramaters.
+If needed, `getList` method from the `dataProvider` has to implement default query configurations since `useList` can't work with no configuration   paramaters.
 
 :::
 
@@ -225,7 +225,7 @@ const postListQueryResult = useList<IPost>("posts", {}, { enabled: false });
 <br />
 
 :::tip
-`useList` returns the result of `react-query`'s `useQuery`. Which includes many properties, two of which being `isLoading` and `isFetching`.
+`useList` returns the result of `react-query`'s `useQuery` which includes many properties such as `isLoading` and `isFetching`.
 [Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/reference/useQuery)
 :::
 
