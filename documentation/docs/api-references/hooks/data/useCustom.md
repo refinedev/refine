@@ -8,7 +8,7 @@ siderbar_label: useCustom
 
 :::danger attention
 `useCustom`, unlike other data hooks, does not update the application state. Because of this reason, if you use the `useCustom` while creating, updating or deleting a resource you will need to manually update the application state. 
-For these, [useCreate](useCreate.md), useUpdate(useUpdate.md) and [useDelete](useDelete.md) hooks should be used instead.
+For these, [useCreate](useCreate.md), [useUpdate](useUpdate.md) and [useDelete](useDelete.md) hooks should be used instead.
 :::
 
 ### Features
