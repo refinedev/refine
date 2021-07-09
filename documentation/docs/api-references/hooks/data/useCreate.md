@@ -11,7 +11,7 @@ description: useCreate data hook from refine is a modified version of react-quer
 
 * Shows notifications after the mutation succeeds or fails.
 
-* Automatically invalidates `list` queries after mutation is succesfully run.
+* Automatically invalidates the `list` queries after mutation is succesfully run.
 [Refer to React Query docs for detailed information &#8594](https://react-query.tanstack.com/guides/invalidations-from-mutations)
 
 ## Usage
