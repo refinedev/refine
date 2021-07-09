@@ -74,7 +74,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                         );
                     }}
                     filterDropdown={(props) => (
-                        <FilterDropdown test {...props}>
+                        <FilterDropdown {...props}>
                             <Select
                                 style={{ minWidth: 200 }}
                                 mode="multiple"
@@ -83,22 +83,18 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                             />
                         </FilterDropdown>
                     )}
-                    /*  filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Title level={5}>Rol Seçin</Title>
-                            <Checkbox.Group
-                                style={{ width: 200 }}
-                                {...checkboxGroupProps}
-                            />
-                        </FilterDropdown>
-                    )} */
                 />
                 <Table.Column
                     dataIndex="status"
                     title="Status"
                     render={(value: string) => <TagField value={value} />}
                     filterDropdown={(props: any) => (
-                        <FilterDropdown {...props}>
+                        <FilterDropdown
+                            {...props}
+                            mapValue={(selectedKeys) => {
+                                return selectedKeys[0];
+                            }}
+                        >
                             <Radio.Group>
                                 <Radio value="published">Published</Radio>
                                 <Radio value="draft">Draft</Radio>
