@@ -7,11 +7,13 @@ import { IRefineContext } from "@contexts/refine/IRefineContext";
 
 export interface LayoutWrapperProps {
     dashboard?: boolean;
+    hideSider?: boolean;
 }
 
 export const LayoutWrapper: FC<LayoutWrapperProps> = ({
     children,
     dashboard,
+    hideSider,
 }) => {
     const { Layout, Footer, Header, Sider, Title, OffLayoutArea } =
         useContext<IRefineContext>(RefineContext);
@@ -42,9 +44,10 @@ export const LayoutWrapper: FC<LayoutWrapperProps> = ({
         return window.removeEventListener("beforeunload", warnWhenListener);
     }, [warnWhen]);
 
+    console.log("hideSider", hideSider);
     return (
         <Layout
-            Sider={Sider}
+            Sider={hideSider ? () => null : Sider}
             Header={Header}
             Footer={Footer}
             Title={Title}

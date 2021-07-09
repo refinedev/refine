@@ -135,8 +135,11 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     const RouteWithSubRoutes = (route: any) => <Route {...route} />;
 
     const renderAuthorized = () => (
-        <LayoutWrapper>
-            <Switch>
+        <Switch>
+            {[...customRoutes].map((route, i) => (
+                <RouteWithSubRoutes key={i} {...route} />
+            ))}
+            <LayoutWrapper>
                 <Route
                     path="/"
                     exact
@@ -148,15 +151,15 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
                         )
                     }
                 />
-                {[...routes, ...customRoutes].map((route, i) => (
+                {[...routes].map((route, i) => (
                     <RouteWithSubRoutes key={i} {...route} />
                 ))}
                 <Route path="/resources/:resource?/:action?">
                     {catchAll ?? <ErrorComponent />}
                 </Route>
                 <Route>{catchAll ?? <ErrorComponent />}</Route>
-            </Switch>
-        </LayoutWrapper>
+            </LayoutWrapper>
+        </Switch>
     );
 
     const renderUnauthorized = () => (

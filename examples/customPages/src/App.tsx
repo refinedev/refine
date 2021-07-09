@@ -3,7 +3,7 @@ import {
     Resource,
     AuthProvider,
     Authenticated,
-    LoginPage,
+    LayoutWrapper,
 } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
@@ -16,7 +16,9 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const AuthenticatedPostReview = () => {
     return (
         <Authenticated>
-            <PostReview />
+            <LayoutWrapper hideSider>
+                <PostReview />
+            </LayoutWrapper>
         </Authenticated>
     );
 };
