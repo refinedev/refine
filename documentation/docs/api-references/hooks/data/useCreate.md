@@ -86,11 +86,11 @@ After the mutation runs `categories` will be updated as below:
 }
 ```
 :::note
-Queries that use `/categories` endpoint will be automatically invalidated to show the updated data. For example, data returned from [`useList`](useList.md) will be automatically updated.
+Queries that use `/categories` endpoint will be automatically invalidated to show the updated data. For example, data returned from [useList](useList.md) will be automatically updated.
 :::
 
 :::tip
-`useCreate` returns `react-query`'s `useMutation` result. Which includes [a lot properties](https://react-query.tanstack.com/reference/useMutation), one of which being `mutate`.
+`useCreate` returns `react-query`'s `useMutation` result w  hich includes [a lot properties](https://react-query.tanstack.com/reference/useMutation), one of which being `mutate`.
 :::
 
 :::important
