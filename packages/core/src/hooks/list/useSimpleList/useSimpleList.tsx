@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { QueryObserverResult } from "react-query";
 import { ListProps } from "antd/lib/list";
 
 import { useResourceWithRoute, useList } from "@hooks";
@@ -9,6 +10,7 @@ import {
     BaseRecord,
     CrudFilters,
     CrudSorting,
+    GetListResponse,
 } from "../../../interfaces";
 
 export type useSimpleListProps<TData> = ListProps<TData> & {
@@ -21,6 +23,7 @@ export type useSimpleListReturnType<TData extends BaseRecord = BaseRecord> = {
     listProps: ListProps<TData>;
     sorter?: CrudSorting;
     filters?: CrudFilters;
+    queryResult: QueryObserverResult<GetListResponse<TData>>;
 };
 
 export const useSimpleList = <TData extends BaseRecord = BaseRecord>({
@@ -47,7 +50,7 @@ export const useSimpleList = <TData extends BaseRecord = BaseRecord>({
     const [current, setCurrent] = useState(defaultCurrent);
     const [pageSize, setPageSize] = useState(defaultPageSize);
 
-    const { data, isFetching } = useList<TData>(resource.name, {
+    const queryResult = useList<TData>(resource.name, {
         pagination: {
             current,
             pageSize,
@@ -55,6 +58,7 @@ export const useSimpleList = <TData extends BaseRecord = BaseRecord>({
         filters,
         sort: sorter,
     });
+    const { data, isFetching } = queryResult;
 
     const onChange = (page: number, pageSize?: number): void => {
         setCurrent(page);
@@ -74,5 +78,6 @@ export const useSimpleList = <TData extends BaseRecord = BaseRecord>({
                 onChange,
             },
         },
+        queryResult,
     };
 };
