@@ -11,7 +11,7 @@ It authenticates the app if `login` method from the `authProvider` resolves and 
 `useLogin` returns the result of react-query's [useMutation](https://react-query.tanstack.com/reference/useMutation). 
 Data that is resolved from `login` will be returned as the `data` in the query result.
 
-## Useage
+## Usage
 
 By default, Refine already provides a login page and users who prefer to use this page won't need to handle the login flow manually.  
 If you want to build a custom login page instead of the default one, `useLogin` can be used like this:
