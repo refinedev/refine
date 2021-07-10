@@ -5,17 +5,15 @@ siderbar_label: useLogout
 description: useLogout data hook from refine is a modified version of react-query's useMutation for unauthentication.
 ---
 
-`useLogout` calls `logout` method from [`authProvider`](/docs/api-references/providers/auth-provider) under the hood.  
-It unauthenticates the app if `logout` method from `authProvider` resolves and if it rejects keeps authentication state the same.
+`useLogout` calls the `logout` method from the [`authProvider`](/docs/api-references/providers/auth-provider) under the hood.  
+It unauthenticates the app if the `logout` method from the `authProvider` resolves and if it rejects, it keeps authentication state the same.
 
 It returns the result of react-query's [useMutation](https://react-query.tanstack.com/reference/useMutation). 
-Data that is resolved from `logout` will be returned as the `data` in the query result.
+Data that is resolved from the `logout` will be returned as the `data` in the query result.
 
 ## Usage
-
-Normally refine provides a default logout button on the sider. If you prefer to use this default logout button, there is no need to handle logout flow manually.  
-If we want to build a custom logout button instead of default one that comes with refine, `useLogout` can be used like this:
-
+By default, Refine already provides a logout button on the sider and if you want to use this default button you won't need to handle the login flow manually. 
+If you want to build a custom logout button instead of the default one, `useLogout` can be used like this:
 ```tsx title="components/customLogoutButton"
 import { useLogout, Button } from "@pankod/refine";
 
@@ -33,11 +31,11 @@ export const LogoutButton = () => {
 
 ## Redirection after logout
 
-We have 4 options to manage redirection after logout process.
+We have 4 options to manage the redirection after logout process.
 
-- If promise returned from logout is resolved with nothing, app will be redirected to `/login` route by default. 
+- If promise returned from logout is resolved with nothing, app will be redirected to the `/login` route by default. 
 
-- A custom url can be given to mutate function from the `useLogout` hook:
+- A custom url can be given to mutate function from the `useLogout` hook if you want to redirect yourself to a certain url.
 
 ```tsx
 const { mutate: logout } = useLogout();
@@ -46,7 +44,7 @@ logout({ redirectPath:"/custom-url" })
 
 <br/>
 
-- A custom url can be resolved from the promise returned from `logout` method of [authProvider](/docs/api-references/providers/auth-provider).
+- A custom url can be resolved from the promise returned from the `logout` method of the [authProvider](/docs/api-references/providers/auth-provider).
 
 ```tsx
 const authProvider: AuthProvider = {
@@ -59,7 +57,7 @@ const authProvider: AuthProvider = {
 ```
 <br/>
 
-- If promise returned from `logout` method of [authProvider](/docs/api-references/providers/auth-provider) is resolved with `false` no redirection occurs.
+- If promise returned from the `logout` method of the [authProvider](/docs/api-references/providers/auth-provider) gets resolved with `false` no redirection will occur.
 
 ```tsx
 const authProvider: AuthProvider = {
@@ -76,13 +74,13 @@ const authProvider: AuthProvider = {
 
 
 :::important 
-Custom url given to mutae function from `useLogout` overrides the one on the `authProvider`.
+Custom url given to mutate function from `useLogout` overrides the one on the `authProvider`.
 :::
 
 :::tip
-`mutate` acquired from `useLogout` can accept any kind of object for values since `logout` method from `authProvider` doesn't have a restriction on its parameters.
+`mutate` acquired from the `useLogout` can accept any kind of object for values since the `logout` method from the `authProvider` doesn't have a restriction on its parameters.
 :::
 
 :::caution
-This hook can only be used if `authProvider` is provided.
+This hook can only be used if the `authProvider` is provided.
 :::
