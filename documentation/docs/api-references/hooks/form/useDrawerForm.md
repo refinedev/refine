@@ -6,7 +6,7 @@ title: useDrawerForm
 import createGif from '@site/static/img/hooks/useDrawerForm/create.gif';
 import editGif from '@site/static/img/hooks/useDrawerForm/edit.gif';
 
-`useDrawerForm` hook allows you manage a form within a drawer. It returns Ant Design [Form](https://ant.design/components/form/) and [Drawer](https://ant.design/components/drawer/) components props.
+`useDrawerForm` hook allows you to manage a form within a drawer. It returns Ant Design [Form](https://ant.design/components/form/) and [Drawer](https://ant.design/components/drawer/) components props.
 
 ```ts
 const { drawerProps, formProps } = useDrawerForm<IPost>();
@@ -16,7 +16,7 @@ All we have to do is to pass the `drawerProps` to `<Drawer>` and `formProps` to 
 
 ## Usage
 
-We'll do two examples, one for creating a post and one for editing a post. Let's see how `useDrawerForm` is used in both.
+We'll do two examples, one for creating and one for editing a post. Let's see how `useDrawerForm` is used in both.
 
 ### Create Drawer
 
@@ -84,7 +84,7 @@ export interface IPost {
 
 <br/>
 
-`createButtonProps` allows creating and managing a button above the table.
+`createButtonProps` allows us to create and manage a button above the table.
 
 ```tsx
     createButtonProps={{
@@ -96,7 +96,7 @@ export interface IPost {
 
 This code block makes `<Drawer>` appear when you click the button.
 
-`saveButtonProps` allows us to manage save button in the drawer.
+`saveButtonProps` allows us to manage the save button in the drawer.
 
 <div style={{textAlign: "center"}}>
     <img src={createGif} />
@@ -106,7 +106,7 @@ This code block makes `<Drawer>` appear when you click the button.
 
 ### Edit Drawer
 
-Let's learn how to add editing capability to records that will be opening form in Drawer with using `action` prop.
+Let's learn how to add editing capabilities to the records that will be opening form in Drawer with using `action` prop.
 
 ```tsx title="pages/posts/list.tsx"
 import { useDrawerForm, Drawer, Form, Create, Radio } from "@pankod/refine";
@@ -177,9 +177,9 @@ export const PostList () => {
 ```
 
 :::important
-refine doesn't automatically add a edit button by default to the each record in `<PostList>` which opens edit form in `<Drawer>` when clicking.
+refine doesn't automatically add a edit button to the each record in `<PostList>` which opens edit form in `<Drawer>` when clicking.
 
-So, we put the edit buttons on our list. In that way, `<Edit>` form in `<Drawer>` can fetch data by record `id`.
+So, we have to put the edit buttons on our list. In that way, `<Edit>` form in `<Drawer>` can fetch data by the record `id`.
 
 ```tsx
 <Table.Column<IPost>
@@ -198,7 +198,7 @@ So, we put the edit buttons on our list. In that way, `<Edit>` form in `<Drawer>
 
 :::
 
-The `saveButtonProps` and `deleteButtonProps` can provides functionality to save and delete buttons in the drawer.
+The `saveButtonProps` and `deleteButtonProps` gives us the ability of saving and deleting buttons in the drawer.
 
 <div style={{textAlign: "center"}}>
     <img src={editGif} />
@@ -221,12 +221,12 @@ The `saveButtonProps` and `deleteButtonProps` can provides functionality to save
 | onMutationError                                  | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error                                                                                      | `(error: TError, variables: TVariables, context: any) => void`                 |            |
 | onMutationSuccess                                | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful                                                                                            | `(data: TData, variables: TVariables, context: any) => void`                   |            |
 | redirect                                         | Page to redirect after succesfull mutation                                                                                                                                              | `"show` \| `"edit` \| `"list"`\*\*                                             |            |
-| submit                                           | Submit the form                                                                                                                                                                         | `(values?: TVariables) => Promise<TData>`                                      |            |
-| submitOnEnter                                    | Listen `Enter` key press to submit form                                                                                                                                                 | `boolean`                                                                      | `false`    |
+| submit                                           | Submits the form                                                                                                                                                                         | `(values?: TVariables) => Promise<TData>`                                      |            |
+| submitOnEnter                                    | Listen (???) `Enter` key press to submit form                                                                                                                                                 | `boolean`                                                                      | `false`    |
 | undoableTimeout                                  | Duration to wait before executing mutations when `mutationMode = "undoable"`                                                                                                            | `number`                                                                       | `5000`\*   |
 | warnWhenUnsavedChanges                           | Shows notification when unsaved changes exist                                                                                                                                           | `boolean`                                                                      | `false`\*  |
 
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useDrawerForm` will use what is passed to `<Refine>` as default and can override locally.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useDrawerForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
 > `**`: If not explicitly configured, default value of `redirect` depends which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). Otherwise if `action` is `edit`, `redirect`s default value is `list`.
 
