@@ -5,16 +5,16 @@ siderbar_label: useLogin
 description: useLogin data hook from refine is a modified version of react-query's useMutation for authenttication.
 ---
 
-`useLogin` calls the `login` method from the [`authProvider`](/docs/api-references/providers/auth-provider) under the hood.  
-It authenticates the app if `login` method from the `authProvider` resolves and if it rejects, it shows an error notification. After a successful authentication it redirects the app to root.
+`useLogin`  calls `login` method from [`authProvider`](/docs/api-references/providers/auth-provider) under the hood.  
+It authenticates the app if `login` method from `authProvider` resolves and if it rejects shows an error notification. After successful authentication it redirects the app to root.
 
-`useLogin` returns the result of react-query's [useMutation](https://react-query.tanstack.com/reference/useMutation). 
+It returns the result of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation). 
 Data that is resolved from `login` will be returned as the `data` in the query result.
 
 ## Usage
 
-By default, Refine already provides a login page and if you want to use this default page, you won't need to handle the login flow manually.
-If you want to build a custom login page instead of the default one, `useLogin` can be used like this:
+Normally refine provides a default login page. If you prefer to use this default login page, there is no need to handle login flow manually.  
+If we want to build a custom login page instead of default one that comes with refine, `useLogin` can be used like this:
 
 ```tsx title="pages/customLoginPage"
 import { useLogin, Form } from "@pankod/refine";
@@ -43,5 +43,5 @@ const { mutate: login } = useLogin<{ username: string; password: string; }>();
 :::
 
 :::caution
-This hook can only be used if the `authProvider` is provided.
+This hook can only be used if `authProvider` is provided.
 :::
