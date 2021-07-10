@@ -8,7 +8,7 @@ description: useLogout data hook from refine is a modified version of react-quer
 `useLogout` calls the `logout` method from the [`authProvider`](/docs/api-references/providers/auth-provider) under the hood.  
 It unauthenticates the app if the `logout` method from the `authProvider` resolves and if it rejects, it keeps authentication state the same.
 
-It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation). 
+It returns the result of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation). 
 Data that is resolved from the `logout` will be returned as the `data` in the query result.
 
 ## Usage
