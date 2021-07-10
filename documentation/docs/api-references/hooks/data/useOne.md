@@ -6,6 +6,7 @@ description: useOne data hook from refine is a modified version of react-query's
 ---
 
 `useOne` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries) used for retrieving single items from a `resource`.
+
 It uses `getOne` method as query function from the `dataProvider` which is passed to `<Refine>`.  
 
 ## Usage
