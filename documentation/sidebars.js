@@ -103,6 +103,11 @@ module.exports = {
                         },
                         {
                             type: "category",
+                            label: "List",
+                            items: ["api-references/hooks/show/useSimpleList"],
+                        },
+                        {
+                            type: "category",
                             label: "Resource",
                             items: [
                                 "api-references/hooks/resource/useMenu",
