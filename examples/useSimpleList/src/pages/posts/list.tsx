@@ -59,7 +59,7 @@ export const PostList: React.FC = () => {
     };
 
     return (
-        <List title="Posts">
+        <List>
             <AntdList {...listProps} renderItem={renderItem} />
         </List>
     );

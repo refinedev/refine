@@ -8,7 +8,9 @@ siderbar_label: useCustom
 It uses the `custom` method from the `dataProvider` which is passed to `<Refine>`.
 
 :::danger attention
-`useCustom`, unlike other data hooks, does not update the application state. Because of this reason, if you use the `useCustom` while creating, updating or deleting a resource you will need to manually update the application state. 
+`useCustom` should **not** be used when creating, updating, or deleting a resource.
+`useCustom`, unlike other data hooks, does not [invalidate queries](https://react-query.tanstack.com/guides/query-invalidation).  
+Because of this reason, using the `useCustom` will not update the application state. 
 For these, [useCreate](useCreate.md), useUpdate(useUpdate.md) and [useDelete](useDelete.md) hooks should be used instead.
 :::
 

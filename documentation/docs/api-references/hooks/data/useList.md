@@ -5,13 +5,13 @@ siderbar_label: useList
 description: useList data hook from refine is a modified version of react-query's useQuery for retrieving  items from a resource with pagination, search, sort, and filter configurations.
 ---
 
-`useList` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries) for retrieving items from a `resource` with pagination, sort, and filter configurations.
+`useList` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries) used for retrieving items from a `resource` with pagination, sort, and filter configurations.
 
-It uses the `getList` method as query function from the `dataProvider` that is passed to `<Refine>`.
+It uses the `getList` method as the query function from the `dataProvider` which is passed to `<Refine>`.
 
 ## Usage
 
-Let's say we have a `posts` resource
+Let's say that we have a resource named `posts`
 
 ```ts title="https://api.fake-rest.refine.dev/posts"
 {
@@ -37,9 +37,9 @@ Let's say we have a `posts` resource
 
 <br />
 
-`useList` passes query config to `getList` method from the `dataProvider`. We'll be using the `dataProvider` from [`@pankod/refine-simple-rest`](#)
+`useList` passes the query configuration to `getList` method from the `dataProvider`. We will be using the `dataProvider` from [`@pankod/refine-simple-rest`](#)
 
-Firstly, we'll use `useList` without passing any query config.
+First of all, we will use `useList` without passing any query configurations.
 
 ```tsx
 type IPost = {
@@ -76,7 +76,7 @@ const postListQueryResult = useList<IPost>("posts");
 
 <br />
 
-Although we didn't pass any sort order config to `useList`, data comes in descending order according to `id` since `getList` has default values for sort order:
+Although we didn't pass any sort order configurations to `useList`, data comes in descending order according to `id` since `getList` has default values for sort order:
 
 ```ts
 {
@@ -85,7 +85,7 @@ Although we didn't pass any sort order config to `useList`, data comes in descen
 ```
 
 :::important
-`getList` has also default values for pagination:
+`getList` also has default values for pagination:
 
 ```ts
 {
@@ -96,7 +96,7 @@ Although we didn't pass any sort order config to `useList`, data comes in descen
 :::
 :::caution
 
-If needed, `getList` method from the `dataProvider` has to implement default query configurations since `useList` can work with no config paramaters.
+If you want to create your own `getList` method, it must implement default query configurations since `useList` can work with no configuration parameters.
 
 :::
 
@@ -106,9 +106,9 @@ If needed, `getList` method from the `dataProvider` has to implement default que
 
 #### `pagination`
 
-Allows to set page and items per page values.
+Allows us to set page and items per page values.
 
-Imagine we have 1000 post records:
+For example imagine that we have 1000 post records:
 
 ```ts
 const postListQueryResult = useList<IPost>("posts", {
@@ -122,7 +122,7 @@ const postListQueryResult = useList<IPost>("posts", {
 
 #### `sort`
 
-Allows to sort records by speficified order and field.
+Allows us to sort records by the speficified order and field.
 
 ```ts
 const postListQueryResult = useList<IPost>("posts", {
@@ -153,13 +153,13 @@ const postListQueryResult = useList<IPost>("posts", {
 }
 ```
 
-> Listing starts from ascending alphabetical order on `title` field.
+> Listing starts from ascending alphabetical order on the `title` field.
 
 <br />
 
 #### `filters`
 
-Allows you to filter queries using refine's filter operators. It is configured via `field`, `operator` and `value` properites.
+Allows us to filter queries using refine's filter operators. It is configured via `field`, `operator` and `value` properites.
 
 ```ts
 const postListQueryResult = useList<IPost>("posts", {
@@ -186,7 +186,7 @@ const postListQueryResult = useList<IPost>("posts", {
 }
 ```
 
-> Only lists records which `status` equal to "rejected".
+> Only lists records whose `status` equals to "rejected".
 
 <br />
 
@@ -214,7 +214,7 @@ const postListQueryResult = useList<IPost>("posts", {
 `useList` can also accept all `useQuery` options as a third parameter.  
 [Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/reference/useQuery)
 
--   For example, to disable query from running automatically you can set `enabled` to `false`
+-   For example, to disable query from running automatically you can set `enabled` to `false`.
 
 ```tsx
 const postListQueryResult = useList<IPost>("posts", {}, { enabled: false });
@@ -225,7 +225,7 @@ const postListQueryResult = useList<IPost>("posts", {}, { enabled: false });
 <br />
 
 :::tip
-`useList` returns the result of `react-query`'s `useQuery`. It includes properties like `isLoading` and `isFetching` with many others.  
+`useList` returns the result of `react-query`'s `useQuery` which includes many properties such as `isLoading` and `isFetching`.
 [Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/reference/useQuery)
 :::
 
@@ -236,7 +236,7 @@ const postListQueryResult = useList<IPost>("posts", {}, { enabled: false });
 | Property                                                                                           | Description                                  | Type                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------- | ----------------------------------------------------------- | --- |
 | <div className="required-block"><div>resource</div> <div className="required">Required</div></div> | [`Resource`](#) for API data interactions    | `string`                                                    |
-| config                                                                                             | Config for pagination, sorting and filtering | [`UseListConfig`](#config-parameters)                       |     |
+| config                                                                                             | Configuration for pagination, sorting and filtering | [`UseListConfig`](#config-parameters)                       |     |
 | options                                                                                            | `react-query`'s `useQuery` options           | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>` |
 
 ### Config parameters
