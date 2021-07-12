@@ -9,7 +9,7 @@ import {
 } from "@hooks";
 import { BaseRecord, HttpError } from "../../../interfaces";
 import { DeleteButtonProps } from "../../../components/buttons/delete";
-import { useFormProps } from "../useForm";
+import { useFormProps, UseFormReturnType } from "../useForm";
 
 export interface UseDrawerFormConfig extends UseFormConfig {
     action: "show" | "edit" | "create";
@@ -25,7 +25,7 @@ export type UseDrawerFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = {
+> = UseFormReturnType<TData, TError, TVariables> & {
     formProps: FormProps<TVariables> & {
         form: FormInstance<TVariables>;
     };
