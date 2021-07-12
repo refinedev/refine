@@ -96,7 +96,7 @@ Although we didn't pass any sort order configurations to `useList`, data comes i
 :::
 :::caution
 
-If needed, `getList` method from the `dataProvider` has to implement default query configurations since `useList` can't work with no configuration   paramaters.
+If you want to create your own `getList` method, it must implement default query configurations since `useList` can work with no configuration parameters.
 
 :::
 
