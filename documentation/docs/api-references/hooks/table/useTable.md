@@ -74,6 +74,7 @@ export const PostList: React.FC = () => {
 
 <br />
 
+:::info
 If you want to make a change in the pagination of the `<Table>`. You should pass the pagination object of the `tableProps` to the pagination property of the `<Table>` as below.
 
 ```tsx
@@ -91,6 +92,8 @@ If you want to make a change in the pagination of the `<Table>`. You should pass
     ...
 </Table>
 ```
+
+:::
 
 ## Sıralama
 
