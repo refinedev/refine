@@ -281,6 +281,11 @@ module.exports = {
                 },
                 {
                     type: "category",
+                    label: "List",
+                    items: ["examples/list/useSimpleList"],
+                },
+                {
+                    type: "category",
                     label: "Field",
                     items: [
                         "examples/field/useCheckboxGroup",
