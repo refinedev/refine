@@ -15,7 +15,7 @@ It can be useful when you want to get user information anywhere in your code.
 
 Imagine you want to show user name.
 
-- We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `getUserIdentity` method like below.
+We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `getUserIdentity` method like below.
 
 ```tsx
 const authProvider: AuthProvider = {
@@ -32,6 +32,8 @@ const authProvider: AuthProvider = {
 ```
 <br/>
 
+
+You can access identity data like below.
 
 ```tsx
 // highlight-next-line
