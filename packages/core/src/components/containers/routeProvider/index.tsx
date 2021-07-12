@@ -139,26 +139,32 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
             {[...customRoutes].map((route, i) => (
                 <RouteWithSubRoutes key={i} {...route} />
             ))}
-            <LayoutWrapper>
-                <Route
-                    path="/"
-                    exact
-                    component={() =>
-                        DashboardPage ? (
-                            <DashboardPage />
-                        ) : (
-                            <Redirect to={`/resources/${resources[0].route}`} />
-                        )
-                    }
-                />
-                {[...routes].map((route, i) => (
-                    <RouteWithSubRoutes key={i} {...route} />
-                ))}
-                <Route path="/resources/:resource?/:action?">
-                    {catchAll ?? <ErrorComponent />}
-                </Route>
-                <Route>{catchAll ?? <ErrorComponent />}</Route>
-            </LayoutWrapper>
+            <Route>
+                <LayoutWrapper>
+                    <Switch>
+                        <Route
+                            path="/"
+                            exact
+                            component={() =>
+                                DashboardPage ? (
+                                    <DashboardPage />
+                                ) : (
+                                    <Redirect
+                                        to={`/resources/${resources[0].route}`}
+                                    />
+                                )
+                            }
+                        />
+                        {[...routes].map((route, i) => (
+                            <RouteWithSubRoutes key={i} {...route} />
+                        ))}
+                        <Route path="/resources/:resource?/:action?">
+                            {catchAll ?? <ErrorComponent />}
+                        </Route>
+                        <Route>{catchAll ?? <ErrorComponent />}</Route>
+                    </Switch>
+                </LayoutWrapper>
+            </Route>
         </Switch>
     );
 
