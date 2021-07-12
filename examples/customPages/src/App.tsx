@@ -16,7 +16,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const AuthenticatedPostReview = () => {
     return (
         <Authenticated>
-            <LayoutWrapper hideSider>
+            <LayoutWrapper>
                 <PostReview />
             </LayoutWrapper>
         </Authenticated>
