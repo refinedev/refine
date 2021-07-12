@@ -5,14 +5,15 @@ siderbar_label: usePermissions
 description: usePermissions data hook from refine is a modified version of react-query's useQuery for retrieving user data
 ---
 
-`usePermissions` calls `getPermissions` method from [`authProvider`](/docs/api-references/providers/auth-provider) under the hood. It returns the result of react-query's useQuery which includes properties like `isSuccess` and `isError` with many others.  
-Data that is resolved from `getPermissions` will be returned as the `data` in the query result.
+`usePermissions` calls the `getPermissions` method from the [`authProvider`](/docs/api-references/providers/auth-provider) under the hood.
+
+It returns the result of `react-query`'s `useQuery` which includes many properties, some of which being `isSuccess` and `isError`. Data that is resolved from the `getPermissions` will be returned as the `data` in the query result.
 
 ## Usage
 
-It can be useful when you want to get user permission information anywhere in your code.
+`usePermissions` can be useful when you want to get user's permission's anywhere in your code.
 
-Imagine you want to allow only users with admin role to see the create button in a list page.
+Imagine that you want to allow only users with the admin role to see the create button in a list page.
 
 - We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `getPermissions` method like below.
 
@@ -48,5 +49,5 @@ export const PostList: React.FC = () => {
 
 
 :::caution
-This hook can only be used if `authProvider` is provided.
+This hook can only be used if the `authProvider` is provided.
 :::

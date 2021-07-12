@@ -65,20 +65,20 @@ const { formProps, saveButtonProps } = useForm<IPost>();
 
 `formProps` includes all necessary values to manage Ant Design Form components.
 
-In the example if you navigate to `/resources/posts/edit/1234` it will manage the data of the post with id `1234` in an editing context. See [Actions](#actions) on how `useForm` determines this is an editing context.
+In the example if you navigate to `/resources/posts/edit/1234` it will manage the data of the post with id of `1234` in an editing context. See [Actions](#actions) on how `useForm` determines this is an editing context.
 
-Since this is an edit form it will fill the form with the data of the post with id `1234` and then the form will be ready to edit further and submit the changes.
+Since this is an edit form it will fill the form with the data of the post with id of `1234` and then the form will be ready to edit further and submit the changes.
 
-Submit functionality is provided by `saveButtonProps` which includes all necessary props for a button to submit a form including automatically updating loading states.
+Submit functionality is provided by `saveButtonProps` which includes all of the necessary props for a button to submit a form including automatically updating loading states.
 
-`useForm` accepts type parameters for the record in use and for the response type of the mutation. `IPost` in the example represents the record to edit. It is also used as default type for mutation response.
+`useForm` accepts type parameters for the record in use and for the response type of the mutation. `IPost` in the example represents the record to edit. It is also used as the default type for mutation response.
 
 ## Actions
 
 `useForm` can handle edit, create and clone actions.
 
 :::tip
-By default it determines the action from route. In the example the route is `/resources/posts/edit/1234` thus this is an editing form.
+By default it determines the action from route. In the example, the route is `/resources/posts/edit/1234` thus this is an editing form.
 :::
 
 It can take an `action` parameter for the situations where it isn't possible to determine the action from route i.e. using a form in a modal, using a custom route.
@@ -89,13 +89,13 @@ const { formProps, saveButtonProps } = useForm({ action: "edit" });
 
 ### `action: "edit"`
 
-Used for editing an existing record. Form initially will be filled with the data of the record.
+`action: "edit"` is used for editing an existing record. Form will initially be filled with the data of the record.
 
 `useForm` uses [`useUpdate`](../../hooks/data/useUpdate.md) under the hood for mutations on edit mode.
 
 ### `action: "create"`
 
-Used for creating a new record that didn't exist before.
+`action: "create"`is used for creating a new record that didn't exist before.
 
 `useForm` uses [`useCreate`](../data/useCreate.md) under the hood for mutations on create mode.
 
@@ -103,25 +103,25 @@ Used for creating a new record that didn't exist before.
 
 When creating a new record, `useForm` can initialize the form with the data of an existing record.
 
-`useForm` works on clone mode when route has a `create` and `id` params like `resources/create/1234`.
-Alternatively, if route doesn't have those params, action can be set with `action: "create"` and id can be set with `setCloneId`.
+`useForm` works on clone mode when a route has a `create` and `id` parameters like this `resources/create/1234`.
+Alternatively, if route doesn't have those parameters, action can be set with `action: "create"` and id can be set with `setCloneId`.
 
 ```tsx
 const { setCloneId } = useForm();
 ```
 
 :::tip
-If you want to show a form in a modal or drawer where necessary route params might not be there you can use [useModalForm](useModalForm) or [useDrawerForm](useDrawerForm) hook.
+If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](useModalForm) or the [useDrawerForm](useDrawerForm) hook.
 :::
 
 :::tip
-`<CloneButton>` can be used to navigate to a create route with id like `resources/create/1234`.
+`<CloneButton>` can be used to navigate to a create route with an id like this `resources/create/1234`.
 
 ```tsx
 <CloneButton recordItemId={record.id} />
 ```
 
-Also `clone` method from [useNavigation](#) hook can be used too.
+Also the `clone` method from the [useNavigation](#) hook can be used as well.
 
 ```tsx
 const { clone } = useNavigation()
@@ -137,17 +137,17 @@ const { clone } = useNavigation()
 
 | Property               | Description                                                                                        | Type                                                              | Default           |
 | ---------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------- |
-| action                 | Type of form mode                                                                                  | `"edit"` \| `"create"`                                            |                   |
+| action                 | Type of the form mode                                                                                  | `"edit"` \| `"create"`                                            |                   |
 | resource               | [`Resource`](#) for API data interactions                                                          | `string`                                                          |                   |
-| onMutationSuccess      | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful       | `(data: UpdateResponse<M>, variables: any, context: any) => void` |                   |
-| onMutationError        | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error | `(error: any, variables: any, context: any) => void`              |                   |
+| onMutationSuccess      | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) is successful       | `(data: UpdateResponse<M>, variables: any, context: any) => void` |                   |
+| onMutationError        | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error | `(error: any, variables: any, context: any) => void`              |                   |
 | mutationMode           | [Determines when mutations are executed](guides-and-concepts/mutation-mode.md)                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`\* |
-| submitOnEnter          | Listen `Enter` key press to submit form                                                            | `boolean`                                                         | `false`           |
+| submitOnEnter          | Listens `Enter` key press to submit form                                                            | `boolean`                                                         | `false`           |
 | warnWhenUnsavedChanges | Shows notification when unsaved changes exist                                                      | `boolean`                                                         | `false`\*         |
-| redirect               | Page to redirect after succesfull mutation                                                         | ` "show` \| `"edit` \| `"list"` \| `false`                        | `"list"`          |
+| redirect               | Page to redirect after a succesfull mutation                                                         | ` "show` \| `"edit` \| `"list"` \| `false`                        | `"list"`          |
 | undoableTimeout        | Duration to wait before executing mutations when `mutationMode = "undoable"`                       | `number`                                                          | `5000`\*          |
 
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useForm` will use what is passed to `<Refine>` as default and can override locally.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
 <br/>
 
