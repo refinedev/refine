@@ -48,9 +48,13 @@ const App: React.FC = () => {
         },
         checkError: () => Promise.resolve(),
         checkAuth: () =>
-            localStorage.getItem("username")
-                ? Promise.resolve()
-                : Promise.reject(),
+            new Promise((resolve, reject) =>
+                setTimeout(
+                    () =>
+                        localStorage.getItem("username") ? resolve() : reject(),
+                    1000,
+                ),
+            ),
         getPermissions: () => Promise.resolve(["admin"]),
         getUserIdentity: () =>
             Promise.resolve({
