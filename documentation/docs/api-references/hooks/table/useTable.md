@@ -252,7 +252,7 @@ const { tableProps, sorter, filters } = useTable<IPost>({
 ...
 ```
 
-If you give default filter values, `defaultFilteredValue` prop needs to be properly given to the relevant `<Table.Column>` components so that those filter fields come with default values when the page is opened.
+If you give default filter values, `defaultFilteredValue` property needs to be properly given to the relevant `<Table.Column>` components so that those filter fields come with default values when the page is opened.
 
 ```tsx title="/src/pages/posts/list.tsx"
 import {
@@ -329,7 +329,7 @@ export const PostList: React.FC = () => {
 ```
 
 :::tip
-Filters we give to `initialFilter` are default filters. In order to prevent filters from being changed, `permanentFilter` must be used instead of the `initialFilter`.
+Filters we give to `initialFilter` are default filters. In order to prevent filters from being changed, `permanentFilter` must be used instead of `initialFilter`.
 :::
 
 ## API
@@ -338,7 +338,7 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
 | permanentFilter  | Default and unchangeable filter.                                                                                                                            | [`CrudFilters`](../../interfaces.md#crudfilters) | If not given, its taken from the context.                                                                              | `string`                                         |
 | initialCurrent   | Initial page index.                                                                                                                                       | `number`                                         |
-| initialPageSize  | Number of records shown per initial?  page.                                                                                                                | `number`                                         |
+| initialPageSize  | Number of records shown per initial number of   pages.                                                                                                                | `number`                                         |
 | initialSorter    | Initial sorting.                                                                                                                                            | [`CrudSorting`](../../interfaces.md#crudsorting) |
 | initialFilter    | Initial 
 filtering.                                                                                                                                          | [`CrudFilters`](../../interfaces.md#crudfilters) |
