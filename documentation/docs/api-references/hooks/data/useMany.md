@@ -9,6 +9,7 @@ description: useMany data hook from refine is a modified version of react-query'
 
 It uses `getMany` method as query function from the `dataProvider` which is passed to `<Refine>`.  
 
+
 ## Usage
 
 Let's say that we have a resource named `categories`.
