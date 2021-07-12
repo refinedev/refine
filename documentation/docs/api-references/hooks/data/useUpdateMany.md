@@ -166,7 +166,7 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 | undoableTimeout                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"` | `number`                                         | `5000ms`*        |
 | onCancel                                            | Callback that runs when undo button is clicked on `mutationMode = "undoable"`   | `(cancelMutation: () => void) => void`           |                  |
 
->`*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useUpdateMany` will use what is passed to `<Refine>` as default but a local value will override it.
+>`*`: These props have default values in `RefineContext` and can also be set on **<[Refine](api-references/components/refine-config.md))>** component. `useUpdateMany` will use what is passed to `<Refine>` as default but a local value will override it.
 
 <br/>
 
