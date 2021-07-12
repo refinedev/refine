@@ -10,7 +10,7 @@ It uses `deleteMany` method as mutation function from the `dataProvider` which i
 
 ## Features
 
-* Shows notifications after mutation suceeds, fails or gets cancelled.
+* Shows notifications after mutation succeeds, fails or gets canceled.
 
 * Automatically invalidates `list` queries after mutation is succesfully run.
 [Refer to React Query docs for detailed information &#8594](https://react-query.tanstack.com/guides/invalidations-from-mutations)
