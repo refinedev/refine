@@ -19,7 +19,7 @@ We have used this hook in refine's [`<Authenticated>`](#) component which allows
 
 We will demonstrate a similar basic implementation below. Imagine that you have public page but you want to make some specific fields private.
 
-- We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `checkAuth` method like below.
+We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `checkAuth` method like below.
 
 ```tsx
 const authProvider: AuthProvider = {
@@ -36,7 +36,7 @@ const authProvider: AuthProvider = {
 ```
 <br/>
 
-- Create a wrapper component that renders children if `checkAuth` method returns Promise resolved. (Bu kisimlar tamamen degismeli.)
+Let's create a wrapper component that renders children if `checkAuth` method returns Promise resolved.
 
 ```tsx title="components/authenticationChecker"
 // highlight-next-line
@@ -60,13 +60,13 @@ export const IsAuthenticated: React.FC = ({
 
 <br />
 
-- Only authenticated users can see the price field.
+Now, only authenticated users can see the price field.
 
 ```tsx title="components/postShow"
 import { Typography, Show } from "@pankod/refine";
 
 // highlight-next-line
-import { AuthenticationChecker } from "/components/authenticationChecker"
+import { IsAuthenticated } from "/components/IsAuthenticated"
 
 const { Title, Text } = Typography;
 
@@ -75,10 +75,10 @@ export const PostShow: React.FC = () => (
         <Title>Status</Title>
         <Text>Approved</Text>
         //highlight-start
-        <AuthenticationChecker>
+        <IsAuthenticated>
             <Title>Price</Title>
             <Text>20</Text>
-        </AuthenticationChecker>
+        </IsAuthenticated>
         //highlight-end
     </Show>
 )
