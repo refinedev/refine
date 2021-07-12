@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { UseFormConfig } from "sunflower-antd";
-
+import { FormInstance, FormProps, DrawerProps, ButtonProps } from "antd";
 import {
     useForm,
     useMutationMode,
@@ -8,6 +8,7 @@ import {
     useWarnAboutChange,
 } from "@hooks";
 import { BaseRecord, HttpError } from "../../../interfaces";
+import { DeleteButtonProps } from "../../../components/buttons/delete";
 import { useFormProps } from "../useForm";
 
 export interface UseDrawerFormConfig extends UseFormConfig {
@@ -20,6 +21,22 @@ export type UseDrawerFormProps<
     TVariables = {},
 > = useFormProps<TData, TError, TVariables> & UseDrawerFormConfig;
 
+export type UseDrawerFormReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {},
+> = {
+    formProps: FormProps<TVariables> & {
+        form: FormInstance<TVariables>;
+    };
+    setVisible: (value: React.SetStateAction<boolean>) => void;
+    show: (id?: string) => void;
+    drawerProps: DrawerProps;
+    saveButtonProps: ButtonProps;
+    deleteButtonProps: DeleteButtonProps;
+    formLoading: boolean;
+};
+
 export const useDrawerForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -27,7 +44,11 @@ export const useDrawerForm = <
 >({
     mutationMode: mutationModeProp,
     ...rest
-}: UseDrawerFormProps<TData, TError, TVariables>) => {
+}: UseDrawerFormProps<TData, TError, TVariables>): UseDrawerFormReturnType<
+    TData,
+    TError,
+    TVariables
+> => {
     const useFormProps = useForm<TData, TError, TVariables>({
         ...rest,
         mutationMode: mutationModeProp,

@@ -19,7 +19,7 @@ import {
 } from "../../../interfaces";
 import { userFriendlyResourceName } from "@definitions";
 import { useModalFormFromSFReturnType } from "../../../../types/sunflower";
-import { useFormProps } from "../useForm";
+import { useFormProps, UseFormReturnType } from "../useForm";
 
 type useModalFormConfig = {
     action: "show" | "edit" | "create";
@@ -30,7 +30,7 @@ export type useModalFormReturnType<
     TError extends HttpError = HttpError,
     TVariables = {},
 > = Omit<
-    useForm<TData, TError, TVariables>,
+    UseFormReturnType<TData, TError, TVariables>,
     "saveButtonProps" | "deleteButtonProps"
 > &
     useModalFormFromSFReturnType<TData, TVariables>;
