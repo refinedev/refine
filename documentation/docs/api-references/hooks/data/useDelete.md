@@ -11,7 +11,7 @@ It uses `deleteOne` method as mutation function from the `dataProvider` which is
 
 ## Features
 
-* Shows notifications after the mutation suceeds, fails or gets cancelled.
+* Shows notifications after the mutation succeeds, fails or gets canceled.
 
 * Automatically invalidates `list` queries after mutation is succesfully run.
 [Refer to React Query docs for detailed information &#8594](https://react-query.tanstack.com/guides/invalidations-from-mutations)
@@ -172,4 +172,3 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
  | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { id: string; },`<br/>` DeleteContext>`](https://react-query.tanstack.com/reference/useMutation) |
 
 >`*` [Refer to documentation for [`DeleteContext` &#8594](#)
-
