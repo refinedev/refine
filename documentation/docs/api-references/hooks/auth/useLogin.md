@@ -9,6 +9,7 @@ description: useLogin data hook from refine is a modified version of react-query
 It authenticates the app if `login` method from `authProvider` resolves and if it rejects shows an error notification. After successful authentication it redirects the app to root.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation). 
+
 Data that is resolved from `login` will be returned as the `data` in the query result.
 
 ## Usage
