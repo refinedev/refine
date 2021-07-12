@@ -170,7 +170,7 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 | undoableTimeout                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"` | `number`                                         | `5000ms`*        |
 | onCancel                                            | Callback that runs when undo button is clicked on `mutationMode = "undoable"`   | `(cancelMutation: () => void) => void`           |                  |
 
->`*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useUpdate` will use whats passed to `<refine>` as default, but a local value will override it.
+>`*`: These props have default values in `RefineContext` and can also be set on **<[Refine](api-references/components/refine-config.md)>** component. `useUpdate` will use what's passed to `<Refine>` as default, but a local value will override it.
 
 <br/>
 
@@ -189,4 +189,3 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
  | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { resource:string; id: string; values: TVariables; },`<br/>` UpdateContext>`](https://react-query.tanstack.com/reference/useMutation)* |
 
 >`*` `UpdateContext` is an internal type.
-
