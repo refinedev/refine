@@ -6,7 +6,7 @@ title: useTable
 import tableSorting from '@site/static/img/hooks/useTable/table-sorting.gif';
 import filters from '@site/static/img/hooks/useTable/filters.gif';
 
-By using useTable, you are able to get properties that are compatible with Ant Design [`<Table>`](https://ant.design/components/table/) component. All components such as sorting, filtering and pagitation comes as out of box. 
+By using useTable, you are able to get properties that are compatible with Ant Design [`<Table>`](https://ant.design/components/table/) component. All features such as sorting, filtering and pagitation comes as out of box. 
 
 ## Basic usage 
 
