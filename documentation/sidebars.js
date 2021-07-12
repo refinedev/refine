@@ -103,6 +103,11 @@ module.exports = {
                         },
                         {
                             type: "category",
+                            label: "List",
+                            items: ["api-references/hooks/show/useSimpleList"],
+                        },
+                        {
+                            type: "category",
                             label: "Resource",
                             items: [
                                 "api-references/hooks/resource/useMenu",
@@ -121,7 +126,7 @@ module.exports = {
                             label: "Import - Export",
                             items: [
                                 "api-references/hooks/import-export/useImport",
-                                // "api-references/hooks/import-export/csv-export",
+                                "api-references/hooks/import-export/useExport",
                             ],
                         },
                     ],
@@ -216,6 +221,11 @@ module.exports = {
                         "guides-and-concepts/import-export/csv-export",
                     ],
                 },
+                {
+                    type: "category",
+                    label: "Form",
+                    items: ["guides-and-concepts/forms/custom-form-validation"],
+                },
                 "guides-and-concepts/mutation-mode",
                 "guides-and-concepts/custom-pages",
                 "guides-and-concepts/theme",
@@ -254,6 +264,7 @@ module.exports = {
                         "examples/form/useModalForm",
                         "examples/form/useDrawerForm",
                         "examples/form/useStepsForm",
+                        "examples/form/custom-form-validation",
                     ],
                 },
                 {
@@ -267,6 +278,11 @@ module.exports = {
                         "examples/table/advancedTable",
                         "examples/table/tableFilter",
                     ],
+                },
+                {
+                    type: "category",
+                    label: "List",
+                    items: ["examples/list/useSimpleList"],
                 },
                 {
                     type: "category",
@@ -301,6 +317,10 @@ module.exports = {
                 "examples/customTheme",
                 "examples/javascript",
             ],
+        },
+        {
+            type: "doc",
+            id: "contributing",
         },
     ],
 };

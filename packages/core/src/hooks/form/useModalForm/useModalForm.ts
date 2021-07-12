@@ -1,19 +1,25 @@
+import { useEffect } from "react";
 import {
     useModalForm as useModalFormSF,
     UseModalFormConfig as UseModalFormConfigSF,
 } from "sunflower-antd";
-import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 import {
     useForm,
     useMutationMode,
     useTranslate,
     useWarnAboutChange,
+    useResourceWithRoute,
 } from "../../../hooks";
-import { BaseRecord, HttpError } from "../../../interfaces";
+import {
+    BaseRecord,
+    HttpError,
+    ResourceRouterParams,
+} from "../../../interfaces";
+import { userFriendlyResourceName } from "@definitions";
 import { useModalFormFromSFReturnType } from "../../../../types/sunflower";
 import { useFormProps } from "../useForm";
-import { DeleteButtonProps } from "../../../components/buttons";
 
 type useModalFormConfig = {
     action: "show" | "edit" | "create";
@@ -23,10 +29,11 @@ export type useModalFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = useForm<TData, TError, TVariables> &
-    useModalFormFromSFReturnType<TData, TVariables> & {
-        deleteButtonProps: DeleteButtonProps;
-    };
+> = Omit<
+    useForm<TData, TError, TVariables>,
+    "saveButtonProps" | "deleteButtonProps"
+> &
+    useModalFormFromSFReturnType<TData, TVariables>;
 
 export type useModalFormProps<
     TData extends BaseRecord = BaseRecord,
@@ -56,7 +63,6 @@ export const useModalForm = <
         form,
         formProps,
         setEditId,
-        editId,
         formLoading,
         mutationResult,
         setCloneId,
@@ -108,13 +114,11 @@ export const useModalForm = <
         loading: formLoading,
     };
 
-    const deleteButtonProps = {
-        recordItemId: editId,
-        onSuccess: () => {
-            setEditId?.(undefined);
-            sunflowerUseModal.close();
-        },
-    };
+    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
+
+    const resourceWithRoute = useResourceWithRoute();
+    const resource = resourceWithRoute(rest.resource ?? routeResourceName);
+
     return {
         ...useFormProps,
         ...sunflowerUseModal,
@@ -125,7 +129,6 @@ export const useModalForm = <
 
             sunflowerUseModal.show();
         },
-
         formProps: {
             ...modalFormProps,
             onValuesChange: formProps?.onValuesChange,
@@ -135,9 +138,16 @@ export const useModalForm = <
         modalProps: {
             ...modalProps,
             width: "1000px",
-            bodyStyle: {
-                paddingTop: "55px",
-            },
+            okButtonProps: saveButtonPropsSF,
+            title: translate(
+                `${resource.name}.titles.${rest.action}`,
+                `${userFriendlyResourceName(
+                    `${rest.action} ${resource.name}`,
+                    "singular",
+                )}`,
+            ),
+            okText: translate("buttons.save", "Save"),
+            cancelText: translate("buttons.cancel", "Cancel"),
             onCancel: () => {
                 if (warnWhen) {
                     const warnWhenConfirm = window.confirm(
@@ -156,8 +166,6 @@ export const useModalForm = <
                 sunflowerUseModal.close();
             },
         },
-        saveButtonProps: saveButtonPropsSF,
-        deleteButtonProps,
         formLoading,
     };
 };

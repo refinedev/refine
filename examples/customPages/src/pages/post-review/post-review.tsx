@@ -32,12 +32,12 @@ export const PostReview: React.FC = () => {
             enabled: !!record,
         });
 
-    const mutationResult = useUpdate<IPost>("posts");
+    const mutationResult = useUpdate<IPost>();
 
     const { mutate, isLoading: mutateIsLoading } = mutationResult;
 
     const handleUpdate = (item: IPost, status: string) => {
-        mutate({ id: item.id, values: { ...item, status } });
+        mutate({ resource: "posts", id: item.id, values: { ...item, status } });
     };
 
     const buttonDisabled = isLoading || categoryIsLoading || mutateIsLoading;

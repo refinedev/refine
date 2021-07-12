@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { QueryObserverResult } from "react-query";
 
-import { useOne } from "@hooks";
+import { useOne, useResourceWithRoute } from "@hooks";
 
 import {
     ResourceRouterParams,
@@ -22,18 +22,20 @@ export type useShowProps = {
 };
 
 export const useShow = <TData extends BaseRecord = BaseRecord>({
-    resource: resourceName,
+    resource: resourceFromProp,
     id,
 }: useShowProps = {}): useShowReturnType<TData> => {
     const [showId, setShowId] = useState<string>();
 
     const { resource: routeResourceName, id: idFromRoute } =
         useParams<ResourceRouterParams>();
+    const resourceWithRoute = useResourceWithRoute();
 
-    const resource = resourceName ?? routeResourceName;
+    const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
+
     const resourceId = showId ?? id ?? idFromRoute;
 
-    const queryResult = useOne<TData>(resource, resourceId, {
+    const queryResult = useOne<TData>(resource.name, resourceId, {
         enabled: !!resourceId,
     });
 

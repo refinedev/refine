@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine",
-    "version": "1.0.22",
+    "version": "1.0.30",
     "description": "",
     "private": false,
     "main": "dist/index.js",
@@ -48,6 +48,7 @@
         "@ant-design/icons": "^4.5.0",
         "antd": "^4.12.2",
         "dayjs": "^1.10.4",
+        "export-to-csv": "^0.2.1",
         "humanize-string": "^2.1.0",
         "lodash": "^4.17.21",
         "lodash-es": "^4.17.21",

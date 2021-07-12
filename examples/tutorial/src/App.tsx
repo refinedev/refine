@@ -15,6 +15,7 @@ const App: React.FC = () => {
                 edit={PostEdit}
                 create={PostCreate}
                 show={PostShow}
+                canDelete
             />
         </Refine>
     );

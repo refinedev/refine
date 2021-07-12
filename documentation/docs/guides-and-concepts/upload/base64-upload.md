@@ -81,7 +81,11 @@ export const UserCreate: React.FC = () => {
                             },
                         ]}
                     >
-                        <Upload.Dragger listType="picture" multiple>
+                        <Upload.Dragger
+                            listType="picture"
+                            multiple
+                            beforeUpload={() => false}
+                        >
                             <p className="ant-upload-text">
                                 Drag & drop a file in this area
                             </p>

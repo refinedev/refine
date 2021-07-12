@@ -1,4 +1,10 @@
-import { Refine, Resource, AuthProvider, Authenticated } from "@pankod/refine";
+import {
+    Refine,
+    Resource,
+    AuthProvider,
+    Authenticated,
+    LoginPage,
+} from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 

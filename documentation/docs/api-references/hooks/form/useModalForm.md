@@ -26,15 +26,9 @@ For example, let's look at an example of creating a record with `useModalForm`.
 import { useModalForm, Modal, Form, Create, Radio } from "@pankod/refine";
 import { IPost } from "interfaces";
 
-export const PostList: React.FC () => {
-
+export const PostList: React.FC = () => {
     //highlight-start
-    const {
-        modalProps,
-        formProps,
-        show,
-        saveButtonProps,
-    } = useModalForm<IPost>({
+    const { modalProps, formProps, show } = useModalForm<IPost>({
         action: "create",
     });
     //highlight-end
@@ -54,25 +48,23 @@ export const PostList: React.FC () => {
             </List>
             //highlight-start
             <Modal {...modalProps}>
-                <Create saveButtonProps={saveButtonProps}>
-                    <Form {...formProps} layout="vertical">
-                        <Form.Item label="Title" name="title">
-                            <Input />
-                        </Form.Item>
-                        <Form.Item label="Status" name="status">
-                            <Radio.Group>
-                                <Radio value="draft">Draft</Radio>
-                                <Radio value="published">Published</Radio>
-                                <Radio value="rejected">Rejected</Radio>
-                            </Radio.Group>
-                        </Form.Item>
-                    </Form>
-                </Create>
+                <Form {...formProps} layout="vertical">
+                    <Form.Item label="Title" name="title">
+                        <Input />
+                    </Form.Item>
+                    <Form.Item label="Status" name="status">
+                        <Radio.Group>
+                            <Radio value="draft">Draft</Radio>
+                            <Radio value="published">Published</Radio>
+                            <Radio value="rejected">Rejected</Radio>
+                        </Radio.Group>
+                    </Form.Item>
+                </Form>
             </Modal>
             //highlight-end
         </>
-    )
-}
+    );
+};
 ```
 
 ```ts title="interfaces/index.d.ts"
@@ -97,7 +89,6 @@ export interface IPost {
 
 This code block makes `<Modal>` appear when you click the button.
 
-`saveButtonProps` allows us to manage save button in the modal.
 
 <div style={{textAlign: "center"}}>
     <img src={createGif} />
@@ -113,16 +104,14 @@ Let's learn how to add editing capability to records that will be opening form i
 import { useModalForm, Modal, Form, Create, Radio } from "@pankod/refine";
 import { IPost } from "interfaces";
 
-export const PostList () => {
+export const PostList: React.FC = () => {
     const {
         modalProps,
         formProps,
         show,
-        saveButtonProps,
         //highlight-start
-        deleteButtonProps,
         editId,
-         //highlight-end
+        //highlight-end
     } = useModalForm<IPost>({
         //highlight-next-line
         action: "edit",
@@ -146,34 +135,23 @@ export const PostList () => {
                 </Table>
             </List>
             <Modal {...modalProps}>
-            //highlight-next-line
-                <Edit
-                    saveButtonProps={saveButtonProps}
-                    //highlight-start
-                    deleteButtonProps={deleteButtonProps}
-                    recordItemId={editId}
-                    //highlight-end
-                >
-                    <Form {...formProps} layout="vertical">
-                        <Form.Item label="Title" name="title">
-                            <Input />
-                        </Form.Item>
-                        <Form.Item label="Status" name="status">
-                            <Radio.Group>
-                                <Radio value="draft">Draft</Radio>
-                                <Radio value="published">Published</Radio>
-                                <Radio value="rejected">Rejected</Radio>
-                            </Radio.Group>
-                        </Form.Item>
-                    </Form>
-                </Edit>
+                <Form {...formProps} layout="vertical">
+                    <Form.Item label="Title" name="title">
+                        <Input />
+                    </Form.Item>
+                    <Form.Item label="Status" name="status">
+                        <Radio.Group>
+                            <Radio value="draft">Draft</Radio>
+                            <Radio value="published">Published</Radio>
+                            <Radio value="rejected">Rejected</Radio>
+                        </Radio.Group>
+                    </Form.Item>
+                </Form>
             </Modal>
         </>
-    )
-}
+    );
+};
 ```
-
-The `saveButtonProps` and `deleteButtonProps` can provides functionality to save and delete buttons in the modal.
 
 <br />
 
@@ -234,8 +212,6 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 | show                     | A function that can open the modal                           | `(id?: string) => void`                                                                                                                                                               |
 | formProps                | Ant Design form props                                        | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                                               |
 | modalProps               | Props for managed modal                                      | [`ModalProps`](https://ant.design/components/modal/#API)                                                                                                                              |
-| saveButtonProps          | Props for a submit button                                    | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                                                                                                                       |
-| deleteButtonProps        | Adds props for delete button                                 | [`DeleteButtonProps`](../../interfaces.md#delete-button-props)                                                                                                                        |
 | formLoading              | Loading status of form                                       | `boolean`                                                                                                                                                                             |
 | submit                   | Submit method, the parameter is the value of the form fields | `() => void`                                                                                                                                                                          |
 | visible                  | Whether the modal dialog is visible or not                   | `boolean`                                                                                                                                                                             |
