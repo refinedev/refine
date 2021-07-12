@@ -55,14 +55,10 @@ export const PostList: React.FC = () => {
     return (
         <List>
             //highlight-start
-            <Table {...tableProps} key="id">
-                <Table.Column key="id" dataIndex="id" title="ID" />
-                <Table.Column key="title" dataIndex="title" title="Title" />
-                <Table.Column
-                    key="content"
-                    dataIndex="content"
-                    title="Content"
-                />
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column dataIndex="content" title="Content" />
             </Table>
             //highlight-end
         </List>
@@ -75,6 +71,26 @@ export const PostList: React.FC = () => {
 
 `useTable`, verdiğiniz kaynağın verilerini çekerken `useMany` kullanır.
 :::
+
+<br />
+
+If you want to make a change in the pagination of the `<Table>`. You should pass the pagination object of the `tableProps` to the pagination property of the `<Table>` as below.
+
+```tsx
+<Table
+    {...tableProps}
+    rowKey="id"
+    //highlight-start
+    pagination={{
+        ...tableProps.pagination,
+        position: ["bottomCenter"],
+        size: "small",
+    }}
+    //highlight-end
+>
+    ...
+</Table>
+```
 
 ## Sıralama
 
@@ -90,9 +106,8 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
-            <Table {...tableProps} key="id">
+            <Table {...tableProps} rowKey="id">
                 <Table.Column
-                    key="id"
                     dataIndex="id"
                     title="ID"
                     render={(value) => <TextField value={value} />}
@@ -100,18 +115,13 @@ export const PostList: React.FC = () => {
                     sorter
                 />
                 <Table.Column
-                    key="title"
                     dataIndex="title"
                     title="Title"
                     render={(value) => <TextField value={value} />}
                     //highlight-next-line
                     sorter={{ multiple: 1 }}
                 />
-                <Table.Column
-                    key="content"
-                    dataIndex="content"
-                    title="Content"
-                />
+                <Table.Column dataIndex="content" title="Content" />
             </Table>
         </List>
     );
@@ -150,7 +160,6 @@ Endpointten gelen her `post` bir `status` değerine sahip. Bu değer `published`
 <Table.Column
     dataIndex="status"
     title="Status"
-    key="status"
     render={(value) => <TagField value={value} />}
 />
 ...
@@ -185,17 +194,15 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
-            <Table {...tableProps} key="id">
-                <Table.Column key="id" dataIndex="id" title="ID" sorter />
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" sorter />
                 <Table.Column
-                    key="title"
                     dataIndex="title"
                     title="Title"
                     sorter={{ multiple: 2 }}
                     defaultSortOrder={getDefaultSortOrder("title", sorter)}
                 />
                 <Table.Column
-                    key="content"
                     dataIndex="content"
                     title="Content"
                     sorter={{ multiple: 1 }}
@@ -203,7 +210,6 @@ export const PostList: React.FC = () => {
                 <Table.Column
                     dataIndex="status"
                     title="Status"
-                    key="status"
                     render={(value) => <TagField value={value} />}
                     //highlight-start
                     filterDropdown={(props) => (
@@ -289,17 +295,15 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
-            <Table {...tableProps} key="id">
-                <Table.Column key="id" dataIndex="id" title="ID" sorter />
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" sorter />
                 <Table.Column
-                    key="title"
                     dataIndex="title"
                     title="Title"
                     sorter={{ multiple: 2 }}
                     defaultSortOrder={getDefaultSortOrder("title", sorter)}
                 />
                 <Table.Column
-                    key="content"
                     dataIndex="content"
                     title="Content"
                     sorter={{ multiple: 1 }}
@@ -307,7 +311,6 @@ export const PostList: React.FC = () => {
                 <Table.Column
                     dataIndex="status"
                     title="Status"
-                    key="status"
                     render={(value) => <TagField value={value} />}
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
