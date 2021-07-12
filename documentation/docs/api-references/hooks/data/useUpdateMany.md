@@ -79,7 +79,7 @@ Queries that use `/posts` endpoint will be automatically invalidated to show the
 :::
 
 :::tip
-`useUpdateMany` returns `react-query`'s `useMutation` result w  hich includes [a lot properties](https://react-query.tanstack.com/reference/useMutation), one of which being `mutate`.
+`useUpdateMany` returns `react-query`'s `useMutation` result which includes [a lot properties](https://react-query.tanstack.com/reference/useMutation), one of which being `mutate`.
 :::
 
 :::important
