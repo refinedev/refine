@@ -176,14 +176,17 @@ export const useDeleteMany = <
                 }
             },
             onSuccess: (_data, { ids, resource }) => {
-                const resourceSingular = pluralize.singular(resource);
-
                 notification.success({
                     key: `${ids}-${resource}-notification`,
                     message: translate("notifications.success", "Success"),
                     description: translate(
                         "notifications.deleteSuccess",
-                        { resource: resourceSingular },
+                        {
+                            resource: translate(
+                                `${resource}.${resource}`,
+                                resource,
+                            ),
+                        },
                         `Successfully deleted ${resource}`,
                     ),
                 });

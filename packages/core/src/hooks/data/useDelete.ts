@@ -208,7 +208,12 @@ export const useDelete = <
                     message: translate("notifications.success", "Success"),
                     description: translate(
                         "notifications.deleteSuccess",
-                        { resource: resourceSingular },
+                        {
+                            resource: translate(
+                                `${resource}.${resource}`,
+                                resourceSingular,
+                            ),
+                        },
                         `Successfully deleted a ${resourceSingular}`,
                     ),
                 });
