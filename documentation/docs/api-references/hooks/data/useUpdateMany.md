@@ -9,7 +9,7 @@ description: useUpdateMany data hook from refine is a modified version of react-
 
 ## Features
 
-* Shows notifications after the mutation suceeds, fails or gets cancelled.
+* Shows notifications after the mutation succeeds, fails, or gets canceled.
 
 * Automatically invalidates `list` and `getOne` queries after the mutation is succesfully run.
 [Refer to React Query docs for detailed information &#8594](https://react-query.tanstack.com/guides/invalidations-from-mutations)
