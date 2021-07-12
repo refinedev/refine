@@ -55,7 +55,7 @@ export const useSelect = <TData extends BaseRecord = BaseRecord>(
             setSelectedOptions(
                 data.data.map((item) => ({
                     label: item[optionLabel],
-                    value: item[optionValue].toString(),
+                    value: item[optionValue],
                 })),
             );
         },
@@ -73,7 +73,7 @@ export const useSelect = <TData extends BaseRecord = BaseRecord>(
                 setOptions(
                     data.data.map((item) => ({
                         label: item[optionLabel],
-                        value: item[optionValue].toString(),
+                        value: item[optionValue],
                     })),
                 );
             },

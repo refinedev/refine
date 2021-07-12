@@ -41,7 +41,6 @@ import {
     useMany,
     IResourceComponentsProps,
     useImport,
-    useCreate,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -90,12 +89,17 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     });
 
     const { tableProps, sorter, filters } = useTable<IPost>({
-        initialCurrent: 3,
-        initialPageSize: 50,
         initialSorter: [
             {
                 field: "createdAt",
                 order: "desc",
+            },
+        ],
+        initialFilter: [
+            {
+                field: "category.id",
+                value: [1, 2],
+                operator: "in",
             },
         ],
     });
@@ -190,7 +194,12 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                         );
                     }}
                     filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
+                        <FilterDropdown
+                            {...props}
+                            mapValue={(selectedKeys) =>
+                                selectedKeys.map((i) => parseInt(i.toString()))
+                            }
+                        >
                             <Select
                                 style={{ minWidth: 200 }}
                                 mode="multiple"
