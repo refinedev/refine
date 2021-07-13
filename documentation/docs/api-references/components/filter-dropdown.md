@@ -126,7 +126,7 @@ If [syncWithLocation](refine-config.md#syncwithlocation) is enabled, on page ref
 For example when using `useSelect` for `<Select>` component. In this case values must be mapped to `number`s using `mapValue`.
 
 ```tsx
-import { useTable, Table, FilterDropdown, Select, getDefaultFilter }
+import { useTable, Table, FilterDropdown, Select, getDefaultFilter } from "@pankod/refine";
 
 const { tableProps, filters } = useTable<IPost>({
         initialFilter: [
@@ -172,5 +172,5 @@ const { selectProps: categorySelectProps } = useSelect<ICategory>({
     />
 </Table>
 ```
-
+> `getDefaultFilter` finds filter values from a given column.
 :::
