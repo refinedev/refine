@@ -251,7 +251,6 @@ The `saveButtonProps` and `deleteButtonProps` gives us the ability of saving and
 | mutationResult           | Result of the mutation triggered by submitting the form      | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
 | setCloneId               | `cloneId` setter                                             | `Dispatch<SetStateAction<` `string` \| `undefined>>`                                                                                                                                  |
 | cloneId                  | Record id for clone action                                   | `string`                                                                                                                                                                              |
-| setVisible               | Set the visibility status of drawer.                         | ` (value: React.SetStateAction<boolean>) => void`                                                                                                                                     |
 
 ## Live Codesandbox Example
 

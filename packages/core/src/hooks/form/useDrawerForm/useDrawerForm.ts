@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { UseFormConfig } from "sunflower-antd";
 import { FormInstance, FormProps, DrawerProps, ButtonProps } from "antd";
 import {
@@ -29,8 +29,8 @@ export type UseDrawerFormReturnType<
     formProps: FormProps<TVariables> & {
         form: FormInstance<TVariables>;
     };
-    setVisible: (value: React.SetStateAction<boolean>) => void;
     show: (id?: string) => void;
+    close: () => void;
     drawerProps: DrawerProps;
     saveButtonProps: ButtonProps;
     deleteButtonProps: DeleteButtonProps;
@@ -107,16 +107,39 @@ export const useDrawerForm = <
         },
     };
 
+    const handleClose = useCallback(() => {
+        if (warnWhen) {
+            const warnWhenConfirm = window.confirm(
+                translate(
+                    "warnWhenUnsavedChanges",
+                    "Are you sure you want to leave? You have with unsaved changes.",
+                ),
+            );
+
+            if (warnWhenConfirm) {
+                setWarnWhen(false);
+            } else {
+                return;
+            }
+        }
+
+        setVisible(false);
+        setCloneId?.(undefined);
+        setEditId?.(undefined);
+    }, []);
+
+    const handleShow = useCallback((id?: string) => {
+        setEditId?.(id);
+
+        setCloneId?.(id);
+
+        setVisible(true);
+    }, []);
+
     return {
         ...useFormProps,
-        setVisible,
-        show: (id?: string) => {
-            setEditId?.(id);
-
-            setCloneId?.(id);
-
-            setVisible(true);
-        },
+        show: handleShow,
+        close: handleClose,
         formProps: {
             form,
             onValuesChange: formProps?.onValuesChange,
@@ -128,25 +151,7 @@ export const useDrawerForm = <
             bodyStyle: {
                 paddingTop: "55px",
             },
-            onClose: () => {
-                if (warnWhen) {
-                    const warnWhenConfirm = window.confirm(
-                        translate(
-                            "warnWhenUnsavedChanges",
-                            "Are you sure you want to leave? You have with unsaved changes.",
-                        ),
-                    );
-
-                    if (warnWhenConfirm) {
-                        setWarnWhen(false);
-                    } else {
-                        return;
-                    }
-                }
-                setVisible(false);
-                setCloneId?.(undefined);
-                setEditId?.(undefined);
-            },
+            onClose: handleClose,
             visible,
         },
         saveButtonProps,
