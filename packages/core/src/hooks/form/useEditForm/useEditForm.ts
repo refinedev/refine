@@ -3,6 +3,7 @@ import { useForm as useFormSF } from "sunflower-antd";
 import { Form, FormInstance, FormProps } from "antd";
 import { useParams } from "react-router-dom";
 import { QueryObserverResult } from "react-query";
+import { ArgsProps } from "antd/lib/notification";
 
 import {
     useMutationMode,
@@ -68,6 +69,8 @@ export type useEditFormProps<
     redirect?: RedirectionTypes;
     undoableTimeout?: number;
     resource: IResourceItem;
+    successNotification?: ArgsProps | false;
+    errorNotification?: ArgsProps | false;
 };
 
 export const useEditForm = <
@@ -83,6 +86,8 @@ export const useEditForm = <
     redirect = "list",
     undoableTimeout,
     resource,
+    successNotification,
+    errorNotification,
 }: useEditFormProps<TData, TError, TVariables>): useEditForm<
     TData,
     TError,
@@ -149,6 +154,8 @@ export const useEditForm = <
                     resource: resource.name,
                     mutationMode,
                     undoableTimeout,
+                    successNotification,
+                    errorNotification,
                 },
                 {
                     onSuccess: (data, _, context) => {

@@ -16,6 +16,7 @@ import {
     IResourceItem,
     HttpError,
 } from "../../../interfaces";
+import { ArgsProps } from "antd/lib/notification";
 
 type SaveButtonProps = {
     disabled: boolean;
@@ -58,6 +59,8 @@ export type useCreateFormProps<
     warnWhenUnsavedChanges?: boolean;
     redirect?: RedirectionTypes;
     resource: IResourceItem;
+    successNotification?: ArgsProps | false;
+    errorNotification?: ArgsProps | false;
 };
 
 export const useCreateForm = <
@@ -71,6 +74,8 @@ export const useCreateForm = <
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect = "edit",
     resource,
+    successNotification,
+    errorNotification,
 }: useCreateFormProps<TData, TError, TVariables>): useCreateForm<
     TData,
     TError,
@@ -99,7 +104,12 @@ export const useCreateForm = <
     const onFinish = async (values: TVariables) => {
         setWarnWhen(false);
         mutate(
-            { values, resource: resource.name },
+            {
+                values,
+                resource: resource.name,
+                successNotification,
+                errorNotification,
+            },
             {
                 onSuccess: (data, variables, context) => {
                     if (onMutationSuccess) {
