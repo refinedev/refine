@@ -177,30 +177,12 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     dataIndex="slug"
                     title={translate("common:resources.posts.fields.slug")}
                     key="slug"
-                    filterDropdown={(props) => (
-                        <FilterDropdown
-                            {...props}
-                            /* mapValue={(selectedKeys) =>
-                                selectedKeys.map((i) => parseInt(i.toString()))
-                            } */
-                        >
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                options={[
-                                    { label: "test bir", value: "1" },
-                                    { label: "test iki", value: "2" },
-                                ]}
-                            />
-                        </FilterDropdown>
-                    )}
                 />
                 <Table.Column
                     dataIndex={["category", "id"]}
                     title={translate("common:resources.posts.fields.category")}
                     key="category.id"
-                    /* render={(value) => {
+                    render={(value) => {
                         if (isLoading) {
                             return <TextField value="Loading..." />;
                         }
@@ -214,13 +196,13 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                                 }
                             />
                         );
-                    }} */
+                    }}
                     filterDropdown={(props) => (
                         <FilterDropdown
                             {...props}
-                            /* mapValue={(selectedKeys) =>
+                            mapValue={(selectedKeys) =>
                                 selectedKeys.map((i) => parseInt(i.toString()))
-                            } */
+                            }
                         >
                             <Select
                                 style={{ minWidth: 200 }}
