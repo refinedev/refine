@@ -1,8 +1,8 @@
-If you need to know current locale, refine provides a `useGetLocale` hook, It returns the getLocale method from `i18nProvider` under the hood.
+If you need to know the current locale, refine provides the `useGetLocale` hook, It returns the `getLocale` method from `i18nProvider` under the hood.
 
 ## Usage
 
-You can use locale as your own i18n library provides. For example `<LanguageSwicher>` needs to know current locale in order to disable the button for current language.
+You can use the locale as your own i18n library provides. For example `<LanguageSwicher>` needs to know the current locale in order to disable the button for the current language.
 
 ```tsx
 import { Button, useTranslate } from "@pankod/refine";
