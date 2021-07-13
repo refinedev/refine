@@ -2,7 +2,7 @@ If you need to change the locale at runtime, refine provides the `useSetLocale` 
 
 ## Usage
 
-You can use the features of your own i18n library for change locale in your own components.
+You can use the features of your own i18n library to change locale in your own components.
 
 ```tsx
 import { Button, useTranslate } from "@pankod/refine";
