@@ -102,23 +102,23 @@ const App: React.FC = () => {
             configProviderProps={{
                 ...defaultConfigProviderProps,
             }}
-            // Layout={({ children, Sider, Header, Footer, OffLayoutArea }) => (
-            //     <AntdLayout
-            //         style={{ minHeight: "100vh", flexDirection: "row" }}
-            //     >
-            //         <Sider />
-            //         <AntdLayout>
-            //             <Header />
-            //             <AntdLayout.Content>
-            //                 <div style={{ padding: 24, minHeight: 360 }}>
-            //                     {children}
-            //                 </div>
-            //                 <OffLayoutArea />
-            //             </AntdLayout.Content>
-            //             <Footer />
-            //         </AntdLayout>
-            //     </AntdLayout>
-            // )}
+            Layout={({ children, Sider, Header, Footer, OffLayoutArea }) => (
+                <AntdLayout
+                    style={{ minHeight: "100vh", flexDirection: "row" }}
+                >
+                    <Sider />
+                    <AntdLayout style={{ width: 0 }}>
+                        <Header />
+                        <AntdLayout.Content>
+                            <div style={{ padding: 24, minHeight: 360 }}>
+                                {children}
+                            </div>
+                            <OffLayoutArea />
+                        </AntdLayout.Content>
+                        <Footer />
+                    </AntdLayout>
+                </AntdLayout>
+            )}
             Footer={() => (
                 <AntdLayout.Footer style={{ textAlign: "center" }}>
                     Refine ©{new Date().getFullYear()} Created by Pankod
