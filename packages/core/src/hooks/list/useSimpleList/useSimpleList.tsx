@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { QueryObserverResult } from "react-query";
 import { ListProps } from "antd/lib/list";
+import { FormProps } from "antd/lib/form";
+import { useForm } from "antd/lib/form/Form";
 
 import { useResourceWithRoute, useList } from "@hooks";
 
@@ -13,26 +15,40 @@ import {
     GetListResponse,
 } from "../../../interfaces";
 
-export type useSimpleListProps<TData> = ListProps<TData> & {
-    resource?: string;
-    filters?: CrudFilters;
-    sorter?: CrudSorting;
-};
+export type useSimpleListProps<TData, TSearchVariables = unknown> =
+    ListProps<TData> & {
+        resource?: string;
+        sorter?: CrudSorting;
+        onSearch?: (
+            data: TSearchVariables,
+        ) => CrudFilters | Promise<CrudFilters>;
+    };
 
-export type useSimpleListReturnType<TData extends BaseRecord = BaseRecord> = {
+export type useSimpleListReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TSearchVariables = unknown,
+> = {
     listProps: ListProps<TData>;
     sorter?: CrudSorting;
-    filters?: CrudFilters;
     queryResult: QueryObserverResult<GetListResponse<TData>>;
+    searchFormProps: FormProps<TSearchVariables>;
 };
 
-export const useSimpleList = <TData extends BaseRecord = BaseRecord>({
+export const useSimpleList = <
+    TData extends BaseRecord = BaseRecord,
+    TSearchVariables = unknown,
+>({
     resource: resourceFromProp,
-    filters,
     sorter,
+    onSearch,
     ...listProps
-}: useSimpleListProps<TData> = {}): useSimpleListReturnType<TData> => {
+}: useSimpleListProps<TData, TSearchVariables> = {}): useSimpleListReturnType<
+    TData,
+    TSearchVariables
+> => {
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
+
+    const [form] = useForm<TSearchVariables>();
 
     const resourceWithRoute = useResourceWithRoute();
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
@@ -49,6 +65,7 @@ export const useSimpleList = <TData extends BaseRecord = BaseRecord>({
 
     const [current, setCurrent] = useState(defaultCurrent);
     const [pageSize, setPageSize] = useState(defaultPageSize);
+    const [filters, setFilters] = useState<CrudFilters>([]);
 
     const queryResult = useList<TData>(resource.name, {
         pagination: {
@@ -65,7 +82,19 @@ export const useSimpleList = <TData extends BaseRecord = BaseRecord>({
         setPageSize(pageSize || 10);
     };
 
+    const onFinish = async (values: TSearchVariables) => {
+        if (onSearch) {
+            const filters = await onSearch(values);
+            setCurrent(1);
+            return setFilters(filters);
+        }
+    };
+
     return {
+        searchFormProps: {
+            form,
+            onFinish,
+        },
         listProps: {
             ...listProps,
             dataSource: data?.data,
