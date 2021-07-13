@@ -2,6 +2,7 @@ import React from "react";
 import uniqBy from "lodash/uniqBy";
 import { SelectProps } from "antd/lib/select";
 import { QueryObserverResult } from "react-query";
+import debounce from "lodash/debounce";
 
 import { useList, useMany } from "@hooks";
 import {
@@ -20,6 +21,7 @@ export type UseSelectProps = {
     sort?: CrudSorting;
     filters?: CrudFilters;
     defaultValue?: string | string[];
+    debounce?: number;
 };
 
 export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
@@ -43,6 +45,7 @@ export const useSelect = <TData extends BaseRecord = BaseRecord>(
         filters = [],
         optionLabel = "title",
         optionValue = "id",
+        debounce: debounceValue = 300,
     } = props;
 
     if (!Array.isArray(defaultValue)) {
@@ -82,10 +85,17 @@ export const useSelect = <TData extends BaseRecord = BaseRecord>(
     const { refetch: refetchList } = queryResult;
 
     React.useEffect(() => {
-        refetchList();
+        if (search) {
+            refetchList();
+        }
     }, [search]);
 
     const onSearch = (value: string) => {
+        if (!value) {
+            setSearch([]);
+            return;
+        }
+
         setSearch([
             {
                 field: optionLabel,
@@ -98,7 +108,7 @@ export const useSelect = <TData extends BaseRecord = BaseRecord>(
     return {
         selectProps: {
             options: uniqBy([...options, ...selectedOptions], "value"),
-            onSearch,
+            onSearch: debounce(onSearch, debounceValue),
             loading: defaultValueQueryResult.isFetching,
             showSearch: true,
             filterOption: false,
