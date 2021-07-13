@@ -55,7 +55,12 @@ export const useCreate = <
                 notification.success({
                     description: translate(
                         "notifications.createSuccess",
-                        { resource },
+                        {
+                            resource: translate(
+                                `${resource}.${resource}`,
+                                resourceSingular,
+                            ),
+                        },
                         `Successfully created ${resourceSingular}`,
                     ),
                     message: translate("notifications.success", "Success"),
@@ -73,7 +78,10 @@ export const useCreate = <
                     message: translate(
                         "notifications.createError",
                         {
-                            resource: resourceSingular,
+                            resource: translate(
+                                `${resource}.${resource}`,
+                                resourceSingular,
+                            ),
                             statusCode: err.statusCode,
                         },
                         `There was an error creating ${resourceSingular} (status code: ${err.statusCode})`,

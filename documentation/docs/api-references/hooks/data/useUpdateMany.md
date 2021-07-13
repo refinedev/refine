@@ -5,13 +5,13 @@ siderbar_label: useUpdateMany
 description: useUpdateMany data hook from refine is a modified version of react-query's useMutation for multiple update mutations
 ---
 
-`useUpdateMany` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for multiple update mutations. It uses `updateMany` method as mutation function from the `dataProvider` that is passed to `<Refine>`.
+`useUpdateMany` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for multiple update mutations. It uses `updateMany` method as mutation function from the `dataProvider` which is passed to `<Refine>`.
 
 ## Features
 
-* Shows notifications on success, error and cancel.
+* Shows notifications after the mutation succeeds, fails, or gets canceled.
 
-* Automatically invalidates `list` and `getOne` queries after mutation is succesfully run.
+* Automatically invalidates `list` and `getOne` queries after the mutation is succesfully run.
 [Refer to React Query docs for detailed information &#8594](https://react-query.tanstack.com/guides/invalidations-from-mutations)
 
 * Supports [mutation mode](#mutation-mode).
@@ -19,7 +19,7 @@ description: useUpdateMany data hook from refine is a modified version of react-
 
 ## Usage
 
-Let'say we have a `posts` resource
+Let's say that we have a resource named `posts`.
 
 ```ts title="https://api.fake-rest.refine.dev/posts"
 {
@@ -79,11 +79,11 @@ Queries that use `/posts` endpoint will be automatically invalidated to show the
 :::
 
 :::tip
-`useUpdateMany` returns `react-query`'s `useMutation` result. It includes `mutate` with  [many other properties](https://react-query.tanstack.com/reference/useMutation).
+`useUpdateMany` returns `react-query`'s `useMutation` result which includes [a lot properties](https://react-query.tanstack.com/reference/useMutation), one of which being `mutate`.
 :::
 
 :::important
-Values passed to `mutate` must have the type of
+Values passed to `mutate` must have these types:
 
 ```tsx
 {
@@ -99,7 +99,7 @@ Values passed to `mutate` must have the type of
 
 ## Mutation mode
 
-Determines the mode with which the mutation runs.
+Mutation mode determines the mode which mutation runs with.
 
 ```tsx
 const { mutate } = useUpdateMany();
@@ -118,8 +118,8 @@ mutate({
 [Refer to mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
 
 
-### Custom method on mutation cancellation
-You can pass a custom cancel callback to `useUpdateMany`. That callback is triggered when undo button is clicked when  `mutationMode = "undoable"`.
+### Creating a custom method for cancelling mutations
+You can pass a custom cancel callback to `useUpdateMany`. This callback is triggered instead of the default one when undo button is clicked when  `mutationMode = "undoable"`.
 
 :::caution
 Default behaviour on undo action includes notifications. If a custom callback is passed this notification will not appear.
@@ -166,7 +166,7 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 | undoableTimeout                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"` | `number`                                         | `5000ms`*        |
 | onCancel                                            | Callback that runs when undo button is clicked on `mutationMode = "undoable"`   | `(cancelMutation: () => void) => void`           |                  |
 
->`*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useUpdateMany` will use what is passed to `<Refine>` as default and can override locally.
+>`*`: These props have default values in `RefineContext` and can also be set on **<[Refine](api-references/components/refine-config.md))>** component. `useUpdateMany` will use what is passed to `<Refine>` as default but a local value will override it.
 
 <br/>
 
@@ -184,4 +184,4 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
  | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
  | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { resource:string; ids: string[]; values: TVariables; },`<br/>` UpdateContext>`](https://react-query.tanstack.com/reference/useMutation)* |
 
->`*` `UpdateContext` is an internal type used.
+>`*` `UpdateContext` is an internal type.

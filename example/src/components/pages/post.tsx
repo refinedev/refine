@@ -283,27 +283,39 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
         React.useState<"write" | "preview">("write");
     const { isLoading, onChange } = useFileUploadState();
 
-    const { current, gotoStep, stepsProps, submit, formLoading, formProps } =
-        useStepsForm({
-            warnWhenUnsavedChanges: true,
-            defaultFormValues: () => {
-                return {
-                    status: "published",
-                };
-            },
-        });
+    const {
+        current,
+        gotoStep,
+        stepsProps,
+        submit,
+        formLoading,
+        formProps,
+        queryResult,
+    } = useStepsForm({
+        warnWhenUnsavedChanges: true,
+        defaultFormValues: () => {
+            return {
+                status: "published",
+            };
+        },
+    });
 
+    const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
+        defaultValue: postData?.category?.id,
     });
 
     const { selectProps: userSelectProps } = useSelect({
         resource: "users",
         optionLabel: "email",
+        defaultValue: postData?.user?.id,
     });
 
     const { selectProps: tagsSelectProps } = useSelect({
         resource: "tags",
+        // TODO: tag interface
+        defaultValue: postData?.tags?.map((tag: { id: string }) => tag.id),
     });
 
     const formList = [
@@ -408,7 +420,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
             </Form.Item>
             <Form.Item
                 label={translate("common:resources.posts.fields.user")}
-                name={["name", "id"]}
+                name={["user", "id"]}
                 rules={[
                     {
                         required: true,
@@ -426,15 +438,6 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                         required: true,
                     },
                 ]}
-                // TODO: tags interface
-                getValueProps={(tags?: { id: string }[]) => {
-                    return { value: tags?.map((tag) => tag.id) };
-                }}
-                getValueFromEvent={(args: string[]) => {
-                    return args.map((item) => ({
-                        id: item,
-                    }));
-                }}
             >
                 <Select mode="multiple" {...tagsSelectProps} />
             </Form.Item>
@@ -661,15 +664,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
                         required: true,
                     },
                 ]}
-                // TODO: Tags Interface
-                getValueProps={(tags?: { id: string }[]) => {
-                    return { value: tags?.map((tag) => tag.id) };
-                }}
-                getValueFromEvent={(args: string[]) => {
-                    return args.map((item) => ({
-                        id: item,
-                    }));
-                }}
             >
                 <Select mode="multiple" {...tagsSelectProps} />
             </Form.Item>

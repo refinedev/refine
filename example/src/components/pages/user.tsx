@@ -21,7 +21,7 @@ import {
     CloneButton,
     ShowButton,
     Space,
-    Radio,
+    Select,
     Typography,
     BooleanField,
     HttpError,
@@ -219,10 +219,22 @@ export const UserList: React.FC<IResourceComponentsProps> = (props) => {
                                 },
                             ]}
                         >
-                            <Radio.Group>
-                                <Radio value={true}>Enable</Radio>
-                                <Radio value={false}>Disable</Radio>
-                            </Radio.Group>
+                            <Select
+                                options={[
+                                    {
+                                        label: "Published",
+                                        value: "published",
+                                    },
+                                    {
+                                        label: "Draft",
+                                        value: "draft",
+                                    },
+                                    {
+                                        label: "Rejected",
+                                        value: "rejected",
+                                    },
+                                ]}
+                            />
                         </Form.Item>
                     </Form>
                 </Edit>
@@ -283,7 +295,24 @@ export const UserList: React.FC<IResourceComponentsProps> = (props) => {
                                     required: true,
                                 },
                             ]}
-                        ></Form.Item>
+                        >
+                            <Select
+                                options={[
+                                    {
+                                        label: "Published",
+                                        value: "published",
+                                    },
+                                    {
+                                        label: "Draft",
+                                        value: "draft",
+                                    },
+                                    {
+                                        label: "Rejected",
+                                        value: "rejected",
+                                    },
+                                ]}
+                            />
+                        </Form.Item>
                     </Form>
                 </Create>
             </Drawer>

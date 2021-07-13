@@ -47,7 +47,12 @@ export const useCreateMany = <
                 notification.success({
                     description: translate(
                         "notifications.createSuccess",
-                        { resource },
+                        {
+                            resource: translate(
+                                `${resource}.${resource}`,
+                                resource,
+                            ),
+                        },
                         "Successfully Created",
                     ),
                     message: translate("notifications.success", "Success"),
@@ -62,7 +67,13 @@ export const useCreateMany = <
                     description: err.message,
                     message: translate(
                         "notifications.createError",
-                        { resource, statusCode: err.statusCode },
+                        {
+                            resource: translate(
+                                `${resource}.${resource}`,
+                                resource,
+                            ),
+                            statusCode: err.statusCode,
+                        },
                         `There was an error creating ${resource} (status code: ${err.statusCode}`,
                     ),
                 });

@@ -106,6 +106,8 @@ export const useCreateForm = <
                         return onMutationSuccess(data, values, context);
                     }
 
+                    form.resetFields();
+
                     const id = data.data.id;
 
                     handleSubmitWithRedirect({

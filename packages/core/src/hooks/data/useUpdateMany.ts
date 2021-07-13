@@ -224,7 +224,12 @@ export const useUpdateMany = <
                     message: translate("notifications.success", "Successful"),
                     description: translate(
                         "notifications.editSuccess",
-                        { resource: resourceSingular },
+                        {
+                            resource: translate(
+                                `${resource}.${resource}`,
+                                resource,
+                            ),
+                        },
                         `Successfully updated ${resourceSingular}`,
                     ),
                 });

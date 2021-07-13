@@ -190,7 +190,10 @@ export const useUpdate = <
                         message: translate(
                             "notifications.editError",
                             {
-                                resource: resourceSingular,
+                                resource: translate(
+                                    `${resource}.${resource}`,
+                                    resourceSingular,
+                                ),
                                 statusCode: err.statusCode,
                             },
                             `Error when updating ${resourceSingular} (status code: ${err.statusCode})`,
@@ -213,7 +216,12 @@ export const useUpdate = <
                     message: translate("notifications.success", "Successful"),
                     description: translate(
                         "notifications.editSuccess",
-                        { resource: resourceSingular },
+                        {
+                            resource: translate(
+                                `${resource}.${resource}`,
+                                resourceSingular,
+                            ),
+                        },
                         `Successfully updated ${resourceSingular}`,
                     ),
                 });
