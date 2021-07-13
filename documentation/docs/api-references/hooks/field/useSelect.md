@@ -181,7 +181,7 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 | optionLabel                                       | Set the option's label value              | `string`                                         | `"title"` |
 | filters                                           | Add filters while fetching the data       | [`CrudFilters`](../../interfaces.md#crudfilters) |           |
 | sort                                              | Allow us to sort the options              | [`CrudSorting`](../../interfaces.md#crudsorting) |           |
-| debounce                                          | Adds debounce to Autocomplete             | `number`                                         | 300       |
+| debounce                                          | The number of milliseconds to delay             | `number`                                         | 300       |
 
 
 ### Return values
