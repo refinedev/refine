@@ -8,9 +8,9 @@ import login from '@site/static/img/guides-and-concepts/providers/auth-provider/
 import logout from '@site/static/img/guides-and-concepts/providers/auth-provider/logout.gif';
 import header from '@site/static/img/guides-and-concepts/providers/auth-provider/header.png';
 
-**refine** let's you set authentication logic by providing `authProvider` property to `<Refine>` component.
+**refine** let's you set authentication logic by providing the `authProvider` property to the `<Refine>` component.
 
-`authProvider` is an object with methods that **refine** uses when necessary. These methods need to return a Promise. They also can be accessed with specialized hooks.
+`authProvider` is an object with methods that **refine** uses when necessary. These methods are needed to return a Promise. They also can be accessed with specialized hooks.
 
 An auth provider must include following methods:
 
@@ -26,13 +26,13 @@ const authProvider = {
 ```
 
 :::important
-**refine** consumes this methods using [authorization hooks](api-references/hooks/auth/useLogin.md).
+**refine** consumes these methods using [authorization hooks](api-references/hooks/auth/useLogin.md).
 Authorization hooks are used to manage authentication and authorization operations like login, logout and catching Http errors etc.
 :::
 
 ## Usage
 
-To use auth provider in **refine**, we have to pass the authProvider to `<Admin />` component.
+To use `authProvider` in **refine**, we have to pass the `authProvider` to the `<Admin />` component.
 
 ```tsx title="App.tsx"
 import {
@@ -61,25 +61,25 @@ const App = () => {
 
 By default, **refine** doesn't require authentication configuration.
 
-If an `authProvider` property is not provided, **refine** will use a default `authProvider`. This default `authProvider` lets the app work without an authentication requirement.  
+If an `authProvider` property is not provided, **refine** will use the default `authProvider`. This default `authProvider` lets the app work without an authentication requirement.  
 If your app doesn't require authentication, no further setup is necessary for the app to work.
 
-## Creating an auth provider
+## Creating an `authProvider`
 
-We'll build a simple auth provider from scratch to show the logic of how auth provider methods interact with the app.
+We will build a simple `authProvider` from scratch to show the logic of how `authProvider` methods interact with the app.
 
 ### `login`
 
-**refine** expects this method to return a resolved Promise if login is successful, and a rejected Promise if not.
+**refine** expects this method to return a resolved Promise if the login is successful, and a rejected Promise if it is not.
 
--   If login is successful, pages that requires authentication becomes accessible.
+-   If the login is successful, pages that require authentication becomes accessible.
 
--   If the login fails, **refine** displays an error message to the user in a notification.
+-   If the login fails, **refine** displays an error notification to the user.
 
 <br />
 
-Here we show an example `login` method that stores auth data in localStorage.
-For sake of simplicity, we'll use mock data and check the user credentials from local storage.
+Here we show an example `login` method that stores auth data in `localStorage`.
+For the sake of simplicity, we'll use mock data and check the user credentials from local storage.
 
 ```tsx title="auth-provider.ts"
 const mockUsers = [{ username: "admin" }, { username: "editor" }];
@@ -114,7 +114,7 @@ login(values);
 ```
 
 :::tip
-`mutate` acquired from `useLogin` can accept any kind of object for values since `login` method from `authProvider` doesn't have a restriction on its parameters.  
+`mutate` acquired from `useLogin` can accept any kind of object for values since `login` method from `authProvider` does not have a restriction on its parameters.  
 A type parameter for the values can be provided to `useLogin`.
 
 ```tsx
@@ -130,7 +130,7 @@ const { mutate: login } =
 
 #### Default login page
 
-If an `authProvider` is given, refine shows a default login page on `"/"` and `"/login"` routes with a login form if a custom `LoginPage` is not provided.
+If an `authProvider` is given, refine shows a default login page on `"/"` and `"/login"` routes and a login form if a custom `LoginPage` is not provided.
 Rest of the app won't be accessible until a successful authentication.  
 After submission, login form calls the `login` method from `authProvider`.
 
@@ -144,22 +144,22 @@ After submission, login form calls the `login` method from `authProvider`.
 <br />
 
 :::important
-If an `authProvider` is given, [Resources](#) passed to `<Refine>` as children are only accessible if login is successful. In case of no `authProvider`, they are accessible without authentication.  
+If an `authProvider` is given, [Resources](#) passed to `<Refine>` as children are only accessible if the login is successful. if no `authProvider` was provided, they are accessible without authentication.  
 :::
 
 :::tip
-[Refer to documentation on how to customize default login page.&#8594](#)
+[Refer to documentation on how to customize the default login page.&#8594](#)
 :::
 
 <br />
 
 ### `logout`
 
-**refine** expects this method to return a resolved Promise if logout is successful, and a rejected Promise if not.
+**refine** expects this method to return a resolved Promise if the logout is successful, and a rejected Promise if it is not.
 
--   If logout is successful, pages that requires authentication becomes unaccessible.
+-   If the logout is successful, pages that requires authentication becomes unaccessible.
 
--   If the logout fails, **refine** displays an error message to the user in a notification.
+-   If the logout fails, **refine** displays an error notification to the user.
 
 <br />
 
@@ -180,7 +180,7 @@ const authProvider = {
 
 <br />
 
-`logout` method will be accessible via `useLogout` auth hook.
+`logout` method will be accessible via the `useLogout` auth hook.
 
 ```tsx
 import { useLogout } from "@pankod/refine";
@@ -226,7 +226,7 @@ const authProvider = {
 ```
 
 :::tip
-Current authentication data needs to be cleaned by the `logout` method. For example if a token is stored in local storage, `logout` must remove it as shown above.
+Current authentication data needs to be cleaned by the `logout` method. For example, if a token is stored in local storage, `logout` must remove it as shown above.
 :::
 
 <br />
@@ -234,10 +234,10 @@ Current authentication data needs to be cleaned by the `logout` method. For exam
 ### `checkError`
 
 When a `dataProvider` method returns an error, `checkError` is called with the error object.  
-If `checkError` returns a rejected promise, `logout` method is called and users become unauthorized and get redirected to `/login` page by default.
+If `checkError` returns a rejected promise, the `logout` method is called and user becomes unauthorized and gets redirected to `/login` page by default.
 
 In this example, we log the user out when HTTP error status code is `401`.  
-You can decide depending on any error status code you want to check if the users continue to process by returning a resolved promise or they are logged out by rejecting the promise.
+You can decide, depending on any error status code you want to check, if the users continue to process by returning a resolved promise or if they are logged out for rejecting the promise.
 
 ```tsx title="auth-provider.ts"
 const authProvider = {
@@ -260,7 +260,7 @@ const authProvider = {
 
 <br />
 
-`checkError` method will be accessible via `useCheckError` auth hook.
+`checkError` method will be accessible via the `useCheckError` auth hook.
 
 ```tsx
 import { useCheckError } from "@pankod/refine";
@@ -337,9 +337,9 @@ const {
 
 ### `getPermissions`
 
-You may want to require authorization for certain parts of the app based on the permissions that current user have. Permission logic can be defined in `getPermission` method.
+You may want to require authorization for certain parts of the app based on the permissions that current user have. Permission logic can be defined in the `getPermission` method.
 
-We will show how to add authorization based on roles determined in `getPermissions`.
+We will show you how to give authorization based on roles determined in `getPermissions`.
 
 ```tsx title="auth-provider.ts"
 const mockUsers = [
@@ -373,10 +373,10 @@ const authProvider = {
 
 <br/>
 
-Data that `getPermissions` resolves with is accesible by [`usePermissions`](#) hook.
+Data that `getPermissions` resolves with is accesible by the [`usePermissions`](#) hook.
 
-For example if only admins must be able to create new posts from list page.
-`<List>` can show a button for creating new posts. If it's required that only admins can create new posts, this button must be only accessible to users who has `"admin"` role.
+For example let's say that only the admins must be able to create new posts from the list page.
+`<List>` can show a button for creating new posts. If it's required that only admins can create new posts, this button must be only accessible to users who has the `"admin"` role.
 
 ```tsx title="pages/post/list"
 import { List, usePermissions } from "@pankod/refine";
@@ -394,7 +394,7 @@ export const PostList: React.FC = () => {
 
 ### `getUserIdentity`
 
-User data can be accessed within the app by returning a resolved Promise in `getUserIdentity` method.
+User data can be accessed within the app by returning a resolved Promise in the `getUserIdentity` method.
 
 ```tsx title="auth-provider.ts"
 const authProvider = {
@@ -414,7 +414,7 @@ const authProvider = {
 
 <br />
 
-The resolved data can be get using [`useGetIdentity`](#) hook.
+The resolved data can be acquired using the [`useGetIdentity`](#) hook.
 
 ```tsx
 import { useGetIdentity } from "@pankod/refine";
@@ -442,7 +442,7 @@ const authProvider = {
 };
 ```
 
-If resolved data has a `name` or `avatar` property **refine** renders a suitable header for that data like below:
+If the resolved data has a `name` or `avatar` property, **refine** renders a suitable header for that data:
 
 <br />
 
@@ -453,15 +453,15 @@ If resolved data has a `name` or `avatar` property **refine** renders a suitable
 <br />
 
 :::tip
-If the resolved data has a `name` property, a name text appears; if it has an `avatar` property, an avatar image appears; if it has a `name` and `avatar` property, they appear together.
+If the resolved data has a `name` property, a name text appears; if it has an `avatar` property, an avatar image appears; if it has a `name` and an `avatar` property, they both appear together.
 :::
 <br />
 
 ## Setting Authorization Credentials
 
-After user logins, their credentials can be sent along with the API request by configuring the [`dataProvider`](#). A custom `httpClient` can be passed to `dataProvider` to include configurations like cookies, request headers.
+After user logs in, their credentials can be sent along with the API request by configuring the [`dataProvider`](#). A custom `httpClient` can be passed to `dataProvider` to include configurations like cookies and request headers.
 
-We'll show how to add a token got from `login` method to **Authorization** header of **HTTP** requests.
+We'll show how to add a token acquired from the `login` method to the **Authorization** header of the **HTTP** requests.
 
 ```tsx title="App.tsx"
 ...
@@ -512,12 +512,12 @@ const App = () => {
 ```
 
 :::note
-We recommend to use **axios** as Http client with **@pankod/refine-simple-rest** data provider. Other Http clients can be also preferred.
+We recommend using **axios** as the Http client with the **@pankod/refine-simple-rest** data provider. Other Http clients can also be preferred.
 :::
 
 ## Hooks and Components
 
-This hooks can be used with `authProvider` authentication and authorization operations.
+These hooks can be used with the `authProvider` authentication and authorization operations.
 
 -   [useAuthenticated](#)
 -   [useCheckError](#)
@@ -535,10 +535,10 @@ This hooks can be used with `authProvider` authentication and authorization oper
 
 | Property                                                                                                 | Description                               | Resolve condition                     |
 | -------------------------------------------------------------------------------------------------------- | ----------------------------------------- | ------------------------------------- |
-| login <div className=" required">Required</div>                                                          | Log user in                               | Auth confirms login                   |
-| logout <div className=" required">Required</div>                                                         | Log user out                              | Auth confirms logout                  |
-| checkAuth <div className=" required">Required</div>                                                      | Check credentials on each route changes   | Authentication still persist          |
-| checkError <div className=" required">Required</div>                                                     | Check if a data provider returns an error | Data provider doesn't return an error |
+| login <div className=" required">Required</div>                                                          | Logs user in                               | Auth confirms login                   |
+| logout <div className=" required">Required</div>                                                         | Logs user out                              | Auth confirms logout                  |
+| checkAuth <div className=" required">Required</div>                                                      | Checks credentials on each route changes   | Authentication still persist          |
+| checkError <div className=" required">Required</div>                                                     | Checks if a data provider returns an error | Data provider doesn't return an error |
 | <div className="required-block"><div>getPermissions</div> <div className="required">Required</div></div> | Can be use to get user credentials        | Authorization roles accepted          |
 | getUserIdentity                                                                                          | Can be use to get user identity           | User identity avaliable to return     |
 
