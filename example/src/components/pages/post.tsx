@@ -107,9 +107,13 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
 
-    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
-        enabled: categoryIds.length > 0,
-    });
+    const { data, isLoading } = useMany<ICategory>(
+        "categories",
+        ["1", "2"],
+        /* categoryIds, */ {
+            enabled: categoryIds.length > 0,
+        },
+    );
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
@@ -173,12 +177,30 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     dataIndex="slug"
                     title={translate("common:resources.posts.fields.slug")}
                     key="slug"
+                    filterDropdown={(props) => (
+                        <FilterDropdown
+                            {...props}
+                            /* mapValue={(selectedKeys) =>
+                                selectedKeys.map((i) => parseInt(i.toString()))
+                            } */
+                        >
+                            <Select
+                                style={{ minWidth: 200 }}
+                                mode="multiple"
+                                placeholder="Select Category"
+                                options={[
+                                    { label: "test bir", value: "1" },
+                                    { label: "test iki", value: "2" },
+                                ]}
+                            />
+                        </FilterDropdown>
+                    )}
                 />
                 <Table.Column
                     dataIndex={["category", "id"]}
                     title={translate("common:resources.posts.fields.category")}
                     key="category.id"
-                    render={(value) => {
+                    /* render={(value) => {
                         if (isLoading) {
                             return <TextField value="Loading..." />;
                         }
@@ -192,13 +214,13 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                                 }
                             />
                         );
-                    }}
+                    }} */
                     filterDropdown={(props) => (
                         <FilterDropdown
                             {...props}
-                            mapValue={(selectedKeys) =>
+                            /* mapValue={(selectedKeys) =>
                                 selectedKeys.map((i) => parseInt(i.toString()))
-                            }
+                            } */
                         >
                             <Select
                                 style={{ minWidth: 200 }}

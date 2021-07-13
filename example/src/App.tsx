@@ -162,10 +162,11 @@ const App: React.FC = () => {
             OffLayoutArea={() => (
                 <>
                     <BackTop />
-                    <DemoSidebar {...demoSidebarProps} />
+                    {/* <DemoSidebar {...demoSidebarProps} /> */}
                 </>
             )}
             {...refineProps}
+            syncWithLocation={true}
         >
             <Resource
                 name="posts"
