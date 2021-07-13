@@ -13,6 +13,7 @@ import {
     DeleteOneResponse,
     ResourceRouterParams,
     MutationMode,
+    SuccessErrorNotification,
 } from "../../../interfaces";
 
 export type DeleteButtonProps = ButtonProps & {
@@ -20,7 +21,7 @@ export type DeleteButtonProps = ButtonProps & {
     recordItemId?: string;
     onSuccess?: (value: DeleteOneResponse) => void;
     mutationMode?: MutationMode;
-};
+} & SuccessErrorNotification;
 
 export const DeleteButton: FC<DeleteButtonProps> = ({
     resourceName: propResourceName,
@@ -28,6 +29,8 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
     onSuccess,
     mutationMode: mutationModeProp,
     children,
+    successNotification,
+    errorNotification,
     ...rest
 }) => {
     const translate = useTranslate();
@@ -62,6 +65,8 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
                         id: id,
                         resource: resource.name,
                         mutationMode,
+                        successNotification,
+                        errorNotification,
                     },
                     {
                         onSuccess: (value) => {

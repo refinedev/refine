@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
-import { ArgsProps } from "antd/lib/notification";
 import pluralize from "pluralize";
 
 import { DataContext } from "@contexts/data";
@@ -14,6 +13,7 @@ import {
     QueryResponse,
     GetListResponse,
     Context as DeleteContext,
+    SuccessErrorNotification,
 } from "../../interfaces";
 import {
     useTranslate,
@@ -31,9 +31,7 @@ type DeleteManyParams = {
     mutationMode?: MutationMode;
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
-    successNotification?: ArgsProps | false;
-    errorNotification?: ArgsProps | false;
-};
+} & SuccessErrorNotification;
 
 type UseDeleteManyReturnType<
     TData extends BaseRecord = BaseRecord,

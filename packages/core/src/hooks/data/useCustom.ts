@@ -45,7 +45,8 @@ export const useCustom = <
         () => custom<TData>(url, method, { ...config }),
         {
             ...queryOptions,
-            onSuccess: () => {
+            onSuccess: (data) => {
+                queryOptions?.onSuccess?.(data);
                 handleNotification(successNotification);
             },
             onError: (err: TError) => {

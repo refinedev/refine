@@ -11,13 +11,14 @@ import {
     CrudFilters,
     CrudSorting,
     GetListResponse,
+    SuccessErrorNotification,
 } from "../../../interfaces";
 
 export type useSimpleListProps<TData> = ListProps<TData> & {
     resource?: string;
     filters?: CrudFilters;
     sorter?: CrudSorting;
-};
+} & SuccessErrorNotification;
 
 export type useSimpleListReturnType<TData extends BaseRecord = BaseRecord> = {
     listProps: ListProps<TData>;
@@ -30,6 +31,8 @@ export const useSimpleList = <TData extends BaseRecord = BaseRecord>({
     resource: resourceFromProp,
     filters,
     sorter,
+    successNotification,
+    errorNotification,
     ...listProps
 }: useSimpleListProps<TData> = {}): useSimpleListReturnType<TData> => {
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
@@ -50,14 +53,20 @@ export const useSimpleList = <TData extends BaseRecord = BaseRecord>({
     const [current, setCurrent] = useState(defaultCurrent);
     const [pageSize, setPageSize] = useState(defaultPageSize);
 
-    const queryResult = useList<TData>(resource.name, {
-        pagination: {
-            current,
-            pageSize,
+    const queryResult = useList<TData>(
+        resource.name,
+        {
+            pagination: {
+                current,
+                pageSize,
+            },
+            filters,
+            sort: sorter,
         },
-        filters,
-        sort: sorter,
-    });
+        undefined,
+        successNotification,
+        errorNotification,
+    );
     const { data, isFetching } = queryResult;
 
     const onChange = (page: number, pageSize?: number): void => {

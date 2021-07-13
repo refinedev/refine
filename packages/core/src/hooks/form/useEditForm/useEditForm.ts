@@ -3,7 +3,6 @@ import { useForm as useFormSF } from "sunflower-antd";
 import { Form, FormInstance, FormProps } from "antd";
 import { useParams } from "react-router-dom";
 import { QueryObserverResult } from "react-query";
-import { ArgsProps } from "antd/lib/notification";
 
 import {
     useMutationMode,
@@ -23,6 +22,7 @@ import {
     UpdateResponse,
     IResourceItem,
     HttpError,
+    SuccessErrorNotification,
 } from "../../../interfaces";
 
 type SaveButtonProps = {
@@ -69,9 +69,7 @@ export type useEditFormProps<
     redirect?: RedirectionTypes;
     undoableTimeout?: number;
     resource: IResourceItem;
-    successNotification?: ArgsProps | false;
-    errorNotification?: ArgsProps | false;
-};
+} & SuccessErrorNotification;
 
 export const useEditForm = <
     TData extends BaseRecord = BaseRecord,

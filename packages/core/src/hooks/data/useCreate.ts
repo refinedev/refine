@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 import pluralize from "pluralize";
-import { notification } from "antd";
-import { ArgsProps } from "antd/lib/notification";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -10,9 +8,15 @@ import {
     IDataContext,
     BaseRecord,
     HttpError,
+    SuccessErrorNotification,
 } from "../../interfaces";
 import { useListResourceQueries, useTranslate, useCheckError } from "@hooks";
 import { handleNotification } from "@definitions";
+
+type useCreateParams<TVariables> = {
+    resource: string;
+    values: TVariables;
+} & SuccessErrorNotification;
 
 export type UseCreateReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -21,21 +25,9 @@ export type UseCreateReturnType<
 > = UseMutationResult<
     CreateResponse<TData>,
     TError,
-    {
-        resource: string;
-        values: TVariables;
-        successNotification?: ArgsProps | false;
-        errorNotification?: ArgsProps | false;
-    },
+    useCreateParams<TVariables>,
     unknown
 >;
-
-type useCreateParams<TVariables> = {
-    resource: string;
-    values: TVariables;
-    successNotification?: ArgsProps | false;
-    errorNotification?: ArgsProps | false;
-};
 
 export const useCreate = <
     TData extends BaseRecord = BaseRecord,

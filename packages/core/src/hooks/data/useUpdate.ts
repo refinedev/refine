@@ -1,7 +1,5 @@
 import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
-import { notification } from "antd";
-import { ArgsProps } from "antd/lib/notification";
 
 import { DataContext } from "@contexts/data";
 import { ActionTypes } from "@contexts/notification";
@@ -14,6 +12,7 @@ import {
     Context as UpdateContext,
     ContextQuery,
     HttpError,
+    SuccessErrorNotification,
 } from "../../interfaces";
 import pluralize from "pluralize";
 import {
@@ -32,9 +31,7 @@ type UpdateParams<TVariables> = {
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
     values: TVariables;
-    successNotification?: ArgsProps | false;
-    errorNotification?: ArgsProps | false;
-};
+} & SuccessErrorNotification;
 
 export type UseUpdateReturnType<
     TData extends BaseRecord = BaseRecord,

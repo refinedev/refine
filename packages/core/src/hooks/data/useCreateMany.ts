@@ -1,7 +1,5 @@
 import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
-import { notification } from "antd";
-import { ArgsProps } from "antd/lib/notification";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -9,9 +7,16 @@ import {
     BaseRecord,
     CreateManyResponse,
     HttpError,
+    SuccessErrorNotification,
 } from "../../interfaces";
 import { useListResourceQueries, useTranslate } from "@hooks";
 import { handleNotification } from "@definitions";
+import pluralize from "pluralize";
+
+type useCreateManyParams<TVariables> = {
+    resource: string;
+    values: TVariables[];
+} & SuccessErrorNotification;
 
 export type UseCreateManyReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -20,21 +25,10 @@ export type UseCreateManyReturnType<
 > = UseMutationResult<
     CreateManyResponse<TData>,
     TError,
-    {
-        resource: string;
-        values: TVariables[];
-        successNotification?: ArgsProps | false;
-        errorNotification?: ArgsProps | false;
-    },
+    useCreateManyParams<TVariables>,
     unknown
 >;
 
-type useCreateManyParams<TVariables> = {
-    resource: string;
-    values: TVariables[];
-    successNotification?: ArgsProps | false;
-    errorNotification?: ArgsProps | false;
-};
 export const useCreateMany = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -54,6 +48,8 @@ export const useCreateMany = <
             createMany<TData, TVariables>(resource, values),
         {
             onSuccess: (_, { resource, successNotification }) => {
+                const resourcePlural = pluralize.plural(resource);
+
                 handleNotification(successNotification, {
                     description: translate(
                         "notifications.createSuccess",
@@ -63,7 +59,7 @@ export const useCreateMany = <
                                 resource,
                             ),
                         },
-                        "Successfully Created",
+                        `Successfully created ${resourcePlural}`,
                     ),
                     message: translate("notifications.success", "Success"),
                     type: "success",

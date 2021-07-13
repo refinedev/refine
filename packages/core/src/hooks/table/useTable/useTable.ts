@@ -24,6 +24,7 @@ import {
     CrudFilters,
     CrudSorting,
     GetListResponse,
+    SuccessErrorNotification,
 } from "../../../interfaces";
 
 export type useTableProps<TSearchVariables = unknown> = {
@@ -35,7 +36,7 @@ export type useTableProps<TSearchVariables = unknown> = {
     initialFilter?: CrudFilters;
     syncWithLocation?: boolean;
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
-};
+} & SuccessErrorNotification;
 
 export type useTableReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -60,6 +61,8 @@ export const useTable = <
     initialFilter,
     syncWithLocation: syncWithLocationProp = false,
     resource: resourceFromProp,
+    successNotification,
+    errorNotification,
 }: useTableProps<TSearchVariables> = {}): useTableReturnType<
     TData,
     TSearchVariables
@@ -114,11 +117,17 @@ export const useTable = <
         defaultCurrent: defaultCurrentSF,
     } = tablePropsSunflower.pagination;
 
-    const queryResult = useList<TData>(resource.name, {
-        pagination: { current: current ?? defaultCurrentSF, pageSize },
-        filters: permanentFilter.concat(extraFilter, filters),
-        sort: sorter,
-    });
+    const queryResult = useList<TData>(
+        resource.name,
+        {
+            pagination: { current: current ?? defaultCurrentSF, pageSize },
+            filters: permanentFilter.concat(extraFilter, filters),
+            sort: sorter,
+        },
+        undefined,
+        successNotification,
+        errorNotification,
+    );
     const { data, isFetching } = queryResult;
 
     const onChange = (

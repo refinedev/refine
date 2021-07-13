@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
-import { ArgsProps } from "antd/lib/notification";
 
 import {
     useMutationMode,
@@ -22,6 +21,7 @@ import {
     ContextQuery,
     HttpError,
     GetListResponse,
+    SuccessErrorNotification,
 } from "../../interfaces";
 import { handleNotification } from "@definitions/helpers";
 
@@ -31,9 +31,7 @@ type DeleteParams = {
     mutationMode?: MutationMode;
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
-    successNotification?: ArgsProps | false;
-    errorNotification?: ArgsProps | false;
-};
+} & SuccessErrorNotification;
 
 type UseDeleteReturnType<
     TData extends BaseRecord = BaseRecord,

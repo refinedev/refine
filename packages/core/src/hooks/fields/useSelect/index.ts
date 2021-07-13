@@ -12,6 +12,7 @@ import {
     GetManyResponse,
     GetListResponse,
     CrudFilters,
+    SuccessErrorNotification,
 } from "../../../interfaces";
 
 export type UseSelectProps = {
@@ -22,7 +23,7 @@ export type UseSelectProps = {
     filters?: CrudFilters;
     defaultValue?: string | string[];
     debounce?: number;
-};
+} & SuccessErrorNotification;
 
 export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
     selectProps: SelectProps<{ value: string; label: string }>;
@@ -46,6 +47,8 @@ export const useSelect = <TData extends BaseRecord = BaseRecord>(
         optionLabel = "title",
         optionValue = "id",
         debounce: debounceValue = 300,
+        successNotification,
+        errorNotification,
     } = props;
 
     if (!Array.isArray(defaultValue)) {
@@ -81,6 +84,8 @@ export const useSelect = <TData extends BaseRecord = BaseRecord>(
                 );
             },
         },
+        successNotification,
+        errorNotification,
     );
     const { refetch: refetchList } = queryResult;
 

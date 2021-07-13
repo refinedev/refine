@@ -15,8 +15,8 @@ import {
     CreateResponse,
     IResourceItem,
     HttpError,
+    SuccessErrorNotification,
 } from "../../../interfaces";
-import { ArgsProps } from "antd/lib/notification";
 
 type SaveButtonProps = {
     disabled: boolean;
@@ -59,9 +59,7 @@ export type useCreateFormProps<
     warnWhenUnsavedChanges?: boolean;
     redirect?: RedirectionTypes;
     resource: IResourceItem;
-    successNotification?: ArgsProps | false;
-    errorNotification?: ArgsProps | false;
-};
+} & SuccessErrorNotification;
 
 export const useCreateForm = <
     TData extends BaseRecord = BaseRecord,
