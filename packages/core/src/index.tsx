@@ -23,6 +23,7 @@ export {
     CrudOperators,
     CrudSorting,
     CrudSort,
+    SuccessErrorNotification,
 } from "./interfaces";
 
 // sunflower types

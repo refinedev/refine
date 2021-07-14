@@ -9,13 +9,13 @@ import {
     useStepsFormFromSFReturnType,
 } from "../../../interfaces";
 
-import { useForm, useFormProps } from "../useForm";
+import { useForm, useFormProps, UseFormReturnType } from "../useForm";
 
 export type useStepsFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = useForm<TData, TError, TVariables> &
+> = UseFormReturnType<TData, TError, TVariables> &
     useStepsFormFromSFReturnType<TData, TVariables>;
 
 export type useStepsFormProps<

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
-import { notification } from "antd";
+import { ArgsProps } from "antd/lib/notification";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -11,6 +11,7 @@ import {
 } from "../../interfaces";
 import { useCheckError } from "@hooks";
 import { useTranslate } from "@hooks/translate";
+import { handleNotification } from "@definitions";
 
 export const useMany = <
     TData extends BaseRecord = BaseRecord,
@@ -18,7 +19,9 @@ export const useMany = <
 >(
     resource: string,
     ids: string[],
-    options?: UseQueryOptions<GetManyResponse<TData>, TError>,
+    queryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>,
+    successNotification?: ArgsProps | false,
+    errorNotification?: ArgsProps | false,
 ): QueryObserverResult<GetManyResponse<TData>> => {
     const { getMany } = useContext<IDataContext>(DataContext);
     const translate = useTranslate();
@@ -28,19 +31,24 @@ export const useMany = <
         [`resource/getMany/${resource}`, ids],
         () => getMany<TData>(resource, ids),
         {
-            ...options,
+            ...queryOptions,
+            onSuccess: (data) => {
+                queryOptions?.onSuccess?.(data);
+                handleNotification(successNotification);
+            },
             onError: (err: TError) => {
                 checkError(err);
-                options?.onError?.(err);
+                queryOptions?.onError?.(err);
 
-                notification.error({
-                    key: `${ids[0]}-${resource}-notification`,
+                handleNotification(errorNotification, {
+                    key: `${ids[0]}-${resource}-getMany-notification`,
                     message: translate(
                         "notifications.error",
                         { statusCode: err.statusCode },
                         `Error (status code: ${err.statusCode})`,
                     ),
                     description: err.message,
+                    type: "error",
                 });
             },
         },

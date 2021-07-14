@@ -9,6 +9,7 @@ import {
     BaseRecord,
     GetListResponse,
     CrudFilters,
+    SuccessErrorNotification,
 } from "../../../interfaces";
 
 export type useCheckboxGroupProps = {
@@ -17,7 +18,7 @@ export type useCheckboxGroupProps = {
     optionValue?: string;
     sort?: CrudSorting;
     filters?: CrudFilters;
-};
+} & SuccessErrorNotification;
 
 export type UseCheckboxGroupReturnType<TData extends BaseRecord = BaseRecord> =
     {
@@ -31,6 +32,8 @@ export const useCheckboxGroup = <TData extends BaseRecord = BaseRecord>({
     filters,
     optionLabel = "title",
     optionValue = "id",
+    successNotification,
+    errorNotification,
 }: useCheckboxGroupProps): UseCheckboxGroupReturnType<TData> => {
     const [options, setOptions] = React.useState<Option[]>([]);
 
@@ -50,6 +53,8 @@ export const useCheckboxGroup = <TData extends BaseRecord = BaseRecord>({
                 );
             },
         },
+        successNotification,
+        errorNotification,
     );
     return {
         checkboxGroupProps: {

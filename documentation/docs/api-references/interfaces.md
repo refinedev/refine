@@ -114,3 +114,10 @@ ButtonProps
 | size    | `number`                                                             |
 | percent | `number`                                                             |
 | status  | `"error"` \| `"success"` \| `"done" `\| `"uploading"` \| `"removed"` |
+
+## SuccessErrorNotification
+
+| Key                 | Type                                                                            |
+| ------------------- | ------------------------------------------------------------------------------- |
+| successNotification | [Notification Props](https://ant.design/components/notification/#API) & `false` |
+| errorNotification   | [Notification Props](https://ant.design/components/notification/#API) & `false` |
