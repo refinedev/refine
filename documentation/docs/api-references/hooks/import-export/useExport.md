@@ -90,6 +90,7 @@ In the examples, instead of [<Button\>][Button], [<ExportButton\>][ExportButton]
 [Refer to ExportButton docs for more detailed information. &#8594][ExportButton]
 :::
 <br />
+
 When the user clicks this button, `triggerExport` fetches all the data in the resource and downloads it as a `csv` file with these contents in it:
 
 ```csv title="Posts-2021-06-29-14-40-14.csv"
