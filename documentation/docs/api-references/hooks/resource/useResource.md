@@ -3,7 +3,7 @@ id: useResource
 title: useResource
 ---
 
-`useResource` is used to get `<Resource>` properties defined as children of `<Refine>` component.
+`useResource` is used to get `<Resource>` properties that are defined as children of the `<Refine>` component.
 
 ```ts
 const resources = useResource();
@@ -32,4 +32,4 @@ interface IResourceItem {
 }
 ```
 
-> `canCreate`, `canShow` or `canEdit` properties are defined automatically if `create`, `show` or `edit` components are defined on `<Resource>` components props in `<Refine>` components children.
+> The `canCreate`, `canShow` and `canEdit` properties are defined automatically if the `create`, `show` and `edit` components are defined on the `<Resource>` components properties in the `<Refine>` components children.
