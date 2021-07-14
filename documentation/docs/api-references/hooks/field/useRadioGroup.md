@@ -117,7 +117,7 @@ const { radioGroupProps } = useRadioGroup({
 });
 ```
 
-Filters allows us to add filters while fetching the data. For example, if you want to list only the `title`'s that are equal to `"German"` records.
+`filters` allows us to add filters while fetching the data. For example, if you want to list only the `title`'s that are equal to `"German"` records.
 
 ### `sort`
 
@@ -135,7 +135,7 @@ const { radioGroupProps } = useRadioGroup({
 });
 ```
 
-Sort allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
+`sort` allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
 
 ## API Reference
 
