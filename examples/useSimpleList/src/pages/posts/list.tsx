@@ -11,12 +11,10 @@ import {
     CrudFilters,
     Form,
     DatePicker,
-    Divider,
-    Row,
-    Col,
 } from "@pankod/refine";
 
 const { RangePicker } = DatePicker;
+const { Text } = Typography;
 
 import { IPost, ICategory, IPostFilterVariables } from "interfaces";
 
@@ -59,8 +57,6 @@ export const PostList: React.FC = () => {
         },
     });
 
-    const { Text } = Typography;
-
     const categoryIds =
         listProps?.dataSource?.map((item) => item.category.id) ?? [];
     const { data } = useMany<ICategory>("categories", categoryIds, {
@@ -78,14 +74,12 @@ export const PostList: React.FC = () => {
             <AntdList.Item
                 actions={[
                     <Space key={item.id} direction="vertical" align="end">
-                        <Space>
-                            <NumberField
-                                value={hit}
-                                options={{
-                                    notation: "compact",
-                                }}
-                            />
-                        </Space>
+                        <NumberField
+                            value={hit}
+                            options={{
+                                notation: "compact",
+                            }}
+                        />
                         <Text>{categoryTitle}</Text>
                     </Space>,
                 ]}
@@ -106,24 +100,19 @@ export const PostList: React.FC = () => {
                 layout="vertical"
                 onValuesChange={() => searchFormProps.form?.submit()}
             >
-                <Row gutter={[16, 0]}>
-                    <Col xs={24} lg={6}>
-                        <Form.Item label="Category" name="category">
-                            <Select
-                                {...categorySelectProps}
-                                allowClear
-                                placeholder="Search Categories"
-                            />
-                        </Form.Item>
-                    </Col>
-                    <Col xs={24} lg={6}>
-                        <Form.Item label="Created At" name="createdAt">
-                            <RangePicker />
-                        </Form.Item>
-                    </Col>
-                </Row>
+                <Space wrap>
+                    <Form.Item label="Category" name="category">
+                        <Select
+                            {...categorySelectProps}
+                            allowClear
+                            placeholder="Search Categories"
+                        />
+                    </Form.Item>
+                    <Form.Item label="Created At" name="createdAt">
+                        <RangePicker />
+                    </Form.Item>
+                </Space>
             </Form>
-            <Divider />
             <AntdList {...listProps} renderItem={renderItem} />
         </List>
     );
