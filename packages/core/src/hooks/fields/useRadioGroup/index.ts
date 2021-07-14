@@ -9,6 +9,7 @@ import {
     Option,
     GetListResponse,
     CrudFilters,
+    SuccessErrorNotification,
 } from "../../../interfaces";
 
 export type useRadioGroupProps = RadioGroupProps & {
@@ -17,7 +18,7 @@ export type useRadioGroupProps = RadioGroupProps & {
     optionValue?: string;
     sort?: CrudSorting;
     filters?: CrudFilters;
-};
+} & SuccessErrorNotification;
 
 export type UseRadioGroupReturnType<TData extends BaseRecord = BaseRecord> = {
     radioGroupProps: RadioGroupProps;
@@ -30,6 +31,8 @@ export const useRadioGroup = <TData extends BaseRecord = BaseRecord>({
     filters,
     optionLabel = "title",
     optionValue = "id",
+    successNotification,
+    errorNotification,
 }: useRadioGroupProps): UseRadioGroupReturnType => {
     const [options, setOptions] = React.useState<Option[]>([]);
 
@@ -49,6 +52,8 @@ export const useRadioGroup = <TData extends BaseRecord = BaseRecord>({
                 );
             },
         },
+        successNotification,
+        errorNotification,
     );
 
     return {

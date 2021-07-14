@@ -201,24 +201,26 @@ Now, parsed data is mapped to conform our APIs requirements.
 
 ## API Reference
 
-### `useImport` Options
+### Parameters
 
-| Key            | Description                                                                                                        | Type                                                                |
-| -------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
-| resourceName   | Default resource name this button imports to. Inferred from route by default.                                      | `string`                                                            |
-| mapData        | A mapping function that runs for every record. Mapped data will be included in the request payload.                | `(value: any, index?: number, array?: any[], data?: any[][]): any;` |
-| papaparseOptions | Custom Papa Parse options.                                                                                         | [`ParseConfig`][papaparse]                                          |
-| batchSize      | Request batch size. By default, it is 1. If it is more than 1, `createMany` should be implemented on DataProvider. | `number`                                                            |
+| Key                 | Description                                                                                                        | Type                                                                       | Default                                                                                                                              |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------- |-------------------------------------------------------------------------- |
+| resourceName        | Default resource name this button imports to. Inferred from route by default.                                      | `string`                                                                   |
+| mapData             | A mapping function that runs for every record. Mapped data will be included in the request payload.                | `(value: any, index?: number, array?: any[], data?: any[][]): any;`        |
+| papaparseOptions    | Custom Papa Parse options.                                                                                         | [`ParseConfig`][papaparse]                                                 |
+| batchSize           | Request batch size. By default, it is 1. If it is more than 1, `createMany` should be implemented on DataProvider. | `number`                                                                   |
+| successNotification | Successful Mutation notification                                                                                   | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully created `resource`"                                                                                                    |
+| errorNotification   | Unsuccessful Mutation notification                                                                                 | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
 
-### `useImport` Return Values
+### Return Values
 
-| Property       | Description                                                     | Type                                                                                                                                      |
-| -------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| uploadProps    | Props to pass to Ant Design's `<Upload>` component              | [`<Upload>`][Button]                                                                                   |
-| buttonProps    | Props to pass to Ant Design's `<Button>` component              | [`<Button>`][Button]                                                                                   |
+| Property       | Description                                                     | Type                                                                                                                                                                                                                                                                                             |
+| -------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| uploadProps    | Props to pass to Ant Design's `<Upload>` component              | [`<Upload>`][Button]                                                                                                                                                                                                                                                                             |
+| buttonProps    | Props to pass to Ant Design's `<Button>` component              | [`<Button>`][Button]                                                                                                                                                                                                                                                                             |
 | mutationResult | Result of the mutation/mutations of creating imported resources | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { resource: string; values: TVariables; },`<br/>` unknown>`][useMutation])  \| [`UseMutationResult<`<br/>`{ data: TData[]},`<br/>`TError,`<br/>`  { resource: string; values: TVariables[]; },`<br/>` unknown>`][useMutation]) |
 
-### `useImport` Type Parameters
+### Type Parameters
 
 | Property   | Desription                                                                 | Default                    |
 | ---------- | -------------------------------------------------------------------------- | -------------------------- |

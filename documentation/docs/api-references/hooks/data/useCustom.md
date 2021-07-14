@@ -50,9 +50,9 @@ const { data, isLoading } = useCustom<PostUniqueCheckResponse>(
 // highlight-end
 ```
 
-### API
+## API
 
-#### Parameters
+### Parameters
 
 | Property                                        | Description                                                             | Type                                                                                                                                            |
 | ----------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -61,7 +61,7 @@ const { data, isLoading } = useCustom<PostUniqueCheckResponse>(
 | config                                          | Query Params                                                            | { sort?: [CrudSorting](../../interfaces.md#crudsorting); filters?: [`CrudFilters`](../../interfaces.md#crudfilters); payload?: {}; query?: {} } |
 | queryOptions                                    | [useQuery Options](https://react-query.tanstack.com/reference/useQuery) | object                                                                                                                                          |
 
-#### Type Parameters
+### Type Parameters
 
 | Property | Desription                                                                       | Type                                           | Default                                        |
 | -------- | -------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
@@ -70,7 +70,7 @@ const { data, isLoading } = useCustom<PostUniqueCheckResponse>(
 | TQuery   | Values for query params.                                                         | [`TQuery`](#)                                  | unknown                                        |
 | TPayload | Values for params.                                                               | [`TPayload`](#)                                | unknown                                        |
 
-#### Return value
+### Return value
 
 | Description                            | Type                                                                                                        |
 | -------------------------------------- | ----------------------------------------------------------------------------------------------------------- |

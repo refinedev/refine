@@ -8,6 +8,7 @@ import {
     ResourceRouterParams,
     BaseRecord,
     GetOneResponse,
+    SuccessErrorNotification,
 } from "../../interfaces";
 
 export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
@@ -19,11 +20,13 @@ export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
 export type useShowProps = {
     resource?: string;
     id?: string;
-};
+} & SuccessErrorNotification;
 
 export const useShow = <TData extends BaseRecord = BaseRecord>({
     resource: resourceFromProp,
     id,
+    successNotification,
+    errorNotification,
 }: useShowProps = {}): useShowReturnType<TData> => {
     const [showId, setShowId] = useState<string>();
 
@@ -35,9 +38,15 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
 
     const resourceId = showId ?? id ?? idFromRoute;
 
-    const queryResult = useOne<TData>(resource.name, resourceId, {
-        enabled: !!resourceId,
-    });
+    const queryResult = useOne<TData>(
+        resource.name,
+        resourceId,
+        {
+            enabled: !!resourceId,
+        },
+        successNotification,
+        errorNotification,
+    );
 
     return {
         queryResult,

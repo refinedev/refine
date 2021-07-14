@@ -146,7 +146,8 @@ const { clone } = useNavigation()
 | warnWhenUnsavedChanges | Shows notification when unsaved changes exist                                                      | `boolean`                                                         | `false`\*         |
 | redirect               | Page to redirect after a succesfull mutation                                                         | ` "show` \| `"edit` \| `"list"` \| `false`                        | `"list"`          |
 | undoableTimeout        | Duration to wait before executing mutations when `mutationMode = "undoable"`                       | `number`                                                          | `5000`\*          |
-
+| successNotification                                 | Successful Mutation notification          | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully created `resource`" or "Successfully updated `resource`"                           |
+| errorNotification                                   | Unsuccessful Mutation notification        | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
 <br/>

@@ -147,12 +147,15 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 ### Parameters
 
 
-| Property                                            | Description                                                                     | Type                                             | Default          |
-| --------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------ | ---------------- |
-| resource  <div className=" required">Required</div> | [`Resource`](#) for API data interactions                                       | `string`                                         |                  |
-| mutationMode                                        | [Determines when mutations are executed](#)                                     | ` "pessimistic` \| `"optimistic` \| `"undoable"` | `"pessimistic"`* |
-| undoableTimeout                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"` | `number`                                         | `5000ms`*        |
-| onCancel                                            | Callback that runs when undo button is clicked on `mutationMode = "undoable"`   | `(cancelMutation: () => void) => void`           |                  |
+| Property                                            | Description                                                                     | Type                                                                       | Default                             |
+| --------------------------------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------- |
+| resource  <div className=" required">Required</div> | [`Resource`](#) for API data interactions                                       | `string`                                                                   |                                     |
+| id  <div className=" required">Required</div>       | id for mutation function                                                        | `string`                                                                   |                                     |
+| mutationMode                                        | [Determines when mutations are executed](#)                                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                           | `"pessimistic"`*                    |
+| undoableTimeout                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"` | `number`                                                                   | `5000ms`*                           |
+| onCancel                                            | Callback that runs when undo button is clicked on `mutationMode = "undoable"`   | `(cancelMutation: () => void) => void`                                     |                                     |
+| successNotification                                 | Successful Mutation notification                                                | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully deleted a `resource`" |
+| errorNotification                                   | Unsuccessful Mutation notification                                              | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Error (status code: `status`"      |
 
 >`*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useDelete` will use what is passed to `<Refine>` as default but a local value will override it.
 
