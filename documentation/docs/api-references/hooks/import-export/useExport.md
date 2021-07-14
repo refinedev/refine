@@ -13,7 +13,7 @@ const { triggerExport, loading } = useExport(options);
 
 ## Usage
 
-Suppose we have this endpoint:
+Let's say that we have an endpoint like this:
 
 ```json title="https://api.fake-rest.refine.dev/posts"
 [
@@ -35,7 +35,7 @@ Suppose we have this endpoint:
 ]
 ```
 
-To enable export functionality for this endpoint, we can use `useExport` hook to create an export button.
+To enable export functionality for this endpoint, we can use the `useExport` hook to create an export button.
 
 ```tsx title="src/pages/posts/list.tsx"
 import {
@@ -85,12 +85,12 @@ export interface IPost {
 ```
 
 :::info
-In examples, instead of [<Button\>][Button], [<ExportButton\>][ExportButton] is used. [<ExportButton\>][ExportButton] is nothing more than a default Ant Design [<Button\>][Button] with an icon and a default text.  
+In the examples, instead of [<Button\>][Button], [<ExportButton\>][ExportButton] is used. [<ExportButton\>][ExportButton] is nothing more than a default Ant Design [<Button\>][Button] with an icon and a default text.  
 
 [Refer to ExportButton docs for more detailed information. &#8594][ExportButton]
 :::
 <br />
-When the user clicks the button, `triggerExport` fetches all the data in the resource and downloads it as a `csv` file with these contents:
+When the user clicks this button, `triggerExport` fetches all the data in the resource and downloads it as a `csv` file with these contents in it:
 
 ```csv title="Posts-2021-06-29-14-40-14.csv"
 id,title,slug,content,status,categoryId,userId
@@ -101,9 +101,11 @@ id,title,slug,content,status,categoryId,userId
 
 ### Handling Relational Data
 
-You can run a mapping function for all entries before they are saved. This is useful in cases of requirement of referencing relational data, saving files in a specific way to process them in different applications etc. This mapping function is similar to the mapping function of [`useImport`][useImport#handling-relational-data].
+You can run a mapping function for all  entries before they are saved. This is useful in cases of being required to reference relational data or saving files in a specific way to process them in different applications etc. 
+This mapping function is similar to the mapping function of [`useImport`][useImport#handling-relational-data].
 
-Assume we have this endpoint with some relational data:
+
+Let's assume that we have this endpoint with some relational data in it:
 
 ```json
 [
@@ -137,7 +139,7 @@ Assume we have this endpoint with some relational data:
 ]
 ```
 
-We have `category` and `user` fields as possible relational data keys. Their data is out of responsibility of this export operation. We want to save their id's without any other related data. It may be required to export and backup those entities separately.
+We have the `category` and `user` fields as possible relational data keys. Their data is out of the responsibility of this export operation. We want to save their id's without any other related data. It may be required to export and backup those entities separately.
 
 We can save `category.id` as `categoryId` and `user.id` as `userId`. Thus using a mapping function that looks like this:
 
@@ -183,7 +185,7 @@ export interface IPost {
 This is all you need to handle mapping.
 
 :::tip
-You can pass more options to further customize exporting process.  
+You can pass more options to further customize the exporting process.  
 [Refer to export-to-csv docs for more detailed information. &#8594][export-to-csv]
 :::
 
@@ -196,15 +198,15 @@ You can pass more options to further customize exporting process.
 | resourceName  | Default resource name this button imports to. Inferred from route by default                                               | `string`                                                                         |
 | mapData       | A mapping function that runs for every record. Mapped data will be included in the file contents                           | `<TItem, TVariables>(item: TItem, index?: number, items?: TItem[]): TVariables;` |
 | pageSize      | Requests to fetch data are made as batches by page size. By default, it is 20. Used for `getList` method of `DataProvider` | `number`                                                                         |
-| sorter        | Sort records                                                                                                               | [`CrudSorting`][CrudSorting] \| `undefined`                                      |  |
-| filter        | Filter records                                                                                                             | [`CrudFilters`][CrudFilters] \| `undefined`                                      |  |
-| exportOptions | Exporting options                                                                                                          | [`Options`][export-to-csv#api] \| `undefined`                                    |  |
+| sorter        | Sorts  records                                                                                                               | [`CrudSorting`][CrudSorting] \| `undefined`                                      |  |
+| filter        | Filters records                                                                                                             | [`CrudFilters`][CrudFilters] \| `undefined`                                      |  |
+| exportOptions | Used for exporting options                                                                                                          | [`Options`][export-to-csv#api] \| `undefined`                                    |  |
 
 ### `useExport` Return Values
 
 | Key           | Description                                | Type               |
 | ------------- | ------------------------------------------ | ------------------ |
-| loading       | True when there is an export process       | `boolean`          |
+| loading       | Shows true when there is an export process | `boolean`          |
 | triggerExport | When invoked, starts the exporting process | `async () => void` |
 
 [Button]: https://ant.design/components/button/
