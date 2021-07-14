@@ -29,7 +29,6 @@ export type useSimpleListReturnType<
     TSearchVariables = unknown,
 > = {
     listProps: ListProps<TData>;
-    sorter?: CrudSorting;
     queryResult: QueryObserverResult<GetListResponse<TData>>;
     searchFormProps: FormProps<TSearchVariables>;
 };
