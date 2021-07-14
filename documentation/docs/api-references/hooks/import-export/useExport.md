@@ -5,7 +5,7 @@ title: useExport
 
 `useExport` hook allows you to make your resources exportable.
 
-This hook accepts [`export-to-csv`][export-to-csv]'s options to create `csv` files.
+This hook accepts [`export-to-csv`][export-to-csv]'s options to create `CSV` files.
 
 ```ts
 const { triggerExport, loading } = useExport(options);
@@ -91,7 +91,7 @@ In the examples, instead of [<Button\>][Button], [<ExportButton\>][ExportButton]
 :::
 <br />
 
-When the user clicks this button, `triggerExport` fetches all the data in the resource and downloads it as a `csv` file with these contents in it:
+When the user clicks this button, `triggerExport` fetches all the data in the resource and downloads it as a `CSV` file with these contents in it:
 
 ```csv title="Posts-2021-06-29-14-40-14.csv"
 id,title,slug,content,status,categoryId,userId
