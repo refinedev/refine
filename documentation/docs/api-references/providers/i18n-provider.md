@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 import changeLanguage from '@site/static/img/i18n/changing-language.gif';
 
-refine could support any i18n framework. You just need to create an i18nProvider according to the library you will use.
+refine is capable of supporting any i18n framework but a `i18nProvider` according to the relevant library must be created.
 
 If you want to add i18n support in the app, refine expects the `i18nProvider` type as follows.
 
@@ -20,7 +20,7 @@ const i18nProvider = {
 };
 ```
 
-`i18nProvider` allows us to set translation features to hooks (`useTranslate`, `useSetLocale`, `useGetLocale`).
+`i18nProvider` allows us to put translation features to hooks (`useTranslate`, `useSetLocale`, `useGetLocale`).
 
 -   `useTranslate` shows translation between different languages.
 -   `useSetLocale` changes locale at runtime.
@@ -47,18 +47,18 @@ const App: React.FC = () => {
 ```
 
 :::note
-The default refine language is currently English. If you want to use other languages, follow the instructions above. If your application is in English, you don't need to create an i18nProvider.
+The default language of refine is currently English. If you want to use other languages, follow the instructions above. If your application is in English, you don't need to create an i18nProvider. ???
 :::
 
 ## Example
 
-Let's add multi-language support using the `react-i18next` framework. At the end of our example, our application supports Turkish and English.
+Let's add multi-language support using the `react-i18next` framework. At the end of our example, our application will support both Turkish and English.
 
-[Refer to react-i18n docs for detailed information &#8594](https://react.i18next.com/getting-started)
+[Refer to the react-i18n docs for detailed information &#8594](https://react.i18next.com/getting-started)
 
 ### Installation
 
-Run the following command within your project directory to install both `react-i18next` and `i18next` package:
+Run the following command within your project directory to install both `react-i18next` and `i18next` packages  :
 
 ```
 npm install react-i18next i18next
@@ -91,7 +91,7 @@ export default i18n;
 
 ### Wraping app with React.Suspense
 
-We will import the i18n instance we created and wrap the application with `React.Suspense`.
+Then we will import the i18n instance we created and wrap the application with `React.Suspense`.
 
 ```tsx title="src/index.tsx"
 import React from "react";
@@ -218,7 +218,7 @@ Before we get started, let's look at the translations that refine uses in compon
 
 All components of refine supports i18n. If you want to change the refine component texts, you can create your own translation file with reference to the keys above.
 
-Next, let's add the language files:
+Now, let's add the language files:
 
 ```
 |-- public
@@ -384,7 +384,7 @@ values={[{ label: "English", value: "en" }, { label: "Turkish", value: "tr" }]}>
 </Tabs>
 
 :::tip
-We can override refine's default texts by changing from the above common.json files.
+We can override refine's default texts by changing the common.json files in the example above.
 :::
 
 ### Changing The Locale
@@ -480,7 +480,7 @@ export interface ILanguage {
 
 <br/>
 
-Now, we will pass `<Header>` to the `<Refine>` component as a prop.
+Then, we will pass `<Header>` to the `<Refine>` component as a property.
 
 ```tsx title="src/App.tsx"
 import { Refine, Resource } from "@pankod/refine";
@@ -517,7 +517,7 @@ const App: React.FC = () => {
 
 <br />
 
-Finally, we will create `<PostList>` page and then we will translate texts using `useTranslate`.
+Finally, we will create the `<PostList>` page and then we will translate texts using `useTranslate`.
 
 ```tsx title="src/App.tsx"
 import {
