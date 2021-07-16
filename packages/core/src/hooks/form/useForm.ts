@@ -45,7 +45,7 @@ export type useFormProps<
     resource?: string;
 } & ResourcelessActionFormProps<TData, TError, TVariables>;
 
-export type useForm<
+export type UseFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
@@ -74,7 +74,7 @@ export const useForm = <
     action,
     resource: resourceFromProps,
     ...rest
-}: useFormProps<TData, TError, TVariables> = {}): useForm<
+}: useFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
     TData,
     TError,
     TVariables

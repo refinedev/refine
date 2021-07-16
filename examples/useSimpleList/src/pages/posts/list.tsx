@@ -6,23 +6,56 @@ import {
     useSimpleList,
     NumberField,
     Space,
+    Select,
+    useSelect,
+    CrudFilters,
+    Form,
+    DatePicker,
 } from "@pankod/refine";
 
-import { IPost, ICategory } from "interfaces";
+const { RangePicker } = DatePicker;
+const { Text } = Typography;
+
+import { IPost, ICategory, IPostFilterVariables } from "interfaces";
 
 export const PostList: React.FC = () => {
-    const { listProps } = useSimpleList<IPost>({
-        sorter: [
-            {
-                field: "id",
-                order: "asc",
-            },
-        ],
+    const { listProps, searchFormProps } = useSimpleList<
+        IPost,
+        IPostFilterVariables
+    >({
         pagination: {
             pageSize: 3,
         },
+        onSearch: (params) => {
+            const filters: CrudFilters = [];
+            const { category, createdAt } = params;
+
+            if (category) {
+                filters.push({
+                    field: "category.id",
+                    operator: "eq",
+                    value: category,
+                });
+            }
+
+            if (createdAt) {
+                filters.push(
+                    {
+                        field: "createdAt",
+                        operator: "gte",
+                        value: createdAt[0].toISOString(),
+                    },
+                    {
+                        field: "createdAt",
+                        operator: "lte",
+                        value: createdAt[1].toISOString(),
+                    },
+                );
+            }
+
+            return filters;
+        },
     });
-    const { Text } = Typography;
 
     const categoryIds =
         listProps?.dataSource?.map((item) => item.category.id) ?? [];
@@ -41,14 +74,12 @@ export const PostList: React.FC = () => {
             <AntdList.Item
                 actions={[
                     <Space key={item.id} direction="vertical" align="end">
-                        <Space>
-                            <NumberField
-                                value={hit}
-                                options={{
-                                    notation: "compact",
-                                }}
-                            />
-                        </Space>
+                        <NumberField
+                            value={hit}
+                            options={{
+                                notation: "compact",
+                            }}
+                        />
                         <Text>{categoryTitle}</Text>
                     </Space>,
                 ]}
@@ -58,8 +89,30 @@ export const PostList: React.FC = () => {
         );
     };
 
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+    });
+
     return (
         <List>
+            <Form
+                {...searchFormProps}
+                layout="vertical"
+                onValuesChange={() => searchFormProps.form?.submit()}
+            >
+                <Space wrap>
+                    <Form.Item label="Category" name="category">
+                        <Select
+                            {...categorySelectProps}
+                            allowClear
+                            placeholder="Search Categories"
+                        />
+                    </Form.Item>
+                    <Form.Item label="Created At" name="createdAt">
+                        <RangePicker />
+                    </Form.Item>
+                </Space>
+            </Form>
             <AntdList {...listProps} renderItem={renderItem} />
         </List>
     );

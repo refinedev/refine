@@ -31,6 +31,7 @@ export {
     UpdateManyResponse,
     UpdateResponse,
     CustomResponse,
+    SuccessErrorNotification,
 } from "./interfaces";
 
 // sunflower types

@@ -5,10 +5,9 @@ title: useSimpleList
 
 import useSimpleList from '@site/static/img/guides-and-concepts/hooks/useSimpleList/useSimpleList.png';
 
+By using `useSimpleList` you get props for your records from API in accordance with Ant Design `<List>` component. All features such as pagination, sorting come out of the box.
 
-By using `useSimpleList` you get props for your records from API in accordance with Ant Design `<List>`component. All features such as pagination, sorting come out of the box.
-
-[Refer to Ant Design docs for `<List>`component information &#8594](https://ant.design/components/list/#header)
+[Refer to Ant Design docs for `<List>` component information &#8594](https://ant.design/components/list/#header)
 
 ## Usage
 
@@ -107,14 +106,12 @@ export const PostList: React.FC = () => {
             <AntdList.Item
                 actions={[
                     <Space key={item.id} direction="vertical" align="end">
-                        <Space>
-                            <NumberField
-                                value={hit}
-                                options={{
-                                    notation: "compact",
-                                }}
-                            />
-                        </Space>
+                        <NumberField
+                            value={hit}
+                            options={{
+                                notation: "compact",
+                            }}
+                        />
                         <Text>{categoryTitle}</Text>
                     </Space>,
                 ]}
@@ -143,12 +140,21 @@ You can use `AntdList.Item` and `AntdList.Item.Meta` like `<List>` component fro
     <img src={useSimpleList} />
 </div>
 
-
 ## API
 
-| Key       | Description                                                  | Type                                                     | Default                                  |
-| --------- | ------------------------------------------------------------ | -------------------------------------------------------- | ---------------------------------------- |
-| resource  | The resource to list the data                                | `string` \| `undefined`                                  | Resource name that it reads from the url |
-| sorter    | Allows to sort records by speficified order and field        | [`CrudSorting`](/api-references/interfaces.md#crudsorting)\| `undefined` |                                          |
-| filter    | Allows you to filter queries using refine's filter operators | [`CrudFilters`](/api-references/interfaces.md#crudfilters)\| `undefined` |                                          |
-| listProps | Ant Design `<List>` props                                    | [`listProps`](https://ant.design/components/list/#API)   |                                          |
+### Properties
+
+| Key       | Description                                                                                                                                                    | Type                                                                     | Default                                  |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------------------------------------- |
+| resource  | The resource to list the data                                                                                                                                  | `string` \| `undefined`                                                  | Resource name that it reads from the url |
+| sorter    | Allows to sort records by speficified order and field                                                                                                          | [`CrudSorting`](/api-references/interfaces.md#crudsorting)\| `undefined` |                                          |
+| listProps | Ant Design `<List>` props                                                                                                                                      | [`listProps`](https://ant.design/components/list/#API)                   |                                          |
+| onSearch  | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form](../../../guides-and-concepts/search/list-search.md) | `Function`                                                               |                                          |
+
+### Return values
+
+| Property        | Description                     | Type                                                                                          |
+| --------------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
+| queryResult     | Result of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+| searchFormProps | Ant design Form props           | [`Form`](https://ant.design/components/form/#API)                                             |
+| listProps       | Ant design List props           | [`List`](https://ant.design/components/list/#API)                                             |

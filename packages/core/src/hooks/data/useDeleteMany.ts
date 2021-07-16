@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
-import { notification } from "antd";
+import pluralize from "pluralize";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -13,6 +13,7 @@ import {
     QueryResponse,
     GetListResponse,
     Context as DeleteContext,
+    SuccessErrorNotification,
 } from "../../interfaces";
 import {
     useTranslate,
@@ -22,7 +23,7 @@ import {
     useCheckError,
 } from "@hooks";
 import { ActionTypes } from "@contexts/notification";
-import pluralize from "pluralize";
+import { handleNotification } from "@definitions";
 
 type DeleteManyParams = {
     ids: string[];
@@ -30,7 +31,7 @@ type DeleteManyParams = {
     mutationMode?: MutationMode;
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
-};
+} & SuccessErrorNotification;
 
 type UseDeleteManyReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -175,8 +176,8 @@ export const useDeleteMany = <
                     }
                 }
             },
-            onSuccess: (_data, { ids, resource }) => {
-                notification.success({
+            onSuccess: (_data, { ids, resource, successNotification }) => {
+                handleNotification(successNotification, {
                     key: `${ids}-${resource}-notification`,
                     message: translate("notifications.success", "Success"),
                     description: translate(
@@ -189,9 +190,10 @@ export const useDeleteMany = <
                         },
                         `Successfully deleted ${resource}`,
                     ),
+                    type: "success",
                 });
             },
-            onError: (err, { ids, resource }, context) => {
+            onError: (err, { ids, resource, errorNotification }, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
@@ -208,7 +210,7 @@ export const useDeleteMany = <
                     checkError(err);
                     const resourceSingular = pluralize.singular(resource);
 
-                    notification.error({
+                    handleNotification(errorNotification, {
                         key: `${ids}-${resource}-notification`,
                         message: translate(
                             "notifications.deleteError",

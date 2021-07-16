@@ -1,7 +1,7 @@
 import { useTable } from "@hooks";
 import { useTableProps } from "../useTable";
 import { BaseRecord, HttpError } from "../../../interfaces";
-import { useFormProps } from "../../form/useForm";
+import { useFormProps, UseFormReturnType } from "../../form/useForm";
 import { useTableReturnType } from "../useTable/useTable";
 import { useForm } from "../../form/useForm";
 import { ButtonProps } from "../../../components/antd";
@@ -12,7 +12,7 @@ export type useEditableTableReturnType<
     TVariables = {},
     TSearchVariables = unknown,
 > = useTableReturnType<TData, TSearchVariables> &
-    useForm<TData, TError, TVariables> & {
+    UseFormReturnType<TData, TError, TVariables> & {
         saveButtonProps: ButtonProps & {
             onClick: () => void;
         };

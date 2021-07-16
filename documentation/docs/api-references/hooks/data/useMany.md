@@ -86,17 +86,19 @@ After query runs, the `categoryQueryResult` will include the retrieved data:
 ### Parameters
 
 
-| Property                                                                                            | Description                               | Type                                                        | Default |
-| --------------------------------------------------------------------------------------------------- | ----------------------------------------- | ----------------------------------------------------------- | ------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](#) for API data interactions | `string`                                                    |         |
-| ids <div className="required">Required</div>                                                        | ids of the item in the resource           | `(string)[]`                                                |         |
-| options                                                                                             | `react-query`'s `useQuery` options        | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>` |         |
+| Property                                                                                            | Description                               | Type                                                                       | Default                              |
+| --------------------------------------------------------------------------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------ |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](#) for API data interactions | `string`                                                                   |                                      |
+| ids <div className="required">Required</div>                                                        | ids of the item in the resource           | `string[]`                                                               |                                      |
+| queryOptions                                                                                        | `react-query`'s `useQuery` options        | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                |                                      |
+| successNotification                                                                                 | Successful Query notification             | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | `false`                              |
+| errorNotification                                                                                   | Unsuccessful Query notification           | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Error (status code: `statusCode`)" |
 
 ### Type Parameters
 
 
-| Property | Desription                                                                 | Type                                     | Default                                  |
-| -------- | -------------------------------------------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| Property | Desription                                                                       | Type                                           | Default                                        |
+| -------- | -------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
 | TData    | Result data of the query. Extends [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) |
 | TError   | Custom error object that extends [`HttpError`](../../interfaces.md#httperror)    | [`HttpError`](../../interfaces.md#httperror)   | [`HttpError`](../../interfaces.md#httperror)   |
 
