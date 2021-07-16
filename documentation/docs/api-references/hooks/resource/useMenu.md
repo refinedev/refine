@@ -3,22 +3,23 @@ id: useMenu
 title: useMenu
 ---
 
-`useMenu` is used to get menu items of the default sidebar. These items include a link to dashboard page (if it exists) and links to user defined resources (passed as children to `<Refine>`). This hook can be used to build custom menus - which is also used by default sidebar to show menu items.
+`useMenu` is used to get menu items of the default sidebar. These items include a link to dashboard page (if it exists) and links to the user defined resources (passed as children to `<Refine>`).
+This hook can also be used to build custom menus, which is also used by default sidebar to show menu items.
 
 ```ts
 const { selectedKey, menuItems } = useMenu();
 ```
 
 * `menuItems` is a list of style agnostic menu items. Each of them has a key.
-* `selectedKey` is key of the resource user is viewing at the moment. Inferred from route.
+* `selectedKey` is the key of the resource user is viewing at the moment. Its inferred from the route.
 
 ## Usage
 
-### Recreating the default sider menu
+### Recreating the Default Sider Menu
 
-We'll show the basic use of `useMenu` to create a custom sider menu that is identical to default sider menu.
+We will show you how to use `useMenu` to create a custom sider menu that is identical to default sider menu.
 
-And we define `<CustomMenu>`:
+First we define `<CustomMenu>`:
 
 ```tsx title="src/CustomMenu.tsx"
 import React from "react";
@@ -52,7 +53,7 @@ export const CustomMenu: React.FC = () => {
 };
 ```
 
-`useMenu` hook is used to get style agnostic menu items. We render these items in the body of the sider. We get `Title` component with `useTitle` hook.
+`useMenu` hook is used to get style agnostic menu items. We render these items in the body of the sider. We get the `Title` component with the `useTitle` hook.
 
 <br />
 
@@ -148,13 +149,13 @@ export const CustomMenu: React.FC = () => {
 `useLogout` provides the logout functionality. We also have a `push` function from `useNavigation` for directing users to homepage after logging out.
 
 :::caution
-`useLogout` hook can only be used if `authProvider` is provided.  
-[Refer to Auth Provider docs for more detailed information. &#8594](../../providers/auth-provider.md)  
+`useLogout` hook can only be used if the `authProvider` is provided.  
+[Refer to authProvider docs for more detailed information. &#8594](../../providers/auth-provider.md)  
 [Refer to useLogout docs for more detailed information. &#8594](api-references/hooks/auth/useLogout.md)
 :::
 
 :::tip
-You can further customize Sider and its appearance.  
+You can further customize the Sider and its appearance.  
 [Refer to Ant Design docs for more detailed information about Sider. &#8594](https://ant.design/components/layout/#Layout.Sider)
 :::
 ## API Reference
@@ -164,7 +165,7 @@ You can further customize Sider and its appearance.
 | Property    | Description                                                                    | Type                             |
 | ----------- | ------------------------------------------------------------------------------ | -------------------------------- |
 | selectedKey | Key of the resource the user is viewing at the moment                          | `string`                         |
-| menuItems   | List of keys and routes and some metadata of resources and dashboard if exists | [`IMenuItem[]`](#interfaces)     |
+| menuItems   | List of keys and routes and some metadata of resources and also the dashboard if exists | [`IMenuItem[]`](#interfaces)     |
 
 #### Interfaces
 
