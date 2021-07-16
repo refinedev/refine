@@ -210,8 +210,11 @@ module.exports = {
                 },
                 {
                     type: "category",
-                    label: "Table",
-                    items: ["guides-and-concepts/table/table-search"],
+                    label: "Search",
+                    items: [
+                        "guides-and-concepts/search/table-search",
+                        "guides-and-concepts/search/list-search",
+                    ],
                 },
                 {
                     type: "category",
