@@ -9,7 +9,7 @@ import basicUsage from '@site/static/img/hooks/useRadioGroup/basic-usage.png';
 
 ## Usage
 
-We'll demonstrate how to get data at `/languages` endpoint from `https://api.fake-rest.refine.dev` REST API.
+We will demonstrate how to get data at `/languages` endpoint from the `https://api.fake-rest.refine.dev` REST API.
 
 ```ts title="https://api.fake-rest.refine.dev/languages"
 {
@@ -84,7 +84,7 @@ const { radioGroupProps } = useRadioGroup({
 
 `resource` property determines API resource endpoint to fetch records from data provider. It returns properly configured `options` values for radio buttons.
 
-[Refer to Ant Design `Radio.Group` component documentation for detailed info for `options`. &#8594](https://ant.design/components/radio)
+[Refer to Ant Design `Radio.Group` component documentation for detailed info on `options`. &#8594](https://ant.design/components/radio)
 
 ### `optionLabel` and `optionValue`
 
@@ -98,7 +98,7 @@ const { radioGroupProps } = useRadioGroup({
 });
 ```
 
-Allows you to change the values and appearance of your options. Default values are `optionLabel = "title"` and `optionValue = "id"`.
+`optionLabel` and `optionValue` allows you to change the values and appearances of your options. Default values are `optionLabel = "title"` and `optionValue = "id"`.
 
 ### `filters`
 
@@ -117,7 +117,7 @@ const { radioGroupProps } = useRadioGroup({
 });
 ```
 
-It allows us to add some filters while fetching the data. For example, if you want to list only `title`'s equal to `"German"` records.
+`filters` allows us to add filters while fetching the data. For example, if you want to list only the `title`'s that are equal to `"German"` records.
 
 ### `sort`
 
@@ -135,7 +135,7 @@ const { radioGroupProps } = useRadioGroup({
 });
 ```
 
-It allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
+`sort` allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
 
 ## API Reference
 
@@ -144,17 +144,17 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 | Property                                          | Description                               | Type                                       | Default   |
 | ------------------------------------------------- | ----------------------------------------- | ------------------------------------------ | --------- |
 | resource <div className="required">Required</div> | [`Resource`](#) for API data interactions | `string`                                   |           |
-| optionValue                                       | Set the option's value                    | `string`                                   | `"id"`    |
-| optionLabel                                       | Set the option's label value              | `string`                                   | `"title"` |
-| filters                                           | Add filters while fetching the data       | [`CrudFilters`](../../interfaces.md#crudfilters) |           |
-| sort                                              | Allow us to sort the options              | [`CrudSorting`](../../interfaces.md#crudsorting) |           |
+| optionValue                                       | Sets the option's value                    | `string`                                   | `"id"`    |
+| optionLabel                                       | Sets the option's label value              | `string`                                   | `"title"` |
+| filters                                           | Adds filters while fetching the data       | [`CrudFilters`](../../interfaces.md#crudfilters) |           |
+| sort                                              | Allows us to sort the options              | [`CrudSorting`](../../interfaces.md#crudsorting) |           |
 
 ### Return values
 
 | Property        | Description                     | Type                                                                                          |
 | --------------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
 | radioGroupProps | Ant design radio group props    | [`Radio Group`](https://ant.design/components/radio/#RadioGroup)                              |
-| queryResult     | Result of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+| queryResult     | Results of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
 
 ## Live Codesandbox Example
 
