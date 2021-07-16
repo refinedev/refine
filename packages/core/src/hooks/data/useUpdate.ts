@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
-import { notification } from "antd";
+
 import { DataContext } from "@contexts/data";
 import { ActionTypes } from "@contexts/notification";
 import {
@@ -12,6 +12,7 @@ import {
     Context as UpdateContext,
     ContextQuery,
     HttpError,
+    SuccessErrorNotification,
 } from "../../interfaces";
 import pluralize from "pluralize";
 import {
@@ -21,6 +22,7 @@ import {
     useTranslate,
     useCheckError,
 } from "@hooks";
+import { handleNotification } from "@definitions/helpers";
 
 type UpdateParams<TVariables> = {
     id: string;
@@ -29,7 +31,7 @@ type UpdateParams<TVariables> = {
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
     values: TVariables;
-};
+} & SuccessErrorNotification;
 
 export type UseUpdateReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -166,7 +168,11 @@ export const useUpdate = <
                     previousQueries: previousQueries,
                 };
             },
-            onError: (err: TError, { id, resource }, context) => {
+            onError: (
+                err: TError,
+                { id, resource, errorNotification },
+                context,
+            ) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
@@ -185,17 +191,21 @@ export const useUpdate = <
 
                     const resourceSingular = pluralize.singular(resource);
 
-                    notification.error({
-                        key: `${id}-${resource}-notification`,
+                    handleNotification(errorNotification, {
+                        key: `${id}-${resource}-useUpdate-error-notification`,
                         message: translate(
                             "notifications.editError",
                             {
-                                resource: resourceSingular,
+                                resource: translate(
+                                    `${resource}.${resource}`,
+                                    resourceSingular,
+                                ),
                                 statusCode: err.statusCode,
                             },
                             `Error when updating ${resourceSingular} (status code: ${err.statusCode})`,
                         ),
                         description: err.message,
+                        type: "error",
                     });
                 }
             },
@@ -205,17 +215,23 @@ export const useUpdate = <
                     queryClient.invalidateQueries(query.queryKey);
                 }
             },
-            onSuccess: (_data, { id, resource }) => {
+            onSuccess: (_data, { id, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
 
-                notification.success({
-                    key: `${id}-${resource}-notification`,
+                handleNotification(successNotification, {
+                    key: `${id}-${resource}-useUpdate-success-notification`,
                     message: translate("notifications.success", "Successful"),
                     description: translate(
                         "notifications.editSuccess",
-                        { resource: resourceSingular },
+                        {
+                            resource: translate(
+                                `${resource}.${resource}`,
+                                resourceSingular,
+                            ),
+                        },
                         `Successfully updated ${resourceSingular}`,
                     ),
+                    type: "success",
                 });
             },
         },

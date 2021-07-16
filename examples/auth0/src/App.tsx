@@ -6,7 +6,6 @@ import axios from "axios";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Login } from "pages/login";
-import { Header } from "components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -43,7 +42,12 @@ const App: React.FC = () => {
         },
         getPermissions: () => Promise.resolve(),
         getUserIdentity: async () => {
-            return Promise.resolve(user);
+            if (user) {
+                return Promise.resolve({
+                    ...user,
+                    avatar: user.picture,
+                });
+            }
         },
     };
 
@@ -58,7 +62,6 @@ const App: React.FC = () => {
     return (
         <>
             <Refine
-                Header={Header}
                 LoginPage={Login}
                 authProvider={authProvider}
                 dataProvider={dataProvider(API_URL, axios)}

@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
-import { notification } from "antd";
 
 import {
     useMutationMode,
@@ -22,7 +21,9 @@ import {
     ContextQuery,
     HttpError,
     GetListResponse,
+    SuccessErrorNotification,
 } from "../../interfaces";
+import { handleNotification } from "@definitions/helpers";
 
 type DeleteParams = {
     id: string;
@@ -30,7 +31,7 @@ type DeleteParams = {
     mutationMode?: MutationMode;
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
-};
+} & SuccessErrorNotification;
 
 type UseDeleteReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -117,7 +118,9 @@ export const useDelete = <
 
                 for (const queryItem of allQueries) {
                     const { queryKey } = queryItem;
-                    await queryClient.cancelQueries(queryKey);
+                    await queryClient.cancelQueries(queryKey, undefined, {
+                        silent: true,
+                    });
 
                     const previousQuery =
                         queryClient.getQueryData<QueryResponse<TData>>(
@@ -156,7 +159,11 @@ export const useDelete = <
                     previousQueries: previousQueries,
                 };
             },
-            onError: (err: TError, { id, resource }, context) => {
+            onError: (
+                err: TError,
+                { id, resource, errorNotification },
+                context,
+            ) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
@@ -175,7 +182,7 @@ export const useDelete = <
 
                     const resourceSingular = pluralize.singular(resource);
 
-                    notification.error({
+                    handleNotification(errorNotification, {
                         key: `${id}-${resource}-notification`,
                         message: translate(
                             "notifications.deleteError",
@@ -186,10 +193,11 @@ export const useDelete = <
                             `Error (status code: ${err.statusCode})`,
                         ),
                         description: err.message,
+                        type: "error",
                     });
                 }
             },
-            onSuccess: (_data, { id, resource }) => {
+            onSuccess: (_data, { id, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
 
                 const allQueries = cacheQueries(resource, id);
@@ -201,14 +209,20 @@ export const useDelete = <
                     }
                 }
 
-                notification.success({
+                handleNotification(successNotification, {
                     key: `${id}-${resource}-notification`,
                     message: translate("notifications.success", "Success"),
                     description: translate(
                         "notifications.deleteSuccess",
-                        { resource: resourceSingular },
+                        {
+                            resource: translate(
+                                `${resource}.${resource}`,
+                                resourceSingular,
+                            ),
+                        },
                         `Successfully deleted a ${resourceSingular}`,
                     ),
+                    type: "success",
                 });
             },
             onSettled: (_data, _error, { id, resource }) => {

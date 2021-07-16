@@ -5,7 +5,7 @@ title: useStepsForm
 
 import useStepsFormExample from '@site/static/img/hooks/useStepsForm/example.gif';
 
-`useStepsForm` hook allows you to split your form under an Ant Design based [Steps](https://ant.design/components/steps/) component and provides you with a few useful functionalities to help you manage your form.
+`useStepsForm` hook allows you to split your form under an Ant Design based [Steps](https://ant.design/components/steps/) component and provides you with a few useful functionalities that will help you manage your form.
 
 ```tsx
 const { stepsProps, formProps } = useStepsForm<IPost>();
@@ -15,11 +15,11 @@ All we have to do is to pass the props it returns to our `<Steps>` and `<Form>` 
 
 ## Usage
 
-We'll do two examples, one for creating a post and one for editing a post. Let's see how `useStepsForm` is used in both.
+We'll do two examples, one for creating and one for editing a post. Let's see how `useStepsForm` is used in both.
 
 ### Create
 
-For the sake of simplicity, we're going to build a `Post` create form that consists of only a `title` and a relational `category` field.
+For the sake of simplicity, in this example we're going to build a `Post` create form that consists of only a `title` and a relational `category` field.
 
 To split your form items under a `<Steps>` component, first import and use `useStepsForm` hook in your page:
 
@@ -116,13 +116,13 @@ export const PostCreate: React.FC = () => {
 :::tip
 Since `category` is a relational data, we use `useSelect` to fetch its data.
 
-[Refer to `useSelect` documentation for detailed usage. &#8594](../field/useSelect.md)
+[Refer to `useSelect` documentation for detailed usage. &#8594](../field/useSelect.md) (Burasi okunmuyor)
 
 :::
 
 <br />
 
-You should use `stepsProps` on `<Steps>` component, `formProps` on the `<Form>` component correctly. And as the last step, you should render the `<Steps>` component besides the form like this:
+You should use `stepsProps` on `<Steps>` component, `formProps` on the `<Form>` component respectively. And as the last step, you should render the `<Steps>` component besides the form like this:
 
 ```tsx title="pages/posts/create.tsx"
 import {
@@ -198,12 +198,12 @@ export const PostCreate: React.FC = () => {
 ```
 
 :::danger Important
-Make sure to add as much `<Steps.Step>` components as the number of steps in `formList` array.
+Make sure to add as much `<Steps.Step>` components as the number of steps in the `formList` array.
 :::
 
 <br />
 
-To help users navigate between steps in the form, you can use action buttons. Your navigation buttons should use `gotoStep` function that was previously returned from the `useStepsForm` hook.
+To help users navigate between steps in the form, you can use action buttons. Your navigation buttons should use the `gotoStep` function that was previously returned from the the `useStepsForm` hook.
 
 ```tsx title="pages/posts/create.tsx"
 import {
@@ -435,21 +435,23 @@ export const PostCreate: React.FC = () => {
 | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ---------- |
 | action <div className=" required">Required</div> | Type of form mode                                                                                                                                                                       | `"edit"` \| `"create"`                                                         | `"create"` |
 | defaultCurrent                                   | Default step, counting from 0                                                                                                                                                           | `number`                                                                       | `0`        |
-| total                                            | total counting for steps                                                                                                                                                                | `number`                                                                       | `0`        |
-| isBackValidate                                   | should validate if go to prev step                                                                                                                                                      | `boolean`                                                                      | `true`     |
+| total                                            | Total count of steps steps                                                                                                                                                                | `number`                                                                       | `0`        |
+| isBackValidate                                   | Should validate if went to the previous step step                                                                                                                                                      | `boolean`                                                                      | `true`     |
 | form                                             | Ant Design form instance                                                                                                                                                                | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance) |            |
 | mutationMode                                     | [Determines when mutations are executed](guides-and-concepts/mutation-mode.md). If not explicitly configured, it is read from the mutation mode config of the resource in current route | `"pessimistic"` \| `"optimistic"` \| `"undoable"`                              |            |
-| onMutationError                                  | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error                                                                                      | `(error: any, variables: any, context: any) => void`                           |            |
-| onMutationSuccess                                | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful                                                                                            | `(data: UpdateResponse<M>, variables: any, context: any) => void`              |            |
-| redirect                                         | Page to redirect after succesfull mutation                                                                                                                                              | `"show` \| `"edit` \| `"list"`\*\*                                             |            |
+| onMutationError                                  | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error                                                                                      | `(error: any, variables: any, context: any) => void`                           |            |
+| onMutationSuccess                                | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) is successful                                                                                            | `(data: UpdateResponse<M>, variables: any, context: any) => void`              |            |
+| redirect                                         | Page to redirect after a succesfull mutation                                                                                                                                              | `"show` \| `"edit` \| `"list"`\*\*                                             |            |
 | submit                                           | Submit the form                                                                                                                                                                         | `(values?: TVariables) => Promise<TData>`                                      |            |
 | submitOnEnter                                    | Listen `Enter` key press to submit form                                                                                                                                                 | `boolean`                                                                      | `false`    |
 | undoableTimeout                                  | Duration to wait before executing mutations when `mutationMode = "undoable"`                                                                                                            | `number`                                                                       | `5000`\*   |
 | warnWhenUnsavedChanges                           | Shows notification when unsaved changes exist                                                                                                                                           | `boolean`                                                                      | `false`\*  |
+| successNotification                                 | Successful Mutation notification          | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully created `resource`" or "Successfully updated `resource`"                           |
+| errorNotification                                   | Unsuccessful Mutation notification        | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
 
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useModalForm` will use what is passed to `<Refine>` as default and can override locally.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useModalForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
-> `**`: If not explicitly configured, default value of `redirect` depends which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). Otherwise if `action` is `edit`, `redirect`s default value is `list`.
+> `**`: If not explicitly configured, default value of `redirect` depends on which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). if `action` is `edit` instead, `redirect`s default value is `list`.
 
 ### Return Values
 

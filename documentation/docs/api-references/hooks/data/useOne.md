@@ -5,11 +5,13 @@ siderbar_label: useOne
 description: useOne data hook from refine is a modified version of react-query's useQuery for retrieving single items from a resource
 ---
 
-`useOne` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries) for retrieving single items from a `resource`. It uses `getOne` method as query function from the `dataProvider` that is passed to `<Refine>`.  
+`useOne` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries) used for retrieving single items from a `resource`. 
+
+It uses `getOne` method as query function from the `dataProvider` which is passed to `<Refine>`.  
 
 ## Usage
 
-Let's say we have a `categories` resource
+Let's say that we have a resource named `posts`.
 
 ```ts title="https://api.fake-rest.refine.dev/categories"
 {
@@ -40,7 +42,7 @@ const categoryQueryResult = useOne<ICategory>("categories", 1);
 `useOne` can also accept all `useQuery` options.  
 [Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/reference/useQuery)
 
-- For example, to disable query from running automatically you can set `enabled` to `false`
+- For example, to disable the query from running automatically you can set `enabled` to `false`
 
 ```tsx
 const categoryQueryResult = useOne<ICategory>("categories", "1", { enabled: false });
@@ -49,7 +51,7 @@ const categoryQueryResult = useOne<ICategory>("categories", "1", { enabled: fals
 
 <br />
 
-After query runs `categoryQueryResult` will include the retrieved data:
+After query runs, the `categoryQueryResult` will include the retrieved data:
 
 
 ```json title="categoryQueryResult.data"
@@ -64,7 +66,7 @@ After query runs `categoryQueryResult` will include the retrieved data:
 
 
 :::tip
-`useOne` returns the result of `react-query`'s `useQuery`. It includes properties like `isLoading` and `isFetching` with many others.  
+`useOne` returns the result of `react-query`'s `useQuery` which includes many properties such as `isLoading` and `isFetching`.  
 [Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/reference/useQuery)
 :::
 
@@ -73,17 +75,19 @@ After query runs `categoryQueryResult` will include the retrieved data:
 ### Parameters
 
 
-| Property                                                                                            | Description                               | Type                                                      | Default |
-| --------------------------------------------------------------------------------------------------- | ----------------------------------------- | --------------------------------------------------------- | ------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](#) for API data interactions | `string`                                                  |         |
-| id <div className="required">Required</div>                                                         | id of the item in the resource            | `string`                                                  |         |
-| options                                                                                             | `react-query`'s `useQuery` options        | ` UseQueryOptions<`<br/>`{ data: TData; },`<br/>`TError>` |         |
+| Property                                                                                            | Description                               | Type                                                                       | Default                             |
+| --------------------------------------------------------------------------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------- |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](#) for API data interactions | `string`                                                                   |                                     |
+| id <div className="required">Required</div>                                                         | id of the item in the resource            | `string`                                                                   |                                     |
+| queryOptions                                                                                        | `react-query`'s `useQuery` options        | ` UseQueryOptions<`<br/>`{ data: TData; },`<br/>`TError>`                  |                                     |
+| successNotification                                                                                 | Successful Query notification             | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | `false`                             |
+| errorNotification                                                                                   | Unsuccessful Query notification           | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Error (status code: `statusCode`)" |
 
 ### Type Parameters
 
 
-| Property | Desription                                                                 | Type                                     | Default                                  |
-| -------- | -------------------------------------------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| Property | Desription                                                                       | Type                                           | Default                                        |
+| -------- | -------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
 | TData    | Result data of the query. Extends [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) |
 | TError   | Custom error object that extends [`HttpError`](../../interfaces.md#httperror)    | [`HttpError`](../../interfaces.md#httperror)   | [`HttpError`](../../interfaces.md#httperror)   |
 

@@ -190,7 +190,7 @@ export default App;
 
 <br/>
 
-`<Refine/>` is the root component of a **refine** application. Using the `dataprovider` prop, we made our **Simple REST Dataprovider** available to the entire application.
+`<Refine/>` is the root component of a **refine** application. Using the `dataProvider` prop, we made our **Simple REST Dataprovider** available to the entire application.
 
 ## Adding Resources
 
@@ -376,7 +376,7 @@ export const App: React.FC = () => {
 
 <br />
 
-Open your application in your browser. You will see **posts** are displayed correctly in a table structure and event the pagination works out-of-the box. 
+Open your application in your browser. You will see **posts** are displayed correctly in a table structure and even the pagination works out-of-the box. 
 
 On the next step, we are going to add a category field to the table which involves handling data relationships. 
 
@@ -392,7 +392,7 @@ On the next step, we are going to add a category field to the table which involv
 
 ## Handling relationships
 
-Remember that the records from `/posts`endpoind had an category id field:
+Remember that the records from `/posts` endpoint had a category id field:
 
 ```ts title="https://api.fake-rest.refine.dev/posts/1"
 ...
@@ -541,7 +541,6 @@ We are going to use `<Table.Column>`'s [`filterDropdown`](https://ant.design/com
 
 ```tsx title="pages/posts/list.tsx"
 import {
-    ...
     //highlight-start
     FilterDropdown,
     Select,
@@ -691,7 +690,7 @@ export const App: React.FC = () => {
 
 ✳️ `useShow()` is a **refine** hook used to fetch a single record data. The `queryResult` has the response and also `isLoading` state.
 
-[Refer to `useShow` documentation for detailed usage information. &#8594](#)
+[Refer to `useShow` documentation for detailed usage information. &#8594](api-references/hooks/show/useShow.md)
 
 ✳️ To retrieve the category title, again we need to make a call to `/categories` endpoint. This time we used `useOne()` hook to get a single record from another resource.
 
@@ -758,13 +757,15 @@ export const PostEdit: React.FC = () => {
                     />
                 </Form.Item>
                 <Form.Item label="Category" name={["category", "id"]}>
-                    <Select {...categForySelectProps} />
+                    <Select {...categorySelectProps} />
                 </Form.Item>
             </Form>
         </Edit>
     );
 };
 ```
+
+<br />
 
 Now we can add the newly created component to our `<Resource>` with `edit` prop:
 
@@ -790,6 +791,51 @@ export const App: React.FC = () => {
 ```
 
 We are going to need an *edit* button on each row to diplay the `<PostEdit>` component. **refine** doesn't automatically adds one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
+
+```tsx title="components/pages/posts.tsx"
+import {
+    ...
+    //highlight-start
+    Space,
+    EditButton
+    //highlight-end
+} from "@pankod/refine";
+
+export const PostList: React.FC = () => {
+...
+    <Table.Column<IPost>
+        title="Actions"
+        dataIndex="actions"
+        render={(_text, record): React.ReactNode => {
+            return (
+                <Space>
+                    <EditButton
+                        size="small"
+                        recordItemId={record.id}
+                    />
+                </Space>
+            );
+        }}
+    />
+...
+}
+```
+
+[Refer to `<EditButton>` documentation for detailed usage information. &#8594](api-references/components/buttons/edit.md)
+
+
+You can try yourself that the edit buttons will trigger the edit forms for each record and you are able to update the record data.
+
+Let's see what's going on our `<PostEdit>` component in detail:
+
+✳️ `useForm` is a refine hook for handling form data.
+On the example it returns `formProps` and `saveButtonProps`, where the former includes all necessary props to build the form and the latter has the ones for the save button.
+
+:::caution Attention
+In edit page, `useForm` hook initializes the form with current record values.
+:::
+
+We are going to need an *edit* button on each row to display the `<PostEdit>` component. **refine** doesn't automatically adds one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
 
 ```tsx title="components/pages/posts.tsx"
 import {
@@ -960,6 +1006,74 @@ We should notice some minor differences from the edit example:
 
 ## Deleting a record
 
+Deleting a record can be done in two ways.
+
+First way is adding an delete button on each row since *refine* doesn't automatically adds one, so we have to update our `<PostList>` component to add a `<DeleteButton>` for each record:
+
+
+
+```tsx title="components/pages/posts.tsx"
+import {
+    ...
+    //highlight-next-line
+    DeleteButton
+} from "@pankod/refine";
+
+export const PostList: React.FC = () => {
+...
+    <Table.Column<IPost>
+        title="Actions"
+        dataIndex="actions"
+        render={(_text, record): React.ReactNode => {
+            return (
+                <Space>
+                    ...
+                    //highlight-start
+                    <DeleteButton
+                        size="small"
+                        recordItemId={record.id}
+                    />
+                    //highlight-end
+                </Space>
+            );
+        }}
+    />
+...
+}
+```
+
+[Refer to `<DeleteButton>` documentation for detailed usage information. &#8594](api-references/components/buttons/delete.md)
+
+
+You can try yourself that the delete buttons will delete each record when click and confirmed.
+
+The second way is showing delete button in `<PostEdit>` component. To show delete button in edit page, `canDelete` prop need to be passed to `<Resource>` component
+
+
+```tsx title="src/App.tsx"
+import { Refine, Resource } from "@pankod/refine";
+import dataProvider from "@pankod/refine-simple-rest";
+import { PostList, PostShow, PostEdit, PostCreate } from "./pages";
+
+export const App: React.FC = () => {
+    return (
+        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
+            <Resource
+                name="posts"
+                list={PostList}
+                show={PostShow}
+                edit={PostEdit}
+                create={PostCreate}
+                //highlight-next-line
+                canDelete
+            />
+        </Refine>
+    );
+};
+```
+
+After adding `canDelete` prop, `<DeleteButton>` will appear in edit form.
+
 
 ## Live Codesandbox Example
 
@@ -982,4 +1096,4 @@ Our tutorial is complete. Below you'll find a live Codesandbox example displayin
 
 * [Check the Guides & Concept section to learn generic solutions to common problems &#8594](api-references/providers/auth-provider)
 
-* [Check example section for code snippets &#8594](examples/topMenuLayout)
+* [Check example section for code snippets &#8594](examples/customization/topMenuLayout.md)

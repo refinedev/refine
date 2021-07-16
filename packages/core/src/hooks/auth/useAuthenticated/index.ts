@@ -4,12 +4,18 @@ import { useQuery, UseQueryResult } from "react-query";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
 
-export const useAuthenticated = (): UseQueryResult<void, unknown> => {
+export const useAuthenticated = (
+    params?: any,
+): UseQueryResult<any, unknown> => {
     const { checkAuth } = useContext<IAuthContext>(AuthContext);
 
-    const queryResponse = useQuery("useAuthenticated", checkAuth, {
-        enabled: !!checkAuth,
-    });
+    const queryResponse = useQuery(
+        ["useAuthenticated", params],
+        () => checkAuth(params),
+        {
+            retry: false,
+        },
+    );
 
     return queryResponse;
 };

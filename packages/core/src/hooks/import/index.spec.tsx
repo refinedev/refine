@@ -25,7 +25,6 @@ describe("useImport hook", () => {
     });
 
     it("should trigger parse", async () => {
-        // const { container } = customRender(<ImportButton>Test</ImportButton>);
         const { result } = renderHook(() => useImport(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,

@@ -5,15 +5,14 @@ siderbar_label: useCheckError
 description: useCheckError data hook from refine is a modified version of react-query's useMutation for create mutations
 ---
 
-`useCheckError`  calls `checkError` method from [`authProvider`](/docs/api-references/providers/auth-provider) under the hood.
- If `checkError` returns a rejected promise, `useCheckError` calls the `logout` method of `authProvider` and the app is unauthenticated.
+`useCheckError` calls the `checkError` method from the [`authProvider`](/docs/api-references/providers/auth-provider) under the hood.
+If the `checkError` returns a rejected promise, `useCheckError` calls the the `logout` method of the `authProvider` and the app is unauthenticated.
 
-
-It returns the result of react-query's [useMutation](https://react-query.tanstack.com/reference/useMutation). 
-Data that is resolved from `checkError` will be returned as the `data` in the query result.
+It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation). 
+Data that is resolved from the `checkError` will be returned as the `data` in the query result.
 ## Usage
 
-Imagine we make a payment request which is declined from API. If error status code is `418`, user needs to be logged out for security reasons.
+Imagine that we make a payment request which is declined by the API. If error status code is `418`, user needs to be logged out for security reasons.
 
 ```tsx
 import { useCheckError } from "@pankod/refine";
@@ -75,5 +74,5 @@ const authProvider: AuthProvider = {
 <br/>
 
 :::caution
-This hook can only be used if `authProvider` is provided.
+This hook can only be used if the `authProvider` is provided.
 :::

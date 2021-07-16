@@ -15,12 +15,10 @@ import {
 import { Group } from "..";
 
 export const DemoSidebar: React.FC<DemoSidebarProps> = ({
-    title,
     mutationMode,
     syncWithLocation,
     warnWhenUnsavedChanges,
     undoableTimeout,
-    onTitleChange,
     onMutationModeChange,
     onSyncWithLocationChange,
     onWarnWhenUnsavedChangesChange,
@@ -81,15 +79,6 @@ export const DemoSidebar: React.FC<DemoSidebarProps> = ({
                             },
                         }}
                     >
-                        <Form.Item label="Title" style={formItemStyles}>
-                            <Input
-                                size="small"
-                                placeholder="refine"
-                                value={title}
-                                onChange={(e) => onTitleChange(e.target.value)}
-                                data-testid="title"
-                            />
-                        </Form.Item>
                         <Form.Item label="Mutation mode" style={formItemStyles}>
                             <Select
                                 size="small"

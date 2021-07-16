@@ -13,6 +13,7 @@ import {
     DeleteOneResponse,
     ResourceRouterParams,
     MutationMode,
+    SuccessErrorNotification,
 } from "../../../interfaces";
 
 export type DeleteButtonProps = ButtonProps & {
@@ -20,7 +21,7 @@ export type DeleteButtonProps = ButtonProps & {
     recordItemId?: string;
     onSuccess?: (value: DeleteOneResponse) => void;
     mutationMode?: MutationMode;
-};
+} & SuccessErrorNotification;
 
 export const DeleteButton: FC<DeleteButtonProps> = ({
     resourceName: propResourceName,
@@ -28,6 +29,8 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
     onSuccess,
     mutationMode: mutationModeProp,
     children,
+    successNotification,
+    errorNotification,
     ...rest
 }) => {
     const translate = useTranslate();
@@ -44,7 +47,7 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
 
     const resource = resourceWithRoute(resourceName);
 
-    const { mutateAsync, isLoading, variables } = useDelete();
+    const { mutate, isLoading, variables } = useDelete();
 
     const id = recordItemId ?? idFromRoute;
 
@@ -57,13 +60,20 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
             title={translate("buttons.confirm", "Are you sure?")}
             okButtonProps={{ disabled: isLoading }}
             onConfirm={(): void => {
-                mutateAsync({
-                    id: id,
-                    resource: resource.name,
-                    mutationMode,
-                }).then((value) => {
-                    onSuccess && onSuccess(value);
-                });
+                mutate(
+                    {
+                        id: id,
+                        resource: resource.name,
+                        mutationMode,
+                        successNotification,
+                        errorNotification,
+                    },
+                    {
+                        onSuccess: (value) => {
+                            onSuccess && onSuccess(value);
+                        },
+                    },
+                );
             }}
         >
             <Button

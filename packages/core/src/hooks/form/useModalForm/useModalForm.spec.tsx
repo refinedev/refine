@@ -22,7 +22,7 @@ const WrapperWithRoute: React.FC = ({ children }) => (
 );
 
 describe("useModalForm Hook", () => {
-    fit("should load data to form with edit action", async () => {
+    it("should load data to form with edit action", async () => {
         const { result, waitFor } = renderHook(
             () =>
                 useModalForm<{}, HttpError, { title: string }>({
@@ -43,6 +43,67 @@ describe("useModalForm Hook", () => {
             return !result.current.formLoading;
         });
 
-        expect(formProps.form!.getFieldValue("title")).toEqual(posts[0].title);
+        expect(formProps.form?.getFieldValue("title")).toEqual(posts[0].title);
+    });
+
+    it("should close modal before request success when mutation mode pessimistic", async () => {
+        const { result, waitFor } = renderHook(
+            () =>
+                useModalForm<{}, HttpError, { title: string }>({
+                    action: "edit",
+                    mutationMode: "pessimistic",
+                }),
+            {
+                wrapper: WrapperWithRoute,
+            },
+        );
+
+        const { formProps, modalProps, show, formLoading } = result.current;
+
+        act(() => {
+            show(posts[0].id);
+        });
+
+        await waitFor(() => {
+            return !formLoading;
+        });
+
+        act(() => {
+            formProps.form?.setFieldsValue({
+                title: "new title",
+            });
+            formProps.form?.submit();
+        });
+
+        expect(modalProps.visible).toBeFalsy();
+    });
+
+    it("when visible change data should be in modal", async () => {
+        const { result } = renderHook(
+            () =>
+                useModalForm<{}, HttpError, { title: string }>({
+                    action: "create",
+                }),
+            {
+                wrapper: WrapperWithRoute,
+            },
+        );
+
+        const { formProps, show, close } = result.current;
+
+        act(() => {
+            show();
+        });
+
+        formProps.form?.setFieldsValue({
+            title: "new title",
+        });
+
+        act(() => {
+            close();
+            show();
+        });
+
+        expect(formProps.form?.getFieldValue("title")).toEqual("new title");
     });
 });

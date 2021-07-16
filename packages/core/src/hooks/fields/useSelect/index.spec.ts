@@ -168,15 +168,22 @@ describe("useSelect Hook", () => {
         ]);
     });
 
-    it("onSearch", async () => {
-        const { result, waitFor } = renderHook(
+    it("onSearch debounce with default value (300ms)", async () => {
+        const getListMock = jest.fn(() =>
+            Promise.resolve({ data: [], total: 0 }),
+        );
+        const { result, waitFor, waitForNextUpdate } = renderHook(
             () =>
                 useSelect({
                     resource: "posts",
+                    debounce: 300,
                 }),
             {
                 wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
+                    dataProvider: {
+                        ...MockJSONServer,
+                        getList: getListMock,
+                    },
                     resources: [{ name: "posts" }],
                 }),
             },
@@ -186,10 +193,64 @@ describe("useSelect Hook", () => {
             return !result.current.queryResult?.isLoading;
         });
 
+        expect(getListMock).toBeCalledTimes(1);
+
         const { selectProps } = result.current;
 
         act(() => {
-            selectProps!.onSearch!("1");
+            for (let index = 0; index < 10; index++) {
+                selectProps!.onSearch!(index.toString());
+            }
+        });
+        await waitForNextUpdate();
+
+        expect(getListMock).toBeCalledTimes(2);
+
+        await waitFor(() => {
+            return !result.current.queryResult?.isLoading;
+        });
+    });
+
+    it("onSearch disabled debounce (0ms)", async () => {
+        const getListMock = jest.fn(() => {
+            return Promise.resolve({ data: [], total: 0 });
+        });
+        const { result, waitFor, waitForNextUpdate } = renderHook(
+            () =>
+                useSelect({
+                    resource: "posts",
+                    debounce: 0,
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        ...MockJSONServer,
+                        getList: getListMock,
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            return !result.current.queryResult?.isLoading;
+        });
+
+        expect(getListMock).toBeCalledTimes(1);
+
+        const { selectProps } = result.current;
+
+        selectProps!.onSearch!("1");
+        await waitForNextUpdate();
+        selectProps!.onSearch!("1");
+        await waitForNextUpdate();
+        selectProps!.onSearch!("1");
+        await waitForNextUpdate();
+
+        expect(getListMock).toBeCalledTimes(4);
+
+        await waitFor(() => {
+            return !result.current.queryResult?.isLoading;
         });
     });
 });
