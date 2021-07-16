@@ -12,7 +12,7 @@ const Wrapper = TestWrapper({
 
 describe("useModal Hook", () => {
     it("should visible false on init", async () => {
-        const { result } = renderHook(() => useModalForm(), {
+        const { result } = renderHook(() => useModal(), {
             wrapper: Wrapper,
         });
 
@@ -24,7 +24,7 @@ describe("useModal Hook", () => {
     it("should visible true on pass visible true with prop", async () => {
         const { result } = renderHook(
             () =>
-                useModalForm({
+                useModal({
                     modalProps: {
                         visible: true,
                     },
@@ -41,7 +41,7 @@ describe("useModal Hook", () => {
 
     it("should visible true on called show", async () => {
         const { result, waitFor, waitForNextUpdate } = renderHook(
-            () => useModalForm(),
+            () => useModal(),
             {
                 wrapper: Wrapper,
             },
@@ -57,7 +57,7 @@ describe("useModal Hook", () => {
     });
 
     it("should visible false on called show after close", async () => {
-        const { result } = renderHook(() => useModalForm(), {
+        const { result } = renderHook(() => useModal(), {
             wrapper: Wrapper,
         });
 
@@ -80,7 +80,7 @@ describe("useModal Hook", () => {
         const mockedOnClose = jest.fn();
         const { result } = renderHook(
             () =>
-                useModalForm({
+                useModal({
                     modalProps: {
                         onCancel: mockedOnClose,
                     },
@@ -113,7 +113,7 @@ describe("useModal Hook", () => {
     });
 
     it("should call close if modalProps onCancel is undefined", async () => {
-        const { result } = renderHook(() => useModalForm(), {
+        const { result } = renderHook(() => useModal(), {
             wrapper: Wrapper,
         });
 
