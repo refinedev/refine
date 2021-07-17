@@ -7,17 +7,17 @@ sidebar_label: List
 import asideUsage from '@site/static/img/guides-and-concepts/basic-views/list/aside.png'
 import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/list/pageHeaderProps.png'
 
-`<List>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a create button and title to the page.
+`<List>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like a creating a button or giving the page titles.
 
-We' ll show what `<List>` does using properties with examples.
+We will show what `<List>` does using properties with examples.
 
 ## Properties
 
 ### `canCreate` and `createButtonProps`
 
-`canCreate` allows adding the create button inside the `<List>` component. If `<Resource>` is passed a create component refine adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the below code.
+`canCreate` allows us to add the create button inside the `<List>` component. If `<Resource>` is passed a create component, refine adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the code below.
 
-Create button redirects to the create page of the resource according to the value it reads from the url.
+Create button redirects to the create page of the resource according to the value it reads from the URL.
 
 ```tsx
 import { List, usePermissions } from "@pankod/refine";
@@ -36,11 +36,11 @@ export const List: React.FC = () => {
 };
 ```
 
-[Refer to `usePermission` documentation for detailed usage. &#8594](#)
+[Refer to the `usePermission` documentation for detailed usage. &#8594](#)
 
 ### `title`
 
-It allows adding title inside the `<List>` component. if you don't pass title props it uses singular resource name by default.
+It allows adding titles inside the `<List>` component. if you don't pass title props, it uses ?singular resource name by default.
 
 ```tsx
 import { List } from "@pankod/refine";
@@ -61,7 +61,7 @@ const Aside: React.FC = () => {
     return (
         <Card title="Users List Details" extra={<a href="#">More</a>}>
             <p>
-                You can view personal data of users registered in your system in
+                You can view the personal data of users registered in your system in
                 the user table.
             </p>
         </Card>
@@ -87,7 +87,7 @@ export const List: React.FC = () => {
 
 `<List>` uses ant-design `<PageHeader>` components so you can customize with the props of `pageHeaderProps`.
 
-[Refer to `<PageHeader>` documentation for detailed usage. &#8594](https://ant.design/components/page-header/#API)
+[Refer to the `<PageHeader>` documentation for detailed usage. &#8594](https://ant.design/components/page-header/#API)
 
 ```tsx
 import { List } from "@pankod/refine";
@@ -116,7 +116,7 @@ export const List: React.FC = () => {
 
 `<List>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<List>` component in a custom page, you can use the `resource` prop.
 
-[Refer to custom pages documentation for detailed usage. &#8594](#)
+[Refer to the custom pages documentation for detailed usage. &#8594](#)
 
 ```tsx
 import { Refine, Resource, List } from "@pankod/refine";
@@ -154,5 +154,5 @@ export const App: React.FC = () => {
 | createButtonProps | Adds props for create button              | [ButtonProps](https://ant.design/components/button/#API) & `{ resourceName: string }` | `<CreateButton />`                                                |
 | title             | Adds title                                | `string`                                                                              | Plural of `resource.name`                                         |
 | Aside             | Adds component to right side              | `React.ReactNode`                                                                     | `undefined`                                                       |
-| pageHeaderProps   | Passes props for `<PageHeader>`           | [PageHeaderProps](https://ant.design/components/page-header/#API)                     | { ghost: false, [title](#title), extra: `<CreateButton />` }      |
+| pageHeaderProps   | Passes properties for `<PageHeader>`           | [PageHeaderProps](https://ant.design/components/page-header/#API)                     | { ghost: false, [title](#title), extra: `<CreateButton />` }      |
 | resource          | [`Resource`](#) for API data interactions | `string`                                                                              | Resource name that it reads from the url.                         |
