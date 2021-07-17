@@ -6,7 +6,7 @@ sidebar_label: <Resource>
 
 ## Overview
 
-`<Resource>` is the main building block of a **refine** app. A `<Resource>` represents an entity in an endpoint in the API (e.g. https://api.fake-rest.refine.dev/posts). It serves as a bridge between the data from the API and the pages in the app -which needs to interact with data from the API.
+`<Resource>` is the main building block of a **refine** app. A `<Resource>` represents an entity in an endpoint in the API (e.g. https://api.fake-rest.refine.dev/posts). It serves as a bridge between the data from the API and the pages in the app, allowing pages to interact with the data from the API. 
 
 
 
