@@ -6,14 +6,14 @@ sidebar_label: <Resource>
 
 ## Overview
 
-`<Resource>` is the main building block of a **refine** app. A `<Resource>` represents an entity in an endpoint in the API (e.g. https://api.fake-rest.refine.dev/posts). It serves as a bridge with the data from the API and the pages in the app to interact with that data.
+`<Resource>` is the main building block of a **refine** app. A `<Resource>` represents an entity in an endpoint in the API (e.g. https://api.fake-rest.refine.dev/posts). It serves as a bridge between the data from the API and the pages in the app -which needs to interact with data from the API.
 
 
 
 ## Usage
 Here's an app that consumes the https://api.fake-rest.refine.dev/posts endpoint as a resource to list multiple items, edit or create an item and show a single item.
  
-Page components for interacting with CRUD API operations are passed as props to `<Resource>`.  
+Page components that are for interacting with the CRUD API operations are passed as properties to `<Resource>`.  
  <br />
 
 ```tsx title="App.tsx"
@@ -46,7 +46,7 @@ export default App;
 
 <br />
 
-Those components will be passed some props. 
+These components will recieve some properties   . 
 
 
 ```tsx title="PostList.tsx"
@@ -62,11 +62,11 @@ const PostList: React.FC<IResourceComponentsProps> = (props) => {
     ...
 }
 ```
-The values of `canCreate`, `canEdit` and `canShow` are determined by whether associated components are passed to the `<Resource>`.  
+The values of `canCreate`, `canEdit` and `canShow` are determined by whether associated components are passed to the `<Resource>` or not.  
 `name` and `canDelete` are the values passed to the `<Resource>`.
 
 :::tip
-This props can be get by using [useResource](api-references/hooks/resource/useResource.md) hook.
+This props can be get by using the [useResource](api-references/hooks/resource/useResource.md) hook.
 :::
 
 :::important
@@ -75,7 +75,7 @@ This props can be get by using [useResource](api-references/hooks/resource/useRe
 ## Props
 
 ### `name`
-<div className="required">Required</div>  
+<div className="required">Required</div>
 <br/>
 <br/>
 
@@ -98,11 +98,11 @@ https://api.fake-rest.refine.dev/posts/1
 
 ### `list`
 
-The component passed to `list` prop will be rendered on `/resources/posts` route.
+The component passed to `list` prop will be rendered on the `/resources/posts` route.
 
 ### `create`
 
-The component passed to `create` will be rendered on `/resources/posts/create` route by default.
+The component passed to `create` will be rendered on the `/resources/posts/create` route by default.
 
 > It will also be rendered on `/resources/posts/create/:id`. This represents namely a clone page. `id` represent a record and it will be available as a route parameter.  
 For example [`useForm` uses this parameter to create a clone form](#)
@@ -111,23 +111,23 @@ For example [`useForm` uses this parameter to create a clone form](#)
 
 ### `edit`
 
-The component passed to `edit` will be rendered on `/resources/posts/edit/:id` route.
+The component passed to `edit` will be rendered on the `/resources/posts/edit/:id` route.
 
 ### `show`
 
-The component passed to `show` will be rendered on `/resources/posts/show/:id` route.
+The component passed to `show` will be rendered on the `/resources/posts/show/:id` route.
 
 
 ### `canDelete`
 This value will be passed to all CRUD pages defined to `<Resource>`.
 
 :::tip
-**refine**'s <[Edit](api-references/components/basic-views/edit.md)> component uses `canDelete` value to show delete button in the edit form.
+**refine**'s <[Edit](api-references/components/basic-views/edit.md)> component uses `canDelete` value to whether show delete button in the edit form or not.
 :::
 
 ### `icon`
 
-An icon element can be passed as props for the icon in the menu.
+An icon element can be passed as properties for the icon in the menu.
 
 ```tsx
 <Resource
@@ -151,7 +151,7 @@ Menu item name and route on clicking can be customized.
 
 #### `label`
 
-Custom menu item name
+Custom menu item name ? 
 #### `route`
 
 Custom route name
