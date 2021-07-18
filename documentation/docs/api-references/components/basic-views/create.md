@@ -7,7 +7,7 @@ import asideUsage from '@site/static/img/guides-and-concepts/basic-views/create/
 import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/create/pageHeaderProps.png'
 import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/create/actionButtons.png'
 
-`<Create>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like a action buttons and title to the page.
+`<Create>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like action buttons and giving titles to the page.
 
 We' ll show what `<Create>` does using properties with examples.
 
