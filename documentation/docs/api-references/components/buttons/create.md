@@ -5,7 +5,7 @@ title: Create
 
 import listUsage from '@site/static/img/guides-and-concepts/components/buttons/create/usage.png';
 
-`<CreateButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `create` method from [`useNavigation`](#) under the hood. It can be useful to redirect the app to the create page route of `<Resource>`.
+`<CreateButton>` uses the Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `create` method from [`useNavigation`](#) under the hood. It can be useful to redirect the app to the create page route of `<Resource>`.
 
 ## Usage
 
@@ -37,7 +37,7 @@ export interface IPost {
 }
 ```
 
-Looks like this:
+Will look like this:
 
 <div>
     <img src={listUsage} alt="Default Create Button" />
@@ -65,8 +65,8 @@ Clicking the button will trigger the `create` method of [`useNavigation`](#) and
 
 | Property     | Description                                   | Type                                                                                      | Default                                                         |
 | ------------ | --------------------------------------------- | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| props        | Ant Design button props                       | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; }` |                                                                 |
-| resourceName | Determines which resource to use for redirect | `string`                                                                                  | Resource name that it reads from route                          |
-| children     | Set the button text                           | `ReactNode`                                                                               | `"Create"`                                                      |
-| icon         | Set the icon component of button              | `ReactNode`                                                                               | [`<PlusSquareOutlined />`](https://ant.design/components/icon/) |
-| onClick      | Set the handler to handle click event         | `(event) => void`                                                                         | Triggers navigation for redirect to the create page of resource |
+| props        | Ant Design button properties                      | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; }` |                                                                 |
+| resourceName | Determines which resource to use for redirection | `string`                                                                                  | Resource name that it reads from route                          |
+| children     | Sets the button text                           | `ReactNode`                                                                               | `"Create"`                                                      |
+| icon         | Sets the icon component of button              | `ReactNode`                                                                               | [`<PlusSquareOutlined />`](https://ant.design/components/icon/) |
+| onClick      | Sets the handler to handle click event         | `(event) => void`                                                                         | Triggers navigation for redirect to the create page of resource |
