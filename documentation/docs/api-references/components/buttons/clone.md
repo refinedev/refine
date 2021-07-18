@@ -5,7 +5,7 @@ title: Clone
 
 import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/clone/usage.png';
 
-`<CloneButton>` uses the Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `clone` method from [useNavigation](#) under the hood. 
+`<CloneButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `clone` method from [useNavigation](#) under the hood. 
 It can be useful when redirecting the app to the create page with the record id route of `<Resource>`.
 
 ## Usage
