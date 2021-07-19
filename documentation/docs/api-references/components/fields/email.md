@@ -5,13 +5,13 @@ title: Email
 
 import emailField from '@site/static/img/guides-and-concepts/fields/email/emailField.png'
 
-This field is used to display email values and uses [`<Link>`](https://ant.design/components/typography/#FAQ) in `<Typography>` from Ant Design.
+This field is used to display email values. It uses the [`<Link>`](https://ant.design/components/typography/#FAQ) component of `<Typography>` from Ant Design.
 
-[Refer to `<Typography>` documentation for detailed usage. &#8594](https://ant.design/components/typography)
+[Refer to the `<Typography>` documentation for detailed usage. &#8594](https://ant.design/components/typography)
 
 ## Usage
 
-Let's see how to use `<EmailField>` with the example in the user list.
+Let's see how we can use `<EmailField>` with the example in the user list.
 
 ```tsx
 import { List, Table, EmailField } from "@pankod/refine";
@@ -55,5 +55,5 @@ export const UserList: React.FC = () => {
 | value    | Email value | `React.ReactNode` |         |
 
 
-[Refer to rest Link props &#8594](https://ant.design/components/typography/#API)
+[Refer to the link for all of the Link properties &#8594](https://ant.design/components/typography/#API)
 
