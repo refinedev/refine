@@ -5,7 +5,7 @@ title: Save
 
 import saveButtonProps from '@site/static/img/guides-and-concepts/components/buttons/save/saveButtonProps.png';
 
-`<SaveButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses for presantation purposes only. Some refine hooks add features to this button.
+`<SaveButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses it for presantation purposes only. Some of the hooks that refine has adds features to this button.
 
 ## Usage
 
@@ -48,14 +48,14 @@ export interface IPost {
 }
 ```
 
-Looks like this:
+Will look like this:
 
 <div>
     <img  src={saveButtonProps} alt="Default Save Button" />
 </div>
 <br/>
 
-In this example, `useForm` hook gives properties the `<SaveButton>` component to submit the form, loading button, disable button via `saveButtonProps`.
+In this example, the `useForm` hook gives properties? the `<SaveButton>` component to submit the form, loading button, disable button via `saveButtonProps`.
 
 ## API Reference
 
@@ -64,6 +64,6 @@ In this example, `useForm` hook gives properties the `<SaveButton>` component to
 | Property | Description                      | Type                                                       | Default                                                   |
 | -------- | -------------------------------- | ---------------------------------------------------------- | --------------------------------------------------------- |
 | props    | Ant Design button props          | [`ButtonProps`](https://ant.design/components/button/#API) |                                                           |
-| children | Set the button text              | `ReactNode`                                                | `"Save"`                                                  |
-| type     | Set the button type              | `string`                                                   | `"primary"`                                               |
-| icon     | Set the icon component of button | `ReactNode`                                                | [`<SaveOutlined />`](https://ant.design/components/icon/) |
+| children | Sets the button text              | `ReactNode`                                                | `"Save"`                                                  |
+| type     | Sets the button type              | `string`                                                   | `"primary"`                                               |
+| icon     | Sets the icon component of button | `ReactNode`                                                | [`<SaveOutlined />`](https://ant.design/components/icon/) |
