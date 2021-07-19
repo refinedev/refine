@@ -5,7 +5,7 @@ title: Refresh
 
 import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/refresh/usage.png';
 
-`<RefreshButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses to update the data shown on the page via [`useOne`](../../hooks/data/useOne.md) method provided by your dataProvider.
+`<RefreshButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component to update the data shown on the page via the [`useOne`](../../hooks/data/useOne.md) method provided by your dataProvider.
 
 ## Usage
 
@@ -45,7 +45,7 @@ export interface IPost {
 }
 ```
 
-Looks like this:
+Will Look like this:
 
 <div>
     <img src={tableUsage} alt="Default Refresh Button" />
@@ -55,7 +55,7 @@ Looks like this:
 
 ### `recordItemId`
 
-`recordItemId` allows us to manage which data is refreshed.
+`recordItemId` allows us to manage which data is going to be refreshed.
 
 ```tsx
 import { RefreshButton } from "@pankod/refine";
@@ -65,7 +65,7 @@ export const MyRefreshComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `useOne` method and then the record whose resource is "post" and whose id is "1" fetches.
+Clicking the button will trigger the `useOne` method and then the record ?whose resource is "post" and whose id is "1" fetches.
 
 :::note
 `<RefreshButton>` component reads the id information from the route by default.
@@ -73,7 +73,7 @@ Clicking the button will trigger the `useOne` method and then the record whose r
 
 ### `resourceName`
 
-`resourceName` allows us to manage which resource is refreshed.
+`resourceName` allows us to manage which resource is going to be refreshed.
 
 ```tsx
 import { RefreshButton } from "@pankod/refine";
@@ -83,7 +83,7 @@ export const MyRefreshComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `useOne` method and then the record whose resource is "categories" and whose id is "2" fetches.
+Clicking the button will trigger the `useOne` method and then the record whose resource is "categories" and whose id is "2" fetches?.
 
 :::note
 `<RefreshButton>` component reads the resource name from the route by default.
@@ -98,6 +98,6 @@ Clicking the button will trigger the `useOne` method and then the record whose r
 | props        | Ant Design button props                      | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; recordItemId?: string; }` |                                                           |
 | resourceName | Determines which resource to use for refresh | `string`                                                                                                         | Resource name that it reads from route                    |
 | recordItemId | Determines which id to use for refresh       | `string`                                                                                                         | Record id that it reads from route                        |
-| children     | Set the button text                          | `ReactNode`                                                                                                      | `"Refresh"`                                               |
-| icon         | Set the icon component of button             | `ReactNode`                                                                                                      | [`<RedoOutlined />`](https://ant.design/components/icon/) |
-| onClick      | Set the handler to handle click event        | `(event) => void`                                                                                                | trigger the `useOne` method for refresh                   |
+| children     | Sets the button text                          | `ReactNode`                                                                                                      | `"Refresh"`                                               |
+| icon         | Sets the icon component of button             | `ReactNode`                                                                                                      | [`<RedoOutlined />`](https://ant.design/components/icon/) |
+| onClick      | Sets the handler to handle the click event        | `(event) => void`                                                                                                | trigger the `useOne` method for refresh                   |
