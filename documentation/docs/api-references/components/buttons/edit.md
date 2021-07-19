@@ -5,7 +5,7 @@ title: Edit
 
 import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/edit/usage.png';
 
-`<EditButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `edit` method from [`useNavigation`](#) under the hood. It can be useful to redirect the app to the edit page with the record id route of `<Resource>`.
+`<EditButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `edit` method from [`useNavigation`](#) under the hood. It can be useful when redirecting the app to the edit page with the record id route of `<Resource>`.
 
 ## Usage
 
@@ -45,7 +45,7 @@ export interface IPost {
 }
 ```
 
-Looks like this:
+Will look like this:
 
 <div>
     <img  src={tableUsage} alt="Table usage for delete button" />
@@ -91,9 +91,9 @@ Clicking the button will trigger the `edit` method of [`useNavigation`](#) and t
 
 | Property     | Description                                   | Type                                                                                                             | Default                                                       |
 | ------------ | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| props        | Ant Design button props                       | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; recordItemId?: string; }` |                                                               |
-| resourceName | Determines which resource to use for redirect | `string`                                                                                                         | Resource name that it reads from route                             |
-| recordItemId | Add `id` to the end of the URL                | `string`                                                                                                         | Record id that it reads from route                                 |
-| children     | Set the button text                           | `ReactNode`                                                                                                      | `"Edit"`                                                      |
-| icon         | Set the icon component of button              | `ReactNode`                                                                                                      | [`<EditOutlined />`](https://ant.design/components/icon/)     |
-| onClick      | Set the handler to handle click event         | `(event) => void`                                                                                                | Triggers navigation for redirect to the edit page of resource |
+| props        | Ant Design button properties                      | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; recordItemId?: string; }` |                                                               |
+| resourceName | Determines which resource to use for redirection | `string`                                                                                                         | Resource name that it reads from route                             |
+| recordItemId | Adds `id` to the end of the URL                | `string`                                                                                                         | Record id that it reads from route                                 |
+| children     | Sets the button text                           | `ReactNode`                                                                                                      | `"Edit"`                                                      |
+| icon         | Sets the icon component of button              | `ReactNode`                                                                                                      | [`<EditOutlined />`](https://ant.design/components/icon/)     |
+| onClick      | Sets the handler to handle click event         | `(event) => void`                                                                                                | Triggers navigation for redirection to the edit page of resource |
