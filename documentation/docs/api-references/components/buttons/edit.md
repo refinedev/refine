@@ -73,7 +73,7 @@ Clicking the button will trigger the `edit` method of [`useNavigation`](#) and t
 
 ### `resourceName`
 
-It is used to redirect the app to the `/edit` endpoint of the given resource name. By default, the app redirects to a URL with `/edit` defined by the name property of `<Resource>` component.
+It is used to redirect the app to the `/edit` endpoint of the given resource name. By default, the app redirects to a URL with `/edit` defined by the name property of `<Resource>` component.?
 
 ```tsx
 import { EditButton } from "@pankod/refine";
