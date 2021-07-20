@@ -7,13 +7,13 @@ import create from '@site/static/img/guides-and-concepts/multipart-upload/create
 import uploadedFile from '@site/static/img/guides-and-concepts/multipart-upload/uploaded.jpg';
 import edit from '@site/static/img/guides-and-concepts/multipart-upload/edit.jpg';
 
-We'll show you how to upload multiple files with refine.
+We will show you how to upload multiple files with refine.
 
 Let's start with the `creation form` first.
 
 ### Create Form
 
-Let's add the image field to the post creation form.
+Let's add the image field to the post `creation form`.
 
 ```tsx title="pages/posts/create.tsx"
 import { Create, Form, Input, getValueFromEvent, Upload } from "@pankod/refine";
@@ -85,10 +85,10 @@ export interface IPost {
 <br />
 
 :::tip
-We can reach the api url by using the `useApiUrl` hook.
+We can reach the API URL by using the `useApiUrl` hook.
 :::
 
-It looks like this.
+It will look like this.
 
 <>
 
@@ -98,7 +98,7 @@ It looks like this.
 <br/>
 </>
 
-We need now is an upload end-point that accepts multipart uploads. We write this address in the `action` prop of the `Upload` component.
+What we need now is an upload end-point that accepts multipart uploads. We write this address in the `action` property of the `Upload` component.
 
 ```json title="[POST] /media/upload"
 {
@@ -107,10 +107,11 @@ We need now is an upload end-point that accepts multipart uploads. We write this
 ```
 
 :::important
-This end-point should be `Content-type: multipart/form-data` and `Form Data: file: binary`.
+This end-point should be `Content-type: multipart/form-data` and `Form Data: file: binary`?.
 :::
 
-This end-point should respond similarly.
+This end-p
+oint should respond similarly.
 
 ```json title="[POST] /media/upload"
 {
@@ -124,7 +125,7 @@ This end-point should respond similarly.
 <br/>
 
 :::important
-We have to use the `getValueFromEvent` method to convert the uploaded files to [Antd UploadFile](https://ant.design/components/upload/#UploadFile) object.
+We have to use the `getValueFromEvent` method to convert the uploaded files to [Antd UploadFile](https://ant.design/components/upload/#UploadFile) object?.
 :::
 
 This data is sent to the API when form submitted.
@@ -218,7 +219,7 @@ export const PostEdit: React.FC = () => {
 </div>
 <br/>
 
-A request as below is sent for edit form.
+A request, like the one below, is sent for edit form.
 
 ```json title="[GET] https://api.fake-rest.refine.dev/posts/1"
 {
@@ -238,7 +239,7 @@ A request as below is sent for edit form.
 }
 ```
 
-This data is sent to the API when form submitted.
+This data is sent to the API when form is submitted.
 
 ```json title="[PUT] https://api.fake-rest.refine.dev/posts/1"
 {
@@ -259,7 +260,7 @@ This data is sent to the API when form submitted.
 
 ### Uploading State
 
-You may want to disable the "Save" button in the form while the upload continues. You can use the `useFileUploadState` hook for this.
+You may want to disable the "Save" button in the form while the upload is going on. To do this, you can use the `useFileUploadState` hook.
 
 ```tsx title="pages/posts/create.tsx"
 import {
