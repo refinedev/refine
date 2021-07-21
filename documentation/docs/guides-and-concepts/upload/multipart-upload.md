@@ -110,8 +110,7 @@ What we need now is an upload end-point that accepts multipart uploads. We write
 This end-point should be `Content-type: multipart/form-data` and `Form Data: file: binary`?.
 :::
 
-This end-p
-oint should respond similarly.
+This end-point should respond similarly.
 
 ```json title="[POST] /media/upload"
 {
