@@ -5,9 +5,9 @@ title: Auth0 Login
 
 import login from '@site/static/img/guides-and-concepts/auth0/auth0-login.gif';
 
-Auth0 is a flexible, drop-in solution to add authentication and authorization services to your applications. Your team and organization can avoid the cost, time, and risk that comes with building your own solution to authenticate and authorize users. You can check the [document](https://auth0.com/docs) for details.
+Auth0 is a flexible, drop-in solution for adding authentication and authorization services to your applications. Your team and organization can avoid the cost, time, and risk that comes with building your own solution to authenticate and authorize users. You can check the [auth0 document](https://auth0.com/docs) for details.
 
-To use auth0 with refine;
+We will show you how to use Auth0 with refine
 
 ### Installation
 
@@ -45,12 +45,12 @@ ReactDOM.render(
 ```
 
 :::important
-See the [**Auth0 docs**](https://auth0.com/docs) for detailed information and `CLIENT_ID`.
+See the [**Auth0 docs**](https://auth0.com/docs) for detailed information and ? `CLIENT_ID`.
 :::
 
 ### Override login page
 
-First, we need to override the refine, `login page`. In this way, we will redirect it to the auth0 login screen. We create a `login.tsx` file in the `/pages` folder.
+First, we need to override the refine `login page`. In this way, we will redirect it to the auth0 login screen. We create a `login.tsx` file in the `/pages` folder.
 
 ```tsx title="/pages/login.tsx"
 import React from "react";
@@ -99,7 +99,7 @@ export const Login: React.FC = () => {
 };
 ```
 
-Clicking the `Login with Auth0` button, you will be directed to the auth0 login screen.
+After clicking the `Login with Auth0` button, you will be directed to the auth0 login screen.
 
 <div style={{textAlign: "center"}}>
     <img src={login} />
@@ -108,7 +108,7 @@ Clicking the `Login with Auth0` button, you will be directed to the auth0 login 
 
 ### Auth Provider
 
-In refine, Authentication and Authorization processes are performed with the auth provider. Let's write a provider for Auth0.
+In refine, authentication and authorization processes are performed with the auth provider. Let's write a provider for Auth0.
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine";
@@ -165,11 +165,11 @@ export default App;
 
 #### login
 
-We overrided the login page and handed it over to auth0 completely. That's why we're returning to an empty promise.
+We overrided the login page and handed it over to Auth0 completely. That's why we're returning to an empty promise.?
 
 #### logout
 
-Logout method comes from `useAuth0` hook.
+Logout method comes from the `useAuth0` hook.
 
 #### checkError & getPermissions
 
