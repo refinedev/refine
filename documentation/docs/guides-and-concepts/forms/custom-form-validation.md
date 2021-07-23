@@ -5,7 +5,7 @@ title: Custom Form Validation
 
 import createForm from '@site/static/img/examples/form/custom-form-validation.gif';
 
-In refine, we can use the form validation that comes with `Ant Design` with the [rules](https://ant.design/components/form/#Rule) prop of the [Form.Item](https://ant.design/components/form/#Form.Item) component.
+In refine, we can use the form validation that comes with `Ant Design` with the [rules](https://ant.design/components/form/#Rule) property of the [Form.Item](https://ant.design/components/form/#Form.Item) component.
 
 ```tsx
 <Form>
@@ -33,7 +33,7 @@ In addition to pre-defined rules, we can also prepare **custom rules** with the 
 
 ### Example
 
-Now let's prepare a rule that checks that the title of posts is unique. We have an endpoint like the below. We will do the uniqueness check here.
+Now let's prepare a rule that checks if the titles of posts are unique. We have an endpoint like the below. We will do the uniqueness check here.
 
 ```json title="https://api.fake-rest.refine.dev/posts-unique-check?title=Example"
 {
