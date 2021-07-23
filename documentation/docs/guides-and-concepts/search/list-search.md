@@ -8,7 +8,7 @@ import formList from '@site/static/img/guides-and-concepts/list-search/form-list
 
 We will examine how to make an extensive search and filtering with the [`useSimpleList`](../../api-references/hooks/show/useSimpleList.md) hook that works with the [`<List>`](https://ant.design/components/list) component.
 
-First, let's list posts using the posts resource.
+To do this let's list posts using the posts resource.
 
 ```tsx title="pages/posts/list.tsx"
 import {
@@ -217,7 +217,7 @@ When the form is submitted, the `onSearch` method runs and we get the search for
 <br />
 
 :::important
-[`CrudFilters`](../../api-references/interfaces.md#crudfilters) types object has `field`, `operator` and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
+[`CrudFilters`](../../api-references/interfaces.md#crudfilters) type object has `field`, `operator` and `value` properties. These properties help us to filter in which field, with which operator, and with which data?.
 :::
 
 ## Live Codesandbox Example
