@@ -33,7 +33,7 @@ In addition to pre-defined rules, we can also prepare **custom rules** with the 
 
 ### Example
 
-Now let's prepare a rule that checks if the titles of posts are unique. We have an endpoint like the below. We will do the uniqueness check here.
+Now let's prepare a rule that checks if the titles of the posts are unique. We have an endpoint like the below. We will do the uniqueness check here.
 
 ```json title="https://api.fake-rest.refine.dev/posts-unique-check?title=Example"
 {
