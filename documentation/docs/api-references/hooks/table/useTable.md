@@ -55,14 +55,10 @@ export const PostList: React.FC = () => {
     return (
         <List>
             //highlight-start
-            <Table {...tableProps} key="id">
-                <Table.Column key="id" dataIndex="id" title="ID" />
-                <Table.Column key="title" dataIndex="title" title="Title" />
-                <Table.Column
-                    key="content"
-                    dataIndex="content"
-                    title="Content"
-                />
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column dataIndex="content" title="Content" />
             </Table>
             //highlight-end
         </List>
@@ -74,6 +70,29 @@ export const PostList: React.FC = () => {
 `<Refine>` componentine verilen `<Resource>` üzerindeki bir sayfada, `useTable` hangi kaynağın gösterileceğinin çıkarımını otomatik olarak yapar. Başka bir kaynağın verilerini göstermek isterseniz, `useTable(options)` hookunun aldığı opsiyon nesnesindeki `resource: string` opsiyonu ile başka bir `resource`a ait endpointten gelen verileri gösterebilirsiniz. Eğer `resource` opsiyonu verilmişse, `syncWithLocation` çalışmaz.
 
 `useTable`, verdiğiniz kaynağın verilerini çekerken `useMany` kullanır.
+:::
+
+<br />
+
+:::info
+If you want to make a change in the pagination of the `<Table>`. You should pass the pagination object of the `tableProps` to the pagination property of the `<Table>` as below.
+
+```tsx
+<Table
+    {...tableProps}
+    rowKey="id"
+    //highlight-start
+    pagination={{
+        ...tableProps.pagination,
+        position: ["bottomCenter"],
+        size: "small",
+    }}
+    //highlight-end
+>
+    ...
+</Table>
+```
+
 :::
 
 ## Sıralama
@@ -90,9 +109,8 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
-            <Table {...tableProps} key="id">
+            <Table {...tableProps} rowKey="id">
                 <Table.Column
-                    key="id"
                     dataIndex="id"
                     title="ID"
                     render={(value) => <TextField value={value} />}
@@ -100,18 +118,13 @@ export const PostList: React.FC = () => {
                     sorter
                 />
                 <Table.Column
-                    key="title"
                     dataIndex="title"
                     title="Title"
                     render={(value) => <TextField value={value} />}
                     //highlight-next-line
                     sorter={{ multiple: 1 }}
                 />
-                <Table.Column
-                    key="content"
-                    dataIndex="content"
-                    title="Content"
-                />
+                <Table.Column dataIndex="content" title="Content" />
             </Table>
         </List>
     );
@@ -150,7 +163,6 @@ Endpointten gelen her `post` bir `status` değerine sahip. Bu değer `published`
 <Table.Column
     dataIndex="status"
     title="Status"
-    key="status"
     render={(value) => <TagField value={value} />}
 />
 ...
@@ -185,17 +197,15 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
-            <Table {...tableProps} key="id">
-                <Table.Column key="id" dataIndex="id" title="ID" sorter />
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" sorter />
                 <Table.Column
-                    key="title"
                     dataIndex="title"
                     title="Title"
                     sorter={{ multiple: 2 }}
                     defaultSortOrder={getDefaultSortOrder("title", sorter)}
                 />
                 <Table.Column
-                    key="content"
                     dataIndex="content"
                     title="Content"
                     sorter={{ multiple: 1 }}
@@ -203,7 +213,6 @@ export const PostList: React.FC = () => {
                 <Table.Column
                     dataIndex="status"
                     title="Status"
-                    key="status"
                     render={(value) => <TagField value={value} />}
                     //highlight-start
                     filterDropdown={(props) => (
@@ -289,17 +298,15 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
-            <Table {...tableProps} key="id">
-                <Table.Column key="id" dataIndex="id" title="ID" sorter />
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" sorter />
                 <Table.Column
-                    key="title"
                     dataIndex="title"
                     title="Title"
                     sorter={{ multiple: 2 }}
                     defaultSortOrder={getDefaultSortOrder("title", sorter)}
                 />
                 <Table.Column
-                    key="content"
                     dataIndex="content"
                     title="Content"
                     sorter={{ multiple: 1 }}
@@ -307,7 +314,6 @@ export const PostList: React.FC = () => {
                 <Table.Column
                     dataIndex="status"
                     title="Status"
-                    key="status"
                     render={(value) => <TagField value={value} />}
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
@@ -333,16 +339,22 @@ export const PostList: React.FC = () => {
 
 ## API
 
-| Key              | Description                                                                                                                     | Type                                       |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| permanentFilter  | Varsayılan ve değiştirilemez filtre.                                                                                            | [`CrudFilters`](../../interfaces.md#crudfilters) |
-| resource         | Verilerin listeleneceği resource. Eğer verilmezse, contextten çıkarım yapılır.                                                  | `string`                                   |
-| initialCurrent   | Varsayılan sayfa indeksi.                                                                                                       | `number`                                   |
-| initialPageSize  | Varsayılan sayfa başına gösterilen kayıt sayısı.                                                                                | `number`                                   |
-| initialSorter    | Varsayılan sıralama.                                                                                                            | [`CrudSorting`](../../interfaces.md#crudsorting) |
-| initialFilter    | Varsayılan filtreleme.                                                                                                          | [`CrudFilters`](../../interfaces.md#crudfilters) |
-| syncWithLocation | Tablodaki sıralamalar, filtreler, sayfa indeksi ve sayfa başına gösterilen kayıt browser history tarafından takip edilir.       | `boolean`                                  |
-| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form](../../../guides-and-concepts/table/table-search.md). | `Function`                                 |
+| Key              | Description                                                                                                                                                     | Type                                             |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| permanentFilter  | Varsayılan ve değiştirilemez filtre.                                                                                                                            | [`CrudFilters`](../../interfaces.md#crudfilters) |
+| resource         | Verilerin listeleneceği resource. Eğer verilmezse, contextten çıkarım yapılır.                                                                                  | `string`                                         |
+| initialCurrent   | Varsayılan sayfa indeksi.                                                                                                                                       | `number`                                         |
+| initialPageSize  | Varsayılan sayfa başına gösterilen kayıt sayısı.                                                                                                                | `number`                                         |
+| initialSorter    | Varsayılan sıralama.                                                                                                                                            | [`CrudSorting`](../../interfaces.md#crudsorting) |
+| initialFilter    | Varsayılan filtreleme.                                                                                                                                          | [`CrudFilters`](../../interfaces.md#crudfilters) |
+| syncWithLocation | Tablodaki sıralamalar, filtreler, sayfa indeksi ve sayfa başına gösterilen kayıt browser history tarafından takip edilir.                                       | `boolean`                                        |
+| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form](../../../guides-and-concepts/search/table-search.md). | `Function`                                       |
+
+### Return values
+
+| Property         | Description                              | Type                                                                                                                                         |
+| ---------------- | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| tableQueryResult | Result of the `react-query`'s `useQuery` | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`](https://react-query.tanstack.com/reference/useQuery) |
 
 ## Live Codesandbox Example
 

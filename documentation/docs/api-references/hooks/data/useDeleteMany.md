@@ -5,11 +5,12 @@ siderbar_label: useDeleteMany
 description: useDeleteMany data hook from refine is a modified version of react-query's useMutation for multiple delete mutations
 ---
 
-`useDeleteMany` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for multiple delete mutations. It uses `deleteMany` method as mutation function from the `dataProvider` that is passed to `<Refine>`.
+`useDeleteMany` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for multiple delete mutations.
+It uses `deleteMany` method as mutation function from the `dataProvider` which is passed to `<Refine>`.
 
 ## Features
 
-* Shows notifications on success, error and cancel.
+* Shows notifications after mutation succeeds, fails or gets canceled.
 
 * Automatically invalidates `list` queries after mutation is succesfully run.
 [Refer to React Query docs for detailed information &#8594](https://react-query.tanstack.com/guides/invalidations-from-mutations)
@@ -19,7 +20,7 @@ description: useDeleteMany data hook from refine is a modified version of react-
 
 ## Usage
 
-Let'say we have a `categories` resource
+Let's say that we have a resource named `categories`.
 
 ```ts title="https://api.fake-rest.refine.dev/categories"
 {
@@ -75,11 +76,11 @@ Queries that use `/categories` endpoint will be automatically invalidated to sho
 :::
 
 :::tip
-`useDeleteMany` returns `react-query`'s `useMutation` result. It includes `mutate` with  [many other properties](https://react-query.tanstack.com/reference/useMutation).
+`useDeleteMany` returns `react-query`'s `useMutation` result which includes [a lot properties](https://react-query.tanstack.com/reference/useMutation), one of which being `mutate`.
 :::
 
 :::important
-Values passed to `mutate` must have the type of
+Values passed to `mutate` must have these types.
 
 ```tsx
 {
@@ -94,7 +95,7 @@ Values passed to `mutate` must have the type of
 
 ## Mutation mode
 
-Determines the mode with which the mutation runs.
+Mutation mode determines the mode which the mutation runs with.
 
 ```tsx
 const { mutate } = useDeleteMany();
@@ -110,8 +111,8 @@ mutate({
 [Refer to mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
 
 
-### Custom method on mutation cancellation
-You can pass a custom cancel callback to `useUpdate`. That callback is triggered when undo button is clicked when  `mutationMode = "undoable"`.
+### Creating a custom method for cancelling mutations
+You can pass a custom cancel callback to `useUpdate`. This callback is triggered instead of the default one when undo button is clicked when  `mutationMode = "undoable"`.
 
 :::caution
 Default behaviour on undo action includes notifications. If a custom callback is passed this notification will not appear.
@@ -151,14 +152,17 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 ### Parameters
 
 
-| Property                                            | Description                                                                     | Type                                             | Default          |
-| --------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------ | ---------------- |
-| resource  <div className=" required">Required</div> | [`Resource`](#) for API data interactions                                       | `string`                                         |                  |
-| mutationMode                                        | [Determines when mutations are executed](#)                                     | ` "pessimistic` \| `"optimistic` \| `"undoable"` | `"pessimistic"`* |
-| undoableTimeout                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"` | `number`                                         | `5000ms`*        |
-| onCancel                                            | Callback that runs when undo button is clicked on `mutationMode = "undoable"`   | `(cancelMutation: () => void) => void`           |                  |
+| Property                                            | Description                                                                     | Type                                                                       | Default                                                      |
+| --------------------------------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| resource  <div className=" required">Required</div> | [`Resource`](#) for API data interactions                                       | `string`                                                                   |                                                              |
+| ids  <div className=" required">Required</div>      | ids for mutation function                                                       | `string[]`                                                                 |                                                              |
+| mutationMode                                        | [Determines when mutations are executed](#)                                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                           | `"pessimistic"`*                                             |
+| undoableTimeout                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"` | `number`                                                                   | `5000ms`*                                                    |
+| onCancel                                            | Callback that runs when undo button is clicked on `mutationMode = "undoable"`   | `(cancelMutation: () => void) => void`                                     |                                                              |
+| successNotification                                 | Successful Mutation notification                                                | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully deleted `resource`"                            |
+| errorNotification                                   | Unsuccessful Mutation notification                                              | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Error when updating `resource` (status code: `statusCode`)" |
 
->`*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useDeleteMany` will use what is passed to `<Refine>` as default and can override locally.
+>`*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useDeleteMany` will use what is passed to `<Refine>` as default but a local value will override it.
 
 <br/>
 
@@ -171,8 +175,8 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 ### Return value
 
-| Description                               | Type                                                                                                                                                                   |
-| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description                               | Type                                                                                                                                                                                     |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { resource: string; ids: string[]; },`<br/>` DeleteContext>`](https://react-query.tanstack.com/reference/useMutation)* |
 
 >`*` Refer to documentation for [`DeleteContext` &#8594](#)

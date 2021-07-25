@@ -13,6 +13,7 @@ import {
     FilterDropdown,
     Select,
     useSelect,
+    DeleteButton,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
@@ -88,6 +89,10 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                     recordItemId={record.id}
                                 />
                                 <ShowButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                                <DeleteButton
                                     size="small"
                                     recordItemId={record.id}
                                 />

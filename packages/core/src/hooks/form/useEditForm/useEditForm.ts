@@ -22,6 +22,7 @@ import {
     UpdateResponse,
     IResourceItem,
     HttpError,
+    SuccessErrorNotification,
 } from "../../../interfaces";
 
 type SaveButtonProps = {
@@ -68,7 +69,7 @@ export type useEditFormProps<
     redirect?: RedirectionTypes;
     undoableTimeout?: number;
     resource: IResourceItem;
-};
+} & SuccessErrorNotification;
 
 export const useEditForm = <
     TData extends BaseRecord = BaseRecord,
@@ -83,6 +84,8 @@ export const useEditForm = <
     redirect = "list",
     undoableTimeout,
     resource,
+    successNotification,
+    errorNotification,
 }: useEditFormProps<TData, TError, TVariables>): useEditForm<
     TData,
     TError,
@@ -149,6 +152,8 @@ export const useEditForm = <
                     resource: resource.name,
                     mutationMode,
                     undoableTimeout,
+                    successNotification,
+                    errorNotification,
                 },
                 {
                     onSuccess: (data, _, context) => {

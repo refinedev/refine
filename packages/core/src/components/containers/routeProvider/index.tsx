@@ -1,15 +1,15 @@
 /* eslint-disable react/display-name */
 import React, { useContext } from "react";
 import { Switch, Route, RouteProps, Redirect } from "react-router-dom";
+import { useQuery } from "react-query";
+
 import {
     LoginPage as DefaultLoginPage,
     ErrorComponent,
     LayoutWrapper,
 } from "@components";
 import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "../../../interfaces";
-import { OptionalComponent } from "@definitions";
-import { IResourceItem } from "@contexts/resource";
+import { IAuthContext, IResourceItem } from "../../../interfaces";
 
 export interface RouteProviderProps {
     resources: IResourceItem[];
@@ -29,7 +29,24 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     LoginPage,
     customRoutes = [],
 }) => {
-    const { isAuthenticated } = useContext<IAuthContext>(AuthContext);
+    const { checkAuth, isAuthenticated } =
+        useContext<IAuthContext>(AuthContext);
+
+    const { isLoading } = useQuery(
+        ["useAuthenticated", { type: "routeProvider" }],
+        checkAuth,
+        {
+            retry: false,
+        },
+    );
+
+    if (isLoading) {
+        return (
+            <Switch>
+                <Route />
+            </Switch>
+        );
+    }
 
     const routes: IRoutesProps[] = [];
     const RouteHandler = (val: IResourceItem): void => {
@@ -118,28 +135,37 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     const RouteWithSubRoutes = (route: any) => <Route {...route} />;
 
     const renderAuthorized = () => (
-        <LayoutWrapper>
-            <Switch>
-                <Route
-                    path="/"
-                    exact
-                    component={() =>
-                        DashboardPage ? (
-                            <DashboardPage />
-                        ) : (
-                            <Redirect to={`/resources/${resources[0].route}`} />
-                        )
-                    }
-                />
-                {[...routes, ...customRoutes].map((route, i) => (
-                    <RouteWithSubRoutes key={i} {...route} />
-                ))}
-                <Route path="/resources/:resource?/:action?">
-                    {catchAll ?? <ErrorComponent />}
-                </Route>
-                <Route>{catchAll ?? <ErrorComponent />}</Route>
-            </Switch>
-        </LayoutWrapper>
+        <Switch>
+            {[...customRoutes].map((route, i) => (
+                <RouteWithSubRoutes key={i} {...route} />
+            ))}
+            <Route>
+                <LayoutWrapper>
+                    <Switch>
+                        <Route
+                            path="/"
+                            exact
+                            component={() =>
+                                DashboardPage ? (
+                                    <DashboardPage />
+                                ) : (
+                                    <Redirect
+                                        to={`/resources/${resources[0].route}`}
+                                    />
+                                )
+                            }
+                        />
+                        {[...routes].map((route, i) => (
+                            <RouteWithSubRoutes key={i} {...route} />
+                        ))}
+                        <Route path="/resources/:resource?/:action?">
+                            {catchAll ?? <ErrorComponent />}
+                        </Route>
+                        <Route>{catchAll ?? <ErrorComponent />}</Route>
+                    </Switch>
+                </LayoutWrapper>
+            </Route>
+        </Switch>
     );
 
     const renderUnauthorized = () => (
@@ -147,16 +173,30 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
             <Route
                 exact
                 path={["/", "/login"]}
-                component={() => (
-                    <OptionalComponent optional={LoginPage}>
-                        <DefaultLoginPage />
-                    </OptionalComponent>
-                )}
+                component={() =>
+                    LoginPage ? <LoginPage /> : <DefaultLoginPage />
+                }
             />
             {customRoutes.map((route, i) => (
                 <RouteWithSubRoutes key={i} {...route} />
             ))}
-            <Route>{catchAll ?? <ErrorComponent />}</Route>
+
+            <Route
+                render={({ location }) => {
+                    if (isLoading) {
+                        return null;
+                    }
+
+                    return (
+                        <Redirect
+                            to={{
+                                pathname: "/",
+                                state: { from: location },
+                            }}
+                        />
+                    );
+                }}
+            />
         </Switch>
     );
 

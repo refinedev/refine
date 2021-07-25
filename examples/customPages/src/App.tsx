@@ -1,4 +1,10 @@
-import { Refine, Resource, AuthProvider, Authenticated } from "@pankod/refine";
+import {
+    Refine,
+    Resource,
+    AuthProvider,
+    Authenticated,
+    LayoutWrapper,
+} from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -10,7 +16,9 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const AuthenticatedPostReview = () => {
     return (
         <Authenticated>
-            <PostReview />
+            <LayoutWrapper>
+                <PostReview />
+            </LayoutWrapper>
         </Authenticated>
     );
 };

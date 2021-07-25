@@ -74,7 +74,7 @@ describe("useLogout Hook", () => {
 
         await act(async () => {
             expect(logoutMock).toBeCalledTimes(1);
-            expect(mHistory.push).toBeCalledWith("/custom-path");
+            expect(mHistory.push).toBeCalledWith("/custom-path", undefined);
         });
     });
 

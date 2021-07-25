@@ -5,17 +5,19 @@ siderbar_label: useGetIdentity
 description: useGetIdentity data hook from refine is a modified version of react-query's useQuery for retrieving user data
 ---
 
-`useGetIdentity` calls `getUserIdentity` method from [`authProvider`](/docs/api-references/providers/auth-provider) under the hood. It returns the result of react-query's useQuery which includes properties like `isSuccess` and `isError` with many others.  
-Data that is resolved from `getUserIdentity` will be returned as the `data` in the query result.
+`useGetIdentity` calls the `getUserIdentity` method from the [`authProvider`](/docs/api-references/providers/auth-provider) under the hood.
+
+It returns the result of `react-query`'s `useQuery`  which includes many properties, some of which being `isSuccess` and `isError`. Data that is resolved from the `getUserIdentity` will be returned as the `data` in the query result.
 
 ## Usage
 
-It can be useful when you want to get user information anywhere in your code.
+`useGetIdentity` can be useful when you want to get the user information anywhere in your code.
+
+Imagine that you want to show the user's name.
 
 
-Imagine you want to show user name.
+We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `getUserIdentity` method like below.
 
-- We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `getUserIdentity` method like below.
 
 ```tsx
 const authProvider: AuthProvider = {
@@ -33,6 +35,8 @@ const authProvider: AuthProvider = {
 <br/>
 
 
+You can access identity data like below.
+
 ```tsx
 // highlight-next-line
 import { useGetIdentity } from "@pankod/refine";
@@ -46,5 +50,5 @@ export const User: React.FC = () => {
 ```
 
 :::caution
-This hook can only be used if `authProvider` is provided.
+This hook can only be used if the `authProvider` is provided.
 :::

@@ -3,6 +3,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
 import { FormProps } from "antd/lib/form";
+import { QueryObserverResult } from "react-query";
 
 import { useForm } from "antd/lib/form/Form";
 import { SorterResult } from "antd/lib/table/interface";
@@ -22,6 +23,8 @@ import {
     BaseRecord,
     CrudFilters,
     CrudSorting,
+    GetListResponse,
+    SuccessErrorNotification,
 } from "../../../interfaces";
 
 export type useTableProps<TSearchVariables = unknown> = {
@@ -33,7 +36,7 @@ export type useTableProps<TSearchVariables = unknown> = {
     initialFilter?: CrudFilters;
     syncWithLocation?: boolean;
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
-};
+} & SuccessErrorNotification;
 
 export type useTableReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -41,6 +44,7 @@ export type useTableReturnType<
 > = {
     searchFormProps: FormProps<TSearchVariables>;
     tableProps: TableProps<TData>;
+    tableQueryResult: QueryObserverResult<GetListResponse<TData>>;
     sorter?: CrudSorting;
     filters?: CrudFilters;
 };
@@ -57,6 +61,8 @@ export const useTable = <
     initialFilter,
     syncWithLocation: syncWithLocationProp = false,
     resource: resourceFromProp,
+    successNotification,
+    errorNotification,
 }: useTableProps<TSearchVariables> = {}): useTableReturnType<
     TData,
     TSearchVariables
@@ -111,11 +117,18 @@ export const useTable = <
         defaultCurrent: defaultCurrentSF,
     } = tablePropsSunflower.pagination;
 
-    const { data, isFetching } = useList<TData>(resource.name, {
-        pagination: { current: current ?? defaultCurrentSF, pageSize },
-        filters: permanentFilter.concat(extraFilter, filters),
-        sort: sorter,
-    });
+    const queryResult = useList<TData>(
+        resource.name,
+        {
+            pagination: { current: current ?? defaultCurrentSF, pageSize },
+            filters: permanentFilter.concat(extraFilter, filters),
+            sort: sorter,
+        },
+        undefined,
+        successNotification,
+        errorNotification,
+    );
+    const { data, isFetching } = queryResult;
 
     const onChange = (
         pagination: TablePaginationConfig,
@@ -168,6 +181,7 @@ export const useTable = <
                 position: ["bottomCenter"],
             },
         },
+        tableQueryResult: queryResult,
         sorter,
         filters: permanentFilter?.concat(filters),
     };

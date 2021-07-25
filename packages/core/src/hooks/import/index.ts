@@ -7,6 +7,7 @@ import {
     BaseRecord,
     HttpError,
     ResourceRouterParams,
+    SuccessErrorNotification,
 } from "../../interfaces";
 import { parse, ParseConfig } from "papaparse";
 import { importCSVMapper } from "@definitions";
@@ -19,7 +20,7 @@ type ImportOptions<TItem, TVariables = any> = {
     mapData?: MapDataFn<TItem, TVariables>;
     paparseOptions?: ParseConfig;
     batchSize?: number | null;
-};
+} & SuccessErrorNotification;
 
 export const useImport = <
     TItem = any,
@@ -31,6 +32,8 @@ export const useImport = <
     mapData = (item) => item as unknown as TVariables,
     paparseOptions,
     batchSize,
+    successNotification,
+    errorNotification,
 }: ImportOptions<TItem, TVariables> = {}): {
     uploadProps: UploadProps;
     buttonProps: ButtonProps;
@@ -67,6 +70,8 @@ export const useImport = <
                     createManyMutationResult.mutate({
                         resource,
                         values,
+                        successNotification,
+                        errorNotification,
                     });
                 } else if (batchSize === 1) {
                     values.forEach((value) => {
@@ -80,6 +85,8 @@ export const useImport = <
                         createManyMutationResult.mutate({
                             resource,
                             values: batch,
+                            successNotification,
+                            errorNotification,
                         });
                     });
                 }

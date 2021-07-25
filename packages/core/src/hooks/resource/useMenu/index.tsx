@@ -45,11 +45,12 @@ export const useMenu: () => useMenuReturnType = () => {
                     icon: resource.icon ?? <UnorderedListOutlined />,
                     route: route,
                     key: route,
-                    label: translate(
-                        `${resource.name}.${resource.name}`,
+                    label:
                         resource.label ??
+                        translate(
+                            `${resource.name}.${resource.name}`,
                             userFriendlyResourceName(resource.name, "plural"),
-                    ),
+                        ),
                 };
             }),
         ],

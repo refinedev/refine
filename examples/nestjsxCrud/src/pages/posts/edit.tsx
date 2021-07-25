@@ -9,6 +9,7 @@ import {
     useApiUrl,
     useForm,
     useSelect,
+    useFileUploadState,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -34,11 +35,13 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         defaultValue: postData?.tags.map((tag) => tag.id),
     });
 
+    const { isLoading, onChange } = useFileUploadState();
+
     const [selectedTab, setSelectedTab] =
         useState<"write" | "preview">("write");
 
     return (
-        <Edit saveButtonProps={saveButtonProps}>
+        <Edit saveButtonProps={{ ...saveButtonProps, disabled: isLoading }}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
@@ -139,6 +142,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                             listType="picture"
                             maxCount={5}
                             multiple
+                            onChange={onChange}
                         >
                             <p className="ant-upload-text">
                                 Drag & drop a file in this area

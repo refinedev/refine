@@ -19,7 +19,7 @@ const App: React.FC = () => {
                 show={PostShow}
             />
             <Resource
-                name="category"
+                name="categories"
                 list={CategoryList}
                 create={CategoryCreate}
                 edit={CategoryEdit}

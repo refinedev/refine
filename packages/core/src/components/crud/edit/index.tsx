@@ -69,7 +69,7 @@ export const Edit: React.FC<EditProps> = ({
         id: idFromRoute,
     } = useParams<ResourceRouterParams>();
 
-    const resource = resourceWithRoute(routeResourceName ?? resourceFromProps);
+    const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
     const isDeleteButtonVisible =
         canDelete ?? (resource.canDelete || deleteButtonProps);
 

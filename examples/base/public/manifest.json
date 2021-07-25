@@ -1,6 +1,6 @@
 {
-  "short_name": "Refine Example App",
-  "name": "Refine Example App",
+  "short_name": "refine base example",
+  "name": "refine base example",
   "icons": [
     {
       "src": "favicon.ico",
