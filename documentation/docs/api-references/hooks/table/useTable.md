@@ -145,7 +145,7 @@ By using `initialSorter` setting, you can select which `field` is going to start
 
 ## Filtering
 
-Every `post` that comes from endpoint has a `status` value. This value can either be `published` or `draft`. We can show the `status` value with a Ant Desing `<TagField>:
+Every `post` that comes from endpoint has a `status` value. This value can either be `published` or `draft`. We can show the `status` value with a Ant Design `<TagField>:
 
 ```tsx title="/src/pages/posts/list.tsx"
 ...
