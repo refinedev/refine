@@ -30,6 +30,8 @@ export type UseRadioGroupReturnType<TData extends BaseRecord = BaseRecord> = {
  *
  * @see {@link https://refine.dev/docs/api-references/hooks/field/useRadioGroup} for more details.
  *
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ *
  */
 export const useRadioGroup = <TData extends BaseRecord = BaseRecord>({
     resource,

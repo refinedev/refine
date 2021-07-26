@@ -36,6 +36,8 @@ export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
  *
  * @see {@link https://refine.dev/docs/api-references/hooks/field/useSelect} for more details.
  *
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ *
  */
 export const useSelect = <TData extends BaseRecord = BaseRecord>(
     props: UseSelectProps,

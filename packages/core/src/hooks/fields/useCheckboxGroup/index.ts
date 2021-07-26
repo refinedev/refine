@@ -31,6 +31,8 @@ export type UseCheckboxGroupReturnType<TData extends BaseRecord = BaseRecord> =
  *
  * @see {@link https://refine.dev/docs/api-references/hooks/field/useCheckboxGroup} for more details.
  *
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ *
  */
 export const useCheckboxGroup = <TData extends BaseRecord = BaseRecord>({
     resource,
