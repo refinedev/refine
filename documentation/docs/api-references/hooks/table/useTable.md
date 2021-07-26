@@ -121,7 +121,7 @@ export const PostList: React.FC = () => {
 ```
 
 :::tip
-When multiple sorting is made, `multiple` value we had given to the `sorter` property specifies the priority of this column in sorting.
+When using multiple sorting, `multiple` value we had given to the `sorter` property specifies the priority of this column in sorting.
 :::
 
 <div style={{textAlign: "center"}}>
