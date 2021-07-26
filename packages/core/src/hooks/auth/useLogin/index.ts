@@ -8,6 +8,14 @@ import { useNavigation } from "@hooks/navigation";
 
 import { IAuthContext } from "../../../interfaces";
 
+/**
+ * `useLogin` calls `login` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/auth/useLogin} for more details.
+ *
+ * @typeParam TVariables - Values for mutation function
+ *
+ */
 export const useLogin = <TVariables = any>(): UseMutationResult<
     any,
     Error,
