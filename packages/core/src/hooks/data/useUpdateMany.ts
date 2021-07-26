@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 import pluralize from "pluralize";
-import { notification } from "antd";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -21,7 +20,9 @@ import {
     ContextQuery,
     QueryResponse,
     Context as UpdateContext,
+    SuccessErrorNotification,
 } from "../../interfaces";
+import { handleNotification } from "@definitions/helpers";
 
 type UpdateManyParams<TVariables> = {
     ids: string[];
@@ -30,7 +31,7 @@ type UpdateManyParams<TVariables> = {
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
     values: TVariables;
-};
+} & SuccessErrorNotification;
 
 type UseUpdateManyReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -177,7 +178,11 @@ export const useUpdateMany = <
                     previousQueries: previousQueries,
                 };
             },
-            onError: (err: TError, { ids, resource }, context) => {
+            onError: (
+                err: TError,
+                { ids, resource, errorNotification },
+                context,
+            ) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
@@ -196,8 +201,8 @@ export const useUpdateMany = <
 
                     const resourceSingular = pluralize.singular(resource);
 
-                    notification.error({
-                        key: `${ids}-${resource}-notification`,
+                    handleNotification(errorNotification, {
+                        key: `${ids}-${resource}-updateMany-error-notification`,
                         message: translate(
                             "notifications.editError",
                             {
@@ -207,6 +212,7 @@ export const useUpdateMany = <
                             `Error when updating ${resourceSingular} (status code: ${err.statusCode})`,
                         ),
                         description: err.message,
+                        type: "error",
                     });
                 }
             },
@@ -216,17 +222,23 @@ export const useUpdateMany = <
                     queryClient.invalidateQueries(query.queryKey);
                 }
             },
-            onSuccess: (_data, { ids, resource }) => {
+            onSuccess: (_data, { ids, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
 
-                notification.success({
-                    key: `${ids}-${resource}-notification`,
+                handleNotification(successNotification, {
+                    key: `${ids}-${resource}-updateMany-success-notification`,
                     message: translate("notifications.success", "Successful"),
                     description: translate(
                         "notifications.editSuccess",
-                        { resource: resourceSingular },
+                        {
+                            resource: translate(
+                                `${resource}.${resource}`,
+                                resource,
+                            ),
+                        },
                         `Successfully updated ${resourceSingular}`,
                     ),
+                    type: "success",
                 });
             },
         },

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { TitleProps } from "src/interfaces";
+import { TitleProps } from "../../../../interfaces";
 
 export const Title: React.FC<TitleProps> = () => (
     <Link

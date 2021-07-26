@@ -15,7 +15,9 @@ It returns the result of `react-query`'s `useQuery`  which includes many propert
 
 Imagine that you want to show the user's name.
 
-- We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `getUserIdentity` method like below. (degismeli)
+
+We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `getUserIdentity` method like below.
+
 
 ```tsx
 const authProvider: AuthProvider = {
@@ -32,6 +34,8 @@ const authProvider: AuthProvider = {
 ```
 <br/>
 
+
+You can access identity data like below.
 
 ```tsx
 // highlight-next-line

@@ -10,7 +10,7 @@ import {
     useNavigation,
 } from "@hooks";
 import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "src/interfaces";
+import { IAuthContext } from "../../../../interfaces";
 
 export const Sider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);

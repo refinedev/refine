@@ -115,4 +115,62 @@ describe("LayoutWrapper", () => {
 
         expect(getByText(customTitleContent));
     });
+
+    it("LayoutWrapper renders custom layout, sider, header, footer, title, offLayoutArea if given props", () => {
+        const customTitleContent = "customTitleContent";
+        const CustomTitle = () => <p>{customTitleContent}</p>;
+
+        const CustomLayout: React.FC<LayoutProps> = ({
+            Header,
+            Sider,
+            Footer,
+            OffLayoutArea,
+            children,
+        }) => (
+            <div>
+                <Header />
+                <Sider />
+                {children}
+                <div>custom layout</div>
+                <Footer />
+                <OffLayoutArea />
+            </div>
+        );
+
+        const customSiderContent = "customSiderContent";
+        const CustomSider = () => <p>{customSiderContent}</p>;
+
+        const customHeaderContent = "customHeaderContent";
+        const CustomHeader = () => <p>{customHeaderContent}</p>;
+
+        const customFooterContent = "customFooterContent";
+        const CustomFooter = () => <p>{customFooterContent}</p>;
+
+        const customOffLayoutAreaContent = "customOffLayoutAreaContent";
+        const CustomOffLayoutArea = () => <p>{customOffLayoutAreaContent}</p>;
+
+        const { getByText } = renderWithRefineContext(
+            <LayoutWrapper
+                Layout={CustomLayout}
+                Title={CustomTitle}
+                Sider={CustomSider}
+                Header={CustomHeader}
+                Footer={CustomFooter}
+                OffLayoutArea={CustomOffLayoutArea}
+            />,
+            {
+                warnWhenUnsavedChanges: false,
+                mutationMode: "pessimistic",
+                syncWithLocation: false,
+                undoableTimeout: 5000,
+                hasDashboard: false,
+            },
+        );
+
+        expect(getByText(customSiderContent));
+        expect(getByText(customHeaderContent));
+        expect(getByText(customFooterContent));
+        expect(getByText(customOffLayoutAreaContent));
+        expect(getByText("custom layout"));
+    });
 });

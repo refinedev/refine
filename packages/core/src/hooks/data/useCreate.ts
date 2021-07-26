@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 import pluralize from "pluralize";
-import { notification } from "antd";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -9,8 +8,15 @@ import {
     IDataContext,
     BaseRecord,
     HttpError,
+    SuccessErrorNotification,
 } from "../../interfaces";
 import { useListResourceQueries, useTranslate, useCheckError } from "@hooks";
+import { handleNotification } from "@definitions";
+
+type useCreateParams<TVariables> = {
+    resource: string;
+    values: TVariables;
+} & SuccessErrorNotification;
 
 export type UseCreateReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -19,10 +25,7 @@ export type UseCreateReturnType<
 > = UseMutationResult<
     CreateResponse<TData>,
     TError,
-    {
-        resource: string;
-        values: TVariables;
-    },
+    useCreateParams<TVariables>,
     unknown
 >;
 
@@ -40,44 +43,58 @@ export const useCreate = <
     const mutation = useMutation<
         CreateResponse<TData>,
         TError,
-        {
-            resource: string;
-            values: TVariables;
-        },
+        useCreateParams<TVariables>,
         unknown
     >(
-        ({ resource, values }: { resource: string; values: TVariables }) =>
+        ({ resource, values }: useCreateParams<TVariables>) =>
             create<TData, TVariables>(resource, values),
         {
-            onSuccess: (_, { resource }) => {
+            onSuccess: (
+                _,
+                { resource, successNotification: successNotificationFromProp },
+            ) => {
                 const resourceSingular = pluralize.singular(resource);
 
-                notification.success({
+                handleNotification(successNotificationFromProp, {
                     description: translate(
                         "notifications.createSuccess",
-                        { resource },
+                        {
+                            resource: translate(
+                                `${resource}.${resource}`,
+                                resourceSingular,
+                            ),
+                        },
                         `Successfully created ${resourceSingular}`,
                     ),
                     message: translate("notifications.success", "Success"),
+                    type: "success",
                 });
 
                 getListQueries(resource).forEach((query) => {
                     queryClient.invalidateQueries(query.queryKey);
                 });
             },
-            onError: (err: TError, { resource }) => {
+            onError: (
+                err: TError,
+                { resource, errorNotification: errorNotificationFromProp },
+            ) => {
                 checkError(err);
                 const resourceSingular = pluralize.singular(resource);
-                notification.error({
+
+                handleNotification(errorNotificationFromProp, {
                     description: err.message,
                     message: translate(
                         "notifications.createError",
                         {
-                            resource: resourceSingular,
+                            resource: translate(
+                                `${resource}.${resource}`,
+                                resourceSingular,
+                            ),
                             statusCode: err.statusCode,
                         },
                         `There was an error creating ${resourceSingular} (status code: ${err.statusCode})`,
                     ),
+                    type: "error",
                 });
             },
         },

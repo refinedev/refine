@@ -135,28 +135,37 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     const RouteWithSubRoutes = (route: any) => <Route {...route} />;
 
     const renderAuthorized = () => (
-        <LayoutWrapper>
-            <Switch>
-                <Route
-                    path="/"
-                    exact
-                    component={() =>
-                        DashboardPage ? (
-                            <DashboardPage />
-                        ) : (
-                            <Redirect to={`/resources/${resources[0].route}`} />
-                        )
-                    }
-                />
-                {[...routes, ...customRoutes].map((route, i) => (
-                    <RouteWithSubRoutes key={i} {...route} />
-                ))}
-                <Route path="/resources/:resource?/:action?">
-                    {catchAll ?? <ErrorComponent />}
-                </Route>
-                <Route>{catchAll ?? <ErrorComponent />}</Route>
-            </Switch>
-        </LayoutWrapper>
+        <Switch>
+            {[...customRoutes].map((route, i) => (
+                <RouteWithSubRoutes key={i} {...route} />
+            ))}
+            <Route>
+                <LayoutWrapper>
+                    <Switch>
+                        <Route
+                            path="/"
+                            exact
+                            component={() =>
+                                DashboardPage ? (
+                                    <DashboardPage />
+                                ) : (
+                                    <Redirect
+                                        to={`/resources/${resources[0].route}`}
+                                    />
+                                )
+                            }
+                        />
+                        {[...routes].map((route, i) => (
+                            <RouteWithSubRoutes key={i} {...route} />
+                        ))}
+                        <Route path="/resources/:resource?/:action?">
+                            {catchAll ?? <ErrorComponent />}
+                        </Route>
+                        <Route>{catchAll ?? <ErrorComponent />}</Route>
+                    </Switch>
+                </LayoutWrapper>
+            </Route>
+        </Switch>
     );
 
     const renderUnauthorized = () => (

@@ -10,3 +10,8 @@ export interface IPost {
     hit: number;
     category: ICategory;
 }
+
+export interface IPostFilterVariables {
+    category: string;
+    createdAt: [Dayjs, Dayjs];
+}
