@@ -230,7 +230,7 @@ By giving the `<Table.Column>` component a unique `render` property, you can ren
     <img src={editButton} />
 </div>
 
-## Satıra Tıklayarak Düzenleme
+## Editing by clicking to row
 
 A line with the `id` value can be put to edit mode programatically by using the `setEditId` function that returns from `useEditableTable`.
 
