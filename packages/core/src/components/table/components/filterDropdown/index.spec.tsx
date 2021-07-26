@@ -12,6 +12,7 @@ describe("FilterDropdown", () => {
     const confirm = jest.fn();
     const clearFilters = jest.fn();
     const setSelectedKeys = jest.fn();
+    const mapValueFn = jest.fn();
 
     const props: FilterDropdownProps = {
         confirm,
@@ -71,5 +72,21 @@ describe("FilterDropdown", () => {
         });
 
         expect(setSelectedKeys).toHaveBeenCalled();
+    });
+
+    it("should call mapValue", async () => {
+        const { getByTestId } = render(
+            <FilterDropdown {...props} mapValue={mapValueFn}>
+                <Input data-testid="input" />
+            </FilterDropdown>,
+        );
+
+        fireEvent.change(getByTestId("input"), {
+            target: {
+                value: "test",
+            },
+        });
+
+        expect(mapValueFn).toHaveBeenCalled();
     });
 });
