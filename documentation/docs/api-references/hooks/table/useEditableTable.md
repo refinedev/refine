@@ -7,7 +7,7 @@ import editButton from '@site/static/img/hooks/useEditableTable/edit-button.gif'
 import rowClickEdit from '@site/static/img/hooks/useEditableTable/row-click-edit.gif';
 
 `useEditeableTable` allows you to implement edit feature on the table with ease, on top of all the features that [`useTable`](useTable.md) provides. 
-`useEditableTable` return properties that can be used on Ant Desing's [`<Table>`](https://ant.design/components/table/) ve [`<Form>`](https://ant.design/components/form/) components.
+`useEditableTable` return properties that can be used on Ant Desing's [`<Table>`](https://ant.design/components/table/) and [`<Form>`](https://ant.design/components/form/) components.
 
 ## Editing with buttons
 
