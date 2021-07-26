@@ -541,7 +541,6 @@ We are going to use `<Table.Column>`'s [`filterDropdown`](https://ant.design/com
 
 ```tsx title="pages/posts/list.tsx"
 import {
-    ...
     //highlight-start
     FilterDropdown,
     Select,
@@ -791,7 +790,50 @@ export const App: React.FC = () => {
 };
 ```
 
-<br />
+We are going to need an *edit* button on each row to diplay the `<PostEdit>` component. **refine** doesn't automatically adds one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
+
+```tsx title="components/pages/posts.tsx"
+import {
+    ...
+    //highlight-start
+    Space,
+    EditButton
+    //highlight-end
+} from "@pankod/refine";
+
+export const PostList: React.FC = () => {
+...
+    <Table.Column<IPost>
+        title="Actions"
+        dataIndex="actions"
+        render={(_text, record): React.ReactNode => {
+            return (
+                <Space>
+                    <EditButton
+                        size="small"
+                        recordItemId={record.id}
+                    />
+                </Space>
+            );
+        }}
+    />
+...
+}
+```
+
+[Refer to `<EditButton>` documentation for detailed usage information. &#8594](api-references/components/buttons/edit.md)
+
+
+You can try yourself that the edit buttons will trigger the edit forms for each record and you are able to update the record data.
+
+Let's see what's going on our `<PostEdit>` component in detail:
+
+✳️ `useForm` is a refine hook for handling form data.
+On the example it returns `formProps` and `saveButtonProps`, where the former includes all necessary props to build the form and the latter has the ones for the save button.
+
+:::caution Attention
+In edit page, `useForm` hook initializes the form with current record values.
+:::
 
 We are going to need an *edit* button on each row to display the `<PostEdit>` component. **refine** doesn't automatically adds one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
 
