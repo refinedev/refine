@@ -45,6 +45,8 @@ export const PostList: React.FC = () => {
 };
 ```
 
+<br />
+
 Now lets add a column for edit buttons:
 
 ```tsx title="/pages/posts/list.tsx"
@@ -125,8 +127,9 @@ export const PostList: React.FC = () => {
 `isEditing` function that returns from `useEditableTable` lets us check whether a line is currently in edit mode or not.
 :::
 
-Şimdiye kadar düzenlenebilir halde değil. Düzenleme olabilecek sütunları, `isEditing` kullanarak şartlı render ile, eğer orada şu an bir düzenleme yapılıyorsa, içinde bir `<Form.Item>` ile göstermeliyiz:
-For now, our post is not editable yet. 
+<br />
+
+For now, our post is not editable yet. If a post is being edited, we must show editable columns inside a `<Form.Item>` using conditional rendering:
 
 ```tsx title="/pages/posts/list.tsx"
 import {
@@ -223,7 +226,7 @@ With this, when a user clicks on the edit button, `isEditing(lineId)` will turn 
 
 :::tip
 By giving the `<Table.Column>` component a unique `render` property, you can render the value in that column however you want.
-Refer to [<Table.Column>](https://ant.design/components/table/#Column) documentation for more information.
+Refer to [`<Table.Column>`](https://ant.design/components/table/#Column) documentation for more information.
 :::
 
 <div style={{textAlign: "center"}}>
