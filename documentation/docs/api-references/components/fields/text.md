@@ -91,4 +91,4 @@ export interface IPost {
 | -------- | ----------------------- | -------------------- |
 | value    | Markdown data to render | `string | undefined` |
 
-[Refer to rest ?Text props &#8594](https://ant.design/components/typography/#Typography.Text)
+[Refer to Text props &#8594](https://ant.design/components/typography/#Typography.Text)
