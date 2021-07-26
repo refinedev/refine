@@ -172,5 +172,5 @@ const { selectProps: categorySelectProps } = useSelect<ICategory>({
     />
 </Table>
 ```
-> `getDefaultFilter` finds filter values for a given column.
+> `getDefaultFilter` finds filter values for a given column from the given filters. In the example, `filters` passed to `getDefaultFilter` includes filter values from the URL since it comes from `useTable`.
 :::
