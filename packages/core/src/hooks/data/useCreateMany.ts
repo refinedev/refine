@@ -38,7 +38,7 @@ export type UseCreateManyReturnType<
  *
  * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
- * @typeParam TVariables - Values for params. default `{}`
+ * @typeParam TVariables - Values for mutation function
  *
  */
 export const useCreateMany = <
