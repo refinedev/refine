@@ -12,6 +12,17 @@ import { useCheckError, useTranslate } from "@hooks";
 import { ArgsProps } from "antd/lib/notification";
 import { handleNotification } from "@definitions";
 
+/**
+ * `useOne` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving single items from a `resource`.
+ *
+ * It uses `getOne` method as query function from the `dataProvider` which is passed to `<Refine>`.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/data/useOne} for more details.
+ *
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ *
+ */
 export const useOne = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
