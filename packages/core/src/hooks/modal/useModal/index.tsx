@@ -23,7 +23,6 @@ export const useModal = ({
         ...modalProps,
         visible,
     };
-    console.log(visible, modalPropshede.visible);
 
     return {
         modalProps: {
