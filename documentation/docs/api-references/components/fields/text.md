@@ -68,7 +68,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
 ```
 
 :::tip
-Table columns already render their data as text by default. If the rendered data is in text form and its text field won't be customized with any of Ant Design [`<Typography.Text>`](https://ant.design/components/typography/#Typography.Text) props, there isn't any need to use `<TextField>` in a columns render function.
+Table columns already render their data as text by default. If the rendered data is in text form and its text field won't be customized with any of Ant Design [`<Typography.Text>`](https://ant.design/components/typography/#Typography.Text) properties, there isn't any need to use `<TextField>` in a column's render function.
 :::
 
 ```ts title="src/interfaces/index.d.ts"
@@ -91,4 +91,4 @@ export interface IPost {
 | -------- | ----------------------- | -------------------- |
 | value    | Markdown data to render | `string | undefined` |
 
-[Refer to rest Text props &#8594](https://ant.design/components/typography/#Typography.Text)
+[Refer to Text props &#8594](https://ant.design/components/typography/#Typography.Text)
