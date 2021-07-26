@@ -223,7 +223,7 @@ With this, when a user clicks on the edit button, `isEditing(lineId)` will turn 
 
 :::tip
 By giving the `<Table.Column>` component a unique `render` property, you can render the value in that column however you want.
-[<Table.Column\> hakkında daha fazla bilgi için Ant Design dökümantasyonuna başvurun >](https://ant.design/components/table/#Column)
+Refer to [<Table.Column>](https://ant.design/components/table/#Column) documentation for more information.
 :::
 
 <div style={{textAlign: "center"}}>
