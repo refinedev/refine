@@ -350,7 +350,7 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 | initialFilter    | Initial 
 filtering.                                                                                                                                          | [`CrudFilters`](../../interfaces.md#crudfilters) |
 | syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history.                                       | `boolean`                                        |
-| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form](../../../guides-and-concepts/table/table-search.md) to learn how to create a search form. | `Function`                                       |
+| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form](../../../guides-and-concepts/search/table-search.md) to learn how to create a search form. | `Function`                                       |
 
 <br />
 
