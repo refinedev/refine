@@ -5,11 +5,11 @@ title: Tag
 
 import tagField from '@site/static/img/guides-and-concepts/fields/tag/tagField.png';
 
-This field lets you display a value in a tag. It uses and Ant Design's [`<Tag>`](https://ant.design/components/tag/) component.
+This field lets you display a value in a tag. It uses Ant Design's [`<Tag>`](https://ant.design/components/tag/) component.
 
 ## Usage
 
-Let's see how to use it in a basic list page:
+Let's see how we can use it in a basic list page:
 
 ```tsx title="pages/posts/list.tsx"
 import {
@@ -63,4 +63,4 @@ export interface IPost {
 | -------- | ----------- | ----------------- |
 | value    | Tag content | `React.ReactNode` |
 
-[Refer to rest Link props &#8594](https://ant.design/components/tag/#API)
+[Refer to the documentation for rest of Link props &#8594](https://ant.design/components/tag/#API)
