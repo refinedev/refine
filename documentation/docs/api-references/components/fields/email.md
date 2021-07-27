@@ -55,5 +55,4 @@ export const UserList: React.FC = () => {
 | value    | Email value | `React.ReactNode` |         |
 
 
-[Refer to the link for all of the Link properties &#8594](https://ant.design/components/typography/#API)
-
+[Refer to the documentation for the rest of Link properties. &#8594](https://ant.design/components/typography/#API)
