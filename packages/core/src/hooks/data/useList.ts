@@ -22,6 +22,17 @@ interface UseListConfig {
     filters?: CrudFilters;
 }
 
+/**
+ * `useList` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
+ *
+ * It uses the `getList` method as the query function from the `dataProvider` which is passed to `<Refine>`.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/data/useList} for more details.
+ *
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ *
+ */
 export const useList = <
     TData = BaseRecord,
     TError extends HttpError = HttpError,

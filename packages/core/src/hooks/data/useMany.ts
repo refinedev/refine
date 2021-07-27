@@ -13,6 +13,17 @@ import { useCheckError } from "@hooks";
 import { useTranslate } from "@hooks/translate";
 import { handleNotification } from "@definitions";
 
+/**
+ * `useMany` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving multiple items from a `resource`.
+ *
+ * It uses `getMany` method as query function from the `dataProvider` which is passed to `<Refine>`.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/data/useMany} for more details.
+ *
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ *
+ */
 export const useMany = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
