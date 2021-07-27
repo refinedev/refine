@@ -52,7 +52,7 @@ import { Edit, Card } from "@pankod/refine";
 const Aside: React.FC = () => {
     return (
         <Card title="Post Create Details" extra={<a href="#">More</a>}>
-            <p>Here you can give useful information about post you have created?.</p>
+            <p>Here you can give useful information about post you are creating.</p>
         </Card>
     );
 };
