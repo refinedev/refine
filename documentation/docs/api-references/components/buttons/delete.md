@@ -94,7 +94,7 @@ export const MyDeleteComponent = () => {
 Clicking the button will trigger the `useDelete` method and then the record whose resource is "categories" and whose id is "2" is deleted.
 
 :::note
-`<DeleteButton>` ? component reads the resource name from the route by default.
+**`<DeleteButton>`** component reads the resource name from the route by default.
 :::
 
 ### `onSuccess`
