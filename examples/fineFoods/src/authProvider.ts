@@ -3,12 +3,12 @@ import { AuthProvider } from "@pankod/refine";
 export const TOKEN_KEY = "refine-auth";
 
 export const authProvider: AuthProvider = {
-    login: async ({ username, password }) => {
-        if (username === "admin" && password === "admin") {
-            localStorage.setItem(TOKEN_KEY, username);
+    login: async ({ email, password }) => {
+        if (email === "admin" && password === "admin") {
+            localStorage.setItem(TOKEN_KEY, email);
             return Promise.resolve();
         }
-        return Promise.reject(new Error("username: admin, password: admin"));
+        return Promise.reject(new Error("email: admin, password: admin"));
     },
     logout: () => {
         localStorage.removeItem(TOKEN_KEY);
