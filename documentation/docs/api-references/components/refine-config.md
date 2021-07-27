@@ -38,7 +38,7 @@ export default App;
 
 
 ### `dataProvider`
-<div className="required">Required</div> ?x
+<div className="required">Required</div>
 <br/>
 <br/>
 
