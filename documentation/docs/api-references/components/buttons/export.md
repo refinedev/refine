@@ -11,7 +11,7 @@ import usage from '@site/static/img/guides-and-concepts/components/buttons/expor
 
 Use it like any other Ant Design [`<Button>`][Button]. You can use it with [useExport][useExport].
 
-Looks like this:
+It looks like this:
 
 <div>
     <img src={usage} alt="Default Export Button" />

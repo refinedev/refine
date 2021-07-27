@@ -5,11 +5,11 @@ title: Date
 
 import dateField from '@site/static/img/guides-and-concepts/fields/date/dateField.png'
 
-This field is used to display dates and uses [`Day.js`](https://day.js.org/docs/en/display/format) to display date format.
+This field is used to display dates. It uses [`Day.js`](https://day.js.org/docs/en/display/format) to display date format.
 
 ## Usage
 
-Let's see how to use `<DateField>` with the example in the post list.
+Let's see how we can use `<DateField>` with the example in the post list.
 
 ```tsx
 //highlight-next-line
@@ -57,4 +57,4 @@ export interface IPost {
 | Property                                            | Description                                                         | Type                                            | Default |
 | --------------------------------------------------- | ------------------------------------------------------------------- | ----------------------------------------------- | ------- |
 | value   <div className="required">Required</div>    | Date value                                                          | `string` \| `number` \| `Date` \| `dayjs.Dayjs` |         |
-| [format](https://day.js.org/docs/en/display/format) | Get the formatted date according to the string of tokens passed in. | `string` \| `undefined`                         | `"L"`   |
+| [format](https://day.js.org/docs/en/display/format) | Gets the formatted date according to the string of the tokens passed in. | `string` \| `undefined`                         | `"L"`   |

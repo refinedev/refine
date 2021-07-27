@@ -7,11 +7,11 @@ import imageField from '@site/static/img/guides-and-concepts/fields/image/imageF
 
 This field is used to display images and uses `<Image>` from Ant Design.
 
-[Refer to `<Image>` documentation for detailed usage. &#8594](https://ant.design/components/image/#header)
+[Refer to the `<Image>` documentation for detailed usage. &#8594](https://ant.design/components/image/#header)
 
 ## Usage
 
-Let's see how to use `<ImageField>` with the example in the edit page.
+Let's see how we can use `<ImageField>` with the example in the edit page.
 
 ```tsx
 import { List, Table, ImageField } from "@pankod/refine";
@@ -72,4 +72,4 @@ interface IPost {
 | ---------- | -------------------------- | -------------------------------------------------------- | ------- |
 | value      | Image path                 | `string` \| `undefined`                                  |         |
 | imageTitle | Image title value          | `string` \| `undefined`                                  |         |
-| ImageProps | Ant Design `<Image>` props | [`ImageProps`](https://ant.design/components/image/#API) |         |
+| ImageProps | Ant Design `<Image>` properties | [`ImageProps`](https://ant.design/components/image/#API) |         |

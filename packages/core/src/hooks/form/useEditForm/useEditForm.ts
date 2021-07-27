@@ -71,6 +71,10 @@ export type useEditFormProps<
     resource: IResourceItem;
 } & SuccessErrorNotification;
 
+/**
+ * A hook that the `useForm` uses
+ * @internal
+ */
 export const useEditForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,

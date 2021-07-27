@@ -137,6 +137,7 @@ module.exports = {
                     items: [
                         "api-references/components/refine-config",
                         "api-references/components/resource",
+                        "api-references/components/filter-dropdown",
                         {
                             type: "category",
                             label: "Basic Views",
@@ -210,8 +211,11 @@ module.exports = {
                 },
                 {
                     type: "category",
-                    label: "Table",
-                    items: ["guides-and-concepts/table/table-search"],
+                    label: "Search",
+                    items: [
+                        "guides-and-concepts/search/table-search",
+                        "guides-and-concepts/search/list-search",
+                    ],
                 },
                 {
                     type: "category",
