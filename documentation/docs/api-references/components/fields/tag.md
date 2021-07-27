@@ -63,4 +63,4 @@ export interface IPost {
 | -------- | ----------- | ----------------- |
 | value    | Tag content | `React.ReactNode` |
 
-[Refer to rest ?Link props &#8594](https://ant.design/components/tag/#API)
+[Refer to the documentation for rest of Link props &#8594](https://ant.design/components/tag/#API)
