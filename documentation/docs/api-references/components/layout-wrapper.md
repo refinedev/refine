@@ -34,7 +34,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const AuthenticatedPostReview = () => {
     return (
         <Authenticated>
-            <LayoutWrapper>
+            <LayoutWrapper Sider={() => <></>}>
                 <PostReview />
             </LayoutWrapper>
         </Authenticated>
@@ -63,6 +63,8 @@ const App: React.FC = () => {
 
 export default App;
 ```
+
+In this example, we hide the left sider only for this page. The rest should look same as resource pages.
 
 ## API Reference
 
