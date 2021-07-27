@@ -16,7 +16,7 @@ import {
 import dayjs from "dayjs";
 
 import { OrderStatus } from "components";
-import { IOrder } from "interfaces";
+import { IEvent, IOrder } from "interfaces";
 
 const { Title, Text } = Typography;
 
@@ -127,7 +127,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
 
         return (
             <Timeline style={{ marginTop: 20 }}>
-                {record?.events.map((event: any, index: any) => (
+                {record?.events.map((event: IEvent, index: number) => (
                     <Timeline.Item key={index}>
                         <>
                             {event.name}

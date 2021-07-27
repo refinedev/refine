@@ -17,7 +17,7 @@ export const DailyRevenue: React.FC = () => {
     const t = useTranslate();
     const API_URL = useApiUrl();
 
-    const [dateRange, setDateRange] = useState<[Dayjs, Dayjs]>([
+    const [dateRange, setDateRange] = useState<[dayjs.Dayjs, dayjs.Dayjs]>([
         dayjs().subtract(7, "days").startOf("day"),
         dayjs().startOf("day"),
     ]);
@@ -89,27 +89,29 @@ export const DailyRevenue: React.FC = () => {
 
             <RangePicker
                 size="small"
-                value={dateRange as any}
+                value={dateRange}
                 onChange={(values) => {
-                    setDateRange(values as any);
+                    if (values && values[0] && values[1]) {
+                        setDateRange([values[0], values[1]]);
+                    }
                 }}
                 style={{ float: "right", marginTop: 20 }}
                 ranges={{
                     "This Week": [
-                        dayjs().startOf("week") as any,
-                        dayjs().endOf("week") as any,
+                        dayjs().startOf("week"),
+                        dayjs().endOf("week"),
                     ],
                     "Last Month": [
-                        dayjs().startOf("month").subtract(1, "month") as any,
-                        dayjs().endOf("month").subtract(1, "month") as any,
+                        dayjs().startOf("month").subtract(1, "month"),
+                        dayjs().endOf("month").subtract(1, "month"),
                     ],
                     "This Month": [
-                        dayjs().startOf("month") as any,
-                        dayjs().endOf("month") as any,
+                        dayjs().startOf("month"),
+                        dayjs().endOf("month"),
                     ],
                     "This Year": [
-                        dayjs().startOf("year") as any,
-                        dayjs().endOf("year") as any,
+                        dayjs().startOf("year"),
+                        dayjs().endOf("year"),
                     ],
                 }}
                 format="YYYY/MM/DD"
