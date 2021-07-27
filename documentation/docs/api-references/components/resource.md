@@ -151,11 +151,10 @@ Menu item name and route on clicking can be customized.
 
 #### `label`
 
-Custom menu item name ? 
+Name to show in the menu. Plural form of the resource name is shown by default.
 #### `route`
 
 Custom route name
-
 
 
 
