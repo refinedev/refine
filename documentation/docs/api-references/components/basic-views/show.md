@@ -43,7 +43,7 @@ export const Show: React.FC = () => {
 
 ### `title`
 
-It allows adding titles inside the `<Show>` component. if you don't pass title props it uses the "Show" prefix and the singular resource name by default. For example, for the "posts" resource, it will be "Show post".
+It allows adding a title for the `<Show>` component. if you don't pass title props it uses the "Show" prefix and the singular resource name by default. For example, for the "posts" resource, it will be "Show post".
 
 ```tsx
 import { Show } from "@pankod/refine";
