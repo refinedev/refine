@@ -68,15 +68,15 @@ export default App;
 
 ### Properties
 
-| Property      | Description                                   | Type                                             | Default                                   |
-| ------------- | --------------------------------------------- | ------------------------------------------------ | ----------------------------------------- |
-| dashboard     |                                               | `boolean`                                        |                                           |
-| Layout        | Outer component that renders other components | `string`                                         |                                           |
-| Sider         | [Custom sider to use][Refine#Sider]           | ` "pessimistic` \| `"optimistic` \| `"undoable"` | `"pessimistic"`\*                         |
-| Header        |                                               | `string`                                         | Resource name that it reads from the url. |
-| Title         |                                               | `string`                                         | Resource name that it reads from the url. |
-| Footer        |                                               | `string`                                         | Resource name that it reads from the url. |
-| OffLayoutArea |                                               | `string`                                         | Resource name that it reads from the url. |
+| Property      | Description                                           | Type       | Default |
+| ------------- | ----------------------------------------------------- | ---------- | ------- |
+| dashboard     |                                                       | `boolean`  | *       |
+| Layout        | Outer component that renders other components         | `React.FC` | *       |
+| Sider         | [Custom sider to use][Refine#Sider]                   | `React.FC` | *       |
+| Header        | [Custom header to use][Refine#Header]                 | `React.FC` | *       |
+| Title         | [Custom title to use][Refine#Title]                   | `React.FC` | *       |
+| Footer        | [Custom footer to use][Refine#Footer]                 | `React.FC` | *       |
+| OffLayoutArea | [Custom off layout area to use][Refine#OffLayoutArea] | `React.FC` | *       |
 
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine][Refine]>** component.
 
@@ -84,3 +84,7 @@ export default App;
 [Resource]: api-references/components/resource.md
 [Custom Pages]: guides-and-concepts/custom-pages.md
 [Refine#Sider]: api-references/components/refine-config.md#sider
+[Refine#Header]: api-references/components/refine-config.md#header
+[Refine#Title]: api-references/components/refine-config.md#title
+[Refine#Footer]: api-references/components/refine-config.md#footer
+[Refine#OffLayoutArea]: api-references/components/refine-config.md#offlayoutarea
