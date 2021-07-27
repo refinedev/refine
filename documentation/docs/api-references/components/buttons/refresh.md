@@ -65,7 +65,7 @@ export const MyRefreshComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `useOne` method and then the record ?whose resource is "post" and whose id is "1" fetches.
+Clicking the button will trigger the `useOne` method and then fetches the record whose resource is "post" and whose id is "1".
 
 :::note
 `<RefreshButton>` component reads the id information from the route by default.
@@ -83,7 +83,7 @@ export const MyRefreshComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `useOne` method and then the record whose resource is "categories" and whose id is "2" fetches?.
+Clicking the button will trigger the `useOne` method and then fetches the record whose resource is "categories" and whose id is "2".
 
 :::note
 `<RefreshButton>` component reads the resource name from the route by default.
