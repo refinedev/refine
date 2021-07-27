@@ -46,7 +46,7 @@ export default App;
 
 <br />
 
-These components will recieve some properties   . 
+These components will receive some properties. 
 
 
 ```tsx title="PostList.tsx"
@@ -155,6 +155,5 @@ Name to show in the menu. Plural form of the resource name is shown by default.
 #### `route`
 
 Custom route name
-
 
 
