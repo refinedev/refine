@@ -5,7 +5,8 @@ title: Import
 
 import importButton from '@site/static/img/hooks/useImport/import-button.png';
 
-`<ImportButton>` is compatible with [`useImport`][useImport] hook and is meant to be used as it's upload button. It uses Ant Design's [`<Button>`][Button] and [`<Upload>`][Upload] components. It wraps a [`<Button>`][Button] component with an [`<Upload>`][Upload] component and accepts props for [`<Button>`][Button] and [`<Upload>`][Upload] components separately.
+`<ImportButton>` is compatible with the [`useImport`][useImport] hook and is meant to be used as it's upload button. 
+It uses Ant Design's [`<Button>`][Button] and [`<Upload>`][Upload] components. It wraps a [`<Button>`][Button] component with an [`<Upload>`][Upload] component and accepts properties for [`<Button>`][Button] and [`<Upload>`][Upload] components separately.
 
 ## Usage
 
@@ -52,7 +53,7 @@ export interface IPost {
 }
 ```
 
-Looks like this:
+Will look like this:
 
 <div>
     <img  src={importButton} alt="Import button" />
@@ -64,9 +65,9 @@ Looks like this:
 
 | Property    | Description                      | Type                                                       | Default    |
 | ----------- | -------------------------------- | ---------------------------------------------------------- | ---------- |
-| uploadProps | Set the button type              | [`UploadProps`](https://ant.design/components/upload/#API) |            |
-| buttonProps | Set the icon component of button | [`ButtonProps`](https://ant.design/components/button/#API) |            |
-| children    | Set the button text              | `ReactNode`                                                | `"Import"` |
+| uploadProps | Sets the button type              | [`UploadProps`](https://ant.design/components/upload/#API) |            |
+| buttonProps | Sets the icon component of button | [`ButtonProps`](https://ant.design/components/button/#API) |            |
+| children    | Sets the button text              | `ReactNode`                                                | `"Import"` |
 
 [useImport]: /api-references/hooks/import-export/useImport.md
 [Button]: https://ant.design/components/button/
