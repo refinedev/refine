@@ -126,15 +126,20 @@ export const LoginPage: React.FC = () => {
                                     {translate("pages.login.signin", "Sign in")}
                                 </Button>
                             </Form>
-                            <Text style={{ fontSize: 12 }}>
-                                {translate(
-                                    "pages.login.noAccount",
-                                    "Still no account? Please go to",
-                                )}{" "}
-                                <a href="#" style={{ fontWeight: "bold" }}>
-                                    {translate("pages.login.signup", "Sign up")}
-                                </a>
-                            </Text>
+                            <div style={{ marginTop: 8 }}>
+                                <Text style={{ fontSize: 12 }}>
+                                    {translate(
+                                        "pages.login.noAccount",
+                                        "Still no account? Please go to",
+                                    )}{" "}
+                                    <a href="#" style={{ fontWeight: "bold" }}>
+                                        {translate(
+                                            "pages.login.signup",
+                                            "Sign up",
+                                        )}
+                                    </a>
+                                </Text>
+                            </div>
                         </Card>
                     </div>
                 </Col>
