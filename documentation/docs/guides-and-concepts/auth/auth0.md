@@ -45,7 +45,7 @@ ReactDOM.render(
 ```
 
 :::important
-See the [**Auth0 docs**](https://auth0.com/docs) for detailed information and ? `CLIENT_ID`.
+Refer to [**Auth0 docs**](https://auth0.com/docs/quickstart/spa/react#configure-auth0) for detailed configuration.
 :::
 
 ### Override login page
