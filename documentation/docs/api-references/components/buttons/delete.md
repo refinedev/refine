@@ -63,7 +63,7 @@ When clicked, it opens the confirmation window like this:
 
 ### `recordItemId`
 
-`recordItemId` allows us to manage which record will deleted.
+`recordItemId` allows us to manage which record will be deleted.
 
 ```tsx
 import { DeleteButton } from "@pankod/refine";
