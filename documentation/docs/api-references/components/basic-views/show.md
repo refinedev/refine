@@ -8,7 +8,7 @@ import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-vie
 import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/show/actionButtons.png'
 import isLoading from '@site/static/img/guides-and-concepts/basic-views/show/isLoading.png'
 
-`<Show>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a  refresh button.
+`<Show>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a refresh button or giving title to the page.
 
 We will show what `<Show>` does ?using properties with examples.
 
