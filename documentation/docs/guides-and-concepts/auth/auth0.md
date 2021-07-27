@@ -54,45 +54,77 @@ First, we need to override the refine `login page`. In this way, we will redirec
 
 ```tsx title="/pages/login.tsx"
 import React from "react";
-import { Row, AntdLayout, Card, Typography, Button } from "@pankod/refine";
-// highlight-next-line
-import { useAuth0 } from "@auth0/auth0-react";
+import { 
+    Row, 
+    AntdLayout,
+    Card,
+    Typography,
+    Button,
+    // highlight-next-line
+    useLogin
+} from "@pankod/refine";
+
 
 export const Login: React.FC = () => {
-    const { Title } = Typography;
-
     // highlight-next-line
-    const { loginWithRedirect } = useAuth0();
+    const { mutate: login } = useLogin();
+
+    const CardTitle = (
+        <div
+            style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "60px",
+            }}
+        >
+            <img src="./refine.svg" alt="Logo" />
+        </div>
+    );
 
     return (
-        <AntdLayout>
+        <AntdLayout
+            style={{
+                backgroundColor: "#eff7f7",
+            }}
+        >
             <Row
                 justify="center"
+                align="middle"
                 style={{
-                    display: "flex",
-                    alignContent: "center",
                     height: "100vh",
                 }}
             >
-                <Card>
-                    <Title
-                        level={3}
+                <Col xs={22}>
+                    <Card
                         style={{
-                            textAlign: "center",
+                            maxWidth: "400px",
+                            margin: "auto",
                         }}
+                        title={CardTitle}
                     >
-                        Login
-                    </Title>
-                    // highlight-start
-                    <Button
-                        onClick={() => loginWithRedirect()}
-                        size="large"
-                        type="primary"
-                    >
-                        Login with Auth0
-                    </Button>
-                    // highlight-end
-                </Card>
+                        <Button
+                            type="primary"
+                            size="large"
+                            htmlType="submit"
+                            block
+                            // highlight-next-line
+                            onClick={() => login(undefined)}
+                        >
+                            Login
+                        </Button>
+                        <br />
+                        <br />
+                        <div
+                            style={{ textAlign: "center", padding: "10px 0px" }}
+                        >
+                            <Text>
+                                Still no account? Please go to
+                                <a href="#"> Sign up</a>
+                            </Text>
+                        </div>
+                    </Card>
+                </Col>
             </Row>
         </AntdLayout>
     );
@@ -112,15 +144,26 @@ In refine, authentication and authorization processes are performed with the aut
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine";
-
+// highlight-next-line
 import { useAuth0 } from "@auth0/auth0-react";
 
+// highlight-next-line
 import { Login } from "pages/login";
+
+import axios from "axios";
+
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App = () => {
-    const { isLoading, isAuthenticated, user, logout } = useAuth0();
+    const {
+        isLoading,
+        loginWithRedirect,
+        isAuthenticated,
+        user,
+        logout,
+        getIdTokenClaims,
+    } = useAuth0();
 
     if (isLoading) {
         return <span>loading...</span>;
@@ -129,10 +172,12 @@ const App = () => {
     // highlight-start
     const authProvider: AuthProvider = {
         login: async () => {
+            loginWithRedirect();
             return Promise.resolve();
         },
         logout: async () => {
-            logout();
+            logout({ returnTo: window.location.origin });
+            return Promise.resolve("/");
         },
         checkError: () => Promise.resolve(),
         checkAuth: async () => {
@@ -144,16 +189,32 @@ const App = () => {
         },
         getPermissions: () => Promise.resolve(),
         getUserIdentity: async () => {
-            return Promise.resolve(user);
+            if (user) {
+                return Promise.resolve({
+                    ...user,
+                    avatar: user.picture,
+                });
+            }
         },
     };
+    // highlight-end
+
+
+    // highlight-start
+    getIdTokenClaims().then((token) => {
+        if (token) {
+            axios.defaults.headers.common = {
+                Authorization: `Bearer ${token.__raw}`,
+            };
+        }
+    });
     // highlight-end
 
     return (
         <Refine
             LoginPage={Login}
             authProvider={authProvider}
-            dataProvider={dataProvider(API_URL)}
+            dataProvider={dataProvider(API_URL, axios)}
         >
             ...
         </Refine>
@@ -165,11 +226,11 @@ export default App;
 
 #### login
 
-We overrided the login page and handed it over to Auth0 completely. That's why we're returning to an empty promise.?
+`loginWithRedirect` method comes from the `useAuth0` hook.
 
 #### logout
 
-Logout method comes from the `useAuth0` hook.
+`logout` method comes from the `useAuth0` hook.
 
 #### checkError & getPermissions
 
