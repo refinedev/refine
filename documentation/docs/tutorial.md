@@ -1047,6 +1047,6 @@ Our tutorial is complete. Below you'll find a live Codesandbox example displayin
 
 * [Read about the i18nProvider to add language support. &#8594](api-references/providers/i18n-provider)
 
-* [Check the Guides & Concept section to learn generic solutions to common problems &#8594](guides-and-concepts/auth)
+* [Check the Guides & Concept section to learn generic solutions to common problems &#8594](guides-and-concepts/upload/multipart-upload)
 
 * [Check example section for code snippets &#8594](examples/customization/topMenuLayout.md)
