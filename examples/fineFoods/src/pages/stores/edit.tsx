@@ -12,14 +12,13 @@ import { IStore } from "interfaces";
 
 export const StoreEdit: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
-    const {
-        formProps,
-        saveButtonProps,
-        queryResult: { isFetching },
-    } = useForm<IStore>();
+    const { formProps, saveButtonProps, queryResult } = useForm<IStore>();
 
     return (
-        <Edit isLoading={isFetching} saveButtonProps={saveButtonProps}>
+        <Edit
+            isLoading={queryResult?.isFetching}
+            saveButtonProps={saveButtonProps}
+        >
             <Form
                 {...formProps}
                 layout="vertical"

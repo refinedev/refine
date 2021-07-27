@@ -8,8 +8,7 @@ import {
     useCustom,
     useTranslate,
 } from "@pankod/refine";
-import { RadialBar } from "@ant-design/charts";
-import { RadialBarConfig } from "@ant-design/charts/es/radialBar";
+import { RadialBar, RadialBarConfig } from "@ant-design/charts";
 import dayjs, { Dayjs } from "dayjs";
 
 import { IOrderChart } from "interfaces";
@@ -46,7 +45,7 @@ export const OrdersChart: React.FC = () => {
         radius: 0.8,
         innerRadius: 0.2,
         colorField: "status",
-        color: function color(_ref) {
+        color: (_ref: any) => {
             const status = _ref.status;
 
             switch (status) {
@@ -59,6 +58,7 @@ export const OrdersChart: React.FC = () => {
                 case "delivered":
                     return "#52C41A";
                 case "could not be delivered":
+                default:
                     return "#F5222D";
             }
         },
@@ -102,27 +102,27 @@ export const OrdersChart: React.FC = () => {
             </Row>
 
             <RangePicker
-                value={dateRange}
+                value={dateRange as any}
                 onChange={(values) => {
-                    setDateRange(values);
+                    setDateRange(values as any);
                 }}
                 style={{ float: "right", marginTop: 20 }}
                 ranges={{
                     "This Week": [
-                        dayjs().startOf("week"),
-                        dayjs().endOf("week"),
+                        dayjs().startOf("week") as any,
+                        dayjs().endOf("week") as any,
                     ],
                     "Last Month": [
-                        dayjs().startOf("month").subtract(1, "month"),
-                        dayjs().endOf("month").subtract(1, "month"),
+                        dayjs().startOf("month").subtract(1, "month") as any,
+                        dayjs().endOf("month").subtract(1, "month") as any,
                     ],
                     "This Month": [
-                        dayjs().startOf("month"),
-                        dayjs().endOf("month"),
+                        dayjs().startOf("month") as any,
+                        dayjs().endOf("month") as any,
                     ],
                     "This Year": [
-                        dayjs().startOf("year"),
-                        dayjs().endOf("year"),
+                        dayjs().startOf("year") as any,
+                        dayjs().endOf("year") as any,
                     ],
                 }}
                 format="YYYY/MM/DD"

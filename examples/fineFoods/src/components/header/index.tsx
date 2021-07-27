@@ -34,7 +34,7 @@ export const Header = () => {
 
     const menu = (
         <Menu selectedKeys={[locale()]}>
-            {i18n.languages?.sort().map((lang) => (
+            {(i18n.languages as any)?.sort().map((lang: any) => (
                 <Menu.Item
                     key={lang}
                     onClick={() => changeLanguage(lang)}

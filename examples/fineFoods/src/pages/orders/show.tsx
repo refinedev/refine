@@ -31,9 +31,11 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 <Col md={8}>
                     <Title level={4}>Order</Title>
                     <Title level={5}>Order Number</Title>
-                    <Text>{record.orderNumber}</Text>
+                    <Text>{record?.orderNumber}</Text>
                     <Title level={5}>Status</Title>
-                    <OrderStatus status={record.status.text} />
+                    <OrderStatus
+                        status={record?.status.text || "could not be delivered"}
+                    />
                     <Title level={5}>Amount</Title>
                     <NumberField
                         options={{
@@ -41,12 +43,12 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                             style: "currency",
                             notation: "compact",
                         }}
-                        value={record.amount}
+                        value={record?.amount || 0}
                     />
                     <Title level={5}>Created At</Title>
-                    <DateField value={record.createdAt} format="LLL" />
+                    <DateField value={record?.createdAt || ""} format="LLL" />
                     <Title level={5}>Address</Title>
-                    <Text>{record.adress.text}</Text>
+                    <Text>{record?.adress.text}</Text>
                 </Col>
 
                 <Col md={8}>
@@ -54,7 +56,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
 
                     <AntdList
                         itemLayout="horizontal"
-                        dataSource={record.products}
+                        dataSource={record?.products}
                         renderItem={(item) => (
                             <AntdList.Item>
                                 <AntdList.Item.Meta
@@ -86,17 +88,17 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                     <Title level={4}>User</Title>
 
                     <Title level={5}>ID</Title>
-                    <Text>{record.user.id}</Text>
+                    <Text>{record?.user.id}</Text>
 
                     <Title level={5}>Full Name</Title>
-                    <Text>{record.user.fullName}</Text>
+                    <Text>{record?.user.fullName}</Text>
 
                     <Title level={5}>Gender</Title>
-                    <Text>{record.user.gender}</Text>
+                    <Text>{record?.user.gender}</Text>
 
                     <Title level={5}>Active</Title>
                     <Text>
-                        <BooleanField value={record.user.isActive} />
+                        <BooleanField value={record?.user.isActive} />
                     </Text>
                 </Col>
 
@@ -104,14 +106,14 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                     <Title level={4}>Store</Title>
 
                     <Title level={5}>ID</Title>
-                    <Text>{record.store.id}</Text>
+                    <Text>{record?.store.id}</Text>
 
                     <Title level={5}>Name</Title>
-                    <Text>{record.store.title}</Text>
+                    <Text>{record?.store.title}</Text>
 
                     <Title level={5}>Active</Title>
                     <Text>
-                        <BooleanField value={record.store.isActive} />
+                        <BooleanField value={record?.store.isActive} />
                     </Text>
                 </Col>
             </Row>
@@ -125,7 +127,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
 
         return (
             <Timeline style={{ marginTop: 20 }}>
-                {record.events.map((event, index) => (
+                {record?.events.map((event: any, index: any) => (
                     <Timeline.Item key={index}>
                         <>
                             {event.name}

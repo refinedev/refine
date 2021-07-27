@@ -7,8 +7,7 @@ import {
     NumberField,
     useTranslate,
 } from "@pankod/refine";
-import { Column } from "@ant-design/charts";
-import { ColumnConfig } from "@ant-design/charts/es/column";
+import { Column, ColumnConfig } from "@ant-design/charts";
 import dayjs, { Dayjs } from "dayjs";
 
 import { ISalesChart } from "interfaces";
@@ -90,27 +89,27 @@ export const DailyRevenue: React.FC = () => {
 
             <RangePicker
                 size="small"
-                value={dateRange}
+                value={dateRange as any}
                 onChange={(values) => {
-                    setDateRange(values);
+                    setDateRange(values as any);
                 }}
                 style={{ float: "right", marginTop: 20 }}
                 ranges={{
                     "This Week": [
-                        dayjs().startOf("week"),
-                        dayjs().endOf("week"),
+                        dayjs().startOf("week") as any,
+                        dayjs().endOf("week") as any,
                     ],
                     "Last Month": [
-                        dayjs().startOf("month").subtract(1, "month"),
-                        dayjs().endOf("month").subtract(1, "month"),
+                        dayjs().startOf("month").subtract(1, "month") as any,
+                        dayjs().endOf("month").subtract(1, "month") as any,
                     ],
                     "This Month": [
-                        dayjs().startOf("month"),
-                        dayjs().endOf("month"),
+                        dayjs().startOf("month") as any,
+                        dayjs().endOf("month") as any,
                     ],
                     "This Year": [
-                        dayjs().startOf("year"),
-                        dayjs().endOf("year"),
+                        dayjs().startOf("year") as any,
+                        dayjs().endOf("year") as any,
                     ],
                 }}
                 format="YYYY/MM/DD"
