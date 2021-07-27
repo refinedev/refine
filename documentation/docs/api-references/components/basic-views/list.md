@@ -7,7 +7,7 @@ sidebar_label: List
 import asideUsage from '@site/static/img/guides-and-concepts/basic-views/list/aside.png'
 import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/list/pageHeaderProps.png'
 
-`<List>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like a creating a button or giving the page titles.
+`<List>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like a create button or giving the page titles.
 
 We will show what `<List>` does using properties with examples.
 
