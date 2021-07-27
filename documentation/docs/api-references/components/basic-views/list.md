@@ -40,7 +40,7 @@ export const List: React.FC = () => {
 
 ### `title`
 
-It allows adding titles inside the `<List>` component. if you don't pass title props, it uses ?singular resource name by default.
+It allows adding a title for the `<List>` component. if you don't pass title props, it uses plural from of resource name by default.
 
 ```tsx
 import { List } from "@pankod/refine";
