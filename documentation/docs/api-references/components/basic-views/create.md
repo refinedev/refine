@@ -128,7 +128,7 @@ export const Create: React.FC = () => {
 
 ### `resource`
 
-The `<Create>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Create>` component in a custom page, you can use the `resource` property.
+The `<Create>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Create>` component in a custom page, you can use the `resource` prop.
 
 [Refer to the custom pages documentation for detailed usage. &#8594](#)
 
