@@ -50,7 +50,7 @@ Will look like this:
 <br/>
 
 :::note
-Since `<ListButton>` is used in the "posts" resource, its text? is "Posts".
+The button text is defined automatically by *refine* based on *`<Resource>`* component name property.
 :::
 
 ## Properties
