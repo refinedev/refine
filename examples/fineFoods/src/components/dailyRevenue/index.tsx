@@ -17,7 +17,7 @@ export const DailyRevenue: React.FC = () => {
     const t = useTranslate();
     const API_URL = useApiUrl();
 
-    const [dateRange, setDateRange] = useState<[dayjs.Dayjs, dayjs.Dayjs]>([
+    const [dateRange, setDateRange] = useState<[Dayjs, Dayjs]>([
         dayjs().subtract(7, "days").startOf("day"),
         dayjs().startOf("day"),
     ]);
