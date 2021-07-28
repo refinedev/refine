@@ -31,7 +31,7 @@ export const LoginPage: React.FC = () => {
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>
-            <Text style={{ color: "#67be23" }}>Sign in</Text> your account
+            {translate("pages.login.title", "Sign in your account")}
         </Title>
     );
 
