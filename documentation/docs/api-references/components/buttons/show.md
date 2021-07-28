@@ -72,7 +72,7 @@ Clicking the button will trigger the `show` method of [`useNavigation`](#) and t
 
 ### `resourceName`
 
-It is used to redirect the app to the `/show` endpoint of the given resource name. By default, the app redirects to a URL with `/show` defined by the name property of `<Resource>` component.?
+Redirection endpoint(`resourceName/show`) is defined by `resourceName` property. By default, <ShowButton> uses `name` property of the <Resource> component as an endpoint to redirect after clicking.
 
 ```tsx
 import { ShowButton } from "@pankod/refine";
