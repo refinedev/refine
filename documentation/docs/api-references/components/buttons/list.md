@@ -5,7 +5,7 @@ title: List
 
 import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/list/usage.png';
 
-`<ListButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `list` method from [useNavigation](#) under the hood. It can be useful to redirect the app to the list page route of `<Resource>`.
+`<ListButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `list` method from [useNavigation](#) under the hood. It can be useful when redirecting the app to the list page route of `<Resource>`.
 
 ## Usage
 
@@ -42,7 +42,7 @@ export interface IPost {
 }
 ```
 
-Looks like this:
+Will look like this:
 
 <div>
     <img src={tableUsage} alt="Default List Button" />
@@ -50,14 +50,14 @@ Looks like this:
 <br/>
 
 :::note
-Since `<ListButton>` is used in the "posts" resource, its text is "Posts".
+The button text is defined automatically by *refine* based on *`<Resource>`* component name property.
 :::
 
 ## Properties
 
 ### `resourceName`
 
-It is used to redirect the app to the endpoint of the given resource name. By default, the app redirects to defined by the name property of `<Resource>` component.
+Redirection endpoint(`resourceName/list`) is defined by `resourceName` property. By default, `<ListButton>` uses `name` property of the `<Resource>` component as an endpoint to redirect after clicking.
 
 ```tsx
 import { ListButton } from "@pankod/refine";
@@ -75,8 +75,8 @@ Clicking the button will trigger the `List` method of [`useNavigation`](#) and t
 
 | Property     | Description                                   | Type                                                                                      | Default                                                       |
 | ------------ | --------------------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| props        | Ant Design button props                       | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; }` |                                                               |
-| resourceName | Determines which resource to use for redirect | `string`                                                                                  | Resource name that it reads from route                             |
-| children     | Set the button text                           | `ReactNode`                                                                               | Humanized resource name that it reads from route                   |
-| icon         | Set the icon component of button              | `ReactNode`                                                                               | [`<BarsOutlined />`](https://ant.design/components/icon/)     |
-| onClick      | Set the handler to handle click event         | `(event) => void`                                                                         | Triggers navigation for redirect to the list page of resource |
+| props        | Ant Design button properties                    | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; }` |                                                               |
+| resourceName | Determines which resource to use for redirection | `string`                                                                                  | Resource name that it reads from route                             |
+| children     | Sets the button text                           | `ReactNode`                                                                               | Humanized resource name that it reads from route                   |
+| icon         | Sets the icon component of button              | `ReactNode`                                                                               | [`<BarsOutlined />`](https://ant.design/components/icon/)     |
+| onClick      | Sets the handler to handle click event         | `(event) => void`                                                                         | Triggers navigation for redirection to the list page of resource |
