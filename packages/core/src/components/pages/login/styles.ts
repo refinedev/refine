@@ -1,25 +1,18 @@
 import { CSSProperties } from "react";
 
-import loginBg from "./background.svg";
+export const layoutStyles: CSSProperties = {
+    background: `radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 100%), #095398`,
+    backgroundSize: "cover",
+};
 
-export const loginCard: CSSProperties = {
-    maxWidth: "400px",
+export const containerStyles: CSSProperties = {
+    maxWidth: "408px",
     margin: "auto",
 };
 
-export const signupSection: CSSProperties = {
+export const titleStyles: CSSProperties = {
     textAlign: "center",
-    padding: "10px 0px",
-};
-
-export const loginHeader: CSSProperties = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "60px",
-};
-
-export const loginBackground: CSSProperties = {
-    backgroundColor: "#eff7f7",
-    backgroundImage: `url("${loginBg}")`,
+    color: "#626262",
+    fontSize: "30px",
+    letterSpacing: "-0.04em",
 };
