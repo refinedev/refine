@@ -11,8 +11,13 @@ import {
     Checkbox,
 } from "antd";
 
-import { layoutStyles, containerStyles, titleStyles } from "./styles";
-import logo from "src/assets/images/refine-logo.svg";
+import {
+    layoutStyles,
+    containerStyles,
+    titleStyles,
+    imageContainer,
+} from "./styles";
+import logo from "./refine-logo.svg";
 
 import { useLogin, useTranslate } from "@hooks";
 
@@ -46,7 +51,9 @@ export const LoginPage: React.FC = () => {
             >
                 <Col xs={22}>
                     <div style={containerStyles}>
-                        <img src={logo} alt="Refine Logo" width="100%" />
+                        <div style={imageContainer}>
+                            <img src={logo} alt="Refine Logo" />
+                        </div>
                         <Card title={CardTitle} headStyle={{ borderBottom: 0 }}>
                             <Form<ILoginForm>
                                 layout="vertical"
@@ -69,7 +76,10 @@ export const LoginPage: React.FC = () => {
                                 >
                                     <Input
                                         size="large"
-                                        placeholder="Username"
+                                        placeholder={translate(
+                                            "pages.login.username",
+                                            "Username",
+                                        )}
                                     />
                                 </Form.Item>
                                 <Form.Item
@@ -131,7 +141,7 @@ export const LoginPage: React.FC = () => {
                                 <Text style={{ fontSize: 12 }}>
                                     {translate(
                                         "pages.login.noAccount",
-                                        "Still no account? Please go to",
+                                        "Don’t have an account?",
                                     )}{" "}
                                     <a href="#" style={{ fontWeight: "bold" }}>
                                         {translate(

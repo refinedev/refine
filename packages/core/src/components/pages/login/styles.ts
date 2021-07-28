@@ -16,3 +16,9 @@ export const titleStyles: CSSProperties = {
     fontSize: "30px",
     letterSpacing: "-0.04em",
 };
+
+export const imageContainer: CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+};
