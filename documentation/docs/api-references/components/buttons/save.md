@@ -55,7 +55,7 @@ Will look like this:
 </div>
 <br/>
 
-The `useForm` hook exposes `saveButtonProps` to be passed to <SaveButton> component which includes submitting the form action, button loading, and disable states. 
+The `useForm` hook exposes `saveButtonProps` to be passed to `<SaveButton>` component which includes submitting the form action, button loading, and disable states. 
 
 ## API Reference
 
