@@ -3,7 +3,6 @@ id: create
 title: Create
 ---
 
-import asideUsage from '@site/static/img/guides-and-concepts/basic-views/create/aside.png'
 import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/create/pageHeaderProps.png'
 import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/create/actionButtons.png'
 

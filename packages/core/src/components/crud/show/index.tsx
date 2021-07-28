@@ -13,7 +13,6 @@ import { useNavigation, useResourceWithRoute, useTranslate } from "@hooks";
 import { userFriendlyResourceName } from "@definitions";
 
 export interface ShowProps {
-    Aside?: React.ReactNode;
     title?: string;
     canEdit?: boolean;
     canDelete?: boolean;

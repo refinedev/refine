@@ -4,7 +4,6 @@ title: List
 sidebar_label: List
 ---
 
-import asideUsage from '@site/static/img/guides-and-concepts/basic-views/list/aside.png'
 import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/list/pageHeaderProps.png'
 
 `<List>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like a create button or giving the page titles.
@@ -120,6 +119,5 @@ export const App: React.FC = () => {
 | canCreate         | Adds create button                        | `boolean`                                                                             | If `<Resource>` is passed a create component, `true` else `false` |
 | createButtonProps | Adds props for create button              | [ButtonProps](https://ant.design/components/button/#API) & `{ resourceName: string }` | `<CreateButton />`                                                |
 | title             | Adds title                                | `string`                                                                              | Plural of `resource.name`                                         |
-| Aside             | Adds component to right side              | `React.ReactNode`                                                                     | `undefined`                                                       |
 | pageHeaderProps   | Passes properties for `<PageHeader>`      | [PageHeaderProps](https://ant.design/components/page-header/#API)                     | { ghost: false, [title](#title), extra: `<CreateButton />` }      |
 | resource          | [`Resource`](#) for API data interactions | `string`                                                                              | Resource name that it reads from the url.                         |

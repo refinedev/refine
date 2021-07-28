@@ -3,7 +3,6 @@ id: show
 title: Show
 ---
 
-import asideUsage from '@site/static/img/guides-and-concepts/basic-views/show/aside.png'
 import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/show/pageHeaderProps.png'
 import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/show/actionButtons.png'
 import isLoading from '@site/static/img/guides-and-concepts/basic-views/show/isLoading.png'
@@ -216,7 +215,6 @@ The `<Show>` component needs the `id` information for work properly, so if you u
 | canDelete       | Adds a delete button                                  | `boolean`                                                         | If `<Resource>` has `canDelete` prop it is `true` else `false`                     |
 | canEdit         | Adds an edit button                                   | `boolean`                                                         | If `<Resource>` has `canEdit` prop it is `true` else `false`                       |
 | title           | Adds a title                                          | `string`                                                          | `"Show"` prefix and singular of `resource.name`                                    |
-| Aside           | Adds a component to right side                        | `React.ReactNode`                                                 | `undefined`                                                                        |
 | actionButtons   | Gets passed to the `extra` property of the `<Card>`   | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
 | isLoading       | Gets passed to the `loading` property of the `<Card>` | `boolean`                                                         | `false`                                                                            |
 | pageHeaderProps | Passes props for `<PageHeader>`                       | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |

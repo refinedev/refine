@@ -3,7 +3,6 @@ id: edit
 title: Edit
 ---
 
-import asideUsage from '@site/static/img/guides-and-concepts/basic-views/edit/aside.png'
 import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/edit/pageHeaderProps.png'
 import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/edit/actionButtons.png'
 
