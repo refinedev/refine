@@ -857,6 +857,8 @@ In edit page, `useForm` hook initializes the form with current record values.
 
 <br />
 
+:::
+
 ## Creating a record
 
 Creating a record in **refine** follows a similar flow as editing records.

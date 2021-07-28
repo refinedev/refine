@@ -5,15 +5,17 @@ title: Custom Inputs
 
 import markdownInput from '@site/static/img/guides-and-concepts/components/inputs/custom-inputs/markdown-input.png';
 
-You can use custom components in table columns and form fields for working with custom data. For some data types, displaying and editing as plain text may cause user experience problems. Examples where custom component usage may be useful include: markdown (with markdown editor), json based rich text (draft, quill like editors), html (a wysiwyg html editor).
+For some data types, displaying and editing as plain text may cause user experience problems.  
 
-refine uses Ant Design's [`<Form>`](https://ant.design/components/form/) components to control and work with form data. Ant Design supports custom form items inside [`<Form.Item>`](https://ant.design/components/form/#Form.Item) components. These items should be controllable via their `value` prop and should implement `onChange` (or a custom callback name specified by `<Form.Item>`s [`trigger` prop](https://ant.design/components/form/#Form.Item)).
+Custom components may be useful when working with markdown (with markdown editor), json based rich text (draft, quill like editors), and html (a html editor). It can be used in table columns and form fields   
 
-[Refer to Ant Design docs for more detailed information about `<Form>`. &#8594](https://ant.design/components/form/)
+refine uses Ant Design's [`<Form>`](https://ant.design/components/form/) components to control and work with form data. Ant Design supports custom form items inside the [`<Form.Item>`](https://ant.design/components/form/#Form.Item) components. These items should be controllable via their `value` property and should implement `onChange` (or a custom callback name specified by `<Form.Item>`s [`trigger` prop](https://ant.design/components/form/#Form.Item)).
+
+[Refer to the Ant Design docs for more detailed information about `<Form>`. &#8594](https://ant.design/components/form/)
 
 ## Example
 
-In this example we'll demonstrate how to use custom input fields for markdown data by adding a markdown editor to edit and create forms.
+We will demonstrate how to use custom input fields for markdown data by adding a markdown editor to edit and create forms.
 
 ```tsx title="/src/pages/posts/edit.tsx"
 import React, { useState } from "react";
