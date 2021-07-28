@@ -13,6 +13,14 @@ module.exports = {
             copy({
                 targets: [{ src: "src/styles/styles.min.css", dest: "dist" }],
             }),
+            {
+                name: "watch-external",
+                buildStart() {
+                    this.addWatchFile(
+                        path.resolve(__dirname, "src/styles/styles.min.css"),
+                    );
+                },
+            },
         );
         config.plugins.unshift(images());
         return config;
