@@ -7,6 +7,7 @@
             "password": "Password",
             "remember": "Remember me",
             "forgotPassword": "Forgot password?",
+            "title": "Sign in your account",
             "noAccount": "Don’t have an account?"
         },
         "error": {
