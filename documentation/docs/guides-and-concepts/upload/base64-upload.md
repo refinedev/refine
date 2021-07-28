@@ -116,7 +116,7 @@ export interface IUser {
 You can change files to Base64 by using the `file2Base64` function.
 
 :::tip
-If `<Edit>` component is used instead of the `Create` component, a part of the form can be changed without changing the rest of the code.?
+An edit form can be made by using the `<Edit>` component instead of `<Create>` without changing the rest of the code.
 
 :::
 
