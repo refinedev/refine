@@ -27,6 +27,12 @@ export interface CreateProps {
     isLoading?: boolean;
 }
 
+/**
+ * `<Create>` provides us a layout to display the page.
+ * It does not contain any logic but adds extra functionalities like action buttons and giving titles to the page.
+ *
+ * @see {@link https://refine.dev/docs/api-references/components/basic-views/create} for more details.
+ */
 export const Create: React.FC<CreateProps> = ({
     title,
     actionButtons,
