@@ -63,7 +63,8 @@
         "draft": "Taslak",
         "rejected": "Reddedildi"
       },
-      "content": "İçerik"
+      "content": "İçerik",
+      "createdAt": "Yaratılma tarihi"
     },
     "titles": {
       "create": "Gönderi Oluştur",
