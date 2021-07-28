@@ -140,16 +140,17 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     };
 
     return (
-        <Show
-            Aside={
+        <Row gutter={[16, 16]}>
+            <Col lg={18} xs={24}>
+                <Show title="Order Detail" isLoading={isFetching}>
+                    {record && renderContent()}
+                </Show>
+            </Col>
+            <Col lg={6} xs={24}>
                 <Card title="Order History">
                     <Aside />
                 </Card>
-            }
-            title="Order Detail"
-            isLoading={isFetching}
-        >
-            {record && renderContent()}
-        </Show>
+            </Col>
+        </Row>
     );
 };

@@ -758,15 +758,22 @@ export const PostShow: React.FC<IResourceComponentsProps> = (props) => {
     const record = data?.data;
 
     return (
-        <Show isLoading={isLoading}>
-            <Title level={5}>Id</Title>
-            <Text>{record?.id}</Text>
+        <Row gutter={[16, 16]}>
+            <Col lg={18} xs={24}>
+                <Show isLoading={isLoading}>
+                    <Title level={5}>Id</Title>
+                    <Text>{record?.id}</Text>
 
-            <Title level={5}>Title</Title>
-            <Text>{record?.title}</Text>
+                    <Title level={5}>Title</Title>
+                    <Text>{record?.title}</Text>
 
-            <Title level={5}>Content</Title>
-            <MarkdownField value={record?.content}></MarkdownField>
-        </Show>
+                    <Title level={5}>Content</Title>
+                    <MarkdownField value={record?.content}></MarkdownField>
+                </Show>
+            </Col>
+            <Col lg={6} xs={24}>
+                <Aside />
+            </Col>
+        </Row>
     );
 };

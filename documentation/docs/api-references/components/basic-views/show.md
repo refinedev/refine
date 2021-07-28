@@ -53,31 +53,6 @@ export const Show: React.FC = () => {
 };
 ```
 
-### `Aside`
-
-It allows adding a component to the right of the `<Show>` component.
-
-```tsx
-import { Show, Card } from "@pankod/refine";
-
-const Aside: React.FC = () => {
-    return (
-        <Card title="Post User Details" extra={<a href="#">More</a>}>
-            <p>Here you can give useful information about the post.</p>
-        </Card>
-    );
-};
-
-export const Show: React.FC = () => {
-    return <Show Aside={Aside}>...</Show>;
-};
-```
-
-<div>
-    <img src={asideUsage} alt="Aside Usage"/>
-</div>
-<br/>
-
 ### `actionButtons`
 
 `<Show>` uses the Ant Design [`<Card>`](https://ant.design/components/card/) component so you can customize the `action` property with the properties of `actionButtons`. By default, the `action` property of the `<Card>` component shows nothing in the `<Show>` component.
@@ -236,14 +211,14 @@ The `<Show>` component needs the `id` information for work properly, so if you u
 
 ### Properties
 
-| Property        | Description                                  | Type                                                              | Default                                                                            |
-| --------------- | -------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| canDelete       | Adds a delete button                           | `boolean`                                                         | If `<Resource>` has `canDelete` prop it is `true` else `false`                     |
-| canEdit         | Adds an edit button                             | `boolean`                                                         | If `<Resource>` has `canEdit` prop it is `true` else `false`                       |
-| title           | Adds a title                                   | `string`                                                          | `"Show"` prefix and singular of `resource.name`                                    |
-| Aside           | Adds a component to right side                 | `React.ReactNode`                                                 | `undefined`                                                                        |
+| Property        | Description                                           | Type                                                              | Default                                                                            |
+| --------------- | ----------------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| canDelete       | Adds a delete button                                  | `boolean`                                                         | If `<Resource>` has `canDelete` prop it is `true` else `false`                     |
+| canEdit         | Adds an edit button                                   | `boolean`                                                         | If `<Resource>` has `canEdit` prop it is `true` else `false`                       |
+| title           | Adds a title                                          | `string`                                                          | `"Show"` prefix and singular of `resource.name`                                    |
+| Aside           | Adds a component to right side                        | `React.ReactNode`                                                 | `undefined`                                                                        |
 | actionButtons   | Gets passed to the `extra` property of the `<Card>`   | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
 | isLoading       | Gets passed to the `loading` property of the `<Card>` | `boolean`                                                         | `false`                                                                            |
-| pageHeaderProps | Passes props for `<PageHeader>`              | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
-| recordItemId    | Record id for `<RefreshButton>`              | `string`                                                          |                                                                                    |
-| resource        | [`Resource`](#) for API data interactions    | `string`                                                          | Resource name that it reads from the URL.                                          |
+| pageHeaderProps | Passes props for `<PageHeader>`                       | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
+| recordItemId    | Record id for `<RefreshButton>`                       | `string`                                                          |                                                                                    |
+| resource        | [`Resource`](#) for API data interactions             | `string`                                                          | Resource name that it reads from the URL.                                          |
