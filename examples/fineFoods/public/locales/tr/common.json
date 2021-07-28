@@ -1,13 +1,13 @@
 {
   "pages": {
     "login": {
-      "login": "Giriş",
+      "signin": "Giriş",
       "signup": "Kayıt",
-      "username": "Kullanıcı Adı",
+      "email": "Email",
       "password": "Şifre",
       "remember": "Beni Hatırla",
       "forgotPassword": "Şifremi unuttum",
-      "noAccount": "Hala üye olmadın mı? Hadi tıkla"
+      "noAccount": "Hesabın yok mu?"
     },
     "error": {
       "info": "{{action}} sayfasını {{resource}} kaynağına eklemeyi unutmuş olabilirsiniz.",

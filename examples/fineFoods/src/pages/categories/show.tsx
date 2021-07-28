@@ -21,12 +21,12 @@ export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
         return (
             <>
                 <Title level={5}>{t("categories:fields.id")}</Title>
-                <Text>{record.id}</Text>
+                <Text>{record?.id}</Text>
                 <Title level={5}>{t("categories:fields.title")}</Title>
-                <Text>{record.title}</Text>
+                <Text>{record?.title}</Text>
                 <Title level={5}>{t("categories:fields.isActive")}</Title>
                 <Text>
-                    <BooleanField value={record.isActive} />
+                    <BooleanField value={record?.isActive} />
                 </Text>
             </>
         );

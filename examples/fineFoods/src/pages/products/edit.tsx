@@ -17,11 +17,7 @@ import { ICategory, IUser } from "interfaces";
 
 export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
-    const {
-        formProps,
-        saveButtonProps,
-        queryResult: { isFetching },
-    } = useForm<IUser>();
+    const { formProps, saveButtonProps, queryResult } = useForm<IUser>();
 
     const apiUrl = useApiUrl();
 
@@ -30,7 +26,10 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
     });
 
     return (
-        <Edit isLoading={isFetching} saveButtonProps={saveButtonProps}>
+        <Edit
+            isLoading={queryResult?.isFetching}
+            saveButtonProps={saveButtonProps}
+        >
             <Form
                 {...formProps}
                 layout="vertical"
