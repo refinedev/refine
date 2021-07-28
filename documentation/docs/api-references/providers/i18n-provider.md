@@ -161,13 +161,14 @@ Before we get started, let's look at the translations that refine uses in compon
 {
     "pages": {
         "login": {
-            "login": "Login",
+            "signin": "Sign in",
             "signup": "Sign up",
             "username": "Username",
             "password": "Password",
             "remember": "Remember me",
             "forgotPassword": "Forgot password?",
-            "noAccount": "Still no account? Please go to"
+            "title": "Sign in your account",
+            "noAccount": "Don’t have an account?"
         },
         "error": {
             "info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
@@ -245,6 +246,7 @@ values={[{ label: "English", value: "en" }, { label: "Turkish", value: "tr" }]}>
             "password": "Password",
             "remember": "Remember me",
             "forgotPassword": "Forgot password?",
+            "title": "Sign in your account",
             "noAccount": "Don’t have an account?"
         },
         "error": {
@@ -330,6 +332,7 @@ values={[{ label: "English", value: "en" }, { label: "Turkish", value: "tr" }]}>
             "password": "Şifre",
             "remember": "Beni Hatırla",
             "forgotPassword": "Şifremi unuttum",
+            "title": "Hesabınıza Giriş Yapın",
             "noAccount": "Hesabın yok mu?"
         },
         "error": {
