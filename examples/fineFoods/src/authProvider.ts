@@ -4,11 +4,8 @@ export const TOKEN_KEY = "refine-auth";
 
 export const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
-        if (email === "admin" && password === "admin") {
-            localStorage.setItem(TOKEN_KEY, email);
-            return Promise.resolve();
-        }
-        return Promise.reject(new Error("email: admin, password: admin"));
+        localStorage.setItem(TOKEN_KEY, `${email}-${password}`);
+        return Promise.resolve();
     },
     logout: () => {
         localStorage.removeItem(TOKEN_KEY);
