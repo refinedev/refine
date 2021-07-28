@@ -63,7 +63,8 @@
         "draft": "Draft",
         "rejected": "Rejected"
       },
-      "content": "Content"
+      "content": "Content",
+      "createdAt": "Created At"
     },
     "titles": {
       "create": "Create Post",
