@@ -37,6 +37,17 @@ export type UseDrawerFormReturnType<
     formLoading: boolean;
 };
 
+/**
+ * `useDrawerForm` hook allows you to manage a form within a drawer. It returns Ant Design {@link https://ant.design/components/form/ Form} and {@link https://ant.design/components/drawer/ Drawer} components props.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/form/useDrawerForm} for more details.
+ *
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TVariables - Values for params. default `{}`
+ *
+ *
+ */
 export const useDrawerForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,

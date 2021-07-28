@@ -6,12 +6,12 @@ title: useEditableTable
 import editButton from '@site/static/img/hooks/useEditableTable/edit-button.gif';
 import rowClickEdit from '@site/static/img/hooks/useEditableTable/row-click-edit.gif';
 
-`useEditableTable`, [`useTable`](useTable.md)ın sağladığı özelliklerin üzerine, tablo üzerinde düzenleme özelliğini kolaylıkla implemente edebilmenizi sağlar. `useEditableTable`, Ant Design'ın [`<Table>`](https://ant.design/components/table/) ve [`<Form>`](https://ant.design/components/form/) componentlerinde kullanılabilen proplar döndürür.
+`useEditeableTable` allows you to implement edit feature on the table with ease, on top of all the features that [`useTable`](useTable.md) provides. 
+`useEditableTable` return properties that can be used on Ant Desing's [`<Table>`](https://ant.design/components/table/) and [`<Form>`](https://ant.design/components/form/) components.
 
-## Butonlarla Düzenleme
+## Editing with buttons
 
-Örneğin, `id` ve `title` değerlerini gösterdiğimiz aşağıdaki `Post` verisini listeleme sayfası yapmak istersek:
-
+Let's say that we want to make the `Post` data where we show the `id` and `title` values a listing page:
 ```tsx title="/interfaces/index.d.ts"
 export interface IPost {
     id: string;
@@ -19,7 +19,7 @@ export interface IPost {
 }
 ```
 
-Bu kez, düzenleme özelliğini ekleyebilmek için, `<Table>` componentini bir `<Form>` componenti ile kaplamamız ve `useEditableTable`dan gelen propları ilgili componentlere aktarmamız gerekiyor:
+This time, to add the edit feature, we have to cover the `<Table>` component with a `<Form>`component and pass the properties coming from `useEditableTable` to the corresponding components:
 
 ```tsx title="/pages/posts/list.tsx"
 import { List, Table, TextField, useTable } from "@pankod/refine";
@@ -45,7 +45,9 @@ export const PostList: React.FC = () => {
 };
 ```
 
-Düzenleme butonları için bir sütun ekleyelim:
+<br />
+
+Now lets add a column for edit buttons:
 
 ```tsx title="/pages/posts/list.tsx"
 import {
@@ -122,10 +124,12 @@ export const PostList: React.FC = () => {
 ```
 
 :::tip
-`useEditableTable`dan dönen `isEditing` fonksiyonu, bir satırın o an düzenleme modunda olup olmadığını kontrol edebilmemizi sağlar.
+`isEditing` function that returns from `useEditableTable` lets us check whether a line is currently in edit mode or not.
 :::
 
-Şimdiye kadar düzenlenebilir halde değil. Düzenleme olabilecek sütunları, `isEditing` kullanarak şartlı render ile, eğer orada şu an bir düzenleme yapılıyorsa, içinde bir `<Form.Item>` ile göstermeliyiz:
+<br />
+
+For now, our post is not editable yet. If a post is being edited, we must show editable columns inside a `<Form.Item>` using conditional rendering:
 
 ```tsx title="/pages/posts/list.tsx"
 import {
@@ -218,25 +222,24 @@ export const PostList: React.FC = () => {
 };
 ```
 
-Bu sayede, kullanıcı bir düzenleme butonuna tıkladığında, `isEditing(satırId)` ilgili satır için `true` döndürecek, düzenleme yapılan satırlarda `<TextInput>` componenti görüntülenecektir. Düzenleme bittiğinde, `<SaveButton>`a tıklanarak yeni değer kaydedilebilir.
+With this, when a user clicks on the edit button, `isEditing(lineId)` will turn `true` for the relevant line. This will also cause `<TextInput>` to show up on the line thats being edited. When the editing is finished, new value can be saved by clicking `<SaveButton>`.
 
 :::tip
-`<Table.Column>` componentine özel `render` propu vererek, o sütundaki veriyi istediğiniz şekilde renderleyebilirsiniz.
-
-[<Table.Column\> hakkında daha fazla bilgi için Ant Design dökümantasyonuna başvurun >](https://ant.design/components/table/#Column)
+By giving the `<Table.Column>` component a unique `render` property, you can render the value in that column however you want.
+Refer to [`<Table.Column>`](https://ant.design/components/table/#Column) documentation for more information.
 :::
 
 <div style={{textAlign: "center"}}>
     <img src={editButton} />
 </div>
 
-## Satıra Tıklayarak Düzenleme
+## Editing by clicking to row
 
-`useEditableTable`dan dönen `setEditId` fonksiyonu ile programatik olarak, `id` değeri verilen bir satır, düzenleme moduna alınabilir.
+A line with the `id` value can be put to edit mode programatically by using the `setEditId` function that returns from `useEditableTable`.
 
-Satıra tıklandığında satırı düzenleme moduna almak için, `<Table>` componentinin `onRow` propundan faydalanılabilir. `onRow` propuna verilen fonksiyon, satırlara her tıklandığında, hangi satıra tıklandığı bilgisi ile tekrar çağırılır.
+The `onRow` property of the `<Table>` component can be used to put a line to editing mode when its clicked on. Function given to the `onRow`property is called everytime one of these lines are clicked on, with the information of which line was clicked on.
 
-Satıra tıklandığında, `setEditId` kullanarak o satırı düzenleme moduna alabiliriz:
+We can use `setEditId` to put a line to edit mode whenever its clicked on.
 
 ```tsx title="/pages/posts/list.tsx"
 import {

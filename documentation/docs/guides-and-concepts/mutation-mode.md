@@ -6,7 +6,7 @@ title: Mutation Mode
 import test from '@site/static/img/guides-and-concepts/mutation-mode/test.png';
 
 ## Overview
-Mutation mode determines the mode with which the mutations run. Mutations can run under 3 different modes: `pessimistic`, `optimistic` and `undoable`.  
+Mutation mode determines which mode the mutation runs with. Mutations can run under 3 different modes: `pessimistic`, `optimistic` and `undoable`.  
 Each mode correspondes to a different type of user experience.
 
 ## Modes

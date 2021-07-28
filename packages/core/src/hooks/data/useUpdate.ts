@@ -44,6 +44,18 @@ export type UseUpdateReturnType<
     UpdateContext
 >;
 
+/**
+ * `useUpdate` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for update mutations.
+ *
+ * It uses `update` method as mutation function from the `dataProvider` which is passed to `<Refine>`.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/data/useUpdate} for more details.
+ *
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TVariables - Values for mutation function
+ *
+ */
 export const useUpdate = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,

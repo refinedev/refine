@@ -41,7 +41,6 @@ import {
     useMany,
     IResourceComponentsProps,
     useImport,
-    useCreate,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -90,12 +89,17 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     });
 
     const { tableProps, sorter, filters } = useTable<IPost>({
-        initialCurrent: 3,
-        initialPageSize: 50,
         initialSorter: [
             {
                 field: "createdAt",
                 order: "desc",
+            },
+        ],
+        initialFilter: [
+            {
+                field: "category.id",
+                value: [1, 2],
+                operator: "in",
             },
         ],
     });
@@ -103,9 +107,13 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
 
-    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
-        enabled: categoryIds.length > 0,
-    });
+    const { data, isLoading } = useMany<ICategory>(
+        "categories",
+        ["1", "2"],
+        /* categoryIds, */ {
+            enabled: categoryIds.length > 0,
+        },
+    );
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
@@ -190,7 +198,12 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                         );
                     }}
                     filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
+                        <FilterDropdown
+                            {...props}
+                            mapValue={(selectedKeys) =>
+                                selectedKeys.map((i) => parseInt(i.toString()))
+                            }
+                        >
                             <Select
                                 style={{ minWidth: 200 }}
                                 mode="multiple"
@@ -212,7 +225,12 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     key="status"
                     render={(value) => <TagField value={value} />}
                     filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
+                        <FilterDropdown
+                            {...props}
+                            mapValue={(selectedKeys) => {
+                                return selectedKeys[0];
+                            }}
+                        >
                             <Radio.Group>
                                 <Radio value="published">
                                     {translate(

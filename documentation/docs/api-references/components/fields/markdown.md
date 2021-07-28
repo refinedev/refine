@@ -9,7 +9,7 @@ This field lets you display markdown content. It supports [GitHub Flavored Markd
 
 ## Usage
 
-Let's see how to use `<MarkdownField>` in a show page.
+Let's see how we can use `<MarkdownField>` in a show page.
 
 ```tsx title="pages/posts/show.tsx"
 import {

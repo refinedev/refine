@@ -10,6 +10,8 @@ import changeLanguage from '@site/static/img/i18n/changing-language.gif';
 
 refine is capable of supporting any i18n framework but a `i18nProvider` according to the relevant library must be created.
 
+The default language of refine is currently English. If you want to use other languages, follow the instructions above. If your application is in English, you don't need to create an i18nProvider.
+
 If you want to add i18n support in the app, refine expects the `i18nProvider` type as follows.
 
 ```ts
@@ -45,10 +47,6 @@ const App: React.FC = () => {
     );
 };
 ```
-
-:::note
-The default language of refine is currently English. If you want to use other languages, follow the instructions above. If your application is in English, you don't need to create an i18nProvider. ???
-:::
 
 ## Example
 

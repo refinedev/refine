@@ -7,7 +7,7 @@ import importButton from '@site/static/img/guides-and-concepts/csv-import/import
 
 You can easily import csv files for any resource by using **refine**'s customizable `useImport` hook, optionally with `<ImportButton>` component. `useImport` hook returns the necessary props for `<ImportButton>` component. **refine** uses [paparse](https://www.papaparse.com/) parser under the hood to parse csv files.
 
-You can call `useImport` hook and add an `<ImportButton>` with props returned from `useImport` on a list page, configured with a mapping function to format the files data into API's data. When the button gets triggered, it creates the imported resources using `create` or `createMany` data provider methods under the hood.
+You can call the `useImport` hook and add an `<ImportButton>` with properties returned from `useImport` on a list page, configured with a mapping function to format the files data into API's data. When the button gets triggered, it creates the imported resources using `create` or `createMany` data provider methods under the hood.
 
 ## Usage
 
@@ -126,7 +126,7 @@ export const PostList: React.FC = () => {
 }
 ```
 
-And it's done. When you click on the button and provide a csv file of the headers `"title","content","status","categoryId","userId"`, it should be mapped and imported. Mapped data is the request payload. Either as part of an array or by itself as part of every request. In our example, it fires 4 `POST` requests like this:
+And it's done. When you click on the button and provide a csv file of the headers `"title"`,`"content"`,`"status"`,`"categoryId"` and `"userId"`, it should be mapped and imported. Mapped data is the request payload. Either as part of an array or by itself as part of every request. In our example, it fires 4 `POST` requests like this:
 
 ```json title="POST https://api.fake-rest.refine.dev/posts"
 {
