@@ -57,7 +57,7 @@ The button text is defined automatically by *refine* based on *`<Resource>`* com
 
 ### `resourceName`
 
-It is used to redirect the app to the endpoint of the given resource ?name. By default, the app redirects to defined by the name property of `<Resource>` component.
+Redirection endpoint(`resourceName/list`) is defined by `resourceName` property. By default, <ListButton> uses `name` property of the <Resource> component as an endpoint to redirect after clicking.
 
 ```tsx
 import { ListButton } from "@pankod/refine";
