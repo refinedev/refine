@@ -40,34 +40,6 @@ export const Create: React.FC = () => {
 };
 ```
 
-
-
-### `Aside`
-
-It allows adding a component to the right of the `<Edit>` component.
-
-```tsx
-import { Edit, Card } from "@pankod/refine";
-
-const Aside: React.FC = () => {
-    return (
-        <Card title="Post Create Details" extra={<a href="#">More</a>}>
-            <p>Here you can give useful information about post you are creating.</p>
-        </Card>
-    );
-};
-
-export const Create: React.FC = () => {
-    return <Create Aside={Aside}>...</Create>;
-};
-```
-
-<br/>
-<div>
-    <img src={asideUsage} alt="Aside Usage"/>
-</div>
-<br/>
-
 ### `actionButtons`
 
 `<Create>` uses the Ant Design [`<Card>`](https://ant.design/components/card) component. The `action` prop of the `<Card>` component shows `<SaveButton>` and `<DeleteButton>` depending on your resource definition on the `<Resource>` components. If you want to use other things instead of these buttons, you can use the `actionButton` property like the below code.
@@ -166,7 +138,6 @@ export const App: React.FC = () => {
 | --------------- | ----------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | saveButtonProps | Adds props for create button              | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton>`                                                                     |
 | title           | Adds title                                | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                    |
-| Aside           | Adds a component to right side             | `React.ReactNode`                                                 | `undefined`                                                                        |
-| actionButtons   | Passes the props for `<PageHeader>`           | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
-| pageHeaderProps | Passes the props for `<PageHeader>`           | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
+| actionButtons   | Passes the props for `<PageHeader>`       | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
+| pageHeaderProps | Passes the props for `<PageHeader>`       | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
 | resource        | [`Resource`](#) for API data interactions | `string`                                                          | Resource name that it reads from the URL.                                          |

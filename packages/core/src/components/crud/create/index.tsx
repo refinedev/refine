@@ -7,8 +7,6 @@ import {
     PageHeader,
     PageHeaderProps,
     Tag,
-    Row,
-    Col,
     Spin,
 } from "antd";
 
@@ -23,7 +21,6 @@ export interface CreateProps {
     saveButtonProps?: ButtonProps;
     pageHeaderProps?: PageHeaderProps;
     resource?: string;
-    Aside?: React.ReactNode;
     isLoading?: boolean;
 }
 
@@ -34,7 +31,6 @@ export const Create: React.FC<CreateProps> = ({
     children,
     pageHeaderProps,
     resource: resourceFromProps,
-    Aside,
     isLoading = false,
 }) => {
     const { goBack } = useNavigation();
@@ -62,47 +58,41 @@ export const Create: React.FC<CreateProps> = ({
     }
 
     return (
-        <Row gutter={[16, 16]}>
-            <Col flex="1 1 200px">
-                <PageHeader
-                    ghost={false}
-                    onBack={routeFromAction ? goBack : undefined}
-                    tags={tags}
-                    title={
-                        title ??
-                        translate(
-                            `${resource.name}.titles.create`,
-                            `Create ${userFriendlyResourceName(
-                                resource.name,
-                                "singular",
-                            )}`,
-                        )
-                    }
-                    {...pageHeaderProps}
-                >
-                    <Spin spinning={isLoading}>
-                        <Card
-                            actions={[
-                                <Space
-                                    key="action-buttons"
-                                    style={{ float: "right", marginRight: 24 }}
-                                >
-                                    {actionButtons ?? (
-                                        <SaveButton
-                                            {...saveButtonProps}
-                                            htmlType="submit"
-                                        />
-                                    )}
-                                </Space>,
-                            ]}
+        <PageHeader
+            ghost={false}
+            onBack={routeFromAction ? goBack : undefined}
+            tags={tags}
+            title={
+                title ??
+                translate(
+                    `${resource.name}.titles.create`,
+                    `Create ${userFriendlyResourceName(
+                        resource.name,
+                        "singular",
+                    )}`,
+                )
+            }
+            {...pageHeaderProps}
+        >
+            <Spin spinning={isLoading}>
+                <Card
+                    actions={[
+                        <Space
+                            key="action-buttons"
+                            style={{ float: "right", marginRight: 24 }}
                         >
-                            {children}
-                        </Card>
-                    </Spin>
-                </PageHeader>
-            </Col>
-
-            {Aside && <Col flex="0 1 300px">{Aside}</Col>}
-        </Row>
+                            {actionButtons ?? (
+                                <SaveButton
+                                    {...saveButtonProps}
+                                    htmlType="submit"
+                                />
+                            )}
+                        </Space>,
+                    ]}
+                >
+                    {children}
+                </Card>
+            </Spin>
+        </PageHeader>
     );
 };
