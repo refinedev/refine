@@ -10,7 +10,7 @@ This component accepts layout customizations to further customize the layout par
 
 ## Usage
 
-Can be used inside custom pages to use global layout with all its customizations.
+`<LayoutWrapper>` can be used inside custom pages to use global layout with all its customizations.
 
 An example use in a custom page may look like this:
 
