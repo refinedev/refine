@@ -5,7 +5,7 @@ title: Theme
 
 Ant Design allows you to customize many of its [less variables](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less). To be able to theme Ant Design, instead of importing Ant Design's compiled css files, you should import its less files and override the values of _less variables_ contained within these files. You should configure your bundler for handling less files to override its variables.
 
-[Refer to Ant Design documentation for more information about customizing Ant Design theme. &#8594](https://ant.design/docs/react/customize-theme)
+[Refer to the Ant Design documentation for more information about customizing Ant Design theme. &#8594](https://ant.design/docs/react/customize-theme)
 
 In this example, we'll be demonstrating theming with `less` using [CRACO (Create React App Configuration Override)](https://github.com/gsoft-inc/craco) as our customization layer for [Create React App](https://github.com/facebook/create-react-app).
 
@@ -23,7 +23,7 @@ First you should install CRACO:
 npm install @craco/craco --save
 ```
 
-And in your `package.json` file, update the calls from `react-scripts` to `craco`:
+Then in your `package.json` file, update the calls from `react-scripts` to `craco`:
 
 ```json title="package.json"
   "scripts": {
@@ -36,14 +36,15 @@ And in your `package.json` file, update the calls from `react-scripts` to `craco
 
 You can then configure your application with many community maintained CRACO plugins.
 
-You should install [`craco-less`](https://github.com/DocSpring/craco-less) and add it to `craco.config.js` to enable `less` support.
+You also have to install [`craco-less`](https://github.com/DocSpring/craco-less) and add it to `craco.config.js` to enable `less` support.
 
 ```bash
 npm install craco-less --save
 ```
 
 <br />
-Then create the `craco.config.js` file:
+
+Now you need to create the `craco.config.js` file:
 
 ```ts title="craco.config.js"
 const CracoLessPlugin = require("craco-less");
@@ -89,7 +90,7 @@ Then, execute `npm start` to start your application. Since `craco-less` is activ
 
 ## Overriding Variables
 
-All less variables are found [here](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less). Some of the major variables you can override:
+All less variables are found [here](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less). Here are some of the major variables you can override:
 
 ```less
 @primary-color: #1890ff; // primary color for all components
@@ -128,7 +129,7 @@ You can just change variables values in `less` files. Add these contents to your
 
 ### Variable overrides in `craco.config.js`
 
-Or you can use `craco.config.js` to change variable values. To change the variable named `@primary-color`, you can use `modifyVars` property of [`lessOptions`](https://github.com/DocSpring/craco-less#configuration):
+Or you can use `craco.config.js` to change variable values. To change the variable named `@primary-color`, you can use the `modifyVars` property of [`lessOptions`](https://github.com/DocSpring/craco-less#configuration):
 
 ```ts title="craco.config.js"
 const CracoLessPlugin = require("craco-less");
@@ -151,7 +152,7 @@ module.exports = {
 };
 ```
 
-All variable overrides configured in `lessOptions.modifyVars` always have higher precedence than overrides in `less` files.
+All variable overrides configured in `lessOptions.modifyVars` always have higher precedence than the overrides in `less` files.
 
 ## Live Codesandbox Example
 
