@@ -40,7 +40,7 @@ export const RecentActivity: React.FC = () => {
                 return <span>loading...</span>;
             }
 
-            return user.fullName;
+            return user?.fullName;
         };
 
         return (

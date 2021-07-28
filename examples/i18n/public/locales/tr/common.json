@@ -1,13 +1,13 @@
 {
     "pages": {
         "login": {
-            "login": "Giriş",
+            "signin": "Giriş",
             "signup": "Kayıt",
             "username": "Kullanıcı Adı",
             "password": "Şifre",
             "remember": "Beni Hatırla",
             "forgotPassword": "Şifremi unuttum",
-            "noAccount": "Hala üye olmadın mı? Hadi tıkla"
+            "noAccount": "Hesabın yok mu?"
         },
         "error": {
             "info": "{{action}} sayfasını {{resource}} kaynağına eklemeyi unutmuş olabilirsiniz.",
@@ -63,7 +63,8 @@
                 "draft": "Taslak",
                 "rejected": "Reddedildi"
             },
-            "content": "İçerik"
+            "content": "İçerik",
+            "createdAt": "Yaratılma tarihi"
         },
         "titles": {
             "create": "Gönderi Oluştur",

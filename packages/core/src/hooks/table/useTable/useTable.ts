@@ -177,8 +177,6 @@ export const useTable = <
             pagination: {
                 ...tablePropsSunflower.pagination,
                 total: data?.total,
-                size: "small",
-                position: ["bottomCenter"],
             },
         },
         tableQueryResult: queryResult,

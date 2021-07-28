@@ -23,6 +23,12 @@ export type DeleteButtonProps = ButtonProps & {
     mutationMode?: MutationMode;
 } & SuccessErrorNotification;
 
+/**
+ * `<DeleteButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} and {@link https://ant.design/components/button/ `<Popconfirm>`} components.
+ * When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the `useDelete` method provided by your `dataProvider`.
+ *
+ * @see {@link https://refine.dev/docs/api-references/components/buttons/delete-button} for more details.
+ */
 export const DeleteButton: FC<DeleteButtonProps> = ({
     resourceName: propResourceName,
     recordItemId,
