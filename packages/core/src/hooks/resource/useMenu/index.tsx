@@ -22,7 +22,14 @@ export const useMenu: () => useMenuReturnType = () => {
         location.pathname.startsWith(`/resources/${el.route}`),
     );
 
-    const selectedKey = `/resources/${selectedResource?.route ?? ""}`;
+    let selectedKey: string;
+    if (selectedResource?.route) {
+        selectedKey = `/resources/${selectedResource?.route}`;
+    } else if (location.pathname === "/") {
+        selectedKey = "dashboard";
+    } else {
+        selectedKey = "notfound";
+    }
 
     const menuItems: IMenuItem[] = React.useMemo(
         () => [

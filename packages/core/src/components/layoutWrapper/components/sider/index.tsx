@@ -40,11 +40,16 @@ export const Sider: React.FC = () => {
                         return;
                     }
 
+                    if (key === "dashboard") {
+                        push("/");
+                        return;
+                    }
+
                     push(key as string);
                 }}
             >
-                {menuItems.map(({ icon, route, label }) => (
-                    <Menu.Item key={route} icon={icon}>
+                {menuItems.map(({ icon, label, key }) => (
+                    <Menu.Item key={key} icon={icon}>
                         {label}
                     </Menu.Item>
                 ))}
