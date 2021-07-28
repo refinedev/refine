@@ -697,52 +697,58 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     ];
 
     return (
-        <Edit
-            {...props}
-            canDelete
-            Aside={() => <Aside />}
-            actionButtons={
-                <>
-                    {current > 0 && (
-                        <Button onClick={() => gotoStep(current - 1)}>
-                            {translate(
-                                "common:resources.posts.forms.prevButton",
+        <Row gutter={[16, 16]}>
+            <Col lg={18} xs={24}>
+                <Edit
+                    {...props}
+                    canDelete
+                    actionButtons={
+                        <>
+                            {current > 0 && (
+                                <Button onClick={() => gotoStep(current - 1)}>
+                                    {translate(
+                                        "common:resources.posts.forms.prevButton",
+                                    )}
+                                </Button>
                             )}
-                        </Button>
-                    )}
-                    {current < formList.length - 1 && (
-                        <Button onClick={() => gotoStep(current + 1)}>
-                            {translate(
-                                "common:resources.posts.forms.nextButton",
+                            {current < formList.length - 1 && (
+                                <Button onClick={() => gotoStep(current + 1)}>
+                                    {translate(
+                                        "common:resources.posts.forms.nextButton",
+                                    )}
+                                </Button>
                             )}
-                        </Button>
-                    )}
-                    {current === formList.length - 1 && (
-                        <SaveButton
-                            style={{ marginRight: 10 }}
-                            loading={isLoading || formLoading}
-                            onClick={() => submit()}
-                            disabled={formLoading}
-                        />
-                    )}
-                </>
-            }
-        >
-            <Steps {...stepsProps}>
-                <Step title="Content" />
-                <Step title="Relations" />
-            </Steps>
-
-            <div style={{ marginTop: 60 }}>
-                <Form
-                    {...formProps}
-                    wrapperCol={{ span: 24 }}
-                    layout="vertical"
+                            {current === formList.length - 1 && (
+                                <SaveButton
+                                    style={{ marginRight: 10 }}
+                                    loading={isLoading || formLoading}
+                                    onClick={() => submit()}
+                                    disabled={formLoading}
+                                />
+                            )}
+                        </>
+                    }
                 >
-                    {formList[current]}
-                </Form>
-            </div>
-        </Edit>
+                    <Steps {...stepsProps}>
+                        <Step title="Content" />
+                        <Step title="Relations" />
+                    </Steps>
+
+                    <div style={{ marginTop: 60 }}>
+                        <Form
+                            {...formProps}
+                            wrapperCol={{ span: 24 }}
+                            layout="vertical"
+                        >
+                            {formList[current]}
+                        </Form>
+                    </div>
+                </Edit>
+            </Col>
+            <Col lg={6} xs={24}>
+                <Aside />
+            </Col>
+        </Row>
     );
 };
 
