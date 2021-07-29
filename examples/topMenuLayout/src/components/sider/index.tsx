@@ -8,12 +8,7 @@ export const CustomSider: React.FC = () => {
     return (
         <>
             <Title collapsed={false} />
-            <Menu
-                theme="dark"
-                defaultSelectedKeys={["dashboard"]}
-                selectedKeys={[selectedKey]}
-                mode="horizontal"
-            >
+            <Menu selectedKeys={[selectedKey]} mode="horizontal">
                 {menuItems.map(({ icon, route, label }) => (
                     <Menu.Item key={route} icon={icon}>
                         <Link to={route}>{label}</Link>
