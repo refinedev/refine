@@ -12,23 +12,32 @@ Let's see how we can use `<UrlField>` with an example:
 ```tsx title="pages/posts/list.tsx"
 import * as React from "react";
 
-import { List, Table, useTable, UrlField } from "@pankod/refine";
+import {
+    List,
+    Table,
+    useTable,
+    //highlight-next-line
+    UrlField 
+} from "@pankod/refine";
+
+import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     return (
         <List>
-            <Table<IPost> {...tableProps} rowKey="id">
-                <Table.Column<IPost>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column
                     dataIndex="title"
                     title="Title"
                     key="title"
                 />
-                <Table.Column<IPost>
+                <Table.Column
                     dataIndex={["image", "0", "url"]}
                     title={"Image"}
                     key="image"
+                    //highlight-next-line
                     render={(value: string) => <UrlField value={value} />}
                 />
             </Table>
