@@ -41,6 +41,8 @@ import {
     useMany,
     IResourceComponentsProps,
     useImport,
+    Row,
+    Col,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -463,57 +465,63 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     ];
 
     return (
-        <Create
-            actionButtons={
-                <>
-                    {current > 0 && (
-                        <Button
-                            onClick={() => {
-                                gotoStep(current - 1);
-                            }}
-                        >
-                            {translate(
-                                "common:resources.posts.forms.prevButton",
+        <Row gutter={[16, 16]}>
+            <Col lg={18} xs={24}>
+                <Create
+                    actionButtons={
+                        <>
+                            {current > 0 && (
+                                <Button
+                                    onClick={() => {
+                                        gotoStep(current - 1);
+                                    }}
+                                >
+                                    {translate(
+                                        "common:resources.posts.forms.prevButton",
+                                    )}
+                                </Button>
                             )}
-                        </Button>
-                    )}
-                    {current < formList.length - 1 && (
-                        <Button
-                            onClick={() => {
-                                gotoStep(current + 1);
-                            }}
-                        >
-                            {translate(
-                                "common:resources.posts.forms.nextButton",
+                            {current < formList.length - 1 && (
+                                <Button
+                                    onClick={() => {
+                                        gotoStep(current + 1);
+                                    }}
+                                >
+                                    {translate(
+                                        "common:resources.posts.forms.nextButton",
+                                    )}
+                                </Button>
                             )}
-                        </Button>
-                    )}
-                    {current === formList.length - 1 && (
-                        <SaveButton
-                            style={{ marginRight: 10 }}
-                            loading={isLoading || formLoading}
-                            onClick={() => submit()}
-                        />
-                    )}
-                </>
-            }
-            Aside={() => <Aside />}
-        >
-            <Steps {...stepsProps}>
-                <Step title="Content" />
-                <Step title="Relations" />
-            </Steps>
-
-            <div style={{ marginTop: 60 }}>
-                <Form
-                    {...formProps}
-                    wrapperCol={{ span: 24 }}
-                    layout="vertical"
+                            {current === formList.length - 1 && (
+                                <SaveButton
+                                    style={{ marginRight: 10 }}
+                                    loading={isLoading || formLoading}
+                                    onClick={() => submit()}
+                                />
+                            )}
+                        </>
+                    }
                 >
-                    {formList[current]}
-                </Form>
-            </div>
-        </Create>
+                    <Steps {...stepsProps}>
+                        <Step title="Content" />
+                        <Step title="Relations" />
+                    </Steps>
+
+                    <div style={{ marginTop: 60 }}>
+                        <Form
+                            {...formProps}
+                            wrapperCol={{ span: 24 }}
+                            layout="vertical"
+                        >
+                            {formList[current]}
+                        </Form>
+                    </div>
+                </Create>
+            </Col>
+            <Col lg={6} xs={24}>
+                <Aside />
+            </Col>
+        </Row>
     );
 };
 
@@ -689,52 +697,58 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     ];
 
     return (
-        <Edit
-            {...props}
-            canDelete
-            Aside={() => <Aside />}
-            actionButtons={
-                <>
-                    {current > 0 && (
-                        <Button onClick={() => gotoStep(current - 1)}>
-                            {translate(
-                                "common:resources.posts.forms.prevButton",
+        <Row gutter={[16, 16]}>
+            <Col lg={18} xs={24}>
+                <Edit
+                    {...props}
+                    canDelete
+                    actionButtons={
+                        <>
+                            {current > 0 && (
+                                <Button onClick={() => gotoStep(current - 1)}>
+                                    {translate(
+                                        "common:resources.posts.forms.prevButton",
+                                    )}
+                                </Button>
                             )}
-                        </Button>
-                    )}
-                    {current < formList.length - 1 && (
-                        <Button onClick={() => gotoStep(current + 1)}>
-                            {translate(
-                                "common:resources.posts.forms.nextButton",
+                            {current < formList.length - 1 && (
+                                <Button onClick={() => gotoStep(current + 1)}>
+                                    {translate(
+                                        "common:resources.posts.forms.nextButton",
+                                    )}
+                                </Button>
                             )}
-                        </Button>
-                    )}
-                    {current === formList.length - 1 && (
-                        <SaveButton
-                            style={{ marginRight: 10 }}
-                            loading={isLoading || formLoading}
-                            onClick={() => submit()}
-                            disabled={formLoading}
-                        />
-                    )}
-                </>
-            }
-        >
-            <Steps {...stepsProps}>
-                <Step title="Content" />
-                <Step title="Relations" />
-            </Steps>
-
-            <div style={{ marginTop: 60 }}>
-                <Form
-                    {...formProps}
-                    wrapperCol={{ span: 24 }}
-                    layout="vertical"
+                            {current === formList.length - 1 && (
+                                <SaveButton
+                                    style={{ marginRight: 10 }}
+                                    loading={isLoading || formLoading}
+                                    onClick={() => submit()}
+                                    disabled={formLoading}
+                                />
+                            )}
+                        </>
+                    }
                 >
-                    {formList[current]}
-                </Form>
-            </div>
-        </Edit>
+                    <Steps {...stepsProps}>
+                        <Step title="Content" />
+                        <Step title="Relations" />
+                    </Steps>
+
+                    <div style={{ marginTop: 60 }}>
+                        <Form
+                            {...formProps}
+                            wrapperCol={{ span: 24 }}
+                            layout="vertical"
+                        >
+                            {formList[current]}
+                        </Form>
+                    </div>
+                </Edit>
+            </Col>
+            <Col lg={6} xs={24}>
+                <Aside />
+            </Col>
+        </Row>
     );
 };
 
@@ -744,15 +758,22 @@ export const PostShow: React.FC<IResourceComponentsProps> = (props) => {
     const record = data?.data;
 
     return (
-        <Show isLoading={isLoading}>
-            <Title level={5}>Id</Title>
-            <Text>{record?.id}</Text>
+        <Row gutter={[16, 16]}>
+            <Col lg={18} xs={24}>
+                <Show isLoading={isLoading}>
+                    <Title level={5}>Id</Title>
+                    <Text>{record?.id}</Text>
 
-            <Title level={5}>Title</Title>
-            <Text>{record?.title}</Text>
+                    <Title level={5}>Title</Title>
+                    <Text>{record?.title}</Text>
 
-            <Title level={5}>Content</Title>
-            <MarkdownField value={record?.content}></MarkdownField>
-        </Show>
+                    <Title level={5}>Content</Title>
+                    <MarkdownField value={record?.content}></MarkdownField>
+                </Show>
+            </Col>
+            <Col lg={6} xs={24}>
+                <Aside />
+            </Col>
+        </Row>
     );
 };

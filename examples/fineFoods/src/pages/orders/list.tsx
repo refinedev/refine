@@ -21,6 +21,8 @@ import {
     Space,
     ShowButton,
     FormProps,
+    Row,
+    Col,
 } from "@pankod/refine";
 import { OrderStatus } from "components";
 
@@ -95,100 +97,115 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
 
     return (
-        <List
-            Aside={
+        <Row gutter={[16, 16]}>
+            <Col lg={18} xs={24}>
+                <List title={t("orders:title")}>
+                    <Table {...tableProps} rowKey="id">
+                        <Table.Column
+                            key="orderNumber"
+                            dataIndex="orderNumber"
+                            title={t("orders:fields.orderNumber")}
+                            render={(value) => <TextField value={value} />}
+                        />
+                        <Table.Column
+                            key="status.text"
+                            dataIndex={["status", "text"]}
+                            title={t("orders:fields.status")}
+                            render={(value) => {
+                                return <OrderStatus status={value} />;
+                            }}
+                            defaultSortOrder={getDefaultSortOrder(
+                                "status",
+                                sorter,
+                            )}
+                            sorter
+                        />
+                        <Table.Column
+                            align="right"
+                            key="amount"
+                            dataIndex="amount"
+                            title={t("orders:fields.amount")}
+                            defaultSortOrder={getDefaultSortOrder(
+                                "amount",
+                                sorter,
+                            )}
+                            sorter
+                            render={(value) => {
+                                return (
+                                    <NumberField
+                                        options={{
+                                            currency: "USD",
+                                            style: "currency",
+                                            notation: "compact",
+                                        }}
+                                        value={value}
+                                    />
+                                );
+                            }}
+                        />
+                        <Table.Column
+                            key="store.id"
+                            dataIndex={["store", "title"]}
+                            title={t("orders:fields.store")}
+                        />
+                        <Table.Column
+                            key="user.fullName"
+                            dataIndex={["user", "fullName"]}
+                            title={t("orders:fields.user")}
+                        />
+                        <Table.Column<IOrder>
+                            key="products"
+                            dataIndex="products"
+                            title={t("orders:fields.products")}
+                            render={(_, record) => (
+                                <Popover
+                                    content={
+                                        <ul>
+                                            {record.products.map((product) => (
+                                                <li key={product.id}>
+                                                    {product.name}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    }
+                                    title="Products"
+                                    trigger="hover"
+                                >
+                                    {`${record.products.length} Items`}
+                                </Popover>
+                            )}
+                        />
+                        <Table.Column
+                            key="createdAt"
+                            dataIndex="createdAt"
+                            title={t("orders:fields.createdAt")}
+                            render={(value) => (
+                                <DateField value={value} format="LLL" />
+                            )}
+                            sorter
+                        />
+                        <Table.Column<IOrder>
+                            title={t("common:table.actions")}
+                            dataIndex="actions"
+                            key="actions"
+                            render={(_value, record) => (
+                                <Space>
+                                    <ShowButton
+                                        size="small"
+                                        recordItemId={record.id}
+                                    />
+                                </Space>
+                            )}
+                        />
+                    </Table>
+                </List>
+            </Col>
+            <Col lg={6} xs={24}>
                 <Card title={t("orders:filter.title")}>
                     <Filter formProps={searchFormProps} />
                 </Card>
-            }
-            title={t("orders:title")}
-        >
-            <Table {...tableProps} rowKey="id">
-                <Table.Column
-                    key="orderNumber"
-                    dataIndex="orderNumber"
-                    title={t("orders:fields.orderNumber")}
-                    render={(value) => <TextField value={value} />}
-                />
-                <Table.Column
-                    key="status.text"
-                    dataIndex={["status", "text"]}
-                    title={t("orders:fields.status")}
-                    render={(value) => {
-                        return <OrderStatus status={value} />;
-                    }}
-                    defaultSortOrder={getDefaultSortOrder("status", sorter)}
-                    sorter
-                />
-                <Table.Column
-                    align="right"
-                    key="amount"
-                    dataIndex="amount"
-                    title={t("orders:fields.amount")}
-                    defaultSortOrder={getDefaultSortOrder("amount", sorter)}
-                    sorter
-                    render={(value) => {
-                        return (
-                            <NumberField
-                                options={{
-                                    currency: "USD",
-                                    style: "currency",
-                                    notation: "compact",
-                                }}
-                                value={value}
-                            />
-                        );
-                    }}
-                />
-                <Table.Column
-                    key="store.id"
-                    dataIndex={["store", "title"]}
-                    title={t("orders:fields.store")}
-                />
-                <Table.Column
-                    key="user.fullName"
-                    dataIndex={["user", "fullName"]}
-                    title={t("orders:fields.user")}
-                />
-                <Table.Column<IOrder>
-                    key="products"
-                    dataIndex="products"
-                    title={t("orders:fields.products")}
-                    render={(_, record) => (
-                        <Popover
-                            content={
-                                <ul>
-                                    {record.products.map((product) => (
-                                        <li key={product.id}>{product.name}</li>
-                                    ))}
-                                </ul>
-                            }
-                            title="Products"
-                            trigger="hover"
-                        >
-                            {`${record.products.length} Items`}
-                        </Popover>
-                    )}
-                />
-                <Table.Column
-                    key="createdAt"
-                    dataIndex="createdAt"
-                    title={t("orders:fields.createdAt")}
-                    render={(value) => <DateField value={value} format="LLL" />}
-                    sorter
-                />
-                <Table.Column<IOrder>
-                    title={t("common:table.actions")}
-                    dataIndex="actions"
-                    key="actions"
-                    render={(_value, record) => (
-                        <Space>
-                            <ShowButton size="small" recordItemId={record.id} />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
+            </Col>
+        </Row>
     );
 };
 

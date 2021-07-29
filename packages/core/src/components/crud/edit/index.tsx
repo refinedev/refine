@@ -7,7 +7,6 @@ import {
     ButtonProps,
     PageHeader,
     PageHeaderProps,
-    Col,
     Spin,
 } from "antd";
 
@@ -37,7 +36,6 @@ export interface EditProps {
     canDelete?: boolean;
     deleteButtonProps?: DeleteButtonProps;
     resource?: string;
-    Aside?: React.ReactNode;
     isLoading?: boolean;
 }
 
@@ -52,7 +50,6 @@ export const Edit: React.FC<EditProps> = ({
     pageHeaderProps,
     canDelete,
     resource: resourceFromProps,
-    Aside,
     isLoading = false,
 }) => {
     const translate = useTranslate();
@@ -74,75 +71,68 @@ export const Edit: React.FC<EditProps> = ({
         canDelete ?? (resource.canDelete || deleteButtonProps);
 
     return (
-        <Row gutter={[16, 16]}>
-            <Col flex="1 1 200px">
-                <PageHeader
-                    ghost={false}
-                    onBack={routeFromAction ? goBack : undefined}
-                    title={
-                        title ??
-                        translate(
-                            `${resource.name}.titles.edit`,
-                            `Edit ${userFriendlyResourceName(
-                                resource.name,
-                                "singular",
-                            )}`,
-                        )
-                    }
-                    extra={
-                        <Row>
-                            <Space>
-                                {!recordItemId && (
-                                    <ListButton
-                                        data-testid="edit-list-button"
-                                        resourceName={resource.name}
-                                    />
-                                )}
-                                <RefreshButton
-                                    resourceName={resource.name}
-                                    recordItemId={recordItemId ?? idFromRoute}
-                                />
-                            </Space>
-                        </Row>
-                    }
-                    {...pageHeaderProps}
-                >
-                    <Spin spinning={isLoading}>
-                        <Card
-                            bordered={false}
-                            actions={[
-                                <Space
-                                    key="action-buttons"
-                                    style={{ float: "right", marginRight: 24 }}
-                                >
-                                    {actionButtons ?? (
-                                        <>
-                                            {isDeleteButtonVisible && (
-                                                <DeleteButton
-                                                    data-testid="edit-delete-button"
-                                                    mutationMode={mutationMode}
-                                                    onSuccess={() => {
-                                                        list(
-                                                            resource.route ??
-                                                                resource.name,
-                                                        );
-                                                    }}
-                                                    {...deleteButtonProps}
-                                                />
-                                            )}
-                                            <SaveButton {...saveButtonProps} />
-                                        </>
-                                    )}
-                                </Space>,
-                            ]}
+        <PageHeader
+            ghost={false}
+            onBack={routeFromAction ? goBack : undefined}
+            title={
+                title ??
+                translate(
+                    `${resource.name}.titles.edit`,
+                    `Edit ${userFriendlyResourceName(
+                        resource.name,
+                        "singular",
+                    )}`,
+                )
+            }
+            extra={
+                <Row>
+                    <Space>
+                        {!recordItemId && (
+                            <ListButton
+                                data-testid="edit-list-button"
+                                resourceName={resource.name}
+                            />
+                        )}
+                        <RefreshButton
+                            resourceName={resource.name}
+                            recordItemId={recordItemId ?? idFromRoute}
+                        />
+                    </Space>
+                </Row>
+            }
+            {...pageHeaderProps}
+        >
+            <Spin spinning={isLoading}>
+                <Card
+                    actions={[
+                        <Space
+                            key="action-buttons"
+                            style={{ float: "right", marginRight: 24 }}
                         >
-                            {children}
-                        </Card>
-                    </Spin>
-                </PageHeader>
-            </Col>
-
-            {Aside && <Col flex="0 1 300px">{Aside}</Col>}
-        </Row>
+                            {actionButtons ?? (
+                                <>
+                                    {isDeleteButtonVisible && (
+                                        <DeleteButton
+                                            data-testid="edit-delete-button"
+                                            mutationMode={mutationMode}
+                                            onSuccess={() => {
+                                                list(
+                                                    resource.route ??
+                                                        resource.name,
+                                                );
+                                            }}
+                                            {...deleteButtonProps}
+                                        />
+                                    )}
+                                    <SaveButton {...saveButtonProps} />
+                                </>
+                            )}
+                        </Space>,
+                    ]}
+                >
+                    {children}
+                </Card>
+            </Spin>
+        </PageHeader>
     );
 };

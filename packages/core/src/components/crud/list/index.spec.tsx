@@ -43,13 +43,6 @@ describe("<List/>", () => {
             expect(container).toMatchSnapshot();
         });
 
-        it("should render asideComponent with aside prop", async () => {
-            const { getByText } = renderList(
-                <List Aside={<p>Aside</p>}></List>,
-            );
-            getByText("Aside");
-        });
-
         it("should render optional title with title prop", async () => {
             const { getByText } = renderList(<List title="New Title"></List>);
             getByText("New Title");
