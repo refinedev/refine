@@ -25,15 +25,6 @@ describe("Edit", () => {
         expect(container).toBeTruthy();
     });
 
-    it("should render aside successfuly", async () => {
-        const { container, getByText } = renderEdit(
-            <Edit Aside={<div>i am here</div>} />,
-        );
-
-        getByText("i am here");
-        expect(container).toBeTruthy();
-    });
-
     it("should render default save button successfuly", () => {
         const { container, getByText } = renderEdit(<Edit />);
 

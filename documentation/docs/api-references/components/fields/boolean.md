@@ -5,30 +5,33 @@ title: Boolean
 
 import booleanField from '@site/static/img/guides-and-concepts/fields/boolean/booleanfield.png'
 
-This field is used to display boolean values and uses `<Tooltip>` values from Ant Design.
-
-[Refer to `<Tooltip>` documentation for detailed usage. &#8594](https://ant.design/components/tooltip/#header)
+This field is used to display boolean values. It uses the [`<Tooltip>`](https://ant.design/components/tooltip/#header) values from Ant Design.
 
 ## Usage
 
-Let's see how to use `<BooleanField>` with the example in the post list.
+Let's see how we can use `<BooleanField>` with the example in the post list.
 
 ```tsx
-//highlight-next-line 
-import { List, Table, BooleanField, Icons } from "@pankod/refine";
+import { 
+    List,
+    Table,
+    //highlight-start
+    BooleanField,
+    Icons
+    //highlight-end
+} from "@pankod/refine";
 
 export const PostList: React.FC = () => {
+    //highlight-next-line
     const { CloseCircleOutlined, CheckCircleOutlined } = Icons;
 
     return (
         <List>
             <Table rowKey="id">
-                //highlight-next-line
                 ...
                 <Table.Column
                     dataIndex="status"
                     title="Published"
-                    key="isPublished"
                     render={(value) => (
                         //highlight-start
                         <BooleanField
@@ -60,8 +63,8 @@ export const PostList: React.FC = () => {
 | Property             | Description                                | Type                                                                 | Default                                                    |
 | -------------------- | ------------------------------------------ | -------------------------------------------------------------------- | ---------------------------------------------------------- |
 | value                | Field value                                | `unknown`                                                            |                                                            |
-| valueLabelTrue       | If there is a value, it is the text to use | `string`                                                             | `"true"`                                                   |
-| valueLabelFalse      | If there no value, it is the text to use   | `string`                                                             | `"false"`                                                  |
-| trueIcon             | If there is a value, it is the icon to use | `React.FC` \| `object`                                               | [`<CheckOutlined />`](https://ant.design/components/icon/) |
-| falseIcon            | If there no value, it is the icon to use.  | `React.FC` \| `object`                                               | [`<CloseOutlined />`](https://ant.design/components/icon/) |
-| AbstractTooltipProps | Ant Design `Tooltip` props                 | [`AbstractTooltipProps`](https://ant.design/components/tooltip/#API) |                                                            |
+| valueLabelTrue       | If there is a value, this is the text to use | `string`                                                             | `"true"`                                                   |
+| valueLabelFalse      | If there no value, this is the text to use   | `string`                                                             | `"false"`                                                  |
+| trueIcon             | If there is a value, this is the icon to use | `React.FC` \| `object`                                               | [`<CheckOutlined />`](https://ant.design/components/icon/) |
+| falseIcon            | If there no value, this is the icon to use.  | `React.FC` \| `object`                                               | [`<CloseOutlined />`](https://ant.design/components/icon/) |
+| AbstractTooltipProps | Ant Design `Tooltip` properties                | [`AbstractTooltipProps`](https://ant.design/components/tooltip/#API) |                                                            |

@@ -119,5 +119,5 @@ ButtonProps
 
 | Key                 | Type                                                                            |
 | ------------------- | ------------------------------------------------------------------------------- |
-| successNotification | [Notification Props](https://ant.design/components/notification/#API) & `false` |
-| errorNotification   | [Notification Props](https://ant.design/components/notification/#API) & `false` |
+| successNotification | [Notification Properties](https://ant.design/components/notification/#API) & `false` |
+| errorNotification   | [Notification Properties](https://ant.design/components/notification/#API) & `false` |

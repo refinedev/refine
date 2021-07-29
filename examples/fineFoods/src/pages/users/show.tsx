@@ -23,26 +23,26 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
         return (
             <>
                 <Title level={5}>{t("users:fields.id")}</Title>
-                <Text>{record.id}</Text>
+                <Text>{record?.id}</Text>
                 <Title level={5}>{t("users:fields.firstName")}</Title>
-                <Text>{record.firstName}</Text>
+                <Text>{record?.firstName}</Text>
                 <Title level={5}>{t("users:fields.lastName")}</Title>
-                <Text>{record.lastName}</Text>
+                <Text>{record?.lastName}</Text>
                 <Title level={5}>{t("users:fields.gender")}</Title>
-                <Text>{record.gender}</Text>
+                <Text>{record?.gender}</Text>
                 <Title level={5}>{t("users:fields.gsm")}</Title>
-                <Text>{record.gsm}</Text>
+                <Text>{record?.gsm}</Text>
                 <Title level={5}>{t("users:fields.avatar.label")}</Title>
                 <Text>
-                    <Avatar src={record.avatar[0].url} />
+                    <Avatar src={record?.avatar[0].url} />
                 </Text>
                 <Title level={5}>{t("users:fields.isActive")}</Title>
                 <Text>
-                    <BooleanField value={record.isActive} />
+                    <BooleanField value={record?.isActive} />
                 </Text>
                 <Title level={5}>{t("users:fields.createdAt")}</Title>
                 <Text>
-                    <DateField value={record.createdAt} format="LLL" />
+                    <DateField value={record?.createdAt || ""} format="LLL" />
                 </Text>
             </>
         );

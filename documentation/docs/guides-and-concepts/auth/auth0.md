@@ -5,9 +5,9 @@ title: Auth0 Login
 
 import login from '@site/static/img/guides-and-concepts/auth0/auth0-login.gif';
 
-Auth0 is a flexible, drop-in solution to add authentication and authorization services to your applications. Your team and organization can avoid the cost, time, and risk that comes with building your own solution to authenticate and authorize users. You can check the [document](https://auth0.com/docs) for details.
+[Auth0](https://auth0.com/) is a flexible, drop-in solution for adding authentication and authorization services to your applications. Your team and organization can avoid the cost, time, and risk that comes with building your own solution to authenticate and authorize users. You can check the [Auth0 document](https://auth0.com/docs) for details.
 
-To use auth0 with refine;
+We will show you how to use Auth0 with refine
 
 ### Installation
 
@@ -24,9 +24,10 @@ Wrap your root component with an Auth0Provider that you can import from the SDK.
 ```tsx title="index.tsx"
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 // highlight-next-line
 import { Auth0Provider } from "@auth0/auth0-react";
+
+import App from "./App";
 
 ReactDOM.render(
     <React.StrictMode>
@@ -45,61 +46,92 @@ ReactDOM.render(
 ```
 
 :::important
-See the [**Auth0 docs**](https://auth0.com/docs) for detailed information and `CLIENT_ID`.
+Refer to [**Auth0 docs**](https://auth0.com/docs/quickstart/spa/react#configure-auth0) for detailed configuration.
 :::
 
 ### Override login page
 
-First, we need to override the refine, `login page`. In this way, we will redirect it to the auth0 login screen. We create a `login.tsx` file in the `/pages` folder.
+First, we need to override the **refine** login page. In this way, we will redirect it to the Auth0 login page. We create a `login.tsx` file in the `/pages` folder.
 
 ```tsx title="/pages/login.tsx"
 import React from "react";
-import { Row, AntdLayout, Card, Typography, Button } from "@pankod/refine";
-// highlight-next-line
-import { useAuth0 } from "@auth0/auth0-react";
+import { 
+    Row, 
+    AntdLayout,
+    Card,
+    Typography,
+    Button,
+    // highlight-next-line
+    useLogin
+} from "@pankod/refine";
 
 export const Login: React.FC = () => {
-    const { Title } = Typography;
-
     // highlight-next-line
-    const { loginWithRedirect } = useAuth0();
+    const { mutate: login } = useLogin();
+
+    const CardTitle = (
+        <div
+            style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "60px",
+            }}
+        >
+            <img src="./refine.svg" alt="Logo" />
+        </div>
+    );
 
     return (
-        <AntdLayout>
+        <AntdLayout
+            style={{
+                backgroundColor: "#eff7f7",
+            }}
+        >
             <Row
                 justify="center"
+                align="middle"
                 style={{
-                    display: "flex",
-                    alignContent: "center",
                     height: "100vh",
                 }}
             >
-                <Card>
-                    <Title
-                        level={3}
+                <Col xs={22}>
+                    <Card
                         style={{
-                            textAlign: "center",
+                            maxWidth: "400px",
+                            margin: "auto",
                         }}
+                        title={CardTitle}
                     >
-                        Login
-                    </Title>
-                    // highlight-start
-                    <Button
-                        onClick={() => loginWithRedirect()}
-                        size="large"
-                        type="primary"
-                    >
-                        Login with Auth0
-                    </Button>
-                    // highlight-end
-                </Card>
+                        <Button
+                            type="primary"
+                            size="large"
+                            htmlType="submit"
+                            block
+                            // highlight-next-line
+                            onClick={() => login(undefined)}
+                        >
+                            Login
+                        </Button>
+                        <br />
+                        <br />
+                        <div
+                            style={{ textAlign: "center", padding: "10px 0px" }}
+                        >
+                            <Text>
+                                Still no account? Please go to
+                                <a href="#"> Sign up</a>
+                            </Text>
+                        </div>
+                    </Card>
+                </Col>
             </Row>
         </AntdLayout>
     );
 };
 ```
 
-Clicking the `Login with Auth0` button, you will be directed to the auth0 login screen.
+After clicking the `Login` button, you will be directed to the auth0 login screen.
 
 <div style={{textAlign: "center"}}>
     <img src={login} />
@@ -108,19 +140,30 @@ Clicking the `Login with Auth0` button, you will be directed to the auth0 login 
 
 ### Auth Provider
 
-In refine, Authentication and Authorization processes are performed with the auth provider. Let's write a provider for Auth0.
+In refine, authentication and authorization processes are performed with the auth provider. Let's write a provider for Auth0.
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine";
-
+// highlight-next-line
 import { useAuth0 } from "@auth0/auth0-react";
 
+// highlight-next-line
 import { Login } from "pages/login";
+
+import axios from "axios";
+
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App = () => {
-    const { isLoading, isAuthenticated, user, logout } = useAuth0();
+    const {
+        isLoading,
+        loginWithRedirect,
+        isAuthenticated,
+        user,
+        logout,
+        getIdTokenClaims,
+    } = useAuth0();
 
     if (isLoading) {
         return <span>loading...</span>;
@@ -128,14 +171,16 @@ const App = () => {
 
     // highlight-start
     const authProvider: AuthProvider = {
-        login: async () => {
+        login: () => {
+            loginWithRedirect();
             return Promise.resolve();
         },
-        logout: async () => {
-            logout();
+        logout: () => {
+            logout({ returnTo: window.location.origin });
+            return Promise.resolve("/");
         },
         checkError: () => Promise.resolve(),
-        checkAuth: async () => {
+        checkAuth: () => {
             if (isAuthenticated) {
                 return Promise.resolve();
             }
@@ -143,17 +188,33 @@ const App = () => {
             return Promise.reject();
         },
         getPermissions: () => Promise.resolve(),
-        getUserIdentity: async () => {
-            return Promise.resolve(user);
+        getUserIdentity: () => {
+            if (user) {
+                return Promise.resolve({
+                    ...user,
+                    avatar: user.picture,
+                });
+            }
         },
     };
+    // highlight-end
+
+
+    // highlight-start
+    getIdTokenClaims().then((token) => {
+        if (token) {
+            axios.defaults.headers.common = {
+                Authorization: `Bearer ${token.__raw}`,
+            };
+        }
+    });
     // highlight-end
 
     return (
         <Refine
             LoginPage={Login}
             authProvider={authProvider}
-            dataProvider={dataProvider(API_URL)}
+            dataProvider={dataProvider(API_URL, axios)}
         >
             ...
         </Refine>
@@ -165,11 +226,11 @@ export default App;
 
 #### login
 
-We overrided the login page and handed it over to auth0 completely. That's why we're returning to an empty promise.
+`loginWithRedirect` method comes from the `useAuth0` hook.
 
 #### logout
 
-Logout method comes from `useAuth0` hook.
+`logout` method comes from the `useAuth0` hook.
 
 #### checkError & getPermissions
 

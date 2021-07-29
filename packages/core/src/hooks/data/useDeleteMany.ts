@@ -43,6 +43,18 @@ type UseDeleteManyReturnType<
     unknown
 >;
 
+/**
+ * `useDeleteMany` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for multiple delete mutations.
+ *
+ * It uses `deleteMany` method as mutation function from the `dataProvider` which is passed to `<Refine>`.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/data/useDeleteMany} for more details.
+ *
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TVariables - Values for params. default `{}`
+ *
+ */
 export const useDeleteMany = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,

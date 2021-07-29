@@ -8,8 +8,7 @@ import {
     useCustom,
     useTranslate,
 } from "@pankod/refine";
-import { RadialBar } from "@ant-design/charts";
-import { RadialBarConfig } from "@ant-design/charts/es/radialBar";
+import { RadialBar, RadialBarConfig } from "@ant-design/charts";
 import dayjs, { Dayjs } from "dayjs";
 
 import { IOrderChart } from "interfaces";
@@ -46,7 +45,7 @@ export const OrdersChart: React.FC = () => {
         radius: 0.8,
         innerRadius: 0.2,
         colorField: "status",
-        color: function color(_ref) {
+        color: (_ref) => {
             const status = _ref.status;
 
             switch (status) {
@@ -59,6 +58,7 @@ export const OrdersChart: React.FC = () => {
                 case "delivered":
                     return "#52C41A";
                 case "could not be delivered":
+                default:
                     return "#F5222D";
             }
         },
@@ -104,7 +104,9 @@ export const OrdersChart: React.FC = () => {
             <RangePicker
                 value={dateRange}
                 onChange={(values) => {
-                    setDateRange(values);
+                    if (values && values[0] && values[1]) {
+                        setDateRange([values[0], values[1]]);
+                    }
                 }}
                 style={{ float: "right", marginTop: 20 }}
                 ranges={{

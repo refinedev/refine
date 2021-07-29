@@ -20,6 +20,8 @@ import {
     Select,
     Tag,
     FormProps,
+    Row,
+    Col,
 } from "@pankod/refine";
 
 import { IPost, ICategory, IPostFilterVariables } from "interfaces";
@@ -85,74 +87,86 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     });
 
     return (
-        <List
-            Aside={
+        <Row gutter={[16, 16]}>
+            <Col lg={18} xs={24}>
+                <List>
+                    <Table {...tableProps} rowKey="id">
+                        <Table.Column dataIndex="id" title="ID" />
+                        <Table.Column dataIndex="title" title="Title" />
+                        <Table.Column
+                            dataIndex="status"
+                            title="Status"
+                            render={(value) => {
+                                let color;
+                                switch (value) {
+                                    case "published":
+                                        color = "green";
+                                        break;
+                                    case "rejected":
+                                        color = "red";
+                                        break;
+                                    case "draft":
+                                        color = "blue";
+                                        break;
+                                    default:
+                                        color = "";
+                                        break;
+                                }
+                                return <Tag color={color}>{value}</Tag>;
+                            }}
+                        />
+                        <Table.Column
+                            dataIndex="createdAt"
+                            title="Created At"
+                            render={(value) => (
+                                <DateField format="LLL" value={value} />
+                            )}
+                        />
+                        <Table.Column
+                            dataIndex={["category", "id"]}
+                            key="category.id"
+                            title="Category"
+                            render={(value) => {
+                                if (isLoading) {
+                                    return <TextField value="Loading..." />;
+                                }
+
+                                return (
+                                    <TextField
+                                        value={
+                                            data?.data.find(
+                                                (item) => item.id === value,
+                                            )?.title
+                                        }
+                                    />
+                                );
+                            }}
+                        />
+                        <Table.Column<IPost>
+                            title="Actions"
+                            dataIndex="actions"
+                            render={(_, record) => (
+                                <Space>
+                                    <EditButton
+                                        size="small"
+                                        recordItemId={record.id}
+                                    />
+                                    <ShowButton
+                                        size="small"
+                                        recordItemId={record.id}
+                                    />
+                                </Space>
+                            )}
+                        />
+                    </Table>
+                </List>
+            </Col>
+            <Col lg={6} xs={24}>
                 <Card title="Filters">
                     <Filter formProps={searchFormProps} />
                 </Card>
-            }
-        >
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-                <Table.Column
-                    dataIndex="status"
-                    title="Status"
-                    render={(value) => {
-                        let color;
-                        switch (value) {
-                            case "published":
-                                color = "green";
-                                break;
-                            case "rejected":
-                                color = "red";
-                                break;
-                            case "draft":
-                                color = "blue";
-                                break;
-                            default:
-                                color = "";
-                                break;
-                        }
-                        return <Tag color={color}>{value}</Tag>;
-                    }}
-                />
-                <Table.Column
-                    dataIndex="createdAt"
-                    title="Created At"
-                    render={(value) => <DateField format="LLL" value={value} />}
-                />
-                <Table.Column
-                    dataIndex={["category", "id"]}
-                    key="category.id"
-                    title="Category"
-                    render={(value) => {
-                        if (isLoading) {
-                            return <TextField value="Loading..." />;
-                        }
-
-                        return (
-                            <TextField
-                                value={
-                                    data?.data.find((item) => item.id === value)
-                                        ?.title
-                                }
-                            />
-                        );
-                    }}
-                />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton size="small" recordItemId={record.id} />
-                            <ShowButton size="small" recordItemId={record.id} />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
+            </Col>
+        </Row>
     );
 };
 

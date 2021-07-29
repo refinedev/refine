@@ -3,7 +3,6 @@ id: edit
 title: Edit
 ---
 
-import asideUsage from '@site/static/img/guides-and-concepts/basic-views/edit/aside.png'
 import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/edit/pageHeaderProps.png'
 import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/edit/actionButtons.png'
 
@@ -67,32 +66,6 @@ export const Edit: React.FC = () => {
     return <Edit title="Custom Title">...</Edit>;
 };
 ```
-
-### `Aside`
-
-It allows us to add a component to the right of the `<Edit>` component.
-
-```tsx
-import { Edit, Card } from "@pankod/refine";
-
-const Aside: React.FC = () => {
-    return (
-        <Card title="Post Edit Details" extra={<a href="#">More</a>}>
-            <p>Here you can give useful information about post edit.</p>
-        </Card>
-    );
-};
-
-export const Edit: React.FC = () => {
-    return <Edit Aside={Aside}>...</Edit>;
-};
-```
-
-<br/>
-<div>
-    <img src={asideUsage} alt="Aside Usage"/>
-</div>
-<br/>
 
 ### `actionButtons`
 
@@ -238,7 +211,6 @@ export const App: React.FC = () => {
 | deleteButtonProps | Adds properties for delete button                | [`DeleteButtonProps`](../../interfaces.md#delete-button-props)    | `<DeleteButton>`                                                                   |
 | saveButtonProps   | Adds properties for create button                | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton>`                                                                     |
 | title             | Adds the title                                  | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                    |
-| aside             | Adds a component to right side                | `React.ReactNode`                                                 | `undefined`                                                                        |
 | actionButtons     | Passes properties for `<PageHeader>`             | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
 | pageHeaderProps   | Passes properties for `<PageHeader>`             | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
 | recordItemId      | The record id for `<RefreshButton>`             | `string`                                                          |                                                                                    |

@@ -24,16 +24,16 @@ const App: React.FC = () => {
     }
 
     const authProvider: AuthProvider = {
-        login: async () => {
+        login: () => {
             loginWithRedirect();
             return Promise.resolve();
         },
-        logout: async () => {
+        logout: () => {
             logout({ returnTo: window.location.origin });
             return Promise.resolve("/");
         },
         checkError: () => Promise.resolve(),
-        checkAuth: async () => {
+        checkAuth: () => {
             if (isAuthenticated) {
                 return Promise.resolve();
             }
@@ -41,7 +41,7 @@ const App: React.FC = () => {
             return Promise.reject();
         },
         getPermissions: () => Promise.resolve(),
-        getUserIdentity: async () => {
+        getUserIdentity: () => {
             if (user) {
                 return Promise.resolve({
                     ...user,

@@ -136,7 +136,9 @@ module.exports = {
                     label: "Components",
                     items: [
                         "api-references/components/refine-config",
+                        "api-references/components/layout-wrapper",
                         "api-references/components/resource",
+                        "api-references/components/filter-dropdown",
                         {
                             type: "category",
                             label: "Basic Views",
@@ -149,19 +151,25 @@ module.exports = {
                         },
                         {
                             type: "category",
+                            label: "Authorization",
+                            items: [
+                                "api-references/components/auth/authenticated",
+                            ],
+                        },
+                        {
+                            type: "category",
                             label: "Buttons",
                             items: [
+                                "api-references/components/buttons/list-button",
                                 "api-references/components/buttons/create-button",
-                                "api-references/components/buttons/export-button",
+                                "api-references/components/buttons/edit-button",
+                                "api-references/components/buttons/show-button",
                                 "api-references/components/buttons/delete-button",
+                                "api-references/components/buttons/clone-button",
                                 "api-references/components/buttons/refresh-button",
                                 "api-references/components/buttons/save-button",
                                 "api-references/components/buttons/import-button",
-                                // "api-references/components/buttons/export-button",
-                                "api-references/components/buttons/list-button",
-                                "api-references/components/buttons/show-button",
-                                "api-references/components/buttons/edit-button",
-                                "api-references/components/buttons/clone-button",
+                                "api-references/components/buttons/export-button",
                             ],
                         },
                         {
