@@ -72,7 +72,7 @@ mutate({
     mutationMode: "optimistic",
 });
 ```
-> Mutation mode passed to `<Refine>` will be overriden by the mutation mode passed to a data hook.
+> Mutation mode passed to `<Refine>` will be overriden by the mutation mode passed to data or form hooks.
 
 ### Supported data hooks
 
