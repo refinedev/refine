@@ -30,7 +30,6 @@ export const Sider: React.FC = () => {
         >
             <Title collapsed={collapsed} />
             <Menu
-                theme="dark"
                 selectedKeys={[selectedKey]}
                 mode="inline"
                 onClick={({ key }) => {

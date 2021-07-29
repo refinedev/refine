@@ -20,7 +20,7 @@ export const FixedSider: React.FC = () => {
             }}
         >
             <Title collapsed={collapsed} />
-            <Menu theme="dark" selectedKeys={[selectedKey]} mode="inline">
+            <Menu selectedKeys={[selectedKey]} mode="inline">
                 {menuItems.map(({ icon, route, label }) => (
                     <Menu.Item key={route} icon={icon}>
                         <Link to={route}>{label}</Link>
