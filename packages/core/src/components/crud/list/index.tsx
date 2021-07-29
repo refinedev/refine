@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { PageHeader, PageHeaderProps } from "antd";
 import { useParams } from "react-router-dom";
 
@@ -9,7 +9,7 @@ import { ResourceRouterParams, CreateButtonProps } from "../../../interfaces";
 
 export interface ListProps {
     canCreate?: boolean;
-    title?: string;
+    title?: ReactNode;
     createButtonProps?: CreateButtonProps;
     pageHeaderProps?: PageHeaderProps;
     resource?: string;
