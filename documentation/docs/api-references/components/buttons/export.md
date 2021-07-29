@@ -19,4 +19,4 @@ It looks like this:
 </div>
 
 [Button]: https://ant.design/components/button/
-[useExport]: /api-references/hooks/import-export/useExport.md
+[useExport]: /api-references/hooks/import-export/useExport
