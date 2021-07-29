@@ -27,11 +27,13 @@ export const useLogin = <TVariables = any>(): UseMutationResult<
         {
             onSuccess: () => {
                 replace(from);
+                notification.close("login-error");
             },
             onError: (error: Error) => {
                 notification.error({
                     message: error?.name || "Login Error",
                     description: error?.message || "Invalid credentials",
+                    key: "login-error",
                 });
             },
         },
