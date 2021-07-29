@@ -23,6 +23,12 @@ export interface ShowProps {
     recordItemId?: string;
 }
 
+/**
+ * `<Show>` provides us a layout for displaying the page.
+ * It does not contain any logic but adds extra functionalities like a refresh button.
+ *
+ * @see {@link https://refine.dev/docs/api-references/components/basic-views/show} for more details.
+ */
 export const Show: React.FC<ShowProps> = ({
     title,
     canEdit,
