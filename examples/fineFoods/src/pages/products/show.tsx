@@ -23,11 +23,11 @@ export const ProductShow: React.FC<IResourceComponentsProps> = (props) => {
         return (
             <>
                 <Title level={5}>{t("products:fields.id")}</Title>
-                <Text>{record.id}</Text>
+                <Text>{record?.id}</Text>
                 <Title level={5}>{t("products:fields.name")}</Title>
-                <Text>{record.name}</Text>
+                <Text>{record?.name}</Text>
                 <Title level={5}>{t("products:fields.description")}</Title>
-                <Text>{record.description}</Text>
+                <Text>{record?.description}</Text>
                 <Title level={5}>{t("products:fields.price")}</Title>
                 <Text>
                     <NumberField
@@ -36,18 +36,18 @@ export const ProductShow: React.FC<IResourceComponentsProps> = (props) => {
                             style: "currency",
                             notation: "compact",
                         }}
-                        value={record.price}
+                        value={record?.price || 0}
                     />
                 </Text>
                 <Title level={5}>{t("products:fields.category")}</Title>
-                <Text>{record.category.title}</Text>
+                <Text>{record?.category.title}</Text>
                 <Title level={5}>{t("products:fields.isActive")}</Title>
                 <Text>
-                    <BooleanField value={record.isActive} />
+                    <BooleanField value={record?.isActive} />
                 </Text>
                 <Title level={5}>{t("products:fields.createdAt")}</Title>
                 <Text>
-                    <DateField value={record.createdAt} format="LLL" />
+                    <DateField value={record?.createdAt || ""} format="LLL" />
                 </Text>
             </>
         );

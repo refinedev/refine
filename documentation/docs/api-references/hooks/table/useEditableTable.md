@@ -34,9 +34,9 @@ export const PostList: React.FC = () => {
         <List>
             //highlight-start
             <Form {...formProps}>
-                <Table {...tableProps} key="id">
-                    <Table.Column key="id" dataIndex="id" title="ID" />
-                    <Table.Column key="title" dataIndex="title" title="Title" />
+                <Table {...tableProps} rowKey="id">
+                    <Table.Column dataIndex="id" title="ID" />
+                    <Table.Column dataIndex="title" title="Title" />
                 </Table>
                 //highlight-end
             </Form>
@@ -80,7 +80,7 @@ export const PostList: React.FC = () => {
     return (
         <List>
             <Form {...formProps}>
-                <Table {...tableProps} key="id">
+                <Table {...tableProps} rowKey="id">
                     <Table.Column key="id" dataIndex="id" title="ID" />
                     <Table.Column key="title" dataIndex="title" title="Title" />
                     //highlight-start
@@ -162,7 +162,7 @@ export const PostList: React.FC = () => {
     return (
         <List>
             <Form {...formProps}>
-                <Table {...tableProps} key="id">
+                <Table {...tableProps} rowKey="id">
                     <Table.Column key="id" dataIndex="id" title="ID" />
                     <Table.Column<IPost>
                         key="title"

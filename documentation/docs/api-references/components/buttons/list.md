@@ -5,7 +5,7 @@ title: List
 
 import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/list/usage.png';
 
-`<ListButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `list` method from [useNavigation](#) under the hood. It can be useful when redirecting the app to the list page route of `<Resource>`.
+`<ListButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `list` method from [`useNavigation`](api-references/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of `<Resource>`.
 
 ## Usage
 
@@ -67,7 +67,7 @@ export const MyListComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `List` method of [`useNavigation`](#) and then redirect to `/resources/categories`.
+Clicking the button will trigger the `list` method of [`useNavigation`](api-references/hooks/navigation/useNavigation.md) and then redirect to `/resources/categories`.
 
 ## API Reference
 

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 @import "~@pankod/refine/node_modules/antd/lib/style/themes/default.less";
 @import "~@pankod/refine/node_modules/antd/dist/antd.less";
@@ -7,21 +7,41 @@
 // all less variables could be found in
 // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
 
-@font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-  'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-  'Noto Color Emoji';
+// font
+@font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-@text-color: #595959;
+// base variables
+@border-radius-base: 6px;
 
-@layout-header-background: #001529;
+// colors
+@primary-color: #67be23;
+@error-color: #fa541c;
+@text-color: #626262;
 
-@menu-dark-color: #FFF;
-@menu-dark-item-active-bg: transparent;
-@menu-dark-selected-item-icon-color: #40A9FF;
-@menu-dark-selected-item-text-color: #40A9FF;
+// sider
+@layout-sider-background: #2a132e;
+@menu-bg: transparent;
+@menu-item-color: #fff;
+@menu-highlight-color: #fff;
+@menu-item-active-bg: transparent;
+@menu-item-active-border-width: 5px;
+@layout-trigger-background: rgba(0, 0, 0, 0.5);
 
+//form
+@label-color: @text-color;
 
-// 
-.ant-menu-inline.ant-menu-root .ant-menu-item > .ant-menu-title-content, .ant-menu-inline.ant-menu-root .ant-menu-submenu-title > .ant-menu-title-content {
-  font-weight: 600;
+.ant-menu-inline,
+.ant-menu-vertical,
+.ant-menu-vertical-left {
+    border-right: 0px;
+}
+
+.ant-form-item-label > label {
+    font-weight: bold;
+}
+
+.ant-page-header {
+    border-radius: @border-radius-base;
 }
