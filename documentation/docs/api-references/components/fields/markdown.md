@@ -59,6 +59,6 @@ export interface IPost {
 
 ### Properties
 
-| Property | Description             | Type                 |
-| -------- | ----------------------- | -------------------- |
-| value    | Markdown data to render | `string | undefined` |
+| Property | Description             | Type                    |
+| -------- | ----------------------- | ----------------------- |
+| value    | Markdown data to render | `string` \| `undefined` |
