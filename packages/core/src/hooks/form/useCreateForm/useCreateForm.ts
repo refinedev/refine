@@ -61,6 +61,10 @@ export type useCreateFormProps<
     resource: IResourceItem;
 } & SuccessErrorNotification;
 
+/**
+ * A hook that the `useForm` uses
+ * @internal
+ */
 export const useCreateForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,

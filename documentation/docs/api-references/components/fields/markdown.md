@@ -9,7 +9,7 @@ This field lets you display markdown content. It supports [GitHub Flavored Markd
 
 ## Usage
 
-Let's see how to use `<MarkdownField>` in a show page.
+Let's see how we can use `<MarkdownField>` in a show page.
 
 ```tsx title="pages/posts/show.tsx"
 import {
@@ -32,16 +32,12 @@ export const PostShow: React.FC = () => {
 
     return (
         <Show isLoading={isLoading}>
-            {record && (
-                <>
-                    <Title level={5}>Id</Title>
-                    <Text>{record.id}</Text>
+            <Title level={5}>Id</Title>
+            <Text>{record?.id}</Text>
 
-                    <Title level={5}>Content</Title>
-                    //highlight-next-line
-                    <MarkdownField value={record.content} />
-                </>
-            )}
+            <Title level={5}>Content</Title>
+            //highlight-next-line
+            <MarkdownField value={record?.content} />
         </Show>
     );
 };
@@ -63,6 +59,6 @@ export interface IPost {
 
 ### Properties
 
-| Property | Description             | Type                 |
-| -------- | ----------------------- | -------------------- |
-| value    | Markdown data to render | `string | undefined` |
+| Property | Description             | Type                    |
+| -------- | ----------------------- | ----------------------- |
+| value    | Markdown data to render | `string` \| `undefined` |

@@ -11,23 +11,27 @@ First, we create a form by extracting `searchFormProps` from `useTable`. We will
 
 ```tsx title="pages/list.tsx"
 import {
-    List,
+    //highlight-start
     Form,
+    Table,
+    useTable,
+    //highlight-end
+    List,
     Button,
     DatePicker,
     Space,
     Input,
-    Table,
-    useTable,
 } from "@pankod/refine";
 
 const { RangePicker } = DatePicker;
 
+//highlight-next-line
 const { searchFormProps } = useTable<IPost>();
 
 return (
     <List>
         <Space direction="vertical" size="large">
+            //highlight-start
             <Form layout="inline" {...searchFormProps}>
                 <Form.Item label="Title" name="title">
                     <Input placeholder="Title" />
@@ -43,6 +47,7 @@ return (
                     </Button>
                 </Form.Item>
             </Form>
+            //highlight-end
             <Table>...</Table>
         </Space>
     </List>

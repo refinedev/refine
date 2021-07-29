@@ -6,8 +6,8 @@ title: Mutation Mode
 import test from '@site/static/img/guides-and-concepts/mutation-mode/test.png';
 
 ## Overview
-Mutation mode determines the mode with which the mutations run. Mutations can run under 3 different modes: `pessimistic`, `optimistic` and `undoable`.  
-Each mode correspondes to a different type of user experience.
+Mutation mode determines which mode the mutation runs with. Mutations can run under three different modes: `pessimistic`, `optimistic` and `undoable`.  
+Each mode corresponds to a different type of user experience.
 
 ## Modes
 
@@ -72,7 +72,7 @@ mutate({
     mutationMode: "optimistic",
 });
 ```
-> Mutation mode passed to `<Refine>` will be overriden by the mutation mode passed to a data hook.
+> Mutation mode passed to `<Refine>` will be overriden by the mutation mode passed to data or form hooks and components.
 
 ### Supported data hooks
 
@@ -87,6 +87,9 @@ mutate({
 - [`useDrawerForm` &#8594](api-references/hooks/form/useDrawerForm.md)
 - [`useStepsForm` &#8594](api-references/hooks/form/useStepsForm.md)
 
+### Supported components
+
+- [`DeleteButton` &#8594](api-references/components/buttons/delete.md)
 
 <br />
 

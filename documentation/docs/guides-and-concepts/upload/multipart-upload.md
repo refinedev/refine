@@ -7,22 +7,31 @@ import create from '@site/static/img/guides-and-concepts/multipart-upload/create
 import uploadedFile from '@site/static/img/guides-and-concepts/multipart-upload/uploaded.jpg';
 import edit from '@site/static/img/guides-and-concepts/multipart-upload/edit.jpg';
 
-We'll show you how to upload multiple files with refine.
+We will show you how to multipart upload with **refine**.
 
 Let's start with the `creation form` first.
 
 ### Create Form
 
-Let's add the image field to the post creation form.
+Let's add the image field to the post `creation form`.
 
 ```tsx title="pages/posts/create.tsx"
-import { Create, Form, Input, getValueFromEvent, Upload } from "@pankod/refine";
+import { 
+    // highlight-start
+    Upload
+    getValueFromEvent,
+    // highlight-end
+    Create,
+    Form,
+    Input,
+} from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
 export const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
+    // highlight-next-line
     const apiUrl = useApiUrl();
 
     return (
@@ -85,10 +94,10 @@ export interface IPost {
 <br />
 
 :::tip
-We can reach the api url by using the `useApiUrl` hook.
+We can reach the API URL by using the `useApiUrl` hook.
 :::
 
-It looks like this.
+It will look like this.
 
 <>
 
@@ -98,21 +107,21 @@ It looks like this.
 <br/>
 </>
 
-We need now is an upload end-point that accepts multipart uploads. We write this address in the `action` prop of the `Upload` component.
+What we need now is an upload end-point that accepts multipart uploads. We write this address in the `action` property of the `Upload` component.
 
-```json title="[POST] /media/upload"
+```json title="[POST] https://api.fake-rest.refine.dev/media/upload"
 {
     "file": "binary"
 }
 ```
 
 :::important
-This end-point should be `Content-type: multipart/form-data` and `Form Data: file: binary`.
+This end-point should be `Content-type: multipart/form-data` and `Form Data: file: binary`?.
 :::
 
 This end-point should respond similarly.
 
-```json title="[POST] /media/upload"
+```json title="[POST] https://api.fake-rest.refine.dev/media/upload"
 {
     "url": "https://example.com/uploaded-file.jpeg"
 }
@@ -154,7 +163,7 @@ The following data are required for the [Antd Upload](https://ant.design/compone
 | -------- | ---------------------------------------- |
 | uid      | Unique id                                |
 | name     | File Name                                |
-| url      | Download url                             |
+| url      | Download URL                             |
 | status   | error, success, done, uploading, removed |
 
 ### Edit Form
@@ -162,13 +171,22 @@ The following data are required for the [Antd Upload](https://ant.design/compone
 Let's add the image field to the post editing form.
 
 ```tsx title="pages/posts/edit.tsx"
-import { Edit, Form, Input, Upload, getValueFromEvent } from "@pankod/refine";
+import { 
+    // highlight-start
+    Upload
+    getValueFromEvent,
+    // highlight-end
+    Edit,
+    Form,
+    Input,
+} from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
 export const PostEdit: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
+    // highlight-next-line
     const apiUrl = useApiUrl();
 
     return (
@@ -218,7 +236,7 @@ export const PostEdit: React.FC = () => {
 </div>
 <br/>
 
-A request as below is sent for edit form.
+A request, like the one below, is sent for edit form.
 
 ```json title="[GET] https://api.fake-rest.refine.dev/posts/1"
 {
@@ -238,7 +256,7 @@ A request as below is sent for edit form.
 }
 ```
 
-This data is sent to the API when form submitted.
+This data is sent to the API when form is submitted.
 
 ```json title="[PUT] https://api.fake-rest.refine.dev/posts/1"
 {
@@ -259,16 +277,17 @@ This data is sent to the API when form submitted.
 
 ### Uploading State
 
-You may want to disable the "Save" button in the form while the upload continues. You can use the `useFileUploadState` hook for this.
+You may want to disable the "Save" button in the form while the upload is going on. To do this, you can use the `useFileUploadState` hook.
 
 ```tsx title="pages/posts/create.tsx"
 import {
+    Upload
+    getValueFromEvent,
+    // highlight-next-line
+    useFileUploadState,
     Create,
     Form,
     Input,
-    Upload,
-    getValueFromEvent,
-    useFileUploadState,
 } from "@pankod/refine";
 
 import { IPost } from "interfaces";

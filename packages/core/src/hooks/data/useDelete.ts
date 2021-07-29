@@ -43,6 +43,18 @@ type UseDeleteReturnType<
     DeleteContext
 >;
 
+/**
+ * `useDelete` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for delete mutations.
+ *
+ * It uses `deleteOne` method as mutation function from the `dataProvider` which is passed to `<Refine>`.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/data/useDelete} for more details.
+ *
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TVariables - Values for params. default `{}`
+ *
+ */
 export const useDelete = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,

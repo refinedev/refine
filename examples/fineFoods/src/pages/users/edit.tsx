@@ -16,15 +16,14 @@ import { IUser } from "interfaces";
 
 export const UserEdit: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
-    const {
-        formProps,
-        saveButtonProps,
-        queryResult: { isFetching },
-    } = useForm<IUser>();
+    const { formProps, saveButtonProps, queryResult } = useForm<IUser>();
     const apiUrl = useApiUrl();
 
     return (
-        <Edit isLoading={isFetching} saveButtonProps={saveButtonProps}>
+        <Edit
+            isLoading={queryResult?.isFetching}
+            saveButtonProps={saveButtonProps}
+        >
             <Form
                 {...formProps}
                 layout="vertical"

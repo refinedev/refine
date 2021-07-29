@@ -8,6 +8,11 @@ export type AuthenticatedProps = {
     loading?: React.ReactNode;
 };
 
+/**
+ * `<Authenticated>` is the component form of {@link https://refine.dev/docs/api-references/hooks/auth/useAuthenticated `useAuthenticated`}. It internally uses `useAuthenticated` to provide it's functionality.
+ *
+ * @see {@link https://refine.dev/docs/api-references/components/auth/authenticated `<Authenticated> component`} for more details.
+ */
 export const Authenticated: React.FC<AuthenticatedProps> = ({
     children,
     fallback,
