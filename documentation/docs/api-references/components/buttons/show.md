@@ -26,7 +26,6 @@ export const PostList: React.FC = () => {
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
-                    key="actions"
                     render={(_, record) => (
                         // highlight-next-line
                         <ShowButton size="small" recordItemId={record.id} />

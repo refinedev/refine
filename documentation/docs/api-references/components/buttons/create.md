@@ -10,8 +10,13 @@ import listUsage from '@site/static/img/guides-and-concepts/components/buttons/c
 ## Usage
 
 ```tsx
-//highlight-next-line
-import { List, Table, CreateButton, useTable } from "@pankod/refine";
+import { 
+    //highlight-next-line
+    CreateButton,
+    List,
+    Table,
+    useTable
+} from "@pankod/refine";
 
 import { IPost } from "interfaces";
 

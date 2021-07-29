@@ -9,20 +9,20 @@ import saveButtonProps from '@site/static/img/guides-and-concepts/components/but
 
 ## Usage
 
-For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the `useForm` hook.
+For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](api-references/hooks/form/useForm.md) hook.
 
 ```tsx
 import { Edit, Form, Input, useForm } from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
-export const PostEdit: React.FC = (props) => {
+export const PostEdit: React.FC = () => {
     //highlight-next-line
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     return (
         //highlight-next-line
-        <Edit {...props} saveButtonProps={saveButtonProps}>
+        <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
@@ -55,7 +55,7 @@ Will look like this:
 </div>
 <br/>
 
-The `useForm` hook exposes `saveButtonProps` to be passed to `<SaveButton>` component which includes submitting the form action, button loading, and disable states. 
+The [`useForm`](api-references/hooks/form/useForm.md) hook exposes `saveButtonProps` to be passed to `<SaveButton>` component which includes submitting the form action, button loading, and disable states. 
 
 ## API Reference
 

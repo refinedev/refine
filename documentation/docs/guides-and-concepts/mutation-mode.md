@@ -72,7 +72,7 @@ mutate({
     mutationMode: "optimistic",
 });
 ```
-> Mutation mode passed to `<Refine>` will be overriden by the mutation mode passed to data or form hooks.
+> Mutation mode passed to `<Refine>` will be overriden by the mutation mode passed to data or form hooks and components.
 
 ### Supported data hooks
 
@@ -87,6 +87,9 @@ mutate({
 - [`useDrawerForm` &#8594](api-references/hooks/form/useDrawerForm.md)
 - [`useStepsForm` &#8594](api-references/hooks/form/useStepsForm.md)
 
+### Supported components
+
+- [`DeleteButton` &#8594](api-references/components/buttons/delete.md)
 
 <br />
 

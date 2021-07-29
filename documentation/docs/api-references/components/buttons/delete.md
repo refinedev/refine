@@ -7,13 +7,18 @@ import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/
 import defaultUsage from '@site/static/img/guides-and-concepts/components/buttons/delete/default.gif';
 
 `<DeleteButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) and [`<Popconfirm>`](https://ant.design/components/popconfirm/) components.
-When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the `useDelete` method provided by your `dataProvider`.
+When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](api-references/hooks/data/useDelete.md) method provided by your [`dataProvider`](api-references/providers/data-provider.md).
 
 ## Usage
 
 ```tsx
-//highlight-next-line
-import { List, Table, DeleteButton, useTable } from "@pankod/refine";
+import {
+    //highlight-next-line
+    DeleteButton,
+    List,
+    Table,
+    useTable
+} from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
@@ -28,7 +33,6 @@ export const PostList: React.FC = () => {
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
-                    key="actions"
                     render={(_, record) => (
                         //highlight-next-line
                         <DeleteButton size="small" recordItemId={record.id} />
@@ -73,7 +77,7 @@ export const MyDeleteComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `useDelete` method and then the record whose resource is "post" and whose id is "1" gets deleted.
+Clicking the button will trigger the [`useDelete`](api-references/hooks/data/useDelete.md) method and then the record whose resource is "post" and whose id is "1" gets deleted.
 
 :::note
 **`<DeleteButton>`** component reads the id information from the route by default.
@@ -91,7 +95,7 @@ export const MyDeleteComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `useDelete` method and then the record whose resource is "categories" and whose id is "2" is deleted.
+Clicking the button will trigger the [`useDelete`](api-references/hooks/data/useDelete.md) method and then the record whose resource is "categories" and whose id is "2" is deleted.
 
 :::note
 **`<DeleteButton>`** component reads the resource name from the route by default.
@@ -119,7 +123,6 @@ export const PostList: React.FC = () => {
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
-                    key="actions"
                     render={(_, record) => (
                         <DeleteButton
                             size="small"
@@ -160,7 +163,6 @@ export const PostList: React.FC = () => {
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
-                    key="actions"
                     render={(_, record) => (
                         <DeleteButton
                             size="small"
