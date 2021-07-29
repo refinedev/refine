@@ -13,7 +13,7 @@ import { useNavigation } from "@hooks/navigation";
 /**
  * `useLogout` calls the `logout` method from the {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/auth/useLogin} for more details.
+ * @see {@link https://refine.dev/docs/api-references/hooks/auth/useLogout} for more details.
  *
  */
 export const useLogout = (): UseMutationResult<
