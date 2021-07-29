@@ -3,19 +3,18 @@ id: create
 title: Create
 ---
 
-import asideUsage from '@site/static/img/guides-and-concepts/basic-views/create/aside.png'
 import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/create/pageHeaderProps.png'
 import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/create/actionButtons.png'
 
 `<Create>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like action buttons and giving titles to the page.
 
-We' ll show what `<Create>` does using properties with examples.
+We'll show what `<Create>` does using properties with examples.
 
 ## Properties
 
 ### `title`
 
-It allows adding title inside the `<Create>` component. if you don't pass title props it uses "Create" prefix and singular resource name by default. For example, for the `/posts/create` resource, it will look like "Create post".
+It allows adding title inside the `<Create>` component. if you don't pass title props it uses "Create" prefix and singular resource name by default. For example, for the `/posts/create` resource, it will be like "Create post".
 
 ```tsx
 import { Create } from "@pankod/refine";
@@ -39,34 +38,6 @@ export const Create: React.FC = () => {
     return <Create saveButtonProps={{ size: "small" }}>...</Create>;
 };
 ```
-
-
-
-### `Aside`
-
-It allows adding a component to the right of the `<Edit>` component.
-
-```tsx
-import { Edit, Card } from "@pankod/refine";
-
-const Aside: React.FC = () => {
-    return (
-        <Card title="Post Create Details" extra={<a href="#">More</a>}>
-            <p>Here you can give useful information about post you are creating.</p>
-        </Card>
-    );
-};
-
-export const Create: React.FC = () => {
-    return <Create Aside={Aside}>...</Create>;
-};
-```
-
-<br/>
-<div>
-    <img src={asideUsage} alt="Aside Usage"/>
-</div>
-<br/>
 
 ### `actionButtons`
 
@@ -166,7 +137,6 @@ export const App: React.FC = () => {
 | --------------- | ----------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | saveButtonProps | Adds props for create button              | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton>`                                                                     |
 | title           | Adds title                                | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                    |
-| Aside           | Adds a component to right side             | `React.ReactNode`                                                 | `undefined`                                                                        |
 | actionButtons   | Passes the props for `<PageHeader>`           | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
 | pageHeaderProps | Passes the props for `<PageHeader>`           | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
 | resource        | [`Resource`](#) for API data interactions | `string`                                                          | Resource name that it reads from the URL.                                          |

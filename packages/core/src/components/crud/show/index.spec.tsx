@@ -66,14 +66,6 @@ describe("Show", () => {
         getByText("Test Title");
     });
 
-    it("should render with aside component", () => {
-        const { getByText } = renderShow(
-            <Show Aside={<div>Test Aside Component</div>} />,
-        );
-
-        getByText("Test Aside Component");
-    });
-
     it("should render optional resource with resource prop", () => {
         const { getByText } = render(
             <Route>

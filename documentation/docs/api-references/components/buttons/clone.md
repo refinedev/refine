@@ -21,14 +21,14 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
-            <Table {...tableProps} key="id">
-                <Table.Column key="id" dataIndex="id" title="ID" />
-                <Table.Column key="title" dataIndex="title" title="Title" />
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" />
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
                     key="actions"
-                    render={(_value, record) => (
+                    render={(_, record) => (
                         // highlight-next-line
                         <CloneButton size="small" recordItemId={record.id} />
                     )}

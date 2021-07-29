@@ -5,16 +5,20 @@ title: Image
 
 import imageField from '@site/static/img/guides-and-concepts/fields/image/imageField.png'
 
-This field is used to display images and uses `<Image>` from Ant Design.
-
-[Refer to the `<Image>` documentation for detailed usage. &#8594](https://ant.design/components/image/#header)
+This field is used to display images and uses [`<Image>`](https://ant.design/components/image/#header) from Ant Design.
 
 ## Usage
 
 Let's see how we can use `<ImageField>` with the example in the edit page.
 
 ```tsx
-import { List, Table, ImageField } from "@pankod/refine";
+import { 
+    List,
+    Table,
+    //highlight-next-line
+    ImageField 
+} from "@pankod/refine";
+
 import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
@@ -24,10 +28,8 @@ export const PostList: React.FC = () => {
                 <Table.Column
                     dataIndex="title"
                     title="Title"
-                    key="title"
                 />
                 <Table.Column<IPost>
-                    key="image"
                     title="Image"
                     dataIndex="image"
                     render={(_, record) => (

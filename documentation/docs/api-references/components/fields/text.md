@@ -3,7 +3,7 @@ id: text
 title: Text
 ---
 
-This field lets you show basic text. It uses Ant Design's [<Typography.Text\>](https://ant.design/components/typography/#Typography.Text) component.
+This field lets you show basic text. It uses Ant Design's [`<Typography.Text>`](https://ant.design/components/typography/#Typography.Text) component.
 
 ## Usage
 
@@ -68,7 +68,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
 ```
 
 :::tip
-Table columns already render their data as text by default. If the rendered data is in text form and its text field won't be customized with any of Ant Design [`<Typography.Text>`](https://ant.design/components/typography/#Typography.Text) properties, there isn't any need to use `<TextField>` in a column's render function.
+Table columns already render their data as text by default. If the rendered data is in text form and its text field won't be customized with any of Ant Design `<Typography.Text>` properties, there isn't any need to use `<TextField>` in a column's render function.
 :::
 
 ```ts title="src/interfaces/index.d.ts"
@@ -87,8 +87,8 @@ export interface IPost {
 
 ### Properties
 
-| Property | Description             | Type                 |
-| -------- | ----------------------- | -------------------- |
-| value    | Markdown data to render | `string | undefined` |
+| Property | Description             | Type                    |
+| -------- | ----------------------- | ----------------------- |
+| value    | Markdown data to render | `string` \| `undefined` |
 
 [Refer to Text props &#8594](https://ant.design/components/typography/#Typography.Text)

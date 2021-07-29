@@ -43,18 +43,21 @@ Now let's prepare a rule that checks if the titles of the posts are unique. We h
 
 ```tsx
 import { useApiUrl, useCustom, HttpError } from "@pankod/refine";
+
 interface PostUniqueCheckResponse {
     isAvailable: boolean;
 }
 interface PostUniqueCheckRequestQuery {
     title: string;
 }
+
 export const PostCreate = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
     // highlight-start
+    const [title, setTitle] = useState("");
+
     const apiUrl = useApiUrl();
     const url = `${apiUrl}/posts-unique-check`;
-    const [title, setTitle] = useState("");
     const { refetch } = useCustom<
         PostUniqueCheckResponse,
         HttpError,
@@ -73,6 +76,7 @@ export const PostCreate = () => {
         },
     );
     // highlight-end
+
     return (
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
@@ -103,6 +107,7 @@ export const PostCreate = () => {
                     <Input onChange={(event) => setTitle(event.target.value)} />
                 </Form.Item>
                 ...
+            </Form>
         </Create>
     );
 };
