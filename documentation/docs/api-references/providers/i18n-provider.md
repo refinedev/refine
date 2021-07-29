@@ -571,17 +571,15 @@ export const PostList: React.FC = () => {
     return (
         //highlight-next-line
         <List>
-            <Table {...tableProps} key="id">
-                <Table.Column key="id" dataIndex="id" title="ID" />
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
                 <Table.Column
-                    key="title"
                     dataIndex="title"
                     //highlight-next-line
                     title={translate("posts.fields.title")}
                 />
                 <Table.Column
                     dataIndex={["category", "id"]}
-                    key="category.id"
                     //highlight-next-line
                     title={translate("posts.fields.category")}
                     render={(value) => {
