@@ -6,16 +6,20 @@ title: File
 import fileField from '@site/static/img/guides-and-concepts/fields/file/fileField.png'
 
 
-This field is used to display files and uses `<Typography.Link>` from Ant Design.
-
-[Refer to the `<Typography.Link>` documentation for detailed usage. &#8594](https://ant.design/components/typography)
+This field is used to display files and uses [`<Typography.Link>`](https://ant.design/components/typography) from Ant Design.
 
 ## Usage
 
 Let's see how we can use `<FileField>` with the example in the edit page. 
 
 ```tsx
-import { List, Table, FileField } from "@pankod/refine";
+import { 
+    List,
+    Table,
+    //highlight-next-line
+    FileField 
+} from "@pankod/refine";
+
 import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
@@ -25,10 +29,8 @@ export const PostList: React.FC = () => {
                 <Table.Column
                     dataIndex="title"
                     title="Title"
-                    key="title"
                 />
                 <Table.Column<IPost>
-                    key="image"
                     title="Image"
                     dataIndex="image"
                     render={(_, record) => (
