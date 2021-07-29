@@ -151,6 +151,13 @@ module.exports = {
                         },
                         {
                             type: "category",
+                            label: "Authorization",
+                            items: [
+                                "api-references/components/auth/authenticated",
+                            ],
+                        },
+                        {
+                            type: "category",
                             label: "Buttons",
                             items: [
                                 "api-references/components/buttons/list-button",
