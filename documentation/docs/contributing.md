@@ -79,4 +79,4 @@ Please make sure you contribute well tested code.
 [Docusaurus]: https://docusaurus.io/
 [Issues]: https://github.com/pankod/refine/issues
 [CODE_OF_CONDUCT]: https://github.com/pankod/refine/blob/master/CODE_OF_CONDUCT.md
-[Discord Channel]: https://discord.gg/fRhtCgPA
+[Discord Channel]: https://discord.gg/qkhjCsJFrp
