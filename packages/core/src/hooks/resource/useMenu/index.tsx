@@ -26,7 +26,7 @@ export const useMenu: () => useMenuReturnType = () => {
     if (selectedResource?.route) {
         selectedKey = `/resources/${selectedResource?.route}`;
     } else if (location.pathname === "/") {
-        selectedKey = "dashboard";
+        selectedKey = "/";
     } else {
         selectedKey = "notfound";
     }

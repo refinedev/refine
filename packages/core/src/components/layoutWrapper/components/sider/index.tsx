@@ -31,7 +31,6 @@ export const Sider: React.FC = () => {
             <Title collapsed={collapsed} />
             <Menu
                 theme="dark"
-                defaultSelectedKeys={["dashboard"]}
                 selectedKeys={[selectedKey]}
                 mode="inline"
                 onClick={({ key }) => {
@@ -40,16 +39,11 @@ export const Sider: React.FC = () => {
                         return;
                     }
 
-                    if (key === "dashboard") {
-                        push("/");
-                        return;
-                    }
-
                     push(key as string);
                 }}
             >
-                {menuItems.map(({ icon, label, key }) => (
-                    <Menu.Item key={key} icon={icon}>
+                {menuItems.map(({ icon, label, route }) => (
+                    <Menu.Item key={route} icon={icon}>
                         {label}
                     </Menu.Item>
                 ))}
