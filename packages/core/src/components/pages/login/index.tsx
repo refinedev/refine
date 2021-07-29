@@ -10,19 +10,18 @@ import {
     Button,
     Checkbox,
 } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import {
-    loginCard,
-    signupSection,
-    loginHeader,
-    loginBackground,
-} from "./styles";
 
-import logo from "./refine.svg";
+import {
+    layoutStyles,
+    containerStyles,
+    titleStyles,
+    imageContainer,
+} from "./styles";
+import logo from "./refine-logo.svg";
 
 import { useLogin, useTranslate } from "@hooks";
 
-const { Text } = Typography;
+const { Text, Title } = Typography;
 export interface ILoginForm {
     username: string;
     password: string;
@@ -36,13 +35,13 @@ export const LoginPage: React.FC = () => {
     const { mutate: login } = useLogin<ILoginForm>();
 
     const CardTitle = (
-        <div style={loginHeader}>
-            <img src={logo} alt="Logo" />
-        </div>
+        <Title level={3} style={titleStyles}>
+            {translate("pages.login.title", "Sign in your account")}
+        </Title>
     );
 
     return (
-        <Layout style={loginBackground}>
+        <Layout style={layoutStyles}>
             <Row
                 justify="center"
                 align="middle"
@@ -51,98 +50,109 @@ export const LoginPage: React.FC = () => {
                 }}
             >
                 <Col xs={22}>
-                    <Card style={loginCard} title={CardTitle}>
-                        <Form<ILoginForm>
-                            layout="vertical"
-                            form={form}
-                            onFinish={(values) => {
-                                login(values);
-                            }}
-                            requiredMark={false}
-                            initialValues={{
-                                remember: false,
-                            }}
-                        >
-                            <Form.Item
-                                name="username"
-                                label={translate(
-                                    "pages.login.username",
-                                    "Username",
-                                )}
-                                rules={[{ required: true }]}
+                    <div style={containerStyles}>
+                        <div style={imageContainer}>
+                            <img src={logo} alt="Refine Logo" />
+                        </div>
+                        <Card title={CardTitle} headStyle={{ borderBottom: 0 }}>
+                            <Form<ILoginForm>
+                                layout="vertical"
+                                form={form}
+                                onFinish={(values) => {
+                                    login(values);
+                                }}
+                                requiredMark={false}
+                                initialValues={{
+                                    remember: false,
+                                }}
                             >
-                                <Input
-                                    prefix={
-                                        <UserOutlined
-                                            style={{ color: "#00000040" }}
-                                        />
-                                    }
-                                />
-                            </Form.Item>
-                            <Form.Item
-                                name="password"
-                                label={translate(
-                                    "pages.login.password",
-                                    "Password",
-                                )}
-                                rules={[{ required: true }]}
-                            >
-                                <Input
-                                    type="password"
-                                    prefix={
-                                        <LockOutlined
-                                            style={{ color: "#00000040" }}
-                                        />
-                                    }
-                                />
-                            </Form.Item>
-                            <Form.Item>
                                 <Form.Item
-                                    name="remember"
-                                    valuePropName="checked"
-                                    noStyle
-                                >
-                                    <Checkbox>
-                                        {translate(
-                                            "pages.login.remember",
-                                            "Remember me",
-                                        )}
-                                    </Checkbox>
-                                </Form.Item>
-
-                                <a
-                                    style={{ float: "right" }}
-                                    href="javascript:void(0);"
-                                >
-                                    {translate(
-                                        "pages.login.forgotPassword",
-                                        "Forgot password?",
+                                    name="username"
+                                    label={translate(
+                                        "pages.login.username",
+                                        "Username",
                                     )}
-                                </a>
-                            </Form.Item>
-                            <Form.Item>
+                                    rules={[{ required: true }]}
+                                >
+                                    <Input
+                                        size="large"
+                                        placeholder={translate(
+                                            "pages.login.username",
+                                            "Username",
+                                        )}
+                                    />
+                                </Form.Item>
+                                <Form.Item
+                                    name="password"
+                                    label={translate(
+                                        "pages.login.password",
+                                        "Password",
+                                    )}
+                                    rules={[{ required: true }]}
+                                    style={{ marginBottom: "12px" }}
+                                >
+                                    <Input
+                                        type="password"
+                                        placeholder="●●●●●●●●"
+                                        size="large"
+                                    />
+                                </Form.Item>
+                                <div style={{ marginBottom: "12px" }}>
+                                    <Form.Item
+                                        name="remember"
+                                        valuePropName="checked"
+                                        noStyle
+                                    >
+                                        <Checkbox
+                                            style={{
+                                                fontSize: "12px",
+                                            }}
+                                        >
+                                            {translate(
+                                                "pages.login.remember",
+                                                "Remember me",
+                                            )}
+                                        </Checkbox>
+                                    </Form.Item>
+
+                                    <a
+                                        style={{
+                                            float: "right",
+                                            fontSize: "12px",
+                                        }}
+                                        href="#"
+                                    >
+                                        {translate(
+                                            "pages.login.forgotPassword",
+                                            "Forgot password?",
+                                        )}
+                                    </a>
+                                </div>
                                 <Button
                                     type="primary"
                                     size="large"
                                     htmlType="submit"
                                     block
                                 >
-                                    {translate("pages.login.login", "Login")}
+                                    {translate("pages.login.signin", "Sign in")}
                                 </Button>
-                            </Form.Item>
-                        </Form>
-                        <div style={signupSection}>
-                            <Text>
-                                {translate(
-                                    "pages.login.noAccount",
-                                    "Still no account? Please go to",
-                                )}{" "}
-                                <a href="">
-                                    {translate("pages.login.signup", "Sign up")}
-                                </a>
-                            </Text>
-                        </div>
-                    </Card>
+                            </Form>
+                            <div style={{ marginTop: 8 }}>
+                                <Text style={{ fontSize: 12 }}>
+                                    {translate(
+                                        "pages.login.noAccount",
+                                        "Don’t have an account?",
+                                    )}{" "}
+                                    <a href="#" style={{ fontWeight: "bold" }}>
+                                        {translate(
+                                            "pages.login.signup",
+                                            "Sign up",
+                                        )}
+                                    </a>
+                                </Text>
+                            </div>
+                        </Card>
+                    </div>
                 </Col>
             </Row>
         </Layout>
