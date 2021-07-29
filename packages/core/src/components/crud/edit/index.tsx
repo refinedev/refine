@@ -39,6 +39,12 @@ export interface EditProps {
     isLoading?: boolean;
 }
 
+/**
+ * `<Edit>` provides us a layout for displaying the page.
+ * It does not contain any logic but adds extra functionalities like a refresh button.
+ *
+ * @see {@link https://refine.dev/docs/api-references/components/basic-views/edit} for more details.
+ */
 export const Edit: React.FC<EditProps> = ({
     title,
     actionButtons,

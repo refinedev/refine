@@ -15,6 +15,12 @@ export interface ListProps {
     resource?: string;
 }
 
+/**
+ * `<List>` provides us a layout for displaying the page.
+ * It does not contain any logic but adds extra functionalities like a refresh button.
+ *
+ * @see {@link https://refine.dev/docs/api-references/components/basic-views/list} for more details.
+ */
 export const List: React.FC<ListProps> = ({
     canCreate,
     title,
