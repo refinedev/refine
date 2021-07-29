@@ -32,16 +32,12 @@ export const PostShow: React.FC = () => {
 
     return (
         <Show isLoading={isLoading}>
-            {record && (
-                <>
-                    <Title level={5}>Id</Title>
-                    <Text>{record.id}</Text>
+            <Title level={5}>Id</Title>
+            <Text>{record?.id}</Text>
 
-                    <Title level={5}>Content</Title>
-                    //highlight-next-line
-                    <MarkdownField value={record.content} />
-                </>
-            )}
+            <Title level={5}>Content</Title>
+            //highlight-next-line
+            <MarkdownField value={record?.content} />
         </Show>
     );
 };
@@ -63,6 +59,6 @@ export interface IPost {
 
 ### Properties
 
-| Property | Description             | Type                 |
-| -------- | ----------------------- | -------------------- |
-| value    | Markdown data to render | `string | undefined` |
+| Property | Description             | Type                    |
+| -------- | ----------------------- | ----------------------- |
+| value    | Markdown data to render | `string` \| `undefined` |

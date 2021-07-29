@@ -329,7 +329,7 @@ export const PostReview = () => {
 };
 ```
 
-Then, pass this `<PostReview>` as the routes? property in the `<Refine>` component:
+Then, pass this `<PostReview>` as the routes property in the `<Refine>` component:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";

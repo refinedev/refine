@@ -6,18 +6,21 @@ title: List Search
 import basicList from '@site/static/img/guides-and-concepts/list-search/basic-list.png';
 import formList from '@site/static/img/guides-and-concepts/list-search/form-list.png';
 
-We will examine how to make an extensive search and filtering with the [`useSimpleList`](../../api-references/hooks/show/useSimpleList.md) hook that works with the [`<List>`](https://ant.design/components/list) component.
+We will examine how to make an extensive search and filtering with the [`useSimpleList`](../../api-references/hooks/show/useSimpleList.md) hook that works with the Ant Design's [`<List>`](https://ant.design/components/list) component.
 
 To do this, let's list posts using the posts resource.
 
 ```tsx title="pages/posts/list.tsx"
 import {
     List,
-    AntdList,
-    Space,
-    NumberField,
+    //highlight-next-line
     useSimpleList,
     useMany,
+    //highlight-next-line
+    AntdList,
+    Typography,
+    Space,
+    NumberField,
 } from "@pankod/refine";
 
 const { Text } = Typography;
@@ -119,6 +122,13 @@ We will create a form by extracting `searchFormProps` from [`useSimpleList`](../
 
 ```tsx title="pages/posts/list.tsx"
 // ...
+
+import {
+    ...
+    //highlight-next-line
+    CrudFilters,
+} from "@pankod/refine";
+
 
 //highlight-next-line
 import { IPostFilterVariables } from "interfaces";

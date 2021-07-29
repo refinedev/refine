@@ -112,6 +112,7 @@ export const Show: React.FC<ShowProps> = ({
                 >
                     <Spin spinning={isLoading}>
                         <Card
+                            bordered={false}
                             actions={
                                 actionButtons ? [actionButtons] : undefined
                             }

@@ -5,7 +5,7 @@ title: Auth0 Login
 
 import login from '@site/static/img/guides-and-concepts/auth0/auth0-login.gif';
 
-Auth0 is a flexible, drop-in solution for adding authentication and authorization services to your applications. Your team and organization can avoid the cost, time, and risk that comes with building your own solution to authenticate and authorize users. You can check the [auth0 document](https://auth0.com/docs) for details.
+[Auth0](https://auth0.com/) is a flexible, drop-in solution for adding authentication and authorization services to your applications. Your team and organization can avoid the cost, time, and risk that comes with building your own solution to authenticate and authorize users. You can check the [Auth0 document](https://auth0.com/docs) for details.
 
 We will show you how to use Auth0 with refine
 
@@ -24,9 +24,10 @@ Wrap your root component with an Auth0Provider that you can import from the SDK.
 ```tsx title="index.tsx"
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 // highlight-next-line
 import { Auth0Provider } from "@auth0/auth0-react";
+
+import App from "./App";
 
 ReactDOM.render(
     <React.StrictMode>
@@ -50,7 +51,7 @@ Refer to [**Auth0 docs**](https://auth0.com/docs/quickstart/spa/react#configure-
 
 ### Override login page
 
-First, we need to override the refine `login page`. In this way, we will redirect it to the auth0 login screen. We create a `login.tsx` file in the `/pages` folder.
+First, we need to override the **refine** login page. In this way, we will redirect it to the Auth0 login page. We create a `login.tsx` file in the `/pages` folder.
 
 ```tsx title="/pages/login.tsx"
 import React from "react";
@@ -63,7 +64,6 @@ import {
     // highlight-next-line
     useLogin
 } from "@pankod/refine";
-
 
 export const Login: React.FC = () => {
     // highlight-next-line
@@ -131,7 +131,7 @@ export const Login: React.FC = () => {
 };
 ```
 
-After clicking the `Login with Auth0` button, you will be directed to the auth0 login screen.
+After clicking the `Login` button, you will be directed to the auth0 login screen.
 
 <div style={{textAlign: "center"}}>
     <img src={login} />
@@ -171,16 +171,16 @@ const App = () => {
 
     // highlight-start
     const authProvider: AuthProvider = {
-        login: async () => {
+        login: () => {
             loginWithRedirect();
             return Promise.resolve();
         },
-        logout: async () => {
+        logout: () => {
             logout({ returnTo: window.location.origin });
             return Promise.resolve("/");
         },
         checkError: () => Promise.resolve(),
-        checkAuth: async () => {
+        checkAuth: () => {
             if (isAuthenticated) {
                 return Promise.resolve();
             }
@@ -188,7 +188,7 @@ const App = () => {
             return Promise.reject();
         },
         getPermissions: () => Promise.resolve(),
-        getUserIdentity: async () => {
+        getUserIdentity: () => {
             if (user) {
                 return Promise.resolve({
                     ...user,

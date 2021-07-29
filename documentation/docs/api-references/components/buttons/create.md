@@ -10,8 +10,13 @@ import listUsage from '@site/static/img/guides-and-concepts/components/buttons/c
 ## Usage
 
 ```tsx
-//highlight-next-line
-import { List, Table, CreateButton, useTable } from "@pankod/refine";
+import { 
+    //highlight-next-line
+    CreateButton,
+    List,
+    Table,
+    useTable
+} from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
@@ -21,9 +26,9 @@ export const PostList: React.FC = () => {
     return (
         //highlight-next-line
         <List pageHeaderProps={{ extra: <CreateButton /> }}>
-            <Table {...tableProps} key="id">
-                <Table.Column key="id" dataIndex="id" title="ID" />
-                <Table.Column key="title" dataIndex="title" title="Title" />
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" />
             </Table>
         </List>
     );

@@ -12,14 +12,13 @@ import { ICategory } from "interfaces";
 
 export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
-    const {
-        formProps,
-        saveButtonProps,
-        queryResult: { isFetching },
-    } = useForm<ICategory>();
+    const { formProps, saveButtonProps, queryResult } = useForm<ICategory>();
 
     return (
-        <Edit isLoading={isFetching} saveButtonProps={saveButtonProps}>
+        <Edit
+            isLoading={queryResult?.isFetching}
+            saveButtonProps={saveButtonProps}
+        >
             <Form
                 {...formProps}
                 layout="vertical"

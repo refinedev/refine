@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine",
-    "version": "1.0.35",
+    "version": "1.0.36",
     "description": "",
     "private": false,
     "main": "dist/index.js",
@@ -39,6 +39,7 @@
         "identity-obj-proxy": "^3.0.0",
         "msw": "^0.26.2",
         "postcss": "^8.2.15",
+        "rollup-plugin-copy": "^3.4.0",
         "rollup-plugin-postcss": "^4.0.0",
         "size-limit": "^4.9.2",
         "tsdx": "^0.14.1",

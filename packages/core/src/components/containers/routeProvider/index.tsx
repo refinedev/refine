@@ -203,4 +203,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     return isAuthenticated ? renderAuthorized() : renderUnauthorized();
 };
 
+/**
+ * @internal
+ */
 export const RouteProvider = React.memo(RouteProviderBase);
