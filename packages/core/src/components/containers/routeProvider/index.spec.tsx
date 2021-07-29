@@ -148,7 +148,7 @@ describe("RouteProvider", () => {
         );
 
         await wait(async () => {
-            await findByText("Login");
+            await findByText("Sign in");
         });
     });
 });
