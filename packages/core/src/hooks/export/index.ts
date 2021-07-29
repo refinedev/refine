@@ -32,6 +32,15 @@ type UseExportReturnType = {
     triggerExport: () => Promise<void>;
 };
 
+/**
+ * `useExport` hook allows you to make your resources exportable.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/import-export/useExport} for more details.
+ *
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TVariables - Values for params.
+ *
+ */
 export const useExport = <
     TData extends BaseRecord = BaseRecord,
     TVariables = any,
