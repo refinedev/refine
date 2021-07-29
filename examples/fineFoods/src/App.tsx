@@ -3,6 +3,7 @@ import "styles/antd.less";
 import jsonServerDataProvider from "@pankod/refine-simple-rest";
 import { authProvider } from "authProvider";
 import { DashbaordPage } from "./pages/dashboard";
+import { LoginPage } from "./pages/login";
 import { OrderList, OrderShow } from "./pages/orders";
 import { UserList, UserEdit, UserShow } from "./pages/users";
 import { CourierList } from "./pages/couriers";
@@ -42,6 +43,7 @@ const App: React.FC = () => {
             Header={Header}
             Title={Title}
             DashboardPage={DashbaordPage}
+            LoginPage={LoginPage}
         >
             <Resource
                 options={{

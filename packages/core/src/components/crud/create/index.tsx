@@ -82,6 +82,7 @@ export const Create: React.FC<CreateProps> = ({
                 >
                     <Spin spinning={isLoading}>
                         <Card
+                            bordered={false}
                             actions={[
                                 <Space
                                     key="action-buttons"

@@ -22,16 +22,16 @@ export const StoreShow: React.FC<IResourceComponentsProps> = (props) => {
         return (
             <>
                 <Title level={5}>{t("stores:fields.id")}</Title>
-                <Text>{record.id}</Text>
+                <Text>{record?.id}</Text>
                 <Title level={5}>{t("stores:fields.title")}</Title>
-                <Text>{record.title}</Text>
+                <Text>{record?.title}</Text>
                 <Title level={5}>{t("stores:fields.isActive")}</Title>
                 <Text>
-                    <BooleanField value={record.isActive} />
+                    <BooleanField value={record?.isActive} />
                 </Text>
                 <Title level={5}>{t("stores:fields.createdAt")}</Title>
                 <Text>
-                    <DateField value={record.createdAt} format="LLL" />
+                    <DateField value={record?.createdAt || ""} format="LLL" />
                 </Text>
             </>
         );

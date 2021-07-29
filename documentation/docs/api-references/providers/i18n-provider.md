@@ -239,13 +239,13 @@ values={[{ label: "English", value: "en" }, { label: "Turkish", value: "tr" }]}>
 {
     "pages": {
         "login": {
-            "login": "Login",
+            "signin": "Sign in",
             "signup": "Sign up",
             "username": "Username",
             "password": "Password",
             "remember": "Remember me",
             "forgotPassword": "Forgot password?",
-            "noAccount": "Still no account? Please go to"
+            "noAccount": "Don’t have an account?"
         },
         "error": {
             "info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
@@ -292,11 +292,23 @@ values={[{ label: "English", value: "en" }, { label: "Turkish", value: "tr" }]}>
     "posts": {
         "posts": "Posts",
         "fields": {
+            "id": "Id",
             "title": "Title",
-            "category": "Category"
+            "category": "Category",
+            "status": {
+                "title": "Status",
+                "published": "Published",
+                "draft": "Draft",
+                "rejected": "Rejected"
+            },
+            "content": "Content",
+            "createdAt": "Created At"
         },
         "titles": {
-            "list": "Posts"
+            "create": "Create Post",
+            "edit": "Edit Post",
+            "list": "Posts",
+            "show": "Show Post"
         }
     },
     "table": {
@@ -312,13 +324,13 @@ values={[{ label: "English", value: "en" }, { label: "Turkish", value: "tr" }]}>
 {
     "pages": {
         "login": {
-            "login": "Giriş",
+            "signin": "Giriş",
             "signup": "Kayıt",
             "username": "Kullanıcı Adı",
             "password": "Şifre",
             "remember": "Beni Hatırla",
             "forgotPassword": "Şifremi unuttum",
-            "noAccount": "Hala üye olmadın mı? Hadi tıkla"
+            "noAccount": "Hesabın yok mu?"
         },
         "error": {
             "info": "{{action}} sayfasını {{resource}} kaynağına eklemeyi unutmuş olabilirsiniz.",
@@ -365,11 +377,23 @@ values={[{ label: "English", value: "en" }, { label: "Turkish", value: "tr" }]}>
     "posts": {
         "posts": "Gönderiler",
         "fields": {
+            "id": "Id",
             "title": "Başlık",
-            "category": "Kategori"
+            "category": "Kategori",
+            "status": {
+                "title": "Durum",
+                "published": "Yayınlanan",
+                "draft": "Taslak",
+                "rejected": "Reddedildi"
+            },
+            "content": "İçerik",
+            "createdAt": "Yaratılma tarihi"
         },
         "titles": {
-            "list": "Gönderiler"
+            "create": "Gönderi Oluştur",
+            "edit": "Gönderi Düzenle",
+            "list": "Gönderiler",
+            "show": "Gönderi Göster"
         }
     },
     "table": {

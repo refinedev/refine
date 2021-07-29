@@ -9,8 +9,7 @@ import {
     NumberField,
     useTranslate,
 } from "@pankod/refine";
-import { Line } from "@ant-design/charts";
-import { LineConfig } from "@ant-design/charts/es/line";
+import { Line, LineConfig } from "@ant-design/charts";
 import dayjs, { Dayjs } from "dayjs";
 
 import { ISalesChart } from "interfaces";
@@ -97,7 +96,9 @@ export const SalesChart: React.FC = () => {
             <RangePicker
                 value={dateRange}
                 onChange={(values) => {
-                    setDateRange(values);
+                    if (values && values[0] && values[1]) {
+                        setDateRange([values[0], values[1]]);
+                    }
                 }}
                 style={{ float: "right", marginTop: 20 }}
                 ranges={{
