@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 
 export const layoutStyles: CSSProperties = {
-    background: `radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 100%), #095398`,
+    background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
     backgroundSize: "cover",
 };
 
@@ -21,4 +21,5 @@ export const imageContainer: CSSProperties = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    marginBottom: "16px",
 };
