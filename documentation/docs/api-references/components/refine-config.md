@@ -42,9 +42,9 @@ export default App;
 <br/>
 <br/>
 
-A data provider is the place where a refine app communicates with an API.
+A [`dataProvider`](api-references/providers/data-provider.md) is the place where a refine app communicates with an API.
 Data providers also act as adapters for refine, making it possible for it to consume different API's and data services.   
-A data provider makes HTTP requests and returns response data back using predefined methods.  
+A [`dataProvider`](api-references/providers/data-provider.md) makes HTTP requests and returns response data back using predefined methods.  
 
 
 [Refer to the Data Provider documentation for detailed information. &#8594](api-references/providers/data-provider.md)
