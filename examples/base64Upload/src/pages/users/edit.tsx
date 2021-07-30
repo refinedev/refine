@@ -81,7 +81,7 @@ export const UserEdit: React.FC<IResourceComponentsProps> = () => {
                 >
                     <Input />
                 </Form.Item>
-                <Form.Item label="avatar">
+                <Form.Item label="Avatar">
                     <Form.Item
                         name="avatar"
                         valuePropName="fileList"
@@ -98,8 +98,9 @@ export const UserEdit: React.FC<IResourceComponentsProps> = () => {
                             multiple
                             beforeUpload={() => false}
                         >
-                            <p className="ant-upload-text">Title</p>
-                            <p className="ant-upload-hint">Upload</p>
+                            <p className="ant-upload-text">
+                                Drag & drop a file in this area
+                            </p>
                         </Upload.Dragger>
                     </Form.Item>
                 </Form.Item>
