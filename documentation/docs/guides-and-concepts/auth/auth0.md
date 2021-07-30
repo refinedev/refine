@@ -246,6 +246,8 @@ We can use it with the `user` from the `useAuth0` hook.
 
 ## Live Codesandbox Example
 
+Auth0 example doesn't work in codesandbox embed mode. With [this](https://ussft.csb.app/) link, you can open the example in the browser and try it.
+
 <iframe src="https://codesandbox.io/embed/refine-auth0-example-ussft?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-auth0-example"
