@@ -8,6 +8,11 @@ export type FilterDropdownProps = AntdFilterDropdownProps & {
     mapValue?: (selectedKeys: React.Key[]) => any;
 };
 
+/**
+ * `<FilterDropdown>` is a helper component for {@link https://ant.design/components/table/#components-table-demo-custom-filter-panel filter dropdowns in Ant Design `<Table>` components.}
+ *
+ * @see {@link https://refine.dev/docs/api-references/components/filter-dropdown} for more details.
+ */
 export const FilterDropdown: React.FC<FilterDropdownProps> = ({
     selectedKeys,
     setSelectedKeys,
