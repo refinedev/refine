@@ -28,6 +28,7 @@ import {
     useImport,
     Dropdown,
     Menu,
+    useUpdate,
 } from "@pankod/refine";
 
 import { OrderStatus } from "components";
@@ -101,6 +102,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     });
 
     const t = useTranslate();
+    const { mutate } = useUpdate();
 
     const importProps = useImport();
     const { loading, triggerExport } = useExport({
@@ -127,7 +129,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         </Space>
     );
 
-    const moreMenu = (
+    const moreMenu = (id: string) => (
         <Menu mode="vertical">
             <Menu.Item
                 key="accept"
@@ -145,6 +147,18 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             fontWeight: 500,
                         }}
                     />
+                }
+                onClick={() =>
+                    mutate({
+                        resource: "orders",
+                        id,
+                        values: {
+                            status: {
+                                id: 2,
+                                text: "ready",
+                            },
+                        },
+                    })
                 }
             >
                 Accept
@@ -164,6 +178,18 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             fontSize: 17,
                         }}
                     />
+                }
+                onClick={() =>
+                    mutate({
+                        resource: "orders",
+                        id,
+                        values: {
+                            status: {
+                                id: 5,
+                                text: "cancelled",
+                            },
+                        },
+                    })
                 }
             >
                 Reject
@@ -280,9 +306,9 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             dataIndex="actions"
                             key="actions"
                             align="center"
-                            render={() => (
+                            render={(_value, record) => (
                                 <Dropdown
-                                    overlay={moreMenu}
+                                    overlay={moreMenu(record.id)}
                                     trigger={["click"]}
                                 >
                                     <Icons.MoreOutlined
