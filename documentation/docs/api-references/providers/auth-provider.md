@@ -233,7 +233,7 @@ Current authentication data needs to be cleaned by the `logout` method. For exam
 
 ### `checkError`
 
-When a `dataProvider` method returns an error, `checkError` is called with the error object.  
+When a [`dataProvider`](api-references/providers/data-provider.md) method returns an error, `checkError` is called with the error object.  
 If `checkError` returns a rejected promise, the `logout` method is called and user becomes unauthorized and gets redirected to `/login` page by default.
 
 In this example, we log the user out when HTTP error status code is `401`.  
@@ -459,7 +459,7 @@ If the resolved data has a `name` property, a name text appears; if it has an `a
 
 ## Setting Authorization Credentials
 
-After user logs in, their credentials can be sent along with the API request by configuring the [`dataProvider`](#). A custom `httpClient` can be passed to `dataProvider` to include configurations like cookies and request headers.
+After user logs in, their credentials can be sent along with the API request by configuring the [`dataProvider`](api-references/providers/data-provider.md). A custom `httpClient` can be passed to [`dataProvider`](api-references/providers/data-provider.md) to include configurations like cookies and request headers.
 
 We'll show how to add a token acquired from the `login` method to the **Authorization** header of the **HTTP** requests.
 
