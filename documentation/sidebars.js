@@ -324,6 +324,14 @@ module.exports = {
                         "examples/upload/base64Upload",
                     ],
                 },
+                {
+                    type: "category",
+                    label: "Import - Export",
+                    items: [
+                        "examples/import-export/import",
+                        "examples/import-export/export",
+                    ],
+                },
                 "examples/customPages",
                 "examples/customTheme",
                 "examples/javascript",
