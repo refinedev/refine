@@ -104,6 +104,7 @@ export const PostList: React.FC = () => {
                     <Form.Item label="Category" name="category">
                         <Select
                             {...categorySelectProps}
+                            style={{ minWidth: "250px" }}
                             allowClear
                             placeholder="Search Categories"
                         />
