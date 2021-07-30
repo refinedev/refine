@@ -23,13 +23,17 @@ import {
     FormProps,
     Row,
     Col,
+    ExportButton,
+    ImportButton,
+    useExport,
+    useImport,
 } from "@pankod/refine";
 import { OrderStatus } from "components";
 
 import { IOrder, IStore, IOrderFilterVariables } from "interfaces";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter, searchFormProps } = useTable<
+    const { tableProps, sorter, searchFormProps, filters } = useTable<
         IOrder,
         IOrderFilterVariables
     >({
@@ -96,27 +100,43 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
 
     const t = useTranslate();
 
+    const importProps = useImport();
+    const { loading, triggerExport } = useExport({
+        sorter,
+        filters,
+        pageSize: 100,
+        maxItemCount: 300,
+        mapData: (item) => {
+            return {
+                id: item.id,
+                amount: item.amount,
+                orderNumber: item.orderNumber,
+                status: item.status.text,
+                store: item.store.title,
+                user: item.user.firstName,
+            };
+        },
+    });
+
+    const Actions: React.FC = () => (
+        <Space direction="horizontal">
+            <ExportButton onClick={triggerExport} loading={loading} />
+            <ImportButton {...importProps} />
+        </Space>
+    );
+
     return (
-        <Row gutter={[1, 1]}>
+        <Row gutter={[16, 16]}>
             <Col xl={6} lg={24} xs={24}>
-                <Card
-                    bordered={false}
-                    title={
-                        <span style={{ fontWeight: 800 }}>
-                            {t("orders:filter.title")}
-                        </span>
-                    }
-                >
+                <Card bordered={false} title={t("orders:filter.title")}>
                     <Filter formProps={searchFormProps} />
                 </Card>
             </Col>
             <Col xl={18} xs={24}>
                 <List
-                    title={
-                        <span style={{ fontWeight: 800 }}>
-                            {t("orders:title")}{" "}
-                        </span>
-                    }
+                    pageHeaderProps={{
+                        extra: <Actions />,
+                    }}
                 >
                     <Table
                         {...tableProps}
