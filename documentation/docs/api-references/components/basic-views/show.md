@@ -38,7 +38,7 @@ export const Show: React.FC = () => {
 };
 ```
 
-[Refer to the `usePermission` documentation for detailed usage. &#8594](#)
+[Refer to the `usePermission` documentation for detailed usage. &#8594](/api-references/hooks/auth/usePermissions.md)
 
 ### `title`
 
@@ -170,7 +170,7 @@ export const Show: React.FC = () => {
 
 The `<Show>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Show>` component in a custom page, you can use the `resource` property.
 
-[Refer to the custom pages documentation for detailed usage. &#8594](#)
+[Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
 ```tsx
 import { Refine, Resource, Show } from "@pankod/refine";
@@ -219,4 +219,4 @@ The `<Show>` component needs the `id` information for work properly, so if you u
 | isLoading       | Gets passed to the `loading` property of the `<Card>` | `boolean`                                                         | `false`                                                                            |
 | pageHeaderProps | Passes props for `<PageHeader>`                       | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
 | recordItemId    | Record id for `<RefreshButton>`                       | `string`                                                          |                                                                                    |
-| resource        | [`Resource`](#) for API data interactions             | `string`                                                          | Resource name that it reads from the URL.                                          |
+| resource        | [`Resource`](/api-references/components/resource.md) for API data interactions             | `string`                                                          | Resource name that it reads from the URL.                                          |

@@ -144,11 +144,11 @@ After submission, login form calls the `login` method from `authProvider`.
 <br />
 
 :::important
-If an `authProvider` is given, [Resources](#) passed to `<Refine>` as children are only accessible if the login is successful. if no `authProvider` was provided, they are accessible without authentication.  
+If an `authProvider` is given, [Resources](/api-references/components/resource.md) passed to `<Refine>` as children are only accessible if the login is successful. if no `authProvider` was provided, they are accessible without authentication.  
 :::
 
 :::tip
-[Refer to documentation on how to customize the default login page.&#8594](#)
+[Refer to example on how to customize the default login page.&#8594](/examples/customization/customLogin.md)
 :::
 
 <br />
@@ -373,7 +373,7 @@ const authProvider = {
 
 <br/>
 
-Data that `getPermissions` resolves with is accesible by the [`usePermissions`](#) hook.
+Data that `getPermissions` resolves with is accesible by the [`usePermissions`](api-references/hooks/auth/usePermissions.md) hook.
 
 For example let's say that only the admins must be able to create new posts from the list page.
 `<List>` can show a button for creating new posts. If it's required that only admins can create new posts, this button must be only accessible to users who has the `"admin"` role.
@@ -414,7 +414,7 @@ const authProvider = {
 
 <br />
 
-The resolved data can be acquired using the [`useGetIdentity`](#) hook.
+The resolved data can be acquired using the [`useGetIdentity`](api-references/hooks/auth/useGetIdentity.md) hook.
 
 ```tsx
 import { useGetIdentity } from "@pankod/refine";
@@ -519,13 +519,13 @@ We recommend using **axios** as the Http client with the **@pankod/refine-simple
 
 These hooks can be used with the `authProvider` authentication and authorization operations.
 
--   [useAuthenticated](#)
--   [useCheckError](#)
--   [useGetIdentity](#)
--   [useLogin](#)
--   [useLogout](#)
--   [usePermissions](#)
--   [Authenticated](#)
+-   [useAuthenticated](/api-references/hooks/auth/useAuthenticated.md)
+-   [useCheckError](/api-references/hooks/auth/useCheckError.md)
+-   [useGetIdentity](/api-references/hooks/auth/useGetIdentity.md)
+-   [useLogin](/api-references/hooks/auth/useLogin.md)
+-   [useLogout](/api-references/hooks/auth/useLogout.md)
+-   [usePermissions](/api-references/hooks/auth/usePermissions.md)
+-   [`<Authenticated />`](/api-references/components/auth/authenticated.md)
 
 <br />
 

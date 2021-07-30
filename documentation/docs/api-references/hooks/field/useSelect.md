@@ -175,7 +175,7 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 
 | Property                                          | Description                               | Type                                             | Default   |
 | ------------------------------------------------- | ----------------------------------------- | ------------------------------------------------ | --------- |
-| resource <div className="required">Required</div> | [`Resource`](#) for API data interactions | `string`                                         |           |
+| resource <div className="required">Required</div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                         |           |
 | defaultValue                                      | Adds extra `options`                      | `string` \| `Array<string>`                      |           |
 | optionValue                                       | Set the option's value                    | `string`                                         | `"id"`    |
 | optionLabel                                       | Set the option's label value              | `string`                                         | `"title"` |

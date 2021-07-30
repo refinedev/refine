@@ -35,7 +35,7 @@ export const List: React.FC = () => {
 };
 ```
 
-[Refer to the `usePermission` documentation for detailed usage. &#8594](#)
+[Refer to the `usePermission` documentation for detailed usage. &#8594](/api-references/hooks/auth/usePermissions.md)
 
 ### `title`
 
@@ -82,7 +82,7 @@ export const List: React.FC = () => {
 
 `<List>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<List>` component in a custom page, you can use the `resource` prop.
 
-[Refer to the custom pages documentation for detailed usage. &#8594](#)
+[Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
 ```tsx
 import { Refine, Resource, List } from "@pankod/refine";
@@ -120,4 +120,4 @@ export const App: React.FC = () => {
 | createButtonProps | Adds props for create button              | [ButtonProps](https://ant.design/components/button/#API) & `{ resourceName: string }` | `<CreateButton />`                                                |
 | title             | Adds title                                | `string`                                                                              | Plural of `resource.name`                                         |
 | pageHeaderProps   | Passes properties for `<PageHeader>`      | [PageHeaderProps](https://ant.design/components/page-header/#API)                     | { ghost: false, [title](#title), extra: `<CreateButton />` }      |
-| resource          | [`Resource`](#) for API data interactions | `string`                                                                              | Resource name that it reads from the url.                         |
+| resource          | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                                              | Resource name that it reads from the url.                         |

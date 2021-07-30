@@ -143,7 +143,7 @@ const { radioGroupProps } = useRadioGroup({
 
 | Property                                          | Description                               | Type                                       | Default   |
 | ------------------------------------------------- | ----------------------------------------- | ------------------------------------------ | --------- |
-| resource <div className="required">Required</div> | [`Resource`](#) for API data interactions | `string`                                   |           |
+| resource <div className="required">Required</div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                   |           |
 | optionValue                                       | Sets the option's value                    | `string`                                   | `"id"`    |
 | optionLabel                                       | Sets the option's label value              | `string`                                   | `"title"` |
 | filters                                           | Adds filters while fetching the data       | [`CrudFilters`](../../interfaces.md#crudfilters) |           |

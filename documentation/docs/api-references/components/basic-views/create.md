@@ -29,7 +29,7 @@ export const Create: React.FC = () => {
 `<Create>` component has a default button that submits the form. If you want to customize this button you can use the `saveButtonProps` property like the code below.
 
 
-[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](#)
+[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-references/components/buttons/save.md)
 
 ```tsx
 import { Create } from "@pankod/refine";
@@ -101,7 +101,7 @@ export const Create: React.FC = () => {
 
 The `<Create>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Create>` component in a custom page, you can use the `resource` prop.
 
-[Refer to the custom pages documentation for detailed usage. &#8594](#)
+[Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
 ```tsx
 import { Refine, Resource, Create } from "@pankod/refine";
@@ -139,4 +139,4 @@ export const App: React.FC = () => {
 | title           | Adds title                                | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                    |
 | actionButtons   | Passes the props for `<PageHeader>`           | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
 | pageHeaderProps | Passes the props for `<PageHeader>`           | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
-| resource        | [`Resource`](#) for API data interactions | `string`                                                          | Resource name that it reads from the URL.                                          |
+| resource        | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                          | Resource name that it reads from the URL.                                          |
