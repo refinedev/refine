@@ -9,14 +9,12 @@ import {
     Input,
     Button,
     Checkbox,
-    Icons,
 } from "@pankod/refine";
 import "./styles.css";
 
 import { useLogin } from "@pankod/refine";
 
-const { UserOutlined, LockOutlined } = Icons;
-const { Text } = Typography;
+const { Text, Title } = Typography;
 
 export interface ILoginForm {
     username: string;
@@ -25,25 +23,18 @@ export interface ILoginForm {
 }
 
 export const Login: React.FC = () => {
-    const [form] = Form.useForm();
+    const [form] = Form.useForm<ILoginForm>();
 
     const { mutate: login } = useLogin<ILoginForm>();
 
-    const onSubmit = async (values: ILoginForm) => {
-        login(values);
-    };
-
     const CardTitle = (
-        <div className="login-header">
-            <img src="./refine.svg" alt="Logo" />
-        </div>
+        <Title level={3} className="title">
+            Sign in your account
+        </Title>
     );
 
     return (
-        <AntdLayout
-            className="login-background"
-            style={{ backgroundImage: "url('./background.svg')" }}
-        >
+        <AntdLayout className="layout">
             <Row
                 justify="center"
                 align="middle"
@@ -52,73 +43,88 @@ export const Login: React.FC = () => {
                 }}
             >
                 <Col xs={22}>
-                    <Card className="login-card" title={CardTitle}>
-                        <Form
-                            layout="vertical"
-                            form={form}
-                            name="control-hooks"
-                            onFinish={onSubmit}
-                            requiredMark={false}
-                        >
-                            <Form.Item
-                                name="username"
-                                label="Username"
-                                rules={[{ required: true }]}
+                    <div className="container">
+                        <div className="imageContainer">
+                            <img src="./refine-logo.svg" alt="Refine Logo" />
+                        </div>
+                        <Card title={CardTitle} headStyle={{ borderBottom: 0 }}>
+                            <Form<ILoginForm>
+                                layout="vertical"
+                                form={form}
+                                onFinish={(values) => {
+                                    login(values);
+                                }}
+                                requiredMark={false}
+                                initialValues={{
+                                    remember: false,
+                                }}
                             >
-                                <Input
-                                    prefix={
-                                        <UserOutlined
-                                            style={{ color: "#00000040" }}
-                                        />
-                                    }
-                                />
-                            </Form.Item>
-                            <Form.Item
-                                name="password"
-                                label="Password"
-                                rules={[{ required: true }]}
-                            >
-                                <Input
-                                    type="password"
-                                    prefix={
-                                        <LockOutlined
-                                            style={{ color: "#00000040" }}
-                                        />
-                                    }
-                                />
-                            </Form.Item>
-                            <Form.Item>
                                 <Form.Item
-                                    name="remember"
-                                    valuePropName="checked"
-                                    initialValue={true}
-                                    noStyle
+                                    name="username"
+                                    label="Username"
+                                    rules={[{ required: true }]}
                                 >
-                                    <Checkbox>Remember me</Checkbox>
+                                    <Input
+                                        size="large"
+                                        placeholder="Username"
+                                    />
                                 </Form.Item>
+                                <Form.Item
+                                    name="password"
+                                    label="Password"
+                                    rules={[{ required: true }]}
+                                    style={{ marginBottom: "12px" }}
+                                >
+                                    <Input
+                                        type="password"
+                                        placeholder="●●●●●●●●"
+                                        size="large"
+                                    />
+                                </Form.Item>
+                                <div style={{ marginBottom: "12px" }}>
+                                    <Form.Item
+                                        name="remember"
+                                        valuePropName="checked"
+                                        noStyle
+                                    >
+                                        <Checkbox
+                                            style={{
+                                                fontSize: "12px",
+                                            }}
+                                        >
+                                            Remember me
+                                        </Checkbox>
+                                    </Form.Item>
 
-                                <a style={{ float: "right" }} href="#">
-                                    Forgot password?
-                                </a>
-                            </Form.Item>
-                            <Form.Item>
+                                    <a
+                                        style={{
+                                            float: "right",
+                                            fontSize: "12px",
+                                        }}
+                                        href="#"
+                                    >
+                                        Forgot password?
+                                    </a>
+                                </div>
                                 <Button
                                     type="primary"
                                     size="large"
                                     htmlType="submit"
                                     block
                                 >
-                                    Login
+                                    Sign in
                                 </Button>
-                            </Form.Item>
-                        </Form>
-                        <div className="signup-section">
-                            <Text>
-                                Still no account? Please go to{" "}
-                                <a href="#">Sign up</a>
-                            </Text>
-                        </div>
-                    </Card>
+                            </Form>
+                            <div style={{ marginTop: 8 }}>
+                                <Text style={{ fontSize: 12 }}>
+                                    Don’t have an account?{" "}
+                                    <a href="#" style={{ fontWeight: "bold" }}>
+                                        Sign up
+                                    </a>
+                                </Text>
+                            </div>
+                        </Card>
+                    </div>
                 </Col>
             </Row>
         </AntdLayout>
