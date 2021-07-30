@@ -107,7 +107,10 @@ export const Show: React.FC<ShowProps> = ({
             {...pageHeaderProps}
         >
             <Spin spinning={isLoading}>
-                <Card actions={actionButtons ? [actionButtons] : undefined}>
+                <Card
+                    bordered={false}
+                    actions={actionButtons ? [actionButtons] : undefined}
+                >
                     {children}
                 </Card>
             </Spin>

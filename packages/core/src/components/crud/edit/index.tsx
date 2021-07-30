@@ -110,6 +110,7 @@ export const Edit: React.FC<EditProps> = ({
         >
             <Spin spinning={isLoading}>
                 <Card
+                    bordered={false}
                     actions={[
                         <Space
                             key="action-buttons"
