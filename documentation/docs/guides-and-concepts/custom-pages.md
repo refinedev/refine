@@ -107,17 +107,14 @@ Only authenticated users can access this page via `/custom-page` path.
 :::caution attention
 For authenticated custom page, your application needs an `authProvider`.
 
-[Refer to the authProvider for more detailed information. &#8594](../api-references/providers/auth-provider.md)
+[Refer to the authProvider for more detailed information. &#8594](api-references/providers/auth-provider.md)
 
 :::
 
-:::danger
-refine needs to know in order to manage resources, It recognizes them from the `<Resource>` component you have given to the `<Refine>` component. So, you need to give the resources you use in the custom page to the `<Refine>` component. But you don't need list, create, edit and show pages, you just need to give the name like the code below.
+:::info
+The `<Authenticated>` component allows only authenticated users to view the page. The created page is not wrapped in any layout. If you want to wrap the page in your layout you can do that with the `<LayoutWrapper>` component.
 
-```tsx
-<Resource name="posts" />
-```
-
+[Refer to the `<LayoutWrapper>` for more detailed information. &#8594](api-references/components/layout-wrapper.md)
 :::
 
 ## Example
@@ -165,9 +162,7 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const App = () => {
     return (
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        >
+        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
             <Resource
                 name="posts"
                 list={PostList}
@@ -297,12 +292,10 @@ export const PostReview = () => {
     });
     const post = data?.data[0];
 
-    const {
-        data: categoryData,
-        isLoading: categoryIsLoading,
-    } = useOne<ICategory>("categories", post!.category.id, {
-        enabled: !!post,
-    });
+    const { data: categoryData, isLoading: categoryIsLoading } =
+        useOne<ICategory>("categories", post!.category.id, {
+            enabled: !!post,
+        });
 
     //highlight-start
     return (
@@ -410,12 +403,10 @@ export const PostReview = () => {
     });
     const post = data?.data[0];
 
-    const {
-        data: categoryData,
-        isLoading: categoryIsLoading,
-    } = useOne<ICategory>("categories", post!.category.id, {
-        enabled: !!post,
-    });
+    const { data: categoryData, isLoading: categoryIsLoading } =
+        useOne<ICategory>("categories", post!.category.id, {
+            enabled: !!post,
+        });
 
     //highlight-next-line
     const mutationResult = useUpdate<IPost>("posts");
