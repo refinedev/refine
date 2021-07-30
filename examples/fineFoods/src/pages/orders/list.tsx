@@ -19,7 +19,6 @@ import {
     Button,
     CrudFilters,
     Space,
-    ShowButton,
     FormProps,
     Row,
     Col,
@@ -30,12 +29,6 @@ import {
     Dropdown,
     Menu,
 } from "@pankod/refine";
-
-import {
-    MoreOutlined,
-    CheckCircleOutlined,
-    CloseCircleOutlined,
-} from "../../../../../packages/core/node_modules/@ant-design/icons/lib";
 
 import { OrderStatus } from "components";
 
@@ -145,7 +138,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                     fontWeight: 500,
                 }}
                 icon={
-                    <CheckCircleOutlined
+                    <Icons.CheckCircleOutlined
                         style={{
                             color: "#52c41a",
                             fontSize: 17,
@@ -165,7 +158,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                     fontWeight: 500,
                 }}
                 icon={
-                    <CloseCircleOutlined
+                    <Icons.CloseCircleOutlined
                         style={{
                             color: "#EE2A1E",
                             fontSize: 17,
@@ -286,12 +279,17 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             title={t("common:table.actions")}
                             dataIndex="actions"
                             key="actions"
-                            render={(_value, record) => (
+                            align="center"
+                            render={() => (
                                 <Dropdown
                                     overlay={moreMenu}
                                     trigger={["click"]}
                                 >
-                                    <MoreOutlined />
+                                    <Icons.MoreOutlined
+                                        style={{
+                                            fontSize: 24,
+                                        }}
+                                    />
                                 </Dropdown>
                             )}
                         />
