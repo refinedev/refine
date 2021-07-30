@@ -15,6 +15,11 @@ type DateProps = {
 
 export type DateFieldProps = FieldProps<ConfigType> & DateProps;
 
+/**
+ * This field is used to display dates. It uses {@link https://day.js.org/docs/en/display/format `Day.js`} to display date format.
+ *
+ * @see {@link https://refine.dev/docs/api-references/components/fields/date} for more details.
+ */
 export const DateField: React.FC<DateFieldProps> = ({
     value,
     format: dateFormat = "L",
