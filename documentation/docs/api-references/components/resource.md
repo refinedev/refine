@@ -105,7 +105,7 @@ The component passed to `list` prop will be rendered on the `/resources/posts` r
 The component passed to `create` will be rendered on the `/resources/posts/create` route by default.
 
 > It will also be rendered on `/resources/posts/create/:id`. This represents namely a clone page. `id` represent a record and it will be available as a route parameter.  
-For example [`useForm` uses this parameter to create a clone form](#)
+For example [`useForm` uses this parameter to create a clone form](/api-references/hooks/form/useForm.md#clone-mode)
 
 > `clone` from `useNavigation` can be used to navigate to a clone page.
 

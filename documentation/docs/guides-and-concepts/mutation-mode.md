@@ -51,7 +51,7 @@ The mutation is applied locally, redirection and UI updates are executed immedia
 > When the user clicks on save button, request isn't sent to API immediately however list page updates with edited data. It waits for a period of time while the user can cancel the mutation. If the mutation is cancelled locally applied edit is undone.
 
 ## Usage
-Mutation mode can be set application-wide in [`<Refine>`](#) component. 
+Mutation mode can be set application-wide in [`<Refine>`](/api-references/components/refine-config.md#mutationmode) component. 
 
 ```tsx title="App.tsx"
 <Refine mutationMode="optimistic">

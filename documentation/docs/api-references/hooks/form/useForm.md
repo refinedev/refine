@@ -121,7 +121,7 @@ If you want to show a form in a modal or drawer where necessary route params mig
 <CloneButton recordItemId={record.id} />
 ```
 
-Also the `clone` method from the [useNavigation](#) hook can be used as well.
+Also the `clone` method from the [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) hook can be used as well.
 
 ```tsx
 const { clone } = useNavigation()
@@ -138,7 +138,7 @@ const { clone } = useNavigation()
 | Property               | Description                                                                                        | Type                                                              | Default           |
 | ---------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------- |
 | action                 | Type of the form mode                                                                                  | `"edit"` \| `"create"`                                            |                   |
-| resource               | [`Resource`](#) for API data interactions                                                          | `string`                                                          |                   |
+| resource               | [`Resource`](/api-references/components/resource.md) for API data interactions                                                          | `string`                                                          |                   |
 | onMutationSuccess      | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) is successful       | `(data: UpdateResponse<M>, variables: any, context: any) => void` |                   |
 | onMutationError        | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error | `(error: any, variables: any, context: any) => void`              |                   |
 | mutationMode           | [Determines when mutations are executed](guides-and-concepts/mutation-mode.md)                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`\* |
@@ -148,7 +148,7 @@ const { clone } = useNavigation()
 | undoableTimeout        | Duration to wait before executing mutations when `mutationMode = "undoable"`                       | `number`                                                          | `5000`\*          |
 | successNotification                                 | Successful Mutation notification          | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully created `resource`" or "Successfully updated `resource`"                           |
 | errorNotification                                   | Unsuccessful Mutation notification        | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](#)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-references/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
 <br/>
 

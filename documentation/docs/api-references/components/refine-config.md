@@ -126,7 +126,7 @@ const App: React.FC = () => {
  `undoable`: The mutation is applied locally, redirection and UI updates are executed immediately as if mutation is succesful. Waits for a customizable amount of timeout before mutation is applied. During the timeout, mutation can be cancelled from the notification with the ?undo? button. UI will revert back accordingly.
 
 
-[Refer to the Mutation Mode docs for further information. &#8594](#)
+[Refer to the Mutation Mode docs for further information. &#8594](/guides-and-concepts/mutation-mode.md)
 
 ### `undoableTimeout`
 

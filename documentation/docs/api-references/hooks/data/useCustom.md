@@ -67,8 +67,8 @@ const { data, isLoading } = useCustom<PostUniqueCheckResponse>(
 | -------- | -------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
 | TData    | Result data of the query. Extends [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) |
 | TError   | Custom error object that extends [`HttpError`](../../interfaces.md#httperror)    | [`HttpError`](../../interfaces.md#httperror)   | [`HttpError`](../../interfaces.md#httperror)   |
-| TQuery   | Values for query params.                                                         | [`TQuery`](#)                                  | unknown                                        |
-| TPayload | Values for params.                                                               | [`TPayload`](#)                                | unknown                                        |
+| TQuery   | Values for query params.                                                         | `TQuery`                                       | unknown                                        |
+| TPayload | Values for params.                                                               | `TPayload`                                     | unknown                                        |
 
 ### Return value
 

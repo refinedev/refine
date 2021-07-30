@@ -5,7 +5,7 @@ title: Create
 
 import listUsage from '@site/static/img/guides-and-concepts/components/buttons/create/usage.png';
 
-`<CreateButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `create` method from [`useNavigation`](#) under the hood. It can be useful to redirect the app to the create page route of `<Resource>`.
+`<CreateButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `create` method from [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of `<Resource>`.
 
 ## Usage
 
@@ -62,7 +62,7 @@ export const MyCreateComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `create` method of [`useNavigation`](#) and then redirect to `/resources/posts/create`.
+Clicking the button will trigger the `create` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect to `/resources/posts/create`.
 
 ## API Reference
 

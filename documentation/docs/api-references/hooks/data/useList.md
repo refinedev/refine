@@ -37,7 +37,7 @@ Let's say that we have a resource named `posts`
 
 <br />
 
-`useList` passes the query configuration to `getList` method from the `dataProvider`. We will be using the `dataProvider` from [`@pankod/refine-simple-rest`](#)
+`useList` passes the query configuration to `getList` method from the `dataProvider`. We will be using the `dataProvider` from [`@pankod/refine-simple-rest`](https://www.npmjs.com/package/@pankod/refine-simple-rest)
 
 First of all, we will use `useList` without passing any query configurations.
 
@@ -235,7 +235,7 @@ const postListQueryResult = useList<IPost>("posts", {}, { enabled: false });
 
 | Property                                                                                           | Description                                         | Type                                                                       |
 | -------------------------------------------------------------------------------------------------- | --------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| <div className="required-block"><div>resource</div> <div className="required">Required</div></div> | [`Resource`](#) for API data interactions           | `string`                                                                   |
+| <div className="required-block"><div>resource</div> <div className="required">Required</div></div> | [`Resource`](/api-references/components/resource.md) for API data interactions           | `string`                                                                   |
 | config                                                                                             | Configuration for pagination, sorting and filtering | [`UseListConfig`](#config-parameters)                                      |                                                              |
 | queryOptions                                                                                            | `react-query`'s `useQuery` options                  | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                |
 | successNotification                                                                                | Successful Query notification                       | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | `false`                            |

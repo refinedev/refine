@@ -18,7 +18,7 @@ We will show what `<Edit>` does using properties with examples.
 
 When clicked on, the delete button executes the `useDelete` method provided by the `dataProvider`.
 
-[Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](#)
+[Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/api-references/components/buttons/delete.md)
 
 ```tsx
 import { Edit, usePermissions } from "@pankod/refine";
@@ -37,7 +37,7 @@ export const Edit: React.FC = () => {
 };
 ```
 
-[Refer to the `usePermission` documentation for detailed usage. &#8594](#)
+[Refer to the `usePermission` documentation for detailed usage. &#8594](/api-references/hooks/auth/usePermissions.md)
 
 ### `saveButtonProps`
 
@@ -45,7 +45,7 @@ The `<Edit>` component has a save button by default. If you want to customize th
 
 Clicking on the save button will submit your form.
 
-[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](#)
+[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-references/components/buttons/save.md)
 
 ```tsx
 import { Edit } from "@pankod/refine";
@@ -169,7 +169,7 @@ export const Edit: React.FC = () => {
 
 `<Edit>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Edit>` component in a custom page, you can use the `resource` property.
 
-[Refer to the custom pages documentation for detailed usage. &#8594](#)
+[Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
 ```tsx
 import { Refine, Resource, Edit } from "@pankod/refine";
@@ -214,7 +214,7 @@ export const App: React.FC = () => {
 | actionButtons     | Passes properties for `<PageHeader>`             | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
 | pageHeaderProps   | Passes properties for `<PageHeader>`             | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
 | recordItemId      | The record id for `<RefreshButton>`             | `string`                                                          |                                                                                    |
-| mutationMode      | [Determines when mutations are executed](#) | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`\*                                                                  |
-| resource          | [`Resource`](#) for API data interactions   | `string`                                                          | Resource name that it reads from the URL.                                          |
+| mutationMode      | [Determines when mutations are executed](/guides-and-concepts/mutation-mode.md) | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`\*                                                                  |
+| resource          | [`Resource`](/api-references/components/resource.md) for API data interactions   | `string`                                                          | Resource name that it reads from the URL.                                          |
 
-> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](#)>** component.
+> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-references/components/refine-config.md)>** component.

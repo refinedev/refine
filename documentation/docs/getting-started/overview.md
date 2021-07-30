@@ -36,7 +36,7 @@ Higher-level frontend frameworks can save you a lot time, but they typically off
 
 After many years of experience in developing B2B frontend applications and working with popular frameworks, we came up with a new apporach to tackle this dilemma. This is how **refine** is born.
 
-**Refine** is a collection of helper [hooks](#), [components](#) and [providers](#). They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
+**Refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
 
 As **refine** is totally *unopinionated* about UI and logic, it's strongly *opinionated* about three parts of your application:
 

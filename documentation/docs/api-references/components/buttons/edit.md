@@ -5,7 +5,7 @@ title: Edit
 
 import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/edit/usage.png';
 
-`<EditButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `edit` method from [`useNavigation`](#) under the hood. It can be useful when redirecting the app to the edit page with the record id route of `<Resource>`.
+`<EditButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `edit` method from [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the edit page with the record id route of `<Resource>`.
 
 ## Usage
 
@@ -70,7 +70,7 @@ export const MyEditComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `edit` method of [`useNavigation`](#) and then redirect the app to `/resources/posts/edit/1`.
+Clicking the button will trigger the `edit` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/resources/posts/edit/1`.
 
 :::note
 `<EditButton>` component reads the id information from the route by default.
@@ -88,7 +88,7 @@ export const MyEditComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `edit` method of [`useNavigation`](#) and then redirect the app to `/resources/categories/edit/2`.
+Clicking the button will trigger the `edit` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/resources/categories/edit/2`.
 
 ## API Reference
 
