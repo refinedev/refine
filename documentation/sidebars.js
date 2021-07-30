@@ -312,9 +312,13 @@ module.exports = {
                         "examples/customization/customLogin",
                         "examples/customization/customFooter",
                         "examples/customization/customSider",
-                        "examples/customization/customInput",
                         "examples/customization/offLayoutArea",
                     ],
+                },
+                {
+                    type: "category",
+                    label: "Inputs",
+                    items: ["examples/inputs/customInput"],
                 },
                 {
                     type: "category",
