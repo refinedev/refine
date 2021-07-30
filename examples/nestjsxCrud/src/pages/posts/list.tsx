@@ -29,7 +29,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 <Table.Column dataIndex="title" title="Title" />
                 <Table.Column
                     dataIndex={["category", "title"]}
-                    key="category.id"
                     title="Category"
                 />
                 <Table.Column
