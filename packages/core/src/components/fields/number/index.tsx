@@ -20,6 +20,9 @@ export type NumberFieldProps = FieldProps<ReactChild> &
         options?: Intl.NumberFormatOptions;
     };
 
+/**
+ * This field lets you display numbers.
+ */
 export const NumberField: React.FC<NumberFieldProps> = ({
     value,
     locale,
