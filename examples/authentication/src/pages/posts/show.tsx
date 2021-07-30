@@ -7,7 +7,7 @@ import {
     MarkdownField,
 } from "@pankod/refine";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ICategory } from "../../interfaces";
 
 const { Title, Text } = Typography;
 

@@ -60,21 +60,19 @@ const App: React.FC = () => {
     });
 
     return (
-        <>
-            <Refine
-                LoginPage={Login}
-                authProvider={authProvider}
-                dataProvider={dataProvider(API_URL, axios)}
-            >
-                <Resource
-                    name="posts"
-                    list={PostList}
-                    create={PostCreate}
-                    edit={PostEdit}
-                    show={PostShow}
-                />
-            </Refine>
-        </>
+        <Refine
+            LoginPage={Login}
+            authProvider={authProvider}
+            dataProvider={dataProvider(API_URL, axios)}
+        >
+            <Resource
+                name="posts"
+                list={PostList}
+                create={PostCreate}
+                edit={PostEdit}
+                show={PostShow}
+            />
+        </Refine>
     );
 };
 

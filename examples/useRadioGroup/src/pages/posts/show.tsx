@@ -23,21 +23,17 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Show isLoading={isLoading && languageIsLoading}>
-            {record && (
-                <>
-                    <Title level={5}>Id</Title>
-                    <Text>{record.id}</Text>
+            <Title level={5}>Id</Title>
+            <Text>{record?.id}</Text>
 
-                    <Title level={5}>Title</Title>
-                    <Text>{record.title}</Text>
+            <Title level={5}>Title</Title>
+            <Text>{record?.title}</Text>
 
-                    <Title level={5}>Language</Title>
-                    <Text>{languageData?.data.title}</Text>
+            <Title level={5}>Language</Title>
+            <Text>{languageData?.data.title}</Text>
 
-                    <Title level={5}>Content</Title>
-                    <MarkdownField value={record.content} />
-                </>
-            )}
+            <Title level={5}>Content</Title>
+            <MarkdownField value={record?.content} />
         </Show>
     );
 };

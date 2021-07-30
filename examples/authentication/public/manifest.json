@@ -1,6 +1,6 @@
 {
-  "short_name": "refine login auth provider example",
-  "name": "refine login auth provider example",
+  "short_name": "refine authentication example",
+  "name": "refine authentication example",
   "icons": [
     {
       "src": "favicon.ico",
