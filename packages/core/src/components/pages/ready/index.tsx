@@ -12,6 +12,11 @@ const styles: { [key: string]: React.CSSProperties } = {
 
 const { Title } = Typography;
 
+/**
+ * **refine** shows a default ready page on root route when no `<Resource>` is passed to the `<Refine>` component as a child.
+ *
+ * @see {@link https://refine.dev/docs/api-references/components/refine-config#readypage} for more details.
+ */
 export const ReadyPage: React.FC = () => {
     return (
         <Row align="middle" justify="center" style={styles.root}>

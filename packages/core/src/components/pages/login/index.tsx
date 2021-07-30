@@ -28,6 +28,11 @@ export interface ILoginForm {
     remember: boolean;
 }
 
+/**
+ * **refine** has a default login page form which is served on `/login` route when the `authProvider` configuration is provided.
+ *
+ * @see {@link https://refine.dev/docs/api-references/components/refine-config#loginpage} for more details.
+ */
 export const LoginPage: React.FC = () => {
     const [form] = Form.useForm<ILoginForm>();
     const translate = useTranslate();
