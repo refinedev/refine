@@ -11,8 +11,13 @@ It can be useful when redirecting the app to the create page with the record id 
 ## Usage
 
 ```tsx
-//highlight-next-line
-import { List, Table, CloneButton, useTable } from "@pankod/refine";
+import {
+    List,
+    Table,
+    useTable
+    //highlight-next-line
+    CloneButton,
+} from "@pankod/refine";
 
 import { IPost } from "interfaces";
 

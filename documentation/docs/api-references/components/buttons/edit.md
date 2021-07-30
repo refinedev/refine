@@ -10,8 +10,13 @@ import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/
 ## Usage
 
 ```tsx
-//highlight-next-line
-import { List, Table, EditButton, useTable } from "@pankod/refine";
+import { 
+    List,
+    Table,
+    useTable
+    //highlight-next-line
+    EditButton,
+} from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
