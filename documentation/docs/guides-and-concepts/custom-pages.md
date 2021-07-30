@@ -124,7 +124,7 @@ refine needs to know in order to manage resources, It recognizes them from the `
 
 Let's make a custom page for posts. On this page, the editor can approve or reject the posts with the "draft" status.
 
-Before starting the example, let's assume that our `dataProvider` has an endpoint that returns posts as following.
+Before starting the example, let's assume that our [`dataProvider`](api-references/providers/data-provider.md) has an endpoint that returns posts as following.
 
 ```ts title="https://api.fake-rest.refine.dev/posts"
 {
