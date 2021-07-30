@@ -12,6 +12,7 @@ import {
     Timeline,
     Card,
     IResourceComponentsProps,
+    useTranslate,
 } from "@pankod/refine";
 import dayjs from "dayjs";
 
@@ -21,6 +22,7 @@ import { IEvent, IOrder } from "interfaces";
 const { Title, Text } = Typography;
 
 export const OrderShow: React.FC<IResourceComponentsProps> = () => {
+    const t = useTranslate();
     const { queryResult } = useShow<IOrder>();
     const { data, isFetching } = queryResult;
     const record = data?.data;
@@ -29,14 +31,12 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
         return (
             <Row gutter={[16, 16]}>
                 <Col md={8}>
-                    <Title level={4}>Order</Title>
-                    <Title level={5}>Order Number</Title>
+                    <Title level={4}>{t("order:show.title")}</Title>
+                    <Title level={5}>{t("order:fields.orderNumber")}</Title>
                     <Text>{record?.orderNumber}</Text>
-                    <Title level={5}>Status</Title>
-                    <OrderStatus
-                        status={record?.status.text || "could not be delivered"}
-                    />
-                    <Title level={5}>Amount</Title>
+                    <Title level={5}>{t("order:fields.status")}</Title>
+                    <OrderStatus status={record?.status.text || "cancelled"} />
+                    <Title level={5}>{t("order:fields.amount")}</Title>
                     <NumberField
                         options={{
                             currency: "USD",
@@ -45,9 +45,9 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         }}
                         value={record?.amount || 0}
                     />
-                    <Title level={5}>Created At</Title>
+                    <Title level={5}>{t("order:fields.createdAt")}</Title>
                     <DateField value={record?.createdAt || ""} format="LLL" />
-                    <Title level={5}>Address</Title>
+                    <Title level={5}>{t("order:fields.address")}</Title>
                     <Text>{record?.adress.text}</Text>
                 </Col>
 

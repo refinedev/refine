@@ -21,12 +21,7 @@ export interface ISalesChart {
 
 export interface IOrderStatus {
     id: string;
-    text:
-        | "waiting"
-        | "ready"
-        | "on the way"
-        | "delivered"
-        | "could not be delivered";
+    text: "pending" | "ready" | "on the way" | "delivered" | "cancelled";
 }
 
 export interface IUser {

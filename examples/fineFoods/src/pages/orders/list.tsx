@@ -161,7 +161,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                     })
                 }
             >
-                Accept
+                {t("common:buttons.accept")}
             </Menu.Item>
             <Menu.Item
                 key="reject"
@@ -192,7 +192,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                     })
                 }
             >
-                Reject
+                {t("common:buttons.reject")}
             </Menu.Item>
         </Menu>
     );
@@ -361,9 +361,9 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
                             allowClear
                             options={[
                                 {
-                                    label: t("enum:orderStatuses.waiting"),
+                                    label: t("enum:orderStatuses.pending"),
 
-                                    value: "waiting",
+                                    value: "pending",
                                 },
                                 {
                                     label: t("enum:orderStatuses.ready"),
@@ -378,10 +378,8 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
                                     value: "delivered",
                                 },
                                 {
-                                    label: t(
-                                        "enum:orderStatuses.could not be delivered",
-                                    ),
-                                    value: "could not be delivered",
+                                    label: t("enum:orderStatuses.cancelled"),
+                                    value: "cancelled",
                                 },
                             ]}
                             placeholder={t("orders:filter.status.placeholder")}
