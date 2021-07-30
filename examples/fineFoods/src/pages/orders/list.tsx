@@ -27,7 +27,16 @@ import {
     ImportButton,
     useExport,
     useImport,
+    Dropdown,
+    Menu,
 } from "@pankod/refine";
+
+import {
+    MoreOutlined,
+    CheckCircleOutlined,
+    CloseCircleOutlined,
+} from "../../../../../packages/core/node_modules/@ant-design/icons/lib";
+
 import { OrderStatus } from "components";
 
 import { IOrder, IStore, IOrderFilterVariables } from "interfaces";
@@ -123,6 +132,50 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
             <ExportButton onClick={triggerExport} loading={loading} />
             <ImportButton {...importProps} />
         </Space>
+    );
+
+    const moreMenu = (
+        <Menu mode="vertical">
+            <Menu.Item
+                key="accept"
+                style={{
+                    fontSize: 15,
+                    display: "flex",
+                    alignItems: "center",
+                    fontWeight: 500,
+                }}
+                icon={
+                    <CheckCircleOutlined
+                        style={{
+                            color: "#52c41a",
+                            fontSize: 17,
+                            fontWeight: 500,
+                        }}
+                    />
+                }
+            >
+                Accept
+            </Menu.Item>
+            <Menu.Item
+                key="reject"
+                style={{
+                    fontSize: 15,
+                    display: "flex",
+                    alignItems: "center",
+                    fontWeight: 500,
+                }}
+                icon={
+                    <CloseCircleOutlined
+                        style={{
+                            color: "#EE2A1E",
+                            fontSize: 17,
+                        }}
+                    />
+                }
+            >
+                Reject
+            </Menu.Item>
+        </Menu>
     );
 
     return (
@@ -234,12 +287,12 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             dataIndex="actions"
                             key="actions"
                             render={(_value, record) => (
-                                <Space>
-                                    <ShowButton
-                                        size="small"
-                                        recordItemId={record.id}
-                                    />
-                                </Space>
+                                <Dropdown
+                                    overlay={moreMenu}
+                                    trigger={["click"]}
+                                >
+                                    <MoreOutlined />
+                                </Dropdown>
                             )}
                         />
                     </Table>
