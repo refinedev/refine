@@ -512,7 +512,7 @@ const App = () => {
 ```
 
 :::note
-We recommend using **axios** as the Http client with the **@pankod/refine-simple-rest** data provider. Other Http clients can also be preferred.
+We recommend using **axios** as the Http client with the **@pankod/refine-simple-rest** [`dataProvider`](api-references/providers/data-provider.md). Other Http clients can also be preferred.
 :::
 
 ## Hooks and Components
@@ -538,7 +538,7 @@ These hooks can be used with the `authProvider` authentication and authorization
 | login <div className=" required">Required</div>                                                          | Logs user in                               | Auth confirms login                   |
 | logout <div className=" required">Required</div>                                                         | Logs user out                              | Auth confirms logout                  |
 | checkAuth <div className=" required">Required</div>                                                      | Checks credentials on each route changes   | Authentication still persist          |
-| checkError <div className=" required">Required</div>                                                     | Checks if a data provider returns an error | Data provider doesn't return an error |
+| checkError <div className=" required">Required</div>                                                     | Checks if a dataProvider returns an error | Data provider doesn't return an error |
 | <div className="required-block"><div>getPermissions</div> <div className="required">Required</div></div> | Can be use to get user credentials        | Authorization roles accepted          |
 | getUserIdentity                                                                                          | Can be use to get user identity           | User identity avaliable to return     |
 

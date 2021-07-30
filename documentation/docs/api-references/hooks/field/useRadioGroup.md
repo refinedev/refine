@@ -82,7 +82,7 @@ const { radioGroupProps } = useRadioGroup({
 });
 ```
 
-`resource` property determines API resource endpoint to fetch records from data provider. It returns properly configured `options` values for radio buttons.
+`resource` property determines API resource endpoint to fetch records from [`dataProvider`](api-references/providers/data-provider.md). It returns properly configured `options` values for radio buttons.
 
 [Refer to Ant Design `Radio.Group` component documentation for detailed info on `options`. &#8594](https://ant.design/components/radio)
 
