@@ -32,6 +32,14 @@ type useEditableTableProps<
     TSearchVariables = unknown,
 > = useTableProps<TSearchVariables> & useFormProps<TData, TError, TVariables>;
 
+/**
+ * `useEditeableTable` allows you to implement edit feature on the table with ease,
+ * on top of all the features that {@link https://refine.dev/docs/api-references/hooks/table/useTable `useTable`} provides.
+ * `useEditableTable` return properties that can be used on Ant Design's {@link https://ant.design/components/table/ `<Table>`}
+ * and {@link https://ant.design/components/form/ `<Form>`} components.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/table/useEditableTable} for more details.
+ */
 export const useEditableTable = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
