@@ -49,6 +49,13 @@ export type useTableReturnType<
     filters?: CrudFilters;
 };
 
+/**
+ * By using useTable, you are able to get properties that are compatible with
+ * Ant Design {@link https://ant.design/components/table/ `<Table>`} component.
+ * All features such as sorting, filtering and pagination comes as out of box.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/table/useTable} for more details.
+ */
 export const useTable = <
     TData extends BaseRecord = BaseRecord,
     TSearchVariables = unknown,
