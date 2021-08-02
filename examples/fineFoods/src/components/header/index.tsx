@@ -1,15 +1,24 @@
 import {
     AntdLayout,
-    Button,
     Menu,
     Icons,
     Dropdown,
     useGetLocale,
     useSetLocale,
+    Input,
+    Avatar,
+    Typography,
+    useGetIdentity,
+    Space,
+    Grid,
+    Row,
+    Col,
 } from "@pankod/refine";
 import { useTranslation } from "react-i18next";
 
-const { TranslationOutlined } = Icons;
+const { SearchOutlined, DownOutlined } = Icons;
+const { Text } = Typography;
+const { useBreakpoint } = Grid;
 
 interface ILanguage {
     title: string;
@@ -19,11 +28,11 @@ interface ILanguage {
 const languages: Record<string, ILanguage> = {
     en: {
         title: "English",
-        flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+        flag: "🇬🇧",
     },
-    tr: {
-        title: "Türkçe",
-        flag: "🇹🇷",
+    de: {
+        title: "German",
+        flag: "🇩🇪",
     },
 };
 
@@ -31,10 +40,12 @@ export const Header = () => {
     const { i18n } = useTranslation();
     const locale = useGetLocale();
     const changeLanguage = useSetLocale();
+    const { data: user } = useGetIdentity();
+    const screens = useBreakpoint();
 
     const menu = (
         <Menu selectedKeys={[locale()]}>
-            {i18n.languages?.map((lang: string) => (
+            {[...i18n.languages].sort().map((lang: string) => (
                 <Menu.Item
                     key={lang}
                     onClick={() => changeLanguage(lang)}
@@ -53,29 +64,60 @@ export const Header = () => {
     return (
         <AntdLayout.Header
             style={{
-                padding: "0px 24px 0px 0px",
-                height: "48px",
+                padding: "0px 24px",
+                height: "64px",
                 backgroundColor: "#FFF",
             }}
         >
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    height: "100%",
-                    alignItems: "center",
-                }}
-            >
-                <Dropdown overlay={menu}>
-                    <Button
-                        type="text"
+            <Row align="middle" justify={screens.sm ? "space-between" : "end"}>
+                <Col xs={0} sm={12}>
+                    <Input
                         size="large"
-                        style={{ height: "100%" }}
-                        icon={<TranslationOutlined />}
-                        onClick={(e) => e.preventDefault()}
+                        placeholder="Search by Store ID, E-mail, Keyword"
+                        style={{
+                            maxWidth: "550px",
+                        }}
+                        suffix={<SearchOutlined />}
                     />
-                </Dropdown>
-            </div>
+                </Col>
+                <Col>
+                    <Space size="large">
+                        <Dropdown overlay={menu}>
+                            <a
+                                style={{ color: "inherit" }}
+                                onClick={(e) => e.preventDefault()}
+                            >
+                                <Space>
+                                    {languages[locale()].flag}
+                                    <div
+                                        style={{
+                                            display: screens.lg
+                                                ? "block"
+                                                : "none",
+                                        }}
+                                    >
+                                        {languages[locale()].title}
+                                        <DownOutlined
+                                            style={{
+                                                fontSize: "12px",
+                                                marginLeft: "6px",
+                                            }}
+                                        />
+                                    </div>
+                                </Space>
+                            </a>
+                        </Dropdown>
+                        <Text ellipsis strong>
+                            {user?.name}
+                        </Text>
+                        <Avatar
+                            size="large"
+                            src={user?.avatar}
+                            alt={user?.name}
+                        />
+                    </Space>
+                </Col>
+            </Row>
         </AntdLayout.Header>
     );
 };
