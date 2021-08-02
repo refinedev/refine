@@ -4,6 +4,13 @@ import { useResourceWithRoute } from "@hooks";
 
 export type HistoryType = "push" | "replace";
 
+/**
+ * `refine` uses {@link https://reactrouter.com/web/api/Hooks `React Router`} and comes with all redirects out of the box.
+ * It allows you to manage your routing operations in refine.
+ * Using this hook, you can manage all the routing operations of your application very easily.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/navigation/useNavigation} for more details.
+ */
 export const useNavigation = () => {
     const history = useHistory();
     const resourceWithRoute = useResourceWithRoute();
