@@ -19,18 +19,13 @@ export const useModal = ({
     const show = useCallback(() => setVisible(true), [visible]);
     const close = useCallback(() => setVisible(false), [visible]);
 
-    const modalPropshede = {
-        ...modalProps,
-        visible,
-    };
-
     return {
         modalProps: {
-            ...modalPropshede,
             onCancel: (e: React.MouseEvent<HTMLElement>) => {
                 modalProps.onCancel?.(e);
                 close();
             },
+            visible,
         },
         show,
         close,
