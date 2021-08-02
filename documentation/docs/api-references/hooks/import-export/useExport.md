@@ -199,9 +199,9 @@ You can pass more options to further customize the exporting process.
 | resourceName  | Default resource name this button imports to. Inferred from route by default                                               | `string`                                                                         |
 | mapData       | A mapping function that runs for every record. Mapped data will be included in the file contents                           | `<TItem, TVariables>(item: TItem, index?: number, items?: TItem[]): TVariables;` |
 | pageSize      | Requests to fetch data are made as batches by page size. By default, it is 20. Used for `getList` method of `DataProvider` | `number`                                                                         |
-| sorter        | Sorts  records                                                                                                               | [`CrudSorting`][CrudSorting] \| `undefined`                                      |  |
-| filter        | Filters records                                                                                                             | [`CrudFilters`][CrudFilters] \| `undefined`                                      |  |
-| exportOptions | Used for exporting options                                                                                                          | [`Options`][export-to-csv#api] \| `undefined`                                    |  |
+| sorter        | Sorts  records                                                                                                             | [`CrudSorting`][CrudSorting] \| `undefined`                                      |  |
+| filter        | Filters records                                                                                                            | [`CrudFilters`][CrudFilters] \| `undefined`                                      |  |
+| exportOptions | Used for exporting options                                                                                                 | [`Options`][export-to-csv#api] \| `undefined`                                    |  |
 
 ### `useExport` Return Values
 
@@ -210,11 +210,19 @@ You can pass more options to further customize the exporting process.
 | loading       | Shows true when there is an export process | `boolean`          |
 | triggerExport | When invoked, starts the exporting process | `async () => void` |
 
+### Type Parameters
+
+| Property   | Desription                                                                 | Default                    |
+| ---------- | -------------------------------------------------------------------------- | -------------------------- |
+| TData      | Result type of the data query type that extends [`BaseRecord`][BaseRecord] | [`BaseRecord`][BaseRecord] |
+| TVariables | Values for params                                                          | `any`                      |
+
 [Button]: https://ant.design/components/button/
 [ExportButton]: api-references/components/buttons/export.md
 [useImport]: api-references/hooks/import-export/useImport.md
 [useImport#handling-relational-data]: api-references/hooks/import-export/useImport.md#handling-relational-data
 [export-to-csv]: https://github.com/alexcaza/export-to-csv
 [export-to-csv#api]: https://github.com/alexcaza/export-to-csv#api
+[BaseRecord]: /api-references/interfaces.md#baserecord
 [CrudSorting]: /api-references/interfaces.md#crudsorting
 [CrudFilters]: /api-references/interfaces.md#crudfilters
