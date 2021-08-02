@@ -35,6 +35,12 @@ export type useSimpleListReturnType<
     searchFormProps: FormProps<TSearchVariables>;
 };
 
+/**
+ * By using `useSimpleList` you get props for your records from API in accordance with Ant Design {@link https://ant.design/components/list/ `<List>`} component.
+ * All features such as pagination, sorting come out of the box.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/show/useSimpleList} for more details.
+ */
 export const useSimpleList = <
     TData extends BaseRecord = BaseRecord,
     TSearchVariables = unknown,
