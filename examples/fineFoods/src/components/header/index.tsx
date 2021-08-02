@@ -168,7 +168,7 @@ export const Header: React.FC = () => {
                 <Col xs={0} sm={12}>
                     <AutoComplete
                         dropdownMatchSelectWidth={600}
-                        style={{ width: "100%" }}
+                        style={{ width: "100%", maxWidth: "550px" }}
                         options={options}
                         filterOption={false}
                         onSearch={debounce(
