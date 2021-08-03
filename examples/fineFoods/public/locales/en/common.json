@@ -79,5 +79,8 @@
   },
   "table": {
     "actions": "Actions"
+  },
+  "search": {
+    "placeholder": "Search by Store ID, E-mail, Keyword"
   }
 }
