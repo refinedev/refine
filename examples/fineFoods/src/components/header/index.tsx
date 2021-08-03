@@ -4,19 +4,19 @@ import {
     Menu,
     Icons,
     Dropdown,
-    useGetLocale,
-    useSetLocale,
     Input,
     Avatar,
     Typography,
-    useGetIdentity,
     Space,
     Grid,
     Row,
     Col,
     AutoComplete,
-    useList,
+    useGetLocale,
+    useSetLocale,
+    useGetIdentity,
     useTranslate,
+    useList,
 } from "@pankod/refine";
 import { useTranslation } from "react-i18next";
 import debounce from "lodash/debounce";
@@ -28,38 +28,18 @@ const { useBreakpoint } = Grid;
 import { IOrder, IStore, ICourier } from "interfaces";
 interface IOptionGroup {
     value: string;
+    label: string | React.ReactNode;
 }
 
 interface IOptions {
     label: string | React.ReactNode;
     options: IOptionGroup[];
 }
-interface ILanguage {
-    title: string;
-    flag: string;
-}
 
-const languages: Record<string, ILanguage> = {
-    en: {
-        title: "English",
-        flag: "🇬🇧",
-    },
-    de: {
-        title: "German",
-        flag: "🇩🇪",
-    },
-};
+import { titleStyle, itemStyle, headerStyle, autoCompleteStyle } from "./style";
 
 const renderTitle = (title: string) => (
-    <div
-        style={{
-            display: "flex",
-            justifyContent: "space-between",
-            fontSize: "14px",
-            fontWeight: "bold",
-            borderBottom: "1px",
-        }}
-    >
+    <div style={titleStyle}>
         <Text style={{ fontSize: "16px" }}>{title}</Text>
         <a href="#">more</a>
     </div>
@@ -68,12 +48,7 @@ const renderTitle = (title: string) => (
 const renderItem = (title: string, imageUrl: string) => ({
     value: title,
     label: (
-        <div
-            style={{
-                display: "flex",
-                alignItems: "center",
-            }}
-        >
+        <div style={itemStyle}>
             <Avatar size={64} src={imageUrl} />
             <Text style={{ marginLeft: "16px" }}>{title}</Text>
         </div>
@@ -87,6 +62,8 @@ export const Header: React.FC = () => {
     const { data: user } = useGetIdentity();
     const screens = useBreakpoint();
     const t = useTranslate();
+
+    const currentLocale = locale();
 
     const [value, setValue] = useState<string>("");
     const [options, setOptions] = useState<IOptions[]>([]);
@@ -177,38 +154,32 @@ export const Header: React.FC = () => {
     }, [value]);
 
     const menu = (
-        <Menu selectedKeys={[locale()]}>
+        <Menu selectedKeys={[currentLocale]}>
             {[...i18n.languages].sort().map((lang: string) => (
                 <Menu.Item
                     key={lang}
                     onClick={() => changeLanguage(lang)}
                     icon={
                         <span style={{ marginRight: 8 }}>
-                            {languages[lang].flag}
+                            <Avatar
+                                size={16}
+                                src={`/images/${lang}-flag.svg`}
+                            />
                         </span>
                     }
                 >
-                    {languages[lang].title}
+                    {lang === "en" ? "English" : "German"}
                 </Menu.Item>
             ))}
         </Menu>
     );
 
     return (
-        <AntdLayout.Header
-            style={{
-                padding: "0px 24px",
-                height: "64px",
-                backgroundColor: "#FFF",
-            }}
-        >
+        <AntdLayout.Header style={headerStyle}>
             <Row align="middle" justify={screens.sm ? "space-between" : "end"}>
                 <Col xs={0} sm={12}>
                     <AutoComplete
-                        style={{
-                            width: "100%",
-                            maxWidth: "550px",
-                        }}
+                        style={autoCompleteStyle}
                         options={options}
                         filterOption={false}
                         onSearch={debounce(
@@ -231,7 +202,10 @@ export const Header: React.FC = () => {
                                 onClick={(e) => e.preventDefault()}
                             >
                                 <Space>
-                                    {languages[locale()].flag}
+                                    <Avatar
+                                        size={16}
+                                        src={`/images/${currentLocale}-flag.svg`}
+                                    />
                                     <div
                                         style={{
                                             display: screens.lg
@@ -239,7 +213,9 @@ export const Header: React.FC = () => {
                                                 : "none",
                                         }}
                                     >
-                                        {languages[locale()].title}
+                                        {currentLocale === "en"
+                                            ? "English"
+                                            : "German"}
                                         <DownOutlined
                                             style={{
                                                 fontSize: "12px",
