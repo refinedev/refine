@@ -77,5 +77,8 @@
   },
   "table": {
     "actions": "İşlemler"
+  },
+  "search": {
+    "placeholder": "Mağaza ID, e-posta veya anahtar kelime ile arama"
   }
 }
