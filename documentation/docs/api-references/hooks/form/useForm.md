@@ -135,19 +135,19 @@ const { clone } = useNavigation()
 
 ### Properties
 
-| Property               | Description                                                                                        | Type                                                              | Default           |
-| ---------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------- |
-| action                 | Type of the form mode                                                                                  | `"edit"` \| `"create"`                                            |                   |
-| resource               | [`Resource`](/api-references/components/resource.md) for API data interactions                                                          | `string`                                                          |                   |
-| onMutationSuccess      | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) is successful       | `(data: UpdateResponse<M>, variables: any, context: any) => void` |                   |
-| onMutationError        | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error | `(error: any, variables: any, context: any) => void`              |                   |
-| mutationMode           | [Determines when mutations are executed](guides-and-concepts/mutation-mode.md)                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`\* |
-| submitOnEnter          | Listens `Enter` key press to submit form                                                            | `boolean`                                                         | `false`           |
-| warnWhenUnsavedChanges | Shows notification when unsaved changes exist                                                      | `boolean`                                                         | `false`\*         |
-| redirect               | Page to redirect after a succesfull mutation                                                         | ` "show` \| `"edit` \| `"list"` \| `false`                        | `"list"`          |
-| undoableTimeout        | Duration to wait before executing mutations when `mutationMode = "undoable"`                       | `number`                                                          | `5000`\*          |
-| successNotification                                 | Successful Mutation notification          | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully created `resource`" or "Successfully updated `resource`"                           |
-| errorNotification                                   | Unsuccessful Mutation notification        | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
+| Property               | Description                                                                                          | Type                                                                       | Default                                                                                                                              |
+| ---------------------- | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| action                 | Type of the form mode                                                                                | `"edit"` \| `"create"`                                                     |                                                                                                                                      |
+| resource               | [`Resource`](/api-references/components/resource.md) for API data interactions                       | `string`                                                                   |                                                                                                                                      |
+| onMutationSuccess      | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) is successful       | `(data: UpdateResponse<M>, variables: any, context: any) => void`          |                                                                                                                                      |
+| onMutationError        | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error | `(error: any, variables: any, context: any) => void`                       |                                                                                                                                      |
+| mutationMode           | [Determines when mutations are executed](guides-and-concepts/mutation-mode.md)                       | ` "pessimistic` \| `"optimistic` \| `"undoable"`                           | `"pessimistic"`\*                                                                                                                    |
+| submitOnEnter          | Listens `Enter` key press to submit form                                                             | `boolean`                                                                  | `false`                                                                                                                              |
+| warnWhenUnsavedChanges | Shows notification when unsaved changes exist                                                        | `boolean`                                                                  | `false`\*                                                                                                                            |
+| redirect               | Page to redirect after a succesfull mutation                                                         | ` "show` \| `"edit` \| `"list"` \| `false`                                 | `"list"`                                                                                                                             |
+| undoableTimeout        | Duration to wait before executing mutations when `mutationMode = "undoable"`                         | `number`                                                                   | `5000`\*                                                                                                                             |
+| successNotification    | Successful Mutation notification                                                                     | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully created `resource`" or "Successfully updated `resource`"                                                               |
+| errorNotification      | Unsuccessful Mutation notification                                                                   | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-references/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
 <br/>
@@ -167,6 +167,14 @@ const { clone } = useNavigation()
 | editId          | Record id for edit action                               | `"string"` \| `"number"`                                                         |     |
 | setEditId       | `editId` setter                                         | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                 |
 
+### Type Parameters
+
+| Property   | Desription                                                       | Default                    |
+| ---------- | ---------------------------------------------------------------- | -------------------------- |
+| TData      | Result data of the query that extends [`BaseRecord`][BaseRecord] | [`BaseRecord`][BaseRecord] |
+| TError     | Custom error object that extends [`HttpError`][HttpError]        | [`HttpError`][HttpError]   |
+| TVariables | Values for params.                                               | `{}`                       |
+
 ## Live Codesandbox Example
 
 <iframe src="https://codesandbox.io/embed/refine-use-form-example-y32q0?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Fedit.tsx&theme=dark&view=preview"
@@ -175,3 +183,6 @@ const { clone } = useNavigation()
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
+
+[BaseRecord]: /api-references/interfaces.md#baserecord
+[HttpError]: /api-references/interfaces.md#httperror

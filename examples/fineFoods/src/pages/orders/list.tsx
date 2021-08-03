@@ -19,17 +19,24 @@ import {
     Button,
     CrudFilters,
     Space,
-    ShowButton,
     FormProps,
     Row,
     Col,
+    ExportButton,
+    ImportButton,
+    useExport,
+    useImport,
+    Dropdown,
+    Menu,
+    useUpdate,
 } from "@pankod/refine";
+
 import { OrderStatus } from "components";
 
 import { IOrder, IStore, IOrderFilterVariables } from "interfaces";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter, searchFormProps } = useTable<
+    const { tableProps, sorter, searchFormProps, filters } = useTable<
         IOrder,
         IOrderFilterVariables
     >({
@@ -95,12 +102,121 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     });
 
     const t = useTranslate();
+    const { mutate } = useUpdate();
+
+    const importProps = useImport();
+    const { loading, triggerExport } = useExport({
+        sorter,
+        filters,
+        pageSize: 100,
+        maxItemCount: 300,
+        mapData: (item) => {
+            return {
+                id: item.id,
+                amount: item.amount,
+                orderNumber: item.orderNumber,
+                status: item.status.text,
+                store: item.store.title,
+                user: item.user.firstName,
+            };
+        },
+    });
+
+    const Actions: React.FC = () => (
+        <Space direction="horizontal">
+            <ExportButton onClick={triggerExport} loading={loading} />
+            <ImportButton {...importProps} />
+        </Space>
+    );
+
+    const moreMenu = (id: string) => (
+        <Menu mode="vertical">
+            <Menu.Item
+                key="accept"
+                style={{
+                    fontSize: 15,
+                    display: "flex",
+                    alignItems: "center",
+                    fontWeight: 500,
+                }}
+                icon={
+                    <Icons.CheckCircleOutlined
+                        style={{
+                            color: "#52c41a",
+                            fontSize: 17,
+                            fontWeight: 500,
+                        }}
+                    />
+                }
+                onClick={() =>
+                    mutate({
+                        resource: "orders",
+                        id,
+                        values: {
+                            status: {
+                                id: 2,
+                                text: "ready",
+                            },
+                        },
+                    })
+                }
+            >
+                {t("common:buttons.accept")}
+            </Menu.Item>
+            <Menu.Item
+                key="reject"
+                style={{
+                    fontSize: 15,
+                    display: "flex",
+                    alignItems: "center",
+                    fontWeight: 500,
+                }}
+                icon={
+                    <Icons.CloseCircleOutlined
+                        style={{
+                            color: "#EE2A1E",
+                            fontSize: 17,
+                        }}
+                    />
+                }
+                onClick={() =>
+                    mutate({
+                        resource: "orders",
+                        id,
+                        values: {
+                            status: {
+                                id: 5,
+                                text: "cancelled",
+                            },
+                        },
+                    })
+                }
+            >
+                {t("common:buttons.reject")}
+            </Menu.Item>
+        </Menu>
+    );
 
     return (
         <Row gutter={[16, 16]}>
-            <Col lg={18} xs={24}>
-                <List title={t("orders:title")}>
-                    <Table {...tableProps} rowKey="id">
+            <Col xl={6} lg={24} xs={24}>
+                <Card bordered={false} title={t("orders:filter.title")}>
+                    <Filter formProps={searchFormProps} />
+                </Card>
+            </Col>
+            <Col xl={18} xs={24}>
+                <List
+                    pageHeaderProps={{
+                        extra: <Actions />,
+                    }}
+                >
+                    <Table
+                        {...tableProps}
+                        rowKey="id"
+                        scroll={{
+                            x: true,
+                        }}
+                    >
                         <Table.Column
                             key="orderNumber"
                             dataIndex="orderNumber"
@@ -185,25 +301,26 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             sorter
                         />
                         <Table.Column<IOrder>
+                            fixed="right"
                             title={t("common:table.actions")}
                             dataIndex="actions"
                             key="actions"
+                            align="center"
                             render={(_value, record) => (
-                                <Space>
-                                    <ShowButton
-                                        size="small"
-                                        recordItemId={record.id}
+                                <Dropdown
+                                    overlay={moreMenu(record.id)}
+                                    trigger={["click"]}
+                                >
+                                    <Icons.MoreOutlined
+                                        style={{
+                                            fontSize: 24,
+                                        }}
                                     />
-                                </Space>
+                                </Dropdown>
                             )}
                         />
                     </Table>
                 </List>
-            </Col>
-            <Col lg={6} xs={24}>
-                <Card title={t("orders:filter.title")}>
-                    <Filter formProps={searchFormProps} />
-                </Card>
             </Col>
         </Row>
     );
@@ -226,67 +343,94 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
 
     return (
         <Form layout="vertical" {...formProps}>
-            <Form.Item label={t("orders:filter.search.label")} name="q">
-                <Input
-                    placeholder={t("orders:filter.search.placeholder")}
-                    prefix={<Icons.SearchOutlined />}
-                />
-            </Form.Item>
-            <Form.Item label={t("orders:filter.status.label")} name="status">
-                <Select
-                    allowClear
-                    options={[
-                        {
-                            label: t("enum:orderStatuses.waiting"),
-                            value: "waiting",
-                        },
-                        {
-                            label: t("enum:orderStatuses.ready"),
-                            value: "ready",
-                        },
-                        {
-                            label: t("enum:orderStatuses.on the way"),
-                            value: "on the way",
-                        },
-                        {
-                            label: t("enum:orderStatuses.delivered"),
-                            value: "delivered",
-                        },
-                        {
-                            label: t(
-                                "enum:orderStatuses.could not be delivered",
-                            ),
-                            value: "could not be delivered",
-                        },
-                    ]}
-                    placeholder={t("orders:filter.status.placeholder")}
-                />
-            </Form.Item>
-            <Form.Item label={t("orders:filter.store.label")} name="store">
-                <Select
-                    {...storeSelectProps}
-                    allowClear
-                    placeholder={t("orders:filter.store.placeholder")}
-                />
-            </Form.Item>
-            <Form.Item label={t("orders:filter.user.label")} name="user">
-                <Select
-                    {...userSelectProps}
-                    allowClear
-                    placeholder={t("orders:filter.user.placeholder")}
-                />
-            </Form.Item>
-            <Form.Item
-                label={t("orders:filter.createdAt.label")}
-                name="createdAt"
-            >
-                <RangePicker />
-            </Form.Item>
-            <Form.Item>
-                <Button htmlType="submit" type="primary">
-                    {t("orders:filter.submit")}
-                </Button>
-            </Form.Item>
+            <Row gutter={[10, 0]} align="bottom">
+                <Col xl={24} md={8}>
+                    <Form.Item label={t("orders:filter.search.label")} name="q">
+                        <Input
+                            placeholder={t("orders:filter.search.placeholder")}
+                            prefix={<Icons.SearchOutlined />}
+                        />
+                    </Form.Item>
+                </Col>
+                <Col xl={24} md={8}>
+                    <Form.Item
+                        label={t("orders:filter.status.label")}
+                        name="status"
+                    >
+                        <Select
+                            allowClear
+                            options={[
+                                {
+                                    label: t("enum:orderStatuses.pending"),
+
+                                    value: "pending",
+                                },
+                                {
+                                    label: t("enum:orderStatuses.ready"),
+                                    value: "ready",
+                                },
+                                {
+                                    label: t("enum:orderStatuses.on the way"),
+                                    value: "on the way",
+                                },
+                                {
+                                    label: t("enum:orderStatuses.delivered"),
+                                    value: "delivered",
+                                },
+                                {
+                                    label: t("enum:orderStatuses.cancelled"),
+                                    value: "cancelled",
+                                },
+                            ]}
+                            placeholder={t("orders:filter.status.placeholder")}
+                        />
+                    </Form.Item>
+                </Col>
+                <Col xl={24} md={8}>
+                    <Form.Item
+                        label={t("orders:filter.store.label")}
+                        name="store"
+                    >
+                        <Select
+                            {...storeSelectProps}
+                            allowClear
+                            placeholder={t("orders:filter.store.placeholder")}
+                        />
+                    </Form.Item>
+                </Col>
+                <Col xl={24} md={8}>
+                    <Form.Item
+                        label={t("orders:filter.user.label")}
+                        name="user"
+                    >
+                        <Select
+                            {...userSelectProps}
+                            allowClear
+                            placeholder={t("orders:filter.user.placeholder")}
+                        />
+                    </Form.Item>
+                </Col>
+                <Col xl={24} md={8}>
+                    <Form.Item
+                        label={t("orders:filter.createdAt.label")}
+                        name="createdAt"
+                    >
+                        <RangePicker />
+                    </Form.Item>
+                </Col>
+                <Col xl={24} md={8}>
+                    <Form.Item>
+                        <Button
+                            htmlType="submit"
+                            type="primary"
+                            size="large"
+                            block
+                        >
+                            {t("orders:filter.submit")}
+                        </Button>
+                    </Form.Item>
+                </Col>
+            </Row>
         </Form>
     );
 };

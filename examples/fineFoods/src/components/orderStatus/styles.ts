@@ -4,18 +4,19 @@ const styles: { [key: string]: CSSProperties } = {
     container: {
         display: "flex",
         alignItems: "center",
-        textTransform: "capitalize",
+        justifyContent: "center",
+        textTransform: "uppercase",
+        borderRadius: 25,
+        paddingTop: 10,
+        paddingBottom: 10,
+        paddingLeft: 12,
+        paddingRight: 12,
+        whiteSpace: "nowrap",
     },
-    icon: {
-        width: 18,
-        height: 18,
-        minWidth: 18,
-        display: "inline-block",
-        borderRadius: 99,
-        marginRight: 5,
-    },
+
     text: {
         fontWeight: 400,
+        color: "#ffffff",
     },
 };
 
