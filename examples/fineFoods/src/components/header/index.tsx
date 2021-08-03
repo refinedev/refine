@@ -163,7 +163,7 @@ export const Header: React.FC = () => {
                         <span style={{ marginRight: 8 }}>
                             <Avatar
                                 size={16}
-                                src={`/images/${lang}-flag.svg`}
+                                src={`/images/flags/${lang}.svg`}
                             />
                         </span>
                     }
@@ -179,6 +179,7 @@ export const Header: React.FC = () => {
             <Row align="middle" justify={screens.sm ? "space-between" : "end"}>
                 <Col xs={0} sm={12}>
                     <AutoComplete
+                        dropdownClassName="header-search"
                         style={autoCompleteStyle}
                         options={options}
                         filterOption={false}
@@ -189,13 +190,13 @@ export const Header: React.FC = () => {
                     >
                         <Input
                             size="large"
-                            placeholder="Search by Store ID, E-mail, Keyword"
+                            placeholder={t("search.placeholder")}
                             suffix={<SearchOutlined />}
                         />
                     </AutoComplete>
                 </Col>
                 <Col>
-                    <Space size="large">
+                    <Space size="middle">
                         <Dropdown overlay={menu}>
                             <a
                                 style={{ color: "inherit" }}
@@ -204,7 +205,7 @@ export const Header: React.FC = () => {
                                 <Space>
                                     <Avatar
                                         size={16}
-                                        src={`/images/${currentLocale}-flag.svg`}
+                                        src={`/images/flags/${currentLocale}.svg`}
                                     />
                                     <div
                                         style={{
