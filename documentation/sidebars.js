@@ -192,6 +192,7 @@ module.exports = {
                                 "api-references/components/fields/markdown",
                                 "api-references/components/fields/tag",
                                 "api-references/components/fields/text",
+                                "api-references/components/fields/number",
                             ],
                         },
                         "api-references/interfaceReferences",
