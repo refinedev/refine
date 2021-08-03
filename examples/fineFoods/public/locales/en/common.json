@@ -30,7 +30,9 @@
     "show": "Show",
     "undo": "Undo",
     "import": "Import",
-    "clone": "Clone"
+    "clone": "Clone",
+    "accept": "Accept",
+    "reject": "Reject"
   },
   "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
   "notifications": {

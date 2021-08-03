@@ -30,7 +30,9 @@
     "show": "Göster",
     "undo": "Geri Al",
     "import": "Yükle",
-    "clone": "Kopya"
+    "clone": "Kopya",
+    "accept": "Kabul Et",
+    "reject": "Reddet"
   },
   "warnWhenUnsavedChanges": "Kaydedilmemiş değişiklikleriniz var. Ayrılmak istediğinizden emin misiniz?",
   "notifications": {

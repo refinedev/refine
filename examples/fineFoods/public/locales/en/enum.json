@@ -1,9 +1,9 @@
 {
   "orderStatuses": {
-    "waiting": "Waiting",
+    "pending": "Pending",
     "ready": "Ready",
     "on the way": "On the way",
     "delivered": "Delivered",
-    "could not be delivered": "Could not be delivered"
+    "cancelled": "Cancelled"
   }
 }
