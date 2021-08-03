@@ -16,6 +16,7 @@ import {
     Col,
     AutoComplete,
     useList,
+    useTranslate,
 } from "@pankod/refine";
 import { useTranslation } from "react-i18next";
 import debounce from "lodash/debounce";
@@ -49,12 +50,43 @@ const languages: Record<string, ILanguage> = {
     },
 };
 
+const renderTitle = (title: string) => (
+    <div
+        style={{
+            display: "flex",
+            justifyContent: "space-between",
+            fontSize: "14px",
+            fontWeight: "bold",
+            borderBottom: "1px",
+        }}
+    >
+        <Text style={{ fontSize: "16px" }}>{title}</Text>
+        <a href="#">more</a>
+    </div>
+);
+
+const renderItem = (title: string, imageUrl: string) => ({
+    value: title,
+    label: (
+        <div
+            style={{
+                display: "flex",
+                alignItems: "center",
+            }}
+        >
+            <Avatar size={64} src={imageUrl} />
+            <Text style={{ marginLeft: "16px" }}>{title}</Text>
+        </div>
+    ),
+});
+
 export const Header: React.FC = () => {
     const { i18n } = useTranslation();
     const locale = useGetLocale();
     const changeLanguage = useSetLocale();
     const { data: user } = useGetIdentity();
     const screens = useBreakpoint();
+    const t = useTranslate();
 
     const [value, setValue] = useState<string>("");
     const [options, setOptions] = useState<IOptions[]>([]);
@@ -67,14 +99,17 @@ export const Header: React.FC = () => {
         {
             enabled: false,
             onSuccess: (data) => {
-                const orderOptionGroup = data.data.map((item) => ({
-                    value: item.orderNumber.toString(),
-                }));
+                const orderOptionGroup = data.data.map((item) =>
+                    renderItem(
+                        `${item.store.title} / #${item.orderNumber}`,
+                        "/images/default-order-img.png",
+                    ),
+                );
                 if (orderOptionGroup.length > 0) {
                     setOptions((prevOptions) => [
                         ...prevOptions,
                         {
-                            label: "Orders",
+                            label: renderTitle(t("orders:title")),
                             options: orderOptionGroup,
                         },
                     ]);
@@ -91,15 +126,15 @@ export const Header: React.FC = () => {
         {
             enabled: false,
             onSuccess: (data) => {
-                const userOptionGroup = data.data.map((item) => ({
-                    value: item.title,
-                }));
-                if (userOptionGroup.length > 0) {
+                const storeOptionGroup = data.data.map((item) =>
+                    renderItem(item.title, "/images/default-store-img.png"),
+                );
+                if (storeOptionGroup.length > 0) {
                     setOptions((prevOptions) => [
                         ...prevOptions,
                         {
-                            label: "Stores",
-                            options: userOptionGroup,
+                            label: renderTitle(t("stores:title")),
+                            options: storeOptionGroup,
                         },
                     ]);
                 }
@@ -115,14 +150,17 @@ export const Header: React.FC = () => {
         {
             enabled: false,
             onSuccess: (data) => {
-                const courierOptionGroup = data.data.map((item) => ({
-                    value: item.name,
-                }));
+                const courierOptionGroup = data.data.map((item) =>
+                    renderItem(
+                        `${item.name} ${item.surname}`,
+                        item.avatar[0].url,
+                    ),
+                );
                 if (courierOptionGroup.length > 0) {
                     setOptions((prevOptions) => [
                         ...prevOptions,
                         {
-                            label: "Couriers",
+                            label: renderTitle(t("couriers:title")),
                             options: courierOptionGroup,
                         },
                     ]);
@@ -167,8 +205,10 @@ export const Header: React.FC = () => {
             <Row align="middle" justify={screens.sm ? "space-between" : "end"}>
                 <Col xs={0} sm={12}>
                     <AutoComplete
-                        dropdownMatchSelectWidth={600}
-                        style={{ width: "100%", maxWidth: "550px" }}
+                        style={{
+                            width: "100%",
+                            maxWidth: "550px",
+                        }}
                         options={options}
                         filterOption={false}
                         onSearch={debounce(
@@ -178,7 +218,7 @@ export const Header: React.FC = () => {
                     >
                         <Input
                             size="large"
-                            placeholder="Search by Order, Product, User"
+                            placeholder="Search by Store ID, E-mail, Keyword"
                             suffix={<SearchOutlined />}
                         />
                     </AutoComplete>
