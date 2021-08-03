@@ -49,7 +49,7 @@ const renderItem = (title: string, imageUrl: string) => ({
     value: title,
     label: (
         <div style={itemStyle}>
-            <Avatar size={64} src={imageUrl} />
+            <Avatar size={64} src={imageUrl} style={{ minWidth: "64px" }} />
             <Text style={{ marginLeft: "16px" }}>{title}</Text>
         </div>
     ),
