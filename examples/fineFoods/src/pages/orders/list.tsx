@@ -29,6 +29,7 @@ import {
     Dropdown,
     Menu,
     useUpdate,
+    useNavigation,
 } from "@pankod/refine";
 
 import { OrderStatus } from "components";
@@ -103,6 +104,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
 
     const t = useTranslate();
     const { mutate } = useUpdate();
+    const { show } = useNavigation();
 
     const importProps = useImport();
     const { loading, triggerExport } = useExport({
@@ -215,6 +217,15 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         rowKey="id"
                         scroll={{
                             x: true,
+                        }}
+                        onRow={(record, rowIndex) => {
+                            return {
+                                onClick: (event) => {
+                                    console.log("record", record);
+                                    show("orders", record.id);
+                                    console.log("here");
+                                }, // click row
+                            };
                         }}
                     >
                         <Table.Column

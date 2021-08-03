@@ -5,6 +5,7 @@
   },
   "fields": {
     "orderNumber": "Sipariş Numarası",
+    "orderID": "Sipariş ID",
     "status": "Sipariş Durumu",
     "store": "Mağaza",
     "user": "Kullanıcı",

@@ -165,6 +165,13 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     position: ["bottomCenter"],
                     size: "small",
                 }}
+                onRow={(record, rowIndex) => {
+                    return {
+                        onClick: (event) => {
+                            console.log("here");
+                        }, // click row
+                    };
+                }}
             >
                 <Table.Column
                     dataIndex="title"

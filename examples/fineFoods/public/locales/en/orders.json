@@ -5,6 +5,7 @@
   },
   "fields": {
     "orderNumber": "Order Number",
+    "orderID": "Order ID",
     "status": "Status",
     "store": "Store",
     "user": "User",
