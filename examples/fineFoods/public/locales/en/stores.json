@@ -4,9 +4,14 @@
     "title": "Store Detail"
   },
   "fields": {
-    "id": "ID",
+    "id": "Store ID",
     "title": "Title",
     "isActive": "Active",
-    "createdAt": "CreatedAt"
+    "createdAt": "CreatedAt",
+    "address": "Address",
+    "image": "Image"
+  },
+  "buttons": {
+    "editProducts": "Edit Products"
   }
 }

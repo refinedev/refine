@@ -4,9 +4,14 @@
     "title": "Mağaza Detay"
   },
   "fields": {
-    "id": "ID",
+    "id": "Mağaza ID",
     "title": "Başlık",
     "isActive": "Aktif",
-    "createdAt": "Oluşturma Tarihi"
+    "createdAt": "Oluşturma Tarihi",
+    "address": "Adres",
+    "image": "Resim"
+  },
+  "buttons": {
+    "editProducts": "Ürünleri Düzenle"
   }
 }
