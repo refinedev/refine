@@ -227,6 +227,14 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 | setCloneId               | `cloneId` setter                                             | `Dispatch<SetStateAction<` `string` \| `undefined>>`                                                                                                                                  |
 | cloneId                  | Record id for clone action                                   | `string`                                                                                                                                                                              |
 
+### Type Parameters
+
+| Property   | Desription                                                       | Default                    |
+| ---------- | ---------------------------------------------------------------- | -------------------------- |
+| TData      | Result data of the query that extends [`BaseRecord`][BaseRecord] | [`BaseRecord`][BaseRecord] |
+| TError     | Custom error object that extends [`HttpError`][HttpError]        | [`HttpError`][HttpError]   |
+| TVariables | Values for params.                                               | `{}`                       |
+
 ## Live Codesandbox Example
 
    <iframe src="https://codesandbox.io/embed/refine-use-modal-form-example-qbi4m?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Flist.tsx&theme=dark&view=preview"
