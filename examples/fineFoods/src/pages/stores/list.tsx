@@ -10,16 +10,18 @@ import {
     Menu,
     Icons,
     Avatar,
+    useNavigation,
 } from "@pankod/refine";
 
 import { IStore } from "interfaces";
 
 export const StoreList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IStore>();
+    const { edit } = useNavigation();
 
     const t = useTranslate();
 
-    const moreMenu = () => (
+    const moreMenu = (id: string) => (
         <Menu mode="vertical">
             <Menu.Item
                 key="1"
@@ -28,6 +30,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                     fontWeight: 500,
                 }}
                 icon={<Icons.EditOutlined />}
+                onClick={() => edit("stores", id)}
             >
                 {t("common:buttons.edit")}
             </Menu.Item>
@@ -96,8 +99,11 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="actions"
                     key="actions"
                     align="center"
-                    render={() => (
-                        <Dropdown overlay={moreMenu()} trigger={["click"]}>
+                    render={(_, record) => (
+                        <Dropdown
+                            overlay={moreMenu(record.id)}
+                            trigger={["click"]}
+                        >
                             <Icons.MoreOutlined
                                 style={{
                                     fontSize: 24,
