@@ -14,7 +14,7 @@ RUN npm run lerna bootstrap
 RUN npm run build
 
 #Example 
-WORKDIR /opt/app/example
+WORKDIR /opt/app/examples/fineFoods
 
 RUN npm install
 
