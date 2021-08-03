@@ -3,26 +3,26 @@ import { Typography } from "@pankod/refine";
 import styles from "./styles";
 
 type OrderStatusProps = {
-    status: "pending" | "ready" | "on the way" | "delivered" | "cancelled";
+    status: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";
 };
 
 export const OrderStatus: React.FC<OrderStatusProps> = ({ status }) => {
     let color;
 
     switch (status) {
-        case "pending":
+        case "Pending":
             color = "#F39800";
             break;
-        case "ready":
+        case "Ready":
             color = "#36CFC9";
             break;
-        case "on the way":
+        case "On The Way":
             color = "#67BE23";
             break;
-        case "delivered":
+        case "Delivered":
             color = "#1890FF";
             break;
-        case "cancelled":
+        case "Cancelled":
             color = "#F5222D";
             break;
     }

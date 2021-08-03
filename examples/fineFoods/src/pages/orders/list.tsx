@@ -345,6 +345,12 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
         resource: "stores",
     });
 
+    const { selectProps: orderSelectProps } = useSelect<IStore>({
+        resource: "orderStatuses",
+        optionLabel: "text",
+        optionValue: "text",
+    });
+
     const { selectProps: userSelectProps } = useSelect<IStore>({
         resource: "users",
         optionLabel: "fullName",
@@ -369,30 +375,8 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
                         name="status"
                     >
                         <Select
+                            {...orderSelectProps}
                             allowClear
-                            options={[
-                                {
-                                    label: t("enum:orderStatuses.pending"),
-
-                                    value: "pending",
-                                },
-                                {
-                                    label: t("enum:orderStatuses.ready"),
-                                    value: "ready",
-                                },
-                                {
-                                    label: t("enum:orderStatuses.on the way"),
-                                    value: "on the way",
-                                },
-                                {
-                                    label: t("enum:orderStatuses.delivered"),
-                                    value: "delivered",
-                                },
-                                {
-                                    label: t("enum:orderStatuses.cancelled"),
-                                    value: "cancelled",
-                                },
-                            ]}
                             placeholder={t("orders:filter.status.placeholder")}
                         />
                     </Form.Item>
