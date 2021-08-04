@@ -71,7 +71,6 @@ export const Notification: React.FC<{
     };
 
     useEffect(() => {
-        console.log("notifications", notifications);
         cancelNotification();
     }, [notifications]);
 
