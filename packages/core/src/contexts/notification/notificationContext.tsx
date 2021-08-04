@@ -17,7 +17,13 @@ export const notificationReducer = (state: INotification[], action: any) => {
     switch (action.type) {
         case ActionTypes.ADD:
             return [
-                ...state,
+                ...state.filter(
+                    (notificationItem: INotification) =>
+                        notificationItem.id.toString() !==
+                            action.payload.id.toString() &&
+                        notificationItem.resource.toString() !==
+                            action.payload.resource.toString(),
+                ),
                 {
                     ...action.payload,
                     isRunning: true,
@@ -27,7 +33,9 @@ export const notificationReducer = (state: INotification[], action: any) => {
             return state.filter(
                 (notificationItem: INotification) =>
                     notificationItem.id.toString() !==
-                    action.payload.id.toString(),
+                        action.payload.id.toString() &&
+                    notificationItem.resource.toString() !==
+                        action.payload.resource.toString(),
             );
         case ActionTypes.DECREASE_NOTIFICATION_SECOND:
             return state.map((notificationItem: INotification) => {

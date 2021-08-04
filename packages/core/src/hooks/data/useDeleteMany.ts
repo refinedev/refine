@@ -189,6 +189,11 @@ export const useDeleteMany = <
                         queryClient.invalidateQueries(query.queryKey);
                     }
                 }
+
+                notificationDispatch({
+                    type: ActionTypes.REMOVE,
+                    payload: { id: ids, resource },
+                });
             },
             onSuccess: (_data, { ids, resource, successNotification }) => {
                 handleNotification(successNotification, {

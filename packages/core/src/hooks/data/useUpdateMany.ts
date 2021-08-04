@@ -243,7 +243,7 @@ export const useUpdateMany = <
 
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
-                    payload: { id: ids },
+                    payload: { id: ids, resource },
                 });
             },
             onSuccess: (_data, { ids, resource, successNotification }) => {

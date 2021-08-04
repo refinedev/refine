@@ -249,6 +249,11 @@ export const useDelete = <
                         queryClient.invalidateQueries(query.queryKey);
                     }
                 }
+
+                notificationDispatch({
+                    type: ActionTypes.REMOVE,
+                    payload: { id, resource },
+                });
             },
         },
     );
