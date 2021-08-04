@@ -29,6 +29,8 @@ export const authProvider: AuthProvider = {
 
         return Promise.resolve({
             id: 1,
+            name: "James Sullivan",
+            avatar: "https://i.pravatar.cc/150",
         });
     },
 };

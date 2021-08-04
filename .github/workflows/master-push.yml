@@ -47,7 +47,7 @@ jobs:
           tags: sha-${{ steps.current-time.outputs.formattedTime }}
       - name: Deploy refine-example to k8s
         run: |
-          cd example
+          cd examples/fineFoods
           echo ${{ env.domain }}
           mv ./k8s/refine-example/Chart.yaml ./k8s/refine-example/Chart.old.yaml &&
           cat ./k8s/refine-example/Chart.old.yaml | grep -v appVersion > ./k8s/refine-example/Chart.yaml &&
