@@ -249,7 +249,6 @@ export const useUpdateMany = <
             onSuccess: (_data, { ids, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
 
-                console.log(`${ids}-${resource}-notification`);
                 handleNotification(successNotification, {
                     key: `${ids}-${resource}-notification`,
                     message: translate("notifications.success", "Successful"),
