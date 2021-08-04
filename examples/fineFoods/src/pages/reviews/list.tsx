@@ -169,13 +169,12 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                                 {value}
                             </Typography.Text>
                             <Rate
-                                character={
-                                    <Icons.StarOutlined
-                                        style={{ color: "#FA8C16" }}
-                                    />
-                                }
+                                character={<Icons.StarOutlined />}
                                 disabled
                                 value={value}
+                                style={{
+                                    color: "#FA8C16",
+                                }}
                             />
                         </Space>
                     )}
