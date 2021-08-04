@@ -132,7 +132,10 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     );
 
     const moreMenu = (id: string) => (
-        <Menu mode="vertical">
+        <Menu
+            mode="vertical"
+            onClick={({ domEvent }) => domEvent.stopPropagation()}
+        >
             <Menu.Item
                 key="accept"
                 style={{
@@ -150,18 +153,18 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         }}
                     />
                 }
-                onClick={() =>
+                onClick={() => {
                     mutate({
                         resource: "orders",
                         id,
                         values: {
                             status: {
                                 id: 2,
-                                text: "ready",
+                                text: "Ready",
                             },
                         },
-                    })
-                }
+                    });
+                }}
             >
                 {t("common:buttons.accept")}
             </Menu.Item>
@@ -188,7 +191,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         values: {
                             status: {
                                 id: 5,
-                                text: "cancelled",
+                                text: "Cancelled",
                             },
                         },
                     })
@@ -218,13 +221,11 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         scroll={{
                             x: true,
                         }}
-                        onRow={(record, rowIndex) => {
+                        onRow={(record, _rowIndex) => {
                             return {
-                                onClick: (event) => {
-                                    console.log("record", record);
+                                onClick: () => {
                                     show("orders", record.id);
-                                    console.log("here");
-                                }, // click row
+                                },
                             };
                         }}
                     >
@@ -323,6 +324,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                     trigger={["click"]}
                                 >
                                     <Icons.MoreOutlined
+                                        onClick={(e) => e.stopPropagation()}
                                         style={{
                                             fontSize: 24,
                                         }}

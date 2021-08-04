@@ -9,6 +9,7 @@ import {
     Steps,
     PageHeader,
     Grid,
+    useUpdate,
 } from "@pankod/refine";
 import dayjs from "dayjs";
 
@@ -22,19 +23,16 @@ const { useBreakpoint } = Grid;
 export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const screens = useBreakpoint();
-    console.log({ screens });
     const { queryResult } = useShow<IOrder>();
     const { data, isFetching } = queryResult;
+    const { mutate } = useUpdate();
     const record = data?.data;
 
-    console.log({ screens });
-    console.log(Object.entries(screens));
+    console.log({ record });
 
     const currentBreakPoints = Object.entries(screens)
         .filter((screen) => !!screen[1])
         .map((screen) => screen[0]);
-
-    console.log({ currentBreakPoints });
 
     const renderOrderSteps = () => {
         const notFinishedCurrentStep = (event: IEvent, index: number) =>
@@ -63,6 +61,20 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         key="accept"
                         icon={<Icons.CheckCircleOutlined />}
                         type="primary"
+                        onClick={() => {
+                            if (record) {
+                                mutate({
+                                    resource: "orders",
+                                    id: record?.id.toString(),
+                                    values: {
+                                        status: {
+                                            id: 2,
+                                            text: "Ready",
+                                        },
+                                    },
+                                });
+                            }
+                        }}
                     >
                         Accept
                     </Button>,
@@ -70,6 +82,20 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         key="reject"
                         danger
                         icon={<Icons.CloseCircleOutlined />}
+                        onClick={() => {
+                            if (record) {
+                                mutate({
+                                    resource: "orders",
+                                    id: record?.id.toString(),
+                                    values: {
+                                        status: {
+                                            id: 5,
+                                            text: "Cancelled",
+                                        },
+                                    },
+                                });
+                            }
+                        }}
                     >
                         Reject
                     </Button>,
