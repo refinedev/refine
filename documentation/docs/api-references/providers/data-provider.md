@@ -33,6 +33,17 @@ const dataProvider = {
 ```
 
 
+:::tip
+
+**refine** includes many out-of-the-box data providers to use in your projects like
+
+* [Simple REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest)
+* [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
+* [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
+* [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
+
+:::
+
 <br/>
 
 :::important
