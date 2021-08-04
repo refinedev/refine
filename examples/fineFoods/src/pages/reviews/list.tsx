@@ -6,7 +6,6 @@ import {
     useTranslate,
     useUpdateMany,
     useNavigation,
-    useUpdate,
     IResourceComponentsProps,
     Icons,
     Space,
