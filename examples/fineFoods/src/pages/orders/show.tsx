@@ -58,6 +58,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 subTitle={`#${record?.orderNumber}`}
                 extra={[
                     <Button
+                        disabled={record?.status.text !== "Pending"}
                         key="accept"
                         icon={<Icons.CheckCircleOutlined />}
                         type="primary"
@@ -76,9 +77,10 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                             }
                         }}
                     >
-                        Accept
+                        {t("common:buttons.accept")}
                     </Button>,
                     <Button
+                        disabled={record?.status.text === "Delivered"}
                         key="reject"
                         danger
                         icon={<Icons.CloseCircleOutlined />}
@@ -97,7 +99,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                             }
                         }}
                     >
-                        Reject
+                        {t("common:buttons.reject")}
                     </Button>,
                 ]}
             >
