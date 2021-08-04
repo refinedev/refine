@@ -9,6 +9,8 @@ on:
     paths-ignore:
       - "documentation/**"
       - "examples/**"
+    paths:
+      - "examples/fineFoods/**"
 
 jobs:
   test-coverage:
