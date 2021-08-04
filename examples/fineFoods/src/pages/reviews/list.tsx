@@ -38,11 +38,28 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
         ],
     });
 
-    const { mutate: updateManyMutate, isLoading: updateManyIsLoading } =
-        useUpdateMany<IReview>();
+    const { mutate, isLoading } = useUpdateMany<IReview>();
+
+    const onSelectChange = (selectedRowKeys: React.Key[]) => {
+        setSelectedRowKeys(selectedRowKeys);
+    };
+
+    const rowSelection = {
+        selectedRowKeys,
+        onChange: onSelectChange,
+    };
+
+    const handleUpdate = (id: string, status: IReview["status"]) => {
+        mutate({
+            resource: "reviews",
+            ids: [id],
+            values: { status },
+            mutationMode: "undoable",
+        });
+    };
 
     const updateSelectedItems = (status: "approved" | "rejected") => {
-        updateManyMutate(
+        mutate(
             {
                 resource: "reviews",
                 ids: selectedRowKeys.map(String),
@@ -57,26 +74,6 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 },
             },
         );
-    };
-
-    const onSelectChange = (selectedRowKeys: React.Key[]) => {
-        setSelectedRowKeys(selectedRowKeys);
-    };
-
-    const rowSelection = {
-        selectedRowKeys,
-        onChange: onSelectChange,
-    };
-
-    const { mutate } = useUpdate<IReview>();
-
-    const handleUpdate = (id: string, status: IReview["status"]) => {
-        mutate({
-            resource: "reviews",
-            id,
-            values: { status },
-            mutationMode: "undoable",
-        });
     };
 
     const hasSelected = selectedRowKeys.length > 0;
@@ -136,7 +133,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                         <Button
                             type="text"
                             onClick={() => updateSelectedItems("approved")}
-                            loading={updateManyIsLoading}
+                            loading={isLoading}
                             icon={
                                 <Icons.CheckCircleOutlined
                                     style={{ color: "green" }}
@@ -148,7 +145,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                         <Button
                             type="text"
                             onClick={() => updateSelectedItems("rejected")}
-                            loading={updateManyIsLoading}
+                            loading={isLoading}
                             icon={
                                 <Icons.CloseCircleOutlined
                                     style={{ color: "red" }}
