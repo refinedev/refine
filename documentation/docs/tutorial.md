@@ -80,7 +80,7 @@ Point your browser to [http://localhost:3000](http://localhost:3000) to access i
 First, run the **superplate** with the following command:
 
 ```
-npx superplate-cli@alpha tutorial
+npx superplate-cli tutorial
 ```
 
 Select the following options to complete the *CLI wizard*:
@@ -154,17 +154,16 @@ npm i @pankod/refine-simple-rest
 Fake REST API is based on [JSON Server Project](https://github.com/typicode/json-server). **Simple REST Dataprovider** is fully compatible with the REST rules and methods of the **JSON Server**.
 :::
 
-:::note
+:::tip
 
 **refine** includes many out-of-the-box data providers to use in your projects like
 
-* Simple REST API
-* NestJS CRUD
-* Airtable
-* Strapi etc.
+* [Simple REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest)
+* [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
+* [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
+* [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
 
-Please refer to the documentation if you need connecting to a custom data source by creating your Dataprovider.
-
+[Refer to the `dataProvider` documentation for detailed usage. &#8594](/api-references/providers/data-provider.md)
 :::
 
 

@@ -238,7 +238,7 @@ export const useUpdateMany = <
                 const resourceSingular = pluralize.singular(resource);
 
                 handleNotification(successNotification, {
-                    key: `${ids}-${resource}-updateMany-success-notification`,
+                    key: `${ids}-${resource}-notification`,
                     message: translate("notifications.success", "Successful"),
                     description: translate(
                         "notifications.editSuccess",

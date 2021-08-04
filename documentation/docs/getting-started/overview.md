@@ -76,7 +76,7 @@ In addition to **shorter development** times and **overall performance gains**, 
 Run the **superplate** tool with the following command:
 
 ```
-npx superplate-cli@alpha tutorial
+npx superplate-cli tutorial
 ```
 
 Follow the *CLI wizard* to select options and start creating your project.
@@ -91,9 +91,90 @@ Your **refine** application will be accessible at [http://localhost:3000](http:/
 
 Replace the contents of ```App.tsx``` with the following code:
 
+```tsx title="App.tsx"
+import React from "react";
+import {
+    Refine,
+    Resource,
+    useTable,
+    List,
+    Table,
+    useMany,
+    DateField,
+} from "@pankod/refine";
+import dataProvider from "@pankod/refine-simple-rest";
+
+import "@pankod/refine/dist/styles.min.css";
+
+const App: React.FC = () => {
+    return (
+        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
+            <Resource name="posts" list={PostList} />
+        </Refine>
+    );
+};
+
+export const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+
+    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
+        enabled: categoryIds.length > 0,
+    });
+
+    return (
+        <List>
+            <Table<IPost> {...tableProps} rowKey="id">
+                <Table.Column dataIndex="title" title="title" />
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="category"
+                    render={(value: string) => {
+                        if (isLoading) {
+                            return "loading...";
+                        }
+
+                        return data?.data.find(
+                            (item: ICategory) => item.id === value,
+                        )?.title;
+                    }}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="createdAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                />
+            </Table>
+        </List>
+    );
+};
+
+export default App;
 ```
-[20-30 lines of hello world demo code]
+
+```tsx title="interfaces.d.ts"
+interface IPost {
+    title: string;
+    slug: string;
+    status: "published" | "draft" | "rejected";
+    createdAt: string;
+    category: ICategory;
+    user: {
+        id: string;
+    };
+    tags: [{ id: string }];
+}
+
+interface ICategory {
+    id: string;
+    title: string;
+}
+
 ```
+
+
 ### Roadmap
 
 ☑️ NextJS & SSR support
