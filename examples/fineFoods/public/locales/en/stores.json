@@ -13,5 +13,6 @@
   },
   "buttons": {
     "editProducts": "Edit Products"
-  }
+  },
+  "selectLocation": "Choose store location on the map"
 }

@@ -59,7 +59,7 @@ export const StoreEdit: React.FC<IResourceComponentsProps> = () => {
                                     textAlign: "center",
                                 }}
                             >
-                                Choose store location on the map
+                                {t("stores:selectLocation")}
                             </Text>
                         </Space>
                     </Col>

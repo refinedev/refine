@@ -48,7 +48,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
     );
 
     return (
-        <List title={t("stores:title")}>
+        <List>
             <Table
                 {...tableProps}
                 rowKey="id"
