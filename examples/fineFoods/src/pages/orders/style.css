@@ -1,3 +1,36 @@
+.courier {
+    display: flex;
+    align-items:center;
+}
+.courier .info-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.courier-infoBox {
+    display: flex;
+    background-color: #67BE23;
+    align-items: center;
+    padding: 10px 15px;
+    margin-left: 20px;
+    border-radius: 5px;
+}
+.courier-infoBox .mobile, .delivery-img{
+    color: #ffffff !important;
+    margin-right: 10px;
+}
+.courier-infoBox .text {
+    display: flex;
+    flex-direction: column;
+ 
+}
+
+.courier-box-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
 @media screen and (max-width: 375px) {
     .pageHeader {
         padding: 16px 16px;

@@ -84,7 +84,7 @@ export interface IOrder {
     status: IOrderStatus;
     adress: IAddress;
     store: IStore;
-    courier: {};
+    courier: ICourier;
     events: IEvent[];
     orderNumber: number;
     amount: number;

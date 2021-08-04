@@ -10,15 +10,20 @@ import {
     PageHeader,
     Grid,
     useUpdate,
+    Space,
+    Avatar,
+    Typography,
+    Card,
 } from "@pankod/refine";
 import dayjs from "dayjs";
 
-import { OrderStatus } from "components";
 import { IEvent, IOrder } from "interfaces";
+import { ReactNode } from "react";
 
 import "./style.css";
 
 const { useBreakpoint } = Grid;
+const { Text } = Typography;
 
 export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
@@ -28,7 +33,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     const { mutate } = useUpdate();
     const record = data?.data;
 
-    console.log({ record });
+    console.log("record", record);
 
     const currentBreakPoints = Object.entries(screens)
         .filter((screen) => !!screen[1])
@@ -133,10 +138,67 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
         );
     };
 
+    const courierInfoBox = (text: string, icon: ReactNode, value?: string) => (
+        <div className="courier-infoBox">
+            {icon}
+            <div className="text">
+                <Text style={{ color: "#ffffff" }}>{text}</Text>
+                <Text style={{ color: "#ffffff" }}>{value}</Text>
+            </div>
+        </div>
+    );
+
+    const renderCourierInfo = () => (
+        <Card>
+            <Row>
+                <Col span={12}>
+                    <div className="courier">
+                        <Avatar
+                            size={{ xl: 108, sm: 88 }}
+                            src={record?.courier.avatar[0].url}
+                        />
+                        <div className="info-text">
+                            <Text style={{ fontSize: 16 }}>COURIER</Text>
+                            <Text
+                                style={{
+                                    fontSize: 24,
+                                    fontWeight: 800,
+                                }}
+                            >
+                                {record?.courier.name} {record?.courier.surname}
+                            </Text>
+                            <Text>ID #{record?.courier.id}</Text>
+                        </div>
+                    </div>
+                </Col>
+
+                <Col span={12} className="courier-box-container">
+                    {courierInfoBox(
+                        "TELEPHONE",
+                        <Icons.MobileOutlined
+                            className="mobile"
+                            style={{ color: "#ffff", fontSize: 32 }}
+                        />,
+                        record?.courier.gsm,
+                    )}
+                    {courierInfoBox(
+                        "DELIVERY TIME",
+                        <img className="delivery-img" src="/images/bike.svg" />,
+                        "15:05",
+                    )}
+                </Col>
+            </Row>
+        </Card>
+    );
+
     return (
         <Row gutter={[16, 16]}>
             <Col sm={23} xs={24}>
-                {record && renderOrderSteps()}
+                <Space direction="vertical">
+                    {record && renderOrderSteps()}
+                    <img width="100%" src="/images/map.png" />
+                    {renderCourierInfo()}
+                </Space>
             </Col>
         </Row>
     );
