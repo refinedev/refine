@@ -131,7 +131,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                     />
                 </Table>
             </List>
-            <Modal {...modalProps} width={1000}>
+            <Modal {...modalProps} width={1000} footer={null}>
                 <ProductEdit record={record} />
             </Modal>
         </>
