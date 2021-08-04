@@ -14,6 +14,8 @@ import {
     Avatar,
     Rate,
     Typography,
+    Dropdown,
+    Menu,
 } from "@pankod/refine";
 
 import { IReview } from "interfaces";
@@ -68,16 +70,62 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
 
     const { mutate } = useUpdate<IReview>();
 
-    const handleUpdate = (item: IReview, status: IReview["status"]) => {
+    const handleUpdate = (id: string, status: IReview["status"]) => {
         mutate({
             resource: "reviews",
-            id: item.id,
+            id,
             values: { status },
             mutationMode: "undoable",
         });
     };
 
     const hasSelected = selectedRowKeys.length > 0;
+
+    const moreMenu = (id: string) => (
+        <Menu mode="vertical">
+            <Menu.Item
+                key="accept"
+                style={{
+                    fontSize: 15,
+                    display: "flex",
+                    alignItems: "center",
+                    fontWeight: 500,
+                }}
+                icon={
+                    <Icons.CheckCircleOutlined
+                        style={{
+                            color: "#52c41a",
+                            fontSize: 17,
+                            fontWeight: 500,
+                        }}
+                    />
+                }
+                onClick={() => handleUpdate(id, "approved")}
+            >
+                {t("common:buttons.accept")}
+            </Menu.Item>
+            <Menu.Item
+                key="reject"
+                style={{
+                    fontSize: 15,
+                    display: "flex",
+                    alignItems: "center",
+                    fontWeight: 500,
+                }}
+                icon={
+                    <Icons.CloseCircleOutlined
+                        style={{
+                            color: "#EE2A1E",
+                            fontSize: 17,
+                        }}
+                    />
+                }
+                onClick={() => handleUpdate(id, "rejected")}
+            >
+                {t("common:buttons.reject")}
+            </Menu.Item>
+        </Menu>
+    );
 
     return (
         <List
@@ -95,7 +143,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                                 />
                             }
                         >
-                            Accept All
+                            {t("common:buttons.acceptAll")}
                         </Button>
                         <Button
                             type="text"
@@ -107,7 +155,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                                 />
                             }
                         >
-                            Reject All
+                            {t("common:buttons.rejectAll")}
                         </Button>
                     </Space>
                 ),
@@ -183,22 +231,16 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                     title={t("common:table.actions")}
                     key="actions"
                     render={(record) => (
-                        <Space>
-                            <Button
-                                danger
-                                icon={<Icons.CloseCircleOutlined />}
-                                onClick={() => handleUpdate(record, "rejected")}
-                            >
-                                Reject
-                            </Button>
-                            <Button
-                                icon={<Icons.CheckCircleOutlined />}
-                                onClick={() => handleUpdate(record, "approved")}
-                                type="primary"
-                            >
-                                Accept
-                            </Button>
-                        </Space>
+                        <Dropdown
+                            overlay={moreMenu(record.id)}
+                            trigger={["click"]}
+                        >
+                            <Icons.MoreOutlined
+                                style={{
+                                    fontSize: 24,
+                                }}
+                            />
+                        </Dropdown>
                     )}
                     fixed="right"
                 />
