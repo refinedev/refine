@@ -27,7 +27,14 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     const { data, isFetching } = queryResult;
     const record = data?.data;
 
-    console.log({ record });
+    console.log({ screens });
+    console.log(Object.entries(screens));
+
+    const currentBreakPoints = Object.entries(screens)
+        .filter((screen) => !!screen[1])
+        .map((screen) => screen[0]);
+
+    console.log({ currentBreakPoints });
 
     const renderOrderSteps = () => {
         const notFinishedCurrentStep = (event: IEvent, index: number) =>
@@ -69,7 +76,11 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 ]}
             >
                 <Steps
-                    direction="vertical"
+                    direction={
+                        currentBreakPoints.includes("lg")
+                            ? "horizontal"
+                            : "vertical"
+                    }
                     current={record?.events.findIndex(
                         (el) => el.status === record?.status?.text,
                     )}
