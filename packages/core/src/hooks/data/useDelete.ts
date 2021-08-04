@@ -91,14 +91,13 @@ export const useDelete = <
 
             const deletePromise = new Promise<DeleteOneResponse<TData>>(
                 (resolve, reject) => {
-                    const updateTimeout = setTimeout(() => {
+                    const doMutation = () => {
                         deleteOne<TData>(resource, id)
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
-                    }, undoableTimeoutPropOrContext);
+                    };
 
                     const cancelMutation = () => {
-                        clearTimeout(updateTimeout);
                         reject({ message: "mutationCancelled" });
                     };
 
@@ -111,6 +110,7 @@ export const useDelete = <
                                 id,
                                 resource: resource,
                                 cancelMutation: cancelMutation,
+                                doMutation: doMutation,
                                 seconds: undoableTimeoutPropOrContext,
                             },
                         });
@@ -156,7 +156,10 @@ export const useDelete = <
                                     ...previousQuery,
                                     data: (data ?? []).filter(
                                         (record: TData) =>
-                                            !(record.id?.toString() === id),
+                                            !(
+                                                record.id?.toString() ===
+                                                id.toString()
+                                            ),
                                     ),
                                     total: total - 1,
                                 });

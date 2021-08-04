@@ -96,14 +96,13 @@ export const useDeleteMany = <
 
             const updatePromise = new Promise<DeleteManyResponse<TData>>(
                 (resolve, reject) => {
-                    const updateTimeout = setTimeout(() => {
+                    const doMutation = () => {
                         deleteMany<TData>(resource, ids)
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
-                    }, undoableTimeoutPropOrContext);
+                    };
 
                     const cancelMutation = () => {
-                        clearTimeout(updateTimeout);
                         reject({ message: "mutationCancelled" });
                     };
 
@@ -116,6 +115,7 @@ export const useDeleteMany = <
                                 id: ids,
                                 resource: resource,
                                 cancelMutation: cancelMutation,
+                                doMutation: doMutation,
                                 seconds: undoableTimeoutPropOrContext,
                             },
                         });
@@ -160,9 +160,11 @@ export const useDeleteMany = <
                                     ...previousQuery,
                                     data: (data ?? []).filter(
                                         (record: TData) =>
-                                            !ids.includes(
-                                                record.id!.toString(),
-                                            ),
+                                            !ids
+                                                .map((p) => p.toString())
+                                                .includes(
+                                                    record.id!.toString(),
+                                                ),
                                     ),
                                     total: total - ids.length,
                                 });

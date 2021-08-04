@@ -10,6 +10,7 @@ const mockNotifications = {
     id: "1",
     resource: "posts",
     cancelMutation: () => Promise.resolve(),
+    doMutation: () => Promise.resolve(),
     seconds: 5000,
     isRunning: true,
 };

@@ -92,14 +92,13 @@ export const useUpdate = <
             }
             const updatePromise = new Promise<UpdateResponse<TData>>(
                 (resolve, reject) => {
-                    const updateTimeout = setTimeout(() => {
+                    const doMutation = () => {
                         update<TData, TVariables>(resource, id, values)
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
-                    }, undoableTimeoutPropOrContext);
+                    };
 
                     const cancelMutation = () => {
-                        clearTimeout(updateTimeout);
                         reject({ message: "mutationCancelled" });
                     };
 
@@ -112,6 +111,7 @@ export const useUpdate = <
                                 id: id,
                                 resource: resource,
                                 cancelMutation: cancelMutation,
+                                doMutation: doMutation,
                                 seconds: undoableTimeoutPropOrContext,
                             },
                         });
@@ -155,7 +155,10 @@ export const useUpdate = <
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: data.map((record: TData) => {
-                                        if (record.id?.toString() === id) {
+                                        if (
+                                            record.id?.toString() ===
+                                            id.toString()
+                                        ) {
                                             return {
                                                 ...values,
                                                 id: id,

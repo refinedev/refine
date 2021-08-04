@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, notification } from "antd";
+import { Button, notification, Skeleton } from "antd";
 
 import { ActionTypes } from "@contexts/notification";
 import { useCancelNotification, useTranslate } from "@hooks";
@@ -15,20 +15,11 @@ export const Notification: React.FC<{
 
     const { notificationDispatch } = useCancelNotification();
 
-    const removeNotification = (id: string) => {
-        notificationDispatch({
-            type: ActionTypes.REMOVE,
-            payload: { id: id },
-        });
-    };
-
     const cancelNotification = () => {
         notifications.forEach((notificationItem: INotification) => {
             if (notificationItem.isRunning === true) {
                 if (notificationItem.seconds === 0) {
-                    removeNotification(notificationItem.id);
-
-                    return;
+                    notificationItem.doMutation();
                 }
                 const message = (
                     <span style={{ marginLeft: 20 }}>
@@ -67,6 +58,7 @@ export const Notification: React.FC<{
                                     `${notificationItem.id}-${notificationItem.resource}-notification`,
                                 );
                             }}
+                            disabled={notificationItem.seconds === 0}
                         >
                             {translate("buttons.undo", "Undo")}
                         </Button>
@@ -79,6 +71,7 @@ export const Notification: React.FC<{
     };
 
     useEffect(() => {
+        console.log("notifications", notifications);
         cancelNotification();
     }, [notifications]);
 

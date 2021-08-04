@@ -100,14 +100,13 @@ export const useUpdateMany = <
 
             const updatePromise = new Promise<UpdateManyResponse<TData>>(
                 (resolve, reject) => {
-                    const updateTimeout = setTimeout(() => {
+                    const doMutation = () => {
                         updateMany<TData, TVariables>(resource, ids, values)
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
-                    }, undoableTimeoutPropOrContext);
+                    };
 
                     const cancelMutation = () => {
-                        clearTimeout(updateTimeout);
                         reject({ message: "mutationCancelled" });
                     };
 
@@ -120,6 +119,7 @@ export const useUpdateMany = <
                                 id: ids,
                                 resource: resource,
                                 cancelMutation: cancelMutation,
+                                doMutation: doMutation,
                                 seconds: undoableTimeoutPropOrContext,
                             },
                         });
@@ -164,8 +164,15 @@ export const useUpdateMany = <
                                     ...previousQuery,
                                     data: data.map((record: TData) => {
                                         if (
-                                            ids.includes(record.id!.toString())
+                                            ids
+                                                .map((p) => p.toString())
+                                                .includes(record.id!.toString())
                                         ) {
+                                            console.log(
+                                                "finded",
+                                                record,
+                                                values,
+                                            );
                                             return {
                                                 ...record,
                                                 ...values,
@@ -233,10 +240,16 @@ export const useUpdateMany = <
                 for (const query of allQueries) {
                     queryClient.invalidateQueries(query.queryKey);
                 }
+
+                notificationDispatch({
+                    type: ActionTypes.REMOVE,
+                    payload: { id: ids },
+                });
             },
             onSuccess: (_data, { ids, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
 
+                console.log(`${ids}-${resource}-notification`);
                 handleNotification(successNotification, {
                     key: `${ids}-${resource}-notification`,
                     message: translate("notifications.success", "Successful"),
