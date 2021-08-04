@@ -8,14 +8,21 @@ import {
     Icons,
     Steps,
     PageHeader,
+    Grid,
 } from "@pankod/refine";
 import dayjs from "dayjs";
 
 import { OrderStatus } from "components";
 import { IEvent, IOrder } from "interfaces";
 
+import "./style.css";
+
+const { useBreakpoint } = Grid;
+
 export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
+    const screens = useBreakpoint();
+    console.log({ screens });
     const { queryResult } = useShow<IOrder>();
     const { data, isFetching } = queryResult;
     const record = data?.data;
@@ -39,6 +46,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
 
         return (
             <PageHeader
+                className="pageHeader"
                 ghost={false}
                 onBack={() => window.history.back()}
                 title={t("orders:fields.orderID")}
@@ -61,6 +69,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 ]}
             >
                 <Steps
+                    direction="vertical"
                     current={record?.events.findIndex(
                         (el) => el.status === record?.status?.text,
                     )}
@@ -87,7 +96,9 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Row gutter={[16, 16]}>
-            <Col xs={23}>{record && renderOrderSteps()}</Col>
+            <Col sm={23} xs={24}>
+                {record && renderOrderSteps()}
+            </Col>
         </Row>
     );
 };

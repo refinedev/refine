@@ -1,0 +1,9 @@
+@media screen and (max-width: 375px) {
+    .pageHeader {
+        padding: 16px 16px;
+    }
+
+    .pageHeader .ant-page-header-heading-title {
+        font-size: 16px;
+    }
+}
