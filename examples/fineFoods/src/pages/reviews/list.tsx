@@ -184,7 +184,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                     render={(value) => (
                         <Button
                             onClick={() => {
-                                show("reviews", value);
+                                show("orders", value);
                             }}
                             type="text"
                         >
