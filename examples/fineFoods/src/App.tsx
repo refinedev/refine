@@ -20,6 +20,7 @@ import {
     CategoryList,
     CategoryShow,
 } from "./pages/categories";
+import { ReviewsList } from "./pages/reviews";
 import { useTranslation } from "react-i18next";
 import { Header, Title } from "components";
 
@@ -98,6 +99,13 @@ const App: React.FC = () => {
                     label: t("couriers:title"),
                 }}
                 list={CourierList}
+            />
+            <Resource
+                name="reviews"
+                options={{
+                    label: "Reviews",
+                }}
+                list={ReviewsList}
             />
         </Refine>
     );
