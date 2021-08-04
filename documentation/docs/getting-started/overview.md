@@ -94,17 +94,17 @@ Replace the contents of ```App.tsx``` with the following code:
 ```tsx title="App.tsx"
 import React from "react";
 import {
-    DateField,
-    List,
     Refine,
     Resource,
+    useTable,
+    List,
     Table,
     useMany,
-    useTable,
+    DateField,
 } from "@pankod/refine";
-import "@pankod/refine/dist/styles.min.css";
-
 import dataProvider from "@pankod/refine-simple-rest";
+
+import "@pankod/refine/dist/styles.min.css";
 
 const App: React.FC = () => {
     return (

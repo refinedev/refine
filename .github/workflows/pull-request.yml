@@ -6,12 +6,8 @@ on:
       - synchronize
       - opened
       - reopened
-    paths-ignore:
-      - "documentation/**"
-      - "examples/**"
     paths:
-      - "examples/fineFoods/**"
-
+      - "examples/fineFoods"
 jobs:
   test-coverage:
     runs-on: ubuntu-latest
