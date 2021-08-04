@@ -80,7 +80,7 @@ Point your browser to [http://localhost:3000](http://localhost:3000) to access i
 First, run the **superplate** with the following command:
 
 ```
-npx superplate-cli@alpha tutorial
+npx superplate-cli tutorial
 ```
 
 Select the following options to complete the *CLI wizard*:
