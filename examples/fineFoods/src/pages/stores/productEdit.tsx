@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
     Typography,
     Avatar,
@@ -22,7 +23,6 @@ import {
 const { Text, Paragraph } = Typography;
 
 import { IStore, IProduct, ICategory } from "interfaces";
-import { useEffect, useState } from "react";
 
 type Props = {
     record?: IStore;
@@ -31,7 +31,7 @@ type Props = {
 export const ProductEdit: React.FC<Props> = ({ record }) => {
     const t = useTranslate();
 
-    const { listProps, searchFormProps } = useSimpleList<
+    const { listProps, searchFormProps, queryResult } = useSimpleList<
         IProduct,
         { name: string; categories: string[] }
     >({
@@ -58,6 +58,13 @@ export const ProductEdit: React.FC<Props> = ({ record }) => {
             return productFilters;
         },
     });
+
+    const mergedData = queryResult.data?.data.map((product) => ({
+        ...product,
+        ...record?.products.find(
+            (storeProduct) => storeProduct.id === product.id,
+        ),
+    }));
 
     const renderItem = (item: IProduct) => {
         return (
@@ -107,6 +114,7 @@ export const ProductEdit: React.FC<Props> = ({ record }) => {
                 <div id="stock-number">
                     <InputNumber
                         size="large"
+                        value={item.stock || 0}
                         style={{ width: "100%" }}
                         placeholder="Stock Count"
                     />
@@ -151,6 +159,7 @@ export const ProductEdit: React.FC<Props> = ({ record }) => {
                             paddingRight: "4px",
                         }}
                         {...listProps}
+                        dataSource={mergedData}
                         renderItem={renderItem}
                         pagination={{
                             ...listProps.pagination,
