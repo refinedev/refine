@@ -204,7 +204,7 @@ export const useUpdate = <
                     const resourceSingular = pluralize.singular(resource);
 
                     handleNotification(errorNotification, {
-                        key: `${id}-${resource}-useUpdate-error-notification`,
+                        key: `${id}-${resource}-notification`,
                         message: translate(
                             "notifications.editError",
                             {
@@ -231,7 +231,7 @@ export const useUpdate = <
                 const resourceSingular = pluralize.singular(resource);
 
                 handleNotification(successNotification, {
-                    key: `${id}-${resource}-useUpdate-success-notification`,
+                    key: `${id}-${resource}-notification`,
                     message: translate("notifications.success", "Successful"),
                     description: translate(
                         "notifications.editSuccess",
