@@ -99,14 +99,6 @@ Our **"Simple REST Dataprovider"** will be consuming this *fake REST API*.
 Fake REST API is based on [JSON Server Project](https://github.com/typicode/json-server). **Simple REST Dataprovider** is fully compatible with the REST rules and methods of the **JSON Server**.
 :::
 
-:::note
-**refine** includes many out-of-the-box data providers that you can use in your projects like
-
-* Simple REST API
-* NestJS CRUD
-* Strapi etc.
-:::
-
 <br />
 
 Let's build a method that returns our data provider:
