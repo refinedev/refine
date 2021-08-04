@@ -7,7 +7,7 @@ on:
       - opened
       - reopened
     paths:
-      - "examples/fineFoods"
+      - "examples/fineFoods/**"
 jobs:
   test-coverage:
     runs-on: ubuntu-latest
