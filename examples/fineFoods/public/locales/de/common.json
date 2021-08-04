@@ -32,7 +32,9 @@
     "import": "Yükle",
     "clone": "Kopya",
     "accept": "Kabul Et",
-    "reject": "Reddet"
+    "acceptAll": "Tümünü Kabul Et",
+    "reject": "Reddet",
+    "rejectAll": "Tümünü Reddet"
   },
   "warnWhenUnsavedChanges": "Kaydedilmemiş değişiklikleriniz var. Ayrılmak istediğinizden emin misiniz?",
   "notifications": {

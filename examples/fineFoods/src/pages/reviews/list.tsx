@@ -6,7 +6,6 @@ import {
     useTranslate,
     useUpdateMany,
     useNavigation,
-    useUpdate,
     IResourceComponentsProps,
     Icons,
     Space,
@@ -14,6 +13,8 @@ import {
     Avatar,
     Rate,
     Typography,
+    Dropdown,
+    Menu,
 } from "@pankod/refine";
 
 import { IReview } from "interfaces";
@@ -36,11 +37,28 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
         ],
     });
 
-    const { mutate: updateManyMutate, isLoading: updateManyIsLoading } =
-        useUpdateMany<IReview>();
+    const { mutate, isLoading } = useUpdateMany<IReview>();
+
+    const onSelectChange = (selectedRowKeys: React.Key[]) => {
+        setSelectedRowKeys(selectedRowKeys);
+    };
+
+    const rowSelection = {
+        selectedRowKeys,
+        onChange: onSelectChange,
+    };
+
+    const handleUpdate = (id: string, status: IReview["status"]) => {
+        mutate({
+            resource: "reviews",
+            ids: [id],
+            values: { status },
+            mutationMode: "undoable",
+        });
+    };
 
     const updateSelectedItems = (status: "approved" | "rejected") => {
-        updateManyMutate(
+        mutate(
             {
                 resource: "reviews",
                 ids: selectedRowKeys.map(String),
@@ -57,27 +75,53 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
         );
     };
 
-    const onSelectChange = (selectedRowKeys: React.Key[]) => {
-        setSelectedRowKeys(selectedRowKeys);
-    };
-
-    const rowSelection = {
-        selectedRowKeys,
-        onChange: onSelectChange,
-    };
-
-    const { mutate } = useUpdate<IReview>();
-
-    const handleUpdate = (item: IReview, status: IReview["status"]) => {
-        mutate({
-            resource: "reviews",
-            id: item.id,
-            values: { status },
-            mutationMode: "undoable",
-        });
-    };
-
     const hasSelected = selectedRowKeys.length > 0;
+
+    const moreMenu = (id: string) => (
+        <Menu mode="vertical">
+            <Menu.Item
+                key="accept"
+                style={{
+                    fontSize: 15,
+                    display: "flex",
+                    alignItems: "center",
+                    fontWeight: 500,
+                }}
+                icon={
+                    <Icons.CheckCircleOutlined
+                        style={{
+                            color: "#52c41a",
+                            fontSize: 17,
+                            fontWeight: 500,
+                        }}
+                    />
+                }
+                onClick={() => handleUpdate(id, "approved")}
+            >
+                {t("common:buttons.accept")}
+            </Menu.Item>
+            <Menu.Item
+                key="reject"
+                style={{
+                    fontSize: 15,
+                    display: "flex",
+                    alignItems: "center",
+                    fontWeight: 500,
+                }}
+                icon={
+                    <Icons.CloseCircleOutlined
+                        style={{
+                            color: "#EE2A1E",
+                            fontSize: 17,
+                        }}
+                    />
+                }
+                onClick={() => handleUpdate(id, "rejected")}
+            >
+                {t("common:buttons.reject")}
+            </Menu.Item>
+        </Menu>
+    );
 
     return (
         <List
@@ -88,26 +132,26 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                         <Button
                             type="text"
                             onClick={() => updateSelectedItems("approved")}
-                            loading={updateManyIsLoading}
+                            loading={isLoading}
                             icon={
                                 <Icons.CheckCircleOutlined
                                     style={{ color: "green" }}
                                 />
                             }
                         >
-                            Accept All
+                            {t("common:buttons.acceptAll")}
                         </Button>
                         <Button
                             type="text"
                             onClick={() => updateSelectedItems("rejected")}
-                            loading={updateManyIsLoading}
+                            loading={isLoading}
                             icon={
                                 <Icons.CloseCircleOutlined
                                     style={{ color: "red" }}
                                 />
                             }
                         >
-                            Reject All
+                            {t("common:buttons.rejectAll")}
                         </Button>
                     </Space>
                 ),
@@ -136,7 +180,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                     render={(value) => (
                         <Button
                             onClick={() => {
-                                show("reviews", value);
+                                show("orders", value);
                             }}
                             type="text"
                         >
@@ -183,22 +227,16 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                     title={t("common:table.actions")}
                     key="actions"
                     render={(record) => (
-                        <Space>
-                            <Button
-                                danger
-                                icon={<Icons.CloseCircleOutlined />}
-                                onClick={() => handleUpdate(record, "rejected")}
-                            >
-                                Reject
-                            </Button>
-                            <Button
-                                icon={<Icons.CheckCircleOutlined />}
-                                onClick={() => handleUpdate(record, "approved")}
-                                type="primary"
-                            >
-                                Accept
-                            </Button>
-                        </Space>
+                        <Dropdown
+                            overlay={moreMenu(record.id)}
+                            trigger={["click"]}
+                        >
+                            <Icons.MoreOutlined
+                                style={{
+                                    fontSize: 24,
+                                }}
+                            />
+                        </Dropdown>
                     )}
                     fixed="right"
                 />
