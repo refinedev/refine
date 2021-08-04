@@ -1,0 +1,9 @@
+{
+    "title": "Reviews",
+    "fields": {
+        "user": "Kullanıcı",
+        "orderId": "Sipariş No",
+        "review": "Yorum",
+        "rating": "Puan"
+    }
+}

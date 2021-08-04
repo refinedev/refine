@@ -1,0 +1,9 @@
+{
+    "title": "Reviews",
+    "fields": {
+        "user": "User",
+        "orderId": "Order ID",
+        "review": "Review",
+        "rating": "Rating"
+    }
+}
