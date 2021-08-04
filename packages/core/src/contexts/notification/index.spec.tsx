@@ -79,6 +79,7 @@ describe("Notification Reducer", () => {
                 payload: {
                     id: providerProps.notifications[0].id,
                     seconds: providerProps.notifications[0].seconds,
+                    resource: providerProps.notifications[0].resource,
                 },
             });
 

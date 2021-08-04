@@ -41,7 +41,9 @@ export const notificationReducer = (state: INotification[], action: any) => {
             return state.map((notificationItem: INotification) => {
                 if (
                     notificationItem.id.toString() ===
-                    action.payload.id.toString()
+                        action.payload.id.toString() &&
+                    notificationItem.resource.toString() ===
+                        action.payload.resource.toString()
                 ) {
                     return {
                         ...notificationItem,
