@@ -32,7 +32,9 @@
     "import": "Import",
     "clone": "Clone",
     "accept": "Accept",
-    "reject": "Reject"
+    "acceptAll": "Accept All",
+    "reject": "Reject",
+    "rejectAll": "Reject All"
   },
   "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
   "notifications": {
