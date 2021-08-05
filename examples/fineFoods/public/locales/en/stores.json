@@ -9,7 +9,8 @@
     "isActive": "Active",
     "createdAt": "CreatedAt",
     "address": "Address",
-    "image": "Image"
+    "email": "Email",
+    "gsm": "Phone"
   },
   "buttons": {
     "editProducts": "Edit Products",

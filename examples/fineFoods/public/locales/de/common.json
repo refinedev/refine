@@ -68,5 +68,9 @@
   },
   "search": {
     "placeholder": "Mağaza ID, e-posta veya anahtar kelime ile arama"
+  },
+  "status": {
+    "enable": "Aktif",
+    "disable": "Pasif"
   }
 }

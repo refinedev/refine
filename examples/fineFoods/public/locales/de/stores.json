@@ -9,7 +9,8 @@
     "isActive": "Aktif",
     "createdAt": "Oluşturma Tarihi",
     "address": "Adres",
-    "image": "Resim"
+    "email": "Email",
+    "gsm": "Telefon"
   },
   "buttons": {
     "editProducts": "Ürünleri Düzenle",
