@@ -99,7 +99,7 @@ export interface IProduct {
     createdAt: string;
     price: number;
     category: ICategory;
-    stock: 496;
+    stock: number;
 }
 
 export interface ICategory {
@@ -130,4 +130,14 @@ export interface ICourier {
     createdAt: string;
     isActive: boolean;
     avatar: IFile[];
+}
+
+export interface IReview {
+    id: string;
+    order: IOrder;
+    user: IUser;
+    star: number;
+    createDate: string;
+    status: "pending" | "approved" | "rejected";
+    comment: string[];
 }

@@ -91,30 +91,31 @@ export const useDelete = <
 
             const deletePromise = new Promise<DeleteOneResponse<TData>>(
                 (resolve, reject) => {
-                    const updateTimeout = setTimeout(() => {
+                    const doMutation = () => {
                         deleteOne<TData>(resource, id)
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
-                    }, undoableTimeoutPropOrContext);
+                    };
 
                     const cancelMutation = () => {
-                        clearTimeout(updateTimeout);
                         reject({ message: "mutationCancelled" });
                     };
 
                     if (onCancel) {
                         onCancel(cancelMutation);
-                    } else {
-                        notificationDispatch({
-                            type: ActionTypes.ADD,
-                            payload: {
-                                id,
-                                resource: resource,
-                                cancelMutation: cancelMutation,
-                                seconds: undoableTimeoutPropOrContext,
-                            },
-                        });
                     }
+
+                    notificationDispatch({
+                        type: ActionTypes.ADD,
+                        payload: {
+                            id,
+                            resource: resource,
+                            cancelMutation: cancelMutation,
+                            doMutation: doMutation,
+                            seconds: undoableTimeoutPropOrContext,
+                            isSilent: !!onCancel,
+                        },
+                    });
                 },
             );
             return deletePromise;
@@ -156,7 +157,10 @@ export const useDelete = <
                                     ...previousQuery,
                                     data: (data ?? []).filter(
                                         (record: TData) =>
-                                            !(record.id?.toString() === id),
+                                            !(
+                                                record.id?.toString() ===
+                                                id.toString()
+                                            ),
                                     ),
                                     total: total - 1,
                                 });
@@ -181,13 +185,6 @@ export const useDelete = <
                         queryClient.setQueryData(query.queryKey, query.query);
                     }
                 }
-
-                notificationDispatch({
-                    type: ActionTypes.REMOVE,
-                    payload: {
-                        id,
-                    },
-                });
 
                 if (err.message !== "mutationCancelled") {
                     checkError(err);
@@ -246,6 +243,11 @@ export const useDelete = <
                         queryClient.invalidateQueries(query.queryKey);
                     }
                 }
+
+                notificationDispatch({
+                    type: ActionTypes.REMOVE,
+                    payload: { id, resource },
+                });
             },
         },
     );

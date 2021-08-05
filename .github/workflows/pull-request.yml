@@ -6,9 +6,9 @@ on:
       - synchronize
       - opened
       - reopened
-    paths-ignore:
-      - "documentation/**"
-      - "examples/**"
+    paths:
+      - "examples/fineFoods/**"
+      - "packages/**"
 
 jobs:
   test-coverage:
@@ -72,7 +72,7 @@ jobs:
           tag_with_sha: true
       - name: Deploy refine-example to k8s
         run: |
-          cd example
+          cd examples/fineFoods
           mv ./k8s/refine-example/Chart.yaml ./k8s/refine-example/Chart.old.yaml &&
           cat ./k8s/refine-example/Chart.old.yaml | grep -v appVersion > ./k8s/refine-example/Chart.yaml &&
           echo -e "\r\nappVersion: sha-${GITHUB_SHA::7}\r\n" >> ./k8s/refine-example/Chart.yaml &&

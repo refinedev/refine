@@ -33,6 +33,17 @@ const dataProvider = {
 ```
 
 
+:::tip
+
+**refine** includes many out-of-the-box data providers to use in your projects like
+
+* [Simple REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest)
+* [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
+* [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
+* [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
+
+:::
+
 <br/>
 
 :::important
@@ -86,14 +97,6 @@ Our **"Simple REST Dataprovider"** will be consuming this *fake REST API*.
 
 :::note
 Fake REST API is based on [JSON Server Project](https://github.com/typicode/json-server). **Simple REST Dataprovider** is fully compatible with the REST rules and methods of the **JSON Server**.
-:::
-
-:::note
-**refine** includes many out-of-the-box data providers that you can use in your projects like
-
-* Simple REST API
-* NestJS CRUD
-* Strapi etc.
 :::
 
 <br />

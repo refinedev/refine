@@ -1,7 +1,9 @@
 import React from "react";
-import { Layout, Typography, Avatar } from "antd";
+import { Layout, Typography, Avatar, Space } from "antd";
 
 import { useGetIdentity } from "@hooks";
+
+const { Text } = Typography;
 
 export const Header: React.FC = () => {
     const { data: user } = useGetIdentity();
@@ -14,15 +16,21 @@ export const Header: React.FC = () => {
                 display: "flex",
                 justifyContent: "flex-end",
                 alignItems: "center",
-                padding: "0px 24px 0px 24px",
-                height: "48px",
+                padding: "0px 24px",
+                height: "64px",
                 backgroundColor: "#FFF",
             }}
         >
-            {user.name && <Typography.Text strong>{user.name}</Typography.Text>}
-            {user.avatar && (
-                <Avatar src={user.avatar} style={{ marginLeft: "16px" }} />
-            )}
+            <Space>
+                {user.name && (
+                    <Text ellipsis strong>
+                        {user.name}
+                    </Text>
+                )}
+                {user.avatar && (
+                    <Avatar size="large" src={user?.avatar} alt={user?.name} />
+                )}
+            </Space>
         </Layout.Header>
     ) : null;
 };

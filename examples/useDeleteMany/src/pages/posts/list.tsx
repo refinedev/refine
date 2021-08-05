@@ -28,24 +28,21 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         [],
     );
 
-    const {
-        mutate,
-        isSuccess,
-        isLoading: deleteManyIsLoading,
-    } = useDeleteMany<IPost>();
+    const { mutate, isLoading: deleteManyIsLoading } = useDeleteMany<IPost>();
 
     const deleteSelectedItems = () => {
-        mutate({
-            resource: "posts",
-            ids: selectedRowKeys.map(String),
-        });
+        mutate(
+            {
+                resource: "posts",
+                ids: selectedRowKeys.map(String),
+            },
+            {
+                onSuccess: () => {
+                    setSelectedRowKeys([]);
+                },
+            },
+        );
     };
-
-    React.useEffect(() => {
-        if (isSuccess) {
-            setSelectedRowKeys([]);
-        }
-    }, [isSuccess]);
 
     const onSelectChange = (selectedRowKeys: React.Key[]) => {
         setSelectedRowKeys(selectedRowKeys);

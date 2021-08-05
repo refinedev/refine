@@ -1,0 +1,24 @@
+{
+  "title": "Mağazalar",
+  "show": {
+    "title": "Mağaza Detay"
+  },
+  "fields": {
+    "id": "Mağaza ID",
+    "title": "Başlık",
+    "isActive": "Aktif",
+    "createdAt": "Oluşturma Tarihi",
+    "address": "Adres",
+    "image": "Resim"
+  },
+  "buttons": {
+    "editProducts": "Ürünleri Düzenle",
+    "addProduct": "Ürün Ekle",
+    "outOfStock": "Stoğu Bitir"
+  },
+  "selectLocation": "Harita üzerinde bir lokasyon seç",
+  "storeProducts": "Mağaza Ürünleri",
+  "tagFilterDescription": "Aramanızı filtrelemek için etiketleri kullanın",
+  "all": "Tümü",
+  "productSearch": "Ürün Ara"
+}

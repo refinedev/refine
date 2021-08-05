@@ -1,0 +1,19 @@
+{
+  "title": "Ürünler",
+  "show": {
+    "title": "Ürün Detay"
+  },
+  "fields": {
+    "id": "ID",
+    "name": "Adı",
+    "description": "Açıklama",
+    "isActive": "Aktif",
+    "price": "Fiyat",
+    "category": "Kategory",
+    "images": {
+      "label": "Görseller",
+      "description": "Yüklemek için avatar resmini bu alana tıklayın veya sürükleyin."
+    },
+    "createdAt": "Oluşturma Tarihi"
+  }
+}

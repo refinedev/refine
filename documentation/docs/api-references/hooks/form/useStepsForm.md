@@ -473,6 +473,14 @@ export const PostCreate: React.FC = () => {
 | cloneId                  | Record id for clone action                                   | `string`                                                                                                                                                                             |
 | setCloneId               | `cloneId` setter                                             | `Dispatch<SetStateAction<` `string` \| `undefined>>`                                                                                                                                 |
 
+### Type Parameters
+
+| Property   | Desription                                                       | Default                    |
+| ---------- | ---------------------------------------------------------------- | -------------------------- |
+| TData      | Result data of the query that extends [`BaseRecord`][BaseRecord] | [`BaseRecord`][BaseRecord] |
+| TError     | Custom error object that extends [`HttpError`][HttpError]        | [`HttpError`][HttpError]   |
+| TVariables | Values for params.                                               | `{}`                       |
+
 ## Live Codesandbox Example
 
 <iframe src="https://codesandbox.io/embed/refine-use-steps-form-example-ok968?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Fedit.tsx&theme=dark&view=preview"

@@ -28,27 +28,24 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         [],
     );
 
-    const {
-        mutate,
-        isSuccess,
-        isLoading: updateManyIsLoading,
-    } = useUpdateMany<IPost>();
+    const { mutate, isLoading: updateManyIsLoading } = useUpdateMany<IPost>();
 
     const updateSelectedItems = () => {
-        mutate({
-            resource: "posts",
-            ids: selectedRowKeys.map(String),
-            values: {
-                status: "draft",
+        mutate(
+            {
+                resource: "posts",
+                ids: selectedRowKeys.map(String),
+                values: {
+                    status: "draft",
+                },
             },
-        });
+            {
+                onSuccess: () => {
+                    setSelectedRowKeys([]);
+                },
+            },
+        );
     };
-
-    React.useEffect(() => {
-        if (isSuccess) {
-            setSelectedRowKeys([]);
-        }
-    }, [isSuccess]);
 
     const onSelectChange = (selectedRowKeys: React.Key[]) => {
         setSelectedRowKeys(selectedRowKeys);
