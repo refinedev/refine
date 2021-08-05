@@ -40,6 +40,7 @@ module.exports = {
                                 "api-references/hooks/data/useOne",
                                 "api-references/hooks/data/useMany",
                                 "api-references/hooks/data/useCustom",
+                                "api-references/hooks/data/useApiUrl",
                             ],
                         },
                         {
