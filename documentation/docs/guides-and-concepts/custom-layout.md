@@ -80,19 +80,23 @@ import React from "react";
 import { Link, Menu, useMenu, useTitle } from "@pankod/refine";
 
 export const CustomSider: React.FC = () => {
+    //highlight-start
     const Title = useTitle();
-    //highlight-next-line
     const { menuItems, selectedKey } = useMenu();
+    //highlight-end
 
     return (
         <>
+            //highlight-next-line
             <Title collapsed={false} />
             <Menu selectedKeys={[selectedKey]} mode="horizontal">
+                //highlight-start
                 {menuItems.map(({ icon, route, label }) => (
                     <Menu.Item key={route} icon={icon}>
                         <Link to={route}>{label}</Link>
                     </Menu.Item>
                 ))}
+                //highlight-end
             </Menu>
         </>
     );
@@ -100,6 +104,10 @@ export const CustomSider: React.FC = () => {
 ```
 
 Here, we use [`useMenu` hook][useMenu] to get the list of current resources and print it.
+
+:::info
+By default, [`<Sider>`][Sider] is responsible for rendering [`<Title>`][Title]. It gets this component (configured by [`<Refine>`][Refine] and/or [`<LayoutWrapper>`][LayoutWrapper]) by [`useTitle` hook][useTitle].
+:::
 
 [Refine]: /api-references/components/refine-config.mds
 [Layout]: /api-references/components/refine-config.md#layout
@@ -113,3 +121,4 @@ Here, we use [`useMenu` hook][useMenu] to get the list of current resources and 
 [Custom Page Example Code]: /examples/customization/topMenuLayout.md
 [AntdLayout]: https://ant.design/components/layout/
 [useMenu]: /api-references/hooks/resource/useMenu.md
+[useTitle]: /api-references/hooks/refine/useTitle.md
