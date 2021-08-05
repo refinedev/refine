@@ -71,7 +71,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-Here, we override the [`<Title>`][Title] and [`<Layout>`][Layout] components. When we override [`<Layout>`][Layout], we put the [`<Sider>`][Sider] (that was provided to [`<Layout>`][Layout] to render it) on top of [`<AntdLayout>`][AntdLayout].
+Here, we override the [`<Title>`][Title] and [`<Layout>`][Layout] components. When we override [`<Layout>`][Layout], we put the `<CustomSider>` (insted of the [`<Sider>`][Sider] that was provided to [`<Layout>`][Layout] to render it by default) on top of [`<AntdLayout>`][AntdLayout].
 
 So, we just provided a custom [`<Sider>`][Sider]. Here's our custom sider that looks horizontal, instead of the default vertical one:
 
