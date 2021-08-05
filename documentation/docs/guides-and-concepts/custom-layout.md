@@ -109,7 +109,7 @@ Here, we use [`useMenu` hook][useMenu] to get the list of current resources and 
 By default, [`<Sider>`][Sider] is responsible for rendering [`<Title>`][Title]. It gets this component (configured by [`<Refine>`][Refine] and/or [`<LayoutWrapper>`][LayoutWrapper]) by [`useTitle` hook][useTitle].
 :::
 
-[Refine]: /api-references/components/refine-config.mds
+[Refine]: /api-references/components/refine-config.md
 [Layout]: /api-references/components/refine-config.md#layout
 [Sider]: /api-references/components/refine-config.md#sider
 [Footer]: /api-references/components/refine-config.md#footer
