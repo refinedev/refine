@@ -30,6 +30,7 @@ import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList } from "pages/posts";
+//highlight-next-line
 import { CustomSider } from "components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -72,6 +73,34 @@ export default App;
 
 Here, we override the [`<Title>`][Title] and [`<Layout>`][Layout] components. When we override [`<Layout>`][Layout], we put the [`<Sider>`][Sider] (that was provided to [`<Layout>`][Layout] to render it) on top of [`<AntdLayout>`][AntdLayout].
 
+So, we just provided a custom [`<Sider>`][Sider]. Here's our custom sider that looks horizontal, instead of the default vertical one:
+
+```tsx title="/src/components/sider/index.tsx"
+import React from "react";
+import { Link, Menu, useMenu, useTitle } from "@pankod/refine";
+
+export const CustomSider: React.FC = () => {
+    const Title = useTitle();
+    //highlight-next-line
+    const { menuItems, selectedKey } = useMenu();
+
+    return (
+        <>
+            <Title collapsed={false} />
+            <Menu selectedKeys={[selectedKey]} mode="horizontal">
+                {menuItems.map(({ icon, route, label }) => (
+                    <Menu.Item key={route} icon={icon}>
+                        <Link to={route}>{label}</Link>
+                    </Menu.Item>
+                ))}
+            </Menu>
+        </>
+    );
+};
+```
+
+Here, we use [`useMenu` hook][useMenu] to get the list of current resources and print it.
+
 [Refine]: /api-references/components/refine-config.mds
 [Layout]: /api-references/components/refine-config.md#layout
 [Sider]: /api-references/components/refine-config.md#sider
@@ -83,3 +112,4 @@ Here, we override the [`<Title>`][Title] and [`<Layout>`][Layout] components. Wh
 [Custom Page Example]: /guides-and-concepts/custom-pages.md
 [Custom Page Example Code]: /examples/customization/topMenuLayout.md
 [AntdLayout]: https://ant.design/components/layout/
+[useMenu]: /api-references/hooks/resource/useMenu.md
