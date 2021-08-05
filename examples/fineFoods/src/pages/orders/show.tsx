@@ -18,7 +18,7 @@ import {
 } from "@pankod/refine";
 import dayjs from "dayjs";
 
-import { IEvent, IOrder } from "interfaces";
+import { IEvent, IOrder, IProduct } from "interfaces";
 import { ReactNode } from "react";
 
 import "./style.css";
@@ -196,13 +196,69 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     );
 
     const renderDeliverables = () => (
-        <Table dataSource={record?.products}>
+        <Table
+            style={{ marginTop: 20 }}
+            pagination={false}
+            scroll={{ x: true }}
+            dataSource={record?.products}
+            footer={(_data) => (
+                <div className="product-footer">
+                    <Text>MAIN TOTAL</Text>
+                    <Text>{record?.amount}$</Text>
+                </div>
+            )}
+        >
+            <Table.Column<IProduct>
+                defaultSortOrder="descend"
+                sorter={(a: IProduct, b: IProduct) =>
+                    a.name > b.name ? 1 : -1
+                }
+                title="Items"
+                dataIndex="name"
+                render={(value, record) => (
+                    <div className="product">
+                        <Avatar
+                            size={{
+                                md: 60,
+                                lg: 108,
+                                xl: 108,
+                                xxl: 108,
+                            }}
+                            src={record.images[0].url}
+                        />
+                        <div className="product-text">
+                            <Text style={{ fontSize: 22, fontWeight: 800 }}>
+                                {value}
+                            </Text>
+                            <Text>#{record.id}</Text>
+                        </div>
+                    </div>
+                )}
+            />
             <Table.Column
-                dataIndex=""
-                render={(_, record) => <div>ss</div>}
-            ></Table.Column>
-            <Table.Column></Table.Column>
-            <Table.Column></Table.Column>
+                title="Qty"
+                dataIndex="quantity"
+                render={() => <Text style={{ fontWeight: 800 }}>{"1x"}</Text>}
+            />
+
+            <Table.Column
+                defaultSortOrder="descend"
+                sorter={(a: IProduct, b: IProduct) => a.price - b.price}
+                title="Price"
+                dataIndex="price"
+                render={(value) => (
+                    <Text style={{ fontWeight: 800 }}>{value}</Text>
+                )}
+            />
+            <Table.Column
+                defaultSortOrder="descend"
+                sorter={(a: IProduct, b: IProduct) => a.price - b.price}
+                title="Total"
+                dataIndex="price"
+                render={(value) => (
+                    <Text style={{ fontWeight: 800 }}>{value}</Text>
+                )}
+            />
         </Table>
     );
 
@@ -213,8 +269,8 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                     {record && renderOrderSteps()}
                     <img width="100%" src="/images/map.png" />
                     {renderCourierInfo()}
-                    {renderDeliverables()}
                 </Space>
+                {renderDeliverables()}
             </Col>
         </Row>
     );

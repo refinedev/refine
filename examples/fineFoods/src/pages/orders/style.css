@@ -1,6 +1,6 @@
 .courier {
     display: flex;
-    align-items:center;
+    align-items: center;
 }
 .courier .info-text {
     display: flex;
@@ -10,20 +10,20 @@
 
 .courier-infoBox {
     display: flex;
-    background-color: #67BE23;
+    background-color: #67be23;
     align-items: center;
     padding: 10px 13px;
     margin-left: 20px;
     border-radius: 10px;
 }
-.courier-infoBox .mobile, .delivery-img{
+.courier-infoBox .mobile,
+.delivery-img {
     color: #ffffff !important;
     margin-right: 10px;
 }
 .courier-infoBox .text {
     display: flex;
     flex-direction: column;
- 
 }
 
 .courier-box-container {
@@ -32,10 +32,37 @@
     align-items: center;
 }
 
+.product {
+    display: flex;
+    align-items: center;
+}
+
+.product-text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
+    white-space: nowrap;
+}
+
+.product-footer {
+    display: flex;
+    justify-content: flex-end;
+    font-weight: 800;
+}
+
+.product-footer > span:first-child {
+    margin-right: 10px;
+    color: #67be23;
+}
+
+.product-footer > span:nth-child(2) {
+    margin-right: 20px;
+}
+
 @media screen and (max-width: 1199px) {
     .courier-infoBox {
-       margin-right: 12px;
-       margin-left: 0;
+        margin-right: 12px;
+        margin-left: 0;
     }
 }
 
@@ -43,10 +70,11 @@
     .courier-box-container {
         margin-top: 35px;
         flex-direction: column;
-     }
+    }
 
     .courier-infoBox {
         margin-bottom: 15px;
+        width: 100%;
     }
 
     .courier .info-text {
@@ -65,7 +93,6 @@
 
     .courier-infoBox {
         margin-left: 0;
-
     }
     .courier {
         flex-direction: column;
@@ -78,5 +105,5 @@
     }
     .courier-box-container {
         margin-top: 20px;
-     }
+    }
 }
