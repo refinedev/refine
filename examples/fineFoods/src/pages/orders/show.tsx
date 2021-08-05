@@ -88,7 +88,10 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         {t("common:buttons.accept")}
                     </Button>,
                     <Button
-                        disabled={record?.status.text === "Delivered"}
+                        disabled={
+                            record?.status.text === "Delivered" ||
+                            record?.status.text === "Cancelled"
+                        }
                         key="reject"
                         danger
                         icon={<Icons.CloseCircleOutlined />}

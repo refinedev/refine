@@ -131,7 +131,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         </Space>
     );
 
-    const moreMenu = (id: string) => (
+    const moreMenu = (record: IOrder) => (
         <Menu
             mode="vertical"
             onClick={({ domEvent }) => domEvent.stopPropagation()}
@@ -144,6 +144,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                     alignItems: "center",
                     fontWeight: 500,
                 }}
+                disabled={record.status.text !== "Pending"}
                 icon={
                     <Icons.CheckCircleOutlined
                         style={{
@@ -156,7 +157,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 onClick={() => {
                     mutate({
                         resource: "orders",
-                        id,
+                        id: record.id,
                         values: {
                             status: {
                                 id: 2,
@@ -184,10 +185,14 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         }}
                     />
                 }
+                disabled={
+                    record.status.text === "Delivered" ||
+                    record.status.text === "Cancelled"
+                }
                 onClick={() =>
                     mutate({
                         resource: "orders",
-                        id,
+                        id: record.id,
                         values: {
                             status: {
                                 id: 5,
@@ -320,7 +325,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             align="center"
                             render={(_value, record) => (
                                 <Dropdown
-                                    overlay={moreMenu(record.id)}
+                                    overlay={moreMenu(record)}
                                     trigger={["click"]}
                                 >
                                     <Icons.MoreOutlined
