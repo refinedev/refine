@@ -100,13 +100,7 @@ const App: React.FC = () => {
                 }}
                 list={CourierList}
             />
-            <Resource
-                name="reviews"
-                options={{
-                    label: "Reviews",
-                }}
-                list={ReviewsList}
-            />
+            <Resource name="reviews" list={ReviewsList} />
         </Refine>
     );
 };
