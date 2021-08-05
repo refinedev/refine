@@ -142,7 +142,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
         <div className="courier-infoBox">
             {icon}
             <div className="text">
-                <Text style={{ color: "#ffffff" }}>{text}</Text>
+                <Text style={{ color: "#ffffff" }}>{text.toUpperCase()}</Text>
                 <Text style={{ color: "#ffffff" }}>{value}</Text>
             </div>
         </div>
@@ -150,18 +150,18 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
 
     const renderCourierInfo = () => (
         <Card>
-            <Row>
-                <Col span={12}>
+            <Row justify="center">
+                <Col xl={12} lg={10}>
                     <div className="courier">
                         <Avatar
-                            size={{ xl: 108, sm: 88 }}
+                            size={108}
                             src={record?.courier.avatar[0].url}
                         />
                         <div className="info-text">
                             <Text style={{ fontSize: 16 }}>COURIER</Text>
                             <Text
                                 style={{
-                                    fontSize: 24,
+                                    fontSize: 22,
                                     fontWeight: 800,
                                 }}
                             >
@@ -172,9 +172,9 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                     </div>
                 </Col>
 
-                <Col span={12} className="courier-box-container">
+                <Col xl={12} lg={14} md={24} className="courier-box-container">
                     {courierInfoBox(
-                        "TELEPHONE",
+                        t("orders:courier.phone"),
                         <Icons.MobileOutlined
                             className="mobile"
                             style={{ color: "#ffff", fontSize: 32 }}
@@ -182,8 +182,11 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         record?.courier.gsm,
                     )}
                     {courierInfoBox(
-                        "DELIVERY TIME",
-                        <img className="delivery-img" src="/images/bike.svg" />,
+                        t("orders:courier.deliveryTime"),
+                        <img
+                            className="delivery-img"
+                            src="/images/bike-white.svg"
+                        />,
                         "15:05",
                     )}
                 </Col>
@@ -194,7 +197,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     return (
         <Row gutter={[16, 16]}>
             <Col sm={23} xs={24}>
-                <Space direction="vertical">
+                <Space size={20} direction="vertical">
                     {record && renderOrderSteps()}
                     <img width="100%" src="/images/map.png" />
                     {renderCourierInfo()}

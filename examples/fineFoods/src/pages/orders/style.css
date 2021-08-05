@@ -5,15 +5,16 @@
 .courier .info-text {
     display: flex;
     flex-direction: column;
+    margin-left: 25px;
 }
 
 .courier-infoBox {
     display: flex;
     background-color: #67BE23;
     align-items: center;
-    padding: 10px 15px;
+    padding: 10px 13px;
     margin-left: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 .courier-infoBox .mobile, .delivery-img{
     color: #ffffff !important;
@@ -31,6 +32,28 @@
     align-items: center;
 }
 
+@media screen and (max-width: 1199px) {
+    .courier-infoBox {
+       margin-right: 12px;
+       margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .courier-box-container {
+        margin-top: 35px;
+        flex-direction: column;
+     }
+
+    .courier-infoBox {
+        margin-bottom: 15px;
+    }
+    .courier .info-text {
+        margin-bottom: 25px;
+    }
+  
+}
+
 @media screen and (max-width: 375px) {
     .pageHeader {
         padding: 16px 16px;
@@ -38,5 +61,9 @@
 
     .pageHeader .ant-page-header-heading-title {
         font-size: 16px;
+    }
+
+    .courier-infoBox {
+        margin-left: 0;
     }
 }

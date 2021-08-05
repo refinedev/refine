@@ -35,5 +35,9 @@
       "label": "Created At"
     },
     "submit": "Filter"
+  },
+  "courier": {
+    "deliveryTime": "Delivery Time",
+    "phone": "Phone"
   }
 }

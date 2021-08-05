@@ -35,5 +35,9 @@
       "label": "Oluşturma Tarihi"
     },
     "submit": "Filtrele"
+  },
+  "courier": {
+    "deliveryTime": "Varış Zamanı",
+    "phone": "Telefon"
   }
 }
