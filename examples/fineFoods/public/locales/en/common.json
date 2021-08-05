@@ -68,5 +68,9 @@
   },
   "search": {
     "placeholder": "Search by Store ID, E-mail, Keyword"
+  },
+  "status": {
+    "enable": "Enable",
+    "disable": "Disable"
   }
 }

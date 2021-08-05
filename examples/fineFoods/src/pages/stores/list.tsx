@@ -83,7 +83,6 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                 >
                     <Table.Column
                         key="image"
-                        title={t("stores:fields.image")}
                         align="center"
                         render={() => (
                             <Avatar
@@ -94,23 +93,31 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                         )}
                     />
                     <Table.Column
+                        dataIndex="id"
+                        align="center"
+                        title={t("stores:fields.id")}
+                    />
+                    <Table.Column
                         dataIndex="title"
                         title={t("stores:fields.title")}
                     />
                     <Table.Column
-                        dataIndex="id"
-                        align="center"
-                        title={t("stores:fields.id")}
+                        dataIndex="email"
+                        title={t("stores:fields.email")}
+                    />
+                    <Table.Column
+                        dataIndex="gsm"
+                        title={t("stores:fields.gsm")}
+                    />
+                    <Table.Column
+                        dataIndex={["address", "text"]}
+                        title={t("stores:fields.address")}
                     />
                     <Table.Column
                         dataIndex="isActive"
                         title={t("stores:fields.isActive")}
                         align="center"
                         render={(value) => <BooleanField value={value} />}
-                    />
-                    <Table.Column
-                        dataIndex={["address", "text"]}
-                        title={t("stores:fields.address")}
                     />
                     <Table.Column
                         dataIndex="createdAt"
