@@ -1,6 +1,4 @@
-import { Typography } from "@pankod/refine";
-
-import styles from "./styles";
+import { Tag } from "@pankod/refine";
 
 type OrderStatusProps = {
     status: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";
@@ -11,27 +9,21 @@ export const OrderStatus: React.FC<OrderStatusProps> = ({ status }) => {
 
     switch (status) {
         case "Pending":
-            color = "#F39800";
+            color = "orange";
             break;
         case "Ready":
-            color = "#36CFC9";
+            color = "cyan";
             break;
         case "On The Way":
-            color = "#67BE23";
+            color = "green";
             break;
         case "Delivered":
-            color = "#1890FF";
+            color = "blue";
             break;
         case "Cancelled":
-            color = "#F5222D";
+            color = "red";
             break;
     }
 
-    const { Text } = Typography;
-
-    return (
-        <div style={{ ...styles.container, backgroundColor: color }}>
-            <Text style={styles.text}>{status}</Text>
-        </div>
-    );
+    return <Tag color={color}>{status}</Tag>;
 };
