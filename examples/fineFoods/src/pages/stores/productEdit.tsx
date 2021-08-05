@@ -90,6 +90,7 @@ export const ProductEdit: React.FC<Props> = ({ record }) => {
                     products: record.products,
                 },
                 successNotification: false,
+                mutationMode: "optimistic",
             });
         }
     };
@@ -193,10 +194,9 @@ export const ProductEdit: React.FC<Props> = ({ record }) => {
                             keyboard
                             min={0}
                             value={item.stock || 0}
-                            onChange={debounce(
-                                (value: number) => updateStock(value, item),
-                                500,
-                            )}
+                            onChange={(value: number) =>
+                                updateStock(value, item)
+                            }
                             style={{ width: "100%" }}
                         />
                     </div>
