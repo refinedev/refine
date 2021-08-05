@@ -16,6 +16,7 @@ import {
     Card,
     Table,
     List,
+    Skeleton,
 } from "@pankod/refine";
 import dayjs from "dayjs";
 
@@ -31,7 +32,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const screens = useBreakpoint();
     const { queryResult } = useShow<IOrder>();
-    const { data, isFetching } = queryResult;
+    const { data } = queryResult;
     const { mutate } = useUpdate();
     const record = data?.data;
 
@@ -62,7 +63,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 ghost={false}
                 onBack={() => window.history.back()}
                 title={t("orders:fields.orderID")}
-                subTitle={`#${record?.orderNumber}`}
+                subTitle={`#${record?.orderNumber ?? ""}`}
                 extra={[
                     <Button
                         disabled={record?.status.text !== "Pending"}
@@ -136,6 +137,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         />
                     ))}
                 </Steps>
+                {!record && <Skeleton paragraph={{ rows: 1 }} />}
             </PageHeader>
         );
     };
@@ -275,9 +277,9 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Row gutter={[16, 16]}>
-            <Col sm={23} xs={24}>
+            <Col>
                 <Space size={20} direction="vertical">
-                    {record && renderOrderSteps()}
+                    {renderOrderSteps()}
                     <img width="100%" src="/images/map.png" />
                     {renderCourierInfo()}
                 </Space>
