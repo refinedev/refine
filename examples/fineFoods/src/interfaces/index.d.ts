@@ -99,7 +99,7 @@ export interface IProduct {
     createdAt: string;
     price: number;
     category: ICategory;
-    stock: 496;
+    stock: number;
 }
 
 export interface ICategory {

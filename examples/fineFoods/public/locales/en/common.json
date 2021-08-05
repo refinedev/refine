@@ -55,26 +55,12 @@
   "dashboard": {
     "title": "Dashboard"
   },
-  "posts": {
-    "posts": "Posts",
-    "fields": {
-      "id": "Id",
-      "title": "Title",
-      "category": "Category",
-      "status": {
-        "title": "Status",
-        "published": "Published",
-        "draft": "Draft",
-        "rejected": "Rejected"
-      },
-      "content": "Content",
-      "createdAt": "Created At"
-    },
+  "stores": {
     "titles": {
-      "create": "Create Post",
-      "edit": "Edit Post",
-      "list": "Posts",
-      "show": "Show Post"
+      "create": "Create Store",
+      "edit": "Edit Store",
+      "list": "Stores",
+      "show": "Show Store"
     }
   },
   "table": {
