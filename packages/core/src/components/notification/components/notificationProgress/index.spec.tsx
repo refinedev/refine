@@ -13,6 +13,7 @@ const mockNotifications = {
     doMutation: () => Promise.resolve(),
     seconds: 5000,
     isRunning: true,
+    isSilent: false,
 };
 
 jest.useFakeTimers();
