@@ -8,6 +8,7 @@ on:
       - reopened
     paths:
       - "examples/fineFoods/**"
+      - "packages/**"
 
 jobs:
   test-coverage:
