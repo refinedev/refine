@@ -103,18 +103,19 @@ export const useDelete = <
 
                     if (onCancel) {
                         onCancel(cancelMutation);
-                    } else {
-                        notificationDispatch({
-                            type: ActionTypes.ADD,
-                            payload: {
-                                id,
-                                resource: resource,
-                                cancelMutation: cancelMutation,
-                                doMutation: doMutation,
-                                seconds: undoableTimeoutPropOrContext,
-                            },
-                        });
                     }
+
+                    notificationDispatch({
+                        type: ActionTypes.ADD,
+                        payload: {
+                            id,
+                            resource: resource,
+                            cancelMutation: cancelMutation,
+                            doMutation: doMutation,
+                            seconds: undoableTimeoutPropOrContext,
+                            isSilent: !!onCancel,
+                        },
+                    });
                 },
             );
             return deletePromise;
@@ -184,13 +185,6 @@ export const useDelete = <
                         queryClient.setQueryData(query.queryKey, query.query);
                     }
                 }
-
-                notificationDispatch({
-                    type: ActionTypes.REMOVE,
-                    payload: {
-                        id,
-                    },
-                });
 
                 if (err.message !== "mutationCancelled") {
                     checkError(err);

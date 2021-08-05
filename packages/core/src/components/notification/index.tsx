@@ -39,6 +39,9 @@ export const Notification: React.FC<{
 
                 notification.open({
                     key: `${notificationItem.id}-${notificationItem.resource}-notification`,
+                    style: {
+                        display: notificationItem.isSilent ? "none" : "block",
+                    },
                     icon: (
                         <NotificationProgress
                             dispatch={notificationDispatch}
@@ -51,7 +54,10 @@ export const Notification: React.FC<{
                             onClick={() => {
                                 notificationDispatch({
                                     type: ActionTypes.REMOVE,
-                                    payload: { id: notificationItem.id },
+                                    payload: {
+                                        id: notificationItem.id,
+                                        resource: notificationItem.resource,
+                                    },
                                 });
                                 notificationItem.cancelMutation();
                                 notification.close(

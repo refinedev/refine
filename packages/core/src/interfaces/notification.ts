@@ -5,4 +5,5 @@ export interface INotification {
     doMutation: () => void;
     seconds: number;
     isRunning: boolean;
+    isSilent: boolean;
 }

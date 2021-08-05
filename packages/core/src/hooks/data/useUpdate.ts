@@ -104,18 +104,19 @@ export const useUpdate = <
 
                     if (onCancel) {
                         onCancel(cancelMutation);
-                    } else {
-                        notificationDispatch({
-                            type: ActionTypes.ADD,
-                            payload: {
-                                id: id,
-                                resource: resource,
-                                cancelMutation: cancelMutation,
-                                doMutation: doMutation,
-                                seconds: undoableTimeoutPropOrContext,
-                            },
-                        });
                     }
+
+                    notificationDispatch({
+                        type: ActionTypes.ADD,
+                        payload: {
+                            id: id,
+                            resource: resource,
+                            cancelMutation: cancelMutation,
+                            doMutation: doMutation,
+                            seconds: undoableTimeoutPropOrContext,
+                            isSilent: !!onCancel,
+                        },
+                    });
                 },
             );
             return updatePromise;
@@ -193,13 +194,6 @@ export const useUpdate = <
                         queryClient.setQueryData(query.queryKey, query.query);
                     }
                 }
-
-                notificationDispatch({
-                    type: ActionTypes.REMOVE,
-                    payload: {
-                        id,
-                    },
-                });
 
                 if (err.message !== "mutationCancelled") {
                     checkError?.(err);

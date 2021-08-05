@@ -112,18 +112,19 @@ export const useUpdateMany = <
 
                     if (onCancel) {
                         onCancel(cancelMutation);
-                    } else {
-                        notificationDispatch({
-                            type: ActionTypes.ADD,
-                            payload: {
-                                id: ids,
-                                resource: resource,
-                                cancelMutation: cancelMutation,
-                                doMutation: doMutation,
-                                seconds: undoableTimeoutPropOrContext,
-                            },
-                        });
                     }
+
+                    notificationDispatch({
+                        type: ActionTypes.ADD,
+                        payload: {
+                            id: ids,
+                            resource: resource,
+                            cancelMutation: cancelMutation,
+                            doMutation: doMutation,
+                            seconds: undoableTimeoutPropOrContext,
+                            isSilent: !!onCancel,
+                        },
+                    });
                 },
             );
             return updatePromise;
@@ -168,11 +169,6 @@ export const useUpdateMany = <
                                                 .map((p) => p.toString())
                                                 .includes(record.id!.toString())
                                         ) {
-                                            console.log(
-                                                "finded",
-                                                record,
-                                                values,
-                                            );
                                             return {
                                                 ...record,
                                                 ...values,
@@ -207,13 +203,6 @@ export const useUpdateMany = <
                         queryClient.setQueryData(query.queryKey, query.query);
                     }
                 }
-
-                notificationDispatch({
-                    type: ActionTypes.REMOVE,
-                    payload: {
-                        ids,
-                    },
-                });
 
                 if (err.message !== "mutationCancelled") {
                     checkError?.(err);

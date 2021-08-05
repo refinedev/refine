@@ -21,7 +21,7 @@ export const notificationReducer = (state: INotification[], action: any) => {
                     (notificationItem: INotification) =>
                         notificationItem.id.toString() !==
                             action.payload.id.toString() &&
-                        notificationItem.resource.toString() !==
+                        notificationItem.resource.toString() ===
                             action.payload.resource.toString(),
                 ),
                 {
@@ -30,11 +30,21 @@ export const notificationReducer = (state: INotification[], action: any) => {
                 },
             ];
         case ActionTypes.REMOVE:
+            console.log({
+                old: state,
+                newState: state.filter(
+                    (notificationItem: INotification) =>
+                        notificationItem.id.toString() !==
+                            action.payload.id.toString() &&
+                        notificationItem.resource.toString() ===
+                            action.payload.resource.toString(),
+                ),
+            });
             return state.filter(
                 (notificationItem: INotification) =>
                     notificationItem.id.toString() !==
                         action.payload.id.toString() &&
-                    notificationItem.resource.toString() !==
+                    notificationItem.resource.toString() ===
                         action.payload.resource.toString(),
             );
         case ActionTypes.DECREASE_NOTIFICATION_SECOND:
