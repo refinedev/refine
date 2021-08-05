@@ -29,6 +29,7 @@ import {
     Dropdown,
     Menu,
     useUpdate,
+    useNavigation,
 } from "@pankod/refine";
 
 import { OrderStatus } from "components";
@@ -103,6 +104,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
 
     const t = useTranslate();
     const { mutate } = useUpdate();
+    const { show } = useNavigation();
 
     const importProps = useImport();
     const { loading, triggerExport } = useExport({
@@ -130,7 +132,10 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     );
 
     const moreMenu = (id: string) => (
-        <Menu mode="vertical">
+        <Menu
+            mode="vertical"
+            onClick={({ domEvent }) => domEvent.stopPropagation()}
+        >
             <Menu.Item
                 key="accept"
                 style={{
@@ -148,18 +153,18 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         }}
                     />
                 }
-                onClick={() =>
+                onClick={() => {
                     mutate({
                         resource: "orders",
                         id,
                         values: {
                             status: {
                                 id: 2,
-                                text: "ready",
+                                text: "Ready",
                             },
                         },
-                    })
-                }
+                    });
+                }}
             >
                 {t("common:buttons.accept")}
             </Menu.Item>
@@ -186,7 +191,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         values: {
                             status: {
                                 id: 5,
-                                text: "cancelled",
+                                text: "Cancelled",
                             },
                         },
                     })
@@ -215,6 +220,13 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         rowKey="id"
                         scroll={{
                             x: true,
+                        }}
+                        onRow={(record, _rowIndex) => {
+                            return {
+                                onClick: () => {
+                                    show("orders", record.id);
+                                },
+                            };
                         }}
                     >
                         <Table.Column
@@ -312,6 +324,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                     trigger={["click"]}
                                 >
                                     <Icons.MoreOutlined
+                                        onClick={(e) => e.stopPropagation()}
                                         style={{
                                             fontSize: 24,
                                         }}
@@ -332,6 +345,12 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
     const { formProps } = props;
     const { selectProps: storeSelectProps } = useSelect<IStore>({
         resource: "stores",
+    });
+
+    const { selectProps: orderSelectProps } = useSelect<IStore>({
+        resource: "orderStatuses",
+        optionLabel: "text",
+        optionValue: "text",
     });
 
     const { selectProps: userSelectProps } = useSelect<IStore>({
@@ -358,30 +377,8 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
                         name="status"
                     >
                         <Select
+                            {...orderSelectProps}
                             allowClear
-                            options={[
-                                {
-                                    label: t("enum:orderStatuses.pending"),
-
-                                    value: "pending",
-                                },
-                                {
-                                    label: t("enum:orderStatuses.ready"),
-                                    value: "ready",
-                                },
-                                {
-                                    label: t("enum:orderStatuses.on the way"),
-                                    value: "on the way",
-                                },
-                                {
-                                    label: t("enum:orderStatuses.delivered"),
-                                    value: "delivered",
-                                },
-                                {
-                                    label: t("enum:orderStatuses.cancelled"),
-                                    value: "cancelled",
-                                },
-                            ]}
                             placeholder={t("orders:filter.status.placeholder")}
                         />
                     </Form.Item>
