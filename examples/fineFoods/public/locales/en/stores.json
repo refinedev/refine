@@ -12,7 +12,13 @@
     "image": "Image"
   },
   "buttons": {
-    "editProducts": "Edit Products"
+    "editProducts": "Edit Products",
+    "addProduct": "Ürün Ekle",
+    "outOfStock": "Out Of Stock"
   },
-  "selectLocation": "Choose store location on the map"
+  "selectLocation": "Choose store location on the map",
+  "storeProducts": "Store Products",
+  "tagFilterDescription": "Use tags to filter your search",
+  "all": "All",
+  "productSearch": "Product Search"
 }

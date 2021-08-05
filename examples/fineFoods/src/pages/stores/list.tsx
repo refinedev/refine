@@ -16,6 +16,8 @@ import {
     useShow,
 } from "@pankod/refine";
 
+const { FormOutlined } = Icons;
+
 import { IStore } from "interfaces";
 import { ProductEdit } from "./";
 
@@ -39,7 +41,11 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                     fontSize: 15,
                     fontWeight: 500,
                 }}
-                icon={<Icons.EditOutlined />}
+                icon={
+                    <FormOutlined
+                        style={{ color: "green", fontSize: "15px" }}
+                    />
+                }
                 onClick={() => edit("stores", id)}
             >
                 {t("common:buttons.edit")}
@@ -50,7 +56,11 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                     fontSize: 15,
                     fontWeight: 500,
                 }}
-                icon={<Icons.EditOutlined />}
+                icon={
+                    <FormOutlined
+                        style={{ color: "green", fontSize: "15px" }}
+                    />
+                }
                 onClick={() => {
                     show();
                     setShowId(id);
@@ -132,7 +142,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                 </Table>
             </List>
             <Modal {...modalProps} width={1000} footer={null}>
-                <ProductEdit record={record} />
+                {record && <ProductEdit record={record} />}
             </Modal>
         </>
     );

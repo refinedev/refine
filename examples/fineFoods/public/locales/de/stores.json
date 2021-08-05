@@ -12,7 +12,13 @@
     "image": "Resim"
   },
   "buttons": {
-    "editProducts": "Ürünleri Düzenle"
+    "editProducts": "Ürünleri Düzenle",
+    "addProduct": "Ürün Ekle",
+    "outOfStock": "Stoğu Bitir"
   },
-  "selectLocation": "Harita üzerinde bir lokasyon seç"
+  "selectLocation": "Harita üzerinde bir lokasyon seç",
+  "storeProducts": "Mağaza Ürünleri",
+  "tagFilterDescription": "Aramanızı filtrelemek için etiketleri kullanın",
+  "all": "Tümü",
+  "productSearch": "Ürün Ara"
 }

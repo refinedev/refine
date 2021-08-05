@@ -18,14 +18,20 @@ import {
     Spin,
     Form,
     CrudFilters,
+    useUpdate,
+    Icons,
+    Dropdown,
+    Menu,
 } from "@pankod/refine";
+import debounce from "lodash/debounce";
 
 const { Text, Paragraph } = Typography;
+const { SearchOutlined, CloseCircleOutlined } = Icons;
 
 import { IStore, IProduct, ICategory } from "interfaces";
 
 type Props = {
-    record?: IStore;
+    record: IStore;
 };
 
 export const ProductEdit: React.FC<Props> = ({ record }) => {
@@ -36,6 +42,7 @@ export const ProductEdit: React.FC<Props> = ({ record }) => {
         { name: string; categories: string[] }
     >({
         resource: "products",
+        pagination: { pageSize: 9 },
         onSearch: ({ name, categories }) => {
             const productFilters: CrudFilters = [];
 
@@ -58,66 +65,141 @@ export const ProductEdit: React.FC<Props> = ({ record }) => {
             return productFilters;
         },
     });
+    const { data: productData } = queryResult;
 
-    const mergedData = queryResult.data?.data.map((product) => ({
+    const mergedData = productData?.data.map((product) => ({
         ...product,
         ...record?.products.find(
             (storeProduct) => storeProduct.id === product.id,
         ),
     }));
 
+    const { mutate } = useUpdate<IStore>();
+
+    const updateStock = (changedValue: number, clickedProduct: IProduct) => {
+        const shopProduct = record.products.find(
+            (p) => p.id === clickedProduct.id,
+        );
+        if (shopProduct) {
+            shopProduct.stock = changedValue;
+
+            mutate({
+                id: record.id,
+                resource: "stores",
+                values: {
+                    products: record.products,
+                },
+                successNotification: false,
+            });
+        }
+    };
+
     const renderItem = (item: IProduct) => {
         return (
-            <Card style={{ margin: "8px" }}>
-                <div style={{ textAlign: "center" }}>
-                    <Avatar
-                        size={128}
-                        src={item.images[0].url}
-                        alt={item.name}
-                    />
+            <Card
+                style={{
+                    margin: "8px",
+                    opacity: item.stock <= 0 ? 0.5 : 1,
+                }}
+                bodyStyle={{ height: "500px" }}
+            >
+                <div
+                    style={{ position: "absolute", top: "10px", right: "5px" }}
+                >
+                    <Dropdown
+                        disabled={item.stock <= 0}
+                        overlay={
+                            <Menu mode="vertical">
+                                <Menu.Item
+                                    key="1"
+                                    style={{
+                                        fontWeight: 500,
+                                    }}
+                                    icon={
+                                        <CloseCircleOutlined
+                                            style={{
+                                                color: "red",
+                                            }}
+                                        />
+                                    }
+                                    onClick={() => updateStock(0, item)}
+                                >
+                                    {t("stores:buttons.outOfStock")}
+                                </Menu.Item>
+                            </Menu>
+                        }
+                        trigger={["click"]}
+                    >
+                        <Icons.MoreOutlined
+                            style={{
+                                fontSize: 24,
+                            }}
+                        />
+                    </Dropdown>
                 </div>
-                <Divider />
-                <Paragraph
-                    ellipsis={{ rows: 2, tooltip: true }}
+                <div
                     style={{
-                        fontSize: "18px",
-                        fontWeight: 800,
-                        marginBottom: "8px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        height: "100%",
                     }}
                 >
-                    {item.name}
-                </Paragraph>
-                <Paragraph
-                    ellipsis={{ rows: 3, tooltip: true }}
-                    style={{ marginBottom: "8px" }}
-                >
-                    {item.description}
-                </Paragraph>
-                <Paragraph
-                    style={{
-                        fontSize: "18px",
-                        fontWeight: 700,
-                        color: "#999999",
-                        marginBottom: "8px",
-                    }}
-                >
-                    #{item.id}
-                </Paragraph>
-                <Paragraph
-                    style={{
-                        fontSize: "24px",
-                        fontWeight: 500,
-                    }}
-                >
-                    {item.price}$
-                </Paragraph>
-                <div id="stock-number">
-                    <InputNumber
-                        size="large"
-                        value={item.stock || 0}
-                        style={{ width: "100%" }}
-                        placeholder="Stock Count"
-                    />
+                    <div style={{ textAlign: "center" }}>
+                        <Avatar
+                            size={128}
+                            src={item.images[0].url}
+                            alt={item.name}
+                        />
+                    </div>
+                    <Divider />
+                    <Paragraph
+                        ellipsis={{ rows: 2, tooltip: true }}
+                        style={{
+                            fontSize: "18px",
+                            fontWeight: 800,
+                            marginBottom: "8px",
+                        }}
+                    >
+                        {item.name}
+                    </Paragraph>
+                    <Paragraph
+                        ellipsis={{ rows: 3, tooltip: true }}
+                        style={{ marginBottom: "8px" }}
+                    >
+                        {item.description}
+                    </Paragraph>
+                    <Paragraph
+                        style={{
+                            fontSize: "18px",
+                            fontWeight: 700,
+                            color: "#999999",
+                            marginBottom: "8px",
+                        }}
+                    >
+                        #{item.id}
+                    </Paragraph>
+                    <Paragraph
+                        style={{
+                            fontSize: "24px",
+                            fontWeight: 500,
+                        }}
+                    >
+                        {item.price}$
+                    </Paragraph>
+                    <div id="stock-number">
+                        <InputNumber
+                            size="large"
+                            keyboard
+                            min={0}
+                            value={item.stock || 0}
+                            onChange={debounce(
+                                (value: number) => updateStock(value, item),
+                                500,
+                            )}
+                            style={{ width: "100%" }}
+                        />
+                    </div>
                 </div>
             </Card>
         );
@@ -140,16 +222,18 @@ export const ProductEdit: React.FC<Props> = ({ record }) => {
                         }}
                     >
                         <Text style={{ fontSize: "24px" }} strong>
-                            Store Products
+                            {t("stores:storeProducts")}
                         </Text>
                         <Form.Item name="name" noStyle>
                             <Input
-                                size="large"
                                 style={{ width: "300px" }}
-                                placeholder="Product Search"
+                                placeholder={t("stores:productSearch")}
+                                suffix={<SearchOutlined />}
                             />
                         </Form.Item>
-                        <CreateButton>Add Product</CreateButton>
+                        <CreateButton resourceName="products">
+                            {t("stores:buttons.addProduct")}
+                        </CreateButton>
                     </div>
                     <AntdList
                         grid={{ gutter: 8, column: 3 }}
@@ -161,11 +245,6 @@ export const ProductEdit: React.FC<Props> = ({ record }) => {
                         {...listProps}
                         dataSource={mergedData}
                         renderItem={renderItem}
-                        pagination={{
-                            ...listProps.pagination,
-                            size: "small",
-                            simple: true,
-                        }}
                     />
                 </Col>
                 <Col xs={0} sm={6}>
@@ -178,7 +257,7 @@ export const ProductEdit: React.FC<Props> = ({ record }) => {
                         }}
                     >
                         <Text style={{ fontWeight: 500 }}>
-                            Use tags to filter your search
+                            {t("stores:tagFilterDescription")}
                         </Text>
                     </div>
                     <Form.Item name="categories">
@@ -194,6 +273,8 @@ const ProductCategoryFilter: React.FC<{
     value?: string[];
     onChange?: (value: string[]) => void;
 }> = ({ onChange, value }) => {
+    const t = useTranslate();
+
     const [filterCategories, setFilterCategories] = useState<string[]>(
         value ?? [],
     );
@@ -233,7 +314,7 @@ const ProductCategoryFilter: React.FC<{
                     type={filterCategories.length === 0 ? "primary" : "default"}
                     onClick={() => setFilterCategories([])}
                 >
-                    All
+                    {t("stores:all")}
                 </Button>
                 {categoryData?.data.map((category) => (
                     <Button
