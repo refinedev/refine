@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, notification } from "antd";
+import { Button, notification, Skeleton } from "antd";
 
 import { ActionTypes } from "@contexts/notification";
 import { useCancelNotification, useTranslate } from "@hooks";
@@ -15,20 +15,11 @@ export const Notification: React.FC<{
 
     const { notificationDispatch } = useCancelNotification();
 
-    const removeNotification = (id: string) => {
-        notificationDispatch({
-            type: ActionTypes.REMOVE,
-            payload: { id: id },
-        });
-    };
-
     const cancelNotification = () => {
         notifications.forEach((notificationItem: INotification) => {
             if (notificationItem.isRunning === true) {
                 if (notificationItem.seconds === 0) {
-                    removeNotification(notificationItem.id);
-
-                    return;
+                    notificationItem.doMutation();
                 }
                 const message = (
                     <span style={{ marginLeft: 20 }}>
@@ -48,6 +39,9 @@ export const Notification: React.FC<{
 
                 notification.open({
                     key: `${notificationItem.id}-${notificationItem.resource}-notification`,
+                    style: {
+                        display: notificationItem.isSilent ? "none" : "block",
+                    },
                     icon: (
                         <NotificationProgress
                             dispatch={notificationDispatch}
@@ -60,13 +54,17 @@ export const Notification: React.FC<{
                             onClick={() => {
                                 notificationDispatch({
                                     type: ActionTypes.REMOVE,
-                                    payload: { id: notificationItem.id },
+                                    payload: {
+                                        id: notificationItem.id,
+                                        resource: notificationItem.resource,
+                                    },
                                 });
                                 notificationItem.cancelMutation();
                                 notification.close(
                                     `${notificationItem.id}-${notificationItem.resource}-notification`,
                                 );
                             }}
+                            disabled={notificationItem.seconds === 0}
                         >
                             {translate("buttons.undo", "Undo")}
                         </Button>

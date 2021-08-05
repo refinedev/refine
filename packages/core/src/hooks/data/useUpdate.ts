@@ -92,30 +92,31 @@ export const useUpdate = <
             }
             const updatePromise = new Promise<UpdateResponse<TData>>(
                 (resolve, reject) => {
-                    const updateTimeout = setTimeout(() => {
+                    const doMutation = () => {
                         update<TData, TVariables>(resource, id, values)
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
-                    }, undoableTimeoutPropOrContext);
+                    };
 
                     const cancelMutation = () => {
-                        clearTimeout(updateTimeout);
                         reject({ message: "mutationCancelled" });
                     };
 
                     if (onCancel) {
                         onCancel(cancelMutation);
-                    } else {
-                        notificationDispatch({
-                            type: ActionTypes.ADD,
-                            payload: {
-                                id: id,
-                                resource: resource,
-                                cancelMutation: cancelMutation,
-                                seconds: undoableTimeoutPropOrContext,
-                            },
-                        });
                     }
+
+                    notificationDispatch({
+                        type: ActionTypes.ADD,
+                        payload: {
+                            id: id,
+                            resource: resource,
+                            cancelMutation: cancelMutation,
+                            doMutation: doMutation,
+                            seconds: undoableTimeoutPropOrContext,
+                            isSilent: !!onCancel,
+                        },
+                    });
                 },
             );
             return updatePromise;
@@ -155,7 +156,10 @@ export const useUpdate = <
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: data.map((record: TData) => {
-                                        if (record.id?.toString() === id) {
+                                        if (
+                                            record.id?.toString() ===
+                                            id.toString()
+                                        ) {
                                             return {
                                                 ...values,
                                                 id: id,
@@ -191,13 +195,6 @@ export const useUpdate = <
                     }
                 }
 
-                notificationDispatch({
-                    type: ActionTypes.REMOVE,
-                    payload: {
-                        id,
-                    },
-                });
-
                 if (err.message !== "mutationCancelled") {
                     checkError?.(err);
 
@@ -226,6 +223,11 @@ export const useUpdate = <
                 for (const query of allQueries) {
                     queryClient.invalidateQueries(query.queryKey);
                 }
+
+                notificationDispatch({
+                    type: ActionTypes.REMOVE,
+                    payload: { id, resource },
+                });
             },
             onSuccess: (_data, { id, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);

@@ -100,30 +100,31 @@ export const useUpdateMany = <
 
             const updatePromise = new Promise<UpdateManyResponse<TData>>(
                 (resolve, reject) => {
-                    const updateTimeout = setTimeout(() => {
+                    const doMutation = () => {
                         updateMany<TData, TVariables>(resource, ids, values)
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
-                    }, undoableTimeoutPropOrContext);
+                    };
 
                     const cancelMutation = () => {
-                        clearTimeout(updateTimeout);
                         reject({ message: "mutationCancelled" });
                     };
 
                     if (onCancel) {
                         onCancel(cancelMutation);
-                    } else {
-                        notificationDispatch({
-                            type: ActionTypes.ADD,
-                            payload: {
-                                id: ids,
-                                resource: resource,
-                                cancelMutation: cancelMutation,
-                                seconds: undoableTimeoutPropOrContext,
-                            },
-                        });
                     }
+
+                    notificationDispatch({
+                        type: ActionTypes.ADD,
+                        payload: {
+                            id: ids,
+                            resource: resource,
+                            cancelMutation: cancelMutation,
+                            doMutation: doMutation,
+                            seconds: undoableTimeoutPropOrContext,
+                            isSilent: !!onCancel,
+                        },
+                    });
                 },
             );
             return updatePromise;
@@ -164,7 +165,9 @@ export const useUpdateMany = <
                                     ...previousQuery,
                                     data: data.map((record: TData) => {
                                         if (
-                                            ids.includes(record.id!.toString())
+                                            ids
+                                                .map((p) => p.toString())
+                                                .includes(record.id!.toString())
                                         ) {
                                             return {
                                                 ...record,
@@ -201,13 +204,6 @@ export const useUpdateMany = <
                     }
                 }
 
-                notificationDispatch({
-                    type: ActionTypes.REMOVE,
-                    payload: {
-                        ids,
-                    },
-                });
-
                 if (err.message !== "mutationCancelled") {
                     checkError?.(err);
 
@@ -233,6 +229,11 @@ export const useUpdateMany = <
                 for (const query of allQueries) {
                     queryClient.invalidateQueries(query.queryKey);
                 }
+
+                notificationDispatch({
+                    type: ActionTypes.REMOVE,
+                    payload: { id: ids, resource },
+                });
             },
             onSuccess: (_data, { ids, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
