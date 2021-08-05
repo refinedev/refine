@@ -21,7 +21,7 @@ export interface ISalesChart {
 
 export interface IOrderStatus {
     id: string;
-    text: "pending" | "ready" | "on the way" | "delivered" | "cancelled";
+    text: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";
 }
 
 export interface IUser {
@@ -54,7 +54,7 @@ export interface IFile {
 
 export interface IEvent {
     date: string;
-    name: string;
+    status: string;
 }
 
 export interface IStore {
@@ -84,7 +84,7 @@ export interface IOrder {
     status: IOrderStatus;
     adress: IAddress;
     store: IStore;
-    courier: {};
+    courier: ICourier;
     events: IEvent[];
     orderNumber: number;
     amount: number;

@@ -5,6 +5,7 @@
   },
   "fields": {
     "orderNumber": "Order Number",
+    "orderID": "Order ID",
     "status": "Status",
     "store": "Store",
     "user": "User",
@@ -34,5 +35,9 @@
       "label": "Created At"
     },
     "submit": "Filter"
+  },
+  "courier": {
+    "deliveryTime": "Delivery Time",
+    "phone": "Phone"
   }
 }
