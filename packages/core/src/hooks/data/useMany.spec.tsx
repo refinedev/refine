@@ -16,8 +16,6 @@ describe("useMany Hook", () => {
             },
         );
 
-        console.log("res", result);
-
         await waitFor(() => {
             return result.current.isSuccess;
         });
