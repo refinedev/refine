@@ -131,3 +131,13 @@ export interface ICourier {
     isActive: boolean;
     avatar: IFile[];
 }
+
+export interface IReview {
+    id: string;
+    order: IOrder;
+    user: IUser;
+    star: number;
+    createDate: string;
+    status: "pending" | "approved" | "rejected";
+    comment: string[];
+}

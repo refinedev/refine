@@ -96,30 +96,31 @@ export const useDeleteMany = <
 
             const updatePromise = new Promise<DeleteManyResponse<TData>>(
                 (resolve, reject) => {
-                    const updateTimeout = setTimeout(() => {
+                    const doMutation = () => {
                         deleteMany<TData>(resource, ids)
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
-                    }, undoableTimeoutPropOrContext);
+                    };
 
                     const cancelMutation = () => {
-                        clearTimeout(updateTimeout);
                         reject({ message: "mutationCancelled" });
                     };
 
                     if (onCancel) {
                         onCancel(cancelMutation);
-                    } else {
-                        notificationDispatch({
-                            type: ActionTypes.ADD,
-                            payload: {
-                                id: ids,
-                                resource: resource,
-                                cancelMutation: cancelMutation,
-                                seconds: undoableTimeoutPropOrContext,
-                            },
-                        });
                     }
+
+                    notificationDispatch({
+                        type: ActionTypes.ADD,
+                        payload: {
+                            id: ids,
+                            resource: resource,
+                            cancelMutation: cancelMutation,
+                            doMutation: doMutation,
+                            seconds: undoableTimeoutPropOrContext,
+                            isSilent: !!onCancel,
+                        },
+                    });
                 },
             );
             return updatePromise;
@@ -160,9 +161,11 @@ export const useDeleteMany = <
                                     ...previousQuery,
                                     data: (data ?? []).filter(
                                         (record: TData) =>
-                                            !ids.includes(
-                                                record.id!.toString(),
-                                            ),
+                                            !ids
+                                                .map((p) => p.toString())
+                                                .includes(
+                                                    record.id!.toString(),
+                                                ),
                                     ),
                                     total: total - ids.length,
                                 });
@@ -187,6 +190,11 @@ export const useDeleteMany = <
                         queryClient.invalidateQueries(query.queryKey);
                     }
                 }
+
+                notificationDispatch({
+                    type: ActionTypes.REMOVE,
+                    payload: { id: ids, resource },
+                });
             },
             onSuccess: (_data, { ids, resource, successNotification }) => {
                 handleNotification(successNotification, {
@@ -212,12 +220,6 @@ export const useDeleteMany = <
                     }
                 }
 
-                notificationDispatch({
-                    type: ActionTypes.REMOVE,
-                    payload: {
-                        id: ids,
-                    },
-                });
                 if (err.message !== "mutationCancelled") {
                     checkError(err);
                     const resourceSingular = pluralize.singular(resource);

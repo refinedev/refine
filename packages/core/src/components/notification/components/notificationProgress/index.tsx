@@ -21,6 +21,7 @@ export const NotificationProgress: React.FC<{
                     payload: {
                         id: notificationItem.id,
                         seconds: notificationItem.seconds,
+                        resource: notificationItem.resource,
                     },
                 });
             }, 1000);
