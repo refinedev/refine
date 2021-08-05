@@ -123,7 +123,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     });
 
     const Actions: React.FC = () => (
-        <Space direction="horizontal">
+        <Space>
             <ExportButton onClick={triggerExport} loading={loading} />
             <ImportButton {...importProps} />
         </Space>

@@ -22,6 +22,7 @@ i18n.use(Backend)
             "stores",
             "categories",
             "couriers",
+            "reviews",
         ],
         fallbackLng: ["en", "de"],
     });
