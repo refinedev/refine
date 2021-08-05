@@ -14,6 +14,7 @@ import {
     Avatar,
     Typography,
     Card,
+    Table,
 } from "@pankod/refine";
 import dayjs from "dayjs";
 
@@ -194,6 +195,17 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
         </Card>
     );
 
+    const renderDeliverables = () => (
+        <Table dataSource={record?.products}>
+            <Table.Column
+                dataIndex=""
+                render={(_, record) => <div>ss</div>}
+            ></Table.Column>
+            <Table.Column></Table.Column>
+            <Table.Column></Table.Column>
+        </Table>
+    );
+
     return (
         <Row gutter={[16, 16]}>
             <Col sm={23} xs={24}>
@@ -201,6 +213,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                     {record && renderOrderSteps()}
                     <img width="100%" src="/images/map.png" />
                     {renderCourierInfo()}
+                    {renderDeliverables()}
                 </Space>
             </Col>
         </Row>

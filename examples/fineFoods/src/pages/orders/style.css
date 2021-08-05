@@ -48,13 +48,13 @@
     .courier-infoBox {
         margin-bottom: 15px;
     }
+
     .courier .info-text {
         margin-bottom: 25px;
     }
-  
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 576px) {
     .pageHeader {
         padding: 16px 16px;
     }
@@ -65,5 +65,18 @@
 
     .courier-infoBox {
         margin-left: 0;
+
     }
+    .courier {
+        flex-direction: column;
+    }
+
+    .courier .info-text {
+        text-align: center;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    .courier-box-container {
+        margin-top: 20px;
+     }
 }
