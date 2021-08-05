@@ -156,11 +156,7 @@ export const useDelete = <
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: (data ?? []).filter(
-                                        (record: TData) =>
-                                            !(
-                                                record.id?.toString() ===
-                                                id.toString()
-                                            ),
+                                        (record: TData) => !(record.id === id),
                                     ),
                                     total: total - 1,
                                 });
