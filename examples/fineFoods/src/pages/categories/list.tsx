@@ -18,6 +18,7 @@ import {
     Avatar,
     NumberField,
     DateField,
+    Grid,
 } from "@pankod/refine";
 
 import { ICategory, IProduct } from "interfaces";
@@ -72,6 +73,8 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
         </Menu>
     );
 
+    const breakpoint = Grid.useBreakpoint();
+
     return (
         <List title={t("categories:title")}>
             <Form {...formProps}>
@@ -79,6 +82,10 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                     {...tableProps}
                     expandable={{
                         expandedRowRender,
+                        rowExpandable: () => !breakpoint.xs,
+                    }}
+                    scroll={{
+                        x: true,
                     }}
                     rowKey="id"
                     onRow={(record) => ({
@@ -136,6 +143,8 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                         title={t("common:table.actions")}
                         dataIndex="actions"
                         key="actions"
+                        fixed="right"
+                        align="center"
                         render={(_text, record) => {
                             if (isEditing(record.id)) {
                                 return (
@@ -224,7 +233,13 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 onClick: () => false,
             }}
         >
-            <Table {...postTableProps} rowKey="id">
+            <Table
+                {...postTableProps}
+                scroll={{
+                    x: true,
+                }}
+                rowKey="id"
+            >
                 <Table.Column
                     dataIndex="images"
                     render={(value) => <Avatar size={74} src={value[0].url} />}
