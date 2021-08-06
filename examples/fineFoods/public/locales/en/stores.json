@@ -14,7 +14,7 @@
   },
   "buttons": {
     "editProducts": "Edit Products",
-    "addProduct": "Ürün Ekle",
+    "addProduct": "Add Product",
     "outOfStock": "Out Of Stock"
   },
   "selectLocation": "Choose store location on the map",
