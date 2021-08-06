@@ -7,3 +7,6 @@
     flex-direction: column;
     line-height: 1;
 }
+.title-area > .amount > span {
+    color: #ffffff;
+}

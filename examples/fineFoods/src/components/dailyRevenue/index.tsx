@@ -65,7 +65,10 @@ export const DailyRevenue: React.FC = () => {
                 grid: null,
             },
             smooth: true,
-
+            lineStyle: {
+                lineWidth: 4,
+                stroke: "white",
+            },
             // animation: false,
         };
 
@@ -78,11 +81,13 @@ export const DailyRevenue: React.FC = () => {
         <div style={{ height: 222 }}>
             <div className="title-area">
                 <div className="amount">
-                    <Text style={{ fontWeight: 800, fontSize: 24 }}>
+                    <Text
+                        style={{ fontWeight: 800, fontSize: 24, color: "#ƒff" }}
+                    >
                         {t("dashboard:dailyRevenue.title")}
                     </Text>
                     <NumberField
-                        style={{ fontSize: 36, fontWeight: 900 }}
+                        style={{ fontSize: 36, fontWeight: 900, color: "#ƒff" }}
                         options={{
                             currency: "USD",
                             style: "currency",

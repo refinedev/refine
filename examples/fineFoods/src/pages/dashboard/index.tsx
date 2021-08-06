@@ -21,9 +21,9 @@ export const DashbaordPage: React.FC = () => {
                     <Col md={12}>
                         <Card
                             style={{
-                                background: "url(images/dailyrevenue.png)",
+                                background: "url(images/daily-revenue.png)",
+                                backgroundColor: "#3a233c",
                                 backgroundRepeat: "no-repeat",
-                                backgroundSize: "cover",
                                 backgroundPosition: "right",
                             }}
                         >
