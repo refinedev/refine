@@ -14,10 +14,6 @@ Both of these components accept these props to let you customize the layout glob
 * [`OffLayoutArea`][OffLayoutArea]
 * [`Title`][Title]
 
-:::info
-For an example of local layout customization on a custom page, refer to [`Custom Page Example`][Custom Page Example].
-:::
-
 ## Usage
 
 Let's look at an example of modifying the default layout to have a top menu layout.
@@ -108,6 +104,15 @@ Here, we use [`useMenu` hook][useMenu] to get the list of current resources and 
 :::info
 By default, [`<Sider>`][Sider] is responsible for rendering [`<Title>`][Title]. It gets this component (configured by [`<Refine>`][Refine] and/or [`<LayoutWrapper>`][LayoutWrapper]) by [`useTitle` hook][useTitle].
 :::
+
+Here's how it looks in the end:
+
+<iframe src="https://codesandbox.io/embed/refine-top-menu-layout-example-n1v8x?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+    title="refine-top-menu-layout-example"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
 
 [Refine]: /api-references/components/refine-config.md
 [Layout]: /api-references/components/refine-config.md#layout
