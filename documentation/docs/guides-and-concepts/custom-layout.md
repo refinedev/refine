@@ -105,6 +105,8 @@ Here, we use [`useMenu` hook][useMenu] to get the list of current resources and 
 By default, [`<Sider>`][Sider] is responsible for rendering [`<Title>`][Title]. It gets this component (configured by [`<Refine>`][Refine] and/or [`<LayoutWrapper>`][LayoutWrapper]) by [`useTitle` hook][useTitle].
 :::
 
+## Live Codesandbox Example
+
 Here's how it looks in the end:
 
 <iframe src="https://codesandbox.io/embed/refine-top-menu-layout-example-n1v8x?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
