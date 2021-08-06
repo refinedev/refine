@@ -34,6 +34,8 @@ export const SalesChart: React.FC = () => {
         query,
     });
 
+    console.log("data", data);
+
     const total = useMemo(
         () =>
             data?.data.reduce((acc, item) => {

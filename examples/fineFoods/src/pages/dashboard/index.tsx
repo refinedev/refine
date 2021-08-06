@@ -16,6 +16,22 @@ export const DashbaordPage: React.FC = () => {
 
     return (
         <Row gutter={[16, 16]}>
+            <Col md={24}>
+                <Row>
+                    <Col md={12}>
+                        <Card
+                            style={{
+                                background: "url(images/dailyrevenue.png)",
+                                backgroundRepeat: "no-repeat",
+                                backgroundSize: "cover",
+                                backgroundPosition: "right",
+                            }}
+                        >
+                            <DailyRevenue />
+                        </Card>
+                    </Col>
+                </Row>
+            </Col>
             <Col md={16}>
                 <Card
                     title={t("dashboard:deliveryMap.title")}

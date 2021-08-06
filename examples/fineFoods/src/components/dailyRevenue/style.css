@@ -1,0 +1,9 @@
+.title-area {
+    display: flex;
+    justify-content: space-between;
+}
+.title-area > .amount {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
