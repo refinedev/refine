@@ -20,7 +20,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "cypress:open": "cypress open"
+    "cy": "cypress open",
+    "cy:open": "start-server-and-test start http://localhost:3000 cy",
+    "cy:run": "cypress run --config video=false",
+    "cy:test": "start-server-and-test start http://localhost:3000 cy:run"
   },
   "browserslist": {
     "production": [
@@ -35,6 +38,7 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^7.6.0"
+    "cypress": "^7.6.0",
+    "start-server-and-test": "^1.13.1"
   }
 }
