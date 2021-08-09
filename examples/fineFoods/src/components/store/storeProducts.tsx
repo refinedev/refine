@@ -1,39 +1,32 @@
-import { useEffect, useState } from "react";
 import {
     Typography,
-    Avatar,
     Row,
     Col,
     AntdList,
     useSimpleList,
-    useList,
     useTranslate,
-    Card,
     Input,
     CreateButton,
-    Divider,
-    InputNumber,
-    Button,
-    Space,
-    Skeleton,
     Form,
     CrudFilters,
     useUpdate,
     Icons,
-    Dropdown,
-    Menu,
-    NumberField,
     useDrawerForm,
     Modal,
     ModalProps,
 } from "@pankod/refine";
 import "./style.css";
 
-const { Text, Paragraph } = Typography;
-const { SearchOutlined, CloseCircleOutlined, FormOutlined } = Icons;
+const { Text } = Typography;
+const { SearchOutlined } = Icons;
 
-import { IStore, IProduct, ICategory } from "interfaces";
-import { CreateProduct, EditProduct } from "../product";
+import { IStore, IProduct } from "interfaces";
+import {
+    CreateProduct,
+    EditProduct,
+    ProductItem,
+    ProductCategoryFilter,
+} from "components/product";
 
 type Props = {
     record: IStore;
@@ -124,110 +117,6 @@ export const StoreProducts: React.FC<Props> = ({ record, modalProps }) => {
         redirect: false,
     });
 
-    const renderItem = (item: IProduct) => {
-        return (
-            <Card
-                style={{
-                    margin: "8px",
-                    opacity: item.stock <= 0 ? 0.5 : 1,
-                }}
-                bodyStyle={{ height: "500px" }}
-            >
-                <div className="card-dropwdown">
-                    <Dropdown
-                        overlay={
-                            <Menu mode="vertical">
-                                <Menu.Item
-                                    key="1"
-                                    disabled={item.stock <= 0}
-                                    style={{
-                                        fontWeight: 500,
-                                    }}
-                                    icon={
-                                        <CloseCircleOutlined
-                                            style={{
-                                                color: "red",
-                                            }}
-                                        />
-                                    }
-                                    onClick={() => updateStock(0, item)}
-                                >
-                                    {t("stores:buttons.outOfStock")}
-                                </Menu.Item>
-                                <Menu.Item
-                                    key="2"
-                                    style={{
-                                        fontWeight: 500,
-                                    }}
-                                    icon={
-                                        <FormOutlined
-                                            style={{
-                                                color: "green",
-                                            }}
-                                        />
-                                    }
-                                    onClick={() => editShow(item.id)}
-                                >
-                                    {t("stores:buttons.editProduct")}
-                                </Menu.Item>
-                            </Menu>
-                        }
-                        trigger={["click"]}
-                    >
-                        <Icons.MoreOutlined
-                            style={{
-                                fontSize: 24,
-                            }}
-                        />
-                    </Dropdown>
-                </div>
-                <div className="store-card-body">
-                    <div style={{ textAlign: "center" }}>
-                        <Avatar
-                            size={128}
-                            src={item.images[0].url}
-                            alt={item.name}
-                        />
-                    </div>
-                    <Divider />
-                    <Paragraph
-                        ellipsis={{ rows: 2, tooltip: true }}
-                        className="item-name"
-                    >
-                        {item.name}
-                    </Paragraph>
-                    <Paragraph
-                        ellipsis={{ rows: 3, tooltip: true }}
-                        style={{ marginBottom: "8px" }}
-                    >
-                        {item.description}
-                    </Paragraph>
-                    <Text className="item-id">#{item.id}</Text>
-                    <NumberField
-                        className="item-price"
-                        options={{
-                            currency: "USD",
-                            style: "currency",
-                        }}
-                        value={item.price / 100}
-                    />
-                    <div id="stock-number">
-                        <InputNumber
-                            size="large"
-                            keyboard
-                            min={0}
-                            value={item.stock || 0}
-                            onChange={(value: number) =>
-                                updateStock(value, item)
-                            }
-                            style={{ width: "100%" }}
-                        />
-                    </div>
-                </div>
-            </Card>
-        );
-    };
-
     return (
         <>
             <Modal
@@ -262,7 +151,13 @@ export const StoreProducts: React.FC<Props> = ({ record, modalProps }) => {
                                 className="store-product-list"
                                 {...listProps}
                                 dataSource={mergedData}
-                                renderItem={renderItem}
+                                renderItem={(item) => (
+                                    <ProductItem
+                                        item={item}
+                                        updateStock={updateStock}
+                                        editShow={editShow}
+                                    />
+                                )}
                             />
                         </Col>
                         <Col xs={0} sm={6}>
@@ -289,73 +184,5 @@ export const StoreProducts: React.FC<Props> = ({ record, modalProps }) => {
                 saveButtonProps={editSaveButtonProps}
             />
         </>
-    );
-};
-
-const ProductCategoryFilter: React.FC<{
-    value?: string[];
-    onChange?: (value: string[]) => void;
-}> = ({ onChange, value }) => {
-    const t = useTranslate();
-
-    const [filterCategories, setFilterCategories] = useState<string[]>(
-        value ?? [],
-    );
-
-    useEffect(() => {
-        onChange?.(filterCategories);
-    }, [filterCategories]);
-
-    const { data: categoryData, isLoading: categoryIsLoading } =
-        useList<ICategory>("categories", {
-            pagination: { pageSize: 30 },
-        });
-
-    const toggleFilterCategory = (clickedCategory: string) => {
-        const target = filterCategories.findIndex(
-            (category) => category === clickedCategory,
-        );
-
-        if (target < 0) {
-            setFilterCategories((prevCategories) => {
-                return [...prevCategories, clickedCategory];
-            });
-        } else {
-            const copyFilterCategories = [...filterCategories];
-
-            copyFilterCategories.splice(target, 1);
-
-            setFilterCategories(copyFilterCategories);
-        }
-    };
-
-    if (categoryIsLoading) {
-        return <Skeleton active paragraph={{ rows: 6 }} />;
-    }
-
-    return (
-        <Space wrap>
-            <Button
-                shape="round"
-                type={filterCategories.length === 0 ? "primary" : "default"}
-                onClick={() => setFilterCategories([])}
-            >
-                {t("stores:all")}
-            </Button>
-            {categoryData?.data.map((category) => (
-                <Button
-                    key={category.id}
-                    shape="round"
-                    type={
-                        filterCategories.includes(category.id)
-                            ? "primary"
-                            : "default"
-                    }
-                    onClick={() => toggleFilterCategory(category.id)}
-                >
-                    {category.title}
-                </Button>
-            ))}
-        </Space>
     );
 };
