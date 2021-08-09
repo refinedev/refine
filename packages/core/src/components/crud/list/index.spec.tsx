@@ -8,11 +8,11 @@ import { List } from "./index";
 import { Route } from "react-router-dom";
 
 const renderList = (list: ReactNode) => {
-    return render(<Route path="/resources/:resource">{list}</Route>, {
+    return render(<Route path="/:resource">{list}</Route>, {
         wrapper: TestWrapper({
             dataProvider: MockJSONServer,
             resources: [{ name: "posts", route: "posts" }],
-            routerInitialEntries: ["/resources/posts"],
+            routerInitialEntries: ["/posts"],
         }),
     });
 };
@@ -51,7 +51,7 @@ describe("<List/>", () => {
         describe("render create button", () => {
             it("should create edit button", () => {
                 const { getByText, queryByTestId } = render(
-                    <Route path="/resources/:resource">
+                    <Route path="/:resource">
                         <List />
                     </Route>,
                     {
@@ -64,7 +64,7 @@ describe("<List/>", () => {
                                     canCreate: true,
                                 },
                             ],
-                            routerInitialEntries: ["/resources/posts"],
+                            routerInitialEntries: ["/posts"],
                         }),
                     },
                 );
@@ -76,7 +76,7 @@ describe("<List/>", () => {
 
             it("should not render create button on resource canCreate false", () => {
                 const { getByText, queryByTestId } = render(
-                    <Route path="/resources/:resource">
+                    <Route path="/:resource">
                         <List />
                     </Route>,
                     {
@@ -89,7 +89,7 @@ describe("<List/>", () => {
                                     canCreate: false,
                                 },
                             ],
-                            routerInitialEntries: ["/resources/posts"],
+                            routerInitialEntries: ["/posts"],
                         }),
                     },
                 );
@@ -101,7 +101,7 @@ describe("<List/>", () => {
 
             it("should render create button on resource canCreate false & createButtonProps props not null on component", () => {
                 const { getByText, queryByTestId } = render(
-                    <Route path="/resources/:resource">
+                    <Route path="/:resource">
                         <List createButtonProps={{ size: "large" }} />
                     </Route>,
                     {
@@ -113,7 +113,7 @@ describe("<List/>", () => {
                                     route: "posts",
                                 },
                             ],
-                            routerInitialEntries: ["/resources/posts"],
+                            routerInitialEntries: ["/posts"],
                         }),
                     },
                 );
@@ -125,7 +125,7 @@ describe("<List/>", () => {
 
             it("should render create button on resource canCreate true & createButtonProps props not null on component", () => {
                 const { getByText, queryByTestId } = render(
-                    <Route path="/resources/:resource">
+                    <Route path="/:resource">
                         <List createButtonProps={{ size: "large" }} />
                     </Route>,
                     {
@@ -138,7 +138,7 @@ describe("<List/>", () => {
                                     canCreate: true,
                                 },
                             ],
-                            routerInitialEntries: ["/resources/posts"],
+                            routerInitialEntries: ["/posts"],
                         }),
                     },
                 );
@@ -150,7 +150,7 @@ describe("<List/>", () => {
 
             it("should not render create button on resource canCreate true & canCreate props false on component", () => {
                 const { queryByTestId } = render(
-                    <Route path="/resources/:resource">
+                    <Route path="/:resource">
                         <List canCreate={false} />
                     </Route>,
                     {
@@ -163,7 +163,7 @@ describe("<List/>", () => {
                                     canCreate: true,
                                 },
                             ],
-                            routerInitialEntries: ["/resources/posts"],
+                            routerInitialEntries: ["/posts"],
                         }),
                     },
                 );
@@ -173,7 +173,7 @@ describe("<List/>", () => {
 
             it("should render create button on resource canCreate false & canCreate props true on component", () => {
                 const { queryByTestId } = render(
-                    <Route path="/resources/:resource">
+                    <Route path="/:resource">
                         <List canCreate={true} />
                     </Route>,
                     {
@@ -186,7 +186,7 @@ describe("<List/>", () => {
                                     canCreate: false,
                                 },
                             ],
-                            routerInitialEntries: ["/resources/posts"],
+                            routerInitialEntries: ["/posts"],
                         }),
                     },
                 );

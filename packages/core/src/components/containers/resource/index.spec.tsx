@@ -23,7 +23,7 @@ describe("<Resource />", () => {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
                     resources: [{ name: "posts" }],
-                    routerInitialEntries: ["/resources/posts"],
+                    routerInitialEntries: ["/posts"],
                 }),
             },
         );

@@ -12,12 +12,12 @@ import { HttpError } from "../../../interfaces";
 const Wrapper = TestWrapper({
     dataProvider: MockJSONServer,
     resources: [{ name: "posts", route: "posts" }],
-    routerInitialEntries: ["/resources/posts/create/1"],
+    routerInitialEntries: ["/posts/create/1"],
 });
 
 const WrapperWithRoute: React.FC = ({ children }) => (
     <Wrapper>
-        <Route path="/resources/:resource/:action/:id">{children}</Route>
+        <Route path="/:resource/:action/:id">{children}</Route>
     </Wrapper>
 );
 

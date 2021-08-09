@@ -44,13 +44,13 @@ describe("Show Button", () => {
 
     it("should create page redirect show route called function successfully if click the button", () => {
         const showButton = render(
-            <Route path="/resources/:resource">
+            <Route path="/:resource">
                 <ShowButton recordItemId="1" />
             </Route>,
             {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts", route: "posts" }],
-                    routerInitialEntries: ["/resources/posts"],
+                    routerInitialEntries: ["/posts"],
                 }),
             },
         );
@@ -58,18 +58,18 @@ describe("Show Button", () => {
 
         fireEvent.click(getByText("Show"));
 
-        expect(mHistory.push).toBeCalledWith("/resources/posts/show/1");
+        expect(mHistory.push).toBeCalledWith("/posts/show/1");
     });
 
     it("should edit page redirect show route called function successfully if click the button", () => {
         const showButton = render(
-            <Route path="/resources/:resource/:id">
+            <Route path="/:resource/:id">
                 <ShowButton />
             </Route>,
             {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts", route: "posts" }],
-                    routerInitialEntries: ["/resources/posts/1"],
+                    routerInitialEntries: ["/posts/1"],
                 }),
             },
         );
@@ -77,12 +77,12 @@ describe("Show Button", () => {
 
         fireEvent.click(getByText("Show"));
 
-        expect(mHistory.push).toBeCalledWith("/resources/posts/show/1");
+        expect(mHistory.push).toBeCalledWith("/posts/show/1");
     });
 
     it("should custom resource and recordItemId redirect show route called function successfully if click the button", () => {
         const showButton = render(
-            <Route path="/resources/:resource">
+            <Route path="/:resource">
                 <ShowButton resourceName="categories" recordItemId="1" />
             </Route>,
             {
@@ -91,7 +91,7 @@ describe("Show Button", () => {
                         { name: "posts" },
                         { name: "categories", route: "categories" },
                     ],
-                    routerInitialEntries: ["/resources/posts"],
+                    routerInitialEntries: ["/posts"],
                 }),
             },
         );
@@ -99,6 +99,6 @@ describe("Show Button", () => {
 
         fireEvent.click(getByText("Show"));
 
-        expect(mHistory.push).toBeCalledWith("/resources/categories/show/1");
+        expect(mHistory.push).toBeCalledWith("/categories/show/1");
     });
 });

@@ -44,7 +44,7 @@ describe("Create Button", () => {
 
     it("should redirect custom resource route called function successfully if click the button", () => {
         const createButton = render(
-            <Route path="/resources/:resource">
+            <Route path="/:resource">
                 <CreateButton resourceName="categories" />
             </Route>,
             {
@@ -53,7 +53,7 @@ describe("Create Button", () => {
                         { name: "posts" },
                         { name: "categories", route: "categories" },
                     ],
-                    routerInitialEntries: ["/resources/posts"],
+                    routerInitialEntries: ["/posts"],
                 }),
             },
         );
@@ -61,18 +61,18 @@ describe("Create Button", () => {
 
         fireEvent.click(getByText("Create"));
 
-        expect(mHistory.push).toBeCalledWith("/resources/categories/create");
+        expect(mHistory.push).toBeCalledWith("/categories/create");
     });
 
     it("should redirect create route called function successfully if click the button", () => {
         const createButton = render(
-            <Route path="/resources/:resource">
+            <Route path="/:resource">
                 <CreateButton />
             </Route>,
             {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts", route: "posts" }],
-                    routerInitialEntries: ["/resources/posts"],
+                    routerInitialEntries: ["/posts"],
                 }),
             },
         );
@@ -80,6 +80,6 @@ describe("Create Button", () => {
 
         fireEvent.click(getByText("Create"));
 
-        expect(mHistory.push).toBeCalledWith("/resources/posts/create");
+        expect(mHistory.push).toBeCalledWith("/posts/create");
     });
 });
