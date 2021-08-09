@@ -7,11 +7,11 @@ import { render, TestWrapper, MockJSONServer } from "@test";
 import { Edit } from "./";
 
 const renderEdit = (edit: ReactNode) => {
-    return render(<Route path="/resources/:resource/edit/:id">{edit}</Route>, {
+    return render(<Route path="/:resource/edit/:id">{edit}</Route>, {
         wrapper: TestWrapper({
             dataProvider: MockJSONServer,
             resources: [{ name: "posts", route: "posts" }],
-            routerInitialEntries: ["/resources/posts/edit/1"],
+            routerInitialEntries: ["/posts/edit/1"],
         }),
     });
 };
@@ -105,7 +105,7 @@ describe("Edit", () => {
     describe("render delete button", () => {
         it("should render delete button ", () => {
             const { getByText, queryByTestId } = render(
-                <Route path="/resources/:resource/edit/:id">
+                <Route path="/:resource/edit/:id">
                     <Edit />
                 </Route>,
                 {
@@ -114,7 +114,7 @@ describe("Edit", () => {
                         resources: [
                             { name: "posts", route: "posts", canDelete: true },
                         ],
-                        routerInitialEntries: ["/resources/posts/edit/1"],
+                        routerInitialEntries: ["/posts/edit/1"],
                     }),
                 },
             );
@@ -126,7 +126,7 @@ describe("Edit", () => {
 
         it("should not render delete button on resource canDelete false", () => {
             const { getByText, queryByTestId } = render(
-                <Route path="/resources/:resource/edit/:id">
+                <Route path="/:resource/edit/:id">
                     <Edit />
                 </Route>,
                 {
@@ -135,7 +135,7 @@ describe("Edit", () => {
                         resources: [
                             { name: "posts", route: "posts", canDelete: false },
                         ],
-                        routerInitialEntries: ["/resources/posts/edit/1"],
+                        routerInitialEntries: ["/posts/edit/1"],
                     }),
                 },
             );
@@ -147,7 +147,7 @@ describe("Edit", () => {
 
         it("should not render delete button on resource canDelete true & canDelete props false on component", () => {
             const { queryByTestId } = render(
-                <Route path="/resources/:resource/edit/:id">
+                <Route path="/:resource/edit/:id">
                     <Edit canDelete={false} />
                 </Route>,
                 {
@@ -156,7 +156,7 @@ describe("Edit", () => {
                         resources: [
                             { name: "posts", route: "posts", canDelete: true },
                         ],
-                        routerInitialEntries: ["/resources/posts/edit/1"],
+                        routerInitialEntries: ["/posts/edit/1"],
                     }),
                 },
             );
@@ -166,7 +166,7 @@ describe("Edit", () => {
 
         it("should render delete button on resource canDelete false & canDelete props true on component", () => {
             const { queryByTestId } = render(
-                <Route path="/resources/:resource/edit/:id">
+                <Route path="/:resource/edit/:id">
                     <Edit canDelete={true} />
                 </Route>,
                 {
@@ -175,7 +175,7 @@ describe("Edit", () => {
                         resources: [
                             { name: "posts", route: "posts", canDelete: false },
                         ],
-                        routerInitialEntries: ["/resources/posts/edit/1"],
+                        routerInitialEntries: ["/posts/edit/1"],
                     }),
                 },
             );
@@ -185,7 +185,7 @@ describe("Edit", () => {
 
         it("should render delete button on resource canDelete false & deleteButtonProps props not null on component", () => {
             const { queryByTestId } = render(
-                <Route path="/resources/:resource/edit/:id">
+                <Route path="/:resource/edit/:id">
                     <Edit deleteButtonProps={{ size: "large" }} />
                 </Route>,
                 {
@@ -194,7 +194,7 @@ describe("Edit", () => {
                         resources: [
                             { name: "posts", route: "posts", canDelete: false },
                         ],
-                        routerInitialEntries: ["/resources/posts/edit/1"],
+                        routerInitialEntries: ["/posts/edit/1"],
                     }),
                 },
             );

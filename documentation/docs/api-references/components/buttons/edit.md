@@ -70,7 +70,7 @@ export const MyEditComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `edit` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/resources/posts/edit/1`.
+Clicking the button will trigger the `edit` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/edit/1`.
 
 :::note
 `<EditButton>` component reads the id information from the route by default.
@@ -88,7 +88,7 @@ export const MyEditComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `edit` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/resources/categories/edit/2`.
+Clicking the button will trigger the `edit` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/edit/2`.
 
 ## API Reference
 

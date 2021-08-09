@@ -68,7 +68,7 @@ export const MyShowComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `show` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/resources/posts/show/1`.
+Clicking the button will trigger the `show` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/show/1`.
 
 :::note
 `<ShowButton>` component reads the id information from the route by default.
@@ -85,7 +85,7 @@ export const MyShowComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `show` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/resources/categories/show/2`.
+Clicking the button will trigger the `show` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/show/2`.
 
 ## API Reference
 

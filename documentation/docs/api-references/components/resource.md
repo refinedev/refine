@@ -89,33 +89,33 @@ https://api.fake-rest.refine.dev/posts/1
 <br />
 
 `name` also determines the routes of the pages of a resource:  
-- List page -> `/resources/posts`
-- Create page -> `/resources/posts/create/:id?`
-- Edit page -> `/resources/posts/edit/:id`
-- Show page -> `/resources/posts/show/:id`
+- List page -> `/posts`
+- Create page -> `/posts/create/:id?`
+- Edit page -> `/posts/edit/:id`
+- Show page -> `/posts/show/:id`
 
 <br />
 
 ### `list`
 
-The component passed to `list` prop will be rendered on the `/resources/posts` route.
+The component passed to `list` prop will be rendered on the `/posts` route.
 
 ### `create`
 
-The component passed to `create` will be rendered on the `/resources/posts/create` route by default.
+The component passed to `create` will be rendered on the `/posts/create` route by default.
 
-> It will also be rendered on `/resources/posts/create/:id`. This represents namely a clone page. `id` represent a record and it will be available as a route parameter.  
+> It will also be rendered on `/posts/create/:id`. This represents namely a clone page. `id` represent a record and it will be available as a route parameter.  
 For example [`useForm` uses this parameter to create a clone form](/api-references/hooks/form/useForm.md#clone-mode)
 
 > `clone` from `useNavigation` can be used to navigate to a clone page.
 
 ### `edit`
 
-The component passed to `edit` will be rendered on the `/resources/posts/edit/:id` route.
+The component passed to `edit` will be rendered on the `/posts/edit/:id` route.
 
 ### `show`
 
-The component passed to `show` will be rendered on the `/resources/posts/show/:id` route.
+The component passed to `show` will be rendered on the `/posts/show/:id` route.
 
 
 ### `canDelete`

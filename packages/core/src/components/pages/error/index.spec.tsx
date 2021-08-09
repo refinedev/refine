@@ -49,13 +49,13 @@ describe("ErrorComponent", () => {
 
     it("renders error messages if resources action's not found", async () => {
         const { getByTestId, findByText } = render(
-            <Route path="/resources/:resource?/:action?">
+            <Route path="/:resource?/:action?">
                 <ErrorComponent />
             </Route>,
             {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts", route: "posts" }],
-                    routerInitialEntries: ["/resources/posts/create"],
+                    routerInitialEntries: ["/posts/create"],
                 }),
             },
         );
@@ -71,15 +71,13 @@ describe("ErrorComponent", () => {
 
     it("renders error messages if resource action's is different from 'create, edit, show'", () => {
         const { getByText } = render(
-            <Route path="/resources/:resource?/:action?">
+            <Route path="/:resource?/:action?">
                 <ErrorComponent />
             </Route>,
             {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts", route: "posts" }],
-                    routerInitialEntries: [
-                        "/resources/posts/invalidActionType",
-                    ],
+                    routerInitialEntries: ["/posts/invalidActionType"],
                 }),
             },
         );
