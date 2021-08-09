@@ -41,10 +41,10 @@ export const DashbaordPage: React.FC = () => {
                                 padding: 10,
                             }}
                             style={{
-                                background: "url(images/daily-revenue.png)",
-                                backgroundColor: "#3a233c",
+                                background: "url(images/daily-order.png)",
+                                backgroundColor: "#332a4b",
                                 backgroundRepeat: "no-repeat",
-                                backgroundPosition: "right",
+                                // backgroundPosition: "right",
                             }}
                         >
                             <DailyOrders />
