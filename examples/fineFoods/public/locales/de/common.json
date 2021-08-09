@@ -55,26 +55,12 @@
   "dashboard": {
     "title": "Panel"
   },
-  "posts": {
-    "posts": "Gönderiler",
-    "fields": {
-      "id": "Id",
-      "title": "Başlık",
-      "category": "Kategori",
-      "status": {
-        "title": "Durum",
-        "published": "Yayınlanan",
-        "draft": "Taslak",
-        "rejected": "Reddedildi"
-      },
-      "content": "İçerik",
-      "createdAt": "Yaratılma tarihi"
-    },
+  "stores": {
     "titles": {
-      "create": "Gönderi Oluştur",
-      "edit": "Gönderi Düzenle",
-      "list": "Gönderiler",
-      "show": "Gönderi Göster"
+      "create": "Mağaza Oluştur",
+      "edit": "Mağaza Düzenle",
+      "list": "Mağazalar",
+      "show": "Mağaza Göster"
     }
   },
   "table": {
@@ -82,5 +68,9 @@
   },
   "search": {
     "placeholder": "Mağaza ID, e-posta veya anahtar kelime ile arama"
+  },
+  "status": {
+    "enable": "Aktif",
+    "disable": "Pasif"
   }
 }

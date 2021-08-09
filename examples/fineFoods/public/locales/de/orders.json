@@ -5,6 +5,7 @@
   },
   "fields": {
     "orderNumber": "Sipariş Numarası",
+    "orderID": "Sipariş ID",
     "status": "Sipariş Durumu",
     "store": "Mağaza",
     "user": "Kullanıcı",
@@ -34,5 +35,9 @@
       "label": "Oluşturma Tarihi"
     },
     "submit": "Filtrele"
+  },
+  "courier": {
+    "deliveryTime": "Varış Zamanı",
+    "phone": "Telefon"
   }
 }
