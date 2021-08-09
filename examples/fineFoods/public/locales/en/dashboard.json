@@ -18,6 +18,9 @@
   "dailyRevenue": {
     "title": "Daily Revenue"
   },
+  "dailyOrders": {
+    "title": "Daily Orders"
+  },
   "recentActivity": {
     "title": "Recent Activity"
   }

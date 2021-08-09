@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import {
     DailyRevenue,
+    DailyOrders,
     DeliveryMap,
     DeliverySchedule,
     Orders,
@@ -17,9 +18,12 @@ export const DashbaordPage: React.FC = () => {
     return (
         <Row gutter={[16, 16]}>
             <Col md={24}>
-                <Row>
+                <Row gutter={[16, 16]}>
                     <Col xl={10} md={24}>
                         <Card
+                            bodyStyle={{
+                                padding: 10,
+                            }}
                             style={{
                                 background: "url(images/daily-revenue.png)",
                                 backgroundColor: "#3a233c",
@@ -33,6 +37,9 @@ export const DashbaordPage: React.FC = () => {
                     <Col xl={7} md={24}>
                         {" "}
                         <Card
+                            bodyStyle={{
+                                padding: 10,
+                            }}
                             style={{
                                 background: "url(images/daily-revenue.png)",
                                 backgroundColor: "#3a233c",
@@ -40,11 +47,14 @@ export const DashbaordPage: React.FC = () => {
                                 backgroundPosition: "right",
                             }}
                         >
-                            <DailyRevenue />
+                            <DailyOrders />
                         </Card>
                     </Col>
                     <Col xl={7} md={24}>
                         <Card
+                            bodyStyle={{
+                                padding: 10,
+                            }}
                             style={{
                                 background: "url(images/daily-revenue.png)",
                                 backgroundColor: "#3a233c",
@@ -52,7 +62,7 @@ export const DashbaordPage: React.FC = () => {
                                 backgroundPosition: "right",
                             }}
                         >
-                            <DailyRevenue />
+                            <DailyOrders />
                         </Card>
                     </Col>
                 </Row>

@@ -1,0 +1,17 @@
+.title-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-area > span {
+    color: #ffffff;
+}
+.title-area > .number {
+    display: flex;
+    align-items: center;
+}
+.title-area > .number > span {
+    color: #ffffff;
+    margin-right: 5px;
+}
