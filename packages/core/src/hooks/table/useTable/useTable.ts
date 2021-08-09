@@ -3,7 +3,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
 import { FormProps } from "antd/lib/form";
-import { QueryObserverResult } from "react-query";
+import { QueryObserverResult, UseQueryOptions } from "react-query";
 
 import { useForm } from "antd/lib/form/Form";
 import { SorterResult } from "antd/lib/table/interface";
@@ -25,9 +25,10 @@ import {
     CrudSorting,
     GetListResponse,
     SuccessErrorNotification,
+    HttpError,
 } from "../../../interfaces";
 
-export type useTableProps<TSearchVariables = unknown> = {
+export type useTableProps<TData, TError, TSearchVariables = unknown> = {
     permanentFilter?: CrudFilters;
     resource?: string;
     initialCurrent?: number;
@@ -36,6 +37,7 @@ export type useTableProps<TSearchVariables = unknown> = {
     initialFilter?: CrudFilters;
     syncWithLocation?: boolean;
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
+    queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
 } & SuccessErrorNotification;
 
 export type useTableReturnType<
@@ -58,6 +60,7 @@ export type useTableReturnType<
  */
 export const useTable = <
     TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
     TSearchVariables = unknown,
 >({
     onSearch,
@@ -70,7 +73,8 @@ export const useTable = <
     resource: resourceFromProp,
     successNotification,
     errorNotification,
-}: useTableProps<TSearchVariables> = {}): useTableReturnType<
+    queryOptions,
+}: useTableProps<TData, TError, TSearchVariables> = {}): useTableReturnType<
     TData,
     TSearchVariables
 > => {
@@ -124,14 +128,14 @@ export const useTable = <
         defaultCurrent: defaultCurrentSF,
     } = tablePropsSunflower.pagination;
 
-    const queryResult = useList<TData>(
+    const queryResult = useList<TData, TError>(
         resource.name,
         {
             pagination: { current: current ?? defaultCurrentSF, pageSize },
             filters: permanentFilter.concat(extraFilter, filters),
             sort: sorter,
         },
-        undefined,
+        queryOptions,
         successNotification,
         errorNotification,
     );
