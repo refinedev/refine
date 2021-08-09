@@ -136,6 +136,7 @@ export const StoreProducts: React.FC<Props> = ({ record, modalProps }) => {
                                     alignItems: "center",
                                     justifyContent: "space-between",
                                     flexWrap: "wrap",
+                                    gap: "8px",
                                     marginBottom: "16px",
                                 }}
                             >

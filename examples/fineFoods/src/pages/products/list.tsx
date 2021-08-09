@@ -97,6 +97,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                                 alignItems: "center",
                                 justifyContent: "space-between",
                                 flexWrap: "wrap",
+                                gap: "8px",
                                 marginBottom: "16px",
                             }}
                         >
@@ -105,7 +106,9 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                             </Text>
                             <Form.Item name="name" noStyle>
                                 <Input
-                                    style={{ width: "400px" }}
+                                    style={{
+                                        width: "400px",
+                                    }}
                                     placeholder={t("stores:productSearch")}
                                     suffix={<SearchOutlined />}
                                 />
