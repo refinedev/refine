@@ -1,4 +1,4 @@
-import { useList } from "@pankod/refine";
+import { useList, useNavigation } from "@pankod/refine";
 import GoogleMapReact from "google-map-react";
 
 import { MapMarker } from "components/map";
@@ -27,8 +27,10 @@ export const DeliveryMap: React.FC = () => {
         zoom: 11,
     };
 
+    const { show } = useNavigation();
+
     return (
-        <div style={{ height: "300px", width: "100%" }}>
+        <div style={{ height: "550px", width: "100%" }}>
             <GoogleMapReact
                 bootstrapURLKeys={{
                     key: process.env.REACT_APP_MAP_ID,
@@ -43,7 +45,10 @@ export const DeliveryMap: React.FC = () => {
                             lat={order.adress.coordinate[0]}
                             lng={order.adress.coordinate[1]}
                         >
-                            <img src="images/map/user.svg" />
+                            <img
+                                src="images/map/user.svg"
+                                onClick={() => show("orders", order.id)}
+                            />
                         </MapMarker>
                     );
                 })}
@@ -55,7 +60,10 @@ export const DeliveryMap: React.FC = () => {
                             lat={order.store.address.coordinate[0]}
                             lng={order.store.address.coordinate[1]}
                         >
-                            <img src="images/map/courier.svg" />
+                            <img
+                                src="images/map/courier.svg"
+                                onClick={() => show("orders", order.id)}
+                            />
                         </MapMarker>
                     );
                 })}

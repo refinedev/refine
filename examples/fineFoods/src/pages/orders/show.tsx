@@ -292,7 +292,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                             lat: 40.73061,
                             lng: -73.935242,
                         }}
-                        defaultZoom={12}
+                        defaultZoom={9}
                     >
                         <MapMarker
                             key={`user-marker-${record?.user.id}`}
