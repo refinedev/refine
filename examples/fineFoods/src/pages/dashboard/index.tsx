@@ -18,7 +18,32 @@ export const DashbaordPage: React.FC = () => {
         <Row gutter={[16, 16]}>
             <Col md={24}>
                 <Row>
-                    <Col md={12}>
+                    <Col xl={10} md={24}>
+                        <Card
+                            style={{
+                                background: "url(images/daily-revenue.png)",
+                                backgroundColor: "#3a233c",
+                                backgroundRepeat: "no-repeat",
+                                backgroundPosition: "right",
+                            }}
+                        >
+                            <DailyRevenue />
+                        </Card>
+                    </Col>
+                    <Col xl={7} md={24}>
+                        {" "}
+                        <Card
+                            style={{
+                                background: "url(images/daily-revenue.png)",
+                                backgroundColor: "#3a233c",
+                                backgroundRepeat: "no-repeat",
+                                backgroundPosition: "right",
+                            }}
+                        >
+                            <DailyRevenue />
+                        </Card>
+                    </Col>
+                    <Col xl={7} md={24}>
                         <Card
                             style={{
                                 background: "url(images/daily-revenue.png)",
@@ -60,6 +85,7 @@ export const DashbaordPage: React.FC = () => {
                     <Card>
                         <Orders />
                     </Card>
+
                     <Card>
                         <DailyRevenue />
                     </Card>

@@ -55,7 +55,18 @@ export const DailyRevenue: React.FC = () => {
             tooltip: {
                 title: (date) => dayjs(date).format("LL"),
                 showCrosshairs: false,
+                marker: { fill: "#D94BF2" },
+                customContent: (title, data) => {
+                    return `<div style="padding: 8px 4px; font-size:16px; color:#fff !important; font-weight:600">${data[0]?.value} $</div>`;
+                },
+                domStyles: {
+                    "g2-tooltip": {
+                        background: "rgba(255, 255, 255, 0.3)",
+                        boxShadow: "unset",
+                    },
+                },
             },
+
             xAxis: {
                 label: null,
                 line: null,
@@ -69,7 +80,6 @@ export const DailyRevenue: React.FC = () => {
                 lineWidth: 4,
                 stroke: "white",
             },
-            // animation: false,
         };
 
         return config;
@@ -82,23 +92,33 @@ export const DailyRevenue: React.FC = () => {
             <div className="title-area">
                 <div className="amount">
                     <Text
-                        style={{ fontWeight: 800, fontSize: 24, color: "#ƒff" }}
+                        style={{
+                            fontWeight: 800,
+                            fontSize: 24,
+                        }}
                     >
                         {t("dashboard:dailyRevenue.title")}
                     </Text>
-                    <NumberField
-                        style={{ fontSize: 36, fontWeight: 900, color: "#ƒff" }}
-                        options={{
-                            currency: "USD",
-                            style: "currency",
-                            notation: "compact",
-                        }}
-                        value={total}
-                    />
+                    <div className="number">
+                        <NumberField
+                            style={{
+                                fontSize: 36,
+                                fontWeight: 900,
+                            }}
+                            options={{
+                                currency: "USD",
+                                style: "currency",
+                                notation: "compact",
+                            }}
+                            value={total}
+                        />
+                        <img src="images/increase.svg" />
+                        {/* <img src="images/decrease.svg" /> */}
+                    </div>
                 </div>
-                <div>datepicker</div>
 
-                {/* <RangePicker
+                <RangePicker
+                    className="range-picker"
                     size="small"
                     value={dateRange}
                     onChange={(values) => {
@@ -106,7 +126,11 @@ export const DailyRevenue: React.FC = () => {
                             setDateRange([values[0], values[1]]);
                         }
                     }}
-                    style={{ float: "right", marginTop: 20 }}
+                    style={{
+                        float: "right",
+                        color: "#fffff !important",
+                        background: "rgba(255, 255, 255, 0.3)",
+                    }}
                     ranges={{
                         "This Week": [
                             dayjs().startOf("week"),
@@ -126,11 +150,11 @@ export const DailyRevenue: React.FC = () => {
                         ],
                     }}
                     format="YYYY/MM/DD"
-                /> */}
+                />
             </div>
             <Line
-                renderer="svg"
                 padding={0}
+                appendPadding={10}
                 height={162}
                 autoFit={false}
                 {...config}
