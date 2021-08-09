@@ -2,7 +2,7 @@ import { exactMatchRegexp } from "../integration/utils";
 
 describe("Show", () => {
     beforeEach(() => {
-        cy.visit("/resources/posts");
+        cy.visit("/posts");
 
         cy.intercept("GET", "/categories?id=*").as("getCategory");
         cy.intercept("GET", "/categories/*").as("getCategories");
