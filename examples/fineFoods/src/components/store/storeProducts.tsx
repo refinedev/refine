@@ -33,7 +33,7 @@ const { Text, Paragraph } = Typography;
 const { SearchOutlined, CloseCircleOutlined, FormOutlined } = Icons;
 
 import { IStore, IProduct, ICategory } from "interfaces";
-import { CreateProduct, EditProduct } from "./";
+import { CreateProduct, EditProduct } from "../product";
 
 type Props = {
     record: IStore;

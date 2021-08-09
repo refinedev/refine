@@ -18,7 +18,7 @@ import {
 const { FormOutlined } = Icons;
 
 import { IStore } from "interfaces";
-import { StoreProducts } from "./";
+import { StoreProducts } from "components/store";
 
 export const StoreList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IStore>();
