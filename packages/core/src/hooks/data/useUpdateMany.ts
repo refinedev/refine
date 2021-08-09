@@ -164,7 +164,6 @@ export const useUpdateMany = <
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: data.map((record: TData) => {
-                                        console.log(ids, record.id);
                                         if (
                                             ids
                                                 .map((p) => p)
