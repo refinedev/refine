@@ -157,14 +157,8 @@ export default App;
 ```tsx title="interfaces.d.ts"
 interface IPost {
     title: string;
-    slug: string;
-    status: "published" | "draft" | "rejected";
     createdAt: string;
     category: ICategory;
-    user: {
-        id: string;
-    };
-    tags: [{ id: string }];
 }
 
 interface ICategory {
