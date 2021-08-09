@@ -15,26 +15,32 @@ import {
     InputNumber,
     Button,
     Space,
-    Spin,
+    Skeleton,
     Form,
     CrudFilters,
     useUpdate,
     Icons,
     Dropdown,
     Menu,
+    NumberField,
+    useDrawerForm,
+    Modal,
+    ModalProps,
 } from "@pankod/refine";
-import debounce from "lodash/debounce";
+import "./style.css";
 
 const { Text, Paragraph } = Typography;
-const { SearchOutlined, CloseCircleOutlined } = Icons;
+const { SearchOutlined, CloseCircleOutlined, FormOutlined } = Icons;
 
 import { IStore, IProduct, ICategory } from "interfaces";
+import { CreateProduct, EditProduct } from "./";
 
 type Props = {
     record: IStore;
+    modalProps: ModalProps;
 };
 
-export const ProductEdit: React.FC<Props> = ({ record }) => {
+export const StoreProducts: React.FC<Props> = ({ record, modalProps }) => {
     const t = useTranslate();
 
     const { listProps, searchFormProps, queryResult } = useSimpleList<
@@ -68,10 +74,10 @@ export const ProductEdit: React.FC<Props> = ({ record }) => {
     const { data: productData } = queryResult;
 
     const mergedData = productData?.data.map((product) => ({
-        ...product,
         ...record?.products.find(
             (storeProduct) => storeProduct.id === product.id,
         ),
+        ...product,
     }));
 
     const { mutate } = useUpdate<IStore>();
@@ -80,6 +86,7 @@ export const ProductEdit: React.FC<Props> = ({ record }) => {
         const shopProduct = record.products.find(
             (p) => p.id === clickedProduct.id,
         );
+
         if (shopProduct) {
             shopProduct.stock = changedValue;
 
@@ -95,6 +102,28 @@ export const ProductEdit: React.FC<Props> = ({ record }) => {
         }
     };
 
+    const {
+        drawerProps: createDrawerProps,
+        formProps: createFormProps,
+        saveButtonProps: createSaveButtonProps,
+        show: createShow,
+    } = useDrawerForm<IProduct>({
+        action: "create",
+        resource: "products",
+        redirect: false,
+    });
+
+    const {
+        drawerProps: editDrawerProps,
+        formProps: editFormProps,
+        saveButtonProps: editSaveButtonProps,
+        show: editShow,
+    } = useDrawerForm<IProduct>({
+        action: "edit",
+        resource: "products",
+        redirect: false,
+    });
+
     const renderItem = (item: IProduct) => {
         return (
             <Card
@@ -104,15 +133,13 @@ export const ProductEdit: React.FC<Props> = ({ record }) => {
                 }}
                 bodyStyle={{ height: "500px" }}
             >
-                <div
-                    style={{ position: "absolute", top: "10px", right: "5px" }}
-                >
+                <div className="card-dropwdown">
                     <Dropdown
-                        disabled={item.stock <= 0}
                         overlay={
                             <Menu mode="vertical">
                                 <Menu.Item
                                     key="1"
+                                    disabled={item.stock <= 0}
                                     style={{
                                         fontWeight: 500,
                                     }}
@@ -127,6 +154,22 @@ export const ProductEdit: React.FC<Props> = ({ record }) => {
                                 >
                                     {t("stores:buttons.outOfStock")}
                                 </Menu.Item>
+                                <Menu.Item
+                                    key="2"
+                                    style={{
+                                        fontWeight: 500,
+                                    }}
+                                    icon={
+                                        <FormOutlined
+                                            style={{
+                                                color: "green",
+                                            }}
+                                        />
+                                    }
+                                    onClick={() => editShow(item.id)}
+                                >
+                                    {t("stores:buttons.editProduct")}
+                                </Menu.Item>
                             </Menu>
                         }
                         trigger={["click"]}
@@ -138,14 +181,7 @@ export const ProductEdit: React.FC<Props> = ({ record }) => {
                         />
                     </Dropdown>
                 </div>
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                        height: "100%",
-                    }}
-                >
+                <div className="store-card-body">
                     <div style={{ textAlign: "center" }}>
                         <Avatar
                             size={128}
@@ -156,11 +192,7 @@ export const ProductEdit: React.FC<Props> = ({ record }) => {
                     <Divider />
                     <Paragraph
                         ellipsis={{ rows: 2, tooltip: true }}
-                        style={{
-                            fontSize: "18px",
-                            fontWeight: 800,
-                            marginBottom: "8px",
-                        }}
+                        className="item-name"
                     >
                         {item.name}
                     </Paragraph>
@@ -170,24 +202,15 @@ export const ProductEdit: React.FC<Props> = ({ record }) => {
                     >
                         {item.description}
                     </Paragraph>
-                    <Paragraph
-                        style={{
-                            fontSize: "18px",
-                            fontWeight: 700,
-                            color: "#999999",
-                            marginBottom: "8px",
+                    <Text className="item-id">#{item.id}</Text>
+                    <NumberField
+                        className="item-price"
+                        options={{
+                            currency: "USD",
+                            style: "currency",
                         }}
-                    >
-                        #{item.id}
-                    </Paragraph>
-                    <Paragraph
-                        style={{
-                            fontSize: "24px",
-                            fontWeight: 500,
-                        }}
-                    >
-                        {item.price}$
-                    </Paragraph>
+                        value={item.price / 100}
+                    />
                     <div id="stock-number">
                         <InputNumber
                             size="large"
@@ -206,66 +229,66 @@ export const ProductEdit: React.FC<Props> = ({ record }) => {
     };
 
     return (
-        <Form
-            {...searchFormProps}
-            onValuesChange={() => searchFormProps.form?.submit()}
-        >
-            <Row gutter={[16, 16]}>
-                <Col xs={24} sm={18}>
-                    <div
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            flexWrap: "wrap",
-                            marginBottom: "16px",
-                        }}
-                    >
-                        <Text style={{ fontSize: "24px" }} strong>
-                            {t("stores:storeProducts")}
-                        </Text>
-                        <Form.Item name="name" noStyle>
-                            <Input
-                                style={{ width: "300px" }}
-                                placeholder={t("stores:productSearch")}
-                                suffix={<SearchOutlined />}
+        <>
+            <Modal
+                {...modalProps}
+                width={1000}
+                footer={null}
+                bodyStyle={{ minHeight: "650px" }}
+            >
+                <Form
+                    {...searchFormProps}
+                    onValuesChange={() => searchFormProps.form?.submit()}
+                >
+                    <Row gutter={[16, 16]}>
+                        <Col xs={24} sm={18}>
+                            <div className="store-product-list-header">
+                                <Text style={{ fontSize: "24px" }} strong>
+                                    {t("stores:storeProducts")}
+                                </Text>
+                                <Form.Item name="name" noStyle>
+                                    <Input
+                                        style={{ width: "300px" }}
+                                        placeholder={t("stores:productSearch")}
+                                        suffix={<SearchOutlined />}
+                                    />
+                                </Form.Item>
+                                <CreateButton onClick={() => createShow()}>
+                                    {t("stores:buttons.addProduct")}
+                                </CreateButton>
+                            </div>
+                            <AntdList
+                                grid={{ gutter: 8, column: 3 }}
+                                className="store-product-list"
+                                {...listProps}
+                                dataSource={mergedData}
+                                renderItem={renderItem}
                             />
-                        </Form.Item>
-                        <CreateButton resourceName="products">
-                            {t("stores:buttons.addProduct")}
-                        </CreateButton>
-                    </div>
-                    <AntdList
-                        grid={{ gutter: 8, column: 3 }}
-                        style={{
-                            maxHeight: "548px",
-                            overflow: "auto",
-                            paddingRight: "4px",
-                        }}
-                        {...listProps}
-                        dataSource={mergedData}
-                        renderItem={renderItem}
-                    />
-                </Col>
-                <Col xs={0} sm={6}>
-                    <div
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            height: "40px",
-                            marginBottom: "16px",
-                        }}
-                    >
-                        <Text style={{ fontWeight: 500 }}>
-                            {t("stores:tagFilterDescription")}
-                        </Text>
-                    </div>
-                    <Form.Item name="categories">
-                        <ProductCategoryFilter />
-                    </Form.Item>
-                </Col>
-            </Row>
-        </Form>
+                        </Col>
+                        <Col xs={0} sm={6}>
+                            <div className="store-product-tag-header">
+                                <Text style={{ fontWeight: 500 }}>
+                                    {t("stores:tagFilterDescription")}
+                                </Text>
+                            </div>
+                            <Form.Item name="categories">
+                                <ProductCategoryFilter />
+                            </Form.Item>
+                        </Col>
+                    </Row>
+                </Form>
+            </Modal>
+            <CreateProduct
+                drawerProps={createDrawerProps}
+                formProps={createFormProps}
+                saveButtonProps={createSaveButtonProps}
+            />
+            <EditProduct
+                drawerProps={editDrawerProps}
+                formProps={editFormProps}
+                saveButtonProps={editSaveButtonProps}
+            />
+        </>
     );
 };
 
@@ -306,31 +329,33 @@ const ProductCategoryFilter: React.FC<{
         }
     };
 
+    if (categoryIsLoading) {
+        return <Skeleton active paragraph={{ rows: 6 }} />;
+    }
+
     return (
-        <Spin spinning={categoryIsLoading}>
-            <Space wrap>
+        <Space wrap>
+            <Button
+                shape="round"
+                type={filterCategories.length === 0 ? "primary" : "default"}
+                onClick={() => setFilterCategories([])}
+            >
+                {t("stores:all")}
+            </Button>
+            {categoryData?.data.map((category) => (
                 <Button
+                    key={category.id}
                     shape="round"
-                    type={filterCategories.length === 0 ? "primary" : "default"}
-                    onClick={() => setFilterCategories([])}
+                    type={
+                        filterCategories.includes(category.id)
+                            ? "primary"
+                            : "default"
+                    }
+                    onClick={() => toggleFilterCategory(category.id)}
                 >
-                    {t("stores:all")}
+                    {category.title}
                 </Button>
-                {categoryData?.data.map((category) => (
-                    <Button
-                        key={category.id}
-                        shape="round"
-                        type={
-                            filterCategories.includes(category.id)
-                                ? "primary"
-                                : "default"
-                        }
-                        onClick={() => toggleFilterCategory(category.id)}
-                    >
-                        {category.title}
-                    </Button>
-                ))}
-            </Space>
-        </Spin>
+            ))}
+        </Space>
     );
 };

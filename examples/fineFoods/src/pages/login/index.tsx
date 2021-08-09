@@ -45,7 +45,11 @@ export const LoginPage: React.FC = () => {
             >
                 <Col xs={22}>
                     <div style={containerStyles}>
-                        <img src="/images/fine-foods-login.svg" width="100%" />
+                        <img
+                            style={{ marginBottom: 26 }}
+                            src="/images/fine-foods-login.svg"
+                            width="100%"
+                        />
                         <Card title={CardTitle} headStyle={{ borderBottom: 0 }}>
                             <Form<ILoginForm>
                                 layout="vertical"

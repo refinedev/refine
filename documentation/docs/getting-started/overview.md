@@ -20,13 +20,13 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 📦 **Out-of-the-box** : Routing, networking, authentication, state management, i18n and UI.
 
-🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for REST API, Strapi, NextJS and Airtable.
+🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for [REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest), [Strapi](https://strapi.io/), [NestJs CRUD](https://github.com/nestjsx/crud) and [Airtable](https://www.airtable.com/).
 
 📝 **Native Typescript Core** : You can always opt out for plain Javascript.
 
 🔘 **Decoupled UI** : UI components are exposed directly without encapsulation. You have full control on UI elements.
 
-🐜 **Powerful Default UI** : Works seamlessly with integrated Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
+🐜 **Powerful Default UI** : Works seamlessly with integrated [Ant Design System](https://ant.design/). (Support for multiple UI frameworks is on the Roadmap)
 
 📝 **Boilerplate-free Code** : Keeps your codebase clean and readable.
 
@@ -157,14 +157,8 @@ export default App;
 ```tsx title="interfaces.d.ts"
 interface IPost {
     title: string;
-    slug: string;
-    status: "published" | "draft" | "rejected";
     createdAt: string;
     category: ICategory;
-    user: {
-        id: string;
-    };
-    tags: [{ id: string }];
 }
 
 interface ICategory {
