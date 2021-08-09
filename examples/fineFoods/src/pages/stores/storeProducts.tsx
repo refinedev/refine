@@ -234,7 +234,7 @@ export const StoreProducts: React.FC<Props> = ({ record, modalProps }) => {
                 {...modalProps}
                 width={1000}
                 footer={null}
-                bodyStyle={{ minHeight: "500px" }}
+                bodyStyle={{ minHeight: "650px" }}
             >
                 <Form
                     {...searchFormProps}

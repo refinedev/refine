@@ -57,6 +57,11 @@ export const CreateProduct: React.FC<Props> = ({
                             valuePropName="fileList"
                             getValueFromEvent={getValueFromEvent}
                             noStyle
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
                         >
                             <Upload.Dragger
                                 name="file"
@@ -125,7 +130,10 @@ export const CreateProduct: React.FC<Props> = ({
                             },
                         ]}
                     >
-                        <InputNumber formatter={(value) => `$ ${value}`} />
+                        <InputNumber
+                            formatter={(value) => `$ ${value}`}
+                            style={{ width: "150px" }}
+                        />
                     </Form.Item>
                     <Form.Item
                         label={t("products:fields.category")}

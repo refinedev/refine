@@ -98,7 +98,7 @@ export const StoreEdit: React.FC<IResourceComponentsProps> = () => {
                                 },
                             ]}
                         >
-                            <InputMask mask="(999) 999 99 99" alwaysShowMask>
+                            <InputMask mask="(999) 999 99 99">
                                 {(props: InputProps) => <Input {...props} />}
                             </InputMask>
                         </Form.Item>
