@@ -12,7 +12,9 @@
     "name": "Name",
     "surname": "Surname",
     "gender": "Gender",
-    "gsm": "Gsm Number",
+    "gsm": "Phone",
+    "email": "E-Mail",
+    "address": "Address",
     "createdAt": "CreatedAt",
     "isActive": "Is Active"
   }
