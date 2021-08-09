@@ -154,7 +154,15 @@ export const StoreProducts: React.FC<Props> = ({ record, modalProps }) => {
                                 </CreateButton>
                             </div>
                             <AntdList
-                                grid={{ gutter: 8, column: 3 }}
+                                grid={{
+                                    gutter: 8,
+                                    xs: 1,
+                                    sm: 1,
+                                    md: 2,
+                                    lg: 3,
+                                    xl: 3,
+                                    xxl: 3,
+                                }}
                                 style={{
                                     height: "100%",
                                     maxHeight: "548px",
