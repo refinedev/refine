@@ -37,7 +37,7 @@ export const ProductItem: React.FC<Props> = ({
             }}
             bodyStyle={{ height: "500px" }}
         >
-            <div className="card-dropwdown">
+            <div style={{ position: "absolute", top: "10px", right: "5px" }}>
                 <Dropdown
                     overlay={
                         <Menu mode="vertical">
@@ -87,7 +87,14 @@ export const ProductItem: React.FC<Props> = ({
                     />
                 </Dropdown>
             </div>
-            <div className="store-card-body">
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    height: "100%",
+                }}
+            >
                 <div style={{ textAlign: "center" }}>
                     <Avatar
                         size={128}
@@ -98,7 +105,11 @@ export const ProductItem: React.FC<Props> = ({
                 <Divider />
                 <Paragraph
                     ellipsis={{ rows: 2, tooltip: true }}
-                    className="item-name"
+                    style={{
+                        fontSize: "18px",
+                        fontWeight: 800,
+                        marginBottom: "8px",
+                    }}
                 >
                     {item.name}
                 </Paragraph>
@@ -108,9 +119,22 @@ export const ProductItem: React.FC<Props> = ({
                 >
                     {item.description}
                 </Paragraph>
-                <Text className="item-id">#{item.id}</Text>
+                <Text
+                    className="item-id"
+                    style={{
+                        fontSize: "18px",
+                        fontWeight: 700,
+                        color: "#999999",
+                    }}
+                >
+                    #{item.id}
+                </Text>
                 <NumberField
-                    className="item-price"
+                    style={{
+                        fontSize: "24px",
+                        fontWeight: 500,
+                        marginBottom: "8px",
+                    }}
                     options={{
                         currency: "USD",
                         style: "currency",

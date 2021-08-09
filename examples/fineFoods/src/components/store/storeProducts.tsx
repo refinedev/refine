@@ -15,7 +15,6 @@ import {
     Modal,
     ModalProps,
 } from "@pankod/refine";
-import "./style.css";
 
 const { Text } = Typography;
 const { SearchOutlined } = Icons;
@@ -131,7 +130,15 @@ export const StoreProducts: React.FC<Props> = ({ record, modalProps }) => {
                 >
                     <Row gutter={[16, 16]}>
                         <Col xs={24} sm={18}>
-                            <div className="store-product-list-header">
+                            <div
+                                style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "space-between",
+                                    flexWrap: "wrap",
+                                    marginBottom: "16px",
+                                }}
+                            >
                                 <Text style={{ fontSize: "24px" }} strong>
                                     {t("stores:storeProducts")}
                                 </Text>
@@ -148,7 +155,12 @@ export const StoreProducts: React.FC<Props> = ({ record, modalProps }) => {
                             </div>
                             <AntdList
                                 grid={{ gutter: 8, column: 3 }}
-                                className="store-product-list"
+                                style={{
+                                    height: "100%",
+                                    maxHeight: "548px",
+                                    overflow: "auto",
+                                    paddingRight: "4px",
+                                }}
                                 {...listProps}
                                 dataSource={mergedData}
                                 renderItem={(item) => (
@@ -161,7 +173,14 @@ export const StoreProducts: React.FC<Props> = ({ record, modalProps }) => {
                             />
                         </Col>
                         <Col xs={0} sm={6}>
-                            <div className="store-product-tag-header">
+                            <div
+                                style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    height: "40px",
+                                    marginBottom: "16px",
+                                }}
+                            >
                                 <Text style={{ fontWeight: 500 }}>
                                     {t("stores:tagFilterDescription")}
                                 </Text>
