@@ -70,7 +70,7 @@ export const MyCloneComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/resources/posts/create/1`.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/create/1`.
 
 :::note
 **`<CloneButton>`** component reads the id information from the route by default.
@@ -87,7 +87,7 @@ export const MyCloneComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/resources/categories/create/2`.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/create/2`.
 
 ## API Reference
 

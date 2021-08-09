@@ -65,7 +65,7 @@ const { formProps, saveButtonProps } = useForm<IPost>();
 
 `formProps` includes all necessary values to manage Ant Design Form components.
 
-In the example if you navigate to `/resources/posts/edit/1234` it will manage the data of the post with id of `1234` in an editing context. See [Actions](#actions) on how `useForm` determines this is an editing context.
+In the example if you navigate to `/posts/edit/1234` it will manage the data of the post with id of `1234` in an editing context. See [Actions](#actions) on how `useForm` determines this is an editing context.
 
 Since this is an edit form it will fill the form with the data of the post with id of `1234` and then the form will be ready to edit further and submit the changes.
 
@@ -78,7 +78,7 @@ Submit functionality is provided by `saveButtonProps` which includes all of the 
 `useForm` can handle edit, create and clone actions.
 
 :::tip
-By default it determines the action from route. In the example, the route is `/resources/posts/edit/1234` thus this is an editing form.
+By default it determines the action from route. In the example, the route is `/posts/edit/1234` thus this is an editing form.
 :::
 
 It can take an `action` parameter for the situations where it isn't possible to determine the action from route i.e. using a form in a modal, using a custom route.
@@ -103,7 +103,7 @@ const { formProps, saveButtonProps } = useForm({ action: "edit" });
 
 When creating a new record, `useForm` can initialize the form with the data of an existing record.
 
-`useForm` works on clone mode when a route has a `create` and `id` parameters like this `resources/create/1234`.
+`useForm` works on clone mode when a route has a `create` and `id` parameters like this `{{resourceName}}/create/1234`.
 Alternatively, if route doesn't have those parameters, action can be set with `action: "create"` and id can be set with `setCloneId`.
 
 ```tsx
@@ -115,7 +115,7 @@ If you want to show a form in a modal or drawer where necessary route params mig
 :::
 
 :::tip
-`<CloneButton>` can be used to navigate to a create route with an id like this `resources/create/1234`.
+`<CloneButton>` can be used to navigate to a create route with an id like this `{{resourceName}}/create/1234`.
 
 ```tsx
 <CloneButton recordItemId={record.id} />

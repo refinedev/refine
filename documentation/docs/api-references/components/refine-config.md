@@ -160,7 +160,7 @@ List query parameter values can be edited manually by typing directly in the URL
 When `syncWithLocation` is active, URL on the listing page shows query parameters like below:
 
 ```
-/resources/posts?current=1&pageSize=8&sort[]=createdAt&order[]=desc
+/posts?current=1&pageSize=8&sort[]=createdAt&order[]=desc
 ```
 
 Users are able to change current page, items count per page, sort and filter parameters.

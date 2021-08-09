@@ -62,7 +62,7 @@ export const MyCreateComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `create` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect to `/resources/posts/create`.
+Clicking the button will trigger the `create` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect to `/posts/create`.
 
 ## API Reference
 

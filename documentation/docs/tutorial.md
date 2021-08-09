@@ -254,7 +254,7 @@ export const App: React.FC = () => {
 A `<Resource/>` is a child component of `<Refine/>` representing an API Endpoint. The `name` property of `<Resource/>` should match one of the endpoints in your API!
 :::
 
-Instead of showing the welcome page, the application should redirect now? to an URL defined by the `name` property. Open your application to check that the URL is routed to **/resources/posts**:
+Instead of showing the welcome page, the application should redirect now? to an URL defined by the `name` property. Open your application to check that the URL is routed to **/posts**:
 
 <>
 
