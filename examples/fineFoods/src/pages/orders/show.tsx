@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import {
     Row,
     Col,
@@ -18,10 +19,12 @@ import {
     List,
     Skeleton,
 } from "@pankod/refine";
+import GoogleMapReact from "google-map-react";
 import dayjs from "dayjs";
 
+import { MapMarker } from "components/map";
+
 import { IEvent, IOrder, IProduct } from "interfaces";
-import { ReactNode } from "react";
 
 import "./style.css";
 
@@ -35,8 +38,6 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     const { data } = queryResult;
     const { mutate } = useUpdate();
     const record = data?.data;
-
-    console.log("record", record);
 
     const currentBreakPoints = Object.entries(screens)
         .filter((screen) => !!screen[1])
@@ -279,15 +280,39 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     );
 
     return (
-        <Row gutter={[16, 16]}>
-            <Col>
-                <Space size={20} direction="vertical">
-                    {renderOrderSteps()}
-                    <img width="100%" src="/images/map.png" />
-                    {renderCourierInfo()}
-                </Space>
-                {renderDeliverables()}
-            </Col>
-        </Row>
+        <>
+            <Space size={20} direction="vertical" style={{ width: "100%" }}>
+                {renderOrderSteps()}
+                <div style={{ height: "500px", width: "100%" }}>
+                    <GoogleMapReact
+                        bootstrapURLKeys={{
+                            key: process.env.REACT_APP_MAP_ID,
+                        }}
+                        defaultCenter={{
+                            lat: 40.73061,
+                            lng: -73.935242,
+                        }}
+                        defaultZoom={12}
+                    >
+                        <MapMarker
+                            key={`user-marker-${record?.user.id}`}
+                            lat={record?.adress.coordinate[0]}
+                            lng={record?.adress.coordinate[1]}
+                        >
+                            <img src="/images/map/user.svg" />
+                        </MapMarker>
+                        <MapMarker
+                            key={`store-marker-${record?.store.id}`}
+                            lat={record?.store.address.coordinate[0]}
+                            lng={record?.store.address.coordinate[1]}
+                        >
+                            <img src="/images/map/courier.svg" />
+                        </MapMarker>
+                    </GoogleMapReact>
+                </div>
+                {renderCourierInfo()}
+            </Space>
+            {renderDeliverables()}
+        </>
     );
 };
