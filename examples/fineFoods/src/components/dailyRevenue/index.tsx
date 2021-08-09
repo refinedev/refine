@@ -29,31 +29,27 @@ export const DailyRevenue: React.FC = () => {
     };
 
     const url = `${API_URL}/dailyRevenue`;
-    const { data, isLoading } = useCustom<ISalesChart[]>(url, "get", {
+    const { data, isLoading } = useCustom<{
+        data: ISalesChart[];
+        total: number;
+        trend: number;
+    }>(url, "get", {
         query,
     });
 
-    const total = useMemo(
-        () =>
-            data?.data.reduce((acc, item) => {
-                return acc + item.value;
-            }, 0) || 0,
-        [data],
-    );
+    console.log("dailyrevenue data:", data);
 
     const { Text } = Typography;
     const { RangePicker } = DatePicker;
 
     const config = useMemo(() => {
         const config: LineConfig = {
-            data: data?.data || [],
+            data: data?.data.data || [],
             loading: isLoading,
             padding: "auto",
             xField: "date",
             yField: "value",
-            // seriesField: "title",
             tooltip: {
-                title: (date) => dayjs(date).format("LL"),
                 showCrosshairs: false,
                 marker: { fill: "#D94BF2" },
                 customContent: (title, data) => {
@@ -85,8 +81,6 @@ export const DailyRevenue: React.FC = () => {
         return config;
     }, [data]);
 
-    console.log({ config });
-
     return (
         <div style={{ height: 222 }}>
             <div className="title-area">
@@ -110,10 +104,13 @@ export const DailyRevenue: React.FC = () => {
                                 style: "currency",
                                 notation: "compact",
                             }}
-                            value={total}
+                            value={data?.data.total ?? 0}
                         />
-                        <img src="images/increase.svg" />
-                        {/* <img src="images/decrease.svg" /> */}
+                        {(data?.data?.trend ?? 0) > 0 ? (
+                            <img src="images/increase.svg" />
+                        ) : (
+                            <img src="images/decrease.svg" />
+                        )}
                     </div>
                 </div>
 
