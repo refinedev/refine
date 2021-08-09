@@ -11,7 +11,9 @@ import {
     Typography,
     Space,
     Radio,
+    InputProps,
 } from "@pankod/refine";
+import InputMask from "react-input-mask";
 
 const { Text } = Typography;
 
@@ -81,6 +83,7 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                             rules={[
                                 {
                                     required: true,
+                                    type: "email",
                                 },
                             ]}
                         >
@@ -95,7 +98,9 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                                 },
                             ]}
                         >
-                            <Input />
+                            <InputMask mask="(999) 999 99 99" alwaysShowMask>
+                                {(props: InputProps) => <Input {...props} />}
+                            </InputMask>
                         </Form.Item>
                         <Form.Item
                             label={t("stores:fields.isActive")}

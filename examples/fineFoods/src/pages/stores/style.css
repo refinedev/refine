@@ -38,6 +38,7 @@
 }
 
 .store-product-list {
+    height: 100%;
     max-height: 548px;
     overflow: auto;
     padding-right: 4px;

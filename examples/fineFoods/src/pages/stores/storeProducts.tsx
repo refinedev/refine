@@ -15,7 +15,7 @@ import {
     InputNumber,
     Button,
     Space,
-    Spin,
+    Skeleton,
     Form,
     CrudFilters,
     useUpdate,
@@ -110,6 +110,7 @@ export const StoreProducts: React.FC<Props> = ({ record, modalProps }) => {
     } = useDrawerForm<IProduct>({
         action: "create",
         resource: "products",
+        redirect: false,
     });
 
     const {
@@ -229,7 +230,12 @@ export const StoreProducts: React.FC<Props> = ({ record, modalProps }) => {
 
     return (
         <>
-            <Modal {...modalProps} width={1000} footer={null}>
+            <Modal
+                {...modalProps}
+                width={1000}
+                footer={null}
+                bodyStyle={{ minHeight: "500px" }}
+            >
                 <Form
                     {...searchFormProps}
                     onValuesChange={() => searchFormProps.form?.submit()}
@@ -323,31 +329,33 @@ const ProductCategoryFilter: React.FC<{
         }
     };
 
+    if (categoryIsLoading) {
+        return <Skeleton active paragraph={{ rows: 6 }} />;
+    }
+
     return (
-        <Spin spinning={categoryIsLoading}>
-            <Space wrap>
+        <Space wrap>
+            <Button
+                shape="round"
+                type={filterCategories.length === 0 ? "primary" : "default"}
+                onClick={() => setFilterCategories([])}
+            >
+                {t("stores:all")}
+            </Button>
+            {categoryData?.data.map((category) => (
                 <Button
+                    key={category.id}
                     shape="round"
-                    type={filterCategories.length === 0 ? "primary" : "default"}
-                    onClick={() => setFilterCategories([])}
+                    type={
+                        filterCategories.includes(category.id)
+                            ? "primary"
+                            : "default"
+                    }
+                    onClick={() => toggleFilterCategory(category.id)}
                 >
-                    {t("stores:all")}
+                    {category.title}
                 </Button>
-                {categoryData?.data.map((category) => (
-                    <Button
-                        key={category.id}
-                        shape="round"
-                        type={
-                            filterCategories.includes(category.id)
-                                ? "primary"
-                                : "default"
-                        }
-                        onClick={() => toggleFilterCategory(category.id)}
-                    >
-                        {category.title}
-                    </Button>
-                ))}
-            </Space>
-        </Spin>
+            ))}
+        </Space>
     );
 };

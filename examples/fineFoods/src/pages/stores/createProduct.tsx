@@ -5,8 +5,10 @@ import {
     Form,
     FormProps,
     Input,
+    InputNumber,
     Radio,
     Select,
+    Space,
     ButtonProps,
     useTranslate,
     Avatar,
@@ -63,13 +65,7 @@ export const CreateProduct: React.FC<Props> = ({
                                 maxCount={1}
                                 accept=".png"
                             >
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        alignItems: "center",
-                                    }}
-                                >
+                                <Space direction="vertical" size={2}>
                                     <Avatar
                                         style={{
                                             width: "100%",
@@ -93,7 +89,7 @@ export const CreateProduct: React.FC<Props> = ({
                                     <Text style={{ fontSize: "12px" }}>
                                         {t("products:fields.images.validation")}
                                     </Text>
-                                </div>
+                                </Space>
                             </Upload.Dragger>
                         </Form.Item>
                     </Form.Item>
@@ -125,10 +121,11 @@ export const CreateProduct: React.FC<Props> = ({
                         rules={[
                             {
                                 required: true,
+                                type: "number",
                             },
                         ]}
                     >
-                        <Input />
+                        <InputNumber formatter={(value) => `$ ${value}`} />
                     </Form.Item>
                     <Form.Item
                         label={t("products:fields.category")}
