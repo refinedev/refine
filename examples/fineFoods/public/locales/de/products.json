@@ -12,7 +12,8 @@
     "category": "Kategory",
     "images": {
       "label": "Görseller",
-      "description": "Yüklemek için avatar resmini bu alana tıklayın veya sürükleyin."
+      "description": "Ürün resmi ekleyin",
+      "validation": "1080x1080 px olmalı"
     },
     "createdAt": "Oluşturma Tarihi"
   }

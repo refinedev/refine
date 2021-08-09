@@ -13,7 +13,7 @@ import {
     ProductList,
     ProductShow,
 } from "./pages/products";
-import { StoreCreate, StoreEdit, StoreList, StoreShow } from "./pages/stores";
+import { StoreCreate, StoreEdit, StoreList } from "./pages/stores";
 import { CategoryList } from "./pages/categories";
 import { ReviewsList } from "./pages/reviews";
 import { useTranslation } from "react-i18next";
@@ -76,7 +76,6 @@ const App: React.FC = () => {
                 list={StoreList}
                 edit={StoreEdit}
                 create={StoreCreate}
-                show={StoreShow}
             />
             <Resource
                 name="categories"

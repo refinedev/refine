@@ -12,14 +12,13 @@ import {
     Avatar,
     useNavigation,
     useModal,
-    Modal,
     useShow,
 } from "@pankod/refine";
 
 const { FormOutlined } = Icons;
 
 import { IStore } from "interfaces";
-import { ProductEdit } from "./";
+import { StoreProducts } from "./";
 
 export const StoreList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IStore>();
@@ -148,9 +147,9 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                     />
                 </Table>
             </List>
-            <Modal {...modalProps} width={1000} footer={null}>
-                {record && <ProductEdit record={record} />}
-            </Modal>
+            {record && (
+                <StoreProducts modalProps={modalProps} record={record} />
+            )}
         </>
     );
 };

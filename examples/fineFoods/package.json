@@ -26,6 +26,7 @@
     "react": "file:../../node_modules/react",
     "react-dom": "file:../../node_modules/react-dom",
     "react-i18next": "^11.8.11",
+    "react-input-mask": "^2.0.4",
     "react-markdown": "^6.0.1",
     "react-mde": "^11.1.0",
     "react-scripts": "4.0.3",
@@ -46,6 +47,7 @@
   ],
   "devDependencies": {
     "@types/leaflet": "^1.7.1",
-    "@types/lodash": "^4.14.171"
+    "@types/lodash": "^4.14.171",
+    "@types/react-input-mask": "^3.0.1"
   }
 }
