@@ -29,7 +29,7 @@ import { ICourier } from "interfaces";
 
 export const CourierList: React.FC<IResourceComponentsProps> = () => {
     const apiUrl = useApiUrl();
-    const { edit } = useNavigation();
+    const { show, edit } = useNavigation();
     const t = useTranslate();
 
     const { tableProps } = useTable<ICourier>({
@@ -41,10 +41,14 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
         ],
     });
 
-    const { formProps, drawerProps, show, saveButtonProps } =
-        useDrawerForm<ICourier>({
-            action: "create",
-        });
+    const {
+        formProps,
+        drawerProps,
+        show: createDrawerShow,
+        saveButtonProps,
+    } = useDrawerForm<ICourier>({
+        action: "create",
+    });
 
     const {
         formProps: editFormProps,
@@ -117,7 +121,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
         <List
             createButtonProps={{
                 onClick: () => {
-                    show();
+                    createDrawerShow();
                 },
                 children: t("common:buttons.add").toUpperCase(),
             }}
@@ -329,7 +333,20 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                 </Create>
             </Drawer>
 
-            <Table {...tableProps} rowKey="id">
+            <Table
+                {...tableProps}
+                rowKey="id"
+                scroll={{
+                    x: true,
+                }}
+                onRow={(record) => {
+                    return {
+                        onClick: () => {
+                            show("couriers", record.id);
+                        },
+                    };
+                }}
+            >
                 <Table.Column
                     key="name"
                     title={t("couriers:fields.name")}
