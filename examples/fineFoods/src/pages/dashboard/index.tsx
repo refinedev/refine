@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import {
     DailyRevenue,
     DailyOrders,
+    NewCustomers,
     DeliveryMap,
     DeliverySchedule,
     Orders,
@@ -12,7 +13,7 @@ import {
     SalesChart,
 } from "components";
 
-export const DashbaordPage: React.FC = () => {
+export const DashboardPage: React.FC = () => {
     const { t } = useTranslation();
 
     return (
@@ -56,13 +57,13 @@ export const DashbaordPage: React.FC = () => {
                                 padding: 10,
                             }}
                             style={{
-                                background: "url(images/daily-revenue.png)",
-                                backgroundColor: "#3a233c",
+                                background: "url(images/new-orders.png)",
+                                backgroundColor: "#3d335b",
                                 backgroundRepeat: "no-repeat",
                                 backgroundPosition: "right",
                             }}
                         >
-                            <DailyOrders />
+                            <NewCustomers />
                         </Card>
                     </Col>
                 </Row>

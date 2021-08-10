@@ -7,5 +7,6 @@ export * from "./salesChart";
 export * from "./orders";
 export * from "./dailyRevenue";
 export * from "./dailyOrders";
+export * from "./newCustomers";
 export * from "./recentActivity";
 export * from "./orderStatus";

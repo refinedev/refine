@@ -21,6 +21,9 @@
   "dailyOrders": {
     "title": "Daily Orders"
   },
+  "newCustomers": {
+    "title": "New Customers"
+  },
   "recentActivity": {
     "title": "Recent Activity"
   }

@@ -1,6 +1,7 @@
 .title-area {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
 }
 .title-area > .amount {
     display: flex;
@@ -10,13 +11,12 @@
     color: #ffffff;
 }
 .title-area > .amount > .number {
-   display: flex;
-   align-items: center;
-   line-height: 1;
-
+    display: flex;
+    align-items: center;
+    line-height: 1;
 }
 .title-area > .amount > .number > img {
-  margin-left: 5px;
+    margin-left: 5px;
 }
 
 .range-picker {
@@ -24,9 +24,10 @@
 }
 
 .range-picker > .ant-picker-input > input {
-    color:#ffffff !important;
+    color: #ffffff !important;
 }
 
-.range-picker .ant-picker-separator, .range-picker .ant-picker-suffix {
+.range-picker .ant-picker-separator,
+.range-picker .ant-picker-suffix {
     color: #ffffff;
 }

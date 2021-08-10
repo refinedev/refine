@@ -3,18 +3,20 @@ import { Typography, useApiUrl, useCustom, useTranslate } from "@pankod/refine";
 import { Column, ColumnConfig } from "@ant-design/charts";
 
 import { ISalesChart } from "interfaces";
-import "./style.css";
+import "./style.less";
 
-export const DailyOrders: React.FC = () => {
+export const NewCustomers: React.FC = () => {
     const t = useTranslate();
     const API_URL = useApiUrl();
 
-    const url = `${API_URL}/dailyOrders`;
+    const url = `${API_URL}/newCustomers`;
     const { data, isLoading } = useCustom<{
         data: ISalesChart[];
         total: number;
         trend: number;
     }>(url, "get");
+
+    console.log("newcustomers data:", data);
 
     const { Text } = Typography;
 
@@ -61,35 +63,25 @@ export const DailyOrders: React.FC = () => {
 
     return (
         <div style={{ height: 222 }}>
-            <div className="title-area">
-                <Text
-                    style={{
-                        fontWeight: 800,
-                        fontSize: 24,
-                    }}
-                >
-                    {t("dashboard:dailyOrders.title")}
+            <div className="header">
+                <Text className="header__title">
+                    {t("dashboard:newCustomers.title")}
                 </Text>
 
-                <div className="number">
-                    <Text
-                        style={{
-                            fontSize: 36,
-                            fontWeight: 900,
-                        }}
-                    >
-                        {data?.data.total ?? 0}{" "}
-                    </Text>
-
-                    {(data?.data?.trend ?? 0) > 0 ? (
-                        <img src="images/increase.svg" />
-                    ) : (
-                        <img src="images/decrease.svg" />
-                    )}
+                <div className="header__numbers">
+                    <Text>{data?.data.total ?? 0}</Text>
+                    <div>
+                        <Text>{data?.data.trend ?? 0}%</Text>
+                        {(data?.data?.trend ?? 0) > 0 ? (
+                            <img src="images/increase.svg" />
+                        ) : (
+                            <img src="images/decrease.svg" />
+                        )}
+                    </div>
                 </div>
             </div>
             <Column
-                style={{ marginTop: 12, padding: 0, height: 162 }}
+                style={{ padding: 0, height: 162 }}
                 appendPadding={10}
                 autoFit={false}
                 {...config}
