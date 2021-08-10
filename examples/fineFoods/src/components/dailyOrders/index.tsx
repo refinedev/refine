@@ -60,7 +60,7 @@ export const DailyOrders: React.FC = () => {
     }, [data]);
 
     return (
-        <div style={{ height: 222 }}>
+        <div className="daily-order-wrapper">
             <div className="title-area">
                 <Text
                     style={{
@@ -91,7 +91,6 @@ export const DailyOrders: React.FC = () => {
             <Column
                 style={{ marginTop: 12, padding: 0, height: 162 }}
                 appendPadding={10}
-                autoFit={false}
                 {...config}
             />
         </div>

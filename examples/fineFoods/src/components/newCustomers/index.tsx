@@ -62,7 +62,7 @@ export const NewCustomers: React.FC = () => {
     }, [data]);
 
     return (
-        <div style={{ height: 222 }}>
+        <div className="new-customers-wrapper">
             <div className="header">
                 <Text className="header__title">
                     {t("dashboard:newCustomers.title")}
@@ -83,7 +83,6 @@ export const NewCustomers: React.FC = () => {
             <Column
                 style={{ padding: 0, height: 162 }}
                 appendPadding={10}
-                autoFit={false}
                 {...config}
             />
         </div>

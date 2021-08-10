@@ -31,3 +31,14 @@
 .range-picker .ant-picker-suffix {
     color: #ffffff;
 }
+
+@media screen and (max-width: 576px) {
+    .title-area > .amount span {
+        font-size: 16px !important;
+        line-height: 1.2;
+    }
+
+    .title-area > .amount > .number > span {
+        font-size: 30px !important;
+    }
+}

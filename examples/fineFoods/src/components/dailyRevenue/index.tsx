@@ -149,13 +149,7 @@ export const DailyRevenue: React.FC = () => {
                     format="YYYY/MM/DD"
                 />
             </div>
-            <Line
-                padding={0}
-                appendPadding={10}
-                height={162}
-                autoFit={false}
-                {...config}
-            />
+            <Line padding={0} appendPadding={10} height={162} {...config} />
         </div>
     );
 };

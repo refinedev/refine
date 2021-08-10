@@ -15,3 +15,15 @@
     color: #ffffff;
     margin-right: 5px;
 }
+
+@media screen and (max-width: 576px) {
+    .title-area > span {
+        font-size: 16px !important;
+        line-height: 1.2;
+    }
+
+    .title-area > .number > span {
+        font-size: 30px !important;
+        line-height: 0.9;
+    }
+}
