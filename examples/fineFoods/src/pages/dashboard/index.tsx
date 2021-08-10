@@ -11,6 +11,7 @@ import {
     OrdersChart,
     RecentActivity,
     SalesChart,
+    OrderTimeline,
 } from "components";
 
 export const DashboardPage: React.FC = () => {
@@ -77,31 +78,13 @@ export const DashboardPage: React.FC = () => {
                         style={{ width: "100%" }}
                     >
                         <DeliveryMap />
-                        <DeliverySchedule />
                     </Space>
                 </Card>
-
-                <Card style={{ marginBottom: 10 }}>
-                    <OrdersChart />
-                </Card>
-
-                <Card style={{ marginBottom: 10 }}>
-                    <SalesChart />
-                </Card>
             </Col>
-            <Col md={8} xs={24}>
-                <Space direction="vertical" style={{ width: "100%" }}>
-                    <Card>
-                        <Orders />
-                    </Card>
-
-                    <Card>
-                        <DailyRevenue />
-                    </Card>
-                    <Card>
-                        <RecentActivity />
-                    </Card>
-                </Space>
+            <Col md={8}>
+                <Card title={t("dashboard.timeline.title")}>
+                    <OrderTimeline />
+                </Card>
             </Col>
         </Row>
     );

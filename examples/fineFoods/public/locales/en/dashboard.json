@@ -26,5 +26,8 @@
   },
   "recentActivity": {
     "title": "Recent Activity"
+  },
+  "timeline": {
+    "title": "Timeline"
   }
 }

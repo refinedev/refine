@@ -76,12 +76,15 @@ export const useSimpleList = <
     const [pageSize, setPageSize] = useState(defaultPageSize);
     const [filters, setFilters] = useState<CrudFilters>([]);
 
+    console.log("listprops 222", listProps.pagination);
+
     const queryResult = useList<TData>(
         resource.name,
         {
             pagination: {
                 current,
                 pageSize,
+                ...listProps.pagination,
             },
             filters,
             sort: sorter,
@@ -91,6 +94,8 @@ export const useSimpleList = <
         errorNotification,
     );
     const { data, isFetching } = queryResult;
+
+    console.log("data", data);
 
     const onChange = (page: number, pageSize?: number): void => {
         setCurrent(page);

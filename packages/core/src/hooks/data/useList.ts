@@ -47,6 +47,8 @@ export const useList = <
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
 
+    console.log("config", config);
+
     const queryResponse = useQuery<GetListResponse<TData>, TError>(
         [`resource/list/${resource}`, { ...config }],
         () => getList<TData>(resource, { ...config }),
