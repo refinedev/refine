@@ -29,7 +29,11 @@ const App: React.FC = () => {
             )}
             Title={() => (
                 <Link to="/" style={{ float: "left", marginRight: "10px" }}>
-                    <img src="/refine.svg" alt="Refine" />
+                    <img
+                        src="/refine.svg"
+                        alt="Refine"
+                        style={{ width: "100px" }}
+                    />
                 </Link>
             )}
         >
