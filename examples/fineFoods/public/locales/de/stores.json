@@ -15,7 +15,8 @@
   "buttons": {
     "editProducts": "Ürünleri Düzenle",
     "addProduct": "Ürün Ekle",
-    "outOfStock": "Stoğu Bitir"
+    "outOfStock": "Stoğu Bitir",
+    "editProduct": "Ürünü Düzenle"
   },
   "selectLocation": "Harita üzerinde bir lokasyon seç",
   "storeProducts": "Mağaza Ürünleri",

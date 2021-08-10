@@ -1,12 +1,11 @@
 import { getTitleOfFormItem, exactMatchRegexp } from "../integration/utils";
 describe("edit page", () => {
     beforeEach(() => {
-        cy.visit("/resources/posts");
+        cy.visit("/posts");
 
-        cy.intercept("GET", "/categories?id=*").as("getCategory");
+        cy.intercept("GET", "/categories*").as("getCategory");
         cy.intercept("GET", "/posts/*").as("getPost");
 
-        cy.wait("@getCategory");
         cy.get(".ant-table-row")
             .first()
             .find("button.ant-btn")

@@ -57,7 +57,7 @@ describe("Sider", () => {
         });
 
         fireEvent.click(getByText("Posts"));
-        expect(mHistory.push).toBeCalledWith("/resources/posts", undefined);
+        expect(mHistory.push).toBeCalledWith("/posts", undefined);
     });
 
     it("should work logout menu item click", async () => {

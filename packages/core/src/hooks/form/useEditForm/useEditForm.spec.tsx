@@ -9,12 +9,12 @@ import { useEditForm } from "./useEditForm";
 
 const Wrapper = TestWrapper({
     dataProvider: MockJSONServer,
-    routerInitialEntries: ["/resources/posts/edit/1"],
+    routerInitialEntries: ["/posts/edit/1"],
 });
 
 const WrapperWithRoute: React.FC = ({ children }) => (
     <Wrapper>
-        <Route path="/resources/:resource/:action/:id">{children}</Route>
+        <Route path="/:resource/:action/:id">{children}</Route>
     </Wrapper>
 );
 describe("useEditForm Hook", () => {

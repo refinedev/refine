@@ -2,7 +2,7 @@ import { exactMatchRegexp } from "../integration/utils";
 
 describe("list page", () => {
     beforeEach(() => {
-        cy.visit("/resources/posts");
+        cy.visit("/posts");
     });
 
     describe("pagination", () => {
@@ -44,11 +44,11 @@ describe("list page", () => {
         });
 
         it("should navigate to create page route on create button click", () => {
-            cy.location("pathname").should("eq", "/resources/posts");
+            cy.location("pathname").should("eq", "/posts");
 
             cy.get("@createButton").click();
 
-            cy.location("pathname").should("eq", "/resources/posts/create");
+            cy.location("pathname").should("eq", "/posts/create");
         });
     });
 
@@ -67,7 +67,7 @@ describe("list page", () => {
         });
 
         it("should navigate to edit page route on edit button click", () => {
-            cy.location("pathname").should("eq", "/resources/posts");
+            cy.location("pathname").should("eq", "/posts");
 
             cy.get("@firstRow")
                 .find(".ant-table-cell")
@@ -77,10 +77,7 @@ describe("list page", () => {
 
                     cy.get("@editButton").click();
 
-                    cy.location("pathname").should(
-                        "eq",
-                        `/resources/posts/edit/${id}`,
-                    );
+                    cy.location("pathname").should("eq", `/posts/edit/${id}`);
                 });
         });
     });
@@ -100,7 +97,7 @@ describe("list page", () => {
         });
 
         it("should navigate to show page route on show button click", () => {
-            cy.location("pathname").should("eq", "/resources/posts");
+            cy.location("pathname").should("eq", "/posts");
 
             cy.get("@firstRow")
                 .find(".ant-table-cell")
@@ -110,10 +107,7 @@ describe("list page", () => {
 
                     cy.get("@showButton").click();
 
-                    cy.location("pathname").should(
-                        "eq",
-                        `/resources/posts/show/${id}`,
-                    );
+                    cy.location("pathname").should("eq", `/posts/show/${id}`);
                 });
         });
     });

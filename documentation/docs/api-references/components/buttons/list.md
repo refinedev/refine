@@ -72,7 +72,7 @@ export const MyListComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `list` method of [`useNavigation`](api-references/hooks/navigation/useNavigation.md) and then redirect to `/resources/categories`.
+Clicking the button will trigger the `list` method of [`useNavigation`](api-references/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
 
 ## API Reference
 
