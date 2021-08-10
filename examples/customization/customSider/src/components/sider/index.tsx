@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import {
     AntdLayout,
     Menu,
-    Link,
     useMenu,
     useTitle,
+    useNavigation,
     Grid,
+    Icons,
+    useNavigation,
 } from "@pankod/refine";
 
 export const CustomSider: React.FC = () => {
@@ -13,6 +15,7 @@ export const CustomSider: React.FC = () => {
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
+    const { push } = useNavigation();
 
     return (
         <AntdLayout.Sider
@@ -23,12 +26,36 @@ export const CustomSider: React.FC = () => {
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
         >
             <Title collapsed={collapsed} />
-            <Menu selectedKeys={[selectedKey]} mode="inline">
-                {menuItems.map(({ icon, route, label }) => (
-                    <Menu.Item key={route} icon={icon}>
-                        <Link to={route}>{label}</Link>
-                    </Menu.Item>
-                ))}
+            <Menu
+                selectedKeys={[selectedKey]}
+                mode="inline"
+                onClick={({ key }) => {
+                    push(key as string);
+                }}
+            >
+                {menuItems.map(({ icon, label, route }) => {
+                    const isSelected = route === selectedKey;
+                    return (
+                        <Menu.Item
+                            style={{
+                                fontWeight: isSelected ? "bold" : "normal",
+                            }}
+                            key={route}
+                            icon={icon}
+                        >
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                }}
+                            >
+                                {label}
+                                {isSelected && <Icons.RightOutlined />}
+                            </div>
+                        </Menu.Item>
+                    );
+                })}
             </Menu>
         </AntdLayout.Sider>
     );
