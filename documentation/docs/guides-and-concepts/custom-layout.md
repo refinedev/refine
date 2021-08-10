@@ -99,10 +99,10 @@ export const CustomSider: React.FC = () => {
 };
 ```
 
-Here, we use [`useMenu` hook][useMenu] to get the list of current resources and print it.
+Here, we use [`useMenu`][useMenu] hook to get the list of current resources and print it.
 
 :::info
-By default, [`<Sider>`][Sider] is responsible for rendering [`<Title>`][Title]. It gets this component (configured by [`<Refine>`][Refine] and/or [`<LayoutWrapper>`][LayoutWrapper]) by [`useTitle` hook][useTitle].
+By default, [`<Sider>`][Sider] is responsible for rendering [`<Title>`][Title]. It gets this component (configured by [`<Refine>`][Refine] and/or [`<LayoutWrapper>`][LayoutWrapper]) by [`useTitle`][useTitle] hook.
 :::
 
 ## Live Codesandbox Example
