@@ -70,10 +70,13 @@ export interface ICourier {
     id: string;
     name: string;
     surname: string;
+    email: string;
     gender: string;
     gsm: string;
     createdAt: string;
-    isActive: boolean;
+    iban: string;
+    licensePlate: string;
+    address: string;
     avatar: IFile[];
 }
 export interface IOrder {
