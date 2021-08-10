@@ -5,8 +5,8 @@ title: Strapi
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/strapi)
 
-**Username**: demo@mail.com  
-**Password**: refine
+**Username**: demo@refine.dev  
+**Password**: demodemo
 
 <iframe src="https://codesandbox.io/embed/refine-strapi-example-im2bq?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
