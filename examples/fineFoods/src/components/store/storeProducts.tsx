@@ -14,6 +14,7 @@ import {
     useDrawerForm,
     Modal,
     ModalProps,
+    HttpError,
 } from "@pankod/refine";
 
 const { Text } = Typography;
@@ -40,6 +41,7 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
 
     const { listProps, searchFormProps, queryResult } = useSimpleList<
         IProduct,
+        HttpError,
         { name: string; categories: string[] }
     >({
         resource: "products",
