@@ -161,7 +161,11 @@ export const useDeleteMany = <
                                     ...previousQuery,
                                     data: (data ?? []).filter(
                                         (record: TData) =>
-                                            !ids.includes(record.id!),
+                                            !ids
+                                                .map((p) => p.toString())
+                                                .includes(
+                                                    record.id!.toString(),
+                                                ),
                                     ),
                                     total: total - ids.length,
                                 });

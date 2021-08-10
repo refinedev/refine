@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, notification } from "antd";
+import { Button, notification, Skeleton } from "antd";
 
 import { ActionTypes } from "@contexts/notification";
 import { useCancelNotification, useTranslate } from "@hooks";
