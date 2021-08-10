@@ -43,6 +43,11 @@ export type useSimpleListReturnType<
  * All features such as pagination, sorting come out of the box.
  *
  * @see {@link https://refine.dev/docs/api-references/hooks/show/useSimpleList} for more details.
+ *
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TSearchVariables - Antd form values
+ *
  */
 export const useSimpleList = <
     TData extends BaseRecord = BaseRecord,
