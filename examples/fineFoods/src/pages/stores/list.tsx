@@ -65,7 +65,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                     setShowId(id);
                 }}
             >
-                {t("stores:buttons.editProducts")}
+                {t("stores:buttons.edit")}
             </Menu.Item>
         </Menu>
     );
