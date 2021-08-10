@@ -23,13 +23,13 @@ const { Text } = Typography;
 
 import { ICategory } from "interfaces";
 
-type Props = {
+type CreateProductProps = {
     drawerProps: DrawerProps;
     formProps: FormProps;
     saveButtonProps: ButtonProps;
 };
 
-export const CreateProduct: React.FC<Props> = ({
+export const CreateProduct: React.FC<CreateProductProps> = ({
     drawerProps,
     formProps,
     saveButtonProps,

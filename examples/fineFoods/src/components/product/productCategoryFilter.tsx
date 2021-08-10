@@ -3,12 +3,15 @@ import { useList, useTranslate, Button, Space, Skeleton } from "@pankod/refine";
 
 import { ICategory } from "interfaces";
 
-type Props = {
+type ProductItemProps = {
     value?: string[];
     onChange?: (value: string[]) => void;
 };
 
-export const ProductCategoryFilter: React.FC<Props> = ({ onChange, value }) => {
+export const ProductCategoryFilter: React.FC<ProductItemProps> = ({
+    onChange,
+    value,
+}) => {
     const t = useTranslate();
 
     const [filterCategories, setFilterCategories] = useState<string[]>(

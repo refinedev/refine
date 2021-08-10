@@ -16,13 +16,13 @@ const { CloseCircleOutlined, FormOutlined } = Icons;
 
 import { IProduct } from "interfaces";
 
-type Props = {
+type ProductItemProps = {
     item: IProduct;
     updateStock?: (changedValue: number, clickedProduct: IProduct) => void;
     editShow: (id?: string | undefined) => void;
 };
 
-export const ProductItem: React.FC<Props> = ({
+export const ProductItem: React.FC<ProductItemProps> = ({
     item,
     updateStock,
     editShow,

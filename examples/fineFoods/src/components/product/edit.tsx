@@ -23,13 +23,13 @@ const { Text } = Typography;
 
 import { ICategory } from "interfaces";
 
-type Props = {
+type EditProductProps = {
     drawerProps: DrawerProps;
     formProps: FormProps;
     saveButtonProps: ButtonProps;
 };
 
-export const EditProduct: React.FC<Props> = ({
+export const EditProduct: React.FC<EditProductProps> = ({
     drawerProps,
     formProps,
     saveButtonProps,

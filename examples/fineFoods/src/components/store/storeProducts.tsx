@@ -27,12 +27,15 @@ import {
     ProductCategoryFilter,
 } from "components/product";
 
-type Props = {
+type StoreProductsProps = {
     record: IStore;
     modalProps: ModalProps;
 };
 
-export const StoreProducts: React.FC<Props> = ({ record, modalProps }) => {
+export const StoreProducts: React.FC<StoreProductsProps> = ({
+    record,
+    modalProps,
+}) => {
     const t = useTranslate();
 
     const { listProps, searchFormProps, queryResult } = useSimpleList<
