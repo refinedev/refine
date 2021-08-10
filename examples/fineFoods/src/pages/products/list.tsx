@@ -12,6 +12,7 @@ import {
     Icons,
     Typography,
     useDrawerForm,
+    HttpError,
 } from "@pankod/refine";
 
 const { Text } = Typography;
@@ -31,6 +32,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 
     const { listProps, searchFormProps } = useSimpleList<
         IProduct,
+        HttpError,
         { name: string; categories: string[] }
     >({
         resource: "products",
