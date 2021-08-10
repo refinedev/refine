@@ -21,5 +21,5 @@ export const imageContainer: CSSProperties = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: "16px",
+    marginBottom: "28px",
 };

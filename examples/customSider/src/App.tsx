@@ -1,5 +1,6 @@
-import { Refine, Resource } from "@pankod/refine";
+import { Refine, Resource, Link } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
+
 import "@pankod/refine/dist/styles.min.css";
 import "./index.css";
 
@@ -14,10 +15,29 @@ const App: React.FC = () => {
             dataProvider={dataProvider(API_URL)}
             Sider={CustomSider}
             Title={({ collapsed }) => (
-                <div className="title-container">
-                    {collapsed && <img src="/short-refine.svg" alt="Refine" />}
-                    {!collapsed && <img src="/refine.svg" alt="Refine" />}
-                </div>
+                <Link to="/">
+                    {collapsed ? (
+                        <img
+                            src="/refine-collapsed.svg"
+                            alt="Refine"
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                padding: "12px 24px",
+                            }}
+                        />
+                    ) : (
+                        <img
+                            src="/refine.svg"
+                            alt="Refine"
+                            style={{
+                                width: "200px",
+                                padding: "12px 24px",
+                            }}
+                        />
+                    )}
+                </Link>
             )}
         >
             <Resource name="posts" list={PostList} />
