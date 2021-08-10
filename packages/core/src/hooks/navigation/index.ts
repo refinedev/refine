@@ -19,16 +19,16 @@ export const useNavigation = () => {
         const resourceName = resourceWithRoute(resource);
 
         type === "push"
-            ? history.push(`/resources/${resourceName.route}/create`)
-            : history.replace(`/resources/${resourceName.route}/create`);
+            ? history.push(`/${resourceName.route}/create`)
+            : history.replace(`/${resourceName.route}/create`);
     };
 
     const edit = (resource: string, id: string, type: HistoryType = "push") => {
         const resourceName = resourceWithRoute(resource);
 
         type === "push"
-            ? history.push(`/resources/${resourceName.route}/edit/${id}`)
-            : history.replace(`/resources/${resourceName.route}/edit/${id}`);
+            ? history.push(`/${resourceName.route}/edit/${id}`)
+            : history.replace(`/${resourceName.route}/edit/${id}`);
     };
 
     const clone = (
@@ -39,24 +39,24 @@ export const useNavigation = () => {
         const resourceName = resourceWithRoute(resource);
 
         type === "push"
-            ? history.push(`/resources/${resourceName.route}/create/${id}`)
-            : history.replace(`/resources/${resourceName.route}/create/${id}`);
+            ? history.push(`/${resourceName.route}/create/${id}`)
+            : history.replace(`/${resourceName.route}/create/${id}`);
     };
 
     const show = (resource: string, id: string, type: HistoryType = "push") => {
         const resourceName = resourceWithRoute(resource);
 
         type === "push"
-            ? history.push(`/resources/${resourceName.route}/show/${id}`)
-            : history.replace(`/resources/${resourceName.route}/show/${id}`);
+            ? history.push(`/${resourceName.route}/show/${id}`)
+            : history.replace(`/${resourceName.route}/show/${id}`);
     };
 
     const list = (resource: string, type: HistoryType = "push") => {
         const resourceName = resourceWithRoute(resource);
 
         type === "push"
-            ? history.push(`/resources/${resourceName.route}`)
-            : history.replace(`/resources/${resourceName.route}`);
+            ? history.push(`/${resourceName.route}`)
+            : history.replace(`/${resourceName.route}`);
     };
 
     const push = (path: string, state?: unknown) => {

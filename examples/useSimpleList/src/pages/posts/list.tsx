@@ -11,6 +11,7 @@ import {
     CrudFilters,
     Form,
     DatePicker,
+    HttpError,
 } from "@pankod/refine";
 
 const { RangePicker } = DatePicker;
@@ -21,6 +22,7 @@ import { IPost, ICategory, IPostFilterVariables } from "interfaces";
 export const PostList: React.FC = () => {
     const { listProps, searchFormProps } = useSimpleList<
         IPost,
+        HttpError,
         IPostFilterVariables
     >({
         pagination: {

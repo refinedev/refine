@@ -64,7 +64,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (CreateComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/:resource(${route})/:action(create)/:id?`,
+                path: `/:resource(${route})/:action(create)/:id?`,
                 component: () => (
                     <CreateComponent
                         canCreate={canCreate}
@@ -80,7 +80,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (EditComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/:resource(${route})/:action(edit)/:id`,
+                path: `/:resource(${route})/:action(edit)/:id`,
                 component: () => (
                     <EditComponent
                         canCreate={canCreate}
@@ -96,7 +96,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (ShowComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/:resource(${route})/:action(show)/:id`,
+                path: `/:resource(${route})/:action(show)/:id`,
                 component: () => (
                     <ShowComponent
                         canCreate={canCreate}
@@ -112,7 +112,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (ListComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/:resource(${route})`,
+                path: `/:resource(${route})`,
                 component: () => (
                     <ListComponent
                         canCreate={canCreate}
@@ -149,16 +149,14 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
                                 DashboardPage ? (
                                     <DashboardPage />
                                 ) : (
-                                    <Redirect
-                                        to={`/resources/${resources[0].route}`}
-                                    />
+                                    <Redirect to={`/${resources[0].route}`} />
                                 )
                             }
                         />
                         {[...routes].map((route, i) => (
                             <RouteWithSubRoutes key={i} {...route} />
                         ))}
-                        <Route path="/resources/:resource?/:action?">
+                        <Route path="/:resource?/:action?">
                             {catchAll ?? <ErrorComponent />}
                         </Route>
                         <Route>{catchAll ?? <ErrorComponent />}</Route>

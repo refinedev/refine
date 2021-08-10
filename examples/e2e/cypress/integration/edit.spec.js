@@ -1,7 +1,7 @@
 import { getTitleOfFormItem, exactMatchRegexp } from "../integration/utils";
 describe("edit page", () => {
     beforeEach(() => {
-        cy.visit("/resources/posts");
+        cy.visit("/posts");
 
         cy.intercept("GET", "/categories*").as("getCategory");
         cy.intercept("GET", "/posts/*").as("getPost");

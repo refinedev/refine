@@ -27,73 +27,73 @@ describe("useNavigation Hook", () => {
     it("navigation create with push", async () => {
         result.current.create("posts", "push");
 
-        expect(mHistory.push).toBeCalledWith("/resources/posts/create");
+        expect(mHistory.push).toBeCalledWith("/posts/create");
     });
 
     it("navigation create with replace", async () => {
         result.current.create("posts", "replace");
 
-        expect(mHistory.replace).toBeCalledWith("/resources/posts/create");
+        expect(mHistory.replace).toBeCalledWith("/posts/create");
     });
 
     it("navigation edit with push", async () => {
         result.current.edit("posts", "1", "push");
 
-        expect(mHistory.push).toBeCalledWith("/resources/posts/edit/1");
+        expect(mHistory.push).toBeCalledWith("/posts/edit/1");
     });
 
     it("navigation edit with replace", async () => {
         result.current.edit("posts", "1", "replace");
 
-        expect(mHistory.replace).toBeCalledWith("/resources/posts/edit/1");
+        expect(mHistory.replace).toBeCalledWith("/posts/edit/1");
     });
 
     it("navigation clone with push", async () => {
         result.current.clone("posts", "1", "push");
 
-        expect(mHistory.push).toBeCalledWith("/resources/posts/create/1");
+        expect(mHistory.push).toBeCalledWith("/posts/create/1");
     });
 
     it("navigation clone with replace", async () => {
         result.current.clone("posts", "1", "replace");
 
-        expect(mHistory.replace).toBeCalledWith("/resources/posts/create/1");
+        expect(mHistory.replace).toBeCalledWith("/posts/create/1");
     });
 
     it("navigation show with push", async () => {
         result.current.show("posts", "1", "push");
 
-        expect(mHistory.push).toBeCalledWith("/resources/posts/show/1");
+        expect(mHistory.push).toBeCalledWith("/posts/show/1");
     });
 
     it("navigation show with replace", async () => {
         result.current.show("posts", "1", "replace");
 
-        expect(mHistory.replace).toBeCalledWith("/resources/posts/show/1");
+        expect(mHistory.replace).toBeCalledWith("/posts/show/1");
     });
 
     it("navigation list with push", async () => {
         result.current.list("posts", "push");
 
-        expect(mHistory.push).toBeCalledWith("/resources/posts");
+        expect(mHistory.push).toBeCalledWith("/posts");
     });
 
     it("navigation list with replace", async () => {
         result.current.list("posts", "replace");
 
-        expect(mHistory.replace).toBeCalledWith("/resources/posts");
+        expect(mHistory.replace).toBeCalledWith("/posts");
     });
 
     it("navigation push", async () => {
-        result.current.push("/resources/posts");
+        result.current.push("/posts");
 
-        expect(mHistory.push).toBeCalledWith("/resources/posts");
+        expect(mHistory.push).toBeCalledWith("/posts");
     });
 
     it("navigation replace", async () => {
-        result.current.replace("/resources/posts");
+        result.current.replace("/posts");
 
-        expect(mHistory.replace).toBeCalledWith("/resources/posts");
+        expect(mHistory.replace).toBeCalledWith("/posts");
     });
 
     it("navigation goBack", async () => {

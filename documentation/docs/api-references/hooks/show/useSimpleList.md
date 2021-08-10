@@ -144,12 +144,21 @@ You can use `AntdList.Item` and `AntdList.Item.Meta` like `<List>` component fro
 
 ### Properties
 
-| Key       | Description                                                                                                                                                    | Type                                                                     | Default                                  |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------------------------------------- |
-| resource  | The resource to list the data                                                                                                                                  | `string` \| `undefined`                                                  | Resource name that it reads from the url |
-| sorter    | Allows to sort records by speficified order and field                                                                                                          | [`CrudSorting`](/api-references/interfaces.md#crudsorting)\| `undefined` |                                          |
-| listProps | Ant Design `<List>` props                                                                                                                                      | [`listProps`](https://ant.design/components/list/#API)                   |                                          |
-| onSearch  | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form](../../../guides-and-concepts/search/list-search.md) | `Function`                                                               |                                          |
+| Key          | Description                                                                                                                                                    | Type                                                                     | Default                                  |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------------------------------------- |
+| resource     | The resource to list the data                                                                                                                                  | `string` \| `undefined`                                                  | Resource name that it reads from the url |
+| sorter       | Allows to sort records by speficified order and field                                                                                                          | [`CrudSorting`](/api-references/interfaces.md#crudsorting)\| `undefined` |                                          |
+| listProps    | Ant Design `<List>` props                                                                                                                                      | [`listProps`](https://ant.design/components/list/#API)                   |                                          |
+| onSearch     | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form](../../../guides-and-concepts/search/list-search.md) | `Function`                                                               |                                          |
+| queryOptions | `react-query`'s `useQuery` options                                                                                                                             | ` UseQueryOptions<{ data: TData[] }, TError>`                            |
+
+### Type Parameters
+
+| Property         | Desription                                                                          | Type                                           | Default                                        |
+| ---------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| TData            | Result data of the mutation. Extends [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) |
+| TError           | Custom error object that extends [`HttpError`](../../interfaces.md#httperror)       | [`HttpError`](../../interfaces.md#httperror)   | [`HttpError`](../../interfaces.md#httperror)   |
+| TSearchVariables | Antd form values                                                                    | `{}`                                           | `{}`                                           |
 
 ### Return values
 
