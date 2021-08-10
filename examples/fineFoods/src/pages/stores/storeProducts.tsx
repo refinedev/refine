@@ -26,6 +26,7 @@ import {
     useDrawerForm,
     Modal,
     ModalProps,
+    HttpError,
 } from "@pankod/refine";
 import "./style.css";
 
@@ -45,6 +46,7 @@ export const StoreProducts: React.FC<Props> = ({ record, modalProps }) => {
 
     const { listProps, searchFormProps, queryResult } = useSimpleList<
         IProduct,
+        HttpError,
         { name: string; categories: string[] }
     >({
         resource: "products",
