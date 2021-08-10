@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Grid } from "antd";
 import { LogoutOutlined } from "@ant-design/icons";
 
 import {
@@ -20,13 +20,14 @@ export const Sider: React.FC = () => {
     const translate = useTranslate();
     const { menuItems, selectedKey } = useMenu();
     const { push } = useNavigation();
+    const breakpoint = Grid.useBreakpoint();
 
     return (
         <Layout.Sider
             collapsible
-            breakpoint="md"
             collapsed={collapsed}
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
+            collapsedWidth={breakpoint.md || breakpoint.xs ? 0 : 80}
         >
             <Title collapsed={collapsed} />
             <Menu

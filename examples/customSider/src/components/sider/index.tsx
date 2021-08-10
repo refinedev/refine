@@ -1,15 +1,23 @@
 import React, { useState } from "react";
-import { AntdLayout, Menu, Link, useMenu, useTitle } from "@pankod/refine";
+import {
+    AntdLayout,
+    Menu,
+    Link,
+    useMenu,
+    useTitle,
+    Grid,
+} from "@pankod/refine";
 
 export const CustomSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
+    const breakpoint = Grid.useBreakpoint();
 
     return (
         <AntdLayout.Sider
             collapsible
-            breakpoint="md"
+            collapsedWidth={breakpoint.md || breakpoint.xs ? 0 : 80}
             collapsed={collapsed}
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
         >
