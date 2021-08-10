@@ -17,8 +17,9 @@ export const CustomSider: React.FC = () => {
     return (
         <AntdLayout.Sider
             collapsible
-            collapsedWidth={breakpoint.md || breakpoint.xs ? 0 : 80}
+            collapsedWidth={!breakpoint.lg ? 0 : 80}
             collapsed={collapsed}
+            breakpoint="lg"
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
         >
             <Title collapsed={collapsed} />

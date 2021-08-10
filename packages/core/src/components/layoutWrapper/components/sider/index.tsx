@@ -27,7 +27,8 @@ export const Sider: React.FC = () => {
             collapsible
             collapsed={collapsed}
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
-            collapsedWidth={breakpoint.md || breakpoint.xs ? 0 : 80}
+            collapsedWidth={!breakpoint.lg ? 0 : 80}
+            breakpoint="lg"
         >
             <Title collapsed={collapsed} />
             <Menu
