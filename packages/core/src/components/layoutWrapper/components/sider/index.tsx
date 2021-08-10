@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Layout, Menu, Grid } from "antd";
+import { RightOutlined, LogoutOutlined } from "@ant-design/icons";
 
 import {
     useTranslate,
@@ -7,7 +8,6 @@ import {
     useLogout,
     useTitle,
     useNavigation,
-    Icons,
 } from "@hooks";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../../interfaces";
@@ -61,14 +61,14 @@ export const Sider: React.FC = () => {
                                 }}
                             >
                                 {label}
-                                {isSelected && <Icons.RightOutlined />}
+                                {isSelected && <RightOutlined />}
                             </div>
                         </Menu.Item>
                     );
                 })}
 
                 {isProvided && (
-                    <Menu.Item key="logout" icon={<Icons.LogoutOutlined />}>
+                    <Menu.Item key="logout" icon={<LogoutOutlined />}>
                         {translate("buttons.logout", "Logout")}
                     </Menu.Item>
                 )}
