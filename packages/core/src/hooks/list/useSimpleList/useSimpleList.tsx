@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { QueryObserverResult } from "react-query";
+import { QueryObserverResult, UseQueryOptions } from "react-query";
 import { ListProps } from "antd/lib/list";
 import { FormProps } from "antd/lib/form";
 import { useForm } from "antd/lib/form/Form";
@@ -14,9 +14,10 @@ import {
     CrudSorting,
     GetListResponse,
     SuccessErrorNotification,
+    HttpError,
 } from "../../../interfaces";
 
-export type useSimpleListProps<TData, TSearchVariables = unknown> =
+export type useSimpleListProps<TData, TError, TSearchVariables = unknown> =
     ListProps<TData> & {
         resource?: string;
         filters?: CrudFilters;
@@ -24,14 +25,16 @@ export type useSimpleListProps<TData, TSearchVariables = unknown> =
         onSearch?: (
             data: TSearchVariables,
         ) => CrudFilters | Promise<CrudFilters>;
+        queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     } & SuccessErrorNotification;
 
 export type useSimpleListReturnType<
     TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
     TSearchVariables = unknown,
 > = {
     listProps: ListProps<TData>;
-    queryResult: QueryObserverResult<GetListResponse<TData>>;
+    queryResult: QueryObserverResult<GetListResponse<TData>, TError>;
     searchFormProps: FormProps<TSearchVariables>;
 };
 
@@ -43,18 +46,21 @@ export type useSimpleListReturnType<
  */
 export const useSimpleList = <
     TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
     TSearchVariables = unknown,
 >({
     resource: resourceFromProp,
     sorter,
     onSearch,
+    queryOptions,
     successNotification,
     errorNotification,
     ...listProps
-}: useSimpleListProps<TData, TSearchVariables> = {}): useSimpleListReturnType<
+}: useSimpleListProps<
     TData,
+    TError,
     TSearchVariables
-> => {
+> = {}): useSimpleListReturnType<TData, TError, TSearchVariables> => {
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const [form] = useForm<TSearchVariables>();
@@ -76,7 +82,7 @@ export const useSimpleList = <
     const [pageSize, setPageSize] = useState(defaultPageSize);
     const [filters, setFilters] = useState<CrudFilters>([]);
 
-    const queryResult = useList<TData>(
+    const queryResult = useList<TData, TError>(
         resource.name,
         {
             pagination: {
@@ -86,7 +92,7 @@ export const useSimpleList = <
             filters,
             sort: sorter,
         },
-        undefined,
+        queryOptions,
         successNotification,
         errorNotification,
     );
