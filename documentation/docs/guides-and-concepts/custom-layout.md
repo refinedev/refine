@@ -5,7 +5,7 @@ title: Custom Layout
 
 You can create custom layouts using [`<Refine>`][Refine] and [`<LayoutWrapper>`][LayoutWrapper] components.
 
-Both of these components accept these props to let you customize the layout globally (by using [`<Refine>`][Refine]) or locally (by using [`<LayoutWrapper>`][LayoutWrapper]) components:
+Both of these components can accept the listed props for customization. [`<Refine>`][Refine] being for global customization and the [`<LayoutWrapper>`][LayoutWrapper] being for local.
 
 * [`Layout`][Layout]
 * [`Sider`][Sider]
