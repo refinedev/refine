@@ -30,7 +30,7 @@ export const mediaUploadMapper = (params: any) => {
     Object.keys(params).map((item) => {
         if (params[item]) {
             const param = params[item].fileList;
-            const isMediaField = Array.isArray(param) && param[0]["uid"];
+            const isMediaField = Array.isArray(param);
             if (isMediaField) {
                 const ids = [];
                 for (const item of param) {
