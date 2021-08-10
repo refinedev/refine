@@ -18,8 +18,6 @@ Both of these components can accept the listed props for customization. [`<Refin
 
 Let's look at an example of modifying the default layout to have a top menu layout.
 
-To see the end code and play with it, you can refer to [example code][Custom Page Example Code].
-
 ```tsx title="/src/App.tsx"
 import { Refine, Resource, AntdLayout, Link } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -103,6 +101,10 @@ Here, we use [`useMenu`][useMenu] hook to get the list of current resources and 
 
 :::info
 By default, [`<Sider>`][Sider] is responsible for rendering [`<Title>`][Title]. It gets this component (configured by [`<Refine>`][Refine] and/or [`<LayoutWrapper>`][LayoutWrapper]) by [`useTitle`][useTitle] hook.
+:::
+
+:::info
+This example demonstrated how to configure global layout. To be able to use global layout in custom pages and make local modifications per page, refer to [`<LayoutWrapper>`][LayoutWrapper]) docs.
 :::
 
 ## Live Codesandbox Example
