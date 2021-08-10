@@ -222,6 +222,7 @@ module.exports = {
                     type: "category",
                     label: "Search",
                     items: [
+                        "guides-and-concepts/search/search",
                         "guides-and-concepts/search/table-search",
                         "guides-and-concepts/search/list-search",
                     ],
