@@ -9,7 +9,7 @@ This hook uses the `getApiUrl` method of the used [`dataProvider`][Data Provider
 
 ## Usage
 
-An example use case might be using it with [`useCustom` hook][useCustom].
+An example use case might be using it with [`useCustom`][useCustom] hook.
 
 ```ts
 import {
