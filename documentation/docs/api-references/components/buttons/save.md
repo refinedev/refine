@@ -5,7 +5,7 @@ title: Save
 
 import saveButtonProps from '@site/static/img/guides-and-concepts/components/buttons/save/saveButtonProps.png';
 
-`<SaveButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses it for presantation purposes only. Some of the hooks that refine has adds features to this button.
+`<SaveButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses it for presantation purposes only. Some of the hooks that **refine** has adds features to this button.
 
 ## Usage
 

@@ -12,7 +12,7 @@ It returns the result of `react-query`'s [`useMutation`](https://react-query.tan
 Data that is resolved from the `logout` will be returned as the `data` in the query result.
 
 ## Usage
-By default, Refine already provides a logout button on the sider and if you want to use this default button you won't need to handle the login flow manually. 
+By default, Refine already provides a logout button on the sider and if you want to use this default button you won't need to handle the logout flow manually. 
 If you want to build a custom logout button instead of the default one, `useLogout` can be used like this:
 ```tsx title="components/customLogoutButton"
 import { useLogout, Button } from "@pankod/refine";

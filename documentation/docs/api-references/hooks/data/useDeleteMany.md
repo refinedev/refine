@@ -6,11 +6,12 @@ description: useDeleteMany data hook from refine is a modified version of react-
 ---
 
 `useDeleteMany` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for multiple delete mutations.
+
 It uses `deleteMany` method as mutation function from the [`dataProvider`](api-references/providers/data-provider.md) which is passed to `<Refine>`.
 
 ## Features
 
-* Shows notifications after mutation succeeds, fails or gets canceled.
+* Shows notifications after the mutation succeeds, fails or gets canceled.
 
 * Automatically invalidates `list` queries after mutation is succesfully run.
 [Refer to React Query docs for detailed information &#8594](https://react-query.tanstack.com/guides/invalidations-from-mutations)
@@ -108,7 +109,7 @@ mutate({
 
 
 
-[Refer to mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
+[Refer to the mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
 
 
 ### Creating a custom method for cancelling mutations
@@ -119,7 +120,7 @@ Default behaviour on undo action includes notifications. If a custom callback is
 :::
 
 :::danger
-Passed callback will receive a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on `undoable` mode.
+Passed callback will receive a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on the `undoable` mode.
 
 ```tsx
 // highlight-start

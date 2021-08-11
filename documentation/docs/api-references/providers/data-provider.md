@@ -11,7 +11,7 @@ import dpFlow from '@site/static/img/guides-and-concepts/providers/data-provider
 
 A data provider is the place where a refine app communicates with an API.  
 Data providers also act as adapters for refine making it possible to consume different API's and data services conveniently.  
-A data provider makes HTTP requests and returns response data back using predefined methods.
+A data provider makes **HTTP** requests and returns response data back using predefined methods.
 
 
 A data provider must include following methods:
@@ -78,7 +78,7 @@ const App: React.FC = () => {
 
 
 ## Creating a data provider
-We'll build **"Simple REST Dataprovider"** of `@pankod/refine-simple-rest` from scratch to show the logic of how data provider methods interact with the API.
+We will build **"Simple REST Dataprovider"** of `@pankod/refine-simple-rest` from scratch to show the logic of how data provider methods interact with the API.
 
 We will provide you a fully working, *fake REST API* located at https://api.fake-rest.refine.dev. You may take a look at available [resources and routes of the API](https://api.fake-rest.refine.dev) before proceeding to the next step.  
 Our **"Simple REST Dataprovider"** will be consuming this *fake REST API*.
@@ -124,7 +124,7 @@ const SimpleRestDataProvider = (
 })
 ```
 
-It will take the API URL as a parameter and an optional HTTP client. We will use **axios** as the default HTTP client.
+It will take the API URL as a parameter and an optional **HTTP** client. We will use **axios** as the default **HTTP** client.
 
 <br/>
 

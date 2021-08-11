@@ -7,7 +7,7 @@ title: useTitle
 
 ## Usage
 
-Normally refine provides a default title. If we want to build a custom title instead of default one that comes with refine, we need to overwrite it like this:
+Normally refine provides a default title. If we want to build a custom title instead of default one that comes with **refine**, we need to overwrite it like this:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";

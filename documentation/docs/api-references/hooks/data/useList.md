@@ -96,7 +96,7 @@ Although we didn't pass any sort order configurations to `useList`, data comes i
 :::
 :::caution
 
-If you want to create your own `getList` method, it must implement default query configurations since `useList` can work with no configuration parameters.
+If you want to create your own `getList` method, it will automatically implement default query configurations since `useList` can work with no configuration parameters.
 
 :::
 

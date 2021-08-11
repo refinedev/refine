@@ -95,7 +95,7 @@ export const MyDeleteComponent = () => {
 };
 ```
 
-Clicking the button will trigger the [`useDelete`](api-references/hooks/data/useDelete.md) method and then the record whose resource is "categories" and whose id is "2" is deleted.
+Clicking the button will trigger the [`useDelete`](api-references/hooks/data/useDelete.md) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
 
 :::note
 **`<DeleteButton>`** component reads the resource name from the route by default.
