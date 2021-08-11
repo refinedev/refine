@@ -204,7 +204,7 @@ export const Header: React.FC = () => {
 };
 ```
 
-We created states to dynamically manage the `value` and `options` properties of the `<AutoComplete>` component. The [`useList`](/api-references/hooks/data/useList.md) hook is triggered whenever the value changes. Likewise, the filter used to fetch the data is updated each time the value changes.
+We created states to dynamically manage the `value` and `options` properties of the [`<AutoComplete>`](https://ant.design/components/auto-complete) component. The [`useList`](/api-references/hooks/data/useList.md) hook is triggered whenever the value changes. Likewise, the filter used to fetch the data is updated each time the value changes.
 
 :::tip
 
