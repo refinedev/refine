@@ -3,7 +3,12 @@ import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
+import {
+    CategoryList,
+    CategoryCreate,
+    CategoryEdit,
+    CategoryShow,
+} from "pages/categories";
 
 import { Header } from "components";
 
@@ -24,7 +29,7 @@ const App: React.FC = () => {
                 list={CategoryList}
                 create={CategoryCreate}
                 edit={CategoryEdit}
-                canDelete
+                show={CategoryShow}
             />
         </Refine>
     );
