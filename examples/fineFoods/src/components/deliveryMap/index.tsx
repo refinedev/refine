@@ -30,44 +30,42 @@ export const DeliveryMap: React.FC = () => {
     const { show } = useNavigation();
 
     return (
-        <div style={{ height: "550px", width: "100%" }}>
-            <GoogleMapReact
-                bootstrapURLKeys={{
-                    key: process.env.REACT_APP_MAP_ID,
-                }}
-                defaultCenter={defaultProps.center}
-                defaultZoom={defaultProps.zoom}
-            >
-                {orderData?.data.map((order) => {
-                    return (
-                        <MapMarker
-                            key={order.id}
-                            lat={order.adress.coordinate[0]}
-                            lng={order.adress.coordinate[1]}
-                        >
-                            <img
-                                src="images/map/user.svg"
-                                onClick={() => show("orders", order.id)}
-                            />
-                        </MapMarker>
-                    );
-                })}
+        <GoogleMapReact
+            bootstrapURLKeys={{
+                key: process.env.REACT_APP_MAP_ID,
+            }}
+            defaultCenter={defaultProps.center}
+            defaultZoom={defaultProps.zoom}
+        >
+            {orderData?.data.map((order) => {
+                return (
+                    <MapMarker
+                        key={order.id}
+                        lat={order.adress.coordinate[0]}
+                        lng={order.adress.coordinate[1]}
+                    >
+                        <img
+                            src="images/map/user.svg"
+                            onClick={() => show("orders", order.id)}
+                        />
+                    </MapMarker>
+                );
+            })}
 
-                {orderData?.data.map((order) => {
-                    return (
-                        <MapMarker
-                            key={order.id}
-                            lat={order.store.address.coordinate[0]}
-                            lng={order.store.address.coordinate[1]}
-                        >
-                            <img
-                                src="images/map/courier.svg"
-                                onClick={() => show("orders", order.id)}
-                            />
-                        </MapMarker>
-                    );
-                })}
-            </GoogleMapReact>
-        </div>
+            {orderData?.data.map((order) => {
+                return (
+                    <MapMarker
+                        key={order.id}
+                        lat={order.store.address.coordinate[0]}
+                        lng={order.store.address.coordinate[1]}
+                    >
+                        <img
+                            src="images/map/courier.svg"
+                            onClick={() => show("orders", order.id)}
+                        />
+                    </MapMarker>
+                );
+            })}
+        </GoogleMapReact>
     );
 };

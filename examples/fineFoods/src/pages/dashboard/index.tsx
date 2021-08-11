@@ -69,20 +69,22 @@ export const DashboardPage: React.FC = () => {
             </Col>
             <Col md={16}>
                 <Card
+                    bodyStyle={{
+                        height: 550,
+                    }}
                     title={t("dashboard:deliveryMap.title")}
-                    style={{ marginBottom: 10 }}
                 >
-                    <Space
-                        direction="vertical"
-                        size="large"
-                        style={{ width: "100%" }}
-                    >
-                        <DeliveryMap />
-                    </Space>
+                    <DeliveryMap />
                 </Card>
             </Col>
             <Col md={8}>
-                <Card title={t("dashboard.timeline.title")}>
+                <Card
+                    bodyStyle={{
+                        height: 550,
+                        overflowY: "scroll",
+                    }}
+                    title={t("dashboard.timeline.title")}
+                >
                     <OrderTimeline />
                 </Card>
             </Col>
