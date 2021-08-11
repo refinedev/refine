@@ -79,9 +79,6 @@ Before we start, let's create the interfaces of our [`<AutoComplete>`](https://a
 export interface IPost {
     id: string;
     title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: ICategory;
 }
 
 export interface ICategory {
