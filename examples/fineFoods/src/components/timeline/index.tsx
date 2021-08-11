@@ -28,7 +28,7 @@ export const OrderTimeline: React.FC = () => {
         ],
         pagination: {
             pageSize: 6,
-            total: 20,
+            simple: true,
         },
     });
 
