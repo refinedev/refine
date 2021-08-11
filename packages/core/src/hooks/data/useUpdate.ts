@@ -156,7 +156,10 @@ export const useUpdate = <
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: data.map((record: TData) => {
-                                        if (record.id === id) {
+                                        if (
+                                            record.id?.toString() ===
+                                            id.toString()
+                                        ) {
                                             return {
                                                 ...values,
                                                 id: id,

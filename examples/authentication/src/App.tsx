@@ -30,7 +30,7 @@ const App: React.FC = () => {
         getUserIdentity: () =>
             Promise.resolve({
                 id: 1,
-                fullName: "Jane Doe",
+                name: "Jane Doe",
                 avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
             }),
     };

@@ -19,7 +19,8 @@ export const notificationReducer = (state: INotification[], action: any) => {
             return [
                 ...state.filter(
                     (notificationItem: INotification) =>
-                        notificationItem.id !== action.payload.id &&
+                        notificationItem.id.toString() !==
+                            action.payload.id.toString() &&
                         notificationItem.resource === action.payload.resource,
                 ),
                 {
