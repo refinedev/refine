@@ -84,7 +84,6 @@ export const useSimpleList = <
             pagination: {
                 current,
                 pageSize,
-                ...listProps.pagination,
             },
             filters,
             sort: sorter,
@@ -94,8 +93,6 @@ export const useSimpleList = <
         errorNotification,
     );
     const { data, isFetching } = queryResult;
-
-    console.log("data", data);
 
     const onChange = (page: number, pageSize?: number): void => {
         setCurrent(page);
