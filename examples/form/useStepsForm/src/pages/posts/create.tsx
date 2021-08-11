@@ -139,11 +139,9 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                 <Step title="Content" />
             </Steps>
 
-            <div style={{ marginTop: 30 }}>
-                <Form {...formProps} layout="vertical">
-                    {formList[current]}
-                </Form>
-            </div>
+            <Form {...formProps} layout="vertical" style={{ marginTop: 30 }}>
+                {formList[current]}
+            </Form>
         </Create>
     );
 };

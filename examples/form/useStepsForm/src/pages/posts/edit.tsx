@@ -142,19 +142,13 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                 </>
             }
         >
-            <Form {...formProps} layout="vertical">
-                <Steps {...stepsProps}>
-                    <Step title="About Post" />
-                    <Step title="Content" />
-                </Steps>
+            <Steps {...stepsProps}>
+                <Step title="About Post" />
+                <Step title="Content" />
+            </Steps>
 
-                <Form
-                    {...formProps}
-                    layout="vertical"
-                    style={{ marginTop: 30 }}
-                >
-                    {formList[current]}
-                </Form>
+            <Form {...formProps} layout="vertical" style={{ marginTop: 30 }}>
+                {formList[current]}
             </Form>
         </Edit>
     );
