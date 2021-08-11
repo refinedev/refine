@@ -51,7 +51,7 @@ export const useSimpleList = <
     successNotification,
     errorNotification,
     ...listProps
-}: useSimpleListProps<TData, TSearchVariables>): useSimpleListReturnType<
+}: useSimpleListProps<TData, TSearchVariables> = {}): useSimpleListReturnType<
     TData,
     TSearchVariables
 > => {
