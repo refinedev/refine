@@ -104,7 +104,7 @@ By default, [`<Sider>`][Sider] is responsible for rendering [`<Title>`][Title]. 
 :::
 
 :::info
-This example demonstrated how to configure global layout. To be able to use global layout in custom pages and make local modifications per page, [refer to `<LayoutWrapper>` docs. &#8594][LayoutWrapper]
+This example demonstrated how to configure a global layout. To learn how to use global layout in custom pages and make local modifications per page, [refer to the `<LayoutWrapper>` docs. &#8594][LayoutWrapper]
 :::
 
 ## Live Codesandbox Example
