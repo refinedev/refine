@@ -73,7 +73,7 @@ Now let's get our `<AutoComplate>` input ready to search. So, let's fetch our po
 
 In order to fetch more than one record, we will use the [`useList`](/api-references/hooks/data/useList.md) data hook, and we will filter and fetch this data according to the search value.
 
-Before we start, let's create the interfaces of our `<AutoComplete>`'s `options` property and the post source.
+Before we start, let's create the interfaces of our [`<AutoComplete>`](https://ant.design/components/auto-complete)'s `options` property and the post source.
 
 ```ts title="src/interfaces/index.d.ts"
 export interface IPost {
