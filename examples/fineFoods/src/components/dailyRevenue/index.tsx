@@ -11,7 +11,7 @@ import { Line, LineConfig } from "@ant-design/charts";
 import dayjs, { Dayjs } from "dayjs";
 
 import { ISalesChart } from "interfaces";
-import "./style.css";
+import "./style.less";
 
 export const DailyRevenue: React.FC = () => {
     const t = useTranslate();
@@ -82,11 +82,11 @@ export const DailyRevenue: React.FC = () => {
     return (
         <div className="daily-revenue-wrapper">
             <div className="title-area">
-                <div className="amount">
+                <div className="title-area__amount">
                     <Typography.Title level={3}>
                         {t("dashboard:dailyRevenue.title")}
                     </Typography.Title>
-                    <div className="number">
+                    <div className="title-area__number">
                         <NumberField
                             style={{ fontSize: 36 }}
                             strong
