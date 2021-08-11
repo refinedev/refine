@@ -18,6 +18,12 @@
   "dailyRevenue": {
     "title": "Günlük Gelir"
   },
+  "dailyOrders": {
+    "title": "Günlük Siparişler"
+  },
+  "newCustomers": {
+    "title": "Yeni Müşteriler"
+  },
   "recentActivity": {
     "title": "Son Aktiviteler"
   }
