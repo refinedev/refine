@@ -1,4 +1,4 @@
-import { Row, Col, Card, Space } from "@pankod/refine";
+import { Row, Col, Card, Typography } from "@pankod/refine";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -6,13 +6,10 @@ import {
     DailyOrders,
     NewCustomers,
     DeliveryMap,
-    DeliverySchedule,
-    Orders,
-    OrdersChart,
-    RecentActivity,
-    SalesChart,
     OrderTimeline,
 } from "components";
+
+const { Text } = Typography;
 
 export const DashboardPage: React.FC = () => {
     const { t } = useTranslation();
@@ -67,23 +64,32 @@ export const DashboardPage: React.FC = () => {
                     </Col>
                 </Row>
             </Col>
-            <Col md={16}>
+            <Col lg={16} md={24} style={{ width: "100%" }}>
                 <Card
                     bodyStyle={{
                         height: 550,
+                        padding: 0,
                     }}
-                    title={t("dashboard:deliveryMap.title")}
+                    title={
+                        <Text style={{ fontSize: 24, fontWeight: 800 }}>
+                            {t("dashboard:deliveryMap.title")}
+                        </Text>
+                    }
                 >
                     <DeliveryMap />
                 </Card>
             </Col>
-            <Col md={8}>
+            <Col lg={8} md={24} style={{ width: "100%" }}>
                 <Card
                     bodyStyle={{
                         height: 550,
                         overflowY: "scroll",
                     }}
-                    title={t("dashboard.timeline.title")}
+                    title={
+                        <Text style={{ fontSize: 24, fontWeight: 800 }}>
+                            {t("dashboard:timeline.title")}
+                        </Text>
+                    }
                 >
                     <OrderTimeline />
                 </Card>

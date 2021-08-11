@@ -76,8 +76,6 @@ export const useSimpleList = <
     const [pageSize, setPageSize] = useState(defaultPageSize);
     const [filters, setFilters] = useState<CrudFilters>([]);
 
-    console.log("listprops 222", listProps.pagination);
-
     const queryResult = useList<TData>(
         resource.name,
         {
