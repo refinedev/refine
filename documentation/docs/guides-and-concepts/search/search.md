@@ -149,7 +149,7 @@ export const Header: React.FC = () => {
     const { refetch: refetchPosts } = useList<IPost>(
         "posts",
         {
-            filters: [{ field: "q", operator: "contains", value }],
+            filters: [{ field: "title", operator: "contains", value }],
         },
         {
             enabled: false,
@@ -203,17 +203,6 @@ export const Header: React.FC = () => {
 
 We created states to dynamically manage the `value` and `options` properties of the [`<AutoComplete>`](https://ant.design/components/auto-complete) component. The [`useList`](/api-references/hooks/data/useList.md) hook is triggered whenever the value changes. Likewise, the filter used to fetch the data is updated each time the value changes.
 
-:::tip
-
-If you want to search only one field of the posts, not all properties. You can change the filter field you want to search as below.
-
-```ts
-{
-    filters: [{ field: "title", operator: "contains", value }]
-}
-```
-
-:::
 <br />
 
 Search value is currently only searched and fetched inside posts. Let's update our code to search both posts and categories according to search value.
@@ -227,7 +216,7 @@ export const Header: React.FC = () => {
     const { refetch: refetchPosts } = useList<IPost>(
         "posts",
         {
-            filters: [{ field: "q", operator: "contains", value }],
+            filters: [{ field: "title", operator: "contains", value }],
         },
         {
             enabled: false,
