@@ -37,7 +37,6 @@ export const DailyRevenue: React.FC = () => {
         query,
     });
 
-    console.log("dailyrevenue data:", data);
 
     const { Text } = Typography;
     const { RangePicker } = DatePicker;
