@@ -3,7 +3,7 @@ import { Typography, useApiUrl, useCustom, useTranslate } from "@pankod/refine";
 import { Column, ColumnConfig } from "@ant-design/charts";
 
 import { ISalesChart } from "interfaces";
-import "./style.css";
+import "./style.less";
 
 export const DailyOrders: React.FC = () => {
     const t = useTranslate();
@@ -16,7 +16,7 @@ export const DailyOrders: React.FC = () => {
         trend: number;
     }>(url, "get");
 
-    const { Text } = Typography;
+    const { Text, Title } = Typography;
 
     const config = useMemo(() => {
         const config: ColumnConfig = {
@@ -62,13 +62,9 @@ export const DailyOrders: React.FC = () => {
     return (
         <div className="daily-order-wrapper">
             <div className="title-area">
-                <Typography.Title level={3}>
-                    {t("dashboard:dailyOrders.title")}
-                </Typography.Title>
-                <div className="number">
-                    <Typography.Text strong>
-                        {data?.data.total ?? 0}{" "}
-                    </Typography.Text>
+                <Title level={3}>{t("dashboard:dailyOrders.title")}</Title>
+                <div className="title-area__number">
+                    <Text strong>{data?.data.total ?? 0} </Text>
 
                     {(data?.data?.trend ?? 0) > 0 ? (
                         <img src="images/increase.svg" alt="Increase" />
