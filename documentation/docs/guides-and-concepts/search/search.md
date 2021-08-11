@@ -69,7 +69,7 @@ export default App;
 
 :::
 
-Now let's get our `<AutoComplate>` input ready to search. So, let's fetch our posts according to the value entered in our input.
+Now let's get our [`<AutoComplete>`](https://ant.design/components/auto-complete) input ready to search. So, let's fetch our posts according to the value entered in our input.
 
 In order to fetch more than one record, we will use the [`useList`](/api-references/hooks/data/useList.md) data hook, and we will filter and fetch this data according to the search value.
 
