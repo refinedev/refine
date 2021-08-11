@@ -64,22 +64,27 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     const hasSelected = selectedRowKeys.length > 0;
 
     return (
-        <List>
-            <div style={{ padding: "16px 8px" }}>
-                <Button
-                    type="primary"
-                    onClick={updateSelectedItems}
-                    disabled={!hasSelected}
-                    loading={updateManyIsLoading}
-                >
-                    Update Status
-                </Button>
-                <span style={{ marginLeft: 8 }}>
-                    {hasSelected
-                        ? `Selected ${selectedRowKeys.length} items`
-                        : ""}
-                </span>
-            </div>
+        <List
+            pageHeaderProps={{
+                subTitle: (
+                    <>
+                        <Button
+                            type="primary"
+                            onClick={updateSelectedItems}
+                            disabled={!hasSelected}
+                            loading={updateManyIsLoading}
+                        >
+                            Update Status
+                        </Button>
+                        <span style={{ marginLeft: 8 }}>
+                            {hasSelected
+                                ? `Selected ${selectedRowKeys.length} items`
+                                : ""}
+                        </span>
+                    </>
+                ),
+            }}
+        >
             <Table {...tableProps} rowSelection={rowSelection} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column dataIndex="title" title="Title" />

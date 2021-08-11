@@ -88,6 +88,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Row gutter={[16, 16]}>
+            <Col lg={6} xs={24}>
+                <Card title="Filters">
+                    <Filter formProps={searchFormProps} />
+                </Card>
+            </Col>
             <Col lg={18} xs={24}>
                 <List>
                     <Table {...tableProps} rowKey="id">
@@ -160,11 +165,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                         />
                     </Table>
                 </List>
-            </Col>
-            <Col lg={6} xs={24}>
-                <Card title="Filters">
-                    <Filter formProps={searchFormProps} />
-                </Card>
             </Col>
         </Row>
     );
