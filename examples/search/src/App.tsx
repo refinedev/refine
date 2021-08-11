@@ -5,11 +5,13 @@ import "@pankod/refine/dist/styles.min.css";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
 
+import { Header } from "components";
+
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine dataProvider={dataProvider(API_URL)}>
+        <Refine dataProvider={dataProvider(API_URL)} Header={Header}>
             <Resource
                 name="posts"
                 list={PostList}
