@@ -300,6 +300,11 @@ module.exports = {
                 },
                 {
                     type: "category",
+                    label: "Search",
+                    items: ["examples/search/search"],
+                },
+                {
+                    type: "category",
                     label: "Field",
                     items: [
                         "examples/field/useCheckboxGroup",
