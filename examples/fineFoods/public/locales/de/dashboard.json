@@ -28,6 +28,13 @@
     "title": "Son Aktiviteler"
   },
   "timeline": {
-    "title": "Son Güncellemeler"
+    "title": "Son Güncellemeler",
+    "orderStatuses": {
+      "pending": "Sipariş hazırlanıyor",
+      "ready": "Sipariş hazır",
+      "on the way": "Sipariş yolda",
+      "delivered": "Sipariş teslim edildi",
+      "cancelled": "Sipariş iptal edildi"
+    }
   }
 }

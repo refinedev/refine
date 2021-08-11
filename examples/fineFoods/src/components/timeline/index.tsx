@@ -72,7 +72,7 @@ export const OrderTimeline: React.FC = () => {
                             </Text>
                             <Text>
                                 {t(
-                                    `enum:orderStatuses.${
+                                    `dashboard:timeline.orderStatuses.${
                                         orderStatusColor(status.id.toString())
                                             ?.text
                                     }`,
