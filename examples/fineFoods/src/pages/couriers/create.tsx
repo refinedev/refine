@@ -186,48 +186,46 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                 </Col>
             </Row>
         </>,
-        <>
-            <Row gutter={20}>
-                <Col xs={24} lg={12}>
-                    <Form.Item
-                        label={t("couriers:fields.store")}
-                        name={["store", "id"]}
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Select {...storeSelectProps} />
-                    </Form.Item>
-                    <Form.Item
-                        label={t("couriers:fields.iban")}
-                        name="iban"
-                        rules={[
-                            {
-                                required: true,
-                                len: 22,
-                            },
-                        ]}
-                    >
-                        <Input />
-                    </Form.Item>
-                </Col>
-                <Col xs={24} lg={12}>
-                    <Form.Item
-                        label={t("couriers:fields.vehicle")}
-                        name="licensePlate"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Input />
-                    </Form.Item>
-                </Col>
-            </Row>
-        </>,
+        <Row key="relations" gutter={20}>
+            <Col xs={24} lg={12}>
+                <Form.Item
+                    label={t("couriers:fields.store")}
+                    name={["store", "id"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select {...storeSelectProps} />
+                </Form.Item>
+                <Form.Item
+                    label={t("couriers:fields.iban")}
+                    name="iban"
+                    rules={[
+                        {
+                            required: true,
+                            len: 22,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+            </Col>
+            <Col xs={24} lg={12}>
+                <Form.Item
+                    label={t("couriers:fields.vehicle")}
+                    name="licensePlate"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+            </Col>
+        </Row>,
     ];
 
     return (
