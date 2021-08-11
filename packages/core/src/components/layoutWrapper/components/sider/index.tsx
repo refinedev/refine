@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Layout, Menu, Grid } from "antd";
-import { LogoutOutlined } from "@ant-design/icons";
+import { RightOutlined, LogoutOutlined } from "@ant-design/icons";
 
 import {
     useTranslate,
@@ -43,11 +43,29 @@ export const Sider: React.FC = () => {
                     push(key as string);
                 }}
             >
-                {menuItems.map(({ icon, label, route }) => (
-                    <Menu.Item key={route} icon={icon}>
-                        {label}
-                    </Menu.Item>
-                ))}
+                {menuItems.map(({ icon, label, route }) => {
+                    const isSelected = route === selectedKey;
+                    return (
+                        <Menu.Item
+                            style={{
+                                fontWeight: isSelected ? "bold" : "normal",
+                            }}
+                            key={route}
+                            icon={icon}
+                        >
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                }}
+                            >
+                                {label}
+                                {isSelected && <RightOutlined />}
+                            </div>
+                        </Menu.Item>
+                    );
+                })}
 
                 {isProvided && (
                     <Menu.Item key="logout" icon={<LogoutOutlined />}>
