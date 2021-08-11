@@ -7,6 +7,7 @@ import {
     NewCustomers,
     DeliveryMap,
     OrderTimeline,
+    RecentOrders,
 } from "components";
 
 const { Text } = Typography;
@@ -67,7 +68,7 @@ export const DashboardPage: React.FC = () => {
                     </Col>
                 </Row>
             </Col>
-            <Col xl={18} lg={16} md={24} style={{ width: "100%" }}>
+            <Col xl={19} lg={16} md={24} style={{ width: "100%" }}>
                 <Card
                     bodyStyle={{
                         height: 550,
@@ -84,22 +85,32 @@ export const DashboardPage: React.FC = () => {
                     <DeliveryMap />
                 </Card>
             </Col>
-            <Col xl={6} lg={8} md={24} style={{ width: "100%" }}>
+            <Col xl={5} lg={8} md={24} style={{ width: "100%" }}>
                 <Card
                     bodyStyle={{
                         height: 550,
                         overflowY: "scroll",
                     }}
-                    title={
-                        <Text
-                            strong /* style={{ fontSize: 24, fontWeight: 800 }} */
-                        >
-                            {t("dashboard:timeline.title")}
-                        </Text>
-                    }
+                    title={<Text strong>{t("dashboard:timeline.title")}</Text>}
                 >
                     <OrderTimeline />
                 </Card>
+            </Col>
+            <Col xl={18} lg={16} md={24} style={{ width: "100%" }}>
+                <Card
+                    title={
+                        <Text strong>{t("dashboard:recentOrders.title")}</Text>
+                    }
+                >
+                    <RecentOrders />
+                </Card>
+            </Col>
+            <Col xl={6} lg={8} md={24} style={{ width: "100%" }}>
+                <Card
+                    title={
+                        <Text strong>{t("dashboard:trendingMenus.title")}</Text>
+                    }
+                ></Card>
             </Col>
         </Row>
     );

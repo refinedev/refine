@@ -36,5 +36,11 @@
       "delivered": "Sipariş teslim edildi",
       "cancelled": "Sipariş iptal edildi"
     }
+  },
+  "recentOrders": {
+    "title": "Son Siparişler"
+  },
+  "trendingMenus": {
+    "title": "Günlük popüler menüler"
   }
 }

@@ -36,5 +36,11 @@
       "delivered": "Order is delivered",
       "cancelled": "Order is cancelled"
     }
+  },
+  "recentOrders": {
+    "title": "Recent Orders"
+  },
+  "trendingMenus": {
+    "title": "Daily Trending Menus"
   }
 }

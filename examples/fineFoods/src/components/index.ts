@@ -11,3 +11,4 @@ export * from "./newCustomers";
 export * from "./recentActivity";
 export * from "./orderStatus";
 export * from "./timeline";
+export * from "./recentOrders";
