@@ -38,7 +38,7 @@ export const Header: React.FC = () => {
     const [value, setValue] = useState<string>("");
     const [options, setOptions] = useState<IOptions[]>([]);
 
-    const { refetch: refetchProducts } = useList<IPost>(
+    const { refetch: refetchPosts } = useList<IPost>(
         "posts",
         {
             filters: [{ field: "q", operator: "contains", value }],
@@ -46,15 +46,15 @@ export const Header: React.FC = () => {
         {
             enabled: false,
             onSuccess: (data) => {
-                const orderOptionGroup = data.data.map((item) =>
+                const postOptionGroup = data.data.map((item) =>
                     renderItem(item.title, "posts", item.id),
                 );
-                if (orderOptionGroup.length > 0) {
+                if (postOptionGroup.length > 0) {
                     setOptions((prevOptions) => [
                         ...prevOptions,
                         {
                             label: renderTitle("Posts"),
-                            options: orderOptionGroup,
+                            options: postOptionGroup,
                         },
                     ]);
                 }
@@ -70,15 +70,15 @@ export const Header: React.FC = () => {
         {
             enabled: false,
             onSuccess: (data) => {
-                const storeOptionGroup = data.data.map((item) =>
+                const categoryOptionGroup = data.data.map((item) =>
                     renderItem(item.title, "categories", item.id),
                 );
-                if (storeOptionGroup.length > 0) {
+                if (categoryOptionGroup.length > 0) {
                     setOptions((prevOptions) => [
                         ...prevOptions,
                         {
                             label: renderTitle("Categories"),
-                            options: storeOptionGroup,
+                            options: categoryOptionGroup,
                         },
                     ]);
                 }
@@ -88,7 +88,7 @@ export const Header: React.FC = () => {
 
     useEffect(() => {
         setOptions([]);
-        refetchProducts();
+        refetchPosts();
         refetchCategories();
     }, [value]);
 
@@ -107,7 +107,7 @@ export const Header: React.FC = () => {
             >
                 <Input
                     size="large"
-                    placeholder="Search products or categories"
+                    placeholder="Search posts or categories"
                     suffix={<SearchOutlined />}
                 />
             </AutoComplete>
