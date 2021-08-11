@@ -6,7 +6,7 @@ import { DashbaordPage } from "./pages/dashboard";
 import { LoginPage } from "./pages/login";
 import { OrderList, OrderShow } from "./pages/orders";
 import { UserList, UserEdit, UserShow } from "./pages/users";
-import { CourierList, CourierShow } from "./pages/couriers";
+import { CourierList, CourierShow, CouriersCreate } from "./pages/couriers";
 import {
     ProductCreate,
     ProductEdit,
@@ -100,6 +100,7 @@ const App: React.FC = () => {
                 }}
                 list={CourierList}
                 show={CourierShow}
+                create={CouriersCreate}
             />
             <Resource name="reviews" list={ReviewsList} />
         </Refine>

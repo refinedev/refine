@@ -8,18 +8,7 @@ import {
     Dropdown,
     Menu,
     Icons,
-    useDrawerForm,
-    Drawer,
-    Form,
-    Create,
-    Edit,
-    Input,
-    getValueFromEvent,
-    Checkbox,
-    Select,
     Space,
-    Upload,
-    useApiUrl,
     useDelete,
     useNavigation,
     Typography,
@@ -28,7 +17,6 @@ import {
 import { ICourier } from "interfaces";
 
 export const CourierList: React.FC<IResourceComponentsProps> = () => {
-    const apiUrl = useApiUrl();
     const { show, edit } = useNavigation();
     const t = useTranslate();
 
@@ -41,30 +29,13 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
         ],
     });
 
-    const {
-        formProps,
-        drawerProps,
-        show: createDrawerShow,
-        saveButtonProps,
-    } = useDrawerForm<ICourier>({
-        action: "create",
-    });
-
-    const {
-        formProps: editFormProps,
-        drawerProps: editDrawerProps,
-        show: editDrawerShow,
-        saveButtonProps: editSaveButtonProps,
-        deleteButtonProps,
-        editId,
-    } = useDrawerForm<ICourier>({
-        action: "edit",
-    });
-
     const { mutate: mutateDelete } = useDelete();
 
     const moreMenu = (id: string) => (
-        <Menu mode="vertical">
+        <Menu
+            mode="vertical"
+            onClick={({ domEvent }) => domEvent.stopPropagation()}
+        >
             <Menu.Item
                 key="accept"
                 style={{
@@ -120,14 +91,11 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
     return (
         <List
             createButtonProps={{
-                onClick: () => {
-                    createDrawerShow();
-                },
                 children: t("common:buttons.add").toUpperCase(),
             }}
             title={t("couriers:title")}
         >
-            <Drawer {...editDrawerProps} width={600}>
+            {/* <Drawer {...editDrawerProps} width={600}>
                 <Edit
                     saveButtonProps={editSaveButtonProps}
                     deleteButtonProps={deleteButtonProps}
@@ -227,111 +195,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                         </Form.Item>
                     </Form>
                 </Edit>
-            </Drawer>
-
-            <Drawer {...drawerProps} width={600}>
-                <Create saveButtonProps={saveButtonProps}>
-                    <Form
-                        {...formProps}
-                        layout="vertical"
-                        initialValues={{
-                            isActive: true,
-                        }}
-                    >
-                        <Form.Item
-                            label={t("couriers:fields.name")}
-                            name="name"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                        <Form.Item
-                            label={t("couriers:fields.surname")}
-                            name="surname"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                        <Form.Item
-                            label={t("couriers:fields.gsm")}
-                            name="gsm"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                        <Form.Item
-                            label={t("couriers:fields.gender")}
-                            name="gender"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Select
-                                options={[
-                                    {
-                                        label: "Male",
-                                        value: "Male",
-                                    },
-                                    {
-                                        label: "Female",
-                                        value: "Female",
-                                    },
-                                ]}
-                            />
-                        </Form.Item>
-                        <Form.Item
-                            label={t("couriers:fields.isActive")}
-                            name="isActive"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                            valuePropName="checked"
-                        >
-                            <Checkbox value={true}>
-                                {t("couriers:fields.isActive")}
-                            </Checkbox>
-                        </Form.Item>
-                        <Form.Item label={t("couriers:fields.avatar.label")}>
-                            <Form.Item
-                                name="avatar"
-                                valuePropName="fileList"
-                                getValueFromEvent={getValueFromEvent}
-                                noStyle
-                            >
-                                <Upload.Dragger
-                                    name="file"
-                                    action={`${apiUrl}/media/upload`}
-                                    listType="picture"
-                                    maxCount={5}
-                                    multiple
-                                >
-                                    <p className="ant-upload-text">
-                                        {t(
-                                            "couriers:fields:avatar.description",
-                                        )}
-                                    </p>
-                                </Upload.Dragger>
-                            </Form.Item>
-                        </Form.Item>
-                    </Form>
-                </Create>
-            </Drawer>
+            </Drawer> */}
 
             <Table
                 {...tableProps}
@@ -352,7 +216,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                     title={t("couriers:fields.name")}
                     render={(record) => (
                         <Space>
-                            <Avatar size={74} src={record.avatar[0].url} />
+                            <Avatar size={74} src={record.avatar?.[0].url} />
                             <Typography.Text>
                                 {record.name} {record.surname}
                             </Typography.Text>
@@ -372,6 +236,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                     title={t("couriers:fields.address")}
                 />
                 <Table.Column<ICourier>
+                    fixed="right"
                     title={t("common:table.actions")}
                     dataIndex="actions"
                     key="actions"
@@ -381,6 +246,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                             trigger={["click"]}
                         >
                             <Icons.MoreOutlined
+                                onClick={(e) => e.stopPropagation()}
                                 style={{
                                     fontSize: 24,
                                 }}

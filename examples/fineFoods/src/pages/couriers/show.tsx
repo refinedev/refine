@@ -62,7 +62,7 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                         >
                             <Avatar
                                 size={120}
-                                src={courier?.avatar[0].url}
+                                src={courier?.avatar?.[0].url}
                             ></Avatar>
                             <Typography.Title level={3}>
                                 {courier?.name} {courier?.surname}
@@ -96,7 +96,11 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                 </Card>
             </Col>
             <Col xl={18} xs={24}>
-                <List>
+                <List
+                    pageHeaderProps={{
+                        extra: <></>,
+                    }}
+                >
                     <Table
                         {...tableProps}
                         scroll={{
