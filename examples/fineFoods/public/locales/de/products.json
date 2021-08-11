@@ -1,0 +1,20 @@
+{
+  "title": "Ürünler",
+  "show": {
+    "title": "Ürün Detay"
+  },
+  "fields": {
+    "id": "ID",
+    "name": "Adı",
+    "description": "Açıklama",
+    "isActive": "Aktif",
+    "price": "Fiyat",
+    "category": "Kategory",
+    "images": {
+      "label": "Görseller",
+      "description": "Ürün resmi ekleyin",
+      "validation": "1080x1080 px olmalı"
+    },
+    "createdAt": "Oluşturma Tarihi"
+  }
+}

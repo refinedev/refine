@@ -7,11 +7,11 @@ import { render, TestWrapper, MockJSONServer } from "@test";
 import { Show } from "./index";
 
 const renderShow = (show: ReactNode) => {
-    return render(<Route path="/resources/:resource/show/:id">{show}</Route>, {
+    return render(<Route path="/:resource/show/:id">{show}</Route>, {
         wrapper: TestWrapper({
             dataProvider: MockJSONServer,
             resources: [{ name: "posts", route: "posts" }],
-            routerInitialEntries: ["/resources/posts/show/1"],
+            routerInitialEntries: ["/posts/show/1"],
         }),
     });
 };
@@ -66,14 +66,6 @@ describe("Show", () => {
         getByText("Test Title");
     });
 
-    it("should render with aside component", () => {
-        const { getByText } = renderShow(
-            <Show Aside={<div>Test Aside Component</div>} />,
-        );
-
-        getByText("Test Aside Component");
-    });
-
     it("should render optional resource with resource prop", () => {
         const { getByText } = render(
             <Route>
@@ -104,7 +96,7 @@ describe("Show", () => {
     describe("render edit button", () => {
         it("should render edit button", () => {
             const { getByText, queryByTestId } = render(
-                <Route path="/resources/:resource/show/:id">
+                <Route path="/:resource/show/:id">
                     <Show />
                 </Route>,
                 {
@@ -113,7 +105,7 @@ describe("Show", () => {
                         resources: [
                             { name: "posts", route: "posts", canEdit: true },
                         ],
-                        routerInitialEntries: ["/resources/posts/show/1"],
+                        routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
             );
@@ -125,7 +117,7 @@ describe("Show", () => {
 
         it("should not render edit button on resource canEdit false", () => {
             const { getByText, queryByTestId } = render(
-                <Route path="/resources/:resource/show/:id">
+                <Route path="/:resource/show/:id">
                     <Show />
                 </Route>,
                 {
@@ -134,7 +126,7 @@ describe("Show", () => {
                         resources: [
                             { name: "posts", route: "posts", canEdit: false },
                         ],
-                        routerInitialEntries: ["/resources/posts/show/1"],
+                        routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
             );
@@ -146,7 +138,7 @@ describe("Show", () => {
 
         it("should not render edit button on resource canEdit true & canEdit props false on component", () => {
             const { queryByTestId } = render(
-                <Route path="/resources/:resource/show/:id">
+                <Route path="/:resource/show/:id">
                     <Show canEdit={false} />
                 </Route>,
                 {
@@ -155,7 +147,7 @@ describe("Show", () => {
                         resources: [
                             { name: "posts", route: "posts", canEdit: true },
                         ],
-                        routerInitialEntries: ["/resources/posts/show/1"],
+                        routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
             );
@@ -165,7 +157,7 @@ describe("Show", () => {
 
         it("should render edit button on resource canEdit false & canEdit props true on component", () => {
             const { queryByTestId } = render(
-                <Route path="/resources/:resource/show/:id">
+                <Route path="/:resource/show/:id">
                     <Show canEdit={true} />
                 </Route>,
                 {
@@ -174,7 +166,7 @@ describe("Show", () => {
                         resources: [
                             { name: "posts", route: "posts", canEdit: false },
                         ],
-                        routerInitialEntries: ["/resources/posts/show/1"],
+                        routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
             );
@@ -184,7 +176,7 @@ describe("Show", () => {
 
         it("should render edit button with recordItemId prop", () => {
             const { getByText, queryByTestId } = render(
-                <Route path="/resources/:resource/show/:id">
+                <Route path="/:resource/show/:id">
                     <Show recordItemId="1" />
                 </Route>,
                 {
@@ -193,7 +185,7 @@ describe("Show", () => {
                         resources: [
                             { name: "posts", route: "posts", canEdit: true },
                         ],
-                        routerInitialEntries: ["/resources/posts/show/1"],
+                        routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
             );
@@ -207,7 +199,7 @@ describe("Show", () => {
     describe("render delete button", () => {
         it("should render delete button", () => {
             const { queryByTestId } = render(
-                <Route path="/resources/:resource/show/:id">
+                <Route path="/:resource/show/:id">
                     <Show />
                 </Route>,
                 {
@@ -216,7 +208,7 @@ describe("Show", () => {
                         resources: [
                             { name: "posts", route: "posts", canDelete: true },
                         ],
-                        routerInitialEntries: ["/resources/posts/show/1"],
+                        routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
             );
@@ -226,7 +218,7 @@ describe("Show", () => {
 
         it("should not render delete button on resource canDelete false", () => {
             const { queryByTestId } = render(
-                <Route path="/resources/:resource/show/:id">
+                <Route path="/:resource/show/:id">
                     <Show />
                 </Route>,
                 {
@@ -235,7 +227,7 @@ describe("Show", () => {
                         resources: [
                             { name: "posts", route: "posts", canDelete: false },
                         ],
-                        routerInitialEntries: ["/resources/posts/show/1"],
+                        routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
             );
@@ -245,7 +237,7 @@ describe("Show", () => {
 
         it("should not render delete button on resource canDelete true & canDelete props false on component", () => {
             const { queryByTestId } = render(
-                <Route path="/resources/:resource/show/:id">
+                <Route path="/:resource/show/:id">
                     <Show canDelete={false} />
                 </Route>,
                 {
@@ -254,7 +246,7 @@ describe("Show", () => {
                         resources: [
                             { name: "posts", route: "posts", canDelete: true },
                         ],
-                        routerInitialEntries: ["/resources/posts/show/1"],
+                        routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
             );
@@ -264,7 +256,7 @@ describe("Show", () => {
 
         it("should render delete button on resource canDelete false & canDelete props true on component", () => {
             const { queryByTestId } = render(
-                <Route path="/resources/:resource/show/:id">
+                <Route path="/:resource/show/:id">
                     <Show canDelete={true} />
                 </Route>,
                 {
@@ -273,7 +265,7 @@ describe("Show", () => {
                         resources: [
                             { name: "posts", route: "posts", canDelete: false },
                         ],
-                        routerInitialEntries: ["/resources/posts/show/1"],
+                        routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
             );
@@ -283,7 +275,7 @@ describe("Show", () => {
 
         it("should render delete button with recordItemId prop", () => {
             const { queryByTestId } = render(
-                <Route path="/resources/:resource/show/:id">
+                <Route path="/:resource/show/:id">
                     <Show recordItemId="1" />
                 </Route>,
                 {
@@ -292,7 +284,7 @@ describe("Show", () => {
                         resources: [
                             { name: "posts", route: "posts", canDelete: true },
                         ],
-                        routerInitialEntries: ["/resources/posts/show/1"],
+                        routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
             );

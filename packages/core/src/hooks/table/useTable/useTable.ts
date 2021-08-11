@@ -24,6 +24,7 @@ import {
     CrudFilters,
     CrudSorting,
     GetListResponse,
+    SuccessErrorNotification,
 } from "../../../interfaces";
 
 export type useTableProps<TSearchVariables = unknown> = {
@@ -35,7 +36,7 @@ export type useTableProps<TSearchVariables = unknown> = {
     initialFilter?: CrudFilters;
     syncWithLocation?: boolean;
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
-};
+} & SuccessErrorNotification;
 
 export type useTableReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -48,6 +49,13 @@ export type useTableReturnType<
     filters?: CrudFilters;
 };
 
+/**
+ * By using useTable, you are able to get properties that are compatible with
+ * Ant Design {@link https://ant.design/components/table/ `<Table>`} component.
+ * All features such as sorting, filtering and pagination comes as out of box.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/table/useTable} for more details.
+ */
 export const useTable = <
     TData extends BaseRecord = BaseRecord,
     TSearchVariables = unknown,
@@ -60,6 +68,8 @@ export const useTable = <
     initialFilter,
     syncWithLocation: syncWithLocationProp = false,
     resource: resourceFromProp,
+    successNotification,
+    errorNotification,
 }: useTableProps<TSearchVariables> = {}): useTableReturnType<
     TData,
     TSearchVariables
@@ -114,11 +124,17 @@ export const useTable = <
         defaultCurrent: defaultCurrentSF,
     } = tablePropsSunflower.pagination;
 
-    const queryResult = useList<TData>(resource.name, {
-        pagination: { current: current ?? defaultCurrentSF, pageSize },
-        filters: permanentFilter.concat(extraFilter, filters),
-        sort: sorter,
-    });
+    const queryResult = useList<TData>(
+        resource.name,
+        {
+            pagination: { current: current ?? defaultCurrentSF, pageSize },
+            filters: permanentFilter.concat(extraFilter, filters),
+            sort: sorter,
+        },
+        undefined,
+        successNotification,
+        errorNotification,
+    );
     const { data, isFetching } = queryResult;
 
     const onChange = (
@@ -144,7 +160,7 @@ export const useTable = <
                 filters: crudFilters,
             });
 
-            return push(`/resources/${resource.route}?${stringifyParams}`);
+            return push(`/${resource.route}?${stringifyParams}`);
         }
     };
 
@@ -168,8 +184,6 @@ export const useTable = <
             pagination: {
                 ...tablePropsSunflower.pagination,
                 total: data?.total,
-                size: "small",
-                position: ["bottomCenter"],
             },
             scroll: { x: true },
         },

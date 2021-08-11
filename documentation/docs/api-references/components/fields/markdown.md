@@ -9,7 +9,7 @@ This field lets you display markdown content. It supports [GitHub Flavored Markd
 
 ## Usage
 
-Let's see how to use `<MarkdownField>` in a show page.
+Let's see how we can use `<MarkdownField>` in a show page.
 
 ```tsx title="pages/posts/show.tsx"
 import {
@@ -32,16 +32,12 @@ export const PostShow: React.FC = () => {
 
     return (
         <Show isLoading={isLoading}>
-            {record && (
-                <>
-                    <Title level={5}>Id</Title>
-                    <Text>{record.id}</Text>
+            <Title level={5}>Id</Title>
+            <Text>{record?.id}</Text>
 
-                    <Title level={5}>Content</Title>
-                    //highlight-next-line
-                    <MarkdownField value={record.content} />
-                </>
-            )}
+            <Title level={5}>Content</Title>
+            //highlight-next-line
+            <MarkdownField value={record?.content} />
         </Show>
     );
 };
@@ -63,6 +59,16 @@ export interface IPost {
 
 ### Properties
 
-| Property | Description             | Type                 |
-| -------- | ----------------------- | -------------------- |
-| value    | Markdown data to render | `string | undefined` |
+| Property | Description             | Type                    |
+| -------- | ----------------------- | ----------------------- |
+| value    | Markdown data to render | `string` \| `undefined` |
+
+
+## Live Codesandbox Example
+
+<iframe src="https://codesandbox.io/embed/refine-custom-inputs-example-mfmh6?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Fedit.tsx&theme=dark&view=preview"
+    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+    title="refine-custom-inputs-example"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>

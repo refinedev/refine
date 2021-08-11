@@ -1,7 +1,7 @@
 import { useTable } from "@hooks";
 import { useTableProps } from "../useTable";
 import { BaseRecord, HttpError } from "../../../interfaces";
-import { useFormProps } from "../../form/useForm";
+import { useFormProps, UseFormReturnType } from "../../form/useForm";
 import { useTableReturnType } from "../useTable/useTable";
 import { useForm } from "../../form/useForm";
 import { ButtonProps } from "../../../components/antd";
@@ -12,7 +12,7 @@ export type useEditableTableReturnType<
     TVariables = {},
     TSearchVariables = unknown,
 > = useTableReturnType<TData, TSearchVariables> &
-    useForm<TData, TError, TVariables> & {
+    UseFormReturnType<TData, TError, TVariables> & {
         saveButtonProps: ButtonProps & {
             onClick: () => void;
         };
@@ -32,6 +32,14 @@ type useEditableTableProps<
     TSearchVariables = unknown,
 > = useTableProps<TSearchVariables> & useFormProps<TData, TError, TVariables>;
 
+/**
+ * `useEditeableTable` allows you to implement edit feature on the table with ease,
+ * on top of all the features that {@link https://refine.dev/docs/api-references/hooks/table/useTable `useTable`} provides.
+ * `useEditableTable` return properties that can be used on Ant Design's {@link https://ant.design/components/table/ `<Table>`}
+ * and {@link https://ant.design/components/form/ `<Form>`} components.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/table/useEditableTable} for more details.
+ */
 export const useEditableTable = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,

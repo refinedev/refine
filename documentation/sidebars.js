@@ -40,6 +40,7 @@ module.exports = {
                                 "api-references/hooks/data/useOne",
                                 "api-references/hooks/data/useMany",
                                 "api-references/hooks/data/useCustom",
+                                "api-references/hooks/data/useApiUrl",
                             ],
                         },
                         {
@@ -103,6 +104,11 @@ module.exports = {
                         },
                         {
                             type: "category",
+                            label: "List",
+                            items: ["api-references/hooks/show/useSimpleList"],
+                        },
+                        {
+                            type: "category",
                             label: "Resource",
                             items: [
                                 "api-references/hooks/resource/useMenu",
@@ -131,7 +137,9 @@ module.exports = {
                     label: "Components",
                     items: [
                         "api-references/components/refine-config",
+                        "api-references/components/layout-wrapper",
                         "api-references/components/resource",
+                        "api-references/components/filter-dropdown",
                         {
                             type: "category",
                             label: "Basic Views",
@@ -144,19 +152,25 @@ module.exports = {
                         },
                         {
                             type: "category",
+                            label: "Authorization",
+                            items: [
+                                "api-references/components/auth/authenticated",
+                            ],
+                        },
+                        {
+                            type: "category",
                             label: "Buttons",
                             items: [
+                                "api-references/components/buttons/list-button",
                                 "api-references/components/buttons/create-button",
-                                "api-references/components/buttons/export-button",
+                                "api-references/components/buttons/edit-button",
+                                "api-references/components/buttons/show-button",
                                 "api-references/components/buttons/delete-button",
+                                "api-references/components/buttons/clone-button",
                                 "api-references/components/buttons/refresh-button",
                                 "api-references/components/buttons/save-button",
                                 "api-references/components/buttons/import-button",
-                                // "api-references/components/buttons/export-button",
-                                "api-references/components/buttons/list-button",
-                                "api-references/components/buttons/show-button",
-                                "api-references/components/buttons/edit-button",
-                                "api-references/components/buttons/clone-button",
+                                "api-references/components/buttons/export-button",
                             ],
                         },
                         {
@@ -179,6 +193,7 @@ module.exports = {
                                 "api-references/components/fields/markdown",
                                 "api-references/components/fields/tag",
                                 "api-references/components/fields/text",
+                                "api-references/components/fields/number",
                             ],
                         },
                         "api-references/interfaceReferences",
@@ -205,8 +220,11 @@ module.exports = {
                 },
                 {
                     type: "category",
-                    label: "Table",
-                    items: ["guides-and-concepts/table/table-search"],
+                    label: "Search",
+                    items: [
+                        "guides-and-concepts/search/table-search",
+                        "guides-and-concepts/search/list-search",
+                    ],
                 },
                 {
                     type: "category",
@@ -276,6 +294,11 @@ module.exports = {
                 },
                 {
                     type: "category",
+                    label: "List",
+                    items: ["examples/list/useSimpleList"],
+                },
+                {
+                    type: "category",
                     label: "Field",
                     items: [
                         "examples/field/useCheckboxGroup",
@@ -291,9 +314,13 @@ module.exports = {
                         "examples/customization/customLogin",
                         "examples/customization/customFooter",
                         "examples/customization/customSider",
-                        "examples/customization/customInput",
                         "examples/customization/offLayoutArea",
                     ],
+                },
+                {
+                    type: "category",
+                    label: "Inputs",
+                    items: ["examples/inputs/customInput"],
                 },
                 {
                     type: "category",
@@ -301,6 +328,14 @@ module.exports = {
                     items: [
                         "examples/upload/multipartUpload",
                         "examples/upload/base64Upload",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Import - Export",
+                    items: [
+                        "examples/import-export/import",
+                        "examples/import-export/export",
                     ],
                 },
                 "examples/customPages",

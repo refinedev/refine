@@ -4,14 +4,34 @@ import { Prompt } from "react-router-dom";
 import { useTranslate, useWarnAboutChange } from "@hooks";
 import { RefineContext } from "@contexts/refine";
 import { IRefineContext } from "@contexts/refine/IRefineContext";
+import { LayoutProps, TitleProps } from "../../interfaces";
 
 export interface LayoutWrapperProps {
     dashboard?: boolean;
+    Layout?: React.FC<LayoutProps>;
+    Sider?: React.FC;
+    Header?: React.FC;
+    Title?: React.FC<TitleProps>;
+    Footer?: React.FC;
+    OffLayoutArea?: React.FC;
 }
 
+/**
+ * `<LayoutWrapper>` wraps its contents in **refine's** layout with all customizations made in {@link https://refine.dev/docs/api-references/components/refine-config `<Refine>`} component.
+ * It is the default layout used in {@link https://refine.dev/docs/api-references/components/resource `<Resource>`} pages.
+ * It can be used in [custom pages][Custom Pages] to use global layout.
+ *
+ * @see {@link https://refine.dev/docs/api-references/components/layout-wrapper} for more details.
+ */
 export const LayoutWrapper: FC<LayoutWrapperProps> = ({
     children,
     dashboard,
+    Layout: LayoutFromProps,
+    Sider: SiderFromProps,
+    Header: HeaderFromProps,
+    Title: TitleFromProps,
+    Footer: FooterFromProps,
+    OffLayoutArea: OffLayoutAreaFromProps,
 }) => {
     const { Layout, Footer, Header, Sider, Title, OffLayoutArea } =
         useContext<IRefineContext>(RefineContext);
@@ -42,13 +62,15 @@ export const LayoutWrapper: FC<LayoutWrapperProps> = ({
         return window.removeEventListener("beforeunload", warnWhenListener);
     }, [warnWhen]);
 
+    const LayoutToRender = LayoutFromProps ?? Layout;
+
     return (
-        <Layout
-            Sider={Sider}
-            Header={Header}
-            Footer={Footer}
-            Title={Title}
-            OffLayoutArea={OffLayoutArea}
+        <LayoutToRender
+            Sider={SiderFromProps ?? Sider}
+            Header={HeaderFromProps ?? Header}
+            Footer={FooterFromProps ?? Footer}
+            Title={TitleFromProps ?? Title}
+            OffLayoutArea={OffLayoutAreaFromProps ?? OffLayoutArea}
             dashboard={dashboard}
         >
             {children}
@@ -59,6 +81,6 @@ export const LayoutWrapper: FC<LayoutWrapperProps> = ({
                     "Are you sure you want to leave? You have with unsaved changes.",
                 )}
             />
-        </Layout>
+        </LayoutToRender>
     );
 };

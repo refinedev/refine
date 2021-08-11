@@ -1,13 +1,13 @@
 {
   "pages": {
     "login": {
-      "login": "Login",
+      "signin": "Sign in",
       "signup": "Sign up",
-      "username": "Username",
+      "email": "Email",
       "password": "Password",
       "remember": "Remember me",
-      "forgotPassword": "Forgot password?",
-      "noAccount": "Still no account? Please go to"
+      "forgotPassword": "Forgot?",
+      "noAccount": "Don’t have an account?"
     },
     "error": {
       "info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
@@ -30,7 +30,11 @@
     "show": "Show",
     "undo": "Undo",
     "import": "Import",
-    "clone": "Clone"
+    "clone": "Clone",
+    "accept": "Accept",
+    "acceptAll": "Accept All",
+    "reject": "Reject",
+    "rejectAll": "Reject All"
   },
   "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
   "notifications": {
@@ -51,28 +55,22 @@
   "dashboard": {
     "title": "Dashboard"
   },
-  "posts": {
-    "posts": "Posts",
-    "fields": {
-      "id": "Id",
-      "title": "Title",
-      "category": "Category",
-      "status": {
-        "title": "Status",
-        "published": "Published",
-        "draft": "Draft",
-        "rejected": "Rejected"
-      },
-      "content": "Content"
-    },
+  "stores": {
     "titles": {
-      "create": "Create Post",
-      "edit": "Edit Post",
-      "list": "Posts",
-      "show": "Show Post"
+      "create": "Create Store",
+      "edit": "Edit Store",
+      "list": "Stores",
+      "show": "Show Store"
     }
   },
   "table": {
     "actions": "Actions"
+  },
+  "search": {
+    "placeholder": "Search by Store ID, E-mail, Keyword"
+  },
+  "status": {
+    "enable": "Enable",
+    "disable": "Disable"
   }
 }

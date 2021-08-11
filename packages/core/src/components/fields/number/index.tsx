@@ -20,6 +20,11 @@ export type NumberFieldProps = FieldProps<ReactChild> &
         options?: Intl.NumberFormatOptions;
     };
 
+/**
+ * This field is used to display a number formatted according to the browser locale, right aligned. and uses {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl `Intl`} to display date format.
+ *
+ * @see {@link https://refine.dev/docs/api-references/components/fields/number} for more details.
+ */
 export const NumberField: React.FC<NumberFieldProps> = ({
     value,
     locale,

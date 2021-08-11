@@ -5,24 +5,24 @@ title: Save
 
 import saveButtonProps from '@site/static/img/guides-and-concepts/components/buttons/save/saveButtonProps.png';
 
-`<SaveButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses for presantation purposes only. Some refine hooks add features to this button.
+`<SaveButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses it for presantation purposes only. Some of the hooks that refine has adds features to this button.
 
 ## Usage
 
-For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the `useForm` hook.
+For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](api-references/hooks/form/useForm.md) hook.
 
 ```tsx
 import { Edit, Form, Input, useForm } from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
-export const PostEdit: React.FC = (props) => {
+export const PostEdit: React.FC = () => {
     //highlight-next-line
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     return (
         //highlight-next-line
-        <Edit {...props} saveButtonProps={saveButtonProps}>
+        <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
@@ -48,14 +48,14 @@ export interface IPost {
 }
 ```
 
-Looks like this:
+Will look like this:
 
 <div>
     <img  src={saveButtonProps} alt="Default Save Button" />
 </div>
 <br/>
 
-In this example, `useForm` hook gives properties the `<SaveButton>` component to submit the form, loading button, disable button via `saveButtonProps`.
+The [`useForm`](api-references/hooks/form/useForm.md) hook exposes `saveButtonProps` to be passed to `<SaveButton>` component which includes submitting the form action, button loading, and disable states. 
 
 ## API Reference
 
@@ -64,6 +64,6 @@ In this example, `useForm` hook gives properties the `<SaveButton>` component to
 | Property | Description                      | Type                                                       | Default                                                   |
 | -------- | -------------------------------- | ---------------------------------------------------------- | --------------------------------------------------------- |
 | props    | Ant Design button props          | [`ButtonProps`](https://ant.design/components/button/#API) |                                                           |
-| children | Set the button text              | `ReactNode`                                                | `"Save"`                                                  |
-| type     | Set the button type              | `string`                                                   | `"primary"`                                               |
-| icon     | Set the icon component of button | `ReactNode`                                                | [`<SaveOutlined />`](https://ant.design/components/icon/) |
+| children | Sets the button text              | `ReactNode`                                                | `"Save"`                                                  |
+| type     | Sets the button type              | `string`                                                   | `"primary"`                                               |
+| icon     | Sets the icon component of button | `ReactNode`                                                | [`<SaveOutlined />`](https://ant.design/components/icon/) |

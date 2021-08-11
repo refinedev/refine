@@ -8,6 +8,7 @@ import {
     ResourceRouterParams,
     BaseRecord,
     GetOneResponse,
+    SuccessErrorNotification,
 } from "../../interfaces";
 
 export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
@@ -19,11 +20,20 @@ export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
 export type useShowProps = {
     resource?: string;
     id?: string;
-};
+} & SuccessErrorNotification;
 
+/**
+ * `useShow` hook allows you to fetch the desired record.
+ * It uses `getOne` method as query function from the dataProvider that is
+ * passed to {@link https://refine.dev/docs/api-references/components/refine-config `<Refine>`}.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/show/useShow} for more details.
+ */
 export const useShow = <TData extends BaseRecord = BaseRecord>({
     resource: resourceFromProp,
     id,
+    successNotification,
+    errorNotification,
 }: useShowProps = {}): useShowReturnType<TData> => {
     const [showId, setShowId] = useState<string>();
 
@@ -35,9 +45,15 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
 
     const resourceId = showId ?? id ?? idFromRoute;
 
-    const queryResult = useOne<TData>(resource.name, resourceId, {
-        enabled: !!resourceId,
-    });
+    const queryResult = useOne<TData>(
+        resource.name,
+        resourceId,
+        {
+            enabled: !!resourceId,
+        },
+        successNotification,
+        errorNotification,
+    );
 
     return {
         queryResult,

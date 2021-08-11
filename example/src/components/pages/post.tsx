@@ -41,7 +41,8 @@ import {
     useMany,
     IResourceComponentsProps,
     useImport,
-    useCreate,
+    Row,
+    Col,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -90,12 +91,17 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     });
 
     const { tableProps, sorter, filters } = useTable<IPost>({
-        initialCurrent: 3,
-        initialPageSize: 50,
         initialSorter: [
             {
                 field: "createdAt",
                 order: "desc",
+            },
+        ],
+        initialFilter: [
+            {
+                field: "category.id",
+                value: [1, 2],
+                operator: "in",
             },
         ],
     });
@@ -103,9 +109,13 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
 
-    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
-        enabled: categoryIds.length > 0,
-    });
+    const { data, isLoading } = useMany<ICategory>(
+        "categories",
+        ["1", "2"],
+        /* categoryIds, */ {
+            enabled: categoryIds.length > 0,
+        },
+    );
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
@@ -155,6 +165,13 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     position: ["bottomCenter"],
                     size: "small",
                 }}
+                onRow={(record, rowIndex) => {
+                    return {
+                        onClick: (event) => {
+                            console.log("here");
+                        }, // click row
+                    };
+                }}
             >
                 <Table.Column
                     dataIndex="title"
@@ -190,7 +207,12 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                         );
                     }}
                     filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
+                        <FilterDropdown
+                            {...props}
+                            mapValue={(selectedKeys) =>
+                                selectedKeys.map((i) => parseInt(i.toString()))
+                            }
+                        >
                             <Select
                                 style={{ minWidth: 200 }}
                                 mode="multiple"
@@ -212,7 +234,12 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     key="status"
                     render={(value) => <TagField value={value} />}
                     filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
+                        <FilterDropdown
+                            {...props}
+                            mapValue={(selectedKeys) => {
+                                return selectedKeys[0];
+                            }}
+                        >
                             <Radio.Group>
                                 <Radio value="published">
                                     {translate(
@@ -283,27 +310,39 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
         React.useState<"write" | "preview">("write");
     const { isLoading, onChange } = useFileUploadState();
 
-    const { current, gotoStep, stepsProps, submit, formLoading, formProps } =
-        useStepsForm({
-            warnWhenUnsavedChanges: true,
-            defaultFormValues: () => {
-                return {
-                    status: "published",
-                };
-            },
-        });
+    const {
+        current,
+        gotoStep,
+        stepsProps,
+        submit,
+        formLoading,
+        formProps,
+        queryResult,
+    } = useStepsForm({
+        warnWhenUnsavedChanges: true,
+        defaultFormValues: () => {
+            return {
+                status: "published",
+            };
+        },
+    });
 
+    const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
+        defaultValue: postData?.category?.id,
     });
 
     const { selectProps: userSelectProps } = useSelect({
         resource: "users",
         optionLabel: "email",
+        defaultValue: postData?.user?.id,
     });
 
     const { selectProps: tagsSelectProps } = useSelect({
         resource: "tags",
+        // TODO: tag interface
+        defaultValue: postData?.tags?.map((tag: { id: string }) => tag.id),
     });
 
     const formList = [
@@ -408,7 +447,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
             </Form.Item>
             <Form.Item
                 label={translate("common:resources.posts.fields.user")}
-                name={["name", "id"]}
+                name={["user", "id"]}
                 rules={[
                     {
                         required: true,
@@ -426,15 +465,6 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                         required: true,
                     },
                 ]}
-                // TODO: tags interface
-                getValueProps={(tags?: { id: string }[]) => {
-                    return { value: tags?.map((tag) => tag.id) };
-                }}
-                getValueFromEvent={(args: string[]) => {
-                    return args.map((item) => ({
-                        id: item,
-                    }));
-                }}
             >
                 <Select mode="multiple" {...tagsSelectProps} />
             </Form.Item>
@@ -442,57 +472,63 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     ];
 
     return (
-        <Create
-            actionButtons={
-                <>
-                    {current > 0 && (
-                        <Button
-                            onClick={() => {
-                                gotoStep(current - 1);
-                            }}
-                        >
-                            {translate(
-                                "common:resources.posts.forms.prevButton",
+        <Row gutter={[16, 16]}>
+            <Col lg={18} xs={24}>
+                <Create
+                    actionButtons={
+                        <>
+                            {current > 0 && (
+                                <Button
+                                    onClick={() => {
+                                        gotoStep(current - 1);
+                                    }}
+                                >
+                                    {translate(
+                                        "common:resources.posts.forms.prevButton",
+                                    )}
+                                </Button>
                             )}
-                        </Button>
-                    )}
-                    {current < formList.length - 1 && (
-                        <Button
-                            onClick={() => {
-                                gotoStep(current + 1);
-                            }}
-                        >
-                            {translate(
-                                "common:resources.posts.forms.nextButton",
+                            {current < formList.length - 1 && (
+                                <Button
+                                    onClick={() => {
+                                        gotoStep(current + 1);
+                                    }}
+                                >
+                                    {translate(
+                                        "common:resources.posts.forms.nextButton",
+                                    )}
+                                </Button>
                             )}
-                        </Button>
-                    )}
-                    {current === formList.length - 1 && (
-                        <SaveButton
-                            style={{ marginRight: 10 }}
-                            loading={isLoading || formLoading}
-                            onClick={() => submit()}
-                        />
-                    )}
-                </>
-            }
-            Aside={() => <Aside />}
-        >
-            <Steps {...stepsProps}>
-                <Step title="Content" />
-                <Step title="Relations" />
-            </Steps>
-
-            <div style={{ marginTop: 60 }}>
-                <Form
-                    {...formProps}
-                    wrapperCol={{ span: 24 }}
-                    layout="vertical"
+                            {current === formList.length - 1 && (
+                                <SaveButton
+                                    style={{ marginRight: 10 }}
+                                    loading={isLoading || formLoading}
+                                    onClick={() => submit()}
+                                />
+                            )}
+                        </>
+                    }
                 >
-                    {formList[current]}
-                </Form>
-            </div>
-        </Create>
+                    <Steps {...stepsProps}>
+                        <Step title="Content" />
+                        <Step title="Relations" />
+                    </Steps>
+
+                    <div style={{ marginTop: 60 }}>
+                        <Form
+                            {...formProps}
+                            wrapperCol={{ span: 24 }}
+                            layout="vertical"
+                        >
+                            {formList[current]}
+                        </Form>
+                    </div>
+                </Create>
+            </Col>
+            <Col lg={6} xs={24}>
+                <Aside />
+            </Col>
+        </Row>
     );
 };
 
@@ -661,15 +697,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
                         required: true,
                     },
                 ]}
-                // TODO: Tags Interface
-                getValueProps={(tags?: { id: string }[]) => {
-                    return { value: tags?.map((tag) => tag.id) };
-                }}
-                getValueFromEvent={(args: string[]) => {
-                    return args.map((item) => ({
-                        id: item,
-                    }));
-                }}
             >
                 <Select mode="multiple" {...tagsSelectProps} />
             </Form.Item>
@@ -677,52 +704,58 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     ];
 
     return (
-        <Edit
-            {...props}
-            canDelete
-            Aside={() => <Aside />}
-            actionButtons={
-                <>
-                    {current > 0 && (
-                        <Button onClick={() => gotoStep(current - 1)}>
-                            {translate(
-                                "common:resources.posts.forms.prevButton",
+        <Row gutter={[16, 16]}>
+            <Col lg={18} xs={24}>
+                <Edit
+                    {...props}
+                    canDelete
+                    actionButtons={
+                        <>
+                            {current > 0 && (
+                                <Button onClick={() => gotoStep(current - 1)}>
+                                    {translate(
+                                        "common:resources.posts.forms.prevButton",
+                                    )}
+                                </Button>
                             )}
-                        </Button>
-                    )}
-                    {current < formList.length - 1 && (
-                        <Button onClick={() => gotoStep(current + 1)}>
-                            {translate(
-                                "common:resources.posts.forms.nextButton",
+                            {current < formList.length - 1 && (
+                                <Button onClick={() => gotoStep(current + 1)}>
+                                    {translate(
+                                        "common:resources.posts.forms.nextButton",
+                                    )}
+                                </Button>
                             )}
-                        </Button>
-                    )}
-                    {current === formList.length - 1 && (
-                        <SaveButton
-                            style={{ marginRight: 10 }}
-                            loading={isLoading || formLoading}
-                            onClick={() => submit()}
-                            disabled={formLoading}
-                        />
-                    )}
-                </>
-            }
-        >
-            <Steps {...stepsProps}>
-                <Step title="Content" />
-                <Step title="Relations" />
-            </Steps>
-
-            <div style={{ marginTop: 60 }}>
-                <Form
-                    {...formProps}
-                    wrapperCol={{ span: 24 }}
-                    layout="vertical"
+                            {current === formList.length - 1 && (
+                                <SaveButton
+                                    style={{ marginRight: 10 }}
+                                    loading={isLoading || formLoading}
+                                    onClick={() => submit()}
+                                    disabled={formLoading}
+                                />
+                            )}
+                        </>
+                    }
                 >
-                    {formList[current]}
-                </Form>
-            </div>
-        </Edit>
+                    <Steps {...stepsProps}>
+                        <Step title="Content" />
+                        <Step title="Relations" />
+                    </Steps>
+
+                    <div style={{ marginTop: 60 }}>
+                        <Form
+                            {...formProps}
+                            wrapperCol={{ span: 24 }}
+                            layout="vertical"
+                        >
+                            {formList[current]}
+                        </Form>
+                    </div>
+                </Edit>
+            </Col>
+            <Col lg={6} xs={24}>
+                <Aside />
+            </Col>
+        </Row>
     );
 };
 
@@ -732,15 +765,22 @@ export const PostShow: React.FC<IResourceComponentsProps> = (props) => {
     const record = data?.data;
 
     return (
-        <Show isLoading={isLoading}>
-            <Title level={5}>Id</Title>
-            <Text>{record?.id}</Text>
+        <Row gutter={[16, 16]}>
+            <Col lg={18} xs={24}>
+                <Show isLoading={isLoading}>
+                    <Title level={5}>Id</Title>
+                    <Text>{record?.id}</Text>
 
-            <Title level={5}>Title</Title>
-            <Text>{record?.title}</Text>
+                    <Title level={5}>Title</Title>
+                    <Text>{record?.title}</Text>
 
-            <Title level={5}>Content</Title>
-            <MarkdownField value={record?.content}></MarkdownField>
-        </Show>
+                    <Title level={5}>Content</Title>
+                    <MarkdownField value={record?.content}></MarkdownField>
+                </Show>
+            </Col>
+            <Col lg={6} xs={24}>
+                <Aside />
+            </Col>
+        </Row>
     );
 };

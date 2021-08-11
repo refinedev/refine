@@ -5,18 +5,22 @@ siderbar_label: useCreateMany
 description: useCreateMany data hook from refine is a modified version of react-query's useMutation for multiple create mutations
 ---
 
-`useCreateMany` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for multiple create mutations. It uses `createMany` method as mutation function from the `dataProvider` that is passed to `<Refine>`.
+
+`useCreateMany` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for multiple create mutations.
+
+It uses `createMany` method as mutation function from the [`dataProvider`](api-references/providers/data-provider.md) which is passed to `<Refine>`.
+
 
 ## Features
 
-* Shows notifications on success and error.
+* Shows notifications after the mutation succeeds or fails.
 
-* Automatically invalidates `list` queries after mutation is succesfully run.
+* Automatically invalidates the `list` queries after the mutation is succesfully run.
 [Refer to React Query docs for detailed information &#8594](https://react-query.tanstack.com/guides/invalidations-from-mutations)
 
 ## Usage
 
-Let'say we have a `categories` resource
+Let's say that we have a resource named `categories`. 
 
 ```ts title="https://api.fake-rest.refine.dev/categories"
 {
@@ -61,7 +65,7 @@ mutate({
 
 <br />
 
-After mutation runs `categories` will be updated as below:
+After the mutation runs `categories` will be updated as below:
 
 ```ts title="https://api.fake-rest.refine.dev/categories"
 {
@@ -92,11 +96,11 @@ Queries that use `/categories` endpoint will be automatically invalidated to sho
 :::
 
 :::tip
-`useCreateMany` returns `react-query`'s `useMutation` result. It includes `mutate` with  [many other properties](https://react-query.tanstack.com/reference/useMutation).
+`useCreateMany` returns `react-query`'s `useMutation` result which includes [a lot of properties](https://react-query.tanstack.com/reference/useMutation), one of which being `mutate`.
 :::
 
 :::important
-Variables passed to `mutate` must have the type of
+Variables passed to `mutate` must have these types.
 
 ```tsx
 {
@@ -107,16 +111,25 @@ Variables passed to `mutate` must have the type of
 :::
 
 ## API
+
+### Parameters
+
+| Property                                            | Description                               | Type                                                                       | Default                                                              |
+| --------------------------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| resource  <div className=" required">Required</div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                                   |                                                                      |
+| values  <div className=" required">Required</div>   | Values for mutation function              | `TVariables[]`                                                             | [{}]                                                                 |
+| successNotification                                 | Successful Mutation notification          | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully created `resource`s"                                   |
+| errorNotification                                   | Unsuccessful Mutation notification        | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" |
 ### Type Parameters
 
 
-| Property   | Desription                                                                    | Type                                     | Default                                  |
-| ---------- | ----------------------------------------------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| Property   | Desription                                                                          | Type                                           | Default                                        |
+| ---------- | ----------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
 | TData      | Result data of the mutation. Extends [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) |
 | TError     | Custom error object that extends [`HttpError`](../../interfaces.md#httperror)       | [`HttpError`](../../interfaces.md#httperror)   | [`HttpError`](../../interfaces.md#httperror)   |
-| TVariables | Values for mutation function                                                  | `{}`                                     | `{}`                                     |
+| TVariables | Values for mutation function                                                        | `{}`                                           | `{}`                                           |
 
-### Return values
+### Return value
 
 | Description                               | Type                                                                                                                                                                                      |
 | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

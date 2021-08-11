@@ -7,7 +7,7 @@ title: useTitle
 
 ## Usage
 
-Normally refine provides a default title. If we want to build a custom title instead of default one that comes with refine, we overwrite it like this:
+Normally refine provides a default title. If we want to build a custom title instead of default one that comes with refine, we need to overwrite it like this:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
@@ -36,7 +36,7 @@ This `<Title>` we created is used in the `<Sider>` that refine provides by defau
 :::
 <br/>
 
-Now `useTitle` will provides us to access `<Title>` component from various parts of the application, like this:
+Now `useTitle` will provides us to access to the `<Title>` component from various parts of the application, like this:
 
 ```tsx title="src/components/customSider"
 //highlight-next-line

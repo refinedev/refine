@@ -21,12 +21,7 @@ export interface ISalesChart {
 
 export interface IOrderStatus {
     id: string;
-    text:
-        | "waiting"
-        | "ready"
-        | "on the way"
-        | "delivered"
-        | "could not be delivered";
+    text: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";
 }
 
 export interface IUser {
@@ -59,7 +54,7 @@ export interface IFile {
 
 export interface IEvent {
     date: string;
-    name: string;
+    status: string;
 }
 
 export interface IStore {
@@ -89,7 +84,7 @@ export interface IOrder {
     status: IOrderStatus;
     adress: IAddress;
     store: IStore;
-    courier: {};
+    courier: ICourier;
     events: IEvent[];
     orderNumber: number;
     amount: number;
@@ -104,7 +99,7 @@ export interface IProduct {
     createdAt: string;
     price: number;
     category: ICategory;
-    stock: 496;
+    stock: number;
 }
 
 export interface ICategory {
@@ -135,4 +130,14 @@ export interface ICourier {
     createdAt: string;
     isActive: boolean;
     avatar: IFile[];
+}
+
+export interface IReview {
+    id: string;
+    order: IOrder;
+    user: IUser;
+    star: number;
+    createDate: string;
+    status: "pending" | "approved" | "rejected";
+    comment: string[];
 }

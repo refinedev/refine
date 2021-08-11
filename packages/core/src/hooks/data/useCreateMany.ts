@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
-import { notification } from "antd";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -8,8 +7,16 @@ import {
     BaseRecord,
     CreateManyResponse,
     HttpError,
+    SuccessErrorNotification,
 } from "../../interfaces";
 import { useListResourceQueries, useTranslate } from "@hooks";
+import { handleNotification } from "@definitions";
+import pluralize from "pluralize";
+
+type useCreateManyParams<TVariables> = {
+    resource: string;
+    values: TVariables[];
+} & SuccessErrorNotification;
 
 export type UseCreateManyReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -18,10 +25,22 @@ export type UseCreateManyReturnType<
 > = UseMutationResult<
     CreateManyResponse<TData>,
     TError,
-    { resource: string; values: TVariables[] },
+    useCreateManyParams<TVariables>,
     unknown
 >;
 
+/**
+ * `useCreateMany` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for multiple create mutations.
+ *
+ * It uses `createMany` method as mutation function from the `dataProvider` which is passed to `<Refine>`.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/data/useCreateMany} for more details.
+ *
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TVariables - Values for mutation function
+ *
+ */
 export const useCreateMany = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -35,36 +54,48 @@ export const useCreateMany = <
     const mutation = useMutation<
         CreateManyResponse<TData>,
         TError,
-        {
-            resource: string;
-            values: TVariables[];
-        }
+        useCreateManyParams<TVariables>
     >(
-        ({ resource, values }: { resource: string; values: TVariables[] }) =>
+        ({ resource, values }: useCreateManyParams<TVariables>) =>
             createMany<TData, TVariables>(resource, values),
         {
-            onSuccess: (_, { resource }) => {
-                notification.success({
+            onSuccess: (_, { resource, successNotification }) => {
+                const resourcePlural = pluralize.plural(resource);
+
+                handleNotification(successNotification, {
                     description: translate(
                         "notifications.createSuccess",
-                        { resource },
-                        "Successfully Created",
+                        {
+                            resource: translate(
+                                `${resource}.${resource}`,
+                                resource,
+                            ),
+                        },
+                        `Successfully created ${resourcePlural}`,
                     ),
                     message: translate("notifications.success", "Success"),
+                    type: "success",
                 });
 
                 getListQueries(resource).forEach((query) => {
                     queryClient.invalidateQueries(query.queryKey);
                 });
             },
-            onError: (err: TError, { resource }) => {
-                notification.error({
+            onError: (err: TError, { resource, errorNotification }) => {
+                handleNotification(errorNotification, {
                     description: err.message,
                     message: translate(
                         "notifications.createError",
-                        { resource, statusCode: err.statusCode },
+                        {
+                            resource: translate(
+                                `${resource}.${resource}`,
+                                resource,
+                            ),
+                            statusCode: err.statusCode,
+                        },
                         `There was an error creating ${resource} (status code: ${err.statusCode}`,
                     ),
+                    type: "error",
                 });
             },
         },

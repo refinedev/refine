@@ -6,6 +6,12 @@ import { useTranslate } from "@hooks";
 
 type SaveButtonProps = ButtonProps & {};
 
+/**
+ * `<SaveButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component.
+ * It uses it for presantation purposes only. Some of the hooks that refine has adds features to this button.
+ *
+ * @see {@link https://refine.dev/docs/api-references/components/buttons/save-button} for more details.
+ */
 export const SaveButton: FC<SaveButtonProps> = ({ children, ...rest }) => {
     const translate = useTranslate();
 

@@ -6,11 +6,11 @@ import { render, TestWrapper, MockJSONServer } from "@test";
 import { Create } from "./";
 
 const renderCreate = (create: ReactNode) => {
-    return render(<Route path="/resources/:resource/create">{create}</Route>, {
+    return render(<Route path="/:resource/create">{create}</Route>, {
         wrapper: TestWrapper({
             dataProvider: MockJSONServer,
             resources: [{ name: "posts", route: "posts" }],
-            routerInitialEntries: ["/resources/posts/create"],
+            routerInitialEntries: ["/posts/create"],
         }),
     });
 };
@@ -18,15 +18,6 @@ describe("Create", () => {
     it("should render page successfuly", async () => {
         const { container } = renderCreate(<Create />);
 
-        expect(container).toBeTruthy();
-    });
-
-    it("should render aside successfuly", async () => {
-        const { container, getByText } = renderCreate(
-            <Create Aside={<div>i am here</div>} />,
-        );
-
-        getByText("i am here");
         expect(container).toBeTruthy();
     });
 
@@ -76,14 +67,14 @@ describe("Create", () => {
 
     it("should render tags", () => {
         const { getByText } = render(
-            <Route path="/resources/:resource/:action/:id">
+            <Route path="/:resource/:action/:id">
                 <Create />
             </Route>,
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
                     resources: [{ name: "posts", route: "posts" }],
-                    routerInitialEntries: ["/resources/posts/create/1"],
+                    routerInitialEntries: ["/posts/create/1"],
                 }),
             },
         );

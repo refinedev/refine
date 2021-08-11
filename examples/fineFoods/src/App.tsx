@@ -2,23 +2,15 @@ import { Refine, Resource } from "@pankod/refine";
 import "styles/antd.less";
 import jsonServerDataProvider from "@pankod/refine-simple-rest";
 import { authProvider } from "authProvider";
-import { DashbaordPage } from "./pages/dashboard";
+import { DashboardPage } from "./pages/dashboard";
+import { LoginPage } from "./pages/login";
 import { OrderList, OrderShow } from "./pages/orders";
 import { UserList, UserEdit, UserShow } from "./pages/users";
 import { CourierList } from "./pages/couriers";
-import {
-    ProductCreate,
-    ProductEdit,
-    ProductList,
-    ProductShow,
-} from "./pages/products";
-import { StoreCreate, StoreEdit, StoreList, StoreShow } from "./pages/stores";
-import {
-    CategoryCreate,
-    CategoryEdit,
-    CategoryList,
-    CategoryShow,
-} from "./pages/categories";
+import { ProductList } from "./pages/products";
+import { StoreCreate, StoreEdit, StoreList } from "./pages/stores";
+import { CategoryList } from "./pages/categories";
+import { ReviewsList } from "./pages/reviews";
 import { useTranslation } from "react-i18next";
 import { Header, Title } from "components";
 
@@ -41,7 +33,8 @@ const App: React.FC = () => {
             i18nProvider={i18nProvider}
             Header={Header}
             Title={Title}
-            DashboardPage={DashbaordPage}
+            DashboardPage={DashboardPage}
+            LoginPage={LoginPage}
         >
             <Resource
                 options={{
@@ -66,9 +59,6 @@ const App: React.FC = () => {
                 }}
                 name="products"
                 list={ProductList}
-                edit={ProductEdit}
-                create={ProductCreate}
-                show={ProductShow}
             />
             <Resource
                 name="stores"
@@ -78,7 +68,6 @@ const App: React.FC = () => {
                 list={StoreList}
                 edit={StoreEdit}
                 create={StoreCreate}
-                show={StoreShow}
             />
             <Resource
                 name="categories"
@@ -86,9 +75,6 @@ const App: React.FC = () => {
                     label: t("categories:title"),
                 }}
                 list={CategoryList}
-                edit={CategoryEdit}
-                create={CategoryCreate}
-                show={CategoryShow}
             />
             <Resource
                 name="couriers"
@@ -97,6 +83,7 @@ const App: React.FC = () => {
                 }}
                 list={CourierList}
             />
+            <Resource name="reviews" list={ReviewsList} />
         </Refine>
     );
 };

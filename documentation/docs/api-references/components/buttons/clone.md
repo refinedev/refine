@@ -5,13 +5,19 @@ title: Clone
 
 import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/clone/usage.png';
 
-`<CloneButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `clone` method from [useNavigation](#) under the hood. It can be useful for redirect the app to the create page with the record id route of `<Resource>`.
+`<CloneButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `clone` method from [useNavigation](/api-references/hooks/navigation/useNavigation.md) under the hood. 
+It can be useful when redirecting the app to the create page with the record id route of `<Resource>`.
 
 ## Usage
 
 ```tsx
-//highlight-next-line
-import { List, Table, CloneButton, useTable } from "@pankod/refine";
+import {
+    List,
+    Table,
+    useTable
+    //highlight-next-line
+    CloneButton,
+} from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
@@ -20,14 +26,14 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
-            <Table {...tableProps} key="id">
-                <Table.Column key="id" dataIndex="id" title="ID" />
-                <Table.Column key="title" dataIndex="title" title="Title" />
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" />
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
                     key="actions"
-                    render={(_value, record) => (
+                    render={(_, record) => (
                         // highlight-next-line
                         <CloneButton size="small" recordItemId={record.id} />
                     )}
@@ -45,7 +51,7 @@ export interface IPost {
 }
 ```
 
-Looks like this:
+Will look like this:
 
 <div>
     <img src={tableUsage} alt="Default Clone Button" />
@@ -64,15 +70,15 @@ export const MyCloneComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](#) and then redirect the app to `/resources/posts/create/1`.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/create/1`.
 
 :::note
-`<CloneButton>` component reads the id information from the route by default.
+**`<CloneButton>`** component reads the id information from the route by default.
 :::
 
 ### `resourceName`
 
-It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of `<Resource>` component.
+It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of the `<Resource>` component.
 
 ```tsx
 import { CloneButton } from "@pankod/refine";
@@ -81,7 +87,7 @@ export const MyCloneComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](#) and then redirect the app to `/resources/categories/create/2`.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/create/2`.
 
 ## API Reference
 
@@ -90,8 +96,8 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](#) and 
 | Property     | Description                                   | Type                                                                                                             | Default                                                         |
 | ------------ | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
 | props        | Ant Design button props                       | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; recordItemId?: string; }` |                                                                 |
-| resourceName | Determines which resource to use for redirect | `string`                                                                                                         | Resource name that it reads from route                          |
-| recordItemId | Add `id` to the end of the URL                | `string`                                                                                                         | Record id that it reads from route                              |
-| children     | Set the button text                           | `ReactNode`                                                                                                      | `"Clone"`                                                       |
-| icon         | Set the icon component of button              | `ReactNode`                                                                                                      | [`<PlusSquareOutlined />`](https://ant.design/components/icon/) |
-| onClick      | Set the handler to handle click event         | `(event) => void`                                                                                                | Triggers navigation for redirect to the create page of resource |
+| resourceName | Determines which resource to use for redirection | `string`                                                                                                         | Resource name that it reads from route                          |
+| recordItemId | Adds `id` to the end of the URL                | `string`                                                                                                         | Record id that it reads from route                              |
+| children     | Sets the button text                           | `ReactNode`                                                                                                      | `"Clone"`                                                       |
+| icon         | Sets the icon component of button              | `ReactNode`                                                                                                      | [`<PlusSquareOutlined />`](https://ant.design/components/icon/) |
+| onClick      | Sets the handler to handle click event         | `(event) => void`                                                                                                | Triggers navigation for redirection to the create page of resource |

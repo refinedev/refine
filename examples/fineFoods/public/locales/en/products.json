@@ -12,7 +12,8 @@
     "category": "Category",
     "images": {
       "label": "Images",
-      "description": "Click or drag avatar image to this area to upload."
+      "description": "Add product picture",
+      "validation": "must be 1080x1080 px"
     },
     "createdAt": "CreatedAt"
   }

@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 ## Introduction
 
-This tutorial will go through building a simple *admin panel* for a *CMS-like* application.
+This tutorial will go through process of building a simple *admin panel* for a *CMS-like* application.
 
 Step by step, you're going to learn how to consume a *REST API* and add basic CRUD functionality to your panel leveraging the unique capabilities of **refine**.
 
@@ -80,7 +80,7 @@ Point your browser to [http://localhost:3000](http://localhost:3000) to access i
 First, run the **superplate** with the following command:
 
 ```
-npx superplate-cli@alpha tutorial
+npx superplate-cli tutorial
 ```
 
 Select the following options to complete the *CLI wizard*:
@@ -154,17 +154,16 @@ npm i @pankod/refine-simple-rest
 Fake REST API is based on [JSON Server Project](https://github.com/typicode/json-server). **Simple REST Dataprovider** is fully compatible with the REST rules and methods of the **JSON Server**.
 :::
 
-:::note
+:::tip
 
 **refine** includes many out-of-the-box data providers to use in your projects like
 
-* Simple REST API
-* NestJS CRUD
-* Airtable
-* Strapi etc.
+* [Simple REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest)
+* [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
+* [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
+* [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
 
-Please refer to the documentation if you need connecting to a custom data source by creating your Dataprovider.
-
+[Refer to the `dataProvider` documentation for detailed usage. &#8594](/api-references/providers/data-provider.md)
 :::
 
 
@@ -190,7 +189,7 @@ export default App;
 
 <br/>
 
-`<Refine/>` is the root component of a **refine** application. Using the `dataProvider` prop, we made our **Simple REST Dataprovider** available to the entire application.
+`<Refine/>` is the root component of a **refine** application. Using the [`dataProvider`](api-references/providers/data-provider.md) prop, we made our **Simple REST Dataprovider** available to the entire application.
 
 ## Adding Resources
 
@@ -255,7 +254,7 @@ export const App: React.FC = () => {
 A `<Resource/>` is a child component of `<Refine/>` representing an API Endpoint. The `name` property of `<Resource/>` should match one of the endpoints in your API!
 :::
 
-Instead of showing the welcome page, the application should redirect now to an URL defined by the `name` property. Open your application to check that the URL is routed to **/resources/posts**:
+Instead of showing the welcome page, the application should redirect now? to an URL defined by the `name` property. Open your application to check that the URL is routed to **/posts**:
 
 <>
 
@@ -278,7 +277,7 @@ Let's create a **Page** component to fetch **posts** and display them as a table
 
 First, we'll need an interface to work with the data from the API endpoint. 
 
-Create a new folder *"interface"* under *"/src"* if you don't already have one. Then create a *"index.d.ts"* file with the following code:
+Create a new folder named *"interface"* under *"/src"* if you don't already have one. Then create a *"index.d.ts"* file with the following code:
 
 ```ts title="interfaces/index.d.ts"
 export interface IPost {
@@ -290,7 +289,7 @@ export interface IPost {
 
 We'll be using **title**, **status** and **createdAt** fields of every **post** record.
 
-Now, create a new folder *"pages/posts"* under *"/src"*. Under that folder, create a *"list.tsx"* file with the following code:
+Now, create a new folder named *"pages/posts"* under *"/src"*. Under that folder, create a *"list.tsx"* file with the following code:
 
 ```tsx title="pages/posts/list.tsx"
 import {
@@ -339,7 +338,7 @@ You may refer to [Ant Design Docs](https://ant.design/components/table/#API) for
 
 ✳️  `useTable<IPost>();` is passed to the `<Table/>` component as `{...tableProps}`. 
 
-This is the point where the ✨real magic✨  happens!
+This is the point where the ✨real magic✨ happens!
 
 **refine** hook `useTable()` fetches data from API and wraps them with various helper hooks required for the `<Table/>` component. Data interaction functions like **sorting**, **filtering**, and **pagination** will be instantly available on the `<Table/>` with this single line of code.
 
@@ -351,7 +350,7 @@ On [useTable() Documentation](api-references/hooks/table/useTable.md) you may fi
 ✳️ `<Table.Column>` components are used for mapping and formatting each field shown on the `<Table/>`. `dataIndex` prop maps the field to a matching key from the API response. `render` prop is used to choose the appropriate **Field** component for the given data type. 
 
 :::note
-The example uses `<TagField>` and `<DateField>` components. To get the full list of available components, you may refer to the [Field Components Documentation](#).
+The example uses `<TagField>` and `<DateField>` components. To get the full list of available components, you may refer to the [Field Components Documentation](/api-references/components/fields/boolean.md).
 :::
 
 ✳️ `<List>` is a **refine** component. It acts as a wrapper to `<Table>` to add some extras like *Create Button* and *title*. 
@@ -392,7 +391,7 @@ On the next step, we are going to add a category field to the table which involv
 
 ## Handling relationships
 
-Remember that the records from `/posts` endpoint had a category id field:
+Remember the records from `/posts` endpoint that had a category id field?
 
 ```ts title="https://api.fake-rest.refine.dev/posts/1"
 ...
@@ -403,7 +402,7 @@ Remember that the records from `/posts` endpoint had a category id field:
 ```
 <br />
 
-To display category titles on our table, we first need to map catogory id's to their corresponding titles.
+To display category titles on our table, we first need to map category id's to their corresponding titles.
 The category title data can be obtained from the `/categories` endpoint for each record.
 
 ```ts title="https://api.fake-rest.refine.dev/categories/26"
@@ -535,13 +534,12 @@ To get more detailed information about this hook, please refer the [useMany Docu
 
 ## Adding search and filters
 
-We're done with displaying `post` records on our `<Table>`. Let's add search and filtering capabilities to the component, so the user can have more control over the data.
+We're done with displaying `post` records on our `<Table>`. Let's add search and filtering capabilities to the component, so that the user can have more control over the data.
 
 We are going to use `<Table.Column>`'s [`filterDropdown`](https://ant.design/components/table/#Column) property and `<FilterDropdown>` component as following:
 
 ```tsx title="pages/posts/list.tsx"
 import {
-    ...
     //highlight-start
     FilterDropdown,
     Select,
@@ -602,13 +600,13 @@ export const PostList: React.FC = () => {
 ```
 ✳️ `<FilterDropdown>` component serves as a bridge between its child input and **refine**'s `useTable` hook. It passes childs input value to `useTable` using `filterDropdown`'s embedded props and provides a filter button.
 
-[Refer to `<FilterDropdown>` documentation for detailed usage. &#8594](#)
+[Refer to the `<FilterDropdown>` documentation for detailed usage. &#8594](api-references/components/filter-dropdown)
 
 ✳️ `useSelect` hook populates props for `<Select>` component from a given resource.
 
-[Refer to `Select` documentation for detailed usage information. &#8594](https://ant.design/components/select/)
+[Refer to the `Select` documentation for detailed usage information. &#8594](https://ant.design/components/select/)
 
-[Refer to `useSelect` documentation for detailed usage information. &#8594](api-references/hooks/field/useSelect.md)
+[Refer to the `useSelect` documentation for detailed usage information. &#8594](api-references/hooks/field/useSelect.md)
 
 :::note
 `defaultValue` is used to get the value for the current item. It's not affected by search, sort and filter parameters.
@@ -691,21 +689,21 @@ export const App: React.FC = () => {
 
 ✳️ `useShow()` is a **refine** hook used to fetch a single record data. The `queryResult` has the response and also `isLoading` state.
 
-[Refer to `useShow` documentation for detailed usage information. &#8594](api-references/hooks/show/useShow.md)
+[Refer to the `useShow` documentation for detailed usage information. &#8594](api-references/hooks/show/useShow.md)
 
 ✳️ To retrieve the category title, again we need to make a call to `/categories` endpoint. This time we used `useOne()` hook to get a single record from another resource.
 
-[Refer to `useOne` documentation for detailed usage information. &#8594](api-references/hooks/data/useOne.md)
+[Refer to the `useOne` documentation for detailed usage information. &#8594](api-references/hooks/data/useOne.md)
 
 
 :::caution attention
-`useShow()` is the preferred hook for fetching data from current resource. To query foreign resources you may use the low-level `useOne()` hook.
+`useShow()` is the preferred hook for fetching data from current resource. For query foreign resources you may use the low-level `useOne()` hook.
 :::
 
-Since we've got access to raw data returning from `useShow()`, there is no restriction how it's displayed  on your components. If you prefer presenting your content with a nicer wrapper, **refine** provides you 
+Since we've got access to raw data returning from `useShow()`, there is no restriction how it's displayed on your components. If you prefer presenting your content with a nicer wrapper, **refine** provides you 
 the `<Show>` component which has extra features like `list` and  `refresh` buttons.
 
-[Refer to `<Show>` documentation for detailed usage information. &#8594](api-references/components/basic-views/show)
+[Refer to the `<Show>` documentation for detailed usage information. &#8594](api-references/components/basic-views/show)
 
 <br />
 
@@ -717,7 +715,7 @@ the `<Show>` component which has extra features like `list` and  `refresh` butto
 
 ## Editing a record
 
-Until this point, we are basically working with read operations such as fetching and displaying data from resources. From now on, we are going to start create and update records by using **refine**.
+Until this point, we were basically working with read operations such as fetching and displaying data from resources. From now on, we are going to start creating and updating records by using **refine**.
 
 Let's start by creating a new `<PostEdit>` page responsible for editing a single record:
 
@@ -791,9 +789,7 @@ export const App: React.FC = () => {
 };
 ```
 
-<br />
-
-We are going to need an *edit* button on each row to display the `<PostEdit>` component. **refine** doesn't automatically adds one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
+We are going to need an *edit* button on each row to diplay the `<PostEdit>` component. **refine** doesn't automatically add one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
 
 ```tsx title="components/pages/posts.tsx"
 import {
@@ -824,10 +820,10 @@ export const PostList: React.FC = () => {
 }
 ```
 
-[Refer to `<EditButton>` documentation for detailed usage information. &#8594](api-references/components/buttons/edit.md)
+[Refer to the `<EditButton>` documentation for detailed usage information. &#8594](api-references/components/buttons/edit.md)
 
 
-You can try yourself that the edit buttons will trigger the edit forms for each record and you are able to update the record data.
+You can try using edit buttons which will trigger the edit forms for each record, allowing you to update the record data.
 
 Let's see what's going on our `<PostEdit>` component in detail:
 
@@ -836,18 +832,16 @@ On the example it returns `formProps` and `saveButtonProps`, where the former in
 
 :::caution Attention
 In edit page, `useForm` hook initializes the form with current record values.
-:::
 
-[Refer to `useForm` documentation for detailed usage information . &#8594](api-references/hooks/form/useForm.md)
-
+[Refer to the `useForm` documentation for detailed usage information . &#8594](api-references/hooks/form/useForm.md)
 
 ✳️ `<Form>` and `<Form.Item>` are Ant Design components to build form inputs.
 
-✳️ `<Edit>` is a wrapper **refine** component for  `<Form>`. It provides save, delete and refresh buttons that can be used for form actions.
+✳️ `<Edit>` is a wrapper **refine** component for `<Form>`. It provides save, delete and refresh buttons that can be used for form actions.
 
 ✳️ Form data is set automatically, whenever children inputs `<Form.Item>`'s are edited.
 
-✳️ Save button submits the form by executing the `useUpdate` method provided by the `dataProvider`. After a succesfull response, the application will be redirected to the listing page.
+✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](api-references/providers/data-provider.md). After a succesfull response, the application will be redirected to the listing page.
 
 
 <br />
@@ -861,6 +855,8 @@ In edit page, `useForm` hook initializes the form with current record values.
 </>
 
 <br />
+
+:::
 
 ## Creating a record
 
@@ -943,13 +939,13 @@ export const App: React.FC = () => {
 
 <br />
 
-That's all! Try it on browser and see that you can create new posts from scratch. 
+And that's it! Try it on browser and see if you can create new posts from scratch. 
 
 We should notice some minor differences from the edit example:
 
 ✳️ `<Form>` is wrapped with `<Create>` component.
 
-✳️ Save button submits the form by executing the `useCreate` method provided by the `dataProvider`. 
+✳️ Save button submits the form by executing the `useCreate` method provided by the [`dataProvider`](api-references/providers/data-provider.md). 
 
 ✳️ No `defaultValue` is passed to `useSelect`.
 
@@ -966,7 +962,7 @@ We should notice some minor differences from the edit example:
 
 Deleting a record can be done in two ways.
 
-First way is adding an delete button on each row since *refine* doesn't automatically adds one, so we have to update our `<PostList>` component to add a `<DeleteButton>` for each record:
+First way is adding an delete button on each row since *refine* doesn't automatically add one, so we have to update our `<PostList>` component to add a `<DeleteButton>` for each record:
 
 
 
@@ -1000,12 +996,12 @@ export const PostList: React.FC = () => {
 }
 ```
 
-[Refer to `<DeleteButton>` documentation for detailed usage information. &#8594](api-references/components/buttons/delete.md)
+[Refer to the `<DeleteButton>` documentation for detailed usage information. &#8594](api-references/components/buttons/delete.md)
 
 
-You can try yourself that the delete buttons will delete each record when click and confirmed.
+Now you can try deleting records yourself. Just click on the delete button of the record you want to delete and confirm.
 
-The second way is showing delete button in `<PostEdit>` component. To show delete button in edit page, `canDelete` prop need to be passed to `<Resource>` component
+The second way is showing delete button in `<PostEdit>` component. To show delete button in edit page, `canDelete` prop needs to be passed to `<Resource>` component
 
 
 ```tsx title="src/App.tsx"
@@ -1048,10 +1044,10 @@ Our tutorial is complete. Below you'll find a live Codesandbox example displayin
 
 * [Read about the authProvider to implement authentication for your refine application. &#8594](api-references/providers/auth-provider)
  
-* [Read about the dataProvider to consume custom API's &#8594](api-references/providers/auth-provider)
+* [Read about the dataProvider to consume custom API's &#8594](api-references/providers/data-provider)
 
-* [Read about the i18nProvider to add language support. &#8594](api-references/providers/data-provider)
+* [Read about the i18nProvider to add language support. &#8594](api-references/providers/i18n-provider)
 
-* [Check the Guides & Concept section to learn generic solutions to common problems &#8594](api-references/providers/auth-provider)
+* [Check the Guides & Concept section to learn generic solutions to common problems &#8594](guides-and-concepts/upload/multipart-upload)
 
 * [Check example section for code snippets &#8594](examples/customization/topMenuLayout.md)

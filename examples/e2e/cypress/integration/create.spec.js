@@ -8,7 +8,7 @@ describe("create page", () => {
     beforeEach(() => {
         cy.intercept("GET", "/categories?id=*").as("getCategory");
 
-        cy.visit("/resources/posts/create");
+        cy.visit("/posts/create");
         cy.get("input#title.ant-input").as("titleInput");
         cy.get("input#category_id.ant-select-selection-search-input").as(
             "categoryInput",
@@ -68,7 +68,7 @@ describe("create page", () => {
         cy.get("@saveButton").click();
 
         cy.location().should((location) => {
-            expect(location.pathname).contains("resources/posts/edit");
+            expect(location.pathname).contains("/posts/edit");
         });
 
         cy.get("@titleInput").should("have.value", titleText);

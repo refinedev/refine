@@ -1,9 +1,0 @@
-{
-  "orderStatuses": {
-    "waiting": "Bekliyor",
-    "ready": "Hazır",
-    "on the way": "Yolda",
-    "delivered": "Teslim Edildi",
-    "could not be delivered": "Teslim Edilemedi"
-  }
-}

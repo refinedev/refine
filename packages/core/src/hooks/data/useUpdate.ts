@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
-import { notification } from "antd";
+
 import { DataContext } from "@contexts/data";
 import { ActionTypes } from "@contexts/notification";
 import {
@@ -12,6 +12,7 @@ import {
     Context as UpdateContext,
     ContextQuery,
     HttpError,
+    SuccessErrorNotification,
 } from "../../interfaces";
 import pluralize from "pluralize";
 import {
@@ -21,6 +22,7 @@ import {
     useTranslate,
     useCheckError,
 } from "@hooks";
+import { handleNotification } from "@definitions/helpers";
 
 type UpdateParams<TVariables> = {
     id: string;
@@ -29,7 +31,7 @@ type UpdateParams<TVariables> = {
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
     values: TVariables;
-};
+} & SuccessErrorNotification;
 
 export type UseUpdateReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -42,6 +44,18 @@ export type UseUpdateReturnType<
     UpdateContext
 >;
 
+/**
+ * `useUpdate` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for update mutations.
+ *
+ * It uses `update` method as mutation function from the `dataProvider` which is passed to `<Refine>`.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/data/useUpdate} for more details.
+ *
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TVariables - Values for mutation function
+ *
+ */
 export const useUpdate = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -78,30 +92,31 @@ export const useUpdate = <
             }
             const updatePromise = new Promise<UpdateResponse<TData>>(
                 (resolve, reject) => {
-                    const updateTimeout = setTimeout(() => {
+                    const doMutation = () => {
                         update<TData, TVariables>(resource, id, values)
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
-                    }, undoableTimeoutPropOrContext);
+                    };
 
                     const cancelMutation = () => {
-                        clearTimeout(updateTimeout);
                         reject({ message: "mutationCancelled" });
                     };
 
                     if (onCancel) {
                         onCancel(cancelMutation);
-                    } else {
-                        notificationDispatch({
-                            type: ActionTypes.ADD,
-                            payload: {
-                                id: id,
-                                resource: resource,
-                                cancelMutation: cancelMutation,
-                                seconds: undoableTimeoutPropOrContext,
-                            },
-                        });
                     }
+
+                    notificationDispatch({
+                        type: ActionTypes.ADD,
+                        payload: {
+                            id: id,
+                            resource: resource,
+                            cancelMutation: cancelMutation,
+                            doMutation: doMutation,
+                            seconds: undoableTimeoutPropOrContext,
+                            isSilent: !!onCancel,
+                        },
+                    });
                 },
             );
             return updatePromise;
@@ -141,7 +156,10 @@ export const useUpdate = <
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: data.map((record: TData) => {
-                                        if (record.id?.toString() === id) {
+                                        if (
+                                            record.id?.toString() ===
+                                            id.toString()
+                                        ) {
                                             return {
                                                 ...values,
                                                 id: id,
@@ -166,36 +184,37 @@ export const useUpdate = <
                     previousQueries: previousQueries,
                 };
             },
-            onError: (err: TError, { id, resource }, context) => {
+            onError: (
+                err: TError,
+                { id, resource, errorNotification },
+                context,
+            ) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
                     }
                 }
 
-                notificationDispatch({
-                    type: ActionTypes.REMOVE,
-                    payload: {
-                        id,
-                    },
-                });
-
                 if (err.message !== "mutationCancelled") {
                     checkError?.(err);
 
                     const resourceSingular = pluralize.singular(resource);
 
-                    notification.error({
+                    handleNotification(errorNotification, {
                         key: `${id}-${resource}-notification`,
                         message: translate(
                             "notifications.editError",
                             {
-                                resource: resourceSingular,
+                                resource: translate(
+                                    `${resource}.${resource}`,
+                                    resourceSingular,
+                                ),
                                 statusCode: err.statusCode,
                             },
                             `Error when updating ${resourceSingular} (status code: ${err.statusCode})`,
                         ),
                         description: err.message,
+                        type: "error",
                     });
                 }
             },
@@ -204,18 +223,29 @@ export const useUpdate = <
                 for (const query of allQueries) {
                     queryClient.invalidateQueries(query.queryKey);
                 }
+
+                notificationDispatch({
+                    type: ActionTypes.REMOVE,
+                    payload: { id, resource },
+                });
             },
-            onSuccess: (_data, { id, resource }) => {
+            onSuccess: (_data, { id, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
 
-                notification.success({
+                handleNotification(successNotification, {
                     key: `${id}-${resource}-notification`,
                     message: translate("notifications.success", "Successful"),
                     description: translate(
                         "notifications.editSuccess",
-                        { resource: resourceSingular },
+                        {
+                            resource: translate(
+                                `${resource}.${resource}`,
+                                resourceSingular,
+                            ),
+                        },
                         `Successfully updated ${resourceSingular}`,
                     ),
+                    type: "success",
                 });
             },
         },

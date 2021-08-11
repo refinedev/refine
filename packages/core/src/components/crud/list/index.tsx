@@ -1,5 +1,5 @@
-import React from "react";
-import { Row, Col, PageHeader, PageHeaderProps } from "antd";
+import React, { ReactNode } from "react";
+import { PageHeader, PageHeaderProps } from "antd";
 import { useParams } from "react-router-dom";
 
 import { useResourceWithRoute, useTranslate } from "@hooks";
@@ -9,16 +9,20 @@ import { ResourceRouterParams, CreateButtonProps } from "../../../interfaces";
 
 export interface ListProps {
     canCreate?: boolean;
-    Aside?: React.ReactNode;
-    title?: string;
+    title?: ReactNode;
     createButtonProps?: CreateButtonProps;
     pageHeaderProps?: PageHeaderProps;
     resource?: string;
 }
 
+/**
+ * `<List>` provides us a layout for displaying the page.
+ * It does not contain any logic but adds extra functionalities like a refresh button.
+ *
+ * @see {@link https://refine.dev/docs/api-references/components/basic-views/list} for more details.
+ */
 export const List: React.FC<ListProps> = ({
     canCreate,
-    Aside,
     title,
     children,
     createButtonProps,
@@ -44,25 +48,19 @@ export const List: React.FC<ListProps> = ({
         />
     );
     return (
-        <Row gutter={[16, 16]}>
-            <Col flex="1 1 200px">
-                <PageHeader
-                    ghost={false}
-                    title={
-                        title ??
-                        translate(
-                            `${resource.name}.titles.list`,
-                            userFriendlyResourceName(resource.name, "plural"),
-                        )
-                    }
-                    extra={defaultExtra}
-                    {...pageHeaderProps}
-                >
-                    {children}
-                </PageHeader>
-            </Col>
-
-            {Aside && <Col flex="0 1 300px">{Aside}</Col>}
-        </Row>
+        <PageHeader
+            ghost={false}
+            title={
+                title ??
+                translate(
+                    `${resource.name}.titles.list`,
+                    userFriendlyResourceName(resource.name, "plural"),
+                )
+            }
+            extra={defaultExtra}
+            {...pageHeaderProps}
+        >
+            {children}
+        </PageHeader>
     );
 };

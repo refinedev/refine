@@ -33,6 +33,17 @@ const dataProvider = {
 ```
 
 
+:::tip
+
+**refine** includes many out-of-the-box data providers to use in your projects like
+
+* [Simple REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest)
+* [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
+* [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
+* [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
+
+:::
+
 <br/>
 
 :::important
@@ -61,7 +72,7 @@ Data hooks uses [React Query](https://react-query.tanstack.com/) to manage data 
 
 ## Usage
 
-To activate data provider in refine, we have to pass the `dataProvider` to `<Admin />` component.
+To activate data provider in refine, we have to pass the `dataProvider` to the `<Admin />` component.
 
 ```tsx title="App.tsx"
 import { Admin } from "@pankod/refine";
@@ -80,25 +91,18 @@ const App: React.FC = () => {
 ## Creating a data provider
 We'll build **"Simple REST Dataprovider"** of `@pankod/refine-simple-rest` from scratch to show the logic of how data provider methods interact with the API.
 
-We will provide you a fully working, *fake REST API* located at https://api.fake-rest.refine.dev . You may take a look at available [resources and routes of the API](https://api.fake-rest.refine.dev) before proceeding to the next step.  
-Our **"Simple REST Dataprovider"** will be consuming this *Fake REST API*.
+We will provide you a fully working, *fake REST API* located at https://api.fake-rest.refine.dev. You may take a look at available [resources and routes of the API](https://api.fake-rest.refine.dev) before proceeding to the next step.  
+Our **"Simple REST Dataprovider"** will be consuming this *fake REST API*.
 
 
 :::note
 Fake REST API is based on [JSON Server Project](https://github.com/typicode/json-server). **Simple REST Dataprovider** is fully compatible with the REST rules and methods of the **JSON Server**.
 :::
 
-:::note
-**refine** includes many out-of-the-box data providers to use in your projects like
-
-* Simple REST API
-* NestJS CRUD
-* Strapi etc.
-:::
-
 <br />
 
-First let's build a method that returns our data provider. 
+Let's build a method that returns our data provider:
+
 ```ts title="dataProvider.ts"
 import axios, { AxiosInstance } from "axios";
 import { DataProvider } from "./interfaces/dataProvider.ts";
@@ -123,13 +127,13 @@ const SimpleRestDataProvider = (
 })
 ```
 
-It will take the API URL as a parameter and an optional HTTP client. We will use **axios** as default HTTP client.
+It will take the API URL as a parameter and an optional HTTP client. We will use **axios** as the default HTTP client.
 
 <br/>
 
 ### `create`
 
-Creates a single item in a resource.
+This method allows us to create a single item in a resource.
 
 ```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
@@ -163,7 +167,7 @@ const SimpleRestDataProvider = (
 
 <br/>
 
-**refine** will consume this `create` method using `useCreate` data hook.
+**refine** will consume this `create` method using the `useCreate` data hook.
 
 ```ts
 import { useCreate } from "@pankod/refine";
@@ -177,13 +181,13 @@ mutate({
     }
 })
 ```
-> [Refer to useCreate documentation for more information. &#8594](api-references/hooks/data/useCreate.md)
+> [Refer to the useCreate documentation for more information. &#8594](api-references/hooks/data/useCreate.md)
 
 <br />
 
 ### `createMany`
 
-Creates multiple items in a resource.
+This method allows us to create multiple items in a resource.
 
 ```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
@@ -218,11 +222,11 @@ const SimpleRestDataProvider = (
 | -------- | -------------- | ------- |
 | resource | `string`       |         |
 | params   | `TVariables[]` | `{}`    |
-> TVariables is a user defined type which can be passed to [`useCreateMany`](/docs/api-references/hooks/data/useCreateMany) to type `params`
+> `TVariables` is a user defined type which can be passed to [`useCreateMany`](/docs/api-references/hooks/data/useCreateMany) to type `params`
 
 <br/>
 
-**refine** will consume this `createMany` method using `useCreateMany` data hook.
+**refine** will consume this `createMany` method using the `useCreateMany` data hook.
 
 ```ts
 import { useCreateMany } from "@pankod/refine";
@@ -241,13 +245,13 @@ mutate({
     ]
 })
 ```
-> [Refer to useCreateMany documentation for more information. &#8594](api-references/hooks/data/useCreateMany.md)
+> [Refer to the useCreateMany documentation for more information. &#8594](api-references/hooks/data/useCreateMany.md)
 
 <br />
 
 ### `deleteOne`
 
-Deletes an item in a resource.
+This method allows us to delete an item in a resource.
 
 ```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
@@ -279,7 +283,7 @@ const SimpleRestDataProvider = (
 
 <br/>
 
-**refine** will consume this `deleteOne` method using `useDelete` data hook.
+**refine** will consume this `deleteOne` method using the `useDelete` data hook.
 
 ```ts
 import { useDelete } from "@pankod/refine";
@@ -288,13 +292,13 @@ const { mutate } = useDelete("categories");
 
 mutate({ id: "2" })
 ```
-> [Refer to useDelete documentation for more information. &#8594](api-references/hooks/data/useDelete.md)
+> [Refer to the useDelete documentation for more information. &#8594](api-references/hooks/data/useDelete.md)
 
 <br />
 
 ### `deleteMany`
 
-Deletes multiple items in a resource.
+This method allows us to delete multiple items in a resource.
 
 ```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
@@ -328,7 +332,7 @@ const SimpleRestDataProvider = (
 
 <br/>
 
-**refine** will consume this `deleteMany` method using `useDeleteMany` data hook.
+**refine** will consume this `deleteMany` method using the `useDeleteMany` data hook.
 
 ```ts
 import { useDeleteMany } from "@pankod/refine";
@@ -337,13 +341,13 @@ const { mutate } = useDeleteMany("categories");
 
 mutate({ ids: [ "2", "3" ] })
 ```
-> [Refer to useDeleteMany documentation for more information. &#8594](api-references/hooks/data/useDeleteMany.md)
+> [Refer to the useDeleteMany documentation for more information. &#8594](api-references/hooks/data/useDeleteMany.md)
 
 <br />
 
 ### `update`
 
-Updates an item in a resource.
+This method allows us to update an item in a resource.
 
 ```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
@@ -378,7 +382,7 @@ const SimpleRestDataProvider = (
 
 <br/>
 
-**refine** will consume this `update` method using `useUpdate` data hook.
+**refine** will consume this `update` method using the `useUpdate` data hook.
 
 ```ts
 import { useUpdate } from "@pankod/refine";
@@ -391,13 +395,13 @@ mutate({
     values: { title: "New Category Title" }
 });
 ```
-> [Refer to useUpdate documentation for more information. &#8594](api-references/hooks/data/useUpdate.md)
+> [Refer to the useUpdate documentation for more information. &#8594](api-references/hooks/data/useUpdate.md)
 
 <br />
 
 ### `updateMany`
 
-Updates multiple items in a resource.
+This method allows us to update multiple items in a resource.
 
 ```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
@@ -436,7 +440,7 @@ const SimpleRestDataProvider = (
 
 <br/>
 
-**refine** will consume this `updateMany` method using `useUpdateMany` data hook.
+**refine** will consume this `updateMany` method using the `useUpdateMany` data hook.
 
 ```ts
 import { useUpdateMany } from "@pankod/refine";
@@ -449,13 +453,13 @@ mutate({
     values: { status: "draft" }
 });
 ```
-> [Refer to useUpdateMany documentation for more information. &#8594](api-references/hooks/data/useUpdateMany.md)
+> [Refer to the useUpdateMany documentation for more information. &#8594](api-references/hooks/data/useUpdateMany.md)
 
 <br />
 
 ### `getOne`
 
-Retrieves a single item in a resource.
+This method allows us to retrieve a single item in a resource.
 
 ```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
@@ -488,21 +492,21 @@ const SimpleRestDataProvider = (
 
 <br/>
 
-**refine** will consume this `getOne` method using `useOne` data hook.
+**refine** will consume this `getOne` method using the `useOne` data hook.
 
 ```ts
 import { useOne } from "@pankod/refine";
 
 const { data } = useOne<ICategory>("categories", 1);
 ```
-> [Refer to useOne documentation for more information. &#8594](api-references/hooks/data/useOne.md)
+> [Refer to the useOne documentation for more information. &#8594](api-references/hooks/data/useOne.md)
 
 
 <br/>
 
 ### `getMany`
 
-Retrieves multiple items in a resource.
+This method allows us to retrieve multiple items in a resource.
 
 ```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
@@ -535,21 +539,21 @@ const SimpleRestDataProvider = (
 
 <br/>
 
-**refine** will consume this `getMany` method using `useMany` data hook.
+**refine** will consume this `getMany` method using the `useMany` data hook.
 
 ```ts
 import { useMany } from "@pankod/refine";
 
 const { data } = useMany("categories", [ 1, 2 ]);
 ```
-> [Refer to useMany documentation for more information. &#8594](api-references/hooks/data/useMany.md)
+> [Refer to the useMany documentation for more information. &#8594](api-references/hooks/data/useMany.md)
 
 <br />
 
 
 ### `getList`
 
-Retrieves a collection of items in a resource.
+This method allows us to retrieve a collection of items in a resource.
 
 ```tsx title="dataProvider.ts"
 const SimpleRestDataProvider = (
@@ -582,21 +586,21 @@ const SimpleRestDataProvider = (
 
 <br/>
 
-**refine** will consume this `getList` method using `useList` data hook.
+**refine** will consume this `getList` method using the `useList` data hook.
 
 ```ts
 import { useList } from "@pankod/refine";
 
 const { data } = useList("posts");
 ```
-> [Refer to useList documentation for more information. &#8594](api-references/hooks/data/useList.md)
+> [Refer to the useList documentation for more information. &#8594](api-references/hooks/data/useList.md)
 
 
 <br />
 
 **Adding pagination**
 
-We'll send start and end parameters to list a certain size of items.
+We will send start and end parameters to list a certain size of items.
 
 ```tsx title="dataProvider.ts"
  //highlight-next-line
@@ -652,7 +656,7 @@ const { data } = useList("posts", {
 **Adding sorting**
 
 We'll sort records by speficified order and field.
-> [CrudSorting](/docs/api-references/interfaceReferences#crudoperators)
+> [CrudSorting](/docs/api-references/interfaceReferences#crudoperators) ?
 
 ```tsx title="dataProvider.ts"
  //highlight-start
@@ -713,9 +717,9 @@ const SimpleRestDataProvider = (
 ```
 <br />
 
-Since our API accepts a certain parameter format like  `_sort` and `_order` we need to transform parameters.
+Since our API accepts only certain parameter formats like  `_sort` and `_order` we may need to transform some of the parameters.
 
-So we added `generateSort` method to transform sort parameters.
+So we added the `generateSort` method to transform sort parameters.
 
 <br />
 
@@ -732,7 +736,7 @@ const { data } = useList("posts", {
 
 **Adding filtering**
 
-Allows you to filter queries using [refine's filter operators](/docs/api-references/interfaceReferences#crudoperators). It is configured via field, operator and value properites.
+Filters allow you to filter queries using [refine's filter operators](/docs/api-references/interfaceReferences#crudoperators). It is configured via field, operator and value properites.
 
 ```tsx title="dataProvider.ts"
 const generateSort = (sort?: CrudSorting) => {
@@ -820,11 +824,11 @@ const SimpleRestDataProvider = (
 ```
 <br />
 
-Since our API accepts a certain parameter format to filter the data, we need to transform parameters.
+Since our API accepts only certain parameter formats to filter the data, we may need to transform some parameters.
 
-So we added `generateFilter` and `mapOperator` methods to transform filter parameters.
+So we added the `generateFilter` and `mapOperator` methods to the transform filter parameters.
 
-[Refer to list of filter operators &#8594](/docs/api-references/interfaceReferences#crudoperators)
+[Refer to the list of all filter operators &#8594](/docs/api-references/interfaceReferences#crudoperators)
 
 ```ts
 const { data } = useList("posts", { 
@@ -841,7 +845,7 @@ const { data } = useList("posts", {
     //highlight-end
 });
 ```
->Only lists records which status equal to "rejected".
+>Only lists records whose status equals to "rejected".
 
 
 
@@ -850,7 +854,7 @@ const { data } = useList("posts", {
 
 ### `custom`
 
-An optional method named `custom` can be added to handle requests with custom parameters like URL, CRUD methods and configs.  
+An optional method named `custom` can be added to handle requests with custom parameters like URL, CRUD methods and configurations.  
 It's useful if you have non-stantard REST API endpoints or want to make a connection with external resources.
 
 
@@ -923,7 +927,7 @@ const SimpleRestDataProvider = (
 
 <br/>
 
-**refine** will consume this `custom` method using `useCustom` data hook.
+**refine** will consume this `custom` method using the `useCustom` data hook.
 
 ```ts
 const { data, isLoading } = useCustom(
@@ -936,7 +940,7 @@ const { data, isLoading } = useCustom(
     },
 );
 ```
-> [Refer to useCustom documentation for more information. &#8594](api-references/hooks/data/useCustom.md)
+> [Refer to the useCustom documentation for more information. &#8594](api-references/hooks/data/useCustom.md)
 
 ### Error Format
 

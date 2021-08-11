@@ -4,13 +4,24 @@ import { useQuery, UseQueryResult } from "react-query";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
 
-export const useAuthenticated = (): UseQueryResult<void, unknown> => {
+/**
+ *  `useAuthenticated` calls the `checkAuth` method from the {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/auth/useAuthenticated} for more details.
+ *
+ */
+export const useAuthenticated = (
+    params?: any,
+): UseQueryResult<any, unknown> => {
     const { checkAuth } = useContext<IAuthContext>(AuthContext);
 
-    const queryResponse = useQuery("useAuthenticated", checkAuth, {
-        enabled: !!checkAuth,
-        retry: false,
-    });
+    const queryResponse = useQuery(
+        ["useAuthenticated", params],
+        () => checkAuth(params),
+        {
+            retry: false,
+        },
+    );
 
     return queryResponse;
 };

@@ -1,28 +1,73 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+import { useList, useNavigation } from "@pankod/refine";
+import GoogleMapReact from "google-map-react";
+
+import { MapMarker } from "components/map";
+
+import { IOrder } from "interfaces";
 
 export const DeliveryMap: React.FC = () => {
-    const position = {
-        lat: 51.505,
-        lng: -0.09,
+    const { data: orderData } = useList<IOrder>("orders", {
+        filters: [
+            {
+                field: "status.text",
+                operator: "eq",
+                value: "On The Way",
+            },
+        ],
+        pagination: {
+            pageSize: 1000,
+        },
+    });
+
+    const defaultProps = {
+        center: {
+            lat: 40.73061,
+            lng: -73.935242,
+        },
+        zoom: 11,
     };
 
+    const { show } = useNavigation();
+
     return (
-        <MapContainer
-            center={position}
-            zoom={13}
-            scrollWheelZoom={false}
-            style={{ height: 300 }}
-        >
-            <TileLayer
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker position={position}>
-                <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-            </Marker>
-        </MapContainer>
+        <div style={{ height: "550px", width: "100%" }}>
+            <GoogleMapReact
+                bootstrapURLKeys={{
+                    key: process.env.REACT_APP_MAP_ID,
+                }}
+                defaultCenter={defaultProps.center}
+                defaultZoom={defaultProps.zoom}
+            >
+                {orderData?.data.map((order) => {
+                    return (
+                        <MapMarker
+                            key={order.id}
+                            lat={order.adress.coordinate[0]}
+                            lng={order.adress.coordinate[1]}
+                        >
+                            <img
+                                src="images/map/user.svg"
+                                onClick={() => show("orders", order.id)}
+                            />
+                        </MapMarker>
+                    );
+                })}
+
+                {orderData?.data.map((order) => {
+                    return (
+                        <MapMarker
+                            key={order.id}
+                            lat={order.store.address.coordinate[0]}
+                            lng={order.store.address.coordinate[1]}
+                        >
+                            <img
+                                src="images/map/courier.svg"
+                                onClick={() => show("orders", order.id)}
+                            />
+                        </MapMarker>
+                    );
+                })}
+            </GoogleMapReact>
+        </div>
     );
 };

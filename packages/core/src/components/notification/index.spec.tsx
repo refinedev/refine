@@ -1,17 +1,22 @@
 import React from "react";
 
-import { render } from "@test";
+import { render, fireEvent } from "@test";
 
 import { Notification } from "./index";
 import { userFriendlySecond } from "@definitions";
+
+const doMutation = jest.fn();
+const cancelMutation = jest.fn();
 
 const mockNotification = [
     {
         id: "1",
         resource: "posts",
-        cancelMutation: () => Promise.resolve(),
+        cancelMutation,
+        doMutation,
         seconds: 5000,
         isRunning: true,
+        isSilent: false,
     },
 ];
 
@@ -28,19 +33,8 @@ describe("Cancel Notification", () => {
         getByText(`You have ${formattedSeconds} seconds to undo`);
     });
 
-    it("should render undo button successfuly", async () => {
-        const { container, getByText } = render(
-            <Notification notifications={mockNotification} />,
-        );
-
-        const button = container.querySelector("button");
-        expect(button).toBeDefined();
-
-        getByText("Undo");
-    });
-
     it("should render Progress successfuly", async () => {
-        const { getByRole } = render(
+        const { getByRole, debug } = render(
             <Notification notifications={mockNotification} />,
         );
 
@@ -50,5 +44,25 @@ describe("Cancel Notification", () => {
                 "ant-progress-circle",
             ),
         );
+    });
+
+    it("should click and render undo button successfuly", async () => {
+        const { container, getByText } = render(
+            <Notification notifications={mockNotification} />,
+        );
+
+        const button = container.querySelector("button");
+        expect(button).toBeDefined();
+        fireEvent.click(getByText("Undo"));
+        expect(cancelMutation).toBeCalledTimes(1);
+
+        getByText("Undo");
+    });
+
+    it("should call doMutation on seconds zero", async () => {
+        mockNotification[0].seconds = 0;
+        render(<Notification notifications={mockNotification} />);
+
+        expect(doMutation).toBeCalledTimes(1);
     });
 });

@@ -5,11 +5,14 @@ siderbar_label: useMany
 description: useMany data hook from refine is a modified version of react-query's useQuery for retrieving multiple items from a resource
 ---
 
-`useMany` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries) for retrieving multiple items from a `resource`. It uses `getMany` method as query function from the `dataProvider` that is passed to `<Refine>`.  
+`useMany` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries) used for retrieving multiple items from a `resource`.
+
+It uses `getMany` method as query function from the [`dataProvider`](api-references/providers/data-provider.md) which is passed to `<Refine>`.  
+
 
 ## Usage
 
-Let'say we have a `categories` resource
+Let's say that we have a resource named `categories`.
 
 ```ts title="https://api.fake-rest.refine.dev/categories"
 {
@@ -53,7 +56,7 @@ const categoryQueryResult = useMany<ICategory>("categories", [ "1", "2" ]), { en
 
 <br />
 
-After query runs `categoryQueryResult` will include the retrieved data:
+After query runs, the `categoryQueryResult` will include the retrieved data:
 
 
 ```json title="categoryQueryResult.data"
@@ -74,7 +77,7 @@ After query runs `categoryQueryResult` will include the retrieved data:
 
 
 :::tip
-`useMany` returns the result of `react-query`'s `useQuery`. It includes properties like `isLoading` and `isFetching` with many others.  
+`useMany` returns the result of `react-query`'s `useQuery` which includes properties such as `isLoading` and `isFetching`.  
 [Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/reference/useQuery)
 :::
 
@@ -83,17 +86,19 @@ After query runs `categoryQueryResult` will include the retrieved data:
 ### Parameters
 
 
-| Property                                                                                            | Description                               | Type                                                        | Default |
-| --------------------------------------------------------------------------------------------------- | ----------------------------------------- | ----------------------------------------------------------- | ------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](#) for API data interactions | `string`                                                    |         |
-| ids <div className="required">Required</div>                                                        | ids of the item in the resource           | `(string)[]`                                                |         |
-| options                                                                                             | `react-query`'s `useQuery` options        | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>` |         |
+| Property                                                                                            | Description                               | Type                                                                       | Default                              |
+| --------------------------------------------------------------------------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------ |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                                   |                                      |
+| ids <div className="required">Required</div>                                                        | ids of the item in the resource           | `string[]`                                                               |                                      |
+| queryOptions                                                                                        | `react-query`'s `useQuery` options        | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                |                                      |
+| successNotification                                                                                 | Successful Query notification             | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | `false`                              |
+| errorNotification                                                                                   | Unsuccessful Query notification           | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Error (status code: `statusCode`)" |
 
 ### Type Parameters
 
 
-| Property | Desription                                                                 | Type                                     | Default                                  |
-| -------- | -------------------------------------------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| Property | Desription                                                                       | Type                                           | Default                                        |
+| -------- | -------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
 | TData    | Result data of the query. Extends [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) |
 | TError   | Custom error object that extends [`HttpError`](../../interfaces.md#httperror)    | [`HttpError`](../../interfaces.md#httperror)   | [`HttpError`](../../interfaces.md#httperror)   |
 

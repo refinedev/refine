@@ -4,9 +4,23 @@
     "title": "Store Detail"
   },
   "fields": {
-    "id": "ID",
+    "id": "Store ID",
     "title": "Title",
     "isActive": "Active",
-    "createdAt": "CreatedAt"
-  }
+    "createdAt": "CreatedAt",
+    "address": "Address",
+    "email": "Email",
+    "gsm": "Phone"
+  },
+  "buttons": {
+    "editProducts": "Edit Products",
+    "addProduct": "Add Product",
+    "outOfStock": "Out Of Stock",
+    "edit": "Edit Product"
+  },
+  "selectLocation": "Choose store location on the map",
+  "storeProducts": "Store Products",
+  "tagFilterDescription": "Use tags to filter your search",
+  "all": "All",
+  "productSearch": "Product Search"
 }

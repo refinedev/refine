@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import {
     useModalForm as useModalFormSF,
     UseModalFormConfig as UseModalFormConfigSF,
@@ -19,7 +19,7 @@ import {
 } from "../../../interfaces";
 import { userFriendlyResourceName } from "@definitions";
 import { useModalFormFromSFReturnType } from "../../../../types/sunflower";
-import { useFormProps } from "../useForm";
+import { useFormProps, UseFormReturnType } from "../useForm";
 
 type useModalFormConfig = {
     action: "show" | "edit" | "create";
@@ -30,7 +30,7 @@ export type useModalFormReturnType<
     TError extends HttpError = HttpError,
     TVariables = {},
 > = Omit<
-    useForm<TData, TError, TVariables>,
+    UseFormReturnType<TData, TError, TVariables>,
     "saveButtonProps" | "deleteButtonProps"
 > &
     useModalFormFromSFReturnType<TData, TVariables>;
@@ -42,6 +42,17 @@ export type useModalFormProps<
 > = useFormProps<TData, TError, TVariables> &
     UseModalFormConfigSF &
     useModalFormConfig;
+/**
+ * `useModalForm` hook allows you to manage a form within a modal. It returns Ant Design {@link https://ant.design/components/form/ Form} and {@link https://ant.design/components/modal/ Modal} components props.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/form/useModalForm} for more details.
+ *
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TVariables - Values for params. default `{}`
+ *
+ *
+ */
 export const useModalForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -119,16 +130,40 @@ export const useModalForm = <
     const resourceWithRoute = useResourceWithRoute();
     const resource = resourceWithRoute(rest.resource ?? routeResourceName);
 
+    const handleClose = useCallback(() => {
+        if (warnWhen) {
+            const warnWhenConfirm = window.confirm(
+                translate(
+                    "warnWhenUnsavedChanges",
+                    "Are you sure you want to leave? You have with unsaved changes.",
+                ),
+            );
+
+            if (warnWhenConfirm) {
+                setWarnWhen(false);
+            } else {
+                return;
+            }
+        }
+
+        setEditId?.(undefined);
+        setCloneId?.(undefined);
+        sunflowerUseModal.close();
+    }, []);
+
+    const handleShow = useCallback((id?: string) => {
+        setEditId?.(id);
+
+        setCloneId?.(id);
+
+        sunflowerUseModal.show();
+    }, []);
+
     return {
         ...useFormProps,
         ...sunflowerUseModal,
-        show: (id?: string) => {
-            setEditId && setEditId(id);
-
-            setCloneId && setCloneId(id);
-
-            sunflowerUseModal.show();
-        },
+        show: handleShow,
+        close: handleClose,
         formProps: {
             ...modalFormProps,
             onValuesChange: formProps?.onValuesChange,
@@ -148,23 +183,7 @@ export const useModalForm = <
             ),
             okText: translate("buttons.save", "Save"),
             cancelText: translate("buttons.cancel", "Cancel"),
-            onCancel: () => {
-                if (warnWhen) {
-                    const warnWhenConfirm = window.confirm(
-                        translate(
-                            "warnWhenUnsavedChanges",
-                            "Are you sure you want to leave? You have with unsaved changes.",
-                        ),
-                    );
-
-                    if (warnWhenConfirm) {
-                        setWarnWhen(false);
-                    } else {
-                        return;
-                    }
-                }
-                sunflowerUseModal.close();
-            },
+            onCancel: handleClose,
         },
         formLoading,
     };

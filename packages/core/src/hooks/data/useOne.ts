@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
-import { notification } from "antd";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -10,14 +9,29 @@ import {
     BaseRecord,
 } from "../../interfaces";
 import { useCheckError, useTranslate } from "@hooks";
+import { ArgsProps } from "antd/lib/notification";
+import { handleNotification } from "@definitions";
 
+/**
+ * `useOne` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving single items from a `resource`.
+ *
+ * It uses `getOne` method as query function from the `dataProvider` which is passed to `<Refine>`.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/data/useOne} for more details.
+ *
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ *
+ */
 export const useOne = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
 >(
     resource: string,
     id: string,
-    options?: UseQueryOptions<GetOneResponse<TData>, TError>,
+    queryOptions?: UseQueryOptions<GetOneResponse<TData>, TError>,
+    successNotification?: ArgsProps | false,
+    errorNotification?: ArgsProps | false,
 ): QueryObserverResult<GetOneResponse<TData>> => {
     const { getOne } = useContext<IDataContext>(DataContext);
     const translate = useTranslate();
@@ -27,21 +41,24 @@ export const useOne = <
         [`resource/getOne/${resource}`, { id }],
         () => getOne<TData>(resource, id),
         {
-            ...options,
+            ...queryOptions,
+            onSuccess: (data) => {
+                queryOptions?.onSuccess?.(data);
+                handleNotification(successNotification);
+            },
             onError: (err: TError) => {
                 checkError(err);
-                if (options?.onError) {
-                    options.onError(err);
-                }
+                queryOptions?.onError?.(err);
 
-                notification.error({
-                    key: `${id}-${resource}-notification`,
+                handleNotification(errorNotification, {
+                    key: `${id}-${resource}-getOne-notification`,
                     message: translate(
                         "notifications.error",
                         { statusCode: err.statusCode },
                         `Error (status code: ${err.statusCode})`,
                     ),
                     description: err.message,
+                    type: "error",
                 });
             },
         },

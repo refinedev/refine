@@ -1,21 +1,33 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { TitleProps } from "src/interfaces";
 
-export const Title: React.FC<TitleProps> = () => (
-    <Link
-        to="/"
-        style={{
-            display: "flex",
-            width: "100%",
-            textAlign: "center",
-            color: "rgb(255, 255, 255)",
-            fontSize: "16px",
-            height: "60px",
-            justifyContent: "center",
-            alignItems: "center",
-        }}
-    >
-        refine
+import { TitleProps } from "../../../../interfaces";
+
+import logo from "../../../../assets/images/refine.svg";
+import logoCollapsed from "../../../../assets/images/refine-collapsed.svg";
+
+export const Title: React.FC<TitleProps> = ({ collapsed }) => (
+    <Link to="/">
+        {collapsed ? (
+            <img
+                src={logoCollapsed}
+                alt="Refine"
+                style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "12px 24px",
+                }}
+            />
+        ) : (
+            <img
+                src={logo}
+                alt="Refine"
+                style={{
+                    width: "200px",
+                    padding: "12px 24px",
+                }}
+            />
+        )}
     </Link>
 );

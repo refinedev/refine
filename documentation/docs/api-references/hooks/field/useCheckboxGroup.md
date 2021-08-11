@@ -9,7 +9,7 @@ import basicUsage from '@site/static/img/hooks/useCheckboxGroup/basic.png';
 
 ## Usage
 
-We'll demonstrate how to get data at `/tags` endpoint from `https://api.fake-rest.refine.dev` REST API.
+We will demonstrate how to get data at the `/tags` endpoint from the `https://api.fake-rest.refine.dev` REST API.
 
 ```ts title="https://api.fake-rest.refine.dev/tags"
 {
@@ -82,7 +82,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
 });
 ```
 
-`resource` property determines API resource endpoint to fetch records from data provider. It returns properly configured `options` values for checkboxes.
+`resource` property determines which? API resource endpoint to fetch records from [`dataProvider`](api-references/providers/data-provider.md). It returns properly configured `options` values for checkboxes.
 
 [Refer to Ant Design Checkbox.Group component documentation for detailed info for `options`. &#8594](https://ant.design/components/checkbox)
 
@@ -98,7 +98,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
 });
 ```
 
-Allows you to change the values and appearance of your options. Default values are `optionLabel = "title"` and `optionValue = "id"`.
+`optionLabel` and `optionValue` allows you to change the values and appearances of your options. Default values are `optionLabel = "title"` and `optionValue = "id"`.
 
 ### `filters`
 
@@ -117,7 +117,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
 });
 ```
 
-It allows us to add some filters while fetching the data. For example, if you want to list only `title`'s equal to `"Driver Deposit"` records.
+It allows us to add some filters while fetching the data. For example, if you want to list only the `title`'s that are equal to `"Driver Deposit"` records.
 
 ### `sort`
 
@@ -143,18 +143,18 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 
 | Property                                          | Description                               | Type                                       | Default   |
 | ------------------------------------------------- | ----------------------------------------- | ------------------------------------------ | --------- |
-| resource <div className="required">Required</div> | [`Resource`](#) for API data interactions | `string`                                   |           |
-| optionValue                                       | Set the option's value                    | `string`                                   | `"id"`    |
-| optionLabel                                       | Set the option's label value              | `string`                                   | `"title"` |
-| filters                                           | Add filters while fetching the data       | [`CrudFilters`](../../interfaces.md#crudfilters) |           |
-| sort                                              | Allow us to sort the options              | [`CrudSorting`](../../interfaces.md#crudsorting) |           |
+| resource <div className="required">Required</div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                   |           |
+| optionValue                                       | Sets the option's value                    | `string`                                   | `"id"`    |
+| optionLabel                                       | Sets the option's label value              | `string`                                   | `"title"` |
+| filters                                           | Adds filters while fetching the data       | [`CrudFilters`](../../interfaces.md#crudfilters) |           |
+| sort                                              | Allows us to sort the options              | [`CrudSorting`](../../interfaces.md#crudsorting) |           |
 
 ### Return values
 
 | Property           | Description                     | Type                                                                                          |
 | ------------------ | ------------------------------- | --------------------------------------------------------------------------------------------- |
-| checkboxGroupProps | Ant design checkbox group props | [`Checkbox Group`](https://ant.design/components/checkbox/#Checkbox-Group)                    |
-| queryResult        | Result of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+| checkboxGroupProps | Ant design checkbox group properties | [`Checkbox Group`](https://ant.design/components/checkbox/#Checkbox-Group)                    |
+| queryResult        | Results of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
 
 ## Live Codesandbox Example
 

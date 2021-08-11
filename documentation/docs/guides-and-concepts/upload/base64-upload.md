@@ -3,11 +3,11 @@ id: base64-upload
 title: Base64 Upload
 ---
 
-Formlarınızdan dosya ve resimleri base64'e encode ederek upload için, [Ant Design](https://ant.design/) ile gelen [`<Form>`](https://ant.design/components/form/#Form) componentinin `onFinish` propuna vereceğiniz fonksiyon ile submit öncesinde, gereken tüm dosyaları base64 formatına çevirebilirsiniz.
+By encoding your files and images from your forms to Base64 you can change all files needed for the upload to Base64 format before the submit. This can be done via the `onFinish` property of the [`<Form>`](https://ant.design/components/form/#Form) component that comes with [Ant Design](https://ant.design/) 
 
-# Örnek
+# Example
 
-Bunu nasıl yapabileceğimizi görmek için basit bir örnek yapalım. Base64 tipinde dosya yüklemesi yapacağımız alanın adı `avatar` olsun.
+Now let's make a small example to see how its done. In this example, the file we are going to be uploading files in Base64 type  is going to be called `avatar`
 
 ```tsx title="pages/users/create.tsx"
 import {
@@ -113,10 +113,11 @@ export interface IUser {
 }
 ```
 
-`file2Base64` fonksiyonunu kullanarak dosyaları base64'e çevirebilirsiniz.
+You can change files to Base64 by using the `file2Base64` function.
 
 :::tip
-`<Create>` yerine `<Edit>` componenti kullanılarak, kodun kalanında değişiklik yapmadan, düzenleme formu yapılabilir.
+An edit form can be made by using the `<Edit>` component instead of `<Create>` without changing the rest of the code.
+
 :::
 
 ## Live Codesandbox Example

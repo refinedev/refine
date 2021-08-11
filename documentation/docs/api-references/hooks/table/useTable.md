@@ -6,11 +6,11 @@ title: useTable
 import tableSorting from '@site/static/img/hooks/useTable/table-sorting.gif';
 import filters from '@site/static/img/hooks/useTable/filters.gif';
 
-`useTable` kullanarak, API'dan gelen kayıtlarınız için Ant Design [`<Table>`](https://ant.design/components/table/) component'ine uygun şekilde proplar elde edersiniz. Sayfalama, sıralama, filtreleme gibi özelliklerin tamamı out of the box olarak gelir.
+By using useTable, you are able to get properties that are compatible with Ant Design [`<Table>`](https://ant.design/components/table/) component. All features such as sorting, filtering and pagination comes as out of box. 
 
-## Basit Kullanım
+## Basic usage 
 
-Tabloda göstereceğimiz verinin endpointten şu şekilde geldiğini varsayalım:
+Lets say that the data we are going to show on the table came like this from the endpoint:
 
 ```json title="https://api.fake-rest.refine.dev/posts"
 [
@@ -30,7 +30,7 @@ Tabloda göstereceğimiz verinin endpointten şu şekilde geldiğini varsayalım
 ]
 ```
 
-O halde şöyle bir arayüz bizim için yeterli olur:
+In this case, an interface like this should be enough for us : 
 
 ```tsx title="/src/interfaces/index.d.ts"
 export interface IPost {
@@ -41,7 +41,7 @@ export interface IPost {
 }
 ```
 
-`id`, `title` ve `content` değerlerini gösterdiğimiz bir listeleme sayfası yapmak istersek:
+If we want to make a sorting page where we show the `id`, `title` and `content` values:
 
 ```tsx title="/src/pages/posts/list.tsx"
 import { List, Table, TextField, useTable } from "@pankod/refine";
@@ -55,14 +55,10 @@ export const PostList: React.FC = () => {
     return (
         <List>
             //highlight-start
-            <Table {...tableProps} key="id">
-                <Table.Column key="id" dataIndex="id" title="ID" />
-                <Table.Column key="title" dataIndex="title" title="Title" />
-                <Table.Column
-                    key="content"
-                    dataIndex="content"
-                    title="Content"
-                />
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column dataIndex="content" title="Content" />
             </Table>
             //highlight-end
         </List>
@@ -71,14 +67,40 @@ export const PostList: React.FC = () => {
 ```
 
 :::tip
-`<Refine>` componentine verilen `<Resource>` üzerindeki bir sayfada, `useTable` hangi kaynağın gösterileceğinin çıkarımını otomatik olarak yapar. Başka bir kaynağın verilerini göstermek isterseniz, `useTable(options)` hookunun aldığı opsiyon nesnesindeki `resource: string` opsiyonu ile başka bir `resource`a ait endpointten gelen verileri gösterebilirsiniz. Eğer `resource` opsiyonu verilmişse, `syncWithLocation` çalışmaz.
+In a page in `<Resource>` given to `<Refine>` component, `useTable` decides which sources are going to be shown automatically.
+If you want to show the data that comes from the endpoint of another `resource` . You can do so with the `resource: string` option in the option object that the `useTable(options)` hook takes.
+If the `resource` option is given, `syncWithLocation` will not work.
 
-`useTable`, verdiğiniz kaynağın verilerini çekerken `useMany` kullanır.
+`useTable` uses `useMany` while pulling data from the given resource.
 :::
 
-## Sıralama
+## Listing
+<br />
 
-Bir sütuna sıralama özelliği eklemek için, ilgili `<Table.Column>` componentine [sorter](https://ant.design/components/table/#components-table-demo-head) propu verilir.
+:::info
+If you want to make a change in the pagination of the `<Table>`. You should pass the pagination object of the `tableProps` to the pagination property of the `<Table>` as below.
+
+```tsx
+<Table
+    {...tableProps}
+    rowKey="id"
+    //highlight-start
+    pagination={{
+        ...tableProps.pagination,
+        position: ["bottomCenter"],
+        size: "small",
+    }}
+    //highlight-end
+>
+    ...
+</Table>
+```
+
+:::
+
+## Sorting
+
+If we want to give a column the sorting property, the corresponding `<Table.Column>` component must be given the [sorter](https://ant.design/components/table/#components-table-demo-head) property.
 
 ```tsx title="/src/pages/posts/list.tsx"
 import { List, Table, TextField, useTable } from "@pankod/refine";
@@ -90,9 +112,8 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
-            <Table {...tableProps} key="id">
+            <Table {...tableProps} rowKey="id">
                 <Table.Column
-                    key="id"
                     dataIndex="id"
                     title="ID"
                     render={(value) => <TextField value={value} />}
@@ -100,18 +121,13 @@ export const PostList: React.FC = () => {
                     sorter
                 />
                 <Table.Column
-                    key="title"
                     dataIndex="title"
                     title="Title"
                     render={(value) => <TextField value={value} />}
                     //highlight-next-line
                     sorter={{ multiple: 1 }}
                 />
-                <Table.Column
-                    key="content"
-                    dataIndex="content"
-                    title="Content"
-                />
+                <Table.Column dataIndex="content" title="Content" />
             </Table>
         </List>
     );
@@ -119,14 +135,14 @@ export const PostList: React.FC = () => {
 ```
 
 :::tip
-`sorter` propuna verdiğimiz `multiple` değeri, çoklu sıralama yapıldığında, bu sütunun sıralamadaki önceliğini belirtir.
+When using multiple sorting, `multiple` value we had given to the `sorter` property specifies the priority of this column in sorting.
 :::
 
 <div style={{textAlign: "center"}}>
     <img src={tableSorting} />
 </div>
 
-### Başlangıç sıralama durumu
+### Initial sort status
 
 ```ts title="/src/pages/posts/list.tsx"
 const { tableProps, sorter } = useTable<IPost>({
@@ -139,24 +155,23 @@ const { tableProps, sorter } = useTable<IPost>({
 });
 ```
 
-`initialSorter` ayarı ile, hangi `field`ın hangi sıralama durumuyla başlayacağını (`"asc"`, `"desc"`) seçebilirsiniz.
+By using `initialSorter` setting, you can select which `field` is going to start with which sorting status (`"asc"` or `"desc"`).
 
-## Filtreleme
+## Filtering
 
-Endpointten gelen her `post` bir `status` değerine sahip. Bu değer `published` ya da `draft` olabilir. `status` değerini bir Ant Design `<TagField>` ile gösterebiliriz:
+Every `post` that comes from endpoint has a `status` value. This value can either be `published` or `draft`. We can show the `status` value with a Ant Design `<TagField>`:
 
 ```tsx title="/src/pages/posts/list.tsx"
 ...
 <Table.Column
     dataIndex="status"
     title="Status"
-    key="status"
     render={(value) => <TagField value={value} />}
 />
 ...
 ```
 
-Bu değer üzerinden filtreleme yapabilmek için, `filterDropdown` propunu kullanabiliriz. Filtreleme formunu `<FilterDropdown>` componenti içine almalıyız ve fonksiyona gelen propları bu componentin proplarına aktarmalıyız:
+We can use the `filterDropdown` property to make filtering based on the `status` value. In order to do this, we need to put the filtering form inside the `<FilterDropdown>` component and pass the properties coming to the function to these component's properties:
 
 ```tsx title="/src/pages/posts/list.tsx"
 import {
@@ -185,17 +200,15 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
-            <Table {...tableProps} key="id">
-                <Table.Column key="id" dataIndex="id" title="ID" sorter />
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" sorter />
                 <Table.Column
-                    key="title"
                     dataIndex="title"
                     title="Title"
                     sorter={{ multiple: 2 }}
                     defaultSortOrder={getDefaultSortOrder("title", sorter)}
                 />
                 <Table.Column
-                    key="content"
                     dataIndex="content"
                     title="Content"
                     sorter={{ multiple: 1 }}
@@ -203,7 +216,6 @@ export const PostList: React.FC = () => {
                 <Table.Column
                     dataIndex="status"
                     title="Status"
-                    key="status"
                     render={(value) => <TagField value={value} />}
                     //highlight-start
                     filterDropdown={(props) => (
@@ -227,10 +239,9 @@ export const PostList: React.FC = () => {
     <img src={filters} />
 </div>
 
-### Varsayılan Filtre Değeri
+### Default filter value
 
-Varsayılan filtre değeri vermek için, `useTable(options)` hookunun, `initialFilter` opsiyonunu kullanabilirsiniz.
-
+In order to set a default filter value, you can use the `initialFilter` option of the `useTable(options)` hook.
 ```ts title="/src/pages/posts/list.tsx"
 ...
 const { tableProps, sorter, filters } = useTable<IPost>({
@@ -251,7 +262,7 @@ const { tableProps, sorter, filters } = useTable<IPost>({
 ...
 ```
 
-Eğer varsayılan filtre değerleri verirseniz, sayfa açıldığında o filtre alanlarının varsayılan değerler ile gelmesi için, ilgili `<Table.Column>` componentlerine `defaultFilteredValue` propunun uygun şekilde verilmesi gerekir.
+If you give default filter values, `defaultFilteredValue` property needs to be properly given to the relevant `<Table.Column>` components so that those filter fields come with default values when the page is opened.
 
 ```tsx title="/src/pages/posts/list.tsx"
 import {
@@ -289,17 +300,15 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
-            <Table {...tableProps} key="id">
-                <Table.Column key="id" dataIndex="id" title="ID" sorter />
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" sorter />
                 <Table.Column
-                    key="title"
                     dataIndex="title"
                     title="Title"
                     sorter={{ multiple: 2 }}
                     defaultSortOrder={getDefaultSortOrder("title", sorter)}
                 />
                 <Table.Column
-                    key="content"
                     dataIndex="content"
                     title="Content"
                     sorter={{ multiple: 1 }}
@@ -307,7 +316,6 @@ export const PostList: React.FC = () => {
                 <Table.Column
                     dataIndex="status"
                     title="Status"
-                    key="status"
                     render={(value) => <TagField value={value} />}
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
@@ -328,27 +336,31 @@ export const PostList: React.FC = () => {
 ```
 
 :::tip
-`initialFilter`a verdiğiniz filtreler varsayılan filtrelerdir. Filtrelerin değiştirilebilmesini engellemek için, `initialFilter` yerine `permanentFilter` kullanılmalıdır.
+Filters we give to `initialFilter` are default filters. In order to prevent filters from being changed, `permanentFilter` must be used instead of `initialFilter`.
 :::
 
 ## API
 
 | Key              | Description                                                                                                                                                     | Type                                             |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| permanentFilter  | Varsayılan ve değiştirilemez filtre.                                                                                                                            | [`CrudFilters`](../../interfaces.md#crudfilters) |
-| resource         | Verilerin listeleneceği resource. Eğer verilmezse, contextten çıkarım yapılır.                                                                                  | `string`                                         |
-| initialCurrent   | Varsayılan sayfa indeksi.                                                                                                                                       | `number`                                         |
-| initialPageSize  | Varsayılan sayfa başına gösterilen kayıt sayısı.                                                                                                                | `number`                                         |
-| initialSorter    | Varsayılan sıralama.                                                                                                                                            | [`CrudSorting`](../../interfaces.md#crudsorting) |
-| initialFilter    | Varsayılan filtreleme.                                                                                                                                          | [`CrudFilters`](../../interfaces.md#crudfilters) |
-| syncWithLocation | Tablodaki sıralamalar, filtreler, sayfa indeksi ve sayfa başına gösterilen kayıt browser history tarafından takip edilir.                                       | `boolean`                                        |
-| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form](../../../guides-and-concepts/table/table-search.md). | `Function`                                       |
+| permanentFilter  | Default and unchangeable filter.                                                                                                                            | [`CrudFilters`](../../interfaces.md#crudfilters) | If not given, its taken from the context.                                                                              | `string`                                         |
+| initialCurrent   | Initial page index.                                                                                                                                       | `number`                                         |
+| initialPageSize  | Number of records shown per initial number of   pages.                                                                                                                | `number`                                         |
+| initialSorter    | Initial sorting.                                                                                                                                            | [`CrudSorting`](../../interfaces.md#crudsorting) |
+| initialFilter    | Initial 
+filtering.                                                                                                                                          | [`CrudFilters`](../../interfaces.md#crudfilters) |
+| syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history.                                       | `boolean`                                        |
+| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form](../../../guides-and-concepts/search/table-search.md) to learn how to create a search form. | `Function`                                       |
+
+<br />
 
 ### Return values
 
 | Property         | Description                              | Type                                                                                                                                         |
 | ---------------- | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | tableQueryResult | Result of the `react-query`'s `useQuery` | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`](https://react-query.tanstack.com/reference/useQuery) |
+
+<br />
 
 ## Live Codesandbox Example
 

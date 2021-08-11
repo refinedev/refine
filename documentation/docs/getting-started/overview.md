@@ -3,91 +3,176 @@ id: overview
 title: Overview
 ---
 
-## Components
+import architectureDiagram from '@site/static/img/getting-started/refine_architecture.jpg';
 
-Feature/Capability Key:
+import benchmarkChart from '@site/static/img/getting-started/benchmark.png';
 
--   ✅ can be use with hooks.
--   🔵 can accessible from refine.
+## What is refine?
 
-### General
+**refine** is a [React](https://reactjs.org/)-based framework for building data-intensive applications in no time :sparkles: It ships with [Ant Design System](https://ant.design/), an enterprise-level UI toolkit.
 
-|                                                         |                     Hooks                      |
-| ------------------------------------------------------- | :--------------------------------------------: |
-| [Button](https://ant.design/components/button/)         |   [🔵](https://ant.design/components/button/)   |
-| [Icon](https://ant.design/components/icon/)             |    [🔵](https://ant.design/components/icon/)    |
-| [Typography](https://ant.design/components/typography/) | [🔵](https://ant.design/components/typography/) |
+Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to *admin panels*, *B2B applications* and *dashboards*.
+###
 
-### Layout
+## Key features
 
-|                                                   |                    Hooks                    |
-| ------------------------------------------------- | :-----------------------------------------: |
-| [Divider](https://ant.design/components/divider/) | [🔵](https://ant.design/components/divider/) |
-| [Grid](https://ant.design/components/grid/)       |  [🔵](https://ant.design/components/grid/)   |
-| [Layout](https://ant.design/components/layout/)   | [🔵](https://ant.design/components/layout/)  |
-| [Space](https://ant.design/components/space/)     |  [🔵](https://ant.design/components/space/)  |
+⚙️ **Zero-configuration**: One-line setup with [superplate](https://github.com/pankod/superplate). It takes less than a minute to start a project.
 
-### Navigation
+📦 **Out-of-the-box** : Routing, networking, authentication, state management, i18n and UI.
 
-|                                                          |                      Hooks                      |
-| -------------------------------------------------------- | :---------------------------------------------: |
-| [Affix](https://ant.design/components/affix/)            |    [🔵](https://ant.design/components/affix/)    |
-| [Breadcrumb](https://ant.design/components/breadcrumb/)  | [🔵](https://ant.design/components/breadcrumb/)  |
-| [Dropdown](https://ant.design/components/dropdown/)      |  [🔵](https://ant.design/components/dropdown/)   |
-| [Menu](https://ant.design/components/menu/)              |    [🔵](https://ant.design/components/menu/)     |
-| [Pagination](https://ant.design/components/pagination/)  | [🔵](https://ant.design/components/pagination/)  |
-| [PageHeader](https://ant.design/components/page-header/) | [🔵](https://ant.design/components/page-header/) |
-| [Steps](https://ant.design/components/steps/)            |          [✅](../api-references/hooks/form/useStepsForm.md)          |
+🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for [REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest), [Strapi](https://strapi.io/), [NestJs CRUD](https://github.com/nestjsx/crud) and [Airtable](https://www.airtable.com/).
 
-### Data Entry
+📝 **Native Typescript Core** : You can always opt out for plain Javascript.
 
-|                                                              |                       Hooks                       |                                                          |                      Hooks                      |
-| ------------------------------------------------------------ | :-----------------------------------------------: | -------------------------------------------------------- | :---------------------------------------------: |
-| [AutoComplete](https://ant.design/components/auto-complete/) | [🔵](https://ant.design/components/auto-complete/) | [Radio](https://ant.design/components/radio/)            |      [✅](../api-references/hooks/field/useRadioGroup.md)       |
-| [Checkbox](https://ant.design/components/checkbox/)          |      [✅](../api-references/hooks/field/useCheckboxGroup.md)      | [Switch](https://ant.design/components/switch/)          |   [🔵](https://ant.design/components/switch/)    |
-| [Cascader](https://ant.design/components/cascader/)          |   [🔵](https://ant.design/components/cascader/)    | [Slider](https://ant.design/components/slider/)          |   [🔵](https://ant.design/components/slider/)    |
-| [DatePicker](https://ant.design/components/date-picker/)     |  [🔵](https://ant.design/components/date-picker/)  | [Select](https://ant.design/components/select/)          |        [✅](../api-references/hooks/field/useSelect.md)         |
-| [Form](https://ant.design/components/form/)                  |           [✅](../api-references/hooks/form/useForm.md)           | [TreeSelect](https://ant.design/components/tree-select/) | [🔵](https://ant.design/components/tree-select)  |
-| [InputNumber](https://ant.design/components/input-number/)   | [🔵](https://ant.design/components/input-number/)  | [Transfer](https://ant.design/components/transfer/)      |  [🔵](https://ant.design/components/transfer/)   |
-| [Input](https://ant.design/components/input/)                |     [🔵](https://ant.design/components/input/)     | [TimePicker](https://ant.design/components/time-picker/) | [🔵](https://ant.design/components/time-picker/) |
-| [Mentions](https://ant.design/components/mentions/)          |   [🔵](https://ant.design/components/mentions/)    | [Upload](https://ant.design/components/upload/)          |   [🔵](https://ant.design/components/upload/)    |
-| [Rate](https://ant.design/components/rate/)                  |     [🔵](https://ant.design/components/rate/)      |
+🔘 **Decoupled UI** : UI components are exposed directly without encapsulation. You have full control on UI elements.
 
-### Data Display
+🐜 **Powerful Default UI** : Works seamlessly with integrated [Ant Design System](https://ant.design/). (Support for multiple UI frameworks is on the Roadmap)
 
-|                                                             |                      Hooks                       |                                                       |                     Hooks                     |
-| ----------------------------------------------------------- | :----------------------------------------------: | ----------------------------------------------------- | :-------------------------------------------: |
-| [Avatar](https://ant.design/components/avatar/)             |    [🔵](https://ant.design/components/avatar/)    | [List](https://ant.design/components/upload/)         |                       ✅                       |
-| [Badge](https://ant.design/components/badge/)               |    [🔵](https://ant.design/components/badge/)     | [Popover](https://ant.design/components/popover/)     |  [🔵](https://ant.design/components/popover/)  |
-| [Comment](https://ant.design/components/comment/)           |   [🔵](https://ant.design/components/comment/)    | [Statistic](https://ant.design/components/statistic/) | [🔵](https://ant.design/components/statistic/) |
-| [Collapse](https://ant.design/components/collapse/)         |   [🔵](https://ant.design/components/collapse/)   | [Tree](https://ant.design/components/tree/)           |   [🔵](https://ant.design/components/tree/)    |
-| [Carousel](https://ant.design/components/carousel/)         |   [🔵](https://ant.design/components/carousel/)   | [Tooltip](https://ant.design/components/tooltip/)     |  [🔵](https://ant.design/components/tooltip/)  |
-| [Card](https://ant.design/components/card/)                 |     [🔵](https://ant.design/components/card/)     | [Timeline](https://ant.design/components/timeline/)   | [🔵](https://ant.design/components/timeline/)  |
-| [Calendar](https://ant.design/components/calendar/)         |   [🔵](https://ant.design/components/calendar/)   | [Tag](https://ant.design/components/tag/)             |    [🔵](https://ant.design/components/tag/)    |
-| [Descriptions](https://ant.design/components/descriptions/) | [🔵](https://ant.design/components/descriptions/) | [Tabs](https://ant.design/components/tabs/)           |   [🔵](https://ant.design/components/tabs/)    |
-| [Empty](https://ant.design/components/empty/)               |    [🔵](https://ant.design/components/empty/)     | [Table](https://ant.design/components/table/)         |        [✅](../api-references/hooks/table/useTable.md)        |
-| [Image](https://ant.design/components/image/)               |    [🔵](https://ant.design/components/image/)     |
+📝 **Boilerplate-free Code** : Keeps your codebase clean and readable.
 
-### Feedback
+### Motivation
 
-|                                                             |                      Hooks                       |
-| ----------------------------------------------------------- | :----------------------------------------------: |
-| [Alert](https://ant.design/components/alert/)               |    [🔵](https://ant.design/components/alert/)     |
-| [Drawer](https://ant.design/components/drawer/)             |       [✅](../api-references/hooks/form/useDrawerForm.md)        |
-| [Modal](https://ant.design/components/modal/)               |        [✅](../api-references/hooks/form/useModalForm.md)        |
-| [Message](https://ant.design/components/message/)           |   [🔵](https://ant.design/components/message/)    |
-| [Notification](https://ant.design/components/notification/) | [🔵](https://ant.design/components/notification/) |
-| [Progress](https://ant.design/components/progress/)         |   [🔵](https://ant.design/components/progress/)   |
-| [Popconfirm](https://ant.design/components/popconfirm/)     |  [🔵](https://ant.design/components/popconfirm/)  |
-| [Result](https://ant.design/components/result/)             |    [🔵](https://ant.design/components/result/)    |
-| [Spin](https://ant.design/components/spin/)                 |     [🔵](https://ant.design/components/spin/)     |
-| [Skeleton](https://ant.design/components/skeleton/)         |   [🔵](https://ant.design/components/skeleton/)   |
+Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility. 
 
-### Other
+After many years of experience in developing B2B frontend applications and working with popular frameworks, we came up with a new apporach to tackle this dilemma. This is how **refine** is born.
 
-|                                                                  |                        Hooks                        |
-| ---------------------------------------------------------------- | :-------------------------------------------------: |
-| [Anchor](https://ant.design/components/anchor/)                  |     [🔵](https://ant.design/components/anchor/)      |
-| [BackTop](https://ant.design/components/back-top/)               |    [🔵](https://ant.design/components/back-top/)     |
-| [ConfigProvider](https://ant.design/components/config-provider/) | [🔵](https://ant.design/components/config-provider/) |
+**Refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
 
+As **refine** is totally *unopinionated* about UI and logic, it's strongly *opinionated* about three parts of your application:
+
+1. **API Networking**
+2. **State Management**
+3. **Authentication & Authorization**
+
+We believe, these are the most important components of a data-intensive frontend application and should be handled in a robust way by leveraging industry best practices.
+
+**refine** guarantees you a perfect implementation of these building blocks in your project, so you can focus on your development.
+
+### Architechture
+
+**refine** makes extensive use of [hooks](https://reactjs.org/docs/hooks-reference.html#gatsby-focus-wrapper) as a default way for interacting with your components. 
+Under the hood, **refine** relies heavily to [React Query](https://react-query.tanstack.com/) for data handling, caching and state management. 
+Access to external sources and API's happen via providers which are basically plug-in type components for extendibility.
+
+<div style={{textAlign: "center"}}>
+    <img src={architectureDiagram} width="400px" />
+</div>
+
+
+### Benchmark
+
+After releasing the first internal versions, we had the chance to migrate some of our *React* projects to **refine**.
+In addition to **shorter development** times and **overall performance gains**, we've measured significant reduction in project size.
+
+**refine** makes your codebase significantly smaller, by eliminating redundant code such as *reducers*, *actions* and *unit tests*. Below is a size comparison for an example project:
+
+<div style={{textAlign: "center"}}>
+    <img src={benchmarkChart} width="400px" />
+</div>
+
+
+### Quick Start
+
+Run the **superplate** tool with the following command:
+
+```
+npx superplate-cli tutorial
+```
+
+Follow the *CLI wizard* to select options and start creating your project.
+
+After setup is complete, navigate to the project folder and start your project with:
+
+```
+npm run dev
+```
+
+Your **refine** application will be accessible at [http://localhost:3000](http://localhost:3000).
+
+Replace the contents of ```App.tsx``` with the following code:
+
+```tsx title="App.tsx"
+import React from "react";
+import {
+    Refine,
+    Resource,
+    useTable,
+    List,
+    Table,
+    useMany,
+    DateField,
+} from "@pankod/refine";
+import dataProvider from "@pankod/refine-simple-rest";
+
+import "@pankod/refine/dist/styles.min.css";
+
+const App: React.FC = () => {
+    return (
+        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
+            <Resource name="posts" list={PostList} />
+        </Refine>
+    );
+};
+
+export const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+
+    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
+        enabled: categoryIds.length > 0,
+    });
+
+    return (
+        <List>
+            <Table<IPost> {...tableProps} rowKey="id">
+                <Table.Column dataIndex="title" title="title" />
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="category"
+                    render={(value: string) => {
+                        if (isLoading) {
+                            return "loading...";
+                        }
+
+                        return data?.data.find(
+                            (item: ICategory) => item.id === value,
+                        )?.title;
+                    }}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="createdAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                />
+            </Table>
+        </List>
+    );
+};
+
+export default App;
+```
+
+```tsx title="interfaces.d.ts"
+interface IPost {
+    title: string;
+    createdAt: string;
+    category: ICategory;
+}
+
+interface ICategory {
+    id: string;
+    title: string;
+}
+
+```
+
+
+### Roadmap
+
+☑️ NextJS & SSR support
+
+☑️ Support for more data & auth providers
+
+☑️ Support for more UI frameworks (MaterialUI, Chakra, Spectrum etc.)

@@ -10,20 +10,23 @@
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
+    "@types/google-map-react": "^2.1.2",
     "@types/jest": "^26.0.23",
     "@types/node": "^12.20.10",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.3",
     "craco-less": "^1.17.1",
-    "dayjs": "^1.10.5",
+    "dayjs": "1.10.5",
+    "google-map-react": "^2.1.10",
     "i18next": "^20.1.0",
     "i18next-browser-languagedetector": "^6.1.1",
     "i18next-xhr-backend": "^3.2.2",
     "leaflet": "^1.7.1",
+    "lodash": "^4.17.21",
     "react": "file:../../node_modules/react",
     "react-dom": "file:../../node_modules/react-dom",
     "react-i18next": "^11.8.11",
-    "react-leaflet": "^3.2.0",
+    "react-input-mask": "^2.0.4",
     "react-markdown": "^6.0.1",
     "react-mde": "^11.1.0",
     "react-scripts": "4.0.3",
@@ -43,6 +46,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@types/leaflet": "^1.7.1"
+    "@types/leaflet": "^1.7.1",
+    "@types/lodash": "^4.14.171",
+    "@types/react-input-mask": "^3.0.1"
   }
 }

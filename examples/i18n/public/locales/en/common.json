@@ -1,13 +1,14 @@
 {
     "pages": {
         "login": {
-            "login": "Login",
+            "signin": "Sign in",
             "signup": "Sign up",
             "username": "Username",
             "password": "Password",
             "remember": "Remember me",
             "forgotPassword": "Forgot password?",
-            "noAccount": "Still no account? Please go to"
+            "title": "Sign in your account",
+            "noAccount": "Don’t have an account?"
         },
         "error": {
             "info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
@@ -63,7 +64,8 @@
                 "draft": "Draft",
                 "rejected": "Rejected"
             },
-            "content": "Content"
+            "content": "Content",
+            "createdAt": "Created At"
         },
         "titles": {
             "create": "Create Post",

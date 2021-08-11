@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
-import { notification } from "antd";
 
 import {
     useMutationMode,
@@ -22,7 +21,9 @@ import {
     ContextQuery,
     HttpError,
     GetListResponse,
+    SuccessErrorNotification,
 } from "../../interfaces";
+import { handleNotification } from "@definitions/helpers";
 
 type DeleteParams = {
     id: string;
@@ -30,7 +31,7 @@ type DeleteParams = {
     mutationMode?: MutationMode;
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
-};
+} & SuccessErrorNotification;
 
 type UseDeleteReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -42,6 +43,18 @@ type UseDeleteReturnType<
     DeleteContext
 >;
 
+/**
+ * `useDelete` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for delete mutations.
+ *
+ * It uses `deleteOne` method as mutation function from the `dataProvider` which is passed to `<Refine>`.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/data/useDelete} for more details.
+ *
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TVariables - Values for params. default `{}`
+ *
+ */
 export const useDelete = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -78,30 +91,31 @@ export const useDelete = <
 
             const deletePromise = new Promise<DeleteOneResponse<TData>>(
                 (resolve, reject) => {
-                    const updateTimeout = setTimeout(() => {
+                    const doMutation = () => {
                         deleteOne<TData>(resource, id)
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
-                    }, undoableTimeoutPropOrContext);
+                    };
 
                     const cancelMutation = () => {
-                        clearTimeout(updateTimeout);
                         reject({ message: "mutationCancelled" });
                     };
 
                     if (onCancel) {
                         onCancel(cancelMutation);
-                    } else {
-                        notificationDispatch({
-                            type: ActionTypes.ADD,
-                            payload: {
-                                id,
-                                resource: resource,
-                                cancelMutation: cancelMutation,
-                                seconds: undoableTimeoutPropOrContext,
-                            },
-                        });
                     }
+
+                    notificationDispatch({
+                        type: ActionTypes.ADD,
+                        payload: {
+                            id,
+                            resource: resource,
+                            cancelMutation: cancelMutation,
+                            doMutation: doMutation,
+                            seconds: undoableTimeoutPropOrContext,
+                            isSilent: !!onCancel,
+                        },
+                    });
                 },
             );
             return deletePromise;
@@ -143,7 +157,10 @@ export const useDelete = <
                                     ...previousQuery,
                                     data: (data ?? []).filter(
                                         (record: TData) =>
-                                            !(record.id?.toString() === id),
+                                            !(
+                                                record.id?.toString() ===
+                                                id.toString()
+                                            ),
                                     ),
                                     total: total - 1,
                                 });
@@ -158,26 +175,23 @@ export const useDelete = <
                     previousQueries: previousQueries,
                 };
             },
-            onError: (err: TError, { id, resource }, context) => {
+            onError: (
+                err: TError,
+                { id, resource, errorNotification },
+                context,
+            ) => {
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
                     }
                 }
 
-                notificationDispatch({
-                    type: ActionTypes.REMOVE,
-                    payload: {
-                        id,
-                    },
-                });
-
                 if (err.message !== "mutationCancelled") {
                     checkError(err);
 
                     const resourceSingular = pluralize.singular(resource);
 
-                    notification.error({
+                    handleNotification(errorNotification, {
                         key: `${id}-${resource}-notification`,
                         message: translate(
                             "notifications.deleteError",
@@ -188,10 +202,11 @@ export const useDelete = <
                             `Error (status code: ${err.statusCode})`,
                         ),
                         description: err.message,
+                        type: "error",
                     });
                 }
             },
-            onSuccess: (_data, { id, resource }) => {
+            onSuccess: (_data, { id, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
 
                 const allQueries = cacheQueries(resource, id);
@@ -203,14 +218,20 @@ export const useDelete = <
                     }
                 }
 
-                notification.success({
+                handleNotification(successNotification, {
                     key: `${id}-${resource}-notification`,
                     message: translate("notifications.success", "Success"),
                     description: translate(
                         "notifications.deleteSuccess",
-                        { resource: resourceSingular },
+                        {
+                            resource: translate(
+                                `${resource}.${resource}`,
+                                resourceSingular,
+                            ),
+                        },
                         `Successfully deleted a ${resourceSingular}`,
                     ),
+                    type: "success",
                 });
             },
             onSettled: (_data, _error, { id, resource }) => {
@@ -222,6 +243,11 @@ export const useDelete = <
                         queryClient.invalidateQueries(query.queryKey);
                     }
                 }
+
+                notificationDispatch({
+                    type: ActionTypes.REMOVE,
+                    payload: { id, resource },
+                });
             },
         },
     );

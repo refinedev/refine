@@ -6,8 +6,8 @@ sidebar_label: <Refine>
 
 import warnwhen from '@site/static/img/warnwhen.png';
 
-`<Refine>` component is the entry point of a **refine** app. It is where the most high level configuration of the app occurs.
-It requires only a [`dataProvider`](api-references/providers/data-provider.md) to bootstrap the app. After adding a `dataProvider` `<Resource>`'s can be added as children.
+`<Refine>` component is the entry point of a **refine** app. It is where the highest level of configuration of the app occurs.
+Only a [`dataProvider`](api-references/providers/data-provider.md) is required to bootstrap the app. After adding a `dataProvider`, `<Resource>`'s can be added as children.
 
 ```tsx title="App.tsx"
 import { Refine, Resource } from "@pankod/refine";
@@ -38,30 +38,30 @@ export default App;
 
 
 ### `dataProvider`
-<div className="required">Required</div>  
+<div className="required">Required</div>
 <br/>
 <br/>
 
-A data provider is the place where a refine app communicates with an API.
-Data providers also act as adapters for refine making it possible to consume different API's and data services conveniently.   
-A data provider makes HTTP requests and returns response data back using predefined methods.  
+A [`dataProvider`](api-references/providers/data-provider.md) is the place where a refine app communicates with an API.
+Data providers also act as adapters for refine, making it possible for it to consume different API's and data services.   
+A [`dataProvider`](api-references/providers/data-provider.md) makes HTTP requests and returns response data back using predefined methods.  
 
 
-[Refer to Data Provider documentation for detailed information. &#8594](api-references/providers/data-provider.md)
+[Refer to the Data Provider documentation for detailed information. &#8594](api-references/providers/data-provider.md)
 
 <br />
 
 ### `authProvider`
 
-`authProvider` handles authentication logic e.g. login, logout flow and checking user credentials. It is an object with methods that refine uses when necessary.
+`authProvider` handles authentication logic like login, logout flow and checking user credentials. It is an object with methods that refine uses when necessary.
 
-[Refer to Auth Provider documentation for detailed information. &#8594](api-references/providers/auth-provider.md)
+[Refer to the Auth Provider documentation for detailed information. &#8594](api-references/providers/auth-provider.md)
 
 <br />
 
 ### `i18nProvider`
 
-`i18nProvider` prop lets you add i18n support to your app using any i18n framework.
+`i18nProvider` property lets you add i18n support to your app. Making you able to use any i18n framework.
 
 [Refer to i18n documentation for detailed information. &#8594](api-references/providers/i18n-provider.md)
 
@@ -69,15 +69,15 @@ A data provider makes HTTP requests and returns response data back using predefi
 
 ### `routes`
 
-`routes` allows to create custom pages with a path different than defined by `<Resource>`s.
+`routes` allow us to create custom pages with paths that are different than the ones defined by `<Resource>`s.
 
-[Refer to Custom Pages documentation for detailed information. &#8594](guides-and-concepts/custom-pages.md)
+[Refer to the Custom Pages documentation for detailed information. &#8594](guides-and-concepts/custom-pages.md)
 
 <br />
 
 ### `catchAll`
 
-When the app is navigated to a non-existent route, **refine** shows a default error page. A custom error component can be used for this error page by passing the customized component to `catchAll` prop.
+When the app is navigated to a non-existent route, **refine** shows a default error page. A custom error component can be used for this error page by passing the customized component to `catchAll` property:
 
 ```tsx title="App.tsx"
 ...
@@ -102,7 +102,7 @@ const App: React.FC = () => {
 
 ### `mutationMode`
 
-Determines the mode with which the mutations run (e.g. useUpdate, useDelete).
+`mutationMode` determines which mode the mutations run with. (e.g. useUpdate, useDelete).
 
 ```tsx title="App.tsx"
 ...
@@ -119,19 +119,19 @@ const App: React.FC = () => {
     );
 };
 ```
- `pessimistic` : The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfuly. This is the default setting.
+ `pessimistic`: The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfuly. This is the default setting.
 
- `optimistic` : The mutation is applied locally, redirection and UI updates are executed immediately as if mutation is succesful. If mutation returns with error, UI updates accordingly.
+ `optimistic`: The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is succesful. If the mutation returns with error, UI updates accordingly.
 
- `undoable`: The mutation is applied locally, redirection and UI updates are executed immediately as if mutation is succesful. Waits for a customizable amount of timeout before mutation is applied. During the timeout, mutation can be cancelled from the notification with an undo button and UI will revert back accordingly.
+ `undoable`: The mutation is applied locally, redirection and UI updates are executed immediately as if mutation is succesful. Waits for a customizable amount of timeout before mutation is applied. During the timeout, mutation can be cancelled from the notification with the ?undo? button. UI will revert back accordingly.
 
 
-[Refer to mutation mode docs for further information. &#8594](#)
+[Refer to the Mutation Mode docs for further information. &#8594](/guides-and-concepts/mutation-mode.md)
 
 ### `undoableTimeout`
 
-Duration in miliseconds for timeout period for cancelling mutations in **undoable** mode. Mutations can be cancelled during this period. This period can also be set on supported data hooks.  
-The one set in hooks will override the value set with `undoableTimeout`.  
+The duration of the timeout period in **undoable** mode, shown in milliseconds. Mutations can be cancelled during this period. This period can also be set on the supported data hooks.  
+The value set in hooks will override the value set with `undoableTimeout`.  
 `undoableTimeout` has a default value of `5000`.
 
 ```tsx title="App.tsx"
@@ -160,7 +160,7 @@ List query parameter values can be edited manually by typing directly in the URL
 When `syncWithLocation` is active, URL on the listing page shows query parameters like below:
 
 ```
-/resources/posts?current=1&pageSize=8&sort[]=createdAt&order[]=desc
+/posts?current=1&pageSize=8&sort[]=createdAt&order[]=desc
 ```
 
 Users are able to change current page, items count per page, sort and filter parameters.
@@ -190,9 +190,9 @@ Default value is `false`.
 
 ### `configProviderProps`
 
-Ant Design's [ConfigProvider](https://ant.design/components/config-provider) which includes default configurations can be change using `configProviderProps`. 
+Ant Design's [ConfigProvider](https://ant.design/components/config-provider) which includes default configurations can be changed using `configProviderProps`. 
 
-[Props for Ant Design's ConfigProvider &#8594](https://ant.design/components/config-provider/#API)
+[Props for the Ant Design's ConfigProvider &#8594](https://ant.design/components/config-provider/#API)
 
 For example, Layout direction can be set to other way:
 
@@ -217,9 +217,9 @@ const App: React.FC = () =>
 
 ### `LoginPage`
 
-**refine** has a default login page form which is served on `/login` route when `authProvider` config is provided.
+**refine** has a default login page form which is served on `/login` route when the `authProvider` configuration is provided.
 
-Custom login component can be passed to `LoginPage` prop.
+Custom login component can be passed to the `LoginPage` property.
 
 ```tsx title="App.tsx"
 ...
@@ -241,10 +241,10 @@ const App: React.FC = () =>
 
 ### `DashboardPage`
 
-A custom dashboard page can be passed to `DashboardPage` prop which is accessible on root route.  
+A custom dashboard page can be passed to the `DashboardPage` prop which is accessible on root route.  
 The dashboard item will appear at the top of the sider menu.
 
-First `<Resource>` will be shown if no `DashboardPage` is given.
+`<Resource>` will be shown first if no `DashboardPage` is given.
 
 
 ```tsx title="App.tsx"
@@ -268,9 +268,9 @@ const App: React.FC = () =>
 
 ### `ReadyPage`
 
-**refine** shows a default ready page on root route when no `<Resource>` is passed to `<Refine>` component as a child.
+**refine** shows a default ready page on root route when no `<Resource>` is passed to the `<Refine>` component as a child.
 
-Custom ready page component can be set by passing to `ReadyPage` prop.
+Custom ready page component can be set by passing to `ReadyPage` property?.
 
 ```tsx title="App.tsx"
 ...
@@ -293,17 +293,17 @@ const App: React.FC = () =>
 
 ### `Sider`
 
-The default sidebar can be customized by using refine hooks and passing custom component to `Sider` prop.
+The default sidebar can be customized by using refine hooks and passing custom components to `Sider` property.
 
 **refine** uses [Ant Design Sider](https://ant.design/components/layout/#Layout.Sider) component by default. 
 
-[Refer to useMenu hook documentation for detailed sidebar customization. &#8594](api-references/hooks/resource/useMenu.md)
+[Refer to the useMenu hook documentation for detailed sidebar customization. &#8594](api-references/hooks/resource/useMenu.md)
 
 <br />
 
 ### `Footer`
 
-The default app footer can be customized by passing `Footer` prop.
+The default app footer can be customized by passing the `Footer` property.
 
 
 ```tsx title="App.tsx"
@@ -327,7 +327,7 @@ const App: React.FC = () =>
 
 ### `Header`
 
-The default app header can be customized by passing `Header` prop.
+The default app header can be customized by passing the `Header` property.
 
 
 ```tsx title="App.tsx"
@@ -351,11 +351,11 @@ const App: React.FC = () =>
 
 ### `Layout`
 
-Default layout can be customized by passing `Layout` prop.
+Default layout can be customized by passing the `Layout` property.
 
 **refine** uses [Ant Design Layout](https://ant.design/components/layout/) components by default. 
 
-Layout prop will receive individual layout components as props.
+Layout property will receive individual layout components as property.
 
 ```tsx title="App.tsx"
 ...
@@ -441,7 +441,7 @@ const App: React.FC = () =>
 
 ### `Title`
 
-The app title can be set by passing `Title` prop.
+The app title can be set by passing the `Title` property.
 
 
 ```tsx title="App.tsx"
@@ -476,7 +476,7 @@ Config for React Query client that **refine** uses.
     keepPreviousData: true,
 }
 ```
-[Refer to QueryClient documentation for detailed information. &#8594](https://react-query.tanstack.com/reference/QueryClient#queryclient)
+[Refer to the QueryClient documentation for detailed information. &#8594](https://react-query.tanstack.com/reference/QueryClient#queryclient)
 
 
 ```tsx

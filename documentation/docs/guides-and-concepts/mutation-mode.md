@@ -6,8 +6,8 @@ title: Mutation Mode
 import test from '@site/static/img/guides-and-concepts/mutation-mode/test.png';
 
 ## Overview
-Mutation mode determines the mode with which the mutations run. Mutations can run under 3 different modes: `pessimistic`, `optimistic` and `undoable`.  
-Each mode correspondes to a different type of user experience.
+Mutation mode determines which mode the mutation runs with. Mutations can run under three different modes: `pessimistic`, `optimistic` and `undoable`.  
+Each mode corresponds to a different type of user experience.
 
 ## Modes
 
@@ -51,7 +51,7 @@ The mutation is applied locally, redirection and UI updates are executed immedia
 > When the user clicks on save button, request isn't sent to API immediately however list page updates with edited data. It waits for a period of time while the user can cancel the mutation. If the mutation is cancelled locally applied edit is undone.
 
 ## Usage
-Mutation mode can be set application-wide in [`<Refine>`](#) component. 
+Mutation mode can be set application-wide in [`<Refine>`](/api-references/components/refine-config.md#mutationmode) component. 
 
 ```tsx title="App.tsx"
 <Refine mutationMode="optimistic">
@@ -72,7 +72,7 @@ mutate({
     mutationMode: "optimistic",
 });
 ```
-> Mutation mode passed to `<Refine>` will be overriden by the mutation mode passed to a data hook.
+> Mutation mode passed to `<Refine>` will be overriden by the mutation mode passed to data or form hooks and components.
 
 ### Supported data hooks
 
@@ -87,6 +87,9 @@ mutate({
 - [`useDrawerForm` &#8594](api-references/hooks/form/useDrawerForm.md)
 - [`useStepsForm` &#8594](api-references/hooks/form/useStepsForm.md)
 
+### Supported components
+
+- [`DeleteButton` &#8594](api-references/components/buttons/delete.md)
 
 <br />
 

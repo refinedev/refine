@@ -8,6 +8,12 @@ import { ResourceErrorRouterParams } from "../../../interfaces";
 
 const { Text } = Typography;
 
+/**
+ * When the app is navigated to a non-existent route, refine shows a default error page.
+ * A custom error component can be used for this error page.
+ *
+ * @see {@link https://refine.dev/docs/api-references/components/refine-config#catchall} for more details.
+ */
 export const ErrorComponent: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState<string>();
     const { push } = useNavigation();

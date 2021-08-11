@@ -2,6 +2,7 @@ import React from "react";
 import uniqBy from "lodash/uniqBy";
 import { SelectProps } from "antd/lib/select";
 import { QueryObserverResult } from "react-query";
+import debounce from "lodash/debounce";
 
 import { useList, useMany } from "@hooks";
 import {
@@ -11,6 +12,7 @@ import {
     GetManyResponse,
     GetListResponse,
     CrudFilters,
+    SuccessErrorNotification,
 } from "../../../interfaces";
 
 export type UseSelectProps = {
@@ -20,7 +22,8 @@ export type UseSelectProps = {
     sort?: CrudSorting;
     filters?: CrudFilters;
     defaultValue?: string | string[];
-};
+    debounce?: number;
+} & SuccessErrorNotification;
 
 export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
     selectProps: SelectProps<{ value: string; label: string }>;
@@ -28,6 +31,14 @@ export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
     defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
 };
 
+/**
+ * `useSelect` hook allows you to manage an Ant Design {@link https://ant.design/components/select/ Select} component when records in a resource needs to be used as select options.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/field/useSelect} for more details.
+ *
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ *
+ */
 export const useSelect = <TData extends BaseRecord = BaseRecord>(
     props: UseSelectProps,
 ): UseSelectReturnType<TData> => {
@@ -43,6 +54,9 @@ export const useSelect = <TData extends BaseRecord = BaseRecord>(
         filters = [],
         optionLabel = "title",
         optionValue = "id",
+        debounce: debounceValue = 300,
+        successNotification,
+        errorNotification,
     } = props;
 
     if (!Array.isArray(defaultValue)) {
@@ -78,14 +92,23 @@ export const useSelect = <TData extends BaseRecord = BaseRecord>(
                 );
             },
         },
+        successNotification,
+        errorNotification,
     );
     const { refetch: refetchList } = queryResult;
 
     React.useEffect(() => {
-        refetchList();
+        if (search) {
+            refetchList();
+        }
     }, [search]);
 
     const onSearch = (value: string) => {
+        if (!value) {
+            setSearch([]);
+            return;
+        }
+
         setSearch([
             {
                 field: optionLabel,
@@ -98,7 +121,7 @@ export const useSelect = <TData extends BaseRecord = BaseRecord>(
     return {
         selectProps: {
             options: uniqBy([...options, ...selectedOptions], "value"),
-            onSearch,
+            onSearch: debounce(onSearch, debounceValue),
             loading: defaultValueQueryResult.isFetching,
             showSearch: true,
             filterOption: false,

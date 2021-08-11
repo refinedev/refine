@@ -13,7 +13,6 @@ describe("useApiUrl Hook", () => {
             }),
         });
 
-        console.log(result.current);
         expect(result.current).toBe("https://api.fake-rest.refine.dev");
     });
 });

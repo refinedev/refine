@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import { Layout, Menu } from "antd";
-import { LogoutOutlined } from "@ant-design/icons";
+import { Layout, Menu, Grid } from "antd";
+import { RightOutlined, LogoutOutlined } from "@ant-design/icons";
 
 import {
     useTranslate,
@@ -10,7 +10,7 @@ import {
     useNavigation,
 } from "@hooks";
 import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "src/interfaces";
+import { IAuthContext } from "../../../../interfaces";
 
 export const Sider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
@@ -20,18 +20,18 @@ export const Sider: React.FC = () => {
     const translate = useTranslate();
     const { menuItems, selectedKey } = useMenu();
     const { push } = useNavigation();
+    const breakpoint = Grid.useBreakpoint();
 
     return (
         <Layout.Sider
             collapsible
-            breakpoint="md"
             collapsed={collapsed}
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
+            collapsedWidth={!breakpoint.lg ? 0 : 80}
+            breakpoint="lg"
         >
             <Title collapsed={collapsed} />
             <Menu
-                theme="dark"
-                defaultSelectedKeys={["dashboard"]}
                 selectedKeys={[selectedKey]}
                 mode="inline"
                 onClick={({ key }) => {
@@ -43,11 +43,29 @@ export const Sider: React.FC = () => {
                     push(key as string);
                 }}
             >
-                {menuItems.map(({ icon, route, label }) => (
-                    <Menu.Item key={route} icon={icon}>
-                        {label}
-                    </Menu.Item>
-                ))}
+                {menuItems.map(({ icon, label, route }) => {
+                    const isSelected = route === selectedKey;
+                    return (
+                        <Menu.Item
+                            style={{
+                                fontWeight: isSelected ? "bold" : "normal",
+                            }}
+                            key={route}
+                            icon={icon}
+                        >
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                }}
+                            >
+                                {label}
+                                {isSelected && <RightOutlined />}
+                            </div>
+                        </Menu.Item>
+                    );
+                })}
 
                 {isProvided && (
                     <Menu.Item key="logout" icon={<LogoutOutlined />}>

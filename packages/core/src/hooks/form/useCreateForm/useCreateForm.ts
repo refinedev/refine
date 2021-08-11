@@ -15,6 +15,7 @@ import {
     CreateResponse,
     IResourceItem,
     HttpError,
+    SuccessErrorNotification,
 } from "../../../interfaces";
 
 type SaveButtonProps = {
@@ -58,8 +59,12 @@ export type useCreateFormProps<
     warnWhenUnsavedChanges?: boolean;
     redirect?: RedirectionTypes;
     resource: IResourceItem;
-};
+} & SuccessErrorNotification;
 
+/**
+ * A hook that the `useForm` uses
+ * @internal
+ */
 export const useCreateForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -71,6 +76,8 @@ export const useCreateForm = <
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect = "edit",
     resource,
+    successNotification,
+    errorNotification,
 }: useCreateFormProps<TData, TError, TVariables>): useCreateForm<
     TData,
     TError,
@@ -99,12 +106,19 @@ export const useCreateForm = <
     const onFinish = async (values: TVariables) => {
         setWarnWhen(false);
         mutate(
-            { values, resource: resource.name },
+            {
+                values,
+                resource: resource.name,
+                successNotification,
+                errorNotification,
+            },
             {
                 onSuccess: (data, variables, context) => {
                     if (onMutationSuccess) {
                         return onMutationSuccess(data, values, context);
                     }
+
+                    form.resetFields();
 
                     const id = data.data.id;
 

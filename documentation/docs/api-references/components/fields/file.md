@@ -6,16 +6,20 @@ title: File
 import fileField from '@site/static/img/guides-and-concepts/fields/file/fileField.png'
 
 
-This field is used to display files and uses `<Typography.Link>` from Ant Design.
-
-[Refer to `<Typography.Link>` documentation for detailed usage. &#8594](https://ant.design/components/typography)
+This field is used to display files and uses [`<Typography.Link>`](https://ant.design/components/typography) from Ant Design.
 
 ## Usage
 
-Let's see how to use `<FileField>` with the example in the edit page. 
+Let's see how we can use `<FileField>` with the example in the edit page. 
 
 ```tsx
-import { List, Table, FileField } from "@pankod/refine";
+import { 
+    List,
+    Table,
+    //highlight-next-line
+    FileField 
+} from "@pankod/refine";
+
 import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
@@ -25,10 +29,8 @@ export const PostList: React.FC = () => {
                 <Table.Column
                     dataIndex="title"
                     title="Title"
-                    key="title"
                 />
                 <Table.Column<IPost>
-                    key="image"
                     title="Image"
                     dataIndex="image"
                     render={(_, record) => (
@@ -70,6 +72,6 @@ interface IPost {
 
 | Property                                       | Description                     | Type                                                         | Default    |
 | ---------------------------------------------- | ------------------------------- | ------------------------------------------------------------ | ---------- |
-| src   <div className="required">Required</div> | Using for file path             | `string`                                                     |            |
-| title                                          | Using for file title            | `string` \| `undefined`                                      | `src` prop |
-| LinkProps                                      | Ant Design `<Typography>` props | [`LinkProps`](https://ant.design/components/typography/#API) |            |
+| src   <div className="required">Required</div> | Used for file path             | `string`                                                     |            |
+| title                                          | Used for file title            | `string` \| `undefined`                                      | The `src` property |
+| LinkProps                                      | Ant Design `<Typography>` properties | [`LinkProps`](https://ant.design/components/typography/#API) |            |

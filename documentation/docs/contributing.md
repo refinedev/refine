@@ -3,7 +3,7 @@ id: contributing
 title: Contributing
 ---
 
-We follow a [code of conduct][CODE_OF_CONDUCT] when participating in community. Please read it before you make contributions.
+We follow a [code of conduct][CODE_OF_CONDUCT] when participating with community. Please read it before you make any contributions.
 
 * If you plan to work on an issue, mention so in the issue page before you start working on it.
 * If you plan to work on a new feature, create an issue and discuss it with other community members/maintainers.
@@ -75,8 +75,12 @@ When you run the command that produces coverage report, go to `/coverage/lcov-re
 
 Please make sure you contribute well tested code.
 
+## Known Issues
+
+- If the interface changes are not reflected in the project when the interface changes under the packages, delete the `dist` folder in the project and try again.
+
 [Lerna]: https://github.com/lerna/lerna
 [Docusaurus]: https://docusaurus.io/
 [Issues]: https://github.com/pankod/refine/issues
-[CODE_OF_CONDUCT]: https://github.com/pankod/refine/CODE_OF_CONDUCT.md
-[Discord Channel]: https://discord.gg/fRhtCgPA
+[CODE_OF_CONDUCT]: https://github.com/pankod/refine/blob/master/CODE_OF_CONDUCT.md
+[Discord Channel]: https://discord.gg/qkhjCsJFrp

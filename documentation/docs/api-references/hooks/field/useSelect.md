@@ -92,7 +92,7 @@ const { selectProps } = useSelect({
 });
 ```
 
-`resource` property determines API resource endpoint to fetch records from data provider. It returns properly configured `options` values for select options.
+`resource` property determines API resource endpoint to fetch records from [`dataProvider`](api-references/providers/data-provider.md). It returns properly configured `options` values for select options.
 
 [Refer to Ant Design `Select` component documentation for detailed info for `options`. &#8594](https://ant.design/components/select)
 
@@ -173,14 +173,16 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 
 ### Properties
 
-| Property                                          | Description                               | Type                                       | Default   |
-| ------------------------------------------------- | ----------------------------------------- | ------------------------------------------ | --------- |
-| resource <div className="required">Required</div> | [`Resource`](#) for API data interactions | `string`                                   |           |
-| defaultValue                                      | Adds extra `options`                      | `string` \| `Array<string>`                |           |
-| optionValue                                       | Set the option's value                    | `string`                                   | `"id"`    |
-| optionLabel                                       | Set the option's label value              | `string`                                   | `"title"` |
+| Property                                          | Description                               | Type                                             | Default   |
+| ------------------------------------------------- | ----------------------------------------- | ------------------------------------------------ | --------- |
+| resource <div className="required">Required</div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                         |           |
+| defaultValue                                      | Adds extra `options`                      | `string` \| `Array<string>`                      |           |
+| optionValue                                       | Set the option's value                    | `string`                                         | `"id"`    |
+| optionLabel                                       | Set the option's label value              | `string`                                         | `"title"` |
 | filters                                           | Add filters while fetching the data       | [`CrudFilters`](../../interfaces.md#crudfilters) |           |
 | sort                                              | Allow us to sort the options              | [`CrudSorting`](../../interfaces.md#crudsorting) |           |
+| debounce                                          | The number of milliseconds to delay             | `number`                                         | 300       |
+
 
 ### Return values
 

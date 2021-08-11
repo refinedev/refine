@@ -1,0 +1,43 @@
+{
+  "title": "Siparişler",
+  "show": {
+    "title": "Sipariş Detay"
+  },
+  "fields": {
+    "orderNumber": "Sipariş Numarası",
+    "orderID": "Sipariş ID",
+    "status": "Sipariş Durumu",
+    "store": "Mağaza",
+    "user": "Kullanıcı",
+    "products": "Ürünler",
+    "createdAt": "Oluşturma Tarihi",
+    "amount": "Tutar"
+  },
+  "filter": {
+    "title": "Filtrele",
+    "search": {
+      "label": "Arama",
+      "placeholder": "Sipariş numarası, Kullanıcı vs."
+    },
+    "status": {
+      "label": "Sipariş Durumu",
+      "placeholder": "Sipariş Durumu"
+    },
+    "store": {
+      "label": "Mağaza",
+      "placeholder": "Mağaza Ara"
+    },
+    "user": {
+      "label": "Kullanıcı",
+      "placeholder": "Kullanıcı Ara"
+    },
+    "createdAt": {
+      "label": "Oluşturma Tarihi"
+    },
+    "submit": "Filtrele"
+  },
+  "courier": {
+    "deliveryTime": "Varış Zamanı",
+    "phone": "Telefon"
+  }
+}

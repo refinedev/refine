@@ -12,6 +12,14 @@ type useMenuReturnType = {
     menuItems: IMenuItem[];
 };
 
+/**
+ * `useMenu` is used to get menu items of the default sidebar.
+ * These items include a link to dashboard page (if it exists) and links to the user defined resources
+ * (passed as children to {@link https://refine.dev/docs/api-references/components/refine-config `<Refine>`}).
+ * This hook can also be used to build custom menus, which is also used by default sidebar to show menu items.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/resource/useMenu} for more details.
+ */
 export const useMenu: () => useMenuReturnType = () => {
     const { resources } = useResource();
     const translate = useTranslate();
@@ -19,10 +27,17 @@ export const useMenu: () => useMenuReturnType = () => {
     const { hasDashboard } = useContext<IRefineContext>(RefineContext);
 
     const selectedResource = resources.find((el) =>
-        location.pathname.startsWith(`/resources/${el.route}`),
+        location.pathname.startsWith(`/${el.route}`),
     );
 
-    const selectedKey = `/resources/${selectedResource?.route ?? ""}`;
+    let selectedKey: string;
+    if (selectedResource?.route) {
+        selectedKey = `/${selectedResource?.route}`;
+    } else if (location.pathname === "/") {
+        selectedKey = "/";
+    } else {
+        selectedKey = "notfound";
+    }
 
     const menuItems: IMenuItem[] = React.useMemo(
         () => [
@@ -38,7 +53,7 @@ export const useMenu: () => useMenuReturnType = () => {
                   ]
                 : []),
             ...resources.map((resource) => {
-                const route = `/resources/${resource.route}`;
+                const route = `/${resource.route}`;
 
                 return {
                     ...resource,

@@ -45,7 +45,7 @@ export type useFormProps<
     resource?: string;
 } & ResourcelessActionFormProps<TData, TError, TVariables>;
 
-export type useForm<
+export type UseFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
@@ -66,6 +66,17 @@ export type useForm<
     cloneId?: string;
 };
 
+/**
+ * `useForm` is used to manage forms. It uses Ant Design {@link https://ant.design/components/form/ Form} data scope management under the hood and returns the required props for managing the form actions.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/form/useForm} for more details.
+ *
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TVariables - Values for params. default `{}`
+ *
+ *
+ */
 export const useForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -74,7 +85,7 @@ export const useForm = <
     action,
     resource: resourceFromProps,
     ...rest
-}: useFormProps<TData, TError, TVariables> = {}): useForm<
+}: useFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
     TData,
     TError,
     TVariables

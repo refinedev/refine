@@ -5,19 +5,21 @@ siderbar_label: useAuthenticated
 description: useAuthenticated data hook from refine is a modified version of react-query's useMutation for create mutations
 ---
 
-`useAuthenticated` calls `checkAuth` method from [`authProvider`](/docs/api-references/providers/auth-provider) under the hood. It returns the result of react-query's useQuery which includes properties like `isSuccess` and `isError` with many others.  
-Data that is resolved from `useAuthenticated` will be returned as the `data` in the query result.
+`useAuthenticated` calls the `checkAuth` method from the[`authProvider`](/docs/api-references/providers/auth-provider) under the hood. 
+
+It returns the result of `react-query`'s `useQuery` which includes many properties, some of which being `isSuccess` and `isError`.  
+Data that is resolved from the `useAuthenticated` will be returned as the `data` in the query result.
 
 
 ## Usage
 
-It can be useful when you want to ask authentication for access [custom pages](/docs/guides-and-concepts/custom-pages) manually.
+`useAuthenticated` can be useful when you want to ask for authentication to grant access to [custom pages](/docs/guides-and-concepts/custom-pages) manually.
 
-We have used this hook in refine's [`<Authenticated>`](#) component that allows only authenticated users can access to the page or any part of code.
+We have used this hook in refine's [`<Authenticated>`](/api-references/components/auth/authenticated.md) component which allows only authenticated users to access to the page or any part of the code.
 
-We' ll demonstrate similar basic implementation like below. Imagine you have public page but want to make specific fields private.
+We will demonstrate a similar basic implementation below. Imagine that you have public page but you want to make some specific fields private.
 
-- We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `checkAuth` method like below.
+We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `checkAuth` method like below.
 
 ```tsx
 const authProvider: AuthProvider = {
@@ -34,7 +36,7 @@ const authProvider: AuthProvider = {
 ```
 <br/>
 
-- Create a wrapper component that renders children if `checkAuth` method returns Promise resolved.
+Let's create a wrapper component that renders children if `checkAuth` method returns Promise resolved.
 
 ```tsx title="components/authenticationChecker"
 // highlight-next-line
@@ -58,13 +60,13 @@ export const IsAuthenticated: React.FC = ({
 
 <br />
 
-- Only authenticated users can see the price field.
+Now, only authenticated users can see the price field.
 
 ```tsx title="components/postShow"
 import { Typography, Show } from "@pankod/refine";
 
 // highlight-next-line
-import { AuthenticationChecker } from "/components/authenticationChecker"
+import { IsAuthenticated } from "/components/IsAuthenticated"
 
 const { Title, Text } = Typography;
 
@@ -73,10 +75,10 @@ export const PostShow: React.FC = () => (
         <Title>Status</Title>
         <Text>Approved</Text>
         //highlight-start
-        <AuthenticationChecker>
+        <IsAuthenticated>
             <Title>Price</Title>
             <Text>20</Text>
-        </AuthenticationChecker>
+        </IsAuthenticated>
         //highlight-end
     </Show>
 )
@@ -85,5 +87,5 @@ export const PostShow: React.FC = () => (
 
 
 :::caution
-This hook can only be used if `authProvider` is provided.
+This hook can only be used if the `authProvider` is provided.
 :::

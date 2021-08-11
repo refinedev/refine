@@ -153,13 +153,13 @@ describe("Delete Button", () => {
     });
     it("should render with custom mutationMode", () => {
         const deleteButton = render(
-            <Route path="/resources/:resource">
+            <Route path="/:resource">
                 <DeleteButton mutationMode="pessimistic" />
             </Route>,
             {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts", route: "posts" }],
-                    routerInitialEntries: ["/resources/posts"],
+                    routerInitialEntries: ["/posts"],
                 }),
             },
         );
@@ -170,7 +170,7 @@ describe("Delete Button", () => {
 
     it("should render with custom resource", () => {
         const deleteButton = render(
-            <Route path="/resources/:resource">
+            <Route path="/:resource">
                 <DeleteButton resourceName="categories" />
             </Route>,
             {
@@ -179,7 +179,7 @@ describe("Delete Button", () => {
                         { name: "posts", route: "posts" },
                         { name: "categories", route: "categories" },
                     ],
-                    routerInitialEntries: ["/resources/posts"],
+                    routerInitialEntries: ["/posts"],
                 }),
             },
         );

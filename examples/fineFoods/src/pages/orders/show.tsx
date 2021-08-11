@@ -1,155 +1,318 @@
+import { ReactNode } from "react";
 import {
     Row,
     Col,
     useShow,
-    Show,
-    Typography,
-    NumberField,
-    DateField,
-    BooleanField,
-    AntdList,
-    Avatar,
-    Timeline,
-    Card,
     IResourceComponentsProps,
+    useTranslate,
+    Button,
+    Icons,
+    Steps,
+    PageHeader,
+    Grid,
+    useUpdate,
+    Space,
+    Avatar,
+    Typography,
+    Card,
+    Table,
+    List,
+    Skeleton,
 } from "@pankod/refine";
+import GoogleMapReact from "google-map-react";
 import dayjs from "dayjs";
 
-import { OrderStatus } from "components";
-import { IOrder } from "interfaces";
+import { MapMarker } from "components/map";
 
-const { Title, Text } = Typography;
+import { IEvent, IOrder, IProduct } from "interfaces";
+
+import "./style.css";
+
+const { useBreakpoint } = Grid;
+const { Text } = Typography;
 
 export const OrderShow: React.FC<IResourceComponentsProps> = () => {
+    const t = useTranslate();
+    const screens = useBreakpoint();
     const { queryResult } = useShow<IOrder>();
-    const { data, isFetching } = queryResult;
+    const { data } = queryResult;
+    const { mutate } = useUpdate();
     const record = data?.data;
 
-    const renderContent = () => {
+    const currentBreakPoints = Object.entries(screens)
+        .filter((screen) => !!screen[1])
+        .map((screen) => screen[0]);
+
+    const renderOrderSteps = () => {
+        const notFinishedCurrentStep = (event: IEvent, index: number) =>
+            event.status !== "Cancelled" &&
+            event.status !== "Delivered" &&
+            record?.events.findIndex(
+                (el) => el.status === record?.status?.text,
+            ) === index;
+
+        const stepStatus = (event: IEvent, index: number) => {
+            if (!event.date) return "wait";
+            if (event.status === "Cancelled") return "error";
+            if (notFinishedCurrentStep(event, index)) return "process";
+            return "finish";
+        };
+
         return (
-            <Row gutter={[16, 16]}>
-                <Col md={8}>
-                    <Title level={4}>Order</Title>
-                    <Title level={5}>Order Number</Title>
-                    <Text>{record.orderNumber}</Text>
-                    <Title level={5}>Status</Title>
-                    <OrderStatus status={record.status.text} />
-                    <Title level={5}>Amount</Title>
-                    <NumberField
-                        options={{
-                            currency: "USD",
-                            style: "currency",
-                            notation: "compact",
+            <PageHeader
+                className="pageHeader"
+                ghost={false}
+                onBack={() => window.history.back()}
+                title={t("orders:fields.orderID")}
+                subTitle={`#${record?.orderNumber ?? ""}`}
+                extra={[
+                    <Button
+                        disabled={record?.status.text !== "Pending"}
+                        key="accept"
+                        icon={<Icons.CheckCircleOutlined />}
+                        type="primary"
+                        onClick={() => {
+                            if (record) {
+                                mutate({
+                                    resource: "orders",
+                                    id: record?.id.toString(),
+                                    values: {
+                                        status: {
+                                            id: 2,
+                                            text: "Ready",
+                                        },
+                                    },
+                                });
+                            }
                         }}
-                        value={record.amount}
-                    />
-                    <Title level={5}>Created At</Title>
-                    <DateField value={record.createdAt} format="LLL" />
-                    <Title level={5}>Address</Title>
-                    <Text>{record.adress.text}</Text>
+                    >
+                        {t("common:buttons.accept")}
+                    </Button>,
+                    <Button
+                        disabled={
+                            record?.status.text === "Delivered" ||
+                            record?.status.text === "Cancelled"
+                        }
+                        key="reject"
+                        danger
+                        icon={<Icons.CloseCircleOutlined />}
+                        onClick={() => {
+                            if (record) {
+                                mutate({
+                                    resource: "orders",
+                                    id: record?.id.toString(),
+                                    values: {
+                                        status: {
+                                            id: 5,
+                                            text: "Cancelled",
+                                        },
+                                    },
+                                });
+                            }
+                        }}
+                    >
+                        {t("common:buttons.reject")}
+                    </Button>,
+                ]}
+            >
+                <Steps
+                    direction={
+                        currentBreakPoints.includes("lg")
+                            ? "horizontal"
+                            : "vertical"
+                    }
+                    current={record?.events.findIndex(
+                        (el) => el.status === record?.status?.text,
+                    )}
+                >
+                    {record?.events.map((event: IEvent, index: number) => (
+                        <Steps.Step
+                            status={stepStatus(event, index)}
+                            key={index}
+                            title={event.status}
+                            icon={
+                                notFinishedCurrentStep(event, index) && (
+                                    <Icons.LoadingOutlined />
+                                )
+                            }
+                            description={
+                                event.date && dayjs(event.date).format("L LT")
+                            }
+                        />
+                    ))}
+                </Steps>
+                {!record && <Skeleton paragraph={{ rows: 1 }} />}
+            </PageHeader>
+        );
+    };
+
+    const courierInfoBox = (text: string, icon: ReactNode, value?: string) => (
+        <div className="courier-infoBox">
+            {icon}
+            <div className="text">
+                <Text style={{ color: "#ffffff" }}>{text.toUpperCase()}</Text>
+                <Text style={{ color: "#ffffff" }}>{value}</Text>
+            </div>
+        </div>
+    );
+
+    const renderCourierInfo = () => (
+        <Card>
+            <Row justify="center">
+                <Col xl={12} lg={10}>
+                    <div className="courier">
+                        <Avatar
+                            size={108}
+                            src={record?.courier.avatar[0].url}
+                        />
+                        <div className="info-text">
+                            <Text style={{ fontSize: 16 }}>COURIER</Text>
+                            <Text
+                                style={{
+                                    fontSize: 22,
+                                    fontWeight: 800,
+                                }}
+                            >
+                                {record?.courier.name} {record?.courier.surname}
+                            </Text>
+                            <Text>ID #{record?.courier.id}</Text>
+                        </div>
+                    </div>
                 </Col>
 
-                <Col md={8}>
-                    <Title level={4}>Products</Title>
-
-                    <AntdList
-                        itemLayout="horizontal"
-                        dataSource={record.products}
-                        renderItem={(item) => (
-                            <AntdList.Item>
-                                <AntdList.Item.Meta
-                                    avatar={
-                                        <Avatar
-                                            src={item.images[0].url}
-                                            size="large"
-                                            shape="square"
-                                        />
-                                    }
-                                    title={item.name}
-                                    description={
-                                        <NumberField
-                                            options={{
-                                                currency: "USD",
-                                                style: "currency",
-                                                notation: "compact",
-                                            }}
-                                            value={item.price}
-                                        />
-                                    }
-                                />
-                            </AntdList.Item>
-                        )}
-                    />
-                </Col>
-
-                <Col md={4}>
-                    <Title level={4}>User</Title>
-
-                    <Title level={5}>ID</Title>
-                    <Text>{record.user.id}</Text>
-
-                    <Title level={5}>Full Name</Title>
-                    <Text>{record.user.fullName}</Text>
-
-                    <Title level={5}>Gender</Title>
-                    <Text>{record.user.gender}</Text>
-
-                    <Title level={5}>Active</Title>
-                    <Text>
-                        <BooleanField value={record.user.isActive} />
-                    </Text>
-                </Col>
-
-                <Col md={4}>
-                    <Title level={4}>Store</Title>
-
-                    <Title level={5}>ID</Title>
-                    <Text>{record.store.id}</Text>
-
-                    <Title level={5}>Name</Title>
-                    <Text>{record.store.title}</Text>
-
-                    <Title level={5}>Active</Title>
-                    <Text>
-                        <BooleanField value={record.store.isActive} />
-                    </Text>
+                <Col xl={12} lg={14} md={24} className="courier-box-container">
+                    {courierInfoBox(
+                        t("orders:courier.phone"),
+                        <Icons.MobileOutlined
+                            className="mobile"
+                            style={{ color: "#ffff", fontSize: 32 }}
+                        />,
+                        record?.courier.gsm,
+                    )}
+                    {courierInfoBox(
+                        t("orders:courier.deliveryTime"),
+                        <img
+                            className="delivery-img"
+                            src="/images/bike-white.svg"
+                        />,
+                        "15:05",
+                    )}
                 </Col>
             </Row>
-        );
-    };
+        </Card>
+    );
 
-    const Aside: React.FC = () => {
-        if (!record) {
-            return null;
-        }
+    const renderDeliverables = () => (
+        <List
+            pageHeaderProps={{ style: { marginTop: 20 } }}
+            title={
+                <Text style={{ fontSize: 22, fontWeight: 800 }}>
+                    Deliverables
+                </Text>
+            }
+        >
+            <Table
+                pagination={false}
+                scroll={{ x: true }}
+                dataSource={record?.products}
+                footer={(_data) => (
+                    <div className="product-footer">
+                        <Text>MAIN TOTAL</Text>
+                        <Text>{record?.amount}$</Text>
+                    </div>
+                )}
+            >
+                <Table.Column<IProduct>
+                    defaultSortOrder="descend"
+                    sorter={(a: IProduct, b: IProduct) =>
+                        a.name > b.name ? 1 : -1
+                    }
+                    title="Items"
+                    dataIndex="name"
+                    render={(value, record) => (
+                        <div className="product">
+                            <Avatar
+                                size={{
+                                    md: 60,
+                                    lg: 108,
+                                    xl: 108,
+                                    xxl: 108,
+                                }}
+                                src={record.images[0].url}
+                            />
+                            <div className="product-text">
+                                <Text style={{ fontSize: 22, fontWeight: 800 }}>
+                                    {value}
+                                </Text>
+                                <Text>#{record.id}</Text>
+                            </div>
+                        </div>
+                    )}
+                />
+                <Table.Column
+                    title="Qty"
+                    dataIndex="quantity"
+                    render={() => (
+                        <Text style={{ fontWeight: 800 }}>{"1x"}</Text>
+                    )}
+                />
 
-        return (
-            <Timeline style={{ marginTop: 20 }}>
-                {record.events.map((event, index) => (
-                    <Timeline.Item key={index}>
-                        <>
-                            {event.name}
-                            <small style={{ marginLeft: 10 }}>
-                                ({dayjs(event.date).format("LLL")})
-                            </small>
-                        </>
-                    </Timeline.Item>
-                ))}
-            </Timeline>
-        );
-    };
+                <Table.Column
+                    defaultSortOrder="descend"
+                    sorter={(a: IProduct, b: IProduct) => a.price - b.price}
+                    title="Price"
+                    dataIndex="price"
+                    render={(value) => (
+                        <Text style={{ fontWeight: 800 }}>{value}</Text>
+                    )}
+                />
+                <Table.Column
+                    defaultSortOrder="descend"
+                    sorter={(a: IProduct, b: IProduct) => a.price - b.price}
+                    title="Total"
+                    dataIndex="price"
+                    render={(value) => (
+                        <Text style={{ fontWeight: 800 }}>{value}</Text>
+                    )}
+                />
+            </Table>
+        </List>
+    );
 
     return (
-        <Show
-            Aside={
-                <Card title="Order History">
-                    <Aside />
-                </Card>
-            }
-            title="Order Detail"
-            isLoading={isFetching}
-        >
-            {record && renderContent()}
-        </Show>
+        <>
+            <Space size={20} direction="vertical" style={{ width: "100%" }}>
+                {renderOrderSteps()}
+                <div style={{ height: "500px", width: "100%" }}>
+                    <GoogleMapReact
+                        bootstrapURLKeys={{
+                            key: process.env.REACT_APP_MAP_ID,
+                        }}
+                        defaultCenter={{
+                            lat: 40.73061,
+                            lng: -73.935242,
+                        }}
+                        defaultZoom={9}
+                    >
+                        <MapMarker
+                            key={`user-marker-${record?.user.id}`}
+                            lat={record?.adress.coordinate[0]}
+                            lng={record?.adress.coordinate[1]}
+                        >
+                            <img src="/images/map/user.svg" />
+                        </MapMarker>
+                        <MapMarker
+                            key={`store-marker-${record?.store.id}`}
+                            lat={record?.store.address.coordinate[0]}
+                            lng={record?.store.address.coordinate[1]}
+                        >
+                            <img src="/images/map/courier.svg" />
+                        </MapMarker>
+                    </GoogleMapReact>
+                </div>
+                {renderCourierInfo()}
+            </Space>
+            {renderDeliverables()}
+        </>
     );
 };

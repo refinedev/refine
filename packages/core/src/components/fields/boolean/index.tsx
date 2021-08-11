@@ -14,6 +14,11 @@ export type BooleanFieldProps = FieldProps<unknown> &
         falseIcon?: React.FC | object;
     };
 
+/**
+ * This field is used to display boolean values. It uses the {@link https://ant.design/components/tooltip/#header `<Tooltip>`} values from Ant Design.
+ *
+ * @see {@link https://refine.dev/docs/api-references/components/fields/boolean} for more details.
+ */
 export const BooleanField: React.FC<BooleanFieldProps> = ({
     value,
     valueLabelTrue = "true",

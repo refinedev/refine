@@ -3,6 +3,8 @@ id: auth0
 title: Auth0
 ---
 
+Auth0 example doesn't work in codesandbox embed mode. With [this](https://ussft.csb.app/) link, you can open the example in the browser and try it.
+
 [View Source](https://github.com/pankod/refine/tree/master/examples/auth0)
 
 <iframe src="https://codesandbox.io/embed/refine-auth0-example-ussft?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"

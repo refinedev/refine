@@ -1,15 +1,15 @@
 /* eslint-disable react/display-name */
 import React, { useContext } from "react";
 import { Switch, Route, RouteProps, Redirect } from "react-router-dom";
+import { useQuery } from "react-query";
+
 import {
     LoginPage as DefaultLoginPage,
     ErrorComponent,
     LayoutWrapper,
 } from "@components";
 import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "../../../interfaces";
-import { IResourceItem } from "@contexts/resource";
-import { useAuthenticated } from "@hooks/auth";
+import { IAuthContext, IResourceItem } from "../../../interfaces";
 
 export interface RouteProviderProps {
     resources: IResourceItem[];
@@ -29,7 +29,24 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     LoginPage,
     customRoutes = [],
 }) => {
-    const { isSuccess, isLoading } = useAuthenticated();
+    const { checkAuth, isAuthenticated } =
+        useContext<IAuthContext>(AuthContext);
+
+    const { isLoading } = useQuery(
+        ["useAuthenticated", { type: "routeProvider" }],
+        checkAuth,
+        {
+            retry: false,
+        },
+    );
+
+    if (isLoading) {
+        return (
+            <Switch>
+                <Route />
+            </Switch>
+        );
+    }
 
     const routes: IRoutesProps[] = [];
     const RouteHandler = (val: IResourceItem): void => {
@@ -47,7 +64,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (CreateComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/:resource(${route})/:action(create)/:id?`,
+                path: `/:resource(${route})/:action(create)/:id?`,
                 component: () => (
                     <CreateComponent
                         canCreate={canCreate}
@@ -63,7 +80,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (EditComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/:resource(${route})/:action(edit)/:id`,
+                path: `/:resource(${route})/:action(edit)/:id`,
                 component: () => (
                     <EditComponent
                         canCreate={canCreate}
@@ -79,7 +96,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (ShowComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/:resource(${route})/:action(show)/:id`,
+                path: `/:resource(${route})/:action(show)/:id`,
                 component: () => (
                     <ShowComponent
                         canCreate={canCreate}
@@ -95,7 +112,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         if (ListComponent) {
             routes.push({
                 exact: true,
-                path: `/resources/:resource(${route})`,
+                path: `/:resource(${route})`,
                 component: () => (
                     <ListComponent
                         canCreate={canCreate}
@@ -118,28 +135,35 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     const RouteWithSubRoutes = (route: any) => <Route {...route} />;
 
     const renderAuthorized = () => (
-        <LayoutWrapper>
-            <Switch>
-                <Route
-                    path="/"
-                    exact
-                    component={() =>
-                        DashboardPage ? (
-                            <DashboardPage />
-                        ) : (
-                            <Redirect to={`/resources/${resources[0].route}`} />
-                        )
-                    }
-                />
-                {[...routes, ...customRoutes].map((route, i) => (
-                    <RouteWithSubRoutes key={i} {...route} />
-                ))}
-                <Route path="/resources/:resource?/:action?">
-                    {catchAll ?? <ErrorComponent />}
-                </Route>
-                <Route>{catchAll ?? <ErrorComponent />}</Route>
-            </Switch>
-        </LayoutWrapper>
+        <Switch>
+            {[...customRoutes].map((route, i) => (
+                <RouteWithSubRoutes key={i} {...route} />
+            ))}
+            <Route>
+                <LayoutWrapper>
+                    <Switch>
+                        <Route
+                            path="/"
+                            exact
+                            component={() =>
+                                DashboardPage ? (
+                                    <DashboardPage />
+                                ) : (
+                                    <Redirect to={`/${resources[0].route}`} />
+                                )
+                            }
+                        />
+                        {[...routes].map((route, i) => (
+                            <RouteWithSubRoutes key={i} {...route} />
+                        ))}
+                        <Route path="/:resource?/:action?">
+                            {catchAll ?? <ErrorComponent />}
+                        </Route>
+                        <Route>{catchAll ?? <ErrorComponent />}</Route>
+                    </Switch>
+                </LayoutWrapper>
+            </Route>
+        </Switch>
     );
 
     const renderUnauthorized = () => (
@@ -174,7 +198,10 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
         </Switch>
     );
 
-    return isSuccess ? renderAuthorized() : renderUnauthorized();
+    return isAuthenticated ? renderAuthorized() : renderUnauthorized();
 };
 
+/**
+ * @internal
+ */
 export const RouteProvider = React.memo(RouteProviderBase);

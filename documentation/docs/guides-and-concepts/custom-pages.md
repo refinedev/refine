@@ -6,11 +6,11 @@ title: Custom Pages
 import basic from '@site/static/img/guides-and-concepts/custom-pages/basic.png'
 import gif from '@site/static/img/guides-and-concepts/custom-pages/gif.gif'
 
-refine allows us to add custom pages to our application. To do this, it is necessary to create an object array with [react-router-dom](https://reactrouter.com/web/api/Route) `<Route>` properties. Then, pass this array as `routes` prop in the `<Refine>` component.
+refine allows us to add custom pages to our application. To do this, it is necessary to create an object array with [react-router-dom](https://reactrouter.com/web/api/Route) `<Route>` properties. Then, pass this array as `routes` property in the `<Refine>` component.
 
 ## Public Custom Pages
 
-It allows creating custom pages that everyone can access via path.
+Allows creating custom pages that everyone can access via path.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
@@ -43,7 +43,7 @@ Everyone can access this page via `/custom-page` path.
 
 ## Authenticated Custom Pages
 
-It allows creating custom pages that only authenticated users can access via path.
+Allows creating custom pages that only authenticated users can access via path.
 
 ```tsx title="src/App.tsx"
 //highlight-next-line
@@ -107,24 +107,21 @@ Only authenticated users can access this page via `/custom-page` path.
 :::caution attention
 For authenticated custom page, your application needs an `authProvider`.
 
-[Refer to authProvider for more detailed information. &#8594](../api-references/providers/auth-provider.md)
+[Refer to the `authProvider` for more detailed information. &#8594](/api-references/providers/auth-provider.md)
 
 :::
 
-:::danger
-refine needs to know in order to manage resources, It recognizes them from the `<Resource>` component you have given to the `<Refine>` component. So, you need to give the resources you use in the custom page to the `<Refine>` component. But you don't need list, create, edit and show pages, you just need to give the name like the below code.
+:::info
+By default, custom pages don't have any layout. If you want to show your custom page in a layout, you can use `<LayoutWrapper>` component.
 
-```tsx
-<Resource name="posts" />
-```
-
+[Refer to the `<LayoutWrapper>` for more detailed information. &#8594](/api-references/components/layout-wrapper.md)
 :::
 
 ## Example
 
-Let's make a custom page for posts. On this page, the editor can approve or reject the posts with "draft" status.
+Let's make a custom page for posts. On this page, the editor can approve or reject the posts with the "draft" status.
 
-Before starting the example, let's assume that our `dataProvider` has an endpoint that returns posts as following.
+Before starting the example, let's assume that our [`dataProvider`](/api-references/providers/data-provider.md) has an endpoint that returns posts as following.
 
 ```ts title="https://api.fake-rest.refine.dev/posts"
 {
@@ -165,9 +162,7 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const App = () => {
     return (
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        >
+        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
             <Resource
                 name="posts"
                 list={PostList}
@@ -182,9 +177,9 @@ const App = () => {
 export default App;
 ```
 
-Now, let's create the custom page with the name `<PostReview>`. We will use the props of `useList`, `filter` and `pagination`, to fetch a post with "draft" status.
+Now, let's create the custom page with the name `<PostReview>`. We will use the properties of `useList`, `filter` and `pagination` to fetch a post with "draft" status.
 
-[Refer to `useList` documentation for detailed usage. &#8594](api-references/hooks/data/useList.md)
+[Refer to the `useList` documentation for detailed usage. &#8594](/api-references/hooks/data/useList.md)
 
 ```tsx title="src/pages/post-review.tsx"
 import { useList } from "@pankod/refine";
@@ -297,12 +292,10 @@ export const PostReview = () => {
     });
     const post = data?.data[0];
 
-    const {
-        data: categoryData,
-        isLoading: categoryIsLoading,
-    } = useOne<ICategory>("categories", post!.category.id, {
-        enabled: !!post,
-    });
+    const { data: categoryData, isLoading: categoryIsLoading } =
+        useOne<ICategory>("categories", post!.category.id, {
+            enabled: !!post,
+        });
 
     //highlight-start
     return (
@@ -329,7 +322,7 @@ export const PostReview = () => {
 };
 ```
 
-Then, pass this `<PostReview>` as routes prop in the `<Refine>` component:
+Then, pass this `<PostReview>` as the routes property in the `<Refine>` component:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
@@ -375,9 +368,9 @@ Now our page looks like this:
 </div>
 <br/>
 
-Now let's put in approve and reject buttons to change the status of the post shown on the page. When these buttons are clicled, we will change the status of the post using `useUpdate`.
+Now let's put in approve and reject buttons to change the status of the post shown on the page. When these buttons are clicked, we will change the status of the post using `useUpdate`.
 
-[Refer to `useUpdate` documentation for detailed usage. &#8594](api-references/hooks/data/useUpdate.md)
+[Refer to the `useUpdate` documentation for detailed usage. &#8594](/api-references/hooks/data/useUpdate.md)
 
 ```tsx title="src/pages/post-review.tsx"
 import {
@@ -410,12 +403,10 @@ export const PostReview = () => {
     });
     const post = data?.data[0];
 
-    const {
-        data: categoryData,
-        isLoading: categoryIsLoading,
-    } = useOne<ICategory>("categories", post!.category.id, {
-        enabled: !!post,
-    });
+    const { data: categoryData, isLoading: categoryIsLoading } =
+        useOne<ICategory>("categories", post!.category.id, {
+            enabled: !!post,
+        });
 
     //highlight-next-line
     const mutationResult = useUpdate<IPost>("posts");

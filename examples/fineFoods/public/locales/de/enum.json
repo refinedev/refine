@@ -1,0 +1,9 @@
+{
+  "orderStatuses": {
+    "pending": "Bekliyor",
+    "ready": "Hazır",
+    "on the way": "Yolda",
+    "delivered": "Teslim Edildi",
+    "cancelled": "İptal Edildi"
+  }
+}

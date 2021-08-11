@@ -4,13 +4,21 @@ import { FilterDropdownProps as AntdFilterDropdownProps } from "antd/lib/table/i
 import { FilterOutlined } from "@ant-design/icons";
 import { useTranslate } from "@hooks";
 
-export type FilterDropdownProps = AntdFilterDropdownProps & {};
+export type FilterDropdownProps = AntdFilterDropdownProps & {
+    mapValue?: (selectedKeys: React.Key[]) => any;
+};
 
+/**
+ * `<FilterDropdown>` is a helper component for {@link https://ant.design/components/table/#components-table-demo-custom-filter-panel filter dropdowns in Ant Design `<Table>` components.}
+ *
+ * @see {@link https://refine.dev/docs/api-references/components/filter-dropdown} for more details.
+ */
 export const FilterDropdown: React.FC<FilterDropdownProps> = ({
     selectedKeys,
     setSelectedKeys,
     confirm,
     clearFilters,
+    mapValue,
     children,
 }) => {
     const clearFilter = () => {
@@ -35,12 +43,11 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
         return setSelectedKeys([e]);
     };
 
-    const value = selectedKeys.length > 1 ? selectedKeys : selectedKeys[0];
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {
                 onChange,
-                value,
+                value: mapValue ? mapValue(selectedKeys) : selectedKeys,
             });
         }
         return child;
