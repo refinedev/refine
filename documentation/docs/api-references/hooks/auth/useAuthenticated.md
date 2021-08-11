@@ -36,7 +36,7 @@ const authProvider: AuthProvider = {
 ```
 <br/>
 
-Let's create a wrapper component that renders children if `checkAuth` method returns the promise resolved.
+Let's create a wrapper component that renders children if `checkAuth` method returns the Promise resolved.
 
 ```tsx title="components/authenticationChecker"
 // highlight-next-line
