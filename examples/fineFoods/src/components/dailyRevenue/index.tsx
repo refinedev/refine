@@ -37,7 +37,6 @@ export const DailyRevenue: React.FC = () => {
         query,
     });
 
-
     const { Text } = Typography;
     const { RangePicker } = DatePicker;
 
@@ -106,9 +105,9 @@ export const DailyRevenue: React.FC = () => {
                             value={data?.data.total ?? 0}
                         />
                         {(data?.data?.trend ?? 0) > 0 ? (
-                            <img src="images/increase.svg" />
+                            <img src="images/increase.svg" alt="increase" />
                         ) : (
-                            <img src="images/decrease.svg" />
+                            <img src="images/decrease.svg" alt="decrease" />
                         )}
                     </div>
                 </div>
