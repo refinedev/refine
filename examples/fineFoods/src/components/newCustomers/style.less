@@ -2,7 +2,10 @@
 
 
 .new-customers-wrapper {
-    height:222px;
+    height:232px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
  
     .header {
         display: flex;
@@ -10,19 +13,16 @@
         align-items: flex-start;
 
         &__title {
-            font-size:24px;
-            font-weight: 800;
             color: @white;
         }
 
         &__numbers {
-            font-size:36px;
-            font-weight: 900;
+            font-size:28px;
             text-align: right;
             line-height: 1.2;
 
             div {
-                font-size:24px;
+                font-size:20px;
             }
 
             span {
@@ -42,10 +42,6 @@
         height: 212px;
 
         .header {
-            &__title {
-                font-size:16px;
-            }
-        
             &__numbers {
                 font-size:30px;
 

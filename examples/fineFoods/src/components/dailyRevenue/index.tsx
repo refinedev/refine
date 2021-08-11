@@ -37,7 +37,7 @@ export const DailyRevenue: React.FC = () => {
         query,
     });
 
-    const { Text } = Typography;
+    const { Text, Title } = Typography;
     const { RangePicker } = DatePicker;
 
     const config = useMemo(() => {
@@ -80,23 +80,16 @@ export const DailyRevenue: React.FC = () => {
     }, [data]);
 
     return (
-        <div style={{ height: 222 }}>
+        <div className="daily-revenue-wrapper">
             <div className="title-area">
                 <div className="amount">
-                    <Text
-                        style={{
-                            fontWeight: 800,
-                            fontSize: 24,
-                        }}
-                    >
+                    <Typography.Title level={3}>
                         {t("dashboard:dailyRevenue.title")}
-                    </Text>
+                    </Typography.Title>
                     <div className="number">
                         <NumberField
-                            style={{
-                                fontSize: 36,
-                                fontWeight: 900,
-                            }}
+                            style={{ fontSize: 36 }}
+                            strong
                             options={{
                                 currency: "USD",
                                 style: "currency",

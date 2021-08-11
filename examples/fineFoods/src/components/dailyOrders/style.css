@@ -1,5 +1,8 @@
 .daily-order-wrapper {
-    height: 222px;
+    height: 232px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .title-area {
@@ -8,14 +11,16 @@
     align-items: flex-start;
 }
 
-.title-area > span {
-    color: #ffffff;
+.title-area > h3 {
+    color: #ffffff !important;
 }
 .title-area > .number {
     display: flex;
     align-items: center;
+    line-height: 1.1;
 }
 .title-area > .number > span {
+    font-size: 28px;
     color: #ffffff;
     margin-right: 5px;
 }

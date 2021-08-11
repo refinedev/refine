@@ -1,3 +1,10 @@
+.daily-revenue-wrapper {
+    height: 232px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .title-area {
     display: flex;
     justify-content: space-between;
@@ -6,6 +13,10 @@
 .title-area > .amount {
     display: flex;
     flex-direction: column;
+}
+.title-area > .amount h3 {
+    color: #ffffff;
+    margin-bottom: 0;
 }
 .title-area > .amount span {
     color: #ffffff;

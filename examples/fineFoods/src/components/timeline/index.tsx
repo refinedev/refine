@@ -67,7 +67,7 @@ export const OrderTimeline: React.FC = () => {
                                 orderStatusColor(status.id.toString())?.color
                             }`}
                         >
-                            <Text className="createdAt">
+                            <Text italic className="createdAt">
                                 {dayjs(createdAt).fromNow()}
                             </Text>
                             <Text>
@@ -78,7 +78,9 @@ export const OrderTimeline: React.FC = () => {
                                     }`,
                                 )}
                             </Text>
-                            <Text className="number">#{orderNumber}</Text>
+                            <Text strong className="number">
+                                #{orderNumber}
+                            </Text>
                         </div>
                     </Timeline.Item>
                 ))}

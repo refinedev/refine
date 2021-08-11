@@ -62,24 +62,13 @@ export const DailyOrders: React.FC = () => {
     return (
         <div className="daily-order-wrapper">
             <div className="title-area">
-                <Text
-                    style={{
-                        fontWeight: 800,
-                        fontSize: 24,
-                    }}
-                >
+                <Typography.Title level={3}>
                     {t("dashboard:dailyOrders.title")}
-                </Text>
-
+                </Typography.Title>
                 <div className="number">
-                    <Text
-                        style={{
-                            fontSize: 36,
-                            fontWeight: 900,
-                        }}
-                    >
+                    <Typography.Text strong>
                         {data?.data.total ?? 0}{" "}
-                    </Text>
+                    </Typography.Text>
 
                     {(data?.data?.trend ?? 0) > 0 ? (
                         <img src="images/increase.svg" alt="Increase" />
@@ -89,7 +78,7 @@ export const DailyOrders: React.FC = () => {
                 </div>
             </div>
             <Column
-                style={{ marginTop: 12, padding: 0, height: 162 }}
+                style={{ padding: 0, height: 135 }}
                 appendPadding={10}
                 {...config}
             />

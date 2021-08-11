@@ -22,6 +22,7 @@ export const DashboardPage: React.FC = () => {
                         <Card
                             bodyStyle={{
                                 padding: 10,
+                                paddingBottom: 0,
                             }}
                             style={{
                                 background: "url(images/daily-revenue.png)",
@@ -37,6 +38,7 @@ export const DashboardPage: React.FC = () => {
                         <Card
                             bodyStyle={{
                                 padding: 10,
+                                paddingBottom: 0,
                             }}
                             style={{
                                 background: "url(images/daily-order.png)",
@@ -51,6 +53,7 @@ export const DashboardPage: React.FC = () => {
                         <Card
                             bodyStyle={{
                                 padding: 10,
+                                paddingBottom: 0,
                             }}
                             style={{
                                 background: "url(images/new-orders.png)",
@@ -71,7 +74,9 @@ export const DashboardPage: React.FC = () => {
                         padding: 0,
                     }}
                     title={
-                        <Text style={{ fontSize: 24, fontWeight: 800 }}>
+                        <Text
+                            strong /* style={{ fontSize: 24, fontWeight: 800 }} */
+                        >
                             {t("dashboard:deliveryMap.title")}
                         </Text>
                     }
@@ -86,7 +91,9 @@ export const DashboardPage: React.FC = () => {
                         overflowY: "scroll",
                     }}
                     title={
-                        <Text style={{ fontSize: 24, fontWeight: 800 }}>
+                        <Text
+                            strong /* style={{ fontSize: 24, fontWeight: 800 }} */
+                        >
                             {t("dashboard:timeline.title")}
                         </Text>
                     }
