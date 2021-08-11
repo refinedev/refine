@@ -6,11 +6,11 @@ import { render, TestWrapper, MockJSONServer } from "@test";
 import { Create } from "./";
 
 const renderCreate = (create: ReactNode) => {
-    return render(<Route path="/resources/:resource/create">{create}</Route>, {
+    return render(<Route path="/:resource/create">{create}</Route>, {
         wrapper: TestWrapper({
             dataProvider: MockJSONServer,
             resources: [{ name: "posts", route: "posts" }],
-            routerInitialEntries: ["/resources/posts/create"],
+            routerInitialEntries: ["/posts/create"],
         }),
     });
 };
@@ -67,14 +67,14 @@ describe("Create", () => {
 
     it("should render tags", () => {
         const { getByText } = render(
-            <Route path="/resources/:resource/:action/:id">
+            <Route path="/:resource/:action/:id">
                 <Create />
             </Route>,
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
                     resources: [{ name: "posts", route: "posts" }],
-                    routerInitialEntries: ["/resources/posts/create/1"],
+                    routerInitialEntries: ["/posts/create/1"],
                 }),
             },
         );

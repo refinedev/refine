@@ -159,9 +159,6 @@ export const useDrawerForm = <
         },
         drawerProps: {
             width: "500px",
-            bodyStyle: {
-                paddingTop: "55px",
-            },
             onClose: handleClose,
             visible,
         },

@@ -13,13 +13,8 @@ import {
     ProductList,
     ProductShow,
 } from "./pages/products";
-import { StoreCreate, StoreEdit, StoreList, StoreShow } from "./pages/stores";
-import {
-    CategoryCreate,
-    CategoryEdit,
-    CategoryList,
-    CategoryShow,
-} from "./pages/categories";
+import { StoreCreate, StoreEdit, StoreList } from "./pages/stores";
+import { CategoryList } from "./pages/categories";
 import { ReviewsList } from "./pages/reviews";
 import { useTranslation } from "react-i18next";
 import { Header, Title } from "components";
@@ -81,7 +76,6 @@ const App: React.FC = () => {
                 list={StoreList}
                 edit={StoreEdit}
                 create={StoreCreate}
-                show={StoreShow}
             />
             <Resource
                 name="categories"
@@ -89,9 +83,6 @@ const App: React.FC = () => {
                     label: t("categories:title"),
                 }}
                 list={CategoryList}
-                edit={CategoryEdit}
-                create={CategoryCreate}
-                show={CategoryShow}
             />
             <Resource
                 name="couriers"

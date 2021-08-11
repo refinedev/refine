@@ -100,6 +100,25 @@ export const Refine: React.FC<RefineProps> = ({
             queries: {
                 refetchOnWindowFocus: false,
                 keepPreviousData: true,
+                select: (data: any) => {
+                    if (data && data.data) {
+                        if (Array.isArray(data.data)) {
+                            data.data = data.data.map((p: any) => {
+                                if (p.id) {
+                                    p.id = p.id.toString();
+                                }
+
+                                return p;
+                            });
+                        }
+                    } else {
+                        if (data.id) {
+                            data.id = data.id.toString();
+                        }
+                    }
+
+                    return data;
+                },
                 ...reactQueryClientConfig?.defaultOptions?.queries,
             },
         },

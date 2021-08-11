@@ -166,8 +166,8 @@ export const useUpdateMany = <
                                     data: data.map((record: TData) => {
                                         if (
                                             ids
-                                                .map((p) => p.toString())
-                                                .includes(record.id!.toString())
+                                                .map((p) => p)
+                                                .includes(record.id!)
                                         ) {
                                             return {
                                                 ...record,

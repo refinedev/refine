@@ -164,7 +164,7 @@ export const useTable = <
                 filters: crudFilters,
             });
 
-            return push(`/resources/${resource.route}?${stringifyParams}`);
+            return push(`/${resource.route}?${stringifyParams}`);
         }
     };
 

@@ -17,8 +17,8 @@ describe("useMenu Hook", () => {
             expect.arrayContaining([
                 expect.objectContaining({
                     name: "posts",
-                    route: "/resources/undefined",
-                    key: "/resources/undefined",
+                    route: "/undefined",
+                    key: "/undefined",
                     label: "Posts",
                 }),
             ]),
@@ -44,8 +44,8 @@ describe("useMenu Hook", () => {
             expect.arrayContaining([
                 expect.objectContaining({
                     name: "posts",
-                    route: "/resources/undefined",
-                    key: "/resources/undefined",
+                    route: "/undefined",
+                    key: "/undefined",
                     label: "Posts",
                 }),
                 expect.objectContaining({
@@ -122,20 +122,20 @@ describe("useMenu Hook", () => {
             expect.arrayContaining([
                 expect.objectContaining({
                     name: "posts",
-                    route: "/resources/undefined",
-                    key: "/resources/undefined",
+                    route: "/undefined",
+                    key: "/undefined",
                     label: "Dummy Label",
                 }),
                 expect.objectContaining({
                     name: "categories",
-                    route: "/resources/undefined",
-                    key: "/resources/undefined",
+                    route: "/undefined",
+                    key: "/undefined",
                     label: "categories label text",
                 }),
                 expect.objectContaining({
                     name: "users",
-                    route: "/resources/undefined",
-                    key: "/resources/undefined",
+                    route: "/undefined",
+                    key: "/undefined",
                     label: "users label text",
                 }),
             ]),

@@ -27,12 +27,12 @@ export const useMenu: () => useMenuReturnType = () => {
     const { hasDashboard } = useContext<IRefineContext>(RefineContext);
 
     const selectedResource = resources.find((el) =>
-        location.pathname.startsWith(`/resources/${el.route}`),
+        location.pathname.startsWith(`/${el.route}`),
     );
 
     let selectedKey: string;
     if (selectedResource?.route) {
-        selectedKey = `/resources/${selectedResource?.route}`;
+        selectedKey = `/${selectedResource?.route}`;
     } else if (location.pathname === "/") {
         selectedKey = "/";
     } else {
@@ -53,7 +53,7 @@ export const useMenu: () => useMenuReturnType = () => {
                   ]
                 : []),
             ...resources.map((resource) => {
-                const route = `/resources/${resource.route}`;
+                const route = `/${resource.route}`;
 
                 return {
                     ...resource,

@@ -11,12 +11,12 @@ import { act } from "react-dom/test-utils";
 const Wrapper = TestWrapper({
     dataProvider: MockJSONServer,
     resources: [{ name: "categories", route: "categories" }],
-    routerInitialEntries: ["/resources/categories"],
+    routerInitialEntries: ["/categories"],
 });
 
 const WrapperWithRoute: React.FC = ({ children }) => (
     <Wrapper>
-        <Route path="/resources/:resource">{children}</Route>
+        <Route path="/:resource">{children}</Route>
     </Wrapper>
 );
 describe("useEditableTable Hook", () => {

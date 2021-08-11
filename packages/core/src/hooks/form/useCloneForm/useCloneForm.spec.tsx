@@ -9,12 +9,12 @@ import { useCloneForm } from "./useCloneForm";
 
 const Wrapper = TestWrapper({
     dataProvider: MockJSONServer,
-    routerInitialEntries: ["/resources/posts/create/1"],
+    routerInitialEntries: ["/posts/create/1"],
 });
 
 const WrapperWithRoute: React.FC = ({ children }) => (
     <Wrapper>
-        <Route path="/resources/:resource/:action/:id">{children}</Route>
+        <Route path="/:resource/:action/:id">{children}</Route>
     </Wrapper>
 );
 describe("useCloneForm Hook", () => {

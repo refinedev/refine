@@ -29,7 +29,7 @@ describe("redirectionAfterSubmission Hook", () => {
             id: "1",
         });
 
-        expect(mHistory.push).toBeCalledWith("/resources/posts");
+        expect(mHistory.push).toBeCalledWith("/posts");
     });
 
     it("redirect false", async () => {
@@ -39,7 +39,7 @@ describe("redirectionAfterSubmission Hook", () => {
             id: "1",
         });
 
-        expect(mHistory.push).toBeCalledWith("/resources/posts");
+        expect(mHistory.push).toBeCalledWith("/posts");
     });
 
     it("redirect show, canShow false", async () => {
@@ -49,7 +49,7 @@ describe("redirectionAfterSubmission Hook", () => {
             id: "1",
         });
 
-        expect(mHistory.push).toBeCalledWith("/resources/posts");
+        expect(mHistory.push).toBeCalledWith("/posts");
     });
 
     it("redirect show, canShow true", async () => {
@@ -59,7 +59,7 @@ describe("redirectionAfterSubmission Hook", () => {
             id: "1",
         });
 
-        expect(mHistory.push).toBeCalledWith("/resources/posts/show/1");
+        expect(mHistory.push).toBeCalledWith("/posts/show/1");
     });
 
     it("redirect edit, canEdit true", async () => {
@@ -69,7 +69,7 @@ describe("redirectionAfterSubmission Hook", () => {
             id: "1",
         });
 
-        expect(mHistory.push).toBeCalledWith("/resources/posts/edit/1");
+        expect(mHistory.push).toBeCalledWith("/posts/edit/1");
     });
 
     it("redirect edit, canEdit false", async () => {
@@ -79,7 +79,7 @@ describe("redirectionAfterSubmission Hook", () => {
             id: "1",
         });
 
-        expect(mHistory.push).toBeCalledWith("/resources/posts");
+        expect(mHistory.push).toBeCalledWith("/posts");
     });
 
     it("redirect edit, canEdit true, id null", async () => {
@@ -88,7 +88,7 @@ describe("redirectionAfterSubmission Hook", () => {
             resource: { canEdit: true, route: "posts", name: "posts" },
         });
 
-        expect(mHistory.push).toBeCalledWith("/resources/posts");
+        expect(mHistory.push).toBeCalledWith("/posts");
     });
 
     it("redirect show, canShow true, id null", async () => {
@@ -97,6 +97,6 @@ describe("redirectionAfterSubmission Hook", () => {
             resource: { canShow: true, route: "posts", name: "posts" },
         });
 
-        expect(mHistory.push).toBeCalledWith("/resources/posts");
+        expect(mHistory.push).toBeCalledWith("/posts");
     });
 });
