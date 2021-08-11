@@ -185,6 +185,7 @@ export const useTable = <
                 ...tablePropsSunflower.pagination,
                 total: data?.total,
             },
+            scroll: { x: true },
         },
         tableQueryResult: queryResult,
         sorter,
