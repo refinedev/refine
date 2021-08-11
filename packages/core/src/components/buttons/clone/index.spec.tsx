@@ -47,13 +47,13 @@ describe("Clone Button", () => {
 
     it("should create page redirect clone route called function successfully if click the button", () => {
         const cloneButton = render(
-            <Route path="/resources/:resource">
+            <Route path="/:resource">
                 <CloneButton recordItemId="1" />
             </Route>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                    routerInitialEntries: ["/resources/posts"],
+                    resources: [{ name: "posts", route: "posts" }],
+                    routerInitialEntries: ["/posts"],
                 }),
             },
         );
@@ -61,21 +61,18 @@ describe("Clone Button", () => {
 
         fireEvent.click(getByText("Clone"));
 
-        expect(mHistory.push).toBeCalledWith(
-            "/resources/posts/create/1",
-            undefined,
-        );
+        expect(mHistory.push).toBeCalledWith("/posts/create/1");
     });
 
     it("should edit page redirect clone route called function successfully if click the button", () => {
         const cloneButton = render(
-            <Route path="/resources/:resource/:id">
+            <Route path="/:resource/:id">
                 <CloneButton />
             </Route>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                    routerInitialEntries: ["/resources/posts/edit/1"],
+                    resources: [{ name: "posts", route: "posts" }],
+                    routerInitialEntries: ["/posts/edit/1"],
                 }),
             },
         );
@@ -83,21 +80,21 @@ describe("Clone Button", () => {
 
         fireEvent.click(getByText("Clone"));
 
-        expect(mHistory.push).toBeCalledWith(
-            "/resources/posts/create/1",
-            undefined,
-        );
+        expect(mHistory.push).toBeCalledWith("/posts/create/1");
     });
 
     it("should custom resource and recordItemId redirect clone route called function successfully if click the button", () => {
         const cloneButton = render(
-            <Route path="/resources/:resource">
+            <Route path="/:resource">
                 <CloneButton resourceName="categories" recordItemId="1" />
             </Route>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                    routerInitialEntries: ["/resources/posts"],
+                    resources: [
+                        { name: "posts", route: "posts" },
+                        { name: "categories", route: "categories" },
+                    ],
+                    routerInitialEntries: ["/posts"],
                 }),
             },
         );
@@ -105,9 +102,6 @@ describe("Clone Button", () => {
 
         fireEvent.click(getByText("Clone"));
 
-        expect(mHistory.push).toBeCalledWith(
-            "/resources/categories/create/1",
-            undefined,
-        );
+        expect(mHistory.push).toBeCalledWith("/categories/create/1");
     });
 });

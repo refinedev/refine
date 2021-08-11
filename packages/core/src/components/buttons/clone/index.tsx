@@ -24,18 +24,14 @@ export const CloneButton: FC<CloneButtonProps> = ({
     children,
     ...rest
 }) => {
-    const { push } = useNavigation();
+    const { clone } = useNavigation();
     const translate = useTranslate();
 
     const { resource: routeResourceName, id: idFromRoute } =
         useParams<ResourceRouterParams>();
 
     const onButtonClick = () => {
-        push(
-            `/resources/${resourceName ?? routeResourceName}/create/${
-                recordItemId ?? idFromRoute
-            }`,
-        );
+        clone(resourceName ?? routeResourceName, recordItemId ?? idFromRoute);
     };
 
     return (

@@ -17,7 +17,7 @@ import {
     titleStyles,
     imageContainer,
 } from "./styles";
-import logo from "./refine-logo.svg";
+import logo from "../../../assets/images/refine.svg";
 
 import { useLogin, useTranslate } from "@hooks";
 
@@ -37,7 +37,7 @@ export const LoginPage: React.FC = () => {
     const [form] = Form.useForm<ILoginForm>();
     const translate = useTranslate();
 
-    const { mutate: login } = useLogin<ILoginForm>();
+    const { mutate: login, isLoading } = useLogin<ILoginForm>();
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>
@@ -137,6 +137,7 @@ export const LoginPage: React.FC = () => {
                                     type="primary"
                                     size="large"
                                     htmlType="submit"
+                                    loading={isLoading}
                                     block
                                 >
                                     {translate("pages.login.signin", "Sign in")}

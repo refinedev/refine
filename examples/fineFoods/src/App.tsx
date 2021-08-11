@@ -7,12 +7,7 @@ import { LoginPage } from "./pages/login";
 import { OrderList, OrderShow } from "./pages/orders";
 import { UserList, UserEdit, UserShow } from "./pages/users";
 import { CourierList } from "./pages/couriers";
-import {
-    ProductCreate,
-    ProductEdit,
-    ProductList,
-    ProductShow,
-} from "./pages/products";
+import { ProductList } from "./pages/products";
 import { StoreCreate, StoreEdit, StoreList } from "./pages/stores";
 import { CategoryList } from "./pages/categories";
 import { ReviewsList } from "./pages/reviews";
@@ -64,9 +59,6 @@ const App: React.FC = () => {
                 }}
                 name="products"
                 list={ProductList}
-                edit={ProductEdit}
-                create={ProductCreate}
-                show={ProductShow}
             />
             <Resource
                 name="stores"

@@ -21,6 +21,6 @@ describe("sider menu item", () => {
         cy.location("pathname").should("eq", "/");
 
         cy.get("@posts").click();
-        cy.location("pathname").should("eq", "/resources/posts");
+        cy.location("pathname").should("eq", "/posts");
     });
 });

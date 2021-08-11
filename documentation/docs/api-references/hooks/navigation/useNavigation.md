@@ -97,7 +97,7 @@ export const MyEditButton = () => {
     );
 };
 ```
-We used the `edit` to navigate to the post edit page, but you can see the differences in using it. `edit` requires the id property from us and clicking the button will trigger the edit method of useNavigation and then redirect the app to `/resources/posts/edit/1` 
+We used the `edit` to navigate to the post edit page, but you can see the differences in using it. `edit` requires the id property from us and clicking the button will trigger the edit method of useNavigation and then redirect the app to `/posts/edit/1` 
 
 :::caution Attention
 There is something we should pay attention to here. We need to give the `id` of which post we want to edit.
