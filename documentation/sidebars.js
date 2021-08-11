@@ -338,10 +338,15 @@ module.exports = {
                         "examples/import-export/export",
                     ],
                 },
+                "examples/e2e-testing",
                 "examples/customPages",
                 "examples/customTheme",
                 "examples/javascript",
             ],
+        },
+        {
+            type: "doc",
+            id: "testing",
         },
         {
             type: "doc",
