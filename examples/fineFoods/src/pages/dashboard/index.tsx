@@ -64,7 +64,7 @@ export const DashboardPage: React.FC = () => {
                     </Col>
                 </Row>
             </Col>
-            <Col lg={16} md={24} style={{ width: "100%" }}>
+            <Col xl={18} lg={16} md={24} style={{ width: "100%" }}>
                 <Card
                     bodyStyle={{
                         height: 550,
@@ -79,7 +79,7 @@ export const DashboardPage: React.FC = () => {
                     <DeliveryMap />
                 </Card>
             </Col>
-            <Col lg={8} md={24} style={{ width: "100%" }}>
+            <Col xl={6} lg={8} md={24} style={{ width: "100%" }}>
                 <Card
                     bodyStyle={{
                         height: 550,

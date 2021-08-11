@@ -1,18 +1,16 @@
 import {
     Typography,
-    useApiUrl,
-    useCustom,
     useTranslate,
     Timeline,
     useSimpleList,
-    List,
     AntdList,
 } from "@pankod/refine";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
 import { IOrder } from "interfaces";
 import "./style.less";
-import dayjs from "dayjs";
 
-import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
 
 export const OrderTimeline: React.FC = () => {
@@ -32,29 +30,24 @@ export const OrderTimeline: React.FC = () => {
         },
     });
 
-    console.log({ listProps });
-
     const { dataSource } = listProps;
 
     const { Text } = Typography;
 
-    const orderStatusColor = (id: string) => {
+    const orderStatusColor = (
+        id: string,
+    ): { color: string; text: string } | undefined => {
         switch (id) {
             case "1":
-                return "orange";
-                break;
+                return { color: "orange", text: "pending" };
             case "2":
-                return "cyan";
-                break;
+                return { color: "cyan", text: "ready" };
             case "3":
-                return "green";
-                break;
+                return { color: "green", text: "on the way" };
             case "4":
-                return "blue";
-                break;
+                return { color: "blue", text: "delivered" };
             case "5":
-                return "red";
-                break;
+                return { color: "red", text: "cancelled" };
             default:
                 break;
         }
@@ -65,18 +58,26 @@ export const OrderTimeline: React.FC = () => {
             <Timeline>
                 {dataSource?.map(({ createdAt, orderNumber, status }) => (
                     <Timeline.Item
+                        className="timeline__point"
                         key={orderNumber}
-                        color={orderStatusColor(status.id.toString())}
+                        color={orderStatusColor(status.id.toString())?.color}
                     >
                         <div
-                            className={`timeline ${orderStatusColor(
-                                status.id.toString(),
-                            )}`}
+                            className={`timeline ${
+                                orderStatusColor(status.id.toString())?.color
+                            }`}
                         >
                             <Text className="createdAt">
                                 {dayjs(createdAt).fromNow()}
                             </Text>
-                            <Text>New order placed</Text>
+                            <Text>
+                                {t(
+                                    `enum:orderStatuses.${
+                                        orderStatusColor(status.id.toString())
+                                            ?.text
+                                    }`,
+                                )}
+                            </Text>
                             <Text className="number">#{orderNumber}</Text>
                         </div>
                     </Timeline.Item>
