@@ -2,7 +2,7 @@ import { Refine, Resource } from "@pankod/refine";
 import "styles/antd.less";
 import jsonServerDataProvider from "@pankod/refine-simple-rest";
 import { authProvider } from "authProvider";
-import { DashbaordPage } from "./pages/dashboard";
+import { DashboardPage } from "./pages/dashboard";
 import { LoginPage } from "./pages/login";
 import { OrderList, OrderShow } from "./pages/orders";
 import { UserList, UserEdit, UserShow } from "./pages/users";
@@ -33,7 +33,7 @@ const App: React.FC = () => {
             i18nProvider={i18nProvider}
             Header={Header}
             Title={Title}
-            DashboardPage={DashbaordPage}
+            DashboardPage={DashboardPage}
             LoginPage={LoginPage}
         >
             <Resource
