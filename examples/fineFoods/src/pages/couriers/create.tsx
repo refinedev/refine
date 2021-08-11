@@ -164,6 +164,7 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                                 rules={[
                                     {
                                         required: true,
+                                        type: "email",
                                     },
                                 ]}
                             >
@@ -205,6 +206,7 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                         rules={[
                             {
                                 required: true,
+                                len: 22,
                             },
                         ]}
                     >

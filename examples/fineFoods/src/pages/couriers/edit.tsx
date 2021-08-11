@@ -18,7 +18,9 @@ import {
     Avatar,
     Row,
     Col,
+    InputProps,
 } from "@pankod/refine";
+import InputMask from "react-input-mask";
 
 const { Text } = Typography;
 
@@ -150,7 +152,11 @@ export const CouriersEdit: React.FC<IResourceComponentsProps> = () => {
                                     },
                                 ]}
                             >
-                                <Input />
+                                <InputMask mask="(999) 999 99 99">
+                                    {(props: InputProps) => (
+                                        <Input {...props} />
+                                    )}
+                                </InputMask>
                             </Form.Item>
                             <Form.Item
                                 label={t("couriers:fields.email")}
@@ -158,6 +164,7 @@ export const CouriersEdit: React.FC<IResourceComponentsProps> = () => {
                                 rules={[
                                     {
                                         required: true,
+                                        type: "email",
                                     },
                                 ]}
                             >
@@ -199,6 +206,7 @@ export const CouriersEdit: React.FC<IResourceComponentsProps> = () => {
                         rules={[
                             {
                                 required: true,
+                                len: 22,
                             },
                         ]}
                     >
