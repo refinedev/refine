@@ -82,9 +82,9 @@ export const DailyOrders: React.FC = () => {
                     </Text>
 
                     {(data?.data?.trend ?? 0) > 0 ? (
-                        <img src="images/increase.svg" />
+                        <img src="images/increase.svg" alt="Increase" />
                     ) : (
-                        <img src="images/decrease.svg" />
+                        <img src="images/decrease.svg" alt="Decrease" />
                     )}
                 </div>
             </div>
