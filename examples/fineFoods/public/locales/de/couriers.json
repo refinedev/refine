@@ -11,6 +11,14 @@
     "gender": "Cinsiyet",
     "gsm": "Gsm Numarsı",
     "createdAt": "Oluşturma Tarihi",
-    "isActive": "Aktif"
+    "isActive": "Aktif",
+    "images": {
+      "label": "Fotoğraf",
+      "description": "Kullanıcı fotoğrafı ekle",
+      "validation": "480x480 boyutunda olmalıdır"
+    },
+    "store": "Mağaza",
+    "vehicle": "Araç",
+    "iban": "IBAN"
   }
 }

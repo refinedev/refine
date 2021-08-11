@@ -77,6 +77,10 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                             }}
                         >
                             <Typography.Text>
+                                <Icons.EnvironmentOutlined />{" "}
+                                {courier?.store.title}
+                            </Typography.Text>
+                            <Typography.Text>
                                 <Icons.PhoneOutlined /> {courier?.gsm}
                             </Typography.Text>
                             <Typography.Text>

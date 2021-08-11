@@ -78,6 +78,7 @@ export interface ICourier {
     licensePlate: string;
     address: string;
     avatar: IFile[];
+    store: IStore;
 }
 export interface IOrder {
     id: string;

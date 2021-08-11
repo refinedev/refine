@@ -12,9 +12,17 @@ import {
     useApiUrl,
     getValueFromEvent,
     useStepsForm,
+    useSelect,
+    Typography,
+    Space,
+    Avatar,
+    Row,
+    Col,
 } from "@pankod/refine";
 
-import { ICourier } from "interfaces";
+const { Text } = Typography;
+
+import { ICourier, IStore } from "interfaces";
 
 export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
@@ -28,107 +36,189 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
     } = useStepsForm<ICourier>();
     const apiUrl = useApiUrl();
 
+    const { selectProps: storeSelectProps } = useSelect<IStore>({
+        resource: "stores",
+    });
+
     const formList = [
         <>
-            <Form.Item
-                label={t("couriers:fields.name")}
-                name="name"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-            <Form.Item
-                label={t("couriers:fields.surname")}
-                name="surname"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-            <Form.Item
-                label={t("couriers:fields.gsm")}
-                name="gsm"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-            <Form.Item
-                label={t("couriers:fields.email")}
-                name="email"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-            <Form.Item
-                label={t("couriers:fields.gender")}
-                name="gender"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Select
-                    options={[
-                        {
-                            label: "Male",
-                            value: "Male",
-                        },
-                        {
-                            label: "Female",
-                            value: "Female",
-                        },
-                    ]}
-                />
-            </Form.Item>
+            <Row gutter={20}>
+                <Col xs={24} lg={8}>
+                    <Form.Item>
+                        <Form.Item
+                            name="avatar"
+                            valuePropName="fileList"
+                            getValueFromEvent={getValueFromEvent}
+                            noStyle
+                        >
+                            <Upload.Dragger
+                                name="file"
+                                action={`${apiUrl}/media/upload`}
+                                listType="picture"
+                                maxCount={5}
+                                multiple
+                                style={{
+                                    border: "none",
+                                    width: "100%",
+                                    background: "none",
+                                }}
+                            >
+                                <Space direction="vertical" size={2}>
+                                    <Avatar
+                                        style={{
+                                            width: "100%",
+                                            height: "100%",
+                                            maxWidth: "200px",
+                                        }}
+                                        src="/images/user-default-img.png"
+                                        alt="Store Location"
+                                    />
+                                    <Text
+                                        style={{
+                                            fontWeight: 800,
+                                            fontSize: "16px",
+                                            marginTop: "8px",
+                                        }}
+                                    >
+                                        {t(
+                                            "couriers:fields.images.description",
+                                        )}
+                                    </Text>
+                                    <Text style={{ fontSize: "12px" }}>
+                                        {t("couriers:fields.images.validation")}
+                                    </Text>
+                                </Space>
+                            </Upload.Dragger>
+                        </Form.Item>
+                    </Form.Item>
+                </Col>
+                <Col xs={24} lg={16}>
+                    <Row gutter={10}>
+                        <Col xs={24} lg={12}>
+                            <Form.Item
+                                label={t("couriers:fields.name")}
+                                name="name"
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <Input />
+                            </Form.Item>
+                            <Form.Item
+                                label={t("couriers:fields.surname")}
+                                name="surname"
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <Input />
+                            </Form.Item>
+                            <Form.Item
+                                label={t("couriers:fields.gender")}
+                                name="gender"
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <Select
+                                    options={[
+                                        {
+                                            label: "Male",
+                                            value: "Male",
+                                        },
+                                        {
+                                            label: "Female",
+                                            value: "Female",
+                                        },
+                                    ]}
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col xs={24} lg={12}>
+                            <Form.Item
+                                label={t("couriers:fields.gsm")}
+                                name="gsm"
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <Input />
+                            </Form.Item>
+                            <Form.Item
+                                label={t("couriers:fields.email")}
+                                name="email"
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <Input />
+                            </Form.Item>
+                        </Col>
+                    </Row>
+                    <Form.Item
+                        label={t("couriers:fields.address")}
+                        name="address"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input.TextArea />
+                    </Form.Item>
+                </Col>
+            </Row>
         </>,
         <>
-            <Form.Item label={t("couriers:fields.avatar.label")}>
-                <Form.Item
-                    name="avatar"
-                    valuePropName="fileList"
-                    getValueFromEvent={getValueFromEvent}
-                    noStyle
-                >
-                    <Upload.Dragger
-                        name="file"
-                        action={`${apiUrl}/media/upload`}
-                        listType="picture"
-                        maxCount={5}
-                        multiple
+            <Row gutter={20}>
+                <Col xs={24} lg={12}>
+                    <Form.Item
+                        label={t("couriers:fields.store")}
+                        name={["store", "id"]}
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
                     >
-                        <p className="ant-upload-text">
-                            {t("couriers:fields:avatar.description")}
-                        </p>
-                    </Upload.Dragger>
-                </Form.Item>
-            </Form.Item>
-            <Form.Item
-                label={t("couriers:fields.address")}
-                name="address"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
+                        <Select {...storeSelectProps} />
+                    </Form.Item>
+                    <Form.Item
+                        label={t("couriers:fields.iban")}
+                        name="iban"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                </Col>
+                <Col xs={24} lg={12}>
+                    <Form.Item
+                        label={t("couriers:fields.vehicle")}
+                        name="licensePlate"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                </Col>
+            </Row>
         </>,
     ];
 
