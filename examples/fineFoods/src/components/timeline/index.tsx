@@ -4,6 +4,8 @@ import {
     Timeline,
     useSimpleList,
     AntdList,
+    Tooltip,
+    useNavigation,
 } from "@pankod/refine";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -15,6 +17,7 @@ dayjs.extend(relativeTime);
 
 export const OrderTimeline: React.FC = () => {
     const t = useTranslate();
+    const { show } = useNavigation();
 
     const { listProps } = useSimpleList<IOrder>({
         resource: "orders",
@@ -56,7 +59,7 @@ export const OrderTimeline: React.FC = () => {
     return (
         <AntdList {...listProps}>
             <Timeline>
-                {dataSource?.map(({ createdAt, orderNumber, status }) => (
+                {dataSource?.map(({ createdAt, orderNumber, status, id }) => (
                     <Timeline.Item
                         className="timeline__point"
                         key={orderNumber}
@@ -67,9 +70,16 @@ export const OrderTimeline: React.FC = () => {
                                 orderStatusColor(status.id.toString())?.color
                             }`}
                         >
-                            <Text italic className="createdAt">
-                                {dayjs(createdAt).fromNow()}
-                            </Text>
+                            <Tooltip
+                                overlayInnerStyle={{ color: "#626262" }}
+                                color="rgba(255, 255, 255, 0.3)"
+                                placement="topLeft"
+                                title={dayjs(createdAt).format("lll")}
+                            >
+                                <Text italic className="createdAt">
+                                    {dayjs(createdAt).fromNow()}
+                                </Text>
+                            </Tooltip>
                             <Text>
                                 {t(
                                     `dashboard:timeline.orderStatuses.${
@@ -78,7 +88,11 @@ export const OrderTimeline: React.FC = () => {
                                     }`,
                                 )}
                             </Text>
-                            <Text strong className="number">
+                            <Text
+                                onClick={() => show("orders", id)}
+                                strong
+                                className="number"
+                            >
                                 #{orderNumber}
                             </Text>
                         </div>
