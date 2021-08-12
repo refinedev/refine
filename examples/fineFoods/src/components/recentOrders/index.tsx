@@ -1,4 +1,3 @@
-import { Column } from "@ant-design/charts";
 import {
     Typography,
     useTable,
@@ -8,6 +7,7 @@ import {
     Tag,
     NumberField,
     useNavigation,
+    useSimpleList,
 } from "@pankod/refine";
 import "./style.less";
 
@@ -26,8 +26,8 @@ export const RecentOrders: React.FC = () => {
                 order: "desc",
             },
         ],
-        initialPageSize: 6,
-        initialFilter: [
+        initialPageSize: 4,
+        permanentFilter: [
             {
                 field: "status.text",
                 operator: "eq",
@@ -38,10 +38,17 @@ export const RecentOrders: React.FC = () => {
 
     const { show } = useNavigation();
 
-    console.log({ tableProps });
+    const { listProps } = useSimpleList<IOrder>({
+        resource: "orders",
+        pagination: { pageSize: 6 },
+    });
+
+    console.log("listprops", listProps);
+
     return (
         <Table
             {...tableProps}
+            pagination={{ ...tableProps.pagination, simple: true }}
             showHeader={false}
             scroll={{
                 x: true,
@@ -73,7 +80,6 @@ export const RecentOrders: React.FC = () => {
                         }}
                     >
                         <Text strong>{record.products[0].name}</Text>
-                        {/*   <Text>{record.products[0].description}</Text> */}
                         <Paragraph
                             ellipsis={{
                                 rows: 2,
