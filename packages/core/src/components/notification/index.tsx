@@ -35,7 +35,7 @@ export const Notification: React.FC<{
                             dispatch={notificationDispatch}
                             notificationItem={notificationItem}
                         />
-                        <span style={{ marginLeft: 15 }}>
+                        <span style={{ marginLeft: 8, width: "100%" }}>
                             {translate(
                                 "notifications.undoable",
                                 {
