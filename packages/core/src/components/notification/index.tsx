@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { Button, notification, Skeleton } from "antd";
+import { Button, notification, Space } from "antd";
+import { UndoOutlined } from "@ant-design/icons";
 
 import { ActionTypes } from "@contexts/notification";
 import { useCancelNotification, useTranslate } from "@hooks";
@@ -21,36 +22,34 @@ export const Notification: React.FC<{
                 if (notificationItem.seconds === 0) {
                     notificationItem.doMutation();
                 }
-                const message = (
-                    <span style={{ marginLeft: 20 }}>
-                        {translate(
-                            "notifications.undoable",
-                            {
-                                seconds: userFriendlySecond(
-                                    notificationItem.seconds,
-                                ),
-                            },
-                            `You have ${userFriendlySecond(
-                                notificationItem.seconds,
-                            )} seconds to undo`,
-                        )}
-                    </span>
-                );
-
-                notification.open({
-                    key: `${notificationItem.id}-${notificationItem.resource}-notification`,
-                    style: {
-                        display: notificationItem.isSilent ? "none" : "block",
-                    },
-                    icon: (
+                const description = (
+                    <div
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            marginTop: "-7px",
+                        }}
+                    >
                         <NotificationProgress
                             dispatch={notificationDispatch}
                             notificationItem={notificationItem}
                         />
-                    ),
-                    message,
-                    btn: (
+                        <span style={{ marginLeft: 15 }}>
+                            {translate(
+                                "notifications.undoable",
+                                {
+                                    seconds: userFriendlySecond(
+                                        notificationItem.seconds,
+                                    ),
+                                },
+                                `You have ${userFriendlySecond(
+                                    notificationItem.seconds,
+                                )} seconds to undo`,
+                            )}
+                        </span>
                         <Button
+                            style={{ flexShrink: 0 }}
                             onClick={() => {
                                 notificationDispatch({
                                     type: ActionTypes.REMOVE,
@@ -65,10 +64,18 @@ export const Notification: React.FC<{
                                 );
                             }}
                             disabled={notificationItem.seconds === 0}
-                        >
-                            {translate("buttons.undo", "Undo")}
-                        </Button>
-                    ),
+                            icon={<UndoOutlined />}
+                        ></Button>
+                    </div>
+                );
+
+                notification.open({
+                    key: `${notificationItem.id}-${notificationItem.resource}-notification`,
+                    style: {
+                        display: notificationItem.isSilent ? "none" : "block",
+                    },
+                    message: null,
+                    description,
                     duration: 0,
                     closeIcon: <></>,
                 });
