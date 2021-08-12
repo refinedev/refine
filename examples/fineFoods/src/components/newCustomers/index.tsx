@@ -16,7 +16,6 @@ export const NewCustomers: React.FC = () => {
         trend: number;
     }>(url, "get");
 
-
     const { Text } = Typography;
 
     const config = useMemo(() => {
