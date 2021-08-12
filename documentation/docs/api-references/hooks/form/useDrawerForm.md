@@ -206,8 +206,6 @@ The `saveButtonProps` and `deleteButtonProps` gives us the ability of saving and
 
 <br />
 
-[Refer to codesandbox example for detailed usage. &#8594](https://www.google.com.tr)
-
 ## API Parameters
 
 ### Properties
