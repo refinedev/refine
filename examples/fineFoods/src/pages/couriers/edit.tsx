@@ -205,7 +205,7 @@ export const CouriersEdit: React.FC<IResourceComponentsProps> = () => {
                     rules={[
                         {
                             required: true,
-                            len: 22,
+                            len: 20,
                         },
                     ]}
                 >
