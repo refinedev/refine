@@ -156,7 +156,7 @@ export const PostList: React.FC = () => {
 <br />
 
 :::important
-refine doesn't automatically add a edit button to the each record in `<PostList>` which opens edit form in `<Modal>` when clicked.
+**refine** doesn't automatically add a edit button to the each record in `<PostList>` which opens edit form in `<Modal>` when clicked.
 
 So, we have to put the edit buttons on our list. In that way, `<Edit>` form in `<Modal>` can fetch data by the record `id`.
 
@@ -181,7 +181,6 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 
 <br />
 
-[Refer to codesandbox example for detailed usage. &#8594](https://www.google.com.tr)
 
 ## API Reference
 

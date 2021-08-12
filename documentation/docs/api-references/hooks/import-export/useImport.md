@@ -3,7 +3,8 @@ id: useImport
 title: useImport
 ---
 
-`useImport` hook allows you to handle your csv import logic easily. It gives you the properties to pass to Ant Design's [`<Upload>`][Upload] and [`<Button>`][Button] components and handles the upload logic. It uses [`papaparse`][papaparse] under the hood to parse `CSV` files. 
+`useImport` hook allows you to handle your `CSV` import logic easily. It gives you the properties to pass to Ant Design's [`<Upload>`][Upload] and [`<Button>`][Button] components and handles the upload logic. It uses [`papaparse`][papaparse] under the hood to parse `CSV` files. 
+
 It's return type is compatible with [`<ImportButton>`][ImportButton]. It can also be further customized by using it with Ant Design's [`<Upload>`][Upload] and [`<Button>`][Button] props.
 
 ```ts

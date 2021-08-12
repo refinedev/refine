@@ -409,7 +409,7 @@ values={[{ label: "English", value: "en" }, { label: "Turkish", value: "tr" }]}>
 </Tabs>
 
 :::tip
-We can override refine's default texts by changing the common.json files in the example above.
+We can override refine's default texts by changing the `common.json` files in the example above.
 :::
 
 ### Changing The Locale

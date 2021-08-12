@@ -70,7 +70,7 @@ This props can be get by using the [useResource](api-references/hooks/resource/u
 :::
 
 :::important
-`<Resource>` components must be placed as children to the <[Refine](api-references/components/refine-config.md)> component.
+`<Resource>` components must be placed as children to the **<[Refine](api-references/components/refine-config.md)>** component.
 :::
 ## Props
 

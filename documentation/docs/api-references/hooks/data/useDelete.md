@@ -51,7 +51,7 @@ mutate({ resource: "categories", id: "2" });
 
 <br/>
 
-After mutation runs `categories` will be updated as below:
+After the mutation runs `categories` will be updated as below:
 
 ```ts title="https://api.fake-rest.refine.dev/categories"
 {
@@ -114,7 +114,7 @@ Default behaviour on undo action includes notifications. If a custom callback is
 :::
 
 :::danger
-Passed callback will receive a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on `undoable` mode.
+Passed callback will receive a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on the `undoable` mode.
 
 ```tsx
 // highlight-start

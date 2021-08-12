@@ -3,7 +3,7 @@ id: url
 title: Url
 ---
 
-This field lets you embed a link. It uses [Ant Design's <Typography.Link\>](https://ant.design/components/typography/) component. You can pass a URL in its `value` property and you can show a text in its place by passing any `children`.
+This field lets you embed a link. It uses Ant Design's [<Typography.Link\>](https://ant.design/components/typography/) component. You can pass a URL in its `value` prop and you can show a text in its place by passing any `children`.
 
 ## Usage
 

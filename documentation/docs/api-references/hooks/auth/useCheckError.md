@@ -12,7 +12,7 @@ It returns the result of `react-query`'s [useMutation](https://react-query.tanst
 Data that is resolved from the `checkError` will be returned as the `data` in the query result.
 ## Usage
 
-Imagine that we make a payment request which is declined by the API. If error status code is `418`, user needs to be logged out for security reasons.
+Imagine that we make a payment request which is declined by the API. If error status code is `418`, user will be logged out for security reasons.
 
 ```tsx
 import { useCheckError } from "@pankod/refine";
@@ -60,7 +60,7 @@ We have 2 options to manage redirection after logout process.
 
 - If promise returned from `checkError` is rejected with nothing, app will be redirected to `/login` route by default. 
 
-- The promise returned from `checkError` method of [`authProvider`](/docs/api-references/providers/auth-provider) can reject with a custom url.
+- The promise returned from `checkError` method of [`authProvider`](/docs/api-references/providers/auth-provider) can reject with a custom url instead.
 
 ```tsx
 const authProvider: AuthProvider = {

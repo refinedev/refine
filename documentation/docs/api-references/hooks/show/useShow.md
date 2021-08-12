@@ -203,7 +203,7 @@ export const App: React.FC = () => {
 <br />
 
 :::tip
-To show data in the drawer, you can do it similarly by replacing `<Modal>` with `<Drawer>`.
+To show data in the drawer, you can do it by simply replacing `<Modal>` with `<Drawer>`.
 :::
 
 ## API Reference

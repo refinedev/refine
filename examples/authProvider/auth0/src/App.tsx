@@ -41,7 +41,7 @@ const App: React.FC = () => {
             return Promise.reject();
         },
         getPermissions: () => Promise.resolve(),
-        getUserIdentity: () => {
+        getUserIdentity: async () => {
             if (user) {
                 return Promise.resolve({
                     ...user,

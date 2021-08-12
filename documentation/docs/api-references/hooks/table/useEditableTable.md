@@ -237,7 +237,7 @@ Refer to [`<Table.Column>`][Table.Column] documentation for more information.
 
 A line with the `id` value can be put to edit mode programatically by using the `setEditId` function that returns from `useEditableTable`.
 
-The `onRow` property of the `<Table>` component can be used to put a line to editing mode when its clicked on. Function given to the `onRow`property is called everytime one of these lines are clicked on, with the information of which line was clicked on.
+The `onRow` property of the `<Table>` component can be used to put a line to editing mode when its clicked on. Function given to the `onRow` property is called everytime one of these lines are clicked on, with the information of which line was clicked on.
 
 We can use `setEditId` to put a line to edit mode whenever its clicked on.
 

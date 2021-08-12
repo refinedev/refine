@@ -102,7 +102,7 @@ export const Show: React.FC = () => {
 
 ### `pageHeaderProps`
 
-`<Show>` uses the Ant Design [`<PageHeader>`](https://ant.design/components/page-header/#API) components so you can customize with the properties of `pageHeaderProps`. By default, the `extra` property of the `<PageHeader>` component shows `<RefreshButton>`, `<ListButton>`, `<EditButton>` and `<DeleteButton>` depending on your resource definition on the `<Resource>` component.
+`<Show>` uses the Ant Design [`<PageHeader>`](https://ant.design/components/page-header/#API) components so you can customize it with the properties of `pageHeaderProps`. By default, the `extra` property of the `<PageHeader>` component shows `<RefreshButton>`, `<ListButton>`, `<EditButton>` and `<DeleteButton>` depending on your resource definition on the `<Resource>` component.
 
 ```tsx
 import { Show } from "@pankod/refine";
@@ -215,8 +215,8 @@ The `<Show>` component needs the `id` information for work properly, so if you u
 | canDelete       | Adds a delete button                                  | `boolean`                                                         | If `<Resource>` has `canDelete` prop it is `true` else `false`                     |
 | canEdit         | Adds an edit button                                   | `boolean`                                                         | If `<Resource>` has `canEdit` prop it is `true` else `false`                       |
 | title           | Adds a title                                          | `string`                                                          | `"Show"` prefix and singular of `resource.name`                                    |
-| actionButtons   | Gets passed to the `extra` property of the `<Card>`   | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
-| isLoading       | Gets passed to the `loading` property of the `<Card>` | `boolean`                                                         | `false`                                                                            |
+| actionButtons   | Gets passed to the `extra` prop of the `<Card>`   | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
+| isLoading       | Gets passed to the `loading` prop of the `<Card>` | `boolean`                                                         | `false`                                                                            |
 | pageHeaderProps | Passes props for `<PageHeader>`                       | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
 | recordItemId    | Record id for `<RefreshButton>`                       | `string`                                                          |                                                                                    |
 | resource        | [`Resource`](/api-references/components/resource.md) for API data interactions             | `string`                                                          | Resource name that it reads from the URL.                                          |

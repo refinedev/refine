@@ -14,7 +14,7 @@ We'll show what `<Create>` does using properties with examples.
 
 ### `title`
 
-It allows adding title inside the `<Create>` component. if you don't pass title props it uses "Create" prefix and singular resource name by default. For example, for the `/posts/create` resource, it will be like "Create post".
+It allows adding title inside the `<Create>` component. if you don't pass title props it uses "Create" prefix and singular resource name by default. For example, for the `/posts/create` resource, it will be "Create post".
 
 ```tsx
 import { Create } from "@pankod/refine";
@@ -41,7 +41,7 @@ export const Create: React.FC = () => {
 
 ### `actionButtons`
 
-`<Create>` uses the Ant Design [`<Card>`](https://ant.design/components/card) component. The `action` prop of the `<Card>` component shows `<SaveButton>` and `<DeleteButton>` depending on your resource definition on the `<Resource>` components. If you want to use other things instead of these buttons, you can use the `actionButton` property like the below code.
+`<Create>` uses the Ant Design [`<Card>`](https://ant.design/components/card) component. The `action` prop of the `<Card>` component shows `<SaveButton>` and `<DeleteButton>` depending on your resource definition on the `<Resource>` components. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
 
 ```tsx
 import { Create, Button } from "@pankod/refine";

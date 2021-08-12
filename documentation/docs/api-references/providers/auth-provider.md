@@ -27,7 +27,7 @@ const authProvider = {
 
 :::important
 **refine** consumes these methods using [authorization hooks](api-references/hooks/auth/useLogin.md).
-Authorization hooks are used to manage authentication and authorization operations like login, logout and catching Http errors etc.
+Authorization hooks are used to manage authentication and authorization operations like login, logout and catching **HTTP** errors etc.
 :::
 
 ## Usage
@@ -131,7 +131,7 @@ const { mutate: login } =
 #### Default login page
 
 If an `authProvider` is given, refine shows a default login page on `"/"` and `"/login"` routes and a login form if a custom `LoginPage` is not provided.
-Rest of the app won't be accessible until a successful authentication.  
+Rest of the app won't be accessible until successful authentication.  
 After submission, login form calls the `login` method from `authProvider`.
 
 <br />
@@ -236,7 +236,7 @@ Current authentication data needs to be cleaned by the `logout` method. For exam
 When a [`dataProvider`](api-references/providers/data-provider.md) method returns an error, `checkError` is called with the error object.  
 If `checkError` returns a rejected promise, the `logout` method is called and user becomes unauthorized and gets redirected to `/login` page by default.
 
-In this example, we log the user out when HTTP error status code is `401`.  
+In this example, we log the user out when **HTTP** error status code is `401`.  
 You can decide, depending on any error status code you want to check, if the users continue to process by returning a resolved promise or if they are logged out for rejecting the promise.
 
 ```tsx title="auth-provider.ts"
@@ -512,7 +512,7 @@ const App = () => {
 ```
 
 :::note
-We recommend using **axios** as the Http client with the **@pankod/refine-simple-rest** [`dataProvider`](api-references/providers/data-provider.md). Other Http clients can also be preferred.
+We recommend using **axios** as the **HTTP** client with the **@pankod/refine-simple-rest** [`dataProvider`](api-references/providers/data-provider.md). Other **HTTP** clients can also be preferred.
 :::
 
 ## Hooks and Components
