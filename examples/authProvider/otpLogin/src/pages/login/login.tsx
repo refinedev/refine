@@ -8,13 +8,10 @@ import {
     Input,
     Button,
     Icons,
+    useLogin,
 } from "@pankod/refine";
-import "./styles.css";
-
-import { useLogin } from "@pankod/refine";
 
 const { PhoneOutlined, NumberOutlined } = Icons;
-
 export interface ILoginForm {
     gsmNumber: string;
     code: string;
@@ -25,7 +22,7 @@ export const Login: React.FC = () => {
     const [gsmNumber, setGsmNumber] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
 
-    const { mutate: login } = useLogin<ILoginForm>();
+    const { mutate: login, isLoading } = useLogin<ILoginForm>();
 
     const onGsmFormSubmit = (values: Pick<ILoginForm, "gsmNumber">) => {
         setLoading(true);
@@ -36,12 +33,6 @@ export const Login: React.FC = () => {
     const onCodeFormSubmit = async (values: Pick<ILoginForm, "code">) => {
         login({ gsmNumber, code: values.code });
     };
-
-    const CardTitle = (
-        <div className="login-header">
-            <img src="./refine.svg" alt="Logo" />
-        </div>
-    );
 
     const renderGSMForm = () => (
         <Form layout="vertical" requiredMark={false} onFinish={onGsmFormSubmit}>
@@ -61,13 +52,13 @@ export const Login: React.FC = () => {
                     placeholder="(___)___-____"
                 />
             </Form.Item>
-            <Form.Item className="login-buttons">
+            <Form.Item noStyle>
                 <Button
                     type="primary"
                     size="large"
                     htmlType="submit"
-                    block
                     loading={loading}
+                    block
                 >
                     Send
                 </Button>
@@ -97,8 +88,14 @@ export const Login: React.FC = () => {
                     prefix={<NumberOutlined style={{ color: "#00000040" }} />}
                 />
             </Form.Item>
-            <Form.Item className="login-buttons">
-                <Button type="primary" size="large" htmlType="submit" block>
+            <Form.Item noStyle>
+                <Button
+                    type="primary"
+                    size="large"
+                    htmlType="submit"
+                    block
+                    loading={isLoading}
+                >
                     Login
                 </Button>
             </Form.Item>
@@ -107,8 +104,10 @@ export const Login: React.FC = () => {
 
     return (
         <AntdLayout
-            className="login-background"
-            style={{ backgroundImage: "url('./background.svg')" }}
+            style={{
+                background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
+                backgroundSize: "cover",
+            }}
         >
             <Row
                 justify="center"
@@ -118,7 +117,24 @@ export const Login: React.FC = () => {
                 }}
             >
                 <Col xs={22}>
-                    <Card className="login-card" title={CardTitle}>
+                    <div
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            marginBottom: "28px",
+                        }}
+                    >
+                        <img src="./refine.svg" alt="Refine" />
+                    </div>
+
+                    <Card
+                        style={{
+                            maxWidth: "400px",
+                            margin: "auto",
+                            borderRadius: "10px",
+                        }}
+                    >
                         {current === "gsmNumber"
                             ? renderGSMForm()
                             : renderCodeForm()}
