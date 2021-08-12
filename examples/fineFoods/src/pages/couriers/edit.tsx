@@ -36,10 +36,12 @@ export const CouriersEdit: React.FC<IResourceComponentsProps> = () => {
         saveButtonProps,
         queryResult,
     } = useStepsForm<ICourier>();
+    const courierData = queryResult?.data?.data;
     const apiUrl = useApiUrl();
 
     const { selectProps: storeSelectProps } = useSelect<IStore>({
         resource: "stores",
+        defaultValue: courierData?.store.id,
     });
 
     const formList = [
@@ -205,7 +207,7 @@ export const CouriersEdit: React.FC<IResourceComponentsProps> = () => {
                     rules={[
                         {
                             required: true,
-                            len: 20,
+                            len: 22,
                         },
                     ]}
                 >
