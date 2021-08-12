@@ -205,7 +205,6 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                     rules={[
                         {
                             required: true,
-                            len: 22,
                         },
                     ]}
                 >
