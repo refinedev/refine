@@ -2,7 +2,7 @@ import humanizeString from "humanize-string";
 import pluralize from "pluralize";
 
 export const userFriendlyResourceName = (
-    resource: string,
+    resource = "",
     type: "singular" | "plural",
 ): string => {
     const humanizeResource = humanizeString(resource);
