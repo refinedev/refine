@@ -222,6 +222,7 @@ module.exports = {
                     type: "category",
                     label: "Search",
                     items: [
+                        "guides-and-concepts/search/search",
                         "guides-and-concepts/search/table-search",
                         "guides-and-concepts/search/list-search",
                     ],
@@ -297,6 +298,11 @@ module.exports = {
                     type: "category",
                     label: "List",
                     items: ["examples/list/useSimpleList"],
+                },
+                {
+                    type: "category",
+                    label: "Search",
+                    items: ["examples/search/search"],
                 },
                 {
                     type: "category",
