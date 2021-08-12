@@ -185,7 +185,7 @@ export const Header: React.FC = () => {
                         filterOption={false}
                         onSearch={debounce(
                             (value: string) => setValue(value),
-                            500,
+                            300,
                         )}
                     >
                         <Input

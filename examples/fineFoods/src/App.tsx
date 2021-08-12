@@ -35,6 +35,8 @@ const App: React.FC = () => {
             Title={Title}
             DashboardPage={DashboardPage}
             LoginPage={LoginPage}
+            syncWithLocation
+            warnWhenUnsavedChanges
         >
             <Resource
                 options={{
