@@ -3,7 +3,8 @@ id: search
 title: Search
 ---
 
-We will create a `<Header>` component for your application with Ant Design's [`<AutoComplete>`](https://ant.design/components/auto-complete) component. With this component, we will examine how to search within the application.
+We will create a `<Header>` component for your application with Ant Design's [`<AutoComplete>`](https://ant.design/components/auto-complete) component.
+We will now examine how to search within the application with this component.
 
 To do this, let's first create our `<Header>` component.
 
