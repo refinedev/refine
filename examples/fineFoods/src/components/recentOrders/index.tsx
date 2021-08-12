@@ -1,13 +1,15 @@
+import { Column } from "@ant-design/charts";
 import {
     Typography,
-    useTranslate,
     useTable,
     Table,
     Avatar,
     Space,
     Tag,
     NumberField,
+    useNavigation,
 } from "@pankod/refine";
+import "./style.less";
 
 import { OrderActions } from "components";
 
@@ -34,6 +36,8 @@ export const RecentOrders: React.FC = () => {
         ],
     });
 
+    const { show } = useNavigation();
+
     console.log({ tableProps });
     return (
         <Table
@@ -50,27 +54,55 @@ export const RecentOrders: React.FC = () => {
                         size={{
                             md: 60,
                             lg: 108,
-                            xl: 108,
-                            xxl: 108,
+                            xl: 132,
+                            xxl: 144,
                         }}
                         src={record.products[0].images[0].url}
                     />
                 )}
             />
             <Table.Column<IOrder>
+                className="recent-orders-col"
                 key="summary"
                 render={(_, record) => (
-                    <Space direction="vertical">
+                    <div
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "space-between",
+                        }}
+                    >
                         <Text strong>{record.products[0].name}</Text>
-                        <Paragraph ellipsis={{ rows: 2, expandable: true }}>
+                        {/*   <Text>{record.products[0].description}</Text> */}
+                        <Paragraph
+                            ellipsis={{
+                                rows: 2,
+                                tooltip: (
+                                    <span>
+                                        {" "}
+                                        {record.products[0].description}{" "}
+                                    </span>
+                                ),
+                                symbol: <span>...</span>,
+                            }}
+                        >
                             {record.products[0].description}
                         </Paragraph>
-                        <Text>#{record.orderNumber}</Text>
-                    </Space>
+
+                        <Text
+                            className="orderId"
+                            onClick={() => {
+                                show("orders", record.id);
+                            }}
+                        >
+                            #{record.orderNumber}
+                        </Text>
+                    </div>
                 )}
             />
             <Table.Column<IOrder>
                 key="summary"
+                className="recent-orders-col"
                 render={(_, record) => (
                     <Space direction="vertical">
                         <Text
