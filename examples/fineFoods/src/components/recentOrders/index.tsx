@@ -72,14 +72,10 @@ export const RecentOrders: React.FC = () => {
                 className="recent-orders-col"
                 key="summary"
                 render={(_, record) => (
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "space-between",
-                        }}
-                    >
-                        <Text strong>{record.products[0].name}</Text>
+                    <div className="recent-orders-col__title">
+                        <Text className="recent-orders-col__title--up" strong>
+                            {record.products[0].name}
+                        </Text>
                         <Paragraph
                             ellipsis={{
                                 rows: 2,
@@ -96,6 +92,7 @@ export const RecentOrders: React.FC = () => {
                         </Paragraph>
 
                         <Text
+                            strong
                             className="orderId"
                             onClick={() => {
                                 show("orders", record.id);
@@ -112,6 +109,7 @@ export const RecentOrders: React.FC = () => {
                 render={(_, record) => (
                     <Space direction="vertical">
                         <Text
+                            className="recent-orders-col__title--up"
                             strong
                         >{`${record.courier.name} ${record.courier.surname}`}</Text>
                         <Text>{record.adress.text}</Text>
@@ -129,6 +127,8 @@ export const RecentOrders: React.FC = () => {
                         }}
                     >
                         <NumberField
+                            strong
+                            className="recent-orders-col__title--up"
                             options={{
                                 currency: "USD",
                                 style: "currency",

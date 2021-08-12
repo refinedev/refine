@@ -13,3 +13,4 @@ export * from "./orderStatus";
 export * from "./timeline";
 export * from "./recentOrders";
 export * from "./orderActions";
+export * from "./trendingMenu";

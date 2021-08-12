@@ -8,6 +8,7 @@ import {
     DeliveryMap,
     OrderTimeline,
     RecentOrders,
+    TrendingMenu,
 } from "components";
 
 const { Text } = Typography;
@@ -110,7 +111,9 @@ export const DashboardPage: React.FC = () => {
                     title={
                         <Text strong>{t("dashboard:trendingMenus.title")}</Text>
                     }
-                ></Card>
+                >
+                    <TrendingMenu />
+                </Card>
             </Col>
         </Row>
     );
