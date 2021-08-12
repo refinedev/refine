@@ -57,7 +57,7 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                                 name="file"
                                 action={`${apiUrl}/media/upload`}
                                 listType="picture"
-                                maxCount={5}
+                                maxCount={1}
                                 multiple
                                 style={{
                                     border: "none",
