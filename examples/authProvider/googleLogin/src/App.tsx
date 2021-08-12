@@ -18,11 +18,7 @@ const App: React.FC = () => {
     });
 
     const authProvider: AuthProvider = {
-        login: async ({
-            tokenId,
-            profileObj,
-            tokenObj,
-        }: GoogleLoginResponse) => {
+        login: ({ tokenId, profileObj, tokenObj }: GoogleLoginResponse) => {
             axios.defaults.headers.common = {
                 Authorization: `Bearer ${tokenId}`,
             };
