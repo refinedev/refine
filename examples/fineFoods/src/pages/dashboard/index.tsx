@@ -68,7 +68,7 @@ export const DashboardPage: React.FC = () => {
                     </Col>
                 </Row>
             </Col>
-            <Col xl={19} lg={16} md={24} style={{ width: "100%" }}>
+            <Col xl={17} lg={16} md={24} style={{ width: "100%" }}>
                 <Card
                     bodyStyle={{
                         height: 550,
@@ -85,7 +85,7 @@ export const DashboardPage: React.FC = () => {
                     <DeliveryMap />
                 </Card>
             </Col>
-            <Col xl={5} lg={8} md={24} style={{ width: "100%" }}>
+            <Col xl={7} lg={8} md={24} style={{ width: "100%" }}>
                 <Card
                     bodyStyle={{
                         height: 550,
@@ -96,7 +96,7 @@ export const DashboardPage: React.FC = () => {
                     <OrderTimeline />
                 </Card>
             </Col>
-            <Col xl={18} lg={16} md={24} style={{ width: "100%" }}>
+            <Col xl={17} lg={16} md={24} style={{ width: "100%" }}>
                 <Card
                     title={
                         <Text strong>{t("dashboard:recentOrders.title")}</Text>
@@ -105,7 +105,7 @@ export const DashboardPage: React.FC = () => {
                     <RecentOrders />
                 </Card>
             </Col>
-            <Col xl={6} lg={8} md={24} style={{ width: "100%" }}>
+            <Col xl={7} lg={8} md={24} style={{ width: "100%" }}>
                 <Card
                     title={
                         <Text strong>{t("dashboard:trendingMenus.title")}</Text>

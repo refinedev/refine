@@ -26,13 +26,10 @@ import {
     ImportButton,
     useExport,
     useImport,
-    Dropdown,
-    Menu,
-    useUpdate,
     useNavigation,
 } from "@pankod/refine";
 
-import { OrderStatus } from "components";
+import { OrderStatus, OrderActions } from "components";
 
 import { IOrder, IStore, IOrderFilterVariables } from "interfaces";
 
@@ -103,7 +100,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     });
 
     const t = useTranslate();
-    const { mutate } = useUpdate();
     const { show } = useNavigation();
 
     const importProps = useImport();
@@ -129,82 +125,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
             <ExportButton onClick={triggerExport} loading={loading} />
             <ImportButton {...importProps} />
         </Space>
-    );
-
-    const moreMenu = (record: IOrder) => (
-        <Menu
-            mode="vertical"
-            onClick={({ domEvent }) => domEvent.stopPropagation()}
-        >
-            <Menu.Item
-                key="accept"
-                style={{
-                    fontSize: 15,
-                    display: "flex",
-                    alignItems: "center",
-                    fontWeight: 500,
-                }}
-                disabled={record.status.text !== "Pending"}
-                icon={
-                    <Icons.CheckCircleOutlined
-                        style={{
-                            color: "#52c41a",
-                            fontSize: 17,
-                            fontWeight: 500,
-                        }}
-                    />
-                }
-                onClick={() => {
-                    mutate({
-                        resource: "orders",
-                        id: record.id,
-                        values: {
-                            status: {
-                                id: 2,
-                                text: "Ready",
-                            },
-                        },
-                    });
-                }}
-            >
-                {t("common:buttons.accept")}
-            </Menu.Item>
-            <Menu.Item
-                key="reject"
-                style={{
-                    fontSize: 15,
-                    display: "flex",
-                    alignItems: "center",
-                    fontWeight: 500,
-                }}
-                icon={
-                    <Icons.CloseCircleOutlined
-                        style={{
-                            color: "#EE2A1E",
-                            fontSize: 17,
-                        }}
-                    />
-                }
-                disabled={
-                    record.status.text === "Delivered" ||
-                    record.status.text === "Cancelled"
-                }
-                onClick={() =>
-                    mutate({
-                        resource: "orders",
-                        id: record.id,
-                        values: {
-                            status: {
-                                id: 5,
-                                text: "Cancelled",
-                            },
-                        },
-                    })
-                }
-            >
-                {t("common:buttons.reject")}
-            </Menu.Item>
-        </Menu>
     );
 
     return (
@@ -324,17 +244,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             key="actions"
                             align="center"
                             render={(_value, record) => (
-                                <Dropdown
-                                    overlay={moreMenu(record)}
-                                    trigger={["click"]}
-                                >
-                                    <Icons.MoreOutlined
-                                        onClick={(e) => e.stopPropagation()}
-                                        style={{
-                                            fontSize: 24,
-                                        }}
-                                    />
-                                </Dropdown>
+                                <OrderActions record={record} />
                             )}
                         />
                     </Table>
