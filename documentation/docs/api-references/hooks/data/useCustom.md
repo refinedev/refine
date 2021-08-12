@@ -5,6 +5,7 @@ siderbar_label: useCustom
 ---
 
 `useCustom` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/reference/useQuery) used for custom requests.
+
 It uses the `custom` method from the [`dataProvider`](api-references/providers/data-provider.md) which is passed to `<Refine>`.
 
 :::danger attention

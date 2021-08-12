@@ -70,7 +70,7 @@ Clicking the button will trigger the `create` method of [`useNavigation`](/api-r
 
 | Property     | Description                                   | Type                                                                                      | Default                                                         |
 | ------------ | --------------------------------------------- | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| props        | Ant Design button properties                      | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; }` |                                                                 |
+| props        | Ant Design button props                      | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; }` |                                                                 |
 | resourceName | Determines which resource to use for redirection | `string`                                                                                  | Resource name that it reads from route                          |
 | children     | Sets the button text                           | `ReactNode`                                                                               | `"Create"`                                                      |
 | icon         | Sets the icon component of button              | `ReactNode`                                                                               | [`<PlusSquareOutlined />`](https://ant.design/components/icon/) |

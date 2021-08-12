@@ -102,7 +102,7 @@ id,title,slug,content,status,categoryId,userId
 
 ### Handling Relational Data
 
-You can run a mapping function for all  entries before they are saved. This is useful in cases of being required to reference relational data or saving files in a specific way to process them in different applications etc. 
+You can run a mapping function for all entries before they are saved. This is useful in cases of being required to reference relational data or saving files in a specific way to process them in different applications etc. 
 This mapping function is similar to the mapping function of [`useImport`][useImport#handling-relational-data].
 
 

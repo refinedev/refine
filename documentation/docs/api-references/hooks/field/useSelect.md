@@ -112,7 +112,7 @@ Adds extra `options` to `<Select>` component. It uses `useMany` so `defaultValue
 defaultValue: ["1", "2"],
 ```
 
-[Refer to `useMany` documentation for detailed usage. &#8594](../data/useMany.md)
+[Refer to the `useMany` documentation for detailed usage. &#8594](../data/useMany.md)
 
 :::tip
 Can use `defaultValue` property when edit a record in `<Edit>` component.
@@ -149,7 +149,7 @@ const { selectProps } = useSelect({
 });
 ```
 
-It allows us to add some filters while fetching the data. For example, if you want to list only active records.
+It allows us to add some filters while fetching the data. For example, if you want to list only the active records.
 
 ### `sort`
 

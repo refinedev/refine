@@ -15,7 +15,7 @@ Data that is resolved from the `useAuthenticated` will be returned as the `data`
 
 `useAuthenticated` can be useful when you want to ask for authentication to grant access to [custom pages](/docs/guides-and-concepts/custom-pages) manually.
 
-We have used this hook in refine's [`<Authenticated>`](/api-references/components/auth/authenticated.md) component which allows only authenticated users to access to the page or any part of the code.
+We have used this hook in refine's [`<Authenticated>`](/api-references/components/auth/authenticated.md) component which allows only authenticated users to access the page or any part of the code.
 
 We will demonstrate a similar basic implementation below. Imagine that you have public page but you want to make some specific fields private.
 
@@ -36,7 +36,7 @@ const authProvider: AuthProvider = {
 ```
 <br/>
 
-Let's create a wrapper component that renders children if `checkAuth` method returns Promise resolved.
+Let's create a wrapper component that renders children if `checkAuth` method returns the Promise resolved.
 
 ```tsx title="components/authenticationChecker"
 // highlight-next-line

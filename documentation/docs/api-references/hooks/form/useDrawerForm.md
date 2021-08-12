@@ -6,7 +6,7 @@ title: useDrawerForm
 import createGif from '@site/static/img/hooks/useDrawerForm/create.gif';
 import editGif from '@site/static/img/hooks/useDrawerForm/edit.gif';
 
-`useDrawerForm` hook allows you to manage a form within a drawer. It returns Ant Design [Form](https://ant.design/components/form/) and [Drawer](https://ant.design/components/drawer/) components props.
+`useDrawerForm` hook allows you to manage a form within a Drawer. It returns Ant Design [Form](https://ant.design/components/form/) and [Drawer](https://ant.design/components/drawer/) components props.
 
 ```ts
 const { drawerProps, formProps } = useDrawerForm<IPost>();

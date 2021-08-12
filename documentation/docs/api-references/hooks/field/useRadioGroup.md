@@ -84,7 +84,7 @@ const { radioGroupProps } = useRadioGroup({
 
 `resource` property determines API resource endpoint to fetch records from [`dataProvider`](api-references/providers/data-provider.md). It returns properly configured `options` values for radio buttons.
 
-[Refer to Ant Design `Radio.Group` component documentation for detailed info on `options`. &#8594](https://ant.design/components/radio)
+[Refer to the Ant Design's `Radio.Group` component documentation for detailed info on `options`. &#8594](https://ant.design/components/radio)
 
 ### `optionLabel` and `optionValue`
 
@@ -117,7 +117,7 @@ const { radioGroupProps } = useRadioGroup({
 });
 ```
 
-`filters` allows us to add filters while fetching the data. For example, if you want to list only the `title`'s that are equal to `"German"` records.
+`filters` allows us to add filters while fetching the data. For example, if you want to list only the `titles` that are equal to `"German"` records.
 
 ### `sort`
 
