@@ -1,76 +1,31 @@
-import React from "react";
-import {
-    Row,
-    Col,
-    AntdLayout,
-    Card,
-    Typography,
-    Button,
-    useLogin,
-} from "@pankod/refine";
-
-const { Text } = Typography;
+import { AntdLayout, Button, useLogin } from "@pankod/refine";
 
 export const Login: React.FC = () => {
-    const { mutate: login } = useLogin();
-
-    const CardTitle = (
-        <div
-            style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                height: "60px",
-            }}
-        >
-            <img src="./refine.svg" alt="Logo" />
-        </div>
-    );
+    const { mutate: login, isLoading } = useLogin();
 
     return (
         <AntdLayout
             style={{
-                backgroundColor: "#eff7f7",
-                backgroundImage: `url("./background.svg")`,
+                background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
+                backgroundSize: "cover",
             }}
         >
-            <Row
-                justify="center"
-                align="middle"
-                style={{
-                    height: "100vh",
-                }}
-            >
-                <Col xs={22}>
-                    <Card
-                        style={{
-                            maxWidth: "400px",
-                            margin: "auto",
-                        }}
-                        title={CardTitle}
+            <div style={{ height: "100vh", display: "flex" }}>
+                <div style={{ maxWidth: "200px", margin: "auto" }}>
+                    <div style={{ marginBottom: "28px" }}>
+                        <img src="./refine.svg" alt="Refine" />
+                    </div>
+                    <Button
+                        type="primary"
+                        size="large"
+                        block
+                        loading={isLoading}
+                        onClick={() => login({})}
                     >
-                        <Button
-                            type="primary"
-                            size="large"
-                            htmlType="submit"
-                            block
-                            onClick={() => login(undefined)}
-                        >
-                            Login
-                        </Button>
-                        <br />
-                        <br />
-                        <div
-                            style={{ textAlign: "center", padding: "10px 0px" }}
-                        >
-                            <Text>
-                                Still no account? Please go to
-                                <a href="#"> Sign up</a>
-                            </Text>
-                        </div>
-                    </Card>
-                </Col>
-            </Row>
+                        Sign in
+                    </Button>
+                </div>
+            </div>
         </AntdLayout>
     );
 };

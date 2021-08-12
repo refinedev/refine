@@ -48,6 +48,7 @@ const App: React.FC = () => {
                     avatar: user.picture,
                 });
             }
+            return Promise.resolve({});
         },
     };
 
