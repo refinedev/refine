@@ -6,8 +6,7 @@ title: useNavigation
 **refine** uses [`React Router`](https://reactrouter.com/web/api/Hooks) and comes with all redirects out of the box. It allows you to manage your routing operations in refine. Using this hook, you can manage all the routing operations of your application very easily.
 
 ```tsx
-const { create, edit, clone, show, list, push, replace, goBack } =
-    useNavigation();
+const { create, edit, clone, show, list, push, replace, goBack } = useNavigation();
 ```
 
 :::tip
