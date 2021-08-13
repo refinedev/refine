@@ -128,7 +128,7 @@ export const RecentOrders: React.FC = () => {
                 fixed="right"
                 key="actions"
                 align="center"
-                render={(_value, record) => <OrderActions record={record} />}
+                render={(_, record) => <OrderActions record={record} />}
             />
         </Table>
     );

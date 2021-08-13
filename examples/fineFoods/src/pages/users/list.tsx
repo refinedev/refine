@@ -20,7 +20,6 @@ import {
     FormProps,
     Row,
     Col,
-    AntdList,
 } from "@pankod/refine";
 
 import { IUser, IUserFilterVariables } from "interfaces";
@@ -65,7 +64,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
     return (
         <Row gutter={[16, 16]}>
             <Col lg={18} xs={24}>
-                <AntdList>
+                <List title={t("users:title")}>
                     <Table {...tableProps} rowKey="id">
                         <Table.Column
                             key="gsm"
@@ -127,7 +126,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                             )}
                         />
                     </Table>
-                </AntdList>
+                </List>
             </Col>
             <Col lg={6} xs={24}>
                 <Card title={t("users:filter.title")}>
