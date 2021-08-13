@@ -485,7 +485,7 @@ const App: React.FC = () =>
     (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            //highlight-next-line
+             //highlight-start
             reactQueryClientConfig={{
                 defaultOptions: {
                     queries: {
@@ -493,6 +493,30 @@ const App: React.FC = () =>
                     },
                 },
             }}
+            //highlight-end
+        >
+         ...
+        </Refine>
+    );
+```
+
+### `notificationConfig`
+
+Config for Ant Design [notification](https://ant.design/components/notification/) that **refine** uses.
+
+```tsx
+...
+const App: React.FC = () =>
+    (
+        <Refine
+            dataProvider={dataProvider(API_URL)}
+            //highlight-start
+            notifcationConfig={{
+                placement: "bottomRight",
+                bottom: 40,
+                closeIcon: <CloseOutlined />,
+            }}
+            //highlight-end
         >
          ...
         </Refine>

@@ -1,6 +1,7 @@
 import React from "react";
-import { ConfigProvider } from "antd";
+import { ConfigProvider, notification } from "antd";
 import { ConfigProviderProps } from "antd/lib/config-provider";
+import { ConfigProps } from "antd/lib/notification";
 import { BrowserRouter as Router, RouteProps } from "react-router-dom";
 import {
     QueryClientProvider,
@@ -61,6 +62,7 @@ export interface RefineProps {
     OffLayoutArea?: React.FC;
     Title?: React.FC<TitleProps>;
     reactQueryClientConfig?: QueryClientConfig;
+    notifcationConfig?: ConfigProps;
 }
 
 /**
@@ -92,6 +94,7 @@ export const Refine: React.FC<RefineProps> = ({
     Footer,
     OffLayoutArea,
     reactQueryClientConfig,
+    notifcationConfig,
 }) => {
     const queryClient = new QueryClient({
         ...reactQueryClientConfig,
@@ -104,6 +107,8 @@ export const Refine: React.FC<RefineProps> = ({
             },
         },
     });
+
+    notification.config({ ...notifcationConfig });
 
     const resources: IResourceItem[] = [];
     React.Children.map(children, (child: any) => {
