@@ -1,0 +1,72 @@
+.daily-revenue-wrapper {
+    height: 232px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    &__amount {
+        display: flex;
+        flex-direction: column;
+
+        h3,
+        span {
+            color: #ffffff !important;
+            margin-bottom: 0 !important;
+        }
+    }
+
+    &__number {
+        display: flex;
+        align-items: center;
+        line-height: 1;
+
+        img {
+            margin-left: 5px;
+        }
+    }
+}
+
+.range-picker {
+    height: 35px;
+
+    .ant-picker-input>input {
+        color: #ffffff !important;
+    }
+
+    &.ant-picker-focused {
+        .ant-picker-separator {
+            color: #ffffff;
+        }
+
+    }
+
+    .ant-picker-separator,
+    .ant-picker-suffix {
+        color: #ffffff;
+    }
+
+}
+
+@media screen and (max-width: 576px) {
+    .title-area {
+        &__amount {
+            span {
+                font-size: 16px !important;
+                line-height: 1.2;
+            }
+        }
+
+        &__number {
+
+            span {
+                font-size: 30px !important;
+            }
+        }
+    }
+}

@@ -26,5 +26,21 @@
   },
   "recentActivity": {
     "title": "Recent Activity"
+  },
+  "timeline": {
+    "title": "Timeline",
+    "orderStatuses": {
+      "pending": "Preparing order",
+      "ready": "Order is ready",
+      "on the way": "Order is on the way",
+      "delivered": "Order is delivered",
+      "cancelled": "Order is cancelled"
+    }
+  },
+  "recentOrders": {
+    "title": "Recent Orders"
+  },
+  "trendingMenus": {
+    "title": "Daily Trending Menus"
   }
 }
