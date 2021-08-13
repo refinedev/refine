@@ -383,10 +383,9 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 
 [Table]: https://ant.design/components/table/#API
 [Form]: https://ant.design/components/form/#API
-[useTable]: useTable.md
 [useQuery]: https://react-query.tanstack.com/reference/useQuery
 [BaseRecord]: /api-references/interfaces.md#baserecord
 [CrudSorting]: /api-references/interfaces.md#crudsorting
 [CrudFilters]: /api-references/interfaces.md#crudfilters
 [HttpError]: /api-references/interfaces.md#httperror
-[Table Search]: /api-references/guides-and-concepts/search/table-search.md
+[Table Search]: /guides-and-concepts/search/table-search.md

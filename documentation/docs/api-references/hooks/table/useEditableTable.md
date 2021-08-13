@@ -366,13 +366,13 @@ export const PostList: React.FC = () => {
 
 [Table]: https://ant.design/components/table/#API
 [Form]: https://ant.design/components/form/#API
-[useTable]: useTable.md
+[useTable]: /api-references/hooks/table/useTable.md
 [useQuery]: https://react-query.tanstack.com/reference/useQuery
 [useMutation]: https://react-query.tanstack.com/reference/useMutation
 [BaseRecord]: /api-references/interfaces.md#baserecord
 [CrudSorting]: /api-references/interfaces.md#crudsorting
 [CrudFilters]: /api-references/interfaces.md#crudfilters
 [HttpError]: /api-references/interfaces.md#httperror
-[Table Search]: /api-references/guides-and-concepts/search/table-search.md
+[Table Search]: /guides-and-concepts/search/table-search.md
 [Table.Column]: https://ant.design/components/table/#Column
 [FormInstance]: https://ant.design/components/form/#FormInstance
