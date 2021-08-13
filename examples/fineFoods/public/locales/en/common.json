@@ -67,7 +67,8 @@
     "actions": "Actions"
   },
   "search": {
-    "placeholder": "Search by Store ID, E-mail, Keyword"
+    "placeholder": "Search by Store ID, E-mail, Keyword",
+    "more": "more"
   },
   "status": {
     "enable": "Enable",
