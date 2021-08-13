@@ -204,11 +204,12 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                     <Select {...storeSelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={t("couriers:fields.iban")}
-                    name="iban"
+                    label={t("couriers:fields.accountNumber")}
+                    name="accountNumber"
                     rules={[
                         {
                             required: true,
+                            len: 10,
                         },
                     ]}
                 >

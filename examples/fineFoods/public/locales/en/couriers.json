@@ -28,7 +28,7 @@
     },
     "store": "Store",
     "vehicle": "Vehicle",
-    "iban": "IBAN"
+    "accountNumber": "Account Number"
   },
   "steps": {
     "content": "Content",

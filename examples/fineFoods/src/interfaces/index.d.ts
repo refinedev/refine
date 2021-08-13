@@ -74,7 +74,7 @@ export interface ICourier {
     gender: string;
     gsm: string;
     createdAt: string;
-    iban: string;
+    accountNumber: string;
     licensePlate: string;
     address: string;
     avatar: IFile[];

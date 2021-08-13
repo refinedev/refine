@@ -87,7 +87,7 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                                 <Icons.MailOutlined /> {courier?.email}
                             </Typography.Text>
                             <Typography.Text>
-                                <Icons.BankOutlined /> {courier?.iban}
+                                <Icons.BankOutlined /> {courier?.accountNumber}
                             </Typography.Text>
                             <Typography.Text>
                                 <Icons.HomeOutlined /> {courier?.address}

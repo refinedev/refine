@@ -23,7 +23,7 @@
     },
     "store": "Mağaza",
     "vehicle": "Araç",
-    "iban": "IBAN"
+    "accountNumber": "Hesap Numarası"
   },
   "steps": {
     "content": "İçerik",
