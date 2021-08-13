@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine",
-    "version": "1.0.44",
+    "version": "1.0.45",
     "description": "",
     "private": false,
     "main": "dist/index.js",
@@ -47,7 +47,7 @@
     },
     "dependencies": {
         "@ant-design/icons": "^4.5.0",
-        "antd": "^4.12.2",
+        "antd": "4.16.11",
         "dayjs": "^1.10.4",
         "export-to-csv": "^0.2.1",
         "humanize-string": "^2.1.0",
