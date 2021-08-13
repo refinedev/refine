@@ -34,29 +34,29 @@ describe("Cancel Notification", () => {
     });
 
     it("should render Progress successfuly", async () => {
-        const { getByRole, debug } = render(
+        const { getByRole } = render(
             <Notification notifications={mockNotification} />,
         );
 
         const icon = getByRole("alert");
         expect(
-            icon.children[0].children[0].classList.contains(
+            icon.children[1].children[0].children[0].classList.contains(
                 "ant-progress-circle",
             ),
         );
     });
 
     it("should click and render undo button successfuly", async () => {
-        const { container, getByText } = render(
+        const { container } = render(
             <Notification notifications={mockNotification} />,
         );
 
         const button = container.querySelector("button");
         expect(button).toBeDefined();
-        fireEvent.click(getByText("Undo"));
-        expect(cancelMutation).toBeCalledTimes(1);
-
-        getByText("Undo");
+        if (button) {
+            fireEvent.click(button);
+            expect(cancelMutation).toBeCalledTimes(1);
+        }
     });
 
     it("should call doMutation on seconds zero", async () => {
