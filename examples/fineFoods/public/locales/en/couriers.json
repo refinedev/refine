@@ -11,7 +11,11 @@
     },
     "name": "Name",
     "surname": "Surname",
-    "gender": "Gender",
+    "gender": {
+      "label": "Gender",
+      "male": "Male",
+      "female": "Female"
+    },
     "gsm": "Phone",
     "email": "E-Mail",
     "address": "Address",
@@ -25,5 +29,9 @@
     "store": "Store",
     "vehicle": "Vehicle",
     "iban": "IBAN"
+  },
+  "steps": {
+    "content": "Content",
+    "relations": "Relations"
   }
 }

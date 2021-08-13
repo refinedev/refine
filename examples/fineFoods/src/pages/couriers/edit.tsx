@@ -122,7 +122,7 @@ export const CouriersEdit: React.FC<IResourceComponentsProps> = () => {
                                 <Input />
                             </Form.Item>
                             <Form.Item
-                                label={t("couriers:fields.gender")}
+                                label={t("couriers:fields.gender.label")}
                                 name="gender"
                                 rules={[
                                     {
@@ -133,11 +133,15 @@ export const CouriersEdit: React.FC<IResourceComponentsProps> = () => {
                                 <Select
                                     options={[
                                         {
-                                            label: "Male",
+                                            label: t(
+                                                "couriers:fields.gender.male",
+                                            ),
                                             value: "Male",
                                         },
                                         {
-                                            label: "Female",
+                                            label: t(
+                                                "couriers:fields.gender.female",
+                                            ),
                                             value: "Female",
                                         },
                                     ]}
@@ -264,8 +268,8 @@ export const CouriersEdit: React.FC<IResourceComponentsProps> = () => {
                 }
             >
                 <Steps {...stepsProps}>
-                    <Steps.Step title="Content" />
-                    <Steps.Step title="Relations" />
+                    <Steps.Step title={t("couriers:steps.content")} />
+                    <Steps.Step title={t("couriers:steps.relations")} />
                 </Steps>
                 <Form
                     {...formProps}
