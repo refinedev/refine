@@ -1,4 +1,4 @@
 export * from "./antd";
-export * from "./timePicker";
-export * from "./datePicker";
-export * from "./calendar";
+export { default as DatePicker } from "./datePicker";
+export { default as Calendar } from "./calendar";
+export { default as TimePicker } from "./timePicker";
