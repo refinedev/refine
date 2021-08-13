@@ -20,6 +20,7 @@ import {
     FormProps,
     Row,
     Col,
+    HttpError,
 } from "@pankod/refine";
 
 import { IUser, IUserFilterVariables } from "interfaces";
@@ -27,6 +28,7 @@ import { IUser, IUserFilterVariables } from "interfaces";
 export const UserList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, searchFormProps } = useTable<
         IUser,
+        HttpError,
         IUserFilterVariables
     >({
         initialSorter: [

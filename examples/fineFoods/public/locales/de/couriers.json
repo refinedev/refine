@@ -8,9 +8,25 @@
     },
     "name": "Adı",
     "surname": "Soyadı",
-    "gender": "Cinsiyet",
+    "gender": {
+      "label": "Cinsiyet",
+      "male": "Erkek",
+      "female": "Kadın"
+    },
     "gsm": "Gsm Numarsı",
     "createdAt": "Oluşturma Tarihi",
-    "isActive": "Aktif"
+    "isActive": "Aktif",
+    "images": {
+      "label": "Fotoğraf",
+      "description": "Kullanıcı fotoğrafı ekle",
+      "validation": "480x480 boyutunda olmalıdır"
+    },
+    "store": "Mağaza",
+    "vehicle": "Araç",
+    "accountNumber": "Hesap Numarası"
+  },
+  "steps": {
+    "content": "İçerik",
+    "relations": "İlişkiler"
   }
 }

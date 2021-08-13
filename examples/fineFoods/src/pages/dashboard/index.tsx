@@ -1,4 +1,4 @@
-import { Row, Col, Card, Space } from "@pankod/refine";
+import { Row, Col, Card, Typography } from "@pankod/refine";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -6,12 +6,12 @@ import {
     DailyOrders,
     NewCustomers,
     DeliveryMap,
-    DeliverySchedule,
-    Orders,
-    OrdersChart,
-    RecentActivity,
-    SalesChart,
+    OrderTimeline,
+    RecentOrders,
+    TrendingMenu,
 } from "components";
+
+const { Text } = Typography;
 
 export const DashboardPage: React.FC = () => {
     const { t } = useTranslation();
@@ -24,6 +24,7 @@ export const DashboardPage: React.FC = () => {
                         <Card
                             bodyStyle={{
                                 padding: 10,
+                                paddingBottom: 0,
                             }}
                             style={{
                                 background: "url(images/daily-revenue.png)",
@@ -39,6 +40,7 @@ export const DashboardPage: React.FC = () => {
                         <Card
                             bodyStyle={{
                                 padding: 10,
+                                paddingBottom: 0,
                             }}
                             style={{
                                 background: "url(images/daily-order.png)",
@@ -53,6 +55,7 @@ export const DashboardPage: React.FC = () => {
                         <Card
                             bodyStyle={{
                                 padding: 10,
+                                paddingBottom: 0,
                             }}
                             style={{
                                 background: "url(images/new-orders.png)",
@@ -66,42 +69,51 @@ export const DashboardPage: React.FC = () => {
                     </Col>
                 </Row>
             </Col>
-            <Col md={16}>
+            <Col xl={17} lg={16} md={24} style={{ width: "100%" }}>
                 <Card
-                    title={t("dashboard:deliveryMap.title")}
-                    style={{ marginBottom: 10 }}
+                    bodyStyle={{
+                        height: 550,
+                        padding: 0,
+                    }}
+                    title={
+                        <Text
+                            strong /* style={{ fontSize: 24, fontWeight: 800 }} */
+                        >
+                            {t("dashboard:deliveryMap.title")}
+                        </Text>
+                    }
                 >
-                    <Space
-                        direction="vertical"
-                        size="large"
-                        style={{ width: "100%" }}
-                    >
-                        <DeliveryMap />
-                        <DeliverySchedule />
-                    </Space>
-                </Card>
-
-                <Card style={{ marginBottom: 10 }}>
-                    <OrdersChart />
-                </Card>
-
-                <Card style={{ marginBottom: 10 }}>
-                    <SalesChart />
+                    <DeliveryMap />
                 </Card>
             </Col>
-            <Col md={8} xs={24}>
-                <Space direction="vertical" style={{ width: "100%" }}>
-                    <Card>
-                        <Orders />
-                    </Card>
-
-                    <Card>
-                        <DailyRevenue />
-                    </Card>
-                    <Card>
-                        <RecentActivity />
-                    </Card>
-                </Space>
+            <Col xl={7} lg={8} md={24} style={{ width: "100%" }}>
+                <Card
+                    bodyStyle={{
+                        height: 550,
+                        overflowY: "scroll",
+                    }}
+                    title={<Text strong>{t("dashboard:timeline.title")}</Text>}
+                >
+                    <OrderTimeline />
+                </Card>
+            </Col>
+            <Col xl={17} lg={16} md={24} style={{ width: "100%" }}>
+                <Card
+                    title={
+                        <Text strong>{t("dashboard:recentOrders.title")}</Text>
+                    }
+                >
+                    <RecentOrders />
+                </Card>
+            </Col>
+            <Col xl={7} lg={8} md={24} style={{ width: "100%" }}>
+                <Card
+                    title={
+                        <Text strong>{t("dashboard:trendingMenus.title")}</Text>
+                    }
+                >
+                    <TrendingMenu />
+                </Card>
             </Col>
         </Row>
     );

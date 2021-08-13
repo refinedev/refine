@@ -341,24 +341,34 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 
 ## API
 
-| Key              | Description                                                                                                                                                     | Type                                             |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| permanentFilter  | Default and unchangeable filter.                                                                                                                            | [`CrudFilters`](../../interfaces.md#crudfilters) | If not given, its taken from the context.                                                                              | `string`                                         |
-| initialCurrent   | Initial page index.                                                                                                                                       | `number`                                         |
-| initialPageSize  | Number of records shown per initial number of   pages.                                                                                                                | `number`                                         |
-| initialSorter    | Initial sorting.                                                                                                                                            | [`CrudSorting`](../../interfaces.md#crudsorting) |
-| initialFilter    | Initial 
-filtering.                                                                                                                                          | [`CrudFilters`](../../interfaces.md#crudfilters) |
-| syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history.                                       | `boolean`                                        |
-| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form](../../../guides-and-concepts/search/table-search.md) to learn how to create a search form. | `Function`                                       |
+| Key              | Description                                                                                                                                        | Type                         |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| permanentFilter  | Default and unchangeable filter.                                                                                                                   | [`CrudFilters`][CrudFilters] | If not given, its taken from the context. | `string` |
+| initialCurrent   | Initial page index.                                                                                                                                | `number`                     |
+| initialPageSize  | Number of records shown per initial number of   pages.                                                                                             | `number`                     |
+| initialSorter    | Initial sorting.                                                                                                                                   | [`CrudSorting`][CrudSorting] |
+| initialFilter    | Initial                                                                                                                                            |
+| filtering.       | [`CrudFilters`][CrudFilters]                                                                                                                       |
+| syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history.                                                           | `boolean`                    |
+| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][Table Search] to learn how to create a search form. | `Function`                   |
 
-<br />
+### Type Parameters
+
+| Property         | Desription                                                   | Type                       | Default                    |
+| ---------------- | ------------------------------------------------------------ | -------------------------- | -------------------------- |
+| TData            | Result data of the query. Extends [`BaseRecord`][BaseRecord] | [`BaseRecord`][BaseRecord] | [`BaseRecord`][BaseRecord] |
+| TError           | Custom error object that extends [`HttpError`][HttpError]    | [`HttpError`][HttpError]   | [`HttpError`][HttpError]   |
+| TSearchVariables | Values for search params                                     |                            | `{}`                       |
 
 ### Return values
 
-| Property         | Description                              | Type                                                                                                                                         |
-| ---------------- | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| tableQueryResult | Result of the `react-query`'s `useQuery` | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`](https://react-query.tanstack.com/reference/useQuery) |
+| Property         | Description                              | Type                                                                                              |
+| ---------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| searchFormProps  | Ant Design [`<Form>`][Form] props        | [`FormProps<TSearchVariables>`][Form]                                                             |
+| tableProps       | Ant Design [`<Table>`][Table] props      | [`TableProps<TData>`][Table]                                                                      |
+| tableQueryResult | Result of the `react-query`'s `useQuery` | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][useQuery] |
+| sorter           | Current sorting state                    | [`CrudSorting`][CrudSorting]                                                                      |
+| filters          | Current filters state                    | [`CrudFilters`][CrudFilters]                                                                      |
 
 <br />
 
@@ -370,3 +380,12 @@ filtering.                                                                      
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
+
+[Table]: https://ant.design/components/table/#API
+[Form]: https://ant.design/components/form/#API
+[useQuery]: https://react-query.tanstack.com/reference/useQuery
+[BaseRecord]: /api-references/interfaces.md#baserecord
+[CrudSorting]: /api-references/interfaces.md#crudsorting
+[CrudFilters]: /api-references/interfaces.md#crudfilters
+[HttpError]: /api-references/interfaces.md#httperror
+[Table Search]: /guides-and-concepts/search/table-search.md
