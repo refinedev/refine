@@ -389,4 +389,4 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 [CrudSorting]: /api-references/interfaces.md#crudsorting
 [CrudFilters]: /api-references/interfaces.md#crudfilters
 [HttpError]: /api-references/interfaces.md#httperror
-[Table Search]: ../../../guides-and-concepts/search/table-search.md
+[Table Search]: /api-references/guides-and-concepts/search/table-search.md
