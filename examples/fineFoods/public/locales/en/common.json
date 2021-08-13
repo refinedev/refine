@@ -17,6 +17,7 @@
     }
   },
   "buttons": {
+    "add": "Add",
     "create": "Create",
     "save": "Save",
     "logout": "Logout",
