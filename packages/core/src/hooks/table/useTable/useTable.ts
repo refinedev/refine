@@ -115,8 +115,9 @@ export const useTable = <
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
     const [sorter, setSorter] = useState<CrudSorting>(defaultSorter || []);
-    const [filters, setFilters] = useState<CrudFilters>(defaultFilter || []);
-    const [extraFilter, setExtraFilter] = useState<CrudFilters>([]);
+    const [filters, setFilters] = useState<CrudFilters>(
+        permanentFilter.concat(defaultFilter || []),
+    );
 
     const {
         current,
@@ -128,7 +129,7 @@ export const useTable = <
         resource.name,
         {
             pagination: { current: current ?? defaultCurrentSF, pageSize },
-            filters: permanentFilter.concat(extraFilter, filters),
+            filters,
             sort: sorter,
         },
         undefined,
@@ -144,7 +145,7 @@ export const useTable = <
     ) => {
         // Map Antd:Filter -> refine:CrudFilter
         const crudFilters = mapAntdFilterToCrudFilter(filters);
-        setFilters(crudFilters);
+        setFilters((prevFilters) => prevFilters.concat(crudFilters));
 
         // Map Antd:Sorter -> refine:CrudSorting
         const crudSorting = mapAntdSorterToCrudSorting(sorter);
@@ -167,7 +168,7 @@ export const useTable = <
     const onFinish = async (value: any) => {
         if (onSearch) {
             const filters = await onSearch(value);
-            return setExtraFilter(filters);
+            return setFilters((prevFilters) => prevFilters.concat(filters));
         }
     };
 
@@ -189,6 +190,6 @@ export const useTable = <
         },
         tableQueryResult: queryResult,
         sorter,
-        filters: permanentFilter?.concat(filters),
+        filters,
     };
 };
