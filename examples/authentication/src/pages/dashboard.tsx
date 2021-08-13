@@ -2,16 +2,22 @@ import {
     Row,
     Col,
     Card,
+    Avatar,
     Typography,
     useGetIdentity,
     usePermissions,
+    Space,
 } from "@pankod/refine";
 
 const { Text } = Typography;
 
 export const DashboardPage: React.FC = () => {
     const { data: identity } =
-        useGetIdentity<{ id: string; fullName: string; avatar: string }>();
+        useGetIdentity<{
+            id: string;
+            name: string;
+            avatar: string;
+        }>();
     const permissions = usePermissions();
 
     return (
@@ -22,7 +28,10 @@ export const DashboardPage: React.FC = () => {
                     style={{ height: "300px", borderRadius: "15px" }}
                     headStyle={{ textAlign: "center" }}
                 >
-                    <Text>{JSON.stringify(identity?.fullName)}</Text>
+                    <Space align="center" direction="horizontal">
+                        <Avatar size="large" src={identity?.avatar} />
+                        <Text>{identity?.name}</Text>
+                    </Space>
                 </Card>
             </Col>
             <Col span={6}>
@@ -31,7 +40,7 @@ export const DashboardPage: React.FC = () => {
                     style={{ height: "300px", borderRadius: "15px" }}
                     headStyle={{ textAlign: "center" }}
                 >
-                    <Text>{JSON.stringify(permissions.data)}</Text>
+                    <Text>{permissions.data}</Text>
                 </Card>
             </Col>
         </Row>

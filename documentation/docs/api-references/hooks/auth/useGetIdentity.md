@@ -13,11 +13,9 @@ It returns the result of `react-query`'s `useQuery`  which includes many propert
 
 `useGetIdentity` can be useful when you want to get the user information anywhere in your code.
 
-Imagine that you want to show the user's name.
-
+Let's say that you want to show the user's name.
 
 We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `getUserIdentity` method like below.
-
 
 ```tsx
 const authProvider: AuthProvider = {

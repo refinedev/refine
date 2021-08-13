@@ -107,6 +107,9 @@ export const Refine: React.FC<RefineProps> = ({
 
     const resources: IResourceItem[] = [];
     React.Children.map(children, (child: any) => {
+        if (!child) {
+            return;
+        }
         resources.push({
             name: child.props.name,
             label: child.props.options?.label,

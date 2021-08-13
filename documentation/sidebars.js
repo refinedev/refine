@@ -222,6 +222,7 @@ module.exports = {
                     type: "category",
                     label: "Search",
                     items: [
+                        "guides-and-concepts/search/search",
                         "guides-and-concepts/search/table-search",
                         "guides-and-concepts/search/list-search",
                     ],
@@ -240,6 +241,7 @@ module.exports = {
                     items: ["guides-and-concepts/forms/custom-form-validation"],
                 },
                 "guides-and-concepts/mutation-mode",
+                "guides-and-concepts/custom-layout",
                 "guides-and-concepts/custom-pages",
                 "guides-and-concepts/theme",
             ],
@@ -299,6 +301,11 @@ module.exports = {
                 },
                 {
                     type: "category",
+                    label: "Search",
+                    items: ["examples/search/search"],
+                },
+                {
+                    type: "category",
                     label: "Field",
                     items: [
                         "examples/field/useCheckboxGroup",
@@ -338,10 +345,15 @@ module.exports = {
                         "examples/import-export/export",
                     ],
                 },
+                "examples/e2e-testing",
                 "examples/customPages",
                 "examples/customTheme",
                 "examples/javascript",
             ],
+        },
+        {
+            type: "doc",
+            id: "testing",
         },
         {
             type: "doc",
