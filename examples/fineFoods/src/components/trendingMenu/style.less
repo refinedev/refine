@@ -1,8 +1,10 @@
 .menu-item {
     margin-bottom: 45px;
-    &__avatar{
+
+    &__avatar {
         position: relative;
-        &-circle{
+
+        &-circle {
             background-color: #67BE23;
             width: 44px;
             height: 44px;
@@ -24,8 +26,28 @@
     &__text {
         display: flex;
         flex-direction: column;
+
         span {
             font-size: 16px;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .menu-item {
+
+        &__avatar {
+            &-circle {
+                width: 28px;
+                height: 28px;
+                font-size: 10px;
+            }
+        }
+
+        &__text {
+            span {
+                font-size: 16px;
+            }
         }
     }
 }

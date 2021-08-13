@@ -7,7 +7,6 @@ import {
     Tag,
     NumberField,
     useNavigation,
-    useSimpleList,
 } from "@pankod/refine";
 import "./style.less";
 
@@ -38,21 +37,11 @@ export const RecentOrders: React.FC = () => {
 
     const { show } = useNavigation();
 
-    const { listProps } = useSimpleList<IOrder>({
-        resource: "orders",
-        pagination: { pageSize: 6 },
-    });
-
-    console.log("listprops", listProps);
-
     return (
         <Table
             {...tableProps}
             pagination={{ ...tableProps.pagination, simple: true }}
             showHeader={false}
-            scroll={{
-                x: true,
-            }}
         >
             <Table.Column<IOrder>
                 key="avatar"
@@ -79,12 +68,7 @@ export const RecentOrders: React.FC = () => {
                         <Paragraph
                             ellipsis={{
                                 rows: 2,
-                                tooltip: (
-                                    <span>
-                                        {" "}
-                                        {record.products[0].description}{" "}
-                                    </span>
-                                ),
+                                tooltip: record.products[0].description,
                                 symbol: <span>...</span>,
                             }}
                         >
