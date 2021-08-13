@@ -322,6 +322,7 @@ module.exports = {
                         "examples/customization/customFooter",
                         "examples/customization/customSider",
                         "examples/customization/offLayoutArea",
+                        "examples/customization/rtl",
                     ],
                 },
                 {
