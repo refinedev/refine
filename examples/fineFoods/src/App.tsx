@@ -1,4 +1,4 @@
-import { Refine, Resource } from "@pankod/refine";
+import { Refine, Resource, Icon } from "@pankod/refine";
 import "styles/antd.less";
 import jsonServerDataProvider from "@pankod/refine-simple-rest";
 import { authProvider } from "authProvider";
@@ -12,7 +12,7 @@ import { StoreCreate, StoreEdit, StoreList } from "./pages/stores";
 import { CategoryList } from "./pages/categories";
 import { ReviewsList } from "./pages/reviews";
 import { useTranslation } from "react-i18next";
-import { Header, Title } from "components";
+import { Header, Title, BikeWhite } from "components";
 
 const App: React.FC = () => {
     const API_URL = "https://api.finefoods.refine.dev";
@@ -84,6 +84,7 @@ const App: React.FC = () => {
                     label: t("couriers:title"),
                 }}
                 list={CourierList}
+                icon={<Icon component={BikeWhite} />}
             />
             <Resource name="reviews" list={ReviewsList} />
         </Refine>
