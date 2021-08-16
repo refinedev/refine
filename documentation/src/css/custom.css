@@ -15,7 +15,8 @@
     --ifm-color-primary-lighter: rgb(102, 212, 189);
     --ifm-color-primary-lightest: rgb(146, 224, 208);
     --ifm-code-font-size: 95%;
-    --ifm-navbar-background-color: #331049;
+    --color-purple: #331049;
+    --ifm-navbar-background-color: var(--color-purple);
     --ifm-navbar-height: 64px;
 }
 
@@ -84,6 +85,11 @@
     padding: 0 6px;
     display: inline-block;
     margin-left: 5px;
+}
+
+/* Common */
+.row--justify--center {
+    justify-content: center;
 }
 
 /* Header classes */
