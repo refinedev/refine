@@ -1,4 +1,4 @@
-import { Refine, Resource, Icon } from "@pankod/refine";
+import { Refine, Resource, Icons, Icon } from "@pankod/refine";
 import "styles/antd.less";
 import jsonServerDataProvider from "@pankod/refine-simple-rest";
 import { authProvider } from "authProvider";
@@ -17,7 +17,8 @@ import { StoreCreate, StoreEdit, StoreList } from "./pages/stores";
 import { CategoryList } from "./pages/categories";
 import { ReviewsList } from "./pages/reviews";
 import { useTranslation } from "react-i18next";
-import { Header, Title, BikeWhiteIcon } from "components";
+import { Header, Title } from "components";
+import { BikeWhiteIcon, PizzaIcon } from "components/icons";
 
 const App: React.FC = () => {
     const API_URL = "https://api.finefoods.refine.dev";
@@ -50,6 +51,7 @@ const App: React.FC = () => {
                 name="orders"
                 list={OrderList}
                 show={OrderShow}
+                icon={<Icons.ShoppingOutlined />}
             />
             <Resource
                 options={{
@@ -59,6 +61,7 @@ const App: React.FC = () => {
                 list={UserList}
                 edit={UserEdit}
                 show={UserShow}
+                icon={<Icons.UsergroupAddOutlined />}
             />
             <Resource
                 options={{
@@ -66,6 +69,7 @@ const App: React.FC = () => {
                 }}
                 name="products"
                 list={ProductList}
+                icon={<Icon component={PizzaIcon} />}
             />
             <Resource
                 name="stores"
@@ -75,6 +79,7 @@ const App: React.FC = () => {
                 list={StoreList}
                 edit={StoreEdit}
                 create={StoreCreate}
+                icon={<Icons.ShopOutlined />}
             />
             <Resource
                 name="categories"
@@ -88,13 +93,17 @@ const App: React.FC = () => {
                 options={{
                     label: t("couriers:title"),
                 }}
-                icon={<Icon component={BikeWhiteIcon} />}
                 list={CourierList}
                 show={CourierShow}
                 create={CouriersCreate}
                 edit={CouriersEdit}
+                icon={<Icon component={BikeWhiteIcon} />}
             />
-            <Resource name="reviews" list={ReviewsList} />
+            <Resource
+                name="reviews"
+                list={ReviewsList}
+                icon={<Icons.StarOutlined />}
+            />
         </Refine>
     );
 };
