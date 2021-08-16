@@ -10,6 +10,8 @@ import {
 import { Line, LineConfig } from "@ant-design/charts";
 import dayjs, { Dayjs } from "dayjs";
 
+import { IncreaseIcon, DecreaseIcon } from "components/icons";
+
 import { ISalesChart } from "interfaces";
 import "./style.less";
 
@@ -98,9 +100,9 @@ export const DailyRevenue: React.FC = () => {
                             value={data?.data.total ?? 0}
                         />
                         {(data?.data?.trend ?? 0) > 0 ? (
-                            <img src="images/increase.svg" alt="increase" />
+                            <IncreaseIcon />
                         ) : (
-                            <img src="images/decrease.svg" alt="decrease" />
+                            <DecreaseIcon />
                         )}
                     </div>
                 </div>
