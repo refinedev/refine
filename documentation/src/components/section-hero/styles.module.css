@@ -3,7 +3,7 @@
     background-color: var(--color-purple);
     background-repeat: no-repeat;
     background-size: cover;
-    padding-top: 48px 0px;
+    padding: 48px 0px;
     height: 100vh;
 }
 
