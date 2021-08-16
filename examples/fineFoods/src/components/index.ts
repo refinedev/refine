@@ -3,7 +3,6 @@ export * from "./title";
 export * from "./deliverySchedule";
 export * from "./ordersChart";
 export * from "./salesChart";
-export * from "./orders";
 export * from "./recentActivity";
 export * from "./orderStatus";
 export * from "./icons";

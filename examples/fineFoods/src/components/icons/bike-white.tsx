@@ -1,4 +1,6 @@
-export const BikeWhite: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+export const BikeWhiteIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
+    props,
+) => (
     <svg
         width="32"
         height="25"

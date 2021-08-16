@@ -17,7 +17,7 @@ import { StoreCreate, StoreEdit, StoreList } from "./pages/stores";
 import { CategoryList } from "./pages/categories";
 import { ReviewsList } from "./pages/reviews";
 import { useTranslation } from "react-i18next";
-import { Header, Title, BikeWhite } from "components";
+import { Header, Title, BikeWhiteIcon } from "components";
 
 const App: React.FC = () => {
     const API_URL = "https://api.finefoods.refine.dev";
@@ -88,7 +88,7 @@ const App: React.FC = () => {
                 options={{
                     label: t("couriers:title"),
                 }}
-                icon={<Icon component={BikeWhite} />}
+                icon={<Icon component={BikeWhiteIcon} />}
                 list={CourierList}
                 show={CourierShow}
                 create={CouriersCreate}
