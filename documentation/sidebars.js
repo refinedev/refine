@@ -113,6 +113,7 @@ module.exports = {
                             items: [
                                 "api-references/hooks/resource/useMenu",
                                 "api-references/hooks/resource/useResource",
+                                "api-references/hooks/resource/useResourceWithRoute",
                             ],
                         },
                         {
