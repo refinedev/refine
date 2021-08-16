@@ -163,16 +163,16 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 ### Parameters
 
 
-| Property                                            | Description                                                                     | Type                                                                       | Default                                                      |
-| --------------------------------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Property                                                                                            | Description                                                                     | Type                                                                       | Default                                                      |
+| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](/api-references/components/resource.md) for API data interactions  | `string`                                                                   |                                                              |
-| id  <div className=" required">Required</div>       | id for mutation function                                                        | `string`                                                                   |                                     |
-| values  <div className=" required">Required</div>   | Values for mutation function                                                    | `TVariables`                                                               | {}                                                           |
-| mutationMode                                        | Determines when mutations are executed](/guides-and-concepts/mutation-mode.md)  | ` "pessimistic` \| `"optimistic` \| `"undoable"`                           | `"pessimistic"`*                                             |
-| undoableTimeout                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"` | `number`                                                                   | `5000ms`*                                                    |
-| onCancel                                            | Callback that runs when undo button is clicked on `mutationMode = "undoable"`   | `(cancelMutation: () => void) => void`                                     |                                                              |
-| successNotification                                 | Successful Mutation notification                                                | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully updated `resource`"                            |
-| errorNotification                                   | Unsuccessful Mutation notification                                              | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Error when updating `resource` (status code: `statusCode`)" |
+| id  <div className=" required">Required</div>                                                       | id for mutation function                                                        | `string`                                                                   |                                                              |
+| values  <div className=" required">Required</div>                                                   | Values for mutation function                                                    | `TVariables`                                                               | {}                                                           |
+| mutationMode                                                                                        | [Determines when mutations are executed](/guides-and-concepts/mutation-mode.md)  | ` "pessimistic` \| `"optimistic` \| `"undoable"`                           | `"pessimistic"`*                                             |
+| undoableTimeout                                                                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"` | `number`                                                                   | `5000ms`*                                                    |
+| onCancel                                                                                            | Callback that runs when undo button is clicked on `mutationMode = "undoable"`   | `(cancelMutation: () => void) => void`                                     |                                                              |
+| successNotification                                                                                 | Successful Mutation notification                                                | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully updated `resource`"                            |
+| errorNotification                                                                                   | Unsuccessful Mutation notification                                              | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Error when updating `resource` (status code: `statusCode`)" |
 
 >`*`: These props have default values in `RefineContext` and can also be set on **<[Refine](api-references/components/refine-config.md)>** component. `useUpdate` will use what's passed to `<Refine>` as default, but a local value will override it.
 
@@ -180,11 +180,11 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 ### Type Parameters
 
-| Property   | Desription                                                                         | Type                                          | Default                                       |
-| ---------- | ---------------------------------------------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| Property   | Desription                                                                          | Type                                           | Default                                        |
+| ---------- | ----------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
 | TData      | Result data of the mutation. Extends [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) |
-| TError     | Custom error object that extends [`HttpError`](../../interfaces.md#httperror)      | [`HttpError`](../../interfaces.md#httperror)  | [`HttpError`](../../interfaces.md#httperror)  |
-| TVariables | Values for mutation function                                                       | `{}`                                          | `{}`                                          |
+| TError     | Custom error object that extends [`HttpError`](../../interfaces.md#httperror)       | [`HttpError`](../../interfaces.md#httperror)   | [`HttpError`](../../interfaces.md#httperror)   |
+| TVariables | Values for mutation function                                                        | `{}`                                           | `{}`                                           |
 
 ### Return value
 
