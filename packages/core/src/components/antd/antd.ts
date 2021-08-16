@@ -26,7 +26,6 @@ export type { ButtonProps } from "antd/lib/button";
 export { default as Button } from "antd/lib/button";
 
 export type { CalendarProps } from "antd/lib/calendar";
-export { default as Calendar } from "antd/lib/calendar";
 
 export type { CardProps } from "antd/lib/card";
 export { default as Card } from "antd/lib/card";
@@ -188,12 +187,6 @@ export { default as Tabs } from "antd/lib/tabs";
 
 export type { TagProps, TagType } from "antd/lib/tag";
 export { default as Tag } from "antd/lib/tag";
-
-// export type {
-//     TimePickerProps,
-//     TimeRangePickerProps,
-// } from "antd/lib/time-picker";
-// export { default as TimePicker } from "antd/lib/time-picker";
 
 export type { TimelineProps, TimelineItemProps } from "antd/lib/timeline";
 export { default as Timeline } from "antd/lib/timeline";

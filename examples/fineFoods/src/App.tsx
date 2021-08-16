@@ -6,7 +6,12 @@ import { DashboardPage } from "./pages/dashboard";
 import { LoginPage } from "./pages/login";
 import { OrderList, OrderShow } from "./pages/orders";
 import { UserList, UserEdit, UserShow } from "./pages/users";
-import { CourierList } from "./pages/couriers";
+import {
+    CourierList,
+    CourierShow,
+    CouriersCreate,
+    CouriersEdit,
+} from "./pages/couriers";
 import { ProductList } from "./pages/products";
 import { StoreCreate, StoreEdit, StoreList } from "./pages/stores";
 import { CategoryList } from "./pages/categories";
@@ -83,8 +88,11 @@ const App: React.FC = () => {
                 options={{
                     label: t("couriers:title"),
                 }}
-                list={CourierList}
                 icon={<Icon component={BikeWhite} />}
+                list={CourierList}
+                show={CourierShow}
+                create={CouriersCreate}
+                edit={CouriersEdit}
             />
             <Resource name="reviews" list={ReviewsList} />
         </Refine>

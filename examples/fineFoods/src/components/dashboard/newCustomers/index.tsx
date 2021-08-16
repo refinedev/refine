@@ -16,7 +16,7 @@ export const NewCustomers: React.FC = () => {
         trend: number;
     }>(url, "get");
 
-    const { Text } = Typography;
+    const { Text, Title } = Typography;
 
     const config = useMemo(() => {
         const config: ColumnConfig = {
@@ -62,18 +62,18 @@ export const NewCustomers: React.FC = () => {
     return (
         <div className="new-customers-wrapper">
             <div className="header">
-                <Text className="header__title">
+                <Title level={3} className="header__title">
                     {t("dashboard:newCustomers.title")}
-                </Text>
+                </Title>
 
                 <div className="header__numbers">
-                    <Text>{data?.data.total ?? 0}</Text>
+                    <Text strong>{data?.data.total ?? 0}</Text>
                     <div>
-                        <Text>{data?.data.trend ?? 0}%</Text>
+                        <Text strong>{data?.data.trend ?? 0}%</Text>
                         {(data?.data?.trend ?? 0) > 0 ? (
-                            <img src="images/increase.svg" />
+                            <img src="images/increase.svg" alt="Increase" />
                         ) : (
-                            <img src="images/decrease.svg" />
+                            <img src="images/decrease.svg" alt="Decrease" />
                         )}
                     </div>
                 </div>
