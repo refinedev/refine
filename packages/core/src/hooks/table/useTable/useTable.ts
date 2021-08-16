@@ -102,6 +102,11 @@ export const useTable = <
         defaultFilter = parsedFilters.length ? parsedFilters : defaultFilter;
     }
 
+    console.log({ defaultFilter });
+    console.log({ defaultSorter });
+    console.log({ defaultCurrent });
+    console.log({ defaultPageSize });
+
     const { tableProps: tablePropsSunflower } = useFormTable({
         defaultCurrent,
         defaultPageSize,
@@ -120,15 +125,23 @@ export const useTable = <
     );
 
     const {
-        current,
-        pageSize,
+        current: currentSF,
+        pageSize: pageSizeSF,
         defaultCurrent: defaultCurrentSF,
     } = tablePropsSunflower.pagination;
+
+    const [current, setCurrent] = useState<number | undefined>(
+        currentSF ?? defaultCurrentSF,
+    );
+    const [pageSize, setPageSize] = useState<number | undefined>(pageSizeSF);
 
     const queryResult = useList<TData>(
         resource.name,
         {
-            pagination: { current: current ?? defaultCurrentSF, pageSize },
+            pagination: {
+                current: currentSF ?? defaultCurrentSF,
+                pageSize: pageSizeSF,
+            },
             filters,
             sort: sorter,
         },
@@ -151,6 +164,9 @@ export const useTable = <
         const crudSorting = mapAntdSorterToCrudSorting(sorter);
         setSorter(crudSorting);
 
+        setCurrent(pagination.current);
+        setPageSize(pagination.pageSize);
+
         tablePropsSunflower.onChange(pagination, filters, sorter);
 
         // synchronize with url
@@ -167,8 +183,19 @@ export const useTable = <
 
     const onFinish = async (value: TSearchVariables) => {
         if (onSearch) {
-            const filters = await onSearch(value);
-            return setFilters((prevFilters) => prevFilters.concat(filters));
+            const searchFilters = await onSearch(value);
+            setFilters((prevFilters) => prevFilters.concat(searchFilters));
+
+            // synchronize with url
+            if (syncWithLocation) {
+                const stringifyParams = stringifyTableParams({
+                    pagination: { current, pageSize },
+                    sorter,
+                    filters: searchFilters,
+                });
+
+                return push(`/${resource.route}?${stringifyParams}`);
+            }
         }
     };
 
