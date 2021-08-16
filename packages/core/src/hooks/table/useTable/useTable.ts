@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
@@ -102,10 +102,10 @@ export const useTable = <
         defaultFilter = parsedFilters.length ? parsedFilters : defaultFilter;
     }
 
-    console.log({ defaultFilter });
+    /* console.log({ defaultFilter });
     console.log({ defaultSorter });
     console.log({ defaultCurrent });
-    console.log({ defaultPageSize });
+    console.log({ defaultPageSize }); */
 
     const { tableProps: tablePropsSunflower } = useFormTable({
         defaultCurrent,
@@ -124,16 +124,29 @@ export const useTable = <
         permanentFilter.concat(defaultFilter || []),
     );
 
+    useEffect(() => {
+        if (syncWithLocation) {
+            const stringifyParams = stringifyTableParams({
+                pagination: tablePropsSunflower.pagination,
+                sorter,
+                filters,
+            });
+
+            return push(`/${resource.route}?${stringifyParams}`);
+        }
+    }, [
+        tablePropsSunflower.pagination.current,
+        tablePropsSunflower.pagination.pageSize,
+        syncWithLocation,
+        sorter,
+        filters,
+    ]);
+
     const {
         current: currentSF,
         pageSize: pageSizeSF,
         defaultCurrent: defaultCurrentSF,
     } = tablePropsSunflower.pagination;
-
-    const [current, setCurrent] = useState<number | undefined>(
-        currentSF ?? defaultCurrentSF,
-    );
-    const [pageSize, setPageSize] = useState<number | undefined>(pageSizeSF);
 
     const queryResult = useList<TData>(
         resource.name,
@@ -164,38 +177,13 @@ export const useTable = <
         const crudSorting = mapAntdSorterToCrudSorting(sorter);
         setSorter(crudSorting);
 
-        setCurrent(pagination.current);
-        setPageSize(pagination.pageSize);
-
         tablePropsSunflower.onChange(pagination, filters, sorter);
-
-        // synchronize with url
-        if (syncWithLocation) {
-            const stringifyParams = stringifyTableParams({
-                pagination,
-                sorter: crudSorting,
-                filters: crudFilters,
-            });
-
-            return push(`/${resource.route}?${stringifyParams}`);
-        }
     };
 
     const onFinish = async (value: TSearchVariables) => {
         if (onSearch) {
             const searchFilters = await onSearch(value);
             setFilters((prevFilters) => prevFilters.concat(searchFilters));
-
-            // synchronize with url
-            if (syncWithLocation) {
-                const stringifyParams = stringifyTableParams({
-                    pagination: { current, pageSize },
-                    sorter,
-                    filters: searchFilters,
-                });
-
-                return push(`/${resource.route}?${stringifyParams}`);
-            }
         }
     };
 
