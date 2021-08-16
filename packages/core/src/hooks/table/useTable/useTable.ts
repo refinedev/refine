@@ -165,7 +165,7 @@ export const useTable = <
         }
     };
 
-    const onFinish = async (value: any) => {
+    const onFinish = async (value: TSearchVariables) => {
         if (onSearch) {
             const filters = await onSearch(value);
             return setFilters((prevFilters) => prevFilters.concat(filters));
