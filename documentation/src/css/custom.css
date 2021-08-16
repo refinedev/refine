@@ -15,6 +15,8 @@
     --ifm-color-primary-lighter: rgb(102, 212, 189);
     --ifm-color-primary-lightest: rgb(146, 224, 208);
     --ifm-code-font-size: 95%;
+    --ifm-navbar-background-color: #331049;
+    --ifm-navbar-height: 64px;
 }
 
 .docusaurus-highlight-code-line {
@@ -82,4 +84,52 @@
     padding: 0 6px;
     display: inline-block;
     margin-left: 5px;
+}
+
+/* Header classes */
+.navbar__brand {
+    margin-left: 8px;
+}
+
+.navbar__link {
+    color: white;
+    font-weight: 600;
+}
+
+.header-first-nav-item {
+    margin-left: 60px;
+}
+
+.header-last-nav-item {
+    margin-right: 30px;
+}
+
+.header-icon-link {
+    transition: 0.5s;
+}
+
+.header-icon-link:hover {
+    filter: brightness(2);
+}
+
+.header-icon-link::before {
+    content: "";
+    display: flex;
+    height: 24px;
+    width: 24px;
+}
+
+.header-github-link::before {
+    background: url("/icons/github.svg");
+    background-size: contain;
+}
+
+.header-discord-link::before {
+    background: url("/icons/discord.svg");
+    background-size: contain;
+}
+
+.header-twitter-link::before {
+    background: url("/icons/twitter.svg");
+    background-size: contain;
 }
