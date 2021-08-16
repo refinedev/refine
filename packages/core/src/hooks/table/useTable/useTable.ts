@@ -4,6 +4,7 @@ import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
 import { FormProps } from "antd/lib/form";
 import { QueryObserverResult } from "react-query";
+import unionWith from "lodash/unionWith";
 
 import { useForm } from "antd/lib/form/Form";
 import { SorterResult } from "antd/lib/table/interface";
@@ -16,6 +17,7 @@ import {
     parseTableParams,
     mapAntdSorterToCrudSorting,
     mapAntdFilterToCrudFilter,
+    compareByField,
 } from "@definitions/table";
 
 import {
@@ -103,9 +105,7 @@ export const useTable = <
     }
 
     /* console.log({ defaultFilter });
-    console.log({ defaultSorter });
-    console.log({ defaultCurrent });
-    console.log({ defaultPageSize }); */
+    console.log({ defaultSorter }); */
 
     const { tableProps: tablePropsSunflower } = useFormTable({
         defaultCurrent,
@@ -124,6 +124,8 @@ export const useTable = <
         permanentFilter.concat(defaultFilter || []),
     );
 
+    console.log({ filters });
+
     useEffect(() => {
         if (syncWithLocation) {
             const stringifyParams = stringifyTableParams({
@@ -141,6 +143,13 @@ export const useTable = <
         sorter,
         filters,
     ]);
+    /* 
+    useEffect(() => {
+        form.setFieldsValue({ ...(defaultFilter as any) });
+        return () => {
+            form.resetFields();
+        };
+    }, [defaultFilter]); */
 
     const {
         current: currentSF,
@@ -171,7 +180,15 @@ export const useTable = <
     ) => {
         // Map Antd:Filter -> refine:CrudFilter
         const crudFilters = mapAntdFilterToCrudFilter(filters);
-        setFilters((prevFilters) => prevFilters.concat(crudFilters));
+
+        setFilters((prevFilters) =>
+            unionWith(
+                permanentFilter,
+                crudFilters,
+                prevFilters,
+                compareByField,
+            ),
+        );
 
         // Map Antd:Sorter -> refine:CrudSorting
         const crudSorting = mapAntdSorterToCrudSorting(sorter);
@@ -183,7 +200,14 @@ export const useTable = <
     const onFinish = async (value: TSearchVariables) => {
         if (onSearch) {
             const searchFilters = await onSearch(value);
-            setFilters((prevFilters) => prevFilters.concat(searchFilters));
+            setFilters((prevFilters) =>
+                unionWith(
+                    permanentFilter,
+                    searchFilters,
+                    prevFilters,
+                    compareByField,
+                ),
+            );
         }
     };
 

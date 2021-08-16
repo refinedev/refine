@@ -1,6 +1,11 @@
 import qs, { IStringifyOptions } from "qs";
 
-import { CrudFilters, CrudOperators, CrudSorting } from "../../interfaces";
+import {
+    CrudFilters,
+    CrudOperators,
+    CrudSorting,
+    CrudFilter,
+} from "../../interfaces";
 import {
     SortOrder,
     TablePaginationConfig,
@@ -155,3 +160,6 @@ export const mapAntdFilterToCrudFilter = (
 
     return crudFilters;
 };
+
+export const compareByField = (left: CrudFilter, right: CrudFilter): boolean =>
+    left.field == right.field;
