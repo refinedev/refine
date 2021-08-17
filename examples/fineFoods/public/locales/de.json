@@ -124,18 +124,11 @@
     "deliveryMap": {
       "title": "Teslimat Haritası"
     },
-    "upcomingDeliverySchedule": {
-      "title": "Yaklaşan Teslimatlar"
-    },
     "orders": {
       "title": "Siparişler"
     },
     "totalSales": {
       "title": "Toplam Satışlar"
-    },
-    "orderCountCard": {
-      "totalOrder": "Toplam Sipariş",
-      "totalDelivered": "Toplam Teslimat"
     },
     "dailyRevenue": {
       "title": "Günlük Gelir"
@@ -145,9 +138,6 @@
     },
     "newCustomers": {
       "title": "Yeni Müşteriler"
-    },
-    "recentActivity": {
-      "title": "Son Aktiviteler"
     },
     "timeline": {
       "title": "Son Güncellemeler",
