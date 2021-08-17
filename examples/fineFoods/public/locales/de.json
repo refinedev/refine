@@ -149,7 +149,7 @@
       "ready": "Hazır",
       "on the way": "Yolda",
       "delivered": "Teslim Edildi",
-      "cancelled": "İptal Edildi"
+      "Cancelled": "İptal Edildi"
     }
   },
   "orders": {
