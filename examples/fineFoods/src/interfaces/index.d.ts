@@ -1,3 +1,5 @@
+import { Dayjs } from "dayjs";
+
 export interface IOrderChart {
     count: number;
     status:
@@ -109,11 +111,11 @@ export interface ICategory {
 }
 
 export interface IOrderFilterVariables {
-    q: string;
-    store: string;
-    user: string;
-    createdAt: [Dayjs, Dayjs];
-    status: string;
+    q?: string;
+    store?: string;
+    user?: string;
+    createdAt?: [Dayjs, Dayjs];
+    status?: string;
 }
 
 export interface IUserFilterVariables {

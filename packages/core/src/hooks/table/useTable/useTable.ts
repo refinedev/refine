@@ -118,7 +118,7 @@ export const useTable = <
 
     const [sorter, setSorter] = useState<CrudSorting>(defaultSorter || []);
     const [filters, setFilters] = useState<CrudFilters>(
-        permanentFilter.concat(defaultFilter || []),
+        unionWith(permanentFilter, defaultFilter || []),
     );
 
     console.log({ filters });
@@ -140,13 +140,6 @@ export const useTable = <
         sorter,
         filters,
     ]);
-
-    useEffect(() => {
-        form.setFieldsValue({ ...(defaultFilter as any) });
-        return () => {
-            form.resetFields();
-        };
-    }, [defaultFilter]);
 
     const {
         current: currentSF,

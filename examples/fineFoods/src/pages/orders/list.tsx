@@ -37,6 +37,7 @@ import dayjs from "dayjs";
 import { OrderStatus } from "components";
 
 import { IOrder, IStore, IOrderFilterVariables } from "interfaces";
+import { useMemo } from "react";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter, searchFormProps, filters } = useTable<
@@ -53,52 +54,48 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
             const filters: CrudFilters = [];
             const { q, store, user, createdAt, status } = params;
 
-            if (q) {
-                filters.push({
-                    field: "q",
-                    operator: "eq",
-                    value: q,
-                });
-            }
+            console.log({ params });
 
-            if (store) {
-                filters.push({
-                    field: "store.id",
-                    operator: "eq",
-                    value: store,
-                });
-            }
+            filters.push({
+                field: "q",
+                operator: "eq",
+                value: q,
+            });
 
-            if (user) {
-                filters.push({
-                    field: "user.id",
-                    operator: "eq",
-                    value: user,
-                });
-            }
+            filters.push({
+                field: "store.id",
+                operator: "eq",
+                value: store,
+            });
 
-            if (status) {
-                filters.push({
-                    field: "status.text",
-                    operator: "eq",
-                    value: status,
-                });
-            }
+            filters.push({
+                field: "user.id",
+                operator: "eq",
+                value: user,
+            });
 
-            if (createdAt) {
-                filters.push(
-                    {
-                        field: "createdAt",
-                        operator: "gte",
-                        value: createdAt[0].toISOString(),
-                    },
-                    {
-                        field: "createdAt",
-                        operator: "lte",
-                        value: createdAt[1].toISOString(),
-                    },
-                );
-            }
+            filters.push({
+                field: "status.text",
+                operator: "eq",
+                value: status,
+            });
+
+            filters.push(
+                {
+                    field: "createdAt",
+                    operator: "gte",
+                    value: createdAt
+                        ? createdAt[0].startOf("day").toISOString()
+                        : undefined,
+                },
+                {
+                    field: "createdAt",
+                    operator: "lte",
+                    value: createdAt
+                        ? createdAt[1].endOf("day").toISOString()
+                        : undefined,
+                },
+            );
 
             return filters;
         },
@@ -364,25 +361,39 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
         resource: "orderStatuses",
         optionLabel: "text",
         optionValue: "text",
+        defaultValue: getDefaultFilter("status.text", filters),
     });
 
     const { selectProps: userSelectProps } = useSelect<IStore>({
         resource: "users",
         optionLabel: "fullName",
+        defaultValue: getDefaultFilter("user.id", filters),
     });
 
     const { RangePicker } = DatePicker;
+
+    const createdAt = useMemo(() => {
+        const start = getDefaultFilter("createdAt", filters, "gte");
+        const end = getDefaultFilter("createdAt", filters, "lte");
+
+        const startFrom = dayjs(start);
+        const endAt = dayjs(end);
+
+        if (start && end) {
+            return [startFrom, endAt];
+        }
+        return undefined;
+    }, [filters]);
 
     return (
         <Form
             layout="vertical"
             initialValues={{
+                q: getDefaultFilter("q", filters),
                 store: getDefaultFilter("store.id", filters),
+                user: getDefaultFilter("user.id", filters),
                 status: getDefaultFilter("status.text", filters),
-                createdAt: [
-                    dayjs(getDefaultFilter("createdAt", filters, "gte")),
-                    dayjs(getDefaultFilter("createdAt", filters, "lte")),
-                ],
+                createdAt,
             }}
             {...formProps}
         >
