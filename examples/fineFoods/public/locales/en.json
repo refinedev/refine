@@ -145,9 +145,6 @@
         "newCustomers": {
             "title": "New Customers"
         },
-        "recentActivity": {
-            "title": "Recent Activity"
-        },
         "timeline": {
             "title": "Timeline",
             "orderStatuses": {
