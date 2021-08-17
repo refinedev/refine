@@ -139,9 +139,6 @@
     "newCustomers": {
       "title": "Yeni Müşteriler"
     },
-    "recentActivity": {
-      "title": "Son Aktiviteler"
-    },
     "timeline": {
       "title": "Son Güncellemeler",
       "orderStatuses": {
