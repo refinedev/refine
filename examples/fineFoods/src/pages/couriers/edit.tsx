@@ -85,7 +85,7 @@ export const CouriersEdit: React.FC<IResourceComponentsProps> = () => {
                                         }}
                                     >
                                         {t(
-                                            "couriers:fields.images.description",
+                                            "couriers.fields.images.description",
                                         )}
                                     </Text>
                                     <Text style={{ fontSize: "12px" }}>
@@ -134,13 +134,13 @@ export const CouriersEdit: React.FC<IResourceComponentsProps> = () => {
                                     options={[
                                         {
                                             label: t(
-                                                "couriers:fields.gender.male",
+                                                "couriers.fields.gender.male",
                                             ),
                                             value: "Male",
                                         },
                                         {
                                             label: t(
-                                                "couriers:fields.gender.female",
+                                                "couriers.fields.gender.female",
                                             ),
                                             value: "Female",
                                         },

@@ -89,12 +89,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
     );
 
     return (
-        <List
-            createButtonProps={{
-                children: t("buttons.add").toUpperCase(),
-            }}
-            title={t("couriers.title")}
-        >
+        <List>
             <Table
                 {...tableProps}
                 rowKey="id"
