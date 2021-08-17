@@ -76,7 +76,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const breakpoint = Grid.useBreakpoint();
 
     return (
-        <List title={t("categories.title")}>
+        <List>
             <Form {...formProps}>
                 <Table
                     {...tableProps}
@@ -228,7 +228,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
 
     return (
         <List
-            title={t("products.title")}
+            title={t("products.products")}
             createButtonProps={{
                 onClick: () => false,
             }}

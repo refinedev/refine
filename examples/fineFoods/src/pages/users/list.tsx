@@ -66,7 +66,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
     return (
         <Row gutter={[16, 16]}>
             <Col lg={18} xs={24}>
-                <List title={t("users.title")}>
+                <List>
                     <Table {...tableProps} rowKey="id">
                         <Table.Column
                             key="gsm"

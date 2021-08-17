@@ -104,7 +104,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                             }}
                         >
                             <Text style={{ fontSize: "24px" }} strong>
-                                {t("products.title")}
+                                {t("products.products")}
                             </Text>
                             <Form.Item name="name" noStyle>
                                 <Input

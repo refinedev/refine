@@ -64,9 +64,9 @@
     "editError": "{{resource}} düzenlenirken hata (hata kodu: {{statusCode}})"
   },
   "categories": {
-    "title": "Kategoriler",
-    "show": {
-      "title": "Kategori Detay"
+    "categories": "Kategoriler",
+    "titles": {
+      "list": "Kategoriler"
     },
     "fields": {
       "id": "ID",
@@ -75,7 +75,7 @@
     }
   },
   "couriers": {
-    "title": "Kuryeler",
+    "couriers": "Kuryeler",
     "titles": {
       "create": "Kurye Oluştur",
       "list": "Kuryeler",
@@ -158,10 +158,7 @@
     }
   },
   "orders": {
-    "title": "Siparişler",
-    "show": {
-      "title": "Sipariş Detay"
-    },
+    "orders": "Siparişler",
     "fields": {
       "orderNumber": "Sipariş Numarası",
       "orderID": "Sipariş ID",
@@ -201,7 +198,7 @@
     }
   },
   "products": {
-    "title": "Ürünler",
+    "products": "Ürünler",
     "titles": {
       "list": "Ürünler",
       "create": "Ürün Oluştur",
@@ -223,7 +220,7 @@
     }
   },
   "reviews": {
-    "title": "Yorumlar",
+    "reviews": "Yorumlar",
     "fields": {
       "user": "Kullanıcı",
       "orderId": "Sipariş No",
@@ -232,15 +229,12 @@
     }
   },
   "stores": {
-    "title": "Mağazalar",
+    "stores": "Mağazalar",
     "titles": {
       "create": "Mağaza Oluştur",
       "edit": "Mağaza Düzenle",
       "list": "Mağazalar",
       "show": "Mağaza Göster"
-    },
-    "show": {
-      "title": "Mağaza Detay"
     },
     "fields": {
       "id": "Mağaza ID",
@@ -264,7 +258,7 @@
     "productSearch": "Ürün Ara"
   },
   "users": {
-    "title": "Kullanıcılar",
+    "users": "Kullanıcılar",
     "titles": {
       "edit": "Kullanıcı Düzenle",
       "list": "Kullanıcılar",

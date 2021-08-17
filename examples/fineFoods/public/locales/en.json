@@ -65,9 +65,9 @@
     "editError": "Error when editing {{resource}} (status code: {{statusCode}})"
   },
   "categories": {
-    "title": "Categories",
-    "show": {
-      "title": "Category Detail"
+    "categories": "Categories",
+    "titles": {
+      "list": "Categories"
     },
     "fields": {
       "id": "ID",
@@ -76,7 +76,7 @@
     }
   },
   "couriers": {
-    "title": "Couriers",
+    "couriers": "Couriers",
     "titles": {
       "create": "Create Courier",
       "list": "Couriers",
@@ -161,12 +161,10 @@
     }
   },
   "orders": {
-    "title": "Orders",
+    "orders": "Orders",
     "titles": {
-      "list": "Siparişler"
-    },
-    "show": {
-      "title": "Order Detail"
+      "list": "Siparişler",
+      "show": "Sipariş Detay"
     },
     "fields": {
       "orderNumber": "Order Number",
@@ -207,7 +205,7 @@
     }
   },
   "products": {
-    "title": "Products",
+    "products": "Products",
     "titles": {
       "list": "Products",
       "create": "Create Product",
@@ -238,15 +236,12 @@
     }
   },
   "stores": {
-    "title": "Stores",
+    "stores": "Stores",
     "titles": {
       "create": "Create Store",
       "edit": "Edit Store",
       "list": "Stores",
       "show": "Show Store"
-    },
-    "show": {
-      "title": "Store Detail"
     },
     "fields": {
       "id": "Store ID",
@@ -270,7 +265,7 @@
     "productSearch": "Product Search"
   },
   "users": {
-    "title": "Users",
+    "users": "Users",
     "titles": {
       "edit": "Edit User",
       "list": "Users",
