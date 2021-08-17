@@ -113,7 +113,7 @@ export const UserEdit: React.FC<IResourceComponentsProps> = () => {
                             multiple
                         >
                             <p className="ant-upload-text">
-                                {t("users:fields.avatar.description")}
+                                {t("users.fields.avatar.description")}
                             </p>
                         </Upload.Dragger>
                     </Form.Item>

@@ -115,7 +115,7 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                     >
                         <Table.Column
                             dataIndex={["order", "id"]}
-                            title={t("reviews:fields.orderId")}
+                            title={t("reviews.fields.orderId")}
                             render={(value) => (
                                 <Button
                                     onClick={() => {
@@ -130,11 +130,11 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                         <Table.Column
                             width={250}
                             dataIndex="comment"
-                            title={t("reviews:fields.review")}
+                            title={t("reviews.fields.review")}
                         />
                         <Table.Column
                             dataIndex="star"
-                            title={t("reviews:fields.rating")}
+                            title={t("reviews.fields.rating")}
                             align="center"
                             render={(value) => (
                                 <Space
