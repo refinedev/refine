@@ -1,0 +1,311 @@
+{
+    "common": {
+        "pages": {
+            "login": {
+                "signin": "Sign in",
+                "signup": "Sign up",
+                "email": "Email",
+                "password": "Password",
+                "remember": "Remember me",
+                "forgotPassword": "Forgot?",
+                "noAccount": "Don’t have an account?"
+            },
+            "error": {
+                "info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
+                "404": "Sorry, the page you visited does not exist.",
+                "resource404": "Are you sure you have created the {{resource}} resource.",
+                "backHome": "Back Home"
+            }
+        },
+        "buttons": {
+            "add": "Add",
+            "create": "Create",
+            "save": "Save",
+            "logout": "Logout",
+            "delete": "Delete",
+            "edit": "Edit",
+            "cancel": "Cancel",
+            "confirm": "Are you sure?",
+            "filter": "Filter",
+            "clear": "Clear",
+            "refresh": "Refresh",
+            "show": "Show",
+            "undo": "Undo",
+            "import": "Import",
+            "clone": "Clone",
+            "accept": "Accept",
+            "acceptAll": "Accept All",
+            "reject": "Reject",
+            "rejectAll": "Reject All"
+        },
+        "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
+        "notifications": {
+            "success": "Successful",
+            "error": "Error (status code: {{statusCode}})",
+            "undoable": "You have {{seconds}} seconds to undo",
+            "createSuccess": "Successfully created {{resource}}",
+            "createError": "There was an error creating {{resource}} (status code: {{statusCode}})",
+            "deleteSuccess": "Successfully deleted {{resource}}",
+            "deleteError": "Error when deleting {{resource}} (status code: {{statusCode}})",
+            "editSuccess": "Successfully edited {{resource}}",
+            "editError": "Error when editing {{resource}} (status code: {{statusCode}})"
+        },
+        "loading": "Loading",
+        "tags": {
+            "clone": "Clone"
+        },
+        "dashboard": {
+            "title": "Dashboard"
+        },
+        "stores": {
+            "titles": {
+                "create": "Create Store",
+                "edit": "Edit Store",
+                "list": "Stores",
+                "show": "Show Store"
+            }
+        },
+        "table": {
+            "actions": "Actions"
+        },
+        "search": {
+            "placeholder": "Search by Store ID, E-mail, Keyword",
+            "more": "more"
+        },
+        "status": {
+            "enable": "Enable",
+            "disable": "Disable"
+        }
+    },
+    "categories": {
+        "title": "Categories",
+        "show": {
+            "title": "Category Detail"
+        },
+        "fields": {
+            "id": "ID",
+            "title": "Title",
+            "isActive": "Active"
+        }
+    },
+    "couriers": {
+        "title": "Couriers",
+        "show": {
+            "title": "Courier Detail"
+        },
+        "fields": {
+            "id": "ID",
+            "avatar": {
+                "label": "Avatar",
+                "description": "Click or drag avatar image to this area to upload."
+            },
+            "name": "Name",
+            "surname": "Surname",
+            "gender": {
+                "label": "Gender",
+                "male": "Male",
+                "female": "Female"
+            },
+            "gsm": "Phone",
+            "email": "E-Mail",
+            "address": "Address",
+            "createdAt": "CreatedAt",
+            "isActive": "Is Active",
+            "images": {
+                "label": "Images",
+                "description": "Add user picture",
+                "validation": "must be 480x480 px"
+            },
+            "store": "Store",
+            "vehicle": "Vehicle",
+            "accountNumber": "Account Number"
+        },
+        "steps": {
+            "content": "Content",
+            "relations": "Relations"
+        }
+    },
+    "dashboard": {
+        "deliveryMap": {
+            "title": "Delivery Map"
+        },
+        "upcomingDeliverySchedule": {
+            "title": "Upcoming Delivery Schedule"
+        },
+        "orders": {
+            "title": "Orders"
+        },
+        "totalSales": {
+            "title": "Total Sales"
+        },
+        "orderCountCard": {
+            "totalOrder": "Total Order",
+            "totalDelivered": "Total Delivered"
+        },
+        "dailyRevenue": {
+            "title": "Daily Revenue"
+        },
+        "dailyOrders": {
+            "title": "Daily Orders"
+        },
+        "newCustomers": {
+            "title": "New Customers"
+        },
+        "recentActivity": {
+            "title": "Recent Activity"
+        },
+        "timeline": {
+            "title": "Timeline",
+            "orderStatuses": {
+                "pending": "Preparing order",
+                "ready": "Order is ready",
+                "on the way": "Order is on the way",
+                "delivered": "Order is delivered",
+                "cancelled": "Order is cancelled"
+            }
+        },
+        "recentOrders": {
+            "title": "Recent Orders"
+        },
+        "trendingMenus": {
+            "title": "Daily Trending Menus"
+        }
+    },
+    "enum": {
+        "orderStatuses": {
+            "pending": "Pending",
+            "ready": "Ready",
+            "on the way": "On the way",
+            "delivered": "Delivered",
+            "cancelled": "Cancelled"
+        }
+    },
+    "orders": {
+        "title": "Orders",
+        "show": {
+            "title": "Order Detail"
+        },
+        "fields": {
+            "orderNumber": "Order Number",
+            "orderID": "Order ID",
+            "status": "Status",
+            "store": "Store",
+            "user": "User",
+            "products": "Products",
+            "createdAt": "CreatedAt",
+            "amount": "Amount"
+        },
+        "filter": {
+            "title": "Filters",
+            "search": {
+                "label": "Search",
+                "placeholder": "Order Number, User, etc."
+            },
+            "status": {
+                "label": "Status",
+                "placeholder": "Order Status"
+            },
+            "store": {
+                "label": "Store",
+                "placeholder": "Search Stores"
+            },
+            "user": {
+                "label": "User",
+                "placeholder": "Search Users"
+            },
+            "createdAt": {
+                "label": "Created At"
+            },
+            "submit": "Filter"
+        },
+        "courier": {
+            "deliveryTime": "Delivery Time",
+            "phone": "Phone"
+        }
+    },
+    "products": {
+        "title": "Products",
+        "show": {
+            "title": "Product Detail"
+        },
+        "fields": {
+            "id": "ID",
+            "name": "Name",
+            "description": "Description",
+            "isActive": "Active",
+            "price": "Price",
+            "category": "Category",
+            "images": {
+                "label": "Images",
+                "description": "Add product picture",
+                "validation": "must be 1080x1080 px"
+            },
+            "createdAt": "CreatedAt"
+        }
+    },
+    "reviews": {
+        "title": "Reviews",
+        "fields": {
+            "user": "User",
+            "orderId": "Order ID",
+            "review": "Review",
+            "rating": "Rating"
+        }
+    },
+    "stores": {
+        "title": "Stores",
+        "show": {
+            "title": "Store Detail"
+        },
+        "fields": {
+            "id": "Store ID",
+            "title": "Title",
+            "isActive": "Active",
+            "createdAt": "CreatedAt",
+            "address": "Address",
+            "email": "Email",
+            "gsm": "Phone"
+        },
+        "buttons": {
+            "editProducts": "Edit Products",
+            "addProduct": "Add Product",
+            "outOfStock": "Out Of Stock",
+            "edit": "Edit Product"
+        },
+        "selectLocation": "Choose store location on the map",
+        "storeProducts": "Store Products",
+        "tagFilterDescription": "Use tags to filter your search",
+        "all": "All",
+        "productSearch": "Product Search"
+    },
+    "users": {
+        "title": "Users",
+        "show": {
+            "title": "User Detail"
+        },
+        "fields": {
+            "id": "ID",
+            "avatar": {
+                "label": "Avatar",
+                "description": "Click or drag avatar image to this area to upload."
+            },
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "gender": "Gender",
+            "gsm": "Gsm Number",
+            "createdAt": "CreatedAt",
+            "isActive": "Is Active"
+        },
+        "filter": {
+            "title": "Filters",
+            "search": {
+                "label": "Search",
+                "placeholder": "FirstName, lastName, gsm, etc."
+            },
+            "createdAt": {
+                "label": "Created At"
+            },
+            "submit": "Filter"
+        }
+    }
+}
