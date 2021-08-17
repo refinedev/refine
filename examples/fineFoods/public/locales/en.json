@@ -136,10 +136,6 @@
         "totalSales": {
             "title": "Total Sales"
         },
-        "orderCountCard": {
-            "totalOrder": "Total Order",
-            "totalDelivered": "Total Delivered"
-        },
         "dailyRevenue": {
             "title": "Daily Revenue"
         },
