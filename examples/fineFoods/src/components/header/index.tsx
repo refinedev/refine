@@ -17,6 +17,7 @@ import {
     useGetIdentity,
     useTranslate,
     useList,
+    Link,
 } from "@pankod/refine";
 import { useTranslation } from "react-i18next";
 import debounce from "lodash/debounce";
@@ -38,23 +39,6 @@ interface IOptions {
 
 import { titleStyle, itemStyle, headerStyle, autoCompleteStyle } from "./style";
 
-const renderTitle = (title: string) => (
-    <div style={titleStyle}>
-        <Text style={{ fontSize: "16px" }}>{title}</Text>
-        <a href="#">more</a>
-    </div>
-);
-
-const renderItem = (title: string, imageUrl: string) => ({
-    value: title,
-    label: (
-        <div style={itemStyle}>
-            <Avatar size={64} src={imageUrl} style={{ minWidth: "64px" }} />
-            <Text style={{ marginLeft: "16px" }}>{title}</Text>
-        </div>
-    ),
-});
-
 export const Header: React.FC = () => {
     const { i18n } = useTranslation();
     const locale = useGetLocale();
@@ -64,6 +48,23 @@ export const Header: React.FC = () => {
     const t = useTranslate();
 
     const currentLocale = locale();
+
+    const renderTitle = (title: string) => (
+        <div style={titleStyle}>
+            <Text style={{ fontSize: "16px" }}>{title}</Text>
+            <Link to={`/${title.toLowerCase()}`}>{t("search.more")}</Link>
+        </div>
+    );
+
+    const renderItem = (title: string, imageUrl: string, link: string) => ({
+        value: title,
+        label: (
+            <Link to={link} style={itemStyle}>
+                <Avatar size={64} src={imageUrl} style={{ minWidth: "64px" }} />
+                <Text style={{ marginLeft: "16px" }}>{title}</Text>
+            </Link>
+        ),
+    });
 
     const [value, setValue] = useState<string>("");
     const [options, setOptions] = useState<IOptions[]>([]);
@@ -80,6 +81,7 @@ export const Header: React.FC = () => {
                     renderItem(
                         `${item.store.title} / #${item.orderNumber}`,
                         "/images/default-order-img.png",
+                        `/orders/show/${item.id}`,
                     ),
                 );
                 if (orderOptionGroup.length > 0) {
@@ -104,7 +106,11 @@ export const Header: React.FC = () => {
             enabled: false,
             onSuccess: (data) => {
                 const storeOptionGroup = data.data.map((item) =>
-                    renderItem(item.title, "/images/default-store-img.png"),
+                    renderItem(
+                        item.title,
+                        "/images/default-store-img.png",
+                        `/stores/edit/${item.id}`,
+                    ),
                 );
                 if (storeOptionGroup.length > 0) {
                     setOptions((prevOptions) => [
@@ -131,6 +137,7 @@ export const Header: React.FC = () => {
                     renderItem(
                         `${item.name} ${item.surname}`,
                         item.avatar[0].url,
+                        `/couriers/show/${item.id}`,
                     ),
                 );
                 if (courierOptionGroup.length > 0) {
@@ -149,8 +156,8 @@ export const Header: React.FC = () => {
     useEffect(() => {
         setOptions([]);
         refetchOrders();
-        refetchStores();
         refetchCouriers();
+        refetchStores();
     }, [value]);
 
     const menu = (

@@ -2,6 +2,7 @@ import { useList, useNavigation } from "@pankod/refine";
 import GoogleMapReact from "google-map-react";
 
 import { MapMarker } from "components/map";
+import { UserIcon, CourierIcon } from "components/icons";
 
 import { IOrder } from "interfaces";
 
@@ -44,10 +45,7 @@ export const DeliveryMap: React.FC = () => {
                         lat={order.adress.coordinate[0]}
                         lng={order.adress.coordinate[1]}
                     >
-                        <img
-                            src="images/map/user.svg"
-                            onClick={() => show("orders", order.id)}
-                        />
+                        <UserIcon onClick={() => show("orders", order.id)} />
                     </MapMarker>
                 );
             })}
@@ -59,10 +57,7 @@ export const DeliveryMap: React.FC = () => {
                         lat={order.store.address.coordinate[0]}
                         lng={order.store.address.coordinate[1]}
                     >
-                        <img
-                            src="images/map/courier.svg"
-                            onClick={() => show("orders", order.id)}
-                        />
+                        <CourierIcon onClick={() => show("orders", order.id)} />
                     </MapMarker>
                 );
             })}

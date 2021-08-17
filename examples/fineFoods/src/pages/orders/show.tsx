@@ -18,11 +18,13 @@ import {
     Table,
     List,
     Skeleton,
+    Icon,
 } from "@pankod/refine";
 import GoogleMapReact from "google-map-react";
 import dayjs from "dayjs";
 
 import { MapMarker } from "components/map";
+import { BikeWhiteIcon, UserIcon, CourierIcon } from "components/icons";
 
 import { IEvent, IOrder, IProduct } from "interfaces";
 
@@ -191,9 +193,10 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                     )}
                     {courierInfoBox(
                         t("orders:courier.deliveryTime"),
-                        <img
-                            className="delivery-img"
-                            src="/images/bike-white.svg"
+                        <Icon
+                            className="mobile"
+                            component={BikeWhiteIcon}
+                            style={{ color: "#ffff", fontSize: 32 }}
                         />,
                         "15:05",
                     )}
@@ -299,14 +302,14 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                             lat={record?.adress.coordinate[0]}
                             lng={record?.adress.coordinate[1]}
                         >
-                            <img src="/images/map/user.svg" />
+                            <UserIcon />
                         </MapMarker>
                         <MapMarker
                             key={`store-marker-${record?.store.id}`}
                             lat={record?.store.address.coordinate[0]}
                             lng={record?.store.address.coordinate[1]}
                         >
-                            <img src="/images/map/courier.svg" />
+                            <CourierIcon />
                         </MapMarker>
                     </GoogleMapReact>
                 </div>

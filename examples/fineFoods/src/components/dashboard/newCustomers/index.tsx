@@ -2,6 +2,8 @@ import { useMemo } from "react";
 import { Typography, useApiUrl, useCustom, useTranslate } from "@pankod/refine";
 import { Column, ColumnConfig } from "@ant-design/charts";
 
+import { IncreaseIcon, DecreaseIcon } from "components/icons";
+
 import { ISalesChart } from "interfaces";
 import "./style.less";
 
@@ -71,9 +73,9 @@ export const NewCustomers: React.FC = () => {
                     <div>
                         <Text strong>{data?.data.trend ?? 0}%</Text>
                         {(data?.data?.trend ?? 0) > 0 ? (
-                            <img src="images/increase.svg" alt="Increase" />
+                            <IncreaseIcon />
                         ) : (
-                            <img src="images/decrease.svg" alt="Decrease" />
+                            <DecreaseIcon />
                         )}
                     </div>
                 </div>

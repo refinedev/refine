@@ -1,4 +1,5 @@
 import { logoStyles } from "./style";
+import { BikeWhiteIcon } from "components";
 
 type TitleProps = {
     collapsed: boolean;
@@ -8,7 +9,7 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => {
     return (
         <div style={logoStyles}>
             {collapsed ? (
-                <img src="/images/fine-foods-collapsed.svg" alt="Finefood" />
+                <BikeWhiteIcon style={{ color: "white" }} />
             ) : (
                 <img src="/images/fine-foods.svg" alt="Finefood" />
             )}
