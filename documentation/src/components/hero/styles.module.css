@@ -4,10 +4,9 @@
     background-repeat: no-repeat;
     background-size: cover;
     padding: 48px 0px;
-    height: 100vh;
 }
 
-.title {
+.mainTitle {
     font-size: 36px;
     text-align: center;
     color: #0ccee9;
@@ -15,13 +14,74 @@
     margin-top: 29px;
 }
 
-.title span {
+.mainTitle span {
     color: white;
     font-weight: 600;
 }
 
-.buttons {
+.linkButtons {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.playerContainer {
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding-top: calc(9 / 16 * 100%);
+}
+
+.reactPlayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.playerButtons {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 16px;
+}
+
+.playerButton {
+    width: 25%;
+    text-align: center;
+}
+
+.buttonTitle {
+    color: #52595d;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 12px;
+}
+
+@media screen and (max-width: 670px) {
+    .buttonTitle {
+        display: none;
+    }
+}
+
+.activeTitle {
+    color: white;
+}
+
+progress {
+    border: none;
+    height: 4px;
+    background: #000000;
+    width: 100%;
+}
+
+progress::-webkit-progress-value {
+    background: #0ccee9;
+    transition: all 0.25s;
+}
+
+progress::-webkit-progress-bar {
+    background: #000000;
 }
