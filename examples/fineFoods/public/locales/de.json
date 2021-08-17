@@ -130,10 +130,6 @@
     "totalSales": {
       "title": "Toplam Satışlar"
     },
-    "orderCountCard": {
-      "totalOrder": "Toplam Sipariş",
-      "totalDelivered": "Toplam Teslimat"
-    },
     "dailyRevenue": {
       "title": "Günlük Gelir"
     },
