@@ -206,8 +206,10 @@
   },
   "products": {
     "title": "Products",
-    "show": {
-      "title": "Product Detail"
+    "titles": {
+      "list": "Products",
+      "create": "Create Product",
+      "edit": "Edit Product"
     },
     "fields": {
       "id": "ID",

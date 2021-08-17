@@ -88,7 +88,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                                         }}
                                     >
                                         {t(
-                                            "products:fields.images.description",
+                                            "products.fields.images.description",
                                         )}
                                     </Text>
                                     <Text style={{ fontSize: "12px" }}>

@@ -197,8 +197,10 @@
   },
   "products": {
     "title": "Ürünler",
-    "show": {
-      "title": "Ürün Detay"
+    "titles": {
+      "list": "Ürünler",
+      "create": "Ürün Oluştur",
+      "edit": "Ürün Düzenle"
     },
     "fields": {
       "id": "ID",
