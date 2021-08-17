@@ -120,6 +120,7 @@
     }
   },
   "dashboard": {
+    "title": "Panel",
     "deliveryMap": {
       "title": "Teslimat Haritası"
     },

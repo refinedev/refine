@@ -101,6 +101,9 @@ const App: React.FC = () => {
             />
             <Resource
                 name="reviews"
+                options={{
+                    label: t("reviews.title"),
+                }}
                 list={ReviewsList}
                 icon={<Icons.StarOutlined />}
             />

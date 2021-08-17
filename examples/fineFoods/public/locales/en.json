@@ -126,6 +126,7 @@
         }
     },
     "dashboard": {
+        "title": "Dashboard",
         "deliveryMap": {
             "title": "Delivery Map"
         },
