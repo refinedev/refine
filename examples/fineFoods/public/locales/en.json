@@ -130,9 +130,6 @@
         "deliveryMap": {
             "title": "Delivery Map"
         },
-        "upcomingDeliverySchedule": {
-            "title": "Upcoming Delivery Schedule"
-        },
         "orders": {
             "title": "Orders"
         },
