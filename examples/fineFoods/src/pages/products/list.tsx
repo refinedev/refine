@@ -104,19 +104,19 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                             }}
                         >
                             <Text style={{ fontSize: "24px" }} strong>
-                                {t("products:title")}
+                                {t("products.title")}
                             </Text>
                             <Form.Item name="name" noStyle>
                                 <Input
                                     style={{
                                         width: "400px",
                                     }}
-                                    placeholder={t("stores:productSearch")}
+                                    placeholder={t("stores.productSearch")}
                                     suffix={<SearchOutlined />}
                                 />
                             </Form.Item>
                             <CreateButton onClick={() => createShow()}>
-                                {t("stores:buttons.addProduct")}
+                                {t("stores.buttons.addProduct")}
                             </CreateButton>
                         </div>
                         <AntdList
@@ -150,7 +150,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                             }}
                         >
                             <Text style={{ fontWeight: 500 }}>
-                                {t("stores:tagFilterDescription")}
+                                {t("stores.tagFilterDescription")}
                             </Text>
                         </div>
                         <Form.Item name="categories">

@@ -32,7 +32,7 @@ export const UserEdit: React.FC<IResourceComponentsProps> = () => {
                 }}
             >
                 <Form.Item
-                    label={t("users:fields.firstName")}
+                    label={t("users.fields.firstName")}
                     name="firstName"
                     rules={[
                         {
@@ -43,7 +43,7 @@ export const UserEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={t("users:fields.lastName")}
+                    label={t("users.fields.lastName")}
                     name="lastName"
                     rules={[
                         {
@@ -54,7 +54,7 @@ export const UserEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={t("users:fields.gsm")}
+                    label={t("users.fields.gsm")}
                     name="gsm"
                     rules={[
                         {
@@ -65,7 +65,7 @@ export const UserEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={t("users:fields.gender")}
+                    label={t("users.fields.gender")}
                     name="gender"
                     rules={[
                         {
@@ -87,7 +87,7 @@ export const UserEdit: React.FC<IResourceComponentsProps> = () => {
                     />
                 </Form.Item>
                 <Form.Item
-                    label={t("users:fields.isActive")}
+                    label={t("users.fields.isActive")}
                     name="isActive"
                     rules={[
                         {
@@ -96,9 +96,9 @@ export const UserEdit: React.FC<IResourceComponentsProps> = () => {
                     ]}
                     valuePropName="checked"
                 >
-                    <Checkbox>{t("users:fields.isActive")}</Checkbox>
+                    <Checkbox>{t("users.fields.isActive")}</Checkbox>
                 </Form.Item>
-                <Form.Item label={t("users:fields.avatar.label")}>
+                <Form.Item label={t("users.fields.avatar.label")}>
                     <Form.Item
                         name="avatar"
                         valuePropName="fileList"
@@ -113,7 +113,7 @@ export const UserEdit: React.FC<IResourceComponentsProps> = () => {
                             multiple
                         >
                             <p className="ant-upload-text">
-                                {t("users:fields:avatar.description")}
+                                {t("users:fields.avatar.description")}
                             </p>
                         </Upload.Dragger>
                     </Form.Item>

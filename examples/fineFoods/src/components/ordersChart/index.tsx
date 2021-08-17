@@ -91,7 +91,7 @@ export const OrdersChart: React.FC = () => {
 
     return (
         <>
-            <Title level={5}>{t("dashboard:orders.title")}</Title>
+            <Title level={5}>{t("dashboard.orders.title")}</Title>
             <Row>
                 <Col md={12}>
                     <RadialBar {...chartConfig.waiting} />

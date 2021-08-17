@@ -65,7 +65,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 className="pageHeader"
                 ghost={false}
                 onBack={() => window.history.back()}
-                title={t("orders:fields.orderID")}
+                title={t("orders.fields.orderID")}
                 subTitle={`#${record?.orderNumber ?? ""}`}
                 extra={[
                     <Button
@@ -88,7 +88,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                             }
                         }}
                     >
-                        {t("common:buttons.accept")}
+                        {t("common.buttons.accept")}
                     </Button>,
                     <Button
                         disabled={
@@ -113,7 +113,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                             }
                         }}
                     >
-                        {t("common:buttons.reject")}
+                        {t("common.buttons.reject")}
                     </Button>,
                 ]}
             >
@@ -184,7 +184,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
 
                 <Col xl={12} lg={14} md={24} className="courier-box-container">
                     {courierInfoBox(
-                        t("orders:courier.phone"),
+                        t("orders.courier.phone"),
                         <Icons.MobileOutlined
                             className="mobile"
                             style={{ color: "#ffff", fontSize: 32 }}
@@ -192,7 +192,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         record?.courier.gsm,
                     )}
                     {courierInfoBox(
-                        t("orders:courier.deliveryTime"),
+                        t("orders.courier.deliveryTime"),
                         <Icon
                             className="mobile"
                             component={BikeWhiteIcon}

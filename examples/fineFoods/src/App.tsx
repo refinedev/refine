@@ -46,7 +46,7 @@ const App: React.FC = () => {
         >
             <Resource
                 options={{
-                    label: t("orders:title"),
+                    label: t("orders.title"),
                 }}
                 name="orders"
                 list={OrderList}
@@ -55,7 +55,7 @@ const App: React.FC = () => {
             />
             <Resource
                 options={{
-                    label: t("users:title"),
+                    label: t("users.title"),
                 }}
                 name="users"
                 list={UserList}
@@ -65,7 +65,7 @@ const App: React.FC = () => {
             />
             <Resource
                 options={{
-                    label: t("products:title"),
+                    label: t("products.title"),
                 }}
                 name="products"
                 list={ProductList}
@@ -74,7 +74,7 @@ const App: React.FC = () => {
             <Resource
                 name="stores"
                 options={{
-                    label: t("stores:title"),
+                    label: t("stores.title"),
                 }}
                 list={StoreList}
                 edit={StoreEdit}
@@ -84,14 +84,14 @@ const App: React.FC = () => {
             <Resource
                 name="categories"
                 options={{
-                    label: t("categories:title"),
+                    label: t("categories.title"),
                 }}
                 list={CategoryList}
             />
             <Resource
                 name="couriers"
                 options={{
-                    label: t("couriers:title"),
+                    label: t("couriers.title"),
                 }}
                 list={CourierList}
                 show={CourierShow}

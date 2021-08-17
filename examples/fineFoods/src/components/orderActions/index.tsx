@@ -45,7 +45,7 @@ export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
                     });
                 }}
             >
-                {t("common:buttons.accept")}
+                {t("common.buttons.accept")}
             </Menu.Item>
             <Menu.Item
                 key="reject"
@@ -80,7 +80,7 @@ export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
                     })
                 }
             >
-                {t("common:buttons.reject")}
+                {t("common.buttons.reject")}
             </Menu.Item>
         </Menu>
     );

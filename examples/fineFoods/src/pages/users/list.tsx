@@ -66,52 +66,52 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
     return (
         <Row gutter={[16, 16]}>
             <Col lg={18} xs={24}>
-                <List title={t("users:title")}>
+                <List title={t("users.title")}>
                     <Table {...tableProps} rowKey="id">
                         <Table.Column
                             key="gsm"
                             dataIndex="gsm"
-                            title={t("users:fields.gsm")}
+                            title={t("users.fields.gsm")}
                         />
                         <Table.Column
                             align="center"
                             key="avatar"
                             dataIndex={["avatar"]}
-                            title={t("users:fields.avatar.label")}
+                            title={t("users.fields.avatar.label")}
                             render={(value) => <Avatar src={value[0].url} />}
                         />
                         <Table.Column
                             key="firstName"
                             dataIndex="firstName"
-                            title={t("users:fields.firstName")}
+                            title={t("users.fields.firstName")}
                         />
                         <Table.Column
                             key="lastName"
                             dataIndex="lastName"
-                            title={t("users:fields.lastName")}
+                            title={t("users.fields.lastName")}
                         />
                         <Table.Column
                             key="gender"
                             dataIndex="gender"
-                            title={t("users:fields.gender")}
+                            title={t("users.fields.gender")}
                         />
                         <Table.Column
                             key="isActive"
                             dataIndex="isActive"
-                            title={t("products:fields.isActive")}
+                            title={t("products.fields.isActive")}
                             render={(value) => <BooleanField value={value} />}
                         />
                         <Table.Column
                             key="createdAt"
                             dataIndex="createdAt"
-                            title={t("users:fields.createdAt")}
+                            title={t("users.fields.createdAt")}
                             render={(value) => (
                                 <DateField value={value} format="LLL" />
                             )}
                             sorter
                         />
                         <Table.Column<IUser>
-                            title={t("common:table.actions")}
+                            title={t("common.table.actions")}
                             dataIndex="actions"
                             key="actions"
                             render={(_value, record) => (
@@ -131,7 +131,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                 </List>
             </Col>
             <Col lg={6} xs={24}>
-                <Card title={t("users:filter.title")}>
+                <Card title={t("users.filter.title")}>
                     <Filter formProps={searchFormProps} />
                 </Card>
             </Col>
@@ -146,21 +146,21 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
 
     return (
         <Form layout="vertical" {...props.formProps}>
-            <Form.Item label={t("users:filter.search.label")} name="q">
+            <Form.Item label={t("users.filter.search.label")} name="q">
                 <Input
-                    placeholder={t("users:filter.search.placeholder")}
+                    placeholder={t("users.filter.search.placeholder")}
                     prefix={<Icons.SearchOutlined />}
                 />
             </Form.Item>
             <Form.Item
-                label={t("users:filter.createdAt.label")}
+                label={t("users.filter.createdAt.label")}
                 name="createdAt"
             >
                 <RangePicker />
             </Form.Item>
             <Form.Item>
                 <Button htmlType="submit" type="primary">
-                    {t("users:filter.submit")}
+                    {t("users.filter.submit")}
                 </Button>
             </Form.Item>
         </Form>

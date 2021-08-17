@@ -47,7 +47,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                 }
                 onClick={() => edit("stores", id)}
             >
-                {t("common:buttons.edit")}
+                {t("common.buttons.edit")}
             </Menu.Item>
             <Menu.Item
                 key="2"
@@ -65,7 +65,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                     setShowId(id);
                 }}
             >
-                {t("stores:buttons.edit")}
+                {t("stores.buttons.edit")}
             </Menu.Item>
         </Menu>
     );
@@ -94,33 +94,33 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                     <Table.Column
                         dataIndex="id"
                         align="center"
-                        title={t("stores:fields.id")}
+                        title={t("stores.fields.id")}
                     />
                     <Table.Column
                         dataIndex="title"
-                        title={t("stores:fields.title")}
+                        title={t("stores.fields.title")}
                     />
                     <Table.Column
                         dataIndex="email"
-                        title={t("stores:fields.email")}
+                        title={t("stores.fields.email")}
                     />
                     <Table.Column
                         dataIndex="gsm"
-                        title={t("stores:fields.gsm")}
+                        title={t("stores.fields.gsm")}
                     />
                     <Table.Column
                         dataIndex={["address", "text"]}
-                        title={t("stores:fields.address")}
+                        title={t("stores.fields.address")}
                     />
                     <Table.Column
                         dataIndex="isActive"
-                        title={t("stores:fields.isActive")}
+                        title={t("stores.fields.isActive")}
                         align="center"
                         render={(value) => <BooleanField value={value} />}
                     />
                     <Table.Column
                         dataIndex="createdAt"
-                        title={t("stores:fields.createdAt")}
+                        title={t("stores.fields.createdAt")}
                         render={(value) => (
                             <DateField value={value} format="LLL" />
                         )}
@@ -128,7 +128,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                     />
                     <Table.Column<IStore>
                         fixed="right"
-                        title={t("common:table.actions")}
+                        title={t("common.table.actions")}
                         dataIndex="actions"
                         key="actions"
                         align="center"

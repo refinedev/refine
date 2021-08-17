@@ -132,7 +132,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     return (
         <Row gutter={[16, 16]}>
             <Col xl={6} lg={24} xs={24}>
-                <Card bordered={false} title={t("orders:filter.title")}>
+                <Card bordered={false} title={t("orders.filter.title")}>
                     <Filter formProps={searchFormProps} />
                 </Card>
             </Col>
@@ -159,13 +159,13 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         <Table.Column
                             key="orderNumber"
                             dataIndex="orderNumber"
-                            title={t("orders:fields.orderNumber")}
+                            title={t("orders.fields.orderNumber")}
                             render={(value) => <TextField value={value} />}
                         />
                         <Table.Column
                             key="status.text"
                             dataIndex={["status", "text"]}
-                            title={t("orders:fields.status")}
+                            title={t("orders.fields.status")}
                             render={(value) => {
                                 return <OrderStatus status={value} />;
                             }}
@@ -179,7 +179,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             align="right"
                             key="amount"
                             dataIndex="amount"
-                            title={t("orders:fields.amount")}
+                            title={t("orders.fields.amount")}
                             defaultSortOrder={getDefaultSortOrder(
                                 "amount",
                                 sorter,
@@ -201,17 +201,17 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         <Table.Column
                             key="store.id"
                             dataIndex={["store", "title"]}
-                            title={t("orders:fields.store")}
+                            title={t("orders.fields.store")}
                         />
                         <Table.Column
                             key="user.fullName"
                             dataIndex={["user", "fullName"]}
-                            title={t("orders:fields.user")}
+                            title={t("orders.fields.user")}
                         />
                         <Table.Column<IOrder>
                             key="products"
                             dataIndex="products"
-                            title={t("orders:fields.products")}
+                            title={t("orders.fields.products")}
                             render={(_, record) => (
                                 <Popover
                                     content={
@@ -233,7 +233,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         <Table.Column
                             key="createdAt"
                             dataIndex="createdAt"
-                            title={t("orders:fields.createdAt")}
+                            title={t("orders.fields.createdAt")}
                             render={(value) => (
                                 <DateField value={value} format="LLL" />
                             )}
@@ -241,7 +241,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         />
                         <Table.Column<IOrder>
                             fixed="right"
-                            title={t("common:table.actions")}
+                            title={t("common.table.actions")}
                             dataIndex="actions"
                             key="actions"
                             align="center"
@@ -281,52 +281,52 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
         <Form layout="vertical" {...formProps}>
             <Row gutter={[10, 0]} align="bottom">
                 <Col xl={24} md={8}>
-                    <Form.Item label={t("orders:filter.search.label")} name="q">
+                    <Form.Item label={t("orders.filter.search.label")} name="q">
                         <Input
-                            placeholder={t("orders:filter.search.placeholder")}
+                            placeholder={t("orders.filter.search.placeholder")}
                             prefix={<Icons.SearchOutlined />}
                         />
                     </Form.Item>
                 </Col>
                 <Col xl={24} md={8}>
                     <Form.Item
-                        label={t("orders:filter.status.label")}
+                        label={t("orders.filter.status.label")}
                         name="status"
                     >
                         <Select
                             {...orderSelectProps}
                             allowClear
-                            placeholder={t("orders:filter.status.placeholder")}
+                            placeholder={t("orders.filter.status.placeholder")}
                         />
                     </Form.Item>
                 </Col>
                 <Col xl={24} md={8}>
                     <Form.Item
-                        label={t("orders:filter.store.label")}
+                        label={t("orders.filter.store.label")}
                         name="store"
                     >
                         <Select
                             {...storeSelectProps}
                             allowClear
-                            placeholder={t("orders:filter.store.placeholder")}
+                            placeholder={t("orders.filter.store.placeholder")}
                         />
                     </Form.Item>
                 </Col>
                 <Col xl={24} md={8}>
                     <Form.Item
-                        label={t("orders:filter.user.label")}
+                        label={t("orders.filter.user.label")}
                         name="user"
                     >
                         <Select
                             {...userSelectProps}
                             allowClear
-                            placeholder={t("orders:filter.user.placeholder")}
+                            placeholder={t("orders.filter.user.placeholder")}
                         />
                     </Form.Item>
                 </Col>
                 <Col xl={24} md={8}>
                     <Form.Item
-                        label={t("orders:filter.createdAt.label")}
+                        label={t("orders.filter.createdAt.label")}
                         name="createdAt"
                     >
                         <RangePicker />
@@ -340,7 +340,7 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
                             size="large"
                             block
                         >
-                            {t("orders:filter.submit")}
+                            {t("orders.filter.submit")}
                         </Button>
                     </Form.Item>
                 </Col>

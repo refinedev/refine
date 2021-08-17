@@ -65,7 +65,7 @@ export const RecentActivity: React.FC = () => {
                 </Col>
                 <Col md={10}>
                     <Text style={styles.date}>
-                        {dayjs(item.createdAt).format("YYYY-MM-DD HH:mm:ss")}
+                        {dayjs(item.createdAt).format("YYYY-MM-DD HH:mm.ss")}
                     </Text>
                 </Col>
             </Row>
@@ -74,7 +74,7 @@ export const RecentActivity: React.FC = () => {
 
     return (
         <>
-            <Title level={5}>{t("dashboard:recentActivity.title")}</Title>
+            <Title level={5}>{t("dashboard.recentActivity.title")}</Title>
             <AntdList
                 {...listProps}
                 renderItem={renderItem}

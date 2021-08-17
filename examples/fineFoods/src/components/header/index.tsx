@@ -88,7 +88,7 @@ export const Header: React.FC = () => {
                     setOptions((prevOptions) => [
                         ...prevOptions,
                         {
-                            label: renderTitle(t("orders:title")),
+                            label: renderTitle(t("orders.title")),
                             options: orderOptionGroup,
                         },
                     ]);
@@ -116,7 +116,7 @@ export const Header: React.FC = () => {
                     setOptions((prevOptions) => [
                         ...prevOptions,
                         {
-                            label: renderTitle(t("stores:title")),
+                            label: renderTitle(t("stores.title")),
                             options: storeOptionGroup,
                         },
                     ]);
@@ -144,7 +144,7 @@ export const Header: React.FC = () => {
                     setOptions((prevOptions) => [
                         ...prevOptions,
                         {
-                            label: renderTitle(t("couriers:title")),
+                            label: renderTitle(t("couriers.title")),
                             options: courierOptionGroup,
                         },
                     ]);

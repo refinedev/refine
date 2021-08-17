@@ -76,7 +76,7 @@ export const SalesChart: React.FC = () => {
         <>
             <Row justify="space-between">
                 <Col>
-                    <Title level={5}>{t("dashboard:totalSales.title")}</Title>
+                    <Title level={5}>{t("dashboard.totalSales.title")}</Title>
                 </Col>
                 <Col>
                     <NumberField

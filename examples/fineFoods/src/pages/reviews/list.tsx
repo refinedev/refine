@@ -98,7 +98,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 }
                 onClick={() => handleUpdate(id, "approved")}
             >
-                {t("common:buttons.accept")}
+                {t("common.buttons.accept")}
             </Menu.Item>
             <Menu.Item
                 key="reject"
@@ -118,14 +118,14 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 }
                 onClick={() => handleUpdate(id, "rejected")}
             >
-                {t("common:buttons.reject")}
+                {t("common.buttons.reject")}
             </Menu.Item>
         </Menu>
     );
 
     return (
         <List
-            title={t("reviews:title")}
+            title={t("reviews.title")}
             pageHeaderProps={{
                 subTitle: hasSelected && (
                     <Space style={{ gap: 0, marginLeft: "1em" }}>
@@ -139,7 +139,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                                 />
                             }
                         >
-                            {t("common:buttons.acceptAll")}
+                            {t("common.buttons.acceptAll")}
                         </Button>
                         <Button
                             type="text"
@@ -151,7 +151,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                                 />
                             }
                         >
-                            {t("common:buttons.rejectAll")}
+                            {t("common.buttons.rejectAll")}
                         </Button>
                     </Space>
                 ),
@@ -172,11 +172,11 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 />
                 <Table.Column
                     dataIndex={["user", "fullName"]}
-                    title={t("reviews:fields:user")}
+                    title={t("reviews:fields.user")}
                 />
                 <Table.Column
                     dataIndex={["order", "id"]}
-                    title={t("reviews:fields:orderId")}
+                    title={t("reviews:fields.orderId")}
                     render={(value) => (
                         <Button
                             onClick={() => {
@@ -191,11 +191,11 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 <Table.Column
                     width={250}
                     dataIndex="comment"
-                    title={t("reviews:fields:review")}
+                    title={t("reviews:fields.review")}
                 />
                 <Table.Column
                     dataIndex="star"
-                    title={t("reviews:fields:rating")}
+                    title={t("reviews:fields.rating")}
                     align="center"
                     render={(value) => (
                         <Space
@@ -224,7 +224,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                     )}
                 />
                 <Table.Column<IReview>
-                    title={t("common:table.actions")}
+                    title={t("common.table.actions")}
                     key="actions"
                     render={(record) => (
                         <Dropdown

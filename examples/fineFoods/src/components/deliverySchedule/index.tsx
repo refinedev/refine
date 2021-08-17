@@ -84,7 +84,7 @@ export const DeliverySchedule: React.FC = () => {
     return (
         <>
             <Title level={5}>
-                {t("dashboard:upcomingDeliverySchedule.title")}
+                {t("dashboard.upcomingDeliverySchedule.title")}
             </Title>
             <AntdList {...listProps} renderItem={renderItem} />
         </>
