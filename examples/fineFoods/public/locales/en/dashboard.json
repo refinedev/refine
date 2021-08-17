@@ -2,18 +2,11 @@
   "deliveryMap": {
     "title": "Delivery Map"
   },
-  "upcomingDeliverySchedule": {
-    "title": "Upcoming Delivery Schedule"
-  },
   "orders": {
     "title": "Orders"
   },
   "totalSales": {
     "title": "Total Sales"
-  },
-  "orderCountCard": {
-    "totalOrder": "Total Order",
-    "totalDelivered": "Total Delivered"
   },
   "dailyRevenue": {
     "title": "Daily Revenue"
@@ -23,9 +16,6 @@
   },
   "newCustomers": {
     "title": "New Customers"
-  },
-  "recentActivity": {
-    "title": "Recent Activity"
   },
   "timeline": {
     "title": "Timeline",
