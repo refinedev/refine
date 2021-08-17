@@ -18,6 +18,8 @@
     --color-purple: #331049;
     --ifm-navbar-background-color: var(--color-purple);
     --ifm-navbar-height: 64px;
+    --ifm-menu-color-background-active: rgba(255, 255, 255, 0.05);
+    --ifm-menu-color-background-hover: rgba(255, 255, 255, 0.05);
 }
 
 .docusaurus-highlight-code-line {
@@ -102,8 +104,35 @@
     font-weight: 600;
 }
 
+.navbar__toggle {
+    color: white;
+}
+
+.navbar-sidebar__brand {
+    justify-content: space-between;
+}
+
+.navbar-sidebar__items .menu__list .menu__link {
+    color: white;
+}
+
+.navbar-sidebar__items .menu__list .menu__link.menu__link--sublist::after {
+    filter: invert(100%) sepia(94%) saturate(17%) hue-rotate(223deg)
+        brightness(104%) contrast(98%);
+}
+
+.navbar-sidebar__back {
+    color: white;
+}
+
 .header-first-nav-item {
     margin-left: 60px;
+}
+
+@media screen and (max-width: 996px) {
+    .header-first-nav-item {
+        margin-left: 0px;
+    }
 }
 
 .header-last-nav-item {
