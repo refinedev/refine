@@ -160,6 +160,9 @@
   },
   "orders": {
     "title": "Orders",
+    "titles": {
+      "list": "Siparişler"
+    },
     "show": {
       "title": "Order Detail"
     },
@@ -264,8 +267,10 @@
   },
   "users": {
     "title": "Users",
-    "show": {
-      "title": "User Detail"
+    "titles": {
+      "edit": "Edit User",
+      "list": "Users",
+      "show": "User Detail"
     },
     "fields": {
       "id": "ID",

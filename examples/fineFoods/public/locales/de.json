@@ -258,8 +258,10 @@
   },
   "users": {
     "title": "Kullanıcılar",
-    "show": {
-      "title": "Kullanıcı Detay"
+    "titles": {
+      "edit": "Kullanıcı Düzenle",
+      "list": "Kullanıcılar",
+      "show": "Kullanıcı Detay"
     },
     "fields": {
       "id": "ID",

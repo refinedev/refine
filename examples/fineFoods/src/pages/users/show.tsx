@@ -48,9 +48,5 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
         );
     };
 
-    return (
-        <Show title={t("users.show.title")} isLoading={isFetching}>
-            {record && renderContent()}
-        </Show>
-    );
+    return <Show isLoading={isFetching}>{record && renderContent()}</Show>;
 };
