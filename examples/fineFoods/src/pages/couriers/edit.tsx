@@ -247,7 +247,7 @@ export const CouriersEdit: React.FC<IResourceComponentsProps> = () => {
                                     gotoStep(current - 1);
                                 }}
                             >
-                                Previous
+                                {t("buttons.previousStep")}
                             </Button>
                         )}
                         {current < formList.length - 1 && (
@@ -256,7 +256,7 @@ export const CouriersEdit: React.FC<IResourceComponentsProps> = () => {
                                     gotoStep(current + 1);
                                 }}
                             >
-                                Next
+                                {t("buttons.nextStep")}
                             </Button>
                         )}
                         {current === formList.length - 1 && (

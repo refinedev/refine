@@ -35,7 +35,9 @@
     "accept": "Accept",
     "acceptAll": "Accept All",
     "reject": "Reject",
-    "rejectAll": "Reject All"
+    "rejectAll": "Reject All",
+    "nextStep": "Next",
+    "previousStep": "Previous"
   },
   "loading": "Loading",
   "tags": {

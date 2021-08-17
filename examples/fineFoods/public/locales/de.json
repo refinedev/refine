@@ -34,7 +34,9 @@
     "accept": "Kabul Et",
     "acceptAll": "Tümünü Kabul Et",
     "reject": "Reddet",
-    "rejectAll": "Tümünü Reddet"
+    "rejectAll": "Tümünü Reddet",
+    "nextStep": "İleri",
+    "previousStep": "Geri"
   },
   "loading": "Yükleniyor",
   "tags": {

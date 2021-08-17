@@ -83,7 +83,7 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                                         }}
                                     >
                                         {t(
-                                            "couriers:fields.images.description",
+                                            "couriers.fields.images.description",
                                         )}
                                     </Text>
                                     <Text style={{ fontSize: "12px" }}>
@@ -132,13 +132,13 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                                     options={[
                                         {
                                             label: t(
-                                                "couriers:fields.gender.male",
+                                                "couriers.fields.gender.male",
                                             ),
                                             value: "Male",
                                         },
                                         {
                                             label: t(
-                                                "couriers:fields.gender.female",
+                                                "couriers.fields.gender.female",
                                             ),
                                             value: "Female",
                                         },
@@ -245,7 +245,7 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                                     gotoStep(current - 1);
                                 }}
                             >
-                                Previous
+                                {t("buttons.previousStep")}
                             </Button>
                         )}
                         {current < formList.length - 1 && (
@@ -254,7 +254,7 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                                     gotoStep(current + 1);
                                 }}
                             >
-                                Next
+                                {t("buttons.nextStep")}
                             </Button>
                         )}
                         {current === formList.length - 1 && (
