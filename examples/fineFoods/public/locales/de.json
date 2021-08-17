@@ -76,6 +76,11 @@
   },
   "couriers": {
     "title": "Kuryeler",
+    "titles": {
+      "create": "Kurye Oluştur",
+      "list": "Kuryeler",
+      "edit": "Kurye Düzenle"
+    },
     "fields": {
       "id": "ID",
       "avatar": {

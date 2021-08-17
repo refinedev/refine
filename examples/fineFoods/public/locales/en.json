@@ -77,8 +77,10 @@
   },
   "couriers": {
     "title": "Couriers",
-    "show": {
-      "title": "Courier Detail"
+    "titles": {
+      "create": "Create Courier",
+      "list": "Couriers",
+      "edit": "Edit Courier"
     },
     "fields": {
       "id": "ID",
