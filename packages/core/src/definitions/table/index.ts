@@ -107,11 +107,15 @@ export const getDefaultSortOrder = (
 export const getDefaultFilter = (
     columnName: string,
     filters?: CrudFilters,
-): string[] | undefined => {
-    const value = filters?.find(({ field }) => field === columnName);
+    operatorType: CrudOperators = "eq",
+): CrudFilter["value"] | undefined => {
+    const filter = filters?.find(
+        ({ field, operator }) =>
+            field === columnName && operator === operatorType,
+    );
 
-    if (value) {
-        return value.value || [];
+    if (filter) {
+        return filter.value || [];
     }
 
     return undefined;
@@ -161,5 +165,5 @@ export const mapAntdFilterToCrudFilter = (
     return crudFilters;
 };
 
-export const compareByField = (left: CrudFilter, right: CrudFilter): boolean =>
-    left.field == right.field;
+export const compareFilters = (left: CrudFilter, right: CrudFilter): boolean =>
+    left.field == right.field && left.operator == right.operator;

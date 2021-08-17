@@ -17,7 +17,7 @@ import {
     parseTableParams,
     mapAntdSorterToCrudSorting,
     mapAntdFilterToCrudFilter,
-    compareByField,
+    compareFilters,
 } from "@definitions/table";
 
 import {
@@ -104,9 +104,6 @@ export const useTable = <
         defaultFilter = parsedFilters.length ? parsedFilters : defaultFilter;
     }
 
-    /* console.log({ defaultFilter });
-    console.log({ defaultSorter }); */
-
     const { tableProps: tablePropsSunflower } = useFormTable({
         defaultCurrent,
         defaultPageSize,
@@ -143,13 +140,13 @@ export const useTable = <
         sorter,
         filters,
     ]);
-    /* 
+
     useEffect(() => {
         form.setFieldsValue({ ...(defaultFilter as any) });
         return () => {
             form.resetFields();
         };
-    }, [defaultFilter]); */
+    }, [defaultFilter]);
 
     const {
         current: currentSF,
@@ -186,7 +183,7 @@ export const useTable = <
                 permanentFilter,
                 crudFilters,
                 prevFilters,
-                compareByField,
+                compareFilters,
             ),
         );
 
@@ -205,7 +202,7 @@ export const useTable = <
                     permanentFilter,
                     searchFilters,
                     prevFilters,
-                    compareByField,
+                    compareFilters,
                 ),
             );
         }

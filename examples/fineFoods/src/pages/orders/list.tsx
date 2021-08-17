@@ -30,7 +30,9 @@ import {
     Menu,
     useUpdate,
     useNavigation,
+    getDefaultFilter,
 } from "@pankod/refine";
+import dayjs from "dayjs";
 
 import { OrderStatus } from "components";
 
@@ -211,7 +213,10 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         <Row gutter={[16, 16]}>
             <Col xl={6} lg={24} xs={24}>
                 <Card bordered={false} title={t("orders:filter.title")}>
-                    <Filter formProps={searchFormProps} />
+                    <Filter
+                        formProps={searchFormProps}
+                        filters={filters || []}
+                    />
                 </Card>
             </Col>
             <Col xl={18} xs={24}>
@@ -344,12 +349,15 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     );
 };
 
-const Filter: React.FC<{ formProps: FormProps }> = (props) => {
+const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
+    props,
+) => {
     const t = useTranslate();
 
-    const { formProps } = props;
+    const { formProps, filters } = props;
     const { selectProps: storeSelectProps } = useSelect<IStore>({
         resource: "stores",
+        defaultValue: getDefaultFilter("store.id", filters),
     });
 
     const { selectProps: orderSelectProps } = useSelect<IStore>({
@@ -366,7 +374,18 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
     const { RangePicker } = DatePicker;
 
     return (
-        <Form layout="vertical" {...formProps}>
+        <Form
+            layout="vertical"
+            initialValues={{
+                store: getDefaultFilter("store.id", filters),
+                status: getDefaultFilter("status.text", filters),
+                createdAt: [
+                    dayjs(getDefaultFilter("createdAt", filters, "gte")),
+                    dayjs(getDefaultFilter("createdAt", filters, "lte")),
+                ],
+            }}
+            {...formProps}
+        >
             <Row gutter={[10, 0]} align="bottom">
                 <Col xl={24} md={8}>
                     <Form.Item label={t("orders:filter.search.label")} name="q">
