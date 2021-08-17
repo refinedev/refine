@@ -228,6 +228,9 @@
   },
   "reviews": {
     "reviews": "Reviews",
+    "titles": {
+      "list": "Reviews"
+    },
     "fields": {
       "user": "User",
       "orderId": "Order ID",

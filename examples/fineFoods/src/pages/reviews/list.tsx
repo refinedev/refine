@@ -125,7 +125,6 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List
-            title={t("reviews.title")}
             pageHeaderProps={{
                 subTitle: hasSelected && (
                     <Space style={{ gap: 0, marginLeft: "1em" }}>

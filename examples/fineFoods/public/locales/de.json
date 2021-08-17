@@ -221,6 +221,9 @@
   },
   "reviews": {
     "reviews": "Yorumlar",
+    "titles": {
+      "list": "Yorumlar"
+    },
     "fields": {
       "user": "Kullanıcı",
       "orderId": "Sipariş No",
