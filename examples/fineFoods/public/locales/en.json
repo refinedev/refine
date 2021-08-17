@@ -151,11 +151,11 @@
   },
   "enum": {
     "orderStatuses": {
-      "pending": "Pending",
-      "ready": "Ready",
-      "on the way": "On the way",
-      "delivered": "Delivered",
-      "cancelled": "Cancelled"
+      "Pending": "Pending",
+      "Ready": "Ready",
+      "On The Way": "On the way",
+      "Delivered": "Delivered",
+      "Cancelled": "Cancelled"
     }
   },
   "orders": {
@@ -232,6 +232,12 @@
   },
   "stores": {
     "title": "Stores",
+    "titles": {
+      "create": "Create Store",
+      "edit": "Edit Store",
+      "list": "Stores",
+      "show": "Show Store"
+    },
     "show": {
       "title": "Store Detail"
     },

@@ -145,10 +145,10 @@
   },
   "enum": {
     "orderStatuses": {
-      "pending": "Bekliyor",
-      "ready": "Hazır",
-      "on the way": "Yolda",
-      "delivered": "Teslim Edildi",
+      "Pending": "Bekliyor",
+      "Ready": "Hazır",
+      "On The Way": "Yolda",
+      "Delivered": "Teslim Edildi",
       "Cancelled": "İptal Edildi"
     }
   },
@@ -226,6 +226,12 @@
   },
   "stores": {
     "title": "Mağazalar",
+    "titles": {
+      "create": "Mağaza Oluştur",
+      "edit": "Mağaza Düzenle",
+      "list": "Mağazalar",
+      "show": "Mağaza Göster"
+    },
     "show": {
       "title": "Mağaza Detay"
     },

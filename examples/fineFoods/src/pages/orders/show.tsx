@@ -131,7 +131,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         <Steps.Step
                             status={stepStatus(event, index)}
                             key={index}
-                            title={event.status}
+                            title={t(`enum.orderStatuses.${event.status}`)}
                             icon={
                                 notFinishedCurrentStep(event, index) && (
                                     <Icons.LoadingOutlined />
