@@ -111,7 +111,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                             sorter
                         />
                         <Table.Column<IUser>
-                            title={t("common.table.actions")}
+                            title={t("table.actions")}
                             dataIndex="actions"
                             key="actions"
                             render={(_value, record) => (

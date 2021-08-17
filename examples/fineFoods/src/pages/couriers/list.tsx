@@ -57,7 +57,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                     edit("couriers", id);
                 }}
             >
-                {t("common.buttons.edit")}
+                {t("buttons.edit")}
             </Menu.Item>
             <Menu.Item
                 key="reject"
@@ -83,7 +83,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                     });
                 }}
             >
-                {t("common.buttons.delete")}
+                {t("buttons.delete")}
             </Menu.Item>
         </Menu>
     );
@@ -91,7 +91,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
     return (
         <List
             createButtonProps={{
-                children: t("common.buttons.add").toUpperCase(),
+                children: t("buttons.add").toUpperCase(),
             }}
             title={t("couriers.title")}
         >
@@ -135,7 +135,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                 />
                 <Table.Column<ICourier>
                     fixed="right"
-                    title={t("common.table.actions")}
+                    title={t("table.actions")}
                     dataIndex="actions"
                     key="actions"
                     render={(_, record) => (

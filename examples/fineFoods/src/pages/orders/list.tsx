@@ -241,7 +241,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         />
                         <Table.Column<IOrder>
                             fixed="right"
-                            title={t("common.table.actions")}
+                            title={t("table.actions")}
                             dataIndex="actions"
                             key="actions"
                             align="center"

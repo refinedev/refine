@@ -68,7 +68,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                     setEditId?.(record.id);
                 }}
             >
-                {t("common.buttons.edit")}
+                {t("buttons.edit")}
             </Menu.Item>
         </Menu>
     );
@@ -140,7 +140,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                         }}
                     />
                     <Table.Column<ICategory>
-                        title={t("common.table.actions")}
+                        title={t("table.actions")}
                         dataIndex="actions"
                         key="actions"
                         fixed="right"
@@ -157,7 +157,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                                             {...cancelButtonProps}
                                             size="small"
                                         >
-                                            {t("common.buttons.cancel")}
+                                            {t("buttons.cancel")}
                                         </Button>
                                     </Space>
                                 );
@@ -221,7 +221,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 }
                 onClick={() => false}
             >
-                {t("common.buttons.edit")}
+                {t("buttons.edit")}
             </Menu.Item>
         </Menu>
     );

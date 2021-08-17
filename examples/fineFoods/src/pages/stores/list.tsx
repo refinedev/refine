@@ -47,7 +47,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                 }
                 onClick={() => edit("stores", id)}
             >
-                {t("common.buttons.edit")}
+                {t("buttons.edit")}
             </Menu.Item>
             <Menu.Item
                 key="2"
@@ -128,7 +128,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                     />
                     <Table.Column<IStore>
                         fixed="right"
-                        title={t("common.table.actions")}
+                        title={t("table.actions")}
                         dataIndex="actions"
                         key="actions"
                         align="center"

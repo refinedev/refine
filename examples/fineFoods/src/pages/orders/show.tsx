@@ -88,7 +88,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                             }
                         }}
                     >
-                        {t("common.buttons.accept")}
+                        {t("buttons.accept")}
                     </Button>,
                     <Button
                         disabled={
@@ -113,7 +113,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                             }
                         }}
                     >
-                        {t("common.buttons.reject")}
+                        {t("buttons.reject")}
                     </Button>,
                 ]}
             >
