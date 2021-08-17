@@ -3,7 +3,9 @@ id: useResourceWithRoute
 title: useResourceWithRoute
 ---
 
-`useResourceWithRoute` is used to get the properties of a `<Resource>` defined as a child of the `<Refine>` component. It returns us a function and thanks to this function we get the resource we want.
+`useResourceWithRoute` is used to get the properties of a `<Resource>` defined as a child of the `<Refine>` component. It returns a function and this function allows us to access the resource with the `route` option we gave to `<Resource>`.
+
+The hook is used internal in **refine**. Normally you don't need this hook, but we export it as it may be useful for some use-cases.
 
 ```ts
 const resourceWithRoute = useResourceWithRoute();
@@ -13,8 +15,8 @@ const resourceWithRoute = useResourceWithRoute();
 
 ### Return value
 
-| Description       | Type                                                |
-| ----------------- | --------------------------------------------------- |
+| Description       | Type                               |
+| ----------------- | ---------------------------------- |
 | resourceWithRoute | `(route: string) => IResourceItem` |
 
 #### Interfaces
