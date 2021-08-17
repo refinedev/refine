@@ -18,6 +18,7 @@ import {
     mapAntdSorterToCrudSorting,
     mapAntdFilterToCrudFilter,
     compareFilters,
+    compareSorters,
 } from "@definitions/table";
 
 import {
@@ -118,7 +119,7 @@ export const useTable = <
 
     const [sorter, setSorter] = useState<CrudSorting>(defaultSorter || []);
     const [filters, setFilters] = useState<CrudFilters>(
-        unionWith(permanentFilter, defaultFilter || []),
+        unionWith(permanentFilter, defaultFilter || [], compareFilters),
     );
 
     console.log({ filters });
@@ -181,8 +182,10 @@ export const useTable = <
         );
 
         // Map Antd:Sorter -> refine:CrudSorting
+        console.log({ sorter });
         const crudSorting = mapAntdSorterToCrudSorting(sorter);
-        setSorter(crudSorting);
+        console.log({ crudSorting });
+        setSorter(unionWith(crudSorting, initialSorter, compareSorters));
 
         tablePropsSunflower.onChange(pagination, filters, sorter);
     };
@@ -197,6 +200,12 @@ export const useTable = <
                     prevFilters,
                     compareFilters,
                 ),
+            );
+
+            tablePropsSunflower.onChange(
+                { ...tablePropsSunflower.pagination, current: 1 },
+                filters,
+                sorter,
             );
         }
     };

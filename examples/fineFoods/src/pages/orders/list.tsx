@@ -46,10 +46,17 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     >({
         initialSorter: [
             {
-                field: "id",
+                field: "status.text",
                 order: "desc",
             },
         ],
+        /* initialFilter: [
+            {
+                field: "status.text",
+                operator: "eq",
+                value: "Pending",
+            },
+        ], */
         onSearch: (params) => {
             const filters: CrudFilters = [];
             const { q, store, user, createdAt, status } = params;
@@ -242,15 +249,17 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             title={t("orders:fields.orderNumber")}
                             render={(value) => <TextField value={value} />}
                         />
-                        <Table.Column
+                        <Table.Column<IOrder>
                             key="status.text"
-                            dataIndex={["status", "text"]}
+                            dataIndex={"status.text"}
                             title={t("orders:fields.status")}
-                            render={(value) => {
-                                return <OrderStatus status={value} />;
+                            render={(value, record) => {
+                                return (
+                                    <OrderStatus status={record.status.text} />
+                                );
                             }}
                             defaultSortOrder={getDefaultSortOrder(
-                                "status",
+                                "status.text",
                                 sorter,
                             )}
                             sorter

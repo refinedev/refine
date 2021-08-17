@@ -96,7 +96,7 @@ describe("definitions/table", () => {
                 value: "test",
             },
         ];
-        expect(getDefaultFilter("title", filters)).toEqual("test");
+        expect(getDefaultFilter("title", filters, "contains")).toEqual("test");
     });
 
     it("getDefaultFilter empty array", () => {
@@ -107,7 +107,18 @@ describe("definitions/table", () => {
                 value: undefined,
             },
         ];
-        expect(getDefaultFilter("title", filters)).toEqual([]);
+        expect(getDefaultFilter("title", filters, "contains")).toEqual([]);
+    });
+
+    it("getDefaultFilter default operator", () => {
+        const filters: CrudFilters = [
+            {
+                field: "title",
+                operator: "eq",
+                value: "test",
+            },
+        ];
+        expect(getDefaultFilter("title", filters)).toEqual("test");
     });
 
     it("mapAntdSorterToCrudSorting for array", () => {

@@ -5,6 +5,7 @@ import {
     CrudOperators,
     CrudSorting,
     CrudFilter,
+    CrudSort,
 } from "../../interfaces";
 import {
     SortOrder,
@@ -167,3 +168,6 @@ export const mapAntdFilterToCrudFilter = (
 
 export const compareFilters = (left: CrudFilter, right: CrudFilter): boolean =>
     left.field == right.field && left.operator == right.operator;
+
+export const compareSorters = (left: CrudSort, right: CrudSort): boolean =>
+    left.field == right.field;
