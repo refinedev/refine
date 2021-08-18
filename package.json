@@ -47,6 +47,7 @@
         "typescript": "^3.9.8"
     },
     "dependencies": {
-        "prettier": "^2.3.0"
+        "prettier": "^2.3.0",
+        "prism-react-renderer": "^1.2.1"
     }
 }
