@@ -283,8 +283,8 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                     sorter
                 />
                 <Table.Column<IProduct>
-                    title="Actions"
                     dataIndex="actions"
+                    title={t("table.actions")}
                     render={(_, record) => (
                         <Dropdown
                             overlay={moreMenu(record)}
