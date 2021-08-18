@@ -50,6 +50,7 @@
 
 .playerButton {
     width: 25%;
+    min-height: 90px;
     text-align: center;
 }
 
@@ -58,6 +59,7 @@
     font-weight: 600;
     text-align: center;
     margin-top: 12px;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 670px) {
@@ -67,7 +69,23 @@
 }
 
 .activeTitle {
-    color: white;
+    color: white !important;
+}
+
+.controlsContainer {
+    margin-top: 4px;
+}
+
+.icon {
+    color: #7a848b;
+    font-size: 24px;
+    padding: 2px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.icon:hover {
+    color: #cad4db;
 }
 
 progress {

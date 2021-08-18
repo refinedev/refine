@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import ReactPlayer from "react-player";
 import clsx from "clsx";
+import { IoMdPlay, IoMdPause, IoMdRefresh } from "react-icons/io";
 
 import styles from "./styles.module.css";
 
@@ -14,7 +15,9 @@ const videoURLs = [
 ];
 
 export const Hero = () => {
+    const playerRef = useRef();
     const [played, setPlayed] = useState(0);
+    const [playing, setPlaying] = useState(true);
     const [selectedVideo, setSelectedVideo] = useState(0);
 
     const handleSelectedVideo = (videoNumber) => {
@@ -23,6 +26,26 @@ export const Hero = () => {
             setSelectedVideo(videoNumber);
         }
     };
+
+    const videoControls = (
+        <div className={styles.controlsContainer}>
+            <IoMdRefresh
+                onClick={() => playerRef.current.seekTo(0)}
+                className={styles.icon}
+            />
+            {playing ? (
+                <IoMdPause
+                    onClick={() => setPlaying((prev) => !prev)}
+                    className={styles.icon}
+                />
+            ) : (
+                <IoMdPlay
+                    onClick={() => setPlaying((prev) => !prev)}
+                    className={styles.icon}
+                />
+            )}
+        </div>
+    );
 
     return (
         <section className={styles.section}>
@@ -48,15 +71,18 @@ export const Hero = () => {
                     <div className="col col--9">
                         <div className={styles.playerContainer}>
                             <ReactPlayer
+                                ref={playerRef}
                                 className={styles.reactPlayer}
                                 width="100%"
                                 height="100%"
                                 muted
-                                playing
+                                playing={playing}
                                 controls={false}
-                                progressInterval={100}
+                                progressInterval={500}
                                 url={videoURLs[selectedVideo]}
                                 onProgress={(value) => setPlayed(value.played)}
+                                onPause={() => setPlaying(false)}
+                                onPlay={() => setPlaying(true)}
                             />
                         </div>
                         <div className={styles.playerButtons}>
@@ -75,6 +101,7 @@ export const Hero = () => {
                                 >
                                     Create Project
                                 </a>
+                                {selectedVideo === 0 && videoControls}
                             </div>
                             <div className={styles.playerButton}>
                                 <progress
@@ -91,6 +118,7 @@ export const Hero = () => {
                                 >
                                     First Page
                                 </a>
+                                {selectedVideo === 1 && videoControls}
                             </div>
                             <div className={styles.playerButton}>
                                 <progress
@@ -107,6 +135,7 @@ export const Hero = () => {
                                 >
                                     Authentication
                                 </a>
+                                {selectedVideo === 2 && videoControls}
                             </div>
                             <div className={styles.playerButton}>
                                 <progress
@@ -123,6 +152,7 @@ export const Hero = () => {
                                 >
                                     i18n Customization
                                 </a>
+                                {selectedVideo === 3 && videoControls}
                             </div>
                         </div>
                     </div>
