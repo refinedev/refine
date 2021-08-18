@@ -137,6 +137,44 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 It allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
 
+### `queryOptions`
+
+```tsx
+const { checkboxGroupProps } = useCheckboxGroup({
+    resource: "tags",
+    //highlight-start
+    queryOptions: { onError: () => { console.log("triggers when on query return Error") }}
+    //highlight-end
+});
+```
+
+[useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing queryOptions property.
+
+
+```caution
+The `defaultQueryOnSuccess` method which has default onSuccess behaviour and returned from `useCheckboxGroup` hook  must be called in case of `onSuccess` is needed to be overwritten. 
+
+```tsx
+const { 
+        checkboxGroupProps, 
+        //hightlight-nextline
+        defaultQueryOnSuccess
+      } = useCheckboxGroup({
+        resource: "tags",
+        //highlight-start
+        queryOptions: { 
+            onSuccess: (data) => { 
+                defaultQueryOnSuccess(data)
+                console.log("triggers when on query return on success") 
+            } 
+                     }}
+        //highlight-end
+});
+```
+
+```
+
+
 ## API Reference
 
 ### Properties
@@ -148,6 +186,7 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 | optionLabel                                       | Sets the option's label value              | `string`                                   | `"title"` |
 | filters                                           | Adds filters while fetching the data       | [`CrudFilters`](../../interfaces.md#crudfilters) |           |
 | sort                                              | Allows us to sort the options              | [`CrudSorting`](../../interfaces.md#crudsorting) |           |
+| queryOptions                                              | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options             | ` UseQueryOptions<GetListResponse<TData>, TError>` |           |
 
 ### Return values
 
@@ -155,6 +194,7 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 | ------------------ | ------------------------------- | --------------------------------------------------------------------------------------------- |
 | checkboxGroupProps | Ant design checkbox group properties | [`Checkbox Group`](https://ant.design/components/checkbox/#Checkbox-Group)                    |
 | queryResult        | Results of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+| defaultQueryOnSuccess        | Default onSuccess method | () => void |
 
 ## Live Codesandbox Example
 
