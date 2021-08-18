@@ -65,7 +65,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 className="pageHeader"
                 ghost={false}
                 onBack={() => window.history.back()}
-                title={t("orders:fields.orderID")}
+                title={t("orders.fields.orderID")}
                 subTitle={`#${record?.orderNumber ?? ""}`}
                 extra={[
                     <Button
@@ -88,7 +88,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                             }
                         }}
                     >
-                        {t("common:buttons.accept")}
+                        {t("buttons.accept")}
                     </Button>,
                     <Button
                         disabled={
@@ -113,7 +113,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                             }
                         }}
                     >
-                        {t("common:buttons.reject")}
+                        {t("buttons.reject")}
                     </Button>,
                 ]}
             >
@@ -131,7 +131,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         <Steps.Step
                             status={stepStatus(event, index)}
                             key={index}
-                            title={event.status}
+                            title={t(`enum.orderStatuses.${event.status}`)}
                             icon={
                                 notFinishedCurrentStep(event, index) && (
                                     <Icons.LoadingOutlined />
@@ -184,7 +184,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
 
                 <Col xl={12} lg={14} md={24} className="courier-box-container">
                     {courierInfoBox(
-                        t("orders:courier.phone"),
+                        t("orders.courier.phone"),
                         <Icons.MobileOutlined
                             className="mobile"
                             style={{ color: "#ffff", fontSize: 32 }}
@@ -192,7 +192,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         record?.courier.gsm,
                     )}
                     {courierInfoBox(
-                        t("orders:courier.deliveryTime"),
+                        t("orders.courier.deliveryTime"),
                         <Icon
                             className="mobile"
                             component={BikeWhiteIcon}
@@ -210,7 +210,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
             pageHeaderProps={{ style: { marginTop: 20 } }}
             title={
                 <Text style={{ fontSize: 22, fontWeight: 800 }}>
-                    Deliverables
+                    {t("orders.deliverables.deliverables")}
                 </Text>
             }
         >
@@ -220,7 +220,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 dataSource={record?.products}
                 footer={(_data) => (
                     <div className="product-footer">
-                        <Text>MAIN TOTAL</Text>
+                        <Text>{t("orders.deliverables.mainTotal")}</Text>
                         <Text>{record?.amount}$</Text>
                     </div>
                 )}
@@ -230,8 +230,8 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                     sorter={(a: IProduct, b: IProduct) =>
                         a.name > b.name ? 1 : -1
                     }
-                    title="Items"
                     dataIndex="name"
+                    title={t("orders.deliverables.fields.items")}
                     render={(value, record) => (
                         <div className="product">
                             <Avatar
@@ -253,18 +253,17 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                     )}
                 />
                 <Table.Column
-                    title="Qty"
+                    title={t("orders.deliverables.fields.quantity")}
                     dataIndex="quantity"
                     render={() => (
                         <Text style={{ fontWeight: 800 }}>{"1x"}</Text>
                     )}
                 />
-
                 <Table.Column
                     defaultSortOrder="descend"
                     sorter={(a: IProduct, b: IProduct) => a.price - b.price}
-                    title="Price"
                     dataIndex="price"
+                    title={t("orders.deliverables.fields.price")}
                     render={(value) => (
                         <Text style={{ fontWeight: 800 }}>{value}</Text>
                     )}
@@ -272,8 +271,8 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 <Table.Column
                     defaultSortOrder="descend"
                     sorter={(a: IProduct, b: IProduct) => a.price - b.price}
-                    title="Total"
                     dataIndex="price"
+                    title={t("orders.deliverables.fields.total")}
                     render={(value) => (
                         <Text style={{ fontWeight: 800 }}>{value}</Text>
                     )}

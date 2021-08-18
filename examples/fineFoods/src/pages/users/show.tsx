@@ -22,25 +22,25 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
     const renderContent = () => {
         return (
             <>
-                <Title level={5}>{t("users:fields.id")}</Title>
+                <Title level={5}>{t("users.fields.id")}</Title>
                 <Text>{record?.id}</Text>
-                <Title level={5}>{t("users:fields.firstName")}</Title>
+                <Title level={5}>{t("users.fields.firstName")}</Title>
                 <Text>{record?.firstName}</Text>
-                <Title level={5}>{t("users:fields.lastName")}</Title>
+                <Title level={5}>{t("users.fields.lastName")}</Title>
                 <Text>{record?.lastName}</Text>
-                <Title level={5}>{t("users:fields.gender")}</Title>
+                <Title level={5}>{t("users.fields.gender")}</Title>
                 <Text>{record?.gender}</Text>
-                <Title level={5}>{t("users:fields.gsm")}</Title>
+                <Title level={5}>{t("users.fields.gsm")}</Title>
                 <Text>{record?.gsm}</Text>
-                <Title level={5}>{t("users:fields.avatar.label")}</Title>
+                <Title level={5}>{t("users.fields.avatar.label")}</Title>
                 <Text>
                     <Avatar src={record?.avatar[0].url} />
                 </Text>
-                <Title level={5}>{t("users:fields.isActive")}</Title>
+                <Title level={5}>{t("users.fields.isActive")}</Title>
                 <Text>
                     <BooleanField value={record?.isActive} />
                 </Text>
-                <Title level={5}>{t("users:fields.createdAt")}</Title>
+                <Title level={5}>{t("users.fields.createdAt")}</Title>
                 <Text>
                     <DateField value={record?.createdAt || ""} format="LLL" />
                 </Text>
@@ -48,9 +48,5 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
         );
     };
 
-    return (
-        <Show title={t("users:show.title")} isLoading={isFetching}>
-            {record && renderContent()}
-        </Show>
-    );
+    return <Show isLoading={isFetching}>{record && renderContent()}</Show>;
 };

@@ -65,7 +65,7 @@ export const NewCustomers: React.FC = () => {
         <div className="new-customers-wrapper">
             <div className="header">
                 <Title level={3} className="header__title">
-                    {t("dashboard:newCustomers.title")}
+                    {t("dashboard.newCustomers.title")}
                 </Title>
 
                 <div className="header__numbers">

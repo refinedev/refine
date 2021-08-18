@@ -56,7 +56,7 @@ export const ProductCategoryFilter: React.FC<ProductItemProps> = ({
                 type={filterCategories.length === 0 ? "primary" : "default"}
                 onClick={() => setFilterCategories([])}
             >
-                {t("stores:all")}
+                {t("stores.all")}
             </Button>
             {categoryData?.data.map((category) => (
                 <Button

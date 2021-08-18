@@ -48,7 +48,7 @@ export const EditProduct: React.FC<EditProductProps> = ({
                 pageHeaderProps={{ extra: null }}
             >
                 <Form {...formProps} layout="vertical">
-                    <Form.Item label={t("products:fields.images.label")}>
+                    <Form.Item label={t("products.fields.images.label")}>
                         <Form.Item
                             name="images"
                             valuePropName="fileList"
@@ -85,18 +85,18 @@ export const EditProduct: React.FC<EditProductProps> = ({
                                         }}
                                     >
                                         {t(
-                                            "products:fields.images.description",
+                                            "products.fields.images.description",
                                         )}
                                     </Text>
                                     <Text style={{ fontSize: "12px" }}>
-                                        {t("products:fields.images.validation")}
+                                        {t("products.fields.images.validation")}
                                     </Text>
                                 </Space>
                             </Upload.Dragger>
                         </Form.Item>
                     </Form.Item>
                     <Form.Item
-                        label={t("products:fields.name")}
+                        label={t("products.fields.name")}
                         name="name"
                         rules={[
                             {
@@ -107,7 +107,7 @@ export const EditProduct: React.FC<EditProductProps> = ({
                         <Input />
                     </Form.Item>
                     <Form.Item
-                        label={t("products:fields.description")}
+                        label={t("products.fields.description")}
                         name="description"
                         rules={[
                             {
@@ -118,7 +118,7 @@ export const EditProduct: React.FC<EditProductProps> = ({
                         <Input.TextArea rows={6} />
                     </Form.Item>
                     <Form.Item
-                        label={t("products:fields.price")}
+                        label={t("products.fields.price")}
                         name="price"
                         rules={[
                             {
@@ -132,7 +132,7 @@ export const EditProduct: React.FC<EditProductProps> = ({
                         />
                     </Form.Item>
                     <Form.Item
-                        label={t("products:fields.category")}
+                        label={t("products.fields.category")}
                         name={["category", "id"]}
                         rules={[
                             {
@@ -143,7 +143,7 @@ export const EditProduct: React.FC<EditProductProps> = ({
                         <Select {...categorySelectProps} />
                     </Form.Item>
                     <Form.Item
-                        label={t("products:fields.isActive")}
+                        label={t("products.fields.isActive")}
                         name="isActive"
                     >
                         <Radio.Group>

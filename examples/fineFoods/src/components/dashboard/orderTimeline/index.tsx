@@ -82,7 +82,7 @@ export const OrderTimeline: React.FC = () => {
                             </Tooltip>
                             <Text>
                                 {t(
-                                    `dashboard:timeline.orderStatuses.${
+                                    `dashboard.timeline.orderStatuses.${
                                         orderStatusColor(status.id.toString())
                                             ?.text
                                     }`,

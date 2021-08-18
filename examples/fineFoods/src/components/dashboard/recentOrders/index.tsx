@@ -7,6 +7,7 @@ import {
     Tag,
     NumberField,
     useNavigation,
+    useTranslate,
 } from "@pankod/refine";
 import "./style.less";
 
@@ -17,6 +18,7 @@ import { IOrder } from "interfaces";
 const { Text, Paragraph } = Typography;
 
 export const RecentOrders: React.FC = () => {
+    const t = useTranslate();
     const { tableProps } = useTable<IOrder>({
         resource: "orders",
         initialSorter: [
@@ -120,7 +122,9 @@ export const RecentOrders: React.FC = () => {
                             }}
                             value={value / 100}
                         />
-                        <Tag color="orange">{record.status.text}</Tag>
+                        <Tag color="orange">
+                            {t(`enum.orderStatuses.${record.status.text}`)}
+                        </Tag>
                     </Space>
                 )}
             />

@@ -61,13 +61,13 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                                     textAlign: "center",
                                 }}
                             >
-                                {t("stores:selectLocation")}
+                                {t("stores.selectLocation")}
                             </Text>
                         </Space>
                     </Col>
                     <Col xs={24} lg={8}>
                         <Form.Item
-                            label={t("stores:fields.title")}
+                            label={t("stores.fields.title")}
                             name="title"
                             rules={[
                                 {
@@ -78,7 +78,7 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                             <Input />
                         </Form.Item>
                         <Form.Item
-                            label={t("stores:fields.email")}
+                            label={t("stores.fields.email")}
                             name="email"
                             rules={[
                                 {
@@ -90,7 +90,7 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                             <Input />
                         </Form.Item>
                         <Form.Item
-                            label={t("stores:fields.gsm")}
+                            label={t("stores.fields.gsm")}
                             name="gsm"
                             rules={[
                                 {
@@ -103,7 +103,7 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                             </InputMask>
                         </Form.Item>
                         <Form.Item
-                            label={t("stores:fields.isActive")}
+                            label={t("stores.fields.isActive")}
                             name="isActive"
                         >
                             <Radio.Group>
@@ -116,7 +116,7 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                     </Col>
                     <Col xs={24} lg={8}>
                         <Form.Item
-                            label={t("stores:fields.address")}
+                            label={t("stores.fields.address")}
                             name={["address", "text"]}
                             rules={[
                                 {

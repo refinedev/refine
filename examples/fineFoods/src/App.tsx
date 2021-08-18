@@ -45,18 +45,12 @@ const App: React.FC = () => {
             warnWhenUnsavedChanges
         >
             <Resource
-                options={{
-                    label: t("orders:title"),
-                }}
                 name="orders"
                 list={OrderList}
                 show={OrderShow}
                 icon={<Icons.ShoppingOutlined />}
             />
             <Resource
-                options={{
-                    label: t("users:title"),
-                }}
                 name="users"
                 list={UserList}
                 edit={UserEdit}
@@ -64,35 +58,20 @@ const App: React.FC = () => {
                 icon={<Icons.UsergroupAddOutlined />}
             />
             <Resource
-                options={{
-                    label: t("products:title"),
-                }}
                 name="products"
                 list={ProductList}
                 icon={<Icon component={PizzaIcon} />}
             />
             <Resource
                 name="stores"
-                options={{
-                    label: t("stores:title"),
-                }}
                 list={StoreList}
                 edit={StoreEdit}
                 create={StoreCreate}
                 icon={<Icons.ShopOutlined />}
             />
-            <Resource
-                name="categories"
-                options={{
-                    label: t("categories:title"),
-                }}
-                list={CategoryList}
-            />
+            <Resource name="categories" list={CategoryList} />
             <Resource
                 name="couriers"
-                options={{
-                    label: t("couriers:title"),
-                }}
                 list={CourierList}
                 show={CourierShow}
                 create={CouriersCreate}

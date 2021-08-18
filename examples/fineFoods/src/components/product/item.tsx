@@ -57,7 +57,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({
                                     }
                                     onClick={() => updateStock(0, item)}
                                 >
-                                    {t("stores:buttons.outOfStock")}
+                                    {t("stores.buttons.outOfStock")}
                                 </Menu.Item>
                             )}
                             <Menu.Item
@@ -74,7 +74,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({
                                 }
                                 onClick={() => editShow(item.id)}
                             >
-                                {t("stores:buttons.edit")}
+                                {t("stores.buttons.edit")}
                             </Menu.Item>
                         </Menu>
                     }

@@ -64,7 +64,7 @@ export const DailyOrders: React.FC = () => {
     return (
         <div className="daily-order-wrapper">
             <div className="title-area">
-                <Title level={3}>{t("dashboard:dailyOrders.title")}</Title>
+                <Title level={3}>{t("dashboard.dailyOrders.title")}</Title>
                 <div className="title-area__number">
                     <Text strong>{data?.data.total ?? 0} </Text>
 

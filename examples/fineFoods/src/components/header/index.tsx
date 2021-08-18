@@ -88,7 +88,7 @@ export const Header: React.FC = () => {
                     setOptions((prevOptions) => [
                         ...prevOptions,
                         {
-                            label: renderTitle(t("orders:title")),
+                            label: renderTitle(t("orders.orders")),
                             options: orderOptionGroup,
                         },
                     ]);
@@ -116,7 +116,7 @@ export const Header: React.FC = () => {
                     setOptions((prevOptions) => [
                         ...prevOptions,
                         {
-                            label: renderTitle(t("stores:title")),
+                            label: renderTitle(t("stores.title")),
                             options: storeOptionGroup,
                         },
                     ]);
@@ -144,7 +144,7 @@ export const Header: React.FC = () => {
                     setOptions((prevOptions) => [
                         ...prevOptions,
                         {
-                            label: renderTitle(t("couriers:title")),
+                            label: renderTitle(t("couriers.title")),
                             options: courierOptionGroup,
                         },
                     ]);
@@ -162,7 +162,7 @@ export const Header: React.FC = () => {
 
     const menu = (
         <Menu selectedKeys={[currentLocale]}>
-            {[...i18n.languages].sort().map((lang: string) => (
+            {[...(i18n.languages ?? [])].sort().map((lang: string) => (
                 <Menu.Item
                     key={lang}
                     onClick={() => changeLanguage(lang)}

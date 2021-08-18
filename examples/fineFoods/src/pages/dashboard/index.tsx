@@ -79,7 +79,7 @@ export const DashboardPage: React.FC = () => {
                         <Text
                             strong /* style={{ fontSize: 24, fontWeight: 800 }} */
                         >
-                            {t("dashboard:deliveryMap.title")}
+                            {t("dashboard.deliveryMap.title")}
                         </Text>
                     }
                 >
@@ -92,7 +92,7 @@ export const DashboardPage: React.FC = () => {
                         height: 550,
                         overflowY: "scroll",
                     }}
-                    title={<Text strong>{t("dashboard:timeline.title")}</Text>}
+                    title={<Text strong>{t("dashboard.timeline.title")}</Text>}
                 >
                     <OrderTimeline />
                 </Card>
@@ -100,7 +100,7 @@ export const DashboardPage: React.FC = () => {
             <Col xl={17} lg={16} md={24} style={{ width: "100%" }}>
                 <Card
                     title={
-                        <Text strong>{t("dashboard:recentOrders.title")}</Text>
+                        <Text strong>{t("dashboard.recentOrders.title")}</Text>
                     }
                 >
                     <RecentOrders />
@@ -109,7 +109,7 @@ export const DashboardPage: React.FC = () => {
             <Col xl={7} lg={8} md={24} style={{ width: "100%" }}>
                 <Card
                     title={
-                        <Text strong>{t("dashboard:trendingMenus.title")}</Text>
+                        <Text strong>{t("dashboard.trendingMenus.title")}</Text>
                     }
                 >
                     <TrendingMenu />

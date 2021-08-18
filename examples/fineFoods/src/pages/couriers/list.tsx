@@ -57,7 +57,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                     edit("couriers", id);
                 }}
             >
-                {t("common:buttons.edit")}
+                {t("buttons.edit")}
             </Menu.Item>
             <Menu.Item
                 key="reject"
@@ -83,18 +83,13 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                     });
                 }}
             >
-                {t("common:buttons.delete")}
+                {t("buttons.delete")}
             </Menu.Item>
         </Menu>
     );
 
     return (
-        <List
-            createButtonProps={{
-                children: t("common:buttons.add").toUpperCase(),
-            }}
-            title={t("couriers:title")}
-        >
+        <List>
             <Table
                 {...tableProps}
                 rowKey="id"
@@ -111,7 +106,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
             >
                 <Table.Column
                     key="name"
-                    title={t("couriers:fields.name")}
+                    title={t("couriers.fields.name")}
                     render={(record) => (
                         <Space>
                             <Avatar size={74} src={record.avatar?.[0].url} />
@@ -123,19 +118,19 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                 />
                 <Table.Column
                     dataIndex="gsm"
-                    title={t("couriers:fields.gsm")}
+                    title={t("couriers.fields.gsm")}
                 />
                 <Table.Column
                     dataIndex="email"
-                    title={t("couriers:fields.email")}
+                    title={t("couriers.fields.email")}
                 />
                 <Table.Column
                     dataIndex="address"
-                    title={t("couriers:fields.address")}
+                    title={t("couriers.fields.address")}
                 />
                 <Table.Column<ICourier>
                     fixed="right"
-                    title={t("common:table.actions")}
+                    title={t("table.actions")}
                     dataIndex="actions"
                     key="actions"
                     render={(_, record) => (

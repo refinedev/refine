@@ -86,7 +86,7 @@ export const DailyRevenue: React.FC = () => {
             <div className="title-area">
                 <div className="title-area__amount">
                     <Typography.Title level={3}>
-                        {t("dashboard:dailyRevenue.title")}
+                        {t("dashboard.dailyRevenue.title")}
                     </Typography.Title>
                     <div className="title-area__number">
                         <NumberField

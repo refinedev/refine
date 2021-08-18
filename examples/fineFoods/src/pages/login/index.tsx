@@ -12,6 +12,8 @@ import {
     useTranslate,
 } from "@pankod/refine";
 
+import { Trans } from "react-i18next";
+
 const { Text, Title } = Typography;
 
 import { layoutStyles, containerStyles, titleStyles } from "./style";
@@ -24,13 +26,17 @@ export interface ILoginForm {
 
 export const LoginPage: React.FC = () => {
     const [form] = Form.useForm<ILoginForm>();
-    const translate = useTranslate();
+    const t = useTranslate();
 
     const { mutate: login } = useLogin<ILoginForm>();
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>
-            <Text style={{ color: "#67be23" }}>Sign in</Text> your account
+            <Trans
+                i18nKey="pages.login.message"
+                defaults="<0>Sign in</0> your account"
+                components={[<Text key="0" style={{ color: "#67be23" }} />]}
+            />
         </Title>
     );
 
@@ -64,10 +70,7 @@ export const LoginPage: React.FC = () => {
                             >
                                 <Form.Item
                                     name="email"
-                                    label={translate(
-                                        "pages.login.email",
-                                        "Email",
-                                    )}
+                                    label={t("pages.login.email", "Email")}
                                     rules={[{ required: true }]}
                                 >
                                     <Input
@@ -77,7 +80,7 @@ export const LoginPage: React.FC = () => {
                                 </Form.Item>
                                 <Form.Item
                                     name="password"
-                                    label={translate(
+                                    label={t(
                                         "pages.login.password",
                                         "Password",
                                     )}
@@ -101,7 +104,7 @@ export const LoginPage: React.FC = () => {
                                                 fontSize: "12px",
                                             }}
                                         >
-                                            {translate(
+                                            {t(
                                                 "pages.login.remember",
                                                 "Remember me",
                                             )}
@@ -115,7 +118,7 @@ export const LoginPage: React.FC = () => {
                                         }}
                                         href="#"
                                     >
-                                        {translate(
+                                        {t(
                                             "pages.login.forgotPassword",
                                             "Forgot password?",
                                         )}
@@ -127,20 +130,17 @@ export const LoginPage: React.FC = () => {
                                     htmlType="submit"
                                     block
                                 >
-                                    {translate("pages.login.signin", "Sign in")}
+                                    {t("pages.login.signin", "Sign in")}
                                 </Button>
                             </Form>
                             <div style={{ marginTop: 8 }}>
                                 <Text style={{ fontSize: 12 }}>
-                                    {translate(
+                                    {t(
                                         "pages.login.noAccount",
                                         "Still no account? Please go to",
                                     )}{" "}
                                     <a href="#" style={{ fontWeight: "bold" }}>
-                                        {translate(
-                                            "pages.login.signup",
-                                            "Sign up",
-                                        )}
+                                        {t("pages.login.signup", "Sign up")}
                                     </a>
                                 </Text>
                             </div>

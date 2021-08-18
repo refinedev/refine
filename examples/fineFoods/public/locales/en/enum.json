@@ -1,9 +1,0 @@
-{
-  "orderStatuses": {
-    "pending": "Pending",
-    "ready": "Ready",
-    "on the way": "On the way",
-    "delivered": "Delivered",
-    "cancelled": "Cancelled"
-  }
-}

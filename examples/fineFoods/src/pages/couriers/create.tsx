@@ -83,11 +83,11 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                                         }}
                                     >
                                         {t(
-                                            "couriers:fields.images.description",
+                                            "couriers.fields.images.description",
                                         )}
                                     </Text>
                                     <Text style={{ fontSize: "12px" }}>
-                                        {t("couriers:fields.images.validation")}
+                                        {t("couriers.fields.images.validation")}
                                     </Text>
                                 </Space>
                             </Upload.Dragger>
@@ -98,7 +98,7 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                     <Row gutter={10}>
                         <Col xs={24} lg={12}>
                             <Form.Item
-                                label={t("couriers:fields.name")}
+                                label={t("couriers.fields.name")}
                                 name="name"
                                 rules={[
                                     {
@@ -109,7 +109,7 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                                 <Input />
                             </Form.Item>
                             <Form.Item
-                                label={t("couriers:fields.surname")}
+                                label={t("couriers.fields.surname")}
                                 name="surname"
                                 rules={[
                                     {
@@ -120,7 +120,7 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                                 <Input />
                             </Form.Item>
                             <Form.Item
-                                label={t("couriers:fields.gender.label")}
+                                label={t("couriers.fields.gender.label")}
                                 name="gender"
                                 rules={[
                                     {
@@ -132,13 +132,13 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                                     options={[
                                         {
                                             label: t(
-                                                "couriers:fields.gender.male",
+                                                "couriers.fields.gender.male",
                                             ),
                                             value: "Male",
                                         },
                                         {
                                             label: t(
-                                                "couriers:fields.gender.female",
+                                                "couriers.fields.gender.female",
                                             ),
                                             value: "Female",
                                         },
@@ -148,7 +148,7 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                         </Col>
                         <Col xs={24} lg={12}>
                             <Form.Item
-                                label={t("couriers:fields.gsm")}
+                                label={t("couriers.fields.gsm")}
                                 name="gsm"
                                 rules={[
                                     {
@@ -163,7 +163,7 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                                 </InputMask>
                             </Form.Item>
                             <Form.Item
-                                label={t("couriers:fields.email")}
+                                label={t("couriers.fields.email")}
                                 name="email"
                                 rules={[
                                     {
@@ -177,7 +177,7 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                         </Col>
                     </Row>
                     <Form.Item
-                        label={t("couriers:fields.address")}
+                        label={t("couriers.fields.address")}
                         name="address"
                         rules={[
                             {
@@ -193,7 +193,7 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
         <Row key="relations" gutter={20}>
             <Col xs={24} lg={12}>
                 <Form.Item
-                    label={t("couriers:fields.store")}
+                    label={t("couriers.fields.store")}
                     name={["store", "id"]}
                     rules={[
                         {
@@ -204,7 +204,7 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                     <Select {...storeSelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={t("couriers:fields.accountNumber")}
+                    label={t("couriers.fields.accountNumber")}
                     name="accountNumber"
                     rules={[
                         {
@@ -218,7 +218,7 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
             </Col>
             <Col xs={24} lg={12}>
                 <Form.Item
-                    label={t("couriers:fields.vehicle")}
+                    label={t("couriers.fields.vehicle")}
                     name="licensePlate"
                     rules={[
                         {
@@ -245,7 +245,7 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                                     gotoStep(current - 1);
                                 }}
                             >
-                                Previous
+                                {t("buttons.previousStep")}
                             </Button>
                         )}
                         {current < formList.length - 1 && (
@@ -254,7 +254,7 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                                     gotoStep(current + 1);
                                 }}
                             >
-                                Next
+                                {t("buttons.nextStep")}
                             </Button>
                         )}
                         {current === formList.length - 1 && (
@@ -267,8 +267,8 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                 }
             >
                 <Steps {...stepsProps}>
-                    <Steps.Step title={t("couriers:steps.content")} />
-                    <Steps.Step title={t("couriers:steps.relations")} />
+                    <Steps.Step title={t("couriers.steps.content")} />
+                    <Steps.Step title={t("couriers.steps.relations")} />
                 </Steps>
                 <Form
                     {...formProps}
