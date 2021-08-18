@@ -166,5 +166,18 @@ export const mapAntdFilterToCrudFilter = (
     return crudFilters;
 };
 
-export const compareFilters = (left: CrudFilter, right: CrudFilter): boolean =>
-    left.field == right.field && left.operator == right.operator;
+export const compareFilters = (
+    left: CrudFilter,
+    right: CrudFilter,
+): boolean => {
+    const specialOperators: CrudOperators[] = ["gte", "lte", "ne", "contains"];
+
+    const specialCase = [left.operator, right.operator]
+        .map((o) => specialOperators.includes(o))
+        .includes(true);
+
+    return (
+        left.field == right.field &&
+        (specialCase ? left.operator == right.operator : true)
+    );
+};

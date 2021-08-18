@@ -31,6 +31,7 @@ import {
     useUpdate,
     useNavigation,
     getDefaultFilter,
+    FilterDropdown,
 } from "@pankod/refine";
 import dayjs from "dayjs";
 
@@ -44,12 +45,12 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         IOrder,
         IOrderFilterVariables
     >({
-        initialSorter: [
+        /* initialSorter: [
             {
                 field: "status.text",
                 order: "desc",
             },
-        ],
+        ], */
         /* initialFilter: [
             {
                 field: "status.text",
@@ -126,6 +127,13 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 user: item.user.firstName,
             };
         },
+    });
+
+    const { selectProps: orderSelectProps } = useSelect<IStore>({
+        resource: "orderStatuses",
+        optionLabel: "text",
+        optionValue: "text",
+        defaultValue: getDefaultFilter("status.text", filters),
     });
 
     const Actions: React.FC = () => (
@@ -260,6 +268,23 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                 sorter,
                             )}
                             sorter
+                            defaultFilteredValue={getDefaultFilter(
+                                "status.text",
+                                filters,
+                            )}
+                            filterDropdown={(props) => {
+                                // console.log("filterdropdown props: ", props);
+                                return (
+                                    <FilterDropdown {...props}>
+                                        <Select
+                                            style={{ minWidth: 200 }}
+                                            mode="multiple"
+                                            placeholder="Select Status"
+                                            {...orderSelectProps}
+                                        />
+                                    </FilterDropdown>
+                                );
+                            }}
                         />
                         <Table.Column
                             align="right"

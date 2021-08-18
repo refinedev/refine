@@ -5,6 +5,7 @@ import { TablePaginationConfig, TableProps } from "antd/lib/table";
 import { FormProps } from "antd/lib/form";
 import { QueryObserverResult } from "react-query";
 import unionWith from "lodash/unionWith";
+import reverse from "lodash/reverse";
 
 import { useForm } from "antd/lib/form/Form";
 import { SorterResult } from "antd/lib/table/interface";
@@ -145,6 +146,7 @@ export const useTable = <
         defaultCurrent: defaultCurrentSF,
     } = tablePropsSunflower.pagination;
 
+    console.log("filters state: ", filters);
     const queryResult = useList<TData>(
         resource.name,
         {
@@ -169,12 +171,17 @@ export const useTable = <
         // Map Antd:Filter -> refine:CrudFilter
         const crudFilters = mapAntdFilterToCrudFilter(filters);
 
+        console.log({ filters });
+        console.log({ crudFilters });
+
         setFilters((prevFilters) =>
-            unionWith(
-                permanentFilter,
-                crudFilters,
-                prevFilters,
-                compareFilters,
+            reverse(
+                unionWith(
+                    permanentFilter,
+                    crudFilters,
+                    prevFilters,
+                    compareFilters,
+                ),
             ),
         );
 
@@ -188,14 +195,21 @@ export const useTable = <
     const onFinish = async (value: TSearchVariables) => {
         if (onSearch) {
             const searchFilters = await onSearch(value);
+            console.log({ value });
+            console.log({ searchFilters });
+
             setFilters((prevFilters) =>
-                unionWith(
-                    permanentFilter,
-                    searchFilters,
-                    prevFilters,
-                    compareFilters,
+                reverse(
+                    unionWith(
+                        permanentFilter,
+                        searchFilters,
+                        prevFilters,
+                        compareFilters,
+                    ),
                 ),
             );
+
+            console.log(" onfinish filters state", filters);
 
             tablePropsSunflower.onChange(
                 { ...tablePropsSunflower.pagination, current: 1 },
