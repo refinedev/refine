@@ -70,4 +70,14 @@ Here, we show a button somewhere on the page and use `show` on it's `onClick` ca
 
 We also used `onOk` callback from Ant Design [`<Modal />`][Modal] to add `close` as a callback on it's button. When the user clicks on this button, thus triggering `close` function, the modal dialog will be closed. We do this to demonstrate `close` function.
 
+## API Reference
+
+### Return Value
+
+| Key        | Description                                 | Type                  |
+| ---------- | ------------------------------------------- | --------------------- |
+| modalProps | Props for managed modal                     | [`ModalProps`][Modal] |
+| show       | A function that can open the modal          | `() => void`          |
+| close      | Specify a function that can close the modal | `() => void`          |
+
 [Modal]: https://ant.design/components/modal/#API
