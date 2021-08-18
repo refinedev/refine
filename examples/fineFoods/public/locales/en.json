@@ -166,8 +166,8 @@
   "orders": {
     "orders": "Orders",
     "titles": {
-      "list": "Siparişler",
-      "show": "Sipariş Detay"
+      "list": "Orders",
+      "show": "Show Order"
     },
     "fields": {
       "orderNumber": "Order Number",

@@ -107,7 +107,8 @@
       },
       "store": "Mağaza",
       "vehicle": "Araç",
-      "accountNumber": "Hesap Numarası"
+      "accountNumber": "Hesap Numarası",
+      "address": "Adres"
     },
     "steps": {
       "content": "İçerik",
