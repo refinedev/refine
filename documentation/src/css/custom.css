@@ -168,3 +168,33 @@
     background: url("/icons/twitter.svg");
     background-size: contain;
 }
+
+/* Code Renderer Styles */
+
+.pre {
+    text-align: left;
+    margin: 1em 0;
+    padding: 0.5em;
+    overflow: scroll;
+}
+
+.pre .token-line {
+    line-height: 1.3em;
+    height: 1.3em;
+}
+
+.code-line {
+    display: table-row;
+}
+
+.code-line-no {
+    display: table-cell;
+    text-align: right;
+    padding-right: 1em;
+    user-select: none;
+    opacity: 0.5;
+}
+
+.code-line-content {
+    display: table-cell;
+}
