@@ -131,6 +131,11 @@ module.exports = {
                                 "api-references/hooks/import-export/useExport",
                             ],
                         },
+                        {
+                            type: "category",
+                            label: "UI",
+                            items: ["api-references/hooks/ui/useModal"],
+                        },
                     ],
                 },
                 {
