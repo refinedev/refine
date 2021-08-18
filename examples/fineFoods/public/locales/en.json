@@ -7,7 +7,8 @@
       "password": "Password",
       "remember": "Remember me",
       "forgotPassword": "Forgot?",
-      "noAccount": "Don’t have an account?"
+      "noAccount": "Don’t have an account?",
+      "message": "<0>Sign in</0> your account"
     },
     "error": {
       "info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",

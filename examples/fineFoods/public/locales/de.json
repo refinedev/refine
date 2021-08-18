@@ -7,7 +7,8 @@
       "password": "Şifre",
       "remember": "Beni Hatırla",
       "forgotPassword": "Şifremi unuttum",
-      "noAccount": "Hesabın yok mu?"
+      "noAccount": "Hesabın yok mu?",
+      "message": "Hesabına <0>giriş yap</0>"
     },
     "error": {
       "info": "{{action}} sayfasını {{resource}} kaynağına eklemeyi unutmuş olabilirsiniz.",
