@@ -18,17 +18,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         <>
             <List
                 pageHeaderProps={{
-                    extra: (
-                        <Button
-                            onClick={() => {
-                                show();
-
-                                setTimeout(close, 1000);
-                            }}
-                        >
-                            Show Dummy Modal
-                        </Button>
-                    ),
+                    extra: <Button onClick={show}>Show Dummy Modal</Button>,
                 }}
             >
                 <Table {...tableProps} rowKey="id">
@@ -37,7 +27,9 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     <Table.Column dataIndex="content" title="Content" />
                 </Table>
             </List>
-            <Modal {...modalProps}>Dummy Modal Content</Modal>
+            <Modal onOk={close} {...modalProps}>
+                Dummy Modal Content
+            </Modal>
         </>
     );
 };
