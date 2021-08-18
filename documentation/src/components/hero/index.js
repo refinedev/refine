@@ -3,7 +3,12 @@ import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import ReactPlayer from "react-player";
 import clsx from "clsx";
-import { IoMdPlay, IoMdPause, IoMdRefresh } from "react-icons/io";
+import {
+    IoMdPlay,
+    IoMdPause,
+    IoMdRefresh,
+    IoIosArrowForward,
+} from "react-icons/io";
 
 import styles from "./styles.module.css";
 
@@ -58,13 +63,38 @@ export const Hero = () => {
                             for building data-intensive applications in no time.
                         </h1>
                     </div>
+                    <div className="col col--8">
+                        <p className={styles.description}>
+                            Refine offers lots of out-of-the box functionality
+                            for rapid development, without compromising extreme
+                            customizability. It ships with Ant Design System, an
+                            enterprise-level UI toolkit.
+                        </p>
+                    </div>
                 </div>
                 <div className={styles.linkButtons}>
                     <Link
-                        className="button button--primary button--lg"
+                        className={clsx(
+                            "button",
+                            "button--primary",
+                            "button--lg",
+                            styles.tutorialButton,
+                        )}
                         to={useBaseUrl("docs/")}
                     >
-                        Get Started
+                        Start Tutorial
+                    </Link>
+                    <Link
+                        className={clsx(
+                            "button",
+                            "button--link",
+                            "button--lg",
+                            styles.docButton,
+                        )}
+                        to={useBaseUrl("docs/getting-started/overview")}
+                    >
+                        Read the docs
+                        <IoIosArrowForward />
                     </Link>
                 </div>
                 <div className="row row--justify--center">
@@ -155,6 +185,12 @@ export const Hero = () => {
                                 {selectedVideo === 3 && videoControls}
                             </div>
                         </div>
+                    </div>
+                    <div className="col col--8">
+                        <p className={styles.description}>
+                            Use-cases include, but are not limited to admin
+                            panels, B2B applications and dashboards.
+                        </p>
                     </div>
                 </div>
             </div>
