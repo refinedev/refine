@@ -88,7 +88,7 @@ export const Header: React.FC = () => {
                     setOptions((prevOptions) => [
                         ...prevOptions,
                         {
-                            label: renderTitle(t("orders.title")),
+                            label: renderTitle(t("orders.orders")),
                             options: orderOptionGroup,
                         },
                     ]);
