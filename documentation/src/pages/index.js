@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "@theme/Layout";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-import { Hero, FastAndFlexible } from "../components";
+import { Hero, FastAndFlexible, Comments } from "../components";
 
 function Home() {
     const context = useDocusaurusContext();
@@ -15,6 +15,7 @@ function Home() {
             <main>
                 <Hero />
                 <FastAndFlexible />
+                <Comments />
             </main>
         </Layout>
     );
