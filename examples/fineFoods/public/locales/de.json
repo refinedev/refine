@@ -163,6 +163,10 @@
   },
   "orders": {
     "orders": "Siparişler",
+    "titles": {
+      "list": "Siparişler",
+      "show": "Sipariş Detay"
+    },
     "fields": {
       "orderNumber": "Sipariş Numarası",
       "orderID": "Sipariş ID",
@@ -199,6 +203,16 @@
     "courier": {
       "deliveryTime": "Varış Zamanı",
       "phone": "Telefon"
+    },
+    "deliverables": {
+      "deliverables": "Teslim Edilecekler",
+      "fields": {
+        "items": "Ürünler",
+        "quantity": "Miktar",
+        "price": "Fiyat",
+        "total": "Toplam"
+      },
+      "mainTotal": "GENEL TOPLAM"
     }
   },
   "products": {

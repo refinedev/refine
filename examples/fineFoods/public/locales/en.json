@@ -205,6 +205,16 @@
     "courier": {
       "deliveryTime": "Delivery Time",
       "phone": "Phone"
+    },
+    "deliverables": {
+      "deliverables": "Deliverables",
+      "fields": {
+        "items": "Items",
+        "quantity": "Quantity",
+        "price": "Price",
+        "total": "Total"
+      },
+      "mainTotal": "MAIN TOTAL"
     }
   },
   "products": {
