@@ -9,6 +9,65 @@ title: useModal
 const { modalProps, show, close } = useModal();
 ```
 
-You can pass the returned `modalProps` as props to [`<Modal />`][Modal] component and use `show` and `close` methods to hide and show it. It does not provide any functionality besides this.
+You can pass the returned `modalProps` as props to [`<Modal />`][Modal] component and use `show` and `close` methods to hide and show it. It does not provide any functionality besides this. You can use this hook anywhere.
+
+## Usage
+
+Let's see an example:
+
+```tsx title="src/pages/posts/list.tsx"
+import {
+    List,
+    Table,
+    useTable,
+    //highlight-start
+    useModal,
+    Modal,
+    //highlight-end
+    Button,
+} from "@pankod/refine";
+
+import { IPost } from "interfaces";
+
+export const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+    //highlight-next-line
+    const { modalProps, show, close } = useModal();
+
+    return (
+        <>
+            <List
+                pageHeaderProps={{
+                    //highlight-next-line
+                    extra: <Button onClick={show}>Show Dummy Modal</Button>,
+                }}
+            >
+                <Table {...tableProps} rowKey="id">
+                    <Table.Column dataIndex="id" title="ID" />
+                    <Table.Column dataIndex="title" title="Title" />
+                    <Table.Column dataIndex="content" title="Content" />
+                </Table>
+            </List>
+            //highlight-start
+            <Modal onOk={close} {...modalProps}>
+                Dummy Modal Content
+            </Modal>
+            //highlight-end
+        </>
+    );
+};
+```
+
+```ts title="src/interfaces/index.d.ts"
+export interface IPost {
+    id: string;
+    title: string;
+    content: string;
+}
+```
+
+Here, we show a button somewhere on the page and use `show` on it's `onClick` callback to trigger opening of the modal below the `<List>` component. When the user clicks on the button, the modal appears.
+
+We also used `onOk` callback from Ant Design [`<Modal />`][Modal] to add `close` as a callback on it's button. When the user clicks on this button, thus triggering `close` function, the modal dialog will be closed. We do this to demonstrate `close` function.
 
 [Modal]: https://ant.design/components/modal/#API
