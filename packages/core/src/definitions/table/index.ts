@@ -130,7 +130,7 @@ export const mapAntdSorterToCrudSorting = (
         sorter.map((item) => {
             if (item.field && item.order) {
                 crudSorting.push({
-                    field: `${item.field}`,
+                    field: `${item.columnKey}`,
                     order: item.order.replace("end", "") as "asc" | "desc",
                 });
             }
@@ -138,7 +138,7 @@ export const mapAntdSorterToCrudSorting = (
     } else {
         if (sorter.field && sorter.order) {
             crudSorting.push({
-                field: `${sorter.field}`,
+                field: `${sorter.columnKey}`,
                 order: sorter.order.replace("end", "") as "asc" | "desc",
             });
         }
@@ -168,6 +168,3 @@ export const mapAntdFilterToCrudFilter = (
 
 export const compareFilters = (left: CrudFilter, right: CrudFilter): boolean =>
     left.field == right.field && left.operator == right.operator;
-
-export const compareSorters = (left: CrudSort, right: CrudSort): boolean =>
-    left.field == right.field;
