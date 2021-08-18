@@ -352,6 +352,11 @@ module.exports = {
                         "examples/import-export/export",
                     ],
                 },
+                {
+                    type: "category",
+                    label: "UI",
+                    items: ["examples/ui/useModal"],
+                },
                 "examples/e2e-testing",
                 "examples/customPages",
                 "examples/customTheme",
