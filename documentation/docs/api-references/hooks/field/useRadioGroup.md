@@ -137,6 +137,40 @@ const { radioGroupProps } = useRadioGroup({
 
 `sort` allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
 
+[useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing `queryOptions` property.
+
+
+### `queryOptions`
+
+```tsx
+const { radioGroupProps } = useRadioGroup({
+    resource: "languages",
+    //highlight-start
+    queryOptions: { onError: () => { console.log("triggers when on query return Error") }}
+    //highlight-end
+});
+```
+
+
+```tsx
+const { 
+    radioGroupProps, 
+    //highlight-next-line
+    defaultQueryOnSuccess
+    } = useCheckboxGroup({
+    resource: "languages",
+    //highlight-start
+    queryOptions: { 
+        onSuccess: (data) => { 
+            defaultQueryOnSuccess(data)
+            console.log("triggers when on query return on success") 
+        } 
+    }
+    //highlight-end
+});
+```
+
+
 ## API Reference
 
 ### Properties
@@ -148,6 +182,8 @@ const { radioGroupProps } = useRadioGroup({
 | optionLabel                                       | Sets the option's label value              | `string`                                   | `"title"` |
 | filters                                           | Adds filters while fetching the data       | [`CrudFilters`](../../interfaces.md#crudfilters) |           |
 | sort                                              | Allows us to sort the options              | [`CrudSorting`](../../interfaces.md#crudsorting) |           |
+| queryOptions                                              | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options             | ` UseQueryOptions<GetListResponse<TData>, TError>` |           |
+
 
 ### Return values
 
@@ -155,6 +191,7 @@ const { radioGroupProps } = useRadioGroup({
 | --------------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
 | radioGroupProps | Ant design radio group props    | [`Radio Group`](https://ant.design/components/radio/#RadioGroup)                              |
 | queryResult     | Results of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+| defaultQueryOnSuccess        | Default onSuccess method | () => void |
 
 ## Live Codesandbox Example
 

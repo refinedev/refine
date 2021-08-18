@@ -1,6 +1,6 @@
 import React from "react";
 import { RadioGroupProps } from "antd/lib/radio";
-import { QueryObserverResult } from "react-query";
+import { QueryObserverResult, UseQueryOptions } from "react-query";
 
 import { useList } from "@hooks";
 import {
@@ -10,19 +10,22 @@ import {
     GetListResponse,
     CrudFilters,
     SuccessErrorNotification,
+    HttpError,
 } from "../../../interfaces";
 
-export type useRadioGroupProps = RadioGroupProps & {
+export type useRadioGroupProps<TData, TError> = RadioGroupProps & {
     resource: string;
     optionLabel?: string;
     optionValue?: string;
     sort?: CrudSorting;
     filters?: CrudFilters;
+    queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
 } & SuccessErrorNotification;
 
 export type UseRadioGroupReturnType<TData extends BaseRecord = BaseRecord> = {
     radioGroupProps: RadioGroupProps;
     queryResult: QueryObserverResult<GetListResponse<TData>>;
+    defaultQueryOnSuccess: (data: GetListResponse<TData>) => void;
 };
 
 /**
@@ -33,7 +36,11 @@ export type UseRadioGroupReturnType<TData extends BaseRecord = BaseRecord> = {
  * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
  *
  */
-export const useRadioGroup = <TData extends BaseRecord = BaseRecord>({
+
+export const useRadioGroup = <
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+>({
     resource,
     sort,
     filters,
@@ -41,10 +48,20 @@ export const useRadioGroup = <TData extends BaseRecord = BaseRecord>({
     optionValue = "id",
     successNotification,
     errorNotification,
-}: useRadioGroupProps): UseRadioGroupReturnType => {
+    queryOptions,
+}: useRadioGroupProps<TData, TError>): UseRadioGroupReturnType => {
     const [options, setOptions] = React.useState<Option[]>([]);
 
-    const queryResult = useList<TData>(
+    const defaultQueryOnSuccess = (data: GetListResponse<TData>) => {
+        setOptions(() =>
+            data.data.map((item) => ({
+                label: item[optionLabel],
+                value: item[optionValue],
+            })),
+        );
+    };
+
+    const queryResult = useList<TData, TError>(
         resource,
         {
             sort,
@@ -52,13 +69,9 @@ export const useRadioGroup = <TData extends BaseRecord = BaseRecord>({
         },
         {
             onSuccess: (data) => {
-                setOptions(() =>
-                    data.data.map((item) => ({
-                        label: item[optionLabel],
-                        value: item[optionValue],
-                    })),
-                );
+                defaultQueryOnSuccess(data);
             },
+            ...queryOptions,
         },
         successNotification,
         errorNotification,
@@ -69,5 +82,6 @@ export const useRadioGroup = <TData extends BaseRecord = BaseRecord>({
             options,
         },
         queryResult,
+        defaultQueryOnSuccess,
     };
 };

@@ -148,33 +148,33 @@ const { checkboxGroupProps } = useCheckboxGroup({
 });
 ```
 
-[useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing queryOptions property.
+[useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing `queryOptions` property.
 
 
-```caution
+
+
+:::caution
 The `defaultQueryOnSuccess` method which has default onSuccess behaviour and returned from `useCheckboxGroup` hook  must be called in case of `onSuccess` is needed to be overwritten. 
 
 ```tsx
 const { 
-        checkboxGroupProps, 
-        //hightlight-nextline
-        defaultQueryOnSuccess
-      } = useCheckboxGroup({
-        resource: "tags",
-        //highlight-start
-        queryOptions: { 
-            onSuccess: (data) => { 
-                defaultQueryOnSuccess(data)
-                console.log("triggers when on query return on success") 
-            } 
-                     }}
-        //highlight-end
+    checkboxGroupProps, 
+    //highlight-next-line
+    defaultQueryOnSuccess
+    } = useCheckboxGroup({
+    resource: "tags",
+    //highlight-start
+    queryOptions: { 
+        onSuccess: (data) => { 
+            defaultQueryOnSuccess(data)
+            console.log("triggers when on query return on success") 
+        } 
+    }
+    //highlight-end
 });
 ```
 
-```
-
-
+:::
 ## API Reference
 
 ### Properties

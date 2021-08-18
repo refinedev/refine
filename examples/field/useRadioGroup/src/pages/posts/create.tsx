@@ -19,7 +19,7 @@ import { IPost, ILanguage } from "interfaces";
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
-    const { radioGroupProps: languageRadioGroupProps } =
+    const { radioGroupProps: languageRadioGroupProps, defaultQueryOnSuccess } =
         useRadioGroup<ILanguage>({
             resource: "languages",
             sort: [
@@ -28,6 +28,11 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                     order: "asc",
                 },
             ],
+            queryOptions: {
+                onSuccess: () => {
+                    console.log("test 1");
+                },
+            },
         });
 
     const [selectedTab, setSelectedTab] =
