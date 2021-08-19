@@ -32,6 +32,14 @@ export const Hero = () => {
         }
     };
 
+    const onEnded = () => {
+        if (selectedVideo === videoURLs.length - 1) {
+            handleSelectedVideo(0);
+        } else {
+            handleSelectedVideo(selectedVideo + 1);
+        }
+    };
+
     const videoControls = (
         <div className={styles.controlsContainer}>
             <IoMdRefresh
@@ -113,6 +121,7 @@ export const Hero = () => {
                                 onProgress={(value) => setPlayed(value.played)}
                                 onPause={() => setPlaying(false)}
                                 onPlay={() => setPlaying(true)}
+                                onEnded={onEnded}
                             />
                         </div>
                         <div className={styles.playerButtons}>
