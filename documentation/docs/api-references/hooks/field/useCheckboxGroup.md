@@ -194,7 +194,7 @@ const {
 | ------------------ | ------------------------------- | --------------------------------------------------------------------------------------------- |
 | checkboxGroupProps | Ant design checkbox group properties | [`Checkbox Group`](https://ant.design/components/checkbox/#Checkbox-Group)                    |
 | queryResult        | Results of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
-| defaultQueryOnSuccess        | Default onSuccess method | () => void |
+| defaultQueryOnSuccess        | Default onSuccess method | `() => void` |
 
 ## Live Codesandbox Example
 

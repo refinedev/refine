@@ -137,10 +137,14 @@ const { radioGroupProps } = useRadioGroup({
 
 `sort` allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
 
-[useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing `queryOptions` property.
+
 
 
 ### `queryOptions`
+
+[useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing `queryOptions` property.
+
+
 
 ```tsx
 const { radioGroupProps } = useRadioGroup({
@@ -151,6 +155,8 @@ const { radioGroupProps } = useRadioGroup({
 });
 ```
 
+:::caution
+The `defaultQueryOnSuccess` method which has default onSuccess behaviour and returned from `useRadioGroup` hook  must be called in case of `onSuccess` is needed to be overwritten. 
 
 ```tsx
 const { 
@@ -169,7 +175,7 @@ const {
     //highlight-end
 });
 ```
-
+:::
 
 ## API Reference
 
@@ -191,7 +197,7 @@ const {
 | --------------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
 | radioGroupProps | Ant design radio group props    | [`Radio Group`](https://ant.design/components/radio/#RadioGroup)                              |
 | queryResult     | Results of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
-| defaultQueryOnSuccess        | Default onSuccess method | () => void |
+| defaultQueryOnSuccess        | Default onSuccess method | `() => void` |
 
 
 ## Live Codesandbox Example
