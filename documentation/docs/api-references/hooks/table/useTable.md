@@ -341,6 +341,8 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 
 ## API
 
+### Properties
+
 | Key              | Description                                                                                                                                       | Type                                                        |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
 | permanentFilter  | Default and unchangeable filter                                                                                                                   | [`CrudFilters`][CrudFilters]                                |

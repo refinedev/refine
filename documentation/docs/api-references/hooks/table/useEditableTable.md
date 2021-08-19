@@ -310,6 +310,8 @@ export const PostList: React.FC = () => {
 
 ## API
 
+### Properties
+
 | Key              | Description                                                                                                                                        | Type                                                        |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
 | permanentFilter  | Default and unchangeable filter.                                                                                                                   | [`CrudFilters`][CrudFilters]                                |
