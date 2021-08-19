@@ -1,4 +1,4 @@
-<div align="center">
+<div align="center" style="margin: 30px;">
 <a href="https://pankod.github.io/superplate/">
   <img src="documentation/static/img/refine_logo.png"  align="center" />
 </a>
@@ -11,12 +11,14 @@
 
 [![Meercode CI Score](https://meercode.io/badge/pankod/superplate?type=ci-score&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
 [![Meercode CI Success Rate](https://meercode.io/badge/pankod/superplate?type=ci-success-rate&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
-[![Maintainability](https://api.codeclimate.com/v1/badges/eb4b5a8f88b6e511e61d/maintainability)](https://codeclimate.com/github/pankod/superplate/maintainability)
-[![npm version](https://img.shields.io/npm/v/superplate-cli.svg)](https://www.npmjs.com/package/superplate-cli)
-[![dependencies Status](https://david-dm.org/pankod/superplate/status.svg)](https://david-dm.org/pankod/superplate)
-[![dev-dependencies Status](https://david-dm.org/pankod/superplate/dev-status.svg)](https://david-dm.org/pankod/superplate?type=dev)
+[![Maintainability](https://api.codeclimate.com/v1/badges/eb4b5a8f88b6e511e61d/maintainability)](https://codeclimate.com/github/pankod/refine/maintainability)
+[![npm version](https://img.shields.io/npm/v/@pankod/refine.svg)](https://www.npmjs.com/package/@pankod/refine)
+[![dependencies Status](https://david-dm.org/pankod/refine/status.svg)](https://david-dm.org/pankod/refine)
+[![dev-dependencies Status](https://david-dm.org/pankod/refine/dev-status.svg)](https://david-dm.org/pankod/refine?type=dev)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](code_of_conduct.md)
 
-[![npm](https://img.shields.io/npm/dm/superplate-cli)](https://www.npmjs.com/package/superplate-cli)
+[![npm](https://img.shields.io/npm/dm/refine)](https://www.npmjs.com/package/refine)
 
 </div>
 
@@ -27,7 +29,11 @@
 
 ## About
 
-Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to *admin panels*, *B2B applications* and *dashboards*.
+[**refine**](https://refine.dev/) offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to *admin panels*, *B2B applications* and *dashboards*.
+
+## Documentation
+
+For more detailed information and usage, refer to the [refine documentation](https://refine.dev/docs/).
 
 ## Key features
 
@@ -49,9 +55,9 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility. 
 
-After many years of experience in developing B2B frontend applications and working with popular frameworks, we came up with a new apporach to tackle this dilemma. This is how **refine** is born.
+After many years of experience in developing B2B frontend applications and working with popular frameworks, we came up with a new approach to tackle this dilemma. This is how **refine** is born.
 
-**Refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
+**refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
 
 As **refine** is totally *unopinionated* about UI and logic, it's strongly *opinionated* about three parts of your application:
 
@@ -191,3 +197,13 @@ interface ICategory {
 ☑️ Support for more data & auth providers
 
 ☑️ Support for more UI frameworks (MaterialUI, Chakra, Spectrum etc.)
+
+## Contribution
+
+If you have a bug to report, do not hesitate to file an issue.
+
+If you are willing to fix an issue or propose a feature; all PRs with clear explanations are welcome and encouraged.
+
+## License
+
+Licensed under the MIT License, Copyright © 2021-present Pankod
