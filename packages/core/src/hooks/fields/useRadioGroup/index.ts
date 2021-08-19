@@ -49,7 +49,7 @@ export const useRadioGroup = <
     successNotification,
     errorNotification,
     queryOptions,
-}: useRadioGroupProps<TData, TError>): UseRadioGroupReturnType => {
+}: useRadioGroupProps<TData, TError>): UseRadioGroupReturnType<TData> => {
     const [options, setOptions] = React.useState<Option[]>([]);
 
     const defaultQueryOnSuccess = (data: GetListResponse<TData>) => {
