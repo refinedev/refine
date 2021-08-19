@@ -60,8 +60,8 @@
 }
 
 .feature img {
-    min-width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
 }
 
 .feature p {
