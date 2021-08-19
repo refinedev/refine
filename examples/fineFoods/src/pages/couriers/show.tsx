@@ -11,6 +11,7 @@ import {
     useShow,
     Row,
     Col,
+    Grid,
     useNavigation,
     Typography,
     Rate,
@@ -20,7 +21,10 @@ import {
 
 import { ICourier, IOrder, IOrderFilterVariables } from "interfaces";
 
+const { useBreakpoint } = Grid;
+
 export const CourierShow: React.FC<IResourceComponentsProps> = () => {
+    const { xl } = useBreakpoint();
     const { queryResult: courierQueryResult } = useShow<ICourier>();
     const courier = courierQueryResult.data?.data;
 
@@ -72,8 +76,7 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                             direction="vertical"
                             style={{
                                 width: "100%",
-                                fontSize: 11,
-                                marginTop: "10em",
+                                textAlign: xl ? "unset" : "center",
                             }}
                         >
                             <Typography.Text>
