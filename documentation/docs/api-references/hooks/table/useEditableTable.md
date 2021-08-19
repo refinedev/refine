@@ -310,16 +310,16 @@ export const PostList: React.FC = () => {
 
 ## API
 
-| Key              | Description                                                                                                                                        | Type                         |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| permanentFilter  | Default and unchangeable filter.                                                                                                                   | [`CrudFilters`][CrudFilters] | If not given, its taken from the context. | `string` |
-| initialCurrent   | Initial page index.                                                                                                                                | `number`                     |
-| initialPageSize  | Number of records shown per initial number of   pages.                                                                                             | `number`                     |
-| initialSorter    | Initial sorting.                                                                                                                                   | [`CrudSorting`][CrudSorting] |
-| initialFilter    | Initial                                                                                                                                            |
-| filtering.       | [`CrudFilters`][CrudFilters]                                                                                                                       |
-| syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history.                                                           | `boolean`                    |
-| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][Table Search] to learn how to create a search form. | `Function`                   |
+| Key              | Description                                                                                                                                        | Type                                                        |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| permanentFilter  | Default and unchangeable filter.                                                                                                                   | [`CrudFilters`][CrudFilters]                                |
+| initialCurrent   | Initial page index.                                                                                                                                | `number`                                                    |
+| initialPageSize  | Number of records shown per initial number of   pages.                                                                                             | `number`                                                    |
+| initialSorter    | Initial sorting.                                                                                                                                   | [`CrudSorting`][CrudSorting]                                |
+| initialFilter    | Initial filtering.                                                                                                                                 | [`CrudFilters`][CrudFilters]                                |
+| syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history.                                                           | `boolean`                                                   |
+| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][Table Search] to learn how to create a search form. | `Function`                                                  |
+| queryOptions     | `react-query`'s `useQuery` options                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>` |
 
 ### Type Parameters
 
@@ -349,7 +349,7 @@ export const PostList: React.FC = () => {
 | formLoading       | Loading state of form request                           | `boolean`                                                                                         |
 | cloneId           | Record id for clone action                              | `"string"` \| `"number"`                                                                          |
 | setCloneId        | `cloneId` setter                                        | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                  |
-| editId            | Record id for edit action                               | `"string"` \| `"number"`                                                                          | 
+| editId            | Record id for edit action                               | `"string"` \| `"number"`                                                                          |
 | setEditId         | `editId` setter                                         | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                  |
 | isEditing         | Check if is editing                                     | `(id: string) => boolean`                                                                         |
 
