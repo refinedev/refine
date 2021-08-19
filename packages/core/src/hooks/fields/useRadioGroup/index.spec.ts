@@ -66,4 +66,44 @@ describe("render hook default options", () => {
             { label: "consequatur-molestiae-rerum", value: "2" },
         ]);
     });
+
+    it("should invoke queryOptions methods successfully", async () => {
+        const mockFunc = jest.fn();
+
+        const { result, waitFor } = renderHook(
+            () =>
+                useRadioGroup<{ id: string; slug: string }>({
+                    resource: "posts",
+                    optionLabel: "slug",
+                    optionValue: "id",
+                    queryOptions: {
+                        onSuccess: (data) => {
+                            result.current.defaultQueryOnSuccess(data);
+                            mockFunc();
+                        },
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            return result.current.queryResult.isSuccess;
+        });
+
+        const { radioGroupProps } = result.current;
+        const { options } = radioGroupProps;
+
+        expect(options).toHaveLength(2);
+        expect(options).toEqual([
+            { label: "ut-ad-et", value: "1" },
+            { label: "consequatur-molestiae-rerum", value: "2" },
+        ]);
+
+        expect(mockFunc).toBeCalled();
+    });
 });

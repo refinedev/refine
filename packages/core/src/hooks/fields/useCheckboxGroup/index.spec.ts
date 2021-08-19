@@ -78,6 +78,7 @@ describe("render hook default options", () => {
                     optionValue: "id",
                     queryOptions: {
                         onSuccess: (data) => {
+                            result.current.defaultQueryOnSuccess(data);
                             mockFunc();
                         },
                     },
@@ -91,7 +92,6 @@ describe("render hook default options", () => {
         );
 
         await waitFor(() => {
-            result.current.defaultQueryOnSuccess();
             return result.current.queryResult.isSuccess;
         });
 
@@ -103,5 +103,7 @@ describe("render hook default options", () => {
             { label: "ut-ad-et", value: "1" },
             { label: "consequatur-molestiae-rerum", value: "2" },
         ]);
+
+        expect(mockFunc).toBeCalled();
     });
 });

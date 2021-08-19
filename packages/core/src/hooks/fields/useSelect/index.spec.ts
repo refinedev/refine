@@ -253,4 +253,86 @@ describe("useSelect Hook", () => {
             return !result.current.queryResult?.isLoading;
         });
     });
+
+    it("should invoke queryOptions methods successfully", async () => {
+        const mockFunc = jest.fn();
+
+        const { result, waitFor } = renderHook(
+            () =>
+                useSelect({
+                    resource: "posts",
+                    queryOptions: {
+                        onSuccess: (data) => {
+                            result.current.defaultQueryOnSuccess(data);
+                            mockFunc();
+                        },
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            return !result.current.queryResult?.isLoading;
+        });
+
+        const { selectProps } = result.current;
+        const { options } = selectProps;
+
+        expect(options).toHaveLength(2);
+        expect(options).toEqual([
+            {
+                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+                value: "1",
+            },
+            { label: "Recusandae consectetur aut atque est.", value: "2" },
+        ]);
+
+        expect(mockFunc).toBeCalled();
+    });
+
+    it("should invoke queryOptions methods for default value successfully", async () => {
+        const mockFunc = jest.fn();
+
+        const { result, waitFor } = renderHook(
+            () =>
+                useSelect({
+                    resource: "posts",
+                    defaultValue: ["1", "2", "3", "4"],
+                    defaultValueQueryOptions: {
+                        onSuccess: (data) => {
+                            result.current.defaultValueQueryOnSuccess(data);
+                            mockFunc();
+                        },
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            return !result.current.queryResult.isLoading;
+        });
+
+        const { selectProps } = result.current;
+        const { options } = selectProps;
+
+        expect(options).toHaveLength(2);
+        expect(options).toEqual([
+            {
+                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+                value: "1",
+            },
+            { label: "Recusandae consectetur aut atque est.", value: "2" },
+        ]);
+        expect(mockFunc).toBeCalled();
+    });
 });
