@@ -50,6 +50,13 @@
     margin-top: 24px;
 }
 
+@media screen and (max-width: 555px) {
+    .listContainer {
+        flex-wrap: wrap;
+    }
+}
+
+
 .orderList {
     font-weight: 700;
     font-size: 24px;
