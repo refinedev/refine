@@ -1,5 +1,5 @@
 .section {
-    padding: 96px 0px 60px 0px;
+    padding: 96px 0px 96px 0px;
 }
 
 .mainTitle {
@@ -29,4 +29,45 @@
     .supportContainer {
         grid-template-columns: repeat(2, minmax(100px, 1fr));
     }
+}
+
+.mainFeatureTitle {
+    color: #0ccee9;
+    font-size: 36px;
+    font-weight: 800;
+    text-align: center;
+    margin: 40px 0px;
+}
+
+.featuresContainer {
+    display: grid;
+    gap: 24px;
+    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@media screen and (max-width: 610px) {
+    .featuresContainer {
+        grid-template-columns: 1fr;
+    }
+}
+
+.feature {
+    display: flex;
+    gap: 36px;
+}
+
+.feature img {
+    min-width: 60px;
+    height: 60px;
+}
+
+.feature p {
+    margin-bottom: 0;
+}
+
+.featureTitle {
+    color: #2a2c2c;
+    font-weight: 800;
+    font-size: 20px;
 }
