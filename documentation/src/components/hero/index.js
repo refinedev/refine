@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import ReactPlayer from "react-player";
+import ReactPlayer from "react-player/lazy";
 import clsx from "clsx";
 import {
     IoMdPlay,
