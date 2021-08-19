@@ -1,30 +1,193 @@
-# refine
+<div align="center">
+<a href="https://pankod.github.io/superplate/">
+  <img src="documentation/static/img/refine_logo.png"  align="center" />
+</a>
+</div>
+<br/>
+<div align="center"><strong>refine</strong> is a <a href="https://reactjs.org/">React</a>-based framework for building data-intensive applications in no time ✨ It ships with <a href="https://ant.design/">Ant Design System</a>, an enterprise-level UI toolkit.</div>
+<br/>
+
+<div align="center">
+
+[![Meercode CI Score](https://meercode.io/badge/pankod/superplate?type=ci-score&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
+[![Meercode CI Success Rate](https://meercode.io/badge/pankod/superplate?type=ci-success-rate&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
+[![Maintainability](https://api.codeclimate.com/v1/badges/eb4b5a8f88b6e511e61d/maintainability)](https://codeclimate.com/github/pankod/superplate/maintainability)
+[![npm version](https://img.shields.io/npm/v/superplate-cli.svg)](https://www.npmjs.com/package/superplate-cli)
+[![dependencies Status](https://david-dm.org/pankod/superplate/status.svg)](https://david-dm.org/pankod/superplate)
+[![dev-dependencies Status](https://david-dm.org/pankod/superplate/dev-status.svg)](https://david-dm.org/pankod/superplate?type=dev)
+
+[![npm](https://img.shields.io/npm/dm/superplate-cli)](https://www.npmjs.com/package/superplate-cli)
+
+</div>
+
+<br/>
+<div align="center">
+  <sub>Created by <a href="https://www.pankod.com">Pankod</a></sub>
+</div>
+
+## About
+
+Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to *admin panels*, *B2B applications* and *dashboards*.
+
+## Key features
+
+⚙️ **Zero-configuration**: One-line setup with [superplate](https://github.com/pankod/superplate). It takes less than a minute to start a project.
+
+📦 **Out-of-the-box** : Routing, networking, authentication, state management, i18n and UI.
+
+🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for [REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest), [Strapi](https://strapi.io/), [NestJs CRUD](https://github.com/nestjsx/crud) and [Airtable](https://www.airtable.com/).
+
+📝 **Native Typescript Core** : You can always opt out for plain Javascript.
+
+🔘 **Decoupled UI** : UI components are exposed directly without encapsulation. You have full control on UI elements.
+
+🐜 **Powerful Default UI** : Works seamlessly with integrated [Ant Design System](https://ant.design/). (Support for multiple UI frameworks is on the Roadmap)
+
+📝 **Boilerplate-free Code** : Keeps your codebase clean and readable.
+
+## Motivation
+
+Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility. 
+
+After many years of experience in developing B2B frontend applications and working with popular frameworks, we came up with a new apporach to tackle this dilemma. This is how **refine** is born.
+
+**Refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
+
+As **refine** is totally *unopinionated* about UI and logic, it's strongly *opinionated* about three parts of your application:
+
+1. **API Networking**
+2. **State Management**
+3. **Authentication & Authorization**
+
+We believe, these are the most important components of a data-intensive frontend application and should be handled in a robust way by leveraging industry best practices.
+
+**refine** guarantees you a perfect implementation of these building blocks in your project, so you can focus on your development.
+
+## Architechture
+
+**refine** makes extensive use of [hooks](https://reactjs.org/docs/hooks-reference.html#gatsby-focus-wrapper) as a default way for interacting with your components. 
+Under the hood, **refine** relies heavily to [React Query](https://react-query.tanstack.com/) for data handling, caching and state management. 
+Access to external sources and API's happen via providers which are basically plug-in type components for extendibility.
+
+<div align="center">
+    <img src="documentation/static/img/getting-started/refine_architecture.jpg" width="400px" />
+</div>
 
 
-[![NPM](https://img.shields.io/npm/v/@pankod/refine.svg)](https://www.npmjs.com/package/@pankod/refine) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](code_of_conduct.md)
+## Benchmark
+
+After releasing the first internal versions, we had the chance to migrate some of our *React* projects to **refine**.
+In addition to **shorter development** times and **overall performance gains**, we've measured significant reduction in project size.
+
+**refine** makes your codebase significantly smaller, by eliminating redundant code such as *reducers*, *actions* and *unit tests*. Below is a size comparison for an example project:
+
+<div align="center">
+    <img src="documentation/static/img/getting-started/benchmark.png" width="400px" align="center" />
+</div>
 
 
-## Install
+## Quick Start
 
-```bash
-npm install
+Run the **superplate** tool with the following command:
+
+```
+npx superplate-cli tutorial
 ```
 
-## Development
+Follow the *CLI wizard* to select options and start creating your project.
 
-```bash
-npm run lerna bootstrap
-npm run start
+After setup is complete, navigate to the project folder and start your project with:
+
+```
+npm run dev
 ```
 
-## Run Example
+Your **refine** application will be accessible at [http://localhost:3000](http://localhost:3000).
 
-```bash
-cd example
-npm install
-npm run start
+Replace the contents of ```App.tsx``` with the following code:
+
+```tsx title="App.tsx"
+import React from "react";
+import {
+    Refine,
+    Resource,
+    useTable,
+    List,
+    Table,
+    useMany,
+    DateField,
+} from "@pankod/refine";
+import dataProvider from "@pankod/refine-simple-rest";
+
+import "@pankod/refine/dist/styles.min.css";
+
+const App: React.FC = () => {
+    return (
+        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
+            <Resource name="posts" list={PostList} />
+        </Refine>
+    );
+};
+
+export const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+
+    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
+        enabled: categoryIds.length > 0,
+    });
+
+    return (
+        <List>
+            <Table<IPost> {...tableProps} rowKey="id">
+                <Table.Column dataIndex="title" title="title" />
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="category"
+                    render={(value: string) => {
+                        if (isLoading) {
+                            return "loading...";
+                        }
+
+                        return data?.data.find(
+                            (item: ICategory) => item.id === value,
+                        )?.title;
+                    }}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="createdAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                />
+            </Table>
+        </List>
+    );
+};
+
+export default App;
 ```
 
-## License
+```tsx title="interfaces.d.ts"
+interface IPost {
+    title: string;
+    createdAt: string;
+    category: ICategory;
+}
 
-MIT © [pankod](https://github.com/pankod)
+interface ICategory {
+    id: string;
+    title: string;
+}
+
+```
+
+
+## Roadmap
+
+☑️ NextJS & SSR support
+
+☑️ Support for more data & auth providers
+
+☑️ Support for more UI frameworks (MaterialUI, Chakra, Spectrum etc.)
