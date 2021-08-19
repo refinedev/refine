@@ -48,6 +48,8 @@
     display: flex;
     gap: 16px;
     margin-top: 24px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 @media screen and (max-width: 555px) {
@@ -61,6 +63,7 @@
     font-weight: 700;
     font-size: 24px;
     color: #0ccee9;
+    margin-bottom: 0;
 }
 
 .orderList li {
@@ -77,6 +80,7 @@
     justify-content: center;
     padding: 15px 15px 15px 25px;
     border-radius: 5px;
+    max-width: 500px;
 }
 
 .box p {
