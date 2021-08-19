@@ -1,7 +1,7 @@
 .section {
     padding: 48px 0px;
-    background: #0b82f0;
-    color: white;
+    background: var(--color-blue);
+    color: var(--color-text-white);
     font-family: "Montserrat", sans-serif;
 }
 

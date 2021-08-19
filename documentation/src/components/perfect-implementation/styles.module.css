@@ -4,7 +4,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     padding: 64px 0px;
-    color: white;
+    color: var(--color-text-white);
 }
 
 .row {
@@ -34,7 +34,7 @@
 .title {
     font-size: 36px;
     font-weight: 600;
-    color: #0ccee9;
+    color: var(--color-turquoise);
     text-align: center;
     margin-top: 24px 0px;
 }
@@ -62,7 +62,7 @@
 .orderList {
     font-weight: 700;
     font-size: 24px;
-    color: #0ccee9;
+    color: var(--color-turquoise);
     margin-bottom: 0;
 }
 
@@ -72,7 +72,7 @@
 
 .box {
     position: relative;
-    background-color: #0ccee9;
+    background-color: var(--color-turquoise);
     height: 100%;
     width: 100%;
     display: flex;

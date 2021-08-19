@@ -1,7 +1,7 @@
 .section {
     padding: 36px 0px;
-    background-color: #0ccee9;
-    color: white;
+    background-color: var(--color-turquoise);
+    color: var(--color-text-white);
 }
 
 .title {
@@ -21,4 +21,5 @@
     background-color: var(--color-purple);
     border-color: var(--color-purple);
     min-width: 200px;
+    color: var(--color-text-white);
 }

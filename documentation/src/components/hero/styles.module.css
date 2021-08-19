@@ -9,17 +9,17 @@
 .mainTitle {
     font-size: 36px;
     text-align: center;
-    color: #0ccee9;
+    color: var(--color-turquoise);
     font-weight: 900;
 }
 
 .mainTitle span {
-    color: white;
+    color: var(--color-text-white);
     font-weight: 600;
 }
 
 .description {
-    color: white;
+    color: var(--color-text-white);
     font-size: 20px;
     font-weight: 500;
     text-align: center;
@@ -36,8 +36,9 @@
 }
 
 .tutorialButton {
-    background-color: #0b82f0;
-    border-color: #0b82f0;
+    background-color: var(--color-blue);
+    border-color: var(--color-blue);
+    color: var(--color-text-white);
 }
 
 .tutorialButton:hover {
@@ -49,7 +50,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: white;
+    color: var(--color-text-white);
 }
 
 .docButton svg {
@@ -116,7 +117,7 @@
 }
 
 .icon:hover {
-    color: white;
+    color: var(--color-text-white);
 }
 
 progress {
@@ -127,7 +128,7 @@ progress {
 }
 
 progress::-webkit-progress-value {
-    background: #0ccee9;
+    background: var(--color-turquoise);
     transition: all 0.25s;
 }
 

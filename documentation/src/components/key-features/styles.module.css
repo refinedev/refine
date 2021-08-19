@@ -1,11 +1,13 @@
 .section {
     padding: 96px 0px 96px 0px;
+    background-color: var(--color-bg-white);
+    color: var(--color-text-black);
 }
 
 .mainTitle {
     font-size: 42px;
     font-weight: 900;
-    color: #0b82f0;
+    color: var(--color-blue);
     text-align: center;
 }
 
@@ -32,7 +34,7 @@
 }
 
 .mainFeatureTitle {
-    color: #0ccee9;
+    color: var(--color-turquoise);
     font-size: 36px;
     font-weight: 800;
     text-align: center;
@@ -67,7 +69,7 @@
 }
 
 .featureTitle {
-    color: #2a2c2c;
+    color: var(--color-text-black);
     font-weight: 800;
     font-size: 20px;
 }
