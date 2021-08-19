@@ -8,6 +8,7 @@ import {
     Comments,
     KeyFeatures,
     PerfectImplementation,
+    GetStarted,
 } from "../components";
 
 function Home() {
@@ -24,6 +25,7 @@ function Home() {
                 <Comments />
                 <KeyFeatures />
                 <PerfectImplementation />
+                <GetStarted />
             </main>
         </Layout>
     );
