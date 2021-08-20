@@ -9,7 +9,7 @@ title: useModal
 const { modalProps, show, close } = useModal();
 ```
 
-You can pass the returned `modalProps` as props to [`<Modal />`][Modal] component and use `show` and `close` methods to hide and show it. It does not provide any functionality besides this. You can use this hook anywhere.
+You can pass the returned `modalProps` as props to [Modal][Modal] component and use `show` and `close` methods to hide and show it. It does not provide any functionality besides this. You can use this hook anywhere.
 
 ## Usage
 
