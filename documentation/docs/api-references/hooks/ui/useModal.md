@@ -68,7 +68,7 @@ export interface IPost {
 
 Here, we show a button somewhere on the page and use `show` on it's `onClick` callback to trigger opening of the modal below the `<List>` component. When the user clicks on the button, the modal appears.
 
-We also used `onOk` callback from Ant Design [`<Modal />`][Modal] to add `close` as a callback on it's button. When the user clicks on this button, thus triggering `close` function, the modal dialog will be closed. We do this to demonstrate `close` function.
+We also used `onOk` callback from Ant Design [Modal][Modal] to add `close` as a callback on it's button. When the user clicks on this button, thus triggering `close` function, the modal dialog will be closed. We do this to demonstrate `close` function.
 
 ## API Reference
 
