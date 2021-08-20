@@ -14,9 +14,7 @@ import {
     DatePicker,
     Button,
     CrudFilters,
-    Space,
-    ShowButton,
-    EditButton,
+    Select,
     FormProps,
     Row,
     Col,
@@ -39,13 +37,44 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
         ],
         onSearch: (params) => {
             const filters: CrudFilters = [];
-            const { q, status } = params;
+            const { q, status, createdAt, gender, isActive } = params;
 
             if (q) {
                 filters.push({
                     field: "q",
                     operator: "eq",
                     value: q,
+                });
+            }
+
+            if (createdAt) {
+                filters.push(
+                    {
+                        field: "createdAt",
+                        operator: "gte",
+                        value: createdAt[0].toISOString(),
+                    },
+                    {
+                        field: "createdAt",
+                        operator: "lte",
+                        value: createdAt[1].toISOString(),
+                    },
+                );
+            }
+
+            if (gender) {
+                filters.push({
+                    field: "gender",
+                    operator: "eq",
+                    value: gender,
+                });
+            }
+
+            if (isActive) {
+                filters.push({
+                    field: "isActive",
+                    operator: "eq",
+                    value: isActive,
                 });
             }
 
@@ -70,7 +99,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                     <Filter formProps={searchFormProps} />
                 </Card>
             </Col>
-            <Col lg={18} xs={24}>
+            <Col xl={18} xs={24}>
                 <List>
                     <Table {...tableProps} rowKey="id">
                         <Table.Column
@@ -129,23 +158,77 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
 
     return (
         <Form layout="vertical" {...props.formProps}>
-            <Form.Item label={t("users.filter.search.label")} name="q">
-                <Input
-                    placeholder={t("users.filter.search.placeholder")}
-                    prefix={<Icons.SearchOutlined />}
-                />
-            </Form.Item>
-            <Form.Item
-                label={t("users.filter.createdAt.label")}
-                name="createdAt"
-            >
-                <RangePicker />
-            </Form.Item>
-            <Form.Item>
-                <Button htmlType="submit" type="primary">
-                    {t("users.filter.submit")}
-                </Button>
-            </Form.Item>
+            <Row gutter={[10, 0]} align="bottom">
+                <Col xs={24} xl={24} md={12}>
+                    <Form.Item label={t("users.filter.search.label")} name="q">
+                        <Input
+                            placeholder={t("users.filter.search.placeholder")}
+                            prefix={<Icons.SearchOutlined />}
+                        />
+                    </Form.Item>
+                </Col>
+                <Col xs={24} xl={24} md={12}>
+                    <Form.Item
+                        label={t("users.filter.createdAt.label")}
+                        name="createdAt"
+                    >
+                        <RangePicker style={{ width: "100%" }} />
+                    </Form.Item>
+                </Col>
+                <Col xs={24} xl={24} md={8}>
+                    <Form.Item
+                        label={t("users.filter.gender.label")}
+                        name="gender"
+                    >
+                        <Select
+                            allowClear
+                            placeholder={t("users.filter.gender.placeholder")}
+                            options={[
+                                {
+                                    label: t("users.filter.gender.male"),
+                                    value: "Male",
+                                },
+                                {
+                                    label: t("users.filter.gender.female"),
+                                    value: "Female",
+                                },
+                            ]}
+                        />
+                    </Form.Item>
+                </Col>
+                <Col xs={24} xl={24} md={8}>
+                    <Form.Item
+                        label={t("users.filter.isActive.label")}
+                        name="isActive"
+                    >
+                        <Select
+                            allowClear
+                            placeholder={t("users.filter.isActive.placeholder")}
+                            options={[
+                                {
+                                    label: t("users.filter.isActive.true"),
+                                    value: "true",
+                                },
+                                {
+                                    label: t("users.filter.isActive.false"),
+                                    value: "false",
+                                },
+                            ]}
+                        />
+                    </Form.Item>
+                </Col>
+                <Col xs={24} xl={24} md={8}>
+                    <Form.Item>
+                        <Button
+                            style={{ width: "100%" }}
+                            htmlType="submit"
+                            type="primary"
+                        >
+                            {t("users.filter.submit")}
+                        </Button>
+                    </Form.Item>
+                </Col>
+            </Row>
         </Form>
     );
 };

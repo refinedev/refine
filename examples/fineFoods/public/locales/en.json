@@ -310,6 +310,18 @@
       "createdAt": {
         "label": "Created At"
       },
+      "gender": {
+        "label": "Gender",
+        "placeholder": "Gender",
+        "male": "Male",
+        "female": "Female"
+      },
+      "isActive": {
+        "label": "Active",
+        "placeholder": "Active status",
+        "true": "Yes",
+        "false": "No"
+      },
       "submit": "Filter"
     }
   }
