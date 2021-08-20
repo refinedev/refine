@@ -40,6 +40,10 @@ export const Sider: React.FC = () => {
                         return;
                     }
 
+                    if (!breakpoint.lg) {
+                        setCollapsed(true);
+                    }
+
                     push(key as string);
                 }}
             >
