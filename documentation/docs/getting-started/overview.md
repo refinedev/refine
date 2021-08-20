@@ -34,7 +34,7 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility. 
 
-After many years of experience in developing B2B frontend applications and working with popular frameworks, we came up with a new apporach to tackle this dilemma. This is how **refine** is born.
+After many years of experience in developing B2B frontend applications and working with popular frameworks, we came up with a new approach to tackle this dilemma. This is how **refine** is born.
 
 **Refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
 
