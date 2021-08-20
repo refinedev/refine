@@ -131,6 +131,11 @@ module.exports = {
                                 "api-references/hooks/import-export/useExport",
                             ],
                         },
+                        {
+                            type: "category",
+                            label: "UI",
+                            items: ["api-references/hooks/ui/useModal"],
+                        },
                     ],
                 },
                 {
@@ -346,6 +351,11 @@ module.exports = {
                         "examples/import-export/import",
                         "examples/import-export/export",
                     ],
+                },
+                {
+                    type: "category",
+                    label: "UI",
+                    items: ["examples/ui/useModal"],
                 },
                 "examples/e2e-testing",
                 "examples/customPages",
