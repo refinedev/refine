@@ -341,16 +341,18 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 
 ## API
 
-| Key              | Description                                                                                                                                        | Type                         |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| permanentFilter  | Default and unchangeable filter.                                                                                                                   | [`CrudFilters`][CrudFilters] | If not given, its taken from the context. | `string` |
-| initialCurrent   | Initial page index.                                                                                                                                | `number`                     |
-| initialPageSize  | Number of records shown per initial number of   pages.                                                                                             | `number`                     |
-| initialSorter    | Initial sorting.                                                                                                                                   | [`CrudSorting`][CrudSorting] |
-| initialFilter    | Initial                                                                                                                                            |
-| filtering.       | [`CrudFilters`][CrudFilters]                                                                                                                       |
-| syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history.                                                           | `boolean`                    |
-| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][Table Search] to learn how to create a search form. | `Function`                   |
+### Properties
+
+| Key              | Description                                                                                                                                       | Type                                                        |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| permanentFilter  | Default and unchangeable filter                                                                                                                   | [`CrudFilters`][CrudFilters]                                |
+| initialCurrent   | Initial page index                                                                                                                                | `number`                                                    |
+| initialPageSize  | Number of records shown per initial number of pages                                                                                               | `number`                                                    |
+| initialSorter    | Initial sorting                                                                                                                                   | [`CrudSorting`][CrudSorting]                                |
+| initialFilter    | Initial filtering                                                                                                                                 | [`CrudFilters`][CrudFilters]                                |
+| syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history                                                           | `boolean`                                                   |
+| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][Table Search] to learn how to create a search form | `Function`                                                  |
+| queryOptions     | `react-query`'s `useQuery` options                                                                                                                | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>` |
 
 ### Type Parameters
 
