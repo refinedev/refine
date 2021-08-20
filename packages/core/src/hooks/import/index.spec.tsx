@@ -1,10 +1,9 @@
-import { UploadFile } from "antd/lib/upload/interface";
+import { RcFile, UploadFile } from "antd/lib/upload/interface";
 import { TestWrapper, MockJSONServer } from "@test";
 import { renderHook } from "@testing-library/react-hooks";
 import * as papaparse from "papaparse";
 
 import { useImport } from ".";
-import { parse } from "qs";
 
 jest.mock("papaparse", () => {
     return {
@@ -196,5 +195,94 @@ describe("useImport hook", () => {
 
             done();
         }, 4000);
+    });
+
+    it("should map data successfully before it uploads to server", (done) => {
+        const { result } = renderHook(
+            () =>
+                useImport({
+                    batchSize: null,
+                    mapData: (data) => ({
+                        id: data.id,
+                        newTitle: data.title,
+                    }),
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        result.current.uploadProps.onChange?.({
+            fileList: [],
+            file: file as unknown as UploadFile,
+        });
+
+        setTimeout(() => {
+            expect(useCreateManyMutateMock).toHaveBeenCalledWith({
+                resource: "posts",
+                values: parsedData.map((parsedData) => ({
+                    id: parsedData.id,
+                    newTitle: parsedData.title,
+                })),
+            });
+            done();
+        }, 4000);
+    });
+
+    it("should send request for the specified resource", (done) => {
+        const { result } = renderHook(
+            () =>
+                useImport({
+                    batchSize: null,
+                    resourceName: "tests",
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        result.current.uploadProps.onChange?.({
+            fileList: [],
+            file: file as unknown as UploadFile,
+        });
+
+        setTimeout(() => {
+            expect(useCreateManyMutateMock).toHaveBeenCalledWith({
+                resource: "tests",
+                values: parsedData.map((parsedData) => ({
+                    ...parsedData,
+                })),
+            });
+            done();
+        }, 4000);
+    });
+
+    it("should return false from uploadProps.beforeUpload callback", () => {
+        const { result } = renderHook(
+            () =>
+                useImport({
+                    batchSize: null,
+                    resourceName: "tests",
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        const beforeUploadResult = result.current.uploadProps.beforeUpload?.(
+            file as unknown as RcFile,
+            [],
+        );
+
+        expect(beforeUploadResult).toBe(false);
     });
 });
