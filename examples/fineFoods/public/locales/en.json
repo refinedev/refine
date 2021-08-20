@@ -296,7 +296,11 @@
       },
       "firstName": "First Name",
       "lastName": "Last Name",
-      "gender": "Gender",
+      "gender": {
+        "label": "Gender",
+        "Male": "Male",
+        "Female": "Female"
+      },
       "gsm": "Gsm Number",
       "createdAt": "CreatedAt",
       "isActive": "Is Active"
