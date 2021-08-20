@@ -65,6 +65,11 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Row gutter={[16, 16]}>
+            <Col xl={6} lg={24} xs={24}>
+                <Card title={t("users.filter.title")}>
+                    <Filter formProps={searchFormProps} />
+                </Card>
+            </Col>
             <Col lg={18} xs={24}>
                 <List>
                     <Table {...tableProps} rowKey="id">
@@ -110,30 +115,8 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                             )}
                             sorter
                         />
-                        <Table.Column<IUser>
-                            title={t("table.actions")}
-                            dataIndex="actions"
-                            key="actions"
-                            render={(_value, record) => (
-                                <Space>
-                                    <EditButton
-                                        size="small"
-                                        recordItemId={record.id}
-                                    />
-                                    <ShowButton
-                                        size="small"
-                                        recordItemId={record.id}
-                                    />
-                                </Space>
-                            )}
-                        />
                     </Table>
                 </List>
-            </Col>
-            <Col lg={6} xs={24}>
-                <Card title={t("users.filter.title")}>
-                    <Filter formProps={searchFormProps} />
-                </Card>
             </Col>
         </Row>
     );
