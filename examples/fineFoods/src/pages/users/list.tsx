@@ -4,6 +4,7 @@ import {
     Avatar,
     useTable,
     useTranslate,
+    useNavigation,
     IResourceComponentsProps,
     DateField,
     BooleanField,
@@ -24,6 +25,7 @@ import {
 import { IUser, IUserFilterVariables } from "interfaces";
 
 export const UserList: React.FC<IResourceComponentsProps> = () => {
+    const { show } = useNavigation();
     const { tableProps, searchFormProps } = useTable<
         IUser,
         HttpError,
@@ -101,7 +103,17 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
             </Col>
             <Col xl={18} xs={24}>
                 <List>
-                    <Table {...tableProps} rowKey="id">
+                    <Table
+                        {...tableProps}
+                        rowKey="id"
+                        onRow={(record) => {
+                            return {
+                                onClick: () => {
+                                    show("users", record.id);
+                                },
+                            };
+                        }}
+                    >
                         <Table.Column
                             key="gsm"
                             dataIndex="gsm"
