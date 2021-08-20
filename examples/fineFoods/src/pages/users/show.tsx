@@ -19,6 +19,7 @@ import {
     NumberField,
     Popover,
     DateField,
+    BooleanField,
 } from "@pankod/refine";
 import { OrderStatus } from "components";
 
@@ -91,16 +92,20 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                                 }}
                             >
                                 <Typography.Text>
-                                    <Icons.EnvironmentOutlined /> {user?.gender}
+                                    <Icons.UserOutlined />{" "}
+                                    {t(`users.fields.gender.${user?.gender}`)}
                                 </Typography.Text>
                                 <Typography.Text>
                                     <Icons.PhoneOutlined /> {user?.gsm}
                                 </Typography.Text>
                                 <Typography.Text>
-                                    <Icons.MailOutlined /> {user?.createdAt}
+                                    <Icons.CalendarOutlined /> {user?.createdAt}
                                 </Typography.Text>
                                 <Typography.Text>
-                                    <Icons.BankOutlined /> {user?.isActive}
+                                    <Icons.CheckOutlined />{" "}
+                                    {user?.isActive
+                                        ? t("users.fields.isActive.true")
+                                        : t("users.fields.isActive.false")}
                                 </Typography.Text>
                             </Space>
                         </Space>
@@ -192,7 +197,9 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                                         title="Products"
                                         trigger="hover"
                                     >
-                                        {`${record.products.length} Items`}
+                                        {t("orders.fields.itemsAmount", {
+                                            amount: record.products.length,
+                                        })}
                                     </Popover>
                                 )}
                             />

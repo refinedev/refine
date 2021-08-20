@@ -176,7 +176,8 @@
       "user": "Kullanıcı",
       "products": "Ürünler",
       "createdAt": "Oluşturma Tarihi",
-      "amount": "Tutar"
+      "amount": "Tutar",
+      "itemsAmount": "{{amount}} ürün"
     },
     "filter": {
       "title": "Filtrele",
@@ -301,7 +302,11 @@
       },
       "gsm": "GSM Numarası",
       "createdAt": "Oluşturma Tarihi",
-      "isActive": "Aktif"
+      "isActive": {
+        "label": "Aktif",
+        "true": "Evet",
+        "false": "Hayır"
+      }
     },
     "filter": {
       "title": "Filtreler",

@@ -178,7 +178,8 @@
       "user": "User",
       "products": "Products",
       "createdAt": "CreatedAt",
-      "amount": "Amount"
+      "amount": "Amount",
+      "itemsAmount": "{{amount}} items"
     },
     "filter": {
       "title": "Filters",
@@ -303,7 +304,11 @@
       },
       "gsm": "Gsm Number",
       "createdAt": "CreatedAt",
-      "isActive": "Is Active"
+      "isActive": {
+        "label": "Is Active",
+        "true": "Yes",
+        "false": "No"
+      }
     },
     "filter": {
       "title": "Filters",

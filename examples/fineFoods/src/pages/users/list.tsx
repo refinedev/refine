@@ -147,7 +147,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                         <Table.Column
                             key="isActive"
                             dataIndex="isActive"
-                            title={t("users.fields.isActive")}
+                            title={t("users.fields.isActive.label")}
                             render={(value) => <BooleanField value={value} />}
                         />
                         <Table.Column
