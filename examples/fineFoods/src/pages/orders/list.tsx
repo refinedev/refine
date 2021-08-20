@@ -280,7 +280,7 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
     return (
         <Form layout="vertical" {...formProps}>
             <Row gutter={[10, 0]} align="bottom">
-                <Col xl={24} md={8}>
+                <Col xl={24} md={8} sm={12} xs={24}>
                     <Form.Item label={t("orders.filter.search.label")} name="q">
                         <Input
                             placeholder={t("orders.filter.search.placeholder")}
@@ -288,7 +288,7 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
                         />
                     </Form.Item>
                 </Col>
-                <Col xl={24} md={8}>
+                <Col xl={24} md={8} sm={12} xs={24}>
                     <Form.Item
                         label={t("orders.filter.status.label")}
                         name="status"
@@ -300,7 +300,7 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
                         />
                     </Form.Item>
                 </Col>
-                <Col xl={24} md={8}>
+                <Col xl={24} md={8} sm={12} xs={24}>
                     <Form.Item
                         label={t("orders.filter.store.label")}
                         name="store"
@@ -312,7 +312,7 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
                         />
                     </Form.Item>
                 </Col>
-                <Col xl={24} md={8}>
+                <Col xl={24} md={8} sm={12} xs={24}>
                     <Form.Item
                         label={t("orders.filter.user.label")}
                         name="user"
@@ -324,7 +324,7 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
                         />
                     </Form.Item>
                 </Col>
-                <Col xl={24} md={8}>
+                <Col xl={24} md={8} sm={12} xs={24}>
                     <Form.Item
                         label={t("orders.filter.createdAt.label")}
                         name="createdAt"
@@ -332,7 +332,7 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
                         <RangePicker />
                     </Form.Item>
                 </Col>
-                <Col xl={24} md={8}>
+                <Col xl={24} md={8} sm={12} xs={24}>
                     <Form.Item>
                         <Button
                             htmlType="submit"
