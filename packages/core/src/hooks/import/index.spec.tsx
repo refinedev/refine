@@ -111,9 +111,7 @@ describe("useImport hook", () => {
         setTimeout(() => {
             expect(useCreateManyMutateMock).toHaveBeenCalledWith({
                 resource: "posts",
-                values: parsedData.map((parsedData) => ({
-                    ...parsedData,
-                })),
+                values: parsedData,
             });
             done();
         }, 4000);
