@@ -65,7 +65,7 @@ export const Sider: React.FC = () => {
                                 }}
                             >
                                 {label}
-                                {isSelected && <RightOutlined />}
+                                {!collapsed && isSelected && <RightOutlined />}
                             </div>
                         </Menu.Item>
                     );
