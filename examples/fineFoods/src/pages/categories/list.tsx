@@ -81,8 +81,9 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                 <Table
                     {...tableProps}
                     expandable={{
-                        expandedRowRender,
-                        rowExpandable: () => !breakpoint.xs,
+                        expandedRowRender: !breakpoint.xs
+                            ? expandedRowRender
+                            : undefined,
                     }}
                     scroll={{
                         x: true,
@@ -96,11 +97,6 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                         },
                     })}
                 >
-                    <Table.Column
-                        key="id"
-                        dataIndex="id"
-                        title={t("categories.fields.id")}
-                    />
                     <Table.Column
                         key="title"
                         dataIndex="title"
