@@ -14,6 +14,7 @@ import {
     Avatar,
     Typography,
     Upload,
+    Grid,
     getValueFromEvent,
     useApiUrl,
     useSelect,
@@ -36,13 +37,18 @@ export const EditProduct: React.FC<EditProductProps> = ({
 }) => {
     const t = useTranslate();
     const apiUrl = useApiUrl();
+    const breakpoint = Grid.useBreakpoint();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
     });
 
     return (
-        <Drawer {...drawerProps} bodyStyle={{ padding: 0 }}>
+        <Drawer
+            {...drawerProps}
+            width={breakpoint.sm ? "500px" : "100%"}
+            bodyStyle={{ padding: 0 }}
+        >
             <Edit
                 saveButtonProps={saveButtonProps}
                 pageHeaderProps={{ extra: null }}
