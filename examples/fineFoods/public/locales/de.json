@@ -1,0 +1,314 @@
+{
+  "pages": {
+    "login": {
+      "signin": "Giriş",
+      "signup": "Kayıt",
+      "email": "Email",
+      "password": "Şifre",
+      "remember": "Beni Hatırla",
+      "forgotPassword": "Şifremi unuttum",
+      "noAccount": "Hesabın yok mu?",
+      "message": "Hesabına <0>giriş yap</0>"
+    },
+    "error": {
+      "info": "{{action}} sayfasını {{resource}} kaynağına eklemeyi unutmuş olabilirsiniz.",
+      "404": "Üzgünüz, ziyaret ettiğiniz sayfa mevcut değil.",
+      "resource404": "{{resource}} kaynağını oluşturduğunuzdan emin misiniz?",
+      "backHome": "Ana sayfaya geri dön"
+    }
+  },
+  "buttons": {
+    "create": "Oluştur",
+    "save": "Kaydet",
+    "logout": "Çıkış yap",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "cancel": "İptal",
+    "confirm": "Emin misiniz?",
+    "filter": "Filtrele",
+    "clear": "Temizle",
+    "refresh": "Yenile",
+    "show": "Göster",
+    "undo": "Geri Al",
+    "import": "Yükle",
+    "export": "Dışa Aktar",
+    "clone": "Kopya",
+    "accept": "Kabul Et",
+    "acceptAll": "Tümünü Kabul Et",
+    "reject": "Reddet",
+    "rejectAll": "Tümünü Reddet",
+    "nextStep": "İleri",
+    "previousStep": "Geri"
+  },
+  "loading": "Yükleniyor",
+  "tags": {
+    "clone": "Kopya"
+  },
+  "table": {
+    "actions": "İşlemler"
+  },
+  "search": {
+    "placeholder": "Mağaza ID, e-posta veya anahtar kelime ile arama",
+    "more": "Daha fazla"
+  },
+  "status": {
+    "enable": "Aktif",
+    "disable": "Pasif"
+  },
+  "warnWhenUnsavedChanges": "Kaydedilmemiş değişiklikleriniz var. Ayrılmak istediğinizden emin misiniz?",
+  "notifications": {
+    "success": "Başarılı",
+    "error": "Hata (hata kodu: {{statusCode}})",
+    "undoable": "Geri almak için {{seconds}} saniyeniz var",
+    "createSuccess": "{{resource}} başarıyla oluşturuldu",
+    "createError": "{{resource}} oluşturulurken hata (hata kodu: {{statusCode}})",
+    "deleteSuccess": "{{resource}} başarıyla silindi",
+    "deleteError": "{{resource}} silinirken hata (hata kodu: {{statusCode}})",
+    "editSuccess": "{{resource}} başarıyla düzenlendi",
+    "editError": "{{resource}} düzenlenirken hata (hata kodu: {{statusCode}})"
+  },
+  "categories": {
+    "categories": "Kategoriler",
+    "titles": {
+      "list": "Kategoriler"
+    },
+    "fields": {
+      "id": "ID",
+      "title": "Başlık",
+      "isActive": "Aktif"
+    }
+  },
+  "couriers": {
+    "couriers": "Kuryeler",
+    "titles": {
+      "create": "Kurye Oluştur",
+      "list": "Kuryeler",
+      "edit": "Kurye Düzenle"
+    },
+    "fields": {
+      "id": "ID",
+      "avatar": {
+        "label": "Avatar",
+        "description": "Yüklemek için avatar resmini bu alana tıklayın veya sürükleyin."
+      },
+      "name": "Adı",
+      "surname": "Soyadı",
+      "gender": {
+        "label": "Cinsiyet",
+        "male": "Erkek",
+        "female": "Kadın"
+      },
+      "gsm": "Gsm Numarsı",
+      "createdAt": "Oluşturma Tarihi",
+      "isActive": "Aktif",
+      "images": {
+        "label": "Fotoğraf",
+        "description": "Kullanıcı fotoğrafı ekle",
+        "validation": "480x480 boyutunda olmalıdır"
+      },
+      "store": "Mağaza",
+      "vehicle": "Araç",
+      "accountNumber": "Hesap Numarası",
+      "address": "Adres"
+    },
+    "steps": {
+      "content": "İçerik",
+      "relations": "İlişkiler"
+    }
+  },
+  "dashboard": {
+    "title": "Panel",
+    "deliveryMap": {
+      "title": "Teslimat Haritası"
+    },
+    "orders": {
+      "title": "Siparişler"
+    },
+    "totalSales": {
+      "title": "Toplam Satışlar"
+    },
+    "dailyRevenue": {
+      "title": "Günlük Gelir"
+    },
+    "dailyOrders": {
+      "title": "Günlük Siparişler"
+    },
+    "newCustomers": {
+      "title": "Yeni Müşteriler"
+    },
+    "timeline": {
+      "title": "Son Güncellemeler",
+      "orderStatuses": {
+        "pending": "Sipariş hazırlanıyor",
+        "ready": "Sipariş hazır",
+        "on the way": "Sipariş yolda",
+        "delivered": "Sipariş teslim edildi",
+        "cancelled": "Sipariş iptal edildi"
+      }
+    },
+    "recentOrders": {
+      "title": "Son Siparişler"
+    },
+    "trendingMenus": {
+      "title": "Günlük popüler menüler"
+    }
+  },
+  "enum": {
+    "orderStatuses": {
+      "Pending": "Bekliyor",
+      "Ready": "Hazır",
+      "On The Way": "Yolda",
+      "Delivered": "Teslim Edildi",
+      "Cancelled": "İptal Edildi"
+    }
+  },
+  "orders": {
+    "orders": "Siparişler",
+    "titles": {
+      "list": "Siparişler",
+      "show": "Sipariş Detay"
+    },
+    "fields": {
+      "orderNumber": "Sipariş Numarası",
+      "orderID": "Sipariş ID",
+      "status": "Sipariş Durumu",
+      "store": "Mağaza",
+      "user": "Kullanıcı",
+      "products": "Ürünler",
+      "createdAt": "Oluşturma Tarihi",
+      "amount": "Tutar"
+    },
+    "filter": {
+      "title": "Filtrele",
+      "search": {
+        "label": "Arama",
+        "placeholder": "Sipariş numarası, Kullanıcı vs."
+      },
+      "status": {
+        "label": "Sipariş Durumu",
+        "placeholder": "Sipariş Durumu"
+      },
+      "store": {
+        "label": "Mağaza",
+        "placeholder": "Mağaza Ara"
+      },
+      "user": {
+        "label": "Kullanıcı",
+        "placeholder": "Kullanıcı Ara"
+      },
+      "createdAt": {
+        "label": "Oluşturma Tarihi"
+      },
+      "submit": "Filtrele"
+    },
+    "courier": {
+      "deliveryTime": "Varış Zamanı",
+      "phone": "Telefon"
+    },
+    "deliverables": {
+      "deliverables": "Teslim Edilecekler",
+      "fields": {
+        "items": "Ürünler",
+        "quantity": "Miktar",
+        "price": "Fiyat",
+        "total": "Toplam"
+      },
+      "mainTotal": "GENEL TOPLAM"
+    }
+  },
+  "products": {
+    "products": "Ürünler",
+    "titles": {
+      "list": "Ürünler",
+      "create": "Ürün Oluştur",
+      "edit": "Ürün Düzenle"
+    },
+    "fields": {
+      "id": "ID",
+      "name": "Adı",
+      "description": "Açıklama",
+      "isActive": "Aktif",
+      "price": "Fiyat",
+      "category": "Kategori",
+      "images": {
+        "label": "Görseller",
+        "description": "Ürün resmi ekleyin",
+        "validation": "1080x1080 px olmalı"
+      },
+      "createdAt": "Oluşturma Tarihi"
+    }
+  },
+  "reviews": {
+    "reviews": "Yorumlar",
+    "titles": {
+      "list": "Yorumlar"
+    },
+    "fields": {
+      "user": "Kullanıcı",
+      "orderId": "Sipariş No",
+      "review": "Yorum",
+      "rating": "Puan"
+    }
+  },
+  "stores": {
+    "stores": "Mağazalar",
+    "titles": {
+      "create": "Mağaza Oluştur",
+      "edit": "Mağaza Düzenle",
+      "list": "Mağazalar",
+      "show": "Mağaza Göster"
+    },
+    "fields": {
+      "id": "Mağaza ID",
+      "title": "Başlık",
+      "isActive": "Aktif",
+      "createdAt": "Oluşturma Tarihi",
+      "address": "Adres",
+      "email": "Email",
+      "gsm": "Telefon"
+    },
+    "buttons": {
+      "editProducts": "Ürünleri Düzenle",
+      "addProduct": "Ürün Ekle",
+      "outOfStock": "Stoğu Bitir",
+      "edit": "Ürünü Düzenle"
+    },
+    "selectLocation": "Harita üzerinde bir lokasyon seç",
+    "storeProducts": "Mağaza Ürünleri",
+    "tagFilterDescription": "Aramanızı filtrelemek için etiketleri kullanın",
+    "all": "Tümü",
+    "productSearch": "Ürün Ara"
+  },
+  "users": {
+    "users": "Kullanıcılar",
+    "titles": {
+      "edit": "Kullanıcı Düzenle",
+      "list": "Kullanıcılar",
+      "show": "Kullanıcı Detay"
+    },
+    "fields": {
+      "id": "ID",
+      "avatar": {
+        "label": "Avatar",
+        "description": "Yüklemek için avatar resmini bu alana tıklayın veya sürükleyin."
+      },
+      "firstName": "Adı",
+      "lastName": "Soyadı",
+      "gender": "Cinsiyet",
+      "gsm": "GSM Numarası",
+      "createdAt": "Oluşturma Tarihi",
+      "isActive": "Aktif"
+    },
+    "filter": {
+      "title": "Filtreler",
+      "search": {
+        "label": "Ara",
+        "placeholder": "Adı, soyadı, gsm numarası vs."
+      },
+      "createdAt": {
+        "label": "Oluşturma Tarihi"
+      },
+      "submit": "Filtrele"
+    }
+  }
+}

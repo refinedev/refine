@@ -40,6 +40,10 @@ export const Sider: React.FC = () => {
                         return;
                     }
 
+                    if (!breakpoint.lg) {
+                        setCollapsed(true);
+                    }
+
                     push(key as string);
                 }}
             >
@@ -61,7 +65,7 @@ export const Sider: React.FC = () => {
                                 }}
                             >
                                 {label}
-                                {isSelected && <RightOutlined />}
+                                {!collapsed && isSelected && <RightOutlined />}
                             </div>
                         </Menu.Item>
                     );

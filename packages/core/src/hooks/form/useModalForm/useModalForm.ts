@@ -82,6 +82,7 @@ export const useModalForm = <
     const translate = useTranslate();
 
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
+
     const sunflowerUseModal = useModalFormSF<TData, TVariables>({
         ...rest,
         form: form,
@@ -149,7 +150,7 @@ export const useModalForm = <
         setEditId?.(undefined);
         setCloneId?.(undefined);
         sunflowerUseModal.close();
-    }, []);
+    }, [warnWhen]);
 
     const handleShow = useCallback((id?: string) => {
         setEditId?.(id);

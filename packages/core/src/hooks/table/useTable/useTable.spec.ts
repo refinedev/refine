@@ -10,6 +10,8 @@ const defaultPagination = {
     defaultPageSize: 10,
     defaultCurrent: 1,
     total: 2,
+    simple: true,
+    position: ["bottomCenter"],
 };
 
 const customPagination = {
@@ -18,6 +20,8 @@ const customPagination = {
     defaultPageSize: 1,
     pageSize: 1,
     total: 2,
+    simple: true,
+    position: ["bottomCenter"],
 };
 
 describe("useTable Hook", () => {

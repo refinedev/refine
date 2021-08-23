@@ -1,10 +1,11 @@
-import { Tag } from "@pankod/refine";
+import { Tag, useTranslate } from "@pankod/refine";
 
 type OrderStatusProps = {
     status: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";
 };
 
 export const OrderStatus: React.FC<OrderStatusProps> = ({ status }) => {
+    const t = useTranslate();
     let color;
 
     switch (status) {
@@ -25,5 +26,5 @@ export const OrderStatus: React.FC<OrderStatusProps> = ({ status }) => {
             break;
     }
 
-    return <Tag color={color}>{status}</Tag>;
+    return <Tag color={color}>{t(`enum.orderStatuses.${status}`)}</Tag>;
 };

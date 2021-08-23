@@ -169,6 +169,80 @@ const { selectProps } = useSelect({
 
 It allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
 
+
+### `queryOptions`
+
+[useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing `queryOptions` property.
+
+
+```tsx
+const { selectProps } = useSelect({
+        resource: "categories",
+         //highlight-start
+        queryOptions: { onError: () => { console.log("triggers when on query return Error") }}
+         //highlight-end
+});
+```
+
+:::caution
+The `defaultQueryOnSuccess` method which has default onSuccess behaviour and returned from `useRadioGroup` hook  must be called in case of `onSuccess` is needed to be overwritten. 
+
+```tsx
+const { 
+    selectProps, 
+    //highlight-next-line
+    defaultQueryOnSuccess
+    } = useSelect({
+    resource: "categories",
+    //highlight-start
+    queryOptions: { 
+        onSuccess: (data) => { 
+            defaultQueryOnSuccess(data)
+            console.log("triggers when on query return on success") 
+        } 
+    }
+    //highlight-end
+});
+```
+
+:::
+### `defaultValueQueryOptions`
+
+[useQuery](https://react-query.tanstack.com/reference/useQuery) options for default value query can be set by passing `queryOptions` property.
+
+
+```tsx
+const { selectProps } = useSelect({
+        resource: "categories",
+         //highlight-start
+        defaultValueQueryOptions: { onError: () => { console.log("triggers when on query return Error") }}
+         //highlight-end
+});
+```
+
+:::caution
+The `defaultValueQueryOnSuccess` method which has default onSuccess behaviour for default value query and returned from `useSelect` hook  must be called in case of `onSuccess` is needed to be overwritten. 
+
+```tsx
+const { 
+    selectProps, 
+    //highlight-next-line
+    defaultValueQueryOnSuccess
+    } = useSelect({
+    resource: "categories",
+    //highlight-start
+    queryOptions: { 
+        onSuccess: (data) => { 
+            defaultValueQueryOnSuccess(data)
+            console.log("triggers when on query return on success") 
+        } 
+    }
+    //highlight-end
+});
+```
+
+:::
+
 ## API Reference
 
 ### Properties
@@ -182,6 +256,8 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 | filters                                           | Add filters while fetching the data       | [`CrudFilters`](../../interfaces.md#crudfilters) |           |
 | sort                                              | Allow us to sort the options              | [`CrudSorting`](../../interfaces.md#crudsorting) |           |
 | debounce                                          | The number of milliseconds to delay             | `number`                                         | 300       |
+| queryOptions                                              | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options             | ` UseQueryOptions<GetListResponse<TData>, TError>` |           |
+| defaultValueQueryOptions                                              | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options             | ` UseQueryOptions<GetManyResponse<TData>, TError>` |           |
 
 
 ### Return values
@@ -191,6 +267,8 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 | selectProps             | Ant design Select props                        | [`Select`](https://ant.design/components/select/#API)                                         |
 | queryResult             | Result of the query of a record                | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
 | defaultValueQueryResult | Result of the query of a `defaultValue` record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+| defaultQueryOnSuccess        | Default onSuccess method | `() => void` |
+| defaultValueQueryOnSuccess        | Default value onSuccess method | `() => void` |
 
 ## Live Codesandbox Example
 

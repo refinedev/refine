@@ -137,7 +137,7 @@ export const useDrawerForm = <
         setVisible(false);
         setCloneId?.(undefined);
         setEditId?.(undefined);
-    }, []);
+    }, [warnWhen]);
 
     const handleShow = useCallback((id?: string) => {
         setEditId?.(id);

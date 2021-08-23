@@ -39,7 +39,7 @@ describe("Refine Container", () => {
             />,
         );
 
-        getByText("Welcome to refine");
+        getByText("Welcome on board");
     });
 
     it("should render correctly readyPage with ready prop", async () => {

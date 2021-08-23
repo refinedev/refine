@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import { Grid } from "antd";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
 import { FormProps } from "antd/lib/form";
-import { QueryObserverResult } from "react-query";
 import unionWith from "lodash/unionWith";
 import reverse from "lodash/reverse";
+import { QueryObserverResult, UseQueryOptions } from "react-query";
 
 import { useForm } from "antd/lib/form/Form";
 import { SorterResult } from "antd/lib/table/interface";
@@ -28,9 +29,10 @@ import {
     CrudSorting,
     GetListResponse,
     SuccessErrorNotification,
+    HttpError,
 } from "../../../interfaces";
 
-export type useTableProps<TSearchVariables = unknown> = {
+export type useTableProps<TData, TError, TSearchVariables = unknown> = {
     permanentFilter?: CrudFilters;
     resource?: string;
     initialCurrent?: number;
@@ -39,6 +41,7 @@ export type useTableProps<TSearchVariables = unknown> = {
     initialFilter?: CrudFilters;
     syncWithLocation?: boolean;
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
+    queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
 } & SuccessErrorNotification;
 
 export type useTableReturnType<
@@ -61,6 +64,7 @@ export type useTableReturnType<
  */
 export const useTable = <
     TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
     TSearchVariables = unknown,
 >({
     onSearch,
@@ -73,10 +77,13 @@ export const useTable = <
     resource: resourceFromProp,
     successNotification,
     errorNotification,
-}: useTableProps<TSearchVariables> = {}): useTableReturnType<
+    queryOptions,
+}: useTableProps<TData, TError, TSearchVariables> = {}): useTableReturnType<
     TData,
     TSearchVariables
 > => {
+    const breakpoint = Grid.useBreakpoint();
+
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
     const [form] = useForm<TSearchVariables>();
@@ -146,8 +153,7 @@ export const useTable = <
         defaultCurrent: defaultCurrentSF,
     } = tablePropsSunflower.pagination;
 
-    console.log("filters state: ", filters);
-    const queryResult = useList<TData>(
+    const queryResult = useList<TData, TError>(
         resource.name,
         {
             pagination: {
@@ -157,7 +163,7 @@ export const useTable = <
             filters,
             sort: sorter,
         },
-        undefined,
+        queryOptions,
         successNotification,
         errorNotification,
     );
@@ -223,6 +229,8 @@ export const useTable = <
             onChange,
             pagination: {
                 ...tablePropsSunflower.pagination,
+                simple: !breakpoint.sm,
+                position: !breakpoint.sm ? ["bottomCenter"] : ["bottomRight"],
                 total: data?.total,
             },
             scroll: { x: true },

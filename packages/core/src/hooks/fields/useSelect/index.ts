@@ -1,7 +1,7 @@
 import React from "react";
 import uniqBy from "lodash/uniqBy";
 import { SelectProps } from "antd/lib/select";
-import { QueryObserverResult } from "react-query";
+import { QueryObserverResult, UseQueryOptions } from "react-query";
 import debounce from "lodash/debounce";
 
 import { useList, useMany } from "@hooks";
@@ -13,9 +13,10 @@ import {
     GetListResponse,
     CrudFilters,
     SuccessErrorNotification,
+    HttpError,
 } from "../../../interfaces";
 
-export type UseSelectProps = {
+export type UseSelectProps<TData, TError> = {
     resource: string;
     optionLabel?: string;
     optionValue?: string;
@@ -23,12 +24,16 @@ export type UseSelectProps = {
     filters?: CrudFilters;
     defaultValue?: string | string[];
     debounce?: number;
+    queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
+    defaultValueQueryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>;
 } & SuccessErrorNotification;
 
 export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
     selectProps: SelectProps<{ value: string; label: string }>;
     queryResult: QueryObserverResult<GetListResponse<TData>>;
     defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
+    defaultQueryOnSuccess: (data: GetListResponse<TData>) => void;
+    defaultValueQueryOnSuccess: (data: GetManyResponse<TData>) => void;
 };
 
 /**
@@ -39,8 +44,11 @@ export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
  * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
  *
  */
-export const useSelect = <TData extends BaseRecord = BaseRecord>(
-    props: UseSelectProps,
+export const useSelect = <
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+>(
+    props: UseSelectProps<TData, TError>,
 ): UseSelectReturnType<TData> => {
     const [search, setSearch] = React.useState<CrudFilters>([]);
     const [options, setOptions] = React.useState<Option[]>([]);
@@ -57,25 +65,45 @@ export const useSelect = <TData extends BaseRecord = BaseRecord>(
         debounce: debounceValue = 300,
         successNotification,
         errorNotification,
+        defaultValueQueryOptions,
+        queryOptions,
     } = props;
 
     if (!Array.isArray(defaultValue)) {
         defaultValue = [defaultValue];
     }
 
-    const defaultValueQueryResult = useMany<TData>(resource, defaultValue, {
-        enabled: defaultValue.length > 0,
-        onSuccess: (data) => {
-            setSelectedOptions(
-                data.data.map((item) => ({
-                    label: item[optionLabel],
-                    value: (item[optionValue] ?? "").toString(),
-                })),
-            );
-        },
-    });
+    const defaultValueQueryOnSuccess = (data: GetManyResponse<TData>) => {
+        setSelectedOptions(
+            data.data.map((item) => ({
+                label: item[optionLabel],
+                value: item[optionValue],
+            })),
+        );
+    };
 
-    const queryResult = useList<TData>(
+    const defaultValueQueryResult = useMany<TData, TError>(
+        resource,
+        defaultValue,
+        {
+            enabled: defaultValue.length > 0,
+            onSuccess: (data) => {
+                defaultValueQueryOnSuccess(data);
+            },
+            ...defaultValueQueryOptions,
+        },
+    );
+
+    const defaultQueryOnSuccess = (data: GetListResponse<TData>) => {
+        setOptions(
+            data.data.map((item) => ({
+                label: item[optionLabel],
+                value: item[optionValue],
+            })),
+        );
+    };
+
+    const queryResult = useList<TData, TError>(
         resource,
         {
             sort,
@@ -84,13 +112,9 @@ export const useSelect = <TData extends BaseRecord = BaseRecord>(
         {
             enabled: false,
             onSuccess: (data) => {
-                setOptions(
-                    data.data.map((item) => ({
-                        label: item[optionLabel],
-                        value: (item[optionValue] ?? "").toString(),
-                    })),
-                );
+                defaultQueryOnSuccess(data);
             },
+            ...queryOptions,
         },
         successNotification,
         errorNotification,
@@ -128,5 +152,7 @@ export const useSelect = <TData extends BaseRecord = BaseRecord>(
         },
         queryResult,
         defaultValueQueryResult,
+        defaultQueryOnSuccess,
+        defaultValueQueryOnSuccess,
     };
 };

@@ -14,6 +14,7 @@ import {
     Avatar,
     Typography,
     Upload,
+    Grid,
     getValueFromEvent,
     useApiUrl,
     useSelect,
@@ -36,13 +37,18 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
 }) => {
     const t = useTranslate();
     const apiUrl = useApiUrl();
+    const breakpoint = Grid.useBreakpoint();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
     });
 
     return (
-        <Drawer {...drawerProps} bodyStyle={{ padding: 0 }}>
+        <Drawer
+            {...drawerProps}
+            width={breakpoint.sm ? "500px" : "100%"}
+            bodyStyle={{ padding: 0 }}
+        >
             <Create saveButtonProps={saveButtonProps}>
                 <Form
                     {...formProps}
@@ -51,7 +57,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                         isActive: true,
                     }}
                 >
-                    <Form.Item label={t("products:fields.images.label")}>
+                    <Form.Item label={t("products.fields.images.label")}>
                         <Form.Item
                             name="images"
                             valuePropName="fileList"
@@ -88,18 +94,18 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                                         }}
                                     >
                                         {t(
-                                            "products:fields.images.description",
+                                            "products.fields.images.description",
                                         )}
                                     </Text>
                                     <Text style={{ fontSize: "12px" }}>
-                                        {t("products:fields.images.validation")}
+                                        {t("products.fields.images.validation")}
                                     </Text>
                                 </Space>
                             </Upload.Dragger>
                         </Form.Item>
                     </Form.Item>
                     <Form.Item
-                        label={t("products:fields.name")}
+                        label={t("products.fields.name")}
                         name="name"
                         rules={[
                             {
@@ -110,7 +116,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                         <Input />
                     </Form.Item>
                     <Form.Item
-                        label={t("products:fields.description")}
+                        label={t("products.fields.description")}
                         name="description"
                         rules={[
                             {
@@ -121,7 +127,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                         <Input.TextArea rows={6} />
                     </Form.Item>
                     <Form.Item
-                        label={t("products:fields.price")}
+                        label={t("products.fields.price")}
                         name="price"
                         rules={[
                             {
@@ -136,7 +142,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                         />
                     </Form.Item>
                     <Form.Item
-                        label={t("products:fields.category")}
+                        label={t("products.fields.category")}
                         name={["category", "id"]}
                         rules={[
                             {
@@ -147,7 +153,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                         <Select {...categorySelectProps} />
                     </Form.Item>
                     <Form.Item
-                        label={t("products:fields.isActive")}
+                        label={t("products.fields.isActive")}
                         name="isActive"
                     >
                         <Radio.Group>

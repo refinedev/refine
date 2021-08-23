@@ -16,11 +16,12 @@
     margin-left: 20px;
     border-radius: 10px;
 }
+
 .courier-infoBox .mobile,
 .delivery-img {
     color: #ffffff !important;
-    margin-right: 10px;
 }
+
 .courier-infoBox .text {
     display: flex;
     flex-direction: column;
@@ -30,6 +31,11 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    color: white;
+}
+
+.courier-box-container svg {
+    margin-right: 10px;
 }
 
 .product {

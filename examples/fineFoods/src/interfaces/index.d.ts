@@ -72,11 +72,15 @@ export interface ICourier {
     id: string;
     name: string;
     surname: string;
+    email: string;
     gender: string;
     gsm: string;
     createdAt: string;
-    isActive: boolean;
+    accountNumber: string;
+    licensePlate: string;
+    address: string;
     avatar: IFile[];
+    store: IStore;
 }
 export interface IOrder {
     id: string;

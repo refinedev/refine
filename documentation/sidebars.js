@@ -113,6 +113,7 @@ module.exports = {
                             items: [
                                 "api-references/hooks/resource/useMenu",
                                 "api-references/hooks/resource/useResource",
+                                "api-references/hooks/resource/useResourceWithRoute",
                             ],
                         },
                         {
@@ -129,6 +130,11 @@ module.exports = {
                                 "api-references/hooks/import-export/useImport",
                                 "api-references/hooks/import-export/useExport",
                             ],
+                        },
+                        {
+                            type: "category",
+                            label: "UI",
+                            items: ["api-references/hooks/ui/useModal"],
                         },
                     ],
                 },
@@ -322,6 +328,7 @@ module.exports = {
                         "examples/customization/customFooter",
                         "examples/customization/customSider",
                         "examples/customization/offLayoutArea",
+                        "examples/customization/rtl",
                     ],
                 },
                 {
@@ -344,6 +351,11 @@ module.exports = {
                         "examples/import-export/import",
                         "examples/import-export/export",
                     ],
+                },
+                {
+                    type: "category",
+                    label: "UI",
+                    items: ["examples/ui/useModal"],
                 },
                 "examples/e2e-testing",
                 "examples/customPages",

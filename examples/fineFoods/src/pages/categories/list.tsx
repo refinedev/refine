@@ -68,7 +68,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                     setEditId?.(record.id);
                 }}
             >
-                {t("common:buttons.edit")}
+                {t("buttons.edit")}
             </Menu.Item>
         </Menu>
     );
@@ -76,13 +76,14 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const breakpoint = Grid.useBreakpoint();
 
     return (
-        <List title={t("categories:title")}>
+        <List>
             <Form {...formProps}>
                 <Table
                     {...tableProps}
                     expandable={{
-                        expandedRowRender,
-                        rowExpandable: () => !breakpoint.xs,
+                        expandedRowRender: !breakpoint.xs
+                            ? expandedRowRender
+                            : undefined,
                     }}
                     scroll={{
                         x: true,
@@ -97,14 +98,9 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                     })}
                 >
                     <Table.Column
-                        key="id"
-                        dataIndex="id"
-                        title={t("categories:fields.id")}
-                    />
-                    <Table.Column
                         key="title"
                         dataIndex="title"
-                        title={t("categories:fields.title")}
+                        title={t("categories.fields.title")}
                         render={(value, data: ICategory) => {
                             if (isEditing(data.id)) {
                                 return (
@@ -122,7 +118,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                     <Table.Column
                         key="isActive"
                         dataIndex="isActive"
-                        title={t("categories:fields.isActive")}
+                        title={t("categories.fields.isActive")}
                         /*  render={(value) => <BooleanField value={value} />} */
                         render={(value, data: ICategory) => {
                             if (isEditing(data.id)) {
@@ -140,7 +136,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                         }}
                     />
                     <Table.Column<ICategory>
-                        title={t("common:table.actions")}
+                        title={t("table.actions")}
                         dataIndex="actions"
                         key="actions"
                         fixed="right"
@@ -157,7 +153,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                                             {...cancelButtonProps}
                                             size="small"
                                         >
-                                            {t("common:buttons.cancel")}
+                                            {t("buttons.cancel")}
                                         </Button>
                                     </Space>
                                 );
@@ -221,14 +217,14 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 }
                 onClick={() => false}
             >
-                {t("common:buttons.edit")}
+                {t("buttons.edit")}
             </Menu.Item>
         </Menu>
     );
 
     return (
         <List
-            title={t("products:title")}
+            title={t("products.products")}
             createButtonProps={{
                 onClick: () => false,
             }}
@@ -248,13 +244,13 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 <Table.Column
                     key="name"
                     dataIndex="name"
-                    title={t("products:fields.name")}
+                    title={t("products.fields.name")}
                 />
                 <Table.Column
                     align="right"
                     key="price"
                     dataIndex="price"
-                    title={t("products:fields.price")}
+                    title={t("products.fields.price")}
                     render={(value) => {
                         return (
                             <NumberField
@@ -272,19 +268,19 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 <Table.Column
                     key="isActive"
                     dataIndex="isActive"
-                    title={t("products:fields.isActive")}
+                    title={t("products.fields.isActive")}
                     render={(value) => <BooleanField value={value} />}
                 />
                 <Table.Column
                     key="createdAt"
                     dataIndex="createdAt"
-                    title={t("products:fields.createdAt")}
+                    title={t("products.fields.createdAt")}
                     render={(value) => <DateField value={value} format="LLL" />}
                     sorter
                 />
                 <Table.Column<IProduct>
-                    title="Actions"
                     dataIndex="actions"
+                    title={t("table.actions")}
                     render={(_, record) => (
                         <Dropdown
                             overlay={moreMenu(record)}

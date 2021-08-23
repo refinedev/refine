@@ -1,5 +1,5 @@
 import React from "react";
-import { Row } from "antd";
+import { Row, Button } from "antd";
 
 import { render } from "@test";
 
@@ -12,12 +12,32 @@ describe("ReadyPage", () => {
         expect(Row).toBeDefined();
     });
 
-    it("should render 4 texts", async () => {
+    it("should render 3 texts", async () => {
         const { getByText } = render(<ReadyPage />);
 
-        getByText("refine");
-        getByText("Welcome to refine");
-        getByText("Your application is properly configured.");
-        getByText("Now you can add a <Resource> as child of <Refine>.");
+        getByText("Welcome on board");
+        getByText("Your configuration is completed.");
+        getByText(
+            "Now you can get started by adding a <Resource> as a child of <Admin>",
+        );
+    });
+
+    it("should render 3 buttons", async () => {
+        const { getByText } = render(<ReadyPage />);
+
+        expect(Button).toBeDefined();
+
+        expect(getByText("Documentation").closest("a")).toHaveAttribute(
+            "href",
+            "https://refine.dev",
+        );
+        expect(getByText("Examples").closest("a")).toHaveAttribute(
+            "href",
+            "https://refine.dev/docs/examples/tutorial",
+        );
+        expect(getByText("Community").closest("a")).toHaveAttribute(
+            "href",
+            "https://discord.gg/qkhjCsJFrp",
+        );
     });
 });
