@@ -9,6 +9,7 @@ import { ResourceRouterParams } from "../../../interfaces";
 
 type ListButtonProps = ButtonProps & {
     resourceName?: string;
+    hideText?: boolean;
 };
 
 /**
@@ -20,6 +21,7 @@ type ListButtonProps = ButtonProps & {
  */
 export const ListButton: FC<ListButtonProps> = ({
     resourceName: propResourceName,
+    hideText = false,
     children,
     ...rest
 }) => {
@@ -36,11 +38,12 @@ export const ListButton: FC<ListButtonProps> = ({
             icon={<BarsOutlined />}
             {...rest}
         >
-            {children ??
-                translate(
-                    `${resourceName}.titles.list`,
-                    humanizeString(resourceName),
-                )}
+            {!hideText &&
+                (children ??
+                    translate(
+                        `${resourceName}.titles.list`,
+                        humanizeString(resourceName),
+                    ))}
         </Button>
     );
 };
