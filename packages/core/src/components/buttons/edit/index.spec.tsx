@@ -7,25 +7,56 @@ describe("Edit Button", () => {
     const edit = jest.fn();
 
     it("should render button successfuly", () => {
-        const editButton = render(<EditButton onClick={() => edit()} />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
-        });
-        const { container, getByText } = editButton;
+        const { container, getByText } = render(
+            <EditButton onClick={() => edit()} />,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
 
         expect(container).toBeTruthy();
 
         getByText("Edit");
     });
 
+    it("should render text by children", () => {
+        const { container, getByText } = render(
+            <EditButton>refine</EditButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        getByText("refine");
+    });
+
+    it("should render without text show only icon", () => {
+        const { container, queryByText } = render(
+            <EditButton hideText>refine</EditButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        expect(queryByText("Edit")).not.toBeInTheDocument();
+    });
+
     it("should render called function successfully if click the button", () => {
-        const editButton = render(<EditButton onClick={() => edit()} />, {
+        const { getByText } = render(<EditButton onClick={() => edit()} />, {
             wrapper: TestWrapper({
                 resources: [{ name: "posts" }],
             }),
         });
-        const { getByText } = editButton;
 
         fireEvent.click(getByText("Edit"));
 
