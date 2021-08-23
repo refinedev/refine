@@ -129,6 +129,7 @@ export const Hero = () => {
                                 <progress
                                     max={1}
                                     value={selectedVideo === 0 ? played : 0}
+                                    onClick={() => handleSelectedVideo(0)}
                                 />
                                 <a
                                     className={clsx(
@@ -146,6 +147,7 @@ export const Hero = () => {
                                 <progress
                                     max={1}
                                     value={selectedVideo === 1 ? played : 0}
+                                    onClick={() => handleSelectedVideo(1)}
                                 />
                                 <a
                                     className={clsx(
@@ -163,6 +165,7 @@ export const Hero = () => {
                                 <progress
                                     max={1}
                                     value={selectedVideo === 2 ? played : 0}
+                                    onClick={() => handleSelectedVideo(2)}
                                 />
                                 <a
                                     className={clsx(
@@ -180,6 +183,7 @@ export const Hero = () => {
                                 <progress
                                     max={1}
                                     value={selectedVideo === 3 ? played : 0}
+                                    onClick={() => handleSelectedVideo(3)}
                                 />
                                 <a
                                     className={clsx(
