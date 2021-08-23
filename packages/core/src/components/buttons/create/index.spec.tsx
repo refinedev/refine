@@ -17,25 +17,59 @@ describe("Create Button", () => {
     const create = jest.fn();
 
     it("should render button successfuly", () => {
-        const createButton = render(<CreateButton onClick={() => create()} />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
-        });
-        const { container, getByText } = createButton;
+        const { container, getByText } = render(
+            <CreateButton onClick={() => create()} />,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
 
         expect(container).toBeTruthy();
 
         getByText("Create");
     });
 
+    it("should render text by children", () => {
+        const { container, getByText } = render(
+            <CreateButton>refine</CreateButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        getByText("refine");
+    });
+
+    it("should render without text show only icon", () => {
+        const { container, queryByText } = render(
+            <CreateButton hideText>refine</CreateButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        expect(queryByText("Create")).not.toBeInTheDocument();
+    });
+
     it("should render called function successfully if click the button", () => {
-        const createButton = render(<CreateButton onClick={() => create()} />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
-        });
-        const { getByText } = createButton;
+        const { getByText } = render(
+            <CreateButton onClick={() => create()} />,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
 
         fireEvent.click(getByText("Create"));
 
@@ -43,7 +77,7 @@ describe("Create Button", () => {
     });
 
     it("should redirect custom resource route called function successfully if click the button", () => {
-        const createButton = render(
+        const { getByText } = render(
             <Route path="/:resource">
                 <CreateButton resourceName="categories" />
             </Route>,
@@ -57,7 +91,6 @@ describe("Create Button", () => {
                 }),
             },
         );
-        const { getByText } = createButton;
 
         fireEvent.click(getByText("Create"));
 
@@ -65,7 +98,7 @@ describe("Create Button", () => {
     });
 
     it("should redirect create route called function successfully if click the button", () => {
-        const createButton = render(
+        const { getByText } = render(
             <Route path="/:resource">
                 <CreateButton />
             </Route>,
@@ -76,7 +109,6 @@ describe("Create Button", () => {
                 }),
             },
         );
-        const { getByText } = createButton;
 
         fireEvent.click(getByText("Create"));
 
