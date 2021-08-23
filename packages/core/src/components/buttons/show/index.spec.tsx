@@ -17,25 +17,56 @@ describe("Show Button", () => {
     const show = jest.fn();
 
     it("should render button successfuly", () => {
-        const showButton = render(<ShowButton onClick={() => show()} />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
-        });
-        const { container, getByText } = showButton;
+        const { container, getByText } = render(
+            <ShowButton onClick={() => show()} />,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
 
         expect(container).toBeTruthy();
 
         getByText("Show");
     });
 
+    it("should render text by children", () => {
+        const { container, getByText } = render(
+            <ShowButton>refine</ShowButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        getByText("refine");
+    });
+
+    it("should render without text show only icon", () => {
+        const { container, queryByText } = render(
+            <ShowButton hideText>refine</ShowButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        expect(queryByText("Show")).not.toBeInTheDocument();
+    });
+
     it("should render called function successfully if click the button", () => {
-        const showButton = render(<ShowButton onClick={() => show()} />, {
+        const { getByText } = render(<ShowButton onClick={() => show()} />, {
             wrapper: TestWrapper({
                 resources: [{ name: "posts" }],
             }),
         });
-        const { getByText } = showButton;
 
         fireEvent.click(getByText("Show"));
 
@@ -43,7 +74,7 @@ describe("Show Button", () => {
     });
 
     it("should create page redirect show route called function successfully if click the button", () => {
-        const showButton = render(
+        const { getByText } = render(
             <Route path="/:resource">
                 <ShowButton recordItemId="1" />
             </Route>,
@@ -54,7 +85,6 @@ describe("Show Button", () => {
                 }),
             },
         );
-        const { getByText } = showButton;
 
         fireEvent.click(getByText("Show"));
 
@@ -62,7 +92,7 @@ describe("Show Button", () => {
     });
 
     it("should edit page redirect show route called function successfully if click the button", () => {
-        const showButton = render(
+        const { getByText } = render(
             <Route path="/:resource/:id">
                 <ShowButton />
             </Route>,
@@ -73,7 +103,6 @@ describe("Show Button", () => {
                 }),
             },
         );
-        const { getByText } = showButton;
 
         fireEvent.click(getByText("Show"));
 
@@ -81,7 +110,7 @@ describe("Show Button", () => {
     });
 
     it("should custom resource and recordItemId redirect show route called function successfully if click the button", () => {
-        const showButton = render(
+        const { getByText } = render(
             <Route path="/:resource">
                 <ShowButton resourceName="categories" recordItemId="1" />
             </Route>,
@@ -95,7 +124,6 @@ describe("Show Button", () => {
                 }),
             },
         );
-        const { getByText } = showButton;
 
         fireEvent.click(getByText("Show"));
 
