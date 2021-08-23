@@ -96,6 +96,7 @@ ButtonProps
 | recordItemId? | `string` \|` number`                                     |
 | onSuccess?    | `<TData = BaseRecord>(value: { data: TData; }) => void;` |
 | mutationMode? | [`MutationMode`](#mutationmode)                          |
+| hideText?     | `boolean`                                                |
 
 ## MutationMode
 
@@ -117,7 +118,7 @@ ButtonProps
 
 ## SuccessErrorNotification
 
-| Key                 | Type                                                                            |
-| ------------------- | ------------------------------------------------------------------------------- |
+| Key                 | Type                                                                                 |
+| ------------------- | ------------------------------------------------------------------------------------ |
 | successNotification | [Notification Properties](https://ant.design/components/notification/#API) & `false` |
 | errorNotification   | [Notification Properties](https://ant.design/components/notification/#API) & `false` |

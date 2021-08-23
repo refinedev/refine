@@ -17,7 +17,7 @@ import {
     DeleteButton,
     List,
     Table,
-    useTable
+    useTable,
 } from "@pankod/refine";
 
 import { IPost } from "interfaces";
@@ -179,18 +179,31 @@ export const PostList: React.FC = () => {
 };
 ```
 
+### `hideText`
+
+It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+
+```tsx
+import { DeleteButton } from "@pankod/refine";
+
+export const MyDeleteComponent = () => {
+    return <DeleteButton hideText />;
+};
+```
+
 ## API Reference
 
 ### Properties
 
-| Property     | Description                                                                                  | Type                                                                                                                        | Default                                                                        |
-| ------------ | -------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| props        | Ant Design button properties                                                                     | [`ButtonProps`](https://ant.design/components/button/#API) & [`DeleteButtonProps`](../../interfaces.md#delete-button-props) |                                                                                |
-| resourceName | Determines which resource to use for deletion                                               | `string`                                                                                                                    | Resource name that it reads from route                                         |
-| recordItemId | Determines which id to use for deletion                                                        | `string`                                                                                                                    | Record id that it reads from route                                             |
-| onSuccess    | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful | `(value: DeleteOneResponse) => void`                                                                                        |                                                                                |
-| mutationMode | Determines when mutations are executed.                                                      | `"pessimistic"` \| `"optimistic"` \| `"undoable"`                                                                           |                                                                                |
-| children     | Sets the button text                                                                          | `ReactNode`                                                                                                                 | `"Delete"`                                                                     |
-| icon         | Sets the icon component of the button                                                             | `ReactNode`                                                                                                                 | [`<DeleteOutlined />`](https://ant.design/components/icon/)                    |
-| danger       | Sets  the danger status of the button                                                              | `boolean`                                                                                                                   | `true`                                                                         |
-| loading      | Sets the loading status of the button                                                             | `boolean`                                                                                                                   | When the request is not completed, loading is `true`, when it completes it's `false` |
+| Property     | Description                                                                                  | Type                                                                                                                        | Default                                                                              |
+| ------------ | -------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| props        | Ant Design button properties                                                                 | [`ButtonProps`](https://ant.design/components/button/#API) & [`DeleteButtonProps`](../../interfaces.md#delete-button-props) |                                                                                      |
+| resourceName | Determines which resource to use for deletion                                                | `string`                                                                                                                    | Resource name that it reads from route                                               |
+| recordItemId | Determines which id to use for deletion                                                      | `string`                                                                                                                    | Record id that it reads from route                                                   |
+| onSuccess    | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful | `(value: DeleteOneResponse) => void`                                                                                        |                                                                                      |
+| mutationMode | Determines when mutations are executed.                                                      | `"pessimistic"` \| `"optimistic"` \| `"undoable"`                                                                           |                                                                                      |
+| hideText     | Allows to hide button text                                                                   | `boolean`                                                                                                                   | `false`                                                                              |
+| children     | Sets the button text                                                                         | `ReactNode`                                                                                                                 | `"Delete"`                                                                           |
+| icon         | Sets the icon component of the button                                                        | `ReactNode`                                                                                                                 | [`<DeleteOutlined />`](https://ant.design/components/icon/)                          |
+| danger       | Sets the danger status of the button                                                         | `boolean`                                                                                                                   | `true`                                                                               |
+| loading      | Sets the loading status of the button                                                        | `boolean`                                                                                                                   | When the request is not completed, loading is `true`, when it completes it's `false` |
