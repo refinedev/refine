@@ -21,6 +21,7 @@ export type DeleteButtonProps = ButtonProps & {
     recordItemId?: string;
     onSuccess?: (value: DeleteOneResponse) => void;
     mutationMode?: MutationMode;
+    hideText?: boolean;
 } & SuccessErrorNotification;
 
 /**
@@ -37,6 +38,7 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
     children,
     successNotification,
     errorNotification,
+    hideText = false,
     ...rest
 }) => {
     const translate = useTranslate();
@@ -88,7 +90,8 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
                 icon={<DeleteOutlined />}
                 {...rest}
             >
-                {children ?? translate("buttons.delete", "Delete")}
+                {!hideText &&
+                    (children ?? translate("buttons.delete", "Delete"))}
             </Button>
         </Popconfirm>
     );
