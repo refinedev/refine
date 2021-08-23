@@ -137,17 +137,59 @@ const { radioGroupProps } = useRadioGroup({
 
 `sort` allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
 
+
+
+
+### `queryOptions`
+
+[useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing `queryOptions` property.
+
+
+
+```tsx
+const { radioGroupProps } = useRadioGroup({
+    resource: "languages",
+    //highlight-start
+    queryOptions: { onError: () => { console.log("triggers when on query return Error") }}
+    //highlight-end
+});
+```
+
+:::caution
+The `defaultQueryOnSuccess` method which has default onSuccess behaviour and returned from `useRadioGroup` hook  must be called in case of `onSuccess` is needed to be overwritten. 
+
+```tsx
+const { 
+    radioGroupProps, 
+    //highlight-next-line
+    defaultQueryOnSuccess
+    } = useCheckboxGroup({
+    resource: "languages",
+    //highlight-start
+    queryOptions: { 
+        onSuccess: (data) => { 
+            defaultQueryOnSuccess(data)
+            console.log("triggers when on query return on success") 
+        } 
+    }
+    //highlight-end
+});
+```
+:::
+
 ## API Reference
 
 ### Properties
 
 | Property                                          | Description                               | Type                                       | Default   |
 | ------------------------------------------------- | ----------------------------------------- | ------------------------------------------ | --------- |
-| resource <div className="required">Required</div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                   |           |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div>| [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                   |           |
 | optionValue                                       | Sets the option's value                    | `string`                                   | `"id"`    |
 | optionLabel                                       | Sets the option's label value              | `string`                                   | `"title"` |
 | filters                                           | Adds filters while fetching the data       | [`CrudFilters`](../../interfaces.md#crudfilters) |           |
 | sort                                              | Allows us to sort the options              | [`CrudSorting`](../../interfaces.md#crudsorting) |           |
+| queryOptions                                              | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options             | ` UseQueryOptions<GetListResponse<TData>, TError>` |           |
+
 
 ### Return values
 
@@ -155,6 +197,8 @@ const { radioGroupProps } = useRadioGroup({
 | --------------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
 | radioGroupProps | Ant design radio group props    | [`Radio Group`](https://ant.design/components/radio/#RadioGroup)                              |
 | queryResult     | Results of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+| defaultQueryOnSuccess        | Default onSuccess method | `() => void` |
+
 
 ## Live Codesandbox Example
 
