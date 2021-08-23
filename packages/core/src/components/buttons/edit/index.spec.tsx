@@ -37,14 +37,11 @@ describe("Edit Button", () => {
     });
 
     it("should render without text show only icon", () => {
-        const { container, queryByText } = render(
-            <EditButton hideText>refine</EditButton>,
-            {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
+        const { container, queryByText } = render(<EditButton hideText />, {
+            wrapper: TestWrapper({
+                resources: [{ name: "posts" }],
+            }),
+        });
 
         expect(container).toBeTruthy();
 

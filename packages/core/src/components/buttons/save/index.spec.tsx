@@ -37,14 +37,11 @@ describe("Save Button", () => {
     });
 
     it("should render without text show only icon", () => {
-        const { container, queryByText } = render(
-            <SaveButton hideText>refine</SaveButton>,
-            {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
+        const { container, queryByText } = render(<SaveButton hideText />, {
+            wrapper: TestWrapper({
+                resources: [{ name: "posts" }],
+            }),
+        });
 
         expect(container).toBeTruthy();
 

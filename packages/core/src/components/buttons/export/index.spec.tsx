@@ -21,9 +21,7 @@ describe("<ExportButton/>", () => {
     });
 
     it("should render without text show only icon", () => {
-        const { container, queryByText } = render(
-            <ExportButton hideText>refine</ExportButton>,
-        );
+        const { container, queryByText } = render(<ExportButton hideText />);
 
         expect(container).toBeTruthy();
 
