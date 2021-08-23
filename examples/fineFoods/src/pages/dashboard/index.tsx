@@ -20,7 +20,7 @@ export const DashboardPage: React.FC = () => {
         <Row gutter={[16, 16]}>
             <Col md={24}>
                 <Row gutter={[16, 16]}>
-                    <Col xl={10} lg={24} md={24}>
+                    <Col xl={10} lg={24} md={24} style={{ width: "100%" }}>
                         <Card
                             bodyStyle={{
                                 padding: 10,

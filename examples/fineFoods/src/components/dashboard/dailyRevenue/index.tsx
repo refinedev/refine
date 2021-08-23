@@ -19,11 +19,10 @@ export const DailyRevenue: React.FC = () => {
     const t = useTranslate();
     const API_URL = useApiUrl();
 
-    const [dateRange, setDateRange] = useState<[Dayjs, Dayjs]>([
-        dayjs().subtract(7, "days").startOf("day"),
-        dayjs().startOf("day"),
-    ]);
-    const [start, end] = dateRange;
+    const [dateRange, setDateRange] = useState<Dayjs>(dayjs().startOf("month"));
+
+    console.log({ dateRange });
+    const [start, end] = [dateRange.startOf("month"), dateRange.endOf("month")];
 
     const query = {
         start,
@@ -38,9 +37,6 @@ export const DailyRevenue: React.FC = () => {
     }>(url, "get", {
         query,
     });
-
-    const { Text, Title } = Typography;
-    const { RangePicker } = DatePicker;
 
     const config = useMemo(() => {
         const config: LineConfig = {
@@ -107,13 +103,14 @@ export const DailyRevenue: React.FC = () => {
                     </div>
                 </div>
 
-                <RangePicker
+                <DatePicker
                     className="range-picker"
                     size="small"
+                    picker="month"
                     value={dateRange}
-                    onChange={(values) => {
-                        if (values && values[0] && values[1]) {
-                            setDateRange([values[0], values[1]]);
+                    onChange={(date) => {
+                        if (date) {
+                            setDateRange(date);
                         }
                     }}
                     style={{
@@ -121,25 +118,6 @@ export const DailyRevenue: React.FC = () => {
                         color: "#fffff !important",
                         background: "rgba(255, 255, 255, 0.3)",
                     }}
-                    ranges={{
-                        "This Week": [
-                            dayjs().startOf("week"),
-                            dayjs().endOf("week"),
-                        ],
-                        "Last Month": [
-                            dayjs().startOf("month").subtract(1, "month"),
-                            dayjs().endOf("month").subtract(1, "month"),
-                        ],
-                        "This Month": [
-                            dayjs().startOf("month"),
-                            dayjs().endOf("month"),
-                        ],
-                        "This Year": [
-                            dayjs().startOf("year"),
-                            dayjs().endOf("year"),
-                        ],
-                    }}
-                    format="YYYY/MM/DD"
                 />
             </div>
             <Line padding={0} appendPadding={10} height={162} {...config} />
