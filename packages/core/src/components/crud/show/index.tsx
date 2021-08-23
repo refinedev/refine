@@ -71,38 +71,36 @@ export const Show: React.FC<ShowProps> = ({
                 )
             }
             extra={
-                <Row>
-                    <Space key="extra-buttons">
-                        {!recordItemId && (
-                            <ListButton
-                                data-testid="show-list-button"
-                                resourceName={resource.name}
-                            />
-                        )}
-                        {isEditButtonVisible && (
-                            <EditButton
-                                disabled={isLoading}
-                                data-testid="show-edit-button"
-                                resourceName={resource.name}
-                                recordItemId={recordItemId ?? idFromRoute}
-                            />
-                        )}
-                        {isDeleteButtonVisible && (
-                            <DeleteButton
-                                resourceName={resource.name}
-                                data-testid="show-delete-button"
-                                recordItemId={recordItemId ?? idFromRoute}
-                                onSuccess={() =>
-                                    list(resource.route ?? resource.name)
-                                }
-                            />
-                        )}
-                        <RefreshButton
+                <Space key="extra-buttons" wrap>
+                    {!recordItemId && (
+                        <ListButton
+                            data-testid="show-list-button"
+                            resourceName={resource.name}
+                        />
+                    )}
+                    {isEditButtonVisible && (
+                        <EditButton
+                            disabled={isLoading}
+                            data-testid="show-edit-button"
                             resourceName={resource.name}
                             recordItemId={recordItemId ?? idFromRoute}
                         />
-                    </Space>
-                </Row>
+                    )}
+                    {isDeleteButtonVisible && (
+                        <DeleteButton
+                            resourceName={resource.name}
+                            data-testid="show-delete-button"
+                            recordItemId={recordItemId ?? idFromRoute}
+                            onSuccess={() =>
+                                list(resource.route ?? resource.name)
+                            }
+                        />
+                    )}
+                    <RefreshButton
+                        resourceName={resource.name}
+                        recordItemId={recordItemId ?? idFromRoute}
+                    />
+                </Space>
             }
             {...pageHeaderProps}
         >

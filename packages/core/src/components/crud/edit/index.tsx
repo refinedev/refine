@@ -91,20 +91,18 @@ export const Edit: React.FC<EditProps> = ({
                 )
             }
             extra={
-                <Row>
-                    <Space>
-                        {!recordItemId && (
-                            <ListButton
-                                data-testid="edit-list-button"
-                                resourceName={resource.name}
-                            />
-                        )}
-                        <RefreshButton
+                <Space wrap>
+                    {!recordItemId && (
+                        <ListButton
+                            data-testid="edit-list-button"
                             resourceName={resource.name}
-                            recordItemId={recordItemId ?? idFromRoute}
                         />
-                    </Space>
-                </Row>
+                    )}
+                    <RefreshButton
+                        resourceName={resource.name}
+                        recordItemId={recordItemId ?? idFromRoute}
+                    />
+                </Space>
             }
             {...pageHeaderProps}
         >
