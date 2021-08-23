@@ -332,6 +332,10 @@
         "false": "No"
       },
       "submit": "Filter"
+    },
+    "addresses": {
+      "addresses": "Addresses",
+      "address": "Address"
     }
   }
 }

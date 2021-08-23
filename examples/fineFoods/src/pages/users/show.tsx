@@ -19,7 +19,6 @@ import {
     NumberField,
     Popover,
     DateField,
-    BooleanField,
 } from "@pankod/refine";
 import { OrderStatus } from "components";
 
@@ -215,6 +214,26 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                                     "createdAt",
                                     sorter,
                                 )}
+                            />
+                        </Table>
+                    </List>
+                    <List
+                        title={t("users.addresses.addresses")}
+                        pageHeaderProps={{
+                            extra: <></>,
+                            style: {
+                                marginTop: "1em",
+                            },
+                        }}
+                    >
+                        <Table
+                            pagination={false}
+                            scroll={{ x: true }}
+                            dataSource={user?.addresses}
+                        >
+                            <Table.Column
+                                dataIndex="text"
+                                title={t("users.addresses.address")}
                             />
                         </Table>
                     </List>

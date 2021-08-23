@@ -330,6 +330,10 @@
         "false": "Hayır"
       },
       "submit": "Filtrele"
+    },
+    "addresses": {
+      "addresses": "Adresler",
+      "address": "Adres"
     }
   }
 }
