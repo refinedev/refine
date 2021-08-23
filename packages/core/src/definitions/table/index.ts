@@ -160,24 +160,17 @@ export const mapAntdFilterToCrudFilter = (
                 operator: "in",
                 value,
             });
+        } else {
+            crudFilters.push({
+                field,
+                operator: "in",
+                value: undefined,
+            });
         }
     });
 
     return crudFilters;
 };
 
-export const compareFilters = (
-    left: CrudFilter,
-    right: CrudFilter,
-): boolean => {
-    const specialOperators: CrudOperators[] = ["gte", "lte", "ne", "contains"];
-
-    const specialCase = [left.operator, right.operator]
-        .map((o) => specialOperators.includes(o))
-        .includes(true);
-
-    return (
-        left.field == right.field &&
-        (specialCase ? left.operator == right.operator : true)
-    );
-};
+export const compareFilters = (left: CrudFilter, right: CrudFilter): boolean =>
+    left.field == right.field && left.operator == right.operator;

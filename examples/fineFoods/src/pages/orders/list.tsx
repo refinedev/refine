@@ -57,6 +57,11 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 operator: "eq",
                 value: "Pending",
             },
+            {
+                field: "store.id",
+                operator: "eq",
+                value: "1",
+            },
         ], */
         onSearch: (params) => {
             const filters: CrudFilters = [];

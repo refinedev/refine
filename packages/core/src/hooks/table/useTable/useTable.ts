@@ -171,9 +171,6 @@ export const useTable = <
         // Map Antd:Filter -> refine:CrudFilter
         const crudFilters = mapAntdFilterToCrudFilter(filters);
 
-        console.log({ filters });
-        console.log({ crudFilters });
-
         setFilters((prevFilters) =>
             reverse(
                 unionWith(
@@ -195,9 +192,6 @@ export const useTable = <
     const onFinish = async (value: TSearchVariables) => {
         if (onSearch) {
             const searchFilters = await onSearch(value);
-            console.log({ value });
-            console.log({ searchFilters });
-
             setFilters((prevFilters) =>
                 reverse(
                     unionWith(
@@ -209,12 +203,10 @@ export const useTable = <
                 ),
             );
 
-            console.log(" onfinish filters state", filters);
-
             tablePropsSunflower.onChange(
                 { ...tablePropsSunflower.pagination, current: 1 },
-                filters,
-                sorter,
+                undefined,
+                undefined,
             );
         }
     };
