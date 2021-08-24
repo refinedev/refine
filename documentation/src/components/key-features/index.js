@@ -39,9 +39,9 @@ const backends = [
         alt: "nest",
     },
     {
-        src: "/icons/backends/pyhton.png",
-        srcset: "/icons/backends/pyhton@2x.png 768w",
-        alt: "pyhton",
+        src: "/icons/backends/python.png",
+        srcset: "/icons/backends/python@2x.png 768w",
+        alt: "python",
     },
 ];
 
