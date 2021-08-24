@@ -199,7 +199,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                 filters,
                             )}
                             filterDropdown={(props) => {
-                                // console.log("filterdropdown props: ", props);
                                 return (
                                     <FilterDropdown {...props}>
                                         <Select

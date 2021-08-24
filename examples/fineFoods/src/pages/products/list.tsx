@@ -85,11 +85,6 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
             <Form
                 {...searchFormProps}
                 onValuesChange={(changedValues, values) => {
-                    console.log(
-                        "onValuesChange changedValues: ",
-                        changedValues,
-                    );
-                    console.log("onValuesChange values: ", values);
                     searchFormProps.form?.submit();
                 }}
                 initialValues={{

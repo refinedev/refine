@@ -5,6 +5,7 @@ import { ListProps } from "antd/lib/list";
 import { FormProps } from "antd/lib/form";
 import { useForm } from "antd/lib/form/Form";
 import unionWith from "lodash/unionWith";
+import reverse from "lodash/reverse";
 
 import {
     useResourceWithRoute,
@@ -71,7 +72,7 @@ export const useSimpleList = <
     resource: resourceFromProp,
     initialSorter,
     initialFilters,
-    permanentFilter,
+    permanentFilter = [],
     onSearch,
     queryOptions,
     syncWithLocation: syncWithLocationProp,
@@ -173,11 +174,13 @@ export const useSimpleList = <
             const searchFilters = await onSearch(values);
             setCurrent(1);
             return setFilters((prevFilters) =>
-                unionWith(
-                    permanentFilter,
-                    searchFilters,
-                    prevFilters,
-                    compareFilters,
+                reverse(
+                    unionWith(
+                        permanentFilter,
+                        searchFilters,
+                        prevFilters,
+                        compareFilters,
+                    ),
                 ),
             );
         }
