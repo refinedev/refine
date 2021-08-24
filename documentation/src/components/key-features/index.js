@@ -102,7 +102,7 @@ export const KeyFeatures = () => {
                         <div className={styles.supportContainer}>
                             {backends.map(({ srcset, src, alt }, index) => (
                                 <img
-                                    key={index}
+                                    key={`feature-${index}`}
                                     srcSet={srcset}
                                     src={src}
                                     alt={alt}
@@ -120,7 +120,10 @@ export const KeyFeatures = () => {
                                     { srcset, src, title, description },
                                     index,
                                 ) => (
-                                    <div className={styles.feature} key={index}>
+                                    <div
+                                        className={styles.feature}
+                                        key={`backend-${index}`}
+                                    >
                                         <img
                                             srcSet={srcset}
                                             src={src}
