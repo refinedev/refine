@@ -54,11 +54,20 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
-                    render={(_value, record) => (
+                    render={(_, record) => (
                         <Space>
-                            <EditButton size="small" recordItemId={record.id} />
-                            <ShowButton size="small" recordItemId={record.id} />
+                            <EditButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <ShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
                             <DeleteButton
+                                hideText
                                 size="small"
                                 recordItemId={record.id}
                             />

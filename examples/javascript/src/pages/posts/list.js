@@ -54,8 +54,16 @@ export const PostList = () => {
                     dataIndex="actions"
                     render={(_, record) => (
                         <Space>
-                            <EditButton size="small" recordItemId={record.id} />
-                            <ShowButton size="small" recordItemId={record.id} />
+                            <EditButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <ShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
                         </Space>
                     )}
                 />

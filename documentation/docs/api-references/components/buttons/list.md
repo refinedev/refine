@@ -10,12 +10,12 @@ import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/
 ## Usage
 
 ```tsx
-import { 
+import {
     useShow,
     Show,
     Typography,
     //highlight-next-line
-    ListButton
+    ListButton,
 } from "@pankod/refine";
 
 import { IPost } from "interfaces";
@@ -55,7 +55,7 @@ Will look like this:
 <br/>
 
 :::note
-The button text is defined automatically by **refine** based on *`<Resource>`* component name property.
+The button text is defined automatically by **refine** based on _`<Resource>`_ component name property.
 :::
 
 ## Properties
@@ -74,14 +74,27 @@ export const MyListComponent = () => {
 
 Clicking the button will trigger the `list` method of [`useNavigation`](api-references/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
 
+### `hideText`
+
+It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+
+```tsx
+import { ListButton } from "@pankod/refine";
+
+export const MyListComponent = () => {
+    return <ListButton hideText />;
+};
+```
+
 ## API Reference
 
 ### Properties
 
-| Property     | Description                                   | Type                                                                                      | Default                                                       |
-| ------------ | --------------------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| props        | Ant Design button properties                    | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; }` |                                                               |
-| resourceName | Determines which resource to use for redirection | `string`                                                                                  | Resource name that it reads from route                             |
-| children     | Sets the button text                           | `ReactNode`                                                                               | Humanized resource name that it reads from route                   |
-| icon         | Sets the icon component of button              | `ReactNode`                                                                               | [`<BarsOutlined />`](https://ant.design/components/icon/)     |
-| onClick      | Sets the handler to handle click event         | `(event) => void`                                                                         | Triggers navigation for redirection to the list page of resource |
+| Property     | Description                                      | Type                                                                                                          | Default                                                          |
+| ------------ | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| props        | Ant Design button properties                     | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; hideText?: boolean; }` |                                                                  |
+| resourceName | Determines which resource to use for redirection | `string`                                                                                                      | Resource name that it reads from route                           |
+| hideText     | Allows to hide button text                       | `boolean`                                                                                                     | `false`                                                          |
+| children     | Sets the button text                             | `ReactNode`                                                                                                   | Humanized resource name that it reads from route                 |
+| icon         | Sets the icon component of button                | `ReactNode`                                                                                                   | [`<BarsOutlined />`](https://ant.design/components/icon/)        |
+| onClick      | Sets the handler to handle click event           | `(event) => void`                                                                                             | Triggers navigation for redirection to the list page of resource |

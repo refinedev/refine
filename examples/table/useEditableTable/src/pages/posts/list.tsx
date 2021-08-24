@@ -66,10 +66,12 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                     <Space>
                                         <SaveButton
                                             {...saveButtonProps}
+                                            hideText
                                             size="small"
                                         />
                                         <Button
                                             {...cancelButtonProps}
+                                            hideText
                                             size="small"
                                         >
                                             Cancel
@@ -80,6 +82,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                             return (
                                 <EditButton
                                     {...editButtonProps(record.id)}
+                                    hideText
                                     size="small"
                                 />
                             );

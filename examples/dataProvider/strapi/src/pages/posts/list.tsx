@@ -84,8 +84,13 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="actions"
                     render={(_, record) => (
                         <Space>
-                            <EditButton size="small" recordItemId={record.id} />
+                            <EditButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
                             <DeleteButton
+                                hideText
                                 size="small"
                                 recordItemId={record.id}
                             />

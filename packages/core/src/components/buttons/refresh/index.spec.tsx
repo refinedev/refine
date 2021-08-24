@@ -7,7 +7,7 @@ describe("Refresh Button", () => {
     const refresh = jest.fn();
 
     it("should render button successfuly", () => {
-        const refreshButton = render(
+        const { container, getByText } = render(
             <RefreshButton onClick={() => refresh()} />,
             {
                 wrapper: TestWrapper({
@@ -15,15 +15,40 @@ describe("Refresh Button", () => {
                 }),
             },
         );
-        const { container, getByText } = refreshButton;
 
         expect(container).toBeTruthy();
 
         getByText("Refresh");
     });
 
+    it("should render text by children", () => {
+        const { container, getByText } = render(
+            <RefreshButton>refine</RefreshButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        getByText("refine");
+    });
+
+    it("should render without text show only icon", () => {
+        const { container, queryByText } = render(<RefreshButton hideText />, {
+            wrapper: TestWrapper({
+                resources: [{ name: "posts" }],
+            }),
+        });
+        expect(container).toBeTruthy();
+
+        expect(queryByText("Refresh")).not.toBeInTheDocument();
+    });
+
     it("should render called function successfully if click the button", () => {
-        const refreshButton = render(
+        const { getByText } = render(
             <RefreshButton onClick={() => refresh()} />,
             {
                 wrapper: TestWrapper({
@@ -31,7 +56,6 @@ describe("Refresh Button", () => {
                 }),
             },
         );
-        const { getByText } = refreshButton;
 
         fireEvent.click(getByText("Refresh"));
 

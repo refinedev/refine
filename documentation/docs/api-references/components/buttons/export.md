@@ -5,12 +5,13 @@ title: Export
 
 import usage from '@site/static/img/guides-and-concepts/components/buttons/export/usage.png';
 
-`<ExportButton>` is an Ant Design [`<Button>`][Button] with a default export icon and a default text with "Export". It only has presentational value.
+`<ExportButton>` is an Ant Design [`<Button>`][button] with a default export icon and a default text with "Export". It only has presentational value.
 
-[Refer to the for more detailed information about `useExport`. &#8594][useExport]
+[Refer to the for more detailed information about `useExport`. &#8594][useexport]
+
 ## Usage
 
-Use it like any other Ant Design [`<Button>`][Button]. You can use it with [useExport][useExport].
+Use it like any other Ant Design [`<Button>`][button]. You can use it with [useExport][useexport].
 
 It looks like this:
 
@@ -18,5 +19,22 @@ It looks like this:
     <img src={usage} alt="Default Export Button" />
 </div>
 
-[Button]: https://ant.design/components/button/
-[useExport]: api-references/hooks/import-export/useExport.md
+## Properties
+
+### `hideText`
+
+It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+
+## API Reference
+
+### Properties
+
+| Property | Description                       | Type                                                                                   | Default                                                     |
+| -------- | --------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| props    | Ant Design button properties      | [`ButtonProps`](https://ant.design/components/button/#API) & `{ hideText?: boolean; }` |                                                             |
+| hideText | Allows to hide button text        | `boolean`                                                                              | `false`                                                     |
+| children | Sets the button text              | `ReactNode`                                                                            | `"Export"`                                                  |
+| icon     | Sets the icon component of button | `ReactNode`                                                                            | [`<ExportOutlined />`](https://ant.design/components/icon/) |
+
+[button]: https://ant.design/components/button/
+[useexport]: api-references/hooks/import-export/useExport.md

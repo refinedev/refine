@@ -17,20 +17,49 @@ describe("Clone Button", () => {
     const clone = jest.fn();
 
     it("should render button successfuly", () => {
-        const cloneButton = render(<CloneButton onClick={() => clone()} />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
-        });
-        const { container, getByText } = cloneButton;
+        const { container, getByText } = render(
+            <CloneButton onClick={() => clone()} />,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
 
         expect(container).toBeTruthy();
 
         getByText("Clone");
     });
 
+    it("should render text by children", () => {
+        const { container, getByText } = render(
+            <CloneButton>refine</CloneButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        getByText("refine");
+    });
+
+    it("should render without text show only icon", () => {
+        const { container, queryByText } = render(<CloneButton hideText />, {
+            wrapper: TestWrapper({
+                resources: [{ name: "posts" }],
+            }),
+        });
+
+        expect(container).toBeTruthy();
+
+        expect(queryByText("Clone")).not.toBeInTheDocument();
+    });
+
     it("should render called function successfully if click the button", () => {
-        const cloneButton = render(
+        const { getByText } = render(
             <CloneButton onClick={() => clone()} recordItemId="1" />,
             {
                 wrapper: TestWrapper({
@@ -38,7 +67,6 @@ describe("Clone Button", () => {
                 }),
             },
         );
-        const { getByText } = cloneButton;
 
         fireEvent.click(getByText("Clone"));
 
@@ -46,7 +74,7 @@ describe("Clone Button", () => {
     });
 
     it("should create page redirect clone route called function successfully if click the button", () => {
-        const cloneButton = render(
+        const { getByText } = render(
             <Route path="/:resource">
                 <CloneButton recordItemId="1" />
             </Route>,
@@ -57,7 +85,6 @@ describe("Clone Button", () => {
                 }),
             },
         );
-        const { getByText } = cloneButton;
 
         fireEvent.click(getByText("Clone"));
 
@@ -65,7 +92,7 @@ describe("Clone Button", () => {
     });
 
     it("should edit page redirect clone route called function successfully if click the button", () => {
-        const cloneButton = render(
+        const { getByText } = render(
             <Route path="/:resource/:id">
                 <CloneButton />
             </Route>,
@@ -76,7 +103,6 @@ describe("Clone Button", () => {
                 }),
             },
         );
-        const { getByText } = cloneButton;
 
         fireEvent.click(getByText("Clone"));
 
@@ -84,7 +110,7 @@ describe("Clone Button", () => {
     });
 
     it("should custom resource and recordItemId redirect clone route called function successfully if click the button", () => {
-        const cloneButton = render(
+        const { getByText } = render(
             <Route path="/:resource">
                 <CloneButton resourceName="categories" recordItemId="1" />
             </Route>,
@@ -98,7 +124,6 @@ describe("Clone Button", () => {
                 }),
             },
         );
-        const { getByText } = cloneButton;
 
         fireEvent.click(getByText("Clone"));
 

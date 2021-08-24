@@ -55,15 +55,22 @@ Will look like this:
 </div>
 <br/>
 
-The [`useForm`](api-references/hooks/form/useForm.md) hook exposes `saveButtonProps` to be passed to `<SaveButton>` component which includes submitting the form action, button loading, and disable states. 
+The [`useForm`](api-references/hooks/form/useForm.md) hook exposes `saveButtonProps` to be passed to `<SaveButton>` component which includes submitting the form action, button loading, and disable states.
+
+## Properties
+
+### `hideText`
+
+It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ## API Reference
 
 ### Properties
 
-| Property | Description                      | Type                                                       | Default                                                   |
-| -------- | -------------------------------- | ---------------------------------------------------------- | --------------------------------------------------------- |
-| props    | Ant Design button props          | [`ButtonProps`](https://ant.design/components/button/#API) |                                                           |
-| children | Sets the button text              | `ReactNode`                                                | `"Save"`                                                  |
-| type     | Sets the button type              | `string`                                                   | `"primary"`                                               |
-| icon     | Sets the icon component of button | `ReactNode`                                                | [`<SaveOutlined />`](https://ant.design/components/icon/) |
+| Property | Description                       | Type                                                                                   | Default                                                   |
+| -------- | --------------------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| props    | Ant Design button props           | [`ButtonProps`](https://ant.design/components/button/#API) & `{ hideText?: boolean; }` |                                                           |
+| hideText | Allows to hide button text        | `boolean`                                                                              | `false`                                                   |
+| children | Sets the button text              | `ReactNode`                                                                            | `"Save"`                                                  |
+| type     | Sets the button type              | `string`                                                                               | `"primary"`                                               |
+| icon     | Sets the icon component of button | `ReactNode`                                                                            | [`<SaveOutlined />`](https://ant.design/components/icon/) |

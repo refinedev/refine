@@ -9,6 +9,7 @@ import { ResourceRouterParams } from "../../../interfaces";
 type EditButtonProps = ButtonProps & {
     resourceName?: string;
     recordItemId?: string;
+    hideText?: boolean;
 };
 
 /**
@@ -21,6 +22,7 @@ type EditButtonProps = ButtonProps & {
 export const EditButton: FC<EditButtonProps> = ({
     resourceName: propResourceName,
     recordItemId,
+    hideText = false,
     children,
     ...rest
 }) => {
@@ -43,7 +45,7 @@ export const EditButton: FC<EditButtonProps> = ({
             icon={<EditOutlined />}
             {...rest}
         >
-            {children ?? translate("buttons.edit", "Edit")}
+            {!hideText && (children ?? translate("buttons.edit", "Edit"))}
         </Button>
     );
 };
