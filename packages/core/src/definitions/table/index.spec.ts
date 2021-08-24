@@ -125,6 +125,7 @@ describe("definitions/table", () => {
         expect(
             mapAntdSorterToCrudSorting([
                 {
+                    columnKey: "title",
                     field: "title",
                     order: "descend",
                 },
@@ -132,7 +133,7 @@ describe("definitions/table", () => {
         ).toMatchInlineSnapshot(`
             Array [
               Object {
-                "field": "undefined",
+                "field": "title",
                 "order": "desc",
               },
             ]
@@ -142,13 +143,14 @@ describe("definitions/table", () => {
     it("mapAntdSorterToCrudSorting", () => {
         expect(
             mapAntdSorterToCrudSorting({
+                columnKey: "title",
                 field: "title",
                 order: "descend",
             }),
         ).toMatchInlineSnapshot(`
             Array [
               Object {
-                "field": "undefined",
+                "field": "title",
                 "order": "desc",
               },
             ]
