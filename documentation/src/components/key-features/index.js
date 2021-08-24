@@ -3,14 +3,46 @@ import React from "react";
 import styles from "./styles.module.css";
 
 const backends = [
-    { src: "/icons/backends/nodejs.png", alt: "nodejs" },
-    { src: "/icons/backends/java.png", alt: "java" },
-    { src: "/icons/backends/dotnet.png", alt: "dotnet" },
-    { src: "/icons/backends/strapi.png", alt: "strapi" },
-    { src: "/icons/backends/airtable.png", alt: "airtable" },
-    { src: "/icons/backends/json-api.png", alt: "json-api" },
-    { src: "/icons/backends/nest.png", alt: "nest" },
-    { src: "/icons/backends/pyhton.png", alt: "pyhton" },
+    {
+        src: "/icons/backends/nodejs.png",
+        srcset: "/icons/backends/nodejs@2x.png 768w",
+        alt: "nodejs",
+    },
+    {
+        src: "/icons/backends/java.png",
+        srcset: "/icons/backends/java@2x.png 768w",
+        alt: "java",
+    },
+    {
+        src: "/icons/backends/dotnet.png",
+        srcset: "/icons/backends/dotnet@2x.png 768w",
+        alt: "dotnet",
+    },
+    {
+        src: "/icons/backends/strapi.png",
+        srcset: "/icons/backends/strapi@2x.png 768w",
+        alt: "strapi",
+    },
+    {
+        src: "/icons/backends/airtable.png",
+        srcset: "/icons/backends/airtable@2x.png 768w",
+        alt: "airtable",
+    },
+    {
+        src: "/icons/backends/json-api.png",
+        srcset: "/icons/backends/json-api@2x.png 768w",
+        alt: "json-api",
+    },
+    {
+        src: "/icons/backends/nest.png",
+        srcset: "/icons/backends/nest@2x.png 768w",
+        alt: "nest",
+    },
+    {
+        src: "/icons/backends/pyhton.png",
+        srcset: "/icons/backends/pyhton@2x.png 768w",
+        alt: "pyhton",
+    },
 ];
 
 const features = [
@@ -62,8 +94,13 @@ export const KeyFeatures = () => {
                 <div className="row row--justify--center">
                     <div className="col col--8">
                         <div className={styles.supportContainer}>
-                            {backends.map(({ src, alt }, index) => (
-                                <img key={index} src={src} alt={alt} />
+                            {backends.map(({ srcset, src, alt }, index) => (
+                                <img
+                                    key={index}
+                                    srcSet={srcset}
+                                    src={src}
+                                    alt={alt}
+                                />
                             ))}
                         </div>
                     </div>
