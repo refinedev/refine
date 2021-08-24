@@ -4,6 +4,7 @@ import { QueryObserverResult, UseQueryOptions } from "react-query";
 import { ListProps } from "antd/lib/list";
 import { FormProps } from "antd/lib/form";
 import { useForm } from "antd/lib/form/Form";
+import unionWith from "lodash/unionWith";
 
 import { useResourceWithRoute, useList } from "@hooks";
 
@@ -16,11 +17,14 @@ import {
     SuccessErrorNotification,
     HttpError,
 } from "../../../interfaces";
+import { compareFilters } from "@definitions/table";
 
 export type useSimpleListProps<TData, TError, TSearchVariables = unknown> =
     ListProps<TData> & {
+        permanentFilter?: CrudFilters;
+        syncWithLocation?: boolean;
         resource?: string;
-        filters?: CrudFilters;
+        initialFilters?: CrudFilters;
         sorter?: CrudSorting;
         onSearch?: (
             data: TSearchVariables,
@@ -36,6 +40,7 @@ export type useSimpleListReturnType<
     listProps: ListProps<TData>;
     queryResult: QueryObserverResult<GetListResponse<TData>, TError>;
     searchFormProps: FormProps<TSearchVariables>;
+    filters: CrudFilters;
 };
 
 /**
@@ -56,8 +61,11 @@ export const useSimpleList = <
 >({
     resource: resourceFromProp,
     sorter,
+    initialFilters,
+    permanentFilter,
     onSearch,
     queryOptions,
+    syncWithLocation,
     successNotification,
     errorNotification,
     ...listProps
@@ -85,7 +93,11 @@ export const useSimpleList = <
 
     const [current, setCurrent] = useState(defaultCurrent);
     const [pageSize, setPageSize] = useState(defaultPageSize);
-    const [filters, setFilters] = useState<CrudFilters>([]);
+    const [filters, setFilters] = useState<CrudFilters>(
+        unionWith(permanentFilter, initialFilters, compareFilters),
+    );
+
+    console.log({ filters });
 
     const queryResult = useList<TData, TError>(
         resource.name,
@@ -110,6 +122,7 @@ export const useSimpleList = <
 
     const onFinish = async (values: TSearchVariables) => {
         if (onSearch) {
+            console.log("onFinish");
             const filters = await onSearch(values);
             setCurrent(1);
             return setFilters(filters);
@@ -134,5 +147,6 @@ export const useSimpleList = <
             },
         },
         queryResult,
+        filters,
     };
 };

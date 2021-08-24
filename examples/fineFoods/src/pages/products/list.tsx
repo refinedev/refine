@@ -13,6 +13,7 @@ import {
     Typography,
     useDrawerForm,
     HttpError,
+    getDefaultFilter,
 } from "@pankod/refine";
 
 const { Text } = Typography;
@@ -30,13 +31,20 @@ import { IProduct } from "interfaces";
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
 
-    const { listProps, searchFormProps } = useSimpleList<
+    const { listProps, searchFormProps, filters } = useSimpleList<
         IProduct,
         HttpError,
         { name: string; categories: string[] }
     >({
+        initialFilters: [
+            {
+                field: "name",
+                operator: "contains",
+                value: "barbacoa",
+            },
+        ],
         resource: "products",
-        pagination: { pageSize: 12 },
+        pagination: { pageSize: 12, defaultCurrent: 2 },
         onSearch: ({ name, categories }) => {
             const productFilters: CrudFilters = [];
 
@@ -82,11 +90,24 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         redirect: false,
     });
 
+    console.log("products filters: ", filters);
+    console.log("getdefa", getDefaultFilter("name", filters, "contains"));
+
     return (
         <>
             <Form
                 {...searchFormProps}
-                onValuesChange={() => searchFormProps.form?.submit()}
+                onValuesChange={(changedValues, values) => {
+                    console.log(
+                        "onValuesChange changedValues: ",
+                        changedValues,
+                    );
+                    console.log("onValuesChange values: ", values);
+                    searchFormProps.form?.submit();
+                }}
+                initialValues={{
+                    name: getDefaultFilter("name", filters, "contains"),
+                }}
             >
                 <Row
                     gutter={[16, 16]}
