@@ -36,13 +36,6 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         HttpError,
         { name: string; categories: string[] }
     >({
-        initialFilters: [
-            {
-                field: "name",
-                operator: "contains",
-                value: "barbacoa",
-            },
-        ],
         resource: "products",
         pagination: { pageSize: 12, defaultCurrent: 2 },
         onSearch: ({ name, categories }) => {
@@ -56,13 +49,11 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 });
             }
 
-            if (name) {
-                productFilters.push({
-                    field: "name",
-                    operator: "contains",
-                    value: name,
-                });
-            }
+            productFilters.push({
+                field: "name",
+                operator: "contains",
+                value: name ? name : null,
+            });
 
             return productFilters;
         },
@@ -89,9 +80,6 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         resource: "products",
         redirect: false,
     });
-
-    console.log("products filters: ", filters);
-    console.log("getdefa", getDefaultFilter("name", filters, "contains"));
 
     return (
         <>

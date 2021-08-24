@@ -140,9 +140,9 @@ export const useTable = <
             return push(`/${resource.route}?${stringifyParams}`);
         }
     }, [
+        syncWithLocation,
         tablePropsSunflower.pagination.current,
         tablePropsSunflower.pagination.pageSize,
-        syncWithLocation,
         sorter,
         filters,
     ]);

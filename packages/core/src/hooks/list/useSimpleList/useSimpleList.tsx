@@ -1,12 +1,17 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
 import { QueryObserverResult, UseQueryOptions } from "react-query";
 import { ListProps } from "antd/lib/list";
 import { FormProps } from "antd/lib/form";
 import { useForm } from "antd/lib/form/Form";
 import unionWith from "lodash/unionWith";
 
-import { useResourceWithRoute, useList } from "@hooks";
+import {
+    useResourceWithRoute,
+    useList,
+    useSyncWithLocation,
+    useNavigation,
+} from "@hooks";
 
 import {
     ResourceRouterParams,
@@ -17,7 +22,11 @@ import {
     SuccessErrorNotification,
     HttpError,
 } from "../../../interfaces";
-import { compareFilters } from "@definitions/table";
+import {
+    compareFilters,
+    parseTableParams,
+    stringifyTableParams,
+} from "@definitions/table";
 
 export type useSimpleListProps<TData, TError, TSearchVariables = unknown> =
     ListProps<TData> & {
@@ -25,7 +34,7 @@ export type useSimpleListProps<TData, TError, TSearchVariables = unknown> =
         syncWithLocation?: boolean;
         resource?: string;
         initialFilters?: CrudFilters;
-        sorter?: CrudSorting;
+        initialSorter?: CrudSorting;
         onSearch?: (
             data: TSearchVariables,
         ) => CrudFilters | Promise<CrudFilters>;
@@ -60,12 +69,12 @@ export const useSimpleList = <
     TSearchVariables = unknown,
 >({
     resource: resourceFromProp,
-    sorter,
+    initialSorter,
     initialFilters,
     permanentFilter,
     onSearch,
     queryOptions,
-    syncWithLocation,
+    syncWithLocation: syncWithLocationProp,
     successNotification,
     errorNotification,
     ...listProps
@@ -76,26 +85,62 @@ export const useSimpleList = <
 > = {}): useSimpleListReturnType<TData, TError, TSearchVariables> => {
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
+    const { push } = useNavigation();
+
+    const { search } = useLocation();
+
+    const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
+    const syncWithLocation = syncWithLocationProp || syncWithLocationContext;
+
     const [form] = useForm<TSearchVariables>();
 
     const resourceWithRoute = useResourceWithRoute();
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
     let defaultPageSize = 10;
+    let defaultCurrent = 1;
+    let defaultSorter = initialSorter;
+    let defaultFilter = initialFilters;
+
     if (listProps.pagination && listProps.pagination.pageSize) {
         defaultPageSize = listProps.pagination.pageSize;
     }
 
-    let defaultCurrent = 1;
     if (listProps.pagination && listProps.pagination.current) {
         defaultCurrent = listProps.pagination.current;
+    }
+
+    if (syncWithLocation) {
+        const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
+            parseTableParams(search);
+
+        defaultCurrent = parsedCurrent || defaultCurrent;
+        defaultPageSize = parsedPageSize || defaultPageSize;
+        defaultSorter = parsedSorter.length ? parsedSorter : defaultSorter;
+        defaultFilter = parsedFilters.length ? parsedFilters : defaultFilter;
     }
 
     const [current, setCurrent] = useState(defaultCurrent);
     const [pageSize, setPageSize] = useState(defaultPageSize);
     const [filters, setFilters] = useState<CrudFilters>(
-        unionWith(permanentFilter, initialFilters, compareFilters),
+        unionWith(permanentFilter, defaultFilter || [], compareFilters),
     );
+    const [sorter, setSorter] = useState<CrudSorting>(defaultSorter ?? []);
+
+    useEffect(() => {
+        if (syncWithLocation) {
+            const stringifyParams = stringifyTableParams({
+                pagination: {
+                    current,
+                    pageSize,
+                },
+                sorter,
+                filters,
+            });
+
+            return push(`/${resource.route}?${stringifyParams}`);
+        }
+    }, [syncWithLocation, current, pageSize, sorter, filters]);
 
     console.log({ filters });
 
@@ -122,10 +167,16 @@ export const useSimpleList = <
 
     const onFinish = async (values: TSearchVariables) => {
         if (onSearch) {
-            console.log("onFinish");
-            const filters = await onSearch(values);
+            const searchFilters = await onSearch(values);
             setCurrent(1);
-            return setFilters(filters);
+            return setFilters((prevFilters) =>
+                unionWith(
+                    permanentFilter,
+                    searchFilters,
+                    prevFilters,
+                    compareFilters,
+                ),
+            );
         }
     };
 
