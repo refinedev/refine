@@ -132,7 +132,7 @@ describe("definitions/table", () => {
         ).toMatchInlineSnapshot(`
             Array [
               Object {
-                "field": "title",
+                "field": "undefined",
                 "order": "desc",
               },
             ]
@@ -148,7 +148,7 @@ describe("definitions/table", () => {
         ).toMatchInlineSnapshot(`
             Array [
               Object {
-                "field": "title",
+                "field": "undefined",
                 "order": "desc",
               },
             ]
