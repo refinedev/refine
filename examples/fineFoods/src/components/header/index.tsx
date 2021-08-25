@@ -27,6 +27,8 @@ const { Text } = Typography;
 const { useBreakpoint } = Grid;
 
 import { IOrder, IStore, ICourier } from "interfaces";
+import "./style.less";
+
 interface IOptionGroup {
     value: string;
     label: string | React.ReactNode;
@@ -36,8 +38,6 @@ interface IOptions {
     label: string | React.ReactNode;
     options: IOptionGroup[];
 }
-
-import { titleStyle, itemStyle, headerStyle, autoCompleteStyle } from "./style";
 
 export const Header: React.FC = () => {
     const { i18n } = useTranslation();
@@ -50,7 +50,7 @@ export const Header: React.FC = () => {
     const currentLocale = locale();
 
     const renderTitle = (title: string) => (
-        <div style={titleStyle}>
+        <div className="header-title">
             <Text style={{ fontSize: "16px" }}>{title}</Text>
             <Link to={`/${title.toLowerCase()}`}>{t("search.more")}</Link>
         </div>
@@ -59,7 +59,7 @@ export const Header: React.FC = () => {
     const renderItem = (title: string, imageUrl: string, link: string) => ({
         value: title,
         label: (
-            <Link to={link} style={itemStyle}>
+            <Link to={link} style={{ display: "flex", alignItems: "center" }}>
                 <Avatar size={64} src={imageUrl} style={{ minWidth: "64px" }} />
                 <Text style={{ marginLeft: "16px" }}>{title}</Text>
             </Link>
@@ -182,12 +182,18 @@ export const Header: React.FC = () => {
     );
 
     return (
-        <AntdLayout.Header style={headerStyle}>
+        <AntdLayout.Header
+            style={{
+                padding: "0px 24px",
+                height: "64px",
+                backgroundColor: "#FFF",
+            }}
+        >
             <Row align="middle" justify={screens.sm ? "space-between" : "end"}>
                 <Col xs={0} sm={12}>
                     <AutoComplete
                         dropdownClassName="header-search"
-                        style={autoCompleteStyle}
+                        style={{ width: "100%", maxWidth: "550px" }}
                         options={options}
                         filterOption={false}
                         onSearch={debounce(
