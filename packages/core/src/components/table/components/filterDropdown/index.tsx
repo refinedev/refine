@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Button, Space, SelectProps } from "antd";
-import { SelectValue } from "antd/lib/select";
+import { Button, Space } from "antd";
 import { FilterDropdownProps as AntdFilterDropdownProps } from "antd/lib/table/interface";
 import { FilterOutlined } from "@ant-design/icons";
 import { useTranslate } from "@hooks";
@@ -15,14 +14,13 @@ export type FilterDropdownProps = AntdFilterDropdownProps & {
  * @see {@link https://refine.dev/docs/api-references/components/filter-dropdown} for more details.
  */
 export const FilterDropdown: React.FC<FilterDropdownProps> = ({
-    selectedKeys,
     setSelectedKeys,
     confirm,
     clearFilters,
     mapValue,
     children,
 }) => {
-    const [value, setValue] = useState<SelectValue>(undefined);
+    const [value, setValue] = useState<any[] | undefined>(undefined);
 
     const clearFilter = () => {
         if (clearFilters) {
