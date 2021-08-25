@@ -21,7 +21,6 @@ export const DailyRevenue: React.FC = () => {
 
     const [dateRange, setDateRange] = useState<Dayjs>(dayjs().startOf("month"));
 
-    console.log({ dateRange });
     const [start, end] = [dateRange.startOf("month"), dateRange.endOf("month")];
 
     const query = {
