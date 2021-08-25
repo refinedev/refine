@@ -56,7 +56,7 @@ Let's add multi-language support using the `react-i18next` framework. At the end
 
 ### Installation
 
-Run the following command within your project directory to install both `react-i18next` and `i18next` packages  :
+Run the following command within your project directory to install both `react-i18next` and `i18next` packages :
 
 ```
 npm install react-i18next i18next
@@ -224,7 +224,7 @@ Now, let's add the language files:
 |   |-- locales
 |       |-- en
 |       |   |-- common.json
-|       |-- tr
+|       |-- de
 |           |-- common.json
 |-- src
 |-- package.json
@@ -233,7 +233,7 @@ Now, let's add the language files:
 
 <Tabs
 defaultValue="en"
-values={[{ label: "English", value: "en" }, { label: "Turkish", value: "tr" }]}>
+values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
 <TabItem value="en">
 
 ```json title="/locales/en/common.json"
@@ -320,87 +320,87 @@ values={[{ label: "English", value: "en" }, { label: "Turkish", value: "tr" }]}>
 ```
 
 </TabItem>
-<TabItem value="tr">
+<TabItem value="de">
 
-```json title="/locales/tr/common.json"
+```json title="/locales/de/common.json"
 {
     "pages": {
         "login": {
-            "signin": "Giriş",
-            "signup": "Kayıt",
-            "username": "Kullanıcı Adı",
-            "password": "Şifre",
-            "remember": "Beni Hatırla",
-            "forgotPassword": "Şifremi unuttum",
-            "title": "Hesabınıza Giriş Yapın",
-            "noAccount": "Hesabın yok mu?"
+            "signin": "Einloggen",
+            "signup": "Anmelden",
+            "username": "Benutzername",
+            "password": "Passwort",
+            "remember": "Login speichern",
+            "forgotPassword": "Passwort Vergessen?",
+            "title": "Benutzerkonto einloggen",
+            "noAccount": "Noch kein Benutzerkonto?"
         },
         "error": {
-            "info": "{{action}} sayfasını {{resource}} kaynağına eklemeyi unutmuş olabilirsiniz.",
-            "404": "Üzgünüz, ziyaret ettiğiniz sayfa mevcut değil.",
-            "resource404": "{{resource}} kaynağını oluşturduğunuzdan emin misiniz?",
-            "backHome": "Ana sayfaya geri dön"
+            "info": "Sie haben vergessen, {{action}} component zu {{resource}} hinzufügen.",
+            "404": "Leider existiert diese Seite nicht.",
+            "resource404": "Haben Sie die {{resource}} resource erstellt?",
+            "backHome": "Zurück"
         }
     },
     "buttons": {
-        "create": "Oluştur",
-        "save": "Kaydet",
-        "logout": "Çıkış yap",
-        "delete": "Sil",
-        "edit": "Düzenle",
-        "cancel": "İptal",
-        "confirm": "Emin misiniz?",
-        "filter": "Filtrele",
-        "clear": "Temizle",
-        "refresh": "Yenile",
-        "show": "Göster",
-        "undo": "Geri Al",
-        "import": "Yükle",
-        "clone": "Kopya"
+        "create": "Erstellen",
+        "save": "Speichern",
+        "logout": "Abmelden",
+        "delete": "Löschen",
+        "edit": "Bearbeiten",
+        "cancel": "Abbrechen",
+        "confirm": "Sicher?",
+        "filter": "Filter",
+        "clear": "Löschen",
+        "refresh": "Erneuern",
+        "show": "Zeigen",
+        "undo": "Undo",
+        "import": "Importieren",
+        "clone": "Klon"
     },
-    "warnWhenUnsavedChanges": "Kaydedilmemiş değişiklikleriniz var. Ayrılmak istediğinizden emin misiniz?",
+    "warnWhenUnsavedChanges": "Nicht gespeicherte Änderungen werden nicht übernommen.",
     "notifications": {
-        "success": "Başarılı",
-        "error": "Hata (hata kodu: {{statusCode}})",
-        "undoable": "Geri almak için {{seconds}} saniyeniz var",
-        "createSuccess": "{{resource}} başarıyla oluşturuldu",
-        "createError": "{{resource}} oluşturulurken hata (hata kodu: {{statusCode}})",
-        "deleteSuccess": "{{resource}} başarıyla silindi",
-        "deleteError": "{{resource}} silinirken hata (hata kodu: {{statusCode}})",
-        "editSuccess": "{{resource}} başarıyla düzenlendi",
-        "editError": "{{resource}} düzenlenirken hata (hata kodu: {{statusCode}})"
+        "success": "Erfolg",
+        "error": "Fehler (status code: {{statusCode}})",
+        "undoable": "Sie haben {{seconds}} Sekunden Zeit für Undo.",
+        "createSuccess": "{{resource}} erfolgreich erstellt.",
+        "createError": "Fehler beim Erstellen {{resource}} (status code: {{statusCode}})",
+        "deleteSuccess": "{{resource}} erfolgreich gelöscht.",
+        "deleteError": "Fehler beim Löschen {{resource}} (status code: {{statusCode}})",
+        "editSuccess": "{{resource}} erfolgreich bearbeitet.",
+        "editError": "Fehler beim Bearbeiten {{resource}} (status code: {{statusCode}})"
     },
-    "loading": "Yükleniyor",
+    "loading": "Wird geladen",
     "tags": {
-        "clone": "Kopya"
+        "clone": "Klon"
     },
     "dashboard": {
-        "title": "Panel"
+        "title": "Dashboard"
     },
     "posts": {
-        "posts": "Gönderiler",
+        "posts": "Einträge",
         "fields": {
             "id": "Id",
-            "title": "Başlık",
-            "category": "Kategori",
+            "title": "Titel",
+            "category": "Kategorie",
             "status": {
-                "title": "Durum",
-                "published": "Yayınlanan",
-                "draft": "Taslak",
-                "rejected": "Reddedildi"
+                "title": "Status",
+                "published": "Veröffentlicht",
+                "draft": "Draft",
+                "rejected": "Abgelehnt"
             },
-            "content": "İçerik",
-            "createdAt": "Yaratılma tarihi"
+            "content": "Inhalh",
+            "createdAt": "Erstellt am"
         },
         "titles": {
-            "create": "Gönderi Oluştur",
-            "edit": "Gönderi Düzenle",
-            "list": "Gönderiler",
-            "show": "Gönderi Göster"
+            "create": "Erstellen",
+            "edit": "Bearbeiten",
+            "list": "Einträge",
+            "show": "Eintrag zeigen"
         }
     },
     "table": {
-        "actions": "İşlemler"
+        "actions": "Aktionen"
     }
 }
 ```
@@ -419,47 +419,42 @@ Next, we will create a `<Header>` component. This component will allow us to cha
 ```tsx title="src/components/header.tsx"
 import {
     AntdLayout,
-    Button,
+    Space,
     Menu,
+    Button,
     Icons,
     Dropdown,
+    Avatar,
     useGetLocale,
     useSetLocale,
 } from "@pankod/refine";
 import { useTranslation } from "react-i18next";
-import { ILanguage } from "interfaces";
 
-const { TranslationOutlined } = Icons;
-
-const languages: Record<string, ILanguage> = {
-    en: {
-        title: "English",
-        flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-    },
-    tr: {
-        title: "Türkçe",
-        flag: "🇹🇷",
-    },
-};
+const { DownOutlined } = Icons;
 
 export const Header: React.FC = () => {
     const { i18n } = useTranslation();
     const locale = useGetLocale();
     const changeLanguage = useSetLocale();
 
+    const currentLocale = locale();
+
     const menu = (
-        <Menu selectedKeys={[locale()]}>
-            {i18n.languages?.sort().map((lang) => (
+        <Menu selectedKeys={[currentLocale]}>
+            {[...i18n.languages].sort().map((lang: string) => (
                 <Menu.Item
                     key={lang}
                     onClick={() => changeLanguage(lang)}
                     icon={
                         <span style={{ marginRight: 8 }}>
-                            {languages[lang].flag}
+                            <Avatar
+                                size={16}
+                                src={`/images/flags/${lang}.svg`}
+                            />
                         </span>
                     }
                 >
-                    {languages[lang].title}
+                    {lang === "en" ? "English" : "German"}
                 </Menu.Item>
             ))}
         </Menu>
@@ -468,39 +463,29 @@ export const Header: React.FC = () => {
     return (
         <AntdLayout.Header
             style={{
-                padding: "0px 24px 0px 0px",
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "center",
+                padding: "0px 24px",
                 height: "48px",
                 backgroundColor: "#FFF",
             }}
         >
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    height: "100%",
-                    alignItems: "center",
-                }}
-            >
-                <Dropdown overlay={menu}>
-                    <Button
-                        type="text"
-                        size="large"
-                        style={{ height: "100%" }}
-                        icon={<TranslationOutlined />}
-                        onClick={(e) => e.preventDefault()}
-                    />
-                </Dropdown>
-            </div>
+            <Dropdown overlay={menu}>
+                <Button type="link">
+                    <Space>
+                        <Avatar
+                            size={16}
+                            src={`/images/flags/${currentLocale}.svg`}
+                        />
+                        {currentLocale === "en" ? "English" : "German"}
+                        <DownOutlined />
+                    </Space>
+                </Button>
+            </Dropdown>
         </AntdLayout.Header>
     );
 };
-```
-
-```ts title="interfaces/index.d.ts"
-export interface ILanguage {
-    title: string;
-    flag: string;
-}
 ```
 
 <br/>
