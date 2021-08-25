@@ -77,6 +77,8 @@ export const DailyRevenue: React.FC = () => {
         return config;
     }, [data]);
 
+    const disabledDate = (date: Dayjs) => date > dayjs().endOf("month");
+
     return (
         <div className="daily-revenue-wrapper">
             <div className="title-area">
@@ -118,6 +120,7 @@ export const DailyRevenue: React.FC = () => {
                         color: "#fffff !important",
                         background: "rgba(255, 255, 255, 0.3)",
                     }}
+                    disabledDate={disabledDate}
                 />
             </div>
             <Line padding={0} appendPadding={10} height={162} {...config} />
