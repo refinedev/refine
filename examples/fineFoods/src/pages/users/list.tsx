@@ -20,6 +20,7 @@ import {
     Row,
     Col,
     HttpError,
+    ShowButton,
 } from "@pankod/refine";
 
 import { IUser, IUserFilterVariables } from "interfaces";
@@ -157,6 +158,12 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                             render={(value) => (
                                 <DateField value={value} format="LLL" />
                             )}
+                            sorter
+                        />
+                        <Table.Column
+                            key="actions"
+                            title={t("table.actions")}
+                            render={() => <ShowButton />}
                             sorter
                         />
                     </Table>
