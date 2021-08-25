@@ -203,7 +203,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                     <FilterDropdown {...props}>
                                         <Select
                                             style={{ minWidth: 200 }}
-                                            mode="multiple"
                                             placeholder="Select Status"
                                             {...orderSelectProps}
                                             defaultValue={getDefaultFilter(
