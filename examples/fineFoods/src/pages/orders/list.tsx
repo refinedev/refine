@@ -206,6 +206,11 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                             mode="multiple"
                                             placeholder="Select Status"
                                             {...orderSelectProps}
+                                            defaultValue={getDefaultFilter(
+                                                "status.text",
+                                                filters,
+                                                "in",
+                                            )}
                                         />
                                     </FilterDropdown>
                                 );
