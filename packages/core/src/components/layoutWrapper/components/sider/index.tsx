@@ -11,6 +11,7 @@ import {
 } from "@hooks";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../../interfaces";
+import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const Sider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
@@ -22,13 +23,17 @@ export const Sider: React.FC = () => {
     const { push } = useNavigation();
     const breakpoint = Grid.useBreakpoint();
 
+    const isMobile = !breakpoint.lg;
+
     return (
         <Layout.Sider
             collapsible
             collapsed={collapsed}
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
-            collapsedWidth={!breakpoint.lg ? 0 : 80}
+            collapsedWidth={isMobile ? 0 : 80}
             breakpoint="lg"
+            style={isMobile ? antLayoutSiderMobile : antLayoutSider}
+            className={`refine-sider ${!collapsed && "refine-sider-collapsed"}`}
         >
             <Title collapsed={collapsed} />
             <Menu
