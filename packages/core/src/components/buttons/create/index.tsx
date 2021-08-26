@@ -8,6 +8,7 @@ import { ResourceRouterParams } from "../../../interfaces";
 
 export type CreateButtonProps = ButtonProps & {
     resourceName?: string;
+    hideText?: boolean;
 };
 
 /**
@@ -19,6 +20,7 @@ export type CreateButtonProps = ButtonProps & {
  */
 export const CreateButton: FC<CreateButtonProps> = ({
     resourceName,
+    hideText = false,
     children,
     ...rest
 }) => {
@@ -33,7 +35,7 @@ export const CreateButton: FC<CreateButtonProps> = ({
 
     return (
         <Button onClick={onButtonClick} icon={<PlusSquareOutlined />} {...rest}>
-            {children ?? translate("buttons.create", "Create")}
+            {!hideText && (children ?? translate("buttons.create", "Create"))}
         </Button>
     );
 };

@@ -9,6 +9,7 @@ import { ResourceRouterParams } from "../../../interfaces";
 type RefreshButtonProps = ButtonProps & {
     resourceName?: string;
     recordItemId?: string;
+    hideText?: boolean;
 };
 
 /**
@@ -20,6 +21,7 @@ type RefreshButtonProps = ButtonProps & {
 export const RefreshButton: FC<RefreshButtonProps> = ({
     resourceName: propResourceName,
     recordItemId,
+    hideText = false,
     children,
     ...rest
 }) => {
@@ -47,7 +49,7 @@ export const RefreshButton: FC<RefreshButtonProps> = ({
             onClick={() => refetch()}
             {...rest}
         >
-            {children ?? translate("buttons.refresh", "Refresh")}
+            {!hideText && (children ?? translate("buttons.refresh", "Refresh"))}
         </Button>
     );
 };

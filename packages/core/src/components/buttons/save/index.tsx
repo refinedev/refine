@@ -4,7 +4,9 @@ import { SaveOutlined } from "@ant-design/icons";
 
 import { useTranslate } from "@hooks";
 
-type SaveButtonProps = ButtonProps & {};
+type SaveButtonProps = ButtonProps & {
+    hideText?: boolean;
+};
 
 /**
  * `<SaveButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component.
@@ -12,12 +14,16 @@ type SaveButtonProps = ButtonProps & {};
  *
  * @see {@link https://refine.dev/docs/api-references/components/buttons/save-button} for more details.
  */
-export const SaveButton: FC<SaveButtonProps> = ({ children, ...rest }) => {
+export const SaveButton: FC<SaveButtonProps> = ({
+    hideText = false,
+    children,
+    ...rest
+}) => {
     const translate = useTranslate();
 
     return (
         <Button type="primary" icon={<SaveOutlined />} {...rest}>
-            {children ?? translate("buttons.save", "Save")}
+            {!hideText && (children ?? translate("buttons.save", "Save"))}
         </Button>
     );
 };

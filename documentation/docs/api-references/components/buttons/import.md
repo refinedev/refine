@@ -5,19 +5,19 @@ title: Import
 
 import importButton from '@site/static/img/hooks/useImport/import-button.png';
 
-`<ImportButton>` is compatible with the [`useImport`][useImport] hook and is meant to be used as it's upload button. 
-It uses Ant Design's [`<Button>`][Button] and [`<Upload>`][Upload] components. It wraps a [`<Button>`][Button] component with an [`<Upload>`][Upload] component and accepts properties for [`<Button>`][Button] and [`<Upload>`][Upload] components separately.
+`<ImportButton>` is compatible with the [`useImport`][useimport] hook and is meant to be used as it's upload button.
+It uses Ant Design's [`<Button>`][button] and [`<Upload>`][upload] components. It wraps a [`<Button>`][button] component with an [`<Upload>`][upload] component and accepts properties for [`<Button>`][button] and [`<Upload>`][upload] components separately.
 
 ## Usage
 
 ```tsx title="/src/pages/posts/list.tsx"
-import { 
-    List, 
-    Table, 
-    useTable, 
+import {
+    List,
+    Table,
+    useTable,
     //highlight-start
-    useImport, 
-    ImportButton 
+    useImport,
+    ImportButton,
     //highlight-end
 } from "@pankod/refine";
 
@@ -43,7 +43,6 @@ export const PostList: React.FC = () => {
         </List>
     );
 };
-
 ```
 
 ```ts title="/src/interfaces.d.ts"
@@ -59,16 +58,23 @@ Will look like this:
     <img  src={importButton} alt="Import button" />
 </div>
 
+## Properties
+
+### `hideText`
+
+It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+
 ## API Reference
 
 ### Properties
 
-| Property    | Description                      | Type                                                       | Default    |
-| ----------- | -------------------------------- | ---------------------------------------------------------- | ---------- |
+| Property    | Description                       | Type                                                       | Default    |
+| ----------- | --------------------------------- | ---------------------------------------------------------- | ---------- |
 | uploadProps | Sets the button type              | [`UploadProps`](https://ant.design/components/upload/#API) |            |
 | buttonProps | Sets the icon component of button | [`ButtonProps`](https://ant.design/components/button/#API) |            |
+| hideText    | Allows to hide button text        | `boolean`                                                  | `false`    |
 | children    | Sets the button text              | `ReactNode`                                                | `"Import"` |
 
-[useImport]: /api-references/hooks/import-export/useImport.md
-[Button]: https://ant.design/components/button/
-[Upload]: https://ant.design/components/upload/
+[useimport]: /api-references/hooks/import-export/useImport.md
+[button]: https://ant.design/components/button/
+[upload]: https://ant.design/components/upload/

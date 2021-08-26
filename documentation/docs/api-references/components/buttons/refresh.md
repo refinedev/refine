@@ -94,15 +94,28 @@ Clicking the button will trigger the [`useOne`](api-references/hooks/data/useOne
 `<RefreshButton>` component reads the resource name from the route by default.
 :::
 
+### `hideText`
+
+It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+
+```tsx
+import { RefreshButton } from "@pankod/refine";
+
+export const MyRefreshComponent = () => {
+    return <RefreshButton hideText />;
+};
+```
+
 ## API Reference
 
 ### Properties
 
-| Property     | Description                                  | Type                                                                                                             | Default                                                   |
-| ------------ | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| props        | Ant Design button props                      | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; recordItemId?: string; }` |                                                           |
-| resourceName | Determines which resource to use for refresh | `string`                                                                                                         | Resource name that it reads from route                    |
-| recordItemId | Determines which id to use for refresh       | `string`                                                                                                         | Record id that it reads from route                        |
-| children     | Sets the button text                          | `ReactNode`                                                                                                      | `"Refresh"`                                               |
-| icon         | Sets the icon component of button             | `ReactNode`                                                                                                      | [`<RedoOutlined />`](https://ant.design/components/icon/) |
-| onClick      | Sets the handler to handle the click event        | `(event) => void`                                                                                                | trigger the [`useOne`](api-references/hooks/data/useOne.md) method for refresh                   |
+| Property     | Description                                  | Type                                                                                                                                 | Default                                                                        |
+| ------------ | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| props        | Ant Design button props                      | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; recordItemId?: string; hideText?: boolean; }` |                                                                                |
+| resourceName | Determines which resource to use for refresh | `string`                                                                                                                             | Resource name that it reads from route                                         |
+| recordItemId | Determines which id to use for refresh       | `string`                                                                                                                             | Record id that it reads from route                                             |
+| hideText     | Allows to hide button text                   | `boolean`                                                                                                                            | `false`                                                                        |
+| children     | Sets the button text                         | `ReactNode`                                                                                                                          | `"Refresh"`                                                                    |
+| icon         | Sets the icon component of button            | `ReactNode`                                                                                                                          | [`<RedoOutlined />`](https://ant.design/components/icon/)                      |
+| onClick      | Sets the handler to handle the click event   | `(event) => void`                                                                                                                    | trigger the [`useOne`](api-references/hooks/data/useOne.md) method for refresh |

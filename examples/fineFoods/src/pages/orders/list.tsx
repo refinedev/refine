@@ -156,7 +156,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     return (
         <Row gutter={[16, 16]}>
             <Col xl={6} lg={24} xs={24}>
-                <Card bordered={false} title={t("orders:filter.title")}>
+                <Card bordered={false} title={t("orders.filter.title")}>
                     <Filter
                         formProps={searchFormProps}
                         filters={filters || []}
