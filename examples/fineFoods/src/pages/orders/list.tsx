@@ -44,24 +44,31 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         HttpError,
         IOrderFilterVariables
     >({
-        /* initialSorter: [
-            {
-                field: "status.text",
-                order: "desc",
-            },
-        ], */
-        /* initialFilter: [
-            {
-                field: "status.text",
-                operator: "eq",
-                value: "Pending",
-            },
-            {
-                field: "store.id",
-                operator: "eq",
-                value: "1",
-            },
-        ], */
+        // initialSorter: [
+        //     {
+        //         field: "status.text",
+        //         order: "desc",
+        //     },
+        // ],
+        // initialFilter: [
+        //     {
+        //         field: "status.text",
+        //         operator: "eq",
+        //         value: "Pending",
+        //     },
+        //     {
+        //         field: "store.id",
+        //         operator: "eq",
+        //         value: "1",
+        //     },
+        // ],
+        // permanentFilter: [
+        //     {
+        //         field: "status.text",
+        //         operator: "in",
+        //         value: ["Ready"],
+        //     },
+        // ],
         onSearch: (params) => {
             const filters: CrudFilters = [];
             const { q, store, user, createdAt, status } = params;

@@ -31,6 +31,7 @@ import {
     SuccessErrorNotification,
     HttpError,
 } from "../../../interfaces";
+import { differenceWith } from "lodash";
 
 export type useTableProps<TData, TError, TSearchVariables = unknown> = {
     permanentFilter?: CrudFilters;
@@ -62,13 +63,16 @@ export type useTableReturnType<
  *
  * @see {@link https://refine.dev/docs/api-references/hooks/table/useTable} for more details.
  */
+
+const defaultPermanentFilter: CrudFilters = [];
+
 export const useTable = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
 >({
     onSearch,
-    permanentFilter = [],
+    permanentFilter = defaultPermanentFilter,
     initialCurrent = 1,
     initialPageSize = 10,
     initialSorter,
@@ -125,9 +129,10 @@ export const useTable = <
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
     const [sorter, setSorter] = useState<CrudSorting>(defaultSorter || []);
-    const [filters, setFilters] = useState<CrudFilters>(
-        unionWith(permanentFilter, defaultFilter || [], compareFilters),
-    );
+    const [filters, setFilters] = useState<CrudFilters>([
+        ...differenceWith(defaultFilter, permanentFilter, compareFilters),
+        ...permanentFilter,
+    ]);
 
     useEffect(() => {
         if (syncWithLocation) {
@@ -185,7 +190,7 @@ export const useTable = <
                     prevFilters,
                     compareFilters,
                 ),
-            ),
+            ).filter((crudFilter) => !!crudFilter.value),
         );
 
         // Map Antd:Sorter -> refine:CrudSorting
@@ -206,7 +211,7 @@ export const useTable = <
                         prevFilters,
                         compareFilters,
                     ),
-                ),
+                ).filter((crudFilter) => !!crudFilter.value),
             );
 
             tablePropsSunflower.onChange(
