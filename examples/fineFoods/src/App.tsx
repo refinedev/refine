@@ -41,7 +41,7 @@ const App: React.FC = () => {
     const locale = i18nProvider.getLocale();
 
     useEffect(() => {
-        if (i18nProvider.getLocale() === "de") {
+        if (locale === "de") {
             dayjs.locale("de");
         } else {
             dayjs.locale("en");
