@@ -1,6 +1,6 @@
 import React from "react";
 import { CheckboxGroupProps } from "antd/lib/checkbox";
-import { QueryObserverResult } from "react-query";
+import { QueryObserverResult, UseQueryOptions } from "react-query";
 
 import { useList } from "@hooks";
 import {
@@ -10,20 +10,23 @@ import {
     GetListResponse,
     CrudFilters,
     SuccessErrorNotification,
+    HttpError,
 } from "../../../interfaces";
 
-export type useCheckboxGroupProps = {
+export type useCheckboxGroupProps<TData, TError> = {
     resource: string;
     optionLabel?: string;
     optionValue?: string;
     sort?: CrudSorting;
     filters?: CrudFilters;
+    queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
 } & SuccessErrorNotification;
 
 export type UseCheckboxGroupReturnType<TData extends BaseRecord = BaseRecord> =
     {
         checkboxGroupProps: CheckboxGroupProps;
         queryResult: QueryObserverResult<GetListResponse<TData>>;
+        defaultQueryOnSuccess: (data: GetListResponse<TData>) => void;
     };
 
 /**
@@ -34,7 +37,10 @@ export type UseCheckboxGroupReturnType<TData extends BaseRecord = BaseRecord> =
  * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
  *
  */
-export const useCheckboxGroup = <TData extends BaseRecord = BaseRecord>({
+export const useCheckboxGroup = <
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+>({
     resource,
     sort,
     filters,
@@ -42,10 +48,20 @@ export const useCheckboxGroup = <TData extends BaseRecord = BaseRecord>({
     optionValue = "id",
     successNotification,
     errorNotification,
-}: useCheckboxGroupProps): UseCheckboxGroupReturnType<TData> => {
+    queryOptions,
+}: useCheckboxGroupProps<TData, TError>): UseCheckboxGroupReturnType<TData> => {
     const [options, setOptions] = React.useState<Option[]>([]);
 
-    const queryResult = useList<TData>(
+    const defaultQueryOnSuccess = (data: GetListResponse<TData>) => {
+        setOptions(
+            data.data.map((item) => ({
+                label: item[optionLabel],
+                value: item[optionValue],
+            })),
+        );
+    };
+
+    const queryResult = useList<TData, TError>(
         resource,
         {
             sort,
@@ -53,13 +69,9 @@ export const useCheckboxGroup = <TData extends BaseRecord = BaseRecord>({
         },
         {
             onSuccess: (data) => {
-                setOptions(
-                    data.data.map((item) => ({
-                        label: item[optionLabel],
-                        value: item[optionValue],
-                    })),
-                );
+                defaultQueryOnSuccess(data);
             },
+            ...queryOptions,
         },
         successNotification,
         errorNotification,
@@ -69,5 +81,6 @@ export const useCheckboxGroup = <TData extends BaseRecord = BaseRecord>({
             options,
         },
         queryResult,
+        defaultQueryOnSuccess,
     };
 };

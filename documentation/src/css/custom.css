@@ -15,11 +15,16 @@
     --ifm-color-primary-lighter: rgb(102, 212, 189);
     --ifm-color-primary-lightest: rgb(146, 224, 208);
     --ifm-code-font-size: 95%;
-    --color-purple: #331049;
     --ifm-navbar-background-color: var(--color-purple);
     --ifm-navbar-height: 64px;
     --ifm-menu-color-background-active: rgba(255, 255, 255, 0.05);
     --ifm-menu-color-background-hover: rgba(255, 255, 255, 0.05);
+    --color-purple: #331049;
+    --color-turquoise: #0ccee9;
+    --color-blue: #0b82f0;
+    --color-text-white: white;
+    --color-text-black: #1c1e21;
+    --color-bg-white: white;
 }
 
 .docusaurus-highlight-code-line {
@@ -100,12 +105,12 @@
 }
 
 .navbar__link {
-    color: white;
+    color: var(--color-text-white);
     font-weight: 600;
 }
 
 .navbar__toggle {
-    color: white;
+    color: var(--color-text-white);
 }
 
 .navbar-sidebar__brand {
@@ -113,7 +118,7 @@
 }
 
 .navbar-sidebar__items .menu__list .menu__link {
-    color: white;
+    color: var(--color-text-white);
 }
 
 .navbar-sidebar__items .menu__list .menu__link.menu__link--sublist::after {
@@ -122,7 +127,7 @@
 }
 
 .navbar-sidebar__back {
-    color: white;
+    color: var(--color-text-white);
 }
 
 .header-first-nav-item {
@@ -167,4 +172,34 @@
 .header-twitter-link::before {
     background: url("/icons/twitter.svg");
     background-size: contain;
+}
+
+/* Code Renderer Styles */
+
+.pre {
+    text-align: left;
+    margin: 1em 0;
+    padding: 0.5em;
+    overflow: auto;
+}
+
+.pre .token-line {
+    line-height: 1.3em;
+    height: 1.3em;
+}
+
+.code-line {
+    display: table-row;
+}
+
+.code-line-no {
+    display: table-cell;
+    text-align: right;
+    padding-right: 1em;
+    user-select: none;
+    opacity: 0.5;
+}
+
+.code-line-content {
+    display: table-cell;
 }

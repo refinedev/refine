@@ -10,12 +10,12 @@ import listUsage from '@site/static/img/guides-and-concepts/components/buttons/c
 ## Usage
 
 ```tsx
-import { 
+import {
     //highlight-next-line
     CreateButton,
     List,
     Table,
-    useTable
+    useTable,
 } from "@pankod/refine";
 
 import { IPost } from "interfaces";
@@ -64,14 +64,27 @@ export const MyCreateComponent = () => {
 
 Clicking the button will trigger the `create` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect to `/posts/create`.
 
+### `hideText`
+
+It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+
+```tsx
+import { CreateButton } from "@pankod/refine";
+
+export const MyCreateComponent = () => {
+    return <CreateButton hideText />;
+};
+```
+
 ## API Reference
 
 ### Properties
 
-| Property     | Description                                   | Type                                                                                      | Default                                                         |
-| ------------ | --------------------------------------------- | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| props        | Ant Design button props                      | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; }` |                                                                 |
-| resourceName | Determines which resource to use for redirection | `string`                                                                                  | Resource name that it reads from route                          |
-| children     | Sets the button text                           | `ReactNode`                                                                               | `"Create"`                                                      |
-| icon         | Sets the icon component of button              | `ReactNode`                                                                               | [`<PlusSquareOutlined />`](https://ant.design/components/icon/) |
-| onClick      | Sets the handler to handle click event         | `(event) => void`                                                                         | Triggers navigation for redirect to the create page of resource |
+| Property     | Description                                      | Type                                                                                                          | Default                                                         |
+| ------------ | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| props        | Ant Design button props                          | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; hideText?: boolean; }` |                                                                 |
+| resourceName | Determines which resource to use for redirection | `string`                                                                                                      | Resource name that it reads from route                          |
+| hideText     | Allows to hide button text                       | `boolean`                                                                                                     | `false`                                                         |
+| children     | Sets the button text                             | `ReactNode`                                                                                                   | `"Create"`                                                      |
+| icon         | Sets the icon component of button                | `ReactNode`                                                                                                   | [`<PlusSquareOutlined />`](https://ant.design/components/icon/) |
+| onClick      | Sets the handler to handle click event           | `(event) => void`                                                                                             | Triggers navigation for redirect to the create page of resource |

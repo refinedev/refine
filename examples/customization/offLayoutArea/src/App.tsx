@@ -1,4 +1,4 @@
-import { Refine, Resource, BackTop, AntdLayout } from "@pankod/refine";
+import { Refine, Resource, BackTop, AntdLayout, Grid } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -8,6 +8,7 @@ import { FixedSider } from "components";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
+    const breakpoint = Grid.useBreakpoint();
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
@@ -19,7 +20,12 @@ const App: React.FC = () => {
                     <AntdLayout style={{ marginLeft: 200 }}>
                         <Header />
                         <AntdLayout.Content>
-                            <div style={{ padding: 24, minHeight: 360 }}>
+                            <div
+                                style={{
+                                    padding: breakpoint.sm ? 24 : 12,
+                                    minHeight: 360,
+                                }}
+                            >
                                 {children}
                             </div>
                         </AntdLayout.Content>

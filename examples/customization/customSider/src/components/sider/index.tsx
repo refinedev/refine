@@ -7,7 +7,6 @@ import {
     useNavigation,
     Grid,
     Icons,
-    useNavigation,
 } from "@pankod/refine";
 
 export const CustomSider: React.FC = () => {
@@ -30,6 +29,10 @@ export const CustomSider: React.FC = () => {
                 selectedKeys={[selectedKey]}
                 mode="inline"
                 onClick={({ key }) => {
+                    if (!breakpoint.lg) {
+                        setCollapsed(true);
+                    }
+
                     push(key as string);
                 }}
             >
@@ -51,7 +54,9 @@ export const CustomSider: React.FC = () => {
                                 }}
                             >
                                 {label}
-                                {isSelected && <Icons.RightOutlined />}
+                                {!collapsed && isSelected && (
+                                    <Icons.RightOutlined />
+                                )}
                             </div>
                         </Menu.Item>
                     );

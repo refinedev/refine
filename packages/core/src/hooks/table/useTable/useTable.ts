@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import { Grid } from "antd";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
 import { FormProps } from "antd/lib/form";
@@ -78,6 +79,8 @@ export const useTable = <
     TData,
     TSearchVariables
 > => {
+    const breakpoint = Grid.useBreakpoint();
+
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
     const [form] = useForm<TSearchVariables>();
@@ -187,6 +190,8 @@ export const useTable = <
             onChange,
             pagination: {
                 ...tablePropsSunflower.pagination,
+                simple: !breakpoint.sm,
+                position: !breakpoint.sm ? ["bottomCenter"] : ["bottomRight"],
                 total: data?.total,
             },
             scroll: { x: true },

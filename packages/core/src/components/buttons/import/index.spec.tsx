@@ -25,11 +25,32 @@ describe("<ImportButton /> usage with useImport", () => {
             }),
         });
 
-        const result = render(
+        const { container, getByText } = render(
             <ImportButton {...importProps}>Test</ImportButton>,
         );
 
-        expect(result).toBeTruthy();
+        expect(container).toBeTruthy();
+
+        getByText("Test");
+    });
+
+    it("should render without text show only icon", () => {
+        const {
+            result: { current: importProps },
+        } = renderHook(() => useImport(), {
+            wrapper: TestWrapper({
+                dataProvider: MockJSONServer,
+                resources: [{ name: "categories" }],
+            }),
+        });
+
+        const { container, queryByText } = render(
+            <ImportButton {...importProps} hideText />,
+        );
+
+        expect(container).toBeTruthy();
+
+        expect(queryByText("Import")).not.toBeInTheDocument();
     });
 
     it("should trigger parse when used with useImport hook", async () => {

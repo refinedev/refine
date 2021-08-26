@@ -5,7 +5,7 @@ title: Clone
 
 import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/clone/usage.png';
 
-`<CloneButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `clone` method from [useNavigation](/api-references/hooks/navigation/useNavigation.md) under the hood. 
+`<CloneButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `clone` method from [useNavigation](/api-references/hooks/navigation/useNavigation.md) under the hood.
 It can be useful when redirecting the app to the create page with the record id route of `<Resource>`.
 
 ## Usage
@@ -82,6 +82,7 @@ It is used to redirect the app to the `/create` endpoint of the given resource n
 
 ```tsx
 import { CloneButton } from "@pankod/refine";
+
 export const MyCloneComponent = () => {
     return <CloneButton resourceName="categories" recordItemId="2" />;
 };
@@ -89,15 +90,28 @@ export const MyCloneComponent = () => {
 
 Clicking the button will trigger the `clone` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/create/2`.
 
+### `hideText`
+
+It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+
+```tsx
+import { CloneButton } from "@pankod/refine";
+
+export const MyCloneComponent = () => {
+    return <CloneButton hideText />;
+};
+```
+
 ## API Reference
 
 ### Properties
 
-| Property     | Description                                   | Type                                                                                                             | Default                                                         |
-| ------------ | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| props        | Ant Design button props                       | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; recordItemId?: string; }` |                                                                 |
-| resourceName | Determines which resource to use for redirection | `string`                                                                                                         | Resource name that it reads from route                          |
-| recordItemId | Adds `id` to the end of the URL                | `string`                                                                                                         | Record id that it reads from route                              |
-| children     | Sets the button text                           | `ReactNode`                                                                                                      | `"Clone"`                                                       |
-| icon         | Sets the icon component of button              | `ReactNode`                                                                                                      | [`<PlusSquareOutlined />`](https://ant.design/components/icon/) |
-| onClick      | Sets the handler to handle click event         | `(event) => void`                                                                                                | Triggers navigation for redirection to the create page of resource |
+| Property     | Description                                      | Type                                                                                                                                 | Default                                                            |
+| ------------ | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| props        | Ant Design button props                          | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; recordItemId?: string; hideText?: boolean; }` |                                                                    |
+| resourceName | Determines which resource to use for redirection | `string`                                                                                                                             | Resource name that it reads from route                             |
+| recordItemId | Adds `id` to the end of the URL                  | `string`                                                                                                                             | Record id that it reads from route                                 |
+| hideText     | Allows to hide button text                       | `boolean`                                                                                                                            | `false`                                                            |
+| children     | Sets the button text                             | `ReactNode`                                                                                                                          | `"Clone"`                                                          |
+| icon         | Sets the icon component of button                | `ReactNode`                                                                                                                          | [`<PlusSquareOutlined />`](https://ant.design/components/icon/)    |
+| onClick      | Sets the handler to handle click event           | `(event) => void`                                                                                                                    | Triggers navigation for redirection to the create page of resource |

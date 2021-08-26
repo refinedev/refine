@@ -268,7 +268,7 @@ export const CouriersEdit: React.FC<IResourceComponentsProps> = () => {
                     </>
                 }
             >
-                <Steps {...stepsProps}>
+                <Steps {...stepsProps} responsive>
                     <Steps.Step title={t("couriers.steps.content")} />
                     <Steps.Step title={t("couriers.steps.relations")} />
                 </Steps>
