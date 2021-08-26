@@ -6,6 +6,7 @@ import { FormProps } from "antd/lib/form";
 import { useForm } from "antd/lib/form/Form";
 import unionWith from "lodash/unionWith";
 import reverse from "lodash/reverse";
+import differenceWith from "lodash/differenceWith";
 
 import {
     useResourceWithRoute,
@@ -128,9 +129,10 @@ export const useSimpleList = <
 
     const [current, setCurrent] = useState(defaultCurrent);
     const [pageSize, setPageSize] = useState(defaultPageSize);
-    const [filters, setFilters] = useState<CrudFilters>(
-        unionWith(permanentFilter, defaultFilter || [], compareFilters),
-    );
+    const [filters, setFilters] = useState<CrudFilters>([
+        ...differenceWith(defaultFilter, permanentFilter, compareFilters),
+        ...permanentFilter,
+    ]);
     const [sorter, setSorter] = useState<CrudSorting>(defaultSorter ?? []);
 
     useEffect(() => {
@@ -181,7 +183,7 @@ export const useSimpleList = <
                         prevFilters,
                         compareFilters,
                     ),
-                ),
+                ).filter((crudFilter) => !!crudFilter.value),
             );
         }
     };
