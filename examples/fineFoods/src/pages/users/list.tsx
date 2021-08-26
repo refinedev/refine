@@ -104,17 +104,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
             </Col>
             <Col xl={18} xs={24}>
                 <List>
-                    <Table
-                        {...tableProps}
-                        rowKey="id"
-                        onRow={(record) => {
-                            return {
-                                onClick: () => {
-                                    show("users", record.id);
-                                },
-                            };
-                        }}
-                    >
+                    <Table {...tableProps} rowKey="id">
                         <Table.Column
                             key="gsm"
                             dataIndex="gsm"
@@ -161,10 +151,10 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                             sorter
                         />
                         <Table.Column
-                            key="actions"
                             title={t("table.actions")}
-                            render={() => <ShowButton />}
-                            sorter
+                            render={() => (
+                                <ShowButton hideText recordItemId="123" />
+                            )}
                         />
                     </Table>
                 </List>
