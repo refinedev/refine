@@ -8,6 +8,7 @@ import {
     Grid,
     Icons,
 } from "@pankod/refine";
+import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const CustomSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
@@ -16,13 +17,19 @@ export const CustomSider: React.FC = () => {
     const breakpoint = Grid.useBreakpoint();
     const { push } = useNavigation();
 
+    const isMobile = !breakpoint.lg;
+
     return (
         <AntdLayout.Sider
             collapsible
-            collapsedWidth={!breakpoint.lg ? 0 : 80}
+            collapsedWidth={isMobile ? 0 : 80}
             collapsed={collapsed}
             breakpoint="lg"
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
+            style={isMobile ? antLayoutSiderMobile : antLayoutSider}
+            className={`refine-sider ${
+                !collapsed ? "refine-sider-collapsed" : ""
+            }`}
         >
             <Title collapsed={collapsed} />
             <Menu
