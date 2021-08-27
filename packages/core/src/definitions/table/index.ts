@@ -156,20 +156,14 @@ export const mapAntdFilterToCrudFilter = (
     Object.keys(filters).map((field) => {
         const value = filters[field];
 
-        if (value !== undefined || value !== null) {
-            crudFilters.push({
-                field,
-                operator: "in",
-                value,
-            });
-        } else {
-            crudFilters.push({
-                field,
-                operator: "in",
-                value: undefined,
-            });
-        }
+        crudFilters.push({
+            field,
+            operator: "in",
+            value,
+        });
     });
+
+    console.log({ crudFilters });
 
     return crudFilters;
 };
@@ -189,7 +183,10 @@ export const unionFilters = (
 ): CrudFilters =>
     reverse(
         unionWith(permanentFilter, newFilters, prevFilters, compareFilters),
-    ).filter((crudFilter) => crudFilter.value !== undefined);
+    ).filter(
+        (crudFilter) =>
+            crudFilter.value !== undefined && crudFilter.value !== null,
+    );
 
 export const setInitialFilters = (
     permanentFilter: CrudFilters,
