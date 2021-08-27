@@ -7,7 +7,7 @@ describe("List Button", () => {
     const list = jest.fn();
 
     it("should render button successfuly", () => {
-        const listButton = render(
+        const { container, getByText } = render(
             <ListButton onClick={() => list()} resourceName="posts-light" />,
             {
                 wrapper: TestWrapper({
@@ -15,15 +15,41 @@ describe("List Button", () => {
                 }),
             },
         );
-        const { container, getByText } = listButton;
 
         getByText("Posts light");
 
         expect(container).toBeTruthy();
     });
 
+    it("should render text by children", () => {
+        const { container, getByText } = render(
+            <ListButton>refine</ListButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        getByText("refine");
+    });
+
+    it("should render without text show only icon", () => {
+        const { container, queryByText } = render(<ListButton hideText />, {
+            wrapper: TestWrapper({
+                resources: [{ name: "posts" }],
+            }),
+        });
+
+        expect(container).toBeTruthy();
+
+        expect(queryByText("Posts")).not.toBeInTheDocument();
+    });
+
     it("should render called function successfully if click the button", () => {
-        const listButton = render(
+        const { getByText } = render(
             <ListButton onClick={() => list()} resourceName="posts" />,
             {
                 wrapper: TestWrapper({
@@ -31,7 +57,6 @@ describe("List Button", () => {
                 }),
             },
         );
-        const { getByText } = listButton;
 
         fireEvent.click(getByText("Posts"));
 

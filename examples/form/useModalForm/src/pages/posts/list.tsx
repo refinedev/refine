@@ -69,11 +69,13 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                         render={(_, record) => (
                             <Space>
                                 <EditButton
+                                    hideText
                                     size="small"
                                     recordItemId={record.id}
                                     onClick={() => editModalShow(record.id)}
                                 />
                                 <ShowButton
+                                    hideText
                                     size="small"
                                     recordItemId={record.id}
                                     onClick={() => {

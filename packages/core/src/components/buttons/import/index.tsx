@@ -6,6 +6,7 @@ import { useTranslate } from "@hooks";
 type ImportButtonProps = {
     uploadProps: UploadProps;
     buttonProps: ButtonProps;
+    hideText?: boolean;
 };
 
 /**
@@ -18,6 +19,7 @@ type ImportButtonProps = {
 export const ImportButton: React.FC<ImportButtonProps> = ({
     uploadProps,
     buttonProps,
+    hideText = false,
     children,
 }) => {
     const translate = useTranslate();
@@ -25,7 +27,8 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
     return (
         <Upload {...uploadProps}>
             <Button icon={<ImportOutlined />} {...buttonProps}>
-                {children ?? translate("buttons.import", "Import")}
+                {!hideText &&
+                    (children ?? translate("buttons.import", "Import"))}
             </Button>
         </Upload>
     );

@@ -9,6 +9,7 @@ import { ResourceRouterParams } from "../../../interfaces";
 type CloneButtonProps = ButtonProps & {
     resourceName?: string;
     recordItemId?: string;
+    hideText?: boolean;
 };
 
 /**
@@ -21,6 +22,7 @@ type CloneButtonProps = ButtonProps & {
 export const CloneButton: FC<CloneButtonProps> = ({
     resourceName,
     recordItemId,
+    hideText = false,
     children,
     ...rest
 }) => {
@@ -36,7 +38,7 @@ export const CloneButton: FC<CloneButtonProps> = ({
 
     return (
         <Button onClick={onButtonClick} icon={<PlusSquareOutlined />} {...rest}>
-            {children ?? translate("buttons.clone", "Clone")}
+            {!hideText && (children ?? translate("buttons.clone", "Clone"))}
         </Button>
     );
 };

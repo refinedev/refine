@@ -27,6 +27,7 @@ import {
     ProductItem,
     ProductCategoryFilter,
 } from "components/product";
+import "./style.less";
 
 type StoreProductsProps = {
     record: IStore;
@@ -135,16 +136,7 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
                 >
                     <Row gutter={[16, 16]}>
                         <Col xs={24} sm={18}>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "space-between",
-                                    flexWrap: "wrap",
-                                    gap: "8px",
-                                    marginBottom: "16px",
-                                }}
-                            >
+                            <div className="store-products">
                                 <Text style={{ fontSize: "24px" }} strong>
                                     {t("stores.storeProducts")}
                                 </Text>
