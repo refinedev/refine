@@ -76,12 +76,12 @@ i18n.use(Backend)
     .use(detector)
     .use(initReactI18next)
     .init({
-        supportedLngs: ["en", "tr"],
+        supportedLngs: ["en", "de"],
         backend: {
             loadPath: "/locales/{{lng}}/{{ns}}.json", // locale files path
         },
         defaultNS: "common",
-        fallbackLng: ["en", "tr"],
+        fallbackLng: ["en", "de"],
     });
 
 export default i18n;
