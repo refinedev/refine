@@ -1,80 +1,80 @@
 {
     "pages": {
         "login": {
-            "signin": "Giriş",
-            "signup": "Kayıt",
-            "username": "Kullanıcı Adı",
-            "password": "Şifre",
-            "remember": "Beni Hatırla",
-            "forgotPassword": "Şifremi unuttum",
-            "title": "Hesabınıza Giriş Yapın",
-            "noAccount": "Hesabın yok mu?"
+            "signin": "Einloggen",
+            "signup": "Anmelden",
+            "username": "Benutzername",
+            "password": "Passwort",
+            "remember": "Login speichern",
+            "forgotPassword": "Passwort Vergessen?",
+            "title": "Benutzerkonto einloggen",
+            "noAccount": "Noch kein Benutzerkonto?"
         },
         "error": {
-            "info": "{{action}} sayfasını {{resource}} kaynağına eklemeyi unutmuş olabilirsiniz.",
-            "404": "Üzgünüz, ziyaret ettiğiniz sayfa mevcut değil.",
-            "resource404": "{{resource}} kaynağını oluşturduğunuzdan emin misiniz?",
-            "backHome": "Ana sayfaya geri dön"
+            "info": "Sie haben vergessen, {{action}} component zu {{resource}} hinzufügen.",
+            "404": "Leider existiert diese Seite nicht.",
+            "resource404": "Haben Sie die {{resource}} resource erstellt?",
+            "backHome": "Zurück"
         }
     },
     "buttons": {
-        "create": "Oluştur",
-        "save": "Kaydet",
-        "logout": "Çıkış yap",
-        "delete": "Sil",
-        "edit": "Düzenle",
-        "cancel": "İptal",
-        "confirm": "Emin misiniz?",
-        "filter": "Filtrele",
-        "clear": "Temizle",
-        "refresh": "Yenile",
-        "show": "Göster",
-        "undo": "Geri Al",
-        "import": "Yükle",
-        "clone": "Kopya"
+        "create": "Erstellen",
+        "save": "Speichern",
+        "logout": "Abmelden",
+        "delete": "Löschen",
+        "edit": "Bearbeiten",
+        "cancel": "Abbrechen",
+        "confirm": "Sicher?",
+        "filter": "Filter",
+        "clear": "Löschen",
+        "refresh": "Erneuern",
+        "show": "Zeigen",
+        "undo": "Undo",
+        "import": "Importieren",
+        "clone": "Klon"
     },
-    "warnWhenUnsavedChanges": "Kaydedilmemiş değişiklikleriniz var. Ayrılmak istediğinizden emin misiniz?",
+    "warnWhenUnsavedChanges": "Nicht gespeicherte Änderungen werden nicht übernommen.",
     "notifications": {
-        "success": "Başarılı",
-        "error": "Hata (hata kodu: {{statusCode}})",
-        "undoable": "Geri almak için {{seconds}} saniyeniz var",
-        "createSuccess": "{{resource}} başarıyla oluşturuldu",
-        "createError": "{{resource}} oluşturulurken hata (hata kodu: {{statusCode}})",
-        "deleteSuccess": "{{resource}} başarıyla silindi",
-        "deleteError": "{{resource}} silinirken hata (hata kodu: {{statusCode}})",
-        "editSuccess": "{{resource}} başarıyla düzenlendi",
-        "editError": "{{resource}} düzenlenirken hata (hata kodu: {{statusCode}})"
+        "success": "Erfolg",
+        "error": "Fehler (status code: {{statusCode}})",
+        "undoable": "Sie haben {{seconds}} Sekunden Zeit für Undo.",
+        "createSuccess": "{{resource}} erfolgreich erstellt.",
+        "createError": "Fehler beim Erstellen {{resource}} (status code: {{statusCode}})",
+        "deleteSuccess": "{{resource}} erfolgreich gelöscht.",
+        "deleteError": "Fehler beim Löschen {{resource}} (status code: {{statusCode}})",
+        "editSuccess": "{{resource}} erfolgreich bearbeitet.",
+        "editError": "Fehler beim Bearbeiten {{resource}} (status code: {{statusCode}})"
     },
-    "loading": "Yükleniyor",
+    "loading": "Wird geladen",
     "tags": {
-        "clone": "Kopya"
+        "clone": "Klon"
     },
     "dashboard": {
-        "title": "Panel"
+        "title": "Dashboard"
     },
     "posts": {
-        "posts": "Gönderiler",
+        "posts": "Einträge",
         "fields": {
             "id": "Id",
-            "title": "Başlık",
-            "category": "Kategori",
+            "title": "Titel",
+            "category": "Kategorie",
             "status": {
-                "title": "Durum",
-                "published": "Yayınlanan",
-                "draft": "Taslak",
-                "rejected": "Reddedildi"
+                "title": "Status",
+                "published": "Veröffentlicht",
+                "draft": "Draft",
+                "rejected": "Abgelehnt"
             },
-            "content": "İçerik",
-            "createdAt": "Yaratılma tarihi"
+            "content": "Inhalh",
+            "createdAt": "Erstellt am"
         },
         "titles": {
-            "create": "Gönderi Oluştur",
-            "edit": "Gönderi Düzenle",
-            "list": "Gönderiler",
-            "show": "Gönderi Göster"
+            "create": "Erstellen",
+            "edit": "Bearbeiten",
+            "list": "Einträge",
+            "show": "Eintrag zeigen"
         }
     },
     "table": {
-        "actions": "İşlemler"
+        "actions": "Aktionen"
     }
 }
