@@ -163,8 +163,6 @@ export const mapAntdFilterToCrudFilter = (
         });
     });
 
-    console.log({ crudFilters });
-
     return crudFilters;
 };
 
