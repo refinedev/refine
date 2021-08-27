@@ -1,11 +1,13 @@
 import qs, { IStringifyOptions } from "qs";
+import unionWith from "lodash/unionWith";
+import reverse from "lodash/reverse";
+import differenceWith from "lodash/differenceWith";
 
 import {
     CrudFilters,
     CrudOperators,
     CrudSorting,
     CrudFilter,
-    CrudSort,
 } from "../../interfaces";
 import {
     SortOrder,
@@ -154,7 +156,7 @@ export const mapAntdFilterToCrudFilter = (
     Object.keys(filters).map((field) => {
         const value = filters[field];
 
-        if (value) {
+        if (value !== undefined || value !== null) {
             crudFilters.push({
                 field,
                 operator: "in",
@@ -174,3 +176,25 @@ export const mapAntdFilterToCrudFilter = (
 
 export const compareFilters = (left: CrudFilter, right: CrudFilter): boolean =>
     left.field == right.field && left.operator == right.operator;
+
+// Keep only one CrudFilter per type according to compareFilters
+// Items in the array that is passed first to unionWith have higher priority
+// CrudFilter items with undefined values are necessary to signify no filter
+// After union, don't keep CrudFilter items with undefined value in the result
+// Items in the arrays with higher priority are put at the end.
+export const unionFilters = (
+    permanentFilter: CrudFilters,
+    newFilters: CrudFilters,
+    prevFilters: CrudFilters,
+): CrudFilters =>
+    reverse(
+        unionWith(permanentFilter, newFilters, prevFilters, compareFilters),
+    ).filter((crudFilter) => crudFilter.value !== undefined);
+
+export const setInitialFilters = (
+    permanentFilter: CrudFilters,
+    defaultFilter: CrudFilters,
+): CrudFilters => [
+    ...differenceWith(defaultFilter, permanentFilter, compareFilters),
+    ...permanentFilter,
+];

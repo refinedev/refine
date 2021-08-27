@@ -4,8 +4,6 @@ import { Grid } from "antd";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
 import { FormProps } from "antd/lib/form";
-import unionWith from "lodash/unionWith";
-import reverse from "lodash/reverse";
 import { QueryObserverResult, UseQueryOptions } from "react-query";
 
 import { useForm } from "antd/lib/form/Form";
@@ -19,7 +17,8 @@ import {
     parseTableParams,
     mapAntdSorterToCrudSorting,
     mapAntdFilterToCrudFilter,
-    compareFilters,
+    unionFilters,
+    setInitialFilters,
 } from "@definitions/table";
 
 import {
@@ -31,7 +30,6 @@ import {
     SuccessErrorNotification,
     HttpError,
 } from "../../../interfaces";
-import { differenceWith } from "lodash";
 
 export type useTableProps<TData, TError, TSearchVariables = unknown> = {
     permanentFilter?: CrudFilters;
@@ -129,10 +127,9 @@ export const useTable = <
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
     const [sorter, setSorter] = useState<CrudSorting>(defaultSorter || []);
-    const [filters, setFilters] = useState<CrudFilters>([
-        ...differenceWith(defaultFilter, permanentFilter, compareFilters),
-        ...permanentFilter,
-    ]);
+    const [filters, setFilters] = useState<CrudFilters>(
+        setInitialFilters(permanentFilter, defaultFilter ?? []),
+    );
 
     useEffect(() => {
         if (syncWithLocation) {
@@ -142,6 +139,7 @@ export const useTable = <
                 filters,
             });
 
+            // Careful! This triggers render
             return push(`/${resource.route}?${stringifyParams}`);
         }
     }, [
@@ -183,14 +181,7 @@ export const useTable = <
         const crudFilters = mapAntdFilterToCrudFilter(filters);
 
         setFilters((prevFilters) =>
-            reverse(
-                unionWith(
-                    permanentFilter,
-                    crudFilters,
-                    prevFilters,
-                    compareFilters,
-                ),
-            ).filter((crudFilter) => !!crudFilter.value),
+            unionFilters(permanentFilter, crudFilters, prevFilters),
         );
 
         // Map Antd:Sorter -> refine:CrudSorting
@@ -204,14 +195,7 @@ export const useTable = <
         if (onSearch) {
             const searchFilters = await onSearch(value);
             setFilters((prevFilters) =>
-                reverse(
-                    unionWith(
-                        permanentFilter,
-                        searchFilters,
-                        prevFilters,
-                        compareFilters,
-                    ),
-                ).filter((crudFilter) => !!crudFilter.value),
+                unionFilters(permanentFilter, searchFilters, prevFilters),
             );
 
             tablePropsSunflower.onChange(

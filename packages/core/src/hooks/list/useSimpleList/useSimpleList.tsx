@@ -4,9 +4,6 @@ import { QueryObserverResult, UseQueryOptions } from "react-query";
 import { ListProps } from "antd/lib/list";
 import { FormProps } from "antd/lib/form";
 import { useForm } from "antd/lib/form/Form";
-import unionWith from "lodash/unionWith";
-import reverse from "lodash/reverse";
-import differenceWith from "lodash/differenceWith";
 
 import {
     useResourceWithRoute,
@@ -25,9 +22,10 @@ import {
     HttpError,
 } from "../../../interfaces";
 import {
-    compareFilters,
     parseTableParams,
     stringifyTableParams,
+    unionFilters,
+    setInitialFilters,
 } from "@definitions/table";
 
 export type useSimpleListProps<TData, TError, TSearchVariables = unknown> =
@@ -129,10 +127,9 @@ export const useSimpleList = <
 
     const [current, setCurrent] = useState(defaultCurrent);
     const [pageSize, setPageSize] = useState(defaultPageSize);
-    const [filters, setFilters] = useState<CrudFilters>([
-        ...differenceWith(defaultFilter, permanentFilter, compareFilters),
-        ...permanentFilter,
-    ]);
+    const [filters, setFilters] = useState<CrudFilters>(
+        setInitialFilters(permanentFilter, defaultFilter ?? []),
+    );
     const [sorter, setSorter] = useState<CrudSorting>(defaultSorter ?? []);
 
     useEffect(() => {
@@ -176,14 +173,7 @@ export const useSimpleList = <
             const searchFilters = await onSearch(values);
             setCurrent(1);
             return setFilters((prevFilters) =>
-                reverse(
-                    unionWith(
-                        permanentFilter,
-                        searchFilters,
-                        prevFilters,
-                        compareFilters,
-                    ),
-                ).filter((crudFilter) => !!crudFilter.value),
+                unionFilters(permanentFilter, searchFilters, prevFilters),
             );
         }
     };
