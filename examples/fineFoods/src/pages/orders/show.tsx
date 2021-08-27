@@ -28,7 +28,7 @@ import { BikeWhiteIcon, UserIcon, CourierIcon } from "components/icons";
 
 import { IEvent, IOrder, IProduct } from "interfaces";
 
-import "./style.css";
+import "./style.less";
 
 const { useBreakpoint } = Grid;
 const { Text } = Typography;

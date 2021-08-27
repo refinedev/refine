@@ -273,7 +273,9 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                     title="Products"
                                     trigger="hover"
                                 >
-                                    {`${record.products.length} Items`}
+                                    {t("orders.fields.itemsAmount", {
+                                        amount: record.products.length,
+                                    })}
                                 </Popover>
                             )}
                         />

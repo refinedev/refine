@@ -16,7 +16,7 @@ import { Trans } from "react-i18next";
 
 const { Text, Title } = Typography;
 
-import { layoutStyles, containerStyles, titleStyles } from "./style";
+import "./style.less";
 
 export interface ILoginForm {
     username: string;
@@ -31,7 +31,7 @@ export const LoginPage: React.FC = () => {
     const { mutate: login } = useLogin<ILoginForm>();
 
     const CardTitle = (
-        <Title level={3} style={titleStyles}>
+        <Title level={3} className="layout-title">
             <Trans
                 i18nKey="pages.login.message"
                 defaults="<0>Sign in</0> your account"
@@ -41,7 +41,13 @@ export const LoginPage: React.FC = () => {
     );
 
     return (
-        <AntdLayout style={layoutStyles}>
+        <AntdLayout
+            style={{
+                background:
+                    "radial-gradient(50% 50% at 50% 50%,rgba(255, 255, 255, 0) 0%,rgba(0, 0, 0, 0.5) 100%),url('images/login-bg.png')",
+                backgroundSize: "cover",
+            }}
+        >
             <Row
                 justify="center"
                 align="middle"
@@ -50,7 +56,7 @@ export const LoginPage: React.FC = () => {
                 }}
             >
                 <Col xs={22}>
-                    <div style={containerStyles}>
+                    <div style={{ maxWidth: "408px", margin: "auto" }}>
                         <img
                             style={{ marginBottom: 26 }}
                             src="/images/fine-foods-login.svg"

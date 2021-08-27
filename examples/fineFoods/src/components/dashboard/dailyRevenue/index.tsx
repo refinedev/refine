@@ -39,7 +39,6 @@ export const DailyRevenue: React.FC = () => {
         query,
     });
 
-    const { Text, Title } = Typography;
     const { RangePicker } = DatePicker;
 
     const config = useMemo(() => {

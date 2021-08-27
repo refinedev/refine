@@ -73,3 +73,43 @@
     font-weight: 800;
     font-size: 20px;
 }
+
+.imgGroup {
+    height: 100px;
+    overflow: hidden;
+}
+
+.imgGroup img {
+    animation-duration: 5s;
+    animation-name: slideUp;
+    animation-iteration-count: infinite;
+}
+
+.imgGroup:nth-child(1) img {
+    animation-delay: 3s;
+}
+.imgGroup:nth-child(2) img {
+    animation-delay: 11s;
+}
+.imgGroup:nth-child(3) img {
+    animation-delay: 7s;
+}
+.imgGroup:nth-child(4) img {
+    animation-delay: 5s;
+}
+
+@keyframes slideUp {
+    0%,
+    40% {
+        transform: translateY(0px);
+    }
+
+    50%,
+    90% {
+        transform: translateY(calc(-100% - 6px));
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}

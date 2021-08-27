@@ -178,7 +178,8 @@
       "user": "User",
       "products": "Products",
       "createdAt": "CreatedAt",
-      "amount": "Amount"
+      "amount": "Amount",
+      "itemsAmount": "{{amount}} items"
     },
     "filter": {
       "title": "Filters",
@@ -296,10 +297,18 @@
       },
       "firstName": "First Name",
       "lastName": "Last Name",
-      "gender": "Gender",
+      "gender": {
+        "label": "Gender",
+        "Male": "Male",
+        "Female": "Female"
+      },
       "gsm": "Gsm Number",
       "createdAt": "CreatedAt",
-      "isActive": "Is Active"
+      "isActive": {
+        "label": "Is Active",
+        "true": "Yes",
+        "false": "No"
+      }
     },
     "filter": {
       "title": "Filters",
@@ -310,7 +319,23 @@
       "createdAt": {
         "label": "Created At"
       },
+      "gender": {
+        "label": "Gender",
+        "placeholder": "Gender",
+        "male": "Male",
+        "female": "Female"
+      },
+      "isActive": {
+        "label": "Active",
+        "placeholder": "Active status",
+        "true": "Yes",
+        "false": "No"
+      },
       "submit": "Filter"
+    },
+    "addresses": {
+      "addresses": "Addresses",
+      "address": "Address"
     }
   }
 }
