@@ -1,7 +1,40 @@
 import React from "react";
+import Highlight, { defaultProps } from "prism-react-renderer";
+import theme from "prism-react-renderer/themes/nightOwl";
 import clsx from "clsx";
 
 import styles from "./styles.module.css";
+
+const exampleCode = `
+import { Refine, Resource } from "@pankod/refine";
+import dataProvider from "@pankod/refine-simple-rest";
+import "@pankod/refine/dist/styles.min.css";
+
+import { 
+    PostList, 
+    PostCreate, 
+    PostEdit, 
+    PostShow ,
+} from "pages/posts";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const App: React.FC = () => {
+    return (
+        <Refine dataProvider={dataProvider(API_URL)}>
+            <Resource
+                name="posts"
+                list={PostList}
+                create={PostCreate}
+                edit={PostEdit}
+                show={PostShow}
+            />
+        </Refine>
+    );
+};
+
+export default App;
+`.trim();
 
 export const PerfectImplementation = () => {
     return (
@@ -15,27 +48,19 @@ export const PerfectImplementation = () => {
                         styles.row,
                     )}
                 >
-                    <div className="col col--5">
-                        <img
-                            className={styles.screen}
-                            src="/landing-page/code-screen.png"
-                            alt="Code Screen"
-                        />
-                    </div>
-                    <div className={clsx("col", "col--1", styles.arrowCol)}>
-                        <img
-                            className={styles.arrowImg}
-                            src="/landing-page/implementation-arrow.png"
-                            alt="Arrow"
-                        />
-                    </div>
-                    <div className="col col--5">
-                        <img
-                            className={styles.screen}
-                            src="/landing-page/preview-screen.png"
-                            alt="Preview Screen"
-                        />
-                    </div>
+                    <iframe
+                        src="https://codesandbox.io/embed/refine-tutorial-forked-zufpc?autoresize=1&fontsize=14&theme=dark"
+                        style={{
+                            width: "100%",
+                            height: "70vh",
+                            border: "0px",
+                            borderRadius: "8px",
+                            overflow: "hidden",
+                        }}
+                        title="refine-tutorial"
+                        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+                        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+                    ></iframe>
                 </div>
                 <div className="row row--justify--center">
                     <div className="col col--9">
