@@ -18,7 +18,8 @@
 
 .screen {
     width: 100%;
-    max-width: 600px;
+    height: 100%;
+    object-fit: contain;
 }
 
 @media screen and (max-width: 996px) {
@@ -57,7 +58,6 @@
         flex-wrap: wrap;
     }
 }
-
 
 .orderList {
     font-weight: 700;

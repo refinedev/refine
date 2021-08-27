@@ -1,7 +1,40 @@
 import React from "react";
+import Highlight, { defaultProps } from "prism-react-renderer";
+import theme from "prism-react-renderer/themes/nightOwl";
 import clsx from "clsx";
 
 import styles from "./styles.module.css";
+
+const exampleCode = `
+import { Refine, Resource } from "@pankod/refine";
+import dataProvider from "@pankod/refine-simple-rest";
+import "@pankod/refine/dist/styles.min.css";
+
+import { 
+    PostList, 
+    PostCreate, 
+    PostEdit, 
+    PostShow ,
+} from "pages/posts";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const App: React.FC = () => {
+    return (
+        <Refine dataProvider={dataProvider(API_URL)}>
+            <Resource
+                name="posts"
+                list={PostList}
+                create={PostCreate}
+                edit={PostEdit}
+                show={PostShow}
+            />
+        </Refine>
+    );
+};
+
+export default App;
+`.trim();
 
 export const PerfectImplementation = () => {
     return (
@@ -16,11 +49,48 @@ export const PerfectImplementation = () => {
                     )}
                 >
                     <div className="col col--5">
-                        <img
-                            className={styles.screen}
-                            src="/landing-page/code-screen.png"
-                            alt="Code Screen"
-                        />
+                        <Highlight
+                            {...defaultProps}
+                            theme={theme}
+                            code={exampleCode}
+                            language="jsx"
+                        >
+                            {({
+                                className,
+                                style,
+                                tokens,
+                                getLineProps,
+                                getTokenProps,
+                            }) => (
+                                <pre
+                                    className={clsx("pre", className)}
+                                    style={style}
+                                >
+                                    {tokens.map((line, i) => (
+                                        <div
+                                            className="code-line"
+                                            key={i}
+                                            {...getLineProps({ line, key: i })}
+                                        >
+                                            <span className="code-line-no">
+                                                {i + 1}
+                                            </span>
+                                            <span className="code-line-content">
+                                                {line.map((token, key) => (
+                                                    <span
+                                                        key={key}
+                                                        {...getTokenProps({
+                                                            token,
+                                                            key,
+                                                        })}
+                                                    />
+                                                ))}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </pre>
+                            )}
+                        </Highlight>
                     </div>
                     <div className={clsx("col", "col--1", styles.arrowCol)}>
                         <img
