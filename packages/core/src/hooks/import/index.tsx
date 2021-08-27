@@ -1,12 +1,13 @@
+/* eslint-disable react/display-name */
+import React from "react";
 import { useEffect, useState } from "react";
-import { ButtonProps, notification, UploadProps } from "antd";
+import { ButtonProps, notification, UploadProps, Progress, Button } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
 import {
     useCreate,
     useTranslate,
     useCreateMany,
     useResourceWithRoute,
-    useListResourceQueries,
 } from "@hooks";
 import { useParams } from "react-router-dom";
 import {
@@ -14,7 +15,6 @@ import {
     BaseRecord,
     HttpError,
     ResourceRouterParams,
-    SuccessErrorNotification,
 } from "../../interfaces";
 import { parse, ParseConfig } from "papaparse";
 import { importCSVMapper } from "@definitions";
@@ -22,7 +22,6 @@ import chunk from "lodash/chunk";
 import { UseCreateReturnType } from "@hooks/data/useCreate";
 import { UseCreateManyReturnType } from "@hooks/data/useCreateMany";
 import pluralize from "pluralize";
-import { useQueryClient } from "react-query";
 
 type ImportOptions<TItem, TVariables = any> = {
     resourceName?: string;
@@ -43,7 +42,7 @@ type ImportOptions<TItem, TVariables = any> = {
  *
  */
 export const useImport = <
-    TItem = any,
+    TItem extends unknown = any,
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = any,
@@ -63,12 +62,9 @@ export const useImport = <
     const [totalAmount, setTotalAmount] = useState<number>(0);
 
     const resourceWithRoute = useResourceWithRoute();
-    const getListQueries = useListResourceQueries();
-    const queryClient = useQueryClient();
     const t = useTranslate();
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
     let { name: resource } = resourceWithRoute(routeResourceName);
-    const resourceSingular = pluralize.singular(resource);
 
     const createMany = useCreateMany<TData, TError, TVariables>();
     const create = useCreate<TData, TError, TVariables>();
@@ -87,24 +83,49 @@ export const useImport = <
 
     useEffect(() => {
         if (totalAmount > 0) {
+            const description = (
+                <div
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        marginTop: "-7px",
+                    }}
+                >
+                    <Progress
+                        type="circle"
+                        percent={Math.floor(
+                            (processedAmount / totalAmount) * 100,
+                        )}
+                        width={50}
+                        strokeColor="#1890ff"
+                        status="normal"
+                    />
+                    <span style={{ marginLeft: 8, width: "100%" }}>
+                        {t(
+                            "notifications.importProgress",
+                            {
+                                processedAmount,
+                                totalAmount,
+                            },
+                            `Importing: ${processedAmount}/${totalAmount}`,
+                        )}
+                    </span>
+                </div>
+            );
+
             notification.open({
-                // description: t(
-                //     "notifications.createSuccess",
-                //     {
-                //         resource: t(`${resource}.${resource}`, totalAmount),
-                //     },
-                //     `Successfully created ${resourceSingular}`,
-                // ),
-                description: totalAmount,
-                // message: t("notifications.success", "Success"),
-                message: processedAmount,
-                type: "success",
-                key: `${resourceName}-import`,
+                description,
+                message: null,
+                key: `${resource}-import`,
             });
 
             if (processedAmount >= totalAmount) {
-                setTotalAmount(0);
-                setProcessedAmount(0);
+                setTimeout(() => {
+                    setTotalAmount(0);
+                    setProcessedAmount(0);
+                    notification.close(`${resource}-import`);
+                }, 1000);
             }
         }
     }, [totalAmount, processedAmount]);
@@ -125,10 +146,7 @@ export const useImport = <
                             errorNotification: false,
                         },
                         {
-                            onSuccess: (_, { resource }) => {
-                                console.log(
-                                    "useImport onSuccess batchSize = null",
-                                );
+                            onSuccess: () => {
                                 setProcessedAmount(totalAmount);
                             },
                         },
@@ -137,21 +155,12 @@ export const useImport = <
                     Promise.all(
                         values
                             .map((value) => {
-                                return create.mutateAsync(
-                                    {
-                                        resource,
-                                        values: value,
-                                        successNotification: false,
-                                        errorNotification: false,
-                                    },
-                                    {
-                                        onSuccess: (_, { resource }) => {
-                                            console.log(
-                                                "useImport onSuccess batchSize = 1",
-                                            );
-                                        },
-                                    },
-                                );
+                                return create.mutateAsync({
+                                    resource,
+                                    values: value,
+                                    successNotification: false,
+                                    errorNotification: false,
+                                });
                             })
                             .map((mutation) =>
                                 mutation.then(() => {
@@ -165,21 +174,12 @@ export const useImport = <
                     Promise.all(
                         chunk(values, batchSize)
                             .map((batch) => ({
-                                mutation: createMany.mutateAsync(
-                                    {
-                                        resource,
-                                        values: batch,
-                                        successNotification: false,
-                                        errorNotification: false,
-                                    },
-                                    {
-                                        onSuccess: (_, { resource }) => {
-                                            console.log(
-                                                "useImport onSuccess batchSize > 1",
-                                            );
-                                        },
-                                    },
-                                ),
+                                mutation: createMany.mutateAsync({
+                                    resource,
+                                    values: batch,
+                                    successNotification: false,
+                                    errorNotification: false,
+                                }),
                                 currentBatchLength: batch.length,
                             }))
                             .map(({ mutation, currentBatchLength }) =>
