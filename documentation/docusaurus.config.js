@@ -6,8 +6,9 @@
  */
 
 const siteConfig = {
-    title: "Refine",
-    tagline: "Refine. Reimagined.",
+    title: "refine",
+    tagline:
+        "A React-based framework for building data-intensive applications in no time.",
     url: "https://pankod.github.io",
     baseUrl: "/",
     projectName: "refine",
