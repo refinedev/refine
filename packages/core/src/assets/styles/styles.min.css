@@ -25060,9 +25060,6 @@ div.ant-typography-edit-content.ant-typography-rtl {
 .ant-page-header {
   border-radius: 6px;
 }
-.refine-sider {
-  background-color: red;
-}
 .refine-sider .ant-layout-sider-zero-width-trigger,
 .refine-sider .ant-layout-sider-zero-width-trigger-left {
   position: fixed;
