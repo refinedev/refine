@@ -11,7 +11,7 @@ import "dayjs/locale/de";
 import { DashboardPage } from "./pages/dashboard";
 import { LoginPage } from "./pages/login";
 import { OrderList, OrderShow } from "./pages/orders";
-import { UserList, UserEdit, UserShow } from "./pages/users";
+import { UserList, UserShow } from "./pages/users";
 import {
     CourierList,
     CourierShow,
@@ -72,7 +72,6 @@ const App: React.FC = () => {
             <Resource
                 name="users"
                 list={UserList}
-                edit={UserEdit}
                 show={UserShow}
                 icon={<Icons.UsergroupAddOutlined />}
             />
