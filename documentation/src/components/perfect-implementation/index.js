@@ -48,64 +48,19 @@ export const PerfectImplementation = () => {
                         styles.row,
                     )}
                 >
-                    <div className="col col--5">
-                        <Highlight
-                            {...defaultProps}
-                            theme={theme}
-                            code={exampleCode}
-                            language="jsx"
-                        >
-                            {({
-                                className,
-                                style,
-                                tokens,
-                                getLineProps,
-                                getTokenProps,
-                            }) => (
-                                <pre
-                                    className={clsx("pre", className)}
-                                    style={style}
-                                >
-                                    {tokens.map((line, i) => (
-                                        <div
-                                            className="code-line"
-                                            key={i}
-                                            {...getLineProps({ line, key: i })}
-                                        >
-                                            <span className="code-line-no">
-                                                {i + 1}
-                                            </span>
-                                            <span className="code-line-content">
-                                                {line.map((token, key) => (
-                                                    <span
-                                                        key={key}
-                                                        {...getTokenProps({
-                                                            token,
-                                                            key,
-                                                        })}
-                                                    />
-                                                ))}
-                                            </span>
-                                        </div>
-                                    ))}
-                                </pre>
-                            )}
-                        </Highlight>
-                    </div>
-                    <div className={clsx("col", "col--1", styles.arrowCol)}>
-                        <img
-                            className={styles.arrowImg}
-                            src="/landing-page/implementation-arrow.png"
-                            alt="Arrow"
-                        />
-                    </div>
-                    <div className="col col--5">
-                        <img
-                            className={styles.screen}
-                            src="/landing-page/preview-screen.png"
-                            alt="Preview Screen"
-                        />
-                    </div>
+                    <iframe
+                        src="https://codesandbox.io/embed/refine-tutorial-forked-zufpc?autoresize=1&fontsize=14&theme=dark"
+                        style={{
+                            width: "100%",
+                            height: "70vh",
+                            border: "0px",
+                            borderRadius: "8px",
+                            overflow: "hidden",
+                        }}
+                        title="refine-tutorial"
+                        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+                        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+                    ></iframe>
                 </div>
                 <div className="row row--justify--center">
                     <div className="col col--9">
