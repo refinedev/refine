@@ -186,6 +186,7 @@ export const unionFilters = (
             crudFilter.value !== undefined && crudFilter.value !== null,
     );
 
+// Prioritize filters in the permanentFilter and put it at the end of result array
 export const setInitialFilters = (
     permanentFilter: CrudFilters,
     defaultFilter: CrudFilters,
