@@ -1,7 +1,6 @@
-/* eslint-disable react/display-name */
 import React from "react";
 import { useEffect, useState } from "react";
-import { ButtonProps, notification, UploadProps, Progress, Button } from "antd";
+import { ButtonProps, notification, UploadProps, Progress } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
 import {
     useCreate,
@@ -21,7 +20,6 @@ import { importCSVMapper } from "@definitions";
 import chunk from "lodash/chunk";
 import { UseCreateReturnType } from "@hooks/data/useCreate";
 import { UseCreateManyReturnType } from "@hooks/data/useCreateMany";
-import pluralize from "pluralize";
 
 type ImportOptions<TItem, TVariables = any> = {
     resourceName?: string;
@@ -54,7 +52,7 @@ export const useImport = <
 }: ImportOptions<TItem, TVariables> = {}): {
     uploadProps: UploadProps;
     buttonProps: ButtonProps;
-    mutationResult:
+    query:
         | UseCreateReturnType<TData, TError, TVariables>
         | UseCreateManyReturnType<TData, TError, TVariables>;
 } => {
@@ -69,12 +67,14 @@ export const useImport = <
     const createMany = useCreateMany<TData, TError, TVariables>();
     const create = useCreate<TData, TError, TVariables>();
 
-    let mutationResult;
+    let query:
+        | UseCreateReturnType<TData, TError, TVariables>
+        | UseCreateManyReturnType<TData, TError, TVariables>;
 
     if (batchSize === 1) {
-        mutationResult = create;
+        query = create;
     } else {
-        mutationResult = createMany;
+        query = createMany;
     }
 
     if (resourceName) {
@@ -207,8 +207,8 @@ export const useImport = <
         },
         buttonProps: {
             type: "default",
-            loading: mutationResult.isLoading,
+            loading: query.isLoading,
         },
-        mutationResult,
+        query,
     };
 };
