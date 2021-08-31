@@ -204,6 +204,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             defaultFilteredValue={getDefaultFilter(
                                 "status.text",
                                 filters,
+                                "in",
                             )}
                             filterDropdown={(props) => {
                                 return (
