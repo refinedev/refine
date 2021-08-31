@@ -343,14 +343,15 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 
 ### Properties
 
-| Key              | Description                                                                                                                                       | Type                                                        |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| permanentFilter  | Default and unchangeable filter                                                                                                                   | [`CrudFilters`][CrudFilters]                                |
-| initialCurrent   | Initial page index                                                                                                                                | `number`                                                    |
-| initialPageSize  | Number of records shown per initial number of pages                                                                                               | `number`                                                    |
+| Key              | Description                                                                                                                                       | Type                                                        | Default                                                                              |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| resource         | The resource to use for table data                                                                                                                | `string` \| `undefined`                                     | Resource name that it reads from the url                                             |
+| permanentFilter  | Default and unchangeable filter                                                                                                                   | [`CrudFilters`][CrudFilters]                                | `[]`                                                                                 |
+| initialCurrent   | Initial page index                                                                                                                                | `number`                                                    | `1`                                                                                  |
+| initialPageSize  | Number of records shown per initial number of pages                                                                                               | `number`                                                    | `10`                                                                                 |
 | initialSorter    | Initial sorting                                                                                                                                   | [`CrudSorting`][CrudSorting]                                |
 | initialFilter    | Initial filtering                                                                                                                                 | [`CrudFilters`][CrudFilters]                                |
-| syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history                                                           | `boolean`                                                   |
+| syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history                                                           | `boolean`                                                   | Value set in [Refine][Refine swl]. If a custom resource is given, it will be `false` |
 | onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][Table Search] to learn how to create a search form | `Function`                                                  |
 | queryOptions     | `react-query`'s `useQuery` options                                                                                                                | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>` |
 
@@ -391,3 +392,4 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 [CrudFilters]: /api-references/interfaces.md#crudfilters
 [HttpError]: /api-references/interfaces.md#httperror
 [Table Search]: /guides-and-concepts/search/table-search.md
+[Refine swl]: /api-references/components/refine-config.md#syncwithlocation

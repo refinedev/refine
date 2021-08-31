@@ -33,7 +33,7 @@ export type useSimpleListProps<TData, TError, TSearchVariables = unknown> =
         permanentFilter?: CrudFilters;
         syncWithLocation?: boolean;
         resource?: string;
-        initialFilters?: CrudFilters;
+        initialFilter?: CrudFilters;
         initialSorter?: CrudSorting;
         onSearch?: (
             data: TSearchVariables,
@@ -70,7 +70,7 @@ export const useSimpleList = <
 >({
     resource: resourceFromProp,
     initialSorter,
-    initialFilters,
+    initialFilter,
     permanentFilter = [],
     onSearch,
     queryOptions,
@@ -105,7 +105,7 @@ export const useSimpleList = <
     let defaultPageSize = 10;
     let defaultCurrent = 1;
     let defaultSorter = initialSorter;
-    let defaultFilter = initialFilters;
+    let defaultFilter = initialFilter;
 
     if (listProps.pagination && listProps.pagination.pageSize) {
         defaultPageSize = listProps.pagination.pageSize;
