@@ -866,14 +866,16 @@ In edit page, `useForm` hook initializes the form with current record values.
 
 <br />
 
-<>
-
-<div style={{textAlign: "center"}}>
-    <img src={editGif} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={editGif} alt="Edit record action" />
 </div>
-
 <br/>
-</>
+
 
 <br />
 
@@ -972,10 +974,14 @@ We should notice some minor differences from the edit example:
 
 <br />
 
-<div style={{textAlign: "center"}}>
-    <img src={createGif} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={createGif} alt="Create record action" />
 </div>
-<br/>
 
 <br/>
 
