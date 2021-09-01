@@ -21,11 +21,31 @@ import chunk from "lodash/chunk";
 import { UseCreateReturnType } from "@hooks/data/useCreate";
 import { UseCreateManyReturnType } from "@hooks/data/useCreateMany";
 
-type ImportOptions<TItem, TVariables = any> = {
+type ImportSuccessResult<TVariables, TData> = {
+    request: TVariables[];
+    type: "success";
+    response: TData[];
+};
+
+type ImportErrorResult<TVariables> = {
+    request: TVariables[];
+    type: "error";
+    response: HttpError[];
+};
+
+type ImportOptions<
+    TItem,
+    TVariables = any,
+    TData extends BaseRecord = BaseRecord,
+> = {
     resourceName?: string;
     mapData?: MapDataFn<TItem, TVariables>;
     paparseOptions?: ParseConfig;
     batchSize?: number | null;
+    onFinished?: (results: {
+        succeeded: ImportSuccessResult<TVariables, TData>[];
+        errored: ImportErrorResult<TVariables>[];
+    }) => void;
 };
 
 /**
@@ -48,8 +68,9 @@ export const useImport = <
     resourceName,
     mapData = (item) => item as unknown as TVariables,
     paparseOptions,
-    batchSize,
-}: ImportOptions<TItem, TVariables> = {}): {
+    batchSize = null,
+    onFinished,
+}: ImportOptions<TItem, TVariables, TData> = {}): {
     uploadProps: UploadProps;
     buttonProps: ButtonProps;
     query:
@@ -146,52 +167,135 @@ export const useImport = <
                             errorNotification: false,
                         },
                         {
-                            onSuccess: () => {
-                                setProcessedAmount(totalAmount);
-                            },
+                            onSuccess: (result) =>
+                                onFinished?.({
+                                    succeeded: [
+                                        {
+                                            request: values,
+                                            type: "success",
+                                            response: result.data,
+                                        },
+                                    ],
+                                    errored: [],
+                                }),
+                            onError: (err) =>
+                                onFinished?.({
+                                    succeeded: [],
+                                    errored: [
+                                        {
+                                            request: values,
+                                            type: "error",
+                                            response: [err],
+                                        },
+                                    ],
+                                }),
                         },
                     );
                 } else if (batchSize === 1) {
                     Promise.all(
                         values
                             .map((value) => {
-                                return create.mutateAsync({
+                                const response = create.mutateAsync({
                                     resource,
                                     values: value,
                                     successNotification: false,
                                     errorNotification: false,
                                 });
+
+                                return { response, value };
                             })
-                            .map((mutation) =>
-                                mutation.then(() => {
-                                    setProcessedAmount(
-                                        (currentAmount) => currentAmount + 1,
-                                    );
-                                }),
+                            .map(({ response, value }) =>
+                                response
+                                    .then(({ data }) => {
+                                        setProcessedAmount(
+                                            (currentAmount) =>
+                                                currentAmount + 1,
+                                        );
+
+                                        return {
+                                            response: [data],
+                                            type: "success",
+                                            request: [value],
+                                        } as ImportSuccessResult<
+                                            TVariables,
+                                            TData
+                                        >;
+                                    })
+                                    .catch(
+                                        (error: HttpError) =>
+                                            ({
+                                                response: [error],
+                                                type: "error",
+                                                request: [value],
+                                            } as ImportErrorResult<TVariables>),
+                                    ),
                             ),
-                    );
+                    ).then((values) => {
+                        onFinished?.({
+                            succeeded: values.filter(
+                                (item) => item.type === "success",
+                            ) as unknown as ImportSuccessResult<
+                                TVariables,
+                                TData
+                            >[],
+                            errored: values.filter(
+                                (item) => item.type === "error",
+                            ) as unknown as ImportErrorResult<TVariables>[],
+                        });
+                    });
                 } else {
                     Promise.all(
                         chunk(values, batchSize)
                             .map((batch) => ({
-                                mutation: createMany.mutateAsync({
+                                response: createMany.mutateAsync({
                                     resource,
                                     values: batch,
                                     successNotification: false,
                                     errorNotification: false,
                                 }),
                                 currentBatchLength: batch.length,
+                                value: batch,
                             }))
-                            .map(({ mutation, currentBatchLength }) =>
-                                mutation.then(() => {
-                                    setProcessedAmount(
-                                        (currentAmount) =>
-                                            currentAmount +
-                                            (currentBatchLength ?? 0),
-                                    );
-                                }),
+                            .map(({ response, value, currentBatchLength }) =>
+                                response
+                                    .then((response) => {
+                                        setProcessedAmount(
+                                            (currentAmount) =>
+                                                currentAmount +
+                                                (currentBatchLength ?? 0),
+                                        );
+
+                                        return {
+                                            response: response.data,
+                                            type: "success",
+                                            request: value,
+                                        } as ImportSuccessResult<
+                                            TVariables,
+                                            TData
+                                        >;
+                                    })
+                                    .catch(
+                                        (error: HttpError) =>
+                                            ({
+                                                response: [error],
+                                                type: "error",
+                                                request: value,
+                                            } as ImportErrorResult<TVariables>),
+                                    ),
                             ),
-                    );
+                    ).then((values) => {
+                        onFinished?.({
+                            succeeded: values.filter(
+                                (item) => item.type === "success",
+                            ) as unknown as ImportSuccessResult<
+                                TVariables,
+                                TData
+                            >[],
+                            errored: values.filter(
+                                (item) => item.type === "error",
+                            ) as unknown as ImportErrorResult<TVariables>[],
+                        });
+                    });
                 }
             },
             ...paparseOptions,
