@@ -28,7 +28,6 @@ import {
     useImport,
     useNavigation,
     getDefaultFilter,
-    FilterDropdown,
     HttpError,
 } from "@pankod/refine";
 import dayjs from "dayjs";
@@ -44,31 +43,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         HttpError,
         IOrderFilterVariables
     >({
-        // initialSorter: [
-        //     {
-        //         field: "status.text",
-        //         order: "desc",
-        //     },
-        // ],
-        // initialFilter: [
-        //     {
-        //         field: "status.text",
-        //         operator: "eq",
-        //         value: "Pending",
-        //     },
-        //     {
-        //         field: "store.id",
-        //         operator: "eq",
-        //         value: "1",
-        //     },
-        // ],
-        // permanentFilter: [
-        //     {
-        //         field: "status.text",
-        //         operator: "in",
-        //         value: ["Ready"],
-        //     },
-        // ],
         onSearch: (params) => {
             const filters: CrudFilters = [];
             const { q, store, user, createdAt, status } = params;
@@ -93,7 +67,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
 
             filters.push({
                 field: "status.text",
-                operator: "eq",
+                operator: "in",
                 value: status,
             });
 
@@ -139,13 +113,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
-    const { selectProps: orderSelectProps } = useSelect<IStore>({
-        resource: "orderStatuses",
-        optionLabel: "text",
-        optionValue: "text",
-        defaultValue: getDefaultFilter("status.text", filters),
-    });
-
     const Actions: React.FC = () => (
         <Space>
             <ExportButton onClick={triggerExport} loading={loading} />
@@ -175,7 +142,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         scroll={{
                             x: true,
                         }}
-                        onRow={(record, _rowIndex) => {
+                        onRow={(record) => {
                             return {
                                 onClick: () => {
                                     show("orders", record.id);
@@ -201,27 +168,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                 sorter,
                             )}
                             sorter
-                            defaultFilteredValue={getDefaultFilter(
-                                "status.text",
-                                filters,
-                                "in",
-                            )}
-                            filterDropdown={(props) => {
-                                return (
-                                    <FilterDropdown {...props}>
-                                        <Select
-                                            style={{ minWidth: 200 }}
-                                            placeholder="Select Status"
-                                            {...orderSelectProps}
-                                            defaultValue={getDefaultFilter(
-                                                "status.text",
-                                                filters,
-                                                "in",
-                                            )}
-                                        />
-                                    </FilterDropdown>
-                                );
-                            }}
                         />
                         <Table.Column
                             align="right"
@@ -352,7 +298,7 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
                 q: getDefaultFilter("q", filters),
                 store: getDefaultFilter("store.id", filters),
                 user: getDefaultFilter("user.id", filters),
-                status: getDefaultFilter("status.text", filters),
+                status: getDefaultFilter("status.text", filters, "in"),
                 createdAt,
             }}
             {...formProps}
@@ -374,6 +320,7 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
                         <Select
                             {...orderSelectProps}
                             allowClear
+                            mode="multiple"
                             placeholder={t("orders.filter.status.placeholder")}
                         />
                     </Form.Item>
