@@ -40,13 +40,11 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         onSearch: ({ name, categories }) => {
             const productFilters: CrudFilters = [];
 
-            if (categories.length > 0) {
-                productFilters.push({
-                    field: "category.id",
-                    operator: "in",
-                    value: categories,
-                });
-            }
+            productFilters.push({
+                field: "category.id",
+                operator: "in",
+                value: categories,
+            });
 
             productFilters.push({
                 field: "name",
@@ -84,11 +82,12 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         <>
             <Form
                 {...searchFormProps}
-                onValuesChange={(changedValues, values) => {
+                onValuesChange={() => {
                     searchFormProps.form?.submit();
                 }}
                 initialValues={{
                     name: getDefaultFilter("name", filters, "contains"),
+                    categories: getDefaultFilter("category.id", filters, "in"),
                 }}
             >
                 <Row
