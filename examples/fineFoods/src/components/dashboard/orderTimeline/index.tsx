@@ -21,7 +21,7 @@ export const OrderTimeline: React.FC = () => {
 
     const { listProps } = useSimpleList<IOrder>({
         resource: "orders",
-        sorter: [
+        initialSorter: [
             {
                 field: "createdAt",
                 order: "desc",
