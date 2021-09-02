@@ -1,11 +1,17 @@
+import { useEffect } from "react";
 import { Refine, Resource, Icons, Icon } from "@pankod/refine";
-import "styles/antd.less";
 import jsonServerDataProvider from "@pankod/refine-simple-rest";
+import de_DE from "@pankod/refine/node_modules/antd/lib/locale/de_DE";
 import { authProvider } from "authProvider";
+import dayjs from "dayjs";
+
+import "styles/antd.less";
+import "dayjs/locale/de";
+
 import { DashboardPage } from "./pages/dashboard";
 import { LoginPage } from "./pages/login";
 import { OrderList, OrderShow } from "./pages/orders";
-import { UserList, UserEdit, UserShow } from "./pages/users";
+import { UserList, UserShow } from "./pages/users";
 import {
     CourierList,
     CourierShow,
@@ -32,6 +38,16 @@ const App: React.FC = () => {
         getLocale: () => i18n.language,
     };
 
+    const locale = i18nProvider.getLocale();
+
+    useEffect(() => {
+        if (locale === "de") {
+            dayjs.locale("de");
+        } else {
+            dayjs.locale("en");
+        }
+    }, [locale]);
+
     return (
         <Refine
             dataProvider={dataProvider}
@@ -43,6 +59,9 @@ const App: React.FC = () => {
             LoginPage={LoginPage}
             syncWithLocation
             warnWhenUnsavedChanges
+            configProviderProps={{
+                locale: locale === "de" ? de_DE : undefined,
+            }}
         >
             <Resource
                 name="orders"
@@ -53,7 +72,6 @@ const App: React.FC = () => {
             <Resource
                 name="users"
                 list={UserList}
-                edit={UserEdit}
                 show={UserShow}
                 icon={<Icons.UsergroupAddOutlined />}
             />

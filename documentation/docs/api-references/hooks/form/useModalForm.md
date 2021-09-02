@@ -89,9 +89,13 @@ export interface IPost {
 
 This code block makes `<Modal>` appear when you click the button.
 
-
-<div style={{textAlign: "center"}}>
-    <img src={createGif} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={createGif} alt="Create modal action" />
 </div>
 
 <br />
@@ -175,8 +179,13 @@ So, we have to put the edit buttons on our list. In that way, `<Edit>` form in `
 Don't forget to pass the record id to `show` to fetch the record data. This is necessary for both edit and clone forms.
 :::
 
-<div style={{textAlign: "center"}}>
-    <img src={editGif} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={editGif} alt="Edit modal action" />
 </div>
 
 <br />

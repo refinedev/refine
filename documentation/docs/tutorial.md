@@ -5,7 +5,7 @@ title: Tutorial
 sidebar_label: Tutorial
 ---
 
-import refineWelcome from '@site/static/img/tutorial/refine-welcome.png';
+import readyPage from '@site/static/img/tutorial/ready-page.png';
 import resourceFirst from '@site/static/img/tutorial/resource-1.png';
 import resourceSecond from '@site/static/img/tutorial/resource-2.png';
 import createGif from '@site/static/img/tutorial/create.gif';
@@ -64,13 +64,15 @@ npm run start
 Your **refine** application should be up and running!  
 Point your browser to [http://localhost:3000](http://localhost:3000) to access it. You will see the welcome page.
 
-<>
-
-<div style={{textAlign: "center"}}>
-    <img  width="75%" src={refineWelcome} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={readyPage} alt="Ready Page" />
 </div>
 <br/>
-</>
   
   
   </TabItem>
@@ -120,13 +122,16 @@ npm run dev
 Your **refine** application should be up and running!  
 Point your browser to [http://localhost:3000](http://localhost:3000) to access it. You will see the welcome page.
 
-<>
 
-<div style={{textAlign: "center"}}>
-    <img  width="75%" src={refineWelcome} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={readyPage} alt="Ready Page" />
 </div>
 <br/>
-</>
   
 </TabItem>
 </Tabs>
@@ -258,8 +263,13 @@ Instead of showing the welcome page, the application should redirect now? to an 
 
 <>
 
-<div style={{textAlign: "center"}}>
-    <img   src={resourceFirst} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={resourceFirst} alt="Resource only with name" />
 </div>
 <br/>
 </>
@@ -380,8 +390,13 @@ Open your application in your browser. You will see **posts** are displayed corr
 On the next step, we are going to add a category field to the table which involves handling data relationships. 
 
 <>
-<div style={{textAlign: "center"}}>
-    <img src={resourceSecond} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={resourceSecond} alt="Resource only List component" />
 </div>
 <br/>
 </>
@@ -707,8 +722,13 @@ the `<Show>` component which has extra features like `list` and  `refresh` butto
 
 <br />
 
-<div style={{textAlign: "center"}}>
-    <img src={showGif} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={showGif} alt="Show record action" />
 </div>
 <br/>
 
@@ -846,13 +866,16 @@ In edit page, `useForm` hook initializes the form with current record values.
 
 <br />
 
-<>
-
-<div style={{textAlign: "center"}}>
-    <img src={editGif} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={editGif} alt="Edit record action" />
 </div>
 <br/>
-</>
+
 
 <br />
 
@@ -951,10 +974,14 @@ We should notice some minor differences from the edit example:
 
 <br />
 
-<div style={{textAlign: "center"}}>
-    <img src={createGif} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={createGif} alt="Create record action" />
 </div>
-<br/>
 
 <br/>
 

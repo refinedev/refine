@@ -13,6 +13,7 @@ import {
     Typography,
     useDrawerForm,
     HttpError,
+    getDefaultFilter,
 } from "@pankod/refine";
 
 const { Text } = Typography;
@@ -30,31 +31,26 @@ import { IProduct } from "interfaces";
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
 
-    const { listProps, searchFormProps } = useSimpleList<
+    const { listProps, searchFormProps, filters } = useSimpleList<
         IProduct,
         HttpError,
         { name: string; categories: string[] }
     >({
-        resource: "products",
-        pagination: { pageSize: 12 },
+        pagination: { pageSize: 12, defaultCurrent: 2 },
         onSearch: ({ name, categories }) => {
             const productFilters: CrudFilters = [];
 
-            if (categories.length > 0) {
-                productFilters.push({
-                    field: "category.id",
-                    operator: "in",
-                    value: categories,
-                });
-            }
+            productFilters.push({
+                field: "category.id",
+                operator: "in",
+                value: categories,
+            });
 
-            if (name) {
-                productFilters.push({
-                    field: "name",
-                    operator: "contains",
-                    value: name,
-                });
-            }
+            productFilters.push({
+                field: "name",
+                operator: "contains",
+                value: name ? name : null,
+            });
 
             return productFilters;
         },
@@ -86,7 +82,13 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         <>
             <Form
                 {...searchFormProps}
-                onValuesChange={() => searchFormProps.form?.submit()}
+                onValuesChange={() => {
+                    searchFormProps.form?.submit();
+                }}
+                initialValues={{
+                    name: getDefaultFilter("name", filters, "contains"),
+                    categories: getDefaultFilter("category.id", filters, "in"),
+                }}
             >
                 <Row
                     gutter={[16, 16]}

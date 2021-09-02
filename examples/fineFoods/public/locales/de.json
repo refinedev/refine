@@ -176,7 +176,8 @@
       "user": "Kullanıcı",
       "products": "Ürünler",
       "createdAt": "Oluşturma Tarihi",
-      "amount": "Tutar"
+      "amount": "Tutar",
+      "itemsAmount": "{{amount}} ürün"
     },
     "filter": {
       "title": "Filtrele",
@@ -294,10 +295,18 @@
       },
       "firstName": "Adı",
       "lastName": "Soyadı",
-      "gender": "Cinsiyet",
+      "gender": {
+        "label": "Cinsiyet",
+        "Male": "Erkek",
+        "Female": "Kadın"
+      },
       "gsm": "GSM Numarası",
       "createdAt": "Oluşturma Tarihi",
-      "isActive": "Aktif"
+      "isActive": {
+        "label": "Aktif",
+        "true": "Evet",
+        "false": "Hayır"
+      }
     },
     "filter": {
       "title": "Filtreler",
@@ -308,7 +317,23 @@
       "createdAt": {
         "label": "Oluşturma Tarihi"
       },
+      "gender": {
+        "label": "Cinsiyet",
+        "placeholder": "Cinsiyet",
+        "male": "Erkek",
+        "female": "Kadın"
+      },
+      "isActive": {
+        "label": "Aktif",
+        "placeholder": "Aktiflik durumu",
+        "true": "Evet",
+        "false": "Hayır"
+      },
       "submit": "Filtrele"
+    },
+    "addresses": {
+      "addresses": "Adresler",
+      "address": "Adres"
     }
   }
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Space } from "antd";
 import { FilterDropdownProps as AntdFilterDropdownProps } from "antd/lib/table/interface";
 import { FilterOutlined } from "@ant-design/icons";
@@ -14,32 +14,42 @@ export type FilterDropdownProps = AntdFilterDropdownProps & {
  * @see {@link https://refine.dev/docs/api-references/components/filter-dropdown} for more details.
  */
 export const FilterDropdown: React.FC<FilterDropdownProps> = ({
-    selectedKeys,
     setSelectedKeys,
     confirm,
     clearFilters,
     mapValue,
     children,
 }) => {
+    const [value, setValue] = useState<any[] | undefined>(undefined);
+
     const clearFilter = () => {
-        if (clearFilters) clearFilters();
+        if (clearFilters) {
+            setValue([]);
+            clearFilters();
+        }
     };
 
     const onFilter = () => {
         if (confirm) confirm();
     };
 
+    const mappedValue = (value: any) => (mapValue ? mapValue(value) : value);
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const onChange = (e: any) => {
         if (typeof e === "object") {
             if (Array.isArray(e)) {
+                setValue(mappedValue(e));
                 return setSelectedKeys(e);
             }
 
             const { target }: React.ChangeEvent<HTMLInputElement> = e;
+            setValue(mappedValue([target.value]));
+
             return setSelectedKeys([target.value]);
         }
 
+        setValue(mappedValue([e]));
         return setSelectedKeys([e]);
     };
 
@@ -47,7 +57,7 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {
                 onChange,
-                value: mapValue ? mapValue(selectedKeys) : selectedKeys,
+                value: value,
             });
         }
         return child;
