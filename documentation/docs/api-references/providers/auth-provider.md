@@ -136,8 +136,13 @@ After submission, login form calls the `login` method from `authProvider`.
 
 <br />
 
-<div style={{textAlign: "center"}}>
-    <img style={{width: "50%"}} src={login} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={login} alt="Default Login Page" />
 </div>
 
 <br />
@@ -205,8 +210,13 @@ If authentication is enabled, a logout button appears at the bottom of the side 
 **refine** redirects the app to `/login` route by default.
 <br />
 
-<div>
-    <img src={logout} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={logout} alt="Logout Action" />
 </div>
 <br/>
 
@@ -446,8 +456,13 @@ If the resolved data has a `name` or `avatar` property, **refine** renders a sui
 
 <br />
 
-<div style={{textAlign: "center"}}>
-    <img src={header} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={header} alt="Header View" />
 </div>
 
 <br />
