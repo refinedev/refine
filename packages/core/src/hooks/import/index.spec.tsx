@@ -89,11 +89,7 @@ describe("useImport hook", () => {
     it("should call mutate method of result of useCreateMany one time with correct values if batchSize=null", async (done) => {
         const mockDataProvider = {
             ...MockJSONServer,
-            createMany: jest.fn(async () => {
-                return {
-                    data: parsedData,
-                };
-            }),
+            createMany: jest.fn(),
         } as IDataContext;
 
         const { result } = renderHook(
@@ -126,11 +122,7 @@ describe("useImport hook", () => {
     it("should call mutate method of result of useCreate many times with correct values if batchSize is 1", async (done) => {
         const mockDataProvider = {
             ...MockJSONServer,
-            create: jest.fn(async () => {
-                return {
-                    data: parsedData[0],
-                };
-            }),
+            create: jest.fn(),
         } as IDataContext;
 
         const { result } = renderHook(
@@ -169,50 +161,53 @@ describe("useImport hook", () => {
         });
     });
 
-    // fit("should call mutate method of result of useCreateMany many times with correct values in if batchSize is 2", async (done) => {
-    //     const { result } = renderHook(
-    //         () =>
-    //             useImport({
-    //                 batchSize: 2,
-    //                 onFinished: () => {
-    //                     expect(useCreateManyMutateMock).toHaveBeenCalledWith({
-    //                         resource: "posts",
-    //                         values: parsedData
-    //                             .slice(0, 2)
-    //                             .map((parsedData) => ({
-    //                                 ...parsedData,
-    //                             })),
-    //                         successNotification: undefined,
-    //                         errorNotification: undefined,
-    //                     });
+    it("should call mutate method of result of useCreateMany many times with correct values in if batchSize is 2", async (done) => {
+        const mockDataProvider = {
+            ...MockJSONServer,
+            createMany: jest.fn(),
+        } as IDataContext;
 
-    //                     expect(useCreateManyMutateMock).toHaveBeenCalledWith({
-    //                         resource: "posts",
-    //                         values: parsedData.slice(2).map((parsedData) => ({
-    //                             ...parsedData,
-    //                         })),
-    //                         successNotification: undefined,
-    //                         errorNotification: undefined,
-    //                     });
+        const { result } = renderHook(
+            () =>
+                useImport({
+                    batchSize: 2,
+                    onFinished: () => {
+                        expect(
+                            mockDataProvider.createMany,
+                        ).toHaveBeenCalledWith(
+                            "posts",
+                            parsedData.slice(0, 2).map((parsedData) => ({
+                                ...parsedData,
+                            })),
+                        );
 
-    //                     done();
-    //                 },
-    //             }),
-    //         {
-    //             wrapper: TestWrapper({
-    //                 dataProvider: MockJSONServer,
-    //                 resources: [{ name: "posts" }],
-    //             }),
-    //         },
-    //     );
+                        expect(
+                            mockDataProvider.createMany,
+                        ).toHaveBeenCalledWith(
+                            "posts",
+                            parsedData.slice(2).map((parsedData) => ({
+                                ...parsedData,
+                            })),
+                        );
 
-    //     await act(async () => {
-    //         await result.current.uploadProps.onChange?.({
-    //             fileList: [],
-    //             file: file as unknown as UploadFile,
-    //         });
-    //     });
-    // });
+                        done();
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: mockDataProvider,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await act(async () => {
+            await result.current.uploadProps.onChange?.({
+                fileList: [],
+                file: file as unknown as UploadFile,
+            });
+        });
+    });
 
     /* it("should map data successfully before it uploads to server", async (done) => {
         const { result } = renderHook(
