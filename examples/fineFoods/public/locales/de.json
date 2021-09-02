@@ -3,7 +3,7 @@
     "login": {
       "signin": "Giriş",
       "signup": "Kayıt",
-      "email": "Email",
+      "email": "Kullanıcı adı",
       "password": "Şifre",
       "remember": "Beni Hatırla",
       "forgotPassword": "Şifremi unuttum",
