@@ -620,8 +620,13 @@ export interface IPost {
 
 <br/>
 
-<div style={{textAlign: "center"}}>
-    <img src={changeLanguage} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={changeLanguage} alt="Language change action" />
 </div>
 
 ## Live Codesandbox Example
