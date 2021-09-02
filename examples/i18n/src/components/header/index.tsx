@@ -22,7 +22,7 @@ export const Header: React.FC = () => {
 
     const menu = (
         <Menu selectedKeys={[currentLocale]}>
-            {[...i18n.languages].sort().map((lang: string) => (
+            {[...(i18n.languages || [])].sort().map((lang: string) => (
                 <Menu.Item
                     key={lang}
                     onClick={() => changeLanguage(lang)}
