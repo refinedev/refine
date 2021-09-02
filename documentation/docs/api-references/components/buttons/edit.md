@@ -3,7 +3,7 @@ id: edit-button
 title: Edit
 ---
 
-import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/edit/usage.png';
+import editButton from '@site/static/img/guides-and-concepts/components/buttons/edit/edit.png';
 
 `<EditButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `edit` method from [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the edit page with the record id route of `<Resource>`.
 
@@ -52,8 +52,13 @@ export interface IPost {
 
 Will look like this:
 
-<div>
-    <img  src={tableUsage} alt="Table usage for delete button" />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={editButton} alt="Default edit button" />
 </div>
 
 ## Properties

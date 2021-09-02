@@ -3,7 +3,7 @@ id: export-button
 title: Export
 ---
 
-import usage from '@site/static/img/guides-and-concepts/components/buttons/export/usage.png';
+import exportButton from '@site/static/img/guides-and-concepts/components/buttons/export/export.png';
 
 `<ExportButton>` is an Ant Design [`<Button>`][button] with a default export icon and a default text with "Export". It only has presentational value.
 
@@ -15,8 +15,13 @@ Use it like any other Ant Design [`<Button>`][button]. You can use it with [useE
 
 It looks like this:
 
-<div>
-    <img src={usage} alt="Default Export Button" />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={exportButton} alt="Default export button" />
 </div>
 
 ## Properties

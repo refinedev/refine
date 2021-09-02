@@ -3,7 +3,7 @@ id: clone-button
 title: Clone
 ---
 
-import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/clone/usage.png';
+import cloneButton from '@site/static/img/guides-and-concepts/components/buttons/clone/clone.png';
 
 `<CloneButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `clone` method from [useNavigation](/api-references/hooks/navigation/useNavigation.md) under the hood.
 It can be useful when redirecting the app to the create page with the record id route of `<Resource>`.
@@ -53,8 +53,13 @@ export interface IPost {
 
 Will look like this:
 
-<div>
-    <img src={tableUsage} alt="Default Clone Button" />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={cloneButton} alt="Default clone button" />
 </div>
 
 ## Properties
