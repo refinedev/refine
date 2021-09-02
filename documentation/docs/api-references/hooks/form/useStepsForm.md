@@ -310,8 +310,13 @@ export const PostCreate: React.FC = () => {
 };
 ```
 
-<div style={{textAlign: "center"}}>
-    <img src={useStepsFormExample} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={useStepsFormExample} alt="Steps form example" />
 </div>
 
 ### Edit

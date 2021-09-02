@@ -3,7 +3,7 @@ id: list-button
 title: List
 ---
 
-import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/list/usage.png';
+import listButton from '@site/static/img/guides-and-concepts/components/buttons/list/list.png';
 
 `<ListButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `list` method from [`useNavigation`](api-references/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of `<Resource>`.
 
@@ -49,8 +49,13 @@ export interface IPost {
 
 Will look like this:
 
-<div>
-    <img src={tableUsage} alt="Default List Button" />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={listButton} alt="Default list button" />
 </div>
 <br/>
 

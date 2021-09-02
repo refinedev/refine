@@ -3,7 +3,7 @@ id: refresh-button
 title: Refresh
 ---
 
-import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/refresh/usage.png';
+import refreshButton from '@site/static/img/guides-and-concepts/components/buttons/refresh/refresh.png';
 
 `<RefreshButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component to update the data shown on the page via the [`useOne`](api-references/hooks/data/useOne.md) method provided by your [`dataProvider`](api-references/providers/data-provider.md).
 
@@ -52,8 +52,13 @@ export interface IPost {
 
 Will Look like this:
 
-<div>
-    <img src={tableUsage} alt="Default Refresh Button" />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={refreshButton} alt="Default refresh button" />
 </div>
 
 ## Properties

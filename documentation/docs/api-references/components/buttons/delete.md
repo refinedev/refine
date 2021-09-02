@@ -3,8 +3,8 @@ id: delete-button
 title: Delete
 ---
 
-import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/delete/usage.png';
-import defaultUsage from '@site/static/img/guides-and-concepts/components/buttons/delete/default.gif';
+import deleteButton from '@site/static/img/guides-and-concepts/components/buttons/delete/delete.png';
+import confirmation from '@site/static/img/guides-and-concepts/components/buttons/delete/confirmation.gif';
 
 `<DeleteButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) and [`<Popconfirm>`](https://ant.design/components/popconfirm/) components.
 When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](api-references/hooks/data/useDelete.md) method provided by your [`dataProvider`](api-references/providers/data-provider.md).
@@ -53,14 +53,25 @@ export interface IPost {
 
 Will look like this:
 
-<div>
-    <img  src={tableUsage} alt="Table usage for delete button" />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={deleteButton} alt="Default delete button" />
 </div>
+<br />
 
 When clicked, it opens the confirmation window like this:
 
-<div>
-    <img  width="30%" src={defaultUsage} alt="Default delete button" />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={confirmation} alt="Confirmation window" />
 </div>
 
 ## Properties
