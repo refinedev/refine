@@ -9,18 +9,14 @@ title: useForm
 
 We'll show the basic usage of `useForm` by adding an editing form.
 
-```tsx twoslash title="pages/posts/edit.tsx"
-//highlight-next-line
+```tsx twoslash title="pages/posts/edit.tsx" {0, 3, 6, 7}
 import { Edit, Form, Input, useForm, Select } from "@pankod/refine";
 
 export const PostEdit: React.FC = () => {
-    //highlight-next-line
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     return (
-        //highlight-next-line
         <Edit saveButtonProps={saveButtonProps}>
-            //highlight-next-line
             <Form {...formProps} layout="vertical">
                 <Form.Item label="Title" name="title">
                     <Input />
@@ -55,7 +51,16 @@ interface IPost {
 }
 ```
 
-```tsx
+```tsx twoslash
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+
+import { useForm } from "@pankod/refine";
+// ---cut---
+
 const { formProps, saveButtonProps } = useForm<IPost>();
 ```
 
@@ -79,7 +84,15 @@ By default it determines the action from route. In the example, the route is `/p
 
 It can take an `action` parameter for the situations where it isn't possible to determine the action from route i.e. using a form in a modal, using a custom route.
 
-```tsx
+```tsx twoslash
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+
+import { useForm } from "@pankod/refine";
+// ---cut---
 const { formProps, saveButtonProps } = useForm({ action: "edit" });
 ```
 
@@ -102,7 +115,9 @@ When creating a new record, `useForm` can initialize the form with the data of a
 `useForm` works on clone mode when a route has a `create` and `id` parameters like this `{{resourceName}}/create/1234`.
 Alternatively, if route doesn't have those parameters, action can be set with `action: "create"` and id can be set with `setCloneId`.
 
-```tsx
+```tsx twoslash
+import { useForm } from "@pankod/refine";
+// ---cut---
 const { setCloneId } = useForm();
 ```
 
@@ -113,16 +128,22 @@ If you want to show a form in a modal or drawer where necessary route params mig
 :::tip
 `<CloneButton>` can be used to navigate to a create route with an id like this `{{resourceName}}/create/1234`.
 
-```tsx
+```tsx twoslash
+import { CloneButton } from "@pankod/refine";
+const record = { id: "1" };
+// ---cut---
 <CloneButton recordItemId={record.id} />
 ```
 
 Also the `clone` method from the [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) hook can be used as well.
 
-```tsx
-const { clone } = useNavigation()
+```tsx twoslash
+import { Button, useNavigation } from "@pankod/refine";
+const record = { id: "1" };
+// ---cut---
+const { clone } = useNavigation();
 
-<Button onClick={() => clone("posts", "push", record.id)} />
+<Button onClick={() => clone("posts", record.id)} />
 ```
 
 :::

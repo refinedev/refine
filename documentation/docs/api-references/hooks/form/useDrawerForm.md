@@ -8,8 +8,19 @@ import editGif from '@site/static/img/hooks/useDrawerForm/edit.gif';
 
 `useDrawerForm` hook allows you to manage a form within a Drawer. It returns Ant Design [Form](https://ant.design/components/form/) and [Drawer](https://ant.design/components/drawer/) components props.
 
-```ts
-const { drawerProps, formProps } = useDrawerForm<IPost>();
+```ts twoslash
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+// ---cut---
+
+import { useDrawerForm } from "@pankod/refine";
+
+const { drawerProps, formProps } = useDrawerForm<IPost>({
+    action: "create", // or "edit"
+});
 ```
 
 All we have to do is to pass the `drawerProps` to `<Drawer>` and `formProps` to `<Form>` components.
@@ -20,13 +31,10 @@ We'll do two examples, one for creating and one for editing a post. Let's see ho
 
 ### Create Drawer
 
-```tsx title="pages/posts/list.tsx"
-import { useDrawerForm, Drawer, Form, Create, Radio } from "@pankod/refine";
-import { IPost } from "interfaces";
+```tsx twoslash title="pages/posts/list.tsx" {3-10, 15-19, 23-39}
+import { useDrawerForm, Drawer, Form, Create, Radio, List, Input } from "@pankod/refine";
 
-export const PostList: React.FC () => {
-
-    //highlight-start
+export const PostList: React.FC = () => {
     const {
         formProps,
         drawerProps,
@@ -35,22 +43,18 @@ export const PostList: React.FC () => {
     } = useDrawerForm<IPost>({
         action: "create",
     });
-    //highlight-end
 
     return (
         <>
             <List
-                //highlight-start
                 createButtonProps={{
                     onClick: () => {
                         show();
                     },
                 }}
-                //highlight-end
             >
                 ...
             </List>
-            //highlight-start
             <Drawer {...drawerProps}>
                 <Create saveButtonProps={saveButtonProps}>
                     <Form {...formProps} layout="vertical">
@@ -67,21 +71,16 @@ export const PostList: React.FC () => {
                     </Form>
                 </Create>
             </Drawer>
-            //highlight-end
         </>
     )
 }
 
-```
-
-```ts title="interfaces/index.d.ts"
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
     status: "published" | "draft" | "rejected";
 }
 ```
-
 <br/>
 
 `createButtonProps` allows us to create and manage a button above the table.
@@ -113,22 +112,29 @@ This code block makes `<Drawer>` appear when you click the button.
 
 Let's learn how to add editing capabilities to the records that will be opening form in Drawer with using `action` prop.
 
-```tsx title="pages/posts/list.tsx"
-import { useDrawerForm, Drawer, Form, Create, Radio } from "@pankod/refine";
-import { IPost } from "interfaces";
+```tsx twoslash title="pages/posts/list.tsx" {19-20, 22, 35-39, 45, 47-48}
+import { 
+    useDrawerForm,
+    Drawer,
+    Form,
+    Create,
+    Radio,
+    List,
+    Edit,
+    Table,
+    EditButton,
+    Input
+} from "@pankod/refine";
 
-export const PostList () => {
+export const PostList: React.FC = () => {
     const {
         drawerProps,
         formProps,
         show,
         saveButtonProps,
-        //highlight-start
         deleteButtonProps,
         editId,
-        //highlight-end
     } = useDrawerForm<IPost>({
-        //highlight-next-line
         action: "edit",
     });
 
@@ -142,25 +148,20 @@ export const PostList () => {
                         dataIndex="actions"
                         key="actions"
                         render={(_value, record) => (
-                            //highlight-start
                             <EditButton
                                 size="small"
                                 recordItemId={record.id}
                                 onClick={() => show(record.id)}
                             />
-                            //highlight-end
                         )}
                     />
                 </Table>
             </List>
             <Drawer {...drawerProps}>
-             //highlight-next-line
                 <Edit
                     saveButtonProps={saveButtonProps}
-                    //highlight-start
                     deleteButtonProps={deleteButtonProps}
                     recordItemId={editId}
-                    //highlight-end
                 >
                     <Form {...formProps} layout="vertical">
                         <Form.Item label="Title" name="title">
@@ -178,6 +179,12 @@ export const PostList () => {
             </Drawer>
         </>
     )
+}
+
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
 }
 ```
 
