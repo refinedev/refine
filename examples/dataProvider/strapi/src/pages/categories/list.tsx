@@ -5,8 +5,8 @@ import {
     IResourceComponentsProps,
     Space,
     EditButton,
-    ShowButton,
     DateField,
+    DeleteButton,
 } from "@pankod/refine";
 
 import { ICategory } from "interfaces";
@@ -30,8 +30,16 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="actions"
                     render={(_, record) => (
                         <Space>
-                            <EditButton size="small" recordItemId={record.id} />
-                            <ShowButton size="small" recordItemId={record.id} />
+                            <EditButton
+                                size="small"
+                                hideText
+                                recordItemId={record.id}
+                            />
+                            <DeleteButton
+                                size="small"
+                                hideText
+                                recordItemId={record.id}
+                            />
                         </Space>
                     )}
                 />
