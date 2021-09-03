@@ -85,6 +85,7 @@ export const useImport = <
     const resourceWithRoute = useResourceWithRoute();
     const t = useTranslate();
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
+
     let { name: resource } = resourceWithRoute(routeResourceName);
 
     const createMany = useCreateMany<TData, TError, TVariables>();
@@ -103,7 +104,6 @@ export const useImport = <
     if (resourceName) {
         resource = resourceName;
     }
-
     useEffect(() => {
         if (totalAmount > 0) {
             const description = (
@@ -153,9 +153,7 @@ export const useImport = <
         }
     }, [totalAmount, processedAmount]);
 
-    const handleChange = ({
-        file,
-    }: UploadChangeParam): Promise<OnFinishedParams<TVariables, TData>> => {
+    const handleChange = ({ file }: UploadChangeParam): Promise<void> => {
         return new Promise((resolve) => {
             parse(file as unknown as File, {
                 complete: ({ data }: { data: unknown[][] }) => {
@@ -181,13 +179,12 @@ export const useImport = <
                                             {
                                                 request: values,
                                                 type: "success",
-                                                response: result.data,
+                                                response: result?.data,
                                             },
                                         ],
                                         errored: [],
                                     };
-
-                                    resolve(results);
+                                    resolve();
                                     onFinished?.(results);
                                 },
                                 onError: (err) => {
@@ -204,8 +201,7 @@ export const useImport = <
                                             },
                                         ],
                                     };
-
-                                    resolve(result);
+                                    resolve();
                                     onFinished?.(result);
                                 },
                             },
@@ -262,7 +258,7 @@ export const useImport = <
                                 ) as unknown as ImportErrorResult<TVariables>[],
                             };
 
-                            resolve(result);
+                            resolve();
                             onFinished?.(result);
                         });
                     } else {
@@ -320,7 +316,7 @@ export const useImport = <
                                 ) as unknown as ImportErrorResult<TVariables>[],
                             };
 
-                            resolve(result);
+                            resolve();
                             onFinished?.(result);
                         });
                     }

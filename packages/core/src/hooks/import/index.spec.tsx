@@ -86,7 +86,7 @@ describe("useImport hook", () => {
         });
     });
 
-    it("should call mutate method of result of useCreateMany one time with correct values if batchSize=null", async (done) => {
+    it("should call mutate method of result of useCreateMany one time with correct values if batchSize=null", async () => {
         const mockDataProvider = {
             ...MockJSONServer,
             createMany: jest.fn(),
@@ -96,12 +96,6 @@ describe("useImport hook", () => {
             () =>
                 useImport({
                     batchSize: null,
-                    onFinished: () => {
-                        expect(
-                            mockDataProvider.createMany,
-                        ).toHaveBeenCalledWith("posts", parsedData);
-                        done();
-                    },
                 }),
             {
                 wrapper: TestWrapper({
@@ -176,18 +170,22 @@ describe("useImport hook", () => {
                             mockDataProvider.createMany,
                         ).toHaveBeenCalledWith(
                             "posts",
-                            parsedData.slice(0, 2).map((parsedData) => ({
-                                ...parsedData,
-                            })),
+                            [parsedData[0], parsedData[1]].map(
+                                (parsedData) => ({
+                                    ...parsedData,
+                                }),
+                            ),
                         );
 
                         expect(
                             mockDataProvider.createMany,
                         ).toHaveBeenCalledWith(
                             "posts",
-                            parsedData.slice(2).map((parsedData) => ({
-                                ...parsedData,
-                            })),
+                            [parsedData[0], parsedData[1]].map(
+                                (parsedData) => ({
+                                    ...parsedData,
+                                }),
+                            ),
                         );
 
                         done();
@@ -209,7 +207,12 @@ describe("useImport hook", () => {
         });
     });
 
-    /* it("should map data successfully before it uploads to server", async (done) => {
+    it("should map data successfully before it uploads to server", async (done) => {
+        const mockDataProvider = {
+            ...MockJSONServer,
+            createMany: jest.fn(),
+        } as IDataContext;
+
         const { result } = renderHook(
             () =>
                 useImport({
@@ -219,19 +222,21 @@ describe("useImport hook", () => {
                         newTitle: data.title,
                     }),
                     onFinished: () => {
-                        expect(useCreateManyMutateMock).toHaveBeenCalledWith({
-                            resource: "posts",
-                            values: parsedData.map((parsedData) => ({
+                        expect(
+                            mockDataProvider.createMany,
+                        ).toHaveBeenCalledWith(
+                            "posts",
+                            parsedData.map((parsedData) => ({
                                 id: parsedData.id,
                                 newTitle: parsedData.title,
                             })),
-                        });
+                        );
                         done();
                     },
                 }),
             {
                 wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
+                    dataProvider: mockDataProvider,
                     resources: [{ name: "posts" }],
                 }),
             },
@@ -243,47 +248,38 @@ describe("useImport hook", () => {
                 file: file as unknown as UploadFile,
             });
         });
+    });
 
-        // setTimeout(() => {
-        //     expect(useCreateManyMutateMock).toHaveBeenCalledWith({
-        //         resource: "posts",
-        //         values: parsedData.map((parsedData) => ({
-        //             id: parsedData.id,
-        //             newTitle: parsedData.title,
-        //         })),
-        //     });
-        //     done();
-        // }, 4000);
-    }); */
+    it("should send request for the specified resource", async (done) => {
+        const mockDataProvider = {
+            ...MockJSONServer,
+            createMany: jest.fn(),
+        } as IDataContext;
 
-    /* it("should send request for the specified resource", async (done) => {
         const { result } = renderHook(
             () =>
                 useImport({
                     batchSize: null,
                     resourceName: "tests",
                     onFinished: () => {
-                        expect(useCreateManyMutateMock).toHaveBeenCalledWith({
-                            resource: "tests",
-                            values: parsedData.map((parsedData) => ({
+                        expect(
+                            mockDataProvider.createMany,
+                        ).toHaveBeenCalledWith(
+                            "tests",
+                            parsedData.map((parsedData) => ({
                                 ...parsedData,
                             })),
-                        });
+                        );
                         done();
                     },
                 }),
             {
                 wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
+                    dataProvider: mockDataProvider,
                     resources: [{ name: "posts" }],
                 }),
             },
         );
-
-        // result.current.uploadProps.onChange?.({
-        //     fileList: [],
-        //     file: file as unknown as UploadFile,
-        // });
 
         await act(async () => {
             await result.current.uploadProps.onChange?.({
@@ -291,19 +287,9 @@ describe("useImport hook", () => {
                 file: file as unknown as UploadFile,
             });
         });
+    });
 
-        // setTimeout(() => {
-        //     expect(useCreateManyMutateMock).toHaveBeenCalledWith({
-        //         resource: "tests",
-        //         values: parsedData.map((parsedData) => ({
-        //             ...parsedData,
-        //         })),
-        //     });
-        //     done();
-        // }, 4000);
-    }); */
-
-    /* it("should return false from uploadProps.beforeUpload callback", () => {
+    it("should return false from uploadProps.beforeUpload callback", () => {
         const { result } = renderHook(
             () =>
                 useImport({
@@ -324,5 +310,5 @@ describe("useImport hook", () => {
         );
 
         expect(beforeUploadResult).toBe(false);
-    }); */
+    });
 });
