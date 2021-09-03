@@ -14,8 +14,10 @@ import {
     DeleteButton,
 } from "@pankod/refine";
 
+import { IPost } from "interfaces";
+
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter, filters } = useTable({
+    const { tableProps, sorter, filters } = useTable<IPost>({
         initialSorter: [
             {
                 field: "id",
@@ -42,12 +44,14 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             >
                 <Table.Column
                     dataIndex="id"
+                    key="id"
                     title="ID"
                     defaultSortOrder={getDefaultSortOrder("id", sorter)}
                     sorter
                 />
                 <Table.Column
                     dataIndex="title"
+                    key="title"
                     title="Title"
                     defaultSortOrder={getDefaultSortOrder("title", sorter)}
                     sorter
@@ -73,10 +77,10 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 />
                 <Table.Column
                     dataIndex="created_at"
+                    key="created_at"
                     title="Created At"
-                    render={(value) => (
-                        <DateField value={value} format="YYYY-MM-DD HH:mm:ss" />
-                    )}
+                    render={(value) => <DateField value={value} format="LLL" />}
+                    defaultSortOrder={getDefaultSortOrder("created_at", sorter)}
                     sorter
                 />
                 <Table.Column<{ id: string }>

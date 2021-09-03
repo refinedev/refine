@@ -54,7 +54,6 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                 }}
             >
                 <Form.Item
-                    wrapperCol={{ span: 14 }}
                     label="Title"
                     name="title"
                     rules={[
@@ -66,7 +65,6 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    wrapperCol={{ span: 8 }}
                     label="Category"
                     name={["category", "id"]}
                     rules={[
