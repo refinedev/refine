@@ -216,7 +216,6 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
         >
             <Table
                 pagination={false}
-                scroll={{ x: true }}
                 dataSource={record?.products}
                 footer={(_data) => (
                     <div className="product-footer">
