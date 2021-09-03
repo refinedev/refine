@@ -76,9 +76,6 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                 <Table
                     {...tableProps}
                     rowKey="id"
-                    scroll={{
-                        x: true,
-                    }}
                 >
                     <Table.Column
                         key="image"

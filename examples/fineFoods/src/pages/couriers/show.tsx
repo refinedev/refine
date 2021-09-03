@@ -111,9 +111,6 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                 >
                     <Table
                         {...tableProps}
-                        scroll={{
-                            x: true,
-                        }}
                         rowKey="id"
                     >
                         <Table.Column

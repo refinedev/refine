@@ -159,9 +159,6 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
             <Table
                 {...tableProps}
                 rowSelection={rowSelection}
-                scroll={{
-                    x: true,
-                }}
                 rowKey="id"
             >
                 <Table.Column

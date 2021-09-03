@@ -139,9 +139,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                     <Table
                         {...tableProps}
                         rowKey="id"
-                        scroll={{
-                            x: true,
-                        }}
                         onRow={(record) => {
                             return {
                                 onClick: () => {
