@@ -39,11 +39,13 @@ Let'say we have a resource named `categories`
 }
 ```
 
-```tsx
+```tsx twoslash
 type CategoryMutationResult = {
     id: string;
     title: string;
 }
+
+import { useCreate } from "@pankod/refine";
 
 const { mutate } = useCreate<CategoryMutationResult>();
 
@@ -52,7 +54,7 @@ mutate({
     values: {
         title: "New Category",
     }
-})
+});
 ```
 
 :::tip
@@ -63,7 +65,7 @@ mutate({
 
 After the mutation runs `categories` will be updated as below:
 
-```ts title="https://api.fake-rest.refine.dev/categories"
+```ts title="https://api.fake-rest.refine.dev/categories" {14-17}
 {
     [
         {
@@ -78,12 +80,10 @@ After the mutation runs `categories` will be updated as below:
             id: 3,
             title: "Unbranded",
         },
-        // highlight-start
         {
             id: 4,
             title: "New Category",
         },
-        // highlight-end
     ];
 }
 ```

@@ -34,13 +34,15 @@ Let's say that we have a resource named `categories`.
 ```
 
 
-```tsx
+```tsx twoslash 
+import { useMany } from "@pankod/refine";
+
 type ICategory = {
     id: string;
     title: string;
 }
 
-const categoryQueryResult = useMany<ICategory>("categories", [ 1, 2 ]);
+const categoryQueryResult = useMany<ICategory>("categories", [ "1", "2" ]);
 ```
 
 :::tip

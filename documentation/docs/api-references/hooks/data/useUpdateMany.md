@@ -36,15 +36,21 @@ Let's say that we have a resource named `posts`.
 }
 ```
 
-```tsx
+```tsx twoslash
 type PostMutationResult = {
     id: string;
     status: "published" | "draft" | "rejected";
 }
 
+import { useUpdateMany } from "@pankod/refine";
+
 const { mutate } = useUpdateMany<PostMutationResult>();
 
-mutate({ resource: "posts", ids: [ "1", "2" ], values: { status: "draft" } });
+mutate({ 
+    resource: "posts",
+    ids: [ "1", "2" ],
+    values: { status: "draft" },
+});
 ```
 
 :::tip
@@ -56,17 +62,15 @@ mutate({ resource: "posts", ids: [ "1", "2" ], values: { status: "draft" } });
 
 After mutation runs `posts` will be updated as below:
 
-```ts title="https://api.fake-rest.refine.dev/posts"
+```ts title="https://api.fake-rest.refine.dev/posts" {4,8}
 {
     [
         {
             id: 1,
-            // highlight-next-line
             status:"draft"
         },
         {
             id: 2,
-            // highlight-next-line
             status:"draft"
         },
     ];
@@ -101,14 +105,15 @@ Values passed to `mutate` must have these types:
 
 Mutation mode determines the mode which mutation runs with.
 
-```tsx
+```tsx twoslash {8}
+import { useUpdateMany } from "@pankod/refine";
+
 const { mutate } = useUpdateMany();
 
 mutate({
     resource: "posts",
     ids: [ "1", "2" ],
-    values: { status: "draft" }
-    // highlight-next-line
+    values: { status: "draft" },
     mutationMode: "optimistic",
 });
 ```
@@ -128,13 +133,14 @@ Default behaviour on undo action includes notifications. If a custom callback is
 :::danger
 Passed callback will receive a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on `undoable` mode.
 
-```tsx
-// highlight-start
-const customOnCancel = (cancelMutation) => {
-    cancelMutation()
+```tsx twoslash {2-5,14-16}
+import { useUpdateMany } from "@pankod/refine";
+
+const customOnCancel = (cancelMutation: () => void) => {
+    cancelMutation();
     // rest of custom cancel logic...
 }
-// highlight-end
+
 
 const { mutate } = useUpdateMany();
 
@@ -142,11 +148,9 @@ mutate({
     resource: "posts",
     ids: [ "1", "2" ],
     values: { status: "draft" },
-    // highlight-start
     mutationMode: "undoable",
     undoableTimeout: 7500,
     onCancel: customOnCancel
-    // highlight-end
 });
 ```
 After 7.5 seconds the mutation will be executed. The mutation can be cancelled within that 7.5 seconds. If cancelled `customOnCancel` will be executed and the request will not be sent.

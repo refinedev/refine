@@ -9,11 +9,9 @@ title: useForm
 
 We'll show the basic usage of `useForm` by adding an editing form.
 
-```tsx title="pages/posts/edit.tsx"
+```tsx twoslash title="pages/posts/edit.tsx"
 //highlight-next-line
 import { Edit, Form, Input, useForm, Select } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostEdit: React.FC = () => {
     //highlight-next-line
@@ -49,10 +47,8 @@ export const PostEdit: React.FC = () => {
         </Edit>
     );
 };
-```
 
-```ts title="interfaces/index.d.ts"
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
     status: "published" | "draft" | "rejected";

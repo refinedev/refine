@@ -41,7 +41,9 @@ Let's say that we have a resource named `posts`
 
 First of all, we will use `useList` without passing any query configurations.
 
-```tsx
+```tsx twoslash 
+import { useList } from "@pankod/refine";
+
 type IPost = {
     id: string;
     title: string;
@@ -110,7 +112,16 @@ Allows us to set page and items per page values.
 
 For example imagine that we have 1000 post records:
 
-```ts
+```ts twoslash
+type IPost = {
+    id: string;
+    title: string;
+    status: "rejected" | "published" | "draft";
+};
+// ---cut---
+
+import { useList } from "@pankod/refine";
+
 const postListQueryResult = useList<IPost>("posts", {
     pagination: { current: 3, pageSize: 8 },
 });
@@ -124,7 +135,16 @@ const postListQueryResult = useList<IPost>("posts", {
 
 Allows us to sort records by the speficified order and field.
 
-```ts
+```ts twoslash
+type IPost = {
+    id: string;
+    title: string;
+    status: "rejected" | "published" | "draft";
+};
+// ---cut---
+
+import { useList } from "@pankod/refine";
+
 const postListQueryResult = useList<IPost>("posts", {
     sort: [{ order: "asc", field: "title" }],
 });
@@ -161,7 +181,16 @@ const postListQueryResult = useList<IPost>("posts", {
 
 Allows us to filter queries using refine's filter operators. It is configured via `field`, `operator` and `value` properites.
 
-```ts
+```ts twoslash
+type IPost = {
+    id: string;
+    title: string;
+    status: "rejected" | "published" | "draft";
+};
+// ---cut---
+
+import { useList } from "@pankod/refine";
+
 const postListQueryResult = useList<IPost>("posts", {
     filters: [
         {
@@ -216,7 +245,16 @@ const postListQueryResult = useList<IPost>("posts", {
 
 -   For example, to disable query from running automatically you can set `enabled` to `false`.
 
-```tsx
+```ts twoslash
+type IPost = {
+    id: string;
+    title: string;
+    status: "rejected" | "published" | "draft";
+};
+// ---cut---
+
+import { useList } from "@pankod/refine";
+
 const postListQueryResult = useList<IPost>("posts", {}, { enabled: false });
 ```
 

@@ -38,11 +38,13 @@ Let's say that we have a resource named `categories`.
 }
 ```
 
-```tsx
+```tsx twoslash
 type CategoryMutationResult = {
     id: string;
     title: string;
 }
+
+import { useUpdate } from "@pankod/refine";
 
 const { mutate } = useUpdate<CategoryMutationResult>();
 
@@ -62,7 +64,7 @@ mutate({
 
 After mutation runs `categories` will be updated as below:
 
-```ts title="https://api.fake-rest.refine.dev/categories"
+```ts title="https://api.fake-rest.refine.dev/categories" {8}
 {
     [
         {
@@ -71,7 +73,6 @@ After mutation runs `categories` will be updated as below:
         },
         {
             id: 2,
-            // highlight-next-line
             title: "New Category Title",
         },
     ];
@@ -106,14 +107,15 @@ Values passed to `mutate` must have these types.
 
 Mutation mode determines which mode mutation runs with.
 
-```tsx
+```tsx twoslash {8}
+import { useUpdate } from "@pankod/refine";
+
 const { mutate } = useUpdate();
 
 mutate({
     resource: "categories",
     id: "2",
     values: { title: "New Category Title" },
-    // highlight-next-line
     mutationMode: "optimistic",
 });
 ```
@@ -132,13 +134,13 @@ Default behaviour on undo action includes notifications. If a custom callback is
 
 :::danger
 Passed callback will receive a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on `undoable` mode.
-```tsx
-// highlight-start
-const customOnCancel = (cancelMutation) => {
-    cancelMutation()
+```tsx twoslash {2-5, 13-15}
+import { useUpdate } from "@pankod/refine";
+
+const customOnCancel = (cancelMutation: () => void) => {
+    cancelMutation();
     // rest of custom cancel logic...
 }
-// highlight-end
 
 const { mutate } = useUpdate();
 
@@ -146,11 +148,9 @@ mutate({
     resource: "categories",
     id: "2",
     values: { title: "New Category Title" },
-    // highlight-start  
     mutationMode: "undoable",
     undoableTimeout: 7500,
     onCancel: customOnCancel
-    // highlight-end
 });
 ```
 After 7.5 seconds the mutation will be executed. The mutation can be cancelled within that 7.5 seconds. If cancelled `customOnCancel` will be executed and the request will not be sent.
