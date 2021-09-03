@@ -218,8 +218,6 @@ export const useImport = <
                             onFinish?.(result);
                         });
                     } else {
-                        console.log("else case");
-
                         Promise.all(
                             chunk(values, batchSize)
                                 .map((batch) => {
@@ -243,12 +241,6 @@ export const useImport = <
                                                         currentAmount +
                                                         (currentBatchLength ??
                                                             0),
-                                                );
-
-                                                console.log(
-                                                    "map iteration",
-                                                    currentBatchLength,
-                                                    batchSize,
                                                 );
 
                                                 return {
@@ -281,8 +273,6 @@ export const useImport = <
                                     (item) => item.type === "error",
                                 ) as unknown as ImportErrorResult<TVariables>[],
                             };
-
-                            console.log(result);
 
                             resolve();
                             onFinish?.(result);
