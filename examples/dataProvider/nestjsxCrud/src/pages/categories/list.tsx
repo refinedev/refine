@@ -5,53 +5,45 @@ import {
     IResourceComponentsProps,
     Space,
     EditButton,
-    ShowButton,
     DateField,
-    getDefaultSortOrder,
+    DeleteButton,
 } from "@pankod/refine";
 
-import { IPost } from "interfaces";
+import { ICategory } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "createdAt",
-                order: "desc",
-            },
-        ],
-    });
+export const CategoryList: React.FC<IResourceComponentsProps> = () => {
+    const { tableProps } = useTable<ICategory>();
 
     return (
         <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
                 <Table.Column
-                    dataIndex={["category", "title"]}
-                    title="Category"
+                    dataIndex="title"
+                    title="Title"
+                    key="title"
+                    sorter
                 />
                 <Table.Column
                     dataIndex="createdAt"
-                    title="Created At"
                     key="createdAt"
-                    sorter
-                    defaultSortOrder={getDefaultSortOrder("createdAt", sorter)}
+                    title="Created At"
                     render={(value) => <DateField value={value} format="LLL" />}
+                    sorter
                 />
-                <Table.Column<IPost>
+                <Table.Column<ICategory>
                     title="Actions"
                     dataIndex="actions"
                     render={(_, record) => (
                         <Space>
                             <EditButton
-                                hideText
                                 size="small"
+                                hideText
                                 recordItemId={record.id}
                             />
-                            <ShowButton
-                                hideText
+                            <DeleteButton
                                 size="small"
+                                hideText
                                 recordItemId={record.id}
                             />
                         </Space>
