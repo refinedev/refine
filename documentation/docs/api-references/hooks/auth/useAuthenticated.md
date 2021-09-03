@@ -21,16 +21,14 @@ We will demonstrate a similar basic implementation below. Imagine that you have 
 
 We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `checkAuth` method like below.
 
-```tsx
+```tsx {2-6}
 const authProvider: AuthProvider = {
   ...
-    // highlight-start
     checkAuth: () => {
         localStorage.getItem("username")
                 ? Promise.resolve()
                 : Promise.reject(),
     },
-    // highlight-end
   ...
 };
 ```
@@ -38,23 +36,41 @@ const authProvider: AuthProvider = {
 
 Let's create a wrapper component that renders children if `checkAuth` method returns the Promise resolved.
 
-```tsx title="components/authenticationChecker"
-// highlight-next-line
-import { useAuthenticated } from "@pankod/refine";
+```tsx twoslash title="components/authenticated.tsx" {0, 7} 
+import { useAuthenticated, useNavigation } from "@pankod/refine";
 
-export const IsAuthenticated: React.FC = ({
-    children
+export const Authenticated: React.FC<AuthenticatedProps> = ({
+    children,
+    fallback,
+    loading,
 }) => {
-    // highlight-next-line
-    const { isSuccess, isError } = useAuthenticated();
+    const { isSuccess, isLoading, isError } = useAuthenticated();
+
+    const { replace } = useNavigation();
+
+    if (isLoading) {
+        return <>{loading}</> || null;
+    }
+
+    if (isError) {
+        if (!fallback) {
+            replace("/");
+            return null;
+        }
+
+        return <>{fallback}</>;
+    }
 
     if (isSuccess) {
         return <>{children}</>;
     }
 
-    if (isError) {
-        return null;
-    }
+    return null;
+};
+
+type AuthenticatedProps = {
+    fallback?: React.ReactNode;
+    loading?: React.ReactNode;
 };
 ```
 
@@ -62,11 +78,10 @@ export const IsAuthenticated: React.FC = ({
 
 Now, only authenticated users can see the price field.
 
-```tsx title="components/postShow"
+```tsx title="components/postShow" {2, 10-13}
 import { Typography, Show } from "@pankod/refine";
 
-// highlight-next-line
-import { IsAuthenticated } from "/components/IsAuthenticated"
+import { Authenticated } from "components/authenticated"
 
 const { Title, Text } = Typography;
 
@@ -74,12 +89,10 @@ export const PostShow: React.FC = () => (
     <Show>
         <Title>Status</Title>
         <Text>Approved</Text>
-        //highlight-start
-        <IsAuthenticated>
+        <Authenticated>
             <Title>Price</Title>
             <Text>20</Text>
-        </IsAuthenticated>
-        //highlight-end
+        </Authenticated>
     </Show>
 )
 ```
