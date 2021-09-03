@@ -33,7 +33,7 @@ export type ImportErrorResult<TVariables> = {
     response: HttpError[];
 };
 
-export type OnFinishedParams<TVariables, TData> = {
+export type OnFinishParams<TVariables, TData> = {
     succeeded: ImportSuccessResult<TVariables, TData>[];
     errored: ImportErrorResult<TVariables>[];
 };
@@ -46,8 +46,8 @@ type ImportOptions<
     resourceName?: string;
     mapData?: MapDataFn<TItem, TVariables>;
     paparseOptions?: ParseConfig;
-    batchSize?: number | null;
-    onFinished?: (results: OnFinishedParams<TVariables, TData>) => void;
+    batchSize?: number;
+    onFinish?: (results: OnFinishParams<TVariables, TData>) => void;
 };
 
 /**
@@ -70,8 +70,8 @@ export const useImport = <
     resourceName,
     mapData = (item) => item as unknown as TVariables,
     paparseOptions,
-    batchSize = null,
-    onFinished,
+    batchSize = Number.MAX_SAFE_INTEGER,
+    onFinish,
 }: ImportOptions<TItem, TVariables, TData> = {}): {
     uploadProps: UploadProps;
     buttonProps: ButtonProps;
@@ -104,6 +104,7 @@ export const useImport = <
     if (resourceName) {
         resource = resourceName;
     }
+
     useEffect(() => {
         if (totalAmount > 0) {
             const description = (
@@ -161,52 +162,7 @@ export const useImport = <
 
                     setTotalAmount(values.length);
 
-                    if (batchSize === null) {
-                        createMany.mutateAsync(
-                            {
-                                resource,
-                                values,
-                                successNotification: false,
-                                errorNotification: false,
-                            },
-                            {
-                                onSuccess: (result) => {
-                                    const results: OnFinishedParams<
-                                        TVariables,
-                                        TData
-                                    > = {
-                                        succeeded: [
-                                            {
-                                                request: values,
-                                                type: "success",
-                                                response: result?.data,
-                                            },
-                                        ],
-                                        errored: [],
-                                    };
-                                    resolve();
-                                    onFinished?.(results);
-                                },
-                                onError: (err) => {
-                                    const result: OnFinishedParams<
-                                        TVariables,
-                                        TData
-                                    > = {
-                                        succeeded: [],
-                                        errored: [
-                                            {
-                                                request: values,
-                                                type: "error",
-                                                response: [err],
-                                            },
-                                        ],
-                                    };
-                                    resolve();
-                                    onFinished?.(result);
-                                },
-                            },
-                        );
-                    } else if (batchSize === 1) {
+                    if (batchSize === 1) {
                         Promise.all(
                             values
                                 .map((value) => {
@@ -259,21 +215,25 @@ export const useImport = <
                             };
 
                             resolve();
-                            onFinished?.(result);
+                            onFinish?.(result);
                         });
                     } else {
+                        console.log("else case");
+
                         Promise.all(
                             chunk(values, batchSize)
-                                .map((batch) => ({
-                                    response: createMany.mutateAsync({
-                                        resource,
-                                        values: batch,
-                                        successNotification: false,
-                                        errorNotification: false,
-                                    }),
-                                    currentBatchLength: batch.length,
-                                    value: batch,
-                                }))
+                                .map((batch) => {
+                                    return {
+                                        response: createMany.mutateAsync({
+                                            resource,
+                                            values: batch,
+                                            successNotification: false,
+                                            errorNotification: false,
+                                        }),
+                                        currentBatchLength: batch.length,
+                                        value: batch,
+                                    };
+                                })
                                 .map(
                                     ({ response, value, currentBatchLength }) =>
                                         response
@@ -283,6 +243,12 @@ export const useImport = <
                                                         currentAmount +
                                                         (currentBatchLength ??
                                                             0),
+                                                );
+
+                                                console.log(
+                                                    "map iteration",
+                                                    currentBatchLength,
+                                                    batchSize,
                                                 );
 
                                                 return {
@@ -316,8 +282,10 @@ export const useImport = <
                                 ) as unknown as ImportErrorResult<TVariables>[],
                             };
 
+                            console.log(result);
+
                             resolve();
-                            onFinished?.(result);
+                            onFinish?.(result);
                         });
                     }
                 },
