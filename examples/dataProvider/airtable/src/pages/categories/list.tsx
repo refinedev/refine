@@ -5,7 +5,7 @@ import {
     IResourceComponentsProps,
     Space,
     EditButton,
-    ShowButton,
+    DeleteButton,
     BooleanField,
 } from "@pankod/refine";
 
@@ -31,8 +31,16 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="actions"
                     render={(_, record) => (
                         <Space>
-                            <EditButton size="small" recordItemId={record.id} />
-                            <ShowButton size="small" recordItemId={record.id} />
+                            <EditButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <DeleteButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
                         </Space>
                     )}
                 />
