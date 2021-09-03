@@ -50,6 +50,10 @@ type ImportOptions<
     onFinish?: (results: OnFinishParams<TVariables, TData>) => void;
 };
 
+export type CreatedValuesType<TVariables, TData> =
+    | ImportSuccessResult<TVariables, TData>
+    | ImportErrorResult<TVariables>;
+
 /**
  * `useImport` hook allows you to handle your csv import logic easily.
  *
@@ -82,11 +86,12 @@ export const useImport = <
     const [processedAmount, setProcessedAmount] = useState<number>(0);
     const [totalAmount, setTotalAmount] = useState<number>(0);
 
-    const resourceWithRoute = useResourceWithRoute();
     const t = useTranslate();
+    const resourceWithRoute = useResourceWithRoute();
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-
-    let { name: resource } = resourceWithRoute(routeResourceName);
+    const { name: resource } = resourceWithRoute(
+        resourceName ?? routeResourceName,
+    );
 
     const createMany = useCreateMany<TData, TError, TVariables>();
     const create = useCreate<TData, TError, TVariables>();
@@ -101,9 +106,20 @@ export const useImport = <
         query = createMany;
     }
 
-    if (resourceName) {
-        resource = resourceName;
-    }
+    const handleFinish = (
+        createdValues: CreatedValuesType<TVariables, TData>[],
+    ) => {
+        const result = {
+            succeeded: createdValues.filter(
+                (item) => item.type === "success",
+            ) as unknown as ImportSuccessResult<TVariables, TData>[],
+            errored: createdValues.filter(
+                (item) => item.type === "error",
+            ) as unknown as ImportErrorResult<TVariables>[],
+        };
+
+        onFinish?.(result);
+    };
 
     useEffect(() => {
         if (totalAmount > 0) {
@@ -154,16 +170,16 @@ export const useImport = <
         }
     }, [totalAmount, processedAmount]);
 
-    const handleChange = ({ file }: UploadChangeParam): Promise<void> => {
+    const handleChange = async ({ file }: UploadChangeParam): Promise<void> => {
         return new Promise((resolve) => {
             parse(file as unknown as File, {
-                complete: ({ data }: { data: unknown[][] }) => {
+                complete: async ({ data }: { data: unknown[][] }) => {
                     const values = importCSVMapper(data, mapData);
 
                     setTotalAmount(values.length);
 
                     if (batchSize === 1) {
-                        Promise.all(
+                        const createdValues = await Promise.all(
                             values
                                 .map((value) => {
                                     const response = create.mutateAsync({
@@ -201,24 +217,12 @@ export const useImport = <
                                                 } as ImportErrorResult<TVariables>),
                                         ),
                                 ),
-                        ).then((values) => {
-                            const result = {
-                                succeeded: values.filter(
-                                    (item) => item.type === "success",
-                                ) as unknown as ImportSuccessResult<
-                                    TVariables,
-                                    TData
-                                >[],
-                                errored: values.filter(
-                                    (item) => item.type === "error",
-                                ) as unknown as ImportErrorResult<TVariables>[],
-                            };
+                        );
 
-                            resolve();
-                            onFinish?.(result);
-                        });
+                        resolve();
+                        handleFinish(createdValues);
                     } else {
-                        Promise.all(
+                        const createdValues = await Promise.all(
                             chunk(values, batchSize)
                                 .map((batch) => {
                                     return {
@@ -261,24 +265,13 @@ export const useImport = <
                                                     } as ImportErrorResult<TVariables>),
                                             ),
                                 ),
-                        ).then((values) => {
-                            const result = {
-                                succeeded: values.filter(
-                                    (item) => item.type === "success",
-                                ) as unknown as ImportSuccessResult<
-                                    TVariables,
-                                    TData
-                                >[],
-                                errored: values.filter(
-                                    (item) => item.type === "error",
-                                ) as unknown as ImportErrorResult<TVariables>[],
-                            };
+                        );
 
-                            resolve();
-                            onFinish?.(result);
-                        });
+                        resolve();
+                        handleFinish(createdValues);
                     }
                 },
+
                 ...paparseOptions,
             });
         });

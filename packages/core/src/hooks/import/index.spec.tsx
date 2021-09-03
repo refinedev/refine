@@ -377,7 +377,7 @@ describe("useImport hook", () => {
         });
     });
 
-    it("should give errors in onFinish callback if batchSize=null", async (done) => {
+    it("should give errors in onFinish callback if batchSize=undefined", async (done) => {
         const mockDataProvider = {
             ...MockJSONServer,
             createMany: () => {
@@ -395,7 +395,7 @@ describe("useImport hook", () => {
                 useImport({
                     batchSize: undefined,
                     resourceName: "posts",
-                    onFinish: ({ succeeded, errored }) => {
+                    onFinish: ({ errored }) => {
                         expect(errored[0].response[0]).toEqual({
                             message: "bir şey oldu",
                             statusCode: 500,
