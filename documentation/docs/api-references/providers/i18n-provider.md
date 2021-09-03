@@ -91,21 +91,18 @@ export default i18n;
 
 Then we will import the i18n instance we created and wrap the application with `React.Suspense`.
 
-```tsx title="src/index.tsx"
+```tsx title="src/index.tsx" {4, 8-10}
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 
-//highlight-next-line
 import "./i18n";
 
 ReactDOM.render(
     <React.StrictMode>
-        //highlight-start
         <React.Suspense fallback="loading">
             <App />
         </React.Suspense>
-        //highlight-end
     </React.StrictMode>,
     document.getElementById("root"),
 );
@@ -119,30 +116,25 @@ We use `React.Suspense` because it improves performance by preventing the app fr
 
 Next, we will include the i18n instance and create the `i18nProvider` using `react-i18next`.
 
-```tsx title="src/App.tsx"
+```tsx title="src/App.tsx" {2, 7, 9-13, 18}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
-//highlight-next-line
 import { useTranslation } from "react-i18next";
 
 import { PostList } from "pages/posts";
 
 const App: React.FC = () => {
-    //highlight-next-line
     const { t, i18n } = useTranslation();
 
-    //highlight-start
     const i18nProvider = {
         translate: (key: string, params: object) => t(key, params),
         changeLocale: (lang: string) => i18n.changeLanguage(lang),
         getLocale: () => i18n.language,
     };
-    //highlight-end
 
     return (
         <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            //highlight-next-line
             i18nProvider={i18nProvider}
         >
             <Resource name="posts" list={PostList} />
@@ -492,7 +484,7 @@ export const Header: React.FC = () => {
 
 Then, we will pass `<Header>` to the `<Refine>` component as a property.
 
-```tsx title="src/App.tsx"
+```tsx title="src/App.tsx" {7, 22}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import { useTranslation } from "react-i18next";
@@ -500,7 +492,6 @@ import "./i18n";
 
 import { PostList } from "pages/posts";
 
-//highlight-next-line
 import { Header } from "components";
 
 const App: React.FC = () => {
@@ -516,7 +507,6 @@ const App: React.FC = () => {
         <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             i18nProvider={i18nProvider}
-            //highlight-next-line
             Header={Header}
         >
             <Resource name="posts" list={PostList} />
@@ -529,7 +519,7 @@ const App: React.FC = () => {
 
 Finally, we will create the `<PostList>` page and then we will translate texts using `useTranslate`.
 
-```tsx title="src/App.tsx"
+```tsx title="src/App.tsx" {9, 15, 30, 34, 51}
 import {
     List,
     Table,
@@ -539,14 +529,12 @@ import {
     EditButton,
     ShowButton,
     useMany,
-    //highlight-next-line
     useTranslate,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
-    //highlight-next-line
     const translate = useTranslate();
     const { tableProps } = useTable<IPost>();
 
@@ -557,18 +545,15 @@ export const PostList: React.FC = () => {
     });
 
     return (
-        //highlight-next-line
         <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column
                     dataIndex="title"
-                    //highlight-next-line
                     title={translate("posts.fields.title")}
                 />
                 <Table.Column
                     dataIndex={["category", "id"]}
-                    //highlight-next-line
                     title={translate("posts.fields.category")}
                     render={(value) => {
                         if (isLoading) {
@@ -586,7 +571,6 @@ export const PostList: React.FC = () => {
                     }}
                 />
                 <Table.Column<IPost>
-                    //highlight-next-line
                     title={translate("table.actions")}
                     dataIndex="actions"
                     key="actions"
