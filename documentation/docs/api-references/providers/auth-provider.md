@@ -383,7 +383,7 @@ For example let's say that only the admins must be able to create new posts from
 import { List, usePermissions } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
-    const { data: permissionsData } = usePermissions<string[]>();
+    const { data: permissionsData } = usePermissions();
 
     return <List canCreate={permissionsData?.includes("admin")}>...</List>;
 };
