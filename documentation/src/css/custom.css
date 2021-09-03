@@ -258,3 +258,13 @@
 .code-line-content {
     display: table-cell;
 }
+
+
+  
+[data-theme="light"] .shiki.nord {
+    display: none;
+}
+
+[data-theme="dark"] .shiki.min-light {
+    display: none;
+}
