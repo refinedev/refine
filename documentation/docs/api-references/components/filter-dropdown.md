@@ -13,7 +13,7 @@ import filterDropdown from '@site/static/img/category_filter-dropdown.png';
 It serves as a bridge by synchronizing between its children's input value and `<Table>`'s filter values.
 
 ```tsx title="components/pages/postList.tsx"
-import { List, Table, useTable } from "@pankod/refine";
+import { List, Table, FilterDropdown, useTable } from "@pankod/refine";
 
 const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps } = useTable<IPost>();
@@ -35,8 +35,8 @@ const PostList: React.FC<IResourceComponentsProps> = (props) => {
                                 mode="multiple"
                                 placeholder="Select Category"
                                 options={[
-                                    { label: "Hard Steel", value: "1" },
-                                    { label: "Png Thx", value: "2" },
+                                    { label: "Ergonomic", value: "1" },
+                                    { label: "Island", value: "2" },
                                 ]}
                             />
                         </FilterDropdown>
@@ -54,11 +54,16 @@ Selecting categories from dropdown will send the id's of categories as filtering
 
 `<FilterDropdown>` will put two buttons for filtering and clearing filter actions.
 
-<div style={{textAlign: "center",  backgroundColor:"#efefef",  padding: "13px 10px 10px"}}>
-
-<img style={{width: "60%"}} src={filterDropdown} />
-
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={filterDropdown} alt="Show record action" />
 </div>
+
+
 <br/>
 
 :::tip
