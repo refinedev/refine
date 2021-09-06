@@ -4,7 +4,7 @@ If you need to translate the texts in your own components, refine provides the `
 
 You can use the features of your own i18n library for translation in your own components.
 
-```tsx
+```tsx twoslash
 import { Button, useTranslate } from "@pankod/refine";
 
 export const MyComponent = () => {
