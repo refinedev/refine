@@ -30,6 +30,14 @@ It looks like this:
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
+```tsx twoslash
+import { ExportButton } from "@pankod/refine";
+
+export const MyRefreshComponent = () => {
+    return <ExportButton hideText />;
+};
+```
+
 ## API Reference
 
 ### Properties

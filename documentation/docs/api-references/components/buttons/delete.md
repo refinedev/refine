@@ -11,16 +11,13 @@ When you try to delete something, a pop-up shows up and asks for confirmation. W
 
 ## Usage
 
-```tsx
+```tsx twoslash {1, 19}
 import {
-    //highlight-next-line
     DeleteButton,
     List,
     Table,
     useTable,
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -34,7 +31,6 @@ export const PostList: React.FC = () => {
                     title="Actions"
                     dataIndex="actions"
                     render={(_, record) => (
-                        //highlight-next-line
                         <DeleteButton size="small" recordItemId={record.id} />
                     )}
                 />
@@ -42,10 +38,8 @@ export const PostList: React.FC = () => {
         </List>
     );
 };
-```
 
-```ts
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
 }
@@ -80,7 +74,7 @@ When clicked, it opens the confirmation window like this:
 
 `recordItemId` allows us to manage which record will be deleted.
 
-```tsx
+```tsx twoslash
 import { DeleteButton } from "@pankod/refine";
 
 export const MyDeleteComponent = () => {
@@ -98,7 +92,7 @@ Clicking the button will trigger the [`useDelete`](api-references/hooks/data/use
 
 `resourceName` allows us to manage which resource's record is going to be deleted.
 
-```tsx
+```tsx twoslash
 import { DeleteButton } from "@pankod/refine";
 
 export const MyDeleteComponent = () => {
@@ -118,10 +112,13 @@ Clicking the button will trigger the [`useDelete`](api-references/hooks/data/use
 
 For example, let's `console.log` after deletion:
 
-```tsx
+```tsx twoslash {17-19}
+interface IPost {
+    id: string;
+    title: string;
+}
+// ---cut---
 import { List, Table, DeleteButton, useTable } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -138,11 +135,9 @@ export const PostList: React.FC = () => {
                         <DeleteButton
                             size="small"
                             recordItemId={record.id}
-                            //highlight-start
                             onSuccess={(value) => {
                                 console.log(value);
                             }}
-                            //highlight-end
                         />
                     )}
                 />
@@ -158,10 +153,13 @@ Determines which mode mutation will have while executing `<DeleteButton>`.
 
 [Refer to the mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
 
-```tsx
+```tsx twoslash {17}
+interface IPost {
+    id: string;
+    title: string;
+}
+// ---cut---
 import { List, Table, DeleteButton, useTable } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -178,9 +176,7 @@ export const PostList: React.FC = () => {
                         <DeleteButton
                             size="small"
                             recordItemId={record.id}
-                            //highlight-start
                             mutationMode="undoable"
-                            //highlight-end
                         />
                     )}
                 />
@@ -194,7 +190,7 @@ export const PostList: React.FC = () => {
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx
+```tsx twoslash
 import { DeleteButton } from "@pankod/refine";
 
 export const MyDeleteComponent = () => {
