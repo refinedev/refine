@@ -1,23 +1,21 @@
-import dataProvider from "../../src/index";
+import { dataProvider } from "../../src/index";
+import supabaseClient from "../supabaseClient";
 import "./index.mock";
 
 describe("create", () => {
     it("correct response", async () => {
-        const response = await dataProvider(
-            "keywoytODSr6xAqfg",
-            "appKYl1H4k9g73sBT",
-        ).create("posts", {
+        const { data } = await dataProvider(supabaseClient).create("posts", {
             title: "foo",
+            slug: "foo-bar",
             content: "bar",
-            status: "published",
-            category: ["recDBRJljBDFH4rIh"],
+            categoryId: 2,
+            image: {},
         });
 
-        const { data } = response;
-
+        expect(data["id"]).toEqual(33);
         expect(data["title"]).toEqual("foo");
-        expect(data["status"]).toEqual("published");
-        expect(data["category"]).toEqual(["recDBRJljBDFH4rIh"]);
-        expect(data["content"]).toEqual("bar\n");
+        expect(data["slug"]).toEqual("foo-bar");
+        expect(data["content"]).toEqual("bar");
+        expect(data["categoryId"]).toEqual(2);
     });
 });

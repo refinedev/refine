@@ -64,14 +64,10 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
         },
 
         create: async (resource, params) => {
-            const { data } = await supabaseClient
-                .from(resource)
-                .insert([params]);
+            const { data } = await supabaseClient.from(resource).insert(params);
 
             return {
-                data: {
-                    ...data,
-                } as any,
+                data: (data || [])[0] as any,
             };
         },
 
