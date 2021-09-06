@@ -101,7 +101,7 @@ export const PostList: React.FC = () => {
     };
 
     return (
-        <PageHeader title="Posts">
+        <PageHeader ghost={false} title="Posts">
             <AntdList {...listProps} renderItem={renderItem} />
         </PageHeader>
     );
@@ -126,8 +126,14 @@ You can use `AntdList.Item` and `AntdList.Item.Meta` like `<List>` component fro
 :::
 
 <br/>
-<div style={{textAlign: "center"}}>
-    <img src={useSimpleList} />
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={useSimpleList} alt="use simple list" />
 </div>
 
 ## API
