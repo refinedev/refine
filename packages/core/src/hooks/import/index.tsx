@@ -243,8 +243,7 @@ export const useImport = <
                                                 setProcessedAmount(
                                                     (currentAmount) =>
                                                         currentAmount +
-                                                        (currentBatchLength ??
-                                                            0),
+                                                        currentBatchLength,
                                                 );
 
                                                 return {
