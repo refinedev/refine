@@ -73,8 +73,14 @@ export const List: React.FC = () => {
 ```
 
 <br/>
-<div>
-    <img src={pageHeaderPropsUsage} alt="pageHeaderProps Usage"/>
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+       <img src={pageHeaderPropsUsage} alt="pageHeaderProps Usage"/>
+
 </div>
 <br/>
 
@@ -114,10 +120,10 @@ export const App: React.FC = () => {
 
 ### Properties
 
-| Property          | Description                               | Type                                                                                  | Default                                                           |
-| ----------------- | ----------------------------------------- | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| canCreate         | Adds create button                        | `boolean`                                                                             | If `<Resource>` is passed a create component, `true` else `false` |
-| createButtonProps | Adds props for create button              | [ButtonProps](https://ant.design/components/button/#API) & `{ resourceName: string }` | `<CreateButton />`                                                |
-| title             | Adds title                                | `string`                                                                              | Plural of `resource.name`                                         |
-| pageHeaderProps   | Passes properties for `<PageHeader>`      | [PageHeaderProps](https://ant.design/components/page-header/#API)                     | { ghost: false, [title](#title), extra: `<CreateButton />` }      |
+| Property          | Description                                                                    | Type                                                                                  | Default                                                           |
+| ----------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| canCreate         | Adds create button                                                             | `boolean`                                                                             | If `<Resource>` is passed a create component, `true` else `false` |
+| createButtonProps | Adds props for create button                                                   | [ButtonProps](https://ant.design/components/button/#API) & `{ resourceName: string }` | `<CreateButton />`                                                |
+| title             | Adds title                                                                     | `string`                                                                              | Plural of `resource.name`                                         |
+| pageHeaderProps   | Passes properties for `<PageHeader>`                                           | [PageHeaderProps](https://ant.design/components/page-header/#API)                     | { ghost: false, [title](#title), extra: `<CreateButton />` }      |
 | resource          | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                                              | Resource name that it reads from the url.                         |
