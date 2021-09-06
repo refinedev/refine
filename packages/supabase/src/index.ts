@@ -1,31 +1,31 @@
 import { DataProvider } from "@pankod/refine";
-import { CrudOperators } from "@pankod/refine/dist/interfaces";
+import { CrudFilter } from "@pankod/refine/dist/interfaces";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
-const mapOperator = (operator: CrudOperators) => {
-    switch (operator) {
+const generateFilter = (filter: CrudFilter, query: any) => {
+    switch (filter.operator) {
         case "ne":
-            return "neq";
+            return query.filter(filter.field, "neq", filter.value);
         case "in":
-            return "in"; // Bu çalışıyor mu denemek lazım.
+            return query.in(filter.field, filter.value);
         case "nin":
-            return "nin"; // Bu yok bunun için else yapıp  .not('fields', 'in', 'value') yapılabilir.
+            return query.not(filter.field, "in", filter.value);
         case "contains":
-            return "contains";
+            return query.like(filter.field, `%${filter.value}%`);
         case "ncontains":
-            return "ncontains"; // Bu yok bunun için else yapıp  .not('fields', 'contains', 'value') yapılabilir.
+            return "ncontains";
         case "containss":
-            return "containss"; // like operatörüyle birlikte kullanılılabilir.
+            return query.ilike(filter.field, `%${filter.value}%`);
         case "ncontainss":
-            return "ncontainss"; // if ise not ve like ile birlikte olabilir mi?
+            return "ncontainss";
         case "null":
-            return "is";
+            return query.is(filter.field, null);
     }
 
-    return operator;
+    return query.filter(filter.field, filter.operator, filter.value);
 };
 
-const SupabaseDataProvider = (supabaseClient: SupabaseClient): DataProvider => {
+const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
     return {
         getList: async (resource, params) => {
             const current = params.pagination?.current || 1;
@@ -40,15 +40,9 @@ const SupabaseDataProvider = (supabaseClient: SupabaseClient): DataProvider => {
                 query.order(item.field, { ascending: item.order === "asc" });
             });
 
-            const generateFilter = params.filters?.map((item) => ({
-                field: item.field,
-                operator: mapOperator(item.operator),
-                value: item.value,
-            }));
-
-            // generateFilter?.map((item) => {
-            //     query.filter(item.field, item.operator, item.value);
-            // });
+            params.filters?.map((item) => {
+                generateFilter(item, query);
+            });
 
             const { data, count } = await query;
 
@@ -59,53 +53,82 @@ const SupabaseDataProvider = (supabaseClient: SupabaseClient): DataProvider => {
         },
 
         getMany: async (resource, ids) => {
+            const { data } = await supabaseClient
+                .from(resource)
+                .select("*")
+                .in("id", ids);
+
             return {
-                data: [],
+                data: data || [],
             };
         },
 
         create: async (resource, params) => {
+            const { data } = await supabaseClient
+                .from(resource)
+                .insert([params]);
+
             return {
                 data: {
-                    id: 1,
+                    ...data,
                 } as any,
             };
         },
 
         createMany: async (resource, params) => {
+            const { data } = await supabaseClient.from(resource).insert(params);
+
             return {
                 data: {
-                    id: 1,
+                    data,
                 } as any,
             };
         },
 
         update: async (resource, id, params) => {
+            const { data } = await supabaseClient
+                .from(resource)
+                .update(params)
+                .match({ id });
+
             return {
                 data: {
-                    id: 1,
+                    ...data,
                 } as any,
             };
         },
 
         updateMany: async (resource, ids, params) => {
+            // const { data } = await supabaseClient.from(resource).update();
+            // .match({ id });
+
             return {
                 data: [],
             };
         },
 
         getOne: async (resource, id) => {
+            const { data } = await supabaseClient
+                .from(resource)
+                .select("*")
+                .match({ id });
+
             return {
                 data: {
-                    id: 1,
+                    ...data,
                 } as any,
             };
         },
 
         deleteOne: async (resource, id) => {
+            const { data } = await supabaseClient
+                .from(resource)
+                .delete()
+                .match({ id });
+
             return {
                 data: {
-                    id: 1,
+                    ...data,
                 } as any,
             };
         },
@@ -126,4 +149,4 @@ const SupabaseDataProvider = (supabaseClient: SupabaseClient): DataProvider => {
     };
 };
 
-export { SupabaseDataProvider, createClient };
+export { dataProvider, createClient };
