@@ -139,9 +139,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                     <Table
                         {...tableProps}
                         rowKey="id"
-                        scroll={{
-                            x: true,
-                        }}
                         onRow={(record) => {
                             return {
                                 onClick: () => {
@@ -354,7 +351,7 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
                         label={t("orders.filter.createdAt.label")}
                         name="createdAt"
                     >
-                        <RangePicker />
+                        <RangePicker style={{ width: "100%" }} />
                     </Form.Item>
                 </Col>
                 <Col xl={24} md={8} sm={12} xs={24}>

@@ -85,9 +85,6 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                             ? expandedRowRender
                             : undefined,
                     }}
-                    scroll={{
-                        x: true,
-                    }}
                     rowKey="id"
                     onRow={(record) => ({
                         onClick: (event: any) => {
@@ -231,9 +228,6 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
         >
             <Table
                 {...postTableProps}
-                scroll={{
-                    x: true,
-                }}
                 rowKey="id"
             >
                 <Table.Column

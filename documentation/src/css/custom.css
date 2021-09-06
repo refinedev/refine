@@ -32,6 +32,7 @@
     flex-direction: column;
     border-radius: 6.4px;
     overflow: auto;
+    box-shadow: var(--ifm-alert-shadow);
 }
 
 .window {

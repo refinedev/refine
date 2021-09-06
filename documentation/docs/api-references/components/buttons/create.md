@@ -3,7 +3,7 @@ id: create-button
 title: Create
 ---
 
-import listUsage from '@site/static/img/guides-and-concepts/components/buttons/create/usage.png';
+import createButton from '@site/static/img/guides-and-concepts/components/buttons/create/create.png';
 
 `<CreateButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `create` method from [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of `<Resource>`.
 
@@ -44,8 +44,13 @@ export interface IPost {
 
 Will look like this:
 
-<div>
-    <img src={listUsage} alt="Default Create Button" />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={createButton} alt="Default create button" />
 </div>
 
 ## Properties

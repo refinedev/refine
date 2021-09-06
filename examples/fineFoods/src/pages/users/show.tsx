@@ -119,9 +119,6 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                     >
                         <Table
                             {...tableProps}
-                            scroll={{
-                                x: true,
-                            }}
                             rowKey="id"
                         >
                             <Table.Column
@@ -228,7 +225,6 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                     >
                         <Table
                             pagination={false}
-                            scroll={{ x: true }}
                             dataSource={user?.addresses}
                         >
                             <Table.Column
