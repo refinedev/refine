@@ -49,7 +49,7 @@ export const PostList: React.FC = () => {
     );
 };
 
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
     content: string;
