@@ -1,6 +1,6 @@
 {
-  "short_name": "refine import example app",
-  "name": "refine import example app",
+  "short_name": "refine import-export example app",
+  "name": "refine import-export example app",
   "icons": [
     {
       "src": "favicon.ico",

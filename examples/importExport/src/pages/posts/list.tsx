@@ -3,18 +3,20 @@ import {
     Table,
     TextField,
     useTable,
-    IResourceComponentsProps,
+    useMany,
+    useImport,
+    useExport,
     Space,
     EditButton,
     ShowButton,
-    useExport,
+    ImportButton,
+    IResourceComponentsProps,
     ExportButton,
-    useMany,
 } from "@pankod/refine";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ICategory, IPostFile } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = (props) => {
+export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IPost>();
 
     const categoryIds =
@@ -23,7 +25,23 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
         enabled: categoryIds.length > 0,
     });
 
-    const { triggerExport, loading } = useExport<IPost>({
+    const importProps = useImport<IPostFile>({
+        mapData: (item) => {
+            return {
+                title: item.title,
+                content: item.content,
+                status: item.status,
+                category: {
+                    id: item.categoryId,
+                },
+                user: {
+                    id: item.userId,
+                },
+            };
+        },
+    });
+
+    const { triggerExport, loading: exportLoading } = useExport<IPost>({
         mapData: (item) => {
             return {
                 id: item.id,
@@ -39,10 +57,15 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
 
     return (
         <List
-            {...props}
             pageHeaderProps={{
                 extra: (
-                    <ExportButton onClick={triggerExport} loading={loading} />
+                    <Space>
+                        <ImportButton {...importProps} />
+                        <ExportButton
+                            onClick={triggerExport}
+                            loading={exportLoading}
+                        />
+                    </Space>
                 ),
             }}
         >
