@@ -3,8 +3,8 @@ id: edit
 title: Edit
 ---
 
-import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/edit/pageHeaderProps.png'
-import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/edit/actionButtons.png'
+import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/edit/pageHeaderPropsUsage.png'
+import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/edit/actionButtonsUsage.png'
 
 `<Edit>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a refresh button.
 
@@ -91,8 +91,13 @@ export const Edit: React.FC = () => {
 ```
 
 <br/>
-<div>
-    <img src={actionButtonsUsage} alt="actionButton Usage"/>
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={actionButtonsUsage} alt="actionButton Usage" />
 </div>
 <br/>
 
@@ -119,7 +124,12 @@ export const Edit: React.FC = () => {
 ```
 
 <br/>
-<div>
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
     <img src={pageHeaderPropsUsage} alt="pageHeaderProps Usage"/>
 </div>
 <br/>
@@ -205,16 +215,16 @@ export const App: React.FC = () => {
 
 ### Properties
 
-| Property          | Description                                 | Type                                                              | Default                                                                            |
-| ----------------- | ------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| canDelete         | Adds a delete button                          | `boolean`                                                         | If `<Resource>` has `canDelete` prop it is `true` else `false` `false`             |
-| deleteButtonProps | Adds properties for delete button                | [`DeleteButtonProps`](../../interfaces.md#delete-button-props)    | `<DeleteButton>`                                                                   |
-| saveButtonProps   | Adds properties for create button                | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton>`                                                                     |
-| title             | Adds the title                                  | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                    |
-| actionButtons     | Passes properties for `<PageHeader>`             | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
-| pageHeaderProps   | Passes properties for `<PageHeader>`             | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
-| recordItemId      | The record id for `<RefreshButton>`             | `string`                                                          |                                                                                    |
+| Property          | Description                                                                     | Type                                                              | Default                                                                            |
+| ----------------- | ------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| canDelete         | Adds a delete button                                                            | `boolean`                                                         | If `<Resource>` has `canDelete` prop it is `true` else `false` `false`             |
+| deleteButtonProps | Adds properties for delete button                                               | [`DeleteButtonProps`](../../interfaces.md#delete-button-props)    | `<DeleteButton>`                                                                   |
+| saveButtonProps   | Adds properties for create button                                               | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton>`                                                                     |
+| title             | Adds the title                                                                  | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                    |
+| actionButtons     | Passes properties for `<PageHeader>`                                            | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
+| pageHeaderProps   | Passes properties for `<PageHeader>`                                            | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
+| recordItemId      | The record id for `<RefreshButton>`                                             | `string`                                                          |                                                                                    |
 | mutationMode      | [Determines when mutations are executed](/guides-and-concepts/mutation-mode.md) | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`\*                                                                  |
-| resource          | [`Resource`](/api-references/components/resource.md) for API data interactions   | `string`                                                          | Resource name that it reads from the URL.                                          |
+| resource          | [`Resource`](/api-references/components/resource.md) for API data interactions  | `string`                                                          | Resource name that it reads from the URL.                                          |
 
 > `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-references/components/refine-config.md)>** component.
