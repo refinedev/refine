@@ -13,20 +13,26 @@ import filterDropdown from '@site/static/img/category_filter-dropdown.png';
 It serves as a bridge by synchronizing between its children's input value and `<Table>`'s filter values.
 
 ```tsx title="components/pages/postList.tsx"
-import { List, Table, FilterDropdown, useTable } from "@pankod/refine";
+import {
+    List,
+    Table,
+    //highlight-start
+    FilterDropdown,
+    Select,
+    useTable,
+    //highlight-end
+} from "@pankod/refine";
 
-const PostList: React.FC<IResourceComponentsProps> = (props) => {
+const PostList: React.FC = (props) => {
     const { tableProps } = useTable<IPost>();
 
     return (
         <List>
-            <Table
-                {...tableProps}
-                key="id"
-            >
+            <Table {...tableProps} rowkey="id">
+                <Table.Column dataIndex="id" title="ID" />
                 <Table.Column
                     dataIndex={["category", "id"]}
-                    title={"Categories"}
+                    title="Category"
                     key="category.id"
                     filterDropdown={(props) => (
                         //highlight-start
@@ -45,12 +51,11 @@ const PostList: React.FC<IResourceComponentsProps> = (props) => {
                 />
             </Table>
         </List>
-    )
-}
+    );
+};
 ```
 
 Selecting categories from dropdown will send the id's of categories as filtering values to **Table** and data will be updated by **refine** under the hood.
-
 
 `<FilterDropdown>` will put two buttons for filtering and clearing filter actions.
 
@@ -62,7 +67,6 @@ Selecting categories from dropdown will send the id's of categories as filtering
     </div>
     <img src={filterDropdown} alt="Show record action" />
 </div>
-
 
 <br/>
 
@@ -78,16 +82,16 @@ const { selectProps: categorySelectProps } = useSelect<ICategory>({
 
 <Select {...categorySelectProps}>
 ```
-:::
 
+:::
 
 ## Properties
 
 ### `selectedKeys`, `setSelectedKeys`, `confirm`, `clearFilters`
 
 These are to be passed from [`<Table.Column>`'s filterDropdown](https://ant.design/components/table/#Column) prop.
- 
- ### `mapValue`
+
+### `mapValue`
 
 Determines the value passed to children. `mapValue` takes `selectedKeys` as an argument.
 
@@ -95,33 +99,29 @@ By default, `<FilterDropdown>` passes `selectedKeys` as value to its children. F
 
 For example, `<Radio.Group>` component expects a singular value as a prop. Since `selectedKeys` is an array, `<Radio.Group>` won't work properly with it. A singular value for `<Radio.Group>` can be extracted from `selectedKeys`.
 
-```tsx 
+```tsx
 import { Table, Radio, FilterDropdown } from "@pankod/refine";
 
- <Table.Column
+<Table.Column
     dataIndex="status"
     title="status"
     key="status"
     filterDropdown={(props) => (
         <FilterDropdown
             {...props}
-        //highlight-start
+            //highlight-start
             mapValue={(selectedKeys) => {
                 return selectedKeys[0];
             }}
-        //highlight-end
+            //highlight-end
         >
             <Radio.Group>
-                <Radio value="published">
-                    Published
-                </Radio>
-                <Radio value="draft">
-                    Draft
-                </Radio>
+                <Radio value="published">Published</Radio>
+                <Radio value="draft">Draft</Radio>
             </Radio.Group>
         </FilterDropdown>
     )}
-/>
+/>;
 ```
 
 > Since `<Checkbox.Group>` and `<Select>` can accepts an array as value, there is no need to use `mapValue`.
@@ -131,29 +131,37 @@ If [syncWithLocation](refine-config.md#syncwithlocation) is enabled, on page ref
 For example when using `useSelect` for `<Select>` component. In this case values must be mapped to `number`s using `mapValue`.
 
 ```tsx
-import { useTable, Table, FilterDropdown, Select, getDefaultFilter } from "@pankod/refine";
+import {
+    useTable,
+    Table,
+    FilterDropdown,
+    Select,
+    useSelect,
+    getDefaultFilter,
+} from "@pankod/refine";
 
 const { tableProps, filters } = useTable<IPost>({
-        initialFilter: [
-            {
-                field: "category.id",
-                value: [1, 2],
-                operator: "in",
-            },
-        ],
-    });
+    initialFilter: [
+        {
+            field: "category.id",
+            value: [1, 2],
+            operator: "in",
+        },
+    ],
+});
 
 const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-        optionLabel: "title",
-        optionValue: "id",
-        defaultValue: getDefaultFilter("category.id", filters),
-    });
+    resource: "categories",
+    optionLabel: "title",
+    optionValue: "id",
+    defaultValue: getDefaultFilter("category.id", filters),
+});
 
 <Table>
+    <Table.Column dataIndex="id" title="ID" />
     <Table.Column
         dataIndex={["category", "id"]}
-        title={translate("common:resources.posts.fields.category")}
+        title="Category"
         key="category.id"
         filterDropdown={(props) => (
             <FilterDropdown
@@ -170,12 +178,10 @@ const { selectProps: categorySelectProps } = useSelect<ICategory>({
                 />
             </FilterDropdown>
         )}
-        defaultFilteredValue={getDefaultFilter(
-            "category.id",
-            filters,
-        )}
+        defaultFilteredValue={getDefaultFilter("category.id", filters)}
     />
-</Table>
+</Table>;
 ```
+
 > `getDefaultFilter` finds filter values for a given column from the given filters. In the example, `filters` passed to `getDefaultFilter` includes filter values from the URL since it comes from `useTable`.
-:::
+> :::
