@@ -72,9 +72,15 @@ export const App: React.FC = () => {
 };
 ```
 
-<div style={{textAlign: "center"}}>
-    <img src={showUsage} alt="useShow Basic Usage"/>
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={showUsage} alt="useShow Basic Usage" />
 </div>
+
 
 <br />
 
@@ -196,8 +202,13 @@ export const App: React.FC = () => {
 };
 ```
 
-<div style={{textAlign: "center"}}>
-    <img src={modalUsage} alt="useShow Modal Usage"/>
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={modalUsage} alt="useShow Modal Usage" />
 </div>
 
 <br />

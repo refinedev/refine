@@ -3,9 +3,9 @@ id: multipart-upload
 title: Multipart Upload
 ---
 
-import create from '@site/static/img/guides-and-concepts/multipart-upload/create.jpg';
-import uploadedFile from '@site/static/img/guides-and-concepts/multipart-upload/uploaded.jpg';
-import edit from '@site/static/img/guides-and-concepts/multipart-upload/edit.jpg';
+import create from '@site/static/img/guides-and-concepts/multipart-upload/create.png';
+import uploadedFile from '@site/static/img/guides-and-concepts/multipart-upload/uploaded.png';
+import edit from '@site/static/img/guides-and-concepts/multipart-upload/edit.png';
 
 We will show you how to multipart upload with **refine**.
 
@@ -18,12 +18,14 @@ Let's add the image field to the post `creation form`.
 ```tsx title="pages/posts/create.tsx"
 import { 
     // highlight-start
-    Upload
+    Upload,
     getValueFromEvent,
+    useApiUrl,
     // highlight-end
     Create,
     Form,
     Input,
+    useForm,
 } from "@pankod/refine";
 
 import { IPost } from "interfaces";
@@ -99,13 +101,18 @@ We can reach the API URL by using the `useApiUrl` hook.
 
 It will look like this.
 
-<>
 
-<div style={{textAlign: "center"}}>
-<img src={create} />
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={create} alt="multipart upload in a create page" />
 </div>
+
 <br/>
-</>
 
 What we need now is an upload end-point that accepts multipart uploads. We write this address in the `action` property of the `Upload` component.
 
@@ -127,8 +134,13 @@ This end-point should respond similarly.
 }
 ```
 
-<div style={{textAlign: "center"}}>
-    <img src={uploadedFile} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={uploadedFile} alt="multipart upload uploaded item" />
 </div>
 <br/>
 
@@ -173,8 +185,9 @@ Let's add the image field to the post editing form.
 ```tsx title="pages/posts/edit.tsx"
 import { 
     // highlight-start
-    Upload
+    Upload,
     getValueFromEvent,
+    useApiUrl,
     // highlight-end
     Edit,
     Form,
@@ -231,8 +244,13 @@ export const PostEdit: React.FC = () => {
 };
 ```
 
-<div style={{textAlign: "center"}}>
-<img src={edit} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={edit} alt="multipart upload in edit page" />
 </div>
 <br/>
 

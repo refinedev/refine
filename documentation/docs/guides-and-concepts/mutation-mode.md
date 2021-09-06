@@ -3,7 +3,10 @@ id: mutation-mode
 title: Mutation Mode
 ---
 
-import test from '@site/static/img/guides-and-concepts/mutation-mode/test.png';
+import pessimistic from '@site/static/img/guides-and-concepts/mutation-mode/pessimistic.gif';
+import optimistic from '@site/static/img/guides-and-concepts/mutation-mode/optimistic.gif';
+import undoable from '@site/static/img/guides-and-concepts/mutation-mode/undoable.gif';
+
 
 ## Overview
 Mutation mode determines which mode the mutation runs with. Mutations can run under three different modes: `pessimistic`, `optimistic` and `undoable`.  
@@ -18,9 +21,16 @@ The mutation runs immediately. Redirection and UI updates are executed after the
 
 <br />
 
-<div>
-    <img src={test} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={pessimistic} alt="pessimistic mode" />
 </div>
+
+<br />
 
 > When the user clicks on save button, request to the API happens directly and after successful response, list page updates with newly edited record.
 
@@ -31,9 +41,16 @@ The mutation is applied locally, redirection and UI updates are executed immedia
 
 <br />
 
-<div>
-    <img src={test} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={optimistic} alt="optimistic mode" />
 </div>
+
+<br />
 
 > When the user clicks on save button, request to the API happens directly and list page updates with edited data immediately without waiting API response.
 
@@ -44,11 +61,18 @@ The mutation is applied locally, redirection and UI updates are executed immedia
 
 <br />
 
-<div>
-    <img src={test} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={undoable} alt="undoable mode" />
 </div>
 
-> When the user clicks on save button, request isn't sent to API immediately however list page updates with edited data. It waits for a period of time while the user can cancel the mutation. If the mutation is cancelled locally applied edit is undone.
+<br />
+
+> When the user clicks on save button, request isn't sent to API immediately however list page updates with edited data. It waits for a period of time while the user can cancel the mutation. If the mutation is cancelled, locally applied edit is undone.
 
 ## Usage
 Mutation mode can be set application-wide in [`<Refine>`](/api-references/components/refine-config.md#mutationmode) component. 

@@ -3,6 +3,8 @@ id: useModal
 title: useModal
 ---
 
+import useModal from '@site/static/img/hooks/useModal/useModal.gif';
+
 `useModal` hook allows you to manage a modal. It returns the props to manage Ant Design's [Modal][Modal] components. 
 
 ```ts
@@ -65,6 +67,19 @@ export interface IPost {
     content: string;
 }
 ```
+
+<br />
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={useModal} alt="use modal usage" />
+</div>
+
+<br />
 
 Here, we show a button somewhere on the page and use `show` on it's `onClick` callback to trigger opening of the modal below the `<List>` component. When the user clicks on the button, the modal appears.
 
