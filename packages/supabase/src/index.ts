@@ -149,7 +149,7 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             throw Error("Not implemented on refine-supabase data provider.");
         },
 
-        custom: async () => {
+        custom: () => {
             throw Error("Not implemented on refine-supabase data provider.");
         },
     };
