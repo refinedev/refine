@@ -229,8 +229,13 @@ By giving the `<Table.Column>` component a unique `render` property, you can ren
 Refer to [`<Table.Column>`][Table.Column] documentation for more information.
 :::
 
-<div style={{textAlign: "center"}}>
-    <img src={editButton} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={editButton} alt="Editing rows with edit button" />
 </div>
 
 ## Editing by clicking to row
@@ -304,8 +309,13 @@ export const PostList: React.FC = () => {
 };
 ```
 
-<div style={{textAlign: "center"}}>
-    <img src={rowClickEdit} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={rowClickEdit} alt="Row click edit functionality in action" />
 </div>
 
 ## API
