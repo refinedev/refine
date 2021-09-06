@@ -91,83 +91,6 @@ describe("useImport hook", () => {
         });
     });
 
-    it("should call mutate method of result of useCreateMany one time with correct values if batchSize=null", async () => {
-        const mockDataProvider = {
-            ...MockJSONServer,
-            createMany: jest.fn(),
-        } as IDataContext;
-
-        jest.useFakeTimers();
-
-        const { result } = renderHook(
-            () =>
-                useImport({
-                    batchSize: undefined,
-                }),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: mockDataProvider,
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
-
-        await act(async () => {
-            await result.current.uploadProps.onChange?.({
-                fileList: [],
-                file: file as unknown as UploadFile,
-            });
-
-            jest.runAllTimers();
-        });
-    });
-
-    it("should call mutate method of result of useCreate many times with correct values if batchSize is 1", async (done) => {
-        const mockDataProvider = {
-            ...MockJSONServer,
-            create: jest.fn(),
-        } as IDataContext;
-
-        const { result } = renderHook(
-            () =>
-                useImport({
-                    batchSize: 1,
-                    onFinish: () => {
-                        expect(mockDataProvider.create).toHaveBeenCalledWith(
-                            "posts",
-                            parsedData[0],
-                        );
-                        expect(mockDataProvider.create).toHaveBeenCalledWith(
-                            "posts",
-                            parsedData[1],
-                        );
-                        expect(mockDataProvider.create).toHaveBeenCalledWith(
-                            "posts",
-                            parsedData[2],
-                        );
-                        done();
-                    },
-                }),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: mockDataProvider,
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
-
-        await act(async () => {
-            jest.useFakeTimers();
-
-            await result.current.uploadProps.onChange?.({
-                fileList: [],
-                file: file as unknown as UploadFile,
-            });
-
-            jest.runAllTimers();
-        });
-    });
-
     it("should call mutate method of result of useCreateMany many times with correct values in if batchSize is 2", async (done) => {
         const mockDataProvider = {
             ...MockJSONServer,
@@ -233,7 +156,6 @@ describe("useImport hook", () => {
         const { result } = renderHook(
             () =>
                 useImport({
-                    batchSize: undefined,
                     mapData: (data) => ({
                         id: data.id,
                         newTitle: data.title,
@@ -280,7 +202,6 @@ describe("useImport hook", () => {
         const { result } = renderHook(
             () =>
                 useImport({
-                    batchSize: undefined,
                     resourceName: "tests",
                     onFinish: () => {
                         expect(
@@ -318,7 +239,6 @@ describe("useImport hook", () => {
         const { result } = renderHook(
             () =>
                 useImport({
-                    batchSize: undefined,
                     resourceName: "tests",
                 }),
             {
@@ -337,89 +257,231 @@ describe("useImport hook", () => {
         expect(beforeUploadResult).toBe(false);
     });
 
-    it("should give successes in onFinish callback if batchSize=null", async (done) => {
-        const mockDataProvider = {
-            ...MockJSONServer,
-            createMany: jest.fn(async () => {
-                return {
-                    data: parsedData,
-                };
-            }),
-        } as IDataContext;
+    describe("batchSize = undefined", () => {
+        it("should call mutate method of result of useCreateMany one time with correct values if batchSize=undefined", async () => {
+            const mockDataProvider = {
+                ...MockJSONServer,
+                createMany: jest.fn(),
+            } as IDataContext;
 
-        const { result } = renderHook(
-            () =>
-                useImport({
-                    batchSize: undefined,
-                    resourceName: "tests",
-                    onFinish: ({ succeeded }) => {
-                        expect(succeeded[0].request).toEqual(parsedData);
-                        done();
-                    },
-                }),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: mockDataProvider,
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
-
-        await act(async () => {
             jest.useFakeTimers();
 
-            await result.current.uploadProps.onChange?.({
-                fileList: [],
-                file: file as unknown as UploadFile,
-            });
+            const { result } = renderHook(
+                () =>
+                    useImport({
+                        batchSize: undefined,
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: mockDataProvider,
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
 
-            jest.runAllTimers();
+            await act(async () => {
+                await result.current.uploadProps.onChange?.({
+                    fileList: [],
+                    file: file as unknown as UploadFile,
+                });
+
+                jest.runAllTimers();
+            });
+        });
+
+        it("should give successes in onFinish callback if batchSize=undefined", async (done) => {
+            const mockDataProvider = {
+                ...MockJSONServer,
+                createMany: jest.fn(async () => {
+                    return {
+                        data: parsedData,
+                    };
+                }),
+            } as IDataContext;
+
+            const { result } = renderHook(
+                () =>
+                    useImport({
+                        resourceName: "posts",
+                        onFinish: ({ succeeded }) => {
+                            expect(succeeded[0].request).toEqual(parsedData);
+                            done();
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: mockDataProvider,
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            await act(async () => {
+                jest.useFakeTimers();
+
+                await result.current.uploadProps.onChange?.({
+                    fileList: [],
+                    file: file as unknown as UploadFile,
+                });
+
+                jest.runAllTimers();
+            });
+        });
+
+        it("should give errors in onFinish callback if batchSize=undefined", async (done) => {
+            const mockDataProvider = {
+                ...MockJSONServer,
+                createMany: () => {
+                    const customError: HttpError = {
+                        message: "bir şey oldu",
+                        statusCode: 500,
+                    };
+
+                    return Promise.reject(customError);
+                },
+            } as IDataContext;
+
+            const { result } = renderHook(
+                () =>
+                    useImport({
+                        resourceName: "posts",
+                        onFinish: ({ errored }) => {
+                            expect(errored[0].response[0]).toEqual({
+                                message: "bir şey oldu",
+                                statusCode: 500,
+                            });
+                            done();
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: mockDataProvider,
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            await act(async () => {
+                jest.useFakeTimers();
+
+                await result.current.uploadProps.onChange?.({
+                    fileList: [],
+                    file: file as unknown as UploadFile,
+                });
+
+                jest.runAllTimers();
+            });
         });
     });
 
-    it("should give errors in onFinish callback if batchSize=undefined", async (done) => {
-        const mockDataProvider = {
-            ...MockJSONServer,
-            createMany: () => {
-                const customError: HttpError = {
-                    message: "bir şey oldu",
-                    statusCode: 500,
-                };
+    describe("batchSize = 1", () => {
+        it("should call mutate method of result of useCreate many times with correct values if batchSize is 1", async (done) => {
+            const mockDataProvider = {
+                ...MockJSONServer,
+                create: jest.fn(),
+            } as IDataContext;
 
-                return Promise.reject(customError);
-            },
-        } as IDataContext;
+            const { result } = renderHook(
+                () =>
+                    useImport({
+                        batchSize: 1,
+                        onFinish: () => {
+                            expect(
+                                mockDataProvider.create,
+                            ).toHaveBeenCalledWith("posts", parsedData[0]);
+                            expect(
+                                mockDataProvider.create,
+                            ).toHaveBeenCalledWith("posts", parsedData[1]);
+                            expect(
+                                mockDataProvider.create,
+                            ).toHaveBeenCalledWith("posts", parsedData[2]);
+                            done();
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: mockDataProvider,
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
 
-        const { result } = renderHook(
-            () =>
-                useImport({
-                    batchSize: undefined,
-                    resourceName: "posts",
-                    onFinish: ({ errored }) => {
-                        expect(errored[0].response[0]).toEqual({
-                            message: "bir şey oldu",
-                            statusCode: 500,
-                        });
-                        done();
-                    },
-                }),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: mockDataProvider,
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
+            await act(async () => {
+                jest.useFakeTimers();
 
-        await act(async () => {
-            jest.useFakeTimers();
+                await result.current.uploadProps.onChange?.({
+                    fileList: [],
+                    file: file as unknown as UploadFile,
+                });
 
-            await result.current.uploadProps.onChange?.({
-                fileList: [],
-                file: file as unknown as UploadFile,
+                jest.runAllTimers();
             });
+        });
 
-            jest.runAllTimers();
+        it("should give successes in onFinish callback if batchSize=1", async (done) => {
+            const mockDataProvider = {
+                ...MockJSONServer,
+                create: jest.fn(async (resource, request: any) => {
+                    if (request.title === "Viral Strategist Local") {
+                        return {
+                            data: parsedData[0],
+                        };
+                    }
+
+                    if (request.title === "Concrete Soap Neural") {
+                        return {
+                            data: parsedData[1],
+                        };
+                    }
+
+                    if (request.title === "Strategist Soap Viral") {
+                        return {
+                            data: parsedData[2],
+                        };
+                    }
+
+                    return {
+                        data: parsedData[0],
+                    };
+                }),
+            } as IDataContext;
+
+            const { result } = renderHook(
+                () =>
+                    useImport({
+                        batchSize: 1,
+                        resourceName: "posts",
+                        onFinish: ({ succeeded }) => {
+                            expect(succeeded[0].response[0]).toEqual(
+                                parsedData[0],
+                            );
+                            expect(succeeded[1].response[0]).toEqual(
+                                parsedData[1],
+                            );
+                            expect(succeeded[2].response[0]).toEqual(
+                                parsedData[2],
+                            );
+                            done();
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: mockDataProvider,
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            await act(async () => {
+                jest.useFakeTimers();
+
+                await result.current.uploadProps.onChange?.({
+                    fileList: [],
+                    file: file as unknown as UploadFile,
+                });
+
+                jest.runAllTimers();
+            });
         });
     });
 });
