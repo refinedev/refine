@@ -143,7 +143,7 @@ You can use `AntdList.Item` and `AntdList.Item.Meta` like `<List>` component fro
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={useSimpleList} alt="useShow Modal Usage" />
+    <img src={useSimpleList} alt="use simple list" />
 </div>
 
 ## API
