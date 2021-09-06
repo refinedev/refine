@@ -1,4 +1,3 @@
-import { updateExpression } from "@babel/types";
 import { DataProvider } from "@pankod/refine";
 import { CrudFilter } from "@pankod/refine/dist/interfaces";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
@@ -10,15 +9,15 @@ const generateFilter = (filter: CrudFilter, query: any) => {
         case "in":
             return query.in(filter.field, filter.value);
         case "nin":
-            return query.not(filter.field, "in", filter.value);
+            throw Error("Not implemented on refine-supabase data provider.");
         case "contains":
             return query.like(filter.field, `%${filter.value}%`);
         case "ncontains":
-            return "ncontains";
+            throw Error("Not implemented on refine-supabase data provider.");
         case "containss":
             return query.ilike(filter.field, `%${filter.value}%`);
         case "ncontainss":
-            return "ncontainss";
+            throw Error("Not implemented on refine-supabase data provider.");
         case "null":
             return query.is(filter.field, null);
     }
