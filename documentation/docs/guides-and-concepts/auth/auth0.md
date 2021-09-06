@@ -141,9 +141,6 @@ After clicking the `Login` button, you will be directed to the auth0 login scree
     </div>
     <img src={login} alt="auth0-login" />
 </div>
-<div style={{textAlign: "center"}}>
-    <img src={login} />
-</div>
 <br/>
 
 ### Auth Provider
