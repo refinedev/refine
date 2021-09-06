@@ -21,13 +21,11 @@ We will show you how to use `useMenu` to create a custom sider menu that is iden
 
 First we define `<CustomMenu>`:
 
-```tsx title="src/CustomMenu.tsx"
-import React from "react";
+```tsx twoslash title="src/CustomMenu.tsx" {4, 12, 16-20}
 import { AntdLayout, Menu, Link, useMenu, useTitle } from "@pankod/refine";
 
 export const CustomMenu: React.FC = () => {
     const Title = useTitle();
-    //highlight-next-line
     const { menuItems, selectedKey } = useMenu();
 
     return (
@@ -36,17 +34,14 @@ export const CustomMenu: React.FC = () => {
             <Menu
                 theme="dark"
                 defaultSelectedKeys={["dashboard"]}
-                //highlight-next-line
                 selectedKeys={[selectedKey]}
                 mode="inline"
             >
-                //highlight-start
                 {menuItems.map(({ icon, route, label }) => (
                     <Menu.Item key={route} icon={icon}>
                         <Link to={route}>{label}</Link>
                     </Menu.Item>
                 ))}
-                //highlight-end
             </Menu>
         </AntdLayout.Sider>
     );
@@ -59,21 +54,23 @@ export const CustomMenu: React.FC = () => {
 
 We can override the default sider and show the custom menu we implemented in its place by passing a the custom component to `<Refine>`s `Sider` prop:
 
-```tsx title="App.tsx"
+```tsx title="App.tsx" {6, 14}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList } from "pages/posts";
-//highlight-next-line
+
 import { CustomMenu } from "./CustomMenu";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        //highlight-next-line
-        <Refine dataProvider={dataProvider(API_URL)} Sider={CustomMenu}>
+        <Refine 
+            dataProvider={dataProvider(API_URL)} 
+            Sider={CustomMenu}
+        >
             <Resource name="posts" list={PostList} />
         </Refine>
     );
@@ -86,29 +83,24 @@ export default App;
 
 We can also add a logout button:
 
-```tsx title="src/CustomMenu.tsx"
-import React from "react";
+```tsx twoslash title="src/CustomMenu.tsx" {6-8, 15-16, 41-43}
 import {
     AntdLayout,
     Menu,
     Link,
     useMenu,
     useTitle,
-    //highlight-start
     Icons,
     useNavigation,
     useLogout,
-    //highlight-end
 } from "@pankod/refine";
 
 export const CustomMenu: React.FC = () => {
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
-    //highlight-start
-    const { isProvided } = useContext<IAuthContext>(AuthContext);
+
     const { mutate: logout } = useLogout();
     const { push } = useNavigation();
-    //highlight-end
 
     return (
         <AntdLayout.Sider>
@@ -133,13 +125,9 @@ export const CustomMenu: React.FC = () => {
                     </Menu.Item>
                 ))}
 
-                //highlight-start
-                {isProvided && (
-                    <Menu.Item key="logout" icon={<Icons.LogoutOutlined />}>
-                        Logout
-                    </Menu.Item>
-                )}
-                //highlight-end
+                <Menu.Item key="logout" icon={<Icons.LogoutOutlined />}>
+                    Logout
+                </Menu.Item>
             </Menu>
         </AntdLayout.Sider>
     );
