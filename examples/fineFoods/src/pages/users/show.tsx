@@ -117,10 +117,7 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                             extra: <></>,
                         }}
                     >
-                        <Table
-                            {...tableProps}
-                            rowKey="id"
-                        >
+                        <Table {...tableProps} rowKey="id">
                             <Table.Column
                                 key="orderNumber"
                                 dataIndex="orderNumber"
@@ -223,10 +220,7 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                             },
                         }}
                     >
-                        <Table
-                            pagination={false}
-                            dataSource={user?.addresses}
-                        >
+                        <Table pagination={false} dataSource={user?.addresses}>
                             <Table.Column
                                 dataIndex="text"
                                 title={t("users.addresses.address")}

@@ -80,7 +80,7 @@ export const DailyRevenue: React.FC = () => {
         return config;
     }, [data]);
 
-    const disabledDate = (date: Dayjs) => date > dayjs()
+    const disabledDate = (date: Dayjs) => date > dayjs();
 
     return (
         <div className="daily-revenue-wrapper">
@@ -144,7 +144,13 @@ export const DailyRevenue: React.FC = () => {
                     format="YYYY/MM/DD"
                 />
             </div>
-            <Line padding={0} appendPadding={10} height={135} style={{maxHeight: "135px"}} {...config} />
+            <Line
+                padding={0}
+                appendPadding={10}
+                height={135}
+                style={{ maxHeight: "135px" }}
+                {...config}
+            />
         </div>
     );
 };
