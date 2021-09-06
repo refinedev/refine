@@ -130,8 +130,18 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
         },
 
         deleteMany: async (resource, ids) => {
+            const response = await Promise.all(
+                ids.map(async (id) => {
+                    const { data } = await supabaseClient
+                        .from(resource)
+                        .delete()
+                        .match({ id });
+                    return (data || [])[0];
+                }),
+            );
+
             return {
-                data: [],
+                data: response,
             };
         },
 
