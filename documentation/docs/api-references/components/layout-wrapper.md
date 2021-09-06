@@ -14,12 +14,11 @@ This component accepts layout customizations to further customize the layout par
 
 An example use in a custom page may look like this:
 
-```tsx title="App.tsx"
+```tsx title="App.tsx" {4, 14-22, 28-34}
 import {
     Refine,
     Resource,
     Authenticated,
-    //highlight-next-line
     LayoutWrapper,
 } from "@pankod/refine";
 
@@ -30,7 +29,6 @@ import { PostList } from "pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
-//highlight-start
 const AuthenticatedPostReview = () => {
     return (
         <Authenticated>
@@ -40,7 +38,6 @@ const AuthenticatedPostReview = () => {
         </Authenticated>
     );
 };
-//highlight-end
 
 const App: React.FC = () => {
     return (
