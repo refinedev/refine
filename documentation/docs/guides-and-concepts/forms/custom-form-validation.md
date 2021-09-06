@@ -3,7 +3,7 @@ id: custom-form-validation
 title: Custom Form Validation
 ---
 
-import createForm from '@site/static/img/examples/form/custom-form-validation.gif';
+import customValidation from '@site/static/img/examples/form/custom-form-validation.gif';
 
 In refine, we can use the form validation that comes with `Ant Design` with the [rules](https://ant.design/components/form/#Rule) property of the [Form.Item](https://ant.design/components/form/#Form.Item) component.
 
@@ -96,7 +96,7 @@ export const PostCreate = () => {
                                     return Promise.resolve();
                                 }
                                 return Promise.reject(
-                                    new Error("'title' is must be unique"),
+                                    new Error("'title' must be unique"),
                                 );
                             },
                         },
@@ -114,9 +114,13 @@ export const PostCreate = () => {
 ```
 
 <>
-
-<div style={{textAlign: "center"}}>
-<img src={createForm} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={customValidation} alt="custom form validation" />
 </div>
 <br/>
 </>
