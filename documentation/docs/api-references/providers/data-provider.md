@@ -72,7 +72,7 @@ Data hooks uses [React Query](https://react-query.tanstack.com/) to manage data 
 
 ## Usage
 
-To activate data provider in refine, we have to pass the `dataProvider` to the `<Admin />` component.
+To activate data provider in refine, we have to pass the `dataProvider` to the `<Refine />` component.
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine";
