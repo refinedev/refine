@@ -3,8 +3,8 @@ id: create
 title: Create
 ---
 
-import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/create/pageHeaderProps.png'
-import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/create/actionButtons.png'
+import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/create/pageHeaderPropsUsage.png'
+import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/create/actionButtonsUsage.png'
 
 `<Create>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like action buttons and giving titles to the page.
 
@@ -63,8 +63,13 @@ export const Create: React.FC = () => {
 ```
 
 <br/>
-<div>
-    <img src={actionButtonsUsage} alt="actionButton Usage"/>
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={actionButtonsUsage} alt="actionButton Usage" />
 </div>
 <br/>
 
@@ -92,7 +97,12 @@ export const Create: React.FC = () => {
 ```
 
 <br/>
-<div>
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
     <img src={pageHeaderPropsUsage} alt="pageHeaderProps Usage"/>
 </div>
 <br/>
@@ -133,10 +143,10 @@ export const App: React.FC = () => {
 
 ### Properties
 
-| Property        | Description                               | Type                                                              | Default                                                                            |
-| --------------- | ----------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| saveButtonProps | Adds props for create button              | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton>`                                                                     |
-| title           | Adds title                                | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                    |
-| actionButtons   | Passes the props for `<PageHeader>`           | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
-| pageHeaderProps | Passes the props for `<PageHeader>`           | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
+| Property        | Description                                                                    | Type                                                              | Default                                                                            |
+| --------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| saveButtonProps | Adds props for create button                                                   | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton>`                                                                     |
+| title           | Adds title                                                                     | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                    |
+| actionButtons   | Passes the props for `<PageHeader>`                                            | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
+| pageHeaderProps | Passes the props for `<PageHeader>`                                            | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
 | resource        | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                          | Resource name that it reads from the URL.                                          |
