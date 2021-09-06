@@ -1,17 +1,16 @@
-import dataProvider from "../../src/index";
+import { dataProvider } from "../../src";
+import supabaseClient from "../supabaseClient";
 import "./index.mock";
 
 describe("getOne", () => {
     it("correct response", async () => {
-        const response = await dataProvider(
-            "keywoytODSr6xAqfg",
-            "appKYl1H4k9g73sBT",
-        ).getOne("posts", "recLKRioqifTrPUIz");
+        const { data } = await dataProvider(supabaseClient).getOne(
+            "posts",
+            "2",
+        );
 
-        const { data } = response;
-
-        expect(data.title).toBe("Hello World!");
-        expect(data.status).toBe("rejected");
-        expect(data.category).toEqual(["recDBRJljBDFH4rIh"]);
+        expect(data.title).toBe("Hello World");
+        expect(data.content).toBe("test content");
+        expect(data.categoryId).toEqual(1);
     });
 });
