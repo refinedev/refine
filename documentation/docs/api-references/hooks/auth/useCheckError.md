@@ -14,15 +14,13 @@ Data that is resolved from the `checkError` will be returned as the `data` in th
 
 Imagine that we make a payment request which is declined by the API. If error status code is `418`, user will be logged out for security reasons.
 
-```tsx
+```tsx twoslash {2,6}
 import { useCheckError } from "@pankod/refine";
 
-// inside a component
 const { mutate: checkError } = useCheckError();
 
-fetch('http://example.com/payment', { options })
+fetch('http://example.com/payment')
     .then(() => console.log("Success"))
-    // highlight-next-line
     .catch((error) => checkError(error));
 ```
 
@@ -32,14 +30,13 @@ fetch('http://example.com/payment', { options })
 
 We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `checkError` method like below.
 
-```tsx
+```tsx {6-12}
 const authProvider: AuthProvider = {
     ...
     logout: () => {
         ...
         return Promise.resolve();
     },
-    // highlight-start
     checkError: (error) => {
         const status = error.status;
         if (status === 418) {
@@ -47,7 +44,6 @@ const authProvider: AuthProvider = {
         }
         return Promise.resolve();
     },
-    // highlight-end
    ...
 };
 ```

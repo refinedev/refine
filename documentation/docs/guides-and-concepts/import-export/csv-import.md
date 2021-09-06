@@ -13,18 +13,14 @@ You can call the `useImport` hook and add an `<ImportButton>` with properties re
 
 Let's look at an example of adding a custom import button:
 
-```tsx title="pages/posts/list.tsx"
+```tsx twoslash title="pages/posts/list.tsx" {4-5, 17, 21-23}
 import {
     List,
     useTable,
     useMany,
-    //highlight-start
     useImport,
     ImportButton,
-    //highlight-end
 } from "@pankod/refine";
-
-import { IPost, ICategory, IPostFile } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -35,30 +31,25 @@ export const PostList: React.FC = () => {
         enabled: categoryIds.length > 0,
     });
 
-    //highlight-next-line
     const importProps = useImport<IPostFile>();
 
     return (
         <List
-            //highlight-start
             pageHeaderProps={{
                 extra: <ImportButton {...importProps} />,
             }}
-            //highlight-end
         >
             ...
         </List>
     );
 };
-```
 
-```tsx title="interfaces/index.d.ts"
-export interface ICategory {
+interface ICategory {
     id: string;
     title: string;
 }
 
-export interface IPostFile {
+interface IPostFile {
     id: string;
     title: string;
     content: string;
@@ -67,7 +58,7 @@ export interface IPostFile {
     status: "published" | "draft" | "rejected";
 }
 
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
     content: string;
@@ -94,7 +85,37 @@ It has 3 entries. We should map `categoryId` to `category.id` and `userId` to `
 
 This would make our `useImport` call look like this:
 
-```tsx title="/src/pages/posts/list.tsx"
+```tsx twoslash title="/src/pages/posts/list.tsx" {10-22}
+interface ICategory {
+    id: string;
+    title: string;
+}
+
+interface IPostFile {
+    id: string;
+    title: string;
+    content: string;
+    userId: number;
+    categoryId: number;
+    status: "published" | "draft" | "rejected";
+}
+
+interface IPost {
+    id: string;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: ICategory;
+}
+
+import {
+    List,
+    useTable,
+    useMany,
+    useImport,
+    ImportButton,
+} from "@pankod/refine";
+// ---cut---
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
@@ -105,7 +126,6 @@ export const PostList: React.FC = () => {
     });
 
     const importProps = useImport<IPostFile>({
-        //highlight-start
         mapData: (item) => {
             return {
                 title: item.title,
@@ -119,9 +139,9 @@ export const PostList: React.FC = () => {
                 },
             };
         },
-        //highlight-end
     });
-    ...
+
+    return <></>;
 }
 ```
 

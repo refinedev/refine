@@ -38,26 +38,9 @@ Let's assume that the data we will show in the table comes from the endpoint as 
 ]
 ```
 
-Then an interface like this would suffice for us:
-
-```tsx title="/src/interfaces/index.d.ts"
-export interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    hit: number;
-    category: ICategory;
-}
-
-export interface ICategory {
-    id: string;
-    title: string;
-}
-```
-
 If we want to make a listing page where we show the `title`, `content`, `hit` and `category.title` values:
 
-```tsx
+```tsx twoslash {13-23, 40-55, 61}
 import {
     PageHeader,
     Typography,
@@ -68,12 +51,9 @@ import {
     Space,
 } from "@pankod/refine";
 
-import { IPost, ICategory } from "interfaces";
-
 export const PostList: React.FC = () => {
     const { Text } = Typography;
 
-    //highlight-start
     const { listProps } = useSimpleList<IPost>({
         initialSorter: [
             {
@@ -85,7 +65,6 @@ export const PostList: React.FC = () => {
             pageSize: 6,
         },
     });
-    //highlight-end
 
     const categoryIds =
         listProps?.dataSource?.map((item) => item.category.id) ?? [];
@@ -102,13 +81,13 @@ export const PostList: React.FC = () => {
         )?.title;
 
         return (
-            //highlight-start
             <AntdList.Item
                 actions={[
                     <Space key={item.id} direction="vertical" align="end">
                         <NumberField
                             value={hit}
                             options={{
+                                // @ts-ignore
                                 notation: "compact",
                             }}
                         />
@@ -118,17 +97,28 @@ export const PostList: React.FC = () => {
             >
                 <AntdList.Item.Meta title={title} description={content} />
             </AntdList.Item>
-            //highlight-end
         );
     };
 
     return (
-        <PageHeader title="Posts">
-            //highlight-next-line
+        <PageHeader ghost={false} title="Posts">
             <AntdList {...listProps} renderItem={renderItem} />
         </PageHeader>
     );
 };
+
+interface IPost {
+    id: string;
+    title: string;
+    content: string;
+    hit: number;
+    category: ICategory;
+}
+
+interface ICategory {
+    id: string;
+    title: string;
+}
 ```
 
 :::tip
@@ -136,8 +126,14 @@ You can use `AntdList.Item` and `AntdList.Item.Meta` like `<List>` component fro
 :::
 
 <br/>
-<div style={{textAlign: "center"}}>
-    <img src={useSimpleList} />
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={useSimpleList} alt="use simple list" />
 </div>
 
 ## API

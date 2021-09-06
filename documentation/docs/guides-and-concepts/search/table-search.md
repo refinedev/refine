@@ -9,13 +9,11 @@ We can make extensive search / filter operations using the `useTable` hook on th
 
 First, we create a form by extracting `searchFormProps` from `useTable`. We will use this form for search / filtering.
 
-```tsx title="pages/list.tsx"
+```tsx twoslash title="pages/list.tsx" {1-3, 14, 19-33}
 import {
-    //highlight-start
     Form,
     Table,
     useTable,
-    //highlight-end
     List,
     Button,
     DatePicker,
@@ -25,37 +23,35 @@ import {
 
 const { RangePicker } = DatePicker;
 
-//highlight-next-line
-const { searchFormProps } = useTable<IPost>();
+export const ListPage: React.FC = () => {
+    const { searchFormProps } = useTable<IPost>();
 
-return (
-    <List>
-        <Space direction="vertical" size="large">
-            //highlight-start
-            <Form layout="inline" {...searchFormProps}>
-                <Form.Item label="Title" name="title">
-                    <Input placeholder="Title" />
-                </Form.Item>
+    return (
+        <List>
+            <Space direction="vertical" size="large">
+                <Form layout="inline" {...searchFormProps}>
+                    <Form.Item label="Title" name="title">
+                        <Input placeholder="Title" />
+                    </Form.Item>
 
-                <Form.Item label="Created At" name="createdAt">
-                    <RangePicker />
-                </Form.Item>
+                    <Form.Item label="Created At" name="createdAt">
+                        <RangePicker />
+                    </Form.Item>
 
-                <Form.Item>
-                    <Button type="primary" htmlType="submit">
-                        Search
-                    </Button>
-                </Form.Item>
-            </Form>
-            //highlight-end
-            <Table>...</Table>
-        </Space>
-    </List>
-);
-```
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit">
+                            Search
+                        </Button>
+                    </Form.Item>
+                </Form>
+                <Table>...</Table>
+            </Space>
+        </List>
+    );
 
-```ts title="interfaces/index.d.ts"
-export interface IPost {
+};
+
+interface IPost {
     id: string;
     title: string;
     createdAt: string;

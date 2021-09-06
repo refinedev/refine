@@ -9,22 +9,18 @@ import createButton from '@site/static/img/guides-and-concepts/components/button
 
 ## Usage
 
-```tsx
+```tsx twoslash {1, 11}
 import {
-    //highlight-next-line
     CreateButton,
     List,
     Table,
     useTable,
 } from "@pankod/refine";
 
-import { IPost } from "interfaces";
-
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     return (
-        //highlight-next-line
         <List pageHeaderProps={{ extra: <CreateButton /> }}>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
@@ -33,10 +29,8 @@ export const PostList: React.FC = () => {
         </List>
     );
 };
-```
 
-```ts
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
 }
@@ -59,7 +53,7 @@ Will look like this:
 
 It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of `<Resource>` component.
 
-```tsx
+```tsx twoslash
 import { CreateButton } from "@pankod/refine";
 
 export const MyCreateComponent = () => {
@@ -73,7 +67,7 @@ Clicking the button will trigger the `create` method of [`useNavigation`](/api-r
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx
+```tsx twoslash
 import { CreateButton } from "@pankod/refine";
 
 export const MyCreateComponent = () => {

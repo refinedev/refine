@@ -9,7 +9,7 @@ By encoding your files and images from your forms to Base64 you can change all f
 
 Now let's make a small example to see how its done. In this example, the file we are going to be uploading files in Base64 type  is going to be called `avatar`
 
-```tsx title="pages/users/create.tsx"
+```tsx twoslash title="pages/users/create.tsx" {6-7, 18-43, 60, 71}
 import {
     Create,
     Form,
@@ -20,8 +20,6 @@ import {
     file2Base64,
 } from "@pankod/refine";
 
-import { IUser } from "../../interfaces";
-
 export const UserCreate: React.FC = () => {
     const { form, formProps, saveButtonProps } = useForm<IUser>();
 
@@ -30,9 +28,9 @@ export const UserCreate: React.FC = () => {
             <Form
                 {...formProps}
                 layout="vertical"
-                //highlight-start
                 onFinish={async (values) => {
                     const base64Files = [];
+                    // @ts-ignore
                     const { avatar } = values;
 
                     for (const file of avatar) {
@@ -56,7 +54,6 @@ export const UserCreate: React.FC = () => {
                         })
                     );
                 }}
-                //highlight-end
             >
                 <Form.Item
                     label="First Name"
@@ -96,10 +93,8 @@ export const UserCreate: React.FC = () => {
         </Create>
     );
 };
-```
 
-```ts title="interfaces/index.d.ts"
-export interface IUser {
+interface IUser {
     id: string;
     firstName: string;
     avatar: [

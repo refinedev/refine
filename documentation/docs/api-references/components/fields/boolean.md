@@ -11,18 +11,15 @@ This field is used to display boolean values. It uses the [`<Tooltip>`](https://
 
 Let's see how we can use `<BooleanField>` with the example in the post list.
 
-```tsx
+```tsx twoslash {3-4, 8, 18-24}
 import { 
     List,
     Table,
-    //highlight-start
     BooleanField,
     Icons
-    //highlight-end
 } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
-    //highlight-next-line
     const { CloseCircleOutlined, CheckCircleOutlined } = Icons;
 
     return (
@@ -33,7 +30,6 @@ export const PostList: React.FC = () => {
                     dataIndex="status"
                     title="Published"
                     render={(value) => (
-                        //highlight-start
                         <BooleanField
                             value={value === "published"}
                             trueIcon={<CheckCircleOutlined />}
@@ -41,7 +37,6 @@ export const PostList: React.FC = () => {
                             valueLabelTrue="published"
                             valueLabelFalse="unpublished"
                         />
-                        //highlight-end
                     )}
                 />
             </Table>

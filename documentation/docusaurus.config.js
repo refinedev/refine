@@ -31,6 +31,12 @@ const siteConfig = {
                 },
             },
         ],
+        [
+            "docusaurus-preset-shiki-twoslash",
+            {
+                themes: ["min-light", "nord"],
+            },
+        ],
     ],
     themeConfig: {
         image: "img/footer_icon.png",

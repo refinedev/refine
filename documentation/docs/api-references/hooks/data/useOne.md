@@ -29,13 +29,15 @@ Let's say that we have a resource named `posts`.
 ```
 
 
-```tsx
+```tsx twoslash
+import { useOne } from "@pankod/refine";
+
 type ICategory = {
     id: string;
     title: string;
 }
 
-const categoryQueryResult = useOne<ICategory>("categories", 1);
+const categoryQueryResult = useOne<ICategory>("categories", "1");
 ```
 
 :::tip

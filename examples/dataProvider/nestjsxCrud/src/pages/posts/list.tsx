@@ -34,6 +34,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 <Table.Column
                     dataIndex="createdAt"
                     title="Created At"
+                    key="createdAt"
                     sorter
                     defaultSortOrder={getDefaultSortOrder("createdAt", sorter)}
                     render={(value) => <DateField value={value} format="LLL" />}

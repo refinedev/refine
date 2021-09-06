@@ -9,16 +9,13 @@ import editButton from '@site/static/img/guides-and-concepts/components/buttons/
 
 ## Usage
 
-```tsx
+```tsx twoslash {4, 20}
 import {
     List,
     Table,
-    useTable
-    //highlight-next-line
+    useTable,
     EditButton,
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -33,7 +30,6 @@ export const PostList: React.FC = () => {
                     dataIndex="actions"
                     key="actions"
                     render={(_, record) => (
-                        //highlight-next-line
                         <EditButton size="small" recordItemId={record.id} />
                     )}
                 />
@@ -41,10 +37,8 @@ export const PostList: React.FC = () => {
         </List>
     );
 };
-```
 
-```ts
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
 }
@@ -67,7 +61,7 @@ Will look like this:
 
 `recordItemId` is used to append the record id to the end of the route path.
 
-```tsx
+```tsx twoslash
 import { EditButton } from "@pankod/refine";
 
 export const MyEditComponent = () => {
@@ -85,7 +79,7 @@ Clicking the button will trigger the `edit` method of [`useNavigation`](/api-ref
 
 Redirection endpoint(`resourceName/edit`) is defined by `resourceName` property. By default, `<EditButton>` uses `name` property of the `<Resource>` component as an endpoint to redirect after clicking.
 
-```tsx
+```tsx twoslash
 import { EditButton } from "@pankod/refine";
 
 export const MyEditComponent = () => {
@@ -99,7 +93,7 @@ Clicking the button will trigger the `edit` method of [`useNavigation`](/api-ref
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx
+```tsx twoslash
 import { EditButton } from "@pankod/refine";
 
 export const MyEditComponent = () => {

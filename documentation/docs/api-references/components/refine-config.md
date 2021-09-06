@@ -79,18 +79,15 @@ A [`dataProvider`](api-references/providers/data-provider.md) makes HTTP request
 
 When the app is navigated to a non-existent route, **refine** shows a default error page. A custom error component can be used for this error page by passing the customized component to `catchAll` property:
 
-```tsx title="App.tsx"
-...
-
+```tsx title="App.tsx" {0-2, 8}
 const CustomErrorPage = () => (
     <div>Page not found</div>
-)
+);
 
 const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            //highlight-next-line
             catchAll={CustomErrorPage}
         >
          ...
@@ -104,14 +101,11 @@ const App: React.FC = () => {
 
 `mutationMode` determines which mode the mutations run with. (e.g. useUpdate, useDelete).
 
-```tsx title="App.tsx"
-...
-
+```tsx title="App.tsx" {4}
 const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            //highlight-next-line
             mutationMode="optimistic"
         >
          ...
@@ -134,15 +128,12 @@ The duration of the timeout period in **undoable** mode, shown in milliseconds. 
 The value set in hooks will override the value set with `undoableTimeout`.  
 `undoableTimeout` has a default value of `5000`.
 
-```tsx title="App.tsx"
-...
-
+```tsx title="App.tsx" {5}
 const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
             mutationMode="undoable"
-            //highlight-next-line
             undoableTimeout={3500}
         >
          ...
@@ -196,17 +187,14 @@ Ant Design's [ConfigProvider](https://ant.design/components/config-provider) whi
 
 For example, Layout direction can be set to other way:
 
-```tsx title="App.tsx"
-...
+```tsx title="App.tsx" {4-6}
 const App: React.FC = () => 
     (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            //highlight-start
             configProviderProps={{
                 direction: "rtl"
             }}
-            //highlight-end
         >
          ...
         </Refine>
@@ -221,17 +209,14 @@ const App: React.FC = () =>
 
 Custom login component can be passed to the `LoginPage` property.
 
-```tsx title="App.tsx"
-...
+```tsx title="App.tsx" {0, 6}
 const CustomLoginPage = () => <div> Custom Login Page </div>;
 
 const App: React.FC = () => 
     (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            //highlight-start
             LoginPage={CustomLoginPage}
-            //highlight-end
         >
          ...
         </Refine>
@@ -247,17 +232,14 @@ The dashboard item will appear at the top of the sider menu.
 `<Resource>` will be shown first if no `DashboardPage` is given.
 
 
-```tsx title="App.tsx"
-...
+```tsx title="App.tsx" {0, 6}
 const CustomDashboardPage = () => <div> Custom Dashboard Page </div>;
 
 const App: React.FC = () => 
     (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            //highlight-start
             DashboardPage={CustomDashboardPage}
-            //highlight-end
         >
          ...
         </Refine>
@@ -272,17 +254,14 @@ const App: React.FC = () =>
 
 Custom ready page component can be set by passing to `ReadyPage` property?.
 
-```tsx title="App.tsx"
-...
+```tsx title="App.tsx" {0, 6}
 const CustomReadyPage = () => <div> Custom Ready Page </div>;
 
 const App: React.FC = () => 
     (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            //highlight-start
             ReadyPage={CustomReadyPage}
-            //highlight-end
         >
          ...
         </Refine>
@@ -306,17 +285,14 @@ The default sidebar can be customized by using refine hooks and passing custom c
 The default app footer can be customized by passing the `Footer` property.
 
 
-```tsx title="App.tsx"
-...
+```tsx title="App.tsx" {0, 6}
 const CustomFooter = () => <div>Custom Footer</div>;
 
 const App: React.FC = () => 
     (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            //highlight-start
             Footer={CustomFooter}
-            //highlight-end
         >
          ...
         </Refine>
@@ -330,17 +306,14 @@ const App: React.FC = () =>
 The default app header can be customized by passing the `Header` property.
 
 
-```tsx title="App.tsx"
-...
+```tsx title="App.tsx" {0, 6}
 const CustomHeader = () => <div>Custom Header</div>;
 
 const App: React.FC = () => 
     (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            //highlight-start
             Header={CustomHeader}
-            //highlight-end
         >
          ...
         </Refine>
@@ -357,14 +330,11 @@ Default layout can be customized by passing the `Layout` property.
 
 Layout property will receive individual layout components as property.
 
-```tsx title="App.tsx"
-...
-
+```tsx title="App.tsx" {4-20}
 const App: React.FC = () => 
     (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            //highlight-start
             Layout={({ children, Sider, Footer, Header, OffLayoutArea }) => (
                 <AntdLayout
                     style={{ minHeight: "100vh", flexDirection: "row" }}
@@ -382,7 +352,6 @@ const App: React.FC = () =>
                     <OffLayoutArea />
                 </AntdLayout>
             )}
-            //highlight-end
         >
          ...
         </Refine>
@@ -393,20 +362,17 @@ const App: React.FC = () =>
 
 A completely custom layout can also be implemented instead of the  **refine**'s default [Ant Design based layout](https://ant.design/components/layout) like below.
 
-```tsx title="App.tsx"
-...
+```tsx title="App.tsx" {4-9}
 const App: React.FC = () => 
     (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            //highlight-start
             Layout={({ children }) => (
                 <div style={{display: "flex", flexDirection: "column"}} >
                     <div>Custom Layout</div>
                     <div>{children}</div>
                 </div>
             )}
-            //highlight-end
         >
          ...
         </Refine>
@@ -421,15 +387,13 @@ const App: React.FC = () =>
 
 The component wanted to be placed out of app layout structure can be set by passing to `OffLayoutArea` prop.
 
-```tsx title="App.tsx"
-//highlight-next-line
+```tsx title="App.tsx" {0, 6}
 import { Refine, BackTop } from "@pankod/refine";
-...
+
 const App: React.FC = () => 
     (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            //highlight-next-line
             OffLayoutArea={() => <BackTop />}
         >
          ...
@@ -444,18 +408,14 @@ const App: React.FC = () =>
 The app title can be set by passing the `Title` property.
 
 
-```tsx title="App.tsx"
-...
-
+```tsx title="App.tsx" {0, 6}
 const CustomTitle = ({collapsed}) => <div>{collapsed ? "Collapsed Title" : "Full Title"}</div>;
 
 const App: React.FC = () => 
     (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            //highlight-start
             Title={CustomTitle}
-            //highlight-end
         >
          ...
         </Refine>
@@ -479,13 +439,11 @@ Config for React Query client that **refine** uses.
 [Refer to the QueryClient documentation for detailed information. &#8594](https://react-query.tanstack.com/reference/QueryClient#queryclient)
 
 
-```tsx
-...
+```tsx {4-10}
 const App: React.FC = () => 
     (
         <Refine
             dataProvider={dataProvider(API_URL)}
-             //highlight-start
             reactQueryClientConfig={{
                 defaultOptions: {
                     queries: {
@@ -493,7 +451,6 @@ const App: React.FC = () =>
                     },
                 },
             }}
-            //highlight-end
         >
          ...
         </Refine>
@@ -504,19 +461,16 @@ const App: React.FC = () =>
 
 Config for Ant Design [notification](https://ant.design/components/notification/) that **refine** uses.
 
-```tsx
-...
+```tsx {4-8}
 const App: React.FC = () =>
     (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            //highlight-start
             notifcationConfig={{
                 placement: "bottomRight",
                 bottom: 40,
                 closeIcon: <CloseOutlined />,
             }}
-            //highlight-end
         >
          ...
         </Refine>

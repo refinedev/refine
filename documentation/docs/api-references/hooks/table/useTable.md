@@ -30,40 +30,31 @@ Lets say that the data we are going to show on the table came like this from the
 ]
 ```
 
-In this case, an interface like this should be enough for us : 
-
-```tsx title="/src/interfaces/index.d.ts"
-export interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-}
-```
-
 If we want to make a sorting page where we show the `id`, `title` and `content` values:
 
-```tsx title="/src/pages/posts/list.tsx"
+```tsx twoslash title="/src/pages/posts/list.tsx" {3, 7-11}
 import { List, Table, TextField, useTable } from "@pankod/refine";
 
-import { IPost } from "interfaces";
-
 export const PostList: React.FC = () => {
-    //highlight-next-line
     const { tableProps } = useTable<IPost>();
 
     return (
         <List>
-            //highlight-start
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column dataIndex="title" title="Title" />
                 <Table.Column dataIndex="content" title="Content" />
             </Table>
-            //highlight-end
         </List>
     );
 };
+
+interface IPost {
+    id: string;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+}
 ```
 
 :::tip
@@ -80,17 +71,17 @@ If the `resource` option is given, `syncWithLocation` will not work.
 :::info
 If you want to make a change in the pagination of the `<Table>`. You should pass the pagination object of the `tableProps` to the pagination property of the `<Table>` as below.
 
-```tsx
+```tsx {5-9}
+const { tableProps } = useTable<IPost>();
+
 <Table
     {...tableProps}
     rowKey="id"
-    //highlight-start
     pagination={{
         ...tableProps.pagination,
         position: ["bottomCenter"],
         size: "small",
     }}
-    //highlight-end
 >
     ...
 </Table>
@@ -102,10 +93,15 @@ If you want to make a change in the pagination of the `<Table>`. You should pass
 
 If we want to give a column the sorting property, the corresponding `<Table.Column>` component must be given the [sorter](https://ant.design/components/table/#components-table-demo-head) property.
 
-```tsx title="/src/pages/posts/list.tsx"
-import { List, Table, TextField, useTable } from "@pankod/refine";
+```tsx twoslash title="/src/pages/posts/list.tsx" {13,19}
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+// ---cut---
 
-import { IPost } from "interfaces";
+import { List, Table, TextField, useTable } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -117,14 +113,12 @@ export const PostList: React.FC = () => {
                     dataIndex="id"
                     title="ID"
                     render={(value) => <TextField value={value} />}
-                    //highlight-next-line
                     sorter
                 />
                 <Table.Column
                     dataIndex="title"
                     title="Title"
                     render={(value) => <TextField value={value} />}
-                    //highlight-next-line
                     sorter={{ multiple: 1 }}
                 />
                 <Table.Column dataIndex="content" title="Content" />
@@ -144,7 +138,7 @@ When using multiple sorting, `multiple` value we had given to the `sorter` prope
 
 ### Initial sort status
 
-```ts title="/src/pages/posts/list.tsx"
+```ts title="/src/pages/posts/list.tsx" {1-6}
 const { tableProps, sorter } = useTable<IPost>({
     initialSorter: [
         {
@@ -173,15 +167,13 @@ Every `post` that comes from endpoint has a `status` value. This value can eithe
 
 We can use the `filterDropdown` property to make filtering based on the `status` value. In order to do this, we need to put the filtering form inside the `<FilterDropdown>` component and pass the properties coming to the function to these component's properties:
 
-```tsx title="/src/pages/posts/list.tsx"
+```tsx title="/src/pages/posts/list.tsx" {4-5,41-49}
 import {
     List,
     Table,
     Radio,
-    //highlight-start
     FilterDropdown,
     TagField,
-    //highlight-end
     useTable,
     getDefaultSortOrder,
 } from "@pankod/refine";
@@ -217,7 +209,6 @@ export const PostList: React.FC = () => {
                     dataIndex="status"
                     title="Status"
                     render={(value) => <TagField value={value} />}
-                    //highlight-start
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Radio.Group>
@@ -227,7 +218,6 @@ export const PostList: React.FC = () => {
                             </Radio.Group>
                         </FilterDropdown>
                     )}
-                    //highlight-end
                 />
             </Table>
         </List>
@@ -242,8 +232,15 @@ export const PostList: React.FC = () => {
 ### Default filter value
 
 In order to set a default filter value, you can use the `initialFilter` option of the `useTable(options)` hook.
-```ts title="/src/pages/posts/list.tsx"
-...
+```ts twoslash title="/src/pages/posts/list.tsx"
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+import { useTable } from "@pankod/refine";
+// ---cut---
+
 const { tableProps, sorter, filters } = useTable<IPost>({
     initialSorter: [
         {
@@ -259,28 +256,29 @@ const { tableProps, sorter, filters } = useTable<IPost>({
         },
     ],
 });
-...
 ```
 
 If you give default filter values, `defaultFilteredValue` property needs to be properly given to the relevant `<Table.Column>` components so that those filter fields come with default values when the page is opened.
 
-```tsx title="/src/pages/posts/list.tsx"
+```tsx twoslash title="/src/pages/posts/list.tsx" {7,12-26,56}
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+// ---cut---
 import {
     List,
     Table,
     Radio,
     FilterDropdown,
     TagField,
-    //highlight-next-line
     getDefaultFilter,
     useTable,
     getDefaultSortOrder,
 } from "@pankod/refine";
 
-import { IPost } from "interfaces";
-
 export const PostList: React.FC = () => {
-    //highlight-start
     const { tableProps, sorter, filters } = useTable<IPost>({
         initialSorter: [
             {
@@ -296,7 +294,6 @@ export const PostList: React.FC = () => {
             },
         ],
     });
-    //highlight-end
 
     return (
         <List>
@@ -326,7 +323,6 @@ export const PostList: React.FC = () => {
                             </Radio.Group>
                         </FilterDropdown>
                     )}
-                    //highlight-next-line
                     defaultFilteredValue={getDefaultFilter("status", filters)}
                 />
             </Table>
