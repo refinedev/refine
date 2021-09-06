@@ -117,9 +117,7 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
                 .match({ id });
 
             return {
-                data: {
-                    ...data,
-                } as any,
+                data: (data || [])[0] as any,
             };
         },
 

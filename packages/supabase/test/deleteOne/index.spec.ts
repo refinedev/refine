@@ -1,15 +1,15 @@
-import dataProvider from "../../src/index";
+import { dataProvider } from "../../src/index";
+import supabaseClient from "../supabaseClient";
 import "./index.mock";
 
 describe("deleteOne", () => {
     it("correct response", async () => {
-        const response = await dataProvider(
-            "keywoytODSr6xAqfg",
-            "appKYl1H4k9g73sBT",
-        ).deleteOne("posts", "recJEGeL2aB5rGFbC");
+        const { data } = await dataProvider(supabaseClient).deleteOne(
+            "posts",
+            "40",
+        );
 
-        const { data } = response;
-
-        expect(data).not.toBeNull();
+        expect(data.id).toEqual(40);
+        expect(data.title).toEqual("Delete me");
     });
 });
