@@ -1,17 +1,18 @@
-import dataProvider from "../../src/index";
+import { dataProvider } from "../../src/index";
+import supabaseClient from "../supabaseClient";
 import "./index.mock";
 
 describe("getMany", () => {
     it("correct response", async () => {
-        const response = await dataProvider(
-            "keywoytODSr6xAqfg",
-            "appKYl1H4k9g73sBT",
-        ).getMany("posts", ["recLKRioqifTrPUIz", "rec9GbXLzd6dxn4Il"]);
+        const response = await dataProvider(supabaseClient).getMany("posts", [
+            "2",
+            "3",
+        ]);
 
         const { data } = response;
 
-        expect(data[0]["id"]).toBe("rec9GbXLzd6dxn4Il");
-        expect(data[1]["id"]).toBe("recLKRioqifTrPUIz");
+        expect(data[0]["id"]).toBe(2);
+        expect(data[1]["id"]).toBe(3);
         expect(response.data.length).toBe(2);
     });
 });
