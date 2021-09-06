@@ -1,13 +1,13 @@
-import dataProvider from "../../src/index";
+import { dataProvider } from "../../src/index";
+import supabaseClient from "../supabaseClient";
 
 describe("custom", () => {
     it("correct get response", async () => {
         try {
-            await dataProvider("keywoytODSr6xAqfg", "appKYl1H4k9g73sBT")
-                .custom!(`users`, "get");
+            await dataProvider(supabaseClient).custom!(`posts`, "get");
         } catch (error) {
             expect(error).toEqual(
-                Error("Not implemented on refine-airtable data provider."),
+                Error("Not implemented on refine-supabase data provider."),
             );
         }
     });

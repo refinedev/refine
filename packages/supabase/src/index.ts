@@ -128,11 +128,11 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
         },
 
         getApiUrl: () => {
-            throw Error("Not implemented on refine-airtable data provider.");
+            throw Error("Not implemented on refine-supabase data provider.");
         },
 
         custom: async () => {
-            throw Error("Not implemented on refine-airtable data provider.");
+            throw Error("Not implemented on refine-supabase data provider.");
         },
     };
 };
