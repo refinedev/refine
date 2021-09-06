@@ -25,7 +25,7 @@ Refer to the [`<DeleteButton>`](api-references/components/buttons/delete.md) and
 import { Show, usePermissions } from "@pankod/refine";
 
 export const ShowPage: React.FC = () => {
-    const { data } = usePermissions();
+    const { data } = usePermissions<string>();
 
     return (
         <Show

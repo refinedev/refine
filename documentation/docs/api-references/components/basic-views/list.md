@@ -22,7 +22,7 @@ Create button redirects to the create page of the resource according to the valu
 import { List, usePermissions } from "@pankod/refine";
 
 export const ListPage: React.FC = () => {
-    const { data } = usePermissions();
+    const { data } = usePermissions<string>();
 
     return (
         <List
