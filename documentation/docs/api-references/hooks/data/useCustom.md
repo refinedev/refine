@@ -29,7 +29,7 @@ Let's make a use case. Lets say that we need to verify that the header in the po
 }
 ```
 
-```tsx
+```tsx twoslash {8-16}
 import { useCustom, useApiUrl } from "@pankod/refine";
 
 interface PostUniqueCheckResponse {
@@ -38,7 +38,6 @@ interface PostUniqueCheckResponse {
 
 const apiUrl = useApiUrl();
 
-// highlight-start
 const { data, isLoading } = useCustom<PostUniqueCheckResponse>(
     `${apiUrl}/posts-unique-check`,
     "get",
@@ -48,7 +47,6 @@ const { data, isLoading } = useCustom<PostUniqueCheckResponse>(
         },
     },
 );
-// highlight-end
 ```
 
 ## API

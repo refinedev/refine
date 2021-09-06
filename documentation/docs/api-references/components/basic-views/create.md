@@ -16,10 +16,10 @@ We'll show what `<Create>` does using properties with examples.
 
 It allows adding title inside the `<Create>` component. if you don't pass title props it uses "Create" prefix and singular resource name by default. For example, for the `/posts/create` resource, it will be "Create post".
 
-```tsx
+```tsx twoslash
 import { Create } from "@pankod/refine";
 
-export const Create: React.FC = () => {
+export const CreatePage: React.FC = () => {
     return <Create title="Custom Title">...</Create>;
 };
 ```
@@ -31,10 +31,10 @@ export const Create: React.FC = () => {
 
 [Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-references/components/buttons/save.md)
 
-```tsx
+```tsx twoslash
 import { Create } from "@pankod/refine";
 
-export const Create: React.FC = () => {
+export const CreatePage: React.FC = () => {
     return <Create saveButtonProps={{ size: "small" }}>...</Create>;
 };
 ```
@@ -43,10 +43,10 @@ export const Create: React.FC = () => {
 
 `<Create>` uses the Ant Design [`<Card>`](https://ant.design/components/card) component. The `action` prop of the `<Card>` component shows `<SaveButton>` and `<DeleteButton>` depending on your resource definition on the `<Resource>` components. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
 
-```tsx
+```tsx twoslash
 import { Create, Button } from "@pankod/refine";
 
-export const Create: React.FC = () => {
+export const CreatePage: React.FC = () => {
     return (
         <Create
             actionButtons={
@@ -74,10 +74,10 @@ export const Create: React.FC = () => {
 
 [Refer to the `<PageHeader>` documentation for detailed usage. &#8594](https://ant.design/components/page-header/#API)
 
-```tsx
+```tsx twoslash
 import { Create } from "@pankod/refine";
 
-export const Create: React.FC = () => {
+export const CreatePage: React.FC = () => {
     return (
         <Create
             pageHeaderProps={{
@@ -103,12 +103,11 @@ The `<Create>` component reads the `resource` information from the route by defa
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
-```tsx
+```tsx twoslash {2-4, 11-17}
 import { Refine, Resource, Create } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
 const CustomPage = () => {
-//highlight-next-line
     return <Create resource="posts">...</Create>;
 };
 

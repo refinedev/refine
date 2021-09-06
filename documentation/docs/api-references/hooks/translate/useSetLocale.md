@@ -4,8 +4,8 @@ If you need to change the locale at runtime, refine provides the `useSetLocale` 
 
 You can use the features of your own i18n library to change the locale in your own components.
 
-```tsx
-import { Button, useTranslate } from "@pankod/refine";
+```tsx twoslash
+import { Button, useSetLocale } from "@pankod/refine";
 
 export const LanguageSwicher = () => {
     const changeLanguage = useSetLocale();

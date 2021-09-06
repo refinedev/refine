@@ -13,37 +13,35 @@ This field is used to display a number formatted according to the browser locale
 
 If Intl is not available, `<NumberField>` outputs numbers as is (and ignores the locales and options props).
 
-```tsx
+```tsx twoslash {0, 11-21}
 import { List, Table, NumberField } from "@pankod/refine";
-import { IPost } from "interfaces";
+
 export const PostList: React.FC = () => {
     return (
         <List>
-            <Table<IPost> rowKey="id">
+            <Table rowKey="id">
                 <Table.Column dataIndex="title" title="Title" key="title" />
                 <Table.Column<IPost>
                     key="hit"
                     title="Hit"
                     dataIndex="hit"
                     render={(value) => (
-                        //highlight-start
                         <NumberField
                             value={value}
                             options={{
+                                // @ts-ignore
                                 style: "currency",
+                                // @ts-ignore
                                 notation: "compact",
                             }}
                         />
                     )}
-                    //highlight-end
                 />
             </Table>
         </List>
     );
 };
-```
 
-```tsx title="interfaces/index.d.ts"
 interface IPost {
     id: string;
     hit: number;
