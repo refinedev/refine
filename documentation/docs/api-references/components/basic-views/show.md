@@ -21,11 +21,11 @@ When clicked on, delete button executes the `useDelete` method provided by the [
 
 Refer to the [`<DeleteButton>`](api-references/components/buttons/delete.md) and the [`<EditButton>`](api-references/components/buttons/edit.md) documentation for detailed usage.
 
-```tsx
+```tsx twoslash
 import { Show, usePermissions } from "@pankod/refine";
 
-export const Show: React.FC = () => {
-    const { data } = usePermissions();
+export const ShowPage: React.FC = () => {
+    const { data } = usePermissions<string>();
 
     return (
         <Show
@@ -44,10 +44,10 @@ export const Show: React.FC = () => {
 
 It allows adding a title for the `<Show>` component. if you don't pass title props it uses the "Show" prefix and the singular resource name by default. For example, for the "posts" resource, it will be "Show post".
 
-```tsx
+```tsx twoslash
 import { Show } from "@pankod/refine";
 
-export const Show: React.FC = () => {
+export const ShowPage: React.FC = () => {
     return <Show title="Custom Title">...</Show>;
 };
 ```
@@ -56,10 +56,10 @@ export const Show: React.FC = () => {
 
 `<Show>` uses the Ant Design [`<Card>`](https://ant.design/components/card/) component so you can customize the `action` property with the properties of `actionButtons`. By default, the `action` property of the `<Card>` component shows nothing in the `<Show>` component.
 
-```tsx
+```tsx twoslash
 import { Show, Space, Button } from "@pankod/refine";
 
-export const Show: React.FC = () => {
+export const ShowPage: React.FC = () => {
     return (
         <Show
             actionButtons={
@@ -84,12 +84,13 @@ export const Show: React.FC = () => {
 
 Since `<Show>` uses the Ant Design [`<Card>`](https://ant.design/components/card/) component, the `isLoading` property can be set like the below.
 
-```tsx
+```tsx twoslash
 import { useState } from "react";
 import { Show, Modal, ShowButton, useShow } from "@pankod/refine";
 
-export const Show: React.FC = () => {
-    const { isLoading } = useOne("categories", "1");
+export const ShowPage: React.FC = () => {
+    const { queryResult } = useShow();
+    const { isLoading } = queryResult;
 
     return <Show isLoading={isLoading}>...</Show>;
 };
@@ -104,10 +105,10 @@ export const Show: React.FC = () => {
 
 `<Show>` uses the Ant Design [`<PageHeader>`](https://ant.design/components/page-header/#API) components so you can customize it with the properties of `pageHeaderProps`. By default, the `extra` property of the `<PageHeader>` component shows `<RefreshButton>`, `<ListButton>`, `<EditButton>` and `<DeleteButton>` depending on your resource definition on the `<Resource>` component.
 
-```tsx
+```tsx twoslash
 import { Show } from "@pankod/refine";
 
-export const Show: React.FC = () => {
+export const ShowPage: React.FC = () => {
     return (
         <Show
             pageHeaderProps={{
@@ -130,11 +131,11 @@ export const Show: React.FC = () => {
 
 `<Show>` component reads the `id` information from the route by default. `recordIdItem` is used when it cannot read from the URL (when used on a custom page, modal or drawer).
 
-```tsx
+```tsx twoslash
 import { useState } from "react";
 import { Show, Modal, ShowButton, useShow } from "@pankod/refine";
 
-export const Show: React.FC = () => {
+export const ShowPage: React.FC = () => {
     const [visibleShowModal, setVisibleShowModal] = useState<boolean>(false);
 
     const { queryResult, showId, setShowId } = useShow();
@@ -145,7 +146,7 @@ export const Show: React.FC = () => {
             <ShowButton
                 size="small"
                 onClick={() => {
-                    setShowId(record.id);
+                    setShowId(data?.data.id);
                     setVisibleShowModal(true);
                 }}
             />
@@ -172,7 +173,7 @@ The `<Show>` component reads the `resource` information from the route by defaul
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
-```tsx
+```tsx twoslash
 import { Refine, Resource, Show } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 

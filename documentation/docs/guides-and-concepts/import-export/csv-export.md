@@ -9,30 +9,24 @@ With **refine**, you can easily add export functionality to dump resources' reco
 
 Let's see an example:
 
-```tsx title="pages/posts/list.tsx"
+```tsx twoslash title="pages/posts/list.tsx" {4-5, 11, 17}
 import {
     List,
     Table,
     useTable,
-    //highlight-start
     useExport,
     ExportButton,
-    //highlight-end
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
-    //highlight-next-line
     const { triggerExport, loading } = useExport<IPost>();
 
     return (
         <List
             pageHeaderProps={{
                 extra: (
-                    //highlight-next-line
                     <ExportButton onClick={triggerExport} loading={loading} />
                 ),
             }}
@@ -45,6 +39,10 @@ export const PostList: React.FC = () => {
     );
 };
 
+interface IPost {
+    id: string;
+    title: string;
+}
 ```
 
 After this setup is done, when the user clicks the button, download process will initialize.

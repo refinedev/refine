@@ -9,18 +9,13 @@ This field lets you embed a link. It uses Ant Design's [<Typography.Link\>](http
 
 Let's see how we can use `<UrlField>` with an example:
 
-```tsx title="pages/posts/list.tsx"
-import * as React from "react";
-
+```tsx twoslash title="pages/posts/list.tsx" {4, 22}
 import {
     List,
     Table,
     useTable,
-    //highlight-next-line
     UrlField 
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -37,16 +32,13 @@ export const PostList: React.FC = () => {
                     dataIndex={["image", "0", "url"]}
                     title={"Image"}
                     key="image"
-                    //highlight-next-line
                     render={(value: string) => <UrlField value={value} />}
                 />
             </Table>
         </List>
     );
 };
-```
 
-```ts title="interfaces/index.d.ts"
 interface IPost {
     title: string;
     image: IImage[];
@@ -56,7 +48,6 @@ interface IImage {
     url: string;
 }
 ```
-
 ## API Reference
 
 ### Properties

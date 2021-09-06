@@ -7,12 +7,11 @@ import customValidation from '@site/static/img/examples/form/custom-form-validat
 
 In refine, we can use the form validation that comes with `Ant Design` with the [rules](https://ant.design/components/form/#Rule) property of the [Form.Item](https://ant.design/components/form/#Form.Item) component.
 
-```tsx
+```tsx {4-11}
 <Form>
     <Form.Item
         label="Title"
         name="title"
-        // highlight-start
         rules={[
             {
                 required: true,
@@ -21,7 +20,6 @@ In refine, we can use the form validation that comes with `Ant Design` with the 
                 min: 5,
             },
         ]}
-        // highlight-end
     >
         <Input />
     </Form.Item>
@@ -41,19 +39,13 @@ Now let's prepare a rule that checks if the titles of the posts are unique. We h
 }
 ```
 
-```tsx
-import { useApiUrl, useCustom, HttpError } from "@pankod/refine";
-
-interface PostUniqueCheckResponse {
-    isAvailable: boolean;
-}
-interface PostUniqueCheckRequestQuery {
-    title: string;
-}
+```tsx twoslash {1, 6-26, 34-50, 52}
+import { useState } from "react";
+import { useApiUrl, useCustom, HttpError, useForm, Form, Create, Input } from "@pankod/refine";
 
 export const PostCreate = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
-    // highlight-start
+
     const [title, setTitle] = useState("");
 
     const apiUrl = useApiUrl();
@@ -75,7 +67,6 @@ export const PostCreate = () => {
             enabled: false,
         },
     );
-    // highlight-end
 
     return (
         <Create saveButtonProps={saveButtonProps}>
@@ -83,7 +74,6 @@ export const PostCreate = () => {
                 <Form.Item
                     label="Title"
                     name="title"
-                    // highlight-start
                     rules={[
                         {
                             required: true,
@@ -101,9 +91,7 @@ export const PostCreate = () => {
                             },
                         },
                     ]}
-                    // highlight-end
                 >
-                    // highlight-next-line
                     <Input onChange={(event) => setTitle(event.target.value)} />
                 </Form.Item>
                 ...
@@ -111,6 +99,18 @@ export const PostCreate = () => {
         </Create>
     );
 };
+
+interface IPost {
+    title: string;
+}
+
+interface PostUniqueCheckResponse {
+    isAvailable: boolean;
+}
+
+interface PostUniqueCheckRequestQuery {
+    title: string;
+}
 ```
 
 <>

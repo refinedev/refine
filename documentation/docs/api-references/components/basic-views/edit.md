@@ -20,11 +20,11 @@ When clicked on, the delete button executes the `useDelete` method provided by t
 
 [Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/api-references/components/buttons/delete.md)
 
-```tsx
+```tsx twoslash
 import { Edit, usePermissions } from "@pankod/refine";
 
-export const Edit: React.FC = () => {
-    const { data } = usePermissions();
+export const EditPage: React.FC = () => {
+    const { data } = usePermissions<string>();
 
     return (
         <Edit
@@ -47,10 +47,10 @@ Clicking on the save button will submit your form.
 
 [Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-references/components/buttons/save.md)
 
-```tsx
+```tsx twoslash
 import { Edit } from "@pankod/refine";
 
-export const Edit: React.FC = () => {
+export const EditPage: React.FC = () => {
     return <Edit saveButtonProps={{ size: "small" }}>...</Edit>;
 };
 ```
@@ -59,10 +59,10 @@ export const Edit: React.FC = () => {
 
 It allows adding titles inside the `<Edit>` component. if you don't pass title props it uses the "Edit" prefix and singular resource name by default. For example, for the "posts" resource, it will be "Edit post".
 
-```tsx
+```tsx twoslash
 import { Edit } from "@pankod/refine";
 
-export const Edit: React.FC = () => {
+export const EditPage: React.FC = () => {
     return <Edit title="Custom Title">...</Edit>;
 };
 ```
@@ -71,10 +71,10 @@ export const Edit: React.FC = () => {
 
 `<Edit>` uses the Ant Design [`<Card>`](https://ant.design/components/card) component. The `action` property of the `<Card>` component shows `<SaveButton>` or `<DeleteButton>` depending on your resource definition on the `<Resource>` components. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
 
-```tsx
-import { Edit } from "@pankod/refine";
+```tsx twoslash
+import { Edit, Button } from "@pankod/refine";
 
-export const Edit: React.FC = () => {
+export const EditPage: React.FC = () => {
     return (
         <Edit
             actionButtons={
@@ -101,10 +101,10 @@ export const Edit: React.FC = () => {
 `<Edit>` uses the Ant Design [`<PageHeader>`](https://ant.design/components/page-header/#API) components, which means that you can customize the properties of `pageHeaderProps`.
 By default, the `extra` property of the `<PageHeader>` component shows `<RefreshButton>` or `<ListButton>` depending on your resource definition on the `<Resource>` component. 
 
-```tsx
+```tsx twoslash
 import { Edit } from "@pankod/refine";
 
-export const Edit: React.FC = () => {
+export const EditPage: React.FC = () => {
     return (
         <Edit
             pageHeaderProps={{
@@ -128,10 +128,10 @@ export const Edit: React.FC = () => {
 
 The `<Edit>` component reads the `id` information from the route by default. `recordIdItem` is used when it cannot read from the URL(when used on a custom page, modal or drawer).
 
-```tsx
+```tsx twoslash
 import { Edit, Modal, useModalForm } from "@pankod/refine";
 
-export const Edit: React.FC = () => {
+export const EditPage: React.FC = () => {
     const { modalProps, editId } = useModalForm({
         action: "edit",
     });
@@ -157,10 +157,10 @@ Determines which mode mutation will have while executing `<DeleteButton>` .
 
 [Refer to the mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
 
-```tsx
+```tsx twoslash
 import { Edit } from "@pankod/refine";
 
-export const Edit: React.FC = () => {
+export const EditPage: React.FC = () => {
     return <Edit mutationMode="undoable">...</Edit>;
 };
 ```
@@ -171,7 +171,7 @@ export const Edit: React.FC = () => {
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
-```tsx
+```tsx twoslash
 import { Refine, Resource, Edit } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 

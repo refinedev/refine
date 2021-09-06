@@ -12,16 +12,14 @@ refine allows us to add custom pages to our application. To do this, it is neces
 
 Allows creating custom pages that everyone can access via path.
 
-```tsx title="src/App.tsx"
+```tsx title="src/App.tsx" {2, 7-13}
 import { Refine } from "@pankod/refine";
 
-//highlight-end
 import { CustomPage } from "pages/custom-page";
 
 const App = () => {
     return (
         <Refine
-            //highlight-start
             routes={[
                 {
                     exact: true,
@@ -29,7 +27,6 @@ const App = () => {
                     path: "/custom-page",
                 },
             ]}
-            //highlight-end
         >
             ...
         </Refine>
@@ -45,13 +42,11 @@ Everyone can access this page via `/custom-page` path.
 
 Allows creating custom pages that only authenticated users can access via path.
 
-```tsx title="src/App.tsx"
-//highlight-next-line
+```tsx title="src/App.tsx" {0-2, 4-21, 23-29, 38}
 import { Refine, Authenticated, AuthProvider } from "@pankod/refine";
 
 import { CustomPage } from "pages/custom-page";
 
-//highlight-start
 const authProvider: AuthProvider = {
     login: (params: any) => {
         if (params.username === "admin") {
@@ -70,9 +65,7 @@ const authProvider: AuthProvider = {
         localStorage.getItem("username") ? Promise.resolve() : Promise.reject(),
     getPermissions: () => Promise.resolve(["admin"]),
 };
-//highlight-end
 
-//highlight-start
 const AuthenticatedCustomPage = () => {
     return (
         <Authenticated>
@@ -80,7 +73,7 @@ const AuthenticatedCustomPage = () => {
         </Authenticated>
     );
 };
-//highlight-end
+
 const App = () => {
     return (
         <Refine
@@ -88,7 +81,6 @@ const App = () => {
             routes={[
                 {
                     exact: true,
-                    //highlight-next-line
                     component: AuthenticatedCustomPage,
                     path: "/custom-page",
                 },
@@ -181,10 +173,8 @@ Now, let's create the custom page with the name `<PostReview>`. We will use the 
 
 [Refer to the `useList` documentation for detailed usage. &#8594](/api-references/hooks/data/useList.md)
 
-```tsx title="src/pages/post-review.tsx"
+```tsx twoslash title="src/pages/post-review.tsx"
 import { useList } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 const PostReview = () => {
     const { data, isLoading } = useList<IPost>("posts", {
@@ -197,18 +187,14 @@ const PostReview = () => {
         ],
         pagination: { pageSize: 1 },
     });
-
-    ...
 };
-```
 
-```ts title="interfaces/index.d.ts"
-export interface ICategory {
+interface ICategory {
     id: string;
     title: string;
 }
 
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
     content: string;
@@ -223,12 +209,21 @@ We set the filtering process with `filters` then page size set with `pagination`
 
 Post's category is relational. So we will use the post's category "id" to get the category title. Let's use `useOne` to fetch the category we want.
 
-```tsx title="src/pages/post-review.tsx"
-//highlight-next-line
-import { useList, useOne } from "@pankod/refine";
+```tsx twoslash title="src/pages/post-review.tsx" {0, 14-21}
+interface ICategory {
+    id: string;
+    title: string;
+}
 
-//highlight-next-line
-import { IPost, ICategory } from "interfaces";
+interface IPost {
+    id: string;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: ICategory;
+}
+// ---cut---
+import { useList, useOne } from "@pankod/refine";
 
 export const PostReview = () => {
     const { data, isLoading } = useList<IPost>("posts", {
@@ -241,7 +236,7 @@ export const PostReview = () => {
         ],
         pagination: { pageSize: 1 },
     });
-    //highlight-start
+
     const post = data?.data[0];
 
     const {
@@ -250,10 +245,8 @@ export const PostReview = () => {
     } = useOne<ICategory>("categories", post!.category.id, {
         enabled: !!post,
     });
-    //highlight-end
-
-    ...
 };
+
 ```
 
 Now we have the data to display the post as we want. Let's use the `<Show>` component of refine to show this data.
@@ -262,21 +255,29 @@ Now we have the data to display the post as we want. Let's use the `<Show>` comp
 `<Show>` component is not required, you are free to display the data as you wish.
 :::
 
-```tsx title="src/pages/post-review.tsx"
+```tsx twoslash title="src/pages/post-review.tsx" {1-4, 9, 30-47}
+interface ICategory {
+    id: string;
+    title: string;
+}
+
+interface IPost {
+    id: string;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: ICategory;
+}
+// ---cut---
 import {
-    //highlight-start
     Typography,
     Button,
     Show,
     MarkdownField,
-    //highlight-end
     useOne,
     useList,
 } from "@pankod/refine";
 
-import { IPost, ICategory } from "interfaces";
-
-//highlight-next-line
 const { Title, Text } = Typography;
 
 export const PostReview = () => {
@@ -290,14 +291,13 @@ export const PostReview = () => {
         ],
         pagination: { pageSize: 1 },
     });
-    const post = data?.data[0];
+    const record = data?.data[0];
 
     const { data: categoryData, isLoading: categoryIsLoading } =
-        useOne<ICategory>("categories", post!.category.id, {
-            enabled: !!post,
+        useOne<ICategory>("categories", record!.category.id, {
+            enabled: !!record,
         });
 
-    //highlight-start
     return (
         <Show
             title="Review Posts"
@@ -318,26 +318,24 @@ export const PostReview = () => {
             <MarkdownField value={record?.content} />
         </Show>
     );
-    //highlight-end
 };
 ```
 
 Then, pass this `<PostReview>` as the routes property in the `<Refine>` component:
 
-```tsx title="src/App.tsx"
+```tsx  title="src/App.tsx" {6, 12-18}
 import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-//highlight-next-line
+
 import { PostReview } from "pages/post-review";
 
 const App = () => {
     return (
         <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            //highlight-start
             routes={[
                 {
                     exact: true,
@@ -345,7 +343,6 @@ const App = () => {
                     path: "/post-review",
                 },
             ]}
-            //highlight-end
         >
             <Resource
                 name="posts"
@@ -372,21 +369,30 @@ Now let's put in approve and reject buttons to change the status of the post sho
 
 [Refer to the `useUpdate` documentation for detailed usage. &#8594](/api-references/hooks/data/useUpdate.md)
 
-```tsx title="src/pages/post-review.tsx"
+```tsx twoslash title="src/pages/post-review.tsx" {4-5, 31, 33, 35-37, 39, 50-74}
+interface ICategory {
+    id: string;
+    title: string;
+}
+
+interface IPost {
+    id: string;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: ICategory;
+}
+// ---cut---
 import {
     Typography,
-    Button,
     Show,
     MarkdownField,
-    //highlight-start
     Space,
     Button,
-    //highlight-end
     useOne,
     useList,
+    useUpdate,
 } from "@pankod/refine";
-
-import { IPost, ICategory } from "interfaces";
 
 const { Title, Text } = Typography;
 
@@ -401,26 +407,21 @@ export const PostReview = () => {
         ],
         pagination: { pageSize: 1 },
     });
-    const post = data?.data[0];
+    const record = data?.data[0];
 
     const { data: categoryData, isLoading: categoryIsLoading } =
-        useOne<ICategory>("categories", post!.category.id, {
-            enabled: !!post,
+        useOne<ICategory>("categories", record!.category.id, {
+            enabled: !!record,
         });
 
-    //highlight-next-line
-    const mutationResult = useUpdate<IPost>("posts");
+    const mutationResult = useUpdate<IPost>();
 
-    //highlight-next-line
     const { mutate, isLoading: mutateIsLoading } = mutationResult;
 
-    //highlight-start
     const handleUpdate = (item: IPost, status: string) => {
-        mutate({ id: item.id, values: { ...item, status } });
+        mutate({ resource: "posts", id: item.id, values: { ...item, status } });
     };
-    //highlight-end
 
-    //highlight-next-line
     const buttonDisabled = isLoading || categoryIsLoading || mutateIsLoading;
 
     return (
@@ -432,7 +433,6 @@ export const PostReview = () => {
             pageHeaderProps={{
                 backIcon: false,
             }}
-            //highlight-start
             actionButtons={
                 <Space
                     key="action-buttons"
@@ -458,7 +458,6 @@ export const PostReview = () => {
                     </Button>
                 </Space>
             }
-            //highlight-end
         >
             <Title level={5}>Status</Title>
             <Text>{record?.status}</Text>

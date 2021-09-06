@@ -15,25 +15,20 @@ Let's start with the `creation form` first.
 
 Let's add the image field to the post `creation form`.
 
-```tsx title="pages/posts/create.tsx"
+```tsx twoslash title="pages/posts/create.tsx" {1-2, 13, 29-48}
 import { 
-    // highlight-start
     Upload,
     getValueFromEvent,
-    useApiUrl,
-    // highlight-end
     Create,
     Form,
     Input,
     useForm,
+    useApiUrl,
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
-    // highlight-next-line
     const apiUrl = useApiUrl();
 
     return (
@@ -50,7 +45,6 @@ export const PostCreate: React.FC = () => {
                 >
                     <Input />
                 </Form.Item>
-                // highlight-start
                 <Form.Item label="Image">
                     <Form.Item
                         name="image"
@@ -71,15 +65,12 @@ export const PostCreate: React.FC = () => {
                         </Upload.Dragger>
                     </Form.Item>
                 </Form.Item>
-                // highlight-end
             </Form>
         </Create>
     );
 };
-```
 
-```ts title="interfaces/index.d.ts"
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
     image: [
@@ -182,24 +173,33 @@ The following data are required for the [Antd Upload](https://ant.design/compone
 
 Let's add the image field to the post editing form.
 
-```tsx title="pages/posts/edit.tsx"
+```tsx twoslash title="pages/posts/edit.tsx" {1-2, 13, 29-48}
+interface IPost {
+    id: string;
+    title: string;
+    image: [
+        {
+            uid: string;
+            name: string;
+            url: string;
+            status: "error" | "success" | "done" | "uploading" | "removed";
+        },
+    ];
+}
+// ---cut---
 import { 
-    // highlight-start
     Upload,
     getValueFromEvent,
-    useApiUrl,
-    // highlight-end
     Edit,
     Form,
     Input,
+    useForm,
+    useApiUrl,
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostEdit: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
-    // highlight-next-line
     const apiUrl = useApiUrl();
 
     return (
@@ -216,7 +216,6 @@ export const PostEdit: React.FC = () => {
                 >
                     <Input />
                 </Form.Item>
-                // highlight-start
                 <Form.Item label="Image">
                     <Form.Item
                         name="image"
@@ -237,7 +236,6 @@ export const PostEdit: React.FC = () => {
                         </Upload.Dragger>
                     </Form.Item>
                 </Form.Item>
-                // highlight-end
             </Form>
         </Edit>
     );
@@ -297,37 +295,45 @@ This data is sent to the API when form is submitted.
 
 You may want to disable the "Save" button in the form while the upload is going on. To do this, you can use the `useFileUploadState` hook.
 
-```tsx title="pages/posts/create.tsx"
+```tsx twoslash title="pages/posts/create.tsx" {3, 14, 19-24, 50}
+interface IPost {
+    id: string;
+    title: string;
+    image: [
+        {
+            uid: string;
+            name: string;
+            url: string;
+            status: "error" | "success" | "done" | "uploading" | "removed";
+        },
+    ];
+}
+// ---cut---
 import {
-    Upload
+    Upload,
     getValueFromEvent,
-    // highlight-next-line
     useFileUploadState,
     Create,
     Form,
     Input,
+    useForm,
+    useApiUrl,
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
-    // highlight-start
     const { isLoading, onChange } = useFileUploadState();
-    // highlight-end
 
     const apiUrl = useApiUrl();
 
     return (
-        // highlight-start
         <Create
             saveButtonProps={{
                 ...saveButtonProps,
                 disabled: isLoading,
             }}
         >
-            // highlight-end
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
@@ -353,9 +359,7 @@ export const PostCreate: React.FC = () => {
                             listType="picture"
                             maxCount={5}
                             multiple
-                            // highlight-start
                             onChange={onChange}
-                            // highlight-end
                         >
                             <p className="ant-upload-text">
                                 Drag & drop a file in this area

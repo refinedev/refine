@@ -17,30 +17,25 @@ You can pass the returned `modalProps` as props to [Modal][Modal] component and 
 
 Let's see an example:
 
-```tsx title="src/pages/posts/list.tsx"
+```tsx twoslash title="src/pages/posts/list.tsx" {4-5, 12, 18, 27-29}
 import {
     List,
     Table,
     useTable,
-    //highlight-start
     useModal,
     Modal,
-    //highlight-end
     Button,
 } from "@pankod/refine";
 
-import { IPost } from "interfaces";
-
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
-    //highlight-next-line
+
     const { modalProps, show, close } = useModal();
 
     return (
         <>
             <List
                 pageHeaderProps={{
-                    //highlight-next-line
                     extra: <Button onClick={show}>Show Dummy Modal</Button>,
                 }}
             >
@@ -50,18 +45,14 @@ export const PostList: React.FC = () => {
                     <Table.Column dataIndex="content" title="Content" />
                 </Table>
             </List>
-            //highlight-start
             <Modal onOk={close} {...modalProps}>
                 Dummy Modal Content
             </Modal>
-            //highlight-end
         </>
     );
 };
-```
 
-```ts title="src/interfaces/index.d.ts"
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
     content: string;

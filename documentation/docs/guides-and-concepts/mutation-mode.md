@@ -88,11 +88,15 @@ Mutation mode can be set application-wide in [`<Refine>`](/api-references/compon
 
 It can also be set in supported [data hooks](https://docs-mu-doc-refine.pankod.com/docs/api-references/hooks/data/useUpdate#mutation-mode) and [form hooks](https://docs-mu-doc-refine.pankod.com/docs/api-references/hooks/form/useForm#properties ) for fine-grained configuration. 
 
-```tsx
+```tsx twoslash {8}
+import { useUpdate } from "@pankod/refine";
+
 const { mutate } = useUpdate();
 
 mutate({
     resource: "categories",
+    id: "2",
+    values: { title: "New Category Title" },
     mutationMode: "optimistic",
 });
 ```

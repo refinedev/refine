@@ -9,16 +9,13 @@ import listButton from '@site/static/img/guides-and-concepts/components/buttons/
 
 ## Usage
 
-```tsx
+```tsx twoslash {4, 15}
 import {
     useShow,
     Show,
     Typography,
-    //highlight-next-line
     ListButton,
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 const { Title, Text } = Typography;
 
@@ -28,8 +25,7 @@ export const PostShow: React.FC = () => {
     const record = data?.data;
 
     return (
-        //highlight-next-line
-        <Show isLoading={isLoading} pageHeaderProps={{ extra: <ListButton /> }}>
+        <Show pageHeaderProps={{ extra: <ListButton /> }} isLoading={isLoading}>
             <Title level={5}>Id</Title>
             <Text>{record?.id}</Text>
 
@@ -38,10 +34,8 @@ export const PostShow: React.FC = () => {
         </Show>
     );
 };
-```
 
-```ts
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
 }
@@ -69,7 +63,7 @@ The button text is defined automatically by **refine** based on _`<Resource>`_ c
 
 Redirection endpoint(`resourceName/list`) is defined by `resourceName` property. By default, `<ListButton>` uses `name` property of the `<Resource>` component as the endpoint to redirect after clicking.
 
-```tsx
+```tsx twoslash
 import { ListButton } from "@pankod/refine";
 
 export const MyListComponent = () => {
@@ -83,7 +77,7 @@ Clicking the button will trigger the `list` method of [`useNavigation`](api-refe
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx
+```tsx twoslash
 import { ListButton } from "@pankod/refine";
 
 export const MyListComponent = () => {
