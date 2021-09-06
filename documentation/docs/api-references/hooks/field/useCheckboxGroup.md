@@ -30,33 +30,24 @@ We will demonstrate how to get data at the `/tags` endpoint from the `https://ap
 }
 ```
 
-```tsx title="pages/posts/create.tsx"
+```tsx twoslash title="pages/posts/create.tsx" {3-5, 10}
 import { Form, Checkbox, useCheckboxGroup } from "@pankod/refine";
 
-import { ITag } from "interfaces";
-
 export const PostCreate: React.FC = () => {
-    //highlight-start
     const { checkboxGroupProps } = useCheckboxGroup<ITag>({
         resource: "tags",
     });
-    //highlight-end
 
     return (
         <Form>
-            ...
             <Form.Item label="Tags" name="tags">
-                //highlight-next-line
                 <Checkbox.Group {...checkboxGroupProps} />
             </Form.Item>
-            ...
-        <Form>
+        </Form>
     );
 };
-```
 
-```ts title="interfaces/index.d.ts"
-export interface ITag {
+interface ITag {
     id: string;
     title: string;
 }
@@ -75,9 +66,10 @@ All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.
 
 ### `resource`
 
-```tsx
+```tsx twoslash
+import { useCheckboxGroup } from "@pankod/refine";
+// ---cut---
 const { checkboxGroupProps } = useCheckboxGroup({
-    //highlight-next-line
     resource: "tags",
 });
 ```
@@ -88,13 +80,13 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 ### `optionLabel` and `optionValue`
 
-```tsx
+```tsx twoslash {2-3}
+import { useCheckboxGroup } from "@pankod/refine";
+// ---cut---
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
-    //highlight-start
     optionLabel: "title",
     optionValue: "id",
-    //highlight-end
 });
 ```
 
@@ -102,10 +94,11 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 ### `filters`
 
-```tsx
+```tsx twoslash {2-8}
+import { useCheckboxGroup } from "@pankod/refine";
+// ---cut---
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
-    //highlight-start
     filters: [
         {
             field: "title",
@@ -113,7 +106,6 @@ const { checkboxGroupProps } = useCheckboxGroup({
             value: "Driver Deposit",
         },
     ],
-    //highlight-end
 });
 ```
 
@@ -121,17 +113,17 @@ It allows us to add some filters while fetching the data. For example, if you wa
 
 ### `sort`
 
-```tsx
+```tsx twoslash {2-7}
+import { useCheckboxGroup } from "@pankod/refine";
+// ---cut---
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
-    //highlight-start
     sort: [
         {
             field: "title",
             order: "asc",
         },
     ],
-    //highlight-end
 });
 ```
 
@@ -139,12 +131,12 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 
 ### `queryOptions`
 
-```tsx
+```tsx twoslash {2}
+import { useCheckboxGroup } from "@pankod/refine";
+// ---cut---
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
-    //highlight-start
     queryOptions: { onError: () => { console.log("triggers when on query return Error") }}
-    //highlight-end
 });
 ```
 
@@ -156,21 +148,20 @@ const { checkboxGroupProps } = useCheckboxGroup({
 :::caution
 The `defaultQueryOnSuccess` method which has default onSuccess behaviour and returned from `useCheckboxGroup` hook  must be called in case of `onSuccess` is needed to be overwritten. 
 
-```tsx
+```tsx twoslash {2, 5-10}
+import { useCheckboxGroup } from "@pankod/refine";
+// ---cut---
 const { 
     checkboxGroupProps, 
-    //highlight-next-line
     defaultQueryOnSuccess
-    } = useCheckboxGroup({
+} = useCheckboxGroup({
     resource: "tags",
-    //highlight-start
     queryOptions: { 
         onSuccess: (data) => { 
             defaultQueryOnSuccess(data)
             console.log("triggers when on query return on success") 
         } 
     }
-    //highlight-end
 });
 ```
 
