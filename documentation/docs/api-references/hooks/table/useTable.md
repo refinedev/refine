@@ -138,8 +138,13 @@ export const PostList: React.FC = () => {
 When using multiple sorting, `multiple` value we had given to the `sorter` property specifies the priority of this column in sorting.
 :::
 
-<div style={{textAlign: "center"}}>
-    <img src={tableSorting} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={tableSorting} alt="Table sorting in action" />
 </div>
 
 ### Initial sort status
@@ -235,8 +240,13 @@ export const PostList: React.FC = () => {
 };
 ```
 
-<div style={{textAlign: "center"}}>
-    <img src={filters} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={filters} alt="Table filtering in action" />
 </div>
 
 ### Default filter value
