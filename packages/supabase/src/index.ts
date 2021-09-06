@@ -75,9 +75,7 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             const { data } = await supabaseClient.from(resource).insert(params);
 
             return {
-                data: {
-                    data,
-                } as any,
+                data: data as any,
             };
         },
 
