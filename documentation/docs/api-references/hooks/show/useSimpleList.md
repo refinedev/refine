@@ -123,7 +123,7 @@ export const PostList: React.FC = () => {
     };
 
     return (
-        <PageHeader title="Posts">
+        <PageHeader ghost={false} title="Posts">
             //highlight-next-line
             <AntdList {...listProps} renderItem={renderItem} />
         </PageHeader>
