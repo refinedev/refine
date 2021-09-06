@@ -1,3 +1,4 @@
+import { updateExpression } from "@babel/types";
 import { DataProvider } from "@pankod/refine";
 import { CrudFilter } from "@pankod/refine/dist/interfaces";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
@@ -91,11 +92,18 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
         },
 
         updateMany: async (resource, ids, params) => {
-            // const { data } = await supabaseClient.from(resource).update();
-            // .match({ id });
+            const response = await Promise.all(
+                ids.map(async (id) => {
+                    const { data } = await supabaseClient
+                        .from(resource)
+                        .update(params)
+                        .match({ id });
+                    return (data || [])[0];
+                }),
+            );
 
             return {
-                data: [],
+                data: response,
             };
         },
 
