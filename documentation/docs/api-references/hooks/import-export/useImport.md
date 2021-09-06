@@ -7,7 +7,11 @@ title: useImport
 
 It's return type is compatible with [`<ImportButton>`][ImportButton]. It can also be further customized by using it with Ant Design's [`<Upload>`][Upload] and [`<Button>`][Button] props.
 
-```ts
+```ts twoslash
+const options = {};
+// ---cut---
+import { useImport } from "@pankod/refine";
+
 const { uploadProps, buttonProps, mutationResult } = useImport(options);
 ```
 
