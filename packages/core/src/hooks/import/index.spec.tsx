@@ -333,7 +333,7 @@ describe("useImport hook", () => {
                 ...MockJSONServer,
                 createMany: () => {
                     const customError: HttpError = {
-                        message: "bir şey oldu",
+                        message: "something happened",
                         statusCode: 500,
                     };
 
@@ -347,7 +347,7 @@ describe("useImport hook", () => {
                         resourceName: "posts",
                         onFinish: ({ errored }) => {
                             expect(errored[0].response[0]).toEqual({
-                                message: "bir şey oldu",
+                                message: "something happened",
                                 statusCode: 500,
                             });
                             done();
