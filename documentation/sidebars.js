@@ -344,19 +344,20 @@ module.exports = {
                         "examples/upload/base64Upload",
                     ],
                 },
-                {
-                    type: "category",
-                    label: "Import - Export",
-                    items: [
-                        "examples/import-export/import",
-                        "examples/import-export/export",
-                    ],
-                },
+                // {
+                //     type: "category",
+                //     label: "Import - Export",
+                //     items: [
+                //         "examples/import-export/import",
+                //         "examples/import-export/export",
+                //     ],
+                // },
                 {
                     type: "category",
                     label: "UI",
                     items: ["examples/ui/useModal"],
                 },
+                "examples/import-export",
                 "examples/e2e-testing",
                 "examples/customPages",
                 "examples/customTheme",
