@@ -38,7 +38,6 @@ const siteConfig = {
             },
         ],
     ],
-    plugins: ["@docusaurus/plugin-google-analytics"],
     themeConfig: {
         image: "img/footer_icon.png",
         algolia: {
@@ -91,7 +90,8 @@ const siteConfig = {
                 },
             ],
         },
-        googleAnalytics: {
+        gtag: {
+            // You can also use your "G-" Measurement ID here.
             trackingID: "G-27Z1WY952H",
             // Optional fields.
             anonymizeIP: true, // Should IPs be anonymized?
