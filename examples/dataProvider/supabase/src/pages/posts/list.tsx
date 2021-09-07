@@ -9,7 +9,6 @@ import {
     ShowButton,
     useMany,
     getDefaultSortOrder,
-    getDefaultFilter,
     FilterDropdown,
     Select,
     useSelect,
@@ -18,30 +17,23 @@ import {
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter, filters } = useTable<IPost>({
+    const { tableProps, sorter } = useTable<IPost>({
         initialSorter: [
             {
                 field: "id",
                 order: "asc",
             },
         ],
-        initialFilter: [
-            {
-                field: "title",
-                operator: "eq",
-                value: "test title",
-            },
-        ],
     });
 
-    // const categoryIds =
-    //   tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    // const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
-    //   enabled: categoryIds.length > 0
-    // });
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
+    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
+        enabled: categoryIds.length > 0,
+    });
 
-    const { selectProps } = useSelect<IPost>({
-        resource: "posts",
+    const { selectProps } = useSelect<ICategory>({
+        resource: "categories",
     });
 
     return (
@@ -51,41 +43,43 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     key="id"
                     dataIndex="id"
                     title="ID"
-                    sorter={{ multiple: 1 }}
+                    sorter
                     defaultSortOrder={getDefaultSortOrder("id", sorter)}
                 />
                 <Table.Column
                     key="title"
                     dataIndex="title"
                     title="Title"
-                    sorter={{ multiple: 2 }}
+                    sorter
+                />
+                <Table.Column
+                    dataIndex="categoryId"
+                    title="Category"
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Select
                                 style={{ minWidth: 200 }}
-                                // mode="multiple"
+                                mode="multiple"
                                 placeholder="Select Category"
                                 {...selectProps}
                             />
                         </FilterDropdown>
                     )}
-                    defaultFilteredValue={getDefaultFilter("status", filters)}
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+
+                        return (
+                            <TextField
+                                value={
+                                    data?.data.find((item) => item.id === value)
+                                        ?.title
+                                }
+                            />
+                        );
+                    }}
                 />
-                {/* <Table.Column
-            dataIndex={["category", "id"]}
-            title="Category"
-            render={(value) => {
-              if (isLoading) {
-                return <TextField value="Loading..." />;
-              }
-  
-              return (
-                <TextField
-                  value={data?.data.find((item) => item.id === value)?.title}
-                />
-              );
-            }}
-          /> */}
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
