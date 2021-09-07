@@ -204,14 +204,15 @@ Now, parsed data is mapped to conform our APIs requirements.
 
 ### Parameters
 
-| Key                 | Description                                                                                                         | Type                                                                       | Default                                                                                                                                    |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| resourceName        | Default resource name this button imports to. Inferred from route by default.                                       | `string`                                                                   |
-| mapData             | A mapping function that runs for every record. Mapped data will be included in the request payload.                 | `(value: any, index?: number, array?: any[], data?: any[][]): any;`        |
-| papaparseOptions    | Custom Papa Parse options.                                                                                          | [`ParseConfig`][papaparse]                                                 |
-| batchSize           | Requests batch size. By default, it is 1. If it is more than 1, `createMany` should be implemented on DataProvider. | `number`                                                                   |
-| successNotification | Successful Mutation notification                                                                                    | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully created `resource`"                                                                                                          |
-| errorNotification   | Unsuccessful Mutation notification                                                                                  | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "There was an error while creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
+| Key                 | Description                                                                                                                                                                                                                                             | Type                                                                       | Default                                                                                                                                    |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| resourceName        | Default resource name this button imports to. Inferred from route by default.                                                                                                                                                                           | `string`                                                                   |
+| mapData             | A mapping function that runs for every record. Mapped data will be included in the request payload.                                                                                                                                                     | `(value: any, index?: number, array?: any[], data?: any[][]): any;`        |
+| papaparseOptions    | Custom Papa Parse options.                                                                                                                                                                                                                              | [`ParseConfig`][papaparse]                                                 |
+| batchSize           | Requests batch size. If it is 1, all records are sent one by one. By default, it is [`Number.MAX_SAFE_INTEGER`][Number.MAX_SAFE_INTEGER] to send all records in one batch. If it is more than 1, `createMany` should be implemented on DataProvider. | `number`                                                                   |
+| onFinish           | Called with errors and successful responses when all requests are sent. | `(results: { succeeded: ImportSuccessResult<TVariables, TData>[]; errored: ImportErrorResult<TVariables>[]; }) => void`                                                                   |
+| successNotification | Successful Mutation notification                                                                                                                                                                                                                        | [`SuccessErrorNotification`][SuccessErrorNotification] | "Successfully created `resource`"                                                                                                          |
+| errorNotification   | Unsuccessful Mutation notification                                                                                                                                                                                                                      | [`SuccessErrorNotification`][SuccessErrorNotification] | "There was an error while creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
 
 ### Return Values
 
@@ -235,8 +236,10 @@ Now, parsed data is mapped to conform our APIs requirements.
 [ImportButton]: /api-references/components/buttons/import.md
 [useCreate]: /api-references/hooks/data/useCreate.md
 [useCreateMany]: /api-references/hooks/data/useCreateMany.md
-[DataProvider]: api-references/providers/data-provider.md
+[DataProvider]: /api-references/providers/data-provider.md
 [BaseRecord]: /api-references/interfaces.md#baserecord
 [HttpError]: /api-references/interfaces.md#httperror
 [papaparse]: https://www.papaparse.com/docs
 [useMutation]: https://react-query.tanstack.com/reference/useMutation
+[Number.MAX_SAFE_INTEGER]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
+[SuccessErrorNotification]: /api-references/interfaces.md#successerrornotification
