@@ -128,8 +128,13 @@ export const Login: React.FC = () => {
 
 After clicking the `Login` button, you will be directed to the auth0 login screen.
 
-<div style={{textAlign: "center"}}>
-    <img src={login} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={login} alt="auth0-login" />
 </div>
 <br/>
 

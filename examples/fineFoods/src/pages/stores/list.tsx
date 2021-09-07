@@ -73,10 +73,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
     return (
         <>
             <List>
-                <Table
-                    {...tableProps}
-                    rowKey="id"
-                >
+                <Table {...tableProps} rowKey="id">
                     <Table.Column
                         key="image"
                         align="center"

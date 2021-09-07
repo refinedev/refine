@@ -33,7 +33,7 @@ We'll show two examples, one for creating and one for editing a post. Let's see 
 
 In this example, we will show you how to create a record with `useModalForm`.
 
-```tsx title="pages/posts/list.tsx" twoslash {4-6, 11-15, 19-32}
+```tsx title="pages/posts/list.tsx" twoslash {3-5, 10-14, 18-31}
 import { useModalForm, Modal, Form, Create, Radio, List, Input } from "@pankod/refine";
 
 export const PostList: React.FC = () => {

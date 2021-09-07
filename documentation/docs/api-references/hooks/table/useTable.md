@@ -143,7 +143,14 @@ When using multiple sorting, `multiple` value we had given to the `sorter` prope
 
 ### Initial sort status
 
-```ts title="/src/pages/posts/list.tsx" {1-6}
+```ts twoslash title="/src/pages/posts/list.tsx" {1-6}
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+import { useTable } from "@pankod/refine";
+// ---cut---
 const { tableProps, sorter } = useTable<IPost>({
     initialSorter: [
         {
@@ -172,7 +179,13 @@ Every `post` that comes from endpoint has a `status` value. This value can eithe
 
 We can use the `filterDropdown` property to make filtering based on the `status` value. In order to do this, we need to put the filtering form inside the `<FilterDropdown>` component and pass the properties coming to the function to these component's properties:
 
-```tsx title="/src/pages/posts/list.tsx" {4-5,41-49}
+```tsx twoslash title="/src/pages/posts/list.tsx" {3-4,39-47}
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+// ---cut---
 import {
     List,
     Table,
@@ -182,8 +195,6 @@ import {
     useTable,
     getDefaultSortOrder,
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps, sorter } = useTable<IPost>({
@@ -270,7 +281,7 @@ const { tableProps, sorter, filters } = useTable<IPost>({
 
 If you give default filter values, `defaultFilteredValue` property needs to be properly given to the relevant `<Table.Column>` components so that those filter fields come with default values when the page is opened.
 
-```tsx twoslash title="/src/pages/posts/list.tsx" {7,12-26,56}
+```tsx twoslash title="/src/pages/posts/list.tsx" {6,19-25,56}
 interface IPost {
     id: string;
     title: string;

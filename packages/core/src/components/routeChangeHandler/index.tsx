@@ -13,7 +13,7 @@ export const RouteChangeHandler: FC = () => {
     useEffect(() => {
         checkAuth().catch(() => false);
         setWarnWhen(false);
-    }, [location.pathname]);
+    }, [location?.pathname]);
 
     return null;
 };

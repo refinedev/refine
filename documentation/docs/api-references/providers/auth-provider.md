@@ -32,7 +32,7 @@ Authorization hooks are used to manage authentication and authorization operatio
 
 ## Usage
 
-To use `authProvider` in **refine**, we have to pass the `authProvider` to the `<Admin />` component.
+To use `authProvider` in **refine**, we have to pass the `authProvider` to the `<Refine />` component.
 
 ```tsx title="App.tsx" {5, 12}
 import {
@@ -499,11 +499,11 @@ const App = () => {
         };
 
     return (
-        <Admin
+        <Refine
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL, axiosInstance)}>
             ...
-        </Admin>
+        </Refine>
     );
 }
 ```
