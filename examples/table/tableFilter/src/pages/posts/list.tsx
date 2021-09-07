@@ -22,6 +22,7 @@ import {
     FormProps,
     Row,
     Col,
+    HttpError,
 } from "@pankod/refine";
 
 import { IPost, ICategory, IPostFilterVariables } from "interfaces";
@@ -31,50 +32,40 @@ const { RangePicker } = DatePicker;
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, searchFormProps } = useTable<
         IPost,
+        HttpError,
         IPostFilterVariables
     >({
         onSearch: (params) => {
             const filters: CrudFilters = [];
             const { q, category, status, createdAt } = params;
 
-            if (q) {
-                filters.push({
+            filters.push(
+                {
                     field: "q",
                     operator: "eq",
                     value: q,
-                });
-            }
-
-            if (category) {
-                filters.push({
+                },
+                {
                     field: "category.id",
                     operator: "eq",
                     value: category,
-                });
-            }
-
-            if (status) {
-                filters.push({
+                },
+                {
                     field: "status",
                     operator: "eq",
                     value: status,
-                });
-            }
-
-            if (createdAt) {
-                filters.push(
-                    {
-                        field: "createdAt",
-                        operator: "gte",
-                        value: createdAt[0].toISOString(),
-                    },
-                    {
-                        field: "createdAt",
-                        operator: "lte",
-                        value: createdAt[1].toISOString(),
-                    },
-                );
-            }
+                },
+                {
+                    field: "createdAt",
+                    operator: "gte",
+                    value: createdAt ? createdAt[0].toISOString() : undefined,
+                },
+                {
+                    field: "createdAt",
+                    operator: "lte",
+                    value: createdAt ? createdAt[1].toISOString() : undefined,
+                },
+            );
 
             return filters;
         },
