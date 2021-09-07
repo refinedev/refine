@@ -38,6 +38,7 @@ const siteConfig = {
             },
         ],
     ],
+    plugins: ["@docusaurus/plugin-google-analytics"],
     themeConfig: {
         image: "img/footer_icon.png",
         algolia: {
@@ -89,6 +90,11 @@ const siteConfig = {
                         "header-icon-link header-twitter-link header-last-nav-item",
                 },
             ],
+        },
+        googleAnalytics: {
+            trackingID: "G-27Z1WY952H",
+            // Optional fields.
+            anonymizeIP: true, // Should IPs be anonymized?
         },
         // footer: {
         //     style: "dark",

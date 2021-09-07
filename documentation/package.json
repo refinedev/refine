@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@docusaurus/core": "^2.0.0-beta.4",
+    "@docusaurus/plugin-google-analytics": "^2.0.0-beta.6",
     "@docusaurus/preset-classic": "^2.0.0-beta.4",
     "@mdx-js/react": "^1.6.21",
     "@pankod/refine": "^1.0.54",
