@@ -58,8 +58,13 @@ interface ITag {
 All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.Group>` component.
 `useCheckboxGroup` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](api-references/hooks/data/useList.md)
 
-<div>
-    <img src={basicUsage} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={basicUsage} alt="Tags" />
 </div>
 
 ## Options
