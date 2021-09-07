@@ -21,11 +21,7 @@ import {
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { RefineContextProvider } from "@contexts/refine";
 import { NotificationContextProvider } from "@contexts/notification";
-import {
-    RouteProvider,
-    ReadyPage as DefaultReadyPage,
-    RouteChangeHandler,
-} from "@components";
+import { RouteProvider, ReadyPage as DefaultReadyPage } from "@components";
 import { defaultConfigProviderProps } from "@definitions";
 import {
     MutationMode,
@@ -170,7 +166,6 @@ export const Refine: React.FC<RefineProps> = ({
                                                     ReadyPage={ReadyPage}
                                                     customRoutes={routes}
                                                 />
-                                                <RouteChangeHandler />
                                             </>
                                         </Router>
                                     </RefineContextProvider>

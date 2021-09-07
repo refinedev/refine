@@ -7,6 +7,7 @@ import {
     LoginPage as DefaultLoginPage,
     ErrorComponent,
     LayoutWrapper,
+    RouteChangeHandler,
 } from "@components";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext, IResourceItem } from "../../../interfaces";
@@ -162,6 +163,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
                         <Route>{catchAll ?? <ErrorComponent />}</Route>
                     </Switch>
                 </LayoutWrapper>
+                <RouteChangeHandler />
             </Route>
         </Switch>
     );
@@ -195,6 +197,9 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
                     );
                 }}
             />
+            <Route>
+                <RouteChangeHandler />
+            </Route>
         </Switch>
     );
 
