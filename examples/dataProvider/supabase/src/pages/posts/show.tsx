@@ -5,6 +5,8 @@ import {
     IResourceComponentsProps,
     useOne,
     MarkdownField,
+    Space,
+    ImageField,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
@@ -36,6 +38,22 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
 
             <Title level={5}>Content</Title>
             <MarkdownField value={record?.content} />
+
+            <Title level={5}>Images</Title>
+            <Space wrap>
+                {record?.images ? (
+                    record?.images.map((img) => (
+                        <ImageField
+                            key={img.name}
+                            value={img.url}
+                            title={img.name}
+                            width={200}
+                        />
+                    ))
+                ) : (
+                    <Text>Not found any images</Text>
+                )}
+            </Space>
         </Show>
     );
 };

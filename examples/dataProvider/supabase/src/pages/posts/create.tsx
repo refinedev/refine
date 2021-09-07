@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
     Create,
     Form,
     Input,
     IResourceComponentsProps,
     Select,
+    Upload,
     useForm,
     useSelect,
+    RcFile,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -15,6 +17,7 @@ import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ICategory } from "interfaces";
+import { supabaseClient, normalizeFile } from "utility";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
@@ -69,6 +72,56 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                             )
                         }
                     />
+                </Form.Item>
+                <Form.Item label="Images">
+                    <Form.Item
+                        name="images"
+                        valuePropName="fileList"
+                        normalize={normalizeFile}
+                        noStyle
+                    >
+                        <Upload.Dragger
+                            name="file"
+                            listType="picture"
+                            multiple
+                            customRequest={async ({
+                                file,
+                                onError,
+                                onSuccess,
+                            }) => {
+                                try {
+                                    const rcFile = file as RcFile;
+                                    await supabaseClient.storage
+                                        .from("refine")
+                                        .upload(`public/${rcFile.name}`, file, {
+                                            cacheControl: "3600",
+                                            upsert: true,
+                                        });
+
+                                    const { data } =
+                                        await supabaseClient.storage
+                                            .from("refine")
+                                            .getPublicUrl(
+                                                `public/${rcFile.name}`,
+                                            );
+
+                                    const xhr = new XMLHttpRequest();
+                                    onSuccess &&
+                                        onSuccess(
+                                            { url: data?.publicURL },
+                                            xhr,
+                                        );
+                                } catch (error) {
+                                    onError &&
+                                        onError(new Error("Upload Error"));
+                                }
+                            }}
+                        >
+                            <p className="ant-upload-text">
+                                Drag & drop a file in this area
+                            </p>
+                        </Upload.Dragger>
+                    </Form.Item>
                 </Form.Item>
             </Form>
         </Create>
