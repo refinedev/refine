@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine",
-    "version": "1.0.55",
+    "version": "1.0.57",
     "description": "",
     "private": false,
     "main": "dist/index.js",
