@@ -67,10 +67,15 @@ interface IPost {
 }
 ```
 
-<div style={{textAlign: "center"}}>
-    <img src={importButton} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={importButton} alt="Import button" />
 </div>
-<br/>
+<br />
 
 We should map CSV data into `Post` data. Assume that this is the CSV file content we have:
 
