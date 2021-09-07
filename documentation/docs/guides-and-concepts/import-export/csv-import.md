@@ -145,12 +145,13 @@ Depending on the [`batchSize`][batchSize] option, posts can get sent one by one 
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-import-example-jdng8?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Flist.tsx&theme=dark&view=preview"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-import-example"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe>
+<iframe src="https://codesandbox.io/embed/refine-import-export-example-jtzlb?autoresize=1&fontsize=14&hidenavigation=1&module=%2Fsrc%2Fpages%2Fposts%2Flist.tsx&theme=dark&view=preview"
+     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+     title="refine-import-export-example"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
 
 [Papa Parse]: https://www.papaparse.com/
 [batchSize]: /api-references/hooks/import-export/useImport.md#api-reference
