@@ -43,7 +43,8 @@
         "deleteSuccess": "Successfully deleted {{resource}}",
         "deleteError": "Error when deleting {{resource}} (status code: {{statusCode}})",
         "editSuccess": "Successfully edited {{resource}}",
-        "editError": "Error when editing {{resource}} (status code: {{statusCode}})"
+        "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
+        "importProgress": "Importing: {{processedAmount}}/{{totalAmount}}"
     },
     "loading": "Loading",
     "tags": {
