@@ -21,7 +21,7 @@ We will show you how to use `useMenu` to create a custom sider menu that is iden
 
 First we define `<CustomMenu>`:
 
-```tsx twoslash title="src/CustomMenu.tsx" {12,33,36-38}
+```tsx twoslash title="src/CustomMenu.tsx" {12,33,37-39}
 import { useState, CSSProperties } from "react";
 import {
     AntdLayout,
@@ -56,7 +56,8 @@ export const CustomMenu: React.FC = () => {
             <Title collapsed={collapsed} />
             <Menu 
                 selectedKeys={[selectedKey]}
-                mode="inline">
+                mode="inline"
+                >
                     {menuItems.map(({ icon, route, label }) => (
                         <Menu.Item key={route} icon={icon}>
                             <Link to={route}>{label}</Link>
@@ -67,10 +68,10 @@ export const CustomMenu: React.FC = () => {
     );
 };
 
-export const antLayoutSider:CSSProperties = {
+const antLayoutSider:CSSProperties = {
     position: "relative",
 };
-export const antLayoutSiderMobile:CSSProperties = {
+const antLayoutSiderMobile:CSSProperties = {
     position: "fixed",
     height: "100vh",
     zIndex: 999,
@@ -176,11 +177,10 @@ export const CustomMenu: React.FC = () => {
     );
 };
 
-
-export const antLayoutSider:CSSProperties = {
+const antLayoutSider:CSSProperties = {
     position: "relative",
 };
-export const antLayoutSiderMobile:CSSProperties = {
+const antLayoutSiderMobile:CSSProperties = {
     position: "fixed",
     height: "100vh",
     zIndex: 999,
