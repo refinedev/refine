@@ -85,6 +85,7 @@ export const useImport = <
 } => {
     const [processedAmount, setProcessedAmount] = useState<number>(0);
     const [totalAmount, setTotalAmount] = useState<number>(0);
+    const [isLoading, setIsLoading] = useState(false);
 
     const t = useTranslate();
     const resourceWithRoute = useResourceWithRoute();
@@ -165,13 +166,15 @@ export const useImport = <
                     setTotalAmount(0);
                     setProcessedAmount(0);
                     notification.close(`${resource}-import`);
+                    setIsLoading(false);
                 }, 1000);
             }
         }
     }, [totalAmount, processedAmount]);
 
-    const handleChange = async ({ file }: UploadChangeParam): Promise<void> => {
+    const handleChange = ({ file }: UploadChangeParam): Promise<void> => {
         return new Promise((resolve) => {
+            setIsLoading(true);
             parse(file as unknown as File, {
                 complete: async ({ data }: { data: unknown[][] }) => {
                     const values = importCSVMapper(data, mapData);
@@ -219,7 +222,7 @@ export const useImport = <
                                 ),
                         );
 
-                        resolve();
+                        resolve(createdValues);
                         handleFinish(createdValues);
                     } else {
                         const createdValues = await Promise.all(
@@ -266,14 +269,20 @@ export const useImport = <
                                 ),
                         );
 
-                        resolve();
+                        resolve(createdValues);
                         handleFinish(createdValues);
                     }
                 },
 
                 ...paparseOptions,
             });
-        });
+        })
+            .then(() => {
+                setIsLoading(false);
+            })
+            .catch(() => {
+                setIsLoading(false);
+            });
     };
 
     return {
@@ -285,7 +294,7 @@ export const useImport = <
         },
         buttonProps: {
             type: "default",
-            loading: query.isLoading,
+            loading: isLoading,
         },
         query,
     };
