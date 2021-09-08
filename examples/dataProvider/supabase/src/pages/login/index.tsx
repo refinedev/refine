@@ -62,7 +62,7 @@ export const Login: React.FC = () => {
                                 <Form.Item
                                     name="email"
                                     label="Email"
-                                    rules={[{ required: true }]}
+                                    rules={[{ required: true, type: "email" }]}
                                 >
                                     <Input size="large" placeholder="Email" />
                                 </Form.Item>
