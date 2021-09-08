@@ -4,7 +4,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
     encodedQueryParams: true,
 })
     .get("/rest/v1/posts")
-    .query({ select: "%2A", offset: "-9", limit: "20" })
+    .query({ select: "%2A", offset: "0", limit: "10" })
     .reply(
         200,
         [
@@ -41,7 +41,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             "Content-Range",
             "0-1/2",
             "Content-Location",
-            "/posts?limit=20&offset=-9&select=%2A",
+            "/posts?limit=10&offset=0&select=%2A",
             "Content-Profile",
             "public",
             "vary",
@@ -63,8 +63,8 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
     .get("/rest/v1/posts")
     .query({
         select: "%2A",
-        offset: "-9",
-        limit: "20",
+        offset: "0",
+        limit: "10",
         order: "title.asc.nullslast",
     })
     .reply(
@@ -103,7 +103,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             "Content-Range",
             "0-1/2",
             "Content-Location",
-            "/posts?limit=20&offset=-9&order=title.asc.nullslast&select=%2A",
+            "/posts?limit=10&offset=0&order=title.asc.nullslast&select=%2A",
             "Content-Profile",
             "public",
             "vary",
@@ -125,8 +125,8 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
     .get("/rest/v1/posts")
     .query({
         select: "%2A",
-        offset: "-9",
-        limit: "20",
+        offset: "0",
+        limit: "10",
         title: "eq.Hello%20World",
     })
     .reply(
@@ -156,7 +156,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             "Content-Range",
             "0-0/1",
             "Content-Location",
-            "/posts?limit=20&offset=-9&select=%2A&title=eq.Hello%20World",
+            "/posts?limit=10&offset=0&select=%2A&title=eq.Hello%20World",
             "Content-Profile",
             "public",
             "vary",
@@ -178,8 +178,8 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
     .get("/rest/v1/posts")
     .query({
         select: "%2A",
-        offset: "-9",
-        limit: "20",
+        offset: "0",
+        limit: "10",
         title: "neq.Hello%20World",
     })
     .reply(
@@ -218,7 +218,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             "Content-Range",
             "0-1/2",
             "Content-Location",
-            "/posts?limit=20&offset=-9&select=%2A&title=neq.Hello%20World",
+            "/posts?limit=10&offset=0&select=%2A&title=neq.Hello%20World",
             "Content-Profile",
             "public",
             "vary",
@@ -238,7 +238,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
     encodedQueryParams: true,
 })
     .get("/rest/v1/posts")
-    .query({ select: "%2A", offset: "-9", limit: "20", id: "lt.3" })
+    .query({ select: "%2A", offset: "0", limit: "10", id: "lt.3" })
     .reply(
         200,
         [
@@ -266,7 +266,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             "Content-Range",
             "0-0/1",
             "Content-Location",
-            "/posts?id=lt.3&limit=20&offset=-9&select=%2A",
+            "/posts?id=lt.3&limit=10&offset=0&select=%2A",
             "Content-Profile",
             "public",
             "vary",
@@ -286,7 +286,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
     encodedQueryParams: true,
 })
     .get("/rest/v1/posts")
-    .query({ select: "%2A", offset: "-9", limit: "20", id: "gt.3" })
+    .query({ select: "%2A", offset: "0", limit: "10", id: "gt.3" })
     .reply(
         200,
         [
@@ -314,7 +314,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             "Content-Range",
             "0-0/1",
             "Content-Location",
-            "/posts?id=gt.3&limit=20&offset=-9&select=%2A",
+            "/posts?id=gt.3&limit=10&offset=0&select=%2A",
             "Content-Profile",
             "public",
             "vary",
@@ -334,7 +334,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
     encodedQueryParams: true,
 })
     .get("/rest/v1/posts")
-    .query({ select: "%2A", offset: "-9", limit: "20", id: "lte.2" })
+    .query({ select: "%2A", offset: "0", limit: "10", id: "lte.2" })
     .reply(
         200,
         [
@@ -362,7 +362,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             "Content-Range",
             "0-0/1",
             "Content-Location",
-            "/posts?id=lte.2&limit=20&offset=-9&select=%2A",
+            "/posts?id=lte.2&limit=10&offset=0&select=%2A",
             "Content-Profile",
             "public",
             "vary",
@@ -382,7 +382,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
     encodedQueryParams: true,
 })
     .get("/rest/v1/posts")
-    .query({ select: "%2A", offset: "-9", limit: "20", id: "gte.42" })
+    .query({ select: "%2A", offset: "0", limit: "10", id: "gte.42" })
     .reply(
         200,
         [
@@ -410,7 +410,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             "Content-Range",
             "0-0/1",
             "Content-Location",
-            "/posts?id=gte.42&limit=20&offset=-9&select=%2A",
+            "/posts?id=gte.42&limit=10&offset=0&select=%2A",
             "Content-Profile",
             "public",
             "vary",
@@ -430,7 +430,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
     encodedQueryParams: true,
 })
     .get("/rest/v1/posts")
-    .query({ select: "%2A", offset: "-9", limit: "20", id: "in.%282%2C3%29" })
+    .query({ select: "%2A", offset: "0", limit: "10", id: "in.%282%2C3%29" })
     .reply(
         200,
         [
@@ -467,7 +467,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             "Content-Range",
             "0-1/2",
             "Content-Location",
-            "/posts?id=in.%282%2C3%29&limit=20&offset=-9&select=%2A",
+            "/posts?id=in.%282%2C3%29&limit=10&offset=0&select=%2A",
             "Content-Profile",
             "public",
             "vary",
@@ -489,8 +489,8 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
     .get("/rest/v1/posts")
     .query({
         select: "%2A",
-        offset: "-9",
-        limit: "20",
+        offset: "0",
+        limit: "10",
         title: "like.%25world%25",
     })
     .reply(
@@ -510,7 +510,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             "Content-Range",
             "*/0",
             "Content-Location",
-            "/posts?limit=20&offset=-9&select=%2A&title=like.%25world%25",
+            "/posts?limit=10&offset=0&select=%2A&title=like.%25world%25",
             "Content-Profile",
             "public",
             "vary",
@@ -532,8 +532,8 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
     .get("/rest/v1/posts")
     .query({
         select: "%2A",
-        offset: "-9",
-        limit: "20",
+        offset: "0",
+        limit: "10",
         title: "ilike.%25world%25",
     })
     .reply(
@@ -563,7 +563,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             "Content-Range",
             "0-0/1",
             "Content-Location",
-            "/posts?limit=20&offset=-9&select=%2A&title=ilike.%25world%25",
+            "/posts?limit=10&offset=0&select=%2A&title=ilike.%25world%25",
             "Content-Profile",
             "public",
             "vary",
@@ -583,7 +583,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
     encodedQueryParams: true,
 })
     .get("/rest/v1/posts")
-    .query({ select: "%2A", offset: "-9", limit: "20", content: "is.null" })
+    .query({ select: "%2A", offset: "0", limit: "10", content: "is.null" })
     .reply(
         200,
         [
@@ -611,7 +611,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             "Content-Range",
             "0-0/1",
             "Content-Location",
-            "/posts?content=is.null&limit=20&offset=-9&select=%2A",
+            "/posts?content=is.null&limit=10&offset=0&select=%2A",
             "Content-Profile",
             "public",
             "vary",
