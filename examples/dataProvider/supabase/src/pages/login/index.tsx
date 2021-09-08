@@ -57,6 +57,8 @@ export const Login: React.FC = () => {
                                 requiredMark={false}
                                 initialValues={{
                                     remember: false,
+                                    email: "info@refine.dev",
+                                    password: "refine-supabase",
                                 }}
                             >
                                 <Form.Item
