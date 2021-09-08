@@ -10,8 +10,8 @@ This hook can also be used to build custom menus, which is also used by default 
 const { selectedKey, menuItems } = useMenu();
 ```
 
-* `menuItems` is a list of style agnostic menu items. Each of them has a key.
-* `selectedKey` is the key of the resource user is viewing at the moment. Its inferred from the route.
+-   `menuItems` is a list of style agnostic menu items. Each of them has a key.
+-   `selectedKey` is the key of the resource user is viewing at the moment. Its inferred from the route.
 
 ## Usage
 
@@ -21,30 +21,60 @@ We will show you how to use `useMenu` to create a custom sider menu that is iden
 
 First we define `<CustomMenu>`:
 
-```tsx twoslash title="src/CustomMenu.tsx" {4, 12, 16-20}
-import { AntdLayout, Menu, Link, useMenu, useTitle } from "@pankod/refine";
+```tsx twoslash title="src/CustomMenu.tsx" {12,33,37-39}
+import { useState, CSSProperties } from "react";
+import {
+    AntdLayout,
+    Menu,
+    Grid,
+    Link,
+    useMenu,
+    useTitle,
+} from "@pankod/refine";
 
 export const CustomMenu: React.FC = () => {
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
 
+    const [collapsed, setCollapsed] = useState<boolean>(false);
+
+    const breakpoint = Grid.useBreakpoint();
+    const isMobile = !breakpoint.lg;
+
     return (
-        <AntdLayout.Sider>
-            <Title collapsed={false} />
-            <Menu
-                theme="dark"
-                defaultSelectedKeys={["dashboard"]}
+        <AntdLayout.Sider
+            collapsible
+            collapsed={collapsed}
+            onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
+            collapsedWidth={isMobile ? 0 : 80}
+            breakpoint="lg"
+            style={isMobile ? antLayoutSiderMobile : antLayoutSider}
+            className={`refine-sider ${
+                !collapsed ? "refine-sider-collapsed" : ""
+            }`}
+        >
+            <Title collapsed={collapsed} />
+            <Menu 
                 selectedKeys={[selectedKey]}
                 mode="inline"
-            >
-                {menuItems.map(({ icon, route, label }) => (
-                    <Menu.Item key={route} icon={icon}>
-                        <Link to={route}>{label}</Link>
-                    </Menu.Item>
-                ))}
+                >
+                    {menuItems.map(({ icon, route, label }) => (
+                        <Menu.Item key={route} icon={icon}>
+                            <Link to={route}>{label}</Link>
+                        </Menu.Item>
+                    ))}
             </Menu>
         </AntdLayout.Sider>
     );
+};
+
+const antLayoutSider:CSSProperties = {
+    position: "relative",
+};
+const antLayoutSiderMobile:CSSProperties = {
+    position: "fixed",
+    height: "100vh",
+    zIndex: 999,
 };
 ```
 
@@ -54,7 +84,7 @@ export const CustomMenu: React.FC = () => {
 
 We can override the default sider and show the custom menu we implemented in its place by passing a the custom component to `<Refine>`s `Sider` prop:
 
-```tsx title="App.tsx" {6, 14}
+```tsx title="App.tsx" {6, 15}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
@@ -68,10 +98,9 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <Refine 
-            dataProvider={dataProvider(API_URL)} 
-            Sider={CustomMenu}
-        >
-            <Resource name="posts" list={PostList} />
+            dataProvider={dataProvider(API_URL)}
+            Sider={CustomMenu}>
+                <Resource name="posts" list={PostList} />
         </Refine>
     );
 };
@@ -83,31 +112,46 @@ export default App;
 
 We can also add a logout button:
 
-```tsx twoslash title="src/CustomMenu.tsx" {6-8, 15-16, 41-43}
+```tsx twoslash title="src/CustomMenu.tsx" {6-8, 22-23, 56-58}
+import { useState, CSSProperties } from "react";
 import {
     AntdLayout,
     Menu,
     Link,
-    useMenu,
-    useTitle,
+    Grid,
     Icons,
     useNavigation,
     useLogout,
+    useMenu,
+    useTitle,
 } from "@pankod/refine";
 
 export const CustomMenu: React.FC = () => {
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
 
+    const [collapsed, setCollapsed] = useState<boolean>(false);
+
+    const breakpoint = Grid.useBreakpoint();
+    const isMobile = !breakpoint.lg;
+
     const { mutate: logout } = useLogout();
     const { push } = useNavigation();
 
     return (
-        <AntdLayout.Sider>
-            <Title collapsed={false} />
+        <AntdLayout.Sider
+            collapsible
+            collapsed={collapsed}
+            onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
+            collapsedWidth={isMobile ? 0 : 80}
+            breakpoint="lg"
+            style={isMobile ? antLayoutSiderMobile : antLayoutSider}
+            className={`refine-sider ${
+                !collapsed ? "refine-sider-collapsed" : ""
+            }`}
+        >
+            <Title collapsed={collapsed} />
             <Menu
-                theme="dark"
-                defaultSelectedKeys={["dashboard"]}
                 selectedKeys={[selectedKey]}
                 mode="inline"
                 onClick={({ key }) => {
@@ -132,6 +176,15 @@ export const CustomMenu: React.FC = () => {
         </AntdLayout.Sider>
     );
 };
+
+const antLayoutSider:CSSProperties = {
+    position: "relative",
+};
+const antLayoutSiderMobile:CSSProperties = {
+    position: "fixed",
+    height: "100vh",
+    zIndex: 999,
+};
 ```
 
 `useLogout` provides the logout functionality. We also have a `push` function from `useNavigation` for directing users to homepage after logging out.
@@ -146,14 +199,15 @@ export const CustomMenu: React.FC = () => {
 You can further customize the Sider and its appearance.  
 [Refer to Ant Design docs for more detailed information about Sider. &#8594](https://ant.design/components/layout/#Layout.Sider)
 :::
+
 ## API Reference
 
 ### Return values
 
-| Property    | Description                                                                    | Type                             |
-| ----------- | ------------------------------------------------------------------------------ | -------------------------------- |
-| selectedKey | Key of the resource the user is viewing at the moment                          | `string`                         |
-| menuItems   | List of keys and routes and some metadata of resources and also the dashboard if exists | [`IMenuItem[]`](#interfaces)     |
+| Property    | Description                                                                             | Type                         |
+| ----------- | --------------------------------------------------------------------------------------- | ---------------------------- |
+| selectedKey | Key of the resource the user is viewing at the moment                                   | `string`                     |
+| menuItems   | List of keys and routes and some metadata of resources and also the dashboard if exists | [`IMenuItem[]`](#interfaces) |
 
 #### Interfaces
 
