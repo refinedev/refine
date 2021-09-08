@@ -134,7 +134,12 @@ export const useTable = <
     useEffect(() => {
         if (syncWithLocation) {
             const stringifyParams = stringifyTableParams({
-                pagination: tablePropsSunflower.pagination,
+                pagination: {
+                    ...tablePropsSunflower.pagination,
+                    current:
+                        tablePropsSunflower.pagination.current ??
+                        defaultCurrent,
+                },
                 sorter,
                 filters,
             });
