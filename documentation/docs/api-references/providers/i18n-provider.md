@@ -195,7 +195,8 @@ Before we get started, let's look at the translations that refine uses in compon
         "deleteSuccess": "Successfully deleted {{resource}}",
         "deleteError": "Error when deleting {{resource}} (status code: {{statusCode}})",
         "editSuccess": "Successfully edited {{resource}}",
-        "editError": "Error when editing {{resource}} (status code: {{statusCode}})"
+        "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
+        "importProgress": "Importing: {{processedAmount}}/{{totalAmount}}"
     },
     "loading": "Loading",
     "tags": {
@@ -274,7 +275,8 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
         "deleteSuccess": "Successfully deleted {{resource}}",
         "deleteError": "Error when deleting {{resource}} (status code: {{statusCode}})",
         "editSuccess": "Successfully edited {{resource}}",
-        "editError": "Error when editing {{resource}} (status code: {{statusCode}})"
+        "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
+        "importProgress": "Importing: {{processedAmount}}/{{totalAmount}}"
     },
     "loading": "Loading",
     "tags": {
@@ -360,7 +362,8 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
         "deleteSuccess": "{{resource}} erfolgreich gelöscht.",
         "deleteError": "Fehler beim Löschen {{resource}} (status code: {{statusCode}})",
         "editSuccess": "{{resource}} erfolgreich bearbeitet.",
-        "editError": "Fehler beim Bearbeiten {{resource}} (status code: {{statusCode}})"
+        "editError": "Fehler beim Bearbeiten {{resource}} (status code: {{statusCode}})",
+        "importProgress": "Import läuft: {{processedAmount}}/{{totalAmount}}"
     },
     "loading": "Wird geladen",
     "tags": {
