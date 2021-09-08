@@ -7,15 +7,14 @@ import { Login } from "pages/login";
 import { supabaseClient } from "utility";
 
 const authProvider: AuthProvider = {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     login: async ({ email, password }) => {
         const { user, error } = await supabaseClient.auth.signIn({
-            email: "salih@pankod.com",
-            password: "refine-supabase",
+            email,
+            password,
         });
 
         if (error) {
-            return Promise.reject();
+            return Promise.reject(error);
         }
 
         if (user) {
@@ -24,21 +23,33 @@ const authProvider: AuthProvider = {
     },
     logout: async () => {
         const { error } = await supabaseClient.auth.signOut();
-        if (!error) {
-            return Promise.resolve("/");
+
+        if (error) {
+            return Promise.reject(error);
         }
+
+        return Promise.resolve("/");
     },
     checkError: () => Promise.resolve(),
     checkAuth: () => {
         const session = supabaseClient.auth.session();
+
         if (session) {
             return Promise.resolve();
         }
+
         return Promise.reject();
     },
-    getPermissions: () => Promise.resolve(),
+    getPermissions: async () => {
+        const user = supabaseClient.auth.user();
+
+        if (user) {
+            return Promise.resolve(user.role);
+        }
+    },
     getUserIdentity: async () => {
         const user = supabaseClient.auth.user();
+
         if (user) {
             return Promise.resolve({
                 ...user,
