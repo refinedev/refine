@@ -21,17 +21,16 @@ npm install @auth0/auth0-react
 
 Wrap your root component with an Auth0Provider that you can import from the SDK.
 
-```tsx title="index.tsx"
+```tsx title="index.tsx" {3, 9-15}
 import React from "react";
 import ReactDOM from "react-dom";
-// highlight-next-line
+
 import { Auth0Provider } from "@auth0/auth0-react";
 
 import App from "./App";
 
 ReactDOM.render(
     <React.StrictMode>
-        // highlight-start
         <Auth0Provider
             domain="YOUR_DOMAIN"
             clientId="YOUR_CLIENT_ID"
@@ -39,7 +38,6 @@ ReactDOM.render(
         >
             <App />
         </Auth0Provider>
-        // highlight-end
     </React.StrictMode>,
     document.getElementById("root"),
 );
@@ -53,20 +51,18 @@ Refer to [**Auth0 docs**](https://auth0.com/docs/quickstart/spa/react#configure-
 
 First, we need to override the **refine** login page. In this way, we will redirect it to the Auth0 login page. We create a `login.tsx` file in the `/pages` folder.
 
-```tsx title="/pages/login.tsx"
-import React from "react";
+```tsx twoslash title="/pages/login.tsx" {7, 11, 52}
 import { 
-    Row, 
+    Row,
+    Col,
     AntdLayout,
     Card,
     Typography,
     Button,
-    // highlight-next-line
     useLogin
 } from "@pankod/refine";
 
 export const Login: React.FC = () => {
-    // highlight-next-line
     const { mutate: login } = useLogin();
 
     const CardTitle = (
@@ -108,8 +104,7 @@ export const Login: React.FC = () => {
                             size="large"
                             htmlType="submit"
                             block
-                            // highlight-next-line
-                            onClick={() => login(undefined)}
+                            onClick={() => login({})}
                         >
                             Login
                         </Button>
@@ -118,10 +113,10 @@ export const Login: React.FC = () => {
                         <div
                             style={{ textAlign: "center", padding: "10px 0px" }}
                         >
-                            <Text>
+                            <Typography.Text>
                                 Still no account? Please go to
                                 <a href="#"> Sign up</a>
-                            </Text>
+                            </Typography.Text>
                         </div>
                     </Card>
                 </Col>
@@ -133,8 +128,13 @@ export const Login: React.FC = () => {
 
 After clicking the `Login` button, you will be directed to the auth0 login screen.
 
-<div style={{textAlign: "center"}}>
-    <img src={login} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={login} alt="auth0-login" />
 </div>
 <br/>
 
@@ -144,10 +144,8 @@ In refine, authentication and authorization processes are performed with the aut
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine";
-// highlight-next-line
 import { useAuth0 } from "@auth0/auth0-react";
 
-// highlight-next-line
 import { Login } from "pages/login";
 
 import axios from "axios";
@@ -169,7 +167,6 @@ const App = () => {
         return <span>loading...</span>;
     }
 
-    // highlight-start
     const authProvider: AuthProvider = {
         login: () => {
             loginWithRedirect();
@@ -197,10 +194,7 @@ const App = () => {
             }
         },
     };
-    // highlight-end
 
-
-    // highlight-start
     getIdTokenClaims().then((token) => {
         if (token) {
             axios.defaults.headers.common = {
@@ -208,7 +202,6 @@ const App = () => {
             };
         }
     });
-    // highlight-end
 
     return (
         <Refine

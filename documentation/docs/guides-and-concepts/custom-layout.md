@@ -18,13 +18,13 @@ Both of these components can accept the listed props for customization. [`<Refin
 
 Let's look at an example of modifying the default layout to have a top menu layout.
 
-```tsx title="/src/App.tsx"
+```tsx title="/src/App.tsx" {6, 14-34}
 import { Refine, Resource, AntdLayout, Link } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList } from "pages/posts";
-//highlight-next-line
+
 import { CustomSider } from "components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -33,7 +33,6 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            //highlight-start
             Layout={({ children, Footer, OffLayoutArea }) => (
                 <AntdLayout>
                     <AntdLayout.Header>
@@ -55,7 +54,6 @@ const App: React.FC = () => {
                     <img src="/refine.svg" alt="Refine" />
                 </Link>
             )}
-            //highlight-end
         >
             <Resource name="posts" list={PostList} />
         </Refine>
@@ -69,28 +67,22 @@ Here, we override the [`<Title>`][Title] and [`<Layout>`][Layout] components. Wh
 
 So, we just provided a custom [`<Sider>`][Sider]. Here's our custom sider that looks horizontal, instead of the default vertical one:
 
-```tsx title="/src/components/sider/index.tsx"
-import React from "react";
+```tsx twoslash title="/src/components/sider/index.tsx" {3-4, 8, 10-14}
 import { Link, Menu, useMenu, useTitle } from "@pankod/refine";
 
 export const CustomSider: React.FC = () => {
-    //highlight-start
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
-    //highlight-end
 
     return (
         <>
-            //highlight-next-line
             <Title collapsed={false} />
             <Menu selectedKeys={[selectedKey]} mode="horizontal">
-                //highlight-start
                 {menuItems.map(({ icon, route, label }) => (
                     <Menu.Item key={route} icon={icon}>
                         <Link to={route}>{label}</Link>
                     </Menu.Item>
                 ))}
-                //highlight-end
             </Menu>
         </>
     );

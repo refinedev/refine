@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine",
-    "version": "1.0.54",
+    "version": "1.0.62",
     "description": "",
     "private": false,
     "main": "dist/index.js",
@@ -59,9 +59,9 @@
         "react-csv": "^2.0.3",
         "react-markdown": "^5.0.3",
         "react-query": "^3.19.2",
-        "react-router-dom": "^5.2.0",
+        "react-router-dom": "5.2.0",
         "remark-gfm": "^1.0.0",
-        "sunflower-antd": "^1.0.0-beta.3",
+        "sunflower-antd": "1.0.0-beta.3",
         "tslib": "^2.2.0"
     },
     "author": "Pankod",

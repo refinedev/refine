@@ -40,7 +40,12 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     });
 
     return (
-        <List>
+        <List
+            pageHeaderProps={{
+                onBack: () => console.log("clicked"),
+                subTitle: "Subtitle",
+            }}
+        >
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column

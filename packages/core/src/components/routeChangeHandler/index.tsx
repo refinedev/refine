@@ -10,7 +10,7 @@ export const RouteChangeHandler: FC = () => {
 
     useEffect(() => {
         checkAuth().catch(() => false);
-    }, [location.pathname]);
+    }, [location?.pathname]);
 
     return null;
 };

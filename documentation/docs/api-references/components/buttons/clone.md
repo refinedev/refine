@@ -10,16 +10,13 @@ It can be useful when redirecting the app to the create page with the record id 
 
 ## Usage
 
-```tsx
+```tsx twoslash {4, 20}
 import {
     List,
     Table,
-    useTable
-    //highlight-next-line
+    useTable,
     CloneButton,
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -34,7 +31,6 @@ export const PostList: React.FC = () => {
                     dataIndex="actions"
                     key="actions"
                     render={(_, record) => (
-                        // highlight-next-line
                         <CloneButton size="small" recordItemId={record.id} />
                     )}
                 />
@@ -42,10 +38,8 @@ export const PostList: React.FC = () => {
         </List>
     );
 };
-```
 
-```ts
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
 }
@@ -68,8 +62,9 @@ Will look like this:
 
 `recordItemId` is used to append the record id to the end of the route path.
 
-```tsx
+```tsx twoslash
 import { CloneButton } from "@pankod/refine";
+
 export const MyCloneComponent = () => {
     return <CloneButton resourceName="posts" recordItemId="1" />;
 };
@@ -85,7 +80,7 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/api-re
 
 It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of the `<Resource>` component.
 
-```tsx
+```tsx twoslash
 import { CloneButton } from "@pankod/refine";
 
 export const MyCloneComponent = () => {
@@ -99,7 +94,7 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/api-re
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx
+```tsx twoslash
 import { CloneButton } from "@pankod/refine";
 
 export const MyCloneComponent = () => {

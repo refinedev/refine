@@ -7,7 +7,11 @@ title: useExport
 
 This hook accepts [`export-to-csv`][export-to-csv]'s options to create `CSV` files.
 
-```ts
+```ts twoslash
+const options = {};
+// ---cut---
+import { useExport } from "@pankod/refine";
+
 const { triggerExport, loading } = useExport(options);
 ```
 
@@ -37,30 +41,24 @@ Let's say that we have an endpoint like this:
 
 To enable export functionality for this endpoint, we can use the `useExport` hook to create an export button.
 
-```tsx title="src/pages/posts/list.tsx"
+```tsx twoslash title="src/pages/posts/list.tsx" {4-5, 11, 17}
 import {
     List,
     Table,
     useTable,
-    //highlight-start
     useExport,
     ExportButton,
-    //highlight-end
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
-    //highlight-next-line
     const { triggerExport, loading } = useExport<IPost>();
 
     return (
         <List
             pageHeaderProps={{
                 extra: (
-                    //highlight-next-line
                     <ExportButton onClick={triggerExport} loading={loading} />
                 ),
             }}
@@ -72,10 +70,8 @@ export const PostList: React.FC = () => {
         </List>
     );
 };
-```
 
-```ts title="interfaces.d.ts"
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
     content: string;
@@ -144,7 +140,10 @@ We have the `category` and `user` fields as possible relational data keys. Their
 
 We can save `category.id` as `categoryId` and `user.id` as `userId`. Thus using a mapping function that looks like this:
 
-```ts
+```ts twoslash
+
+import { useExport } from "@pankod/refine";
+// ---cut---
 const { triggerExport, loading } = useExport<IPost>({
     mapData: (item) => {
         return {
@@ -154,25 +153,22 @@ const { triggerExport, loading } = useExport<IPost>({
             content: item.content,
             status: item.status,
             categoryId: item.category.id,
-            userId: item.user?.id,
+            userId: item.user.id,
         };
     },
 });
-```
 
-Such an `IPost` may should work fine:
 
-```ts
-export interface ICategory {
+interface ICategory {
     id: string;
     title: string;
 }
 
-export interface IUser {
+interface IUser {
     id: string;
 }
 
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
     content: string;
@@ -182,6 +178,8 @@ export interface IPost {
     user: IUser;
 }
 ```
+
+Such an `IPost` may should work fine:
 
 This is all you need to handle mapping.
 

@@ -31,47 +31,48 @@ We'll demonstrate how to get data at `/categories` endpoint from `https://api.fa
 }
 ```
 
-```tsx title="pages/posts/create.tsx"
+```tsx twoslash title="pages/posts/create.tsx" {3-5, 10}
 import { Form, Select, useSelect } from "@pankod/refine";
 
-import { ICategory } from "interfaces";
-
 export const PostCreate = () => {
-    //highlight-start
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
     });
-    //highlight-end
 
     return (
         <Form>
-            ...
             <Form.Item label="Categories" name="categories">
-                //highlight-next-line
                 <Select {...selectProps} />
             </Form.Item>
-            ...
-        <Form>
+        </Form>
     );
 };
-```
 
-```ts title="interfaces/index.d.ts"
-export interface ICategory {
+interface ICategory {
     id: string;
     title: string;
 }
 ```
 
-<div>
-    <img src={basicUsage} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={basicUsage} alt="Basic use of select box" />
 </div>
 <br/>
 
 All we have to do is pass the `selectProps` it returns to the `<Select>` component.
 
-<div>
-    <img src={search} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={search} alt="Search functionality" />
 </div>
 <br/>
 
@@ -85,9 +86,10 @@ By default, refine does the search using the `useList` hook and passes it to the
 
 ### `resource`
 
-```tsx
+```tsx twoslash {1}
+import { useSelect } from "@pankod/refine";
+// ---cut---
 const { selectProps } = useSelect({
-    //highlight-next-line
     resource: "categories",
 });
 ```
@@ -98,10 +100,11 @@ const { selectProps } = useSelect({
 
 ### `defaultValue`
 
-```tsx
+```tsx twoslash {2}
+import { useSelect } from "@pankod/refine";
+// ---cut---
 const { selectProps } = useSelect({
     resource: "categories",
-    //highlight-next-line
     defaultValue: "1",
 });
 ```
@@ -120,13 +123,13 @@ Can use `defaultValue` property when edit a record in `<Edit>` component.
 
 ### `optionLabel` and `optionValue`
 
-```tsx
+```tsx twoslash {2-3}
+import { useSelect } from "@pankod/refine";
+// ---cut---
 const { selectProps } = useSelect({
     resource: "categories",
-    //highlight-start
     optionLabel: "title",
     optionValue: "id",
-    //highlight-end
 });
 ```
 
@@ -134,10 +137,11 @@ Allows you to change the values and appearance of your options. Default values a
 
 ### `filters`
 
-```tsx
+```tsx twoslash {2-8}
+import { useSelect } from "@pankod/refine";
+// ---cut---
 const { selectProps } = useSelect({
     resource: "categories",
-    //highlight-start
     filters: [
         {
             field: "isActive",
@@ -145,7 +149,6 @@ const { selectProps } = useSelect({
             value: true,
         },
     ],
-    //highlight-end
 });
 ```
 
@@ -153,17 +156,17 @@ It allows us to add some filters while fetching the data. For example, if you wa
 
 ### `sort`
 
-```tsx
+```tsx twoslash {2-7}
+import { useSelect } from "@pankod/refine";
+// ---cut---
 const { selectProps } = useSelect({
     resource: "categories",
-    //highlight-start
     sort: [
         {
             field: "title",
             order: "asc",
         },
     ],
-    //highlight-end
 });
 ```
 
@@ -175,69 +178,46 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 [useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing `queryOptions` property.
 
 
-```tsx
+```tsx twoslash {2}
+import { useSelect } from "@pankod/refine";
+// ---cut---
 const { selectProps } = useSelect({
-        resource: "categories",
-         //highlight-start
-        queryOptions: { onError: () => { console.log("triggers when on query return Error") }}
-         //highlight-end
-});
-```
-
-:::caution
-The `defaultQueryOnSuccess` method which has default onSuccess behaviour and returned from `useRadioGroup` hook  must be called in case of `onSuccess` is needed to be overwritten. 
-
-```tsx
-const { 
-    selectProps, 
-    //highlight-next-line
-    defaultQueryOnSuccess
-    } = useSelect({
     resource: "categories",
-    //highlight-start
-    queryOptions: { 
-        onSuccess: (data) => { 
-            defaultQueryOnSuccess(data)
-            console.log("triggers when on query return on success") 
-        } 
-    }
-    //highlight-end
+    queryOptions: { onError: () => { console.log("triggers when on query return Error") }}
 });
 ```
 
-:::
 ### `defaultValueQueryOptions`
 
 [useQuery](https://react-query.tanstack.com/reference/useQuery) options for default value query can be set by passing `queryOptions` property.
 
 
-```tsx
+```tsx twoslash {2}
+import { useSelect } from "@pankod/refine";
+// ---cut---
 const { selectProps } = useSelect({
-        resource: "categories",
-         //highlight-start
-        defaultValueQueryOptions: { onError: () => { console.log("triggers when on query return Error") }}
-         //highlight-end
+    resource: "categories",
+    defaultValueQueryOptions: { onError: () => { console.log("triggers when on query return Error") }}
 });
 ```
 
 :::caution
 The `defaultValueQueryOnSuccess` method which has default onSuccess behaviour for default value query and returned from `useSelect` hook  must be called in case of `onSuccess` is needed to be overwritten. 
 
-```tsx
+```tsx twoslash {2, 5-10}
+import { useSelect } from "@pankod/refine";
+// ---cut---
 const { 
     selectProps, 
-    //highlight-next-line
     defaultValueQueryOnSuccess
-    } = useSelect({
+} = useSelect({
     resource: "categories",
-    //highlight-start
     queryOptions: { 
         onSuccess: (data) => { 
             defaultValueQueryOnSuccess(data)
             console.log("triggers when on query return on success") 
         } 
     }
-    //highlight-end
 });
 ```
 

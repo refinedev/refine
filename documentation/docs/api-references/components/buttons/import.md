@@ -10,29 +10,23 @@ It uses Ant Design's [`<Button>`][button] and [`<Upload>`][upload] components. I
 
 ## Usage
 
-```tsx title="/src/pages/posts/list.tsx"
+```tsx twoslash title="/src/pages/posts/list.tsx" {4-5, 11, 16}
 import {
     List,
     Table,
     useTable,
-    //highlight-start
     useImport,
     ImportButton,
-    //highlight-end
 } from "@pankod/refine";
-
-import { IPost, IPostFile } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
-    //highlight-next-line
     const importProps = useImport<IPostFile>();
 
     return (
         <List
             pageHeaderProps={{
-                //highlight-next-line
                 extra: <ImportButton {...importProps} />,
             }}
         >
@@ -43,12 +37,15 @@ export const PostList: React.FC = () => {
         </List>
     );
 };
-```
 
-```ts title="/src/interfaces.d.ts"
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
+}
+
+interface IPostFile {
+    title: string;
+    categoryId: string;
 }
 ```
 
@@ -69,6 +66,13 @@ Will look like this:
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
+```tsx twoslash
+import { ImportButton } from "@pankod/refine";
+
+export const MyRefreshComponent = () => {
+    return <ImportButton hideText />;
+};
+```
 ## API Reference
 
 ### Properties

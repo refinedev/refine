@@ -9,16 +9,13 @@ import refreshButton from '@site/static/img/guides-and-concepts/components/butto
 
 ## Usage
 
-```tsx
+```tsx twoslash {1, 17}
 import {
-    //highlight-next-line
-    RefreshButton
+    RefreshButton,
     useShow,
     Show,
     Typography,
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 const { Title, Text } = Typography;
 
@@ -30,7 +27,6 @@ export const PostShow: React.FC = () => {
     return (
         <Show
             isLoading={isLoading}
-            //highlight-next-line
             pageHeaderProps={{ extra: <RefreshButton /> }}
         >
             <Title level={5}>Id</Title>
@@ -41,10 +37,8 @@ export const PostShow: React.FC = () => {
         </Show>
     );
 };
-```
 
-```ts
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
 }
@@ -67,7 +61,7 @@ Will Look like this:
 
 `recordItemId` allows us to manage which data is going to be refreshed.
 
-```tsx
+```tsx twoslash
 import { RefreshButton } from "@pankod/refine";
 
 export const MyRefreshComponent = () => {
@@ -85,7 +79,7 @@ Clicking the button will trigger the [`useOne`](api-references/hooks/data/useOne
 
 `resourceName` allows us to manage which resource is going to be refreshed.
 
-```tsx
+```tsx twoslash
 import { RefreshButton } from "@pankod/refine";
 
 export const MyRefreshComponent = () => {
@@ -103,7 +97,7 @@ Clicking the button will trigger the [`useOne`](api-references/hooks/data/useOne
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx
+```tsx twoslash
 import { RefreshButton } from "@pankod/refine";
 
 export const MyRefreshComponent = () => {

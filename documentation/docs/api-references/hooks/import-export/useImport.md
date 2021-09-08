@@ -7,7 +7,11 @@ title: useImport
 
 It's return type is compatible with [`<ImportButton>`][ImportButton]. It can also be further customized by using it with Ant Design's [`<Upload>`][Upload] and [`<Button>`][Button] props.
 
-```ts
+```ts twoslash
+const options = {};
+// ---cut---
+import { useImport } from "@pankod/refine";
+
 const { uploadProps, buttonProps, mutationResult } = useImport(options);
 ```
 
@@ -36,44 +40,25 @@ This file should be parsed as:
 ]
 ```
 
-And the interface `IPostFile` would fit well to the parsed output above:
-
-```ts title="interfaces.d.ts"
-export interface IPostFile {
-    title: string;
-    categoryId: string;
-}
-```
-
-Using the interface above, here are some examples to see:
-
-<br />
-
 ### With `<ImportButton>` (Recommended)
 
-```tsx
+```tsx twoslash {4-5, 11, 16}
 import {
     List,
     Table,
     useTable,
-    //highlight-start
     useImport,
     ImportButton,
-    //highlight-end
 } from "@pankod/refine";
-
-import { IPost, IPostFile } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
-    //highlight-next-line
     const importProps = useImport<IPostFile>();
 
     return (
         <List
             pageHeaderProps={{
-                //highlight-next-line
                 extra: <ImportButton {...importProps} />,
             }}
         >
@@ -85,6 +70,17 @@ export const PostList: React.FC = () => {
         </List>
     );
 };
+
+interface IPostFile {
+    title: string;
+    categoryId: string;
+}
+
+interface IPost {
+    id: string;
+    title: string;
+    status: string;
+}
 ```
 
 [`<ImportButton`][ImportButton] accepts two properties: `buttonProps` and `uploadProps`. It just wraps [`<Button>`][Button] component with the [`<Upload>`][Upload] component to reduce some boilerplate code.
@@ -93,40 +89,44 @@ export const PostList: React.FC = () => {
 
 ### With Ant Design's `<Upload>` and `<Button>` Components
 
-```tsx
+```tsx twoslash {4-7, 10, 15, 20-26}
+interface IPostFile {
+    title: string;
+    categoryId: string;
+}
+
+interface IPost {
+    id: string;
+    title: string;
+    status: string;
+}
+// ---cut---
 import {
     List,
     Table,
     useTable,
-    //highlight-start
     useImport,
     Button,
     Icons,
     Upload,
-     //highlight-end
 } from "@pankod/refine";
 
-//highlight-next-line
 const { ImportOutlined } = Icons;
-
-import { IPost, IPostFile } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
-     //highlight-next-line
+
     const { buttonProps, uploadProps } = useImport<IPostFile>();
 
     return (
         <List
             pageHeaderProps={{
                 extra: (
-                    //highlight-start
                     <Upload {...uploadProps}>
                         <Button icon={<ImportOutlined />} {...buttonProps}>
                             Import
                         </Button>
                     </Upload>
-                    //highlight-end
                 ),
             }}
         >
@@ -171,7 +171,9 @@ Since `user` and `category` are relational fields, we shouldn't store them as ob
 
 When creating these resources back, we should map it back to our backend API's required format. `mapData` option allows us to do this. Here is an example:
 
-```ts
+```ts twoslash
+import { useImport } from "@pankod/refine";
+// ---cut---
 const importProps = useImport<IPostFile>({
     mapData: (item) => {
         return {
@@ -187,10 +189,8 @@ const importProps = useImport<IPostFile>({
         };
     },
 });
-```
 
-```ts title="interfaces.d.ts"
-export interface IPostFile {
+interface IPostFile {
     title: string;
     status: string;
     content: string;
@@ -198,21 +198,21 @@ export interface IPostFile {
     userId: string;
 }
 ```
-
 Now, parsed data is mapped to conform our APIs requirements.
 
 ## API Reference
 
 ### Parameters
 
-| Key                 | Description                                                                                                         | Type                                                                       | Default                                                                                                                                    |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| resourceName        | Default resource name this button imports to. Inferred from route by default.                                       | `string`                                                                   |
-| mapData             | A mapping function that runs for every record. Mapped data will be included in the request payload.                 | `(value: any, index?: number, array?: any[], data?: any[][]): any;`        |
-| papaparseOptions    | Custom Papa Parse options.                                                                                          | [`ParseConfig`][papaparse]                                                 |
-| batchSize           | Requests batch size. By default, it is 1. If it is more than 1, `createMany` should be implemented on DataProvider. | `number`                                                                   |
-| successNotification | Successful Mutation notification                                                                                    | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully created `resource`"                                                                                                          |
-| errorNotification   | Unsuccessful Mutation notification                                                                                  | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "There was an error while creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
+| Key                 | Description                                                                                                                                                                                                                                             | Type                                                                       | Default                                                                                                                                    |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| resourceName        | Default resource name this button imports to. Inferred from route by default.                                                                                                                                                                           | `string`                                                                   |
+| mapData             | A mapping function that runs for every record. Mapped data will be included in the request payload.                                                                                                                                                     | `(value: any, index?: number, array?: any[], data?: any[][]): any;`        |
+| papaparseOptions    | Custom Papa Parse options.                                                                                                                                                                                                                              | [`ParseConfig`][papaparse]                                                 |
+| batchSize           | Requests batch size. If it is 1, all records are sent one by one. By default, it is [`Number.MAX_SAFE_INTEGER`][Number.MAX_SAFE_INTEGER] to send all records in one batch. If it is more than 1, `createMany` should be implemented on DataProvider. | `number`                                                                   |
+| onFinish           | Called with errors and successful responses when all requests are sent. | `(results: { succeeded: ImportSuccessResult<TVariables, TData>[]; errored: ImportErrorResult<TVariables>[]; }) => void`                                                                   |
+| successNotification | Successful Mutation notification                                                                                                                                                                                                                        | [`SuccessErrorNotification`][SuccessErrorNotification] | "Successfully created `resource`"                                                                                                          |
+| errorNotification   | Unsuccessful Mutation notification                                                                                                                                                                                                                      | [`SuccessErrorNotification`][SuccessErrorNotification] | "There was an error while creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
 
 ### Return Values
 
@@ -236,8 +236,10 @@ Now, parsed data is mapped to conform our APIs requirements.
 [ImportButton]: /api-references/components/buttons/import.md
 [useCreate]: /api-references/hooks/data/useCreate.md
 [useCreateMany]: /api-references/hooks/data/useCreateMany.md
-[DataProvider]: api-references/providers/data-provider.md
+[DataProvider]: /api-references/providers/data-provider.md
 [BaseRecord]: /api-references/interfaces.md#baserecord
 [HttpError]: /api-references/interfaces.md#httperror
 [papaparse]: https://www.papaparse.com/docs
 [useMutation]: https://react-query.tanstack.com/reference/useMutation
+[Number.MAX_SAFE_INTEGER]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
+[SuccessErrorNotification]: /api-references/interfaces.md#successerrornotification

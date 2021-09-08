@@ -31,6 +31,12 @@ const siteConfig = {
                 },
             },
         ],
+        [
+            "docusaurus-preset-shiki-twoslash",
+            {
+                themes: ["min-light", "nord"],
+            },
+        ],
     ],
     themeConfig: {
         image: "img/footer_icon.png",
@@ -83,6 +89,12 @@ const siteConfig = {
                         "header-icon-link header-twitter-link header-last-nav-item",
                 },
             ],
+        },
+        gtag: {
+            // You can also use your "G-" Measurement ID here.
+            trackingID: "G-27Z1WY952H",
+            // Optional fields.
+            anonymizeIP: true, // Should IPs be anonymized?
         },
         // footer: {
         //     style: "dark",
