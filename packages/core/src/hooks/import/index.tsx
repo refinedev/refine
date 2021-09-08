@@ -107,6 +107,16 @@ export const useImport = <
         query = createMany;
     }
 
+    const handleCleanup = () => {
+        setTotalAmount(0);
+        setProcessedAmount(0);
+        setIsLoading(false);
+
+        setTimeout(() => {
+            notification.close(`${resource}-import`);
+        }, 4500);
+    };
+
     const handleFinish = (
         createdValues: CreatedValuesType<TVariables, TData>[],
     ) => {
@@ -119,11 +129,13 @@ export const useImport = <
             ) as unknown as ImportErrorResult<TVariables>[],
         };
 
+        handleCleanup();
+
         onFinish?.(result);
     };
 
     useEffect(() => {
-        if (totalAmount > 0) {
+        if (totalAmount > 0 && processedAmount > 0) {
             const description = (
                 <div
                     style={{
@@ -159,100 +171,51 @@ export const useImport = <
                 description,
                 message: null,
                 key: `${resource}-import`,
+                duration: 0,
             });
 
             if (processedAmount >= totalAmount) {
-                setTimeout(() => {
-                    setTotalAmount(0);
-                    setProcessedAmount(0);
-                    notification.close(`${resource}-import`);
-                    setIsLoading(false);
-                }, 1000);
             }
         }
     }, [totalAmount, processedAmount]);
 
-    const handleChange = ({ file }: UploadChangeParam): Promise<void> => {
-        return new Promise<void>((resolve) => {
-            setIsLoading(true);
-            parse(file as unknown as File, {
-                complete: async ({ data }: { data: unknown[][] }) => {
-                    const values = importCSVMapper(data, mapData);
+    const handleChange = ({
+        file,
+    }: UploadChangeParam): Promise<CreatedValuesType<TVariables, TData>[]> => {
+        return new Promise<CreatedValuesType<TVariables, TData>[]>(
+            (resolve) => {
+                setIsLoading(true);
+                parse(file as unknown as File, {
+                    complete: async ({ data }: { data: unknown[][] }) => {
+                        const values = importCSVMapper(data, mapData);
 
-                    setTotalAmount(values.length);
+                        setTotalAmount(values.length);
 
-                    if (batchSize === 1) {
-                        const createdValues = await Promise.all(
-                            values
-                                .map((value) => {
-                                    const response = create.mutateAsync({
-                                        resource,
-                                        values: value,
-                                        successNotification: false,
-                                        errorNotification: false,
-                                    });
-
-                                    return { response, value };
-                                })
-                                .map(({ response, value }) =>
-                                    response
-                                        .then(({ data }) => {
-                                            setProcessedAmount(
-                                                (currentAmount) =>
-                                                    currentAmount + 1,
-                                            );
-
-                                            return {
-                                                response: [data],
-                                                type: "success",
-                                                request: [value],
-                                            } as ImportSuccessResult<
-                                                TVariables,
-                                                TData
-                                            >;
-                                        })
-                                        .catch(
-                                            (error: HttpError) =>
-                                                ({
-                                                    response: [error],
-                                                    type: "error",
-                                                    request: [value],
-                                                } as ImportErrorResult<TVariables>),
-                                        ),
-                                ),
-                        );
-
-                        resolve();
-                        handleFinish(createdValues);
-                    } else {
-                        const createdValues = await Promise.all(
-                            chunk(values, batchSize)
-                                .map((batch) => {
-                                    return {
-                                        response: createMany.mutateAsync({
+                        if (batchSize === 1) {
+                            const createdValues = await Promise.all(
+                                values
+                                    .map((value) => {
+                                        const response = create.mutateAsync({
                                             resource,
-                                            values: batch,
+                                            values: value,
                                             successNotification: false,
                                             errorNotification: false,
-                                        }),
-                                        currentBatchLength: batch.length,
-                                        value: batch,
-                                    };
-                                })
-                                .map(
-                                    ({ response, value, currentBatchLength }) =>
+                                        });
+
+                                        return { response, value };
+                                    })
+                                    .map(({ response, value }) =>
                                         response
-                                            .then((response) => {
+                                            .then(({ data }) => {
                                                 setProcessedAmount(
                                                     (currentAmount) =>
-                                                        currentAmount +
-                                                        currentBatchLength,
+                                                        currentAmount + 1,
                                                 );
 
                                                 return {
-                                                    response: response.data,
+                                                    response: [data],
                                                     type: "success",
-                                                    request: value,
+                                                    request: [value],
                                                 } as ImportSuccessResult<
                                                     TVariables,
                                                     TData
@@ -263,25 +226,78 @@ export const useImport = <
                                                     ({
                                                         response: [error],
                                                         type: "error",
-                                                        request: value,
+                                                        request: [value],
                                                     } as ImportErrorResult<TVariables>),
                                             ),
-                                ),
-                        );
+                                    ),
+                            );
 
-                        resolve();
-                        handleFinish(createdValues);
-                    }
-                },
+                            resolve(createdValues);
+                            handleFinish(createdValues);
+                        } else {
+                            const createdValues = await Promise.all(
+                                chunk(values, batchSize)
+                                    .map((batch) => {
+                                        return {
+                                            response: createMany.mutateAsync({
+                                                resource,
+                                                values: batch,
+                                                successNotification: false,
+                                                errorNotification: false,
+                                            }),
+                                            currentBatchLength: batch.length,
+                                            value: batch,
+                                        };
+                                    })
+                                    .map(
+                                        ({
+                                            response,
+                                            value,
+                                            currentBatchLength,
+                                        }) =>
+                                            response
+                                                .then((response) => {
+                                                    setProcessedAmount(
+                                                        (currentAmount) =>
+                                                            currentAmount +
+                                                            currentBatchLength,
+                                                    );
 
-                ...paparseOptions,
-            });
-        })
-            .then(() => {
-                setIsLoading(false);
+                                                    return {
+                                                        response: response.data,
+                                                        type: "success",
+                                                        request: value,
+                                                    } as ImportSuccessResult<
+                                                        TVariables,
+                                                        TData
+                                                    >;
+                                                })
+                                                .catch(
+                                                    (error: HttpError) =>
+                                                        ({
+                                                            response: [error],
+                                                            type: "error",
+                                                            request: value,
+                                                        } as ImportErrorResult<TVariables>),
+                                                ),
+                                    ),
+                            );
+
+                            resolve(createdValues);
+                            handleFinish(createdValues);
+                        }
+                    },
+
+                    ...paparseOptions,
+                });
+            },
+        )
+            .then((createdValues) => {
+                handleFinish(createdValues);
+                return createdValues;
             })
-            .catch(() => {
-                setIsLoading(false);
+            .catch((e) => {
+                return e;
             });
     };
 
