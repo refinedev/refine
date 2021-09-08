@@ -32,28 +32,23 @@ export const PostList: React.FC = () => {
             const filters: CrudFilters = [];
             const { category, createdAt } = params;
 
-            if (category) {
-                filters.push({
+            filters.push(
+                {
                     field: "category.id",
                     operator: "eq",
                     value: category,
-                });
-            }
-
-            if (createdAt) {
-                filters.push(
-                    {
-                        field: "createdAt",
-                        operator: "gte",
-                        value: createdAt[0].toISOString(),
-                    },
-                    {
-                        field: "createdAt",
-                        operator: "lte",
-                        value: createdAt[1].toISOString(),
-                    },
-                );
-            }
+                },
+                {
+                    field: "createdAt",
+                    operator: "gte",
+                    value: createdAt ? createdAt[0].toISOString() : undefined,
+                },
+                {
+                    field: "createdAt",
+                    operator: "lte",
+                    value: createdAt ? createdAt[1].toISOString() : undefined,
+                },
+            );
 
             return filters;
         },

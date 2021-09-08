@@ -2,9 +2,21 @@
 id: search
 title: Search
 ---
+import search from '@site/static/img/guides-and-concepts/search/search.gif';
+
 
 We will create a `<Header>` component for your application with Ant Design's [`<AutoComplete>`](https://ant.design/components/auto-complete) component.
 We will now examine how to search within the application with this component.
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={search} alt="search" />
+</div>
+<br/>
 
 To do this, let's first create our `<Header>` component.
 

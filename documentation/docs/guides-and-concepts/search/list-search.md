@@ -102,16 +102,19 @@ const App: React.FC = () => {
 
 export default App;
 ```
-
-<div style={{textAlign: "center"}}>
-    <img src={basicList} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={basicList} alt="basic list" />
 </div>
-
 <br />
 
 We will create a form by extracting `searchFormProps` from [`useSimpleList`](../../api-references/hooks/show/useSimpleList.md). We will use this form for search/filtering. We will also create an interface to determine the types of values from the form.
 
-```tsx title="pages/posts/list.tsx" {4, 12-40, 45-47, 51-68}
+```tsx title="pages/posts/list.tsx" {4, 12-35, 39-42, 46-63}
 ...
 
 import {
@@ -128,28 +131,23 @@ export const PostList: React.FC = () => {
             const filters: CrudFilters = [];
             const { category, createdAt } = params;
 
-            if (category) {
-                filters.push({
+            filters.push(
+                {
                     field: "category.id",
                     operator: "eq",
                     value: category,
-                });
-            }
-
-            if (createdAt) {
-                filters.push(
-                    {
-                        field: "createdAt",
-                        operator: "gte",
-                        value: createdAt[0].toISOString(),
-                    },
-                    {
-                        field: "createdAt",
-                        operator: "lte",
-                        value: createdAt[1].toISOString(),
-                    },
-                );
-            }
+                },
+                {
+                    field: "createdAt",
+                    operator: "gte",
+                    value: createdAt ? createdAt[0].toISOString() : undefined,
+                },
+                {
+                    field: "createdAt",
+                    operator: "lte",
+                    value: createdAt ? createdAt[1].toISOString() : undefined,
+                },
+            );
 
             return filters;
         },
@@ -195,9 +193,13 @@ interface IPostFilterVariables {
 When the form is submitted, the `onSearch` method runs and we get the search form values. Then the `listProps` is refreshed according to the criteria.
 
 
-
-<div style={{textAlign: "center"}}>
-    <img src={formList} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={formList} alt="form list" />
 </div>
 
 <br />
