@@ -24,12 +24,16 @@
     grid-gap: 12px;
     justify-items: center;
     align-items: center;
-    grid-template-columns: repeat(4, minmax(100px, 1fr));
+    justify-content: center;
+    text-align: center;
+    grid-template-columns: repeat(5, minmax(100px, 1fr));
+    grid-template-rows: minmax(75px, 1fr);
 }
 
-@media screen and (max-width: 610px) {
+@media screen and (max-width: 700px) {
     .supportContainer {
-        grid-template-columns: repeat(2, minmax(100px, 1fr));
+        justify-content: center;
+        grid-template-columns: repeat(auto-fit, 150px);
     }
 }
 
@@ -75,8 +79,14 @@
 }
 
 .imgGroup {
-    height: 75px;
+    height: 50%;
     overflow: hidden;
+}
+
+@media screen and (max-width: 700px) {
+    .imgGroup {
+        height: 75px;
+    }
 }
 
 .imgGroup img {
@@ -96,6 +106,9 @@
 }
 .imgGroup:nth-child(4) img {
     animation-delay: 5s;
+}
+.imgGroup:nth-child(5) img {
+    animation-delay: 9s;
 }
 
 @keyframes slideUp {
