@@ -173,7 +173,7 @@ export const useImport = <
     }, [totalAmount, processedAmount]);
 
     const handleChange = ({ file }: UploadChangeParam): Promise<void> => {
-        return new Promise((resolve) => {
+        return new Promise<void>((resolve) => {
             setIsLoading(true);
             parse(file as unknown as File, {
                 complete: async ({ data }: { data: unknown[][] }) => {
@@ -222,7 +222,7 @@ export const useImport = <
                                 ),
                         );
 
-                        resolve(createdValues);
+                        resolve();
                         handleFinish(createdValues);
                     } else {
                         const createdValues = await Promise.all(
@@ -269,7 +269,7 @@ export const useImport = <
                                 ),
                         );
 
-                        resolve(createdValues);
+                        resolve();
                         handleFinish(createdValues);
                     }
                 },
