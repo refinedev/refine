@@ -291,14 +291,10 @@ export const useImport = <
                     ...paparseOptions,
                 });
             },
-        )
-            .then((createdValues) => {
-                handleFinish(createdValues);
-                return createdValues;
-            })
-            .catch((e) => {
-                return e;
-            });
+        ).then((createdValues) => {
+            handleFinish(createdValues);
+            return createdValues;
+        });
     };
 
     return {
