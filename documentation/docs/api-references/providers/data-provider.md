@@ -41,6 +41,7 @@ const dataProvider = {
 * [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
 * [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
 * [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
+* [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
 
 :::
 
