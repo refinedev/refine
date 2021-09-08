@@ -54,15 +54,25 @@ interface ICategory {
 }
 ```
 
-<div>
-    <img src={basicUsage} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={basicUsage} alt="Basic use of select box" />
 </div>
 <br/>
 
 All we have to do is pass the `selectProps` it returns to the `<Select>` component.
 
-<div>
-    <img src={search} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={search} alt="Search functionality" />
 </div>
 <br/>
 

@@ -53,8 +53,13 @@ interface ILanguage {
 }
 ```
 
-<div>
-    <img src={basicUsage} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={basicUsage} alt="Radio group" />
 </div>
 <br/>
 
