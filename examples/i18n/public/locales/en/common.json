@@ -35,7 +35,7 @@
     },
     "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
     "notifications": {
-        "success": "Successful",
+        "success": "Successful ",
         "error": "Error (status code: {{statusCode}})",
         "undoable": "You have {{seconds}} seconds to undo",
         "createSuccess": "Successfully created {{resource}}",
@@ -44,7 +44,7 @@
         "deleteError": "Error when deleting {{resource}} (status code: {{statusCode}})",
         "editSuccess": "Successfully edited {{resource}}",
         "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
-        "importProgress": "Importing: {{processedAmount}}/{{totalAmount}}"
+        "importProgress": "Importing: {{processed}}/{{total}}"
     },
     "loading": "Loading",
     "tags": {

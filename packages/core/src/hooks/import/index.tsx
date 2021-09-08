@@ -158,8 +158,8 @@ export const useImport = <
                         {t(
                             "notifications.importProgress",
                             {
-                                processedAmount,
-                                totalAmount,
+                                processed: processedAmount,
+                                total: totalAmount,
                             },
                             `Importing: ${processedAmount}/${totalAmount}`,
                         )}

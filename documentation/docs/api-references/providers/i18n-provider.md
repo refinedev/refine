@@ -196,7 +196,7 @@ Before we get started, let's look at the translations that refine uses in compon
         "deleteError": "Error when deleting {{resource}} (status code: {{statusCode}})",
         "editSuccess": "Successfully edited {{resource}}",
         "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
-        "importProgress": "Importing: {{processedAmount}}/{{totalAmount}}"
+        "importProgress": "Importing: {{processed}}/{{total}}"
     },
     "loading": "Loading",
     "tags": {
@@ -276,7 +276,7 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
         "deleteError": "Error when deleting {{resource}} (status code: {{statusCode}})",
         "editSuccess": "Successfully edited {{resource}}",
         "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
-        "importProgress": "Importing: {{processedAmount}}/{{totalAmount}}"
+        "importProgress": "Importing: {{processed}}/{{total}}"
     },
     "loading": "Loading",
     "tags": {
@@ -363,7 +363,7 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
         "deleteError": "Fehler beim Löschen {{resource}} (status code: {{statusCode}})",
         "editSuccess": "{{resource}} erfolgreich bearbeitet.",
         "editError": "Fehler beim Bearbeiten {{resource}} (status code: {{statusCode}})",
-        "importProgress": "Import läuft: {{processedAmount}}/{{totalAmount}}"
+        "importProgress": "Import läuft: {{processed}}/{{total}}"
     },
     "loading": "Wird geladen",
     "tags": {
