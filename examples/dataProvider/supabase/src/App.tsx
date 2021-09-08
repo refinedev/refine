@@ -1,14 +1,9 @@
 import { Refine, Resource } from "@pankod/refine";
-import { dataProvider, createClient } from "@pankod/refine-supabase";
+import { dataProvider } from "@pankod/refine-supabase";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-
-const SUPABASE_URL = "https://iwdfzvfqbtokqetmbmbp.supabase.co";
-const SUPABASE_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMDU2NzAxMCwiZXhwIjoxOTQ2MTQzMDEwfQ._gr6kXGkQBi9BM9dx5vKaNKYj_DJN1xlkarprGpM_fU";
-
-const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
+import { supabaseClient } from "utility";
 
 const App: React.FC = () => {
     return (
