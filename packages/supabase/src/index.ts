@@ -34,7 +34,7 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             const query = supabaseClient
                 .from(resource)
                 .select("*", { count: "exact" })
-                .range(current - 1 * pageSize, current * pageSize);
+                .range((current - 1) * pageSize, current * pageSize - 1);
 
             params.sort?.map((item) => {
                 query.order(item.field, { ascending: item.order === "asc" });
