@@ -201,7 +201,7 @@ const { selectProps } = useSelect({
 });
 ```
 
-```tsx twoslash {2, 5-10}
+```tsx twoslash {2, 4-10}
 import { useSelect } from "@pankod/refine";
 // ---cut---
 const { 

@@ -152,7 +152,7 @@ const { radioGroupProps } = useRadioGroup({
 });
 ```
 
-```tsx twoslash {2, 5-10}
+```tsx twoslash {2, 4-10}
 import { useRadioGroup } from "@pankod/refine";
 // ---cut---
 const { 

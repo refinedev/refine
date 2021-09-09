@@ -149,7 +149,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 
 
-```tsx twoslash {2, 5-10}
+```tsx twoslash {2, 4-10}
 import { useCheckboxGroup } from "@pankod/refine";
 // ---cut---
 const { 
