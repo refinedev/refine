@@ -216,7 +216,6 @@ const {
 });
 ```
 
-:::
 
 ## API Reference
 
@@ -242,7 +241,6 @@ const {
 | selectProps                | Ant design Select props                        | [`Select`](https://ant.design/components/select/#API)                                         |
 | queryResult                | Result of the query of a record                | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
 | defaultValueQueryResult    | Result of the query of a `defaultValue` record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
-| defaultQueryOnSuccess      | Default onSuccess method                       | `() => void`                                                                                  |
 | defaultValueQueryOnSuccess | Default value onSuccess method                 | `() => void`                                                                                  |
 
 ## Live Codesandbox Example
