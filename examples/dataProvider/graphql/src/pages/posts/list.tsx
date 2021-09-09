@@ -13,7 +13,15 @@ import {
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps } = useTable<IPost>();
+    const { tableProps } = useTable<IPost>({
+        metaData: {
+            operation: "posts",
+            fields: ["id", "title"],
+            variables: {
+                limit: 1,
+            },
+        },
+    });
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
