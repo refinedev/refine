@@ -71,3 +71,46 @@
     top: 0;
     left: 0;
 }
+
+.playerButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.playerButton {
+    width: 80%;
+    text-align: center;
+}
+
+.controlsContainer {
+    margin-top: 4px;
+}
+
+.icon {
+    color: #888888;
+    font-size: 24px;
+    padding: 2px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.icon:hover {
+    color: var(--color-text-white);
+}
+
+progress {
+    border: none;
+    height: 4px;
+    background: #000000;
+    width: 100%;
+}
+
+progress::-webkit-progress-value {
+    background: var(--color-turquoise);
+    transition: all 0.25s;
+}
+
+progress::-webkit-progress-bar {
+    background: #000000;
+}

@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import ReactPlayer from "react-player/lazy";
 import clsx from "clsx";
-import { IoIosArrowForward } from "react-icons/io";
+import {
+    IoMdPlay,
+    IoMdPause,
+    IoMdRefresh,
+    IoIosArrowForward,
+} from "react-icons/io";
 
 import styles from "./styles.module.css";
 
 export const Hero = () => {
+    const playerRef = useRef();
     const [playing, setPlaying] = useState(true);
+    const [played, setPlayed] = useState(0);
 
     return (
         <section className={styles.section}>
@@ -59,6 +66,7 @@ export const Hero = () => {
                     <div className="col col--9">
                         <div className={styles.playerContainer}>
                             <ReactPlayer
+                                ref={playerRef}
                                 className={styles.reactPlayer}
                                 width="100%"
                                 height="100%"
@@ -67,11 +75,42 @@ export const Hero = () => {
                                 playing={playing}
                                 controls={false}
                                 url="https://www.youtube.com/watch?v=xv8M3ScElv0&ab_channel=PankodTV"
+                                progressInterval={500}
+                                onProgress={(value) => setPlayed(value.played)}
                                 onPause={() => setPlaying(false)}
                                 onPlay={() => setPlaying(true)}
                             />
                         </div>
+                        <div className={styles.playerButtons}>
+                            <div className={styles.playerButton}>
+                                <progress max={1} value={played} />
+                                <div className={styles.controlsContainer}>
+                                    <IoMdRefresh
+                                        onClick={() =>
+                                            playerRef.current.seekTo(0)
+                                        }
+                                        className={styles.icon}
+                                    />
+                                    {playing ? (
+                                        <IoMdPause
+                                            onClick={() =>
+                                                setPlaying((prev) => !prev)
+                                            }
+                                            className={styles.icon}
+                                        />
+                                    ) : (
+                                        <IoMdPlay
+                                            onClick={() =>
+                                                setPlaying((prev) => !prev)
+                                            }
+                                            className={styles.icon}
+                                        />
+                                    )}
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                     <div className="col col--8">
                         <p className={styles.description}>
                             Use-cases include, but are not limited to admin
