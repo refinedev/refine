@@ -66,7 +66,7 @@ const UnsavedPrompt: React.FC = () => {
 
         e.returnValue = translate(
             "warnWhenUnsavedChanges",
-            "Listener:: Are you sure you want to leave? You have unsaved changes.",
+            "Are you sure you want to leave? You have unsaved changes.",
         );
 
         return e.returnValue;
@@ -85,7 +85,7 @@ const UnsavedPrompt: React.FC = () => {
             when={warnWhen}
             message={translate(
                 "warnWhenUnsavedChanges",
-                "Prompt:: Are you sure you want to leave? You have unsaved changes.",
+                "Are you sure you want to leave? You have unsaved changes.",
             )}
         />
     );
