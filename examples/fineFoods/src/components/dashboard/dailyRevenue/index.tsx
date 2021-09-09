@@ -48,6 +48,7 @@ export const DailyRevenue: React.FC = () => {
             padding: "auto",
             xField: "date",
             yField: "value",
+            color: "rgba(255, 255, 255, 0.5)",
             tooltip: {
                 showCrosshairs: false,
                 marker: { fill: "#D94BF2" },
@@ -73,7 +74,6 @@ export const DailyRevenue: React.FC = () => {
             smooth: true,
             lineStyle: {
                 lineWidth: 4,
-                stroke: "white",
             },
         };
 
