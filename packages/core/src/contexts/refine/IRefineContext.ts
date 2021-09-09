@@ -4,8 +4,6 @@ import { MutationMode, TitleProps, LayoutProps } from "../../interfaces";
 
 export interface IRefineContext {
     hasDashboard: boolean;
-    warnWhen: boolean;
-    setWarnWhen: (value: boolean) => void;
     mutationMode: MutationMode;
     warnWhenUnsavedChanges: boolean;
     syncWithLocation: boolean;

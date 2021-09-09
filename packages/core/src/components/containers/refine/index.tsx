@@ -21,6 +21,7 @@ import {
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { RefineContextProvider } from "@contexts/refine";
 import { NotificationContextProvider } from "@contexts/notification";
+import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
 import {
     RouteProvider,
     ReadyPage as DefaultReadyPage,
@@ -35,6 +36,7 @@ import {
     LayoutProps,
     TitleProps,
 } from "../../../interfaces";
+import { useWarnAboutChange } from "@hooks/refine";
 
 interface QueryClientConfig {
     queryCache?: QueryCache;
@@ -158,21 +160,23 @@ export const Refine: React.FC<RefineProps> = ({
                                         OffLayoutArea={OffLayoutArea}
                                         hasDashboard={!!DashboardPage}
                                     >
-                                        <Router>
-                                            <>
-                                                <RouteProvider
-                                                    resources={resources}
-                                                    catchAll={catchAll}
-                                                    DashboardPage={
-                                                        DashboardPage
-                                                    }
-                                                    LoginPage={LoginPage}
-                                                    ReadyPage={ReadyPage}
-                                                    customRoutes={routes}
-                                                />
-                                                <RouteChangeHandler />
-                                            </>
-                                        </Router>
+                                        <UnsavedWarnContextProvider>
+                                            <MainRouter>
+                                                <>
+                                                    <RouteProvider
+                                                        resources={resources}
+                                                        catchAll={catchAll}
+                                                        DashboardPage={
+                                                            DashboardPage
+                                                        }
+                                                        LoginPage={LoginPage}
+                                                        ReadyPage={ReadyPage}
+                                                        customRoutes={routes}
+                                                    />
+                                                    <RouteChangeHandler />
+                                                </>
+                                            </MainRouter>
+                                        </UnsavedWarnContextProvider>
                                     </RefineContextProvider>
                                 </NotificationContextProvider>
                             </ConfigProvider>
@@ -182,5 +186,23 @@ export const Refine: React.FC<RefineProps> = ({
             </AuthContextProvider>
             <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
         </QueryClientProvider>
+    );
+};
+
+const MainRouter: React.FC = ({ children }) => {
+    const { setWarnWhen } = useWarnAboutChange();
+
+    const getUserConfirmation: (
+        message: string,
+        callback: (ok: boolean) => void,
+    ) => void = (message, callback) => {
+        const allowTransition = window.confirm(message);
+        if (allowTransition) {
+            setWarnWhen(false);
+        }
+        callback(allowTransition);
+    };
+    return (
+        <Router getUserConfirmation={getUserConfirmation}>{children}</Router>
     );
 };
