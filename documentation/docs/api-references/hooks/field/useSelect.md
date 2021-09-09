@@ -201,20 +201,15 @@ const { selectProps } = useSelect({
 });
 ```
 
-:::caution
-The `defaultValueQueryOnSuccess` method which has default onSuccess behaviour for default value query and returned from `useSelect` hook  must be called in case of `onSuccess` is needed to be overwritten. 
-
 ```tsx twoslash {2, 5-10}
 import { useSelect } from "@pankod/refine";
 // ---cut---
 const { 
     selectProps, 
-    defaultValueQueryOnSuccess
 } = useSelect({
     resource: "categories",
     queryOptions: { 
         onSuccess: (data) => { 
-            defaultValueQueryOnSuccess(data)
             console.log("triggers when on query return on success") 
         } 
     }
@@ -227,28 +222,28 @@ const {
 
 ### Properties
 
-| Property                                          | Description                               | Type                                             | Default   |
-| ------------------------------------------------- | ----------------------------------------- | ------------------------------------------------ | --------- |
-| resource <div className="required">Required</div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                         |           |
-| defaultValue                                      | Adds extra `options`                      | `string` \| `Array<string>`                      |           |
-| optionValue                                       | Set the option's value                    | `string`                                         | `"id"`    |
-| optionLabel                                       | Set the option's label value              | `string`                                         | `"title"` |
-| filters                                           | Add filters while fetching the data       | [`CrudFilters`](../../interfaces.md#crudfilters) |           |
-| sort                                              | Allow us to sort the options              | [`CrudSorting`](../../interfaces.md#crudsorting) |           |
-| debounce                                          | The number of milliseconds to delay             | `number`                                         | 300       |
-| queryOptions                                              | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options             | ` UseQueryOptions<GetListResponse<TData>, TError>` |           |
-| defaultValueQueryOptions                                              | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options             | ` UseQueryOptions<GetManyResponse<TData>, TError>` |           |
+| Property                                          | Description                                                                         | Type                                               | Default   |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------- | --------- |
+| resource <div className="required">Required</div> | [`Resource`](/api-references/components/resource.md) for API data interactions      | `string`                                           |           |
+| defaultValue                                      | Adds extra `options`                                                                | `string` \| `Array<string>`                        |           |
+| optionValue                                       | Set the option's value                                                              | `string`                                           | `"id"`    |
+| optionLabel                                       | Set the option's label value                                                        | `string`                                           | `"title"` |
+| filters                                           | Add filters while fetching the data                                                 | [`CrudFilters`](../../interfaces.md#crudfilters)   |           |
+| sort                                              | Allow us to sort the options                                                        | [`CrudSorting`](../../interfaces.md#crudsorting)   |           |
+| debounce                                          | The number of milliseconds to delay                                                 | `number`                                           | 300       |
+| queryOptions                                      | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>` |           |
+| defaultValueQueryOptions                          | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetManyResponse<TData>, TError>` |           |
 
 
 ### Return values
 
-| Property                | Description                                    | Type                                                                                          |
-| ----------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| selectProps             | Ant design Select props                        | [`Select`](https://ant.design/components/select/#API)                                         |
-| queryResult             | Result of the query of a record                | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
-| defaultValueQueryResult | Result of the query of a `defaultValue` record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
-| defaultQueryOnSuccess        | Default onSuccess method | `() => void` |
-| defaultValueQueryOnSuccess        | Default value onSuccess method | `() => void` |
+| Property                   | Description                                    | Type                                                                                          |
+| -------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| selectProps                | Ant design Select props                        | [`Select`](https://ant.design/components/select/#API)                                         |
+| queryResult                | Result of the query of a record                | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+| defaultValueQueryResult    | Result of the query of a `defaultValue` record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+| defaultQueryOnSuccess      | Default onSuccess method                       | `() => void`                                                                                  |
+| defaultValueQueryOnSuccess | Default value onSuccess method                 | `() => void`                                                                                  |
 
 ## Live Codesandbox Example
 
