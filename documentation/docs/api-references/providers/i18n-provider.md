@@ -363,7 +363,7 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
         "deleteError": "Fehler beim Löschen {{resource}} (status code: {{statusCode}})",
         "editSuccess": "{{resource}} erfolgreich bearbeitet.",
         "editError": "Fehler beim Bearbeiten {{resource}} (status code: {{statusCode}})",
-        "importProgress": "Import läuft: {{processed}}/{{total}}"
+        "importProgress": "{{processed}}/{{total}} importiert"
     },
     "loading": "Wird geladen",
     "tags": {
