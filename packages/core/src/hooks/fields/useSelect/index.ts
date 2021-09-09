@@ -32,8 +32,6 @@ export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
     selectProps: SelectProps<{ value: string; label: string }>;
     queryResult: QueryObserverResult<GetListResponse<TData>>;
     defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
-    defaultQueryOnSuccess: (data: GetListResponse<TData>) => void;
-    defaultValueQueryOnSuccess: (data: GetManyResponse<TData>) => void;
 };
 
 /**
@@ -87,10 +85,11 @@ export const useSelect = <
         defaultValue,
         {
             enabled: defaultValue.length > 0,
+            ...defaultValueQueryOptions,
             onSuccess: (data) => {
                 defaultValueQueryOnSuccess(data);
+                defaultValueQueryOptions?.onSuccess?.(data);
             },
-            ...defaultValueQueryOptions,
         },
     );
 
@@ -111,10 +110,11 @@ export const useSelect = <
         },
         {
             enabled: false,
+            ...queryOptions,
             onSuccess: (data) => {
                 defaultQueryOnSuccess(data);
+                queryOptions?.onSuccess?.(data);
             },
-            ...queryOptions,
         },
         successNotification,
         errorNotification,
@@ -152,7 +152,5 @@ export const useSelect = <
         },
         queryResult,
         defaultValueQueryResult,
-        defaultQueryOnSuccess,
-        defaultValueQueryOnSuccess,
     };
 };

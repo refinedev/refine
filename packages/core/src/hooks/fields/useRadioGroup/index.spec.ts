@@ -78,7 +78,6 @@ describe("render hook default options", () => {
                     optionValue: "id",
                     queryOptions: {
                         onSuccess: (data) => {
-                            result.current.defaultQueryOnSuccess(data);
                             mockFunc();
                         },
                     },

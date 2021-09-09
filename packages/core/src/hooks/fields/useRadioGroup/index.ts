@@ -25,7 +25,6 @@ export type useRadioGroupProps<TData, TError> = RadioGroupProps & {
 export type UseRadioGroupReturnType<TData extends BaseRecord = BaseRecord> = {
     radioGroupProps: RadioGroupProps;
     queryResult: QueryObserverResult<GetListResponse<TData>>;
-    defaultQueryOnSuccess: (data: GetListResponse<TData>) => void;
 };
 
 /**
@@ -68,10 +67,11 @@ export const useRadioGroup = <
             filters,
         },
         {
+            ...queryOptions,
             onSuccess: (data) => {
                 defaultQueryOnSuccess(data);
+                queryOptions?.onSuccess?.(data);
             },
-            ...queryOptions,
         },
         successNotification,
         errorNotification,
@@ -82,6 +82,5 @@ export const useRadioGroup = <
             options,
         },
         queryResult,
-        defaultQueryOnSuccess,
     };
 };
