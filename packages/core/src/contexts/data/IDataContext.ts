@@ -1,4 +1,4 @@
-import { BaseRecord } from "../../interfaces";
+import { BaseRecord, QueryBuilderOptions } from "../../interfaces";
 
 export interface Pagination {
     current?: number;
@@ -104,6 +104,7 @@ export interface IDataContext {
             pagination?: Pagination;
             sort?: CrudSorting;
             filters?: CrudFilters;
+            metaData?: QueryBuilderOptions;
         },
     ) => Promise<GetListResponse<TData>>;
     getMany: <TData extends BaseRecord = BaseRecord>(
@@ -168,6 +169,7 @@ export interface IDataContextProvider {
             pagination?: Pagination;
             sort?: CrudSorting;
             filters?: CrudFilters;
+            metaData?: QueryBuilderOptions;
         },
     ) => Promise<GetListResponse<TData>>;
     getMany: <TData extends BaseRecord = BaseRecord>(
