@@ -1,6 +1,6 @@
 import { DataProvider } from "@pankod/refine";
 
-const dataProvider = (): DataProvider => {
+const dataProvider = (apiUrl: string): DataProvider => {
     return {
         getList: async (resource, params) => {
             const current = params.pagination?.current || 1;
