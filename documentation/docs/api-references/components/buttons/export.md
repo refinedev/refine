@@ -13,7 +13,7 @@ import exportButton from '@site/static/img/guides-and-concepts/components/button
 
 Use it like any other Ant Design [`<Button>`][button]. You can use it with [useExport][useexport]:
 
-```tsx twoslash title="/src/pages/posts/list.tsx" 
+```tsx twoslash title="/src/pages/posts/list.tsx" {5, 17-20}
 import {
     List,
     Table,
