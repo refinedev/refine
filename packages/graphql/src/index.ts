@@ -1,10 +1,26 @@
 import { DataProvider } from "@pankod/refine";
+import { GraphQLClient } from "graphql-request";
+import * as gql from "gql-query-builder";
 
-const dataProvider = (apiUrl: string): DataProvider => {
+const dataProvider = (client: GraphQLClient): DataProvider => {
     return {
         getList: async (resource, params) => {
             const current = params.pagination?.current || 1;
             const pageSize = params.pagination?.pageSize || 10;
+            const metaData = params.metaData;
+
+            console.log("metaData :", metaData);
+
+            const { query } = gql.query({
+                operation: metaData?.operation ?? resource,
+                ...metaData,
+            });
+
+            console.log("query :", query);
+
+            const response = await client.request(query);
+
+            console.log("response :", response);
 
             return {
                 data: [],
