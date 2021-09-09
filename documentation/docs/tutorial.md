@@ -167,6 +167,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 * [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
 * [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
 * [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
+* [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
 
 [Refer to the `dataProvider` documentation for detailed usage. &#8594](/api-references/providers/data-provider.md)
 :::

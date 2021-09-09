@@ -10,16 +10,17 @@ export const Comments = () => {
                 <div className={styles.relative}>
                     <FaQuoteLeft className={styles.leftQuote} />
                     <p>
-                        We’ve been using Mirage at Heroku since 2015 on critical
-                        customer-facing apps. It&apos;s enabled our team to grow
-                        without sacrificing speed in either our development or
-                        testing workflows. For me, the real magic of Mirage is
-                        that it lets us write tests from the user&apos;s
-                        perspective. We take user stories from our product team
-                        and translate them 1:1 into tests, without ever having
-                        to break flow by stepping outside the front-end
-                        toolchain. Mirage is, in short, an essential tool for
-                        every UI developer.
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the
+                        industry&apos;s standard dummy text ever since the
+                        1500s, when an unknown printer took a galley of type and
+                        scrambled it to make a type specimen book. It has
+                        survived not only five centuries, but also the leap into
+                        electronic typesetting, remaining essentially unchanged.
+                        It was popularised in the 1960s with the release of
+                        Letraset sheets containing Lorem Ipsum passages, and
+                        more recently with desktop publishing software like
+                        Aldus PageMaker including versions of Lorem Ipsum.
                     </p>
                     <FaQuoteRight className={styles.rightQuote} />
                 </div>
