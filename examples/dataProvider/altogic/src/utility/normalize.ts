@@ -1,0 +1,28 @@
+import { UploadFile } from "@pankod/refine";
+
+interface UploadResponse {
+    publicPath: string;
+    _id: string;
+}
+interface EventArgs<T = UploadResponse> {
+    file: UploadFile<T>;
+    fileList: Array<UploadFile<T>>;
+}
+
+export const normalizeFile = (event: EventArgs) => {
+    const { fileList } = event;
+
+    return fileList.map((item) => {
+        const { uid, name, type, size, response, percent, status } = item;
+
+        return {
+            uid,
+            name,
+            url: item.url || response?.publicPath,
+            type,
+            size,
+            percent,
+            status,
+        };
+    });
+};
