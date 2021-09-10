@@ -53,11 +53,6 @@ interface IPost {
 If you don't use `title` prop it will use `src` as `title`
 :::
 
-<!-- <br/>
-<div>
-    <img src={fileField} alt="File Field Usage"/>
-</div> -->
-
 <br/>
 <div class="img-container">
     <div class="window">
