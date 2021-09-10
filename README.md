@@ -18,7 +18,7 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](code_of_conduct.md)
 
-[![npm](https://img.shields.io/npm/dm/refine)](https://www.npmjs.com/package/refine)
+[![npm](https://img.shields.io/npm/dm/@pankod/refine)](https://www.npmjs.com/package/@pankod/refine)
 
 </div>
 
