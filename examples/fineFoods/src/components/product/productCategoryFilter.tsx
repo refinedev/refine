@@ -63,11 +63,11 @@ export const ProductCategoryFilter: React.FC<ProductItemProps> = ({
                     key={category.id}
                     shape="round"
                     type={
-                        filterCategories.includes(category.id)
+                        filterCategories.includes(category.id.toString())
                             ? "primary"
                             : "default"
                     }
-                    onClick={() => toggleFilterCategory(category.id)}
+                    onClick={() => toggleFilterCategory(category.id.toString())}
                 >
                     {category.title}
                 </Button>

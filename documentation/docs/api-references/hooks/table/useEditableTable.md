@@ -12,69 +12,62 @@ import rowClickEdit from '@site/static/img/hooks/useEditableTable/row-click-edit
 ## Editing with buttons
 
 Let's say that we want to make the `Post` data where we show the `id` and `title` values a listing page:
-```tsx title="/interfaces/index.d.ts"
-export interface IPost {
-    id: string;
-    title: string;
-}
-```
 
 This time, to add the edit feature, we have to cover the `<Table>` component with a `<Form>`component and pass the properties coming from `useEditableTable` to the corresponding components:
 
-```tsx title="/pages/posts/list.tsx"
-import { List, Table, TextField, useTable } from "@pankod/refine";
-
-import { IPost } from "interfaces";
+```tsx twoslash title="/pages/posts/list.tsx" {3, 7-12}
+import { List, Table, useEditableTable, Form, TextField } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
-    //highlight-next-line
     const { tableProps, formProps } = useEditableTable<IPost>();
 
     return (
         <List>
-            //highlight-start
             <Form {...formProps}>
                 <Table {...tableProps} rowKey="id">
                     <Table.Column dataIndex="id" title="ID" />
                     <Table.Column dataIndex="title" title="Title" />
                 </Table>
-                //highlight-end
             </Form>
         </List>
     );
 };
+
+interface IPost {
+    id: string;
+    title: string;
+}
 ```
 
 <br />
 
 Now lets add a column for edit buttons:
 
-```tsx title="/pages/posts/list.tsx"
+```tsx twoslash title="/pages/posts/list.tsx" {4-7, 15-18, 27-57}
+interface IPost {
+    id: string;
+    title: string;
+}
+// ---cut---
 import {
     List,
     Table,
     Form,
-    //highlight-start
     Space,
     Button,
     SaveButton,
     EditButton,
-    //highlight-end
     useEditableTable,
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const {
         tableProps,
         formProps,
-        //highlight-start
         isEditing,
         saveButtonProps,
         cancelButtonProps,
         editButtonProps,
-        //highlight-end
     } = useEditableTable<IPost>();
 
     return (
@@ -83,7 +76,6 @@ export const PostList: React.FC = () => {
                 <Table {...tableProps} rowKey="id">
                     <Table.Column key="id" dataIndex="id" title="ID" />
                     <Table.Column key="title" dataIndex="title" title="Title" />
-                    //highlight-start
                     <Table.Column<IPost>
                         title="Actions"
                         dataIndex="actions"
@@ -115,7 +107,6 @@ export const PostList: React.FC = () => {
                             );
                         }}
                     />
-                    //highlight-end
                 </Table>
             </Form>
         </List>
@@ -131,7 +122,12 @@ export const PostList: React.FC = () => {
 
 For now, our post is not editable yet. If a post is being edited, we must show editable columns inside a `<Form.Item>` using conditional rendering:
 
-```tsx title="/pages/posts/list.tsx"
+```tsx twoslash title="/pages/posts/list.tsx" {8-9, 32-44}
+interface IPost {
+    id: string;
+    title: string;
+}
+// ---cut---
 import {
     List,
     Table,
@@ -140,14 +136,10 @@ import {
     Button,
     SaveButton,
     EditButton,
-    //highlight-start
     Input,
     TextField,
-    //highlight-end
     useEditableTable,
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const {
@@ -168,9 +160,8 @@ export const PostList: React.FC = () => {
                         key="title"
                         dataIndex="title"
                         title="Title"
-                        //highlight-start
-                        render={(value, data: any) => {
-                            if (isEditing(data.id)) {
+                        render={(value, record) => {
+                            if (isEditing(record.id)) {
                                 return (
                                     <Form.Item
                                         name="title"
@@ -182,7 +173,6 @@ export const PostList: React.FC = () => {
                             }
                             return <TextField value={value} />;
                         }}
-                        //highlight-end
                     />
                     <Table.Column<IPost>
                         title="Actions"
@@ -229,8 +219,13 @@ By giving the `<Table.Column>` component a unique `render` property, you can ren
 Refer to [`<Table.Column>`][Table.Column] documentation for more information.
 :::
 
-<div style={{textAlign: "center"}}>
-    <img src={editButton} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={editButton} alt="Editing rows with edit button" />
 </div>
 
 ## Editing by clicking to row
@@ -241,7 +236,12 @@ The `onRow` property of the `<Table>` component can be used to put a line to edi
 
 We can use `setEditId` to put a line to edit mode whenever its clicked on.
 
-```tsx title="/pages/posts/list.tsx"
+```tsx twoslash title="/pages/posts/list.tsx" {14, 23-29}
+interface IPost {
+    id: string;
+    title: string;
+}
+// ---cut---
 import {
     List,
     Table,
@@ -251,14 +251,11 @@ import {
     useEditableTable,
 } from "@pankod/refine";
 
-import { IPost } from "interfaces";
-
 export const PostList: React.FC = () => {
     const {
         tableProps,
         formProps,
         isEditing,
-        //highlight-next-line
         setEditId,
     } = useEditableTable<IPost>();
 
@@ -268,7 +265,6 @@ export const PostList: React.FC = () => {
                 <Table
                     {...tableProps}
                     key="id"
-                    //highlight-start
                     onRow={(record) => ({
                         onClick: (event: any) => {
                             if (event.target.nodeName === "TD") {
@@ -276,7 +272,6 @@ export const PostList: React.FC = () => {
                             }
                         },
                     })}
-                    //highlight-end
                 >
                     <Table.Column key="id" dataIndex="id" title="ID" />
                     <Table.Column<IPost>
@@ -304,8 +299,13 @@ export const PostList: React.FC = () => {
 };
 ```
 
-<div style={{textAlign: "center"}}>
-    <img src={rowClickEdit} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={rowClickEdit} alt="Row click edit functionality in action" />
 </div>
 
 ## API

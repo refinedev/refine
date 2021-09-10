@@ -72,11 +72,13 @@ export const LoginPage: React.FC = () => {
                                 requiredMark={false}
                                 initialValues={{
                                     remember: false,
+                                    username: "admin",
+                                    password: "admin",
                                 }}
                             >
                                 <Form.Item
-                                    name="email"
-                                    label={t("pages.login.email", "Email")}
+                                    name="username"
+                                    label={t("pages.login.email", "Username")}
                                     rules={[{ required: true }]}
                                 >
                                     <Input

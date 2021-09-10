@@ -31,6 +31,12 @@ const siteConfig = {
                 },
             },
         ],
+        [
+            "docusaurus-preset-shiki-twoslash",
+            {
+                themes: ["min-light", "nord"],
+            },
+        ],
     ],
     themeConfig: {
         image: "img/footer_icon.png",
@@ -45,20 +51,25 @@ const siteConfig = {
             },
             items: [
                 {
-                    to: "docs/guides-and-concepts/upload/multipart-upload",
-                    label: "Guides",
+                    to: "docs/getting-started/overview",
+                    label: "Quickstart",
                     position: "left",
                     className: "header-first-nav-item",
                 },
                 { to: "docs", label: "Tutorial", position: "left" },
+                {
+                    to: "https://example.refine.dev",
+                    label: "Example",
+                    position: "left",
+                },
                 {
                     to: "/docs/api-references/providers/auth-provider",
                     label: "API",
                     position: "left",
                 },
                 {
-                    to: "docs/getting-started/overview",
-                    label: "Quickstart",
+                    to: "docs/guides-and-concepts/upload/multipart-upload",
+                    label: "Guides",
                     position: "left",
                 },
                 {
@@ -78,6 +89,12 @@ const siteConfig = {
                         "header-icon-link header-twitter-link header-last-nav-item",
                 },
             ],
+        },
+        gtag: {
+            // You can also use your "G-" Measurement ID here.
+            trackingID: "G-27Z1WY952H",
+            // Optional fields.
+            anonymizeIP: true, // Should IPs be anonymized?
         },
         // footer: {
         //     style: "dark",

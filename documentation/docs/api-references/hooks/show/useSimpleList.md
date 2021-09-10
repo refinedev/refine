@@ -7,7 +7,7 @@ import useSimpleList from '@site/static/img/guides-and-concepts/hooks/useSimpleL
 
 By using `useSimpleList` you get props for your records from API in accordance with Ant Design `<List>` component. All features such as pagination, sorting come out of the box.
 
-[Refer to Ant Design docs for `<List>` component information &#8594](https://ant.design/components/list/#header)
+[Refer to Ant Design docs for `<List>` component information &#8594][Header]
 
 ## Usage
 
@@ -38,26 +38,9 @@ Let's assume that the data we will show in the table comes from the endpoint as 
 ]
 ```
 
-Then an interface like this would suffice for us:
-
-```tsx title="/src/interfaces/index.d.ts"
-export interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    hit: number;
-    category: ICategory;
-}
-
-export interface ICategory {
-    id: string;
-    title: string;
-}
-```
-
 If we want to make a listing page where we show the `title`, `content`, `hit` and `category.title` values:
 
-```tsx
+```tsx twoslash {13-23, 40-55, 61}
 import {
     PageHeader,
     Typography,
@@ -68,14 +51,11 @@ import {
     Space,
 } from "@pankod/refine";
 
-import { IPost, ICategory } from "interfaces";
-
 export const PostList: React.FC = () => {
     const { Text } = Typography;
 
-    //highlight-start
     const { listProps } = useSimpleList<IPost>({
-        sorter: [
+        initialSorter: [
             {
                 field: "id",
                 order: "asc",
@@ -85,7 +65,6 @@ export const PostList: React.FC = () => {
             pageSize: 6,
         },
     });
-    //highlight-end
 
     const categoryIds =
         listProps?.dataSource?.map((item) => item.category.id) ?? [];
@@ -102,13 +81,13 @@ export const PostList: React.FC = () => {
         )?.title;
 
         return (
-            //highlight-start
             <AntdList.Item
                 actions={[
                     <Space key={item.id} direction="vertical" align="end">
                         <NumberField
                             value={hit}
                             options={{
+                                // @ts-ignore
                                 notation: "compact",
                             }}
                         />
@@ -118,52 +97,84 @@ export const PostList: React.FC = () => {
             >
                 <AntdList.Item.Meta title={title} description={content} />
             </AntdList.Item>
-            //highlight-end
         );
     };
 
     return (
-        <PageHeader title="Posts">
-            //highlight-next-line
+        <PageHeader ghost={false} title="Posts">
             <AntdList {...listProps} renderItem={renderItem} />
         </PageHeader>
     );
 };
+
+interface IPost {
+    id: string;
+    title: string;
+    content: string;
+    hit: number;
+    category: ICategory;
+}
+
+interface ICategory {
+    id: string;
+    title: string;
+}
 ```
 
 :::tip
-You can use `AntdList.Item` and `AntdList.Item.Meta` like `<List>` component from [Ant Design](https://ant.design/components/list/#API)
+You can use `AntdList.Item` and `AntdList.Item.Meta` like `<List>` component from [Ant Design][List]
 :::
 
 <br/>
-<div style={{textAlign: "center"}}>
-    <img src={useSimpleList} />
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={useSimpleList} alt="use simple list" />
 </div>
 
 ## API
 
 ### Properties
 
-| Key          | Description                                                                                                                                                    | Type                                                                     | Default                                  |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------------------------------------- |
-| resource     | The resource to list the data                                                                                                                                  | `string` \| `undefined`                                                  | Resource name that it reads from the url |
-| sorter       | Allows to sort records by speficified order and field                                                                                                          | [`CrudSorting`](/api-references/interfaces.md#crudsorting)\| `undefined` |                                          |
-| listProps    | Ant Design `<List>` props                                                                                                                                      | [`listProps`](https://ant.design/components/list/#API)                   |                                          |
-| onSearch     | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form](../../../guides-and-concepts/search/list-search.md) | `Function`                                                               |                                          |
-| queryOptions | `react-query`'s `useQuery` options                                                                                                                             | ` UseQueryOptions<{ data: TData[] }, TError>`                            |
+| Key              | Description                                                                                                             | Type                                          | Default                                                                              |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------ |
+| resource         | The resource to list the data                                                                                           | `string` \| `undefined`                       | Resource name that it reads from the url                                             |
+| permanentFilter  | Default and unchangeable filter                                                                                         | [`CrudFilters`][CrudFilters]                  | `[]`                                                                                 |
+| initialSorter    | Allows to sort records by speficified order and field                                                                   | [`CrudSorting`][CrudSorting]                  |                                                                                      |
+| initialFilter    | Allows to filter records by speficified order and field                                                                 | [`CrudFilters`][CrudFilters]                  |                                                                                      |
+| listProps        | Ant Design `<List>` props                                                                                               | [`listProps`][List]                           |                                                                                      |
+| syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history                                 | `boolean`                                     | Value set in [Refine][Refine swl]. If a custom resource is given, it will be `false` |
+| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form][List Search] | `Function`                                    |                                                                                      |
+| queryOptions     | `react-query`'s `useQuery` options                                                                                      | ` UseQueryOptions<{ data: TData[] }, TError>` |
 
 ### Type Parameters
 
-| Property         | Desription                                                                          | Type                                           | Default                                        |
-| ---------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| TData            | Result data of the mutation. Extends [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) |
-| TError           | Custom error object that extends [`HttpError`](../../interfaces.md#httperror)       | [`HttpError`](../../interfaces.md#httperror)   | [`HttpError`](../../interfaces.md#httperror)   |
-| TSearchVariables | Antd form values                                                                    | `{}`                                           | `{}`                                           |
+| Property         | Desription                                                      | Type                       | Default                    |
+| ---------------- | --------------------------------------------------------------- | -------------------------- | -------------------------- |
+| TData            | Result data of the mutation. Extends [`BaseRecord`][BaseRecord] | [`BaseRecord`][BaseRecord] | [`BaseRecord`][BaseRecord] |
+| TError           | Custom error object that extends [`HttpError`][HttpError]       | [`HttpError`][HttpError]   | [`HttpError`][HttpError]   |
+| TSearchVariables | Antd form values                                                | `{}`                       | `{}`                       |
 
 ### Return values
 
-| Property        | Description                     | Type                                                                                          |
-| --------------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
-| queryResult     | Result of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
-| searchFormProps | Ant design Form props           | [`Form`](https://ant.design/components/form/#API)                                             |
-| listProps       | Ant design List props           | [`List`](https://ant.design/components/list/#API)                                             |
+| Property        | Description                     | Type                                               |
+| --------------- | ------------------------------- | -------------------------------------------------- |
+| queryResult     | Result of the query of a record | [`QueryObserverResult<{ data: TData }>`][useQuery] |
+| searchFormProps | Ant design Form props           | [`Form`][Form]                                     |
+| listProps       | Ant design List props           | [`List`][List]                                     |
+| filters         | Current filters state           | [`CrudFilters`][CrudFilters]                       |
+
+[CrudFilters]: /api-references/interfaces.md#crudfilters
+[CrudSorting]: /api-references/interfaces.md#crudsorting
+[Form]: https://ant.design/components/form/#API
+[List]: https://ant.design/components/list/#API
+[useQuery]: https://react-query.tanstack.com/reference/useQuery
+[List Search]: /guides-and-concepts/search/list-search.md
+[BaseRecord]: /api-references/interfaces.md#baserecord
+[HttpError]: /api-references/interfaces.md#httperror
+[Header]: https://ant.design/components/list/#header
+[Refine swl]: /api-references/components/refine-config.md#syncwithlocation

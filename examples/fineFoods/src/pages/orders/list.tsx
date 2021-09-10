@@ -27,12 +27,15 @@ import {
     useExport,
     useImport,
     useNavigation,
+    getDefaultFilter,
     HttpError,
 } from "@pankod/refine";
+import dayjs from "dayjs";
 
 import { OrderStatus, OrderActions } from "components";
 
 import { IOrder, IStore, IOrderFilterVariables } from "interfaces";
+import { useMemo } from "react";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter, searchFormProps, filters } = useTable<
@@ -40,62 +43,50 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         HttpError,
         IOrderFilterVariables
     >({
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
         onSearch: (params) => {
             const filters: CrudFilters = [];
             const { q, store, user, createdAt, status } = params;
 
-            if (q) {
-                filters.push({
-                    field: "q",
-                    operator: "eq",
-                    value: q,
-                });
-            }
+            filters.push({
+                field: "q",
+                operator: "eq",
+                value: q,
+            });
 
-            if (store) {
-                filters.push({
-                    field: "store.id",
-                    operator: "eq",
-                    value: store,
-                });
-            }
+            filters.push({
+                field: "store.id",
+                operator: "eq",
+                value: store,
+            });
 
-            if (user) {
-                filters.push({
-                    field: "user.id",
-                    operator: "eq",
-                    value: user,
-                });
-            }
+            filters.push({
+                field: "user.id",
+                operator: "eq",
+                value: user,
+            });
 
-            if (status) {
-                filters.push({
-                    field: "status.text",
-                    operator: "eq",
-                    value: status,
-                });
-            }
+            filters.push({
+                field: "status.text",
+                operator: "in",
+                value: status,
+            });
 
-            if (createdAt) {
-                filters.push(
-                    {
-                        field: "createdAt",
-                        operator: "gte",
-                        value: createdAt[0].toISOString(),
-                    },
-                    {
-                        field: "createdAt",
-                        operator: "lte",
-                        value: createdAt[1].toISOString(),
-                    },
-                );
-            }
+            filters.push(
+                {
+                    field: "createdAt",
+                    operator: "gte",
+                    value: createdAt
+                        ? createdAt[0].startOf("day").toISOString()
+                        : undefined,
+                },
+                {
+                    field: "createdAt",
+                    operator: "lte",
+                    value: createdAt
+                        ? createdAt[1].endOf("day").toISOString()
+                        : undefined,
+                },
+            );
 
             return filters;
         },
@@ -133,7 +124,10 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         <Row gutter={[16, 16]}>
             <Col xl={6} lg={24} xs={24}>
                 <Card bordered={false} title={t("orders.filter.title")}>
-                    <Filter formProps={searchFormProps} />
+                    <Filter
+                        formProps={searchFormProps}
+                        filters={filters || []}
+                    />
                 </Card>
             </Col>
             <Col xl={18} xs={24}>
@@ -145,10 +139,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                     <Table
                         {...tableProps}
                         rowKey="id"
-                        scroll={{
-                            x: true,
-                        }}
-                        onRow={(record, _rowIndex) => {
+                        onRow={(record) => {
                             return {
                                 onClick: () => {
                                     show("orders", record.id);
@@ -162,7 +153,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             title={t("orders.fields.orderNumber")}
                             render={(value) => <TextField value={value} />}
                         />
-                        <Table.Column
+                        <Table.Column<IOrder>
                             key="status.text"
                             dataIndex={["status", "text"]}
                             title={t("orders.fields.status")}
@@ -170,7 +161,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                 return <OrderStatus status={value} />;
                             }}
                             defaultSortOrder={getDefaultSortOrder(
-                                "status",
+                                "status.text",
                                 sorter,
                             )}
                             sorter
@@ -258,29 +249,57 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     );
 };
 
-const Filter: React.FC<{ formProps: FormProps }> = (props) => {
+const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
+    props,
+) => {
     const t = useTranslate();
 
-    const { formProps } = props;
+    const { formProps, filters } = props;
     const { selectProps: storeSelectProps } = useSelect<IStore>({
         resource: "stores",
+        defaultValue: getDefaultFilter("store.id", filters),
     });
 
     const { selectProps: orderSelectProps } = useSelect<IStore>({
         resource: "orderStatuses",
         optionLabel: "text",
         optionValue: "text",
+        defaultValue: getDefaultFilter("status.text", filters),
     });
 
     const { selectProps: userSelectProps } = useSelect<IStore>({
         resource: "users",
         optionLabel: "fullName",
+        defaultValue: getDefaultFilter("user.id", filters),
     });
 
     const { RangePicker } = DatePicker;
 
+    const createdAt = useMemo(() => {
+        const start = getDefaultFilter("createdAt", filters, "gte");
+        const end = getDefaultFilter("createdAt", filters, "lte");
+
+        const startFrom = dayjs(start);
+        const endAt = dayjs(end);
+
+        if (start && end) {
+            return [startFrom, endAt];
+        }
+        return undefined;
+    }, [filters]);
+
     return (
-        <Form layout="vertical" {...formProps}>
+        <Form
+            layout="vertical"
+            initialValues={{
+                q: getDefaultFilter("q", filters),
+                store: getDefaultFilter("store.id", filters),
+                user: getDefaultFilter("user.id", filters),
+                status: getDefaultFilter("status.text", filters, "in"),
+                createdAt,
+            }}
+            {...formProps}
+        >
             <Row gutter={[10, 0]} align="bottom">
                 <Col xl={24} md={8} sm={12} xs={24}>
                     <Form.Item label={t("orders.filter.search.label")} name="q">
@@ -298,6 +317,7 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
                         <Select
                             {...orderSelectProps}
                             allowClear
+                            mode="multiple"
                             placeholder={t("orders.filter.status.placeholder")}
                         />
                     </Form.Item>
@@ -331,7 +351,7 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
                         label={t("orders.filter.createdAt.label")}
                         name="createdAt"
                     >
-                        <RangePicker />
+                        <RangePicker style={{ width: "100%" }} />
                     </Form.Item>
                 </Col>
                 <Col xl={24} md={8} sm={12} xs={24}>

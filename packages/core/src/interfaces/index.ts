@@ -13,6 +13,7 @@ export * from "../contexts/translation/ITranslationContext";
 export * from "../contexts/components/IComponentsContext";
 export * from "../contexts/notification/INotificationContext";
 export * from "../contexts/resource/IResourceContext";
+export * from "../contexts/unsavedWarn/IUnsavedWarnContext";
 
 // buttons
 export { CreateButtonProps } from "../components/buttons/create/index";

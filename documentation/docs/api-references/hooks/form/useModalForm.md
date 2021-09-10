@@ -8,8 +8,19 @@ import editGif from '@site/static/img/hooks/useModalForm/edit.gif';
 
 `useModalForm` hook allows you to manage a form within a modal. It returns Ant Design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components props.
 
-```ts
-const { modalProps, formProps } = useModalForm<IPost>();
+```ts twoslash
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+// ---cut---
+
+import { useModalForm } from "@pankod/refine";
+
+const { modalProps, formProps } = useModalForm<IPost>({
+    action: "create", // or "edit"
+});
 ```
 
 All we have to do is to pass the `modalProps` to `<Modal>` and `formProps` to `<Form>` components.
@@ -22,31 +33,25 @@ We'll show two examples, one for creating and one for editing a post. Let's see 
 
 In this example, we will show you how to create a record with `useModalForm`.
 
-```tsx title="pages/posts/list.tsx"
-import { useModalForm, Modal, Form, Create, Radio } from "@pankod/refine";
-import { IPost } from "interfaces";
+```tsx title="pages/posts/list.tsx" twoslash {3-5, 10-14, 18-31}
+import { useModalForm, Modal, Form, Create, Radio, List, Input } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
-    //highlight-start
     const { modalProps, formProps, show } = useModalForm<IPost>({
         action: "create",
     });
-    //highlight-end
 
     return (
         <>
             <List
-                //highlight-start
                 createButtonProps={{
                     onClick: () => {
                         show();
                     },
                 }}
-                //highlight-end
             >
                 ...
             </List>
-            //highlight-start
             <Modal {...modalProps}>
                 <Form {...formProps} layout="vertical">
                     <Form.Item label="Title" name="title">
@@ -61,14 +66,11 @@ export const PostList: React.FC = () => {
                     </Form.Item>
                 </Form>
             </Modal>
-            //highlight-end
         </>
     );
 };
-```
 
-```ts title="interfaces/index.d.ts"
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
     status: "published" | "draft" | "rejected";
@@ -89,9 +91,13 @@ export interface IPost {
 
 This code block makes `<Modal>` appear when you click the button.
 
-
-<div style={{textAlign: "center"}}>
-    <img src={createGif} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={createGif} alt="Create modal action" />
 </div>
 
 <br />
@@ -100,20 +106,26 @@ This code block makes `<Modal>` appear when you click the button.
 
 Let's learn how to add editing capabilities to records that will be opening form in Modal by using the `action` prop.
 
-```tsx title="pages/posts/list.tsx"
-import { useModalForm, Modal, Form, Create, Radio } from "@pankod/refine";
-import { IPost } from "interfaces";
+```tsx twoslash title="pages/posts/list.tsx" {17, 19, 32}
+import { 
+    useModalForm,
+    Modal,
+    Form,
+    Create,
+    Radio,
+    List,
+    Table,
+    EditButton,
+    Input
+} from "@pankod/refine";
 
 export const PostList: React.FC = () => {
     const {
         modalProps,
         formProps,
         show,
-        //highlight-start
         editId,
-        //highlight-end
     } = useModalForm<IPost>({
-        //highlight-next-line
         action: "edit",
     });
 
@@ -127,9 +139,7 @@ export const PostList: React.FC = () => {
                         dataIndex="actions"
                         key="actions"
                         render={(_value, record) => (
-                            //highlight-start
                             <EditButton onClick={() => show(record.id)} />
-                            //highlight-end
                         )}
                     />
                 </Table>
@@ -151,6 +161,12 @@ export const PostList: React.FC = () => {
         </>
     );
 };
+
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
 ```
 
 <br />
@@ -175,8 +191,13 @@ So, we have to put the edit buttons on our list. In that way, `<Edit>` form in `
 Don't forget to pass the record id to `show` to fetch the record data. This is necessary for both edit and clone forms.
 :::
 
-<div style={{textAlign: "center"}}>
-    <img src={editGif} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={editGif} alt="Edit modal action" />
 </div>
 
 <br />

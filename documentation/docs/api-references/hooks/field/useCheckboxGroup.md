@@ -30,33 +30,24 @@ We will demonstrate how to get data at the `/tags` endpoint from the `https://ap
 }
 ```
 
-```tsx title="pages/posts/create.tsx"
+```tsx twoslash title="pages/posts/create.tsx" {3-5, 10}
 import { Form, Checkbox, useCheckboxGroup } from "@pankod/refine";
 
-import { ITag } from "interfaces";
-
 export const PostCreate: React.FC = () => {
-    //highlight-start
     const { checkboxGroupProps } = useCheckboxGroup<ITag>({
         resource: "tags",
     });
-    //highlight-end
 
     return (
         <Form>
-            ...
             <Form.Item label="Tags" name="tags">
-                //highlight-next-line
                 <Checkbox.Group {...checkboxGroupProps} />
             </Form.Item>
-            ...
-        <Form>
+        </Form>
     );
 };
-```
 
-```ts title="interfaces/index.d.ts"
-export interface ITag {
+interface ITag {
     id: string;
     title: string;
 }
@@ -67,17 +58,23 @@ export interface ITag {
 All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.Group>` component.
 `useCheckboxGroup` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](api-references/hooks/data/useList.md)
 
-<div>
-    <img src={basicUsage} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={basicUsage} alt="Tags" />
 </div>
 
 ## Options
 
 ### `resource`
 
-```tsx
+```tsx twoslash
+import { useCheckboxGroup } from "@pankod/refine";
+// ---cut---
 const { checkboxGroupProps } = useCheckboxGroup({
-    //highlight-next-line
     resource: "tags",
 });
 ```
@@ -88,13 +85,13 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 ### `optionLabel` and `optionValue`
 
-```tsx
+```tsx twoslash {2-3}
+import { useCheckboxGroup } from "@pankod/refine";
+// ---cut---
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
-    //highlight-start
     optionLabel: "title",
     optionValue: "id",
-    //highlight-end
 });
 ```
 
@@ -102,10 +99,11 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 ### `filters`
 
-```tsx
+```tsx twoslash {2-8}
+import { useCheckboxGroup } from "@pankod/refine";
+// ---cut---
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
-    //highlight-start
     filters: [
         {
             field: "title",
@@ -113,7 +111,6 @@ const { checkboxGroupProps } = useCheckboxGroup({
             value: "Driver Deposit",
         },
     ],
-    //highlight-end
 });
 ```
 
@@ -121,17 +118,17 @@ It allows us to add some filters while fetching the data. For example, if you wa
 
 ### `sort`
 
-```tsx
+```tsx twoslash {2-7}
+import { useCheckboxGroup } from "@pankod/refine";
+// ---cut---
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
-    //highlight-start
     sort: [
         {
             field: "title",
             order: "asc",
         },
     ],
-    //highlight-end
 });
 ```
 
@@ -139,12 +136,12 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 
 ### `queryOptions`
 
-```tsx
+```tsx twoslash {2}
+import { useCheckboxGroup } from "@pankod/refine";
+// ---cut---
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
-    //highlight-start
     queryOptions: { onError: () => { console.log("triggers when on query return Error") }}
-    //highlight-end
 });
 ```
 
@@ -152,49 +149,40 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 
 
-
-:::caution
-The `defaultQueryOnSuccess` method which has default onSuccess behaviour and returned from `useCheckboxGroup` hook  must be called in case of `onSuccess` is needed to be overwritten. 
-
-```tsx
+```tsx twoslash {2, 4-10}
+import { useCheckboxGroup } from "@pankod/refine";
+// ---cut---
 const { 
     checkboxGroupProps, 
-    //highlight-next-line
-    defaultQueryOnSuccess
-    } = useCheckboxGroup({
+} = useCheckboxGroup({
     resource: "tags",
-    //highlight-start
     queryOptions: { 
         onSuccess: (data) => { 
-            defaultQueryOnSuccess(data)
             console.log("triggers when on query return on success") 
         } 
     }
-    //highlight-end
 });
 ```
 
-:::
 ## API Reference
 
 ### Properties
 
-| Property                                          | Description                               | Type                                       | Default   |
-| ------------------------------------------------- | ----------------------------------------- | ------------------------------------------ | --------- |
-| resource <div className="required">Required</div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                   |           |
-| optionValue                                       | Sets the option's value                    | `string`                                   | `"id"`    |
-| optionLabel                                       | Sets the option's label value              | `string`                                   | `"title"` |
-| filters                                           | Adds filters while fetching the data       | [`CrudFilters`](../../interfaces.md#crudfilters) |           |
-| sort                                              | Allows us to sort the options              | [`CrudSorting`](../../interfaces.md#crudsorting) |           |
-| queryOptions                                              | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options             | ` UseQueryOptions<GetListResponse<TData>, TError>` |           |
+| Property                                          | Description                                                                         | Type                                               | Default   |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------- | --------- |
+| resource <div className="required">Required</div> | [`Resource`](/api-references/components/resource.md) for API data interactions      | `string`                                           |           |
+| optionValue                                       | Sets the option's value                                                             | `string`                                           | `"id"`    |
+| optionLabel                                       | Sets the option's label value                                                       | `string`                                           | `"title"` |
+| filters                                           | Adds filters while fetching the data                                                | [`CrudFilters`](../../interfaces.md#crudfilters)   |           |
+| sort                                              | Allows us to sort the options                                                       | [`CrudSorting`](../../interfaces.md#crudsorting)   |           |
+| queryOptions                                      | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>` |           |
 
 ### Return values
 
-| Property           | Description                     | Type                                                                                          |
-| ------------------ | ------------------------------- | --------------------------------------------------------------------------------------------- |
+| Property           | Description                          | Type                                                                                          |
+| ------------------ | ------------------------------------ | --------------------------------------------------------------------------------------------- |
 | checkboxGroupProps | Ant design checkbox group properties | [`Checkbox Group`](https://ant.design/components/checkbox/#Checkbox-Group)                    |
-| queryResult        | Results of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
-| defaultQueryOnSuccess        | Default onSuccess method | `() => void` |
+| queryResult        | Results of the query of a record     | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
 
 ## Live Codesandbox Example
 

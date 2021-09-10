@@ -30,40 +30,36 @@ We will demonstrate how to get data at `/languages` endpoint from the `https://a
 }
 ```
 
-```tsx title="pages/posts/create.tsx"
+```tsx twoslash title="pages/posts/create.tsx" {3-5, 10}
 import { Form, Radio, useRadioGroup } from "@pankod/refine";
 
-import { ILanguage } from "interfaces";
-
 export const PostCreate = () => {
-    //highlight-start
     const { radioGroupProps } = useRadioGroup<ILanguage>({
         resource: "languages",
     });
-    //highlight-end
 
     return (
         <Form>
-            ...
             <Form.Item label="Languages" name="languages">
-                //highlight-next-line
                 <Radio.Group {...radioGroupProps} />
             </Form.Item>
-            ...
-        <Form>
+        </Form>
     );
 };
-```
 
-```ts title="interfaces/index.d.ts"
-export interface ILanguage {
+interface ILanguage {
     id: string;
     title: string;
 }
 ```
 
-<div>
-    <img src={basicUsage} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={basicUsage} alt="Radio group" />
 </div>
 <br/>
 
@@ -75,9 +71,10 @@ All we have to do is pass the `radioGroupProps` it returns to the `<Radio.Group>
 
 ### `resource`
 
-```tsx
+```tsx twoslash {1}
+import { useRadioGroup } from "@pankod/refine";
+// ---cut---
 const { radioGroupProps } = useRadioGroup({
-    //highlight-next-line
     resource: "languages",
 });
 ```
@@ -88,13 +85,13 @@ const { radioGroupProps } = useRadioGroup({
 
 ### `optionLabel` and `optionValue`
 
-```tsx
+```tsx twoslash {2-3}
+import { useRadioGroup } from "@pankod/refine";
+// ---cut---
 const { radioGroupProps } = useRadioGroup({
     resource: "languages",
-    //highlight-start
     optionLabel: "title",
     optionValue: "id",
-    //highlight-end
 });
 ```
 
@@ -102,10 +99,11 @@ const { radioGroupProps } = useRadioGroup({
 
 ### `filters`
 
-```tsx
+```tsx twoslash {2-8}
+import { useRadioGroup } from "@pankod/refine";
+// ---cut---
 const { radioGroupProps } = useRadioGroup({
     resource: "languages",
-    //highlight-start
     filters: [
         {
             field: "title",
@@ -113,7 +111,6 @@ const { radioGroupProps } = useRadioGroup({
             value: "German",
         },
     ],
-    //highlight-end
 });
 ```
 
@@ -121,17 +118,17 @@ const { radioGroupProps } = useRadioGroup({
 
 ### `sort`
 
-```tsx
+```tsx twoslash {2-7}
+import { useRadioGroup } from "@pankod/refine";
+// ---cut---
 const { radioGroupProps } = useRadioGroup({
     resource: "languages",
-    //highlight-start
     sort: [
         {
             field: "title",
             order: "asc",
         },
     ],
-    //highlight-end
 });
 ```
 
@@ -146,58 +143,50 @@ const { radioGroupProps } = useRadioGroup({
 
 
 
-```tsx
+```tsx twoslash {2}
+import { useRadioGroup } from "@pankod/refine";
+// ---cut---
 const { radioGroupProps } = useRadioGroup({
     resource: "languages",
-    //highlight-start
     queryOptions: { onError: () => { console.log("triggers when on query return Error") }}
-    //highlight-end
 });
 ```
 
-:::caution
-The `defaultQueryOnSuccess` method which has default onSuccess behaviour and returned from `useRadioGroup` hook  must be called in case of `onSuccess` is needed to be overwritten. 
-
-```tsx
+```tsx twoslash {2, 4-10}
+import { useRadioGroup } from "@pankod/refine";
+// ---cut---
 const { 
     radioGroupProps, 
-    //highlight-next-line
-    defaultQueryOnSuccess
-    } = useCheckboxGroup({
+} = useRadioGroup({
     resource: "languages",
-    //highlight-start
     queryOptions: { 
         onSuccess: (data) => { 
-            defaultQueryOnSuccess(data)
             console.log("triggers when on query return on success") 
         } 
     }
-    //highlight-end
 });
 ```
-:::
 
 ## API Reference
 
 ### Properties
 
-| Property                                          | Description                               | Type                                       | Default   |
-| ------------------------------------------------- | ----------------------------------------- | ------------------------------------------ | --------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div>| [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                   |           |
-| optionValue                                       | Sets the option's value                    | `string`                                   | `"id"`    |
-| optionLabel                                       | Sets the option's label value              | `string`                                   | `"title"` |
-| filters                                           | Adds filters while fetching the data       | [`CrudFilters`](../../interfaces.md#crudfilters) |           |
-| sort                                              | Allows us to sort the options              | [`CrudSorting`](../../interfaces.md#crudsorting) |           |
-| queryOptions                                              | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options             | ` UseQueryOptions<GetListResponse<TData>, TError>` |           |
+| Property                                                                                            | Description                                                                         | Type                                               | Default   |
+| --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------- | --------- |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](/api-references/components/resource.md) for API data interactions      | `string`                                           |           |
+| optionValue                                                                                         | Sets the option's value                                                             | `string`                                           | `"id"`    |
+| optionLabel                                                                                         | Sets the option's label value                                                       | `string`                                           | `"title"` |
+| filters                                                                                             | Adds filters while fetching the data                                                | [`CrudFilters`](../../interfaces.md#crudfilters)   |           |
+| sort                                                                                                | Allows us to sort the options                                                       | [`CrudSorting`](../../interfaces.md#crudsorting)   |           |
+| queryOptions                                                                                        | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>` |           |
 
 
 ### Return values
 
-| Property        | Description                     | Type                                                                                          |
-| --------------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
-| radioGroupProps | Ant design radio group props    | [`Radio Group`](https://ant.design/components/radio/#RadioGroup)                              |
+| Property        | Description                      | Type                                                                                          |
+| --------------- | -------------------------------- | --------------------------------------------------------------------------------------------- |
+| radioGroupProps | Ant design radio group props     | [`Radio Group`](https://ant.design/components/radio/#RadioGroup)                              |
 | queryResult     | Results of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
-| defaultQueryOnSuccess        | Default onSuccess method | `() => void` |
 
 
 ## Live Codesandbox Example

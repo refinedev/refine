@@ -3,7 +3,7 @@
     "login": {
       "signin": "Giriş",
       "signup": "Kayıt",
-      "email": "Email",
+      "email": "Kullanıcı adı",
       "password": "Şifre",
       "remember": "Beni Hatırla",
       "forgotPassword": "Şifremi unuttum",
@@ -65,7 +65,8 @@
     "deleteSuccess": "{{resource}} başarıyla silindi",
     "deleteError": "{{resource}} silinirken hata (hata kodu: {{statusCode}})",
     "editSuccess": "{{resource}} başarıyla düzenlendi",
-    "editError": "{{resource}} düzenlenirken hata (hata kodu: {{statusCode}})"
+    "editError": "{{resource}} düzenlenirken hata (hata kodu: {{statusCode}})",
+    "importProgress": "{{processed}}/{{total}} importiert"
   },
   "categories": {
     "categories": "Kategoriler",

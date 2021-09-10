@@ -93,9 +93,6 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
             <Table
                 {...tableProps}
                 rowKey="id"
-                scroll={{
-                    x: true,
-                }}
                 onRow={(record) => {
                     return {
                         onClick: () => {

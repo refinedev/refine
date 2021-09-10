@@ -50,7 +50,7 @@ export const ReadyPage: React.FC = () => {
                 <p style={styles.p1}>Your configuration is completed.</p>
                 <p style={styles.p2}>
                     Now you can get started by adding a &lt;Resource&gt; as a
-                    child of &lt;Admin&gt;
+                    child of &lt;Refine&gt;
                 </p>
                 <Space
                     size="large"

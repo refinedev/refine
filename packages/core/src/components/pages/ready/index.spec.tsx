@@ -18,7 +18,7 @@ describe("ReadyPage", () => {
         getByText("Welcome on board");
         getByText("Your configuration is completed.");
         getByText(
-            "Now you can get started by adding a <Resource> as a child of <Admin>",
+            "Now you can get started by adding a <Resource> as a child of <Refine>",
         );
     });
 

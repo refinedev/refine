@@ -3,6 +3,7 @@ import dataProvider from "@pankod/refine-nestjsx-crud";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
 
 const API_URL = "https://api.nestjsx-crud.refine.dev";
 
@@ -15,6 +16,12 @@ const App: React.FC = () => {
                 create={PostCreate}
                 edit={PostEdit}
                 show={PostShow}
+            />
+            <Resource
+                name="categories"
+                list={CategoryList}
+                create={CategoryCreate}
+                edit={CategoryEdit}
             />
         </Refine>
     );

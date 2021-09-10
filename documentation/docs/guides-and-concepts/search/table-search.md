@@ -3,19 +3,20 @@ id: table-search
 title: Table Search
 ---
 
-import searchForm from '@site/static/img/guides-and-concepts/table-search/form.jpg';
+import searchForm from '@site/static/img/guides-and-concepts/table-search/form.png';
 
 We can make extensive search / filter operations using the `useTable` hook on the listing pages.
 
 First, we create a form by extracting `searchFormProps` from `useTable`. We will use this form for search / filtering.
 
-```tsx title="pages/list.tsx"
+```tsx twoslash title="pages/list.tsx" {1-3, 17, 22-37}
 import {
-    //highlight-start
     Form,
     Table,
     useTable,
-    //highlight-end
+    Row,
+    Col,
+    Icons,
     List,
     Button,
     DatePicker,
@@ -25,48 +26,51 @@ import {
 
 const { RangePicker } = DatePicker;
 
-//highlight-next-line
-const { searchFormProps } = useTable<IPost>();
+export const ListPage: React.FC = () => {
+    const { searchFormProps } = useTable<IPost>();
 
-return (
-    <List>
-        <Space direction="vertical" size="large">
-            //highlight-start
-            <Form layout="inline" {...searchFormProps}>
-                <Form.Item label="Title" name="title">
-                    <Input placeholder="Title" />
-                </Form.Item>
+    return (
+        <Row gutter={[16, 16]}>
+            <Col lg={6} xs={24}>
+                <Form layout="vertical" {...searchFormProps}>
+                    <Form.Item label="Search" name="q">
+                        <Input
+                            placeholder="ID, Title, Content, etc."
+                            prefix={<Icons.SearchOutlined />}
+                        />
+                    </Form.Item>
+                    <Form.Item label="Created At" name="createdAt">
+                        <RangePicker />
+                    </Form.Item>
+                    <Form.Item>
+                        <Button htmlType="submit" type="primary">
+                            Filter
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Col>
+            <Col lg={18} xs={24}>
+                <List>
+                    <Table>...</Table>
+                </List>
+            </Col>
+        </Row>
+    );
+};
 
-                <Form.Item label="Created At" name="createdAt">
-                    <RangePicker />
-                </Form.Item>
-
-                <Form.Item>
-                    <Button type="primary" htmlType="submit">
-                        Search
-                    </Button>
-                </Form.Item>
-            </Form>
-            //highlight-end
-            <Table>...</Table>
-        </Space>
-    </List>
-);
-```
-
-```ts title="interfaces/index.d.ts"
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
     createdAt: string;
 }
 ```
 
-:::tip
-We can give a space between the `Table` and the `Form` by using the `Space` component.
-:::
-
-<div style={{textAlign: "center"}}>
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
     <img src={searchForm} />
 </div>
 
@@ -81,30 +85,25 @@ import { Dayjs } from "dayjs";
 const { searchFormProps } = useTable<IPost, { title: string; createdAt: [Dayjs, Dayjs] }>({
     onSearch: (params) => {
         const filters: CrudFilters = [];
-        const { title, createdAt } = params;
+        const { q, createdAt } = params;
 
-        if (title) {
-            filters.push({
-                field: "title",
-                operator: "contains",
-                value: title,
-            });
-        }
-
-        if (createdAt) {
             filters.push(
+                {
+                    field: "q",
+                    operator: "eq",
+                    value: q,
+                },
                 {
                     field: "createdAt",
                     operator: "gte",
-                    value: createdAt[0].toISOString(),
+                    value: createdAt ? createdAt[0].toISOString() : undefined,
                 },
                 {
                     field: "createdAt",
                     operator: "lte",
-                    value: createdAt[1].toISOString(),
+                    value: createdAt ? createdAt[1].toISOString() : undefined,
                 },
             );
-        }
 
         return filters;
     },

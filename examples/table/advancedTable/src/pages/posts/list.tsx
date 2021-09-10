@@ -196,7 +196,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                     <Space>
                                         <SaveButton
                                             {...saveButtonProps}
-                                            hideText
                                             size="small"
                                         />
                                         <Button

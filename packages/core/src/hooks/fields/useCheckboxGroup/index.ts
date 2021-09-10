@@ -26,7 +26,6 @@ export type UseCheckboxGroupReturnType<TData extends BaseRecord = BaseRecord> =
     {
         checkboxGroupProps: CheckboxGroupProps;
         queryResult: QueryObserverResult<GetListResponse<TData>>;
-        defaultQueryOnSuccess: (data: GetListResponse<TData>) => void;
     };
 
 /**
@@ -68,10 +67,11 @@ export const useCheckboxGroup = <
             filters,
         },
         {
+            ...queryOptions,
             onSuccess: (data) => {
                 defaultQueryOnSuccess(data);
+                queryOptions?.onSuccess?.(data);
             },
-            ...queryOptions,
         },
         successNotification,
         errorNotification,
@@ -81,6 +81,5 @@ export const useCheckboxGroup = <
             options,
         },
         queryResult,
-        defaultQueryOnSuccess,
     };
 };

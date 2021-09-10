@@ -3,9 +3,9 @@ id: multipart-upload
 title: Multipart Upload
 ---
 
-import create from '@site/static/img/guides-and-concepts/multipart-upload/create.jpg';
-import uploadedFile from '@site/static/img/guides-and-concepts/multipart-upload/uploaded.jpg';
-import edit from '@site/static/img/guides-and-concepts/multipart-upload/edit.jpg';
+import create from '@site/static/img/guides-and-concepts/multipart-upload/create.png';
+import uploadedFile from '@site/static/img/guides-and-concepts/multipart-upload/uploaded.png';
+import edit from '@site/static/img/guides-and-concepts/multipart-upload/edit.png';
 
 We will show you how to multipart upload with **refine**.
 
@@ -15,23 +15,20 @@ Let's start with the `creation form` first.
 
 Let's add the image field to the post `creation form`.
 
-```tsx title="pages/posts/create.tsx"
+```tsx twoslash title="pages/posts/create.tsx" {1-2, 13, 29-48}
 import { 
-    // highlight-start
-    Upload
+    Upload,
     getValueFromEvent,
-    // highlight-end
     Create,
     Form,
     Input,
+    useForm,
+    useApiUrl,
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
-    // highlight-next-line
     const apiUrl = useApiUrl();
 
     return (
@@ -48,7 +45,6 @@ export const PostCreate: React.FC = () => {
                 >
                     <Input />
                 </Form.Item>
-                // highlight-start
                 <Form.Item label="Image">
                     <Form.Item
                         name="image"
@@ -69,15 +65,12 @@ export const PostCreate: React.FC = () => {
                         </Upload.Dragger>
                     </Form.Item>
                 </Form.Item>
-                // highlight-end
             </Form>
         </Create>
     );
 };
-```
 
-```ts title="interfaces/index.d.ts"
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
     image: [
@@ -99,13 +92,18 @@ We can reach the API URL by using the `useApiUrl` hook.
 
 It will look like this.
 
-<>
 
-<div style={{textAlign: "center"}}>
-<img src={create} />
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={create} alt="multipart upload in a create page" />
 </div>
+
 <br/>
-</>
 
 What we need now is an upload end-point that accepts multipart uploads. We write this address in the `action` property of the `Upload` component.
 
@@ -127,8 +125,13 @@ This end-point should respond similarly.
 }
 ```
 
-<div style={{textAlign: "center"}}>
-    <img src={uploadedFile} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={uploadedFile} alt="multipart upload uploaded item" />
 </div>
 <br/>
 
@@ -170,23 +173,33 @@ The following data are required for the [Antd Upload](https://ant.design/compone
 
 Let's add the image field to the post editing form.
 
-```tsx title="pages/posts/edit.tsx"
+```tsx twoslash title="pages/posts/edit.tsx" {1-2, 13, 29-48}
+interface IPost {
+    id: string;
+    title: string;
+    image: [
+        {
+            uid: string;
+            name: string;
+            url: string;
+            status: "error" | "success" | "done" | "uploading" | "removed";
+        },
+    ];
+}
+// ---cut---
 import { 
-    // highlight-start
-    Upload
+    Upload,
     getValueFromEvent,
-    // highlight-end
     Edit,
     Form,
     Input,
+    useForm,
+    useApiUrl,
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostEdit: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
-    // highlight-next-line
     const apiUrl = useApiUrl();
 
     return (
@@ -203,7 +216,6 @@ export const PostEdit: React.FC = () => {
                 >
                     <Input />
                 </Form.Item>
-                // highlight-start
                 <Form.Item label="Image">
                     <Form.Item
                         name="image"
@@ -224,15 +236,19 @@ export const PostEdit: React.FC = () => {
                         </Upload.Dragger>
                     </Form.Item>
                 </Form.Item>
-                // highlight-end
             </Form>
         </Edit>
     );
 };
 ```
 
-<div style={{textAlign: "center"}}>
-<img src={edit} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={edit} alt="multipart upload in edit page" />
 </div>
 <br/>
 
@@ -279,37 +295,45 @@ This data is sent to the API when form is submitted.
 
 You may want to disable the "Save" button in the form while the upload is going on. To do this, you can use the `useFileUploadState` hook.
 
-```tsx title="pages/posts/create.tsx"
+```tsx twoslash title="pages/posts/create.tsx" {3, 14, 19-24, 50}
+interface IPost {
+    id: string;
+    title: string;
+    image: [
+        {
+            uid: string;
+            name: string;
+            url: string;
+            status: "error" | "success" | "done" | "uploading" | "removed";
+        },
+    ];
+}
+// ---cut---
 import {
-    Upload
+    Upload,
     getValueFromEvent,
-    // highlight-next-line
     useFileUploadState,
     Create,
     Form,
     Input,
+    useForm,
+    useApiUrl,
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
-    // highlight-start
     const { isLoading, onChange } = useFileUploadState();
-    // highlight-end
 
     const apiUrl = useApiUrl();
 
     return (
-        // highlight-start
         <Create
             saveButtonProps={{
                 ...saveButtonProps,
                 disabled: isLoading,
             }}
         >
-            // highlight-end
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
@@ -335,9 +359,7 @@ export const PostCreate: React.FC = () => {
                             listType="picture"
                             maxCount={5}
                             multiple
-                            // highlight-start
                             onChange={onChange}
-                            // highlight-end
                         >
                             <p className="ant-upload-text">
                                 Drag & drop a file in this area

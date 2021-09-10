@@ -9,18 +9,15 @@ This field lets you show basic text. It uses Ant Design's [`<Typography.Text>`](
 
 Let's see how to use it in a basic list page:
 
-```tsx title="src/pages/posts/list.tsx"
+```tsx twoslash title="src/pages/posts/list.tsx" {2, 30-44}
 import {
     List,
-    //highlight-next-line
     TextField,
     Table,
     useTable,
     IResourceComponentsProps,
     useMany,
 } from "@pankod/refine";
-
-import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps } = useTable<IPost>();
@@ -43,7 +40,6 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                 <Table.Column
                     dataIndex={["category", "id"]}
                     title="category"
-                    //highlight-start
                     render={(value: string) => {
                         if (isLoading) {
                             return <TextField value="Loading..." />;
@@ -59,29 +55,26 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                             />
                         );
                     }}
-                    //highlight-end
                 />
             </Table>
         </List>
     );
 };
+
+interface ICategory {
+    id: string;
+    title: string;
+}
+
+interface IPost {
+    id: string;
+    category: ICategory;
+}
 ```
 
 :::tip
 Table columns already render their data as text by default. If the rendered data is in text form and its text field won't be customized with any of Ant Design `<Typography.Text>` properties, there isn't any need to use `<TextField>` in a column's render function.
 :::
-
-```ts title="src/interfaces/index.d.ts"
-export interface ICategory {
-    id: string;
-    title: string;
-}
-
-export interface IPost {
-    id: string;
-    category: ICategory;
-}
-```
 
 ## API Reference
 

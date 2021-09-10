@@ -156,14 +156,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 ),
             }}
         >
-            <Table
-                {...tableProps}
-                rowSelection={rowSelection}
-                scroll={{
-                    x: true,
-                }}
-                rowKey="id"
-            >
+            <Table {...tableProps} rowSelection={rowSelection} rowKey="id">
                 <Table.Column
                     dataIndex={["user", "avatar"]}
                     render={(value) => <Avatar size={74} src={value[0].url} />}

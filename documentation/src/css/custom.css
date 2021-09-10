@@ -27,6 +27,61 @@
     --color-bg-white: white;
 }
 
+.img-container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 6.4px;
+    overflow: auto;
+    box-shadow: var(--ifm-alert-shadow);
+}
+
+.window {
+    display: flex;
+    align-items: center;
+    padding: 0px 16px;
+    background: #292d3e;
+    height: 32px;
+}
+
+.window .control {
+    width: 16px;
+    height: 16px;
+    border-radius: 999px;
+}
+
+.window .control:nth-child(2),
+.control:nth-child(3) {
+    margin-left: 8px;
+}
+
+.window .control.red {
+    background: rgb(230, 54, 54);
+}
+
+.window .control.orange {
+    background: rgb(217, 119, 6);
+}
+
+.window .control.green {
+    background: rgb(5, 150, 105);
+}
+
+@media screen and (max-width: 650px) {
+    .window {
+        height: 16px;
+    }
+
+    .window .control {
+        width: 8px;
+        height: 8px;
+    }
+
+    .window .control:nth-child(2),
+    .control:nth-child(3) {
+        margin-left: 4px;
+    }
+}
+
 .docusaurus-highlight-code-line {
     background-color: rgb(72, 77, 91);
     display: block;
@@ -202,4 +257,14 @@
 
 .code-line-content {
     display: table-cell;
+}
+
+
+  
+[data-theme="light"] .shiki.nord {
+    display: none;
+}
+
+[data-theme="dark"] .shiki.min-light {
+    display: none;
 }

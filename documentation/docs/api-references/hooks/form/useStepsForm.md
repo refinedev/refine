@@ -7,7 +7,16 @@ import useStepsFormExample from '@site/static/img/hooks/useStepsForm/example.gif
 
 `useStepsForm` hook allows you to split your form under an Ant Design based [Steps](https://ant.design/components/steps/) component and provides you with a few useful functionalities that will help you manage your form.
 
-```tsx
+```ts twoslash
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+// ---cut---
+
+import { useStepsForm } from "@pankod/refine";
+
 const { stepsProps, formProps } = useStepsForm<IPost>();
 ```
 
@@ -23,11 +32,10 @@ For the sake of simplicity, in this example we're going to build a `Post` create
 
 To split your form items under a `<Steps>` component, first import and use `useStepsForm` hook in your page:
 
-```tsx title="pages/posts/create.tsx"
+```tsx twoslash title="pages/posts/create.tsx" {3-10}
 import { useStepsForm } from "@pankod/refine";
 
 export const PostCreate: React.FC = () => {
-    //highlight-start
     const {
         current,
         gotoStep,
@@ -36,21 +44,19 @@ export const PostCreate: React.FC = () => {
         saveButtonProps,
         queryResult,
     } = useStepsForm<IPost>();
-    //highlight-end
-    ...
-};
-```
 
-```ts title="src/interfaces.d.ts"
-export interface ICategory {
+    return null;
+};
+
+interface ICategory {
     id: string;
     title: string;
 }
 
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
-    category: ICategory;
+    status: "published" | "draft" | "rejected";
 }
 ```
 
@@ -60,8 +66,18 @@ This hook returns a set of useful values to render steps form. Given `current` v
 
 Here, each item of `formList` corresponds to one step in form:
 
-```tsx title="pages/posts/create.tsx"
-// highlight-next-line
+```tsx twoslash title="pages/posts/create.tsx" {0, 11-13,15-42}
+interface ICategory {
+    id: string;
+    title: string;
+}
+
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+// ---cut---
 import { useStepsForm, useSelect, Form, Input, Select } from "@pankod/refine";
 
 export const PostCreate: React.FC = () => {
@@ -73,13 +89,10 @@ export const PostCreate: React.FC = () => {
         saveButtonProps,
     } = useStepsForm<IPost>();
 
-    //highlight-start
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
     });
-    //highlight-end
 
-    //highlight-start
     const formList = [
         <>
             <Form.Item
@@ -108,8 +121,8 @@ export const PostCreate: React.FC = () => {
             </Form.Item>
         </>,
     ];
-    //highlight-end
-    ...
+    
+    return null;
 };
 ```
 
@@ -124,18 +137,26 @@ Since `category` is a relational data, we use `useSelect` to fetch its data.
 
 You should use `stepsProps` on `<Steps>` component, `formProps` on the `<Form>` component respectively. And as the last step, you should render the `<Steps>` component besides the form like this:
 
-```tsx title="pages/posts/create.tsx"
+```tsx twoslash title="pages/posts/create.tsx" {6-7, 54-62}
+interface ICategory {
+    id: string;
+    title: string;
+}
+
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+// ---cut---
 import {
     useStepsForm,
     useSelect,
     Form,
     Input,
     Select,
-    //highlight-start
     Create,
     Steps,
-    Form,
-    //highlight-end
 } from "@pankod/refine";
 
 export const PostCreate: React.FC = () => {
@@ -182,7 +203,6 @@ export const PostCreate: React.FC = () => {
     ];
 
     return (
-        //highlight-start
         <Create saveButtonProps={saveButtonProps}>
             <Steps {...stepsProps}>
                 <Steps.Step title="First Step" />
@@ -192,7 +212,6 @@ export const PostCreate: React.FC = () => {
                 {formList[current]}
             </Form>
         </Create>
-        //highlight-end
     );
 };
 ```
@@ -205,7 +224,18 @@ Make sure to add as much `<Steps.Step>` components as the number of steps in the
 
 To help users navigate between steps in the form, you can use action buttons. Your navigation buttons should use the `gotoStep` function that was previously returned from the the `useStepsForm` hook.
 
-```tsx title="pages/posts/create.tsx"
+```tsx twoslash title="pages/posts/create.tsx" {8-9, 58-86}
+interface ICategory {
+    id: string;
+    title: string;
+}
+
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+// ---cut---
 import {
     useStepsForm,
     useSelect,
@@ -214,11 +244,8 @@ import {
     Select,
     Create,
     Steps,
-    Form,
-    //highlight-start
     Button,
     SaveButton,
-    //highlight-end
 } from "@pankod/refine";
 
 export const PostCreate: React.FC = () => {
@@ -229,6 +256,7 @@ export const PostCreate: React.FC = () => {
         formProps,
         saveButtonProps,
         queryResult,
+        submit,
     } = useStepsForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -266,7 +294,6 @@ export const PostCreate: React.FC = () => {
 
     return (
         <Create
-            //highlight-start
             actionButtons={
                 <>
                     {current > 0 && (
@@ -289,14 +316,13 @@ export const PostCreate: React.FC = () => {
                     )}
                     {current === formList.length - 1 && (
                         <SaveButton
+                            {...saveButtonProps}
                             style={{ marginRight: 10 }}
                             onClick={() => submit()}
-                            {...saveButtonProps}
                         />
                     )}
                 </>
             }
-            //highlight-end
         >
             <Steps {...stepsProps}>
                 <Steps.Step title="First Step" />
@@ -310,15 +336,32 @@ export const PostCreate: React.FC = () => {
 };
 ```
 
-<div style={{textAlign: "center"}}>
-    <img src={useStepsFormExample} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={useStepsFormExample} alt="Steps form example" />
 </div>
 
 ### Edit
 
 In this example, we'll just look at what's different from the example above.
 
-```tsx title="pages/posts/edit.tsx"
+```tsx twoslash title="pages/posts/edit.tsx" {9,19, 23, 27, 59-97}
+interface ICategory {
+    id: string;
+    title: string;
+}
+
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+    category: ICategory;
+}
+// ---cut---
 import {
     useStepsForm,
     useSelect,
@@ -326,10 +369,8 @@ import {
     Input,
     Select,
     Steps,
-    Form,
     Button,
     SaveButton,
-    // highlight-next-line
     Edit,
 } from "@pankod/refine";
 
@@ -340,15 +381,13 @@ export const PostCreate: React.FC = () => {
         stepsProps,
         formProps,
         saveButtonProps,
-        // highlight-next-line
         queryResult,
+        submit,
     } = useStepsForm<IPost>();
 
-    // highlight-next-line
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
-        // highlight-next-line
         defaultValue: postData?.category.id,
     });
 
@@ -382,7 +421,6 @@ export const PostCreate: React.FC = () => {
     ];
 
     return (
-        // highlight-next-line
         <Edit
             actionButtons={
                 <>
@@ -406,9 +444,9 @@ export const PostCreate: React.FC = () => {
                     )}
                     {current === formList.length - 1 && (
                         <SaveButton
+                            {...saveButtonProps}
                             style={{ marginRight: 10 }}
                             onClick={() => submit()}
-                            {...saveButtonProps}
                         />
                     )}
                 </>
@@ -421,7 +459,6 @@ export const PostCreate: React.FC = () => {
             <Form {...formProps} layout="vertical">
                 {formList[current]}
             </Form>
-            // highlight-next-line
         </Edit>
     );
 };

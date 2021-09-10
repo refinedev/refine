@@ -30,40 +30,31 @@ Lets say that the data we are going to show on the table came like this from the
 ]
 ```
 
-In this case, an interface like this should be enough for us : 
-
-```tsx title="/src/interfaces/index.d.ts"
-export interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-}
-```
-
 If we want to make a sorting page where we show the `id`, `title` and `content` values:
 
-```tsx title="/src/pages/posts/list.tsx"
+```tsx twoslash title="/src/pages/posts/list.tsx" {3, 7-11}
 import { List, Table, TextField, useTable } from "@pankod/refine";
 
-import { IPost } from "interfaces";
-
 export const PostList: React.FC = () => {
-    //highlight-next-line
     const { tableProps } = useTable<IPost>();
 
     return (
         <List>
-            //highlight-start
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column dataIndex="title" title="Title" />
                 <Table.Column dataIndex="content" title="Content" />
             </Table>
-            //highlight-end
         </List>
     );
 };
+
+interface IPost {
+    id: string;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+}
 ```
 
 :::tip
@@ -80,17 +71,17 @@ If the `resource` option is given, `syncWithLocation` will not work.
 :::info
 If you want to make a change in the pagination of the `<Table>`. You should pass the pagination object of the `tableProps` to the pagination property of the `<Table>` as below.
 
-```tsx
+```tsx {5-9}
+const { tableProps } = useTable<IPost>();
+
 <Table
     {...tableProps}
     rowKey="id"
-    //highlight-start
     pagination={{
         ...tableProps.pagination,
         position: ["bottomCenter"],
         size: "small",
     }}
-    //highlight-end
 >
     ...
 </Table>
@@ -102,10 +93,15 @@ If you want to make a change in the pagination of the `<Table>`. You should pass
 
 If we want to give a column the sorting property, the corresponding `<Table.Column>` component must be given the [sorter](https://ant.design/components/table/#components-table-demo-head) property.
 
-```tsx title="/src/pages/posts/list.tsx"
-import { List, Table, TextField, useTable } from "@pankod/refine";
+```tsx twoslash title="/src/pages/posts/list.tsx" {13,19}
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+// ---cut---
 
-import { IPost } from "interfaces";
+import { List, Table, TextField, useTable } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -117,14 +113,12 @@ export const PostList: React.FC = () => {
                     dataIndex="id"
                     title="ID"
                     render={(value) => <TextField value={value} />}
-                    //highlight-next-line
                     sorter
                 />
                 <Table.Column
                     dataIndex="title"
                     title="Title"
                     render={(value) => <TextField value={value} />}
-                    //highlight-next-line
                     sorter={{ multiple: 1 }}
                 />
                 <Table.Column dataIndex="content" title="Content" />
@@ -138,13 +132,25 @@ export const PostList: React.FC = () => {
 When using multiple sorting, `multiple` value we had given to the `sorter` property specifies the priority of this column in sorting.
 :::
 
-<div style={{textAlign: "center"}}>
-    <img src={tableSorting} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={tableSorting} alt="Table sorting in action" />
 </div>
 
 ### Initial sort status
 
-```ts title="/src/pages/posts/list.tsx"
+```ts twoslash title="/src/pages/posts/list.tsx" {1-6}
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+import { useTable } from "@pankod/refine";
+// ---cut---
 const { tableProps, sorter } = useTable<IPost>({
     initialSorter: [
         {
@@ -173,20 +179,22 @@ Every `post` that comes from endpoint has a `status` value. This value can eithe
 
 We can use the `filterDropdown` property to make filtering based on the `status` value. In order to do this, we need to put the filtering form inside the `<FilterDropdown>` component and pass the properties coming to the function to these component's properties:
 
-```tsx title="/src/pages/posts/list.tsx"
+```tsx twoslash title="/src/pages/posts/list.tsx" {3-4,39-47}
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+// ---cut---
 import {
     List,
     Table,
     Radio,
-    //highlight-start
     FilterDropdown,
     TagField,
-    //highlight-end
     useTable,
     getDefaultSortOrder,
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps, sorter } = useTable<IPost>({
@@ -217,7 +225,6 @@ export const PostList: React.FC = () => {
                     dataIndex="status"
                     title="Status"
                     render={(value) => <TagField value={value} />}
-                    //highlight-start
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Radio.Group>
@@ -227,7 +234,6 @@ export const PostList: React.FC = () => {
                             </Radio.Group>
                         </FilterDropdown>
                     )}
-                    //highlight-end
                 />
             </Table>
         </List>
@@ -235,15 +241,27 @@ export const PostList: React.FC = () => {
 };
 ```
 
-<div style={{textAlign: "center"}}>
-    <img src={filters} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={filters} alt="Table filtering in action" />
 </div>
 
 ### Default filter value
 
 In order to set a default filter value, you can use the `initialFilter` option of the `useTable(options)` hook.
-```ts title="/src/pages/posts/list.tsx"
-...
+```ts twoslash title="/src/pages/posts/list.tsx"
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+import { useTable } from "@pankod/refine";
+// ---cut---
+
 const { tableProps, sorter, filters } = useTable<IPost>({
     initialSorter: [
         {
@@ -259,28 +277,29 @@ const { tableProps, sorter, filters } = useTable<IPost>({
         },
     ],
 });
-...
 ```
 
 If you give default filter values, `defaultFilteredValue` property needs to be properly given to the relevant `<Table.Column>` components so that those filter fields come with default values when the page is opened.
 
-```tsx title="/src/pages/posts/list.tsx"
+```tsx twoslash title="/src/pages/posts/list.tsx" {6,19-25,56}
+interface IPost {
+    id: string;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+// ---cut---
 import {
     List,
     Table,
     Radio,
     FilterDropdown,
     TagField,
-    //highlight-next-line
     getDefaultFilter,
     useTable,
     getDefaultSortOrder,
 } from "@pankod/refine";
 
-import { IPost } from "interfaces";
-
 export const PostList: React.FC = () => {
-    //highlight-start
     const { tableProps, sorter, filters } = useTable<IPost>({
         initialSorter: [
             {
@@ -296,7 +315,6 @@ export const PostList: React.FC = () => {
             },
         ],
     });
-    //highlight-end
 
     return (
         <List>
@@ -326,7 +344,6 @@ export const PostList: React.FC = () => {
                             </Radio.Group>
                         </FilterDropdown>
                     )}
-                    //highlight-next-line
                     defaultFilteredValue={getDefaultFilter("status", filters)}
                 />
             </Table>
@@ -343,14 +360,15 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 
 ### Properties
 
-| Key              | Description                                                                                                                                       | Type                                                        |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| permanentFilter  | Default and unchangeable filter                                                                                                                   | [`CrudFilters`][CrudFilters]                                |
-| initialCurrent   | Initial page index                                                                                                                                | `number`                                                    |
-| initialPageSize  | Number of records shown per initial number of pages                                                                                               | `number`                                                    |
+| Key              | Description                                                                                                                                       | Type                                                        | Default                                                                              |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| resource         | The resource to use for table data                                                                                                                | `string` \| `undefined`                                     | Resource name that it reads from the url                                             |
+| permanentFilter  | Default and unchangeable filter                                                                                                                   | [`CrudFilters`][CrudFilters]                                | `[]`                                                                                 |
+| initialCurrent   | Initial page index                                                                                                                                | `number`                                                    | `1`                                                                                  |
+| initialPageSize  | Number of records shown per initial number of pages                                                                                               | `number`                                                    | `10`                                                                                 |
 | initialSorter    | Initial sorting                                                                                                                                   | [`CrudSorting`][CrudSorting]                                |
 | initialFilter    | Initial filtering                                                                                                                                 | [`CrudFilters`][CrudFilters]                                |
-| syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history                                                           | `boolean`                                                   |
+| syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history                                                           | `boolean`                                                   | Value set in [Refine][Refine swl]. If a custom resource is given, it will be `false` |
 | onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][Table Search] to learn how to create a search form | `Function`                                                  |
 | queryOptions     | `react-query`'s `useQuery` options                                                                                                                | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>` |
 
@@ -391,3 +409,4 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 [CrudFilters]: /api-references/interfaces.md#crudfilters
 [HttpError]: /api-references/interfaces.md#httperror
 [Table Search]: /guides-and-concepts/search/table-search.md
+[Refine swl]: /api-references/components/refine-config.md#syncwithlocation

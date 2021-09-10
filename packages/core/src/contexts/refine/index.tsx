@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { IRefineContext, IRefineContextProvider } from "./IRefineContext";
 import {
@@ -14,8 +14,6 @@ export const RefineContext = React.createContext<IRefineContext>({
     hasDashboard: false,
     mutationMode: "pessimistic",
     warnWhenUnsavedChanges: false,
-    warnWhen: false,
-    setWarnWhen: (value: boolean) => value,
     syncWithLocation: false,
     undoableTimeout: 5000,
     Title: DefaultTitle,
@@ -40,15 +38,12 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
     Footer = DefaultFooter,
     OffLayoutArea = DefaultOffLayoutArea,
 }) => {
-    const [warnWhen, setWarnWhen] = useState(false);
     return (
         <RefineContext.Provider
             value={{
                 hasDashboard,
                 mutationMode,
                 warnWhenUnsavedChanges,
-                warnWhen: warnWhen,
-                setWarnWhen: setWarnWhen,
                 syncWithLocation,
                 Title,
                 undoableTimeout,

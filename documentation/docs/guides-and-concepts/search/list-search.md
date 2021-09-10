@@ -10,13 +10,11 @@ We will examine how to make an extensive search and filtering with the [`useSimp
 
 To do this, let's list posts using the posts resource.
 
-```tsx title="pages/posts/list.tsx"
+```tsx twoslash title="pages/posts/list.tsx" {2-3, 13, 50}
 import {
     List,
-    //highlight-next-line
     useSimpleList,
     useMany,
-    //highlight-next-line
     AntdList,
     Typography,
     Space,
@@ -25,11 +23,7 @@ import {
 
 const { Text } = Typography;
 
-//highlight-next-line
-import { IPost, ICategory } from "interfaces";
-
 export const PostList: React.FC = () => {
-    //highlight-next-line
     const { listProps } = useSimpleList<IPost>();
 
     const categoryIds =
@@ -52,6 +46,7 @@ export const PostList: React.FC = () => {
                         <NumberField
                             value={hit}
                             options={{
+                                // @ts-ignore
                                 notation: "compact",
                             }}
                         />
@@ -66,20 +61,17 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
-            //highlight-next-line
             <AntdList {...listProps} renderItem={renderItem} />
         </List>
     );
 };
-```
 
-```ts title="interfaces/index.d.ts"
-export interface ICategory {
+interface ICategory {
     id: string;
     title: string;
 }
 
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
     content: string;
@@ -90,12 +82,12 @@ export interface IPost {
 
 Let's pass the list page we created to our `<Resource>` component.
 
-```tsx
+```tsx {5, 12}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
+
 import "@pankod/refine/dist/styles.min.css";
 
-//highlight-next-line
 import { PostList } from "pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -103,7 +95,6 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <Refine dataProvider={dataProvider(API_URL)}>
-            //highlight-next-line
             <Resource name="posts" list={PostList} />
         </Refine>
     );
@@ -111,30 +102,27 @@ const App: React.FC = () => {
 
 export default App;
 ```
-
-<div style={{textAlign: "center"}}>
-    <img src={basicList} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={basicList} alt="basic list" />
 </div>
-
 <br />
 
 We will create a form by extracting `searchFormProps` from [`useSimpleList`](../../api-references/hooks/show/useSimpleList.md). We will use this form for search/filtering. We will also create an interface to determine the types of values from the form.
 
-```tsx title="pages/posts/list.tsx"
-// ...
+```tsx title="pages/posts/list.tsx" {4, 12-35, 39-42, 46-63}
+...
 
 import {
     ...
-    //highlight-next-line
     CrudFilters,
 } from "@pankod/refine";
 
-
-//highlight-next-line
-import { IPostFilterVariables } from "interfaces";
-
 export const PostList: React.FC = () => {
-    //highlight-start
     const { listProps, searchFormProps } = useSimpleList<
         IPost,
         IPostFilterVariables
@@ -143,45 +131,36 @@ export const PostList: React.FC = () => {
             const filters: CrudFilters = [];
             const { category, createdAt } = params;
 
-            if (category) {
-                filters.push({
+            filters.push(
+                {
                     field: "category.id",
                     operator: "eq",
                     value: category,
-                });
-            }
-
-            if (createdAt) {
-                filters.push(
-                    {
-                        field: "createdAt",
-                        operator: "gte",
-                        value: createdAt[0].toISOString(),
-                    },
-                    {
-                        field: "createdAt",
-                        operator: "lte",
-                        value: createdAt[1].toISOString(),
-                    },
-                );
-            }
+                },
+                {
+                    field: "createdAt",
+                    operator: "gte",
+                    value: createdAt ? createdAt[0].toISOString() : undefined,
+                },
+                {
+                    field: "createdAt",
+                    operator: "lte",
+                    value: createdAt ? createdAt[1].toISOString() : undefined,
+                },
+            );
 
             return filters;
         },
     });
-    //highlight-end
 
     // ...
 
-    //highlight-start
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
     });
-    //highlight-end
 
     return (
         <List>
-            //highlight-start
             <Form
                 {...searchFormProps}
                 layout="vertical"
@@ -200,17 +179,12 @@ export const PostList: React.FC = () => {
                     </Form.Item>
                 </Space>
             </Form>
-            //highlight-end
             <AntdList {...listProps} renderItem={renderItem} />
         </List>
     );
 };
-```
 
-```ts title="interfaces/index.d.ts"
-// ...
-
-export interface IPostFilterVariables {
+interface IPostFilterVariables {
     category: string;
     createdAt: [Dayjs, Dayjs];
 }
@@ -219,9 +193,13 @@ export interface IPostFilterVariables {
 When the form is submitted, the `onSearch` method runs and we get the search form values. Then the `listProps` is refreshed according to the criteria.
 
 
-
-<div style={{textAlign: "center"}}>
-    <img src={formList} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={formList} alt="form list" />
 </div>
 
 <br />

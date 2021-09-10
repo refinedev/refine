@@ -12,15 +12,12 @@ This field is used to display files and uses [`<Typography.Link>`](https://ant.d
 
 Let's see how we can use `<FileField>` with the example in the edit page. 
 
-```tsx
+```tsx twoslash {3, 18}
 import { 
     List,
     Table,
-    //highlight-next-line
     FileField 
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     return (
@@ -34,22 +31,14 @@ export const PostList: React.FC = () => {
                     title="Image"
                     dataIndex="image"
                     render={(_, record) => (
-                        //highlight-start
                          <FileField src={record.image[0].url} />
-                        //highlight-end
                     )}
                 />
             </Table>
         </List>
     );
 };
-```
 
-:::tip
-If you don't use `title` prop it will use `src` as `title`
-:::
-
-```tsx title="interfaces/index.d.ts"
 interface IPost {
     id: string;
     title: string;
@@ -60,6 +49,10 @@ interface IPost {
     ];
 }
 ```
+
+:::tip
+If you don't use `title` prop it will use `src` as `title`
+:::
 
 <br/>
 <div>

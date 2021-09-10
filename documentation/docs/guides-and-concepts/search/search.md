@@ -2,13 +2,25 @@
 id: search
 title: Search
 ---
+import search from '@site/static/img/guides-and-concepts/search/search.gif';
+
 
 We will create a `<Header>` component for your application with Ant Design's [`<AutoComplete>`](https://ant.design/components/auto-complete) component.
 We will now examine how to search within the application with this component.
 
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={search} alt="search" />
+</div>
+<br/>
+
 To do this, let's first create our `<Header>` component.
 
-```tsx title="src/components/header.tsx"
+```tsx twoslash title="src/components/header.tsx"
 import { AntdLayout, AutoComplete, Input, Icons } from "@pankod/refine";
 
 const { SearchOutlined } = Icons;
@@ -43,12 +55,12 @@ We created the `<Header>` component as we want it to appear. We have not done an
 :::note
 Let's not forget to pass the `<Header>` component to the `<Refine>` component in `App.tsx` as below.
 
-```tsx title="src/App.tsx"
+```tsx title="src/App.tsx" {5, 13}
 import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
+
 import "@pankod/refine/dist/styles.min.css";
 
-//highlight-next-line
 import { Header } from "components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -57,7 +69,6 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            //highlight-next-line
             Header={Header}
         >
             ...
@@ -98,26 +109,21 @@ export interface IOptions {
 }
 ```
 
-```tsx title="src/components/header.tsx"
-//highlight-next-line
+```tsx title="src/components/header.tsx" {0, 6-8, 11, 14-35, 38-67, 79-80}
 import { useState, useEffect } from "react";
 import {
     AntdLayout,
     AutoComplete,
     Input,
     Icons,
-    //highlight-start
     useList,
     Typography,
     Link,
-    //highlight-end
 } from "@pankod/refine";
 
-//highlight-next-line
 const { Text } = Typography;
 const { SearchOutlined } = Icons;
 
-//highlight-start
 import { IOptions, IPost } from "interfaces";
 
 // To be able to customize the option title
@@ -140,10 +146,8 @@ const renderItem = (title: string, resource: string, id: string) => {
         ),
     };
 };
-//highlight-end
 
 export const Header: React.FC = () => {
-    //highlight-start
     const [value, setValue] = useState<string>("");
     const [options, setOptions] = useState<IOptions[]>([]);
 
@@ -174,7 +178,6 @@ export const Header: React.FC = () => {
         setOptions([]);
         refetchPosts();
     }, [value]);
-    //highlight-end
 
     return (
         <AntdLayout.Header
@@ -186,10 +189,8 @@ export const Header: React.FC = () => {
             <AutoComplete
                 style={{ width: "100%", maxWidth: "550px" }}
                 filterOption={false}
-                //highlight-start
                 options={options}
                 onSearch={(value: string) => setValue(value)}
-                //highlight-end
             >
                 <Input
                     size="large"
@@ -208,7 +209,7 @@ We created states to dynamically manage the `value` and `options` properties of 
 
 Search value is currently only searched and fetched inside posts. Let's update our code to search both posts and categories according to search value.
 
-```tsx title="src/components/header.tsx"
+```tsx title="src/components/header.tsx" {17-24, 29-51, 56}
 ...
 export const Header: React.FC = () => {
     const [value, setValue] = useState<string>("");
@@ -226,7 +227,6 @@ export const Header: React.FC = () => {
                     renderItem(item.title, "posts", item.id),
                 );
                 if (postOptionGroup.length > 0) {
-                    //highlight-start
                     setOptions((prevOptions) => [
                         ...prevOptions
                         {
@@ -234,12 +234,11 @@ export const Header: React.FC = () => {
                             options: postOptionGroup,
                         },
                     ]);
-                    //highlight-end
                 }
             },
         },
     );
-    //highlight-start
+
     const { refetch: refetchCategories } = useList<ICategory>(
         "categories",
         {
@@ -263,12 +262,10 @@ export const Header: React.FC = () => {
             },
         },
     );
-    // highlight-end
 
     useEffect(() => {
         setOptions([]);
         refetchPosts();
-        //highlight-next-line
         refetchCategories();
     }, [value]);
 

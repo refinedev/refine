@@ -36,6 +36,24 @@ export const LayoutWrapper: FC<LayoutWrapperProps> = ({
     const { Layout, Footer, Header, Sider, Title, OffLayoutArea } =
         useContext<IRefineContext>(RefineContext);
 
+    const LayoutToRender = LayoutFromProps ?? Layout;
+
+    return (
+        <LayoutToRender
+            Sider={SiderFromProps ?? Sider}
+            Header={HeaderFromProps ?? Header}
+            Footer={FooterFromProps ?? Footer}
+            Title={TitleFromProps ?? Title}
+            OffLayoutArea={OffLayoutAreaFromProps ?? OffLayoutArea}
+            dashboard={dashboard}
+        >
+            {children}
+            <UnsavedPrompt />
+        </LayoutToRender>
+    );
+};
+
+const UnsavedPrompt: React.FC = () => {
     const translate = useTranslate();
 
     const { warnWhen } = useWarnAboutChange();
@@ -48,7 +66,7 @@ export const LayoutWrapper: FC<LayoutWrapperProps> = ({
 
         e.returnValue = translate(
             "warnWhenUnsavedChanges",
-            "Are you sure you want to leave? You have with unsaved changes.",
+            "Are you sure you want to leave? You have unsaved changes.",
         );
 
         return e.returnValue;
@@ -62,25 +80,13 @@ export const LayoutWrapper: FC<LayoutWrapperProps> = ({
         return window.removeEventListener("beforeunload", warnWhenListener);
     }, [warnWhen]);
 
-    const LayoutToRender = LayoutFromProps ?? Layout;
-
     return (
-        <LayoutToRender
-            Sider={SiderFromProps ?? Sider}
-            Header={HeaderFromProps ?? Header}
-            Footer={FooterFromProps ?? Footer}
-            Title={TitleFromProps ?? Title}
-            OffLayoutArea={OffLayoutAreaFromProps ?? OffLayoutArea}
-            dashboard={dashboard}
-        >
-            {children}
-            <Prompt
-                when={warnWhen}
-                message={translate(
-                    "warnWhenUnsavedChanges",
-                    "Are you sure you want to leave? You have with unsaved changes.",
-                )}
-            />
-        </LayoutToRender>
+        <Prompt
+            when={warnWhen}
+            message={translate(
+                "warnWhenUnsavedChanges",
+                "Are you sure you want to leave? You have unsaved changes.",
+            )}
+        />
     );
 };

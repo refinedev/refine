@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { Grid } from "antd";
 import { useFormTable } from "sunflower-antd";
@@ -17,6 +17,8 @@ import {
     parseTableParams,
     mapAntdSorterToCrudSorting,
     mapAntdFilterToCrudFilter,
+    unionFilters,
+    setInitialFilters,
 } from "@definitions/table";
 
 import {
@@ -59,18 +61,21 @@ export type useTableReturnType<
  *
  * @see {@link https://refine.dev/docs/api-references/hooks/table/useTable} for more details.
  */
+
+const defaultPermanentFilter: CrudFilters = [];
+
 export const useTable = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
 >({
     onSearch,
-    permanentFilter = [],
+    permanentFilter = defaultPermanentFilter,
     initialCurrent = 1,
     initialPageSize = 10,
     initialSorter,
     initialFilter,
-    syncWithLocation: syncWithLocationProp = false,
+    syncWithLocation: syncWithLocationProp,
     resource: resourceFromProp,
     successNotification,
     errorNotification,
@@ -85,7 +90,7 @@ export const useTable = <
 
     const [form] = useForm<TSearchVariables>();
 
-    let syncWithLocation = syncWithLocationProp || syncWithLocationContext;
+    let syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
 
     // disable syncWithLocation for custom resource tables
     if (resourceFromProp) {
@@ -122,20 +127,48 @@ export const useTable = <
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
     const [sorter, setSorter] = useState<CrudSorting>(defaultSorter || []);
-    const [filters, setFilters] = useState<CrudFilters>(defaultFilter || []);
-    const [extraFilter, setExtraFilter] = useState<CrudFilters>([]);
+    const [filters, setFilters] = useState<CrudFilters>(
+        setInitialFilters(permanentFilter, defaultFilter ?? []),
+    );
+
+    useEffect(() => {
+        if (syncWithLocation) {
+            const stringifyParams = stringifyTableParams({
+                pagination: {
+                    ...tablePropsSunflower.pagination,
+                    current:
+                        tablePropsSunflower.pagination.current ??
+                        defaultCurrent,
+                },
+                sorter,
+                filters,
+            });
+
+            // Careful! This triggers render
+            return push(`/${resource.route}?${stringifyParams}`);
+        }
+    }, [
+        syncWithLocation,
+        tablePropsSunflower.pagination.current,
+        tablePropsSunflower.pagination.pageSize,
+        sorter,
+        filters,
+    ]);
 
     const {
-        current,
-        pageSize,
+        current: currentSF,
+        pageSize: pageSizeSF,
         defaultCurrent: defaultCurrentSF,
     } = tablePropsSunflower.pagination;
 
     const queryResult = useList<TData, TError>(
         resource.name,
         {
-            pagination: { current: current ?? defaultCurrentSF, pageSize },
-            filters: permanentFilter.concat(extraFilter, filters),
+            pagination: {
+                current: currentSF ?? defaultCurrentSF,
+                pageSize: pageSizeSF,
+            },
+            filters,
             sort: sorter,
         },
         queryOptions,
@@ -151,30 +184,30 @@ export const useTable = <
     ) => {
         // Map Antd:Filter -> refine:CrudFilter
         const crudFilters = mapAntdFilterToCrudFilter(filters);
-        setFilters(crudFilters);
+
+        setFilters((prevFilters) =>
+            unionFilters(permanentFilter, crudFilters, prevFilters),
+        );
 
         // Map Antd:Sorter -> refine:CrudSorting
         const crudSorting = mapAntdSorterToCrudSorting(sorter);
         setSorter(crudSorting);
 
         tablePropsSunflower.onChange(pagination, filters, sorter);
-
-        // synchronize with url
-        if (syncWithLocation) {
-            const stringifyParams = stringifyTableParams({
-                pagination,
-                sorter: crudSorting,
-                filters: crudFilters,
-            });
-
-            return push(`/${resource.route}?${stringifyParams}`);
-        }
     };
 
-    const onFinish = async (value: any) => {
+    const onFinish = async (value: TSearchVariables) => {
         if (onSearch) {
-            const filters = await onSearch(value);
-            return setExtraFilter(filters);
+            const searchFilters = await onSearch(value);
+            setFilters((prevFilters) =>
+                unionFilters(permanentFilter, searchFilters, prevFilters),
+            );
+
+            tablePropsSunflower.onChange(
+                { ...tablePropsSunflower.pagination, current: 1 },
+                undefined,
+                undefined,
+            );
         }
     };
 
@@ -198,6 +231,6 @@ export const useTable = <
         },
         tableQueryResult: queryResult,
         sorter,
-        filters: permanentFilter?.concat(filters),
+        filters,
     };
 };

@@ -49,7 +49,7 @@ export const PerfectImplementation = () => {
                     )}
                 >
                     <iframe
-                        src="https://codesandbox.io/embed/refine-tutorial-forked-zufpc?autoresize=1&fontsize=14&theme=dark"
+                        src="https://codesandbox.io/embed/refine-tutorial-cmqrr?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark"
                         style={{
                             width: "100%",
                             height: "70vh",

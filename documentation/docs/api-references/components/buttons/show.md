@@ -3,22 +3,19 @@ id: show-button
 title: Show
 ---
 
-import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/show/usage.png';
+import showButton from '@site/static/img/guides-and-concepts/components/buttons/show/show.png';
 
 `<ShowButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `show` method from [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of `<Resource>`.
 
 ## Usage
 
-```tsx
+```tsx twoslash {4, 19}
 import {
     List,
     Table,
-    useTable
-    // highlight-next-line
+    useTable,
     ShowButton,
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -32,7 +29,6 @@ export const PostList: React.FC = () => {
                     title="Actions"
                     dataIndex="actions"
                     render={(_, record) => (
-                        // highlight-next-line
                         <ShowButton size="small" recordItemId={record.id} />
                     )}
                 />
@@ -40,10 +36,8 @@ export const PostList: React.FC = () => {
         </List>
     );
 };
-```
 
-```ts
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
 }
@@ -51,8 +45,13 @@ export interface IPost {
 
 Will look like this:
 
-<div>
-    <img src={tableUsage} alt="Default Show Button" />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={showButton} alt="Default show button" />
 </div>
 
 ## Properties
@@ -61,7 +60,7 @@ Will look like this:
 
 `recordItemId` is used to append the record id to the end of the route path.
 
-```tsx
+```tsx twoslash
 import { ShowButton } from "@pankod/refine";
 
 export const MyShowComponent = () => {
@@ -79,7 +78,7 @@ Clicking the button will trigger the `show` method of [`useNavigation`](/api-ref
 
 Redirection endpoint(`resourceName/show`) is defined by `resourceName` property. By default, `<ShowButton>` uses `name` property of the `<Resource>` component as an endpoint to redirect after clicking.
 
-```tsx
+```tsx twoslash
 import { ShowButton } from "@pankod/refine";
 
 export const MyShowComponent = () => {
@@ -93,7 +92,7 @@ Clicking the button will trigger the `show` method of [`useNavigation`](/api-ref
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx
+```tsx twoslash
 import { ShowButton } from "@pankod/refine";
 
 export const MyShowComponent = () => {

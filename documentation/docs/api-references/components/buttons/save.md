@@ -3,7 +3,7 @@ id: save-button
 title: Save
 ---
 
-import saveButtonProps from '@site/static/img/guides-and-concepts/components/buttons/save/saveButtonProps.png';
+import saveButton from '@site/static/img/guides-and-concepts/components/buttons/save/save.png';
 
 `<SaveButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses it for presantation purposes only. Some of the hooks that **refine** has adds features to this button.
 
@@ -11,17 +11,13 @@ import saveButtonProps from '@site/static/img/guides-and-concepts/components/but
 
 For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](api-references/hooks/form/useForm.md) hook.
 
-```tsx
+```tsx twoslash {3, 6}
 import { Edit, Form, Input, useForm } from "@pankod/refine";
 
-import { IPost } from "interfaces";
-
 export const PostEdit: React.FC = () => {
-    //highlight-next-line
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     return (
-        //highlight-next-line
         <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
@@ -39,10 +35,8 @@ export const PostEdit: React.FC = () => {
         </Edit>
     );
 };
-```
 
-```ts
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
 }
@@ -50,8 +44,13 @@ export interface IPost {
 
 Will look like this:
 
-<div>
-    <img  src={saveButtonProps} alt="Default Save Button" />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={saveButton} alt="Default save button" />
 </div>
 <br/>
 
@@ -62,6 +61,14 @@ The [`useForm`](api-references/hooks/form/useForm.md) hook exposes `saveButtonPr
 ### `hideText`
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+
+```tsx twoslash
+import { SaveButton } from "@pankod/refine";
+
+export const MyRefreshComponent = () => {
+    return <SaveButton hideText />;
+};
+```
 
 ## API Reference
 

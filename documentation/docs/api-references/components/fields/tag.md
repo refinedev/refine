@@ -11,17 +11,14 @@ This field lets you display a value in a tag. It uses Ant Design's [`<Tag>`](htt
 
 Let's see how we can use it in a basic list page:
 
-```tsx title="pages/posts/list.tsx"
+```tsx twoslash title="pages/posts/list.tsx" {2, 18}
 import {
     List,
-    //highlight-next-line
     TagField,
     Table,
     useTable,
     IResourceComponentsProps,
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -30,21 +27,17 @@ export const PostList: React.FC = () => {
         <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="title" title="title" />
-                //highlight-start
                 <Table.Column
                     dataIndex="status"
                     title="status"
                     render={(value: string) => <TagField value={value} />}
                 />
-                //highlight-end
             </Table>
         </List>
     );
 };
-```
 
-```ts title="interfaces/index.d.ts"
-export interface IPost {
+interface IPost {
     title: string;
     status: "published" | "draft" | "rejected";
 }

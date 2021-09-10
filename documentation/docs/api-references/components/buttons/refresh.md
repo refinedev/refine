@@ -3,22 +3,19 @@ id: refresh-button
 title: Refresh
 ---
 
-import tableUsage from '@site/static/img/guides-and-concepts/components/buttons/refresh/usage.png';
+import refreshButton from '@site/static/img/guides-and-concepts/components/buttons/refresh/refresh.png';
 
 `<RefreshButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component to update the data shown on the page via the [`useOne`](api-references/hooks/data/useOne.md) method provided by your [`dataProvider`](api-references/providers/data-provider.md).
 
 ## Usage
 
-```tsx
+```tsx twoslash {1, 17}
 import {
-    //highlight-next-line
-    RefreshButton
+    RefreshButton,
     useShow,
     Show,
     Typography,
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 const { Title, Text } = Typography;
 
@@ -30,7 +27,6 @@ export const PostShow: React.FC = () => {
     return (
         <Show
             isLoading={isLoading}
-            //highlight-next-line
             pageHeaderProps={{ extra: <RefreshButton /> }}
         >
             <Title level={5}>Id</Title>
@@ -41,10 +37,8 @@ export const PostShow: React.FC = () => {
         </Show>
     );
 };
-```
 
-```ts
-export interface IPost {
+interface IPost {
     id: string;
     title: string;
 }
@@ -52,8 +46,13 @@ export interface IPost {
 
 Will Look like this:
 
-<div>
-    <img src={tableUsage} alt="Default Refresh Button" />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={refreshButton} alt="Default refresh button" />
 </div>
 
 ## Properties
@@ -62,7 +61,7 @@ Will Look like this:
 
 `recordItemId` allows us to manage which data is going to be refreshed.
 
-```tsx
+```tsx twoslash
 import { RefreshButton } from "@pankod/refine";
 
 export const MyRefreshComponent = () => {
@@ -80,7 +79,7 @@ Clicking the button will trigger the [`useOne`](api-references/hooks/data/useOne
 
 `resourceName` allows us to manage which resource is going to be refreshed.
 
-```tsx
+```tsx twoslash
 import { RefreshButton } from "@pankod/refine";
 
 export const MyRefreshComponent = () => {
@@ -98,7 +97,7 @@ Clicking the button will trigger the [`useOne`](api-references/hooks/data/useOne
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx
+```tsx twoslash
 import { RefreshButton } from "@pankod/refine";
 
 export const MyRefreshComponent = () => {

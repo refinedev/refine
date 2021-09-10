@@ -11,11 +11,10 @@ This field is used to display email values. It uses the [`<Link>`](https://ant.d
 
 Let's see how we can use `<EmailField>` with the example in the user list.
 
-```tsx
+```tsx twoslash {3, 15}
 import { 
     List,
     Table,
-    //highlight-next-line
     EmailField
 } from "@pankod/refine";
 
@@ -28,7 +27,6 @@ export const UserList: React.FC = () => {
                  <Table.Column
                     dataIndex="email"
                     title="Email"
-                    //highlight-next-line
                     render={(value: string) => <EmailField value={value} />}
                 />
                 ...

@@ -1,6 +1,14 @@
 import qs, { IStringifyOptions } from "qs";
+import unionWith from "lodash/unionWith";
+import reverse from "lodash/reverse";
+import differenceWith from "lodash/differenceWith";
 
-import { CrudFilters, CrudOperators, CrudSorting } from "../../interfaces";
+import {
+    CrudFilters,
+    CrudOperators,
+    CrudSorting,
+    CrudFilter,
+} from "../../interfaces";
 import {
     SortOrder,
     TablePaginationConfig,
@@ -102,11 +110,15 @@ export const getDefaultSortOrder = (
 export const getDefaultFilter = (
     columnName: string,
     filters?: CrudFilters,
-): string[] | undefined => {
-    const value = filters?.find(({ field }) => field === columnName);
+    operatorType: CrudOperators = "eq",
+): CrudFilter["value"] | undefined => {
+    const filter = filters?.find(
+        ({ field, operator }) =>
+            field === columnName && operator === operatorType,
+    );
 
-    if (value) {
-        return value.value || [];
+    if (filter) {
+        return filter.value || [];
     }
 
     return undefined;
@@ -120,7 +132,7 @@ export const mapAntdSorterToCrudSorting = (
         sorter.map((item) => {
             if (item.field && item.order) {
                 crudSorting.push({
-                    field: `${item.field}`,
+                    field: `${item.columnKey}`,
                     order: item.order.replace("end", "") as "asc" | "desc",
                 });
             }
@@ -128,7 +140,7 @@ export const mapAntdSorterToCrudSorting = (
     } else {
         if (sorter.field && sorter.order) {
             crudSorting.push({
-                field: `${sorter.field}`,
+                field: `${sorter.columnKey}`,
                 order: sorter.order.replace("end", "") as "asc" | "desc",
             });
         }
@@ -144,14 +156,41 @@ export const mapAntdFilterToCrudFilter = (
     Object.keys(filters).map((field) => {
         const value = filters[field];
 
-        if (value) {
-            crudFilters.push({
-                field,
-                operator: "in",
-                value,
-            });
-        }
+        crudFilters.push({
+            field,
+            operator: "in",
+            value,
+        });
     });
 
     return crudFilters;
 };
+
+export const compareFilters = (left: CrudFilter, right: CrudFilter): boolean =>
+    left.field == right.field && left.operator == right.operator;
+
+// Keep only one CrudFilter per type according to compareFilters
+// Items in the array that is passed first to unionWith have higher priority
+// CrudFilter items with undefined values are necessary to signify no filter
+// After union, don't keep CrudFilter items with undefined value in the result
+// Items in the arrays with higher priority are put at the end.
+export const unionFilters = (
+    permanentFilter: CrudFilters,
+    newFilters: CrudFilters,
+    prevFilters: CrudFilters,
+): CrudFilters =>
+    reverse(
+        unionWith(permanentFilter, newFilters, prevFilters, compareFilters),
+    ).filter(
+        (crudFilter) =>
+            crudFilter.value !== undefined && crudFilter.value !== null,
+    );
+
+// Prioritize filters in the permanentFilter and put it at the end of result array
+export const setInitialFilters = (
+    permanentFilter: CrudFilters,
+    defaultFilter: CrudFilters,
+): CrudFilters => [
+    ...differenceWith(defaultFilter, permanentFilter, compareFilters),
+    ...permanentFilter,
+];

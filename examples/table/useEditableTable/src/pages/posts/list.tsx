@@ -71,7 +71,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                         />
                                         <Button
                                             {...cancelButtonProps}
-                                            hideText
                                             size="small"
                                         >
                                             Cancel

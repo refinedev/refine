@@ -109,13 +109,7 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                         extra: <></>,
                     }}
                 >
-                    <Table
-                        {...tableProps}
-                        scroll={{
-                            x: true,
-                        }}
-                        rowKey="id"
-                    >
+                    <Table {...tableProps} rowKey="id">
                         <Table.Column
                             dataIndex={["order", "id"]}
                             title={t("reviews.fields.orderId")}

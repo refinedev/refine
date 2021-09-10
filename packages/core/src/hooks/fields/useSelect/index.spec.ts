@@ -263,7 +263,6 @@ describe("useSelect Hook", () => {
                     resource: "posts",
                     queryOptions: {
                         onSuccess: (data) => {
-                            result.current.defaultQueryOnSuccess(data);
                             mockFunc();
                         },
                     },
@@ -305,7 +304,6 @@ describe("useSelect Hook", () => {
                     defaultValue: ["1", "2", "3", "4"],
                     defaultValueQueryOptions: {
                         onSuccess: (data) => {
-                            result.current.defaultValueQueryOnSuccess(data);
                             mockFunc();
                         },
                     },

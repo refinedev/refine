@@ -11,17 +11,14 @@ This field lets you display markdown content. It supports [GitHub Flavored Markd
 
 Let's see how we can use `<MarkdownField>` in a show page.
 
-```tsx title="pages/posts/show.tsx"
+```tsx twoslash title="pages/posts/show.tsx" {5, 21}
 import {
     useShow,
     Show,
     Typography,
     IResourceComponentsProps,
-    //highlight-next-line
     MarkdownField,
 } from "@pankod/refine";
-
-import { IPost } from "interfaces";
 
 const { Title, Text } = Typography;
 
@@ -36,17 +33,15 @@ export const PostShow: React.FC = () => {
             <Text>{record?.id}</Text>
 
             <Title level={5}>Content</Title>
-            //highlight-next-line
             <MarkdownField value={record?.content} />
         </Show>
     );
 };
-```
 
-```ts title="interfaces/index.d.ts"
-export interface IPost {   
+interface IPost {   
     id: string;    
     title: string;
+    content: string;
 }
 ```
 

@@ -38,10 +38,15 @@ Let's say that we have a resource named `categories`.
 }
 ```
 
-```tsx
+```tsx twoslash
+import { useDelete } from "@pankod/refine";
+
 const { mutate } = useDelete();
 
-mutate({ resource: "categories", id: "2" });
+mutate({ 
+    resource: "categories",
+    id: "2",
+});
 ```
 
 :::tip
@@ -91,13 +96,14 @@ Variables passed to `mutate` must have these types.
 
 Mutation mode determines the mode which the mutation runs with.
 
-```tsx
+```tsx twoslash {7}
+import { useDelete } from "@pankod/refine";
+
 const { mutate } = useDelete();
 
-
 mutate({ 
-    resource: "categories", 
-    // highlight-next-line
+    resource: "categories",
+    id: "2",
     mutationMode: "optimistic",
 });
 
@@ -116,24 +122,22 @@ Default behaviour on undo action includes notifications. If a custom callback is
 :::danger
 Passed callback will receive a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on the `undoable` mode.
 
-```tsx
-// highlight-start
-const customOnCancel = (cancelMutation) => {
-    cancelMutation()
+```tsx twoslash {2-5, 12-14}
+import { useDelete } from "@pankod/refine";
+
+const customOnCancel = (cancelMutation: () => void) => {
+    cancelMutation();
     // rest of custom cancel logic...
 }
-// highlight-end
 
 const { mutate } = useDelete();
 
 mutate({ 
     resource: "categories",
     id: "1",
-    // highlight-start
     mutationMode: "undoable",
     undoableTimeout: 7500,
     onCancel: customOnCancel
-    // highlight-end
 });
 
 ```
