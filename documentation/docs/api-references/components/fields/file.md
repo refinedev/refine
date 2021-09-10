@@ -5,7 +5,6 @@ title: File
 
 import fileField from '@site/static/img/guides-and-concepts/fields/file/fileField.png'
 
-
 This field is used to display files and uses [`<Typography.Link>`](https://ant.design/components/typography) from Ant Design.
 
 ## Usage
@@ -54,10 +53,21 @@ interface IPost {
 If you don't use `title` prop it will use `src` as `title`
 :::
 
-<br/>
+<!-- <br/>
 <div>
     <img src={fileField} alt="File Field Usage"/>
+</div> -->
+
+<br/>
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={fileField} alt="FileField" />
 </div>
+
 
 ## API Reference
 
