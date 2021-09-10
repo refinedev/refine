@@ -1,0 +1,12 @@
+.card {
+    padding: 1rem 1.5rem;
+}
+
+.header {
+    padding: 1.5rem 0;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+    border-bottom: 1px solid #f0f0f0;
+}
