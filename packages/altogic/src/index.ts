@@ -28,30 +28,33 @@ axiosInstance.interceptors.response.use(
 
 const mapOperator = (operator: CrudOperators): string => {
     switch (operator) {
-        case "ne":
+        case "eq":
+            return "==";
+        case "gt":
+            return ">";
+        case "lt":
+            return "<";
         case "gte":
+            return ">=";
         case "lte":
-            return `_${operator}`;
-        case "contains":
-            return "_like";
+            return "<=";
+        case "ne":
+            return "!=";
     }
 
-    return ""; // default "eq"
+    return "";
 };
 
 const generateSort = (sort?: CrudSorting) => {
     if (sort && sort.length > 0) {
         const _sort: string[] = [];
-        const _order: string[] = [];
 
         sort.map((item) => {
-            _sort.push(item.field);
-            _order.push(item.order);
+            _sort.push(`${item.field}:${item.order}`);
         });
 
         return {
             _sort,
-            _order,
         };
     }
 
@@ -59,20 +62,15 @@ const generateSort = (sort?: CrudSorting) => {
 };
 
 const generateFilter = (filters?: CrudFilters) => {
-    const queryFilters: { [key: string]: string } = {};
+    const queryFilters: string[] = [];
     if (filters) {
         filters.map(({ field, operator, value }) => {
-            if (field === "q") {
-                queryFilters[field] = value;
-                return;
-            }
-
             const mappedOperator = mapOperator(operator);
-            queryFilters[`${field}${mappedOperator}`] = value;
+            queryFilters.push(`this.${field} ${mappedOperator} "${value}"`);
         });
     }
 
-    return queryFilters;
+    return { filter: queryFilters.join(" && ") };
 };
 
 const AltogicDataProvider = (
@@ -91,8 +89,7 @@ const AltogicDataProvider = (
         const query: {
             page: number;
             size: number;
-            _sort?: string;
-            _order?: string;
+            sort?: string;
         } = {
             page: current,
             size: pageSize,
@@ -100,9 +97,9 @@ const AltogicDataProvider = (
 
         const generatedSort = generateSort(params.sort);
         if (generatedSort) {
-            const { _sort, _order } = generatedSort;
-            query._sort = _sort.join(",");
-            query._order = _order.join(",");
+            const { _sort } = generatedSort;
+
+            query.sort = _sort.length > 1 ? JSON.stringify(_sort) : _sort[0];
         }
 
         const { data, headers } = await httpClient.get(
@@ -219,10 +216,9 @@ const AltogicDataProvider = (
         if (sort) {
             const generatedSort = generateSort(sort);
             if (generatedSort) {
-                const { _sort, _order } = generatedSort;
+                const { _sort } = generatedSort;
                 const sortQuery = {
                     _sort: _sort.join(","),
-                    _order: _order.join(","),
                 };
                 requestUrl = `${requestUrl}&${stringify(sortQuery)}`;
             }

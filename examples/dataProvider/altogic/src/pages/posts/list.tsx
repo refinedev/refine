@@ -23,7 +23,26 @@ import { IPost, ICategory } from "interfaces";
 const { Title } = Typography;
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, filters } = useTable<IPost>();
+    const { tableProps, filters } = useTable<IPost>({
+        initialSorter: [
+            {
+                field: "title",
+                order: "asc",
+            },
+        ],
+        initialFilter: [
+            {
+                field: "status",
+                operator: "eq",
+                value: "published",
+            },
+            {
+                field: "categoryId",
+                operator: "eq",
+                value: "61373e5e59c5a7001aeac77d",
+            },
+        ],
+    });
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
