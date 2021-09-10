@@ -360,10 +360,15 @@ export default App;
 
 Now our page looks like this:
 
-<div>
-    <img src={basic} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={basic} alt="A custom page" />
 </div>
-<br/>
+<br />
 
 Now let's put in approve and reject buttons to change the status of the post shown on the page. When these buttons are clicked, we will change the status of the post using `useUpdate`.
 
@@ -472,10 +477,15 @@ export const PostReview = () => {
 };
 ```
 
-<div>
-    <img src={gif} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={gif} alt="A custom page in action" />
 </div>
-<br/>
+<br />
 
 ## Live Codesandbox Example
 
