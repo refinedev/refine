@@ -44,8 +44,13 @@ interface IPost {
 ```
 
 <br/>
-<div>
-    <img src={tagField} alt="A tag field example"/>
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={tagField} alt="TagField" />
 </div>
 
 ## API Reference
