@@ -1,30 +1,39 @@
-import { DataProvider } from "@pankod/refine";
+import { CrudSorting, DataProvider } from "@pankod/refine";
 import { GraphQLClient } from "graphql-request";
 import * as gql from "gql-query-builder";
+
+const genereteSort = (sort?: CrudSorting) => {
+    const sortQuery = sort?.map((i) => {
+        return `${i.field}:${i.order}`;
+    });
+
+    return sortQuery?.join();
+};
 
 const dataProvider = (client: GraphQLClient): DataProvider => {
     return {
         getList: async (resource, params) => {
-            const current = params.pagination?.current || 1;
-            const pageSize = params.pagination?.pageSize || 10;
-            const metaData = params.metaData;
+            const { pagination, sort, filters, metaData } = params;
 
-            console.log("metaData :", metaData);
+            const current = pagination?.current || 1;
+            const pageSize = pagination?.pageSize || 10;
 
-            const { query } = gql.query({
+            const sortBy = genereteSort(sort);
+
+            const { query, variables } = gql.query({
                 operation: metaData?.operation ?? resource,
+                variables: {
+                    ...metaData?.variables,
+                    sort: sortBy,
+                },
                 ...metaData,
             });
 
-            console.log("query :", query);
-
-            const response = await client.request(query);
-
-            console.log("response :", response);
+            const response = await client.request(query, variables);
 
             return {
-                data: [],
-                total: 0,
+                data: response[metaData?.operation ?? resource],
+                total: 3,
             };
         },
 

@@ -14,27 +14,34 @@ import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IPost>({
+        initialSorter: [
+            {
+                field: "title",
+                order: "desc",
+            },
+            {
+                field: "id",
+                order: "asc",
+            },
+        ],
         metaData: {
             operation: "posts",
             fields: ["id", "title"],
-            variables: {
-                limit: 1,
-            },
         },
     });
 
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
-        enabled: categoryIds.length > 0,
-    });
+    // const categoryIds =
+    //     tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    // const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
+    //     enabled: categoryIds.length > 0,
+    // });
 
     return (
         <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column dataIndex="title" title="Title" />
-                <Table.Column
+                {/* <Table.Column
                     dataIndex={["category", "id"]}
                     title="Category"
                     render={(value) => {
@@ -51,7 +58,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                             />
                         );
                     }}
-                />
+                /> */}
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
