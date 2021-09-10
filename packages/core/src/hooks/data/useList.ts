@@ -11,7 +11,7 @@ import {
     BaseRecord,
     HttpError,
     CrudSorting,
-    QueryBuilderOptions,
+    MetaDataQuery,
 } from "../../interfaces";
 import { useTranslate } from "@hooks/translate";
 import { useCheckError } from "@hooks";
@@ -21,7 +21,7 @@ interface UseListConfig {
     pagination?: Pagination;
     sort?: CrudSorting;
     filters?: CrudFilters;
-    metaData?: QueryBuilderOptions;
+    metaData?: MetaDataQuery;
 }
 
 /**

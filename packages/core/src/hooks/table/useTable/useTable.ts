@@ -29,7 +29,7 @@ import {
     GetListResponse,
     SuccessErrorNotification,
     HttpError,
-    QueryBuilderOptions,
+    MetaDataQuery,
 } from "../../../interfaces";
 
 export type useTableProps<TData, TError, TSearchVariables = unknown> = {
@@ -42,7 +42,7 @@ export type useTableProps<TData, TError, TSearchVariables = unknown> = {
     syncWithLocation?: boolean;
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
-    metaData?: QueryBuilderOptions;
+    metaData?: MetaDataQuery;
 } & SuccessErrorNotification;
 
 export type useTableReturnType<
