@@ -33,53 +33,33 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         initialFilter: [
             {
                 field: "status",
-                operator: "eq",
-                value: "published",
-            },
-            {
-                field: "categoryId",
-                operator: "eq",
-                value: "61373e5e59c5a7001aeac77d",
+                operator: "ne",
+                value: "publ2ished",
             },
         ],
     });
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
-    /* const { data, isLoading } = useMany<ICategory>("category", categoryIds, {
+    const { data, isLoading } = useMany<ICategory>("category", categoryIds, {
         enabled: categoryIds.length > 0,
-    }); 
-
-    const { checkboxGroupProps } = useCheckboxGroup<IPost>({
-        resource: "category",
     });
+
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "category",
         optionLabel: "title",
         optionValue: "id",
-    });  */
+    });
 
     return (
         <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" />
                 <Table.Column
-                    dataIndex="title"
-                    title="Title"
-                    /* filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Title level={5}>Rol Seçin</Title>
-                            <Checkbox.Group
-                                style={{ width: 200 }}
-                                {...checkboxGroupProps}
-                            />
-                        </FilterDropdown>
-                    )} */
-                />
-                <Table.Column
-                    dataIndex={["category", "id"]}
+                    dataIndex="categoryId"
                     title="Category"
-                    /* render={(value) => {
+                    render={(value) => {
                         if (isLoading) {
                             return <TextField value="Loading..." />;
                         }
@@ -92,8 +72,8 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                 }
                             />
                         );
-                    }} */
-                    /* filterDropdown={(props) => (
+                    }}
+                    filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Select
                                 style={{ minWidth: 200 }}
@@ -102,7 +82,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                 {...categorySelectProps}
                             />
                         </FilterDropdown>
-                    )} */
+                    )}
                 />
                 <Table.Column
                     dataIndex="status"

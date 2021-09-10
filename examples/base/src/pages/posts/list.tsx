@@ -10,8 +10,6 @@ import {
     useMany,
     FilterDropdown,
     Typography,
-    Checkbox,
-    useCheckboxGroup,
     useSelect,
     Select,
     Radio,
@@ -19,10 +17,9 @@ import {
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
-const { Title } = Typography;
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, filters } = useTable<IPost>();
+    const { tableProps } = useTable<IPost>();
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
@@ -30,9 +27,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         enabled: categoryIds.length > 0,
     });
 
-    const { checkboxGroupProps } = useCheckboxGroup<IPost>({
-        resource: "categories",
-    });
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
         optionLabel: "title",
@@ -48,19 +42,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         >
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
-                <Table.Column
-                    dataIndex="title"
-                    title="Title"
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Title level={5}>Rol Seçin</Title>
-                            <Checkbox.Group
-                                style={{ width: 200 }}
-                                {...checkboxGroupProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                />
+                <Table.Column dataIndex="title" title="Title" />
                 <Table.Column
                     dataIndex={["category", "id"]}
                     title="Category"

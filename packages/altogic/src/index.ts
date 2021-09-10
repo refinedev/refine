@@ -30,6 +30,10 @@ const mapOperator = (operator: CrudOperators): string => {
     switch (operator) {
         case "eq":
             return "==";
+        case "in":
+            return `IN`;
+        case "nin":
+            return `NIN`;
         case "gt":
             return ">";
         case "lt":
@@ -66,7 +70,22 @@ const generateFilter = (filters?: CrudFilters) => {
     if (filters) {
         filters.map(({ field, operator, value }) => {
             const mappedOperator = mapOperator(operator);
-            queryFilters.push(`this.${field} ${mappedOperator} "${value}"`);
+
+            switch (mappedOperator) {
+                case "IN":
+                case "NIN":
+                    queryFilters.push(
+                        `${mappedOperator}(${JSON.stringify(
+                            value,
+                        )}, this.${field})`,
+                    );
+                    break;
+
+                default:
+                    queryFilters.push(
+                        `this.${field} ${mappedOperator} "${value}"`,
+                    );
+            }
         });
     }
 
@@ -120,7 +139,7 @@ const AltogicDataProvider = (
         );
 
         return {
-            data,
+            data: (data || []).map((p: any) => ({ ...p, id: p._id })),
         };
     },
 
