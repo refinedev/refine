@@ -6,13 +6,11 @@ sidebar_label: Data Provider
 
 import dpFlow from '@site/static/img/guides-and-concepts/providers/data-provider/flow.png';
 
-
 ## Overview
 
 A data provider is the place where a refine app communicates with an API.  
 Data providers also act as adapters for refine making it possible to consume different API's and data services conveniently.  
 A data provider makes **HTTP** requests and returns response data back using predefined methods.
-
 
 A data provider must include following methods:
 
@@ -29,19 +27,18 @@ const dataProvider = {
     updateMany: (resource, ids, params) => Promise,
     custom?: (url, method, params = {}) => Promise,
     getApiUrl: () => "",
-}
+};
 ```
-
 
 :::tip
 
 **refine** includes many out-of-the-box data providers to use in your projects like
 
-* [Simple REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest)
-* [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
-* [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
-* [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
-* [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
+-   [Simple REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest)
+-   [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
+-   [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
+-   [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
+-   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
 
 :::
 
@@ -56,8 +53,6 @@ Data hooks are used to operate CRUD actions like creating a new record, listing 
 :::note
 Data hooks uses [React Query](https://react-query.tanstack.com/) to manage data fetching. React Query handles important concerns like caching, invalidation, loading states etc..
 :::
-
-
 
 <br/>
 <br/>
@@ -89,13 +84,12 @@ const App: React.FC = () => {
 };
 ```
 
-
 ## Creating a data provider
+
 We will build **"Simple REST Dataprovider"** of `@pankod/refine-simple-rest` from scratch to show the logic of how data provider methods interact with the API.
 
-We will provide you a fully working, *fake REST API* located at https://api.fake-rest.refine.dev. You may take a look at available [resources and routes of the API](https://api.fake-rest.refine.dev) before proceeding to the next step.  
-Our **"Simple REST Dataprovider"** will be consuming this *fake REST API*.
-
+We will provide you a fully working, _fake REST API_ located at https://api.fake-rest.refine.dev. You may take a look at available [resources and routes of the API](https://api.fake-rest.refine.dev) before proceeding to the next step.  
+Our **"Simple REST Dataprovider"** will be consuming this _fake REST API_.
 
 :::note
 Fake REST API is based on [JSON Server Project](https://github.com/typicode/json-server). **Simple REST Dataprovider** is fully compatible with the REST rules and methods of the **JSON Server**.
@@ -126,7 +120,7 @@ const SimpleRestDataProvider = (
     updateMany: (resource, ids, params) => Promise,
     custom: (url, method, params = {}) => Promise,
     getApiUrl: () => "",
-})
+});
 ```
 
 It will take the API URL as a parameter and an optional **HTTP** client. We will use **axios** as the default **HTTP** client.
@@ -145,9 +139,9 @@ const SimpleRestDataProvider = (
     ...
     create: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
-    
+
         const { data } = await httpClient.post(url, params);
-    
+
         return {
             data,
         };
@@ -156,13 +150,13 @@ const SimpleRestDataProvider = (
 })
 ```
 
-
 #### Parameter Types
 
 | Name     | Type         | Default |
 | -------- | ------------ | ------- |
 | resource | `string`     |         |
 | params   | `TVariables` | `{}`    |
+
 > `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/api-references/hooks/data/useCreate#type-parameters) to type `params`
 
 <br/>
@@ -178,9 +172,10 @@ mutate({
     resource: "categories",
     values: {
         title: "New Category",
-    }
-})
+    },
+});
 ```
+
 > [Refer to the useCreate documentation for more information. &#8594](api-references/hooks/data/useCreate.md)
 
 <br />
@@ -212,14 +207,13 @@ const SimpleRestDataProvider = (
 })
 ```
 
-
-
 #### Parameter Types
 
 | Name     | Type           | Default |
 | -------- | -------------- | ------- |
 | resource | `string`       |         |
 | params   | `TVariables[]` | `{}`    |
+
 > `TVariables` is a user defined type which can be passed to [`useCreateMany`](/docs/api-references/hooks/data/useCreateMany) to type `params`
 
 <br/>
@@ -238,11 +232,12 @@ mutate({
             title: "New Category",
         },
         {
-            title: "Another New Category"
-        }
-    ]
-})
+            title: "Another New Category",
+        },
+    ],
+});
 ```
+
 > [Refer to the useCreateMany documentation for more information. &#8594](api-references/hooks/data/useCreateMany.md)
 
 <br />
@@ -286,8 +281,9 @@ import { useDelete } from "@pankod/refine";
 
 const { mutate } = useDelete();
 
-mutate({ resource: "categories", id: "2" })
+mutate({ resource: "categories", id: "2" });
 ```
+
 > [Refer to the useDelete documentation for more information. &#8594](api-references/hooks/data/useDelete.md)
 
 <br />
@@ -333,11 +329,12 @@ import { useDeleteMany } from "@pankod/refine";
 
 const { mutate } = useDeleteMany();
 
-mutate({ 
+mutate({
     resource: "categories",
-    ids: [ "2", "3" ],
+    ids: ["2", "3"],
 });
 ```
+
 > [Refer to the useDeleteMany documentation for more information. &#8594](api-references/hooks/data/useDeleteMany.md)
 
 <br />
@@ -365,7 +362,6 @@ const SimpleRestDataProvider = (
 })
 ```
 
-
 #### Parameter Types
 
 | Name     | Type         | Default |
@@ -373,6 +369,7 @@ const SimpleRestDataProvider = (
 | resource | `string`     |         |
 | id       | `string`     |         |
 | params   | `TVariables` | `{}`    |
+
 > `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/api-references/hooks/data/useUpdate#type-parameters) to type `params`
 
 <br/>
@@ -384,12 +381,13 @@ import { useUpdate } from "@pankod/refine";
 
 const { mutate } = useUpdate();
 
-mutate({ 
+mutate({
     resource: "categories",
     id: "2",
-    values: { title: "New Category Title" }
+    values: { title: "New Category Title" },
 });
 ```
+
 > [Refer to the useUpdate documentation for more information. &#8594](api-references/hooks/data/useUpdate.md)
 
 <br />
@@ -421,7 +419,6 @@ const SimpleRestDataProvider = (
 })
 ```
 
-
 #### Parameter Types
 
 | Name     | Type         | Default |
@@ -429,6 +426,7 @@ const SimpleRestDataProvider = (
 | resource | `string`     |         |
 | ids      | `string[]`   |         |
 | params   | `TVariables` | `{}`    |
+
 > TVariables is a user defined type which can be passed to [`useUpdateMany`](/docs/api-references/hooks/data/useUpdateMany#type-parameters) to type `params`
 
 <br/>
@@ -440,12 +438,13 @@ import { useUpdateMany } from "@pankod/refine";
 
 const { mutate } = useUpdateMany();
 
-mutate({ 
+mutate({
     resource: "posts",
-    ids: [ "1", "2" ],
-    values: { status: "draft" }
+    ids: ["1", "2"],
+    values: { status: "draft" },
 });
 ```
+
 > [Refer to the useUpdateMany documentation for more information. &#8594](api-references/hooks/data/useUpdateMany.md)
 
 <br />
@@ -473,7 +472,6 @@ const SimpleRestDataProvider = (
 })
 ```
 
-
 #### Parameter Types
 
 | Name     | Type     | Default |
@@ -486,15 +484,14 @@ const SimpleRestDataProvider = (
 **refine** will consume this `getOne` method using the `useOne` data hook.
 
 ```ts twoslash
-interface ICategory {};
+interface ICategory {}
 // ---cut---
-
 import { useOne } from "@pankod/refine";
 
-const { data } = useOne<ICategory>("categories", "1");
+const { data } = useOne<ICategory>({ resource: "categories", id: "1" });
 ```
-> [Refer to the useOne documentation for more information. &#8594](api-references/hooks/data/useOne.md)
 
+> [Refer to the useOne documentation for more information. &#8594](api-references/hooks/data/useOne.md)
 
 <br/>
 
@@ -521,7 +518,6 @@ const SimpleRestDataProvider = (
 })
 ```
 
-
 #### Parameter Types
 
 | Name     | Type       | Default |
@@ -536,12 +532,12 @@ const SimpleRestDataProvider = (
 ```ts twoslash
 import { useMany } from "@pankod/refine";
 
-const { data } = useMany("categories", [ "1", "2" ]);
+const { data } = useMany({ resource: "categories", ids: ["1", "2"] });
 ```
+
 > [Refer to the useMany documentation for more information. &#8594](api-references/hooks/data/useMany.md)
 
 <br />
-
 
 ### `getList`
 
@@ -571,11 +567,10 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name   | Type                                                                                                                                                                      |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| url    | `string`                                                                                                                                                                  |
+| Name   | Type                                                                                                                                                                                                                                     |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| url    | `string`                                                                                                                                                                                                                                 |
 | params | { `pagination?:` [`Pagination`](../../api-references/interfaces.md#pagination); `sort?:` [`CrudSorting`](../../api-references/interfaces.md#crudsorting); `filters?:` [`CrudFilters`](../../api-references/interfaces.md#crudfilters); } |
-                                                                                                                          
 
 <br/>
 
@@ -584,10 +579,10 @@ const SimpleRestDataProvider = (
 ```ts twoslash
 import { useList } from "@pankod/refine";
 
-const { data } = useList("posts");
+const { data } = useList({ resource: "posts" });
 ```
-> [Refer to the useList documentation for more information. &#8594](api-references/hooks/data/useList.md)
 
+> [Refer to the useList documentation for more information. &#8594](api-references/hooks/data/useList.md)
 
 <br />
 
@@ -604,7 +599,7 @@ const SimpleRestDataProvider = (
 ): DataProvider => ({
     getList: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
-        
+
         const current = params.pagination?.current || 1;
         const pageSize = params.pagination?.pageSize || 10;
 
@@ -628,23 +623,25 @@ const SimpleRestDataProvider = (
 
 <br />
 
-
-```ts twoslash {3}
+```ts twoslash {5}
 import { useList } from "@pankod/refine";
 
-const { data } = useList("posts", { 
-    pagination: { current: 1, pageSize: 10 } 
+const { data } = useList({
+    resource: "posts",
+    config: {
+        pagination: { current: 1, pageSize: 10 },
+    },
 });
 ```
 
->Listing will start from page 1 showing 10 records.
-
+> Listing will start from page 1 showing 10 records.
 
 <br />
 
 **Adding sorting**
 
 We'll sort records by speficified order and field.
+
 > [CrudSorting](/docs/api-references/interfaceReferences#crudoperators) ?
 
 ```tsx title="dataProvider.ts" {0-18, 30, 35-36, 40}
@@ -674,12 +671,12 @@ const SimpleRestDataProvider = (
 ): DataProvider => ({
     getList: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
-        
+
         const current = params.pagination?.current || 1;
         const pageSize = params.pagination?.pageSize || 10;
 
         const { _sort, _order } = generateSort(params.sort);
-         
+
         const query = {
             _start: (current - 1) * pageSize,
             _end: current * pageSize,
@@ -700,24 +697,28 @@ const SimpleRestDataProvider = (
     },
 }
 ```
+
 <br />
 
-Since our API accepts only certain parameter formats like  `_sort` and `_order` we may need to transform some of the parameters.
+Since our API accepts only certain parameter formats like `_sort` and `_order` we may need to transform some of the parameters.
 
 So we added the `generateSort` method to transform sort parameters.
 
 <br />
 
-
-```ts twoslash {4}
+```ts twoslash {6}
 import { useList } from "@pankod/refine";
 
-const { data } = useList("posts", { 
-    pagination: { current: 1, pageSize: 10 },
-    sort: [{ order: "asc", field: "title" }]
+const { data } = useList({
+    resource: "posts",
+    config: {
+        pagination: { current: 1, pageSize: 10 },
+        sort: [{ order: "asc", field: "title" }],
+    },
 });
 ```
->Listing starts from ascending alphabetical order on title field.
+
+> Listing starts from ascending alphabetical order on title field.
 
 <br />
 
@@ -777,10 +778,10 @@ const SimpleRestDataProvider = (
 ): DataProvider => ({
     getList: async (resource, params) => {
         const url = `${apiUrl}/${resource}`;
-        
+
         const current = params.pagination?.current || 1;
         const pageSize = params.pagination?.pageSize || 10;
-       
+
         const { _sort, _order } = generateSort(params.sort);
 
         const queryFilters = generateFilter(params.filters);
@@ -805,6 +806,7 @@ const SimpleRestDataProvider = (
     },
 }
 ```
+
 <br />
 
 Since our API accepts only certain parameter formats to filter the data, we may need to transform some parameters.
@@ -813,25 +815,26 @@ So we added the `generateFilter` and `mapOperator` methods to the transform filt
 
 [Refer to the list of all filter operators &#8594](/docs/api-references/interfaceReferences#crudoperators)
 
-```ts twoslash {5-11}
-import { useList } from "@pankod/refine"; 
+```ts twoslash {7-13}
+import { useList } from "@pankod/refine";
 
-const { data } = useList("posts", { 
-    pagination: { current: 1, pageSize: 10 },
-    sort: [{ order: "asc", field: "title" }],
-    filters: [
-        {
-            field: "status",
-            operator: "eq",
-            value: "rejected",
-        },
-    ],
+const { data } = useList({
+    resource: "posts",
+    config: {
+        pagination: { current: 1, pageSize: 10 },
+        sort: [{ order: "asc", field: "title" }],
+        filters: [
+            {
+                field: "status",
+                operator: "eq",
+                value: "rejected",
+            },
+        ],
+    },
 });
 ```
->Only lists records whose status equals to "rejected".
 
-
-
+> Only lists records whose status equals to "rejected".
 
 <br />
 
@@ -839,7 +842,6 @@ const { data } = useList("posts", {
 
 An optional method named `custom` can be added to handle requests with custom parameters like URL, CRUD methods and configurations.  
 It's useful if you have non-stantard REST API endpoints or want to make a connection with external resources.
-
 
 ```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
@@ -898,15 +900,13 @@ const SimpleRestDataProvider = (
  }
 ```
 
-
 #### Parameter Types
 
-| Name   | Type                                                                                                                                                           |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| url    | `string`                                                                                                                                                       |
-| method | ``get``, ``delete``, ``head``, ``options``, ``post``, ``put``, ``patch``                                                                                       |
+| Name   | Type                                                                                                                                                                                                     |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| url    | `string`                                                                                                                                                                                                 |
+| method | `get`, `delete`, `head`, `options`, `post`, `put`, `patch`                                                                                                                                               |
 | params | { `sort?:` [`CrudSorting`](../../api-references/interfaces.md#crudsorting); `filters?:` [`CrudFilters`](../../api-references/interfaces.md#crudfilters); `payload?: {}`; `query?: {}`; `headers?: {}`; } |
-                                                                                                                          
 
 <br/>
 
@@ -915,19 +915,19 @@ const SimpleRestDataProvider = (
 ```ts twoslash
 const apiURL = "";
 // ---cut---
+import { useCustom } from "@pankod/refine";
 
-import { useCustom } from "@pankod/refine"; 
-
-const { data, isLoading } = useCustom(
-    `${apiURL}/posts-unique-check`,
-    "get",
-    {
+const { data, isLoading } = useCustom({
+    url: `${apiURL}/posts-unique-check`,
+    method: "get",
+    config: {
         query: {
             title: "Foo bar",
         },
     },
-);
+});
 ```
+
 > [Refer to the useCustom documentation for more information. &#8594](api-references/hooks/data/useCustom.md)
 
 ### Error Format
@@ -953,14 +953,3 @@ axiosInstance.interceptors.response.use(
 );
 ...
 ```
-
-
-
-
-
-
-
-
-
-
-

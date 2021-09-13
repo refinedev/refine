@@ -60,13 +60,13 @@ export const useCheckboxGroup = <
         );
     };
 
-    const queryResult = useList<TData, TError>(
+    const queryResult = useList<TData, TError>({
         resource,
-        {
+        config: {
             sort,
             filters,
         },
-        {
+        queryOptions: {
             ...queryOptions,
             onSuccess: (data) => {
                 defaultQueryOnSuccess(data);
@@ -75,7 +75,7 @@ export const useCheckboxGroup = <
         },
         successNotification,
         errorNotification,
-    );
+    });
     return {
         checkboxGroupProps: {
             options,

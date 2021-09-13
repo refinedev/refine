@@ -7,7 +7,7 @@ import { useCustom } from "./useCustom";
 describe("useCustom Hook", () => {
     it("with rest json server", async () => {
         const { result, waitFor } = renderHook(
-            () => useCustom("remoteUrl", "get"),
+            () => useCustom({ url: "remoteUrl", method: "get" }),
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,

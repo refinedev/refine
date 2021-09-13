@@ -147,9 +147,9 @@ export const useSimpleList = <
         }
     }, [syncWithLocation, current, pageSize, sorter, filters]);
 
-    const queryResult = useList<TData, TError>(
-        resource.name,
-        {
+    const queryResult = useList<TData, TError>({
+        resource: resource.name,
+        config: {
             pagination: {
                 current,
                 pageSize,
@@ -160,7 +160,7 @@ export const useSimpleList = <
         queryOptions,
         successNotification,
         errorNotification,
-    );
+    });
     const { data, isFetching } = queryResult;
 
     const onChange = (page: number, pageSize?: number): void => {

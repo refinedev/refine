@@ -6,12 +6,15 @@ import { useList } from "./useList";
 
 describe("useList Hook", () => {
     it("with rest json server", async () => {
-        const { result, waitFor } = renderHook(() => useList("posts"), {
-            wrapper: TestWrapper({
-                dataProvider: MockJSONServer,
-                resources: [{ name: "posts" }],
-            }),
-        });
+        const { result, waitFor } = renderHook(
+            () => useList({ resource: "posts" }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
 
         await waitFor(() => {
             return result.current.isSuccess;

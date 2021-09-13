@@ -38,12 +38,12 @@ export const Header: React.FC = () => {
     const [value, setValue] = useState<string>("");
     const [options, setOptions] = useState<IOptions[]>([]);
 
-    const { refetch: refetchPosts } = useList<IPost>(
-        "posts",
-        {
+    const { refetch: refetchPosts } = useList<IPost>({
+        resource: "posts",
+        config: {
             filters: [{ field: "title", operator: "contains", value }],
         },
-        {
+        queryOptions: {
             enabled: false,
             onSuccess: (data) => {
                 const postOptionGroup = data.data.map((item) =>
@@ -60,14 +60,14 @@ export const Header: React.FC = () => {
                 }
             },
         },
-    );
+    });
 
-    const { refetch: refetchCategories } = useList<ICategory>(
-        "categories",
-        {
+    const { refetch: refetchCategories } = useList<ICategory>({
+        resource: "categories",
+        config: {
             filters: [{ field: "title", operator: "contains", value }],
         },
-        {
+        queryOptions: {
             enabled: false,
             onSuccess: (data) => {
                 const categoryOptionGroup = data.data.map((item) =>
@@ -84,7 +84,7 @@ export const Header: React.FC = () => {
                 }
             },
         },
-    );
+    });
 
     useEffect(() => {
         setOptions([]);

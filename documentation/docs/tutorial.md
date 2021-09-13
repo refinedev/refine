@@ -466,13 +466,13 @@ export const PostList: React.FC = () => {
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data: categoriesData, isLoading } = useMany<ICategory>(
-        "categories",
-        categoryIds,
-        {
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
             enabled: categoryIds.length > 0,
         },
-    );
+    });
 
     return (
         <List>
@@ -634,13 +634,13 @@ export const PostShow = () => {
     const { data, isLoading } = queryResult;
     const record = data?.data;
 
-    const { data: categoryData } = useOne<ICategory>(
-        "categories",
-        record?.category.id || "",
-        {
+    const { data: categoryData } = useOne<ICategory>({
+        resource: "categories",
+        id: record?.category.id || "",
+        queryOptions: {
             enabled: !!record?.category.id,
         },
-    );
+    });
 
     return (
         <Show isLoading={isLoading}>

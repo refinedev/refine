@@ -12,6 +12,14 @@ import { useCheckError, useTranslate } from "@hooks";
 import { ArgsProps } from "antd/lib/notification";
 import { handleNotification } from "@definitions";
 
+export type UseOneProps<TData, TError> = {
+    resource: string;
+    id: string;
+    queryOptions?: UseQueryOptions<GetOneResponse<TData>, TError>;
+    successNotification?: ArgsProps | false;
+    errorNotification?: ArgsProps | false;
+};
+
 /**
  * `useOne` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving single items from a `resource`.
  *
@@ -26,13 +34,13 @@ import { handleNotification } from "@definitions";
 export const useOne = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
->(
-    resource: string,
-    id: string,
-    queryOptions?: UseQueryOptions<GetOneResponse<TData>, TError>,
-    successNotification?: ArgsProps | false,
-    errorNotification?: ArgsProps | false,
-): QueryObserverResult<GetOneResponse<TData>> => {
+>({
+    resource,
+    id,
+    queryOptions,
+    successNotification,
+    errorNotification,
+}: UseOneProps<TData, TError>): QueryObserverResult<GetOneResponse<TData>> => {
     const { getOne } = useContext<IDataContext>(DataContext);
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();

@@ -2,8 +2,8 @@
 id: search
 title: Search
 ---
-import search from '@site/static/img/guides-and-concepts/search/search.gif';
 
+import search from '@site/static/img/guides-and-concepts/search/search.gif';
 
 We will create a `<Header>` component for your application with Ant Design's [`<AutoComplete>`](https://ant.design/components/auto-complete) component.
 We will now examine how to search within the application with this component.
@@ -151,12 +151,12 @@ export const Header: React.FC = () => {
     const [value, setValue] = useState<string>("");
     const [options, setOptions] = useState<IOptions[]>([]);
 
-    const { refetch: refetchPosts } = useList<IPost>(
-        "posts",
-        {
+    const { refetch: refetchPosts } = useList<IPost>({
+        resource: "posts",
+        config: {
             filters: [{ field: "title", operator: "contains", value }],
         },
-        {
+        queryOptions: {
             enabled: false,
             onSuccess: (data) => {
                 const postOptionGroup = data.data.map((item) =>
@@ -172,7 +172,7 @@ export const Header: React.FC = () => {
                 }
             },
         },
-    );
+    });
 
     useEffect(() => {
         setOptions([]);
@@ -209,18 +209,18 @@ We created states to dynamically manage the `value` and `options` properties of 
 
 Search value is currently only searched and fetched inside posts. Let's update our code to search both posts and categories according to search value.
 
-```tsx title="src/components/header.tsx" {17-24, 29-51, 56}
+```tsx title="src/components/header.tsx" {17-23, 29-51, 56}
 ...
 export const Header: React.FC = () => {
     const [value, setValue] = useState<string>("");
     const [options, setOptions] = useState<IOptions[]>([]);
 
-    const { refetch: refetchPosts } = useList<IPost>(
-        "posts",
-        {
+    const { refetch: refetchPosts } = useList<IPost>({
+        resource: "posts",
+        config: {
             filters: [{ field: "title", operator: "contains", value }],
         },
-        {
+        queryOptions: {
             enabled: false,
             onSuccess: (data) => {
                 const postOptionGroup = data.data.map((item) =>
@@ -237,14 +237,14 @@ export const Header: React.FC = () => {
                 }
             },
         },
-    );
+    });
 
-    const { refetch: refetchCategories } = useList<ICategory>(
-        "categories",
-        {
+    const { refetch: refetchCategories } = useList<ICategory>({
+        resource: "categories",
+        config: {
             filters: [{ field: "q", operator: "contains", value }],
         },
-        {
+        queryOptions: {
             enabled: false,
             onSuccess: (data) => {
                 const categoryOptionGroup = data.data.map((item) =>
@@ -261,7 +261,7 @@ export const Header: React.FC = () => {
                 }
             },
         },
-    );
+    });
 
     useEffect(() => {
         setOptions([]);

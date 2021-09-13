@@ -13,6 +13,14 @@ import { useCheckError } from "@hooks";
 import { useTranslate } from "@hooks/translate";
 import { handleNotification } from "@definitions";
 
+export type UseManyProps<TData, TError> = {
+    resource: string;
+    ids: string[];
+    queryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>;
+    successNotification?: ArgsProps | false;
+    errorNotification?: ArgsProps | false;
+};
+
 /**
  * `useMany` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving multiple items from a `resource`.
  *
@@ -27,13 +35,15 @@ import { handleNotification } from "@definitions";
 export const useMany = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
->(
-    resource: string,
-    ids: string[],
-    queryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>,
-    successNotification?: ArgsProps | false,
-    errorNotification?: ArgsProps | false,
-): QueryObserverResult<GetManyResponse<TData>> => {
+>({
+    resource,
+    ids,
+    queryOptions,
+    successNotification,
+    errorNotification,
+}: UseManyProps<TData, TError>): QueryObserverResult<
+    GetManyResponse<TData>
+> => {
     const { getMany } = useContext<IDataContext>(DataContext);
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();

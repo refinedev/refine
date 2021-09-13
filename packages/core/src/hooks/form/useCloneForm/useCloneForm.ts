@@ -67,8 +67,12 @@ export const useCloneForm = <
     // Check if clone process comes from useParams or modal
     const isClone = (action === "create" && !!id) || !!id;
 
-    const queryResult = useOne<TData>(props.resource.name, id, {
-        enabled: isClone,
+    const queryResult = useOne<TData>({
+        resource: props.resource.name,
+        id,
+        queryOptions: {
+            enabled: isClone,
+        },
     });
 
     const { data, isFetching } = queryResult;
