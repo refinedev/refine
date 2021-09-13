@@ -160,7 +160,7 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 ## API
 
-### Parameters
+### Properties
 
 
 | Property                                                                                            | Description                                                                     | Type                                                                       | Default                                                      |
