@@ -9,7 +9,7 @@ const siteConfig = {
     title: "refine",
     tagline:
         "A React-based framework for building data-intensive applications in no time.",
-    url: "https://landing-doc-refine.pankod.com/",
+    url: "https://refine.dev",
     baseUrl: "/",
     projectName: "refine",
     organizationName: "pankod",
