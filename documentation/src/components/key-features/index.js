@@ -51,6 +51,18 @@ const backends = [
             alt: "python",
         },
     ],
+    [
+        {
+            src: "/icons/backends/supabase.png",
+            srcset: "/icons/backends/supabase@2x.png 768w",
+            alt: "supabase",
+        },
+        {
+            src: "/icons/backends/go.png",
+            srcset: "/icons/backends/go@2x.png 768w",
+            alt: "go",
+        },
+    ],
 ];
 
 const features = [
@@ -103,10 +115,11 @@ export const KeyFeatures = () => {
                 <h2 className={styles.mainTitle}>Backend Agnostic</h2>
                 <p className={styles.description}>
                     <strong>Connects to any custom backend.</strong> <br />
-                    Built-in support for REST API, Strapi, NextJS and Airtable.
+                    Built-in support for REST API, Strapi, NestJs CRUD,
+                    Airtable, Supabase and Altogic.
                 </p>
                 <div className="row row--justify--center">
-                    <div className="col col--8">
+                    <div className="col col--9">
                         <div className={styles.supportContainer}>
                             {backends.map((imgGroup, index) => (
                                 <div

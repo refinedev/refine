@@ -20,7 +20,7 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 📦 **Out-of-the-box** : Routing, networking, authentication, state management, i18n and UI.
 
-🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for [REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest), [Strapi](https://strapi.io/), [NestJs CRUD](https://github.com/nestjsx/crud) and [Airtable](https://www.airtable.com/).
+🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for [REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest), [Strapi](https://strapi.io/), [NestJs CRUD](https://github.com/nestjsx/crud), [Airtable](https://www.airtable.com/), [Supabase](https://supabase.io/) and [Altogic](https://altogic.com/).
 
 📝 **Native Typescript Core** : You can always opt out for plain Javascript.
 
@@ -120,8 +120,12 @@ export const PostList: React.FC = () => {
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
 
-    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
-        enabled: categoryIds.length > 0,
+    const { data, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
     });
 
     return (

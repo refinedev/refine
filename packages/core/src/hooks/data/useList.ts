@@ -24,6 +24,14 @@ interface UseListConfig {
     metaData?: MetaDataQuery;
 }
 
+export type UseListProps<TData, TError> = {
+    resource: string;
+    config?: UseListConfig;
+    queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
+    successNotification?: ArgsProps | false;
+    errorNotification?: ArgsProps | false;
+};
+
 /**
  * `useList` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
  *
@@ -38,13 +46,16 @@ interface UseListConfig {
 export const useList = <
     TData = BaseRecord,
     TError extends HttpError = HttpError,
->(
-    resource: string,
-    config?: UseListConfig,
-    queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>,
-    successNotification?: ArgsProps | false,
-    errorNotification?: ArgsProps | false,
-): QueryObserverResult<GetListResponse<TData>, TError> => {
+>({
+    resource,
+    config,
+    queryOptions,
+    successNotification,
+    errorNotification,
+}: UseListProps<TData, TError>): QueryObserverResult<
+    GetListResponse<TData>,
+    TError
+> => {
     const { getList } = useContext<IDataContext>(DataContext);
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();

@@ -23,6 +23,15 @@ interface UseCustomConfig<TQuery, TPayload> {
     headers?: {};
 }
 
+export type UseCustomProps<TData, TError, TQuery, TPayload> = {
+    url: string;
+    method: "get" | "delete" | "head" | "options" | "post" | "put" | "patch";
+    config?: UseCustomConfig<TQuery, TPayload>;
+    queryOptions?: UseQueryOptions<CustomResponse<TData>, TError>;
+    successNotification?: ArgsProps | false;
+    errorNotification?: ArgsProps | false;
+};
+
 /**
  * `useCustom` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for custom requests.
  *
@@ -41,14 +50,17 @@ export const useCustom = <
     TError extends HttpError = HttpError,
     TQuery = unknown,
     TPayload = unknown,
->(
-    url: string,
-    method: "get" | "delete" | "head" | "options" | "post" | "put" | "patch",
-    config?: UseCustomConfig<TQuery, TPayload>,
-    queryOptions?: UseQueryOptions<CustomResponse<TData>, TError>,
-    successNotification?: ArgsProps | false,
-    errorNotification?: ArgsProps | false,
-): QueryObserverResult<CustomResponse<TData>, TError> => {
+>({
+    url,
+    method,
+    config,
+    queryOptions,
+    successNotification,
+    errorNotification,
+}: UseCustomProps<TData, TError, TQuery, TPayload>): QueryObserverResult<
+    CustomResponse<TData>,
+    TError
+> => {
     const { custom } = useContext<IDataContext>(DataContext);
     const { mutate: checkError } = useCheckError();
     const translate = useTranslate();

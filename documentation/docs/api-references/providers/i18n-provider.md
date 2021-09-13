@@ -195,7 +195,8 @@ Before we get started, let's look at the translations that refine uses in compon
         "deleteSuccess": "Successfully deleted {{resource}}",
         "deleteError": "Error when deleting {{resource}} (status code: {{statusCode}})",
         "editSuccess": "Successfully edited {{resource}}",
-        "editError": "Error when editing {{resource}} (status code: {{statusCode}})"
+        "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
+        "importProgress": "Importing: {{processed}}/{{total}}"
     },
     "loading": "Loading",
     "tags": {
@@ -274,7 +275,8 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
         "deleteSuccess": "Successfully deleted {{resource}}",
         "deleteError": "Error when deleting {{resource}} (status code: {{statusCode}})",
         "editSuccess": "Successfully edited {{resource}}",
-        "editError": "Error when editing {{resource}} (status code: {{statusCode}})"
+        "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
+        "importProgress": "Importing: {{processed}}/{{total}}"
     },
     "loading": "Loading",
     "tags": {
@@ -360,7 +362,8 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
         "deleteSuccess": "{{resource}} erfolgreich gelöscht.",
         "deleteError": "Fehler beim Löschen {{resource}} (status code: {{statusCode}})",
         "editSuccess": "{{resource}} erfolgreich bearbeitet.",
-        "editError": "Fehler beim Bearbeiten {{resource}} (status code: {{statusCode}})"
+        "editError": "Fehler beim Bearbeiten {{resource}} (status code: {{statusCode}})",
+        "importProgress": "{{processed}}/{{total}} importiert"
     },
     "loading": "Wird geladen",
     "tags": {
@@ -519,7 +522,7 @@ const App: React.FC = () => {
 
 Finally, we will create the `<PostList>` page and then we will translate texts using `useTranslate`.
 
-```tsx title="src/App.tsx" {9, 15, 30, 34, 51}
+```tsx title="src/App.tsx" {9, 15, 34, 38, 55}
 import {
     List,
     Table,
@@ -540,8 +543,12 @@ export const PostList: React.FC = () => {
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
-        enabled: categoryIds.length > 0,
+    const { data, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
     });
 
     return (

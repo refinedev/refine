@@ -15,10 +15,9 @@
 [![npm version](https://img.shields.io/npm/v/@pankod/refine.svg)](https://www.npmjs.com/package/@pankod/refine)
 [![dependencies Status](https://david-dm.org/pankod/refine/status.svg)](https://david-dm.org/pankod/refine)
 [![dev-dependencies Status](https://david-dm.org/pankod/refine/dev-status.svg)](https://david-dm.org/pankod/refine?type=dev)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](code_of_conduct.md)
 
-[![npm](https://img.shields.io/npm/dm/refine)](https://www.npmjs.com/package/refine)
+[![npm](https://img.shields.io/npm/dm/@pankod/refine)](https://www.npmjs.com/package/@pankod/refine)
 
 </div>
 
@@ -41,7 +40,7 @@ For more detailed information and usage, refer to the [refine documentation](htt
 
 📦 **Out-of-the-box** : Routing, networking, authentication, state management, i18n and UI.
 
-🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for [REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest), [Strapi](https://strapi.io/), [NestJs CRUD](https://github.com/nestjsx/crud) and [Airtable](https://www.airtable.com/).
+🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for [REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest), [Strapi](https://strapi.io/), [NestJs CRUD](https://github.com/nestjsx/crud), [Airtable](https://www.airtable.com/), [Supabase](https://supabase.io/) and [Altogic](https://altogic.com/).
 
 📝 **Native Typescript Core** : You can always opt out for plain Javascript.
 
@@ -141,8 +140,12 @@ export const PostList: React.FC = () => {
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
 
-    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
-        enabled: categoryIds.length > 0,
+    const { data, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
     });
 
     return (

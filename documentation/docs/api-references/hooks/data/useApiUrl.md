@@ -23,15 +23,15 @@ interface PostUniqueCheckResponse {
 
 const apiUrl = useApiUrl();
 
-const { data, isLoading } = useCustom<PostUniqueCheckResponse>(
-    `${apiUrl}/posts-unique-check`,
-    "get",
-    {
+const { data, isLoading } = useCustom<PostUniqueCheckResponse>({
+    url: `${apiUrl}/posts-unique-check`,
+    method: "get",
+    config: {
         query: {
             title: "Foo bar",
         },
     },
-);
+});
 ```
 
 ## API

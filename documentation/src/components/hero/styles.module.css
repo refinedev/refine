@@ -73,35 +73,14 @@
 }
 
 .playerButtons {
-    margin-top: 24px;
     display: flex;
     align-items: center;
-    flex-wrap: nowrap;
-    gap: 16px;
+    justify-content: center;
 }
 
 .playerButton {
-    width: 25%;
-    min-height: 90px;
+    width: 80%;
     text-align: center;
-}
-
-.buttonTitle {
-    color: #888888;
-    font-weight: 600;
-    text-align: center;
-    margin-top: 12px;
-    cursor: pointer;
-}
-
-@media screen and (max-width: 670px) {
-    .buttonTitle {
-        display: none;
-    }
-}
-
-.activeTitle {
-    color: white !important;
 }
 
 .controlsContainer {

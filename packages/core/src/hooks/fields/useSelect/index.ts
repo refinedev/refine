@@ -32,8 +32,6 @@ export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
     selectProps: SelectProps<{ value: string; label: string }>;
     queryResult: QueryObserverResult<GetListResponse<TData>>;
     defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
-    defaultQueryOnSuccess: (data: GetListResponse<TData>) => void;
-    defaultValueQueryOnSuccess: (data: GetManyResponse<TData>) => void;
 };
 
 /**
@@ -82,17 +80,18 @@ export const useSelect = <
         );
     };
 
-    const defaultValueQueryResult = useMany<TData, TError>(
+    const defaultValueQueryResult = useMany<TData, TError>({
         resource,
-        defaultValue,
-        {
+        ids: defaultValue,
+        queryOptions: {
             enabled: defaultValue.length > 0,
+            ...defaultValueQueryOptions,
             onSuccess: (data) => {
                 defaultValueQueryOnSuccess(data);
+                defaultValueQueryOptions?.onSuccess?.(data);
             },
-            ...defaultValueQueryOptions,
         },
-    );
+    });
 
     const defaultQueryOnSuccess = (data: GetListResponse<TData>) => {
         setOptions(
@@ -103,22 +102,23 @@ export const useSelect = <
         );
     };
 
-    const queryResult = useList<TData, TError>(
+    const queryResult = useList<TData, TError>({
         resource,
-        {
+        config: {
             sort,
             filters: filters.concat(search),
         },
-        {
+        queryOptions: {
             enabled: false,
+            ...queryOptions,
             onSuccess: (data) => {
                 defaultQueryOnSuccess(data);
+                queryOptions?.onSuccess?.(data);
             },
-            ...queryOptions,
         },
         successNotification,
         errorNotification,
-    );
+    });
     const { refetch: refetchList } = queryResult;
 
     React.useEffect(() => {
@@ -152,7 +152,5 @@ export const useSelect = <
         },
         queryResult,
         defaultValueQueryResult,
-        defaultQueryOnSuccess,
-        defaultValueQueryOnSuccess,
     };
 };

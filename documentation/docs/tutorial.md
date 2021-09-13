@@ -167,6 +167,8 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 * [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
 * [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
 * [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
+* [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
+* [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
 [Refer to the `dataProvider` documentation for detailed usage. &#8594](/api-references/providers/data-provider.md)
 :::
@@ -465,13 +467,13 @@ export const PostList: React.FC = () => {
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data: categoriesData, isLoading } = useMany<ICategory>(
-        "categories",
-        categoryIds,
-        {
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
             enabled: categoryIds.length > 0,
         },
-    );
+    });
 
     return (
         <List>
@@ -633,13 +635,13 @@ export const PostShow = () => {
     const { data, isLoading } = queryResult;
     const record = data?.data;
 
-    const { data: categoryData } = useOne<ICategory>(
-        "categories",
-        record?.category.id || "",
-        {
+    const { data: categoryData } = useOne<ICategory>({
+        resource: "categories",
+        id: record?.category.id || "",
+        queryOptions: {
             enabled: !!record?.category.id,
         },
-    );
+    });
 
     return (
         <Show isLoading={isLoading}>

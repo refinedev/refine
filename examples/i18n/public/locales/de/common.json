@@ -43,7 +43,8 @@
         "deleteSuccess": "{{resource}} erfolgreich gelöscht.",
         "deleteError": "Fehler beim Löschen {{resource}} (status code: {{statusCode}})",
         "editSuccess": "{{resource}} erfolgreich bearbeitet.",
-        "editError": "Fehler beim Bearbeiten {{resource}} (status code: {{statusCode}})"
+        "editError": "Fehler beim Bearbeiten {{resource}} (status code: {{statusCode}})",
+        "importProgress": "{{processed}}/{{total}} importiert"
     },
     "loading": "Wird geladen",
     "tags": {

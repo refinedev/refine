@@ -136,7 +136,7 @@ export const useModalForm = <
             const warnWhenConfirm = window.confirm(
                 translate(
                     "warnWhenUnsavedChanges",
-                    "Are you sure you want to leave? You have with unsaved changes.",
+                    "Are you sure you want to leave? You have unsaved changes.",
                 ),
             );
 
