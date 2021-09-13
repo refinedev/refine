@@ -55,18 +55,18 @@ export const PostCreate = () => {
         HttpError,
         PostUniqueCheckRequestQuery
     >
-    (
+    ({
         url,
-        "get",
-        {
+        method: "get",
+        config: {
             query: {
                 title,
             },
         },
-        {
+        queryOptions: {
             enabled: false,
         },
-    );
+    });
 
     return (
         <Create saveButtonProps={saveButtonProps}>

@@ -177,15 +177,18 @@ Now, let's create the custom page with the name `<PostReview>`. We will use the 
 import { useList } from "@pankod/refine";
 
 const PostReview = () => {
-    const { data, isLoading } = useList<IPost>("posts", {
-        filters: [
-            {
-                field: "status",
-                operator: "eq",
-                value: "draft",
-            },
-        ],
-        pagination: { pageSize: 1 },
+    const { data, isLoading } = useList<IPost>({
+        resource: "posts",
+        config: {
+            filters: [
+                {
+                    field: "status",
+                    operator: "eq",
+                    value: "draft",
+                },
+            ],
+            pagination: { pageSize: 1 },
+        },
     });
 };
 
@@ -209,7 +212,7 @@ We set the filtering process with `filters` then page size set with `pagination`
 
 Post's category is relational. So we will use the post's category "id" to get the category title. Let's use `useOne` to fetch the category we want.
 
-```tsx twoslash title="src/pages/post-review.tsx" {0, 14-21}
+```tsx twoslash title="src/pages/post-review.tsx" {0, 17-26}
 interface ICategory {
     id: string;
     title: string;
@@ -226,27 +229,31 @@ interface IPost {
 import { useList, useOne } from "@pankod/refine";
 
 export const PostReview = () => {
-    const { data, isLoading } = useList<IPost>("posts", {
-        filters: [
-            {
-                field: "status",
-                operator: "eq",
-                value: "draft",
-            },
-        ],
-        pagination: { pageSize: 1 },
+    const { data, isLoading } = useList<IPost>({
+        resource: "posts",
+        config: {
+            filters: [
+                {
+                    field: "status",
+                    operator: "eq",
+                    value: "draft",
+                },
+            ],
+            pagination: { pageSize: 1 },
+        },
     });
 
     const post = data?.data[0];
 
-    const {
-        data: categoryData,
-        isLoading: categoryIsLoading,
-    } = useOne<ICategory>("categories", post!.category.id, {
-        enabled: !!post,
-    });
+    const { data: categoryData, isLoading: categoryIsLoading } =
+        useOne<ICategory>({
+            resource: "categories",
+            id: post!.category.id,
+            queryOptions: {
+                enabled: !!post,
+            },
+        });
 };
-
 ```
 
 Now we have the data to display the post as we want. Let's use the `<Show>` component of refine to show this data.
@@ -255,7 +262,7 @@ Now we have the data to display the post as we want. Let's use the `<Show>` comp
 `<Show>` component is not required, you are free to display the data as you wish.
 :::
 
-```tsx twoslash title="src/pages/post-review.tsx" {1-4, 9, 30-47}
+```tsx twoslash title="src/pages/post-review.tsx" {1-3, 9, 37-54}
 interface ICategory {
     id: string;
     title: string;
@@ -271,7 +278,6 @@ interface IPost {
 // ---cut---
 import {
     Typography,
-    Button,
     Show,
     MarkdownField,
     useOne,
@@ -281,21 +287,28 @@ import {
 const { Title, Text } = Typography;
 
 export const PostReview = () => {
-    const { data, isLoading } = useList<IPost>("posts", {
-        filters: [
-            {
-                field: "status",
-                operator: "eq",
-                value: "draft",
-            },
-        ],
-        pagination: { pageSize: 1 },
+    const { data, isLoading } = useList<IPost>({
+        resource: "posts",
+        config: {
+            filters: [
+                {
+                    field: "status",
+                    operator: "eq",
+                    value: "draft",
+                },
+            ],
+            pagination: { pageSize: 1 },
+        },
     });
     const record = data?.data[0];
 
     const { data: categoryData, isLoading: categoryIsLoading } =
-        useOne<ICategory>("categories", record!.category.id, {
-            enabled: !!record,
+        useOne<ICategory>({
+            resource: "categories",
+            id: record!.category.id,
+            queryOptions: {
+                enabled: !!record,
+            },
         });
 
     return (
@@ -323,7 +336,7 @@ export const PostReview = () => {
 
 Then, pass this `<PostReview>` as the routes property in the `<Refine>` component:
 
-```tsx  title="src/App.tsx" {6, 12-18}
+```tsx title="src/App.tsx" {6, 12-18}
 import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
@@ -369,7 +382,7 @@ Now let's put in approve and reject buttons to change the status of the post sho
 
 [Refer to the `useUpdate` documentation for detailed usage. &#8594](/api-references/hooks/data/useUpdate.md)
 
-```tsx twoslash title="src/pages/post-review.tsx" {4-5, 31, 33, 35-37, 39, 50-74}
+```tsx twoslash title="src/pages/post-review.tsx" {4-5, 38, 40, 42-44, 46, 57-81}
 interface ICategory {
     id: string;
     title: string;
@@ -397,21 +410,28 @@ import {
 const { Title, Text } = Typography;
 
 export const PostReview = () => {
-    const { data, isLoading } = useList<IPost>("posts", {
-        filters: [
-            {
-                field: "status",
-                operator: "eq",
-                value: "draft",
-            },
-        ],
-        pagination: { pageSize: 1 },
+    const { data, isLoading } = useList<IPost>({
+        resource: "posts",
+        config: {
+            filters: [
+                {
+                    field: "status",
+                    operator: "eq",
+                    value: "draft",
+                },
+            ],
+            pagination: { pageSize: 1 },
+        },
     });
     const record = data?.data[0];
 
     const { data: categoryData, isLoading: categoryIsLoading } =
-        useOne<ICategory>("categories", record!.category.id, {
-            enabled: !!record,
+        useOne<ICategory>({
+            resource: "categories",
+            id: record!.category.id,
+            queryOptions: {
+                enabled: !!record,
+            },
         });
 
     const mutationResult = useUpdate<IPost>();

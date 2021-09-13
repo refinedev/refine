@@ -7,7 +7,7 @@ import { useMany } from "./useMany";
 describe("useMany Hook", () => {
     it("with rest json server", async () => {
         const { result, waitFor } = renderHook(
-            () => useMany("posts", ["1", "2"]),
+            () => useMany({ resource: "posts", ids: ["1", "2"] }),
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,

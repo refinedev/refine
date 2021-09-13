@@ -522,7 +522,7 @@ const App: React.FC = () => {
 
 Finally, we will create the `<PostList>` page and then we will translate texts using `useTranslate`.
 
-```tsx title="src/App.tsx" {9, 15, 30, 34, 51}
+```tsx title="src/App.tsx" {9, 15, 34, 38, 55}
 import {
     List,
     Table,
@@ -543,8 +543,12 @@ export const PostList: React.FC = () => {
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
-        enabled: categoryIds.length > 0,
+    const { data, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
     });
 
     return (
