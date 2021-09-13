@@ -532,7 +532,7 @@ const SimpleRestDataProvider = (
 ```ts twoslash
 import { useMany } from "@pankod/refine";
 
-const { data } = useMany("categories", ["1", "2"]);
+const { data } = useMany({ resource: "categories", ids: ["1", "2"] });
 ```
 
 > [Refer to the useMany documentation for more information. &#8594](api-references/hooks/data/useMany.md)
