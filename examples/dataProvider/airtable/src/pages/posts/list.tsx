@@ -17,13 +17,13 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IPost>();
 
     const categoryIds = tableProps?.dataSource?.flatMap((p) => p.category);
-    const { data, isLoading } = useMany<ICategory>(
-        "categories",
-        categoryIds || [],
-        {
+    const { data, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
             enabled: categoryIds !== undefined,
         },
-    );
+    });
 
     return (
         <List>

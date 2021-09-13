@@ -17,13 +17,13 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { data, isLoading } = queryResult;
     const record = data?.data;
 
-    const { data: tagsData, isLoading: tagsIsLoading } = useMany<ITag>(
-        "tags",
-        record?.tags || [""],
-        {
+    const { data: tagsData, isLoading: tagsIsLoading } = useMany<ITag>({
+        resource: "tags",
+        ids: record?.tags || [""],
+        queryOptions: {
             enabled: !!record,
         },
-    );
+    });
 
     return (
         <Show isLoading={isLoading && tagsIsLoading}>
