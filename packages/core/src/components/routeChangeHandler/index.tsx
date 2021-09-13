@@ -1,5 +1,5 @@
 import { useContext, useEffect, FC } from "react";
-import { useLocation } from "react-router";
+import { useLocation } from "react-router-dom";
 import { AuthContext } from "@contexts/auth";
 
 import { IAuthContext } from "../../interfaces";
