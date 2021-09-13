@@ -1,32 +1,38 @@
 import nock from "nock";
 
-nock("https://api.fake-rest.refine.dev:443", { encodedQueryParams: true })
-    .delete("/posts/1")
-    .reply(200, {}, [
-        "Server",
-        "nginx/1.17.10",
+nock("https://dev001.na-dev-engine.altogic.com:443", {
+    encodedQueryParams: true,
+})
+    .delete("/post/613b2f5494cdf00019bfb963")
+    .reply(200, "", [
         "Date",
-        "Tue, 30 Mar 2021 12:23:06 GMT",
+        "Mon, 13 Sep 2021 12:20:55 GMT",
         "Content-Type",
         "application/json; charset=utf-8",
         "Content-Length",
-        "2",
+        "0",
         "Connection",
         "close",
         "X-Powered-By",
-        "Express",
-        "Vary",
-        "Origin, Accept-Encoding",
-        "Access-Control-Allow-Credentials",
-        "true",
+        "Altogic",
+        "Access-Control-Allow-Origin",
+        "*",
+        "Surrogate-Control",
+        "no-store",
         "Cache-Control",
-        "no-cache",
+        "no-store, no-cache, must-revalidate, proxy-revalidate",
         "Pragma",
         "no-cache",
         "Expires",
-        "-1",
-        "X-Content-Type-Options",
-        "nosniff",
-        "ETag",
-        'W/"2-vyGp6PvFo4RvsFtPoIWeCReyIC8"',
+        "0",
+        "Access-Control-Expose-Headers",
+        "X-Service-Id, X-Duration, X-Validated-Duration, Content-Length, Content-Type, Content-Disposition, X-Powered-By",
+        "X-Service-Id",
+        "61373d5361cf2c001a1e27fa",
+        "X-Duration",
+        "11",
+        "X-Validated-Duration",
+        "12",
+        "Strict-Transport-Security",
+        "max-age=15724800; includeSubDomains",
     ]);

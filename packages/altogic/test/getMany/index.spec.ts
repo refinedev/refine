@@ -1,23 +1,33 @@
 import axios from "axios";
-// import nock from "nock";
+import nock from "nock";
 
 import JsonServer from "../../src/index";
 import "./index.mock";
 
 axios.defaults.adapter = require("axios/lib/adapters/http");
 
+const YOUR_SECRET_API_KEY =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbnZJZCI6IjYxMzczZGVkMjQ5NWMzMDAxOTliZTAxNiIsImtleUlkIjoiNjEzNzNlMzYyNDk1YzMwMDE5OWJlMDJkIiwiaWF0IjoxNjMxMDEwMzU4LCJleHAiOjI0OTUwMTAzNTh9.2fL28Bzd97mqfAvcsTrYj1mZ_hqf3WRnr2DOtV3lsc0";
+
+const axiosInstance = axios.create();
+axiosInstance.defaults.headers = {
+    Authorization: YOUR_SECRET_API_KEY,
+};
+
 describe("getMany", () => {
     it("correct response", async () => {
         const response = await JsonServer(
-            "https://api.fake-rest.refine.dev",
-            axios,
-        ).getMany("posts", ["1", "2", "3"]);
+            "https://dev001.na-dev-engine.altogic.com",
+            axiosInstance,
+        ).getMany("category", [
+            "61373e585d65d30019e2b0a2",
+            "61373e5e59c5a7001aeac77d",
+        ]);
 
         const { data } = response;
 
-        expect(data[0]["id"]).toBe(1);
-        expect(data[1]["id"]).toBe(2);
-        expect(data[2]["id"]).toBe(3);
-        expect(response.data.length).toBe(3);
+        expect(data[0]["id"]).toBe("61373e585d65d30019e2b0a2");
+        expect(data[1]["id"]).toBe("61373e5e59c5a7001aeac77d");
+        expect(response.data.length).toBe(2);
     });
 });

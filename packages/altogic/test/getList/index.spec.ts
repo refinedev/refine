@@ -1,84 +1,103 @@
 import axios from "axios";
-// import nock from "nock";
+import nock from "nock";
 
 import JsonServer from "../../src/index";
 import "./index.mock";
 
 axios.defaults.adapter = require("axios/lib/adapters/http");
 
+const YOUR_SECRET_API_KEY =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbnZJZCI6IjYxMzczZGVkMjQ5NWMzMDAxOTliZTAxNiIsImtleUlkIjoiNjEzNzNlMzYyNDk1YzMwMDE5OWJlMDJkIiwiaWF0IjoxNjMxMDEwMzU4LCJleHAiOjI0OTUwMTAzNTh9.2fL28Bzd97mqfAvcsTrYj1mZ_hqf3WRnr2DOtV3lsc0";
+
+const axiosInstance = axios.create();
+axiosInstance.defaults.headers = {
+    Authorization: YOUR_SECRET_API_KEY,
+};
+
 describe("getList", () => {
     it("correct response", async () => {
         const response = await JsonServer(
-            "https://api.fake-rest.refine.dev",
-            axios,
-        ).getList("posts", {});
+            "https://dev001.na-dev-engine.altogic.com",
+            axiosInstance,
+        ).getList("post", {
+            filters: [
+                {
+                    field: "_id",
+                    operator: "ne",
+                    value: "",
+                },
+            ],
+        });
 
-        expect(response.data[0]["id"]).toBe(1);
-        expect(response.data[0]["title"]).toBe(
-            "Mollitia ipsam nisi in porro velit asperiores et quaerat dolorem.",
-        );
-        expect(response.total).toBe(1000);
+        expect(response.data[0]["id"]).toBe("613a25eb65f2050012410a41");
+        expect(response.data[0]["title"]).toBe("test");
+        expect(response.total).toBe(NaN);
     });
 
     it("correct sorting response", async () => {
         const response = await JsonServer(
-            "https://api.fake-rest.refine.dev",
-            axios,
-        ).getList("posts", {
+            "https://dev001.na-dev-engine.altogic.com",
+            axiosInstance,
+        ).getList("post", {
             sort: [
                 {
-                    field: "id",
+                    field: "title",
                     order: "asc",
+                },
+            ],
+            filters: [
+                {
+                    field: "_id",
+                    operator: "ne",
+                    value: "",
                 },
             ],
         });
 
-        expect(response.data[0]["id"]).toBe(1);
-        expect(response.data[0]["title"]).toBe(
-            "Mollitia ipsam nisi in porro velit asperiores et quaerat dolorem.",
-        );
-        expect(response.total).toBe(1000);
+        expect(response.data[0]["id"]).toBe("613b80901550aa001b0a85f8");
+        expect(response.data[0]["title"]).toBe("Deneme1");
+        expect(response.total).toBe(NaN);
     });
 
     it("correct filter response", async () => {
         const response = await JsonServer(
-            "https://api.fake-rest.refine.dev",
-            axios,
-        ).getList("posts", {
+            "https://dev001.na-dev-engine.altogic.com",
+            axiosInstance,
+        ).getList("post", {
             filters: [
                 {
-                    field: "category.id",
+                    field: "categoryId",
                     operator: "eq",
-                    value: ["1"],
+                    value: ["61373e585d65d30019e2b0a2"],
                 },
             ],
         });
 
-        expect(response.data[0]["category"]["id"]).toBe(1);
-        expect(response.total).toBe(17);
+        expect(response.data[0]["categoryId"]).toBe("61373e585d65d30019e2b0a2");
+        expect(response.total).toBe(NaN);
     });
 
     it("correct filter and sort response", async () => {
         const response = await JsonServer(
-            "https://api.fake-rest.refine.dev",
-            axios,
-        ).getList("posts", {
+            "https://dev001.na-dev-engine.altogic.com",
+            axiosInstance,
+        ).getList("post", {
             filters: [
                 {
-                    field: "category.id",
+                    field: "categoryId",
                     operator: "eq",
-                    value: ["1"],
+                    value: ["61373e585d65d30019e2b0a2"],
                 },
             ],
             sort: [
                 {
-                    field: "id",
+                    field: "title",
                     order: "asc",
                 },
             ],
         });
 
-        expect(response.data[0]["id"]).toBe(44);
-        expect(response.total).toBe(17);
+        expect(response.data[0]["id"]).toBe("613b80901550aa001b0a85f8");
+        expect(response.total).toBe(NaN);
     });
 });
