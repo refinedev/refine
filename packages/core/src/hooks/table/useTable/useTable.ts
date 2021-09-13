@@ -161,9 +161,9 @@ export const useTable = <
         defaultCurrent: defaultCurrentSF,
     } = tablePropsSunflower.pagination;
 
-    const queryResult = useList<TData, TError>(
-        resource.name,
-        {
+    const queryResult = useList<TData, TError>({
+        resource: resource.name,
+        config: {
             pagination: {
                 current: currentSF ?? defaultCurrentSF,
                 pageSize: pageSizeSF,
@@ -174,7 +174,7 @@ export const useTable = <
         queryOptions,
         successNotification,
         errorNotification,
-    );
+    });
     const { data, isFetching } = queryResult;
 
     const onChange = (

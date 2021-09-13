@@ -60,13 +60,13 @@ export const useRadioGroup = <
         );
     };
 
-    const queryResult = useList<TData, TError>(
+    const queryResult = useList<TData, TError>({
         resource,
-        {
+        config: {
             sort,
             filters,
         },
-        {
+        queryOptions: {
             ...queryOptions,
             onSuccess: (data) => {
                 defaultQueryOnSuccess(data);
@@ -75,7 +75,7 @@ export const useRadioGroup = <
         },
         successNotification,
         errorNotification,
-    );
+    });
 
     return {
         radioGroupProps: {

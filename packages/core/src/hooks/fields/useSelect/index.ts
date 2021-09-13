@@ -102,13 +102,13 @@ export const useSelect = <
         );
     };
 
-    const queryResult = useList<TData, TError>(
+    const queryResult = useList<TData, TError>({
         resource,
-        {
+        config: {
             sort,
             filters: filters.concat(search),
         },
-        {
+        queryOptions: {
             enabled: false,
             ...queryOptions,
             onSuccess: (data) => {
@@ -118,7 +118,7 @@ export const useSelect = <
         },
         successNotification,
         errorNotification,
-    );
+    });
     const { refetch: refetchList } = queryResult;
 
     React.useEffect(() => {

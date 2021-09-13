@@ -24,7 +24,7 @@ interface UseListConfig {
 
 export type UseListProps<TData, TError> = {
     resource: string;
-    config: UseListConfig;
+    config?: UseListConfig;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     successNotification?: ArgsProps | false;
     errorNotification?: ArgsProps | false;
