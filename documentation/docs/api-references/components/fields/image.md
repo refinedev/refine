@@ -22,10 +22,6 @@ export const PostList: React.FC = () => {
     return (
         <List>
             <Table<IPost> rowKey="id">
-                <Table.Column
-                    dataIndex="title"
-                    title="Title"
-                />
                 <Table.Column<IPost>
                     title="Image"
                     dataIndex="image"
@@ -36,6 +32,10 @@ export const PostList: React.FC = () => {
                             width={200}
                         />
                     )}
+                />
+                <Table.Column
+                    dataIndex="title"
+                    title="Title"
                 />
             </Table>
         </List>
