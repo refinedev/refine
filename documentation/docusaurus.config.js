@@ -39,7 +39,7 @@ const siteConfig = {
         ],
     ],
     themeConfig: {
-        image: "img/footer_icon.png",
+        image: "img/refine_logo.png",
         algolia: {
             apiKey: "fbebca5afe7376dbef2995691670b708",
             indexName: "refine",
