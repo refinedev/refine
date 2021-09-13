@@ -168,6 +168,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 * [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
 * [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
 * [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
+* [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
 [Refer to the `dataProvider` documentation for detailed usage. &#8594](/api-references/providers/data-provider.md)
 :::

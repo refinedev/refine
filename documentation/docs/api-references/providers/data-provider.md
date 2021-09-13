@@ -42,6 +42,7 @@ const dataProvider = {
 * [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
 * [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
 * [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
+* [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
 :::
 
