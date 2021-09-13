@@ -80,10 +80,10 @@ export const useSelect = <
         );
     };
 
-    const defaultValueQueryResult = useMany<TData, TError>(
+    const defaultValueQueryResult = useMany<TData, TError>({
         resource,
-        defaultValue,
-        {
+        ids: defaultValue,
+        queryOptions: {
             enabled: defaultValue.length > 0,
             ...defaultValueQueryOptions,
             onSuccess: (data) => {
@@ -91,7 +91,7 @@ export const useSelect = <
                 defaultValueQueryOptions?.onSuccess?.(data);
             },
         },
-    );
+    });
 
     const defaultQueryOnSuccess = (data: GetListResponse<TData>) => {
         setOptions(
