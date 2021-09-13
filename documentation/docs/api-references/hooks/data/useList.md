@@ -50,7 +50,7 @@ type IPost = {
     status: "rejected" | "published" | "draft";
 };
 
-const postListQueryResult = useList<IPost>("posts");
+const postListQueryResult = useList<IPost>({ resource: "posts" });
 ```
 
 ```ts title="postListQueryResult.data"
@@ -122,8 +122,11 @@ type IPost = {
 
 import { useList } from "@pankod/refine";
 
-const postListQueryResult = useList<IPost>("posts", {
-    pagination: { current: 3, pageSize: 8 },
+const postListQueryResult = useList<IPost>({
+    resource: "posts",
+    config: {
+        pagination: { current: 3, pageSize: 8 },
+    },
 });
 ```
 
@@ -145,8 +148,11 @@ type IPost = {
 
 import { useList } from "@pankod/refine";
 
-const postListQueryResult = useList<IPost>("posts", {
-    sort: [{ order: "asc", field: "title" }],
+const postListQueryResult = useList<IPost>({
+    resource: "posts",
+    config: {
+        sort: [{ order: "asc", field: "title" }],
+    },
 });
 ```
 
@@ -191,14 +197,17 @@ type IPost = {
 
 import { useList } from "@pankod/refine";
 
-const postListQueryResult = useList<IPost>("posts", {
-    filters: [
-        {
-            field: "status",
-            operator: "eq",
-            value: "rejected",
-        },
-    ],
+const postListQueryResult = useList<IPost>({
+    resource: "posts",
+    config: {
+        filters: [
+            {
+                field: "status",
+                operator: "eq",
+                value: "rejected",
+            },
+        ],
+    },
 });
 ```
 
@@ -255,7 +264,10 @@ type IPost = {
 
 import { useList } from "@pankod/refine";
 
-const postListQueryResult = useList<IPost>("posts", {}, { enabled: false });
+const postListQueryResult = useList<IPost>({
+    resource: "posts",
+    queryOptions: { enabled: false },
+});
 ```
 
 :::
@@ -271,13 +283,13 @@ const postListQueryResult = useList<IPost>("posts", {}, { enabled: false });
 
 ### Parameters
 
-| Property                                                                                           | Description                                         | Type                                                                       |
-| -------------------------------------------------------------------------------------------------- | --------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| <div className="required-block"><div>resource</div> <div className="required">Required</div></div> | [`Resource`](/api-references/components/resource.md) for API data interactions           | `string`                                                                   |
-| config                                                                                             | Configuration for pagination, sorting and filtering | [`UseListConfig`](#config-parameters)                                      |                                                              |
-| queryOptions                                                                                            | `react-query`'s `useQuery` options                  | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                |
-| successNotification                                                                                | Successful Query notification                       | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | `false`                            |
-| errorNotification                                                                                  | Unsuccessful Query notification                       | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Error (status code: `statusCode`)" |
+| Property                                                                                           | Description                                                                    | Type                                                                       |
+| -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------- | ----------------------------------- |
+| <div className="required-block"><div>resource</div> <div className="required">Required</div></div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                                   |
+| config                                                                                             | Configuration for pagination, sorting and filtering                            | [`UseListConfig`](#config-parameters)                                      |                                     |
+| queryOptions                                                                                       | `react-query`'s `useQuery` options                                             | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                |
+| successNotification                                                                                | Successful Query notification                                                  | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | `false`                             |
+| errorNotification                                                                                  | Unsuccessful Query notification                                                | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Error (status code: `statusCode`)" |
 
 ### Config parameters
 
