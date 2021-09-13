@@ -1,4 +1,4 @@
-import "node_modules/antd/dist/antd.css";
+// import "node_modules/antd/dist/antd.css";
 
 export * from "./components";
 export * from "./components/antd";
@@ -50,4 +50,4 @@ export { RcFile, UploadFile } from "antd/lib/upload/interface";
 // antd filterDropDownProps (using for <FilterDropDown> component)
 export { FilterDropdownProps } from "antd/lib/table/interface";
 
-export * from "react-query";
+// export * from "react-query";
