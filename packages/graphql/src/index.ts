@@ -47,7 +47,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                     start: (current - 1) * pageSize,
                     limit: current * pageSize,
                 },
-                ...metaData,
+                fields: metaData?.fields,
             });
 
             const response = await client.request(query, variables);
@@ -58,9 +58,23 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             };
         },
 
-        getMany: async (resource, ids) => {
+        getMany: async (resource, ids, metaData) => {
+            const operation = metaData?.operation ?? resource;
+            const { query, variables } = gql.query({
+                operation,
+                variables: {
+                    where: {
+                        value: { id_in: ids },
+                        type: "JSON",
+                    },
+                },
+                fields: metaData?.fields,
+            });
+
+            const response = await client.request(query, variables);
+
             return {
-                data: [],
+                data: response[operation],
             };
         },
 
