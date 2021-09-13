@@ -634,13 +634,13 @@ export const PostShow = () => {
     const { data, isLoading } = queryResult;
     const record = data?.data;
 
-    const { data: categoryData } = useOne<ICategory>(
-        "categories",
-        record?.category.id || "",
-        {
+    const { data: categoryData } = useOne<ICategory>({
+        resource: "categories",
+        id: record?.category.id || "",
+        queryOptions: {
             enabled: !!record?.category.id,
         },
-    );
+    });
 
     return (
         <Show isLoading={isLoading}>

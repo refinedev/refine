@@ -488,7 +488,7 @@ interface ICategory {}
 // ---cut---
 import { useOne } from "@pankod/refine";
 
-const { data } = useOne<ICategory>("categories", "1");
+const { data } = useOne<ICategory>({ resource: "categories", id: "1" });
 ```
 
 > [Refer to the useOne documentation for more information. &#8594](api-references/hooks/data/useOne.md)

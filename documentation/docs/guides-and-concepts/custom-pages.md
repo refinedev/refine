@@ -212,7 +212,7 @@ We set the filtering process with `filters` then page size set with `pagination`
 
 Post's category is relational. So we will use the post's category "id" to get the category title. Let's use `useOne` to fetch the category we want.
 
-```tsx twoslash title="src/pages/post-review.tsx" {0, 17-22}
+```tsx twoslash title="src/pages/post-review.tsx" {0, 17-26}
 interface ICategory {
     id: string;
     title: string;
@@ -246,8 +246,12 @@ export const PostReview = () => {
     const post = data?.data[0];
 
     const { data: categoryData, isLoading: categoryIsLoading } =
-        useOne<ICategory>("categories", post!.category.id, {
-            enabled: !!post,
+        useOne<ICategory>({
+            resource: "categories",
+            id: post!.category.id,
+            queryOptions: {
+                enabled: !!post,
+            },
         });
 };
 ```
@@ -258,7 +262,7 @@ Now we have the data to display the post as we want. Let's use the `<Show>` comp
 `<Show>` component is not required, you are free to display the data as you wish.
 :::
 
-```tsx twoslash title="src/pages/post-review.tsx" {1-4, 9, 33-50}
+```tsx twoslash title="src/pages/post-review.tsx" {1-3, 9, 37-54}
 interface ICategory {
     id: string;
     title: string;
@@ -274,7 +278,6 @@ interface IPost {
 // ---cut---
 import {
     Typography,
-    Button,
     Show,
     MarkdownField,
     useOne,
@@ -300,8 +303,12 @@ export const PostReview = () => {
     const record = data?.data[0];
 
     const { data: categoryData, isLoading: categoryIsLoading } =
-        useOne<ICategory>("categories", record!.category.id, {
-            enabled: !!record,
+        useOne<ICategory>({
+            resource: "categories",
+            id: record!.category.id,
+            queryOptions: {
+                enabled: !!record,
+            },
         });
 
     return (
@@ -375,7 +382,7 @@ Now let's put in approve and reject buttons to change the status of the post sho
 
 [Refer to the `useUpdate` documentation for detailed usage. &#8594](/api-references/hooks/data/useUpdate.md)
 
-```tsx twoslash title="src/pages/post-review.tsx" {4-5, 34, 36, 38-40, 42, 53-77}
+```tsx twoslash title="src/pages/post-review.tsx" {4-5, 38, 40, 42-44, 46, 57-81}
 interface ICategory {
     id: string;
     title: string;
@@ -419,8 +426,12 @@ export const PostReview = () => {
     const record = data?.data[0];
 
     const { data: categoryData, isLoading: categoryIsLoading } =
-        useOne<ICategory>("categories", record!.category.id, {
-            enabled: !!record,
+        useOne<ICategory>({
+            resource: "categories",
+            id: record!.category.id,
+            queryOptions: {
+                enabled: !!record,
+            },
         });
 
     const mutationResult = useUpdate<IPost>();

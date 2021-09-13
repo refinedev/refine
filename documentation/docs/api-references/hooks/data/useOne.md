@@ -5,9 +5,9 @@ siderbar_label: useOne
 description: useOne data hook from refine is a modified version of react-query's useQuery for retrieving single items from a resource
 ---
 
-`useOne` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries) used for retrieving single items from a `resource`. 
+`useOne` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries) used for retrieving single items from a `resource`.
 
-It uses `getOne` method as query function from the [`dataProvider`](api-references/providers/data-provider.md) which is passed to `<Refine>`.  
+It uses `getOne` method as query function from the [`dataProvider`](api-references/providers/data-provider.md) which is passed to `<Refine>`.
 
 ## Usage
 
@@ -28,44 +28,50 @@ Let's say that we have a resource named `posts`.
 }
 ```
 
-
 ```tsx twoslash
 import { useOne } from "@pankod/refine";
 
 type ICategory = {
     id: string;
     title: string;
-}
+};
 
-const categoryQueryResult = useOne<ICategory>("categories", "1");
+const categoryQueryResult = useOne<ICategory>({
+    resource: "categories",
+    id: "1",
+});
 ```
 
 :::tip
 `useOne` can also accept all `useQuery` options.  
 [Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/reference/useQuery)
 
-- For example, to disable the query from running automatically you can set `enabled` to `false`
+-   For example, to disable the query from running automatically you can set `enabled` to `false`
 
 ```tsx
-const categoryQueryResult = useOne<ICategory>("categories", "1", { enabled: false });
+const categoryQueryResult = useOne<ICategory>({
+    resource: "categories",
+    id: "1",
+    queryOptions: {
+        enabled: false,
+    },
+});
 ```
+
 :::
 
 <br />
 
 After query runs, the `categoryQueryResult` will include the retrieved data:
 
-
 ```json title="categoryQueryResult.data"
 {
-    data: {
-        id: 1,
-        title: "E-business",
+    "data": {
+        "id": 1,
+        "title": "E-business"
     }
 }
 ```
-
-
 
 :::tip
 `useOne` returns the result of `react-query`'s `useQuery` which includes many properties such as `isLoading` and `isFetching`.  
@@ -76,17 +82,15 @@ After query runs, the `categoryQueryResult` will include the retrieved data:
 
 ### Parameters
 
-
-| Property                                                                                            | Description                               | Type                                                                       | Default                             |
-| --------------------------------------------------------------------------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------- |
+| Property                                                                                            | Description                                                                    | Type                                                                       | Default                             |
+| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------- | ----------------------------------- |
 | <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                                   |                                     |
-| id <div className="required">Required</div>                                                         | id of the item in the resource            | `string`                                                                   |                                     |
-| queryOptions                                                                                        | `react-query`'s `useQuery` options        | ` UseQueryOptions<`<br/>`{ data: TData; },`<br/>`TError>`                  |                                     |
-| successNotification                                                                                 | Successful Query notification             | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | `false`                             |
-| errorNotification                                                                                   | Unsuccessful Query notification           | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Error (status code: `statusCode`)" |
+| id <div className="required">Required</div>                                                         | id of the item in the resource                                                 | `string`                                                                   |                                     |
+| queryOptions                                                                                        | `react-query`'s `useQuery` options                                             | ` UseQueryOptions<`<br/>`{ data: TData; },`<br/>`TError>`                  |                                     |
+| successNotification                                                                                 | Successful Query notification                                                  | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | `false`                             |
+| errorNotification                                                                                   | Unsuccessful Query notification                                                | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Error (status code: `statusCode`)" |
 
 ### Type Parameters
-
 
 | Property | Desription                                                                       | Type                                           | Default                                        |
 | -------- | -------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
