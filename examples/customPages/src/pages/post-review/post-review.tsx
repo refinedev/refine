@@ -31,8 +31,12 @@ export const PostReview: React.FC = () => {
     const record = data?.data[0];
 
     const { data: categoryData, isLoading: categoryIsLoading } =
-        useOne<ICategory>("categories", record?.category.id || "", {
-            enabled: !!record,
+        useOne<ICategory>({
+            resource: "categories",
+            id: record?.category.id || "",
+            queryOptions: {
+                enabled: !!record,
+            },
         });
 
     const mutationResult = useUpdate<IPost>();
