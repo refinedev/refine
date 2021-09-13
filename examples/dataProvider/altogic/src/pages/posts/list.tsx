@@ -10,45 +10,54 @@ import {
     useMany,
     FilterDropdown,
     Typography,
+    Checkbox,
+    useCheckboxGroup,
     useSelect,
     Select,
     Radio,
     TagField,
+    DeleteButton,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
+const { Title } = Typography;
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps } = useTable<IPost>();
+    const { tableProps, filters } = useTable<IPost>({
+        initialSorter: [
+            {
+                field: "title",
+                order: "asc",
+            },
+        ],
+        initialFilter: [
+            {
+                field: "status",
+                operator: "ne",
+                value: "publ2ished",
+            },
+        ],
+    });
 
     const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
+        tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
+    const { data, isLoading } = useMany<ICategory>("category", categoryIds, {
+        enabled: categoryIds.length > 0,
     });
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
+        resource: "category",
         optionLabel: "title",
         optionValue: "id",
     });
 
     return (
-        <List
-            pageHeaderProps={{
-                onBack: () => console.log("clicked"),
-                subTitle: "Subtitle",
-            }}
-        >
+        <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column dataIndex="title" title="Title" />
                 <Table.Column
-                    dataIndex={["category", "id"]}
+                    dataIndex="categoryId"
                     title="Category"
                     render={(value) => {
                         if (isLoading) {
@@ -105,6 +114,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                 recordItemId={record.id}
                             />
                             <ShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <DeleteButton
                                 hideText
                                 size="small"
                                 recordItemId={record.id}

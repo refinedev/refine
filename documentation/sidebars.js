@@ -267,6 +267,7 @@ module.exports = {
                         "examples/data-provider/nestjsxCrud",
                         "examples/data-provider/airtable",
                         "examples/data-provider/supabase",
+                        "examples/data-provider/altogic",
                     ],
                 },
                 {

@@ -34,11 +34,12 @@ const dataProvider = {
 
 **refine** includes many out-of-the-box data providers to use in your projects like
 
--   [Simple REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest)
--   [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
--   [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
--   [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
--   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
+* [Simple REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest)
+* [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
+* [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
+* [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
+* [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
+* [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
 :::
 
