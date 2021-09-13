@@ -69,12 +69,12 @@ export const Header: React.FC = () => {
     const [value, setValue] = useState<string>("");
     const [options, setOptions] = useState<IOptions[]>([]);
 
-    const { refetch: refetchOrders } = useList<IOrder>(
-        "orders",
-        {
+    const { refetch: refetchOrders } = useList<IOrder>({
+        resource: "orders",
+        config: {
             filters: [{ field: "q", operator: "contains", value }],
         },
-        {
+        queryOptions: {
             enabled: false,
             onSuccess: (data) => {
                 const orderOptionGroup = data.data.map((item) =>
@@ -95,14 +95,14 @@ export const Header: React.FC = () => {
                 }
             },
         },
-    );
+    });
 
-    const { refetch: refetchStores } = useList<IStore>(
-        "stores",
-        {
+    const { refetch: refetchStores } = useList<IStore>({
+        resource: "stores",
+        config: {
             filters: [{ field: "q", operator: "contains", value }],
         },
-        {
+        queryOptions: {
             enabled: false,
             onSuccess: (data) => {
                 const storeOptionGroup = data.data.map((item) =>
@@ -123,14 +123,14 @@ export const Header: React.FC = () => {
                 }
             },
         },
-    );
+    });
 
-    const { refetch: refetchCouriers } = useList<ICourier>(
-        "couriers",
-        {
+    const { refetch: refetchCouriers } = useList<ICourier>({
+        resource: "couriers",
+        config: {
             filters: [{ field: "q", operator: "contains", value }],
         },
-        {
+        queryOptions: {
             enabled: false,
             onSuccess: (data) => {
                 const courierOptionGroup = data.data.map((item) =>
@@ -151,7 +151,7 @@ export const Header: React.FC = () => {
                 }
             },
         },
-    );
+    });
 
     useEffect(() => {
         setOptions([]);

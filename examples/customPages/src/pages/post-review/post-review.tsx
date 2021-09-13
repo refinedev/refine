@@ -14,15 +14,18 @@ import { IPost, ICategory } from "interfaces";
 const { Title, Text } = Typography;
 
 export const PostReview: React.FC = () => {
-    const { data, isLoading } = useList<IPost>("posts", {
-        filters: [
-            {
-                field: "status",
-                operator: "eq",
-                value: "draft",
-            },
-        ],
-        pagination: { pageSize: 1 },
+    const { data, isLoading } = useList<IPost>({
+        resource: "posts",
+        config: {
+            filters: [
+                {
+                    field: "status",
+                    operator: "eq",
+                    value: "draft",
+                },
+            ],
+            pagination: { pageSize: 1 },
+        },
     });
 
     const record = data?.data[0];
