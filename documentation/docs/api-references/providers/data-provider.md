@@ -915,12 +915,15 @@ const SimpleRestDataProvider = (
 ```ts twoslash
 const apiURL = "";
 // ---cut---
-
 import { useCustom } from "@pankod/refine";
 
-const { data, isLoading } = useCustom(`${apiURL}/posts-unique-check`, "get", {
-    query: {
-        title: "Foo bar",
+const { data, isLoading } = useCustom({
+    url: `${apiURL}/posts-unique-check`,
+    method: "get",
+    config: {
+        query: {
+            title: "Foo bar",
+        },
     },
 });
 ```
