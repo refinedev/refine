@@ -3,27 +3,28 @@ import {
     Show,
     Typography,
     IResourceComponentsProps,
-    useOne,
     MarkdownField,
 } from "@pankod/refine";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost } from "interfaces";
 
 const { Title, Text } = Typography;
 
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
-    const { queryResult } = useShow<IPost>();
+    const { queryResult } = useShow<IPost>({
+        metaData: {
+            operation: "post",
+            fields: [
+                "id",
+                "title",
+                {
+                    category: ["title"],
+                },
+            ],
+        },
+    });
     const { data, isLoading } = queryResult;
     const record = data?.data;
-
-    const { data: categoryData, isLoading: categoryIsLoading } =
-        useOne<ICategory>({
-            resource: "categories",
-            id: record?.category.id || "",
-            queryOptions: {
-                enabled: !!record,
-            },
-        });
 
     return (
         <Show isLoading={isLoading}>
@@ -34,9 +35,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
             <Text>{record?.title}</Text>
 
             <Title level={5}>Category</Title>
-            <Text>
-                {categoryIsLoading ? "Loading..." : categoryData?.data.title}
-            </Text>
+            <Text>{record?.category.title}</Text>
 
             <Title level={5}>Content</Title>
             <MarkdownField value={record?.content} />

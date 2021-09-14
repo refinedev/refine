@@ -38,6 +38,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             const filterBy = generateFilter(filters);
 
             const operation = metaData?.operation ?? resource;
+
             const { query, variables } = gql.query({
                 operation,
                 variables: {
@@ -58,8 +59,11 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             };
         },
 
-        getMany: async (resource, ids, metaData) => {
+        getMany: async (resource, params) => {
+            const { ids, metaData } = params;
+
             const operation = metaData?.operation ?? resource;
+
             const { query, variables } = gql.query({
                 operation,
                 variables: {
@@ -90,21 +94,35 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             };
         },
 
-        update: async (resource, id, params) => {
+        update: async (resource, params) => {
             return {
                 data: { id: 1 } as any,
             };
         },
 
-        updateMany: async (resource, ids, params) => {
+        updateMany: async (resource, params) => {
             return {
                 data: [],
             };
         },
 
-        getOne: async (resource, id) => {
+        getOne: async (resource, params) => {
+            const { id, metaData } = params;
+
+            const operation = metaData?.operation ?? resource;
+
+            const { query, variables } = gql.query({
+                operation,
+                variables: {
+                    id: { value: id, type: "ID", required: true },
+                },
+                fields: metaData?.fields,
+            });
+
+            const response = await client.request(query, variables);
+
             return {
-                data: { id: 1 } as any,
+                data: response[operation],
             };
         },
 
