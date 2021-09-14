@@ -1,6 +1,5 @@
 import React from "react";
-// import { useParams } from "react-router-dom";
-import { Card, PageHeader, PageHeaderProps, Row, Space, Spin } from "antd";
+import { Card, PageHeader, PageHeaderProps, Space, Spin } from "antd";
 
 import { ResourceRouterParams } from "../../../interfaces";
 import {

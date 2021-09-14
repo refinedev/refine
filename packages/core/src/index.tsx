@@ -3,7 +3,6 @@
 export * from "./components";
 export * from "./components/antd";
 export * from "./hooks";
-export { Link } from "react-router-dom";
 
 export { IAuthContext as AuthProvider, Pagination } from "./interfaces";
 export {

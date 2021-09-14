@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-// import { useLocation } from "react-router-dom";
 import { DashboardOutlined, UnorderedListOutlined } from "@ant-design/icons";
 
 import { RefineContext } from "@contexts/refine";

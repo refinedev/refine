@@ -1,5 +1,4 @@
 import React, { FC, useContext, useEffect } from "react";
-// import { Prompt } from "react-router-dom";
 
 import { useRouterContext, useTranslate, useWarnAboutChange } from "@hooks";
 import { RefineContext } from "@contexts/refine";

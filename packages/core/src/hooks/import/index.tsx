@@ -9,7 +9,6 @@ import {
     useResourceWithRoute,
     useRouterContext,
 } from "@hooks";
-// import { useParams } from "react-router-dom";
 import {
     MapDataFn,
     BaseRecord,

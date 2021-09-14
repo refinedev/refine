@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
-// import { useParams } from "react-router-dom";
 
 import { useNavigation, useRouterContext, useTranslate } from "@hooks";
 import { ResourceRouterParams } from "../../../interfaces";

@@ -1,5 +1,3 @@
-// import { useHistory } from "react-router-dom";
-
 import { useResourceWithRoute } from "@hooks";
 import { useContext } from "react";
 import { IRefineContext } from "@contexts/refine/IRefineContext";

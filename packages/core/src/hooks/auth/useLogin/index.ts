@@ -1,6 +1,5 @@
 import React from "react";
 import { useMutation, UseMutationResult } from "react-query";
-// import { useLocation } from "react-router-dom";
 import { notification } from "antd";
 
 import { AuthContext } from "@contexts/auth";

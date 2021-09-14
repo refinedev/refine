@@ -1,7 +1,6 @@
 import React from "react";
 
 import { useAuthenticated, useNavigation, useRouterContext } from "@hooks";
-// import { useLocation } from "react-router-dom";
 
 export type AuthenticatedProps = {
     fallback?: React.ReactNode;

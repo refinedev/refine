@@ -1,6 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
 import { Button, Result, Typography, Space, Tooltip } from "antd";
-// import { useParams } from "react-router-dom";
 import { InfoCircleOutlined } from "@ant-design/icons";
 
 import {

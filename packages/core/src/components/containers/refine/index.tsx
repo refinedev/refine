@@ -2,7 +2,7 @@ import React from "react";
 import { ConfigProvider, notification } from "antd";
 import { ConfigProviderProps } from "antd/lib/config-provider";
 import { ConfigProps } from "antd/lib/notification";
-import { /* BrowserRouter as Router, */ RouteProps } from "react-router-dom";
+import { RouteProps } from "react-router-dom";
 import {
     QueryClientProvider,
     QueryClient,

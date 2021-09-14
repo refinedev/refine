@@ -1,8 +1,6 @@
 /* eslint-disable react/display-name */
 import React, { useContext } from "react";
-import {
-    /* Switch, Route, */ RouteProps /* Redirect */,
-} from "react-router-dom";
+import { RouteProps } from "react-router-dom";
 import { useQuery } from "react-query";
 
 import {

@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { BarsOutlined } from "@ant-design/icons";
-// import { useParams } from "react-router-dom";
 import humanizeString from "humanize-string";
 
 import { useNavigation, useRouterContext, useTranslate } from "@hooks";

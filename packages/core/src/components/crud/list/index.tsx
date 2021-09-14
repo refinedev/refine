@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react";
 import { PageHeader, PageHeaderProps } from "antd";
-// import { useParams } from "react-router-dom";
 
 import { useResourceWithRoute, useRouterContext, useTranslate } from "@hooks";
 import { CreateButton } from "@components";
