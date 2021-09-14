@@ -20,6 +20,7 @@ import {
     GetListResponse,
     SuccessErrorNotification,
     HttpError,
+    MetaDataQuery,
 } from "../../../interfaces";
 import {
     parseTableParams,
@@ -39,6 +40,7 @@ export type useSimpleListProps<TData, TError, TSearchVariables = unknown> =
             data: TSearchVariables,
         ) => CrudFilters | Promise<CrudFilters>;
         queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
+        metaData?: MetaDataQuery;
     } & SuccessErrorNotification;
 
 export type useSimpleListReturnType<
@@ -77,6 +79,7 @@ export const useSimpleList = <
     syncWithLocation: syncWithLocationProp,
     successNotification,
     errorNotification,
+    metaData,
     ...listProps
 }: useSimpleListProps<
     TData,
@@ -160,6 +163,7 @@ export const useSimpleList = <
         queryOptions,
         successNotification,
         errorNotification,
+        metaData,
     });
     const { data, isFetching } = queryResult;
 

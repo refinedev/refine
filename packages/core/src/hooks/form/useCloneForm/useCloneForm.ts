@@ -8,6 +8,7 @@ import {
     BaseRecord,
     GetOneResponse,
     HttpError,
+    MetaDataQuery,
     ResourceRouterParams,
 } from "../../../interfaces";
 import { useCreateForm, useCreateFormProps } from "../useCreateForm";
@@ -19,6 +20,7 @@ export type useCloneFormProps<
     TVariables = {},
 > = useCreateFormProps<TData, TError, TVariables> & {
     cloneId?: string;
+    metaData?: MetaDataQuery;
 };
 
 type SaveButtonProps = {
@@ -73,6 +75,7 @@ export const useCloneForm = <
         queryOptions: {
             enabled: isClone,
         },
+        metaData: props.metaData,
     });
 
     const { data, isFetching } = queryResult;

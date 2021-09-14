@@ -42,6 +42,7 @@ export const useOne = <
     queryOptions,
     successNotification,
     errorNotification,
+    metaData,
 }: UseOneProps<TData, TError>): QueryObserverResult<GetOneResponse<TData>> => {
     const { getOne } = useContext<IDataContext>(DataContext);
     const translate = useTranslate();
@@ -49,7 +50,7 @@ export const useOne = <
 
     const queryResponse = useQuery<GetOneResponse<TData>, TError>(
         [`resource/getOne/${resource}`, { id }],
-        () => getOne<TData>(resource, { id }),
+        () => getOne<TData>(resource, { id, metaData }),
         {
             ...queryOptions,
             onSuccess: (data) => {

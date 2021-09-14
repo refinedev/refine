@@ -173,11 +173,11 @@ export const useTable = <
             },
             filters,
             sort: sorter,
-            metaData,
         },
         queryOptions,
         successNotification,
         errorNotification,
+        metaData,
     });
     const { data, isFetching } = queryResult;
 
