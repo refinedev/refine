@@ -53,27 +53,7 @@ Navigate to the project folder and install **refine** with the following *npm* c
 
 ```
 npm i @pankod/refine
-``` 
-
-Next, start your project with:
-
 ```
-npm run start
-```
-
-Your **refine** application should be up and running!  
-Point your browser to [http://localhost:3000](http://localhost:3000) to access it. You will see the welcome page.
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src={readyPage} alt="Ready Page" />
-</div>
-<br/>
-  
   
   </TabItem>
   <TabItem value="superplate">
@@ -112,30 +92,9 @@ tutorial
 ? i18n - Internationalization: 
 ❯ No
 ```
-
-Next, navigate to the project folder and start your project with:
-
-```
-npm run dev
-```
-
-Your **refine** application should be up and running!  
-Point your browser to [http://localhost:3000](http://localhost:3000) to access it. You will see the welcome page.
-
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src={readyPage} alt="Ready Page" />
-</div>
-<br/>
   
 </TabItem>
 </Tabs>
-
 
 ## About Fake REST API
 
@@ -143,12 +102,15 @@ Point your browser to [http://localhost:3000](http://localhost:3000) to access i
 
 For the sake of this tutorial, we will provide you a fully working, *fake REST API* located at https://api.fake-rest.refine.dev/. You may take a look at available [resources and routes of the API](https://api.fake-rest.refine.dev/) before proceeding to the next step.
 
-
 ## Using a Dataprovider
+
+:::note
+If you used `superplate` to bootstrap the project, you can skip this section as it already adds a data provider.
+:::
 
 Dataproviders are **refine** components making it possible to consume different API's and data services conveniently. To consume our *Fake REST API*, we'll use the **"Simple REST Dataprovider"**.
 
-Run the following command to install the required package:
+Next, navigate to the project folder and run the following command to install the required package:
 
 ```
 npm i @pankod/refine-simple-rest
@@ -197,6 +159,25 @@ export default App;
 <br/>
 
 `<Refine/>` is the root component of a **refine** application. Using the [`dataProvider`](api-references/providers/data-provider.md) prop, we made our **Simple REST Dataprovider** available to the entire application.
+
+Run the following command to install the required package:
+
+```sh
+npm run dev
+```
+
+Your **refine** application should be up and running!  
+Point your browser to [http://localhost:3000](http://localhost:3000) to access it. You will see the welcome page.
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={readyPage} alt="Ready Page" />
+</div>
+<br/>
 
 ## Adding Resources
 
