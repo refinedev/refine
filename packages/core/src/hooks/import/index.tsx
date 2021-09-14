@@ -7,8 +7,9 @@ import {
     useTranslate,
     useCreateMany,
     useResourceWithRoute,
+    useRouterContext,
 } from "@hooks";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import {
     MapDataFn,
     BaseRecord,
@@ -89,6 +90,9 @@ export const useImport = <
 
     const t = useTranslate();
     const resourceWithRoute = useResourceWithRoute();
+
+    const { useParams } = useRouterContext();
+
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
     const { name: resource } = resourceWithRoute(
         resourceName ?? routeResourceName,

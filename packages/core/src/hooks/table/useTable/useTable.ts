@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+// import { /* useLocation, */ useParams } from "react-router-dom";
 import { Grid } from "antd";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
@@ -10,7 +10,7 @@ import { useForm } from "antd/lib/form/Form";
 import { SorterResult } from "antd/lib/table/interface";
 
 import { useResourceWithRoute, useList } from "@hooks";
-import { useSyncWithLocation } from "@hooks/refine";
+import { useRouterContext, useSyncWithLocation } from "@hooks/refine";
 import { useNavigation } from "@hooks/navigation";
 import {
     stringifyTableParams,
@@ -97,6 +97,7 @@ export const useTable = <
         syncWithLocation = false;
     }
 
+    const { useLocation, useParams } = useRouterContext();
     const { search } = useLocation();
 
     let defaultCurrent = initialCurrent;

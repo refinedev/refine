@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { QueryObserverResult } from "react-query";
 
-import { useOne, useResourceWithRoute } from "@hooks";
+import { useOne, useResourceWithRoute, useRouterContext } from "@hooks";
 
 import {
     ResourceRouterParams,
@@ -36,6 +36,8 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
     errorNotification,
 }: useShowProps = {}): useShowReturnType<TData> => {
     const [showId, setShowId] = useState<string>();
+
+    const { useParams } = useRouterContext();
 
     const { resource: routeResourceName, id: idFromRoute } =
         useParams<ResourceRouterParams>();

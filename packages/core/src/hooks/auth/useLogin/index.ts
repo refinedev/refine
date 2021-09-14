@@ -1,12 +1,13 @@
 import React from "react";
 import { useMutation, UseMutationResult } from "react-query";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import { notification } from "antd";
 
 import { AuthContext } from "@contexts/auth";
 import { useNavigation } from "@hooks/navigation";
 
 import { IAuthContext } from "../../../interfaces";
+import { useRouterContext } from "@hooks/refine";
 
 export type UseLoginReturnType<TData, TVariables = {}> = UseMutationResult<
     TData,
@@ -30,6 +31,8 @@ export const useLogin = <TData, TVariables = {}>(): UseLoginReturnType<
     const { replace } = useNavigation();
     const { login: loginFromContext } =
         React.useContext<IAuthContext>(AuthContext);
+
+    const { useLocation } = useRouterContext();
 
     const location = useLocation<{ from: string }>();
     const { from } = location.state || { from: { pathname: "/" } };

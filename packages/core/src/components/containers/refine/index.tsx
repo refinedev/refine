@@ -2,7 +2,7 @@ import React from "react";
 import { ConfigProvider, notification } from "antd";
 import { ConfigProviderProps } from "antd/lib/config-provider";
 import { ConfigProps } from "antd/lib/notification";
-import { BrowserRouter as Router, RouteProps } from "react-router-dom";
+import { /* BrowserRouter as Router, */ RouteProps } from "react-router-dom";
 import {
     QueryClientProvider,
     QueryClient,
@@ -38,6 +38,8 @@ import {
 } from "../../../interfaces";
 import { useWarnAboutChange } from "@hooks/refine";
 
+import * as H from "history";
+
 interface QueryClientConfig {
     queryCache?: QueryCache;
     mutationCache?: MutationCache;
@@ -65,6 +67,17 @@ export interface RefineProps {
     Title?: React.FC<TitleProps>;
     reactQueryClientConfig?: QueryClientConfig;
     notifcationConfig?: ConfigProps;
+    useHistory: () => H.History;
+    useLocation: <S = H.LocationState>() => H.Location<S>;
+    useParams: <
+        Params extends { [K in keyof Params]?: string } = {},
+    >() => Params;
+    BrowserRouter: any;
+    Switch: any;
+    Route: any;
+    Prompt: any;
+    Link: any;
+    Redirect: any;
 }
 
 /**
@@ -97,6 +110,15 @@ export const Refine: React.FC<RefineProps> = ({
     OffLayoutArea,
     reactQueryClientConfig,
     notifcationConfig,
+    useHistory,
+    useLocation,
+    useParams,
+    BrowserRouter,
+    Switch,
+    Route,
+    Prompt,
+    Link,
+    Redirect,
 }) => {
     const queryClient = new QueryClient({
         ...reactQueryClientConfig,
@@ -159,9 +181,16 @@ export const Refine: React.FC<RefineProps> = ({
                                         Header={Header}
                                         OffLayoutArea={OffLayoutArea}
                                         hasDashboard={!!DashboardPage}
+                                        useHistory={useHistory}
+                                        useLocation={useLocation}
+                                        useParams={useParams}
+                                        Prompt={Prompt}
+                                        Link={Link}
                                     >
                                         <UnsavedWarnContextProvider>
-                                            <MainRouter>
+                                            <MainRouter
+                                                BrowserRouter={BrowserRouter}
+                                            >
                                                 <>
                                                     <RouteProvider
                                                         resources={resources}
@@ -172,8 +201,15 @@ export const Refine: React.FC<RefineProps> = ({
                                                         LoginPage={LoginPage}
                                                         ReadyPage={ReadyPage}
                                                         customRoutes={routes}
+                                                        Switch={Switch}
+                                                        Route={Route}
+                                                        Redirect={Redirect}
                                                     />
-                                                    <RouteChangeHandler />
+                                                    <RouteChangeHandler
+                                                        useLocation={
+                                                            useLocation
+                                                        }
+                                                    />
                                                 </>
                                             </MainRouter>
                                         </UnsavedWarnContextProvider>
@@ -189,7 +225,10 @@ export const Refine: React.FC<RefineProps> = ({
     );
 };
 
-const MainRouter: React.FC = ({ children }) => {
+const MainRouter: React.FC<{ BrowserRouter: any }> = ({
+    children,
+    BrowserRouter,
+}) => {
     const { setWarnWhen } = useWarnAboutChange();
 
     const getUserConfirmation: (
@@ -203,6 +242,8 @@ const MainRouter: React.FC = ({ children }) => {
         callback(allowTransition);
     };
     return (
-        <Router getUserConfirmation={getUserConfirmation}>{children}</Router>
+        <BrowserRouter getUserConfirmation={getUserConfirmation}>
+            {children}
+        </BrowserRouter>
     );
 };

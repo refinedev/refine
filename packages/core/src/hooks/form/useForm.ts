@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { QueryObserverResult } from "react-query";
 import { FormInstance, FormProps } from "antd";
 
-import { useResourceWithRoute } from "@hooks";
+import { useResourceWithRoute, useRouterContext } from "@hooks";
 
 import { useCreateForm, useCreateFormProps } from "./useCreateForm";
 import { useEditForm, useEditFormProps } from "./useEditForm";
@@ -96,7 +96,13 @@ export const useForm = <
 
     const resourceWithRoute = useResourceWithRoute();
 
-    const { resource: resourceFromParams } = useParams<ResourceRouterParams>();
+    const { useParams } = useRouterContext();
+
+    const {
+        resource: resourceFromParams,
+        action: actionFromRoute,
+        id,
+    } = useParams<ResourceRouterParams>();
 
     const resourceType = resourceFromProps ?? resourceFromParams;
 
@@ -118,7 +124,7 @@ export const useForm = <
         cloneId,
     } as useCloneFormProps<TData, TError, TVariables>);
 
-    const { action: actionFromRoute, id } = useParams<ResourceRouterParams>();
+    // const { action: actionFromRoute, id } = useParams<ResourceRouterParams>();
 
     switch (action || actionFromRoute) {
         case "create":

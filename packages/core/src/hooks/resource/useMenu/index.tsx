@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import { DashboardOutlined, UnorderedListOutlined } from "@ant-design/icons";
 
 import { RefineContext } from "@contexts/refine";
 import { IRefineContext, IMenuItem } from "../../../interfaces";
-import { useTranslate, useResource } from "@hooks";
+import { useTranslate, useResource, useRouterContext } from "@hooks";
 import { userFriendlyResourceName } from "@definitions";
 
 type useMenuReturnType = {
@@ -23,7 +23,10 @@ type useMenuReturnType = {
 export const useMenu: () => useMenuReturnType = () => {
     const { resources } = useResource();
     const translate = useTranslate();
+
+    const { useLocation } = useRouterContext();
     const location = useLocation();
+
     const { hasDashboard } = useContext<IRefineContext>(RefineContext);
 
     const selectedResource = resources.find((el) =>

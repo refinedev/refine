@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import {
     Card,
     Row,
@@ -15,6 +15,7 @@ import {
     useMutationMode,
     useNavigation,
     useTranslate,
+    useRouterContext,
 } from "@hooks";
 import {
     DeleteButton,
@@ -65,6 +66,8 @@ export const Edit: React.FC<EditProps> = ({
     const { mutationMode: mutationModeContext } = useMutationMode();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
+
+    const { useParams } = useRouterContext();
 
     const {
         resource: routeResourceName,

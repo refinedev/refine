@@ -1,6 +1,8 @@
 /* eslint-disable react/display-name */
 import React, { useContext } from "react";
-import { Switch, Route, RouteProps, Redirect } from "react-router-dom";
+import {
+    /* Switch, Route, */ RouteProps /* Redirect */,
+} from "react-router-dom";
 import { useQuery } from "react-query";
 
 import {
@@ -18,6 +20,9 @@ export interface RouteProviderProps {
     LoginPage?: React.FC | false;
     ReadyPage?: React.FC;
     customRoutes?: RouteProps[];
+    Switch: any;
+    Route: any;
+    Redirect: any;
 }
 
 type IRoutesProps = RouteProps & { routes?: RouteProps[] };
@@ -28,6 +33,9 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     DashboardPage,
     LoginPage,
     customRoutes = [],
+    Switch,
+    Route,
+    Redirect,
 }) => {
     const { checkAuth, isAuthenticated } =
         useContext<IAuthContext>(AuthContext);
@@ -180,7 +188,7 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
             ))}
 
             <Route
-                render={({ location }) => {
+                render={({ location }: { location: any }) => {
                     if (isLoading) {
                         return null;
                     }

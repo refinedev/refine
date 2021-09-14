@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useResourceWithRoute } from "@hooks";
+// import { useParams } from "react-router-dom";
+import { useResourceWithRoute, useRouterContext } from "@hooks";
 import {
     ResourceRouterParams,
     IDataContext,
@@ -56,6 +56,8 @@ export const useExport = <
     const [isLoading, setIsLoading] = useState(false);
 
     const resourceWithRoute = useResourceWithRoute();
+
+    const { useParams } = useRouterContext();
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
     let { name: resource } = resourceWithRoute(routeResourceName);

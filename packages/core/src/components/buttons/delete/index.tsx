@@ -1,13 +1,14 @@
 import React, { FC } from "react";
 import { Button, ButtonProps, Popconfirm } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 import {
     useDelete,
     useResourceWithRoute,
     useTranslate,
     useMutationMode,
+    useRouterContext,
 } from "@hooks";
 import {
     DeleteOneResponse,
@@ -47,6 +48,8 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
     const { mutationMode: mutationModeContext } = useMutationMode();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
+
+    const { useParams } = useRouterContext();
 
     const { resource: routeResourceName, id: idFromRoute } =
         useParams<ResourceRouterParams>();

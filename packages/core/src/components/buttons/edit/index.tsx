@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { EditOutlined } from "@ant-design/icons";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
-import { useNavigation, useTranslate } from "@hooks";
+import { useNavigation, useRouterContext, useTranslate } from "@hooks";
 import { ResourceRouterParams } from "../../../interfaces";
 
 type EditButtonProps = ButtonProps & {
@@ -27,6 +27,8 @@ export const EditButton: FC<EditButtonProps> = ({
     ...rest
 }) => {
     const translate = useTranslate();
+
+    const { useParams } = useRouterContext();
 
     const { resource: routeResourceName, id: idFromRoute } =
         useParams<ResourceRouterParams>();

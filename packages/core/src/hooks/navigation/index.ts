@@ -1,6 +1,9 @@
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 import { useResourceWithRoute } from "@hooks";
+import { useContext } from "react";
+import { IRefineContext } from "@contexts/refine/IRefineContext";
+import { RefineContext } from "@contexts/refine";
 
 export type HistoryType = "push" | "replace";
 
@@ -12,6 +15,7 @@ export type HistoryType = "push" | "replace";
  * @see {@link https://refine.dev/docs/api-references/hooks/navigation/useNavigation} for more details.
  */
 export const useNavigation = () => {
+    const { useHistory } = useContext<IRefineContext>(RefineContext);
     const history = useHistory();
     const resourceWithRoute = useResourceWithRoute();
 

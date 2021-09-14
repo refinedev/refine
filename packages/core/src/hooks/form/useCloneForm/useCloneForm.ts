@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { QueryObserverResult } from "react-query";
 import { FormInstance, FormProps } from "antd";
 
-import { useOne } from "@hooks";
+import { useOne, useRouterContext } from "@hooks";
 import {
     BaseRecord,
     GetOneResponse,
@@ -60,6 +60,8 @@ export const useCloneForm = <
     });
 
     const { form, formLoading, mutationResult } = useCreateFormProps;
+
+    const { useParams } = useRouterContext();
 
     const { id: idFromRoute, action } = useParams<ResourceRouterParams>();
 

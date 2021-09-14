@@ -3,7 +3,7 @@ import {
     useModalForm as useModalFormSF,
     UseModalFormConfig as UseModalFormConfigSF,
 } from "sunflower-antd";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 import {
     useForm,
@@ -11,7 +11,8 @@ import {
     useTranslate,
     useWarnAboutChange,
     useResourceWithRoute,
-} from "../../../hooks";
+    useRouterContext,
+} from "@hooks";
 import {
     BaseRecord,
     HttpError,
@@ -125,6 +126,8 @@ export const useModalForm = <
         },
         loading: formLoading,
     };
+
+    const { useParams } = useRouterContext();
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 

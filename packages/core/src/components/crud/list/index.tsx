@@ -1,8 +1,8 @@
 import React, { ReactNode } from "react";
 import { PageHeader, PageHeaderProps } from "antd";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
-import { useResourceWithRoute, useTranslate } from "@hooks";
+import { useResourceWithRoute, useRouterContext, useTranslate } from "@hooks";
 import { CreateButton } from "@components";
 import { userFriendlyResourceName } from "@definitions";
 import { ResourceRouterParams, CreateButtonProps } from "../../../interfaces";
@@ -29,6 +29,8 @@ export const List: React.FC<ListProps> = ({
     pageHeaderProps,
     resource: resourceFromProps,
 }) => {
+    const { useParams } = useRouterContext();
+
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const translate = useTranslate();
