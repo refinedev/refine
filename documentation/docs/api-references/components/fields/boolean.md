@@ -46,10 +46,14 @@ export const PostList: React.FC = () => {
 ```
 
 <br/>
-<div>
-    <img src={booleanField} alt="BooleanField Usage"/>
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={booleanField} alt="BooleanField" />
 </div>
-
 
 ## API Reference
 
