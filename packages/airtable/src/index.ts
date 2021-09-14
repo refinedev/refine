@@ -43,7 +43,9 @@ const AirtableDataProvider = (
             };
         },
 
-        getMany: async (resource, ids) => {
+        getMany: async (resource, params) => {
+            const { ids } = params;
+
             const { all } = base(resource).select({
                 pageSize: 100,
             });
@@ -61,7 +63,9 @@ const AirtableDataProvider = (
         },
 
         create: async (resource, params) => {
-            const { id, fields } = await base(resource).create(params);
+            const { variables } = params;
+
+            const { id, fields } = await base(resource).create(variables);
 
             return {
                 data: {
@@ -72,7 +76,9 @@ const AirtableDataProvider = (
         },
 
         createMany: async (resource, params) => {
-            const data = await base(resource).create(params);
+            const { variables } = params;
+
+            const data = await base(resource).create(variables);
 
             return {
                 data: data.map((p) => ({
@@ -82,8 +88,10 @@ const AirtableDataProvider = (
             };
         },
 
-        update: async (resource, id, params) => {
-            const { fields } = await base(resource).update(id, params);
+        update: async (resource, params) => {
+            const { id, variables } = params;
+
+            const { fields } = await base(resource).update(id, variables);
 
             return {
                 data: {
@@ -93,10 +101,12 @@ const AirtableDataProvider = (
             };
         },
 
-        updateMany: async (resource, ids, params) => {
+        updateMany: async (resource, params) => {
+            const { ids, variables } = params;
+
             const requestParams = ids.map((id) => ({
                 id,
-                fields: { ...params },
+                fields: { ...variables },
             }));
             const data = await base(resource).update(requestParams);
 
@@ -108,7 +118,9 @@ const AirtableDataProvider = (
             };
         },
 
-        getOne: async (resource, id) => {
+        getOne: async (resource, params) => {
+            const { id } = params;
+
             const { fields } = await base(resource).find(id);
 
             return {
@@ -119,7 +131,9 @@ const AirtableDataProvider = (
             };
         },
 
-        deleteOne: async (resource, id) => {
+        deleteOne: async (resource, params) => {
+            const { id } = params;
+
             const { fields } = await base(resource).destroy(id);
 
             return {
@@ -130,7 +144,9 @@ const AirtableDataProvider = (
             };
         },
 
-        deleteMany: async (resource, ids) => {
+        deleteMany: async (resource, params) => {
+            const { ids } = params;
+
             const data = await base(resource).destroy(ids);
 
             return {

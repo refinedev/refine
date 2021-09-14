@@ -1,6 +1,3 @@
-import nock from "nock";
-// import nock from "nock";
-
 import dataProvider from "../../src/index";
 import "./index.mock";
 

@@ -6,7 +6,7 @@ describe("getMany", () => {
         const response = await dataProvider(
             "keywoytODSr6xAqfg",
             "appKYl1H4k9g73sBT",
-        ).getMany("posts", ["recLKRioqifTrPUIz", "rec9GbXLzd6dxn4Il"]);
+        ).getMany("posts", { ids: ["recLKRioqifTrPUIz", "rec9GbXLzd6dxn4Il"] });
 
         const { data } = response;
 

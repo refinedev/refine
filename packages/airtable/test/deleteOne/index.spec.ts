@@ -6,7 +6,7 @@ describe("deleteOne", () => {
         const response = await dataProvider(
             "keywoytODSr6xAqfg",
             "appKYl1H4k9g73sBT",
-        ).deleteOne("posts", "recJEGeL2aB5rGFbC");
+        ).deleteOne("posts", { id: "recJEGeL2aB5rGFbC" });
 
         const { data } = response;
 

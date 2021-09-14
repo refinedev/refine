@@ -6,8 +6,11 @@ describe("update", () => {
         const response = await dataProvider(
             "keywoytODSr6xAqfg",
             "appKYl1H4k9g73sBT",
-        ).update("posts", "recLKRioqifTrPUIz", {
-            title: "Hello World!!",
+        ).update("posts", {
+            id: "recLKRioqifTrPUIz",
+            variables: {
+                title: "Hello World!!",
+            },
         });
 
         const { data } = response;

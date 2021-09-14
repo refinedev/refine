@@ -7,10 +7,12 @@ describe("create", () => {
             "keywoytODSr6xAqfg",
             "appKYl1H4k9g73sBT",
         ).create("posts", {
-            title: "foo",
-            content: "bar",
-            status: "published",
-            category: ["recDBRJljBDFH4rIh"],
+            variables: {
+                title: "foo",
+                content: "bar",
+                status: "published",
+                category: ["recDBRJljBDFH4rIh"],
+            },
         });
 
         const { data } = response;
