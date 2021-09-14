@@ -22,6 +22,7 @@ import {
     HttpError,
     GetListResponse,
     SuccessErrorNotification,
+    MetaDataQuery,
 } from "../../interfaces";
 import { handleNotification } from "@definitions/helpers";
 
@@ -31,6 +32,7 @@ type DeleteParams = {
     mutationMode?: MutationMode;
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
+    metaData?: MetaDataQuery;
 } & SuccessErrorNotification;
 
 type UseDeleteReturnType<
@@ -78,7 +80,14 @@ export const useDelete = <
         DeleteParams,
         DeleteContext
     >(
-        ({ id, mutationMode, undoableTimeout, resource, onCancel }) => {
+        ({
+            id,
+            mutationMode,
+            undoableTimeout,
+            resource,
+            onCancel,
+            metaData,
+        }) => {
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
 
@@ -86,13 +95,13 @@ export const useDelete = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             if (!(mutationModePropOrContext === "undoable")) {
-                return deleteOne<TData>(resource, id);
+                return deleteOne<TData>(resource, { id, metaData });
             }
 
             const deletePromise = new Promise<DeleteOneResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        deleteOne<TData>(resource, id)
+                        deleteOne<TData>(resource, { id, metaData })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     };

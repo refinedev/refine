@@ -14,6 +14,7 @@ import {
     GetListResponse,
     Context as DeleteContext,
     SuccessErrorNotification,
+    MetaDataQuery,
 } from "../../interfaces";
 import {
     useTranslate,
@@ -31,6 +32,7 @@ type DeleteManyParams = {
     mutationMode?: MutationMode;
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
+    metaData?: MetaDataQuery;
 } & SuccessErrorNotification;
 
 type UseDeleteManyReturnType<
@@ -84,6 +86,7 @@ export const useDeleteMany = <
             mutationMode,
             undoableTimeout,
             onCancel,
+            metaData,
         }: DeleteManyParams) => {
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
@@ -91,13 +94,13 @@ export const useDeleteMany = <
             const undoableTimeoutPropOrContext =
                 undoableTimeout ?? undoableTimeoutContext;
             if (!(mutationModePropOrContext === "undoable")) {
-                return deleteMany<TData>(resource, ids);
+                return deleteMany<TData>(resource, { ids, metaData });
             }
 
             const updatePromise = new Promise<DeleteManyResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        deleteMany<TData>(resource, ids)
+                        deleteMany<TData>(resource, { ids, metaData })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     };

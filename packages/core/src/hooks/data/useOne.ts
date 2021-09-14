@@ -7,6 +7,7 @@ import {
     IDataContext,
     HttpError,
     BaseRecord,
+    MetaDataQuery,
 } from "../../interfaces";
 import { useCheckError, useTranslate } from "@hooks";
 import { ArgsProps } from "antd/lib/notification";
@@ -18,6 +19,7 @@ export type UseOneProps<TData, TError> = {
     queryOptions?: UseQueryOptions<GetOneResponse<TData>, TError>;
     successNotification?: ArgsProps | false;
     errorNotification?: ArgsProps | false;
+    metaData?: MetaDataQuery;
 };
 
 /**
@@ -47,7 +49,7 @@ export const useOne = <
 
     const queryResponse = useQuery<GetOneResponse<TData>, TError>(
         [`resource/getOne/${resource}`, { id }],
-        () => getOne<TData>(resource, id),
+        () => getOne<TData>(resource, { id }),
         {
             ...queryOptions,
             onSuccess: (data) => {

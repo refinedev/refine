@@ -21,7 +21,6 @@ interface UseListConfig {
     pagination?: Pagination;
     sort?: CrudSorting;
     filters?: CrudFilters;
-    metaData?: MetaDataQuery;
 }
 
 export type UseListProps<TData, TError> = {
@@ -30,6 +29,7 @@ export type UseListProps<TData, TError> = {
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     successNotification?: ArgsProps | false;
     errorNotification?: ArgsProps | false;
+    metaData?: MetaDataQuery;
 };
 
 /**
@@ -52,6 +52,7 @@ export const useList = <
     queryOptions,
     successNotification,
     errorNotification,
+    metaData,
 }: UseListProps<TData, TError>): QueryObserverResult<
     GetListResponse<TData>,
     TError
@@ -62,7 +63,7 @@ export const useList = <
 
     const queryResponse = useQuery<GetListResponse<TData>, TError>(
         [`resource/list/${resource}`, { ...config }],
-        () => getList<TData>(resource, { ...config }),
+        () => getList<TData>(resource, { ...config, metaData }),
         {
             ...queryOptions,
             onSuccess: (data) => {

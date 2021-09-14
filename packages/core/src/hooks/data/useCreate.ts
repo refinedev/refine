@@ -9,6 +9,7 @@ import {
     BaseRecord,
     HttpError,
     SuccessErrorNotification,
+    MetaDataQuery,
 } from "../../interfaces";
 import { useListResourceQueries, useTranslate, useCheckError } from "@hooks";
 import { handleNotification } from "@definitions";
@@ -16,6 +17,7 @@ import { handleNotification } from "@definitions";
 type useCreateParams<TVariables> = {
     resource: string;
     values: TVariables;
+    metaData?: MetaDataQuery;
 } & SuccessErrorNotification;
 
 export type UseCreateReturnType<
@@ -58,8 +60,11 @@ export const useCreate = <
         useCreateParams<TVariables>,
         unknown
     >(
-        ({ resource, values }: useCreateParams<TVariables>) =>
-            create<TData, TVariables>(resource, values),
+        ({ resource, values, metaData }: useCreateParams<TVariables>) =>
+            create<TData, TVariables>(resource, {
+                variables: values,
+                metaData,
+            }),
         {
             onSuccess: (
                 _,

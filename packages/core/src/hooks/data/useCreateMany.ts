@@ -8,6 +8,7 @@ import {
     CreateManyResponse,
     HttpError,
     SuccessErrorNotification,
+    MetaDataQuery,
 } from "../../interfaces";
 import { useListResourceQueries, useTranslate } from "@hooks";
 import { handleNotification } from "@definitions";
@@ -16,6 +17,7 @@ import pluralize from "pluralize";
 type useCreateManyParams<TVariables> = {
     resource: string;
     values: TVariables[];
+    metaData?: MetaDataQuery;
 } & SuccessErrorNotification;
 
 export type UseCreateManyReturnType<
@@ -56,8 +58,11 @@ export const useCreateMany = <
         TError,
         useCreateManyParams<TVariables>
     >(
-        ({ resource, values }: useCreateManyParams<TVariables>) =>
-            createMany<TData, TVariables>(resource, values),
+        ({ resource, values, metaData }: useCreateManyParams<TVariables>) =>
+            createMany<TData, TVariables>(resource, {
+                variables: values,
+                metaData,
+            }),
         {
             onSuccess: (_, { resource, successNotification }) => {
                 const resourcePlural = pluralize.plural(resource);

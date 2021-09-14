@@ -8,6 +8,7 @@ import {
     BaseRecord,
     GetManyResponse,
     HttpError,
+    MetaDataQuery,
 } from "../../interfaces";
 import { useCheckError } from "@hooks";
 import { useTranslate } from "@hooks/translate";
@@ -19,6 +20,7 @@ export type UseManyProps<TData, TError> = {
     queryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>;
     successNotification?: ArgsProps | false;
     errorNotification?: ArgsProps | false;
+    metaData?: MetaDataQuery;
 };
 
 /**
@@ -41,6 +43,7 @@ export const useMany = <
     queryOptions,
     successNotification,
     errorNotification,
+    metaData,
 }: UseManyProps<TData, TError>): QueryObserverResult<
     GetManyResponse<TData>
 > => {
@@ -50,7 +53,7 @@ export const useMany = <
 
     const queryResponse = useQuery<GetManyResponse<TData>, TError>(
         [`resource/getMany/${resource}`, ids],
-        () => getMany<TData>(resource, ids),
+        () => getMany<TData>(resource, { ids, metaData }),
         {
             ...queryOptions,
             onSuccess: (data) => {
