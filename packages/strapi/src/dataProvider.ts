@@ -82,7 +82,9 @@ export const DataProvider = (
         };
     },
 
-    getMany: async (resource, ids) => {
+    getMany: async (resource, params) => {
+        const { ids } = params;
+
         const url = `${apiUrl}/${resource}`;
 
         const query = ids.map((item: string) => `id_in=${item}`).join("&");
@@ -95,31 +97,37 @@ export const DataProvider = (
     },
 
     create: async (resource, params) => {
+        const { variables } = params;
+
         const url = `${apiUrl}/${resource}`;
 
-        const { data } = await httpClient.post(url, params);
+        const { data } = await httpClient.post(url, variables);
 
         return {
             data,
         };
     },
 
-    update: async (resource, id, params) => {
+    update: async (resource, params) => {
+        const { id, variables } = params;
+
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.put(url, params);
+        const { data } = await httpClient.put(url, variables);
 
         return {
             data,
         };
     },
 
-    updateMany: async (resource, ids, params) => {
+    updateMany: async (resource, params) => {
+        const { ids, variables } = params;
+
         const response = await Promise.all(
             ids.map(async (id) => {
                 const { data } = await httpClient.put(
                     `${apiUrl}/${resource}/${id}`,
-                    params,
+                    variables,
                 );
                 return data;
             }),
@@ -132,7 +140,9 @@ export const DataProvider = (
         throw new Error("createMany not implemented");
     },
 
-    getOne: async (resource, id) => {
+    getOne: async (resource, params) => {
+        const { id } = params;
+
         const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await httpClient.get(url);
@@ -142,7 +152,9 @@ export const DataProvider = (
         };
     },
 
-    deleteOne: async (resource, id) => {
+    deleteOne: async (resource, params) => {
+        const { id } = params;
+
         const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await httpClient.delete(url);
@@ -152,7 +164,9 @@ export const DataProvider = (
         };
     },
 
-    deleteMany: async (resource, ids) => {
+    deleteMany: async (resource, params) => {
+        const { ids } = params;
+
         const response = await Promise.all(
             ids.map(async (id) => {
                 const { data } = await httpClient.delete(

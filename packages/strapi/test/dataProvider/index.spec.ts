@@ -1,5 +1,4 @@
 import axios from "axios";
-// import nock from "nock";
 
 import { DataProvider } from "../../src/dataProvider";
 import "./index.mock";
@@ -22,9 +21,7 @@ describe("dataProvider", () => {
             const { data } = await DataProvider(API_URL, axiosInstance).create(
                 "posts",
                 {
-                    title: "foo",
-                    content: "bar",
-                    cover: ["116"],
+                    variables: { title: "foo", content: "bar", cover: ["116"] },
                 },
             );
 
@@ -40,7 +37,7 @@ describe("dataProvider", () => {
             const { data } = await DataProvider(
                 API_URL,
                 axiosInstance,
-            ).deleteMany("posts", ["46"]);
+            ).deleteMany("posts", { ids: ["46"] });
 
             expect(data[0]["id"]).toBe(46);
             expect(data[0]["title"]).toBe("tiger");
@@ -54,7 +51,7 @@ describe("dataProvider", () => {
             const { data } = await DataProvider(
                 API_URL,
                 axiosInstance,
-            ).deleteOne("posts", "47");
+            ).deleteOne("posts", { id: "47" });
 
             expect(data["id"]).toBe(47);
             expect(data["title"]).toBe("test");
@@ -140,7 +137,7 @@ describe("dataProvider", () => {
         it("correct response", async () => {
             const { data } = await DataProvider(API_URL, axiosInstance).getMany(
                 "posts",
-                ["49"],
+                { ids: ["49"] },
             );
 
             expect(data[0]["id"]).toBe(49);
@@ -154,7 +151,7 @@ describe("dataProvider", () => {
         it("correct response", async () => {
             const { data } = await DataProvider(API_URL, axiosInstance).getOne(
                 "posts",
-                "49",
+                { id: "49" },
             );
 
             expect(data["id"]).toBe(49);
@@ -168,9 +165,11 @@ describe("dataProvider", () => {
         it("correct response", async () => {
             const { data } = await DataProvider(API_URL, axiosInstance).update(
                 "posts",
-                "49",
                 {
-                    title: "updated",
+                    id: "49",
+                    variables: {
+                        title: "updated",
+                    },
                 },
             );
             expect(data["id"]).toBe(49);
@@ -184,8 +183,11 @@ describe("dataProvider", () => {
             const { data } = await DataProvider(
                 API_URL,
                 axiosInstance,
-            ).updateMany("posts", ["50", "51"], {
-                title: "updated",
+            ).updateMany("posts", {
+                ids: ["50", "51"],
+                variables: {
+                    title: "updated",
+                },
             });
 
             expect(data[0]["id"]).toBe(50);
