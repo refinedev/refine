@@ -1,0 +1,26 @@
+{
+    "name": "refine-next",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
+    },
+    "dependencies": {
+        "next": "10.2.0",
+        "react": "file:../../node_modules/react",
+        "react-dom": "file:../../node_modules/react-dom",
+        "next-compose-plugins": "^2.2.1",
+        "@pankod/refine": "../../packages/core",
+        "@pankod/refine-simple-rest": "../../packages/simple-rest"
+    },
+    "devDependencies": {
+        "@types/node": "^14.14.13",
+        "@types/react": "^17.0.0",
+        "@types/react-dom": "^17.0.0",
+        "typescript": "^4.1.3",
+        "@typescript-eslint/parser": "^4.9.1"
+    }
+}
