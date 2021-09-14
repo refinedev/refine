@@ -10,8 +10,11 @@ describe("updateMany", () => {
         const { data } = await JsonServer(
             "https://api.nestjsx-crud.refine.dev",
             axios,
-        ).updateMany("posts", ["f1d6e030-4d70-44d4-98dd-8786f197c640"], {
-            title: "updated-title-1",
+        ).updateMany("posts", {
+            ids: ["f1d6e030-4d70-44d4-98dd-8786f197c640"],
+            variables: {
+                title: "updated-title-1",
+            },
         });
 
         expect(data[0]["title"]).toBe("updated-title-1");

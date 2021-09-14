@@ -11,14 +11,16 @@ describe("create", () => {
             "https://api.nestjsx-crud.refine.dev",
             axios,
         ).create("posts", {
-            title: "foo",
-            content: "bar",
-            status: "active",
-            user: {
-                id: "6b67da31-2f7e-44ac-936e-18f5766252fc",
-            },
-            category: {
-                id: "7f198377-e367-43ce-9932-d2e2572767e5",
+            variables: {
+                title: "foo",
+                content: "bar",
+                status: "active",
+                user: {
+                    id: "6b67da31-2f7e-44ac-936e-18f5766252fc",
+                },
+                category: {
+                    id: "7f198377-e367-43ce-9932-d2e2572767e5",
+                },
             },
         });
 
