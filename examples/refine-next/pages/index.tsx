@@ -3,12 +3,13 @@ import React from "react";
 import { Refine, Resource, useTable, Table } from "@pankod/refine";
 
 import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-nextjs-router";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const Home: React.FC = () => {
     return (
-        <Refine dataProvider={dataProvider(API_URL)}>
+        <Refine {...routerProvider()} dataProvider={dataProvider(API_URL)}>
             <Resource name="posts" list={PostList} />
         </Refine>
     );
@@ -18,7 +19,7 @@ const Home: React.FC = () => {
 export default Home;
 
 const PostList = () => {
-    const { tableProps, filters } = useTable<IPost>();
+    const { tableProps } = useTable<IPost>();
 
     return (
         <Table {...tableProps} rowKey="id">
