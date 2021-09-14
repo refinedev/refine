@@ -116,7 +116,9 @@ const JsonServer = (
         };
     },
 
-    getMany: async (resource, ids) => {
+    getMany: async (resource, params) => {
+        const { ids } = params;
+
         const { data } = await httpClient.get(
             `${apiUrl}/${resource}?${stringify({ id: ids })}`,
         );
@@ -127,9 +129,11 @@ const JsonServer = (
     },
 
     create: async (resource, params) => {
+        const { variables } = params;
+
         const url = `${apiUrl}/${resource}`;
 
-        const { data } = await httpClient.post(url, params);
+        const { data } = await httpClient.post(url, variables);
 
         return {
             data,
@@ -137,8 +141,10 @@ const JsonServer = (
     },
 
     createMany: async (resource, params) => {
+        const { variables } = params;
+
         const response = await Promise.all(
-            params.map(async (param) => {
+            variables.map(async (param) => {
                 const { data } = await httpClient.post(
                     `${apiUrl}/${resource}`,
                     param,
@@ -150,22 +156,26 @@ const JsonServer = (
         return { data: response };
     },
 
-    update: async (resource, id, params) => {
+    update: async (resource, params) => {
+        const { id, variables } = params;
+
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.patch(url, params);
+        const { data } = await httpClient.patch(url, variables);
 
         return {
             data,
         };
     },
 
-    updateMany: async (resource, ids, params) => {
+    updateMany: async (resource, params) => {
+        const { ids, variables } = params;
+
         const response = await Promise.all(
             ids.map(async (id) => {
                 const { data } = await httpClient.patch(
                     `${apiUrl}/${resource}/${id}`,
-                    params,
+                    variables,
                 );
                 return data;
             }),
@@ -174,7 +184,9 @@ const JsonServer = (
         return { data: response };
     },
 
-    getOne: async (resource, id) => {
+    getOne: async (resource, params) => {
+        const { id } = params;
+
         const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await httpClient.get(url);
@@ -184,7 +196,9 @@ const JsonServer = (
         };
     },
 
-    deleteOne: async (resource, id) => {
+    deleteOne: async (resource, params) => {
+        const { id } = params;
+
         const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await httpClient.delete(url);
@@ -194,7 +208,9 @@ const JsonServer = (
         };
     },
 
-    deleteMany: async (resource, ids) => {
+    deleteMany: async (resource, params) => {
+        const { ids } = params;
+
         const response = await Promise.all(
             ids.map(async (id) => {
                 const { data } = await httpClient.delete(

@@ -1,5 +1,4 @@
 import axios from "axios";
-// import nock from "nock";
 
 import JsonServer from "../../src/index";
 import "./index.mock";
@@ -11,7 +10,7 @@ describe("deleteOne", () => {
         const response = await JsonServer(
             "https://api.fake-rest.refine.dev",
             axios,
-        ).deleteOne("posts", "1");
+        ).deleteOne("posts", { id: "1" });
 
         const { data } = response;
 
