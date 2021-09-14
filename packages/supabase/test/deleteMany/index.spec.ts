@@ -6,7 +6,7 @@ describe("deleteMany", () => {
     it("correct response", async () => {
         const { data } = await dataProvider(supabaseClient).deleteMany(
             "posts",
-            ["43"],
+            { ids: ["43"] },
         );
 
         expect(data[0].id).toEqual(43);

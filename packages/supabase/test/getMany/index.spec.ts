@@ -4,10 +4,9 @@ import "./index.mock";
 
 describe("getMany", () => {
     it("correct response", async () => {
-        const response = await dataProvider(supabaseClient).getMany("posts", [
-            "2",
-            "3",
-        ]);
+        const response = await dataProvider(supabaseClient).getMany("posts", {
+            ids: ["2", "3"],
+        });
 
         const { data } = response;
 

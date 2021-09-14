@@ -4,13 +4,12 @@ import "./index.mock";
 
 describe("update", () => {
     it("correct response", async () => {
-        const { data } = await dataProvider(supabaseClient).update(
-            "posts",
-            "2",
-            {
+        const { data } = await dataProvider(supabaseClient).update("posts", {
+            id: "2",
+            variables: {
                 title: "Hello World!!",
             },
-        );
+        });
 
         expect(data["title"]).toBe("Hello World!!");
     });

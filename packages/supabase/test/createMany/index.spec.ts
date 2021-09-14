@@ -6,22 +6,24 @@ describe("createMany", () => {
     it("correct response", async () => {
         const { data } = await dataProvider(supabaseClient).createMany(
             "posts",
-            [
-                {
-                    title: "foo",
-                    slug: "foo-bar",
-                    content: "bar",
-                    categoryId: 2,
-                    image: {},
-                },
-                {
-                    title: "foo-2",
-                    slug: "foo-bar-2",
-                    content: "bar-2",
-                    categoryId: 1,
-                    image: {},
-                },
-            ],
+            {
+                variables: [
+                    {
+                        title: "foo",
+                        slug: "foo-bar",
+                        content: "bar",
+                        categoryId: 2,
+                        image: {},
+                    },
+                    {
+                        title: "foo-2",
+                        slug: "foo-bar-2",
+                        content: "bar-2",
+                        categoryId: 1,
+                        image: {},
+                    },
+                ],
+            },
         );
 
         expect(data[0]["id"]).toEqual(36);

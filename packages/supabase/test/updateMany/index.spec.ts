@@ -6,9 +6,11 @@ describe("updateMany", () => {
     it("correct response", async () => {
         const { data } = await dataProvider(supabaseClient).updateMany(
             "posts",
-            ["42"],
             {
-                slug: "update-many",
+                ids: ["42"],
+                variables: {
+                    slug: "update-many",
+                },
             },
         );
 

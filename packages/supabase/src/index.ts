@@ -52,7 +52,9 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        getMany: async (resource, ids) => {
+        getMany: async (resource, params) => {
+            const { ids } = params;
+
             const { data } = await supabaseClient
                 .from(resource)
                 .select("*")
@@ -64,7 +66,11 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
         },
 
         create: async (resource, params) => {
-            const { data } = await supabaseClient.from(resource).insert(params);
+            const { variables } = params;
+
+            const { data } = await supabaseClient
+                .from(resource)
+                .insert(variables);
 
             return {
                 data: (data || [])[0] as any,
@@ -72,17 +78,23 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
         },
 
         createMany: async (resource, params) => {
-            const { data } = await supabaseClient.from(resource).insert(params);
+            const { variables } = params;
+
+            const { data } = await supabaseClient
+                .from(resource)
+                .insert(variables);
 
             return {
                 data: data as any,
             };
         },
 
-        update: async (resource, id, params) => {
+        update: async (resource, params) => {
+            const { id, variables } = params;
+
             const { data } = await supabaseClient
                 .from(resource)
-                .update(params)
+                .update(variables)
                 .match({ id });
 
             return {
@@ -90,12 +102,14 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        updateMany: async (resource, ids, params) => {
+        updateMany: async (resource, params) => {
+            const { ids, variables } = params;
+
             const response = await Promise.all(
                 ids.map(async (id) => {
                     const { data } = await supabaseClient
                         .from(resource)
-                        .update(params)
+                        .update(variables)
                         .match({ id });
                     return (data || [])[0];
                 }),
@@ -106,7 +120,9 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        getOne: async (resource, id) => {
+        getOne: async (resource, params) => {
+            const { id } = params;
+
             const { data } = await supabaseClient
                 .from(resource)
                 .select("*")
@@ -117,7 +133,9 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        deleteOne: async (resource, id) => {
+        deleteOne: async (resource, params) => {
+            const { id } = params;
+
             const { data } = await supabaseClient
                 .from(resource)
                 .delete()
@@ -128,7 +146,9 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        deleteMany: async (resource, ids) => {
+        deleteMany: async (resource, params) => {
+            const { ids } = params;
+
             const response = await Promise.all(
                 ids.map(async (id) => {
                     const { data } = await supabaseClient
