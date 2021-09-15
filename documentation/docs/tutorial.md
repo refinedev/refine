@@ -104,10 +104,6 @@ For the sake of this tutorial, we will provide you a fully working, *fake REST A
 
 ## Using a Dataprovider
 
-:::note
-If you used `superplate` to bootstrap the project, you can skip this section as it already adds a data provider.
-:::
-
 Dataproviders are **refine** components making it possible to consume different API's and data services conveniently. To consume our *Fake REST API*, we'll use the **"Simple REST Dataprovider"**.
 
 Next, navigate to the project folder and run the following command to install the required package:
@@ -115,6 +111,10 @@ Next, navigate to the project folder and run the following command to install th
 ```
 npm i @pankod/refine-simple-rest
 ```
+
+:::note
+If you used `superplate` to bootstrap the project, you can skip this section as it already adds a data provider.
+:::
 
 :::note
 
@@ -162,9 +162,27 @@ export default App;
 
 Run the following command to install the required package:
 
+<Tabs
+  defaultValue="superplate"
+  values={[
+    {label: 'with superplate', value: 'superplate'},
+    {label: 'with create-react-app', value: 'create-react-app'}
+  ]}>
+  <TabItem value="superplate">
+
 ```sh
 npm run dev
 ```
+
+  </TabItem>
+  <TabItem value="create-react-app">
+
+```sh
+npm run start
+```
+
+  </TabItem>
+</Tabs>
 
 Your **refine** application should be up and running!  
 Point your browser to [http://localhost:3000](http://localhost:3000) to access it. You will see the welcome page.
