@@ -270,9 +270,39 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             };
         },
 
-        deleteMany: async (resource, ids) => {
+        deleteMany: async (resource, params) => {
+            const { ids, metaData } = params;
+
+            const singularResource = pluralize.singular(resource);
+            const camelDeleteName = camelCase(`delete-${singularResource}`);
+
+            const operation = metaData?.operation ?? camelDeleteName;
+
+            const response = await Promise.all(
+                ids.map(async (id) => {
+                    const { query, variables: gqlVariables } = gql.mutation({
+                        operation,
+                        variables: {
+                            input: {
+                                value: { where: { id } },
+                                type: `${camelDeleteName}Input`,
+                            },
+                        },
+                        fields: metaData?.fields ?? [
+                            {
+                                operation: singularResource,
+                                fields: ["id"],
+                                variables: {},
+                            },
+                        ],
+                    });
+                    const result = await client.request(query, gqlVariables);
+
+                    return result[operation][singularResource];
+                }),
+            );
             return {
-                data: [],
+                data: response,
             };
         },
 
