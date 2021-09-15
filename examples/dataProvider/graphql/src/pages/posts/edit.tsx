@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
     Edit,
     Form,
+    HttpError,
     Input,
     IResourceComponentsProps,
     Select,
@@ -17,7 +18,11 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+    const { formProps, saveButtonProps, queryResult } = useForm<
+        IPost,
+        HttpError,
+        IPost
+    >({
         metaData: {
             operation: "post",
             fields: [
@@ -48,11 +53,11 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
             <Form
                 {...formProps}
                 layout="vertical"
-                onFinish={(values: any) =>
+                onFinish={(values) =>
                     formProps.onFinish?.({
                         ...values,
                         category: values.category.id,
-                    })
+                    } as any)
                 }
             >
                 <Form.Item
