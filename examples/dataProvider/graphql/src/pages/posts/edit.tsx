@@ -17,12 +17,27 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
+    const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+        metaData: {
+            operation: "post",
+            fields: [
+                "id",
+                "title",
+                {
+                    category: ["id", "title"],
+                },
+                "content",
+            ],
+        },
+    });
 
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
         defaultValue: postData?.category.id,
+        metaData: {
+            fields: ["id", "title"],
+        },
     });
 
     const [selectedTab, setSelectedTab] =
@@ -30,7 +45,16 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
+            <Form
+                {...formProps}
+                layout="vertical"
+                onFinish={(values: any) =>
+                    formProps.onFinish?.({
+                        ...values,
+                        category: values.category.id,
+                    })
+                }
+            >
                 <Form.Item
                     label="Title"
                     name="title"
@@ -52,32 +76,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                     ]}
                 >
                     <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Status"
-                    name="status"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                            {
-                                label: "Rejected",
-                                value: "rejected",
-                            },
-                        ]}
-                    />
                 </Form.Item>
                 <Form.Item
                     label="Content"

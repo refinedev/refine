@@ -100,7 +100,13 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                         type: `${camelCreateName}Input`,
                     },
                 },
-                fields: metaData?.fields,
+                fields: metaData?.fields ?? [
+                    {
+                        operation: singularResource,
+                        fields: ["id"],
+                        variables: {},
+                    },
+                ],
             });
             const response = await client.request(query, qqlVariables);
 
@@ -116,8 +122,33 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
         },
 
         update: async (resource, params) => {
+            const { id, variables, metaData } = params;
+
+            const singularResource = pluralize.singular(resource);
+            const camelUpdateName = camelCase(`update-${singularResource}`);
+
+            const operation = metaData?.operation ?? camelUpdateName;
+
+            const { query, variables: qqlVariables } = gql.mutation({
+                operation,
+                variables: {
+                    input: {
+                        value: { where: { id }, data: variables },
+                        type: `${camelUpdateName}Input`,
+                    },
+                },
+                fields: metaData?.fields ?? [
+                    {
+                        operation: singularResource,
+                        fields: ["id"],
+                        variables: {},
+                    },
+                ],
+            });
+            const response = await client.request(query, qqlVariables);
+
             return {
-                data: { id: 1 } as any,
+                data: response[operation],
             };
         },
 
