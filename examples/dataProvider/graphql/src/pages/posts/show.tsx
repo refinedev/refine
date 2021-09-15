@@ -20,6 +20,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
                 {
                     category: ["title"],
                 },
+                "content",
             ],
         },
     });
