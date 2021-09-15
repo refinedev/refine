@@ -6,6 +6,7 @@ import {
     Space,
     EditButton,
     ShowButton,
+    DeleteButton,
 } from "@pankod/refine";
 
 import { IPost } from "interfaces";
@@ -43,6 +44,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                 recordItemId={record.id}
                             />
                             <ShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <DeleteButton
                                 hideText
                                 size="small"
                                 recordItemId={record.id}

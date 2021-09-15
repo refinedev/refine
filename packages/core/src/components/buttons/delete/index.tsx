@@ -14,6 +14,7 @@ import {
     ResourceRouterParams,
     MutationMode,
     SuccessErrorNotification,
+    MetaDataQuery,
 } from "../../../interfaces";
 
 export type DeleteButtonProps = ButtonProps & {
@@ -22,6 +23,7 @@ export type DeleteButtonProps = ButtonProps & {
     onSuccess?: (value: DeleteOneResponse) => void;
     mutationMode?: MutationMode;
     hideText?: boolean;
+    metaData?: MetaDataQuery;
 } & SuccessErrorNotification;
 
 /**
@@ -39,6 +41,7 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
     successNotification,
     errorNotification,
     hideText = false,
+    metaData,
     ...rest
 }) => {
     const translate = useTranslate();
@@ -75,6 +78,7 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
                         mutationMode,
                         successNotification,
                         errorNotification,
+                        metaData,
                     },
                     {
                         onSuccess: (value) => {
