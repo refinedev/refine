@@ -116,8 +116,38 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
         },
 
         createMany: async (resource, params) => {
+            const { variables, metaData } = params;
+
+            const singularResource = pluralize.singular(resource);
+            const camelCreateName = camelCase(`create-${singularResource}`);
+
+            const operation = metaData?.operation ?? camelCreateName;
+
+            const response = await Promise.all(
+                variables.map(async (param) => {
+                    const { query, variables: gqlVariables } = gql.mutation({
+                        operation,
+                        variables: {
+                            input: {
+                                value: { data: param },
+                                type: `${camelCreateName}Input`,
+                            },
+                        },
+                        fields: metaData?.fields ?? [
+                            {
+                                operation: singularResource,
+                                fields: ["id"],
+                                variables: {},
+                            },
+                        ],
+                    });
+                    const result = await client.request(query, gqlVariables);
+
+                    return result[operation][singularResource];
+                }),
+            );
             return {
-                data: [],
+                data: response,
             };
         },
 
