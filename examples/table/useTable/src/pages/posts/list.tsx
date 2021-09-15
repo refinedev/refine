@@ -36,17 +36,20 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" sorter />
                 <Table.Column
+                    key="title"
                     dataIndex="title"
                     title="Title"
                     sorter={{ multiple: 2 }}
                     defaultSortOrder={getDefaultSortOrder("title", sorter)}
                 />
                 <Table.Column
+                    key="content"
                     dataIndex="content"
                     title="Content"
                     sorter={{ multiple: 1 }}
                 />
                 <Table.Column
+                    key="status"
                     dataIndex="status"
                     title="Status"
                     render={(value: string) => <TagField value={value} />}
