@@ -113,7 +113,7 @@ npm i @pankod/refine-simple-rest
 ```
 
 :::note
-If you used `superplate` to bootstrap the project, you can skip this section as it already adds a data provider.
+If you used `superplate` to bootstrap the project, you can skip issuing this command as `superplate` already installs the selected data provider.
 :::
 
 :::note
