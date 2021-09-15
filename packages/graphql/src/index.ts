@@ -183,8 +183,38 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
         },
 
         updateMany: async (resource, params) => {
+            const { ids, variables, metaData } = params;
+
+            const singularResource = pluralize.singular(resource);
+            const camelUpdateName = camelCase(`update-${singularResource}`);
+
+            const operation = metaData?.operation ?? camelUpdateName;
+
+            const response = await Promise.all(
+                ids.map(async (id) => {
+                    const { query, variables: gqlVariables } = gql.mutation({
+                        operation,
+                        variables: {
+                            input: {
+                                value: { where: { id }, data: variables },
+                                type: `${camelUpdateName}Input`,
+                            },
+                        },
+                        fields: metaData?.fields ?? [
+                            {
+                                operation: singularResource,
+                                fields: ["id"],
+                                variables: {},
+                            },
+                        ],
+                    });
+                    const result = await client.request(query, gqlVariables);
+
+                    return result[operation][singularResource];
+                }),
+            );
             return {
-                data: [],
+                data: response,
             };
         },
 
