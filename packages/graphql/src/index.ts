@@ -57,7 +57,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
 
             return {
                 data: response[operation],
-                total: 10,
+                total: 999,
             };
         },
 
@@ -111,7 +111,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             const response = await client.request(query, gqlVariables);
 
             return {
-                data: response[operation],
+                data: response[operation][singularResource],
             };
         },
 
@@ -178,7 +178,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             const response = await client.request(query, gqlVariables);
 
             return {
-                data: response[operation],
+                data: response[operation][singularResource],
             };
         },
 
@@ -236,7 +236,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             const response = await client.request(query, variables);
 
             return {
-                data: response[operation],
+                data: response[operation][singularResource],
             };
         },
 
