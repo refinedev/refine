@@ -1,8 +1,10 @@
 <div align="center" style="margin: 30px;">
-<a href="https://pankod.github.io/superplate/">
-  <img src="documentation/static/img/refine_logo.png"  align="center" />
+<br/>
+<a href="https://refine.dev/">
+  <img src="documentation/static/img/refine_logo.png"   style="width:250px;" align="center" />
 </a>
 </div>
+<br/>
 <br/>
 <div align="center"><strong>refine</strong> is a <a href="https://reactjs.org/">React</a>-based framework for building data-intensive applications in no time ✨ It ships with <a href="https://ant.design/">Ant Design System</a>, an enterprise-level UI toolkit.</div>
 <br/>
@@ -17,7 +19,9 @@
 [![dev-dependencies Status](https://david-dm.org/pankod/refine/dev-status.svg)](https://david-dm.org/pankod/refine?type=dev)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](code_of_conduct.md)
 
+
 [![npm](https://img.shields.io/npm/dm/@pankod/refine)](https://www.npmjs.com/package/@pankod/refine)
+
 
 </div>
 
@@ -74,6 +78,8 @@ We believe, these are the most important components of a data-intensive frontend
 Under the hood, **refine** relies heavily to [React Query](https://react-query.tanstack.com/) for data handling, caching and state management. 
 Access to external sources and API's happen via providers which are basically plug-in type components for extendibility.
 
+<br/>
+
 <div align="center">
     <img src="documentation/static/img/getting-started/refine_architecture.jpg" width="400px" />
 </div>
@@ -85,6 +91,8 @@ After releasing the first internal versions, we had the chance to migrate some o
 In addition to **shorter development** times and **overall performance gains**, we've measured significant reduction in project size.
 
 **refine** makes your codebase significantly smaller, by eliminating redundant code such as *reducers*, *actions* and *unit tests*. Below is a size comparison for an example project:
+
+<br/>
 
 <div align="center">
     <img src="documentation/static/img/getting-started/benchmark.png" width="400px" align="center" />

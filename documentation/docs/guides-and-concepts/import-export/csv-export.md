@@ -3,6 +3,8 @@ id: csv-export
 title: CSV Export
 ---
 
+import exportButton from '@site/static/img/guides-and-concepts/csv-export/export-button.png';
+
 With **refine**, you can easily add export functionality to dump resources' records to a `CSV` file from anywhere, including buttons. By using the [`useExport`][useExport] hook with desired configurations, you can turn any button into an export button.  Which resources' records to export can be configured. But by default, unless explicitly specified, it is inferred from current route of browser.
 
 ## Usage
@@ -44,6 +46,16 @@ interface IPost {
     title: string;
 }
 ```
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={exportButton} alt="Export button" />
+</div>
+<br />
 
 After this setup is done, when the user clicks the button, download process will initialize.
 
