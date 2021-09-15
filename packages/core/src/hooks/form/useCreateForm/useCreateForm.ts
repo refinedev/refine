@@ -16,6 +16,7 @@ import {
     IResourceItem,
     HttpError,
     SuccessErrorNotification,
+    MetaDataQuery,
 } from "../../../interfaces";
 
 type SaveButtonProps = {
@@ -59,6 +60,7 @@ export type useCreateFormProps<
     warnWhenUnsavedChanges?: boolean;
     redirect?: RedirectionTypes;
     resource: IResourceItem;
+    metaData?: MetaDataQuery;
 } & SuccessErrorNotification;
 
 /**
@@ -78,6 +80,7 @@ export const useCreateForm = <
     resource,
     successNotification,
     errorNotification,
+    metaData,
 }: useCreateFormProps<TData, TError, TVariables>): useCreateForm<
     TData,
     TError,
@@ -111,6 +114,7 @@ export const useCreateForm = <
                 resource: resource.name,
                 successNotification,
                 errorNotification,
+                metaData,
             },
             {
                 onSuccess: (data, variables, context) => {
