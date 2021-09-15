@@ -1,6 +1,8 @@
 import { CrudFilters, CrudSorting, DataProvider } from "@pankod/refine";
 import { GraphQLClient } from "graphql-request";
 import * as gql from "gql-query-builder";
+import pluralize from "pluralize";
+import camelCase from "camelcase";
 
 const genereteSort = (sort?: CrudSorting) => {
     if (sort && sort.length > 0) {
@@ -83,8 +85,27 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
         },
 
         create: async (resource, params) => {
+            const { variables, metaData } = params;
+
+            const singularResource = pluralize.singular(resource);
+            const camelCreateName = camelCase(`create-${singularResource}`);
+
+            const operation = metaData?.operation ?? camelCreateName;
+
+            const { query, variables: qqlVariables } = gql.mutation({
+                operation,
+                variables: {
+                    input: {
+                        value: { data: variables },
+                        type: `${camelCreateName}Input`,
+                    },
+                },
+                fields: metaData?.fields,
+            });
+            const response = await client.request(query, qqlVariables);
+
             return {
-                data: { id: 1 } as any,
+                data: response[operation],
             };
         },
 

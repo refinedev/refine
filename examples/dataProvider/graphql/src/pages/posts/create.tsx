@@ -17,10 +17,17 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+    const { formProps, saveButtonProps } = useForm<IPost>({
+        metaData: {
+            fields: [{ operation: "post", fields: ["id"], variables: {} }],
+        },
+    });
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
+        metaData: {
+            fields: ["id", "title"],
+        },
     });
 
     const [selectedTab, setSelectedTab] =
@@ -42,7 +49,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                 </Form.Item>
                 <Form.Item
                     label="Category"
-                    name={["category", "id"]}
+                    name="category"
                     rules={[
                         {
                             required: true,
@@ -50,32 +57,6 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                     ]}
                 >
                     <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Status"
-                    name="status"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                            {
-                                label: "Rejected",
-                                value: "rejected",
-                            },
-                        ]}
-                    />
                 </Form.Item>
                 <Form.Item
                     label="Content"
