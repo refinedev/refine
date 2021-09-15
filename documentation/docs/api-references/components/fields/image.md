@@ -22,10 +22,6 @@ export const PostList: React.FC = () => {
     return (
         <List>
             <Table<IPost> rowKey="id">
-                <Table.Column
-                    dataIndex="title"
-                    title="Title"
-                />
                 <Table.Column<IPost>
                     title="Image"
                     dataIndex="image"
@@ -36,6 +32,10 @@ export const PostList: React.FC = () => {
                             width={200}
                         />
                     )}
+                />
+                <Table.Column
+                    dataIndex="title"
+                    title="Title"
                 />
             </Table>
         </List>
@@ -55,8 +55,13 @@ interface IPost {
 ```
 
 <br/>
-<div>
-    <img src={imageField} alt="Image Field Usage"/>
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={imageField} alt="ImageField" />
 </div>
 
 ## API Reference

@@ -9,7 +9,7 @@ const siteConfig = {
     title: "refine",
     tagline:
         "A React-based framework for building data-intensive applications in no time.",
-    url: "https://pankod.github.io",
+    url: "https://refine.dev",
     baseUrl: "/",
     projectName: "refine",
     organizationName: "pankod",
@@ -39,7 +39,7 @@ const siteConfig = {
         ],
     ],
     themeConfig: {
-        image: "img/footer_icon.png",
+        image: "img/refine_social.png",
         algolia: {
             apiKey: "fbebca5afe7376dbef2995691670b708",
             indexName: "refine",

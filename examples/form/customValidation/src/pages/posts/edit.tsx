@@ -49,19 +49,19 @@ export const PostEdit: React.FC = (props) => {
         PostUniqueCheckResponse,
         HttpError,
         PostUniqueCheckRequestQuery
-    >(
+    >({
         url,
-        "get",
-        {
+        method: "get",
+        config: {
             query: {
                 title,
                 id: postData?.id,
             },
         },
-        {
+        queryOptions: {
             enabled: false,
         },
-    );
+    });
 
     return (
         <Edit saveButtonProps={saveButtonProps}>

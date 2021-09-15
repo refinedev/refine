@@ -10,7 +10,7 @@ We will examine how to make an extensive search and filtering with the [`useSimp
 
 To do this, let's list posts using the posts resource.
 
-```tsx twoslash title="pages/posts/list.tsx" {2-3, 13, 50}
+```tsx twoslash title="pages/posts/list.tsx" {2-3, 13, 54}
 import {
     List,
     useSimpleList,
@@ -28,8 +28,12 @@ export const PostList: React.FC = () => {
 
     const categoryIds =
         listProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data } = useMany<ICategory>("categories", categoryIds, {
-        enabled: categoryIds.length > 0,
+    const { data } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
     });
 
     const renderItem = (item: IPost) => {

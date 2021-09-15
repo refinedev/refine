@@ -54,7 +54,7 @@ mutate({
 ```
 
 :::tip
-`mutate` can also accept lifecycle methods like `onSuccess` and `onError`.
+`mutate` can also accept lifecycle methods like `onSuccess` and `onError`.  
 [Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
 :::
 
@@ -153,7 +153,7 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 ## API
 
-### Parameters
+### Properties
 
 
 | Property                                            | Description                                                                     | Type                                                                       | Default                                                      |

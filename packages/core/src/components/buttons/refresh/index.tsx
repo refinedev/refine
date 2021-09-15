@@ -35,13 +35,13 @@ export const RefreshButton: FC<RefreshButtonProps> = ({
 
     const resource = resourceWithRoute(resourceName);
 
-    const { refetch, isFetching } = useOne(
-        resource.name,
-        `${recordItemId ?? idFromRoute}`,
-        {
+    const { refetch, isFetching } = useOne({
+        resource: resource.name,
+        id: `${recordItemId ?? idFromRoute}`,
+        queryOptions: {
             enabled: false,
         },
-    );
+    });
 
     return (
         <Button

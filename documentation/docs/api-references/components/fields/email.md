@@ -40,10 +40,14 @@ export const UserList: React.FC = () => {
 :::
 
 <br/>
-<div>
-    <img src={emailField} alt="Aside Usage"/>
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={emailField} alt="EmailField" />
 </div>
-
 
 ## API Reference
 
