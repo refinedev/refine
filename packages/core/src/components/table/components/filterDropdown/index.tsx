@@ -18,9 +18,10 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
     confirm,
     clearFilters,
     mapValue,
+    selectedKeys,
     children,
 }) => {
-    const [value, setValue] = useState<any[] | undefined>(undefined);
+    const [value, setValue] = useState<any[] | undefined>(selectedKeys);
 
     const clearFilter = () => {
         if (clearFilters) {
@@ -38,26 +39,32 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const onChange = (e: any) => {
         if (typeof e === "object") {
+            console.log("e", e);
             if (Array.isArray(e)) {
-                setValue(mappedValue(e));
-                return setSelectedKeys(e);
+                const _mappedValue = mappedValue(e);
+
+                setValue(_mappedValue);
+                return setSelectedKeys(_mappedValue);
             }
 
             const { target }: React.ChangeEvent<HTMLInputElement> = e;
-            setValue(mappedValue([target.value]));
+            const _mappedValue = mappedValue(target.value);
+            setValue(_mappedValue);
 
-            return setSelectedKeys([target.value]);
+            return setSelectedKeys(_mappedValue);
         }
 
-        setValue(mappedValue([e]));
-        return setSelectedKeys([e]);
+        const _mappedValue = mappedValue(e);
+
+        setValue(_mappedValue);
+        return setSelectedKeys(_mappedValue);
     };
 
     const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {
                 onChange,
-                value: value,
+                value: mappedValue(value),
             });
         }
         return child;

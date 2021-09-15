@@ -104,37 +104,6 @@ These are to be passed from [`<Table.Column>`'s filterDropdown](https://ant.desi
 
 Determines the value passed to children. `mapValue` takes `selectedKeys` as an argument.
 
-By default, `<FilterDropdown>` passes `selectedKeys` as value to its children. For some input types, you may need to change what is passed as value.
-
-For example, `<Radio.Group>` component expects a singular value as a prop. Since `selectedKeys` is an array, `<Radio.Group>` won't work properly with it. A singular value for `<Radio.Group>` can be extracted from `selectedKeys`.
-
-```tsx twoslash {9-11}
-import { Table, Radio, FilterDropdown } from "@pankod/refine";
-
-<Table.Column
-    dataIndex="status"
-    title="status"
-    key="status"
-    filterDropdown={(props) => (
-        <FilterDropdown
-            {...props}
-            mapValue={(selectedKeys) => {
-                return selectedKeys[0];
-            }}
-        >
-            <Radio.Group>
-                <Radio value="published">Published</Radio>
-                <Radio value="draft">Draft</Radio>
-            </Radio.Group>
-        </FilterDropdown>
-    )}
-/>;
-```
-
-> Since `<Checkbox.Group>` and `<Select>` can accepts an array as value, there is no need to use `mapValue`.
-
-:::important
-If [syncWithLocation](refine-config.md#syncwithlocation) is enabled, on page refresh filter values will be type of `string` since they will be parsed from URL. This might produce some incompatibility if data for filter input comes from an API and it's not type of `string`.  
 For example when using `useSelect` for `<Select>` component. In this case values must be mapped to `number`s using `mapValue`.
 
 ```tsx twoslash
@@ -171,7 +140,7 @@ const { selectProps: categorySelectProps } = useSelect<ICategory>({
     resource: "categories",
     optionLabel: "title",
     optionValue: "id",
-    defaultValue: getDefaultFilter("category.id", filters),
+    defaultValue: getDefaultFilter("category.id", filters, "in"),
 });
 
 <Table>
@@ -195,10 +164,24 @@ const { selectProps: categorySelectProps } = useSelect<ICategory>({
                 />
             </FilterDropdown>
         )}
-        defaultFilteredValue={getDefaultFilter("category.id", filters)}
+        defaultFilteredValue={getDefaultFilter("category.id", filters, "in")}
     />
 </Table>;
 ```
 
+:::important
+If [syncWithLocation](refine-config.md#syncwithlocation) is enabled, on page refresh filter values will be type of `string` since they will be parsed from URL. This might produce some incompatibility if data for filter input comes from an API and it's not type of `string`.  
+For example when using `useSelect` for `<Select>` component. In this case values must be mapped to `number`s using `mapValue`.
+
+
 > `getDefaultFilter` finds filter values for a given column from the given filters. In the example, `filters` passed to `getDefaultFilter` includes filter values from the URL since it comes from `useTable`.
-> :::
+:::
+
+## Live Codesandbox Example
+
+<iframe src="https://codesandbox.io/embed/refine-use-table-example-ule39?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Flist.tsx&theme=dark&view=preview"
+    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+    title="refine-use-table-example"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>

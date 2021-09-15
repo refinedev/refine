@@ -158,7 +158,7 @@ export const mapAntdFilterToCrudFilter = (
 
         crudFilters.push({
             field,
-            operator: "in",
+            operator: Array.isArray(value) ? "in" : "eq",
             value,
         });
     });
