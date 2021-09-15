@@ -92,7 +92,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
 
             const operation = metaData?.operation ?? camelCreateName;
 
-            const { query, variables: qqlVariables } = gql.mutation({
+            const { query, variables: gqlVariables } = gql.mutation({
                 operation,
                 variables: {
                     input: {
@@ -108,7 +108,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                     },
                 ],
             });
-            const response = await client.request(query, qqlVariables);
+            const response = await client.request(query, gqlVariables);
 
             return {
                 data: response[operation],
@@ -129,7 +129,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
 
             const operation = metaData?.operation ?? camelUpdateName;
 
-            const { query, variables: qqlVariables } = gql.mutation({
+            const { query, variables: gqlVariables } = gql.mutation({
                 operation,
                 variables: {
                     input: {
@@ -145,7 +145,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                     },
                 ],
             });
-            const response = await client.request(query, qqlVariables);
+            const response = await client.request(query, gqlVariables);
 
             return {
                 data: response[operation],
