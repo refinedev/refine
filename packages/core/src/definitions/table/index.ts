@@ -150,15 +150,21 @@ export const mapAntdSorterToCrudSorting = (
 };
 
 export const mapAntdFilterToCrudFilter = (
-    filters: Record<string, (string | number | boolean)[] | null>,
+    tableFilters: Record<
+        string,
+        (string | number | boolean) | (string | number | boolean)[] | null
+    >,
+    prevFilters: CrudFilters,
 ): CrudFilters => {
     const crudFilters: CrudFilters = [];
-    Object.keys(filters).map((field) => {
-        const value = filters[field];
+
+    Object.keys(tableFilters).map((field) => {
+        const value = tableFilters[field];
+        const operator = prevFilters.find((p) => p.field === field)?.operator;
 
         crudFilters.push({
             field,
-            operator: "in",
+            operator: operator ?? (Array.isArray(value) ? "in" : "eq"),
             value,
         });
     });

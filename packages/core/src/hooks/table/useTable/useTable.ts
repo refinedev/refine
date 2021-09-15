@@ -179,11 +179,14 @@ export const useTable = <
 
     const onChange = (
         pagination: TablePaginationConfig,
-        filters: Record<string, (string | number | boolean)[] | null>,
+        tableFilters: Record<
+            string,
+            (string | number | boolean) | (string | number | boolean)[] | null
+        >,
         sorter: SorterResult<any> | SorterResult<any>[],
     ) => {
         // Map Antd:Filter -> refine:CrudFilter
-        const crudFilters = mapAntdFilterToCrudFilter(filters);
+        const crudFilters = mapAntdFilterToCrudFilter(tableFilters, filters);
 
         setFilters((prevFilters) =>
             unionFilters(permanentFilter, crudFilters, prevFilters),
