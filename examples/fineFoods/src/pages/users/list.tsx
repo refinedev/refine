@@ -42,52 +42,42 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
             const filters: CrudFilters = [];
             const { q, status, createdAt, gender, isActive } = params;
 
-            if (q) {
-                filters.push({
-                    field: "q",
-                    operator: "eq",
-                    value: q,
-                });
-            }
+            filters.push({
+                field: "q",
+                operator: "eq",
+                value: q,
+            });
 
-            if (createdAt) {
-                filters.push(
-                    {
-                        field: "createdAt",
-                        operator: "gte",
-                        value: createdAt[0].toISOString(),
-                    },
-                    {
-                        field: "createdAt",
-                        operator: "lte",
-                        value: createdAt[1].toISOString(),
-                    },
-                );
-            }
+            filters.push(
+                {
+                    field: "createdAt",
+                    operator: "gte",
+                    value: createdAt[0].toISOString(),
+                },
+                {
+                    field: "createdAt",
+                    operator: "lte",
+                    value: createdAt[1].toISOString(),
+                },
+            );
 
-            if (gender) {
-                filters.push({
-                    field: "gender",
-                    operator: "eq",
-                    value: gender,
-                });
-            }
+            filters.push({
+                field: "gender",
+                operator: "eq",
+                value: gender,
+            });
 
-            if (isActive) {
-                filters.push({
-                    field: "isActive",
-                    operator: "eq",
-                    value: isActive,
-                });
-            }
+            filters.push({
+                field: "isActive",
+                operator: "eq",
+                value: isActive,
+            });
 
-            if (status) {
-                filters.push({
-                    field: "status.text",
-                    operator: "eq",
-                    value: status,
-                });
-            }
+            filters.push({
+                field: "status.text",
+                operator: "eq",
+                value: status,
+            });
 
             return filters;
         },
