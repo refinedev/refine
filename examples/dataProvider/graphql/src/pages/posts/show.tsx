@@ -13,7 +13,6 @@ const { Title, Text } = Typography;
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>({
         metaData: {
-            operation: "post",
             fields: [
                 "id",
                 "title",

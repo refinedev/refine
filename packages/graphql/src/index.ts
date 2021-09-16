@@ -39,7 +39,9 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             const sortBy = genereteSort(sort);
             const filterBy = generateFilter(filters);
 
-            const operation = metaData?.operation ?? resource;
+            const camelResource = camelCase(resource);
+
+            const operation = metaData?.operation ?? camelResource;
 
             const { query, variables } = gql.query({
                 operation,
@@ -48,23 +50,30 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                     sort: sortBy,
                     where: { value: filterBy, type: "JSON" },
                     start: (current - 1) * pageSize,
-                    limit: current * pageSize,
+                    limit: pageSize,
                 },
                 fields: metaData?.fields,
             });
 
             const response = await client.request(query, variables);
 
+            const countRequest = await fetch(
+                `https://api.strapi.refine.dev/${resource}/count`,
+            );
+            const count = await countRequest.json();
+
             return {
                 data: response[operation],
-                total: 999,
+                total: count,
             };
         },
 
         getMany: async (resource, params) => {
             const { ids, metaData } = params;
 
-            const operation = metaData?.operation ?? resource;
+            const camelResource = camelCase(resource);
+
+            const operation = metaData?.operation ?? camelResource;
 
             const { query, variables } = gql.query({
                 operation,
@@ -221,7 +230,10 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
         getOne: async (resource, params) => {
             const { id, metaData } = params;
 
-            const operation = metaData?.operation ?? resource;
+            const singularResource = pluralize.singular(resource);
+            const camelResource = camelCase(singularResource);
+
+            const operation = metaData?.operation ?? camelResource;
 
             const { query, variables } = gql.query({
                 operation,
