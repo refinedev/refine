@@ -304,8 +304,54 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             throw Error("Not implemented on refine-graphql data provider.");
         },
 
-        custom: () => {
-            throw Error("Not implemented on refine-graphql data provider.");
+        custom: async ({ url, method, headers, metaData }) => {
+            let gqlClient = client;
+
+            if (url) {
+                gqlClient = new GraphQLClient(url, { headers });
+            }
+
+            if (metaData) {
+                if (metaData.operation) {
+                    if (method === "get") {
+                        const { query, variables } = gql.query({
+                            operation: metaData.operation,
+                            fields: metaData.fields,
+                            variables: metaData.variables,
+                        });
+
+                        const response = await gqlClient.request(
+                            query,
+                            variables,
+                        );
+
+                        return {
+                            data: response[metaData.operation],
+                        };
+                    } else {
+                        const { query, variables } = gql.mutation({
+                            operation: metaData.operation,
+                            fields: metaData.fields,
+                            variables: metaData.variables,
+                        });
+
+                        const response = await gqlClient.request(
+                            query,
+                            variables,
+                        );
+
+                        return {
+                            data: response[metaData.operation],
+                        };
+                    }
+                } else {
+                    throw Error("Graphql operation name required.");
+                }
+            } else {
+                throw Error(
+                    "Graphql need to operation, fields and variables values in metaData object.",
+                );
+            }
         },
     };
 };
