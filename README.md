@@ -13,7 +13,8 @@
 
 [![Meercode CI Score](https://meercode.io/badge/pankod/superplate?type=ci-score&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
 [![Meercode CI Success Rate](https://meercode.io/badge/pankod/superplate?type=ci-success-rate&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
-[![Maintainability](https://api.codeclimate.com/v1/badges/eb4b5a8f88b6e511e61d/maintainability)](https://codeclimate.com/github/pankod/refine/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/maintainability)](https://codeclimate.com/github/pankod/refine/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/test_coverage)](https://codeclimate.com/github/pankod/refine/test_coverage)
 [![npm version](https://img.shields.io/npm/v/@pankod/refine.svg)](https://www.npmjs.com/package/@pankod/refine)
 [![dependencies Status](https://david-dm.org/pankod/refine/status.svg)](https://david-dm.org/pankod/refine)
 [![dev-dependencies Status](https://david-dm.org/pankod/refine/dev-status.svg)](https://david-dm.org/pankod/refine?type=dev)
