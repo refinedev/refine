@@ -26,6 +26,7 @@ import {
     RouteProvider,
     ReadyPage as DefaultReadyPage,
     RouteChangeHandler,
+    Resource,
 } from "@components";
 import { defaultConfigProviderProps } from "@definitions";
 import {
@@ -39,15 +40,20 @@ import {
 import { useWarnAboutChange } from "@hooks/refine";
 
 import * as H from "history";
+import { ResourceProps } from "../resource";
 
 interface QueryClientConfig {
     queryCache?: QueryCache;
     mutationCache?: MutationCache;
     defaultOptions?: DefaultOptions;
 }
+
+interface IResource extends IResourceItem, ResourceProps {}
+
 export interface RefineProps {
     authProvider?: IAuthContext;
     dataProvider: IDataContextProvider;
+    resources?: IResource[];
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
     LoginPage?: React.FC;
@@ -90,6 +96,7 @@ export interface RefineProps {
 export const Refine: React.FC<RefineProps> = ({
     authProvider,
     dataProvider,
+    resources: resourcesFromProps,
     DashboardPage,
     ReadyPage,
     LoginPage,
@@ -134,11 +141,38 @@ export const Refine: React.FC<RefineProps> = ({
 
     notification.config({ ...notifcationConfig });
 
+    console.log({ children });
+
     const resources: IResourceItem[] = [];
     React.Children.map(children, (child: any) => {
+        // if(!child || child.type !== Resource || child.type !== NextRouteComponent)
         if (!child) {
             return;
         }
+
+        // if (child.type === NextRouteComponent) {
+        if (child.type !== Resource) {
+            resourcesFromProps?.map((resource) => {
+                console.log({ resource });
+                resources.push({
+                    name: resource.name,
+                    label: resource.options?.label,
+                    icon: resource.icon,
+                    route: resource.options?.route ?? resource.name,
+                    canCreate: !!resource.create,
+                    canEdit: !!resource.edit,
+                    canShow: !!resource.show,
+                    canDelete: resource.canDelete,
+                    create: resource.create,
+                    show: resource.show,
+                    list: resource.list,
+                    edit: resource.edit,
+                });
+            });
+
+            return;
+        }
+        console.log({ child });
         resources.push({
             name: child.props.name,
             label: child.props.options?.label,

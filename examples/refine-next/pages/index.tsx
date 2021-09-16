@@ -9,10 +9,16 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const Home: React.FC = () => {
     return (
-        <div>hello</div>
-        // <Refine {...routerProvider()} dataProvider={dataProvider(API_URL)}>
-        //     <Resource name="posts" list={PostList} />
-        // </Refine>
+        // <div>hello</div>
+        <Refine
+            {...routerProvider()}
+            dataProvider={dataProvider(API_URL)}
+            resources={[{ name: "users" }]}
+        >
+            <Resource name="posts" list={PostList} />
+            {/* <Resource name="posts" list={PostList} /> */}
+            <div>hdhdhd</div>
+        </Refine>
     );
     // return null
 };
