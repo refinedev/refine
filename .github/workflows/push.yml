@@ -27,4 +27,12 @@ jobs:
         npm run lerna bootstrap
         npm run lint
         npm test
+    - name: publish code coverage
+      uses: paambaati/codeclimate-action@v2.6.0
+      if: github.ref == 'refs/heads/master'
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.TEST_REPORTER_ID }}
+      with:
+        coverageCommand: npm test
+        debug: true
 
