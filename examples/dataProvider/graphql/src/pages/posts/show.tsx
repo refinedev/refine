@@ -4,30 +4,36 @@ import {
     Typography,
     IResourceComponentsProps,
     MarkdownField,
+    RefreshButton,
 } from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
 const { Title, Text } = Typography;
 
+const metaData = {
+    fields: [
+        "id",
+        "title",
+        {
+            category: ["title"],
+        },
+        "content",
+    ],
+};
+
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>({
-        metaData: {
-            fields: [
-                "id",
-                "title",
-                {
-                    category: ["title"],
-                },
-                "content",
-            ],
-        },
+        metaData,
     });
     const { data, isLoading } = queryResult;
     const record = data?.data;
 
     return (
-        <Show isLoading={isLoading}>
+        <Show
+            isLoading={isLoading}
+            pageHeaderProps={{ extra: <RefreshButton metaData={metaData} /> }}
+        >
             <Title level={5}>Id</Title>
             <Text>{record?.id}</Text>
 
