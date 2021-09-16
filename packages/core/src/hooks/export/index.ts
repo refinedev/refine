@@ -79,7 +79,8 @@ export const useExport = <
         let current = 1;
         let preparingData = true;
         while (preparingData) {
-            const { data, total } = await getList<TData>(resource, {
+            const { data, total } = await getList<TData>({
+                resource,
                 filters,
                 sort: sorter,
                 pagination: {

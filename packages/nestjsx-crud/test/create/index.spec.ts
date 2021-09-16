@@ -10,7 +10,8 @@ describe("create", () => {
         const { data } = await JsonServer(
             "https://api.nestjsx-crud.refine.dev",
             axios,
-        ).create("posts", {
+        ).create({
+            resource: "posts",
             variables: {
                 title: "foo",
                 content: "bar",

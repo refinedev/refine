@@ -10,7 +10,7 @@ describe("deleteOne", () => {
         const response = await JsonServer(
             "https://api.fake-rest.refine.dev",
             axios,
-        ).deleteOne("posts", { id: "1" });
+        ).deleteOne({ resource: "posts", id: "1" });
 
         const { data } = response;
 

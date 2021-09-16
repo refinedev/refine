@@ -18,7 +18,7 @@ describe("deleteOne", () => {
         const response = await JsonServer(
             "https://dev001.na-dev-engine.altogic.com",
             axiosInstance,
-        ).deleteOne("post", { id: "613b2f5494cdf00019bfb963" });
+        ).deleteOne({ resource: "post", id: "613b2f5494cdf00019bfb963" });
 
         const { data } = response;
 

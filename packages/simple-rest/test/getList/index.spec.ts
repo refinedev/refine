@@ -10,7 +10,7 @@ describe("getList", () => {
         const response = await JsonServer(
             "https://api.fake-rest.refine.dev",
             axios,
-        ).getList("posts", {});
+        ).getList({ resource: "posts" });
 
         expect(response.data[0]["id"]).toBe(1);
         expect(response.data[0]["title"]).toBe(
@@ -23,7 +23,8 @@ describe("getList", () => {
         const response = await JsonServer(
             "https://api.fake-rest.refine.dev",
             axios,
-        ).getList("posts", {
+        ).getList({
+            resource: "posts",
             sort: [
                 {
                     field: "id",
@@ -43,7 +44,8 @@ describe("getList", () => {
         const response = await JsonServer(
             "https://api.fake-rest.refine.dev",
             axios,
-        ).getList("posts", {
+        ).getList({
+            resource: "posts",
             filters: [
                 {
                     field: "category.id",
@@ -61,7 +63,8 @@ describe("getList", () => {
         const response = await JsonServer(
             "https://api.fake-rest.refine.dev",
             axios,
-        ).getList("posts", {
+        ).getList({
+            resource: "posts",
             filters: [
                 {
                     field: "category.id",

@@ -18,7 +18,7 @@ describe("getOne", () => {
         const response = await JsonServer(
             "https://dev001.na-dev-engine.altogic.com",
             axiosInstance,
-        ).getOne("post", { id: "613a25eb65f2050012410a41" });
+        ).getOne({ resource: "post", id: "613a25eb65f2050012410a41" });
 
         const { data } = response;
 

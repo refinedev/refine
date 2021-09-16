@@ -59,7 +59,8 @@ export const useCreateMany = <
         useCreateManyParams<TVariables>
     >(
         ({ resource, values, metaData }: useCreateManyParams<TVariables>) =>
-            createMany<TData, TVariables>(resource, {
+            createMany<TData, TVariables>({
+                resource,
                 variables: values,
                 metaData,
             }),

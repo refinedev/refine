@@ -17,7 +17,8 @@ describe("updateMany", () => {
         const response = await JsonServer(
             "https://dev001.na-dev-engine.altogic.com",
             axiosInstance,
-        ).updateMany("post", {
+        ).updateMany({
+            resource: "post",
             ids: ["613f445e97d1370019b25a60", "613f445c1550aa001b0a8de7"],
             variables: {
                 title: "foo",

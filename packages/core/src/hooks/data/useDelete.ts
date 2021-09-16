@@ -95,13 +95,13 @@ export const useDelete = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             if (!(mutationModePropOrContext === "undoable")) {
-                return deleteOne<TData>(resource, { id, metaData });
+                return deleteOne<TData>({ resource, id, metaData });
             }
 
             const deletePromise = new Promise<DeleteOneResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        deleteOne<TData>(resource, { id, metaData })
+                        deleteOne<TData>({ resource, id, metaData })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     };

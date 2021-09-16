@@ -4,7 +4,8 @@ import "./index.mock";
 
 describe("getOne", () => {
     it("correct response", async () => {
-        const { data } = await dataProvider(supabaseClient).getOne("posts", {
+        const { data } = await dataProvider(supabaseClient).getOne({
+            resource: "posts",
             id: "2",
         });
 

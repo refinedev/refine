@@ -30,9 +30,7 @@ const generateFilter = (filters?: CrudFilters) => {
 
 const dataProvider = (client: GraphQLClient): DataProvider => {
     return {
-        getList: async (resource, params) => {
-            const { pagination, sort, filters, metaData } = params;
-
+        getList: async ({ resource, pagination, sort, filters, metaData }) => {
             const current = pagination?.current || 1;
             const pageSize = pagination?.pageSize || 10;
 
@@ -68,9 +66,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             };
         },
 
-        getMany: async (resource, params) => {
-            const { ids, metaData } = params;
-
+        getMany: async ({ resource, ids, metaData }) => {
             const camelResource = camelCase(resource);
 
             const operation = metaData?.operation ?? camelResource;
@@ -93,9 +89,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             };
         },
 
-        create: async (resource, params) => {
-            const { variables, metaData } = params;
-
+        create: async ({ resource, variables, metaData }) => {
             const singularResource = pluralize.singular(resource);
             const camelCreateName = camelCase(`create-${singularResource}`);
 
@@ -124,9 +118,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             };
         },
 
-        createMany: async (resource, params) => {
-            const { variables, metaData } = params;
-
+        createMany: async ({ resource, variables, metaData }) => {
             const singularResource = pluralize.singular(resource);
             const camelCreateName = camelCase(`create-${singularResource}`);
 
@@ -160,9 +152,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             };
         },
 
-        update: async (resource, params) => {
-            const { id, variables, metaData } = params;
-
+        update: async ({ resource, id, variables, metaData }) => {
             const singularResource = pluralize.singular(resource);
             const camelUpdateName = camelCase(`update-${singularResource}`);
 
@@ -191,9 +181,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             };
         },
 
-        updateMany: async (resource, params) => {
-            const { ids, variables, metaData } = params;
-
+        updateMany: async ({ resource, ids, variables, metaData }) => {
             const singularResource = pluralize.singular(resource);
             const camelUpdateName = camelCase(`update-${singularResource}`);
 
@@ -227,9 +215,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             };
         },
 
-        getOne: async (resource, params) => {
-            const { id, metaData } = params;
-
+        getOne: async ({ resource, id, metaData }) => {
             const singularResource = pluralize.singular(resource);
             const camelResource = camelCase(singularResource);
 
@@ -250,9 +236,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             };
         },
 
-        deleteOne: async (resource, params) => {
-            const { id, metaData } = params;
-
+        deleteOne: async ({ resource, id, metaData }) => {
             const singularResource = pluralize.singular(resource);
             const camelDeleteName = camelCase(`delete-${singularResource}`);
 
@@ -282,9 +266,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             };
         },
 
-        deleteMany: async (resource, params) => {
-            const { ids, metaData } = params;
-
+        deleteMany: async ({ resource, ids, metaData }) => {
             const singularResource = pluralize.singular(resource);
             const camelDeleteName = camelCase(`delete-${singularResource}`);
 

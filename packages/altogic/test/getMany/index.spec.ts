@@ -18,7 +18,8 @@ describe("getMany", () => {
         const response = await JsonServer(
             "https://dev001.na-dev-engine.altogic.com",
             axiosInstance,
-        ).getMany("category", {
+        ).getMany({
+            resource: "category",
             ids: ["61373e585d65d30019e2b0a2", "61373e5e59c5a7001aeac77d"],
         });
 

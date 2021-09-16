@@ -70,7 +70,7 @@ export const useCustom = <
 
     const queryResponse = useQuery<CustomResponse<TData>, TError>(
         [`custom/${method}-${url}`, { ...config }],
-        () => custom<TData>(url, method, { ...config, metaData }),
+        () => custom<TData>({ url, method, ...config, metaData }),
         {
             ...queryOptions,
             onSuccess: (data) => {

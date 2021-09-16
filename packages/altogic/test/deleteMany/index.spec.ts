@@ -18,7 +18,8 @@ describe("deleteMany", () => {
         const response = await JsonServer(
             "https://dev001.na-dev-engine.altogic.com",
             axiosInstance,
-        ).deleteMany("post", {
+        ).deleteMany({
+            resource: "post",
             ids: ["613f40854f18c4001914e7ff", "613f405197d1370019b259ab"],
         });
 

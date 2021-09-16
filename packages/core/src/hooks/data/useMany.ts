@@ -53,7 +53,7 @@ export const useMany = <
 
     const queryResponse = useQuery<GetManyResponse<TData>, TError>(
         [`resource/getMany/${resource}`, ids],
-        () => getMany<TData>(resource, { ids, metaData }),
+        () => getMany<TData>({ resource, ids, metaData }),
         {
             ...queryOptions,
             onSuccess: (data) => {

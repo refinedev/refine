@@ -19,7 +19,8 @@ describe("create", () => {
         const response = await JsonServer(
             "https://dev001.na-dev-engine.altogic.com",
             axiosInstance,
-        ).create("post", {
+        ).create({
+            resource: "post",
             variables: {
                 title: "foo",
                 content: "bar",

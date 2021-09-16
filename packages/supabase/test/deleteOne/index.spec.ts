@@ -4,7 +4,8 @@ import "./index.mock";
 
 describe("deleteOne", () => {
     it("correct response", async () => {
-        const { data } = await dataProvider(supabaseClient).deleteOne("posts", {
+        const { data } = await dataProvider(supabaseClient).deleteOne({
+            resource: "posts",
             id: "40",
         });
 

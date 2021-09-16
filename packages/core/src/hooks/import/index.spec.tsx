@@ -104,7 +104,8 @@ describe("useImport hook", () => {
                     onFinish: () => {
                         expect(
                             mockDataProvider.createMany,
-                        ).toHaveBeenCalledWith("posts", {
+                        ).toHaveBeenCalledWith({
+                            resource: "posts",
                             variables: [parsedData[0], parsedData[1]].map(
                                 (parsedData) => ({
                                     ...parsedData,
@@ -114,7 +115,8 @@ describe("useImport hook", () => {
 
                         expect(
                             mockDataProvider.createMany,
-                        ).toHaveBeenCalledWith("posts", {
+                        ).toHaveBeenCalledWith({
+                            resource: "posts",
                             variables: [parsedData[0], parsedData[1]].map(
                                 (parsedData) => ({
                                     ...parsedData,
@@ -161,7 +163,8 @@ describe("useImport hook", () => {
                     onFinish: () => {
                         expect(
                             mockDataProvider.createMany,
-                        ).toHaveBeenCalledWith("posts", {
+                        ).toHaveBeenCalledWith({
+                            resource: "posts",
                             variables: parsedData.map((parsedData) => ({
                                 id: parsedData.id,
                                 newTitle: parsedData.title,
@@ -203,7 +206,8 @@ describe("useImport hook", () => {
                     onFinish: () => {
                         expect(
                             mockDataProvider.createMany,
-                        ).toHaveBeenCalledWith("tests", {
+                        ).toHaveBeenCalledWith({
+                            resource: "tests",
                             variables: parsedData.map((parsedData) => ({
                                 ...parsedData,
                             })),
@@ -384,17 +388,20 @@ describe("useImport hook", () => {
                         onFinish: () => {
                             expect(
                                 mockDataProvider.create,
-                            ).toHaveBeenCalledWith("posts", {
+                            ).toHaveBeenCalledWith({
+                                resource: "posts",
                                 variables: parsedData[0],
                             });
                             expect(
                                 mockDataProvider.create,
-                            ).toHaveBeenCalledWith("posts", {
+                            ).toHaveBeenCalledWith({
+                                resource: "posts",
                                 variables: parsedData[1],
                             });
                             expect(
                                 mockDataProvider.create,
-                            ).toHaveBeenCalledWith("posts", {
+                            ).toHaveBeenCalledWith({
+                                resource: "posts",
                                 variables: parsedData[2],
                             });
                             done();
@@ -423,7 +430,7 @@ describe("useImport hook", () => {
         it("should give successes in onFinish callback if batchSize=1", async (done) => {
             const mockDataProvider = {
                 ...MockJSONServer,
-                create: jest.fn(async (resource, { variables }: any) => {
+                create: jest.fn(async ({ variables }: any) => {
                     if (variables.title === "Viral Strategist Local") {
                         return {
                             data: parsedData[0],

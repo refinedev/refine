@@ -94,13 +94,13 @@ export const useDeleteMany = <
             const undoableTimeoutPropOrContext =
                 undoableTimeout ?? undoableTimeoutContext;
             if (!(mutationModePropOrContext === "undoable")) {
-                return deleteMany<TData>(resource, { ids, metaData });
+                return deleteMany<TData>({ resource, ids, metaData });
             }
 
             const updatePromise = new Promise<DeleteManyResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        deleteMany<TData>(resource, { ids, metaData })
+                        deleteMany<TData>({ resource, ids, metaData })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     };

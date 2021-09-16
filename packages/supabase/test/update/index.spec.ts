@@ -4,7 +4,8 @@ import "./index.mock";
 
 describe("update", () => {
     it("correct response", async () => {
-        const { data } = await dataProvider(supabaseClient).update("posts", {
+        const { data } = await dataProvider(supabaseClient).update({
+            resource: "posts",
             id: "2",
             variables: {
                 title: "Hello World!!",

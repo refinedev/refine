@@ -4,7 +4,8 @@ import "./index.mock";
 
 describe("create", () => {
     it("correct response", async () => {
-        const { data } = await dataProvider(supabaseClient).create("posts", {
+        const { data } = await dataProvider(supabaseClient).create({
+            resource: "posts",
             variables: {
                 title: "foo",
                 slug: "foo-bar",

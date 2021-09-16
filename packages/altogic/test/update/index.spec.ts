@@ -17,7 +17,8 @@ describe("update", () => {
         const response = await JsonServer(
             "https://dev001.na-dev-engine.altogic.com",
             axiosInstance,
-        ).update("post", {
+        ).update({
+            resource: "post",
             id: "613a25eb65f2050012410a41",
             variables: {
                 title: "foo",

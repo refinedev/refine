@@ -10,7 +10,7 @@ describe("getOne", () => {
         const response = await JsonServer(
             "https://api.fake-rest.refine.dev",
             axios,
-        ).getOne("posts", { id: "1" });
+        ).getOne({ resource: "posts", id: "1" });
 
         const { data } = response;
 

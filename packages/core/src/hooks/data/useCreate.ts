@@ -61,7 +61,8 @@ export const useCreate = <
         unknown
     >(
         ({ resource, values, metaData }: useCreateParams<TVariables>) =>
-            create<TData, TVariables>(resource, {
+            create<TData, TVariables>({
+                resource,
                 variables: values,
                 metaData,
             }),

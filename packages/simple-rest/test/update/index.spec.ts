@@ -10,7 +10,8 @@ describe("update", () => {
         const response = await JsonServer(
             "https://api.fake-rest.refine.dev",
             axios,
-        ).update("posts", {
+        ).update({
+            resource: "posts",
             id: "1000",
             variables: {
                 id: 1001,

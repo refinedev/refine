@@ -98,7 +98,8 @@ export const useUpdate = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             if (!(mutationModePropOrContext === "undoable")) {
-                return update<TData, TVariables>(resource, {
+                return update<TData, TVariables>({
+                    resource,
                     id,
                     variables: values,
                     metaData,
@@ -107,7 +108,8 @@ export const useUpdate = <
             const updatePromise = new Promise<UpdateResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        update<TData, TVariables>(resource, {
+                        update<TData, TVariables>({
+                            resource,
                             id,
                             variables: values,
                             metaData,

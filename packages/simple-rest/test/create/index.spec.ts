@@ -10,7 +10,8 @@ describe("create", () => {
         const response = await JsonServer(
             "https://api.fake-rest.refine.dev",
             axios,
-        ).create("posts", {
+        ).create({
+            resource: "posts",
             variables: { id: 1001, title: "foo", content: "bar" },
         });
 
