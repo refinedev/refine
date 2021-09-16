@@ -123,15 +123,12 @@ describe("definitions/table", () => {
         expect(getDefaultFilter("title", filters)).toEqual("test");
     });
 
-    it("mapAntdSorterToCrudSorting for array", () => {
+    it("mapAntdSorterToCrudSorting", () => {
         expect(
-            mapAntdSorterToCrudSorting([
-                {
-                    columnKey: "title",
-                    field: "title",
-                    order: "descend",
-                },
-            ]),
+            mapAntdSorterToCrudSorting({
+                field: "title",
+                order: "descend",
+            }),
         ).toMatchInlineSnapshot(`
             Array [
               Object {
@@ -142,13 +139,51 @@ describe("definitions/table", () => {
         `);
     });
 
-    it("mapAntdSorterToCrudSorting", () => {
+    it("mapAntdSorterToCrudSorting with sorting priority", () => {
         expect(
-            mapAntdSorterToCrudSorting({
-                columnKey: "title",
-                field: "title",
-                order: "descend",
-            }),
+            mapAntdSorterToCrudSorting([
+                {
+                    field: "id",
+                    order: "descend",
+                    column: {
+                        sorter: {
+                            multiple: 2,
+                        },
+                    },
+                },
+                {
+                    field: "title",
+                    order: "descend",
+                    column: {
+                        sorter: {
+                            multiple: 1,
+                        },
+                    },
+                },
+            ]),
+        ).toMatchInlineSnapshot(`
+            Array [
+              Object {
+                "field": "title",
+                "order": "desc",
+              },
+              Object {
+                "field": "id",
+                "order": "desc",
+              },
+            ]
+        `);
+    });
+
+    it("mapAntdSorterToCrudSorting for array and columnKey", () => {
+        expect(
+            mapAntdSorterToCrudSorting([
+                {
+                    columnKey: "title",
+                    field: "title",
+                    order: "descend",
+                },
+            ]),
         ).toMatchInlineSnapshot(`
             Array [
               Object {

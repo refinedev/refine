@@ -60,9 +60,13 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     return (
         <List>
             <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" sorter />
                 <Table.Column
-                    key="title"
+                    dataIndex="id"
+                    title="ID"
+                    sorter
+                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
+                />
+                <Table.Column
                     dataIndex="title"
                     title="Title"
                     sorter={{ multiple: 2 }}
@@ -74,10 +78,10 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     )}
                 />
                 <Table.Column
-                    key="content"
                     dataIndex="content"
                     title="Content"
                     sorter={{ multiple: 1 }}
+                    defaultSortOrder={getDefaultSortOrder("content", sorter)}
                 />
                 <Table.Column
                     dataIndex={["category", "id"]}
@@ -109,7 +113,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 />
                 <Table.Column
                     dataIndex="status"
-                    key="status"
                     title="Status"
                     render={(value: string) => <TagField value={value} />}
                     filterDropdown={(props: FilterDropdownProps) => (
