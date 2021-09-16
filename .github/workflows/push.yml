@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [12.x, 14.x]
 
     steps:
     - uses: actions/checkout@v1
@@ -27,7 +27,7 @@ jobs:
       run: |
         npm install
         npm run lerna bootstrap
-        npm run test:coverage
+        npm test -- -- --coverage
         npm run lint
     - name: publish code coverage
       uses: paambaati/codeclimate-action@v2.6.0
