@@ -83,7 +83,7 @@ const siteConfig = {
                     className: "header-icon-link header-discord-link",
                 },
                 {
-                    href: "https://twitter.com/PankodDev",
+                    href: "https://twitter.com/refine_dev",
                     position: "right",
                     className:
                         "header-icon-link header-twitter-link header-last-nav-item",
@@ -108,7 +108,7 @@ const siteConfig = {
         //             items: [
         //                 {
         //                     label: "Twitter",
-        //                     href: "https://twitter.com/PankodDev",
+        //                     href: "https://twitter.com/refine_dev",
         //                 },
         //             ],
         //         },
