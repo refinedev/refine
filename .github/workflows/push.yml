@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        node-version: [12.x]
 
     steps:
     - uses: actions/checkout@v1
@@ -23,17 +23,16 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install, build, and test
+    - name: npm install, build
       run: |
         npm install
         npm run lerna bootstrap
         npm run lint
-    - name: publish code coverage
+    - name: npm test & publish code coverage
       uses: paambaati/codeclimate-action@v2.6.0
       if: github.ref == 'refs/heads/master'
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.TEST_REPORTER_ID }}
       with:
         coverageCommand: npm run test:coverage
-        debug: true
 
