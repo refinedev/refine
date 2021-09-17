@@ -155,5 +155,5 @@ jobs:
           cd documentation
           git config --global user.email "bot@pankod.com"
           git config --global user.name "pankod-bot"
-          npm ci
+          npm install
           npm run deploy
