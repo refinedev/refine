@@ -200,7 +200,7 @@ You can pass more options to further customize the exporting process.
 | sorter        | Sorts  records                                                                                                             | [`CrudSorting`][CrudSorting] \| `undefined`                                      |    |
 | filter        | Filters records                                                                                                            | [`CrudFilters`][CrudFilters] \| `undefined`                                      |    |
 | exportOptions | Used for exporting options                                                                                                 | [`Options`][export-to-csv#api] \| `undefined`                                    |    |
-| metaData      | Metadata query for `dataProvider`                                                                                          | [`MetaDataOptions`](/api-references/interfaces.md#metadataquery)                 | {} |
+| metaData      | Metadata query for `dataProvider`                                                                                          | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)                 | {} |
 
 ### `useExport` Return Values
 

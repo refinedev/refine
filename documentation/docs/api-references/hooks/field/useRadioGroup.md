@@ -179,7 +179,7 @@ const {
 | filters                                                                                             | Adds filters while fetching the data                                                | [`CrudFilters`](../../interfaces.md#crudfilters)                 |           |
 | sort                                                                                                | Allows us to sort the options                                                       | [`CrudSorting`](../../interfaces.md#crudsorting)                 |           |
 | queryOptions                                                                                        | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>`               |           |
-| metaData                                                                                            | Metadata query for `dataProvider`                                                   | [`MetaDataOptions`](/api-references/interfaces.md#metadataquery) | {}        |
+| metaData                                                                                            | Metadata query for `dataProvider`                                                   | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery) | {}        |
 
 
 ### Return values

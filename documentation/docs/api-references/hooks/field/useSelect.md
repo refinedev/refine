@@ -232,7 +232,7 @@ const {
 | debounce                                          | The number of milliseconds to delay                                                 | `number`                                                         | 300       |
 | queryOptions                                      | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>`               |           |
 | defaultValueQueryOptions                          | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetManyResponse<TData>, TError>`               |           |
-| metaData                                          | Metadata query for `dataProvider`                                                   | [`MetaDataOptions`](/api-references/interfaces.md#metadataquery) | {}        |
+| metaData                                          | Metadata query for `dataProvider`                                                   | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery) | {}        |
 
 
 ### Return values

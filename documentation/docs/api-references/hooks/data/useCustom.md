@@ -59,7 +59,7 @@ const { data, isLoading } = useCustom<PostUniqueCheckResponse>({
 | method <div className="required">Required</div> | Method                                                                  | `get`, `delete`, `head`, `options`, `post`, `put`, `patch`                                                                                      |
 | config                                          | Query Params                                                            | { sort?: [CrudSorting](../../interfaces.md#crudsorting); filters?: [`CrudFilters`](../../interfaces.md#crudfilters); payload?: {}; query?: {} } |
 | queryOptions                                    | [useQuery Options](https://react-query.tanstack.com/reference/useQuery) | object                                                                                                                                          |
-| metaData                                            | Metadata query for `dataProvider`                                              | [`MetaDataOptions`](/api-references/interfaces.md#metadataquery)           | {}                                                                   |
+| metaData                                            | Metadata query for `dataProvider`                                              | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)           | {}                                                                   |
 
 ### Type Parameters
 
