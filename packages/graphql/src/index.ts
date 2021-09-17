@@ -57,7 +57,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
 
             return {
                 data: response[operation],
-                total: response.count || 999,
+                total: response[operation].count,
             };
         },
 
