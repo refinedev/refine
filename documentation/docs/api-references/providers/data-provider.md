@@ -16,16 +16,25 @@ A data provider must include following methods:
 
 ```tsx
 const dataProvider = {
-    create: (resource, params) => Promise,
-    createMany: (resource, params) => Promise,
-    deleteOne: (resource, id) => Promise,
-    deleteMany: (resource, ids) => Promise,
-    getList: (resource, params) => Promise,
-    getMany: (resource, ids) => Promise,
-    getOne: (resource, id) => Promise,
-    update: (resource, id, params) => Promise,
-    updateMany: (resource, ids, params) => Promise,
-    custom?: (url, method, params = {}) => Promise,
+    create: ({ resource, variables, metaData }) => Promise,
+    createMany: ({ resource, variables, metaData }) => Promise,
+    deleteOne: ({ resource, id, metaData }) => Promise,
+    deleteMany: ({ resource, ids, metaData }) => Promise,
+    getList: ({ resource, pagination, sort, filters, metaData }) => Promise,
+    getMany: ({ resource, ids, metaData }) => Promise,
+    getOne: ({ resource, id, metaData }) => Promise,
+    update: ({ resource, id, variables, metaData }) => Promise,
+    updateMany: ({ resource, ids, variables, metaData }) => Promise,
+    custom?: ({
+        url,
+        method,
+        sort,
+        filters,
+        payload,
+        query,
+        headers,
+        metaData,
+    }) => Promise,
     getApiUrl: () => "",
 };
 ```
@@ -34,12 +43,12 @@ const dataProvider = {
 
 **refine** includes many out-of-the-box data providers to use in your projects like
 
-* [Simple REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest)
-* [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
-* [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
-* [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
-* [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
-* [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
+-   [Simple REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest)
+-   [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
+-   [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
+-   [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
+-   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
+-   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
 :::
 
@@ -110,16 +119,25 @@ const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
-    create: (resource, params) => Promise,
-    createMany: (resource, params) => Promise,
-    deleteOne: (resource, id) => Promise,
-    deleteMany: (resource, ids) => Promise,
-    getList: (resource, params) => Promise,
-    getMany: (resource, ids) => Promise,
-    getOne: (resource, id) => Promise,
-    update: (resource, id, params) => Promise,
-    updateMany: (resource, ids, params) => Promise,
-    custom: (url, method, params = {}) => Promise,
+    create: ({ resource, variables, metaData }) => Promise,
+    createMany: ({ resource, variables, metaData }) => Promise,
+    deleteOne: ({ resource, id, metaData }) => Promise,
+    deleteMany: ({ resource, ids, metaData }) => Promise,
+    getList: ({ resource, pagination, sort, filters, metaData }) => Promise,
+    getMany: ({ resource, ids, metaData }) => Promise,
+    getOne: ({ resource, id, metaData }) => Promise,
+    update: ({ resource, id, variables, metaData }) => Promise,
+    updateMany: ({ resource, ids, variables, metaData }) => Promise,
+    custom: ({
+        url,
+        method,
+        sort,
+        filters,
+        payload,
+        query,
+        headers,
+        metaData,
+    }) => Promise,
     getApiUrl: () => "",
 });
 ```
@@ -138,10 +156,10 @@ const SimpleRestDataProvider = (
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
-    create: async (resource, params) => {
+    create: async ({ resource, variables }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { data } = await httpClient.post(url, params);
+        const { data } = await httpClient.post(url, variables);
 
         return {
             data,
@@ -153,12 +171,12 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name     | Type         | Default |
-| -------- | ------------ | ------- |
-| resource | `string`     |         |
-| params   | `TVariables` | `{}`    |
+| Name      | Type         | Default |
+| --------- | ------------ | ------- |
+| resource  | `string`     |         |
+| variables | `TVariables` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/api-references/hooks/data/useCreate#type-parameters) to type `params`
+> `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/api-references/hooks/data/useCreate#type-parameters) to type `variables`
 
 <br/>
 
@@ -191,9 +209,9 @@ const SimpleRestDataProvider = (
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
-    createMany: async (resource, params) => {
+    createMany: async ({ resource, variables }) => {
         const response = await Promise.all(
-            params.map(async (param) => {
+            variables.map(async (param) => {
                 const { data } = await httpClient.post(
                     `${apiUrl}/${resource}`,
                     param,
@@ -210,12 +228,12 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name     | Type           | Default |
-| -------- | -------------- | ------- |
-| resource | `string`       |         |
-| params   | `TVariables[]` | `{}`    |
+| Name      | Type           | Default |
+| --------- | -------------- | ------- |
+| resource  | `string`       |         |
+| variables | `TVariables[]` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useCreateMany`](/docs/api-references/hooks/data/useCreateMany) to type `params`
+> `TVariables` is a user defined type which can be passed to [`useCreateMany`](/docs/api-references/hooks/data/useCreateMany) to type `variables`
 
 <br/>
 
@@ -253,7 +271,7 @@ const SimpleRestDataProvider = (
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
-    deleteOne: async (resource, id) => {
+    deleteOne: async ({ resource, id }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await httpClient.delete(url);
@@ -299,7 +317,7 @@ const SimpleRestDataProvider = (
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
-    deleteMany: async (resource, ids) => {
+    deleteMany: async ({ resource, ids }) => {
         const response = await Promise.all(
             ids.map(async (id) => {
                 const { data } = await httpClient.delete(
@@ -350,10 +368,10 @@ const SimpleRestDataProvider = (
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
-    update: async (resource, id, params) => {
+    update: async ({ resource, id, variables }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.patch(url, params);
+        const { data } = await httpClient.patch(url, variables);
 
         return {
             data,
@@ -365,13 +383,13 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name     | Type         | Default |
-| -------- | ------------ | ------- |
-| resource | `string`     |         |
-| id       | `string`     |         |
-| params   | `TVariables` | `{}`    |
+| Name      | Type         | Default |
+| --------- | ------------ | ------- |
+| resource  | `string`     |         |
+| id        | `string`     |         |
+| variables | `TVariables` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/api-references/hooks/data/useUpdate#type-parameters) to type `params`
+> `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/api-references/hooks/data/useUpdate#type-parameters) to type `variables`
 
 <br/>
 
@@ -403,12 +421,12 @@ const SimpleRestDataProvider = (
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
-    updateMany: async (resource, ids, params) => {
+    updateMany: async ({ resource, ids, variables }) => {
         const response = await Promise.all(
             ids.map(async (id) => {
                 const { data } = await httpClient.patch(
                     `${apiUrl}/${resource}/${id}`,
-                    params,
+                    variables,
                 );
                 return data;
             }),
@@ -422,13 +440,13 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name     | Type         | Default |
-| -------- | ------------ | ------- |
-| resource | `string`     |         |
-| ids      | `string[]`   |         |
-| params   | `TVariables` | `{}`    |
+| Name      | Type         | Default |
+| --------- | ------------ | ------- |
+| resource  | `string`     |         |
+| ids       | `string[]`   |         |
+| variables | `TVariables` | `{}`    |
 
-> TVariables is a user defined type which can be passed to [`useUpdateMany`](/docs/api-references/hooks/data/useUpdateMany#type-parameters) to type `params`
+> TVariables is a user defined type which can be passed to [`useUpdateMany`](/docs/api-references/hooks/data/useUpdateMany#type-parameters) to type `variables`
 
 <br/>
 
@@ -460,7 +478,7 @@ const SimpleRestDataProvider = (
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
-    getOne: async (resource, id) => {
+    getOne: async ({ resource, id }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await httpClient.get(url);
@@ -506,7 +524,7 @@ const SimpleRestDataProvider = (
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
-    getMany: async (resource, ids) => {
+    getMany: async ({ resource, ids }) => {
         const { data } = await httpClient.get(
             `${apiUrl}/${resource}?${stringify({ id: ids })}`,
         );
@@ -549,7 +567,7 @@ const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
-    getList: async (resource, params) => {
+    getList: async ({ resource, pagination, filters, sort }) => {
         const url = `${apiUrl}/${resource}`;
 
         const { data, headers } = await httpClient.get(
@@ -568,10 +586,12 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name   | Type                                                                                                                                                                                                                                     |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| url    | `string`                                                                                                                                                                                                                                 |
-| params | { `pagination?:` [`Pagination`](../../api-references/interfaces.md#pagination); `sort?:` [`CrudSorting`](../../api-references/interfaces.md#crudsorting); `filters?:` [`CrudFilters`](../../api-references/interfaces.md#crudfilters); } |
+| Name        | Type                                                             |
+| ----------- | ---------------------------------------------------------------- |
+| resource    | `string`                                                         |
+| pagination? | [`Pagination`](../../api-references/interfaces.md#pagination);   |
+| sort?       | [`CrudSorting`](../../api-references/interfaces.md#crudsorting); |
+| filters?    | [`CrudFilters`](../../api-references/interfaces.md#crudfilters); |
 
 <br/>
 
@@ -598,11 +618,11 @@ const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
-    getList: async (resource, params) => {
+    getList: async ({ resource, pagination, filters, sort }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const current = params.pagination?.current || 1;
-        const pageSize = params.pagination?.pageSize || 10;
+        const current = pagination?.current || 1;
+        const pageSize = pagination?.pageSize || 10;
 
         const query = {
             _start: (current - 1) * pageSize,
@@ -670,13 +690,13 @@ const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
-    getList: async (resource, params) => {
+    getList: async ({ resource, pagination, filters, sort }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const current = params.pagination?.current || 1;
-        const pageSize = params.pagination?.pageSize || 10;
+        const current = pagination?.current || 1;
+        const pageSize = pagination?.pageSize || 10;
 
-        const { _sort, _order } = generateSort(params.sort);
+        const { _sort, _order } = generateSort(sort);
 
         const query = {
             _start: (current - 1) * pageSize,
@@ -777,15 +797,15 @@ const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
-    getList: async (resource, params) => {
+    getList: async ({ resource, pagination, filters, sort }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const current = params.pagination?.current || 1;
-        const pageSize = params.pagination?.pageSize || 10;
+        const current = pagination?.current || 1;
+        const pageSize = pagination?.pageSize || 10;
 
-        const { _sort, _order } = generateSort(params.sort);
+        const { _sort, _order } = generateSort(sort);
 
-        const queryFilters = generateFilter(params.filters);
+        const queryFilters = generateFilter(filters);
 
         const query = {
             _start: (current - 1) * pageSize,
@@ -849,9 +869,7 @@ const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
- custom: async (url, method, params = {}) => {
-        const { filters, sort, payload, query, headers } = params;
-
+ custom: async ({ url, method, filters, sort, payload, query, headers }) => {
         let requestUrl = `${url}?`;
 
         if (sort) {
@@ -903,11 +921,15 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name   | Type                                                                                                                                                                                                     |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| url    | `string`                                                                                                                                                                                                 |
-| method | `get`, `delete`, `head`, `options`, `post`, `put`, `patch`                                                                                                                                               |
-| params | { `sort?:` [`CrudSorting`](../../api-references/interfaces.md#crudsorting); `filters?:` [`CrudFilters`](../../api-references/interfaces.md#crudfilters); `payload?: {}`; `query?: {}`; `headers?: {}`; } |
+| Name     | Type                                                             |
+| -------- | ---------------------------------------------------------------- |
+| url      | `string`                                                         |
+| method   | `get`, `delete`, `head`, `options`, `post`, `put`, `patch`       |
+| sort?    | [`CrudSorting`](../../api-references/interfaces.md#crudsorting); |
+| filters? | [`CrudFilters`](../../api-references/interfaces.md#crudfilters); |
+| payload? | `{}`                                                             |
+| query?   | `{}`                                                             |
+| headers? | `{}`                                                             |
 
 <br/>
 
