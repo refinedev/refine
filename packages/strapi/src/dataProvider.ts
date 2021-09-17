@@ -64,7 +64,7 @@ export const DataProvider = (
 
         const query = {
             _start: (current - 1) * pageSize,
-            _limit: current * pageSize,
+            _limit: pageSize,
             _sort: _sort.length > 0 ? _sort.join(",") : undefined,
         };
 

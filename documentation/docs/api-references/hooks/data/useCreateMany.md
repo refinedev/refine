@@ -62,7 +62,8 @@ mutate({
 ```
 
 :::tip
-`mutate` can also accept lifecycle methods like `onSuccess` and `onError`. [Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
+`mutate` can also accept lifecycle methods like `onSuccess` and `onError`.  
+[Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
 :::
 
 <br />
@@ -116,7 +117,7 @@ Variables passed to `mutate` must have these types.
 
 | Property                                            | Description                               | Type                                                                       | Default                                                              |
 | --------------------------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| resource  <div className=" required">Required</div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                                   |                                                                      |
+| resource  <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                                   |                                                                      |
 | values  <div className=" required">Required</div>   | Values for mutation function              | `TVariables[]`                                                             | [{}]                                                                 |
 | successNotification                                 | Successful Mutation notification          | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully created `resource`s"                                   |
 | errorNotification                                   | Unsuccessful Mutation notification        | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" |

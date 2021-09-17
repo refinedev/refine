@@ -8,10 +8,7 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    const [refineProps, demoSidebarProps] = useDemoSidebar({
-        defaultTitle: "refine",
-        defaultMutationMode: "pessimistic",
-    });
+    const [refineProps, demoSidebarProps] = useDemoSidebar();
 
     return (
         <Refine

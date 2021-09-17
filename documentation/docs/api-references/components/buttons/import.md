@@ -67,10 +67,12 @@ Will look like this:
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx twoslash
-import { ImportButton } from "@pankod/refine";
+import { ImportButton, useImport } from "@pankod/refine";
 
 export const MyRefreshComponent = () => {
-    return <ImportButton hideText />;
+    const importProps = useImport();
+
+    return <ImportButton {...importProps} hideText />;
 };
 ```
 ## API Reference
