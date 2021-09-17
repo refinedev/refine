@@ -197,9 +197,10 @@ You can pass more options to further customize the exporting process.
 | resourceName  | Default resource name this button imports to. Inferred from route by default                                               | `string`                                                                         |
 | mapData       | A mapping function that runs for every record. Mapped data will be included in the file contents                           | `<TItem, TVariables>(item: TItem, index?: number, items?: TItem[]): TVariables;` |
 | pageSize      | Requests to fetch data are made as batches by page size. By default, it is 20. Used for `getList` method of `DataProvider` | `number`                                                                         |
-| sorter        | Sorts  records                                                                                                             | [`CrudSorting`][CrudSorting] \| `undefined`                                      |  |
-| filter        | Filters records                                                                                                            | [`CrudFilters`][CrudFilters] \| `undefined`                                      |  |
-| exportOptions | Used for exporting options                                                                                                 | [`Options`][export-to-csv#api] \| `undefined`                                    |  |
+| sorter        | Sorts  records                                                                                                             | [`CrudSorting`][CrudSorting] \| `undefined`                                      |    |
+| filter        | Filters records                                                                                                            | [`CrudFilters`][CrudFilters] \| `undefined`                                      |    |
+| exportOptions | Used for exporting options                                                                                                 | [`Options`][export-to-csv#api] \| `undefined`                                    |    |
+| metaData      | Metadata query for `dataProvider`                                                                                          | [`MetaDataOptions`](/api-references/interfaces.md#metadataquery)                 | {} |
 
 ### `useExport` Return Values
 

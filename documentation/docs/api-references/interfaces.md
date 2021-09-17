@@ -18,7 +18,7 @@ title: Interface References
 #### CrudOperators
 
 ```ts
-"eq" |
+    "eq" |
     "ne" |
     "lt" |
     "gt" |
@@ -122,3 +122,26 @@ ButtonProps
 | ------------------- | ------------------------------------------------------------------------------------ |
 | successNotification | [Notification Properties](https://ant.design/components/notification/#API) & `false` |
 | errorNotification   | [Notification Properties](https://ant.design/components/notification/#API) & `false` |
+
+
+## MetaDataQuery
+
+| Key         | Type                                    |
+| ----------- | --------------------------------------- |
+| [k: string] | `any`                                     |
+| operation?  | `string`                                |
+| fields?     | `Array<string` \| `object` \| `NestedField>` |
+| variables?  | [VariableOptions](#variableoptions)     |
+
+
+### VariableOptions
+
+| Key         | Type     |
+| ----------- | -------- |
+| type?       | `string` |
+| name?       | `string` |
+| value?      | `any`    |
+| list?       | `bool`   |
+| required?   | `bool`   |
+| [k: string] | `any`      |
+

@@ -221,17 +221,18 @@ const {
 
 ### Properties
 
-| Property                                          | Description                                                                         | Type                                               | Default   |
-| ------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------- | --------- |
-| resource <div className="required">Required</div> | [`Resource`](/api-references/components/resource.md) for API data interactions      | `string`                                           |           |
-| defaultValue                                      | Adds extra `options`                                                                | `string` \| `Array<string>`                        |           |
-| optionValue                                       | Set the option's value                                                              | `string`                                           | `"id"`    |
-| optionLabel                                       | Set the option's label value                                                        | `string`                                           | `"title"` |
-| filters                                           | Add filters while fetching the data                                                 | [`CrudFilters`](../../interfaces.md#crudfilters)   |           |
-| sort                                              | Allow us to sort the options                                                        | [`CrudSorting`](../../interfaces.md#crudsorting)   |           |
-| debounce                                          | The number of milliseconds to delay                                                 | `number`                                           | 300       |
-| queryOptions                                      | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>` |           |
-| defaultValueQueryOptions                          | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetManyResponse<TData>, TError>` |           |
+| Property                                          | Description                                                                         | Type                                                             | Default   |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------- | --------- |
+| resource <div className="required">Required</div> | [`Resource`](/api-references/components/resource.md) for API data interactions      | `string`                                                         |           |
+| defaultValue                                      | Adds extra `options`                                                                | `string` \| `Array<string>`                                      |           |
+| optionValue                                       | Set the option's value                                                              | `string`                                                         | `"id"`    |
+| optionLabel                                       | Set the option's label value                                                        | `string`                                                         | `"title"` |
+| filters                                           | Add filters while fetching the data                                                 | [`CrudFilters`](../../interfaces.md#crudfilters)                 |           |
+| sort                                              | Allow us to sort the options                                                        | [`CrudSorting`](../../interfaces.md#crudsorting)                 |           |
+| debounce                                          | The number of milliseconds to delay                                                 | `number`                                                         | 300       |
+| queryOptions                                      | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>`               |           |
+| defaultValueQueryOptions                          | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetManyResponse<TData>, TError>`               |           |
+| metaData                                          | Metadata query for `dataProvider`                                                   | [`MetaDataOptions`](/api-references/interfaces.md#metadataquery) | {}        |
 
 
 ### Return values
