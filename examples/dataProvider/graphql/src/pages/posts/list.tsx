@@ -11,6 +11,11 @@ import {
     FilterDropdown,
     Select,
     useSelect,
+    ExportButton,
+    ImportButton,
+    useExport,
+    useImport,
+    CreateButton,
 } from "@pankod/refine";
 
 import { ICategory, IPost } from "interfaces";
@@ -41,8 +46,46 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
+    const { triggerExport, loading: exportLoading } = useExport<IPost>({
+        mapData: (item) => {
+            return {
+                id: item.id,
+                title: item.title,
+                content: item.content,
+                category: item.category.id,
+            };
+        },
+        metaData: {
+            fields: ["id", "title", "content", { category: ["id"] }],
+        },
+    });
+
+    const importProps = useImport<IPost>({
+        mapData: (item) => {
+            return {
+                title: item.title,
+                content: item.content,
+                category: item.category,
+            };
+        },
+        batchSize: 100,
+    });
+
     return (
-        <List>
+        <List
+            pageHeaderProps={{
+                extra: (
+                    <Space>
+                        <ImportButton {...importProps} />
+                        <ExportButton
+                            onClick={triggerExport}
+                            loading={exportLoading}
+                        />
+                        <CreateButton />
+                    </Space>
+                ),
+            }}
+        >
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     key="id"
