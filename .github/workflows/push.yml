@@ -28,11 +28,13 @@ jobs:
         npm install
         npm run lerna bootstrap
         npm run lint
+        npm run test:coverage
     - name: npm test & publish code coverage
-      uses: paambaati/codeclimate-action@v2.6.0
+      uses: paambaati/codeclimate-action@v2.7.5
       if: github.ref == 'refs/heads/master'
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.TEST_REPORTER_ID }}
       with:
-        coverageCommand: npm run test:coverage
+        coverageLocations: |
+          ${{github.workspace}}/*.lcov:lcov
 
