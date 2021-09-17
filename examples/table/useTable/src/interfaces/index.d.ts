@@ -3,4 +3,12 @@ export interface IPost {
     title: string;
     content: string;
     status: "published" | "draft" | "rejected";
+    category: {
+        id: number;
+    };
+}
+
+interface ICategory {
+    id: string;
+    title: string;
 }

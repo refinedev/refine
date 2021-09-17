@@ -171,14 +171,15 @@ const {
 
 ### Properties
 
-| Property                                                                                            | Description                                                                         | Type                                               | Default   |
-| --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------- | --------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](/api-references/components/resource.md) for API data interactions      | `string`                                           |           |
-| optionValue                                                                                         | Sets the option's value                                                             | `string`                                           | `"id"`    |
-| optionLabel                                                                                         | Sets the option's label value                                                       | `string`                                           | `"title"` |
-| filters                                                                                             | Adds filters while fetching the data                                                | [`CrudFilters`](../../interfaces.md#crudfilters)   |           |
-| sort                                                                                                | Allows us to sort the options                                                       | [`CrudSorting`](../../interfaces.md#crudsorting)   |           |
-| queryOptions                                                                                        | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>` |           |
+| Property                                                                                            | Description                                                                         | Type                                                             | Default   |
+| --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------- | --------- |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](/api-references/components/resource.md) for API data interactions      | `string`                                                         |           |
+| optionValue                                                                                         | Sets the option's value                                                             | `string`                                                         | `"id"`    |
+| optionLabel                                                                                         | Sets the option's label value                                                       | `string`                                                         | `"title"` |
+| filters                                                                                             | Adds filters while fetching the data                                                | [`CrudFilters`](../../interfaces.md#crudfilters)                 |           |
+| sort                                                                                                | Allows us to sort the options                                                       | [`CrudSorting`](../../interfaces.md#crudsorting)                 |           |
+| queryOptions                                                                                        | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>`               |           |
+| metaData                                                                                            | Metadata query for `dataProvider`                                                   | [`MetaDataOptions`](/api-references/interfaces.md#metadataquery) | {}        |
 
 
 ### Return values

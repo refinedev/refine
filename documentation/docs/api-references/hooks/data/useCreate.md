@@ -109,12 +109,13 @@ Variables passed to `mutate` must have these types.
 ## API
 ### Properties
 
-| Property                                            | Description                               | Type                                                                       | Default                                                      |
-| --------------------------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| resource  <div className=" required">Required</div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                                   |                                                              |
-| values  <div className=" required">Required</div>   | Values for mutation function              | `TVariables`                                                               | {}                                                           |
-| successNotification                                 | Successful Mutation notification          | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully created `resource`"                            |
-| errorNotification                                   | Unsuccessful Mutation notification        | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" |
+| Property                                            | Description                                                                    | Type                                                                       | Default                                                              |
+| --------------------------------------------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| resource  <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                                   |                                                                      |
+| values  <div className=" required">Required</div>   | Values for mutation function                                                   | `TVariables`                                                               | {}                                                                   |
+| successNotification                                 | Successful Mutation notification                                               | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully created `resource`"                                    |
+| errorNotification                                   | Unsuccessful Mutation notification                                             | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" |
+| metaData                                            | Metadata query for `dataProvider`                                              | [`MetaDataOptions`](/api-references/interfaces.md#metadataquery)           | {}                                                                   |
 
 ### Type Parameters
 
@@ -124,6 +125,7 @@ Variables passed to `mutate` must have these types.
 | TData      | Result data of the mutation. Extends [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) | [`BaseRecord`](../../interfaces.md#baserecord) |
 | TError     | Custom error object that extends [`HttpError`](../../interfaces.md#httperror)       | [`HttpError`](../../interfaces.md#httperror)   | [`HttpError`](../../interfaces.md#httperror)   |
 | TVariables | Values for mutation function                                                        | `{}`                                           | `{}`                                           |
+
 ### Return value
 
 | Description                               | Type                                                                                                                                                                                   |

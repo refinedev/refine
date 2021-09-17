@@ -30,8 +30,6 @@ export const PostList: React.FC = () => {
                             value={value}
                             options={{
                                 // @ts-ignore
-                                style: "currency",
-                                // @ts-ignore
                                 notation: "compact",
                             }}
                         />
@@ -49,8 +47,13 @@ interface IPost {
 ```
 
 <br/>
-<div>
-    <img src={numberField} alt="Number Field Usage"/>
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={numberField} alt="NumberField" />
 </div>
 
 ## API Reference

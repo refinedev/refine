@@ -10,7 +10,7 @@
         "start": "lerna run start --stream --parallel",
         "test": "lerna run test --stream --parallel",
         "test:coverage": "jest --runInBand --silent --ci --coverage",
-        "lint": "eslint -c ./.eslintrc packages example examples",
+        "lint": "eslint -c ./.eslintrc packages examples",
         "lint:fix": "npm run lint -- --quiet --fix",
         "build": "lerna run build",
         "bootstrap:docker": "lerna bootstrap -- --production --no-optional",
