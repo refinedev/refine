@@ -4,7 +4,7 @@ import "./index.mock";
 
 describe("getList", () => {
     it("correct response", async () => {
-        const { data } = await dataProvider(client).getList({
+        const { data, total } = await dataProvider(client).getList({
             resource: "posts",
             metaData: {
                 fields: ["id", "title"],
@@ -12,10 +12,11 @@ describe("getList", () => {
         });
         expect(data[0]["id"]).toBe("21");
         expect(data[0]["title"]).toBe("Another New Post");
+        expect(total).toBe(97);
     });
 
     it("correct sorting response", async () => {
-        const { data } = await dataProvider(client).getList({
+        const { data, total } = await dataProvider(client).getList({
             resource: "posts",
             sort: [
                 {
@@ -30,6 +31,7 @@ describe("getList", () => {
 
         expect(data[0]["id"]).toBe("7");
         expect(data[0]["title"]).toBe("GraphQl 3");
+        expect(total).toBe(97);
     });
 
     it("correct filter response", async () => {

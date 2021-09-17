@@ -40,6 +40,31 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     );
 
 nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
+    .get("/posts/count")
+    .reply(200, "97", [
+        "Server",
+        "nginx/1.17.10",
+        "Date",
+        "Fri, 17 Sep 2021 13:39:14 GMT",
+        "Content-Type",
+        "application/json; charset=utf-8",
+        "Content-Length",
+        "2",
+        "Connection",
+        "close",
+        "Vary",
+        "Origin",
+        "Strict-Transport-Security",
+        "max-age=31536000; includeSubDomains",
+        "X-Frame-Options",
+        "SAMEORIGIN",
+        "X-Powered-By",
+        "Strapi <strapi.io>",
+        "X-Response-Time",
+        "14ms",
+    ]);
+
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/graphql", {
         query: "query ($sort: String, $where: JSON, $start: Int, $limit: Int) { posts (sort: $sort, where: $where, start: $start, limit: $limit) { id, title } }",
         variables: { sort: "id:asc", where: {}, start: 0, limit: 10 },
@@ -79,6 +104,31 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     );
 
 nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
+    .get("/posts/count")
+    .reply(200, "97", [
+        "Server",
+        "nginx/1.17.10",
+        "Date",
+        "Fri, 17 Sep 2021 13:39:14 GMT",
+        "Content-Type",
+        "application/json; charset=utf-8",
+        "Content-Length",
+        "2",
+        "Connection",
+        "close",
+        "Vary",
+        "Origin",
+        "Strict-Transport-Security",
+        "max-age=31536000; includeSubDomains",
+        "X-Frame-Options",
+        "SAMEORIGIN",
+        "X-Powered-By",
+        "Strapi <strapi.io>",
+        "X-Response-Time",
+        "14ms",
+    ]);
+
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/graphql", {
         query: "query ($sort: String, $where: JSON, $start: Int, $limit: Int) { posts (sort: $sort, where: $where, start: $start, limit: $limit) { title } }",
         variables: { where: { title_eq: "GraphQl 3" }, start: 0, limit: 10 },
@@ -104,6 +154,31 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
         "Strapi <strapi.io>",
         "X-Response-Time",
         "39ms",
+    ]);
+
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
+    .get("/posts/count")
+    .reply(200, "97", [
+        "Server",
+        "nginx/1.17.10",
+        "Date",
+        "Fri, 17 Sep 2021 13:39:14 GMT",
+        "Content-Type",
+        "application/json; charset=utf-8",
+        "Content-Length",
+        "2",
+        "Connection",
+        "close",
+        "Vary",
+        "Origin",
+        "Strict-Transport-Security",
+        "max-age=31536000; includeSubDomains",
+        "X-Frame-Options",
+        "SAMEORIGIN",
+        "X-Powered-By",
+        "Strapi <strapi.io>",
+        "X-Response-Time",
+        "14ms",
     ]);
 
 nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
@@ -149,3 +224,28 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
             "gzip",
         ],
     );
+
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
+    .get("/posts/count")
+    .reply(200, "97", [
+        "Server",
+        "nginx/1.17.10",
+        "Date",
+        "Fri, 17 Sep 2021 13:39:14 GMT",
+        "Content-Type",
+        "application/json; charset=utf-8",
+        "Content-Length",
+        "2",
+        "Connection",
+        "close",
+        "Vary",
+        "Origin",
+        "Strict-Transport-Security",
+        "max-age=31536000; includeSubDomains",
+        "X-Frame-Options",
+        "SAMEORIGIN",
+        "X-Powered-By",
+        "Strapi <strapi.io>",
+        "X-Response-Time",
+        "14ms",
+    ]);
