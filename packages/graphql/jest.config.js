@@ -3,5 +3,5 @@ module.exports = {
     rootDir: "./",
     name: "graphql",
     displayName: "graphql",
-    setupFilesAfterEnv: ["<rootDir>/test/jest.setup.js"],
+    setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
 };

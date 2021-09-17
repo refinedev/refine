@@ -3,5 +3,5 @@ module.exports = {
     rootDir: "./",
     name: "strapi-graphql",
     displayName: "strapi-graphql",
-    setupFilesAfterEnv: ["<rootDir>/test/jest.setup.js"],
+    setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
 };
