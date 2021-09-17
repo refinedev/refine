@@ -25,7 +25,7 @@ import {
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
-    const { triggerExport, loading: exportLoading } = useExport<IPost>();
+    const { triggerExport, isLoading: exportLoading } = useExport<IPost>();
 
     return (
         <List

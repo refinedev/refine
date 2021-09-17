@@ -18,7 +18,6 @@ import {
     useSelect,
     Button,
     CrudFilters,
-    Space,
     FormProps,
     Row,
     Col,
@@ -93,7 +92,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const { show } = useNavigation();
 
-    const { loading, triggerExport } = useExport<IOrder>({
+    const { isLoading, triggerExport } = useExport<IOrder>({
         sorter,
         filters,
         pageSize: 50,
@@ -111,7 +110,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     });
 
     const Actions: React.FC = () => (
-        <ExportButton onClick={triggerExport} loading={loading} />
+        <ExportButton onClick={triggerExport} loading={isLoading} />
     );
 
     return (
