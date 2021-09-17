@@ -11,7 +11,7 @@ It uses `update` method as mutation function from the [`dataProvider`](api-refer
 
 ## Features
 
-* Shows notifications after the mutation suceeds, fails or gets cancelled.
+* Shows notifications after the mutation succeeds, fails or gets cancelled.
 
 * Automatically invalidates `list` and `getOne` queries after the mutation is succesfully run.
 [Refer to React Query docs for detailed information &#8594](https://react-query.tanstack.com/guides/invalidations-from-mutations)
@@ -56,13 +56,13 @@ mutate({
 ```
 
 :::tip
-`mutate` can also accept lifecycle methods like `onSuccess` and `onError`.
+`mutate` can also accept lifecycle methods like `onSuccess` and `onError`.  
 [Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
 :::
 
 <br/>
 
-After mutation runs `categories` will be updated as below:
+After mutation runs, `categories` will be updated as below:
 
 ```ts title="https://api.fake-rest.refine.dev/categories" {8}
 {
@@ -129,7 +129,7 @@ mutate({
 You can pass a custom cancel callback to `useUpdate`. This callback will be triggered instead of the default one when undo button is clicked when  `mutationMode = "undoable"`.
 
 :::caution
-Default behaviour on undo action includes notifications. If a custom callback is passed this notification will not appear.
+Default behaviour on undo action includes notifications. If a custom callback is passed, this notification will not appear.
 :::
 
 :::danger
@@ -153,7 +153,7 @@ mutate({
     onCancel: customOnCancel
 });
 ```
-After 7.5 seconds the mutation will be executed. The mutation can be cancelled within that 7.5 seconds. If cancelled `customOnCancel` will be executed and the request will not be sent.
+After 7.5 seconds the mutation will be executed. The mutation can be cancelled within that 7.5 seconds. If cancelled, `customOnCancel` will be executed and the request will not be sent.
 :::
 
 <br />
