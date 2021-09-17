@@ -1,5 +1,5 @@
 import { AuthProvider, Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-graphql";
+import dataProvider from "@pankod/refine-strapi-graphql";
 import { GraphQLClient } from "graphql-request";
 import "@pankod/refine/dist/styles.min.css";
 
