@@ -55,14 +55,9 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
 
             const response = await client.request(query, variables);
 
-            const countRequest = await fetch(
-                `https://api.strapi.refine.dev/${resource}/count`,
-            );
-            const count = await countRequest.json();
-
             return {
                 data: response[operation],
-                total: count,
+                total: response.count || 999,
             };
         },
 
