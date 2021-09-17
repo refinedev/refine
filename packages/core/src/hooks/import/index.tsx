@@ -79,7 +79,7 @@ export const useImport = <
 }: ImportOptions<TItem, TVariables, TData> = {}): {
     uploadProps: UploadProps;
     buttonProps: ButtonProps;
-    query:
+    mutationResult:
         | UseCreateReturnType<TData, TError, TVariables>
         | UseCreateManyReturnType<TData, TError, TVariables>;
 } => {
@@ -97,14 +97,14 @@ export const useImport = <
     const createMany = useCreateMany<TData, TError, TVariables>();
     const create = useCreate<TData, TError, TVariables>();
 
-    let query:
+    let mutationResult:
         | UseCreateReturnType<TData, TError, TVariables>
         | UseCreateManyReturnType<TData, TError, TVariables>;
 
     if (batchSize === 1) {
-        query = create;
+        mutationResult = create;
     } else {
-        query = createMany;
+        mutationResult = createMany;
     }
 
     const handleCleanup = () => {
@@ -308,6 +308,6 @@ export const useImport = <
             type: "default",
             loading: isLoading,
         },
-        query,
+        mutationResult,
     };
 };
