@@ -3,4 +3,5 @@ module.exports = {
     rootDir: "./",
     name: "strapi",
     displayName: "strapi",
+    setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
 };

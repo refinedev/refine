@@ -3,4 +3,5 @@ module.exports = {
     rootDir: "./",
     name: "altogic",
     displayName: "altogic",
+    setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
 };
