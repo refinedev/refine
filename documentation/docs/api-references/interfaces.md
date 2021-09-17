@@ -126,13 +126,28 @@ ButtonProps
 
 ## MetaDataQuery
 
-| Key         | Type                                    |
-| ----------- | --------------------------------------- |
-| [k: string] | `any`                                     |
-| operation?  | `string`                                |
-| fields?     | `Array<string` \| `object` \| `NestedField>` |
-| variables?  | [VariableOptions](#variableoptions)     |
+| Key         | Type                                                       |
+| ----------- | ---------------------------------------------------------- |
+| [k: string] | `any`                                                      |
+| operation?  | `string`                                                   |
+| fields?     | `Array<string` \| `object` \| [NestedField](#nestedfield)> |
+| variables?  | [VariableOptions](#variableoptions)                        |
 
+### NestedField
+
+| Key       | Type                                                       |
+| --------- | ---------------------------------------------------------- |
+| operation | `string`                                                   |
+| variables | [VariableOptions[]](#querybuilderoptions)                  |
+| fields    | `Array<string` \| `object` \| [NestedField](#nestedfield)> |
+
+### QueryBuilderOptions
+
+| Key       | Type                                         |
+| --------- | -------------------------------------------- |
+| operation | `string`                                     |
+| variables | [VariableOptions](#variableoptions)          |
+| fields    | `Array<string` \| `object` \| `NestedField>` |
 
 ### VariableOptions
 
@@ -143,5 +158,4 @@ ButtonProps
 | value?      | `any`    |
 | list?       | `bool`   |
 | required?   | `bool`   |
-| [k: string] | `any`      |
-
+| [k: string] | `any`    |
