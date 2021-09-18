@@ -168,7 +168,7 @@ export const useTable = <
                 current: currentSF ?? defaultCurrentSF,
                 pageSize: pageSizeSF,
             },
-            filters,
+            filters: unionFilters(permanentFilter, [], filters),
             sort: sorter,
         },
         queryOptions,
