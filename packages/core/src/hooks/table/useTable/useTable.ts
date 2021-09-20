@@ -120,11 +120,13 @@ export const useTable = <
     });
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
+    console.log({ routeResourceName });
 
     const { push } = useNavigation();
     const resourceWithRoute = useResourceWithRoute();
 
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
+    console.log("useTable::", { resource });
 
     const [sorter, setSorter] = useState<CrudSorting>(defaultSorter || []);
     const [filters, setFilters] = useState<CrudFilters>(
@@ -144,6 +146,7 @@ export const useTable = <
                 filters,
             });
 
+            console.log("will push", `/${resource.route}?${stringifyParams}`);
             // Careful! This triggers render
             return push(`/${resource.route}?${stringifyParams}`);
         }

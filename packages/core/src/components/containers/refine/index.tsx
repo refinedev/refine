@@ -143,6 +143,7 @@ export const Refine: React.FC<RefineProps> = ({
 
     console.log({ children });
 
+    let isSSr = false;
     const resources: IResourceItem[] = [];
     React.Children.map(children, (child: any) => {
         // if(!child || child.type !== Resource || child.type !== NextRouteComponent)
@@ -152,8 +153,9 @@ export const Refine: React.FC<RefineProps> = ({
 
         // if (child.type === NextRouteComponent) {
         if (child.type !== Resource) {
+            isSSr = true;
             resourcesFromProps?.map((resource) => {
-                console.log({ resource });
+                console.log("Refine::", { resource });
                 resources.push({
                     name: resource.name,
                     label: resource.options?.label,
@@ -222,30 +224,44 @@ export const Refine: React.FC<RefineProps> = ({
                                         Link={Link}
                                     >
                                         <UnsavedWarnContextProvider>
-                                            <MainRouter
-                                                BrowserRouter={BrowserRouter}
-                                            >
-                                                <>
-                                                    <RouteProvider
-                                                        resources={resources}
-                                                        catchAll={catchAll}
-                                                        DashboardPage={
-                                                            DashboardPage
-                                                        }
-                                                        LoginPage={LoginPage}
-                                                        ReadyPage={ReadyPage}
-                                                        customRoutes={routes}
-                                                        Switch={Switch}
-                                                        Route={Route}
-                                                        Redirect={Redirect}
-                                                    />
-                                                    <RouteChangeHandler
-                                                        useLocation={
-                                                            useLocation
-                                                        }
-                                                    />
-                                                </>
-                                            </MainRouter>
+                                            {isSSr ? (
+                                                children
+                                            ) : (
+                                                <MainRouter
+                                                    BrowserRouter={
+                                                        BrowserRouter
+                                                    }
+                                                >
+                                                    <>
+                                                        <RouteProvider
+                                                            resources={
+                                                                resources
+                                                            }
+                                                            catchAll={catchAll}
+                                                            DashboardPage={
+                                                                DashboardPage
+                                                            }
+                                                            LoginPage={
+                                                                LoginPage
+                                                            }
+                                                            ReadyPage={
+                                                                ReadyPage
+                                                            }
+                                                            customRoutes={
+                                                                routes
+                                                            }
+                                                            Switch={Switch}
+                                                            Route={Route}
+                                                            Redirect={Redirect}
+                                                        />
+                                                        <RouteChangeHandler
+                                                            useLocation={
+                                                                useLocation
+                                                            }
+                                                        />
+                                                    </>
+                                                </MainRouter>
+                                            )}
                                         </UnsavedWarnContextProvider>
                                     </RefineContextProvider>
                                 </NotificationContextProvider>
