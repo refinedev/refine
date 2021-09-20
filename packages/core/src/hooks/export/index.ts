@@ -8,6 +8,7 @@ import {
     MapDataFn,
     CrudSorting,
     CrudFilters,
+    MetaDataQuery,
 } from "../../interfaces";
 import { DataContext } from "@contexts/data";
 import { userFriendlyResourceName } from "@definitions";
@@ -25,6 +26,7 @@ type UseExportOptionsType<
     maxItemCount?: number;
     pageSize?: number;
     exportOptions?: Options;
+    metaData?: MetaDataQuery;
 };
 
 type UseExportReturnType = {
@@ -52,6 +54,7 @@ export const useExport = <
     pageSize = 20,
     mapData = (item) => item as any,
     exportOptions,
+    metaData,
 }: UseExportOptionsType<TData, TVariables> = {}): UseExportReturnType => {
     const [isLoading, setIsLoading] = useState(false);
 
@@ -79,13 +82,15 @@ export const useExport = <
         let current = 1;
         let preparingData = true;
         while (preparingData) {
-            const { data, total } = await getList<TData>(resource, {
+            const { data, total } = await getList<TData>({
+                resource,
                 filters,
                 sort: sorter,
                 pagination: {
                     current,
                     pageSize,
                 },
+                metaData,
             });
 
             current++;

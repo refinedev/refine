@@ -6,7 +6,7 @@ describe("getOne", () => {
         const response = await dataProvider(
             "keywoytODSr6xAqfg",
             "appKYl1H4k9g73sBT",
-        ).getOne("posts", "recLKRioqifTrPUIz");
+        ).getOne({ resource: "posts", id: "recLKRioqifTrPUIz" });
 
         const { data } = response;
 

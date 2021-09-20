@@ -27,20 +27,20 @@ const generateFilter = (filter: CrudFilter, query: any) => {
 
 const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
     return {
-        getList: async (resource, params) => {
-            const current = params.pagination?.current || 1;
-            const pageSize = params.pagination?.pageSize || 10;
+        getList: async ({ resource, pagination, filters, sort }) => {
+            const current = pagination?.current || 1;
+            const pageSize = pagination?.pageSize || 10;
 
             const query = supabaseClient
                 .from(resource)
                 .select("*", { count: "exact" })
                 .range((current - 1) * pageSize, current * pageSize - 1);
 
-            params.sort?.map((item) => {
+            sort?.map((item) => {
                 query.order(item.field, { ascending: item.order === "asc" });
             });
 
-            params.filters?.map((item) => {
+            filters?.map((item) => {
                 generateFilter(item, query);
             });
 
@@ -52,7 +52,7 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        getMany: async (resource, ids) => {
+        getMany: async ({ resource, ids }) => {
             const { data } = await supabaseClient
                 .from(resource)
                 .select("*")
@@ -63,26 +63,30 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        create: async (resource, params) => {
-            const { data } = await supabaseClient.from(resource).insert(params);
+        create: async ({ resource, variables }) => {
+            const { data } = await supabaseClient
+                .from(resource)
+                .insert(variables);
 
             return {
                 data: (data || [])[0] as any,
             };
         },
 
-        createMany: async (resource, params) => {
-            const { data } = await supabaseClient.from(resource).insert(params);
+        createMany: async ({ resource, variables }) => {
+            const { data } = await supabaseClient
+                .from(resource)
+                .insert(variables);
 
             return {
                 data: data as any,
             };
         },
 
-        update: async (resource, id, params) => {
+        update: async ({ resource, id, variables }) => {
             const { data } = await supabaseClient
                 .from(resource)
-                .update(params)
+                .update(variables)
                 .match({ id });
 
             return {
@@ -90,12 +94,12 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        updateMany: async (resource, ids, params) => {
+        updateMany: async ({ resource, ids, variables }) => {
             const response = await Promise.all(
                 ids.map(async (id) => {
                     const { data } = await supabaseClient
                         .from(resource)
-                        .update(params)
+                        .update(variables)
                         .match({ id });
                     return (data || [])[0];
                 }),
@@ -106,7 +110,7 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        getOne: async (resource, id) => {
+        getOne: async ({ resource, id }) => {
             const { data } = await supabaseClient
                 .from(resource)
                 .select("*")
@@ -117,7 +121,7 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        deleteOne: async (resource, id) => {
+        deleteOne: async ({ resource, id }) => {
             const { data } = await supabaseClient
                 .from(resource)
                 .delete()
@@ -128,7 +132,7 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        deleteMany: async (resource, ids) => {
+        deleteMany: async ({ resource, ids }) => {
             const response = await Promise.all(
                 ids.map(async (id) => {
                     const { data } = await supabaseClient

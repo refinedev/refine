@@ -10,6 +10,7 @@ import {
     CrudFilters,
     BaseRecord,
     HttpError,
+    MetaDataQuery,
 } from "../../interfaces";
 import { useCheckError } from "@hooks";
 import { useTranslate } from "@hooks/translate";
@@ -30,6 +31,7 @@ export type UseCustomProps<TData, TError, TQuery, TPayload> = {
     queryOptions?: UseQueryOptions<CustomResponse<TData>, TError>;
     successNotification?: ArgsProps | false;
     errorNotification?: ArgsProps | false;
+    metaData?: MetaDataQuery;
 };
 
 /**
@@ -57,6 +59,7 @@ export const useCustom = <
     queryOptions,
     successNotification,
     errorNotification,
+    metaData,
 }: UseCustomProps<TData, TError, TQuery, TPayload>): QueryObserverResult<
     CustomResponse<TData>,
     TError
@@ -67,7 +70,7 @@ export const useCustom = <
 
     const queryResponse = useQuery<CustomResponse<TData>, TError>(
         [`custom/${method}-${url}`, { ...config }],
-        () => custom<TData>(url, method, { ...config }),
+        () => custom<TData>({ url, method, ...config, metaData }),
         {
             ...queryOptions,
             onSuccess: (data) => {

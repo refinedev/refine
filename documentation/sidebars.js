@@ -202,9 +202,9 @@ module.exports = {
                                 "api-references/components/fields/number",
                             ],
                         },
-                        "api-references/interfaceReferences",
                     ],
                 },
+                "api-references/interfaceReferences",
             ],
         },
         {

@@ -56,6 +56,9 @@ export * from "./mapDataFn";
 // successErrorNotification
 export * from "./successErrorNotification";
 
+//metaData
+export * from "./metaData";
+
 // sunflower types
 export {
     useModalFormFromSFReturnType,

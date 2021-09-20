@@ -6,9 +6,9 @@ title: useTable
 import tableSorting from '@site/static/img/hooks/useTable/table-sorting.gif';
 import filters from '@site/static/img/hooks/useTable/filters.gif';
 
-By using useTable, you are able to get properties that are compatible with Ant Design [`<Table>`](https://ant.design/components/table/) component. All features such as sorting, filtering and pagination comes as out of box. 
+By using useTable, you are able to get properties that are compatible with Ant Design [`<Table>`](https://ant.design/components/table/) component. All features such as sorting, filtering and pagination comes as out of box.
 
-## Basic usage 
+## Basic usage
 
 Lets say that the data we are going to show on the table came like this from the endpoint:
 
@@ -66,6 +66,7 @@ If the `resource` option is given, `syncWithLocation` will not work.
 :::
 
 ## Listing
+
 <br />
 
 :::info
@@ -84,7 +85,7 @@ const { tableProps } = useTable<IPost>();
     }}
 >
     ...
-</Table>
+</Table>;
 ```
 
 :::
@@ -149,7 +150,7 @@ interface IPost {
     title: string;
     status: "published" | "draft" | "rejected";
 }
-import { useTable } from "@pankod/refine";
+import { useTable } from "@pankod/refine";
 // ---cut---
 const { tableProps, sorter } = useTable<IPost>({
     initialSorter: [
@@ -253,6 +254,7 @@ export const PostList: React.FC = () => {
 ### Default filter value
 
 In order to set a default filter value, you can use the `initialFilter` option of the `useTable(options)` hook.
+
 ```ts twoslash title="/src/pages/posts/list.tsx"
 interface IPost {
     id: string;
@@ -360,35 +362,36 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 
 ### Properties
 
-| Key              | Description                                                                                                                                       | Type                                                        | Default                                                                              |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| resource         | The resource to use for table data                                                                                                                | `string` \| `undefined`                                     | Resource name that it reads from the url                                             |
-| permanentFilter  | Default and unchangeable filter                                                                                                                   | [`CrudFilters`][CrudFilters]                                | `[]`                                                                                 |
-| initialCurrent   | Initial page index                                                                                                                                | `number`                                                    | `1`                                                                                  |
-| initialPageSize  | Number of records shown per initial number of pages                                                                                               | `number`                                                    | `10`                                                                                 |
-| initialSorter    | Initial sorting                                                                                                                                   | [`CrudSorting`][CrudSorting]                                |
-| initialFilter    | Initial filtering                                                                                                                                 | [`CrudFilters`][CrudFilters]                                |
-| syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history                                                           | `boolean`                                                   | Value set in [Refine][Refine swl]. If a custom resource is given, it will be `false` |
-| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][Table Search] to learn how to create a search form | `Function`                                                  |
-| queryOptions     | `react-query`'s `useQuery` options                                                                                                                | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>` |
+| Key              | Description                                                                                                                                       | Type                                                             | Default                                                                              |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| resource         | The resource to use for table data                                                                                                                | `string` \| `undefined`                                          | Resource name that it reads from the url                                             |
+| permanentFilter  | Default and unchangeable filter                                                                                                                   | [`CrudFilters`][crudfilters]                                     | `[]`                                                                                 |
+| initialCurrent   | Initial page index                                                                                                                                | `number`                                                         | `1`                                                                                  |
+| initialPageSize  | Number of records shown per initial number of pages                                                                                               | `number`                                                         | `10`                                                                                 |
+| initialSorter    | Initial sorting                                                                                                                                   | [`CrudSorting`][crudsorting]                                     |
+| initialFilter    | Initial filtering                                                                                                                                 | [`CrudFilters`][crudfilters]                                     |
+| syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history                                                           | `boolean`                                                        | Value set in [Refine][refine swl]. If a custom resource is given, it will be `false` |
+| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][table search] to learn how to create a search form | `Function`                                                       |
+| queryOptions     | `react-query`'s `useQuery` options                                                                                                                | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`      |
+| metaData         | Metadata query for `dataProvider`                                                                                                                 | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery) | {}                                                                                   |
 
 ### Type Parameters
 
 | Property         | Desription                                                   | Type                       | Default                    |
 | ---------------- | ------------------------------------------------------------ | -------------------------- | -------------------------- |
-| TData            | Result data of the query. Extends [`BaseRecord`][BaseRecord] | [`BaseRecord`][BaseRecord] | [`BaseRecord`][BaseRecord] |
-| TError           | Custom error object that extends [`HttpError`][HttpError]    | [`HttpError`][HttpError]   | [`HttpError`][HttpError]   |
+| TData            | Result data of the query. Extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError           | Custom error object that extends [`HttpError`][httperror]    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
 | TSearchVariables | Values for search params                                     |                            | `{}`                       |
 
 ### Return values
 
 | Property         | Description                              | Type                                                                                              |
 | ---------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| searchFormProps  | Ant Design [`<Form>`][Form] props        | [`FormProps<TSearchVariables>`][Form]                                                             |
-| tableProps       | Ant Design [`<Table>`][Table] props      | [`TableProps<TData>`][Table]                                                                      |
-| tableQueryResult | Result of the `react-query`'s `useQuery` | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][useQuery] |
-| sorter           | Current sorting state                    | [`CrudSorting`][CrudSorting]                                                                      |
-| filters          | Current filters state                    | [`CrudFilters`][CrudFilters]                                                                      |
+| searchFormProps  | Ant Design [`<Form>`][form] props        | [`FormProps<TSearchVariables>`][form]                                                             |
+| tableProps       | Ant Design [`<Table>`][table] props      | [`TableProps<TData>`][table]                                                                      |
+| tableQueryResult | Result of the `react-query`'s `useQuery` | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery] |
+| sorter           | Current sorting state                    | [`CrudSorting`][crudsorting]                                                                      |
+| filters          | Current filters state                    | [`CrudFilters`][crudfilters]                                                                      |
 
 <br />
 
@@ -401,12 +404,12 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-[Table]: https://ant.design/components/table/#API
-[Form]: https://ant.design/components/form/#API
-[useQuery]: https://react-query.tanstack.com/reference/useQuery
-[BaseRecord]: /api-references/interfaces.md#baserecord
-[CrudSorting]: /api-references/interfaces.md#crudsorting
-[CrudFilters]: /api-references/interfaces.md#crudfilters
-[HttpError]: /api-references/interfaces.md#httperror
-[Table Search]: /guides-and-concepts/search/table-search.md
-[Refine swl]: /api-references/components/refine-config.md#syncwithlocation
+[table]: https://ant.design/components/table/#API
+[form]: https://ant.design/components/form/#API
+[usequery]: https://react-query.tanstack.com/reference/useQuery
+[baserecord]: /api-references/interfaces.md#baserecord
+[crudsorting]: /api-references/interfaces.md#crudsorting
+[crudfilters]: /api-references/interfaces.md#crudfilters
+[httperror]: /api-references/interfaces.md#httperror
+[table search]: /guides-and-concepts/search/table-search.md
+[refine swl]: /api-references/components/refine-config.md#syncwithlocation

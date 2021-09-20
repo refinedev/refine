@@ -1,5 +1,4 @@
 import axios from "axios";
-// import nock from "nock";
 
 import JsonServer from "../../src/index";
 import "./index.mock";
@@ -11,7 +10,7 @@ describe("getList", () => {
         const { data, total } = await JsonServer(
             "https://api.nestjsx-crud.refine.dev",
             axios,
-        ).getList("posts", {});
+        ).getList({ resource: "posts" });
 
         expect(data[0]["id"]).toBe("1b175cdc-4407-49d9-82cd-35e9f31afec2");
         expect(data[0]["title"]).toBe("User-friendly New Mexico Bedfordshire");
@@ -22,7 +21,8 @@ describe("getList", () => {
         const { data, total } = await JsonServer(
             "https://api.nestjsx-crud.refine.dev",
             axios,
-        ).getList("posts", {
+        ).getList({
+            resource: "posts",
             sort: [
                 {
                     field: "id",
@@ -40,7 +40,8 @@ describe("getList", () => {
         const { data, total } = await JsonServer(
             "https://api.nestjsx-crud.refine.dev",
             axios,
-        ).getList("posts", {
+        ).getList({
+            resource: "posts",
             filters: [
                 {
                     field: "category.id",
@@ -58,7 +59,8 @@ describe("getList", () => {
         const { data, total } = await JsonServer(
             "https://api.nestjsx-crud.refine.dev",
             axios,
-        ).getList("posts", {
+        ).getList({
+            resource: "posts",
             filters: [
                 {
                     field: "category.id",

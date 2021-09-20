@@ -107,20 +107,20 @@ const NestsxCrud = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
-    getList: async (resource, params) => {
+    getList: async ({ resource, pagination, filters, sort }) => {
         const url = `${apiUrl}/${resource}`;
-        const current = params.pagination?.current || 1;
-        const pageSize = params.pagination?.pageSize || 10;
+        const current = pagination?.current || 1;
+        const pageSize = pagination?.pageSize || 10;
 
-        const filters = generateFilter(params.filters);
+        const generetedFilters = generateFilter(filters);
 
         const query = RequestQueryBuilder.create()
-            .setFilter(filters)
+            .setFilter(generetedFilters)
             .setLimit(pageSize)
             .setPage(current)
             .setOffset((current - 1) * pageSize);
 
-        const sortBy = generateSort(params.sort);
+        const sortBy = generateSort(sort);
         if (sortBy) {
             query.sortBy(sortBy);
         }
@@ -133,7 +133,7 @@ const NestsxCrud = (
         };
     },
 
-    getMany: async (resource, ids) => {
+    getMany: async ({ resource, ids }) => {
         const url = `${apiUrl}/${resource}`;
 
         const query = RequestQueryBuilder.create()
@@ -151,32 +151,32 @@ const NestsxCrud = (
         };
     },
 
-    create: async (resource, params) => {
+    create: async ({ resource, variables }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { data } = await httpClient.post(url, params);
+        const { data } = await httpClient.post(url, variables);
 
         return {
             data,
         };
     },
 
-    update: async (resource, id, params) => {
+    update: async ({ resource, id, variables }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.patch(url, params);
+        const { data } = await httpClient.patch(url, variables);
 
         return {
             data,
         };
     },
 
-    updateMany: async (resource, ids, params) => {
+    updateMany: async ({ resource, ids, variables }) => {
         const response = await Promise.all(
             ids.map(async (id) => {
                 const { data } = await httpClient.patch(
                     `${apiUrl}/${resource}/${id}`,
-                    params,
+                    variables,
                 );
                 return data;
             }),
@@ -185,17 +185,17 @@ const NestsxCrud = (
         return { data: response };
     },
 
-    createMany: async (resource, params) => {
+    createMany: async ({ resource, variables }) => {
         const url = `${apiUrl}/${resource}/bulk`;
 
-        const { data } = await httpClient.post(url, { bulk: params });
+        const { data } = await httpClient.post(url, { bulk: variables });
 
         return {
             data,
         };
     },
 
-    getOne: async (resource, id) => {
+    getOne: async ({ resource, id }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await httpClient.get(url);
@@ -205,7 +205,7 @@ const NestsxCrud = (
         };
     },
 
-    deleteOne: async (resource, id) => {
+    deleteOne: async ({ resource, id }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await httpClient.delete(url);
@@ -215,7 +215,7 @@ const NestsxCrud = (
         };
     },
 
-    deleteMany: async (resource, ids) => {
+    deleteMany: async ({ resource, ids }) => {
         const response = await Promise.all(
             ids.map(async (id) => {
                 const { data } = await httpClient.delete(
@@ -231,9 +231,7 @@ const NestsxCrud = (
         return apiUrl;
     },
 
-    custom: async (url, method, params = {}) => {
-        const { filters, sort, payload, query, headers } = params;
-
+    custom: async ({ url, method, filters, sort, payload, query, headers }) => {
         const requestQueryBuilder = RequestQueryBuilder.create().setFilter(
             generateFilter(filters),
         );

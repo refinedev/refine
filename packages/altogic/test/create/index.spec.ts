@@ -1,5 +1,4 @@
 import axios from "axios";
-import nock from "nock";
 
 import JsonServer from "../../src/index";
 import "./index.mock";
@@ -20,11 +19,14 @@ describe("create", () => {
         const response = await JsonServer(
             "https://dev001.na-dev-engine.altogic.com",
             axiosInstance,
-        ).create("post", {
-            title: "foo",
-            content: "bar",
-            categoryId: "61373e585d65d30019e2b0a2",
-            status: "rejected",
+        ).create({
+            resource: "post",
+            variables: {
+                title: "foo",
+                content: "bar",
+                categoryId: "61373e585d65d30019e2b0a2",
+                status: "rejected",
+            },
         });
 
         const { data } = response;

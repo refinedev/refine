@@ -1,5 +1,4 @@
 import axios from "axios";
-// import nock from "nock";
 
 import { DataProvider } from "../../src/dataProvider";
 import "./index.mock";
@@ -19,14 +18,10 @@ describe("dataProvider", () => {
     // create
     describe("create", () => {
         it("correct response", async () => {
-            const { data } = await DataProvider(API_URL, axiosInstance).create(
-                "posts",
-                {
-                    title: "foo",
-                    content: "bar",
-                    cover: ["116"],
-                },
-            );
+            const { data } = await DataProvider(API_URL, axiosInstance).create({
+                resource: "posts",
+                variables: { title: "foo", content: "bar", cover: ["116"] },
+            });
 
             expect(data["title"]).toBe("foo");
             expect(data["content"]).toBe("bar");
@@ -40,7 +35,7 @@ describe("dataProvider", () => {
             const { data } = await DataProvider(
                 API_URL,
                 axiosInstance,
-            ).deleteMany("posts", ["46"]);
+            ).deleteMany({ resource: "posts", ids: ["46"] });
 
             expect(data[0]["id"]).toBe(46);
             expect(data[0]["title"]).toBe("tiger");
@@ -54,7 +49,7 @@ describe("dataProvider", () => {
             const { data } = await DataProvider(
                 API_URL,
                 axiosInstance,
-            ).deleteOne("posts", "47");
+            ).deleteOne({ resource: "posts", id: "47" });
 
             expect(data["id"]).toBe(47);
             expect(data["title"]).toBe("test");
@@ -67,7 +62,7 @@ describe("dataProvider", () => {
             const { data, total } = await DataProvider(
                 API_URL,
                 axiosInstance,
-            ).getList("posts", {});
+            ).getList({ resource: "posts" });
 
             expect(data[0]["id"]).toBe(49);
             expect(data[0]["title"]).toBe("0001");
@@ -78,7 +73,8 @@ describe("dataProvider", () => {
             const { data, total } = await DataProvider(
                 API_URL,
                 axiosInstance,
-            ).getList("posts", {
+            ).getList({
+                resource: "posts",
                 sort: [
                     {
                         field: "id",
@@ -94,8 +90,8 @@ describe("dataProvider", () => {
 
         it("correct filter response", async () => {
             const { data } = await DataProvider(API_URL, axiosInstance).getList(
-                "posts",
                 {
+                    resource: "posts",
                     filters: [
                         {
                             field: "title",
@@ -112,8 +108,8 @@ describe("dataProvider", () => {
 
         it("correct filter and sort response", async () => {
             const { data } = await DataProvider(API_URL, axiosInstance).getList(
-                "posts",
                 {
+                    resource: "posts",
                     filters: [
                         {
                             field: "title",
@@ -139,8 +135,7 @@ describe("dataProvider", () => {
     describe("getMany", () => {
         it("correct response", async () => {
             const { data } = await DataProvider(API_URL, axiosInstance).getMany(
-                "posts",
-                ["49"],
+                { resource: "posts", ids: ["49"] },
             );
 
             expect(data[0]["id"]).toBe(49);
@@ -152,10 +147,10 @@ describe("dataProvider", () => {
     // getOne
     describe("getOne", () => {
         it("correct response", async () => {
-            const { data } = await DataProvider(API_URL, axiosInstance).getOne(
-                "posts",
-                "49",
-            );
+            const { data } = await DataProvider(API_URL, axiosInstance).getOne({
+                resource: "posts",
+                id: "49",
+            });
 
             expect(data["id"]).toBe(49);
             expect(data["title"]).toBe("0001");
@@ -166,13 +161,13 @@ describe("dataProvider", () => {
     // updateOne
     describe("updateOne", () => {
         it("correct response", async () => {
-            const { data } = await DataProvider(API_URL, axiosInstance).update(
-                "posts",
-                "49",
-                {
+            const { data } = await DataProvider(API_URL, axiosInstance).update({
+                resource: "posts",
+                id: "49",
+                variables: {
                     title: "updated",
                 },
-            );
+            });
             expect(data["id"]).toBe(49);
             expect(data["title"]).toBe("updated");
         });
@@ -184,8 +179,12 @@ describe("dataProvider", () => {
             const { data } = await DataProvider(
                 API_URL,
                 axiosInstance,
-            ).updateMany("posts", ["50", "51"], {
-                title: "updated",
+            ).updateMany({
+                resource: "posts",
+                ids: ["50", "51"],
+                variables: {
+                    title: "updated",
+                },
             });
 
             expect(data[0]["id"]).toBe(50);
@@ -198,63 +197,57 @@ describe("dataProvider", () => {
 
     describe("custom", () => {
         it("correct get response", async () => {
-            const response = await DataProvider(API_URL, axios).custom!(
-                `${API_URL}/posts`,
-                "get",
-            );
+            const response = await DataProvider(API_URL, axios).custom!({
+                url: `${API_URL}/posts`,
+                method: "get",
+            });
 
             expect(response.data[0]["id"]).toBe(49);
             expect(response.data[0]["title"]).toBe("updated");
         });
 
         it("correct filter response", async () => {
-            const response = await DataProvider(API_URL, axios).custom!(
-                `${API_URL}/posts`,
-                "get",
-                {
-                    filters: [
-                        {
-                            field: "title",
-                            operator: "eq",
-                            value: "foo",
-                        },
-                    ],
-                },
-            );
+            const response = await DataProvider(API_URL, axios).custom!({
+                url: `${API_URL}/posts`,
+                method: "get",
+                filters: [
+                    {
+                        field: "title",
+                        operator: "eq",
+                        value: "foo",
+                    },
+                ],
+            });
 
             expect(response.data[0]["id"]).toBe(52);
             expect(response.data[0]["title"]).toBe("foo");
         });
 
         it("correct sort response", async () => {
-            const response = await DataProvider(API_URL, axios).custom!(
-                `${API_URL}/posts`,
-                "get",
-                {
-                    sort: [
-                        {
-                            field: "id",
-                            order: "asc",
-                        },
-                    ],
-                },
-            );
+            const response = await DataProvider(API_URL, axios).custom!({
+                url: `${API_URL}/posts`,
+                method: "get",
+                sort: [
+                    {
+                        field: "id",
+                        order: "asc",
+                    },
+                ],
+            });
 
             expect(response.data[0]["id"]).toBe(49);
             expect(response.data[0]["title"]).toBe("updated");
         });
 
         it("correct post request", async () => {
-            const response = await DataProvider(API_URL, axios).custom!(
-                `${API_URL}/posts`,
-                "post",
-                {
-                    payload: {
-                        title: "test",
-                        content: "test",
-                    },
+            const response = await DataProvider(API_URL, axios).custom!({
+                url: `${API_URL}/posts`,
+                method: "post",
+                payload: {
+                    title: "test",
+                    content: "test",
                 },
-            );
+            });
 
             expect(response.data).toEqual({
                 id: 55,

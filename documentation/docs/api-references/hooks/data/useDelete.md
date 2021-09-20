@@ -160,6 +160,7 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 | onCancel                                            | Callback that runs when undo button is clicked on `mutationMode = "undoable"`   | `(cancelMutation: () => void) => void`                                     |                                     |
 | successNotification                                 | Successful Mutation notification                                                | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully deleted a `resource`" |
 | errorNotification                                   | Unsuccessful Mutation notification                                              | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Error (status code: `status`"      |
+| metaData                                            | Metadata query for `dataProvider`                                              | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)           | {}                                                                   |
 
 >`*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-references/components/refine-config.md)>** component. `useDelete` will use what is passed to `<Refine>` as default but a local value will override it.
 

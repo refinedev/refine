@@ -4,10 +4,10 @@ import "./index.mock";
 
 describe("getOne", () => {
     it("correct response", async () => {
-        const { data } = await dataProvider(supabaseClient).getOne(
-            "posts",
-            "2",
-        );
+        const { data } = await dataProvider(supabaseClient).getOne({
+            resource: "posts",
+            id: "2",
+        });
 
         expect(data.title).toBe("Hello World");
         expect(data.content).toBe("test content");

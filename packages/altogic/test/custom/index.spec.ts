@@ -1,5 +1,4 @@
 import axios from "axios";
-import nock from "nock";
 
 import JsonServer from "../../src/index";
 import "./index.mock";
@@ -22,7 +21,8 @@ describe("custom", () => {
         const response = await JsonServer(
             "https://dev001.na-dev-engine.altogic.com",
             axiosInstance,
-        ).getList("post", {
+        ).getList({
+            resource: "post",
             filters: [
                 {
                     field: "_id",

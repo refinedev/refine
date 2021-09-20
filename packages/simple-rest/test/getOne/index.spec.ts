@@ -1,5 +1,4 @@
 import axios from "axios";
-// import nock from "nock";
 
 import JsonServer from "../../src/index";
 import "./index.mock";
@@ -11,7 +10,7 @@ describe("getOne", () => {
         const response = await JsonServer(
             "https://api.fake-rest.refine.dev",
             axios,
-        ).getOne("posts", "1");
+        ).getOne({ resource: "posts", id: "1" });
 
         const { data } = response;
 

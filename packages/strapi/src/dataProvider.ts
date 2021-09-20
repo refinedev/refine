@@ -53,14 +53,12 @@ export const DataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): IDataProvider => ({
-    getList: async (resource, params) => {
+    getList: async ({ resource, pagination, filters, sort }) => {
         const url = `${apiUrl}/${resource}`;
-        const { pagination } = params;
 
         const current = pagination?.current || 1;
         const pageSize = pagination?.pageSize || 10;
 
-        const { sort, filters } = params;
         const _sort = generateSort(sort);
         const queryFilters = generateFilter(filters);
 
@@ -82,7 +80,7 @@ export const DataProvider = (
         };
     },
 
-    getMany: async (resource, ids) => {
+    getMany: async ({ resource, ids }) => {
         const url = `${apiUrl}/${resource}`;
 
         const query = ids.map((item: string) => `id_in=${item}`).join("&");
@@ -94,32 +92,32 @@ export const DataProvider = (
         };
     },
 
-    create: async (resource, params) => {
+    create: async ({ resource, variables }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { data } = await httpClient.post(url, params);
+        const { data } = await httpClient.post(url, variables);
 
         return {
             data,
         };
     },
 
-    update: async (resource, id, params) => {
+    update: async ({ resource, id, variables }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.put(url, params);
+        const { data } = await httpClient.put(url, variables);
 
         return {
             data,
         };
     },
 
-    updateMany: async (resource, ids, params) => {
+    updateMany: async ({ resource, ids, variables }) => {
         const response = await Promise.all(
             ids.map(async (id) => {
                 const { data } = await httpClient.put(
                     `${apiUrl}/${resource}/${id}`,
-                    params,
+                    variables,
                 );
                 return data;
             }),
@@ -132,7 +130,7 @@ export const DataProvider = (
         throw new Error("createMany not implemented");
     },
 
-    getOne: async (resource, id) => {
+    getOne: async ({ resource, id }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await httpClient.get(url);
@@ -142,7 +140,7 @@ export const DataProvider = (
         };
     },
 
-    deleteOne: async (resource, id) => {
+    deleteOne: async ({ resource, id }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await httpClient.delete(url);
@@ -152,7 +150,7 @@ export const DataProvider = (
         };
     },
 
-    deleteMany: async (resource, ids) => {
+    deleteMany: async ({ resource, ids }) => {
         const response = await Promise.all(
             ids.map(async (id) => {
                 const { data } = await httpClient.delete(
@@ -168,9 +166,7 @@ export const DataProvider = (
         return apiUrl;
     },
 
-    custom: async (url, method, params = {}) => {
-        const { filters, sort, payload, query, headers } = params;
-
+    custom: async ({ url, method, filters, sort, payload, query, headers }) => {
         let requestUrl = `${url}?`;
 
         if (sort) {
