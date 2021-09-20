@@ -6,11 +6,14 @@ describe("create", () => {
         const response = await dataProvider(
             "keywoytODSr6xAqfg",
             "appKYl1H4k9g73sBT",
-        ).create("posts", {
-            title: "foo",
-            content: "bar",
-            status: "published",
-            category: ["recDBRJljBDFH4rIh"],
+        ).create({
+            resource: "posts",
+            variables: {
+                title: "foo",
+                content: "bar",
+                status: "published",
+                category: ["recDBRJljBDFH4rIh"],
+            },
         });
 
         const { data } = response;

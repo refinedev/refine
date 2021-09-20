@@ -70,6 +70,7 @@ jobs:
           url: 'https://example.refine.dev'
   documentation:
     runs-on: ubuntu-latest
+    if: 1 == 0
 
     strategy:
       matrix:

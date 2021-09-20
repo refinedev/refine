@@ -89,6 +89,7 @@ After query runs, the `categoryQueryResult` will include the retrieved data:
 | queryOptions                                                                                        | `react-query`'s `useQuery` options                                             | ` UseQueryOptions<`<br/>`{ data: TData; },`<br/>`TError>`                  |                                     |
 | successNotification                                                                                 | Successful Query notification                                                  | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | `false`                             |
 | errorNotification                                                                                   | Unsuccessful Query notification                                                | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Error (status code: `statusCode`)" |
+| metaData                                            | Metadata query for `dataProvider`                                              | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)           | {}                                                                   |
 
 ### Type Parameters
 

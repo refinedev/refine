@@ -1,5 +1,4 @@
 import axios from "axios";
-import nock from "nock";
 
 import JsonServer from "../../src/index";
 import "./index.mock";
@@ -19,7 +18,8 @@ describe("getList", () => {
         const response = await JsonServer(
             "https://dev001.na-dev-engine.altogic.com",
             axiosInstance,
-        ).getList("post", {
+        ).getList({
+            resource: "post",
             filters: [
                 {
                     field: "_id",
@@ -38,7 +38,8 @@ describe("getList", () => {
         const response = await JsonServer(
             "https://dev001.na-dev-engine.altogic.com",
             axiosInstance,
-        ).getList("post", {
+        ).getList({
+            resource: "post",
             sort: [
                 {
                     field: "title",
@@ -63,7 +64,8 @@ describe("getList", () => {
         const response = await JsonServer(
             "https://dev001.na-dev-engine.altogic.com",
             axiosInstance,
-        ).getList("post", {
+        ).getList({
+            resource: "post",
             filters: [
                 {
                     field: "categoryId",
@@ -81,7 +83,8 @@ describe("getList", () => {
         const response = await JsonServer(
             "https://dev001.na-dev-engine.altogic.com",
             axiosInstance,
-        ).getList("post", {
+        ).getList({
+            resource: "post",
             filters: [
                 {
                     field: "categoryId",

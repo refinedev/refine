@@ -73,6 +73,7 @@ export const useCloneForm = <
         queryOptions: {
             enabled: isClone,
         },
+        metaData: props.metaData,
     });
 
     const { data, isFetching } = queryResult;

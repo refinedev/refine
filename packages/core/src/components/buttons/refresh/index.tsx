@@ -4,12 +4,13 @@ import { RedoOutlined } from "@ant-design/icons";
 import { useParams } from "react-router-dom";
 
 import { useOne, useResourceWithRoute, useTranslate } from "@hooks";
-import { ResourceRouterParams } from "../../../interfaces";
+import { MetaDataQuery, ResourceRouterParams } from "../../../interfaces";
 
 type RefreshButtonProps = ButtonProps & {
     resourceName?: string;
     recordItemId?: string;
     hideText?: boolean;
+    metaData?: MetaDataQuery;
 };
 
 /**
@@ -22,6 +23,7 @@ export const RefreshButton: FC<RefreshButtonProps> = ({
     resourceName: propResourceName,
     recordItemId,
     hideText = false,
+    metaData,
     children,
     ...rest
 }) => {
@@ -41,6 +43,7 @@ export const RefreshButton: FC<RefreshButtonProps> = ({
         queryOptions: {
             enabled: false,
         },
+        metaData,
     });
 
     return (

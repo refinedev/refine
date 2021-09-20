@@ -7,7 +7,7 @@ import useSimpleList from '@site/static/img/guides-and-concepts/hooks/useSimpleL
 
 By using `useSimpleList` you get props for your records from API in accordance with Ant Design `<List>` component. All features such as pagination, sorting come out of the box.
 
-[Refer to Ant Design docs for `<List>` component information &#8594][Header]
+[Refer to Ant Design docs for `<List>` component information &#8594][header]
 
 ## Usage
 
@@ -126,7 +126,7 @@ interface ICategory {
 ```
 
 :::tip
-You can use `AntdList.Item` and `AntdList.Item.Meta` like `<List>` component from [Ant Design][List]
+You can use `AntdList.Item` and `AntdList.Item.Meta` like `<List>` component from [Ant Design][list]
 :::
 
 <br/>
@@ -144,41 +144,42 @@ You can use `AntdList.Item` and `AntdList.Item.Meta` like `<List>` component fro
 
 ### Properties
 
-| Key              | Description                                                                                                             | Type                                          | Default                                                                              |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------ |
-| resource         | The resource to list the data                                                                                           | `string` \| `undefined`                       | Resource name that it reads from the url                                             |
-| permanentFilter  | Default and unchangeable filter                                                                                         | [`CrudFilters`][CrudFilters]                  | `[]`                                                                                 |
-| initialSorter    | Allows to sort records by speficified order and field                                                                   | [`CrudSorting`][CrudSorting]                  |                                                                                      |
-| initialFilter    | Allows to filter records by speficified order and field                                                                 | [`CrudFilters`][CrudFilters]                  |                                                                                      |
-| listProps        | Ant Design `<List>` props                                                                                               | [`listProps`][List]                           |                                                                                      |
-| syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history                                 | `boolean`                                     | Value set in [Refine][Refine swl]. If a custom resource is given, it will be `false` |
-| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form][List Search] | `Function`                                    |                                                                                      |
-| queryOptions     | `react-query`'s `useQuery` options                                                                                      | ` UseQueryOptions<{ data: TData[] }, TError>` |
+| Key              | Description                                                                                                             | Type                                                             | Default                                                                              |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| resource         | The resource to list the data                                                                                           | `string` \| `undefined`                                          | Resource name that it reads from the url                                             |
+| permanentFilter  | Default and unchangeable filter                                                                                         | [`CrudFilters`][crudfilters]                                     | `[]`                                                                                 |
+| initialSorter    | Allows to sort records by speficified order and field                                                                   | [`CrudSorting`][crudsorting]                                     |                                                                                      |
+| initialFilter    | Allows to filter records by speficified order and field                                                                 | [`CrudFilters`][crudfilters]                                     |                                                                                      |
+| listProps        | Ant Design `<List>` props                                                                                               | [`listProps`][list]                                              |                                                                                      |
+| syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history                                 | `boolean`                                                        | Value set in [Refine][refine swl]. If a custom resource is given, it will be `false` |
+| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form][list search] | `Function`                                                       |                                                                                      |
+| queryOptions     | `react-query`'s `useQuery` options                                                                                      | ` UseQueryOptions<{ data: TData[] }, TError>`                    |
+| metaData         | Metadata query for `dataProvider`                                                                                       | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery) | {}                                                                                   |
 
 ### Type Parameters
 
 | Property         | Desription                                                      | Type                       | Default                    |
 | ---------------- | --------------------------------------------------------------- | -------------------------- | -------------------------- |
-| TData            | Result data of the mutation. Extends [`BaseRecord`][BaseRecord] | [`BaseRecord`][BaseRecord] | [`BaseRecord`][BaseRecord] |
-| TError           | Custom error object that extends [`HttpError`][HttpError]       | [`HttpError`][HttpError]   | [`HttpError`][HttpError]   |
+| TData            | Result data of the mutation. Extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError           | Custom error object that extends [`HttpError`][httperror]       | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
 | TSearchVariables | Antd form values                                                | `{}`                       | `{}`                       |
 
 ### Return values
 
 | Property        | Description                     | Type                                               |
 | --------------- | ------------------------------- | -------------------------------------------------- |
-| queryResult     | Result of the query of a record | [`QueryObserverResult<{ data: TData }>`][useQuery] |
-| searchFormProps | Ant design Form props           | [`Form`][Form]                                     |
-| listProps       | Ant design List props           | [`List`][List]                                     |
-| filters         | Current filters state           | [`CrudFilters`][CrudFilters]                       |
+| queryResult     | Result of the query of a record | [`QueryObserverResult<{ data: TData }>`][usequery] |
+| searchFormProps | Ant design Form props           | [`Form`][form]                                     |
+| listProps       | Ant design List props           | [`List`][list]                                     |
+| filters         | Current filters state           | [`CrudFilters`][crudfilters]                       |
 
-[CrudFilters]: /api-references/interfaces.md#crudfilters
-[CrudSorting]: /api-references/interfaces.md#crudsorting
-[Form]: https://ant.design/components/form/#API
-[List]: https://ant.design/components/list/#API
-[useQuery]: https://react-query.tanstack.com/reference/useQuery
-[List Search]: /guides-and-concepts/search/list-search.md
-[BaseRecord]: /api-references/interfaces.md#baserecord
-[HttpError]: /api-references/interfaces.md#httperror
-[Header]: https://ant.design/components/list/#header
-[Refine swl]: /api-references/components/refine-config.md#syncwithlocation
+[crudfilters]: /api-references/interfaces.md#crudfilters
+[crudsorting]: /api-references/interfaces.md#crudsorting
+[form]: https://ant.design/components/form/#API
+[list]: https://ant.design/components/list/#API
+[usequery]: https://react-query.tanstack.com/reference/useQuery
+[list search]: /guides-and-concepts/search/list-search.md
+[baserecord]: /api-references/interfaces.md#baserecord
+[httperror]: /api-references/interfaces.md#httperror
+[header]: https://ant.design/components/list/#header
+[refine swl]: /api-references/components/refine-config.md#syncwithlocation

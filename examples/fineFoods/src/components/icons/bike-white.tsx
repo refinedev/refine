@@ -1,6 +1,6 @@
-export const BikeWhiteIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
-    props,
-) => (
+import { Icon } from "@pankod/refine";
+
+const BikeWhiteSVG: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     <svg
         width="32"
         height="25"
@@ -16,4 +16,8 @@ export const BikeWhiteIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
             fill="currentColor"
         />
     </svg>
+);
+
+export const BikeWhiteIcon = (props: any) => (
+    <Icon component={BikeWhiteSVG} {...props} />
 );

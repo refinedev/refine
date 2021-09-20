@@ -21,6 +21,7 @@ import {
     QueryResponse,
     Context as UpdateContext,
     SuccessErrorNotification,
+    MetaDataQuery,
 } from "../../interfaces";
 import { handleNotification } from "@definitions/helpers";
 
@@ -31,6 +32,7 @@ type UpdateManyParams<TVariables> = {
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
     values: TVariables;
+    metaData?: MetaDataQuery;
 } & SuccessErrorNotification;
 
 type UseUpdateManyReturnType<
@@ -87,6 +89,7 @@ export const useUpdateMany = <
             onCancel,
             mutationMode,
             undoableTimeout,
+            metaData,
         }: UpdateManyParams<TVariables>) => {
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
@@ -95,13 +98,23 @@ export const useUpdateMany = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             if (!(mutationModePropOrContext === "undoable")) {
-                return updateMany<TData, TVariables>(resource, ids, values);
+                return updateMany<TData, TVariables>({
+                    resource,
+                    ids,
+                    variables: values,
+                    metaData,
+                });
             }
 
             const updatePromise = new Promise<UpdateManyResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        updateMany<TData, TVariables>(resource, ids, values)
+                        updateMany<TData, TVariables>({
+                            resource,
+                            ids,
+                            variables: values,
+                            metaData,
+                        })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     };

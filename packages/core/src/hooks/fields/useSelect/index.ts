@@ -14,6 +14,7 @@ import {
     CrudFilters,
     SuccessErrorNotification,
     HttpError,
+    MetaDataQuery,
 } from "../../../interfaces";
 
 export type UseSelectProps<TData, TError> = {
@@ -26,6 +27,7 @@ export type UseSelectProps<TData, TError> = {
     debounce?: number;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     defaultValueQueryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>;
+    metaData?: MetaDataQuery;
 } & SuccessErrorNotification;
 
 export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
@@ -65,6 +67,7 @@ export const useSelect = <
         errorNotification,
         defaultValueQueryOptions,
         queryOptions,
+        metaData,
     } = props;
 
     if (!Array.isArray(defaultValue)) {
@@ -91,6 +94,7 @@ export const useSelect = <
                 defaultValueQueryOptions?.onSuccess?.(data);
             },
         },
+        metaData,
     });
 
     const defaultQueryOnSuccess = (data: GetListResponse<TData>) => {
@@ -118,6 +122,7 @@ export const useSelect = <
         },
         successNotification,
         errorNotification,
+        metaData,
     });
     const { refetch: refetchList } = queryResult;
 

@@ -1,6 +1,3 @@
-import nock from "nock";
-// import nock from "nock";
-
 import dataProvider from "../../src/index";
 import "./index.mock";
 
@@ -9,7 +6,9 @@ describe("getList", () => {
         const response = await dataProvider(
             "keywoytODSr6xAqfg",
             "appKYl1H4k9g73sBT",
-        ).getList("posts", {});
+        ).getList({
+            resource: "posts",
+        });
 
         expect(response.data[0]["id"]).toBe("rec9GbXLzd6dxn4Il");
         expect(response.data[0]["title"]).toBe("Hello World 3!");
@@ -20,7 +19,8 @@ describe("getList", () => {
         const response = await dataProvider(
             "keywoytODSr6xAqfg",
             "appKYl1H4k9g73sBT",
-        ).getList("posts", {
+        ).getList({
+            resource: "posts",
             sort: [
                 {
                     field: "title",

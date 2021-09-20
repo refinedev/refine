@@ -1,5 +1,4 @@
 import axios from "axios";
-// import nock from "nock";
 
 import JsonServer from "../../src/index";
 import "./index.mock";
@@ -11,9 +10,13 @@ describe("updateMany", () => {
         const response = await JsonServer(
             "https://api.fake-rest.refine.dev",
             axios,
-        ).updateMany("posts", ["999"], {
-            title: "foo",
-            content: "bar",
+        ).updateMany({
+            resource: "posts",
+            ids: ["999"],
+            variables: {
+                title: "foo",
+                content: "bar",
+            },
         });
 
         const { data } = response;

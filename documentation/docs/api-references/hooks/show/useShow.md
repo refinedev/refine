@@ -56,10 +56,7 @@ import { PostShow } from "./pages/posts";
 export const App: React.FC = () => {
     return (
         <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
-            <Resource
-                name="posts"
-                show={PostShow}
-            />
+            <Resource name="posts" show={PostShow} />
         </Refine>
     );
 };
@@ -73,7 +70,6 @@ export const App: React.FC = () => {
     </div>
     <img src={showUsage} alt="useShow Basic Usage" />
 </div>
-
 
 <br />
 
@@ -181,10 +177,7 @@ import { PostList } from "./pages/posts";
 export const App: React.FC = () => {
     return (
         <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
-            <Resource
-                name="posts"
-                list={PostList}
-            />
+            <Resource name="posts" list={PostList} />
         </Refine>
     );
 };
@@ -209,10 +202,11 @@ To show data in the drawer, you can do it by simply replacing `<Modal>` with `<D
 
 ### Properties
 
-| Property | Description                                                          | Type     | Default                                  |
-| -------- | -------------------------------------------------------------------- | -------- | ---------------------------------------- |
-| resource | [`Resource`](../../components/resource.md) for API data interactions | `string` | Resource name that it reads from the url |
-| id       | Record id for fetching                                               | `string` | Id that it reads from the url            |
+| Property | Description                                                          | Type                                                             | Default                                  |
+| -------- | -------------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------- |
+| resource | [`Resource`](../../components/resource.md) for API data interactions | `string`                                                         | Resource name that it reads from the url |
+| id       | Record id for fetching                                               | `string`                                                         | Id that it reads from the url            |
+| metaData | Metadata query for `dataProvider`                                    | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery) | {}                                       |
 
 ### Return values
 
