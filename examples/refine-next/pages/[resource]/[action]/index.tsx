@@ -1,11 +1,1 @@
-// import React from "react";
-
-import { NextRouteComponent } from "@pankod/refine";
-
-// const Home: React.FC = () => {
-//     return <NextRouteComponent />;
-// };
-
-// export default Home;
-
-export default NextRouteComponent;
+export { NextRouteComponent as default } from "@pankod/refine";

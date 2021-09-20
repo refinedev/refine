@@ -27,6 +27,7 @@ import {
     ReadyPage as DefaultReadyPage,
     RouteChangeHandler,
     Resource,
+    NextRouteComponent,
 } from "@components";
 import { defaultConfigProviderProps } from "@definitions";
 import {
@@ -146,13 +147,18 @@ export const Refine: React.FC<RefineProps> = ({
     let isSSr = false;
     const resources: IResourceItem[] = [];
     React.Children.map(children, (child: any) => {
-        // if(!child || child.type !== Resource || child.type !== NextRouteComponent)
         if (!child) {
             return;
         }
 
-        // if (child.type === NextRouteComponent) {
-        if (child.type !== Resource) {
+        if (child.type !== Resource && child.type !== NextRouteComponent) {
+            throw new Error(
+                "You must either pass a Resource or NextRouteComponent",
+            );
+        }
+
+        if (child.type === NextRouteComponent) {
+            // if (child.type !== Resource) {
             isSSr = true;
             resourcesFromProps?.map((resource) => {
                 console.log("Refine::", { resource });
