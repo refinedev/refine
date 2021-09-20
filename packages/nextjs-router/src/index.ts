@@ -1,14 +1,3 @@
-// import {
-//     useHistory,
-//     useLocation,
-//     useParams,
-//     BrowserRouter,
-//     Switch,
-//     Route,
-//     Prompt,
-//     Link,
-//     Redirect,
-// } from "react-router-dom";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
