@@ -63,6 +63,18 @@ const backends = [
             alt: "go",
         },
     ],
+    [
+        {
+            src: "/icons/backends/graphql.png",
+            srcset: "/icons/backends/graphql@2x.png 768w",
+            alt: "supabase",
+        },
+        {
+            src: "/icons/backends/altogic.png",
+            srcset: "/icons/backends/altogic@2x.png 768w",
+            alt: "go",
+        },
+    ],
 ];
 
 const features = [
@@ -115,11 +127,11 @@ export const KeyFeatures = () => {
                 <h2 className={styles.mainTitle}>Backend Agnostic</h2>
                 <p className={styles.description}>
                     <strong>Connects to any custom backend.</strong> <br />
-                    Built-in support for REST API, Strapi, NestJs CRUD,
-                    Airtable, Supabase and Altogic.
+                    Built-in support for REST API, Graphql, NestJs CRUD,
+                    Airtable, Strapi, Strapi Graphql, Supabase and Altogic.
                 </p>
                 <div className="row row--justify--center">
-                    <div className="col col--9">
+                    <div className="col col--6">
                         <div className={styles.supportContainer}>
                             {backends.map((imgGroup, index) => (
                                 <div
