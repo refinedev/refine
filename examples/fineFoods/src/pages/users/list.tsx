@@ -4,7 +4,6 @@ import {
     Avatar,
     useTable,
     useTranslate,
-    useNavigation,
     IResourceComponentsProps,
     DateField,
     BooleanField,
@@ -26,7 +25,6 @@ import {
 import { IUser, IUserFilterVariables } from "interfaces";
 
 export const UserList: React.FC<IResourceComponentsProps> = () => {
-    const { show } = useNavigation();
     const { tableProps, searchFormProps } = useTable<
         IUser,
         HttpError,
@@ -140,10 +138,10 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                             )}
                             sorter
                         />
-                        <Table.Column
+                        <Table.Column<IUser>
                             title={t("table.actions")}
-                            render={() => (
-                                <ShowButton hideText recordItemId="123" />
+                            render={(_, record) => (
+                                <ShowButton hideText recordItemId={record.id} />
                             )}
                         />
                     </Table>

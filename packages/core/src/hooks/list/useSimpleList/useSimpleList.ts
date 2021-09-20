@@ -157,7 +157,7 @@ export const useSimpleList = <
                 current,
                 pageSize,
             },
-            filters,
+            filters: unionFilters(permanentFilter, [], filters),
             sort: sorter,
         },
         queryOptions,
