@@ -12,7 +12,7 @@ const options = {};
 // ---cut---
 import { useExport } from "@pankod/refine";
 
-const { triggerExport, loading } = useExport(options);
+const { triggerExport, isLoading } = useExport(options);
 ```
 
 ## Usage
@@ -53,13 +53,13 @@ import {
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
-    const { triggerExport, loading } = useExport<IPost>();
+    const { triggerExport, isLoading } = useExport<IPost>();
 
     return (
         <List
             pageHeaderProps={{
                 extra: (
-                    <ExportButton onClick={triggerExport} loading={loading} />
+                    <ExportButton onClick={triggerExport} loading={isLoading} />
                 ),
             }}
         >
@@ -144,7 +144,7 @@ We can save `category.id` as `categoryId` and `user.id` as `userId`. Thus using 
 
 import { useExport } from "@pankod/refine";
 // ---cut---
-const { triggerExport, loading } = useExport<IPost>({
+const { triggerExport, isLoading } = useExport<IPost>({
     mapData: (item) => {
         return {
             id: item.id,
@@ -206,7 +206,7 @@ You can pass more options to further customize the exporting process.
 
 | Key           | Description                                | Type               |
 | ------------- | ------------------------------------------ | ------------------ |
-| loading       | Shows true when there is an export process | `boolean`          |
+| isLoading       | Shows true when there is an export process | `boolean`          |
 | triggerExport | When invoked, starts the exporting process | `async () => void` |
 
 ### Type Parameters

@@ -23,13 +23,13 @@ import {
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
-    const { triggerExport, loading } = useExport<IPost>();
+    const { triggerExport, isLoading } = useExport<IPost>();
 
     return (
         <List
             pageHeaderProps={{
                 extra: (
-                    <ExportButton onClick={triggerExport} loading={loading} />
+                    <ExportButton onClick={triggerExport} loading={isLoading} />
                 ),
             }}
         >
@@ -61,7 +61,7 @@ After this setup is done, when the user clicks the button, download process will
 
 Manually running the `triggerExport` function is another option.
 
-`useExport` returns two properties: `loading: boolean` and `triggerExport: async () => void`. These properties can be used with Ant Design's [`<Button>`][Button] components to create an export button. In this example, `<ExportButton>` is used and it's just an Ant Design [`<Button>`][Button] with default icon and children, serving only presentational purposes.
+`useExport` returns two properties: `isLoading: boolean` and `triggerExport: async () => void`. These properties can be used with Ant Design's [`<Button>`][Button] components to create an export button. In this example, `<ExportButton>` is used and it's just an Ant Design [`<Button>`][Button] with default icon and children, serving only presentational purposes.
 
 > [Refer to the useExport docs for more detailed information and export settings. &#8594][useExport]
 
