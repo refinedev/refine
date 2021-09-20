@@ -75,11 +75,7 @@ const App: React.FC = () => {
                 show={UserShow}
                 icon={<Icons.UsergroupAddOutlined />}
             />
-            <Resource
-                name="products"
-                list={ProductList}
-                icon={<Icon component={PizzaIcon} />}
-            />
+            <Resource name="products" list={ProductList} icon={<PizzaIcon />} />
             <Resource
                 name="stores"
                 list={StoreList}
@@ -94,7 +90,7 @@ const App: React.FC = () => {
                 show={CourierShow}
                 create={CouriersCreate}
                 edit={CouriersEdit}
-                icon={<Icon component={BikeWhiteIcon} />}
+                icon={<BikeWhiteIcon />}
             />
             <Resource
                 name="reviews"

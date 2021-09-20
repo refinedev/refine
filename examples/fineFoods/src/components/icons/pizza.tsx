@@ -1,4 +1,6 @@
-export const PizzaIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+import { Icon } from "@pankod/refine";
+
+const PizzaIconSVG: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     <svg
         width="15"
         height="15"
@@ -14,4 +16,8 @@ export const PizzaIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
             fill="white"
         />
     </svg>
+);
+
+export const PizzaIcon = (props: any) => (
+    <Icon component={PizzaIconSVG} {...props} />
 );
