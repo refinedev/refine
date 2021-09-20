@@ -51,9 +51,27 @@ npx create-react-app tutorial --template typescript
 :::
 Navigate to the project folder and install **refine** with the following *npm* command:
 
-```
+<Tabs
+  defaultValue="npm"
+  values={[
+    {label: 'use npm', value: 'npm'},
+    {label: 'use yarn', value: 'yarn'}
+  ]}>
+  <TabItem value="npm">
+
+```bash
 npm i @pankod/refine
 ```
+
+  </TabItem>
+    <TabItem value="yarn">
+
+```bash
+yarn add @pankod/refine
+```
+
+  </TabItem>
+</Tabs>
 
 :::warning
 This tutorial assumes your project is configured for absolute imports. Since CRA does not configure it by default, you should configure it yourself to be able to use absolute imports. You should configure a [`tsconfig.json`](https://www.typescriptlang.org/tsconfig#baseUrl) with `baseUrl` setting pointing to the `/src` directory in your project.
@@ -114,9 +132,27 @@ Dataproviders are **refine** components making it possible to consume different 
 
 Next, navigate to the project folder and run the following command to install the required package:
 
-```
+<Tabs
+  defaultValue="npm"
+  values={[
+    {label: 'use npm', value: 'npm'},
+    {label: 'use yarn', value: 'yarn'}
+  ]}>
+  <TabItem value="npm">
+
+```bash
 npm i @pankod/refine-simple-rest
 ```
+
+  </TabItem>
+    <TabItem value="yarn">
+
+```bash
+yarn add @pankod/refine-simple-rest
+```
+
+  </TabItem>
+</Tabs>
 
 :::note
 If you used `superplate` to bootstrap the project, you can skip issuing this command as `superplate` already installs the selected data provider.
@@ -553,16 +589,34 @@ We're done with displaying `post` records on our `<Table>`. Let's add search and
 
 We are going to use `<Table.Column>`'s [`filterDropdown`](https://ant.design/components/table/#Column) property and `<FilterDropdown>` component as following:
 
-```tsx title="pages/posts/list.tsx" {1-3, 9-12, 36-45}
-import {
+```tsx title="pages/posts/list.tsx" {8-10, 28-30, 64-73}
+import {    
+    List,
+    TextField,
+    TagField,
+    DateField,
+    Table,
+    useTable,
+    useMany,
     FilterDropdown,
     Select,
     useSelect
 } from "@pankod/refine";
-import { ICategory } from "interfaces";
+
+import { IPost, ICategory } from "../../interfaces";
 
 export const PostList: React.FC = () => {
-    ...
+    const { tableProps } = useTable<IPost>();
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
@@ -571,7 +625,17 @@ export const PostList: React.FC = () => {
     return (
         <List>
             <Table {...tableProps} rowKey="id">
-               ...
+                <Table.Column dataIndex="title" title="title" />
+                <Table.Column
+                    dataIndex="status"
+                    title="status"
+                    render={(value) => <TagField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="createdAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                />
                 <Table.Column
                     dataIndex={["category", "id"]}
                     title="category"
@@ -601,7 +665,6 @@ export const PostList: React.FC = () => {
                         </FilterDropdown>
                     )}
                 />
-               ...
             </Table>
         </List>
     );
