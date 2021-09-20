@@ -6,6 +6,7 @@ dist
 .rpt2_cache
 .husky
 coverage
+.vscode
 
 # misc
 .DS_Store

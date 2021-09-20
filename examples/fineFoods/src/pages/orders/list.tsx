@@ -18,14 +18,11 @@ import {
     useSelect,
     Button,
     CrudFilters,
-    Space,
     FormProps,
     Row,
     Col,
     ExportButton,
-    ImportButton,
     useExport,
-    useImport,
     useNavigation,
     getDefaultFilter,
     HttpError,
@@ -95,12 +92,11 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const { show } = useNavigation();
 
-    const importProps = useImport();
-    const { loading, triggerExport } = useExport({
+    const { isLoading, triggerExport } = useExport<IOrder>({
         sorter,
         filters,
-        pageSize: 100,
-        maxItemCount: 300,
+        pageSize: 50,
+        maxItemCount: 50,
         mapData: (item) => {
             return {
                 id: item.id,
@@ -114,10 +110,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     });
 
     const Actions: React.FC = () => (
-        <Space>
-            <ExportButton onClick={triggerExport} loading={loading} />
-            <ImportButton {...importProps} />
-        </Space>
+        <ExportButton onClick={triggerExport} loading={isLoading} />
     );
 
     return (

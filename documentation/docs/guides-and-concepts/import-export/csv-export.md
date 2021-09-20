@@ -3,6 +3,8 @@ id: csv-export
 title: CSV Export
 ---
 
+import exportButton from '@site/static/img/guides-and-concepts/csv-export/export-button.png';
+
 With **refine**, you can easily add export functionality to dump resources' records to a `CSV` file from anywhere, including buttons. By using the [`useExport`][useExport] hook with desired configurations, you can turn any button into an export button.  Which resources' records to export can be configured. But by default, unless explicitly specified, it is inferred from current route of browser.
 
 ## Usage
@@ -21,13 +23,13 @@ import {
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
-    const { triggerExport, loading } = useExport<IPost>();
+    const { triggerExport, isLoading } = useExport<IPost>();
 
     return (
         <List
             pageHeaderProps={{
                 extra: (
-                    <ExportButton onClick={triggerExport} loading={loading} />
+                    <ExportButton onClick={triggerExport} loading={isLoading} />
                 ),
             }}
         >
@@ -45,11 +47,21 @@ interface IPost {
 }
 ```
 
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={exportButton} alt="Export button" />
+</div>
+<br />
+
 After this setup is done, when the user clicks the button, download process will initialize.
 
 Manually running the `triggerExport` function is another option.
 
-`useExport` returns two properties: `loading: boolean` and `triggerExport: async () => void`. These properties can be used with Ant Design's [`<Button>`][Button] components to create an export button. In this example, `<ExportButton>` is used and it's just an Ant Design [`<Button>`][Button] with default icon and children, serving only presentational purposes.
+`useExport` returns two properties: `isLoading: boolean` and `triggerExport: async () => void`. These properties can be used with Ant Design's [`<Button>`][Button] components to create an export button. In this example, `<ExportButton>` is used and it's just an Ant Design [`<Button>`][Button] with default icon and children, serving only presentational purposes.
 
 > [Refer to the useExport docs for more detailed information and export settings. &#8594][useExport]
 

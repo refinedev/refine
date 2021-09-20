@@ -129,18 +129,26 @@ export const mapAntdSorterToCrudSorting = (
 ): CrudSorting => {
     const crudSorting: CrudSorting = [];
     if (Array.isArray(sorter)) {
-        sorter.map((item) => {
-            if (item.field && item.order) {
-                crudSorting.push({
-                    field: `${item.columnKey}`,
-                    order: item.order.replace("end", "") as "asc" | "desc",
-                });
-            }
-        });
+        sorter
+            .sort((a, b) => {
+                return ((a.column?.sorter as { multiple?: number }).multiple ??
+                    0) <
+                    ((b.column?.sorter as { multiple?: number }).multiple ?? 0)
+                    ? -1
+                    : 0;
+            })
+            .map((item) => {
+                if (item.field && item.order) {
+                    crudSorting.push({
+                        field: `${item.columnKey ?? item.field}`,
+                        order: item.order.replace("end", "") as "asc" | "desc",
+                    });
+                }
+            });
     } else {
         if (sorter.field && sorter.order) {
             crudSorting.push({
-                field: `${sorter.columnKey}`,
+                field: `${sorter.columnKey ?? sorter.field}`,
                 order: sorter.order.replace("end", "") as "asc" | "desc",
             });
         }
@@ -150,15 +158,21 @@ export const mapAntdSorterToCrudSorting = (
 };
 
 export const mapAntdFilterToCrudFilter = (
-    filters: Record<string, (string | number | boolean)[] | null>,
+    tableFilters: Record<
+        string,
+        (string | number | boolean) | (string | number | boolean)[] | null
+    >,
+    prevFilters: CrudFilters,
 ): CrudFilters => {
     const crudFilters: CrudFilters = [];
-    Object.keys(filters).map((field) => {
-        const value = filters[field];
+
+    Object.keys(tableFilters).map((field) => {
+        const value = tableFilters[field];
+        const operator = prevFilters.find((p) => p.field === field)?.operator;
 
         crudFilters.push({
             field,
-            operator: "in",
+            operator: operator ?? (Array.isArray(value) ? "in" : "eq"),
             value,
         });
     });

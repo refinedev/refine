@@ -16,7 +16,7 @@ import { IPost, ITag } from "interfaces";
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IPost>();
 
-    const { data, isLoading } = useList<ITag>("tags");
+    const { data, isLoading } = useList<ITag>({ resource: "tags" });
 
     return (
         <List>

@@ -115,7 +115,8 @@ export const KeyFeatures = () => {
                 <h2 className={styles.mainTitle}>Backend Agnostic</h2>
                 <p className={styles.description}>
                     <strong>Connects to any custom backend.</strong> <br />
-                    Built-in support for REST API, Strapi, NextJS and Airtable.
+                    Built-in support for REST API, Strapi, NestJs CRUD,
+                    Airtable, Supabase and Altogic.
                 </p>
                 <div className="row row--justify--center">
                     <div className="col col--9">

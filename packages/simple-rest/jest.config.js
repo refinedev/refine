@@ -3,4 +3,5 @@ module.exports = {
     rootDir: "./",
     name: "simple-rest",
     displayName: "simple-rest",
+    setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
 };

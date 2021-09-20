@@ -17,8 +17,12 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
     const record = data?.data;
 
     const { data: languageData, isLoading: languageIsLoading } =
-        useOne<ILanguage>("languages", record?.language || "", {
-            enabled: !!record,
+        useOne<ILanguage>({
+            resource: "languages",
+            id: record?.language || "",
+            queryOptions: {
+                enabled: !!record,
+            },
         });
 
     return (

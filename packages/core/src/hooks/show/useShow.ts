@@ -46,15 +46,15 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
 
     const resourceId = showId ?? id ?? idFromRoute;
 
-    const queryResult = useOne<TData>(
-        resource.name,
-        resourceId,
-        {
+    const queryResult = useOne<TData>({
+        resource: resource.name,
+        id: resourceId,
+        queryOptions: {
             enabled: !!resourceId,
         },
         successNotification,
         errorNotification,
-    );
+    });
 
     return {
         queryResult,

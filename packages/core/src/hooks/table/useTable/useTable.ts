@@ -164,29 +164,32 @@ export const useTable = <
         defaultCurrent: defaultCurrentSF,
     } = tablePropsSunflower.pagination;
 
-    const queryResult = useList<TData, TError>(
-        resource.name,
-        {
+    const queryResult = useList<TData, TError>({
+        resource: resource.name,
+        config: {
             pagination: {
                 current: currentSF ?? defaultCurrentSF,
                 pageSize: pageSizeSF,
             },
-            filters,
+            filters: unionFilters(permanentFilter, [], filters),
             sort: sorter,
         },
         queryOptions,
         successNotification,
         errorNotification,
-    );
+    });
     const { data, isFetching } = queryResult;
 
     const onChange = (
         pagination: TablePaginationConfig,
-        filters: Record<string, (string | number | boolean)[] | null>,
+        tableFilters: Record<
+            string,
+            (string | number | boolean) | (string | number | boolean)[] | null
+        >,
         sorter: SorterResult<any> | SorterResult<any>[],
     ) => {
         // Map Antd:Filter -> refine:CrudFilter
-        const crudFilters = mapAntdFilterToCrudFilter(filters);
+        const crudFilters = mapAntdFilterToCrudFilter(tableFilters, filters);
 
         setFilters((prevFilters) =>
             unionFilters(permanentFilter, crudFilters, prevFilters),

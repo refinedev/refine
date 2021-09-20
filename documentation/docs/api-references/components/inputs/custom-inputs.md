@@ -80,11 +80,15 @@ export const PostEdit: React.FC = (props) => {
 };
 ```
 
-<div style={{textAlign: "center"}}>
-    <img src={markdownInput} />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={markdownInput} alt="Markdown input" />
 </div>
 <br/>
-
 
 ## Live Codesandbox Example
 

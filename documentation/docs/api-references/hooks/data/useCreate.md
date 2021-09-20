@@ -107,12 +107,12 @@ Variables passed to `mutate` must have these types.
 :::
 
 ## API
-### Parameters
+### Properties
 
 | Property                                            | Description                               | Type                                                                       | Default                                                      |
 | --------------------------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| resource  <div className=" required">Required</div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                                   |                                                              |
-| values  <div className=" required">Required</div>   | Values for mutation function              | `TVariables`                                                               | {}                                                           |
+| resource <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                                   |                                                              |
+| values  <div className="required">Required</div>   | Values for mutation function              | `TVariables`                                                               | {}                                                           |
 | successNotification                                 | Successful Mutation notification          | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully created `resource`"                            |
 | errorNotification                                   | Unsuccessful Mutation notification        | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" |
 
