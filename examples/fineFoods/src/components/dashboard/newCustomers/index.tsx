@@ -16,7 +16,7 @@ export const NewCustomers: React.FC = () => {
         data: ISalesChart[];
         total: number;
         trend: number;
-    }>(url, "get");
+    }>({ url, method: "get" });
 
     const { Text, Title } = Typography;
 

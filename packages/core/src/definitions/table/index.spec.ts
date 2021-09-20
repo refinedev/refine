@@ -123,7 +123,59 @@ describe("definitions/table", () => {
         expect(getDefaultFilter("title", filters)).toEqual("test");
     });
 
-    it("mapAntdSorterToCrudSorting for array", () => {
+    it("mapAntdSorterToCrudSorting", () => {
+        expect(
+            mapAntdSorterToCrudSorting({
+                field: "title",
+                order: "descend",
+            }),
+        ).toMatchInlineSnapshot(`
+            Array [
+              Object {
+                "field": "title",
+                "order": "desc",
+              },
+            ]
+        `);
+    });
+
+    it("mapAntdSorterToCrudSorting with sorting priority", () => {
+        expect(
+            mapAntdSorterToCrudSorting([
+                {
+                    field: "id",
+                    order: "descend",
+                    column: {
+                        sorter: {
+                            multiple: 2,
+                        },
+                    },
+                },
+                {
+                    field: "title",
+                    order: "descend",
+                    column: {
+                        sorter: {
+                            multiple: 1,
+                        },
+                    },
+                },
+            ]),
+        ).toMatchInlineSnapshot(`
+            Array [
+              Object {
+                "field": "title",
+                "order": "desc",
+              },
+              Object {
+                "field": "id",
+                "order": "desc",
+              },
+            ]
+        `);
+    });
+
+    it("mapAntdSorterToCrudSorting for array and columnKey", () => {
         expect(
             mapAntdSorterToCrudSorting([
                 {
@@ -142,28 +194,14 @@ describe("definitions/table", () => {
         `);
     });
 
-    it("mapAntdSorterToCrudSorting", () => {
-        expect(
-            mapAntdSorterToCrudSorting({
-                columnKey: "title",
-                field: "title",
-                order: "descend",
-            }),
-        ).toMatchInlineSnapshot(`
-            Array [
-              Object {
-                "field": "title",
-                "order": "desc",
-              },
-            ]
-        `);
-    });
-
     it("mapAntdFilterToCrudFilter", () => {
         expect(
-            mapAntdFilterToCrudFilter({
-                foo: ["bar", "baz"],
-            }),
+            mapAntdFilterToCrudFilter(
+                {
+                    foo: ["bar", "baz"],
+                },
+                [],
+            ),
         ).toMatchInlineSnapshot(`
             Array [
               Object {
@@ -178,11 +216,33 @@ describe("definitions/table", () => {
         `);
     });
 
+    it("mapAntdFilterToCrudFilter with non array", () => {
+        expect(
+            mapAntdFilterToCrudFilter(
+                {
+                    foo: "bar",
+                },
+                [],
+            ),
+        ).toMatchInlineSnapshot(`
+            Array [
+              Object {
+                "field": "foo",
+                "operator": "eq",
+                "value": "bar",
+              },
+            ]
+        `);
+    });
+
     it("mapAntdFilterToCrudFilter with value 0", () => {
         expect(
-            mapAntdFilterToCrudFilter({
-                foo: [0],
-            }),
+            mapAntdFilterToCrudFilter(
+                {
+                    foo: [0],
+                },
+                [],
+            ),
         ).toMatchInlineSnapshot(`
             Array [
               Object {
@@ -196,16 +256,50 @@ describe("definitions/table", () => {
         `);
     });
 
-    it("mapAntdFilterToCrudFilter with null value", () => {
+    it("mapAntdFilterToCrudFilter with in operator and null value", () => {
         expect(
-            mapAntdFilterToCrudFilter({
-                foo: null,
-            }),
+            mapAntdFilterToCrudFilter(
+                {
+                    foo: null,
+                },
+                [
+                    {
+                        field: "foo",
+                        operator: "in",
+                        value: ["1"],
+                    },
+                ],
+            ),
         ).toMatchInlineSnapshot(`
             Array [
               Object {
                 "field": "foo",
                 "operator": "in",
+                "value": null,
+              },
+            ]
+        `);
+    });
+
+    it("mapAntdFilterToCrudFilter with eq operator and null value", () => {
+        expect(
+            mapAntdFilterToCrudFilter(
+                {
+                    foo: null,
+                },
+                [
+                    {
+                        field: "foo",
+                        operator: "eq",
+                        value: "1",
+                    },
+                ],
+            ),
+        ).toMatchInlineSnapshot(`
+            Array [
+              Object {
+                "field": "foo",
+                "operator": "eq",
                 "value": null,
               },
             ]

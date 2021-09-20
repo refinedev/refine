@@ -7,16 +7,19 @@ import { UserIcon, CourierIcon } from "components/icons";
 import { IOrder } from "interfaces";
 
 export const DeliveryMap: React.FC = () => {
-    const { data: orderData } = useList<IOrder>("orders", {
-        filters: [
-            {
-                field: "status.text",
-                operator: "eq",
-                value: "On The Way",
+    const { data: orderData } = useList<IOrder>({
+        resource: "orders",
+        config: {
+            filters: [
+                {
+                    field: "status.text",
+                    operator: "eq",
+                    value: "On The Way",
+                },
+            ],
+            pagination: {
+                pageSize: 1000,
             },
-        ],
-        pagination: {
-            pageSize: 1000,
         },
     });
 

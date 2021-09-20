@@ -27,7 +27,7 @@ type UseExportOptionsType<
 };
 
 type UseExportReturnType = {
-    loading: boolean;
+    isLoading: boolean;
     triggerExport: () => Promise<void>;
 };
 
@@ -115,7 +115,7 @@ export const useExport = <
     };
 
     return {
-        loading: isLoading,
+        isLoading,
         triggerExport,
     };
 };

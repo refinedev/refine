@@ -13,7 +13,7 @@ You can call the `useImport` hook and add an `<ImportButton>` with properties re
 
 Let's look at an example of adding a custom import button:
 
-```tsx twoslash title="pages/posts/list.tsx" {4-5, 17, 21-23}
+```tsx twoslash title="pages/posts/list.tsx" {4-5, 21, 25-27}
 import {
     List,
     useTable,
@@ -27,8 +27,12 @@ export const PostList: React.FC = () => {
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
-        enabled: categoryIds.length > 0,
+    const { data, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
     });
 
     const importProps = useImport<IPostFile>();
@@ -90,7 +94,7 @@ It has 3 entries. We should map `categoryId` to `category.id` and `userId` to `
 
 This would make our `useImport` call look like this:
 
-```tsx twoslash title="/src/pages/posts/list.tsx" {10-22}
+```tsx twoslash title="/src/pages/posts/list.tsx" {14-26}
 interface ICategory {
     id: string;
     title: string;
@@ -126,8 +130,12 @@ export const PostList: React.FC = () => {
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = useMany<ICategory>("categories", categoryIds, {
-        enabled: categoryIds.length > 0,
+    const { data, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
     });
 
     const importProps = useImport<IPostFile>({

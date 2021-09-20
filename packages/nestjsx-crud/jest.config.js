@@ -3,4 +3,5 @@ module.exports = {
     rootDir: "./",
     name: "nestjsx-crud",
     displayName: "nestjsx-crud",
+    setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
 };

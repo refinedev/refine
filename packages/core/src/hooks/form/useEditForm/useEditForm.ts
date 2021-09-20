@@ -123,8 +123,12 @@ export const useEditForm = <
 
     const id = editId ?? idFromRoute;
 
-    const queryResult = useOne<TData>(resource.name, id, {
-        enabled: isEdit,
+    const queryResult = useOne<TData>({
+        resource: resource.name,
+        id,
+        queryOptions: {
+            enabled: isEdit,
+        },
     });
 
     const { data, isFetching } = queryResult;

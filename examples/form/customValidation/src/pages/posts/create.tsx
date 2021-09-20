@@ -46,18 +46,18 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
         PostUniqueCheckResponse,
         HttpError,
         PostUniqueCheckRequestQuery
-    >(
+    >({
         url,
-        "get",
-        {
+        method: "get",
+        config: {
             query: {
                 title,
             },
         },
-        {
+        queryOptions: {
             enabled: false,
         },
-    );
+    });
 
     return (
         <Create {...props} saveButtonProps={saveButtonProps}>

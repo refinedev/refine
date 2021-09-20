@@ -35,8 +35,12 @@ export const DailyRevenue: React.FC = () => {
         data: ISalesChart[];
         total: number;
         trend: number;
-    }>(url, "get", {
-        query,
+    }>({
+        url,
+        method: "get",
+        config: {
+            query,
+        },
     });
 
     const { RangePicker } = DatePicker;
