@@ -22,7 +22,7 @@ jobs:
       - run: |
           npm install
           npm run lerna bootstrap
-          npm run lerna build
+          npm run build
           npm run lint
           npm test
           npm run lerna publish from-package -- --yes
