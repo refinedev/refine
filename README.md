@@ -16,17 +16,11 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/maintainability)](https://codeclimate.com/github/pankod/refine/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/test_coverage)](https://codeclimate.com/github/pankod/refine/test_coverage)
 [![npm version](https://img.shields.io/npm/v/@pankod/refine.svg)](https://www.npmjs.com/package/@pankod/refine)
-[![dependencies Status](https://david-dm.org/pankod/refine/status.svg)](https://david-dm.org/pankod/refine)
-[![dev-dependencies Status](https://david-dm.org/pankod/refine/dev-status.svg)](https://david-dm.org/pankod/refine?type=dev)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](code_of_conduct.md)
-
-
 [![npm](https://img.shields.io/npm/dm/@pankod/refine)](https://www.npmjs.com/package/@pankod/refine)
-
-
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](code_of_conduct.md)
+[![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/qkhjCsJFrp)
 </div>
 
-<br/>
 <div align="center">
   <sub>Created by <a href="https://www.pankod.com">Pankod</a></sub>
 </div>
