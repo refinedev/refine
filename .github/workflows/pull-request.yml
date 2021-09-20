@@ -11,22 +11,6 @@ on:
       - "packages/**"
 
 jobs:
-  test-coverage:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
-    steps:
-      - uses: actions/checkout@v1
-      - name: Cache node modules
-      - name: npm install
-        run: |
-          npm install
-          npm run lerna bootstrap
-      - uses: dkershner6/jest-coverage-commenter-action@v1
-        with:
-            github_token: "${{ secrets.GITHUB_TOKEN }}"
-            test_command: npm run test:coverage
   example:
     runs-on: ubuntu-latest
     strategy:
