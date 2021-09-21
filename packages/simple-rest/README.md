@@ -18,3 +18,9 @@
 ## Documentation
 
 For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/api-references/providers/data-provider).
+
+## Install
+
+```
+npm install @pankod/refine-simple-rest
+```
