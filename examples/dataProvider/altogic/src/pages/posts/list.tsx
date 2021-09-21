@@ -9,9 +9,6 @@ import {
     ShowButton,
     useMany,
     FilterDropdown,
-    Typography,
-    Checkbox,
-    useCheckboxGroup,
     useSelect,
     Select,
     Radio,
@@ -20,21 +17,13 @@ import {
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
-const { Title } = Typography;
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, filters } = useTable<IPost>({
+    const { tableProps } = useTable<IPost>({
         initialSorter: [
             {
                 field: "title",
                 order: "asc",
-            },
-        ],
-        initialFilter: [
-            {
-                field: "status",
-                operator: "ne",
-                value: "publ2ished",
             },
         ],
     });
@@ -59,7 +48,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column dataIndex="title" title="Title" sorter />
                 <Table.Column
                     dataIndex="categoryId"
                     title="Category"
