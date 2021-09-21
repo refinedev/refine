@@ -126,8 +126,26 @@ export const KeyFeatures = () => {
             <div className="container">
                 <h2 className={styles.mainTitle}>Backend Agnostic</h2>
                 <p className={styles.description}>
-                    Connects to <strong>any REST or GraphQL</strong> custom
-                    backend.
+                    Connects to{" "}
+                    <strong>
+                        any{" "}
+                        <a
+                            href="https://github.com/pankod/refine/tree/master/packages/simple-rest"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            REST
+                        </a>{" "}
+                        or{" "}
+                        <a
+                            href="https://github.com/pankod/refine/tree/master/packages/graphql"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            GraphQL
+                        </a>{" "}
+                    </strong>{" "}
+                    custom backend.
                     <br />
                     <br />
                     Built-in support for <br />
