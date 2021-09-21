@@ -1,6 +1,6 @@
 ---
 id: strapi-graphql
-title: Strapi Graphql
+title: Strapi GraphQL
 ---
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/dataProvider/strapi-graphql)

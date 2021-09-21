@@ -345,11 +345,11 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                         };
                     }
                 } else {
-                    throw Error("Graphql operation name required.");
+                    throw Error("GraphQL operation name required.");
                 }
             } else {
                 throw Error(
-                    "Graphql need to operation, fields and variables values in metaData object.",
+                    "GraphQL need to operation, fields and variables values in metaData object.",
                 );
             }
         },
