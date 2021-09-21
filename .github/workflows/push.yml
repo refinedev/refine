@@ -42,7 +42,8 @@ jobs:
         npm run test:coverage
     - name: npm test & publish code coverage
       uses: paambaati/codeclimate-action@v2.7.5
-      if: github.ref == 'refs/heads/master'
+      #if: github.ref == 'refs/heads/master'
+      if: 1 == 0
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.TEST_REPORTER_ID }}
       with:
