@@ -47,15 +47,7 @@ jobs:
         CC_TEST_REPORTER_ID: ${{ secrets.TEST_REPORTER_ID }}
       with:
         coverageLocations: |
-          ${{github.workspace}}/packages/airtable/coverage/lcov.info:lcov
-          ${{github.workspace}}/packages/altogic/coverage/lcov.info:lcov
-          ${{github.workspace}}/packages/core/coverage/lcov.info:lcov
-          ${{github.workspace}}/packages/graphql/coverage/lcov.info:lcov
-          ${{github.workspace}}/packages/nestjsx-crud/coverage/lcov.info:lcov
-          ${{github.workspace}}/packages/simple-rest/coverage/lcov.info:lcov
-          ${{github.workspace}}/packages/strapi/coverage/lcov.info:lcov
-          ${{github.workspace}}/packages/strapi-graphql/coverage/lcov.info:lcov
-          ${{github.workspace}}/packages/supabase/coverage/lcov.info:lcov
+          ${{github.workspace}}/packages/**/coverage/lcov.info:lcov
 
 
 
