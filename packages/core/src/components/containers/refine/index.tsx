@@ -217,6 +217,7 @@ export const Refine: React.FC<RefineProps> = ({
                                         syncWithLocation={syncWithLocation}
                                         Title={Title}
                                         undoableTimeout={undoableTimeout}
+                                        customRoutes={routes}
                                         Layout={Layout}
                                         Sider={Sider}
                                         Footer={Footer}
