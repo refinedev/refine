@@ -477,7 +477,7 @@ At this point, we need to join records from different resources.  For this, we'r
 
 Before we start, just edit our interface for the new `ICategory` type:
 
-```ts title="interfaces/index.d.ts" {0-3,8}
+```ts title="interfaces/index.d.ts" {0-3,9}
 export interface ICategory {
     id: string;
     title: string;
@@ -487,7 +487,7 @@ export interface IPost {
     id: string;
     title: string;
     status: "published" | "draft" | "rejected";
-    category: ICategory;
+    category: { id: string };
     createdAt: string;
 }
 ```
@@ -603,7 +603,7 @@ import {
     useSelect
 } from "@pankod/refine";
 
-import { IPost, ICategory } from "../../interfaces";
+import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -736,7 +736,6 @@ export const PostShow = () => {
 
 Now we can add the newly created component to our `<Resource>` with `show` prop:
 
-
 ```tsx title="src/App.tsx" {3, 11}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
@@ -855,26 +854,6 @@ export const PostList: React.FC = () => {
     );
 };
 ```
-
-```tsx title="src/App.tsx" {3, 11}
-import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
-
-import { PostList, PostShow } from "./pages";
-
-export const App: React.FC = () => {
-    return (
-        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
-            <Resource
-                name="posts"
-                list={PostList}
-                show={PostShow}
-            />
-        </Refine>
-    );
-};
-```
-
 
 ✳️ `useShow()` is a **refine** hook used to fetch a single record data. The `queryResult` has the response and also `isLoading` state.
 
