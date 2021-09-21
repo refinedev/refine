@@ -78,7 +78,7 @@ const siteConfig = {
                     className: "header-icon-link header-github-link",
                 },
                 {
-                    href: "https://discord.gg/qkhjCsJFrp",
+                    href: "https://discord.gg/UuU3XCc3J5",
                     position: "right",
                     className: "header-icon-link header-discord-link",
                 },
