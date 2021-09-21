@@ -74,7 +74,7 @@ export const Hero = () => {
                                 loop
                                 playing={playing}
                                 controls={false}
-                                url="https://www.youtube.com/watch?v=xv8M3ScElv0&ab_channel=PankodTV"
+                                url="https://www.youtube.com/watch?v=fJF9DNgcfiE&ab_channel=PankodTV"
                                 progressInterval={500}
                                 onProgress={(value) => setPlayed(value.played)}
                                 onPause={() => setPlaying(false)}
