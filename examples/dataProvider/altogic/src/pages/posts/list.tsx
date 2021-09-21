@@ -41,8 +41,12 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
-    const { data, isLoading } = useMany<ICategory>("category", categoryIds, {
-        enabled: categoryIds.length > 0,
+    const { data, isLoading } = useMany<ICategory>({
+        resource: "category",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
     });
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
