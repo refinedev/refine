@@ -51,9 +51,33 @@ npx create-react-app tutorial --template typescript
 :::
 Navigate to the project folder and install **refine** with the following *npm* command:
 
-```
+<Tabs
+  defaultValue="npm"
+  values={[
+    {label: 'use npm', value: 'npm'},
+    {label: 'use yarn', value: 'yarn'}
+  ]}>
+  <TabItem value="npm">
+
+```bash
 npm i @pankod/refine
 ```
+
+  </TabItem>
+    <TabItem value="yarn">
+
+```bash
+yarn add @pankod/refine
+```
+
+  </TabItem>
+</Tabs>
+
+:::warning
+This tutorial assumes your project is configured for absolute imports. Since CRA does not configure it by default, you should configure it yourself to be able to use absolute imports. You should configure a [`tsconfig.json`](https://www.typescriptlang.org/tsconfig#baseUrl) with `baseUrl` setting pointing to the `/src` directory in your project.
+
+[Refer to CRA docs for more information about absolute imports. &#8594](https://create-react-app.dev/docs/importing-a-component/#absolute-imports)
+:::
   
   </TabItem>
   <TabItem value="superplate">
@@ -108,9 +132,27 @@ Dataproviders are **refine** components making it possible to consume different 
 
 Next, navigate to the project folder and run the following command to install the required package:
 
-```
+<Tabs
+  defaultValue="npm"
+  values={[
+    {label: 'use npm', value: 'npm'},
+    {label: 'use yarn', value: 'yarn'}
+  ]}>
+  <TabItem value="npm">
+
+```bash
 npm i @pankod/refine-simple-rest
 ```
+
+  </TabItem>
+    <TabItem value="yarn">
+
+```bash
+yarn add @pankod/refine-simple-rest
+```
+
+  </TabItem>
+</Tabs>
 
 :::note
 If you used `superplate` to bootstrap the project, you can skip issuing this command as `superplate` already installs the selected data provider.
@@ -292,6 +334,7 @@ Create a new folder named *"interface"* under *"/src"* if you don't already have
 
 ```ts title="interfaces/index.d.ts"
 export interface IPost {
+    id: string;
     title: string;
     status: "published" | "draft" | "rejected";
     createdAt: string;
@@ -434,16 +477,17 @@ At this point, we need to join records from different resources.  For this, we'r
 
 Before we start, just edit our interface for the new `ICategory` type:
 
-```ts title="interfaces/index.d.ts" {0-3,8}
+```ts title="interfaces/index.d.ts" {0-3,9}
 export interface ICategory {
     id: string;
     title: string;
 }
 
 export interface IPost {
+    id: string;
     title: string;
     status: "published" | "draft" | "rejected";
-    category: ICategory;
+    category: { id: string };
     createdAt: string;
 }
 ```
@@ -545,16 +589,34 @@ We're done with displaying `post` records on our `<Table>`. Let's add search and
 
 We are going to use `<Table.Column>`'s [`filterDropdown`](https://ant.design/components/table/#Column) property and `<FilterDropdown>` component as following:
 
-```tsx title="pages/posts/list.tsx" {1-3, 9-12, 36-45}
-import {
+```tsx title="pages/posts/list.tsx" {8-10, 28-30, 64-73}
+import {    
+    List,
+    TextField,
+    TagField,
+    DateField,
+    Table,
+    useTable,
+    useMany,
     FilterDropdown,
     Select,
     useSelect
 } from "@pankod/refine";
-import { ICategory } from "interfaces";
+
+import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
-    ...
+    const { tableProps } = useTable<IPost>();
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
@@ -563,7 +625,17 @@ export const PostList: React.FC = () => {
     return (
         <List>
             <Table {...tableProps} rowKey="id">
-               ...
+                <Table.Column dataIndex="title" title="title" />
+                <Table.Column
+                    dataIndex="status"
+                    title="status"
+                    render={(value) => <TagField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="createdAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                />
                 <Table.Column
                     dataIndex={["category", "id"]}
                     title="category"
@@ -593,7 +665,6 @@ export const PostList: React.FC = () => {
                         </FilterDropdown>
                     )}
                 />
-               ...
             </Table>
         </List>
     );
@@ -665,7 +736,6 @@ export const PostShow = () => {
 
 Now we can add the newly created component to our `<Resource>` with `show` prop:
 
-
 ```tsx title="src/App.tsx" {3, 11}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
@@ -681,6 +751,106 @@ export const App: React.FC = () => {
                 show={PostShow}
             />
         </Refine>
+    );
+};
+```
+
+<br />
+
+And then we can add a `<ShowButton>` on the list page to make it possible for users to navigate to detail pages:
+
+```tsx title="src/pages/posts/list.tsx" {10, 76-88}
+import {
+    List,
+    TextField,
+    TagField,
+    DateField,
+    Table,
+    useTable,
+    useMany,
+    FilterDropdown,
+    Select,
+    ShowButton,
+    useSelect,
+} from "@pankod/refine";
+
+import { IPost, ICategory } from "interfaces";
+
+export const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+    });
+
+    return (
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="title" title="title" />
+                <Table.Column
+                    dataIndex="status"
+                    title="status"
+                    render={(value) => <TagField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="createdAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                />
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+
+                        return (
+                            <TextField
+                                value={
+                                    categoriesData?.data.find(
+                                        (item) => item.id === value,
+                                    )?.title
+                                }
+                            />
+                        );
+                    }}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Select
+                                style={{ minWidth: 200 }}
+                                mode="multiple"
+                                placeholder="Select Category"
+                                {...categorySelectProps}
+                            />
+                        </FilterDropdown>
+                    )}
+                />
+                <Table.Column<IPost>
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_text, record): React.ReactNode => {
+                        return (
+                            <ShowButton
+                                size="small"
+                                recordItemId={record.id}
+                                hideText
+                            />
+                        );
+                    }}
+                />
+            </Table>
+        </List>
     );
 };
 ```
@@ -793,31 +963,109 @@ export const App: React.FC = () => {
 
 We are going to need an *edit* button on each row to diplay the `<PostEdit>` component. **refine** doesn't automatically add one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
 
-```tsx title="components/pages/posts.tsx" {2-3, 12-19}
+```tsx title="components/pages/posts.tsx" {12, 13, 83, 94, 89-93}
 import {
-    ...
+    List,
+    TextField,
+    TagField,
+    DateField,
+    Table,
+    useTable,
+    useMany,
+    FilterDropdown,
+    Select,
+    ShowButton,
+    useSelect,
     Space,
-    EditButton
+    EditButton,
 } from "@pankod/refine";
 
+import { IPost, ICategory } from "interfaces";
+
 export const PostList: React.FC = () => {
-...
-    <Table.Column<IPost>
-        title="Actions"
-        dataIndex="actions"
-        render={(_text, record): React.ReactNode => {
-            return (
-                <Space>
-                    <EditButton
-                        size="small"
-                        recordItemId={record.id}
-                    />
-                </Space>
-            );
-        }}
-    />
-...
-}
+    const { tableProps } = useTable<IPost>();
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+    });
+
+    return (
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="title" title="title" />
+                <Table.Column
+                    dataIndex="status"
+                    title="status"
+                    render={(value) => <TagField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="createdAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                />
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+
+                        return (
+                            <TextField
+                                value={
+                                    categoriesData?.data.find(
+                                        (item) => item.id === value,
+                                    )?.title
+                                }
+                            />
+                        );
+                    }}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Select
+                                style={{ minWidth: 200 }}
+                                mode="multiple"
+                                placeholder="Select Category"
+                                {...categorySelectProps}
+                            />
+                        </FilterDropdown>
+                    )}
+                />
+                <Table.Column<IPost>
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_text, record): React.ReactNode => {
+                        return (
+                            <Space>
+                                <ShowButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                    hideText
+                                />
+                                <EditButton 
+                                    size="small"
+                                    recordItemId={record.id}
+                                    hideText
+                                />
+                            </Space>
+                        );
+                    }}
+                />
+            </Table>
+        </List>
+    );
+};
 ```
 
 [Refer to the `<EditButton>` documentation for detailed usage information. &#8594](api-references/components/buttons/edit.md)
@@ -867,17 +1115,20 @@ Creating a record in **refine** follows a similar flow as editing records.
 
 First, we'll create a `<PostCreate>` page:
 
-```tsx title="pages/posts/create.tsx" 
+```tsx title="pages/posts/create.tsx" {1, 18, 45}
 import {
-    ...
-    Create
+    Create,
+    Form,
+    Input,
+    Select,
+    useForm,
+    useSelect
 } from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
 export const PostCreate = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
-
     const { selectProps: categorySelectProps } = useSelect<IPost>({
         resource: "categories",
     });
@@ -906,13 +1157,14 @@ export const PostCreate = () => {
                         ]}
                     />
                 </Form.Item>
-                 <Form.Item label="Category" name={["category", "id"]}>
+                <Form.Item label="Category" name={["category", "id"]}>
                     <Select {...categorySelectProps} />
                 </Form.Item>
             </Form>
         </Create>
     );
 };
+
 ```
 
 <br />
@@ -975,31 +1227,115 @@ First way is adding an delete button on each row since *refine* doesn't automati
 
 
 
-```tsx title="components/pages/posts.tsx" {2, 14-17}
+```tsx title="components/pages/posts.tsx" {14, 95-99}
 import {
-    ...
+    List,
+    TextField,
+    TagField,
+    DateField,
+    Table,
+    useTable,
+    useMany,
+    FilterDropdown,
+    Select,
+    ShowButton,
+    useSelect,
+    Space,
+    EditButton,
     DeleteButton
 } from "@pankod/refine";
 
+import { IPost, ICategory } from "../../interfaces";
+
 export const PostList: React.FC = () => {
-...
-    <Table.Column<IPost>
-        title="Actions"
-        dataIndex="actions"
-        render={(_text, record): React.ReactNode => {
-            return (
-                <Space>
-                    ...
-                    <DeleteButton
-                        size="small"
-                        recordItemId={record.id}
-                    />
-                </Space>
-            );
-        }}
-    />
-...
-}
+    const { tableProps } = useTable<IPost>();
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+    });
+
+    return (
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="title" title="title" />
+                <Table.Column
+                    dataIndex="status"
+                    title="status"
+                    render={(value) => <TagField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="createdAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                />
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+
+                        return (
+                            <TextField
+                                value={
+                                    categoriesData?.data.find(
+                                        (item) => item.id === value,
+                                    )?.title
+                                }
+                            />
+                        );
+                    }}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Select
+                                style={{ minWidth: 200 }}
+                                mode="multiple"
+                                placeholder="Select Category"
+                                {...categorySelectProps}
+                            />
+                        </FilterDropdown>
+                    )}
+                />
+                <Table.Column<IPost>
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_text, record): React.ReactNode => {
+                        return (
+                            <Space>
+                                <ShowButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                    hideText
+                                />
+                                <EditButton 
+                                    size="small"
+                                    recordItemId={record.id}
+                                    hideText
+                                />
+                                <DeleteButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                    hideText
+                                />
+                            </Space>
+                        );
+                    }}
+                />
+            </Table>
+        </List>
+    );
+};
 ```
 
 [Refer to the `<DeleteButton>` documentation for detailed usage information. &#8594](api-references/components/buttons/delete.md)
