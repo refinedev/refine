@@ -14,12 +14,13 @@ import {
     Radio,
     TagField,
     DeleteButton,
+    getDefaultSortOrder,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps } = useTable<IPost>({
+    const { tableProps, sorter } = useTable<IPost>({
         initialSorter: [
             {
                 field: "title",
@@ -48,7 +49,12 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" sorter />
+                <Table.Column
+                    dataIndex="title"
+                    title="Title"
+                    sorter
+                    defaultSortOrder={getDefaultSortOrder("title", sorter)}
+                />
                 <Table.Column
                     dataIndex="categoryId"
                     title="Category"
