@@ -30,8 +30,8 @@ describe("getList", () => {
         });
 
         expect(response.data[0]["id"]).toBe("613a25eb65f2050012410a41");
-        expect(response.data[0]["title"]).toBe("test");
-        expect(response.total).toBe(NaN);
+        expect(response.data[0]["title"]).toBe("foo");
+        expect(response.total).toBe(8);
     });
 
     it("correct sorting response", async () => {
@@ -46,18 +46,11 @@ describe("getList", () => {
                     order: "asc",
                 },
             ],
-            filters: [
-                {
-                    field: "_id",
-                    operator: "ne",
-                    value: "",
-                },
-            ],
         });
 
         expect(response.data[0]["id"]).toBe("613b80901550aa001b0a85f8");
         expect(response.data[0]["title"]).toBe("Deneme1");
-        expect(response.total).toBe(NaN);
+        expect(response.total).toBe(8);
     });
 
     it("correct filter response", async () => {
@@ -76,7 +69,7 @@ describe("getList", () => {
         });
 
         expect(response.data[0]["categoryId"]).toBe("61373e585d65d30019e2b0a2");
-        expect(response.total).toBe(NaN);
+        expect(response.total).toBe(5);
     });
 
     it("correct filter and sort response", async () => {
@@ -100,7 +93,7 @@ describe("getList", () => {
             ],
         });
 
-        expect(response.data[0]["id"]).toBe("613b80901550aa001b0a85f8");
-        expect(response.total).toBe(NaN);
+        expect(response.data[0]["id"]).toBe("613a25eb65f2050012410a41");
+        expect(response.total).toBe(5);
     });
 });
