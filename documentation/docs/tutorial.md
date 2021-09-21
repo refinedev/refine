@@ -105,10 +105,10 @@ tutorial
 ❯ No (Ant Design default theme)
 
 ? Data Provider :
-❯ Custom JSON rest API
+❯ REST API
 
 ? Auth Provider : 
-❯ Custom
+❯ None
 
 ? Do you want to add an example page?:
 ❯ No
