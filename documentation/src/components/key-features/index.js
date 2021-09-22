@@ -124,7 +124,9 @@ export const KeyFeatures = () => {
     return (
         <section className={styles.section}>
             <div className="container">
-                <h2 className={styles.mainTitle}>Backend Agnostic</h2>
+                <h2 className={styles.mainTitle}>
+                    Your API is supported, out of the box!
+                </h2>
                 <p className={styles.description}>
                     Connects to{" "}
                     <strong>
