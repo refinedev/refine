@@ -14,7 +14,6 @@
         "lint:fix": "npm run lint -- --quiet --fix",
         "build": "lerna run build",
         "bootstrap:docker": "lerna bootstrap -- --production --no-optional",
-        "generete-theme": "npx @emeks/antd-custom-theme-generator -w --antd ./packages/core/node_modules/antd ./packages/core/src/assets/styles/custom-theme.less ./packages/core/src/assets/styles/styles.min.css",
         "nuke": "rm -rf node_modules; rm -rf example/node_modules; rm -rf example/paclage-lock.json; for d in for d in packages/*/node_modules; do echo $d; rm -rf $d; done; for d in for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in examples/*/node_modules; do echo $d; rm -rf $d; done;  for d in examples/*/package-lock.json; do echo $d; rm -rf $d; done;"
     },
     "lint-staged": {
