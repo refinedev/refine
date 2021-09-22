@@ -22,7 +22,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
         useOne<ICategory>({
             resource: "categories",
             id: record?.categoryId || "",
-            queryResult: {
+            queryOptions: {
                 enabled: !!record,
             },
         });
