@@ -240,7 +240,7 @@ query ($sort: String, $where: JSON, $start: Int, $limit: Int) {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={graphqlList} alt="Graphql list page" />
+    <img src={graphqlList} alt="GraphQL list page" />
 </div>
 
 ## Edit Page
