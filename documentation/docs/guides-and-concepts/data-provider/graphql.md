@@ -449,5 +449,5 @@ mutation ($input: updatePostInput) {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={graphqlShow} alt="Graphql show page" />
+    <img src={graphqlShow} alt="GraphQL show page" />
 </div>
