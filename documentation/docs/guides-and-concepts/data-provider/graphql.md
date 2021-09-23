@@ -1,6 +1,6 @@
 ---
 id: graphql
-title: Graphql
+title: GraphQL
 ---
 
 import graphqlList from '@site/static/img/guides-and-concepts/data-provider/graphql-list.png';
@@ -10,9 +10,9 @@ import graphqlShow from '@site/static/img/guides-and-concepts/data-provider/grap
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-**refine** [graphql](https://github.com/pankod/refine/tree/master/packages/graphql) and [strapi-graphql](https://github.com/pankod/refine/tree/master/packages/strapi-graphql) data provider built with [gql-query-builder](https://github.com/atulmy/gql-query-builder) and [graphql-request](https://github.com/prisma-labs/graphql-request) is made for graphql implemantation. It aims to create a query dynamically with [gql-query-builder](https://github.com/atulmy/gql-query-builder) and send requests with [graphql-request](https://github.com/prisma-labs/graphql-request).
+**refine** [graphql](https://github.com/pankod/refine/tree/master/packages/graphql) and [strapi-graphql](https://github.com/pankod/refine/tree/master/packages/strapi-graphql) data provider built with [gql-query-builder](https://github.com/atulmy/gql-query-builder) and [graphql-request](https://github.com/prisma-labs/graphql-request) is made for GraphQL implemantation. It aims to create a query dynamically with [gql-query-builder](https://github.com/atulmy/gql-query-builder) and send requests with [graphql-request](https://github.com/prisma-labs/graphql-request).
 
-## Graphql Query Builder
+## GraphQL Query Builder
 
 [GraphQL Query Builder](https://github.com/atulmy/gql-query-builder) allows us to build queries and mutations. The `getList`, `getMany` and `getOne` methods in our `dataProvider` generate a query to send a request. On the other hand, the `create`, `createMany`, `update`, `updateMany`, `deleteOne` and `deleteMany` methods generate a mutation to send a request.
 
@@ -44,7 +44,7 @@ npm i @pankod/refine @pankod/refine-strapi-graphql graphql-request
 ```
 
 :::info
-We used [strapi-graphql](https://github.com/pankod/refine/tree/master/packages/strapi-graphql) server for this guide. You can customize your data provider for your own graphql server.
+We used [strapi-graphql](https://github.com/pankod/refine/tree/master/packages/strapi-graphql) server for this guide. You can customize your data provider for your own GraphQL server.
 :::
 
 ## Usage
