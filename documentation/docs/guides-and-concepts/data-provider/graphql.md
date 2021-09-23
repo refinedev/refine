@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 [GraphQL Query Builder](https://github.com/atulmy/gql-query-builder) allows us to build queries and mutations. The `getList`, `getMany` and `getOne` methods in our `dataProvider` generate a query to send a request. On the other hand, the `create`, `createMany`, `update`, `updateMany`, `deleteOne` and `deleteMany` methods generate a mutation to send a request.
 
-In order to create a grapgql query, our `dataProvider` has to take some options, such as specifying which fields will come in response, we pass these options to our `dataProvider` methods with `MetaDataQuery`.
+In order to create a GraphQL query, our `dataProvider` has to take some options, such as specifying which fields will come in response, we pass these options to our `dataProvider` methods with `MetaDataQuery`.
 
 [Refer to the `MetaDataQuery` properties for detailed usage. &#8594](https://github.com/atulmy/gql-query-builder#options)
 
