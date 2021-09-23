@@ -21,7 +21,7 @@ We will show you how to use `useMenu` to create a custom sider menu that is iden
 
 First we define `<CustomMenu>`:
 
-```tsx twoslash title="src/CustomMenu.tsx" {12,33,37-39}
+```tsx twoslash title="src/CustomMenu.tsx" {12, 30, 34-36}
 import { useState, CSSProperties } from "react";
 import {
     AntdLayout,
@@ -49,9 +49,6 @@ export const CustomMenu: React.FC = () => {
             collapsedWidth={isMobile ? 0 : 80}
             breakpoint="lg"
             style={isMobile ? antLayoutSiderMobile : antLayoutSider}
-            className={`refine-sider ${
-                !collapsed ? "refine-sider-collapsed" : ""
-            }`}
         >
             <Title collapsed={collapsed} />
             <Menu 
@@ -112,7 +109,7 @@ export default App;
 
 We can also add a logout button:
 
-```tsx twoslash title="src/CustomMenu.tsx" {6-8, 22-23, 56-58}
+```tsx twoslash title="src/CustomMenu.tsx" {6-8, 22-23, 53-55}
 import { useState, CSSProperties } from "react";
 import {
     AntdLayout,
@@ -146,9 +143,6 @@ export const CustomMenu: React.FC = () => {
             collapsedWidth={isMobile ? 0 : 80}
             breakpoint="lg"
             style={isMobile ? antLayoutSiderMobile : antLayoutSider}
-            className={`refine-sider ${
-                !collapsed ? "refine-sider-collapsed" : ""
-            }`}
         >
             <Title collapsed={collapsed} />
             <Menu

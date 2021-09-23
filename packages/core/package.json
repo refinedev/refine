@@ -12,7 +12,8 @@
         "test": "tsdx test --passWithNoTests --runInBand",
         "prepare": "tsdx build",
         "size": "size-limit",
-        "analyze": "size-limit --why"
+        "analyze": "size-limit --why",
+        "generate-theme": "npx @emeks/antd-custom-theme-generator -w --antd ./node_modules/antd ./src/assets/styles/custom-theme.less ./src/assets/styles/styles.min.css"
     },
     "peerDependencies": {
         "react": "^17.0.2",
