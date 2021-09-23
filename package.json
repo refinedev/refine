@@ -9,7 +9,7 @@
         "lerna": "lerna",
         "start": "lerna run start --stream --parallel",
         "test": "lerna run test --stream --parallel",
-        "test:coverage": "npm run test --stream -- -- --coverage",
+        "test:coverage": "npm run test --stream -- -- -- --coverage",
         "lint": "eslint -c ./.eslintrc packages examples",
         "lint:fix": "npm run lint -- --quiet --fix",
         "build": "lerna run build",
@@ -47,6 +47,7 @@
         "typescript": "^3.9.8"
     },
     "dependencies": {
+        "dayjs": "^1.10.5",
         "prettier": "^2.3.0",
         "prism-react-renderer": "^1.2.1"
     }

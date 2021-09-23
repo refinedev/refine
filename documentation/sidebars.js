@@ -269,6 +269,7 @@ module.exports = {
                     label: "Data Provider",
                     items: [
                         "examples/data-provider/strapi",
+                        "examples/data-provider/strapi-graphql",
                         "examples/data-provider/nestjsxCrud",
                         "examples/data-provider/airtable",
                         "examples/data-provider/supabase",

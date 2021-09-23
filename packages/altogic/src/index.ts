@@ -121,15 +121,13 @@ const AltogicDataProvider = (
             query.sort = _sort.length > 1 ? JSON.stringify(_sort) : _sort[0];
         }
 
-        const { data, headers } = await httpClient.get(
+        const { data } = await httpClient.get(
             `${url}?${stringify(query)}&${stringify(queryFilters)}`,
         );
 
-        const total = +headers["x-total-count"];
-
         return {
-            data: (data || []).map((p: any) => ({ ...p, id: p._id })),
-            total,
+            data: (data?.result || []).map((p: any) => ({ ...p, id: p._id })),
+            total: data?.countInfo?.count,
         };
     },
 

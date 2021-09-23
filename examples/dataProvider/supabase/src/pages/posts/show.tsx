@@ -19,8 +19,12 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
     const record = data?.data;
 
     const { data: categoryData, isLoading: categoryIsLoading } =
-        useOne<ICategory>("categories", record?.categoryId || "", {
-            enabled: !!record,
+        useOne<ICategory>({
+            resource: "categories",
+            id: record?.categoryId || "",
+            queryOptions: {
+                enabled: !!record,
+            },
         });
 
     return (

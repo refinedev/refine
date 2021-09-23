@@ -20,7 +20,7 @@ function Home() {
             <main>
                 <Hero />
                 <FastAndFlexible />
-                <Comments />
+                {/* <Comments /> */}
                 <KeyFeatures />
                 <LazyLoad once offset={200}>
                     <PerfectImplementation />

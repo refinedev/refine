@@ -50,12 +50,16 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                 {
                     field: "createdAt",
                     operator: "gte",
-                    value: createdAt[0].toISOString(),
+                    value: createdAt
+                        ? createdAt[0].startOf("day").toISOString()
+                        : undefined,
                 },
                 {
                     field: "createdAt",
                     operator: "lte",
-                    value: createdAt[1].toISOString(),
+                    value: createdAt
+                        ? createdAt[1].endOf("day").toISOString()
+                        : undefined,
                 },
             );
 
@@ -79,6 +83,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
 
             return filters;
         },
+        syncWithLocation: false,
     });
 
     const t = useTranslate();

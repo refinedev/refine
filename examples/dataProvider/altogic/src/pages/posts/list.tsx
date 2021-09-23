@@ -9,40 +9,34 @@ import {
     ShowButton,
     useMany,
     FilterDropdown,
-    Typography,
-    Checkbox,
-    useCheckboxGroup,
     useSelect,
     Select,
     Radio,
     TagField,
     DeleteButton,
+    getDefaultSortOrder,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
-const { Title } = Typography;
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, filters } = useTable<IPost>({
+    const { tableProps, sorter } = useTable<IPost>({
         initialSorter: [
             {
                 field: "title",
                 order: "asc",
             },
         ],
-        initialFilter: [
-            {
-                field: "status",
-                operator: "ne",
-                value: "publ2ished",
-            },
-        ],
     });
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
-    const { data, isLoading } = useMany<ICategory>("category", categoryIds, {
-        enabled: categoryIds.length > 0,
+    const { data, isLoading } = useMany<ICategory>({
+        resource: "category",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
     });
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -55,7 +49,12 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column
+                    dataIndex="title"
+                    title="Title"
+                    sorter
+                    defaultSortOrder={getDefaultSortOrder("title", sorter)}
+                />
                 <Table.Column
                     dataIndex="categoryId"
                     title="Category"

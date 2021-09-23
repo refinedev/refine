@@ -1,5 +1,5 @@
 .section {
-    padding: 96px 0px 96px 0px;
+    padding: 0px 0px 96px 0px;
     background-color: var(--color-bg-white);
     color: var(--color-text-black);
 }
