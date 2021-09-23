@@ -213,6 +213,11 @@ module.exports = {
             items: [
                 {
                     type: "category",
+                    label: "Data Provider",
+                    items: ["guides-and-concepts/data-provider/graphql"],
+                },
+                {
+                    type: "category",
                     label: "Upload",
                     items: [
                         "guides-and-concepts/upload/multipart-upload",
