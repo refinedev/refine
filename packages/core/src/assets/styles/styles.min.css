@@ -25060,12 +25060,3 @@ div.ant-typography-edit-content.ant-typography-rtl {
 .ant-page-header {
   border-radius: 6px;
 }
-.refine-sider .ant-layout-sider-zero-width-trigger,
-.refine-sider .ant-layout-sider-zero-width-trigger-left {
-  position: fixed;
-  right: unset;
-}
-.refine-sider-collapsed .ant-layout-sider-zero-width-trigger,
-.refine-sider-collapsed .ant-layout-sider-zero-width-trigger-left {
-  right: -36px;
-}
