@@ -62,7 +62,7 @@ const client = new GraphQLClient("API_URL");
 const App: React.FC = () => {
     return (
         <Refine dataProvider={dataProvider(client)}>
-            // ... // *** // ***
+            ...
         </Refine>
     );
 };
