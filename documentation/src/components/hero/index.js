@@ -61,6 +61,15 @@ export const Hero = () => {
                         Read the docs
                         <IoIosArrowForward />
                     </Link>
+                    <span className={styles.indexCtasGitHubButtonWrapper}>
+                        <iframe
+                            className={styles.indexCtasGitHubButton}
+                            src="https://ghbtns.com/github-btn.html?user=pankod&amp;repo=refine&amp;type=star&amp;count=true&amp;size=large"
+                            width={160}
+                            height={30}
+                            title="GitHub Stars"
+                        />
+                    </span>
                 </div>
                 <div className="row row--justify--center">
                     <div className="col col--9">

@@ -67,7 +67,7 @@ We believe, these are the most important components of a data-intensive frontend
 
 **refine** guarantees you a perfect implementation of these building blocks in your project, so you can focus on your development.
 
-## Architechture
+## Architecture
 
 **refine** makes extensive use of [hooks](https://reactjs.org/docs/hooks-reference.html#gatsby-focus-wrapper) as a default way for interacting with your components. 
 Under the hood, **refine** relies heavily to [React Query](https://react-query.tanstack.com/) for data handling, caching and state management. 

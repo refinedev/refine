@@ -114,3 +114,13 @@ progress::-webkit-progress-value {
 progress::-webkit-progress-bar {
     background: #000000;
 }
+
+
+.indexCtasGitHubButtonWrapper {
+    display: flex;
+}
+
+.indexCtasGitHubButton {
+    overflow: hidden;
+    border: 0;
+}
