@@ -51,7 +51,7 @@ export const FastAndFlexible = () => {
                             After <strong>many years of experience</strong> in
                             developing B2B frontend applications and working
                             with popular frameworks, we came up with{" "}
-                            <strong>a new apporach</strong> to tackle this
+                            <strong>a new approach</strong> to tackle this
                             dilemma. This is how refine is born.
                         </p>
                     </div>
