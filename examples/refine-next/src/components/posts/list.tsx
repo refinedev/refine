@@ -10,7 +10,9 @@ import {
 import { IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+    const { tableProps } = useTable<IPost>({
+        resource: "posts",
+    });
 
     return (
         <List>

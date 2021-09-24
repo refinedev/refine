@@ -107,13 +107,6 @@ export const NextRouteComponent: React.FC<{
 
             return <LayoutWrapper>{renderCrud()}</LayoutWrapper>;
         }
-        if (customRoute) {
-            const RouteComponent = customRoute
-                ? (customRoute.component as any) ??
-                  (() => "No component for this custom route found")
-                : () => "No custom route found";
-            return <RouteComponent />;
-        }
         return catchAll ? <>{catchAll}</> : <ErrorComponent />;
     }
 
