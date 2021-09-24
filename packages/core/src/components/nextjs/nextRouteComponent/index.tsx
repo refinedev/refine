@@ -1,21 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useResource, useRouterContext } from "@hooks";
-import { IRefineContext, ResourceRouterParams } from "src/interfaces";
+import { ResourceRouterParams } from "src/interfaces";
 import { LayoutWrapper } from "@components";
-import { RefineContext } from "@contexts/refine";
 
-export const NextRouteComponent: React.FC = (props) => {
+export const NextRouteComponent: React.FC = () => {
     const { resources } = useResource();
-    const { useParams, useLocation } = useRouterContext();
+    const { useParams } = useRouterContext();
     const { resource: routeResourceName, action } =
         useParams<ResourceRouterParams>();
-    const { pathname } = useLocation();
 
-    const { customRoutes } = useContext<IRefineContext>(RefineContext);
-
-    const resource = resources.find(
-        (res) => res.route === (routeResourceName ?? pathname.substring(1)),
-    );
+    const resource = resources.find((res) => res.route === routeResourceName);
 
     if (resource) {
         const {
@@ -45,7 +39,6 @@ export const NextRouteComponent: React.FC = (props) => {
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
-                            initialData={props}
                         />
                     );
                 }
@@ -89,13 +82,6 @@ export const NextRouteComponent: React.FC = (props) => {
         };
 
         return <LayoutWrapper>{renderCrud()}</LayoutWrapper>;
-    } else {
-        const route = customRoutes.find((r) => r.path === routeResourceName);
-        const Route = route
-            ? (route.component as any) ??
-              (() => "No component for this custom route found")
-            : () => "No custom route found";
-        return <Route />;
     }
 
     return null;

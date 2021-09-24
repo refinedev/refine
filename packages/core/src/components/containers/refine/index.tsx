@@ -142,59 +142,49 @@ export const Refine: React.FC<RefineProps> = ({
 
     notification.config({ ...notifcationConfig });
 
-    console.log({ children });
-
-    let isSSr = false;
+    let isSSr = true;
     const resources: IResourceItem[] = [];
+
+    resourcesFromProps?.map((resource) => {
+        resources.push({
+            name: resource.name,
+            label: resource.options?.label,
+            icon: resource.icon,
+            route: resource.options?.route ?? resource.name,
+            canCreate: !!resource.create,
+            canEdit: !!resource.edit,
+            canShow: !!resource.show,
+            canDelete: resource.canDelete,
+            create: resource.create,
+            show: resource.show,
+            list: resource.list,
+            edit: resource.edit,
+        });
+    });
+
     React.Children.map(children, (child: any) => {
         if (!child) {
             return;
         }
 
-        if (child.type !== Resource && child.type !== NextRouteComponent) {
-            throw new Error(
-                "You must either pass a Resource or NextRouteComponent",
-            );
-        }
+        if (child.type === Resource) {
+            isSSr = false;
 
-        if (child.type === NextRouteComponent) {
-            // if (child.type !== Resource) {
-            isSSr = true;
-            resourcesFromProps?.map((resource) => {
-                console.log("Refine::", { resource });
-                resources.push({
-                    name: resource.name,
-                    label: resource.options?.label,
-                    icon: resource.icon,
-                    route: resource.options?.route ?? resource.name,
-                    canCreate: !!resource.create,
-                    canEdit: !!resource.edit,
-                    canShow: !!resource.show,
-                    canDelete: resource.canDelete,
-                    create: resource.create,
-                    show: resource.show,
-                    list: resource.list,
-                    edit: resource.edit,
-                });
+            resources.push({
+                name: child.props.name,
+                label: child.props.options?.label,
+                icon: child.props.icon,
+                route: child.props.options?.route ?? child.props.name,
+                canCreate: !!child.props.create,
+                canEdit: !!child.props.edit,
+                canShow: !!child.props.show,
+                canDelete: child.props.canDelete,
+                create: child.props.create,
+                show: child.props.show,
+                list: child.props.list,
+                edit: child.props.edit,
             });
-
-            return;
         }
-        console.log({ child });
-        resources.push({
-            name: child.props.name,
-            label: child.props.options?.label,
-            icon: child.props.icon,
-            route: child.props.options?.route ?? child.props.name,
-            canCreate: !!child.props.create,
-            canEdit: !!child.props.edit,
-            canShow: !!child.props.show,
-            canDelete: child.props.canDelete,
-            create: child.props.create,
-            show: child.props.show,
-            list: child.props.list,
-            edit: child.props.edit,
-        });
     });
 
     if (resources.length === 0) {
