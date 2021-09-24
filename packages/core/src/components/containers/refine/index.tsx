@@ -142,8 +142,6 @@ export const Refine: React.FC<RefineProps> = ({
 
     notification.config({ ...notifcationConfig });
 
-    console.log({ children });
-
     let isSSr = false;
     const resources: IResourceItem[] = [];
     React.Children.map(children, (child: any) => {
@@ -153,15 +151,13 @@ export const Refine: React.FC<RefineProps> = ({
 
         if (child.type !== Resource && child.type !== NextRouteComponent) {
             throw new Error(
-                "You must either pass a Resource or NextRouteComponent",
+                "You must either pass a Resource or NextRouteComponent to Refine",
             );
         }
 
         if (child.type === NextRouteComponent) {
-            // if (child.type !== Resource) {
             isSSr = true;
             resourcesFromProps?.map((resource) => {
-                console.log("Refine::", { resource });
                 resources.push({
                     name: resource.name,
                     label: resource.options?.label,
@@ -180,7 +176,6 @@ export const Refine: React.FC<RefineProps> = ({
 
             return;
         }
-        console.log({ child });
         resources.push({
             name: child.props.name,
             label: child.props.options?.label,
@@ -218,6 +213,9 @@ export const Refine: React.FC<RefineProps> = ({
                                         Title={Title}
                                         undoableTimeout={undoableTimeout}
                                         customRoutes={routes}
+                                        catchAll={catchAll}
+                                        DashboardPage={DashboardPage}
+                                        LoginPage={LoginPage}
                                         Layout={Layout}
                                         Sider={Sider}
                                         Footer={Footer}
@@ -250,9 +248,6 @@ export const Refine: React.FC<RefineProps> = ({
                                                             }
                                                             LoginPage={
                                                                 LoginPage
-                                                            }
-                                                            ReadyPage={
-                                                                ReadyPage
                                                             }
                                                             customRoutes={
                                                                 routes

@@ -16,7 +16,6 @@ export interface RouteProviderProps {
     catchAll?: React.ReactNode;
     DashboardPage?: React.ElementType;
     LoginPage?: React.FC | false;
-    ReadyPage?: React.FC;
     customRoutes?: RouteProps[];
     Switch: any;
     Route: any;
