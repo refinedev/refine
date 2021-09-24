@@ -11,7 +11,7 @@
 
 <div align="center">
 
-[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=A%20React-based%20framework%20for%20building%20data-intensive%20applications%20in%20no%20time.&url=https://github.com/pankod/refine&hashtags=opensource,react,react-query,antdesign)
+[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=A%20React-based%20framework%20for%20building%20data-intensive%20applications%20in%20no%20time.&url=https://github.com/pankod/refine&hashtags=opensource,react,reactquery,antdesign)
 
 [![Meercode CI Score](https://meercode.io/badge/pankod/superplate?type=ci-score&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
 [![Meercode CI Success Rate](https://meercode.io/badge/pankod/superplate?type=ci-success-rate&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
