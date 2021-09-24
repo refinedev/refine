@@ -14,7 +14,6 @@ const RouterProvider = () => ({
     },
     useLocation: () => {
         const router = useRouter();
-        // console.log({ "useLocation:: router": router });
         const { pathname, query } = router;
 
         const queryParams = qs.stringify(
