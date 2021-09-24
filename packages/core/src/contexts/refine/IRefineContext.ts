@@ -12,6 +12,9 @@ export interface IRefineContext {
     syncWithLocation: boolean;
     undoableTimeout: number;
     customRoutes: RouteProps[];
+    catchAll?: React.ReactNode;
+    DashboardPage?: React.ElementType;
+    LoginPage?: React.FC | false;
     Title: React.FC<TitleProps>;
     Layout: React.FC<LayoutProps>;
     Sider: React.FC;
@@ -34,6 +37,9 @@ export interface IRefineContextProvider {
     syncWithLocation: boolean;
     undoableTimeout: number;
     customRoutes: RouteProps[];
+    catchAll?: React.ReactNode;
+    DashboardPage?: React.ElementType;
+    LoginPage?: React.FC | false;
     Title?: React.FC<TitleProps>;
     Layout?: React.FC<LayoutProps>;
     Sider?: React.FC;

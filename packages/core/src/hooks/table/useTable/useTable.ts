@@ -144,6 +144,7 @@ export const useTable = <
                 filters,
             });
 
+            // Careful! This triggers render
             return push(`/${resource.route}?${stringifyParams}`);
         }
     }, [

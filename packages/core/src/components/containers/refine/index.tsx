@@ -208,6 +208,9 @@ export const Refine: React.FC<RefineProps> = ({
                                         Title={Title}
                                         undoableTimeout={undoableTimeout}
                                         customRoutes={routes}
+                                        catchAll={catchAll}
+                                        DashboardPage={DashboardPage}
+                                        LoginPage={LoginPage}
                                         Layout={Layout}
                                         Sider={Sider}
                                         Footer={Footer}
@@ -240,9 +243,6 @@ export const Refine: React.FC<RefineProps> = ({
                                                             }
                                                             LoginPage={
                                                                 LoginPage
-                                                            }
-                                                            ReadyPage={
-                                                                ReadyPage
                                                             }
                                                             customRoutes={
                                                                 routes
