@@ -40,7 +40,11 @@ export {
 } from "../types/sunflower";
 
 export * from "./definitions/upload";
-export { getDefaultSortOrder, getDefaultFilter } from "./definitions/table";
+export {
+    getDefaultSortOrder,
+    getDefaultFilter,
+    parseTableParams,
+} from "./definitions/table";
 export { defaultConfigProviderProps } from "./definitions/config";
 
 // antd upload (useStrapiUpload)

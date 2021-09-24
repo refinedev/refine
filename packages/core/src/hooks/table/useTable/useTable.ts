@@ -89,12 +89,12 @@ export const useTable = <
 
     const [form] = useForm<TSearchVariables>();
 
-    let syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
+    const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
 
     // disable syncWithLocation for custom resource tables
-    if (resourceFromProp) {
-        syncWithLocation = false;
-    }
+    // if (resourceFromProp) {
+    //     syncWithLocation = false;
+    // }
 
     const { useLocation, useParams } = useRouterContext();
     const { search } = useLocation();
@@ -144,8 +144,6 @@ export const useTable = <
                 filters,
             });
 
-            console.log("will push", `/${resource.route}?${stringifyParams}`);
-            // Careful! This triggers render
             return push(`/${resource.route}?${stringifyParams}`);
         }
     }, [

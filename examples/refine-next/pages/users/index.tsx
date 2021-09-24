@@ -3,10 +3,9 @@ import {
     useTable,
     List,
     Table,
-    IResourceComponentsProps,
     GetListResponse,
     LayoutWrapper,
-    EditButton,
+    parseTableParams,
 } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -22,28 +21,15 @@ export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
         queryOptions: {
             initialData: users,
         },
+        syncWithLocation: true,
     });
 
     return (
         <LayoutWrapper>
             <List>
                 <Table {...tableProps} rowKey="id">
-                    <Table.Column dataIndex="id" title="ID" />
+                    <Table.Column dataIndex="id" title="ID" sorter />
                     <Table.Column dataIndex="firstName" title="Name" />
-                    <Table.Column<IPost>
-                        title="Actions"
-                        dataIndex="actions"
-                        render={(_text, record): React.ReactNode => {
-                            return (
-                                <EditButton
-                                    size="small"
-                                    resourceName="users"
-                                    recordItemId={record.id}
-                                    hideText
-                                />
-                            );
-                        }}
-                    />
                 </Table>
             </List>
         </LayoutWrapper>
@@ -52,9 +38,20 @@ export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
 
 export default UserList;
 
-export async function getServerSideProps() {
-    const data = await dataProvider(API_URL).getList("users", {});
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
+        parseTableParams(context.req.url || "");
+
+    const data = await dataProvider(API_URL).getList("users", {
+        filters: parsedFilters,
+        pagination: {
+            current: parsedCurrent || 1,
+            pageSize: parsedPageSize || 10,
+        },
+        sort: parsedSorter,
+    });
+
     return {
         props: { users: data },
     };
-}
+};
