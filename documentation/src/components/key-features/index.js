@@ -63,6 +63,18 @@ const backends = [
             alt: "go",
         },
     ],
+    [
+        {
+            src: "/icons/backends/graphql.png",
+            srcset: "/icons/backends/graphql@2x.png 768w",
+            alt: "supabase",
+        },
+        {
+            src: "/icons/backends/altogic.png",
+            srcset: "/icons/backends/altogic@2x.png 768w",
+            alt: "go",
+        },
+    ],
 ];
 
 const features = [
@@ -112,14 +124,84 @@ export const KeyFeatures = () => {
     return (
         <section className={styles.section}>
             <div className="container">
-                <h2 className={styles.mainTitle}>Backend Agnostic</h2>
+                <h2 className={styles.mainTitle}>
+                    Your API is supported, out of the box!
+                </h2>
                 <p className={styles.description}>
-                    <strong>Connects to any custom backend.</strong> <br />
-                    Built-in support for REST API, Strapi, NestJs CRUD,
-                    Airtable, Supabase and Altogic.
+                    Connects to{" "}
+                    <strong>
+                        any{" "}
+                        <a
+                            href="https://github.com/pankod/refine/tree/master/packages/simple-rest"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            REST
+                        </a>{" "}
+                        or{" "}
+                        <a
+                            href="https://github.com/pankod/refine/tree/master/packages/graphql"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            GraphQL
+                        </a>{" "}
+                    </strong>{" "}
+                    custom backend.
+                    <br />
+                    <br />
+                    Built-in support for <br />
+                    <a
+                        href="https://github.com/nestjsx/crud"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        NestJs CRUD
+                    </a>
+                    ,{" "}
+                    <a
+                        href="https://airtable.com"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Airtable
+                    </a>
+                    ,{" "}
+                    <a
+                        href="https://strapi.io"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Strapi
+                    </a>
+                    ,{" "}
+                    <a
+                        href="https://strapi.io/documentation/developer-docs/latest/development/plugins/graphql.html"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Strapi GraphQL
+                    </a>
+                    ,{" "}
+                    <a
+                        href="https://supabase.io/"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Supabase
+                    </a>{" "}
+                    and{" "}
+                    <a
+                        href="https://altogic.com/"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Altogic
+                    </a>
+                    .
                 </p>
                 <div className="row row--justify--center">
-                    <div className="col col--9">
+                    <div className="col col--6">
                         <div className={styles.supportContainer}>
                             {backends.map((imgGroup, index) => (
                                 <div

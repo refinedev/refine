@@ -1,340 +1,339 @@
 {
   "pages": {
     "login": {
-      "signin": "Giriş",
-      "signup": "Kayıt",
-      "email": "Kullanıcı adı",
-      "password": "Şifre",
-      "remember": "Beni Hatırla",
-      "forgotPassword": "Şifremi unuttum",
-      "noAccount": "Hesabın yok mu?",
-      "message": "Hesabına <0>giriş yap</0>"
+      "signin": "Einloggen",
+      "signup": "Anmelden",
+      "email": "Benutzername",
+      "password": "Passwort",
+      "remember": "Login speichern",
+      "forgotPassword": "Passwort Vergessen?",
+      "noAccount": "Noch kein Benutzerkonto?",
+      "message": "Einloggen"
     },
     "error": {
-      "info": "{{action}} sayfasını {{resource}} kaynağına eklemeyi unutmuş olabilirsiniz.",
-      "404": "Üzgünüz, ziyaret ettiğiniz sayfa mevcut değil.",
-      "resource404": "{{resource}} kaynağını oluşturduğunuzdan emin misiniz?",
-      "backHome": "Ana sayfaya geri dön"
+      "info": "Sie haben vergessen, {{action}} component zu {{resource}} hinzufügen.",
+      "404": "Leider existiert diese Seite nicht.",
+      "resource404": "Haben Sie die {{resource}} resource erstellt?",
+      "backHome": "Zurück"
     }
   },
   "buttons": {
-    "create": "Oluştur",
-    "save": "Kaydet",
-    "logout": "Çıkış yap",
-    "delete": "Sil",
-    "edit": "Düzenle",
-    "cancel": "İptal",
-    "confirm": "Emin misiniz?",
-    "filter": "Filtrele",
-    "clear": "Temizle",
-    "refresh": "Yenile",
-    "show": "Göster",
-    "undo": "Geri Al",
-    "import": "Yükle",
-    "export": "Dışa Aktar",
-    "clone": "Kopya",
-    "accept": "Kabul Et",
-    "acceptAll": "Tümünü Kabul Et",
-    "reject": "Reddet",
-    "rejectAll": "Tümünü Reddet",
-    "nextStep": "İleri",
-    "previousStep": "Geri"
+  "create": "Erstellen",
+  "save": "Speichern",
+  "logout": "Abmelden",
+  "delete": "Löschen",
+  "edit": "Bearbeiten",
+  "cancel": "Abbrechen",
+  "confirm": "Sicher?",
+  "filter": "Filter",
+  "clear": "Löschen",
+  "refresh": "Erneuern",
+  "show": "Zeigen",
+  "undo": "Undo",
+  "import": "Importieren",
+    "export": "Exportieren",
+    "clone": "Klonen",
+    "accept": "Akzeptieren",
+    "acceptAll": "Alles akzeptieren",
+    "reject": "Abweisen",
+    "rejectAll": "Alles abweisen",
+    "nextStep": "Vorwärts",
+    "previousStep": "Zurück"
   },
-  "loading": "Yükleniyor",
+  "loading": "Wird geladen",
   "tags": {
-    "clone": "Kopya"
+    "clone": "Klonen"
   },
   "table": {
-    "actions": "İşlemler"
+    "actions": "Aktionen"
   },
   "search": {
-    "placeholder": "Mağaza ID, e-posta veya anahtar kelime ile arama",
-    "more": "Daha fazla"
+    "placeholder": "Suchen mit Geschäfts-ID, E-mail oder Stichwort",
+    "more": "Noch mehr"
   },
   "status": {
-    "enable": "Aktif",
-    "disable": "Pasif"
+    "enable": "Aktiv",
+    "disable": "Passiv"
   },
-  "warnWhenUnsavedChanges": "Kaydedilmemiş değişiklikleriniz var. Ayrılmak istediğinizden emin misiniz?",
+  "warnWhenUnsavedChanges": "Nicht gespeicherte Änderungen werden nicht übernommen.",
   "notifications": {
-    "success": "Başarılı",
-    "error": "Hata (hata kodu: {{statusCode}})",
-    "undoable": "Geri almak için {{seconds}} saniyeniz var",
-    "createSuccess": "{{resource}} başarıyla oluşturuldu",
-    "createError": "{{resource}} oluşturulurken hata (hata kodu: {{statusCode}})",
-    "deleteSuccess": "{{resource}} başarıyla silindi",
-    "deleteError": "{{resource}} silinirken hata (hata kodu: {{statusCode}})",
-    "editSuccess": "{{resource}} başarıyla düzenlendi",
-    "editError": "{{resource}} düzenlenirken hata (hata kodu: {{statusCode}})",
+      "success": "Erfolg",
+      "error": "Fehler (status code: {{statusCode}})",
+      "undoable": "Sie haben {{seconds}} Sekunden Zeit für Undo.",
+      "createSuccess": "{{resource}} erfolgreich erstellt.",
+      "createError": "Fehler beim Erstellen {{resource}} (status code: {{statusCode}})",
+      "deleteSuccess": "{{resource}} erfolgreich gelöscht.",
+      "deleteError": "Fehler beim Löschen {{resource}} (status code: {{statusCode}})",
+      "editSuccess": "{{resource}} erfolgreich bearbeitet.",
     "importProgress": "{{processed}}/{{total}} importiert"
   },
   "categories": {
-    "categories": "Kategoriler",
+    "categories": "Kategorien",
     "titles": {
-      "list": "Kategoriler"
+      "list": "Kategorien"
     },
     "fields": {
       "id": "ID",
-      "title": "Başlık",
-      "isActive": "Aktif"
+      "title": "Titel",
+      "isActive": "Aktiv"
     }
   },
   "couriers": {
-    "couriers": "Kuryeler",
+    "couriers": "Kuriere",
     "titles": {
-      "create": "Kurye Oluştur",
-      "list": "Kuryeler",
-      "edit": "Kurye Düzenle"
+      "create": "Kurier erstellen",
+      "list": "Kuriere",
+      "edit": "Kurier bearbeiten"
     },
     "fields": {
       "id": "ID",
       "avatar": {
         "label": "Avatar",
-        "description": "Yüklemek için avatar resmini bu alana tıklayın veya sürükleyin."
+        "description": "Ein Foto hochladen."
       },
-      "name": "Adı",
-      "surname": "Soyadı",
+      "name": "Vorname",
+      "surname": "Nachname",
       "gender": {
-        "label": "Cinsiyet",
-        "male": "Erkek",
-        "female": "Kadın"
+        "label": "Geschlecht",
+        "male": "Mann",
+        "female": "Frau"
       },
-      "gsm": "Gsm Numarsı",
-      "createdAt": "Oluşturma Tarihi",
-      "isActive": "Aktif",
+      "gsm": "Gsm",
+      "createdAt": "Erstellt am",
+      "isActive": "Aktiv",
       "images": {
-        "label": "Fotoğraf",
-        "description": "Kullanıcı fotoğrafı ekle",
-        "validation": "480x480 boyutunda olmalıdır"
+        "label": "Foto",
+        "description": "Ein Foto hochladen.",
+        "validation": "Fotoauflösung: 480x480px"
       },
-      "store": "Mağaza",
-      "vehicle": "Araç",
-      "accountNumber": "Hesap Numarası",
-      "address": "Adres"
+      "store": "Geschäft",
+      "vehicle": "Fahrzeug",
+      "accountNumber": "Kontonummer",
+      "address": "Adresse"
     },
     "steps": {
-      "content": "İçerik",
-      "relations": "İlişkiler"
+      "content": "Inhalt",
+      "relations": "Beziehungen"
     }
   },
   "dashboard": {
     "title": "Panel",
     "deliveryMap": {
-      "title": "Teslimat Haritası"
+      "title": "Lieferkarte"
     },
     "orders": {
-      "title": "Siparişler"
+      "title": "Bestellungen"
     },
     "totalSales": {
-      "title": "Toplam Satışlar"
+      "title": "Gesamtumsatz"
     },
     "dailyRevenue": {
-      "title": "Günlük Gelir"
+      "title": "Tagesumsatz"
     },
     "dailyOrders": {
-      "title": "Günlük Siparişler"
+      "title": "Tägliche Bestellungen"
     },
     "newCustomers": {
-      "title": "Yeni Müşteriler"
+      "title": "Neue Kunden"
     },
     "timeline": {
-      "title": "Son Güncellemeler",
+      "title": "Aktualisierung",
       "orderStatuses": {
-        "pending": "Sipariş hazırlanıyor",
-        "ready": "Sipariş hazır",
-        "on the way": "Sipariş yolda",
-        "delivered": "Sipariş teslim edildi",
-        "cancelled": "Sipariş iptal edildi"
+        "pending": "Wird vorbereiten.",
+        "ready": "Bereit",
+        "on the way": "Unterwegs",
+        "delivered": "Geliefert",
+        "cancelled": "Abgesagt"
       }
     },
     "recentOrders": {
-      "title": "Son Siparişler"
+      "title": "Letzte Bestellungen"
     },
     "trendingMenus": {
-      "title": "Günlük popüler menüler"
+      "title": "Täglich beliebte Menüs"
     }
   },
   "enum": {
     "orderStatuses": {
-      "Pending": "Bekliyor",
-      "Ready": "Hazır",
-      "On The Way": "Yolda",
-      "Delivered": "Teslim Edildi",
-      "Cancelled": "İptal Edildi"
+      "pending": "Wird vorbereiten.",
+      "ready": "Bereit",
+      "on the way": "Unterwegs",
+      "delivered": "Geliefert",
+      "cancelled": "Abgesagt"
     }
   },
   "orders": {
-    "orders": "Siparişler",
+    "orders": "Bestellungen",
     "titles": {
-      "list": "Siparişler",
-      "show": "Sipariş Detay"
+      "list": "Bestellungen",
+      "show": "Bestellung Info"
     },
     "fields": {
-      "orderNumber": "Sipariş Numarası",
-      "orderID": "Sipariş ID",
-      "status": "Sipariş Durumu",
-      "store": "Mağaza",
-      "user": "Kullanıcı",
-      "products": "Ürünler",
-      "createdAt": "Oluşturma Tarihi",
-      "amount": "Tutar",
-      "itemsAmount": "{{amount}} ürün"
+      "orderNumber": "Bestellungsnummer",
+      "orderID": "Bestellung ID",
+      "status": "Bestellung Status",
+      "store": "Geschäfts",
+      "user": "Benutzer",
+      "products": "Produkte",
+      "createdAt": "Erstellt am",
+      "amount": "Betrag",
+      "itemsAmount": "{{amount}} Produkt"
     },
     "filter": {
-      "title": "Filtrele",
+      "title": "Filter",
       "search": {
-        "label": "Arama",
-        "placeholder": "Sipariş numarası, Kullanıcı vs."
+        "label": "Suche",
+        "placeholder": "Suchen mit Geschäfts-ID, E-mail oder Stichwort"
       },
       "status": {
-        "label": "Sipariş Durumu",
-        "placeholder": "Sipariş Durumu"
+        "label": "Bestellung Status",
+        "placeholder": "Bestellung Status"
       },
       "store": {
-        "label": "Mağaza",
-        "placeholder": "Mağaza Ara"
+        "label": "Geschäft",
+        "placeholder": "Geschäft Suchen"
       },
       "user": {
-        "label": "Kullanıcı",
-        "placeholder": "Kullanıcı Ara"
+        "label": "Benutzer",
+        "placeholder": "Benutzer Suchen"
       },
       "createdAt": {
-        "label": "Oluşturma Tarihi"
+        "label": "Erstellt am"
       },
-      "submit": "Filtrele"
+      "submit": "Filter"
     },
     "courier": {
-      "deliveryTime": "Varış Zamanı",
+      "deliveryTime": "Lieferzeit",
       "phone": "Telefon"
     },
     "deliverables": {
-      "deliverables": "Teslim Edilecekler",
+      "deliverables": "Wird geliefert",
       "fields": {
-        "items": "Ürünler",
-        "quantity": "Miktar",
-        "price": "Fiyat",
-        "total": "Toplam"
+        "items": "Produkte",
+        "quantity": "Betrag",
+        "price": "Preis",
+        "total": "Gesamtpreis"
       },
-      "mainTotal": "GENEL TOPLAM"
+      "mainTotal": "Gesamtpreis"
     }
   },
   "products": {
-    "products": "Ürünler",
+    "products": "Produkte",
     "titles": {
-      "list": "Ürünler",
-      "create": "Ürün Oluştur",
-      "edit": "Ürün Düzenle"
+      "list": "Produkte",
+      "create": "Produkt erstellen",
+      "edit": "Prod Düzenle"
     },
     "fields": {
       "id": "ID",
-      "name": "Adı",
-      "description": "Açıklama",
-      "isActive": "Aktif",
-      "price": "Fiyat",
-      "category": "Kategori",
+      "name": "Titel",
+      "description": "Bezeichnung",
+      "isActive": "Aktiv",
+      "price": "Price",
+      "category": "Kategorie",
       "images": {
-        "label": "Görseller",
-        "description": "Ürün resmi ekleyin",
-        "validation": "1080x1080 px olmalı"
+        "label": "Fotos",
+        "description": "Ein Foto hochladen.",
+        "validation": "Fotoauflösung: 1080x1080px."
       },
-      "createdAt": "Oluşturma Tarihi"
+      "createdAt": "Erstellt am"
     }
   },
   "reviews": {
-    "reviews": "Yorumlar",
+    "reviews": "Kommentare",
     "titles": {
-      "list": "Yorumlar"
+      "list": "Kommentare"
     },
     "fields": {
-      "user": "Kullanıcı",
-      "orderId": "Sipariş No",
-      "review": "Yorum",
-      "rating": "Puan"
+      "user": "Benutzer",
+      "orderId": "Bestellungsnummer",
+      "review": "Kommentar",
+      "rating": "Bewertung"
     }
   },
   "stores": {
-    "stores": "Mağazalar",
+    "stores": "Geschäfte",
     "titles": {
-      "create": "Mağaza Oluştur",
-      "edit": "Mağaza Düzenle",
-      "list": "Mağazalar",
-      "show": "Mağaza Göster"
+      "create": "Geschäft Erstellen",
+      "edit": "Geschäfts Bearbeiten",
+      "list": "Geschäfte",
+      "show": "Geschäft Zeigen"
     },
     "fields": {
-      "id": "Mağaza ID",
-      "title": "Başlık",
-      "isActive": "Aktif",
-      "createdAt": "Oluşturma Tarihi",
-      "address": "Adres",
+      "id": "Geschäfts-ID",
+      "title": "Titel",
+      "isActive": "Aktiv",
+      "createdAt": "Erstellt am",
+      "address": "Adresse",
       "email": "Email",
       "gsm": "Telefon"
     },
     "buttons": {
-      "editProducts": "Ürünleri Düzenle",
-      "addProduct": "Ürün Ekle",
-      "outOfStock": "Stoğu Bitir",
-      "edit": "Ürünü Düzenle"
+      "editProducts": "Produkte bearbeiten",
+      "addProduct": "Produkt erstellen",
+      "outOfStock": "Kein Bestand",
+      "edit": "Produkt bearbeiten"
     },
-    "selectLocation": "Harita üzerinde bir lokasyon seç",
-    "storeProducts": "Mağaza Ürünleri",
-    "tagFilterDescription": "Aramanızı filtrelemek için etiketleri kullanın",
-    "all": "Tümü",
-    "productSearch": "Ürün Ara"
+    "selectLocation": "Wähle einen Ort",
+    "storeProducts": "Produkte des Geschäftes",
+    "tagFilterDescription": "Filter mit Etiketten",
+    "all": "Alles",
+    "productSearch": "Produkt suchen"
   },
   "users": {
-    "users": "Kullanıcılar",
+    "users": "Benutzern",
     "titles": {
-      "edit": "Kullanıcı Düzenle",
-      "list": "Kullanıcılar",
-      "show": "Kullanıcı Detay"
+      "edit": "Benutzer bearbeiten",
+      "list": "Benutzern",
+      "show": "Benutzer Information"
     },
     "fields": {
       "id": "ID",
       "avatar": {
         "label": "Avatar",
-        "description": "Yüklemek için avatar resmini bu alana tıklayın veya sürükleyin."
+        "description": "Ein Foto hochladen"
       },
-      "firstName": "Adı",
-      "lastName": "Soyadı",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
       "gender": {
-        "label": "Cinsiyet",
-        "Male": "Erkek",
-        "Female": "Kadın"
+        "label": "Geschlecht",
+        "Male": "Mann",
+        "Female": "Frau"
       },
-      "gsm": "GSM Numarası",
-      "createdAt": "Oluşturma Tarihi",
+      "gsm": "GSM",
+      "createdAt": "Erstellt am",
       "isActive": {
-        "label": "Aktif",
-        "true": "Evet",
-        "false": "Hayır"
+        "label": "Aktiv",
+        "true": "Ja",
+        "false": "Nein"
       }
     },
     "filter": {
-      "title": "Filtreler",
+      "title": "Filter",
       "search": {
-        "label": "Ara",
-        "placeholder": "Adı, soyadı, gsm numarası vs."
+        "label": "Suche",
+        "placeholder": "Vorname, Nachname, GSM..."
       },
       "createdAt": {
-        "label": "Oluşturma Tarihi"
+        "label": "Erstellt am"
       },
       "gender": {
-        "label": "Cinsiyet",
-        "placeholder": "Cinsiyet",
-        "male": "Erkek",
-        "female": "Kadın"
+        "label": "Geschlecht",
+        "placeholder": "Geschlecht",
+        "male": "Mann",
+        "female": "Frau"
       },
       "isActive": {
-        "label": "Aktif",
-        "placeholder": "Aktiflik durumu",
-        "true": "Evet",
-        "false": "Hayır"
+        "label": "Ist aktiv?",
+        "placeholder": "Ist aktiv?",
+        "true": "Ja",
+        "false": "Nein"
       },
-      "submit": "Filtrele"
+      "submit": "Filter"
     },
     "addresses": {
-      "addresses": "Adresler",
-      "address": "Adres"
+      "addresses": "Adressen",
+      "address": "Adresse"
     }
   }
 }

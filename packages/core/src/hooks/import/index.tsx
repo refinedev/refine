@@ -14,6 +14,7 @@ import {
     BaseRecord,
     HttpError,
     ResourceRouterParams,
+    MetaDataQuery,
 } from "../../interfaces";
 import { parse, ParseConfig } from "papaparse";
 import { importCSVMapper } from "@definitions";
@@ -48,6 +49,7 @@ type ImportOptions<
     paparseOptions?: ParseConfig;
     batchSize?: number;
     onFinish?: (results: OnFinishParams<TVariables, TData>) => void;
+    metaData?: MetaDataQuery;
 };
 
 export type CreatedValuesType<TVariables, TData> =
@@ -76,6 +78,7 @@ export const useImport = <
     paparseOptions,
     batchSize = Number.MAX_SAFE_INTEGER,
     onFinish,
+    metaData,
 }: ImportOptions<TItem, TVariables, TData> = {}): {
     uploadProps: UploadProps;
     buttonProps: ButtonProps;
@@ -203,6 +206,7 @@ export const useImport = <
                                             values: value,
                                             successNotification: false,
                                             errorNotification: false,
+                                            metaData,
                                         });
 
                                         return { response, value };
@@ -247,6 +251,7 @@ export const useImport = <
                                                 values: batch,
                                                 successNotification: false,
                                                 errorNotification: false,
+                                                metaData,
                                             }),
                                             currentBatchLength: batch.length,
                                             value: batch,

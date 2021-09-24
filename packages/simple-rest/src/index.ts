@@ -78,14 +78,14 @@ const JsonServer = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
-    getList: async (resource, params) => {
+    getList: async ({ resource, pagination, filters, sort }) => {
         const url = `${apiUrl}/${resource}`;
 
         // pagination
-        const current = params.pagination?.current || 1;
-        const pageSize = params.pagination?.pageSize || 10;
+        const current = pagination?.current || 1;
+        const pageSize = pagination?.pageSize || 10;
 
-        const queryFilters = generateFilter(params.filters);
+        const queryFilters = generateFilter(filters);
 
         const query: {
             _start: number;
@@ -97,7 +97,7 @@ const JsonServer = (
             _end: current * pageSize,
         };
 
-        const generatedSort = generateSort(params.sort);
+        const generatedSort = generateSort(sort);
         if (generatedSort) {
             const { _sort, _order } = generatedSort;
             query._sort = _sort.join(",");
@@ -116,7 +116,7 @@ const JsonServer = (
         };
     },
 
-    getMany: async (resource, ids) => {
+    getMany: async ({ resource, ids }) => {
         const { data } = await httpClient.get(
             `${apiUrl}/${resource}?${stringify({ id: ids })}`,
         );
@@ -126,19 +126,19 @@ const JsonServer = (
         };
     },
 
-    create: async (resource, params) => {
+    create: async ({ resource, variables }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { data } = await httpClient.post(url, params);
+        const { data } = await httpClient.post(url, variables);
 
         return {
             data,
         };
     },
 
-    createMany: async (resource, params) => {
+    createMany: async ({ resource, variables }) => {
         const response = await Promise.all(
-            params.map(async (param) => {
+            variables.map(async (param) => {
                 const { data } = await httpClient.post(
                     `${apiUrl}/${resource}`,
                     param,
@@ -150,22 +150,22 @@ const JsonServer = (
         return { data: response };
     },
 
-    update: async (resource, id, params) => {
+    update: async ({ resource, id, variables }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.patch(url, params);
+        const { data } = await httpClient.patch(url, variables);
 
         return {
             data,
         };
     },
 
-    updateMany: async (resource, ids, params) => {
+    updateMany: async ({ resource, ids, variables }) => {
         const response = await Promise.all(
             ids.map(async (id) => {
                 const { data } = await httpClient.patch(
                     `${apiUrl}/${resource}/${id}`,
-                    params,
+                    variables,
                 );
                 return data;
             }),
@@ -174,7 +174,7 @@ const JsonServer = (
         return { data: response };
     },
 
-    getOne: async (resource, id) => {
+    getOne: async ({ resource, id }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await httpClient.get(url);
@@ -184,7 +184,7 @@ const JsonServer = (
         };
     },
 
-    deleteOne: async (resource, id) => {
+    deleteOne: async ({ resource, id }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await httpClient.delete(url);
@@ -194,7 +194,7 @@ const JsonServer = (
         };
     },
 
-    deleteMany: async (resource, ids) => {
+    deleteMany: async ({ resource, ids }) => {
         const response = await Promise.all(
             ids.map(async (id) => {
                 const { data } = await httpClient.delete(
@@ -210,9 +210,7 @@ const JsonServer = (
         return apiUrl;
     },
 
-    custom: async (url, method, params = {}) => {
-        const { filters, sort, payload, query, headers } = params;
-
+    custom: async ({ url, method, filters, sort, payload, query, headers }) => {
         let requestUrl = `${url}?`;
 
         if (sort) {

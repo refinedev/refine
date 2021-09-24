@@ -6,8 +6,8 @@ title: useEditableTable
 import editButton from '@site/static/img/hooks/useEditableTable/edit-button.gif';
 import rowClickEdit from '@site/static/img/hooks/useEditableTable/row-click-edit.gif';
 
-`useEditeableTable` allows you to implement edit feature on the table with ease, on top of all the features that [`useTable`][useTable] provides. 
-`useEditableTable` return properties that can be used on Ant Desing's [`<Table>`][Table] and [`<Form>`][Form] components.
+`useEditeableTable` allows you to implement edit feature on the table with ease, on top of all the features that [`useTable`][usetable] provides.
+`useEditableTable` return properties that can be used on Ant Desing's [`<Table>`][table] and [`<Form>`][form] components.
 
 ## Editing with buttons
 
@@ -216,7 +216,7 @@ With this, when a user clicks on the edit button, `isEditing(lineId)` will turn 
 
 :::tip
 By giving the `<Table.Column>` component a unique `render` property, you can render the value in that column however you want.
-Refer to [`<Table.Column>`][Table.Column] documentation for more information.
+Refer to [`<Table.Column>`][table.column] documentation for more information.
 :::
 
 <div class="img-container">
@@ -252,12 +252,8 @@ import {
 } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
-    const {
-        tableProps,
-        formProps,
-        isEditing,
-        setEditId,
-    } = useEditableTable<IPost>();
+    const { tableProps, formProps, isEditing, setEditId } =
+        useEditableTable<IPost>();
 
     return (
         <List>
@@ -312,23 +308,24 @@ export const PostList: React.FC = () => {
 
 ### Properties
 
-| Key              | Description                                                                                                                                        | Type                                                        |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| permanentFilter  | Default and unchangeable filter.                                                                                                                   | [`CrudFilters`][CrudFilters]                                |
-| initialCurrent   | Initial page index.                                                                                                                                | `number`                                                    |
-| initialPageSize  | Number of records shown per initial number of   pages.                                                                                             | `number`                                                    |
-| initialSorter    | Initial sorting.                                                                                                                                   | [`CrudSorting`][CrudSorting]                                |
-| initialFilter    | Initial filtering.                                                                                                                                 | [`CrudFilters`][CrudFilters]                                |
-| syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history.                                                           | `boolean`                                                   |
-| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][Table Search] to learn how to create a search form. | `Function`                                                  |
-| queryOptions     | `react-query`'s `useQuery` options                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>` |
+| Key              | Description                                                                                                                                        | Type                                                             |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| permanentFilter  | Default and unchangeable filter.                                                                                                                   | [`CrudFilters`][crudfilters]                                     |
+| initialCurrent   | Initial page index.                                                                                                                                | `number`                                                         |
+| initialPageSize  | Number of records shown per initial number of pages.                                                                                               | `number`                                                         |
+| initialSorter    | Initial sorting.                                                                                                                                   | [`CrudSorting`][crudsorting]                                     |
+| initialFilter    | Initial filtering.                                                                                                                                 | [`CrudFilters`][crudfilters]                                     |
+| syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history.                                                           | `boolean`                                                        |
+| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][table search] to learn how to create a search form. | `Function`                                                       |
+| queryOptions     | `react-query`'s `useQuery` options                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`      |
+| metaData         | Metadata query for `dataProvider`                                                                                                                  | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery) |
 
 ### Type Parameters
 
 | Property         | Desription                                                   | Type                       | Default                    |
 | ---------------- | ------------------------------------------------------------ | -------------------------- | -------------------------- |
-| TData            | Result data of the query. Extends [`BaseRecord`][BaseRecord] | [`BaseRecord`][BaseRecord] | [`BaseRecord`][BaseRecord] |
-| TError           | Custom error object that extends [`HttpError`][HttpError]    | [`HttpError`][HttpError]   | [`HttpError`][HttpError]   |
+| TData            | Result data of the query. Extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError           | Custom error object that extends [`HttpError`][httperror]    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
 | TVariables       | Values for params                                            |                            | `{}`                       |
 | TSearchVariables | Values for search params                                     |                            | `{}`                       |
 
@@ -336,18 +333,18 @@ export const PostList: React.FC = () => {
 
 | Property          | Description                                             | Type                                                                                              |
 | ----------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| searchFormProps   | Ant Design [`<Form>`][Form] props                       | [`FormProps<TSearchVariables>`][Form]                                                             |
-| tableProps        | Ant Design [`<Table>`][Table] props                     | [`TableProps<TData>`][Table]                                                                      |
-| tableQueryResult  | Result of the `react-query`'s `useQuery`                | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][useQuery] |
-| sorter            | Current sorting state                                   | [`CrudSorting`][CrudSorting]                                                                      |
-| filters           | Current filters state                                   | [`CrudFilters`][CrudFilters]                                                                      |
-| form              | Ant Design [`<Form>`][Form] instance                    | [`FormInstance`][FormInstance]                                                                    |
-| formProps         | Ant Design [`<Form>`][Form] props                       | [`FormProps`][Form]                                                                               |
+| searchFormProps   | Ant Design [`<Form>`][form] props                       | [`FormProps<TSearchVariables>`][form]                                                             |
+| tableProps        | Ant Design [`<Table>`][table] props                     | [`TableProps<TData>`][table]                                                                      |
+| tableQueryResult  | Result of the `react-query`'s `useQuery`                | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery] |
+| sorter            | Current sorting state                                   | [`CrudSorting`][crudsorting]                                                                      |
+| filters           | Current filters state                                   | [`CrudFilters`][crudfilters]                                                                      |
+| form              | Ant Design [`<Form>`][form] instance                    | [`FormInstance`][forminstance]                                                                    |
+| formProps         | Ant Design [`<Form>`][form] props                       | [`FormProps`][form]                                                                               |
 | saveButtonProps   | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; }`                                                     |
 | cancelButtonProps | Props for a cancel button                               | `{ onClick: () => void; }`                                                                        |
 | editButtonProps   | Props for an edit button                                | `{ onClick: () => void; }`                                                                        |
-| queryResult       | Result of the query of a record                         | [`QueryObserverResult<T>`][useQuery]                                                              |
-| mutationResult    | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`][useMutation]                                                             |
+| queryResult       | Result of the query of a record                         | [`QueryObserverResult<T>`][usequery]                                                              |
+| mutationResult    | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`][usemutation]                                                             |
 | formLoading       | Loading state of form request                           | `boolean`                                                                                         |
 | cloneId           | Record id for clone action                              | `"string"` \| `"number"`                                                                          |
 | setCloneId        | `cloneId` setter                                        | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                  |
@@ -366,15 +363,15 @@ export const PostList: React.FC = () => {
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-[Table]: https://ant.design/components/table/#API
-[Form]: https://ant.design/components/form/#API
-[useTable]: /api-references/hooks/table/useTable.md
-[useQuery]: https://react-query.tanstack.com/reference/useQuery
-[useMutation]: https://react-query.tanstack.com/reference/useMutation
-[BaseRecord]: /api-references/interfaces.md#baserecord
-[CrudSorting]: /api-references/interfaces.md#crudsorting
-[CrudFilters]: /api-references/interfaces.md#crudfilters
-[HttpError]: /api-references/interfaces.md#httperror
-[Table Search]: /guides-and-concepts/search/table-search.md
-[Table.Column]: https://ant.design/components/table/#Column
-[FormInstance]: https://ant.design/components/form/#FormInstance
+[table]: https://ant.design/components/table/#API
+[form]: https://ant.design/components/form/#API
+[usetable]: /api-references/hooks/table/useTable.md
+[usequery]: https://react-query.tanstack.com/reference/useQuery
+[usemutation]: https://react-query.tanstack.com/reference/useMutation
+[baserecord]: /api-references/interfaces.md#baserecord
+[crudsorting]: /api-references/interfaces.md#crudsorting
+[crudfilters]: /api-references/interfaces.md#crudfilters
+[httperror]: /api-references/interfaces.md#httperror
+[table search]: /guides-and-concepts/search/table-search.md
+[table.column]: https://ant.design/components/table/#Column
+[forminstance]: https://ant.design/components/form/#FormInstance

@@ -1,5 +1,4 @@
 import axios from "axios";
-import nock from "nock";
 
 import JsonServer from "../../src/index";
 import "./index.mock";
@@ -16,24 +15,16 @@ axiosInstance.defaults.headers = {
 };
 
 describe("custom", () => {
-    const API_URL = "https://api.fake-rest.refine.dev";
-
     it("correct get response", async () => {
         const response = await JsonServer(
             "https://dev001.na-dev-engine.altogic.com",
             axiosInstance,
-        ).getList("post", {
-            filters: [
-                {
-                    field: "_id",
-                    operator: "ne",
-                    value: "",
-                },
-            ],
+        ).getList({
+            resource: "post",
         });
 
         expect(response.data[0]["id"]).toBe("613a25eb65f2050012410a41");
-        expect(response.data[0]["title"]).toBe("test");
-        expect(response.total).toBe(NaN);
+        expect(response.data[0]["title"]).toBe("foo");
+        expect(response.total).toBe(8);
     });
 });

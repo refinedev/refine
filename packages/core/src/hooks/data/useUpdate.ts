@@ -13,6 +13,7 @@ import {
     ContextQuery,
     HttpError,
     SuccessErrorNotification,
+    MetaDataQuery,
 } from "../../interfaces";
 import pluralize from "pluralize";
 import {
@@ -31,6 +32,7 @@ type UpdateParams<TVariables> = {
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
     values: TVariables;
+    metaData?: MetaDataQuery;
 } & SuccessErrorNotification;
 
 export type UseUpdateReturnType<
@@ -80,7 +82,15 @@ export const useUpdate = <
         UpdateParams<TVariables>,
         UpdateContext
     >(
-        ({ id, values, resource, mutationMode, undoableTimeout, onCancel }) => {
+        ({
+            id,
+            values,
+            resource,
+            mutationMode,
+            undoableTimeout,
+            onCancel,
+            metaData,
+        }) => {
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
 
@@ -88,12 +98,22 @@ export const useUpdate = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             if (!(mutationModePropOrContext === "undoable")) {
-                return update<TData, TVariables>(resource, id, values);
+                return update<TData, TVariables>({
+                    resource,
+                    id,
+                    variables: values,
+                    metaData,
+                });
             }
             const updatePromise = new Promise<UpdateResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        update<TData, TVariables>(resource, id, values)
+                        update<TData, TVariables>({
+                            resource,
+                            id,
+                            variables: values,
+                            metaData,
+                        })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     };

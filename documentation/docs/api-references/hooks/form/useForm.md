@@ -165,6 +165,8 @@ const { clone } = useNavigation();
 | undoableTimeout        | Duration to wait before executing mutations when `mutationMode = "undoable"`                         | `number`                                                                   | `5000`\*                                                                                                                             |
 | successNotification    | Successful Mutation notification                                                                     | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully created `resource`" or "Successfully updated `resource`"                                                               |
 | errorNotification      | Unsuccessful Mutation notification                                                                   | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
+| metaData                                            | Metadata query for `dataProvider`                                              | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)           | {}                                                                   |
+
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-references/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
 <br/>

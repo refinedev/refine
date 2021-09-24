@@ -11,6 +11,7 @@ import {
     CrudFilters,
     SuccessErrorNotification,
     HttpError,
+    MetaDataQuery,
 } from "../../../interfaces";
 
 export type useRadioGroupProps<TData, TError> = RadioGroupProps & {
@@ -20,6 +21,7 @@ export type useRadioGroupProps<TData, TError> = RadioGroupProps & {
     sort?: CrudSorting;
     filters?: CrudFilters;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
+    metaData?: MetaDataQuery;
 } & SuccessErrorNotification;
 
 export type UseRadioGroupReturnType<TData extends BaseRecord = BaseRecord> = {
@@ -48,6 +50,7 @@ export const useRadioGroup = <
     successNotification,
     errorNotification,
     queryOptions,
+    metaData,
 }: useRadioGroupProps<TData, TError>): UseRadioGroupReturnType<TData> => {
     const [options, setOptions] = React.useState<Option[]>([]);
 
@@ -75,6 +78,7 @@ export const useRadioGroup = <
         },
         successNotification,
         errorNotification,
+        metaData,
     });
 
     return {

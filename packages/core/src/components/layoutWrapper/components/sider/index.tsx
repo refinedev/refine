@@ -33,9 +33,6 @@ export const Sider: React.FC = () => {
             collapsedWidth={isMobile ? 0 : 80}
             breakpoint="lg"
             style={isMobile ? antLayoutSiderMobile : antLayoutSider}
-            className={`refine-sider ${
-                !collapsed ? "refine-sider-collapsed" : ""
-            }`}
         >
             <Title collapsed={collapsed} />
             <Menu

@@ -1,5 +1,4 @@
 import axios from "axios";
-import nock from "nock";
 
 import JsonServer from "../../src/index";
 import "./index.mock";
@@ -19,7 +18,8 @@ describe("getList", () => {
         const response = await JsonServer(
             "https://dev001.na-dev-engine.altogic.com",
             axiosInstance,
-        ).getList("post", {
+        ).getList({
+            resource: "post",
             filters: [
                 {
                     field: "_id",
@@ -30,40 +30,35 @@ describe("getList", () => {
         });
 
         expect(response.data[0]["id"]).toBe("613a25eb65f2050012410a41");
-        expect(response.data[0]["title"]).toBe("test");
-        expect(response.total).toBe(NaN);
+        expect(response.data[0]["title"]).toBe("foo");
+        expect(response.total).toBe(8);
     });
 
     it("correct sorting response", async () => {
         const response = await JsonServer(
             "https://dev001.na-dev-engine.altogic.com",
             axiosInstance,
-        ).getList("post", {
+        ).getList({
+            resource: "post",
             sort: [
                 {
                     field: "title",
                     order: "asc",
                 },
             ],
-            filters: [
-                {
-                    field: "_id",
-                    operator: "ne",
-                    value: "",
-                },
-            ],
         });
 
         expect(response.data[0]["id"]).toBe("613b80901550aa001b0a85f8");
         expect(response.data[0]["title"]).toBe("Deneme1");
-        expect(response.total).toBe(NaN);
+        expect(response.total).toBe(8);
     });
 
     it("correct filter response", async () => {
         const response = await JsonServer(
             "https://dev001.na-dev-engine.altogic.com",
             axiosInstance,
-        ).getList("post", {
+        ).getList({
+            resource: "post",
             filters: [
                 {
                     field: "categoryId",
@@ -74,14 +69,15 @@ describe("getList", () => {
         });
 
         expect(response.data[0]["categoryId"]).toBe("61373e585d65d30019e2b0a2");
-        expect(response.total).toBe(NaN);
+        expect(response.total).toBe(5);
     });
 
     it("correct filter and sort response", async () => {
         const response = await JsonServer(
             "https://dev001.na-dev-engine.altogic.com",
             axiosInstance,
-        ).getList("post", {
+        ).getList({
+            resource: "post",
             filters: [
                 {
                     field: "categoryId",
@@ -97,7 +93,7 @@ describe("getList", () => {
             ],
         });
 
-        expect(response.data[0]["id"]).toBe("613b80901550aa001b0a85f8");
-        expect(response.total).toBe(NaN);
+        expect(response.data[0]["id"]).toBe("613a25eb65f2050012410a41");
+        expect(response.total).toBe(5);
     });
 });

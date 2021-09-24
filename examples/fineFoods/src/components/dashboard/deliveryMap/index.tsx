@@ -28,7 +28,7 @@ export const DeliveryMap: React.FC = () => {
             lat: 40.73061,
             lng: -73.935242,
         },
-        zoom: 11,
+        zoom: 13,
     };
 
     const { show } = useNavigation();

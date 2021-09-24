@@ -23,6 +23,7 @@ import {
     IResourceItem,
     HttpError,
     SuccessErrorNotification,
+    MetaDataQuery,
 } from "../../../interfaces";
 
 type SaveButtonProps = {
@@ -69,6 +70,7 @@ export type useEditFormProps<
     redirect?: RedirectionTypes;
     undoableTimeout?: number;
     resource: IResourceItem;
+    metaData?: MetaDataQuery;
 } & SuccessErrorNotification;
 
 /**
@@ -90,6 +92,7 @@ export const useEditForm = <
     resource,
     successNotification,
     errorNotification,
+    metaData,
 }: useEditFormProps<TData, TError, TVariables>): useEditForm<
     TData,
     TError,
@@ -129,6 +132,7 @@ export const useEditForm = <
         queryOptions: {
             enabled: isEdit,
         },
+        metaData,
     });
 
     const { data, isFetching } = queryResult;

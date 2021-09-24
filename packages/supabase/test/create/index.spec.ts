@@ -4,12 +4,15 @@ import "./index.mock";
 
 describe("create", () => {
     it("correct response", async () => {
-        const { data } = await dataProvider(supabaseClient).create("posts", {
-            title: "foo",
-            slug: "foo-bar",
-            content: "bar",
-            categoryId: 2,
-            image: {},
+        const { data } = await dataProvider(supabaseClient).create({
+            resource: "posts",
+            variables: {
+                title: "foo",
+                slug: "foo-bar",
+                content: "bar",
+                categoryId: 2,
+                image: {},
+            },
         });
 
         expect(data["id"]).toEqual(33);

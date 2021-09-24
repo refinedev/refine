@@ -220,12 +220,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
     );
 
     return (
-        <List
-            title={t("products.products")}
-            createButtonProps={{
-                onClick: () => false,
-            }}
-        >
+        <List title={t("products.products")} createButtonProps={undefined}>
             <Table {...postTableProps} rowKey="id">
                 <Table.Column
                     dataIndex="images"

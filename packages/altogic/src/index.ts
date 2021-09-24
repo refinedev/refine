@@ -96,14 +96,14 @@ const AltogicDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
-    getList: async (resource, params) => {
+    getList: async ({ resource, pagination, filters, sort }) => {
         const url = `${apiUrl}/${resource}`;
 
         // pagination
-        const current = params.pagination?.current || 1;
-        const pageSize = params.pagination?.pageSize || 10;
+        const current = pagination?.current || 1;
+        const pageSize = pagination?.pageSize || 10;
 
-        const queryFilters = generateFilter(params.filters);
+        const queryFilters = generateFilter(filters);
 
         const query: {
             page: number;
@@ -114,26 +114,24 @@ const AltogicDataProvider = (
             size: pageSize,
         };
 
-        const generatedSort = generateSort(params.sort);
+        const generatedSort = generateSort(sort);
         if (generatedSort) {
             const { _sort } = generatedSort;
 
             query.sort = _sort.length > 1 ? JSON.stringify(_sort) : _sort[0];
         }
 
-        const { data, headers } = await httpClient.get(
+        const { data } = await httpClient.get(
             `${url}?${stringify(query)}&${stringify(queryFilters)}`,
         );
 
-        const total = +headers["x-total-count"];
-
         return {
-            data: (data || []).map((p: any) => ({ ...p, id: p._id })),
-            total,
+            data: (data?.result || []).map((p: any) => ({ ...p, id: p._id })),
+            total: data?.countInfo?.count,
         };
     },
 
-    getMany: async (resource, ids) => {
+    getMany: async ({ resource, ids }) => {
         const { data } = await httpClient.get(
             `${apiUrl}/${resource}?${stringify({ id: ids })}`,
         );
@@ -143,19 +141,19 @@ const AltogicDataProvider = (
         };
     },
 
-    create: async (resource, params) => {
+    create: async ({ resource, variables }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { data } = await httpClient.post(url, params);
+        const { data } = await httpClient.post(url, variables);
 
         return {
             data,
         };
     },
 
-    createMany: async (resource, params) => {
+    createMany: async ({ resource, variables }) => {
         const response = await Promise.all(
-            params.map(async (param) => {
+            variables.map(async (param) => {
                 const { data } = await httpClient.post(
                     `${apiUrl}/${resource}`,
                     param,
@@ -167,22 +165,22 @@ const AltogicDataProvider = (
         return { data: response };
     },
 
-    update: async (resource, id, params) => {
+    update: async ({ resource, id, variables }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.put(url, params);
+        const { data } = await httpClient.put(url, variables);
 
         return {
             data,
         };
     },
 
-    updateMany: async (resource, ids, params) => {
+    updateMany: async ({ resource, ids, variables }) => {
         const response = await Promise.all(
             ids.map(async (id) => {
                 const { data } = await httpClient.put(
                     `${apiUrl}/${resource}/${id}`,
-                    params,
+                    variables,
                 );
                 return data;
             }),
@@ -191,7 +189,7 @@ const AltogicDataProvider = (
         return { data: response };
     },
 
-    getOne: async (resource, id) => {
+    getOne: async ({ resource, id }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await httpClient.get(url);
@@ -201,7 +199,7 @@ const AltogicDataProvider = (
         };
     },
 
-    deleteOne: async (resource, id) => {
+    deleteOne: async ({ resource, id }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await httpClient.delete(url);
@@ -211,7 +209,7 @@ const AltogicDataProvider = (
         };
     },
 
-    deleteMany: async (resource, ids) => {
+    deleteMany: async ({ resource, ids }) => {
         const response = await Promise.all(
             ids.map(async (id) => {
                 const { data } = await httpClient.delete(
@@ -227,9 +225,7 @@ const AltogicDataProvider = (
         return apiUrl;
     },
 
-    custom: async (url, method, params = {}) => {
-        const { filters, sort, payload, query, headers } = params;
-
+    custom: async ({ url, method, filters, sort, payload, query, headers }) => {
         let requestUrl = `${url}?`;
 
         if (sort) {

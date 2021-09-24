@@ -8,6 +8,7 @@ import {
     BaseRecord,
     GetOneResponse,
     SuccessErrorNotification,
+    MetaDataQuery,
 } from "../../interfaces";
 
 export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
@@ -19,6 +20,7 @@ export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
 export type useShowProps = {
     resource?: string;
     id?: string;
+    metaData?: MetaDataQuery;
 } & SuccessErrorNotification;
 
 /**
@@ -33,6 +35,7 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
     id,
     successNotification,
     errorNotification,
+    metaData,
 }: useShowProps = {}): useShowReturnType<TData> => {
     const [showId, setShowId] = useState<string>();
 
@@ -54,6 +57,7 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
         },
         successNotification,
         errorNotification,
+        metaData,
     });
 
     return {

@@ -4,9 +4,9 @@ import "./index.mock";
 
 describe("createMany", () => {
     it("correct response", async () => {
-        const { data } = await dataProvider(supabaseClient).createMany(
-            "posts",
-            [
+        const { data } = await dataProvider(supabaseClient).createMany({
+            resource: "posts",
+            variables: [
                 {
                     title: "foo",
                     slug: "foo-bar",
@@ -22,7 +22,7 @@ describe("createMany", () => {
                     image: {},
                 },
             ],
-        );
+        });
 
         expect(data[0]["id"]).toEqual(36);
         expect(data[0]["title"]).toEqual("foo");
