@@ -18,11 +18,10 @@ export const NextRouteComponent: React.FC<{
         useParams<ResourceRouterParams>();
 
     const { pathname } = useLocation();
-    const { customRoutes, LoginPage, DashboardPage, catchAll } =
+    const { LoginPage, DashboardPage, catchAll } =
         useContext<IRefineContext>(RefineContext);
 
     const resource = resources.find((res) => res.route === routeResourceName);
-    const customRoute = customRoutes.find((r) => r.path === routeResourceName);
 
     const isServer = typeof window !== "undefined";
 
