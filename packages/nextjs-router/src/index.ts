@@ -24,7 +24,6 @@ const RouterProvider = () => ({
                 ),
             ),
         );
-        console.log({ "useLocation:: queryParams": queryParams });
 
         return {
             pathname,
@@ -33,7 +32,6 @@ const RouterProvider = () => ({
     },
     useParams: () => {
         const router = useRouter();
-        console.log({ "useParams:: router": router });
 
         const { query } = router;
         return query;

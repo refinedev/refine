@@ -2,7 +2,7 @@ import React from "react";
 import { AppProps } from "next/app";
 import "@styles/global.css";
 
-import { Refine, Resource } from "@pankod/refine";
+import { NextRouteComponent, Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-nextjs-router";
 
@@ -18,66 +18,15 @@ import "@pankod/refine/dist/styles.min.css";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
-const mockUsers = [
-    {
-        username: "admin",
-        roles: ["admin"],
-    },
-    {
-        username: "editor",
-        roles: ["editor"],
-    },
-];
-
-const authProvider: AuthProvider = {
-    login: ({ username, password, remember }) => {
-        // Suppose we actually send a request to the back end here.
-        const user = mockUsers.find((item) => item.username === username);
-
-        if (user) {
-            localStorage.setItem("auth", JSON.stringify(user));
-            return Promise.resolve();
-        }
-
-        return Promise.reject();
-    },
-    logout: () => {
-        localStorage.removeItem("auth");
-        return Promise.resolve();
-    },
-    checkError: (error) => {
-        if (error && error.statusCode === 401) {
-            return Promise.reject();
-        }
-
-        return Promise.resolve();
-    },
-    checkAuth: () =>
-        localStorage.getItem("auth") ? Promise.resolve() : Promise.reject(),
-    getPermissions: () => {
-        const auth = localStorage.getItem("auth");
-        if (auth) {
-            const parsedUser = JSON.parse(auth);
-            return Promise.resolve(parsedUser.roles);
-        }
-        return Promise.reject();
-    },
-    getUserIdentity: () => {
-        const auth = localStorage.getItem("auth");
-        if (auth) {
-            const parsedUser = JSON.parse(auth);
-            return Promise.resolve(parsedUser.username);
-        }
-        return Promise.reject();
-    },
-};
-
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+    if (Component !== NextRouteComponent) {
+        return <Component {...pageProps} />;
+    }
+
     return (
         <Refine
-            {...routerProvider()}
+            {...(routerProvider() as any)}
             dataProvider={dataProvider(API_URL)}
-            authProvider={authProvider}
             routes={[{ path: "awesomeroute", component: PostList }]}
             resources={[
                 { name: "users", list: UserList },

@@ -4,12 +4,13 @@ export interface IResourceContext {
     resources: IResourceItem[];
 }
 
-export interface IResourceComponentsProps {
+export interface IResourceComponentsProps<TInitialData = any> {
     canCreate?: boolean;
     canEdit?: boolean;
     canDelete?: boolean;
     canShow?: boolean;
     name?: string;
+    initialData?: TInitialData;
 }
 export interface IResourceComponents {
     list?: React.FunctionComponent<IResourceComponentsProps>;

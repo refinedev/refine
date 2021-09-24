@@ -4,16 +4,18 @@ import { IRefineContext, ResourceRouterParams } from "src/interfaces";
 import { LayoutWrapper } from "@components";
 import { RefineContext } from "@contexts/refine";
 
-export const NextRouteComponent: React.FC = () => {
+export const NextRouteComponent: React.FC = (props) => {
     const { resources } = useResource();
-    const { useParams } = useRouterContext();
+    const { useParams, useLocation } = useRouterContext();
     const { resource: routeResourceName, action } =
         useParams<ResourceRouterParams>();
+    const { pathname } = useLocation();
+
     const { customRoutes } = useContext<IRefineContext>(RefineContext);
 
-    console.log("NextRoute:: ", { action });
-
-    const resource = resources.find((res) => res.route === routeResourceName);
+    const resource = resources.find(
+        (res) => res.route === (routeResourceName ?? pathname.substring(1)),
+    );
 
     if (resource) {
         const {
@@ -43,6 +45,7 @@ export const NextRouteComponent: React.FC = () => {
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
+                            initialData={props}
                         />
                     );
                 }
