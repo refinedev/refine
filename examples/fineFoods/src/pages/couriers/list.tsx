@@ -106,7 +106,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                     title={t("couriers.fields.name")}
                     render={(record) => (
                         <Space>
-                            <Avatar size={74} src={record.avatar?.[0].url} />
+                            <Avatar size={74} src={record.avatar?.[0]?.url} />
                             <Typography.Text>
                                 {record.name} {record.surname}
                             </Typography.Text>
