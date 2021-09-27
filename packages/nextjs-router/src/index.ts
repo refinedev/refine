@@ -51,7 +51,7 @@ const RouterProvider: IRouterProvider = () => ({
                         setWarnWhen?.(false);
                     } else {
                         router.events.emit("routeChangeError");
-                        throw "Abort route change";
+                        throw "Abort route change due to unsaved changes prompt. Ignore this error.";
                     }
                 }
             };
