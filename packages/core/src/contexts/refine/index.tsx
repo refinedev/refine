@@ -23,11 +23,6 @@ export const RefineContext = React.createContext<IRefineContext>({
     Footer: DefaultFooter,
     Layout: DefaultLayout,
     OffLayoutArea: DefaultOffLayoutArea,
-    useHistory: () => false,
-    useLocation: () => false,
-    useParams: () => ({} as any),
-    Prompt: () => null,
-    Link: () => null,
 });
 
 export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
@@ -44,11 +39,6 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
     Sider = DefaultSider,
     Footer = DefaultFooter,
     OffLayoutArea = DefaultOffLayoutArea,
-    useHistory,
-    useLocation,
-    useParams,
-    Prompt,
-    Link,
 }) => {
     return (
         <RefineContext.Provider
@@ -65,11 +55,6 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
                 Sider,
                 Footer,
                 OffLayoutArea,
-                useHistory,
-                useLocation,
-                useParams,
-                Prompt,
-                Link,
             }}
         >
             {children}

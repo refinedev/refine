@@ -19,13 +19,6 @@ export interface IRefineContext {
     Header: React.FC;
     Footer: React.FC;
     OffLayoutArea: React.FC;
-    useHistory: () => any;
-    useLocation: <S = any>() => any;
-    useParams: <
-        Params extends { [K in keyof Params]?: string } = {},
-    >() => Params;
-    Prompt: any;
-    Link: any;
 }
 
 export interface IRefineContextProvider {
@@ -44,11 +37,4 @@ export interface IRefineContextProvider {
     Header?: React.FC;
     Footer?: React.FC;
     OffLayoutArea?: React.FC;
-    useHistory: () => any;
-    useLocation: <S = any>() => any;
-    useParams: <
-        Params extends { [K in keyof Params]?: string } = {},
-    >() => Params;
-    Prompt: any;
-    Link: any;
 }
