@@ -4,7 +4,7 @@ import Link from "next/link";
 import qs from "qs";
 import React, { useEffect } from "react";
 
-const RouterProvider: IRouterProvider = () => ({
+const RouterProvider: RouterProviderType = () => ({
     useHistory: () => {
         const router = useRouter();
         const { push, replace, back } = router as any;
@@ -66,7 +66,7 @@ const RouterProvider: IRouterProvider = () => ({
     Redirect: () => null,
 });
 
-type IRouterProvider = () => {
+type RouterProviderType = () => {
     useHistory: any;
     useLocation: any;
     useParams: any;
