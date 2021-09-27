@@ -27,7 +27,6 @@ import {
     ReadyPage as DefaultReadyPage,
     RouteChangeHandler,
     Resource,
-    NextRouteComponent,
 } from "@components";
 import { defaultConfigProviderProps } from "@definitions";
 import {
