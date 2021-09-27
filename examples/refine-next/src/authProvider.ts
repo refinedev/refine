@@ -40,7 +40,6 @@ export const authProvider: AuthProvider = {
     },
     checkAuth: (ctx) => {
         const cookies = nookies.get(ctx);
-        // console.log({ cookies });
         return cookies["auth"] ? Promise.resolve() : Promise.reject();
     },
     getPermissions: () => {
