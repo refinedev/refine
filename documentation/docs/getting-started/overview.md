@@ -180,3 +180,7 @@ interface ICategory {
 ☑️ Support for more data & auth providers
 
 ☑️ Support for more UI frameworks (MaterialUI, Chakra, Spectrum etc.)
+
+## Special Thanks
+
+[React Admin](https://marmelab.com/react-admin/) has been a great source of ideas and inspiration for refine. Big thanks to friends at [Marmelab](https://marmelab.com) for the amazing work they are doing.
