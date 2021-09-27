@@ -25,6 +25,7 @@ export const useMenu: () => useMenuReturnType = () => {
 
     const { useLocation, useParams } = useRouterContext();
     const location = useLocation();
+    const params = useParams<{ resource: string }>();
 
     const { hasDashboard } = useContext<IRefineContext>(RefineContext);
 
@@ -32,12 +33,10 @@ export const useMenu: () => useMenuReturnType = () => {
         location.pathname.startsWith(`/${el.route}`),
     );
 
-    //for ssr
+    // for no ssr
     if (!selectedResource) {
-        const params = useParams<{ resource: string }>();
-
         selectedResource = resources.find((el) =>
-            params.resource.startsWith(el.name as string),
+            params.resource.startsWith(el.route as string),
         );
     }
 
