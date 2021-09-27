@@ -23,14 +23,23 @@ export const useMenu: () => useMenuReturnType = () => {
     const { resources } = useResource();
     const translate = useTranslate();
 
-    const { useLocation } = useRouterContext();
+    const { useLocation, useParams } = useRouterContext();
     const location = useLocation();
 
     const { hasDashboard } = useContext<IRefineContext>(RefineContext);
 
-    const selectedResource = resources.find((el) =>
+    let selectedResource = resources.find((el) =>
         location.pathname.startsWith(`/${el.route}`),
     );
+
+    //for ssr
+    if (!selectedResource) {
+        const params = useParams<{ resource: string }>();
+
+        selectedResource = resources.find((el) =>
+            params.resource.startsWith(el.name as string),
+        );
+    }
 
     let selectedKey: string;
     if (selectedResource?.route) {
