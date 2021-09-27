@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import type {} from "next/router";
 import Link from "next/link";
 
 import qs from "qs";
