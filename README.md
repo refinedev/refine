@@ -219,3 +219,6 @@ If you are willing to fix an issue or propose a feature; all PRs with clear expl
 ## License
 
 Licensed under the MIT License, Copyright © 2021-present Pankod
+
+## Special Thanks
+[React Admin](https://marmelab.com/react-admin/) has been a great source of ideas and inspiration for refine. Big thanks to friends at [Marmelab](https://marmelab.com) for the amazing work they are doing.
