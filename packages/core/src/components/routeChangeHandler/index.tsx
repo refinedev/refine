@@ -1,12 +1,9 @@
 import { useContext, useEffect, FC } from "react";
-// import { useLocation } from "react-router";
 import { AuthContext } from "@contexts/auth";
 
 import { IAuthContext } from "../../interfaces";
 
-import * as H from "history";
-
-export const RouteChangeHandler: FC<{ useLocation: () => H.Location }> = ({
+export const RouteChangeHandler: FC<{ useLocation: () => any }> = ({
     useLocation,
 }) => {
     const { checkAuth } = useContext<IAuthContext>(AuthContext);

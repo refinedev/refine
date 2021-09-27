@@ -40,7 +40,6 @@ import {
 } from "../../../interfaces";
 import { useWarnAboutChange } from "@hooks/refine";
 
-import * as H from "history";
 import { ResourceProps } from "../resource";
 
 interface QueryClientConfig {
@@ -74,8 +73,8 @@ export interface RefineProps {
     Title?: React.FC<TitleProps>;
     reactQueryClientConfig?: QueryClientConfig;
     notifcationConfig?: ConfigProps;
-    useHistory: () => H.History;
-    useLocation: <S = H.LocationState>() => H.Location<S>;
+    useHistory: () => any;
+    useLocation: <S = any>() => any;
     useParams: <
         Params extends { [K in keyof Params]?: string } = {},
     >() => Params;

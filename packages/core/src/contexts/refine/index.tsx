@@ -1,7 +1,5 @@
 import React from "react";
 
-import history from "history";
-
 import { IRefineContext, IRefineContextProvider } from "./IRefineContext";
 import {
     Layout as DefaultLayout,
@@ -25,8 +23,8 @@ export const RefineContext = React.createContext<IRefineContext>({
     Footer: DefaultFooter,
     Layout: DefaultLayout,
     OffLayoutArea: DefaultOffLayoutArea,
-    useHistory: () => history.createBrowserHistory(),
-    useLocation: () => history.createLocation("/"),
+    useHistory: () => false,
+    useLocation: () => false,
     useParams: () => ({} as any),
     Prompt: () => null,
     Link: () => null,
