@@ -14,4 +14,3 @@ export { Authenticated } from "./authenticated";
 export { default as Icon } from "@ant-design/icons";
 export { Icons };
 export { RouteChangeHandler } from "./routeChangeHandler";
-export { NextRouteComponent } from "./nextjs/nextRouteComponent";

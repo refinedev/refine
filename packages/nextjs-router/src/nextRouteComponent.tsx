@@ -1,7 +1,6 @@
 import React from "react";
 import {
     useResource,
-    useRouterContext,
     useRefineContext,
     LayoutWrapper,
     LoginPage as DefaultLoginPage,
@@ -9,11 +8,14 @@ import {
 } from "@pankod/refine";
 import type { ResourceRouterParams } from "@pankod/refine";
 
+import { RouterProvider } from "./routerProvider";
+
+const { useHistory, useLocation, useParams } = RouterProvider();
+
 export const NextRouteComponent: React.FC<{
     isAuthenticated?: boolean;
 }> = ({ isAuthenticated }) => {
     const { resources } = useResource();
-    const { useParams, useLocation, useHistory } = useRouterContext();
     const { push } = useHistory();
     const { resource: routeResourceName, action } =
         useParams<ResourceRouterParams>();

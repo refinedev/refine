@@ -34,11 +34,11 @@ export const RouterProvider: () => IRouterProvider = () => ({
             search: `?${queryParams}`,
         };
     },
-    useParams: () => {
+    useParams: <Params>() => {
         const router = useRouter();
 
         const { query } = router;
-        return query;
+        return query as unknown as Params;
     },
     BrowserRouter: () => null,
     Switch: () => null,
