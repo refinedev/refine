@@ -1,4 +1,6 @@
-export interface RouterProvider {
+import React from "react";
+
+export interface IRouterProvider {
     useHistory: () => any;
     useLocation: <S = any>() => any;
     useParams: <
@@ -7,7 +9,7 @@ export interface RouterProvider {
     BrowserRouter: any;
     Switch: any;
     Route: any;
-    Prompt: any;
+    Prompt: React.FC<PromptProps>;
     Link: any;
     Redirect: any;
 }
@@ -21,7 +23,13 @@ export interface IRouterContext {
     BrowserRouter: any;
     Switch: any;
     Route: any;
-    Prompt: any;
+    Prompt: React.FC<PromptProps>;
     Link: any;
     Redirect: any;
 }
+
+export type PromptProps = {
+    message: string;
+    when: boolean;
+    setWarnWhen?: (warnWhen: boolean) => void;
+};

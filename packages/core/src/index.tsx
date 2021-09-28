@@ -31,6 +31,8 @@ export {
     UpdateResponse,
     CustomResponse,
     SuccessErrorNotification,
+    IRouterProvider,
+    PromptProps,
 } from "./interfaces";
 
 // sunflower types

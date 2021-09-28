@@ -37,7 +37,7 @@ import {
     I18nProvider,
     LayoutProps,
     TitleProps,
-    RouterProvider,
+    IRouterProvider,
 } from "../../../interfaces";
 import { useWarnAboutChange } from "@hooks/refine";
 
@@ -54,7 +54,7 @@ interface IResource extends IResourceItem, ResourceProps {}
 export interface RefineProps {
     authProvider?: IAuthContext;
     dataProvider: IDataContextProvider;
-    routerProvider: RouterProvider;
+    routerProvider: IRouterProvider;
     resources?: IResource[];
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
