@@ -19,16 +19,16 @@
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
-  "name": "@pankod/refine-reactrouter",
+  "name": "@pankod/refine-react-router",
   "author": "Pankod",
-  "module": "dist/refine-reactrouter.esm.js",
+  "module": "dist/refine-react-router.esm.js",
   "size-limit": [
     {
-      "path": "dist/refine-reactrouter.cjs.production.min.js",
+      "path": "dist/refine-react-router.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/refine-reactrouter.esm.js",
+      "path": "dist/refine-react-router.esm.js",
       "limit": "10 KB"
     }
   ],
