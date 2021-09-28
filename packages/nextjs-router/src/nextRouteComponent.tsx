@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
     useResource,
     useRouterContext,
+    useRefineContext,
     LayoutWrapper,
     LoginPage as DefaultLoginPage,
     ErrorComponent,
-    RefineContext,
 } from "@pankod/refine";
-import type { IRefineContext, ResourceRouterParams } from "@pankod/refine";
+import type { ResourceRouterParams } from "@pankod/refine";
 
 export const NextRouteComponent: React.FC<{
     isAuthenticated?: boolean;
@@ -19,8 +19,7 @@ export const NextRouteComponent: React.FC<{
         useParams<ResourceRouterParams>();
 
     const { pathname } = useLocation();
-    const { LoginPage, DashboardPage, catchAll } =
-        useContext<IRefineContext>(RefineContext);
+    const { LoginPage, DashboardPage, catchAll } = useRefineContext();
 
     const resource = resources.find((res) => res.route === routeResourceName);
 

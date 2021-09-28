@@ -1,4 +1,4 @@
-export { NextRouteComponent as default } from "@pankod/refine";
+export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
 import { GetServerSideProps } from "next";
 
 import { authProvider } from "../../src/authProvider";

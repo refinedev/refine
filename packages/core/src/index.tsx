@@ -33,6 +33,7 @@ export {
     SuccessErrorNotification,
     IRouterProvider,
     PromptProps,
+    ResourceRouterParams,
 } from "./interfaces";
 
 // sunflower types
