@@ -16,7 +16,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <Refine
-            {...(routerProvider() as any)}
+            routerProvider={routerProvider() as any}
             dataProvider={dataProvider(API_URL)}
             authProvider={authProvider}
             resources={[

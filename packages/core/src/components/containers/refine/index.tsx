@@ -22,12 +22,12 @@ import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { RefineContextProvider } from "@contexts/refine";
 import { NotificationContextProvider } from "@contexts/notification";
 import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
+import { RouterContextProvider } from "@contexts/router";
 import {
     RouteProvider,
     ReadyPage as DefaultReadyPage,
     RouteChangeHandler,
     Resource,
-    NextRouteComponent,
 } from "@components";
 import { defaultConfigProviderProps } from "@definitions";
 import {
@@ -37,10 +37,10 @@ import {
     I18nProvider,
     LayoutProps,
     TitleProps,
+    RouterProvider,
 } from "../../../interfaces";
 import { useWarnAboutChange } from "@hooks/refine";
 
-import * as H from "history";
 import { ResourceProps } from "../resource";
 
 interface QueryClientConfig {
@@ -54,6 +54,7 @@ interface IResource extends IResourceItem, ResourceProps {}
 export interface RefineProps {
     authProvider?: IAuthContext;
     dataProvider: IDataContextProvider;
+    routerProvider: RouterProvider;
     resources?: IResource[];
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
@@ -74,17 +75,6 @@ export interface RefineProps {
     Title?: React.FC<TitleProps>;
     reactQueryClientConfig?: QueryClientConfig;
     notifcationConfig?: ConfigProps;
-    useHistory: () => H.History;
-    useLocation: <S = H.LocationState>() => H.Location<S>;
-    useParams: <
-        Params extends { [K in keyof Params]?: string } = {},
-    >() => Params;
-    BrowserRouter: any;
-    Switch: any;
-    Route: any;
-    Prompt: any;
-    Link: any;
-    Redirect: any;
 }
 
 /**
@@ -97,6 +87,7 @@ export interface RefineProps {
 export const Refine: React.FC<RefineProps> = ({
     authProvider,
     dataProvider,
+    routerProvider,
     resources: resourcesFromProps,
     DashboardPage,
     ReadyPage,
@@ -118,15 +109,6 @@ export const Refine: React.FC<RefineProps> = ({
     OffLayoutArea,
     reactQueryClientConfig,
     notifcationConfig,
-    useHistory,
-    useLocation,
-    useParams,
-    BrowserRouter,
-    Switch,
-    Route,
-    Prompt,
-    Link,
-    Redirect,
 }) => {
     const queryClient = new QueryClient({
         ...reactQueryClientConfig,
@@ -191,80 +173,86 @@ export const Refine: React.FC<RefineProps> = ({
         return ReadyPage ? <ReadyPage /> : <DefaultReadyPage />;
     }
 
+    const { BrowserRouter, Switch, Route, Redirect, useLocation } =
+        routerProvider;
+
     return (
         <QueryClientProvider client={queryClient}>
             <AuthContextProvider {...authProvider} isProvided={!!authProvider}>
                 <DataContextProvider {...dataProvider}>
-                    <ResourceContextProvider resources={resources}>
-                        <TranslationContextProvider i18nProvider={i18nProvider}>
-                            <ConfigProvider {...configProviderProps}>
-                                <NotificationContextProvider>
-                                    <RefineContextProvider
-                                        mutationMode={mutationMode}
-                                        warnWhenUnsavedChanges={
-                                            warnWhenUnsavedChanges
-                                        }
-                                        syncWithLocation={syncWithLocation}
-                                        Title={Title}
-                                        undoableTimeout={undoableTimeout}
-                                        customRoutes={routes}
-                                        catchAll={catchAll}
-                                        DashboardPage={DashboardPage}
-                                        LoginPage={LoginPage}
-                                        Layout={Layout}
-                                        Sider={Sider}
-                                        Footer={Footer}
-                                        Header={Header}
-                                        OffLayoutArea={OffLayoutArea}
-                                        hasDashboard={!!DashboardPage}
-                                        useHistory={useHistory}
-                                        useLocation={useLocation}
-                                        useParams={useParams}
-                                        Prompt={Prompt}
-                                        Link={Link}
-                                    >
-                                        <UnsavedWarnContextProvider>
-                                            {isSSr ? (
-                                                children
-                                            ) : (
-                                                <MainRouter
-                                                    BrowserRouter={
-                                                        BrowserRouter
-                                                    }
-                                                >
-                                                    <>
-                                                        <RouteProvider
-                                                            resources={
-                                                                resources
-                                                            }
-                                                            catchAll={catchAll}
-                                                            DashboardPage={
-                                                                DashboardPage
-                                                            }
-                                                            LoginPage={
-                                                                LoginPage
-                                                            }
-                                                            customRoutes={
-                                                                routes
-                                                            }
-                                                            Switch={Switch}
-                                                            Route={Route}
-                                                            Redirect={Redirect}
-                                                        />
-                                                        <RouteChangeHandler
-                                                            useLocation={
-                                                                useLocation
-                                                            }
-                                                        />
-                                                    </>
-                                                </MainRouter>
-                                            )}
-                                        </UnsavedWarnContextProvider>
-                                    </RefineContextProvider>
-                                </NotificationContextProvider>
-                            </ConfigProvider>
-                        </TranslationContextProvider>
-                    </ResourceContextProvider>
+                    <RouterContextProvider {...routerProvider}>
+                        <ResourceContextProvider resources={resources}>
+                            <TranslationContextProvider
+                                i18nProvider={i18nProvider}
+                            >
+                                <ConfigProvider {...configProviderProps}>
+                                    <NotificationContextProvider>
+                                        <RefineContextProvider
+                                            mutationMode={mutationMode}
+                                            warnWhenUnsavedChanges={
+                                                warnWhenUnsavedChanges
+                                            }
+                                            syncWithLocation={syncWithLocation}
+                                            Title={Title}
+                                            undoableTimeout={undoableTimeout}
+                                            customRoutes={routes}
+                                            catchAll={catchAll}
+                                            DashboardPage={DashboardPage}
+                                            LoginPage={LoginPage}
+                                            Layout={Layout}
+                                            Sider={Sider}
+                                            Footer={Footer}
+                                            Header={Header}
+                                            OffLayoutArea={OffLayoutArea}
+                                            hasDashboard={!!DashboardPage}
+                                        >
+                                            <UnsavedWarnContextProvider>
+                                                {isSSr ? (
+                                                    children
+                                                ) : (
+                                                    <MainRouter
+                                                        BrowserRouter={
+                                                            BrowserRouter
+                                                        }
+                                                    >
+                                                        <>
+                                                            <RouteProvider
+                                                                resources={
+                                                                    resources
+                                                                }
+                                                                catchAll={
+                                                                    catchAll
+                                                                }
+                                                                DashboardPage={
+                                                                    DashboardPage
+                                                                }
+                                                                LoginPage={
+                                                                    LoginPage
+                                                                }
+                                                                customRoutes={
+                                                                    routes
+                                                                }
+                                                                Switch={Switch}
+                                                                Route={Route}
+                                                                Redirect={
+                                                                    Redirect
+                                                                }
+                                                            />
+                                                            <RouteChangeHandler
+                                                                useLocation={
+                                                                    useLocation
+                                                                }
+                                                            />
+                                                        </>
+                                                    </MainRouter>
+                                                )}
+                                            </UnsavedWarnContextProvider>
+                                        </RefineContextProvider>
+                                    </NotificationContextProvider>
+                                </ConfigProvider>
+                            </TranslationContextProvider>
+                        </ResourceContextProvider>
+                    </RouterContextProvider>
                 </DataContextProvider>
             </AuthContextProvider>
             <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />

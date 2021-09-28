@@ -1,7 +1,5 @@
 import React from "react";
 
-import * as H from "history";
-
 import { MutationMode, TitleProps, LayoutProps } from "../../interfaces";
 import { RouteProps } from "react-router-dom";
 
@@ -21,13 +19,6 @@ export interface IRefineContext {
     Header: React.FC;
     Footer: React.FC;
     OffLayoutArea: React.FC;
-    useHistory: () => H.History;
-    useLocation: <S = H.LocationState>() => H.Location<S>;
-    useParams: <
-        Params extends { [K in keyof Params]?: string } = {},
-    >() => Params;
-    Prompt: any;
-    Link: any;
 }
 
 export interface IRefineContextProvider {
@@ -46,11 +37,4 @@ export interface IRefineContextProvider {
     Header?: React.FC;
     Footer?: React.FC;
     OffLayoutArea?: React.FC;
-    useHistory: () => H.History;
-    useLocation: <S = H.LocationState>() => H.Location<S>;
-    useParams: <
-        Params extends { [K in keyof Params]?: string } = {},
-    >() => Params;
-    Prompt: any;
-    Link: any;
 }

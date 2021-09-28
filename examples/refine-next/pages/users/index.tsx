@@ -42,7 +42,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
         parseTableParams(context.req.url || "");
 
-    const data = await dataProvider(API_URL).getList("users", {
+    const data = await dataProvider(API_URL).getList({
+        resource: "users",
         filters: parsedFilters,
         pagination: {
             current: parsedCurrent || 1,
