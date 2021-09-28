@@ -3,10 +3,9 @@ import { useMutation, UseMutationResult } from "react-query";
 import { notification } from "antd";
 
 import { AuthContext } from "@contexts/auth";
-import { useNavigation } from "@hooks/navigation";
 
 import { IAuthContext } from "../../../interfaces";
-import { useRouterContext } from "@hooks/refine";
+import { useNavigation, useRouterContext } from "@hooks";
 
 export type UseLoginReturnType<TData, TVariables = {}> = UseMutationResult<
     TData,

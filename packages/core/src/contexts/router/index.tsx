@@ -9,7 +9,7 @@ export const defaultProvider: IRouterContext = {
     BrowserRouter: null,
     Switch: null,
     Route: null,
-    Prompt: null,
+    Prompt: () => null,
     Link: null,
     Redirect: null,
 };

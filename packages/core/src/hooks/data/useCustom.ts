@@ -12,8 +12,7 @@ import {
     HttpError,
     MetaDataQuery,
 } from "../../interfaces";
-import { useCheckError } from "@hooks";
-import { useTranslate } from "@hooks/translate";
+import { useTranslate, useCheckError } from "@hooks";
 import { handleNotification } from "@definitions/helpers";
 
 interface UseCustomConfig<TQuery, TPayload> {
