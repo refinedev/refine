@@ -8,6 +8,7 @@ import {
     ErrorComponent,
     LayoutWrapper,
 } from "@components";
+import { useRouterContext } from "@hooks";
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext, IResourceItem } from "../../../interfaces";
 
@@ -17,9 +18,6 @@ export interface RouteProviderProps {
     DashboardPage?: React.ElementType;
     LoginPage?: React.FC | false;
     customRoutes?: RouteProps[];
-    Switch: any;
-    Route: any;
-    Redirect: any;
 }
 
 type IRoutesProps = RouteProps & { routes?: RouteProps[] };
@@ -30,12 +28,11 @@ const RouteProviderBase: React.FC<RouteProviderProps> = ({
     DashboardPage,
     LoginPage,
     customRoutes = [],
-    Switch,
-    Route,
-    Redirect,
 }) => {
     const { checkAuth, isAuthenticated } =
         useContext<IAuthContext>(AuthContext);
+
+    const { Switch, Route, Redirect } = useRouterContext();
 
     const { isLoading } = useQuery(
         ["useAuthenticated", { type: "routeProvider" }],

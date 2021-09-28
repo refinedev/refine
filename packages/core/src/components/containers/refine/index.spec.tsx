@@ -1,7 +1,7 @@
 import React from "react";
 import { Row } from "antd";
 
-import { render, MockJSONServer } from "@test";
+import { render, MockJSONServer, MockRouterProvider } from "@test";
 
 import { Refine } from "./index";
 
@@ -36,6 +36,7 @@ describe("Refine Container", () => {
             <Refine
                 authProvider={mockAuthProvider}
                 dataProvider={MockJSONServer}
+                routerProvider={MockRouterProvider}
             />,
         );
 
@@ -58,6 +59,7 @@ describe("Refine Container", () => {
             <Refine
                 authProvider={mockAuthProvider}
                 dataProvider={MockJSONServer}
+                routerProvider={MockRouterProvider}
                 ReadyPage={readyPage}
             />,
         );

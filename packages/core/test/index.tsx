@@ -1,15 +1,29 @@
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
+import {
+    useHistory,
+    useLocation,
+    useParams,
+    Link,
+    Prompt,
+    BrowserRouter,
+    Route,
+    Switch,
+    Redirect,
+    MemoryRouter,
+} from "react-router-dom";
 
 import { AuthContextProvider } from "@contexts/auth";
 import { NotificationContextProvider } from "@contexts/notification";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { IDataContext, IAuthContext, I18nProvider } from "../src/interfaces";
-import { MemoryRouter } from "react-router-dom";
 import { TranslationContextProvider } from "@contexts/translation";
 import { RefineContextProvider } from "@contexts/refine";
 import { IRefineContextProvider } from "@contexts/refine/IRefineContext";
+import { RouterContextProvider } from "@contexts/router";
+
+import { MockRouterProvider } from "@test";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -87,16 +101,18 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
         );
 
         return (
-            <MemoryRouter initialEntries={routerInitialEntries}>
-                <QueryClientProvider client={queryClient}>
-                    {withRefine}
-                </QueryClientProvider>
-            </MemoryRouter>
+            <RouterContextProvider {...MockRouterProvider}>
+                <MemoryRouter initialEntries={routerInitialEntries}>
+                    <QueryClientProvider client={queryClient}>
+                        {withRefine}
+                    </QueryClientProvider>
+                </MemoryRouter>
+            </RouterContextProvider>
         );
     };
 };
 
-export { MockJSONServer } from "./dataMocks";
+export { MockJSONServer, MockRouterProvider } from "./dataMocks";
 
 // re-export everything
 export * from "@testing-library/react";
