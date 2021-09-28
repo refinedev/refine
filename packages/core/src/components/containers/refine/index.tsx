@@ -39,7 +39,7 @@ import {
     TitleProps,
     RouterProvider,
 } from "../../../interfaces";
-import { useWarnAboutChange } from "@hooks/refine";
+import { useWarnAboutChange, useRouterContext } from "@hooks";
 
 import { ResourceProps } from "../resource";
 
@@ -173,9 +173,6 @@ export const Refine: React.FC<RefineProps> = ({
         return ReadyPage ? <ReadyPage /> : <DefaultReadyPage />;
     }
 
-    const { BrowserRouter, Switch, Route, Redirect, useLocation } =
-        routerProvider;
-
     return (
         <QueryClientProvider client={queryClient}>
             <AuthContextProvider {...authProvider} isProvided={!!authProvider}>
@@ -210,11 +207,7 @@ export const Refine: React.FC<RefineProps> = ({
                                                 {isSSr ? (
                                                     children
                                                 ) : (
-                                                    <MainRouter
-                                                        BrowserRouter={
-                                                            BrowserRouter
-                                                        }
-                                                    >
+                                                    <MainRouter>
                                                         <>
                                                             <RouteProvider
                                                                 resources={
@@ -232,17 +225,8 @@ export const Refine: React.FC<RefineProps> = ({
                                                                 customRoutes={
                                                                     routes
                                                                 }
-                                                                Switch={Switch}
-                                                                Route={Route}
-                                                                Redirect={
-                                                                    Redirect
-                                                                }
                                                             />
-                                                            <RouteChangeHandler
-                                                                useLocation={
-                                                                    useLocation
-                                                                }
-                                                            />
+                                                            <RouteChangeHandler />
                                                         </>
                                                     </MainRouter>
                                                 )}
@@ -260,11 +244,9 @@ export const Refine: React.FC<RefineProps> = ({
     );
 };
 
-const MainRouter: React.FC<{ BrowserRouter: any }> = ({
-    children,
-    BrowserRouter,
-}) => {
+const MainRouter: React.FC = ({ children }) => {
     const { setWarnWhen } = useWarnAboutChange();
+    const { BrowserRouter } = useRouterContext();
 
     const getUserConfirmation: (
         message: string,
