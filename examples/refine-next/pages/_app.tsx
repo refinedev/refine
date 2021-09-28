@@ -30,6 +30,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                     canDelete: true,
                 },
             ]}
+            warnWhenUnsavedChanges={true}
         >
             <Component {...pageProps} hede="1" />
         </Refine>

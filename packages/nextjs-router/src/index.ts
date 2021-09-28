@@ -2,7 +2,9 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 import qs from "qs";
-const RouterProvider = () => ({
+import React, { useEffect } from "react";
+
+const RouterProvider: RouterProviderType = () => ({
     useHistory: () => {
         const router = useRouter();
         const { push, replace, back } = router as any;
@@ -38,9 +40,45 @@ const RouterProvider = () => ({
     BrowserRouter: () => null,
     Switch: () => null,
     Route: () => null,
-    Prompt: () => null,
+    Prompt: ({ message, when, setWarnWhen }) => {
+        const router = useRouter();
+
+        useEffect(() => {
+            const routeChangeStart = () => {
+                if (when) {
+                    const allowTransition = window.confirm(message);
+                    if (allowTransition) {
+                        setWarnWhen?.(false);
+                    } else {
+                        router.events.emit("routeChangeError");
+                        throw "Abort route change due to unsaved changes prompt. Ignore this error.";
+                    }
+                }
+            };
+            router.events.on("routeChangeStart", routeChangeStart);
+
+            return () =>
+                router.events.off("routeChangeStart", routeChangeStart);
+        }, [when]);
+        return null;
+    },
     Link,
     Redirect: () => null,
 });
+
+type RouterProviderType = () => {
+    useHistory: any;
+    useLocation: any;
+    useParams: any;
+    BrowserRouter: () => void;
+    Switch: () => void;
+    Route: () => void;
+    Prompt: React.FC<{
+        when: boolean;
+        message: string;
+        setWarnWhen?: (warnWhen: boolean) => void;
+    }>;
+    Redirect: () => void;
+};
 
 export default RouterProvider;

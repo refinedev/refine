@@ -57,7 +57,7 @@ const UnsavedPrompt: React.FC = () => {
 
     const translate = useTranslate();
 
-    const { warnWhen } = useWarnAboutChange();
+    const { warnWhen, setWarnWhen } = useWarnAboutChange();
 
     const warnWhenListener = (e: {
         preventDefault: () => void;
@@ -88,6 +88,7 @@ const UnsavedPrompt: React.FC = () => {
                 "warnWhenUnsavedChanges",
                 "Are you sure you want to leave? You have unsaved changes.",
             )}
+            setWarnWhen={setWarnWhen}
         />
     );
 };
