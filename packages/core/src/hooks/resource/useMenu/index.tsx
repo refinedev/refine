@@ -30,13 +30,13 @@ export const useMenu: () => useMenuReturnType = () => {
     const { hasDashboard } = useContext<IRefineContext>(RefineContext);
 
     let selectedResource = resources.find((el) =>
-        location.pathname.startsWith(`/${el.route}`),
+        location?.pathname?.startsWith(`/${el.route}`),
     );
 
     // for no ssr
     if (!selectedResource) {
         selectedResource = resources.find((el) =>
-            params.resource.startsWith(el.route as string),
+            params?.resource?.startsWith(el.route as string),
         );
     }
 
