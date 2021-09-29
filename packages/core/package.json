@@ -4,7 +4,7 @@
     "description": "",
     "private": false,
     "main": "dist/index.js",
-    "module": "dist/react.esm.js",
+    "module": "dist/refine.esm.js",
     "typings": "dist/index.d.ts",
     "scripts": {
         "start": "tsdx watch --tsconfig tsconfig.json --verbose --noClean",
