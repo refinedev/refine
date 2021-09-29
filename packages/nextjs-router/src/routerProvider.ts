@@ -7,7 +7,7 @@ import type { IRouterProvider } from "@pankod/refine";
 
 import { Prompt } from "./prompt";
 
-export const RouterProvider: () => IRouterProvider = () => ({
+export const RouterProvider = (): IRouterProvider => ({
     useHistory: () => {
         const router = useRouter();
         const { push, replace, back } = router as any;
@@ -40,10 +40,6 @@ export const RouterProvider: () => IRouterProvider = () => ({
         const { query } = router;
         return query as unknown as Params;
     },
-    BrowserRouter: () => null,
-    Switch: () => null,
-    Route: () => null,
     Prompt,
     Link,
-    Redirect: () => null,
 });

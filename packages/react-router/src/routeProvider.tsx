@@ -1,46 +1,26 @@
 /* eslint-disable react/display-name */
-import React, { useContext } from "react";
-import { RouteProps } from "react-router-dom";
-import { useQuery } from "react-query";
-
+import React from "react";
+import { RouteProps, Switch, Route, Redirect } from "react-router-dom";
 import {
     LoginPage as DefaultLoginPage,
     ErrorComponent,
     LayoutWrapper,
-} from "@components";
-import { useRouterContext } from "@hooks";
-import { AuthContext } from "@contexts/auth";
-import { IAuthContext, IResourceItem } from "../../../interfaces";
-
-export interface RouteProviderProps {
-    resources: IResourceItem[];
-    catchAll?: React.ReactNode;
-    DashboardPage?: React.ElementType;
-    LoginPage?: React.FC | false;
-    customRoutes?: RouteProps[];
-}
+    useAuthenticated,
+    useIsAuthenticated,
+    IResourceItem,
+    useResource,
+    useRefineContext,
+} from "@pankod/refine";
 
 type IRoutesProps = RouteProps & { routes?: RouteProps[] };
 
-const RouteProviderBase: React.FC<RouteProviderProps> = ({
-    resources,
-    catchAll,
-    DashboardPage,
-    LoginPage,
-    customRoutes = [],
-}) => {
-    const { checkAuth, isAuthenticated } =
-        useContext<IAuthContext>(AuthContext);
+const RouteProviderBase: React.FC = () => {
+    const { resources } = useResource();
+    const { catchAll, DashboardPage, LoginPage, customRoutes } =
+        useRefineContext();
 
-    const { Switch, Route, Redirect } = useRouterContext();
-
-    const { isLoading } = useQuery(
-        ["useAuthenticated", { type: "routeProvider" }],
-        checkAuth,
-        {
-            retry: false,
-        },
-    );
+    const isAuthenticated = useIsAuthenticated();
+    const { isLoading } = useAuthenticated({ type: "routeProvider" });
 
     if (isLoading) {
         return (

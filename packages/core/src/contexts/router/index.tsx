@@ -6,12 +6,8 @@ export const defaultProvider: IRouterContext = {
     useHistory: () => false,
     useLocation: () => false,
     useParams: () => ({} as any),
-    BrowserRouter: null,
-    Switch: null,
-    Route: null,
     Prompt: () => null,
     Link: null,
-    Redirect: null,
 };
 
 export const RouterContext =
@@ -22,12 +18,8 @@ export const RouterContextProvider: React.FC<IRouterContext> = ({
     useHistory,
     useLocation,
     useParams,
-    BrowserRouter,
-    Switch,
-    Route,
     Prompt,
     Link,
-    Redirect,
 }) => {
     return (
         <RouterContext.Provider
@@ -35,12 +27,8 @@ export const RouterContextProvider: React.FC<IRouterContext> = ({
                 useHistory,
                 useLocation,
                 useParams,
-                BrowserRouter,
-                Switch,
-                Route,
                 Prompt,
                 Link,
-                Redirect,
             }}
         >
             {children}

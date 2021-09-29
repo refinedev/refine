@@ -34,6 +34,7 @@ export {
     IRouterProvider,
     PromptProps,
     ResourceRouterParams,
+    IResourceItem,
 } from "./interfaces";
 
 // sunflower types

@@ -24,7 +24,6 @@ import { NotificationContextProvider } from "@contexts/notification";
 import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
 import { RouterContextProvider } from "@contexts/router";
 import {
-    RouteProvider,
     ReadyPage as DefaultReadyPage,
     RouteChangeHandler,
     Resource,
@@ -39,7 +38,6 @@ import {
     TitleProps,
     IRouterProvider,
 } from "../../../interfaces";
-import { useWarnAboutChange, useRouterContext } from "@hooks";
 
 import { ResourceProps } from "../resource";
 
@@ -173,6 +171,8 @@ export const Refine: React.FC<RefineProps> = ({
         return ReadyPage ? <ReadyPage /> : <DefaultReadyPage />;
     }
 
+    const { RouterComponent } = routerProvider;
+
     return (
         <QueryClientProvider client={queryClient}>
             <AuthContextProvider {...authProvider} isProvided={!!authProvider}>
@@ -207,28 +207,13 @@ export const Refine: React.FC<RefineProps> = ({
                                                 {isSSr ? (
                                                     children
                                                 ) : (
-                                                    <MainRouter>
-                                                        <>
-                                                            <RouteProvider
-                                                                resources={
-                                                                    resources
-                                                                }
-                                                                catchAll={
-                                                                    catchAll
-                                                                }
-                                                                DashboardPage={
-                                                                    DashboardPage
-                                                                }
-                                                                LoginPage={
-                                                                    LoginPage
-                                                                }
-                                                                customRoutes={
-                                                                    routes
-                                                                }
-                                                            />
-                                                            <RouteChangeHandler />
-                                                        </>
-                                                    </MainRouter>
+                                                    <>
+                                                        {RouterComponent && (
+                                                            <RouterComponent>
+                                                                <RouteChangeHandler />
+                                                            </RouterComponent>
+                                                        )}
+                                                    </>
                                                 )}
                                             </UnsavedWarnContextProvider>
                                         </RefineContextProvider>
@@ -241,26 +226,5 @@ export const Refine: React.FC<RefineProps> = ({
             </AuthContextProvider>
             <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
         </QueryClientProvider>
-    );
-};
-
-const MainRouter: React.FC = ({ children }) => {
-    const { setWarnWhen } = useWarnAboutChange();
-    const { BrowserRouter } = useRouterContext();
-
-    const getUserConfirmation: (
-        message: string,
-        callback: (ok: boolean) => void,
-    ) => void = (message, callback) => {
-        const allowTransition = window.confirm(message);
-        if (allowTransition) {
-            setWarnWhen(false);
-        }
-        callback(allowTransition);
-    };
-    return (
-        <BrowserRouter getUserConfirmation={getUserConfirmation}>
-            {children}
-        </BrowserRouter>
     );
 };

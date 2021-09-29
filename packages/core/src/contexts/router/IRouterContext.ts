@@ -6,12 +6,9 @@ export interface IRouterProvider {
     useParams: <
         Params extends { [K in keyof Params]?: string } = {},
     >() => Params;
-    BrowserRouter: any;
-    Switch: any;
-    Route: any;
     Prompt: React.FC<PromptProps>;
     Link: any;
-    Redirect: any;
+    RouterComponent?: React.FC;
 }
 
 export interface IRouterContext {
@@ -20,16 +17,12 @@ export interface IRouterContext {
     useParams: <
         Params extends { [K in keyof Params]?: string } = {},
     >() => Params;
-    BrowserRouter: any;
-    Switch: any;
-    Route: any;
     Prompt: React.FC<PromptProps>;
     Link: any;
-    Redirect: any;
 }
 
 export type PromptProps = {
     message: string;
-    when: boolean;
+    when?: boolean;
     setWarnWhen?: (warnWhen: boolean) => void;
 };

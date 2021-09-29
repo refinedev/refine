@@ -2,24 +2,20 @@ import {
     useHistory,
     useLocation,
     useParams,
-    BrowserRouter,
-    Switch,
-    Route,
     Prompt,
     Link,
-    Redirect,
 } from "react-router-dom";
+import { IRouterProvider } from "@pankod/refine";
 
-const RouterProvider = () => ({
+import { RouterComponent } from "./routerComponent";
+
+const RouterProvider = (): IRouterProvider => ({
     useHistory,
     useLocation,
     useParams,
-    BrowserRouter,
-    Switch,
-    Route,
-    Prompt,
+    Prompt: Prompt as any,
     Link,
-    Redirect,
+    RouterComponent,
 });
 
 export default RouterProvider;
