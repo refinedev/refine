@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import { Refine, Resource, Icons, Icon } from "@pankod/refine";
+import { Refine, Resource, Icons } from "@pankod/refine";
 import jsonServerDataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router";
 import de_DE from "@pankod/refine/node_modules/antd/lib/locale/de_DE";
 import { authProvider } from "authProvider";
 import dayjs from "dayjs";
@@ -50,6 +51,7 @@ const App: React.FC = () => {
 
     return (
         <Refine
+            routerProvider={routerProvider()}
             dataProvider={dataProvider}
             authProvider={authProvider}
             i18nProvider={i18nProvider}
