@@ -11,6 +11,8 @@
 
 <div align="center">
 
+[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=A%20React-based%20framework%20for%20building%20data-intensive%20applications%20in%20no%20time.&url=https://github.com/pankod/refine&hashtags=opensource,react,reactquery,antdesign)
+
 [![Meercode CI Score](https://meercode.io/badge/pankod/superplate?type=ci-score&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
 [![Meercode CI Success Rate](https://meercode.io/badge/pankod/superplate?type=ci-success-rate&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/maintainability)](https://codeclimate.com/github/pankod/refine/maintainability)
@@ -28,6 +30,7 @@
 ## About
 
 [**refine**](https://refine.dev/) offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to *admin panels*, *B2B applications* and *dashboards*.
+
 
 ## Documentation
 
@@ -67,7 +70,7 @@ We believe, these are the most important components of a data-intensive frontend
 
 **refine** guarantees you a perfect implementation of these building blocks in your project, so you can focus on your development.
 
-## Architechture
+## Architecture
 
 **refine** makes extensive use of [hooks](https://reactjs.org/docs/hooks-reference.html#gatsby-focus-wrapper) as a default way for interacting with your components. 
 Under the hood, **refine** relies heavily to [React Query](https://react-query.tanstack.com/) for data handling, caching and state management. 
@@ -204,6 +207,9 @@ interface ICategory {
 
 ☑️ Support for more UI frameworks (MaterialUI, Chakra, Spectrum etc.)
 
+## Stargazers
+[![Stargazers repo roster for pankod/refine](https://reporoster.com/stars/pankod/refine)](https://github.com/pankod/refine/stargazers)
+
 ## Contribution
 
 If you have a bug to report, do not hesitate to file an issue.
@@ -213,3 +219,6 @@ If you are willing to fix an issue or propose a feature; all PRs with clear expl
 ## License
 
 Licensed under the MIT License, Copyright © 2021-present Pankod
+
+## Special Thanks
+[React Admin](https://marmelab.com/react-admin/) has been a great source of ideas and inspiration for refine. Big thanks to friends at [Marmelab](https://marmelab.com) for the amazing work they are doing.

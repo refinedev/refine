@@ -46,7 +46,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
-    const { triggerExport, loading: exportLoading } = useExport<IPost>({
+    const { triggerExport, isLoading: exportLoading } = useExport<IPost>({
         mapData: (item) => {
             return {
                 id: item.id,

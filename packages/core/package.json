@@ -1,10 +1,10 @@
 {
     "name": "@pankod/refine",
-    "version": "1.0.78",
+    "version": "1.0.79",
     "description": "",
     "private": false,
     "main": "dist/index.js",
-    "module": "dist/react.esm.js",
+    "module": "dist/refine.esm.js",
     "typings": "dist/index.d.ts",
     "scripts": {
         "start": "tsdx watch --tsconfig tsconfig.json --verbose --noClean",
