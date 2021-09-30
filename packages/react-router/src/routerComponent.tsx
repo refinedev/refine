@@ -1,10 +1,13 @@
 import React from "react";
 import { useWarnAboutChange } from "@pankod/refine";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, BrowserRouterProps } from "react-router-dom";
 
 import { RouteProvider } from "./routeProvider";
 
-export const RouterComponent: React.FC = ({ children }) => {
+export const RouterComponent: React.FC<BrowserRouterProps> = ({
+    children,
+    ...props
+}) => {
     const { setWarnWhen } = useWarnAboutChange();
 
     const getUserConfirmation: (
@@ -18,7 +21,7 @@ export const RouterComponent: React.FC = ({ children }) => {
         callback(allowTransition);
     };
     return (
-        <BrowserRouter getUserConfirmation={getUserConfirmation}>
+        <BrowserRouter getUserConfirmation={getUserConfirmation} {...props}>
             <RouteProvider />
             {children}
         </BrowserRouter>
