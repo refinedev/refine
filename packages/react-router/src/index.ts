@@ -18,4 +18,5 @@ const RouterProvider = (): IRouterProvider => ({
     RouterComponent,
 });
 
+export { Link } from "react-router-dom";
 export default RouterProvider;
