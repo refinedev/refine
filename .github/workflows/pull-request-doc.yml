@@ -37,14 +37,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Set up kubectl
-        uses: matootie/dokube@v1.3.4
-        with:
-          personalAccessToken: ${{ secrets.DIGITALOCEAN_TOKEN }}
-          clusterName: pankod-k8s
-          expirationTime: 1200
-      - name: Get nodes
-        run: kubectl get nodes
       - name: documentation docker build
         uses: docker/build-push-action@v1
         with:
@@ -54,6 +46,14 @@ jobs:
           repository: pankod/refine/refine-documentation
           path: documentation
           tag_with_sha: true
+      - name: Set up kubectl
+        uses: matootie/dokube@v1.3.4
+        with:
+          personalAccessToken: ${{ secrets.DIGITALOCEAN_TOKEN }}
+          clusterName: pankod-k8s
+          expirationTime: 1200
+      - name: Get nodes
+        run: kubectl get nodes
       - name: Deploy refine-documentation to k8s
         run: |
           cd documentation

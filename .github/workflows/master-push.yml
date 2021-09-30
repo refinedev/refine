@@ -29,14 +29,6 @@ jobs:
         with:
           format: DDMMHm
           utcOffset: "+03:00"
-      - name: Set up kubectl
-        uses: matootie/dokube@v1.3.4
-        with:
-          personalAccessToken: ${{ secrets.DIGITALOCEAN_TOKEN }}
-          clusterName: pankod-k8s
-          expirationTime: 1200
-      - name: Get nodes
-        run: kubectl get nodes
       - name: web docker build
         uses: docker/build-push-action@v1
         with:
@@ -45,6 +37,14 @@ jobs:
           registry: docker.pkg.github.com
           repository: pankod/refine/refine-example
           tags: sha-${{ steps.current-time.outputs.formattedTime }}
+      - name: Set up kubectl
+        uses: matootie/dokube@v1.3.4
+        with:
+          personalAccessToken: ${{ secrets.DIGITALOCEAN_TOKEN }}
+          clusterName: pankod-k8s
+          expirationTime: 1200
+      - name: Get nodes
+        run: kubectl get nodes
       - name: Deploy refine-example to k8s
         run: |
           cd examples/fineFoods
@@ -92,14 +92,6 @@ jobs:
         with:
           format: DDMMHm
           utcOffset: "+03:00"
-      - name: Set up kubectl
-        uses: matootie/dokube@v1.3.4
-        with:
-          personalAccessToken: ${{ secrets.DIGITALOCEAN_TOKEN }}
-          clusterName: pankod-k8s
-          expirationTime: 1200
-      - name: Get nodes
-        run: kubectl get nodes
       - name: web docker build
         uses: docker/build-push-action@v1
         with:
@@ -109,6 +101,14 @@ jobs:
           repository: pankod/refine/refine-documentation
           path: documentation
           tags: sha-${{ steps.current-time.outputs.formattedTime }}
+      - name: Set up kubectl
+        uses: matootie/dokube@v1.3.4
+        with:
+          personalAccessToken: ${{ secrets.DIGITALOCEAN_TOKEN }}
+          clusterName: pankod-k8s
+          expirationTime: 1200
+      - name: Get nodes
+        run: kubectl get nodes
       - name: Deploy refine-documentation to k8s
         run: |
           cd documentation
