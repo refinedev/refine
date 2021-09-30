@@ -59,10 +59,6 @@ export const MockRouterProvider: IRouterContext = {
     useHistory,
     useLocation,
     useParams,
-    BrowserRouter,
     Link,
-    Prompt,
-    Redirect,
-    Route,
-    Switch,
+    Prompt: () => null,
 };
