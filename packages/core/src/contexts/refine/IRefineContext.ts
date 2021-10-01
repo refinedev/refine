@@ -11,7 +11,7 @@ export interface IRefineContext {
     undoableTimeout: number;
     customRoutes: RouteProps[];
     catchAll?: React.ReactNode;
-    DashboardPage?: React.ElementType;
+    DashboardPage?: React.FC;
     LoginPage?: React.FC | false;
     Title: React.FC<TitleProps>;
     Layout: React.FC<LayoutProps>;
@@ -29,7 +29,7 @@ export interface IRefineContextProvider {
     undoableTimeout: number;
     customRoutes: RouteProps[];
     catchAll?: React.ReactNode;
-    DashboardPage?: React.ElementType;
+    DashboardPage?: React.FC;
     LoginPage?: React.FC | false;
     Title?: React.FC<TitleProps>;
     Layout?: React.FC<LayoutProps>;

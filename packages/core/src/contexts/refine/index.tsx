@@ -33,12 +33,14 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
     undoableTimeout,
     customRoutes,
     children,
+    DashboardPage,
     Title = DefaultTitle,
     Layout = DefaultLayout,
     Header = DefaultHeader,
     Sider = DefaultSider,
     Footer = DefaultFooter,
     OffLayoutArea = DefaultOffLayoutArea,
+    LoginPage,
 }) => {
     return (
         <RefineContext.Provider
@@ -55,6 +57,8 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
                 Sider,
                 Footer,
                 OffLayoutArea,
+                DashboardPage,
+                LoginPage,
             }}
         >
             {children}

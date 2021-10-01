@@ -35,6 +35,7 @@ export const RecentOrders: React.FC = () => {
                 value: "Pending",
             },
         ],
+        syncWithLocation: false,
     });
 
     const { show } = useNavigation();

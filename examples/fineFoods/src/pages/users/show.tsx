@@ -57,6 +57,7 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
         queryOptions: {
             enabled: user !== undefined,
         },
+        syncWithLocation: false,
     });
 
     return (
