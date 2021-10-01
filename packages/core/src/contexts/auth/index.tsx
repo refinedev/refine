@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
 
+import { useNavigation } from "@hooks";
 import { IAuthContext } from "../../interfaces";
 
 const defaultProvider: IAuthContext = {
@@ -23,6 +24,7 @@ export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
     isProvided,
     children,
 }) => {
+    const { replace } = useNavigation();
     const [isAuthenticated, setAuthenticated] = useState(false);
     const queryClient = useQueryClient();
 
@@ -58,6 +60,11 @@ export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
             await checkAuth(params);
             setAuthenticated(true);
         } catch (error) {
+            const { redirectPath } = error as { redirectPath?: string };
+
+            if (redirectPath) {
+                replace(redirectPath);
+            }
             setAuthenticated(false);
             throw error;
         }

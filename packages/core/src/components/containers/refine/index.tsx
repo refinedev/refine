@@ -138,30 +138,35 @@ export const Refine: React.FC<RefineProps> = ({
     }
 
     return (
-        <QueryClientProvider client={queryClient}>
-            <AuthContextProvider {...authProvider} isProvided={!!authProvider}>
-                <DataContextProvider {...dataProvider}>
-                    <ResourceContextProvider resources={resources}>
-                        <TranslationContextProvider i18nProvider={i18nProvider}>
-                            <ConfigProvider {...configProviderProps}>
-                                <NotificationContextProvider>
-                                    <RefineContextProvider
-                                        mutationMode={mutationMode}
-                                        warnWhenUnsavedChanges={
-                                            warnWhenUnsavedChanges
-                                        }
-                                        syncWithLocation={syncWithLocation}
-                                        Title={Title}
-                                        undoableTimeout={undoableTimeout}
-                                        Layout={Layout}
-                                        Sider={Sider}
-                                        Footer={Footer}
-                                        Header={Header}
-                                        OffLayoutArea={OffLayoutArea}
-                                        hasDashboard={!!DashboardPage}
-                                    >
-                                        <UnsavedWarnContextProvider>
-                                            <MainRouter>
+        <MainRouter>
+            <QueryClientProvider client={queryClient}>
+                <AuthContextProvider
+                    {...authProvider}
+                    isProvided={!!authProvider}
+                >
+                    <DataContextProvider {...dataProvider}>
+                        <ResourceContextProvider resources={resources}>
+                            <TranslationContextProvider
+                                i18nProvider={i18nProvider}
+                            >
+                                <ConfigProvider {...configProviderProps}>
+                                    <NotificationContextProvider>
+                                        <RefineContextProvider
+                                            mutationMode={mutationMode}
+                                            warnWhenUnsavedChanges={
+                                                warnWhenUnsavedChanges
+                                            }
+                                            syncWithLocation={syncWithLocation}
+                                            Title={Title}
+                                            undoableTimeout={undoableTimeout}
+                                            Layout={Layout}
+                                            Sider={Sider}
+                                            Footer={Footer}
+                                            Header={Header}
+                                            OffLayoutArea={OffLayoutArea}
+                                            hasDashboard={!!DashboardPage}
+                                        >
+                                            <UnsavedWarnContextProvider>
                                                 <>
                                                     <RouteProvider
                                                         resources={resources}
@@ -175,17 +180,20 @@ export const Refine: React.FC<RefineProps> = ({
                                                     />
                                                     <RouteChangeHandler />
                                                 </>
-                                            </MainRouter>
-                                        </UnsavedWarnContextProvider>
-                                    </RefineContextProvider>
-                                </NotificationContextProvider>
-                            </ConfigProvider>
-                        </TranslationContextProvider>
-                    </ResourceContextProvider>
-                </DataContextProvider>
-            </AuthContextProvider>
-            <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
-        </QueryClientProvider>
+                                            </UnsavedWarnContextProvider>
+                                        </RefineContextProvider>
+                                    </NotificationContextProvider>
+                                </ConfigProvider>
+                            </TranslationContextProvider>
+                        </ResourceContextProvider>
+                    </DataContextProvider>
+                </AuthContextProvider>
+                <ReactQueryDevtools
+                    initialIsOpen={false}
+                    position="bottom-right"
+                />
+            </QueryClientProvider>
+        </MainRouter>
     );
 };
 
