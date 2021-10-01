@@ -323,6 +323,21 @@ const authProvider = {
 
 <br />
 
+- A custom `redirectPath` can be given to `Promise` reject from the `checkAuth`. If you want to redirect yourself to a certain URL.
+
+```tsx {5}
+const authProvider = {
+   ...
+    checkAuth: () => {
+        localStorage.getItem("auth") ?
+        Promise.resolve() : 
+        Promise.reject({ redirectPath: "/custom-url" });
+    },
+   ...
+};
+```
+<br/>
+
 `checkAuth` method will be accessible via `useAuthenticated` auth hook.
 
 ```tsx twoslash
