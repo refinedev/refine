@@ -41,6 +41,7 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
     Footer = DefaultFooter,
     OffLayoutArea = DefaultOffLayoutArea,
     LoginPage,
+    catchAll,
 }) => {
     return (
         <RefineContext.Provider
@@ -59,6 +60,7 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
                 OffLayoutArea,
                 DashboardPage,
                 LoginPage,
+                catchAll,
             }}
         >
             {children}
