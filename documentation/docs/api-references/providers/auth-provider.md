@@ -329,9 +329,9 @@ const authProvider = {
 const authProvider = {
    ...
     checkAuth: () => {
-        localStorage.getItem("auth") ?
-        Promise.resolve() : 
-        Promise.reject({ redirectPath: "/custom-url" });
+        localStorage.getItem("auth")
+            ? Promise.resolve()
+            : Promise.reject({ redirectPath: "/custom-url" });
     },
    ...
 };
