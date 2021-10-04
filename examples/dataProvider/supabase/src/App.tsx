@@ -1,10 +1,14 @@
 import { Refine, AuthProvider } from "@pankod/refine";
 import { dataProvider } from "@pankod/refine-supabase";
+import routerProvider from "@pankod/refine-react-router";
+
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Login } from "pages/login";
 import { supabaseClient } from "utility";
+
+const routeProvider = routerProvider();
 
 const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
@@ -63,6 +67,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(supabaseClient)}
+            routerProvider={routeProvider}
             authProvider={authProvider}
             LoginPage={Login}
             resources={[

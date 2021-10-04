@@ -1,5 +1,7 @@
 import { HttpError, Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-altogic";
+import routerProvider from "@pankod/refine-react-router";
+
 import axios from "axios";
 
 import "@pankod/refine/dist/styles.min.css";
@@ -32,10 +34,13 @@ axiosInstance.interceptors.response.use(
     },
 );
 
+const routeProvider = routerProvider();
+
 const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL, axiosInstance)}
+            routerProvider={routeProvider}
             resources={[
                 {
                     name: "posts",

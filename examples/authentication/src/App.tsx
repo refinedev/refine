@@ -1,11 +1,14 @@
 import { Refine, AuthProvider } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router";
+
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostEdit, PostShow } from "pages/posts";
 import { DashboardPage } from "pages/dashboard";
 
 const API_URL = "https://api.fake-rest.refine.dev";
+const routeProvider = routerProvider();
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
@@ -39,6 +42,7 @@ const App: React.FC = () => {
         <Refine
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
+            routerProvider={routeProvider}
             DashboardPage={DashboardPage}
             resources={[
                 {

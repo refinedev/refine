@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@pankod/refine": "../../packages/core",
+    "@pankod/refine-react-router": "../../packages/react-router",
     "@pankod/refine-simple-rest": "../../packages/simple-rest",
     "react": "../../node_modules/react",
     "react-dom": "../../node_modules/react-dom",

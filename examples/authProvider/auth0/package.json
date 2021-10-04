@@ -1,38 +1,31 @@
 {
-  "name": "refine-auth0-example",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@auth0/auth0-react": "^1.5.0",
-    "@pankod/refine": "../../../packages/core",
-    "@pankod/refine-simple-rest": "../../../packages/simple-rest",
-    "@types/node": "^12.20.11",
-    "@types/react": "^17.0.4",
-    "@types/react-dom": "^17.0.3",
-    "axios": "^0.21.1",
-    "react": "../../../node_modules/react",
-    "react-dom": "../../../node_modules/react-dom",
-    "react-markdown": "^6.0.1",
-    "react-mde": "^11.1.0",
-    "react-scripts": "4.0.3",
-    "typescript": "^4.2.4",
-    "web-vitals": "^1.1.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "eject": "react-scripts eject"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"name": "refine-auth0-example",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"@auth0/auth0-react": "^1.5.0",
+		"@types/node": "^12.20.11",
+		"@types/react": "^17.0.4",
+		"@types/react-dom": "^17.0.3",
+		"axios": "^0.21.1",
+		"react": "../../../node_modules/react",
+		"react-dom": "../../../node_modules/react-dom",
+		"react-markdown": "^6.0.1",
+		"react-mde": "^11.1.0",
+		"react-scripts": "4.0.3",
+		"typescript": "^4.2.4",
+		"web-vitals": "^1.1.1"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
 }
