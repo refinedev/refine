@@ -1,7 +1,8 @@
 import React from "react";
-import { Row } from "antd";
+import { Row, Table } from "antd";
 
-import { render, MockJSONServer, MockRouterProvider } from "@test";
+import { render, MockJSONServer, MockRouterProvider, TestWrapper } from "@test";
+import { List } from "@components";
 
 import { Refine } from "./index";
 
@@ -65,5 +66,31 @@ describe("Refine Container", () => {
         );
         expect(getByTestId("readyContainer")).toBeTruthy();
         getByText("readyPage rendered with ready prop");
+    });
+
+    it("should render resource prop list page", async () => {
+        const PostList = () => {
+            return (
+                <List>
+                    <Table rowKey="id">
+                        <Table.Column
+                            key="title"
+                            title="Title"
+                            dataIndex="title"
+                        />
+                    </Table>
+                </List>
+            );
+        };
+
+        const { container, getByText, debug } = render(<PostList />, {
+            wrapper: TestWrapper({
+                dataProvider: MockJSONServer,
+                resources: [{ name: "posts" }],
+            }),
+        });
+
+        expect(container).toBeDefined();
+        getByText("Posts");
     });
 });

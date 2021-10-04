@@ -2,7 +2,11 @@ import React from "react";
 
 import { IResourceContext } from "./IResourceContext";
 
-export { IResourceItem } from "./IResourceContext";
+export {
+    IResourceItem,
+    IResourceComponents,
+    IResourceComponentsProps,
+} from "./IResourceContext";
 
 export const ResourceContext = React.createContext<IResourceContext>({
     resources: [],

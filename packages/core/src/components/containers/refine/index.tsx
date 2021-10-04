@@ -23,11 +23,7 @@ import { RefineContextProvider } from "@contexts/refine";
 import { NotificationContextProvider } from "@contexts/notification";
 import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
 import { RouterContextProvider } from "@contexts/router";
-import {
-    ReadyPage as DefaultReadyPage,
-    RouteChangeHandler,
-    Resource,
-} from "@components";
+import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
 import { defaultConfigProviderProps } from "@definitions";
 import {
     MutationMode,
@@ -37,9 +33,8 @@ import {
     LayoutProps,
     TitleProps,
     IRouterProvider,
+    ResourceProps,
 } from "../../../interfaces";
-
-import { ResourceProps } from "../resource";
 
 interface QueryClientConfig {
     queryCache?: QueryCache;
@@ -122,7 +117,7 @@ export const Refine: React.FC<RefineProps> = ({
 
     notification.config({ ...notifcationConfig });
 
-    let isSSr = true;
+    const isSSr = true;
     const resources: IResourceItem[] = [];
 
     resourcesFromProps?.map((resource) => {
@@ -142,7 +137,7 @@ export const Refine: React.FC<RefineProps> = ({
         });
     });
 
-    React.Children.map(children, (child: any) => {
+    /* React.Children.map(children, (child: any) => {
         if (!child) {
             return;
         }
@@ -165,7 +160,7 @@ export const Refine: React.FC<RefineProps> = ({
                 edit: child.props.edit,
             });
         }
-    });
+    }); */
 
     if (resources.length === 0) {
         return ReadyPage ? <ReadyPage /> : <DefaultReadyPage />;
@@ -204,17 +199,14 @@ export const Refine: React.FC<RefineProps> = ({
                                             hasDashboard={!!DashboardPage}
                                         >
                                             <UnsavedWarnContextProvider>
-                                                {isSSr ? (
-                                                    children
-                                                ) : (
-                                                    <>
-                                                        {RouterComponent && (
-                                                            <RouterComponent>
-                                                                <RouteChangeHandler />
-                                                            </RouterComponent>
-                                                        )}
-                                                    </>
-                                                )}
+                                                <>
+                                                    {children}
+                                                    {RouterComponent && (
+                                                        <RouterComponent>
+                                                            <RouteChangeHandler />
+                                                        </RouterComponent>
+                                                    )}
+                                                </>
                                             </UnsavedWarnContextProvider>
                                         </RefineContextProvider>
                                     </NotificationContextProvider>
