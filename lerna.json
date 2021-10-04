@@ -1,7 +1,6 @@
 {
   "packages": [
-    "packages/*",
-    "examples/**/*"
+    "packages/*"
   ],
   "registry": "https://registry.npmjs.org/",
   "npmClient": "npm",
