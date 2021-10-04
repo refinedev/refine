@@ -1,4 +1,4 @@
-import { HttpError, Refine, Resource } from "@pankod/refine";
+import { HttpError, Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-altogic";
 import axios from "axios";
 
@@ -34,16 +34,19 @@ axiosInstance.interceptors.response.use(
 
 const App: React.FC = () => {
     return (
-        <Refine dataProvider={dataProvider(API_URL, axiosInstance)}>
-            <Resource
-                name="post"
-                list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
-                show={PostShow}
-                canDelete
-            />
-        </Refine>
+        <Refine
+            dataProvider={dataProvider(API_URL, axiosInstance)}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                    canDelete: true,
+                },
+            ]}
+        />
     );
 };
 

@@ -1,4 +1,4 @@
-import { Refine, Resource } from "@pankod/refine";
+import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 import "@pankod/refine/dist/styles.min.css";
@@ -13,16 +13,17 @@ const App: React.FC = () => {
             routerProvider={routerProvider()}
             dataProvider={dataProvider(API_URL)}
             warnWhenUnsavedChanges
-        >
-            <Resource
-                name="posts"
-                list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
-                show={PostShow}
-                canDelete
-            />
-        </Refine>
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                    canDelete: true,
+                },
+            ]}
+        />
     );
 };
 

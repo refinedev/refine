@@ -1,4 +1,4 @@
-import { Refine, Resource, AuthProvider } from "@pankod/refine";
+import { Refine, AuthProvider } from "@pankod/refine";
 import { dataProvider } from "@pankod/refine-supabase";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -65,15 +65,16 @@ const App: React.FC = () => {
             dataProvider={dataProvider(supabaseClient)}
             authProvider={authProvider}
             LoginPage={Login}
-        >
-            <Resource
-                name="posts"
-                list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
-                show={PostShow}
-            />
-        </Refine>
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+            ]}
+        />
     );
 };
 

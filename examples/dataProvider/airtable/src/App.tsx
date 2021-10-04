@@ -1,4 +1,4 @@
-import { Refine, Resource } from "@pankod/refine";
+import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-airtable";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -10,22 +10,25 @@ const App: React.FC = () => {
     const BASE_ID = "appkLVJ25X9ZP1P2l";
 
     return (
-        <Refine dataProvider={dataProvider(API_TOKEN, BASE_ID)}>
-            <Resource
-                name="posts"
-                list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
-                show={PostShow}
-            />
-            <Resource
-                name="categories"
-                list={CategoryList}
-                create={CategoryCreate}
-                edit={CategoryEdit}
-                canDelete
-            />
-        </Refine>
+        <Refine
+            dataProvider={dataProvider(API_TOKEN, BASE_ID)}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+                {
+                    name: "categories",
+                    list: CategoryList,
+                    create: CategoryCreate,
+                    edit: CategoryEdit,
+                    canDelete: true,
+                },
+            ]}
+        />
     );
 };
 

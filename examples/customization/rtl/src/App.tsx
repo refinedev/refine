@@ -1,4 +1,4 @@
-import { Refine, Resource } from "@pankod/refine";
+import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -13,9 +13,13 @@ const App: React.FC = () => {
             configProviderProps={{
                 direction: "rtl",
             }}
-        >
-            <Resource name="posts" list={PostList} />
-        </Refine>
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                },
+            ]}
+        />
     );
 };
 

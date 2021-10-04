@@ -1,6 +1,5 @@
 import {
     Refine,
-    Resource,
     AuthProvider,
     Authenticated,
     LayoutWrapper,
@@ -61,15 +60,16 @@ const App: React.FC = () => {
                     path: "/authenticated-page",
                 },
             ]}
-        >
-            <Resource
-                name="posts"
-                list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
-                show={PostShow}
-            />
-        </Refine>
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+            ]}
+        />
     );
 };
 

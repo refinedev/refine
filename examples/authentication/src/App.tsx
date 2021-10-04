@@ -1,4 +1,4 @@
-import { Refine, Resource, AuthProvider } from "@pankod/refine";
+import { Refine, AuthProvider } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -40,14 +40,15 @@ const App: React.FC = () => {
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
             DashboardPage={DashboardPage}
-        >
-            <Resource
-                name="posts"
-                list={PostList}
-                edit={PostEdit}
-                show={PostShow}
-            />
-        </Refine>
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+            ]}
+        />
     );
 };
 

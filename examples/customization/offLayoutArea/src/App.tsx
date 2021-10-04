@@ -1,4 +1,4 @@
-import { Refine, Resource, BackTop, AntdLayout, Grid } from "@pankod/refine";
+import { Refine, BackTop, AntdLayout, Grid } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -39,9 +39,13 @@ const App: React.FC = () => {
                     <BackTop />
                 </>
             )}
-        >
-            <Resource name="posts" list={PostList} />
-        </Refine>
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                },
+            ]}
+        />
     );
 };
 

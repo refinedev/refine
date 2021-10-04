@@ -1,4 +1,4 @@
-import { AuthProvider, Refine, Resource } from "@pankod/refine";
+import { AuthProvider, Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-strapi-graphql";
 import { GraphQLClient } from "graphql-request";
 import "@pankod/refine/dist/styles.min.css";
@@ -104,15 +104,16 @@ const App: React.FC = () => {
             dataProvider={gqlDataProvider}
             authProvider={authProvider}
             LoginPage={Login}
-        >
-            <Resource
-                name="posts"
-                list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
-                show={PostShow}
-            />
-        </Refine>
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+            ]}
+        />
     );
 };
 

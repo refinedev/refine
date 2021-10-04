@@ -1,4 +1,4 @@
-import { Refine, Resource } from "@pankod/refine";
+import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import { useTranslation } from "react-i18next";
 import "@pankod/refine/dist/styles.min.css";
@@ -22,15 +22,16 @@ const App: React.FC = () => {
             dataProvider={dataProvider(API_URL)}
             i18nProvider={i18nProvider}
             Header={Header}
-        >
-            <Resource
-                name="posts"
-                list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
-                show={PostShow}
-            />
-        </Refine>
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+            ]}
+        />
     );
 };
 

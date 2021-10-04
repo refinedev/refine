@@ -1,4 +1,4 @@
-import { Refine, Resource, AuthProvider } from "@pankod/refine";
+import { Refine, AuthProvider } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -64,15 +64,16 @@ const App: React.FC = () => {
             LoginPage={Login}
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL, axios)}
-        >
-            <Resource
-                name="posts"
-                list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
-                show={PostShow}
-            />
-        </Refine>
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+            ]}
+        />
     );
 };
 
