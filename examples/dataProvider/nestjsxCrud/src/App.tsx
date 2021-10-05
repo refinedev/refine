@@ -9,13 +9,11 @@ import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
 
 const API_URL = "https://api.nestjsx-crud.refine.dev";
 
-const routeProvider = routerProvider();
-
 const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            routerProvider={routeProvider}
+            routerProvider={routerProvider}
             resources={[
                 {
                     name: "posts",

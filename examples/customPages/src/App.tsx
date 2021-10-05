@@ -14,8 +14,6 @@ import { PostReview } from "pages/post-review";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
-const routeProvider = routerProvider();
-
 const AuthenticatedPostReview = () => {
     return (
         <Authenticated>
@@ -51,7 +49,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            routerProvider={routeProvider}
+            routerProvider={routerProvider}
             authProvider={authProvider}
             routes={[
                 {

@@ -11,7 +11,6 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Login } from "pages/login";
 
 const API_URL = "https://api.fake-rest.refine.dev";
-const routeProvider = routerProvider();
 
 const App: React.FC = () => {
     const {
@@ -68,7 +67,7 @@ const App: React.FC = () => {
             LoginPage={Login}
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL, axios)}
-            routerProvider={routeProvider}
+            routerProvider={routerProvider}
             resources={[
                 {
                     name: "posts",

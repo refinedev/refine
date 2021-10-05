@@ -8,7 +8,6 @@ import { PostList, PostEdit, PostShow } from "pages/posts";
 import { DashboardPage } from "pages/dashboard";
 
 const API_URL = "https://api.fake-rest.refine.dev";
-const routeProvider = routerProvider();
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
@@ -42,7 +41,7 @@ const App: React.FC = () => {
         <Refine
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
-            routerProvider={routeProvider}
+            routerProvider={routerProvider}
             DashboardPage={DashboardPage}
             resources={[
                 {

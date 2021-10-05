@@ -10,6 +10,8 @@ import {
     Title as DefaultTitle,
 } from "@components/layoutWrapper/components";
 
+import { LoginPage as DefaultLoginPage } from "@components/pages";
+
 export const RefineContext = React.createContext<IRefineContext>({
     hasDashboard: false,
     mutationMode: "pessimistic",
@@ -40,7 +42,7 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
     Sider = DefaultSider,
     Footer = DefaultFooter,
     OffLayoutArea = DefaultOffLayoutArea,
-    LoginPage,
+    LoginPage = DefaultLoginPage,
     catchAll,
 }) => {
     return (

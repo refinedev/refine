@@ -8,6 +8,7 @@ import {
     parseTableParams,
 } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
+import { checkAuthentication } from "@pankod/refine-nextjs-router";
 
 import { IPost } from "src/interfaces";
 
@@ -26,7 +27,7 @@ export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
 
     return (
         <LayoutWrapper>
-            <List>
+            <List title="Users">
                 <Table {...tableProps} rowKey="id">
                     <Table.Column dataIndex="id" title="ID" sorter />
                     <Table.Column dataIndex="firstName" title="Name" />
@@ -38,7 +39,18 @@ export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
 
 export default UserList;
 
+import { authProvider } from "../../src/authProvider";
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
+    const { isAuthenticated, redirect } = await checkAuthentication(
+        authProvider,
+        context,
+    );
+
+    if (!isAuthenticated) {
+        return { redirect };
+    }
+
     const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
         parseTableParams(context.req.url || "");
 

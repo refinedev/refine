@@ -10,13 +10,11 @@ import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
 const API_TOKEN = "keyI18pnBeEMfPAIb";
 const BASE_ID = "appkLVJ25X9ZP1P2l";
 
-const routeProvider = routerProvider();
-
 const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_TOKEN, BASE_ID)}
-            routerProvider={routeProvider}
+            routerProvider={routerProvider}
             resources={[
                 {
                     name: "posts",

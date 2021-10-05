@@ -14,8 +14,6 @@ const API_URL = "https://api.strapi.refine.dev/graphql";
 const client = new GraphQLClient(API_URL);
 const gqlDataProvider = dataProvider(client);
 
-const routeProvider = routerProvider();
-
 const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
         try {
@@ -107,7 +105,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={gqlDataProvider}
-            routerProvider={routeProvider}
+            routerProvider={routerProvider}
             authProvider={authProvider}
             LoginPage={Login}
             resources={[
