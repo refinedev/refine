@@ -9,8 +9,6 @@ import { Login } from "pages/login";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
-const routeProvider = routerProvider();
-
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
         login: ({ gsmNumber, code }) => {
@@ -36,7 +34,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            routerProvider={routeProvider}
+            routerProvider={routerProvider}
             authProvider={authProvider}
             LoginPage={Login}
             resources={[

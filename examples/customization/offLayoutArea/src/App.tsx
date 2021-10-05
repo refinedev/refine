@@ -9,14 +9,12 @@ import { FixedSider } from "components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
-const routeProvider = routerProvider();
-
 const App: React.FC = () => {
     const breakpoint = Grid.useBreakpoint();
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            routerProvider={routeProvider}
+            routerProvider={routerProvider}
             Layout={({ children, Header, Footer, OffLayoutArea }) => (
                 <AntdLayout
                     style={{ minHeight: "100vh", flexDirection: "row" }}

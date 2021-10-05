@@ -9,7 +9,7 @@ import type { ResourceRouterParams } from "@pankod/refine";
 
 import { RouterProvider } from "./routerProvider";
 
-const { useHistory, useLocation, useParams } = RouterProvider();
+const { useHistory, useLocation, useParams } = RouterProvider;
 
 export const NextRouteComponent: React.FC = () => {
     const { resources } = useResource();

@@ -10,7 +10,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={routerProvider()}
+            routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
             warnWhenUnsavedChanges
             resources={[

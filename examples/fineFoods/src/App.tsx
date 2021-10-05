@@ -51,7 +51,7 @@ const App: React.FC = () => {
 
     return (
         <Refine
-            routerProvider={routerProvider()}
+            routerProvider={routerProvider}
             dataProvider={dataProvider}
             authProvider={authProvider}
             i18nProvider={i18nProvider}

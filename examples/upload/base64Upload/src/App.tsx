@@ -8,13 +8,11 @@ import { UserList, UserCreate, UserEdit, UserShow } from "pages/users";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
-const routeProvider = routerProvider();
-
 const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            routerProvider={routeProvider}
+            routerProvider={routerProvider}
             resources={[
                 {
                     name: "users",

@@ -11,8 +11,6 @@ import { Header } from "components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
-const routeProvider = routerProvider();
-
 const App: React.FC = () => {
     const { t, i18n } = useTranslation();
 
@@ -25,7 +23,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            routerProvider={routeProvider}
+            routerProvider={routerProvider}
             i18nProvider={i18nProvider}
             Header={Header}
             resources={[

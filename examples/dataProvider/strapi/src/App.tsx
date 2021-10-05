@@ -11,8 +11,6 @@ import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
 
 import { TOKEN_KEY, API_URL } from "./constants";
 
-const routeProvider = routerProvider();
-
 const App: React.FC = () => {
     const axiosInstance = axios.create();
     const strapiAuthHelper = AuthHelper(API_URL);
@@ -77,7 +75,7 @@ const App: React.FC = () => {
         <Refine
             authProvider={authProvider}
             dataProvider={dataProvider}
-            routerProvider={routeProvider}
+            routerProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
