@@ -34,13 +34,11 @@ axiosInstance.interceptors.response.use(
     },
 );
 
-const routeProvider = routerProvider();
-
 const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL, axiosInstance)}
-            routerProvider={routeProvider}
+            routerProvider={routerProvider}
             resources={[
                 {
                     name: "posts",

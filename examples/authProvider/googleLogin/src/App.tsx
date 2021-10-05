@@ -14,8 +14,6 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const clientId =
     "149954872426-ga5qkfj6v6fjr98p4lbakvf8u6mgtnp6.apps.googleusercontent.com";
 
-const routeProvider = routerProvider();
-
 const App: React.FC = () => {
     const { signOut } = useGoogleLogout({
         clientId,
@@ -66,7 +64,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL, axios)}
-            routerProvider={routeProvider}
+            routerProvider={routerProvider}
             authProvider={authProvider}
             LoginPage={Login}
             resources={[

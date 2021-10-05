@@ -9,13 +9,11 @@ import { CustomSider } from "components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
-const routeProvider = routerProvider();
-
 const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            routerProvider={routeProvider}
+            routerProvider={routerProvider}
             Layout={({ children, Footer, OffLayoutArea }) => (
                 <AntdLayout>
                     <AntdLayout.Header>

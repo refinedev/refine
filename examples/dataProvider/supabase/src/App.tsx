@@ -8,8 +8,6 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Login } from "pages/login";
 import { supabaseClient } from "utility";
 
-const routeProvider = routerProvider();
-
 const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
         const { user, error } = await supabaseClient.auth.signIn({
@@ -67,7 +65,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(supabaseClient)}
-            routerProvider={routeProvider}
+            routerProvider={routerProvider}
             authProvider={authProvider}
             LoginPage={Login}
             resources={[
