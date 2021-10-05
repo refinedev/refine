@@ -8,6 +8,7 @@ import {
     parseTableParams,
 } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
+import { checkAuthentication } from "@pankod/refine-nextjs-router";
 
 import { IPost } from "src/interfaces";
 
@@ -41,26 +42,14 @@ export default UserList;
 import { authProvider } from "../../src/authProvider";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    let isAuthenticated = false;
-    try {
-        await authProvider.checkAuth(context);
-        isAuthenticated = true;
-    } catch (error) {}
-
-    if (!isAuthenticated) {
-        return {
-            redirect: {
-                destination: "/login",
-                permanent: false,
-            },
-        };
-    }
-
-    /*  const { isAuthenticated, redirect } = checkAuthentication(authProvider, context);
+    const { isAuthenticated, redirect } = await checkAuthentication(
+        authProvider,
+        context,
+    );
 
     if (!isAuthenticated) {
         return { redirect };
-    } */
+    }
 
     const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
         parseTableParams(context.req.url || "");
