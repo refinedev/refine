@@ -26,7 +26,7 @@ export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
 
     return (
         <LayoutWrapper>
-            <List>
+            <List title="Users">
                 <Table {...tableProps} rowKey="id">
                     <Table.Column dataIndex="id" title="ID" sorter />
                     <Table.Column dataIndex="firstName" title="Name" />
@@ -38,7 +38,30 @@ export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
 
 export default UserList;
 
+import { authProvider } from "../../src/authProvider";
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
+    let isAuthenticated = false;
+    try {
+        await authProvider.checkAuth(context);
+        isAuthenticated = true;
+    } catch (error) {}
+
+    if (!isAuthenticated) {
+        return {
+            redirect: {
+                destination: "/login",
+                permanent: false,
+            },
+        };
+    }
+
+    /*  const { isAuthenticated, redirect } = checkAuthentication(authProvider, context);
+
+    if (!isAuthenticated) {
+        return { redirect };
+    } */
+
     const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
         parseTableParams(context.req.url || "");
 

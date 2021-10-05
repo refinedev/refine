@@ -10,7 +10,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         isAuthenticated = true;
     } catch (error) {}
 
+    if (!isAuthenticated) {
+        return {
+            redirect: {
+                destination: "/login",
+                permanent: false,
+            },
+        };
+    }
+
     return {
-        props: { isAuthenticated },
+        props: {},
     };
 };
