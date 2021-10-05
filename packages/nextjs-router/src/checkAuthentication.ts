@@ -17,7 +17,7 @@ export const checkAuthentication = async (
     return {
         isAuthenticated,
         redirect: {
-            destination: "/login",
+            destination: `/login?to=${context.req.url}`,
             permanent: false,
         },
     };
