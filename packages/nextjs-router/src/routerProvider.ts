@@ -27,6 +27,7 @@ export const RouterProvider: IRouterProvider = {
                     ([key]) => !["resource", "action", "id"].includes(key),
                 ),
             ),
+            { encode: false },
         );
 
         return {

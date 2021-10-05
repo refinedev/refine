@@ -31,16 +31,14 @@ export const useLogin = <TData, TVariables = {}>(): UseLoginReturnType<
         React.useContext<IAuthContext>(AuthContext);
 
     const { useLocation } = useRouterContext();
-
-    const location = useLocation<{ from: string }>();
-    const { from } = location.state || { from: { pathname: "/" } };
+    const { search } = useLocation();
 
     const queryResponse = useMutation<TData, unknown, TVariables, unknown>(
         "useLogin",
         loginFromContext,
         {
             onSuccess: () => {
-                replace(from);
+                replace(search.substring(4) ?? "/");
                 notification.close("login-error");
             },
             onError: (error: any) => {
