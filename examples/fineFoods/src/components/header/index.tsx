@@ -18,7 +18,7 @@ import {
     useTranslate,
     useList,
 } from "@pankod/refine";
-import { Link } from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router";
 
 import { useTranslation } from "react-i18next";
 import debounce from "lodash/debounce";
@@ -26,6 +26,7 @@ import debounce from "lodash/debounce";
 const { SearchOutlined, DownOutlined } = Icons;
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
+const { Link } = routerProvider;
 
 import { IOrder, IStore, ICourier } from "interfaces";
 import "./style.less";
