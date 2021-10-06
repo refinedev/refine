@@ -18,11 +18,12 @@ import {
     useTranslate,
     useList,
 } from "@pankod/refine";
-import { Link } from "@pankod/refine-react-router";
+import RefineReactRouter from "@pankod/refine-react-router";
 
 import { useTranslation } from "react-i18next";
 import debounce from "lodash/debounce";
 
+const { Link } = RefineReactRouter;
 const { SearchOutlined, DownOutlined } = Icons;
 const { Text } = Typography;
 const { useBreakpoint } = Grid;

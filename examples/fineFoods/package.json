@@ -5,6 +5,9 @@
 	"dependencies": {
 		"@ant-design/charts": "^1.1.9",
 		"@craco/craco": "^6.1.2",
+		"@pankod/refine": "../../packages/core",
+		"@pankod/refine-simple-rest": "../../packages/simple-rest",
+		"@pankod/refine-react-router": "../../packages/react-router",
 		"@testing-library/jest-dom": "^5.12.0",
 		"@testing-library/react": "^11.2.6",
 		"@testing-library/user-event": "^12.8.3",
@@ -32,9 +35,10 @@
 		"web-vitals": "^1.1.1"
 	},
 	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"eject": "react-scripts eject"
+		"start": "craco start",
+		"build": "craco build",
+		"test": "craco test",
+		"eject": "craco eject"
 	},
 	"browserslist": [
 		">0.2%",
