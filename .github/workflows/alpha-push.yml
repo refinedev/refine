@@ -1,0 +1,31 @@
+name: npm Publish Alpha [alpha]
+
+on:
+  push:
+    branches:
+      - alpha
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
+      - run: |
+          npm install
+          npm run lerna bootstrap
+          npm run build
+          npm run lint
+          npm test
+          npm run lerna publish from-package -- --yes --dist-tag alpha
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
