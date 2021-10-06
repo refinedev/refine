@@ -25,7 +25,7 @@ export const RouterProvider: IRouterProvider = {
 
         return {
             pathname,
-            search: `?${queryParams}`,
+            search: queryParams && `?${queryParams}`,
         };
     },
     useParams: <Params>() => {
