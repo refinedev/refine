@@ -14,12 +14,18 @@ export const checkAuthentication = async (
         isAuthenticated = true;
     } catch (error) {}
 
+    const encodeURI = () => {
+        if (context.req.url === "/") {
+            return "/login";
+        }
+
+        return `/login?to=${encodeURIComponent(context.req.url ?? "")}`;
+    };
+
     return {
         isAuthenticated,
         redirect: {
-            destination: `/login?to=${encodeURIComponent(
-                context.req.url ?? "",
-            )}`,
+            destination: encodeURI(),
             permanent: false,
         },
     };

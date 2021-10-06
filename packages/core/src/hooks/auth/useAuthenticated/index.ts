@@ -26,7 +26,7 @@ export const useAuthenticated = (
         {
             retry: false,
             onError: () => {
-                if (pathname !== "/login") {
+                if (pathname !== "/login" && pathname !== "/") {
                     const toURL = `${pathname}${search}`;
                     replace(`/login?to=${encodeURIComponent(toURL)}`);
                 }
