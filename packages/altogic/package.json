@@ -40,7 +40,7 @@
     "tslib": "^2.1.0"
   },
   "dependencies": {
-    "@pankod/refine": "^1.0.0",
+    "@pankod/refine": "^1.1.0",
     "axios": "^0.21.1",
     "query-string": "^7.0.0"
   },

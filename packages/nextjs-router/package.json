@@ -39,7 +39,7 @@
     "tslib": "^2.1.0"
   },
   "dependencies": {
-    "@pankod/refine": "^1.0.0",
+    "@pankod/refine": "^1.1.0",
     "@types/qs": "^6.9.7",
     "next": "^11.1.2",
     "qs": "^6.10.1"
