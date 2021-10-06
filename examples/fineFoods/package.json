@@ -6,6 +6,7 @@
 		"@ant-design/charts": "^1.1.9",
 		"@craco/craco": "^6.1.2",
 		"@pankod/refine": "file:../../packages/core",
+		"@pankod/refine-react-router": "file:../../packages/react-router",
 		"@pankod/refine-simple-rest": "file:../../packages/simple-rest",
 		"@testing-library/jest-dom": "^5.12.0",
 		"@testing-library/react": "^11.2.6",
