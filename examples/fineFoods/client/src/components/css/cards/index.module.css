@@ -1,0 +1,20 @@
+.cards {
+    display: flex;
+    flex-flow: row wrap;
+    flex: 1;
+    padding-bottom: 1rem;
+}
+
+.cardWrapper {
+    width: 25%;
+}
+
+@media (max-width: 575px) {
+    .cards {
+        flex-direction: column;
+    }
+
+    .cardWrapper {
+        width: 100%;
+    }
+}
