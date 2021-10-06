@@ -79,7 +79,7 @@ Access to external sources and API's happen via providers which are basically pl
 <br/>
 
 <div align="center">
-    <img src="documentation/static/img/getting-started/refine_architecture.jpg" width="400px" />
+    <img src="documentation/static/img/getting-started/refine_architecture.png" width="400px" />
 </div>
 
 
