@@ -1,10 +1,11 @@
 {
-  "name": "refine-base-example",
+  "name": "refine-altogic-example",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@pankod/refine": "../../../packages/core",
     "@pankod/refine-altogic": "../../../packages/altogic",
+    "@pankod/refine-react-router": "../../../packages/react-router",
     "@types/node": "^12.20.11",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.3",

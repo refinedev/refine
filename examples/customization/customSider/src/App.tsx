@@ -1,5 +1,6 @@
-import { Refine, Resource, Link } from "@pankod/refine";
+import { Refine, Link } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router";
 
 import "@pankod/refine/dist/styles.min.css";
 import "./index.css";
@@ -13,6 +14,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
+            routerProvider={routerProvider}
             Sider={CustomSider}
             Title={({ collapsed }) => (
                 <Link to="/">
@@ -39,9 +41,13 @@ const App: React.FC = () => {
                     )}
                 </Link>
             )}
-        >
-            <Resource name="posts" list={PostList} />
-        </Refine>
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                },
+            ]}
+        />
     );
 };
 

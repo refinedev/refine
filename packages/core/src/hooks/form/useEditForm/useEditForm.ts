@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { useForm as useFormSF } from "sunflower-antd";
 import { Form, FormInstance, FormProps } from "antd";
-import { useParams } from "react-router-dom";
 import { QueryObserverResult } from "react-query";
 
 import {
@@ -10,6 +9,7 @@ import {
     useUpdate,
     useWarnAboutChange,
     useRedirectionAfterSubmission,
+    useRouterContext,
 } from "@hooks";
 import { UseUpdateReturnType } from "../../data/useUpdate";
 
@@ -118,6 +118,8 @@ export const useEditForm = <
     const { mutationMode: mutationModeContext } = useMutationMode();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
+
+    const { useParams } = useRouterContext();
 
     const { id: idFromRoute, action } = useParams<ResourceRouterParams>();
     const isEdit = !!editId || action === "edit";

@@ -65,10 +65,11 @@ export const NotificationContextProvider: React.FC = ({ children }) => {
     return (
         <NotificationContext.Provider value={notificationData}>
             {children}
-            {createPortal(
-                <Notification notifications={notifications} />,
-                document.body,
-            )}
+            {typeof window !== "undefined" &&
+                createPortal(
+                    <Notification notifications={notifications} />,
+                    document.body,
+                )}
         </NotificationContext.Provider>
     );
 };

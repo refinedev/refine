@@ -12,5 +12,13 @@ COPY . /opt/app
 
 RUN npm run build
 
-CMD npm run serve -- --build --port 80 --host 0.0.0.0
+FROM node:14-alpine
 
+COPY --from=0 /opt/app/build /opt/app
+WORKDIR /opt/app/
+
+ENV NODE_ENV=production
+
+RUN npm install -g serve
+
+CMD serve -l 80

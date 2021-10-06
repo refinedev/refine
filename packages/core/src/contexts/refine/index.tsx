@@ -10,12 +10,15 @@ import {
     Title as DefaultTitle,
 } from "@components/layoutWrapper/components";
 
+import { LoginPage as DefaultLoginPage } from "@components/pages";
+
 export const RefineContext = React.createContext<IRefineContext>({
     hasDashboard: false,
     mutationMode: "pessimistic",
     warnWhenUnsavedChanges: false,
     syncWithLocation: false,
     undoableTimeout: 5000,
+    customRoutes: [],
     Title: DefaultTitle,
     Sider: DefaultSider,
     Header: DefaultHeader,
@@ -30,13 +33,17 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
     warnWhenUnsavedChanges,
     syncWithLocation,
     undoableTimeout,
+    customRoutes,
     children,
+    DashboardPage,
     Title = DefaultTitle,
     Layout = DefaultLayout,
     Header = DefaultHeader,
     Sider = DefaultSider,
     Footer = DefaultFooter,
     OffLayoutArea = DefaultOffLayoutArea,
+    LoginPage = DefaultLoginPage,
+    catchAll,
 }) => {
     return (
         <RefineContext.Provider
@@ -47,11 +54,15 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
                 syncWithLocation,
                 Title,
                 undoableTimeout,
+                customRoutes,
                 Layout,
                 Header,
                 Sider,
                 Footer,
                 OffLayoutArea,
+                DashboardPage,
+                LoginPage,
+                catchAll,
             }}
         >
             {children}

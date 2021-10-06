@@ -1,6 +1,9 @@
-import { Refine, Resource } from "@pankod/refine";
+import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router";
+
 import { useTranslation } from "react-i18next";
+
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -20,17 +23,19 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
+            routerProvider={routerProvider}
             i18nProvider={i18nProvider}
             Header={Header}
-        >
-            <Resource
-                name="posts"
-                list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
-                show={PostShow}
-            />
-        </Refine>
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+            ]}
+        />
     );
 };
 

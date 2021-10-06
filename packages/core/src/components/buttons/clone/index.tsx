@@ -1,9 +1,8 @@
 import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { PlusSquareOutlined } from "@ant-design/icons";
-import { useParams } from "react-router-dom";
 
-import { useNavigation, useTranslate } from "@hooks";
+import { useNavigation, useRouterContext, useTranslate } from "@hooks";
 import { ResourceRouterParams } from "../../../interfaces";
 
 type CloneButtonProps = ButtonProps & {
@@ -28,6 +27,8 @@ export const CloneButton: FC<CloneButtonProps> = ({
 }) => {
     const { clone } = useNavigation();
     const translate = useTranslate();
+
+    const { useParams } = useRouterContext();
 
     const { resource: routeResourceName, id: idFromRoute } =
         useParams<ResourceRouterParams>();

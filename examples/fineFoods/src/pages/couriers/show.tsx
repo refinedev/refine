@@ -47,6 +47,7 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
         queryOptions: {
             enabled: courier !== undefined,
         },
+        syncWithLocation: false,
     });
 
     const t = useTranslate();

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import { Refine, Resource, Icons, Icon } from "@pankod/refine";
+import { Refine, Icons } from "@pankod/refine";
 import jsonServerDataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router";
 import de_DE from "@pankod/refine/node_modules/antd/lib/locale/de_DE";
 import { authProvider } from "authProvider";
 import dayjs from "dayjs";
@@ -50,6 +51,7 @@ const App: React.FC = () => {
 
     return (
         <Refine
+            routerProvider={routerProvider}
             dataProvider={dataProvider}
             authProvider={authProvider}
             i18nProvider={i18nProvider}
@@ -62,42 +64,51 @@ const App: React.FC = () => {
             configProviderProps={{
                 locale: locale === "de" ? de_DE : undefined,
             }}
-        >
-            <Resource
-                name="orders"
-                list={OrderList}
-                show={OrderShow}
-                icon={<Icons.ShoppingOutlined />}
-            />
-            <Resource
-                name="users"
-                list={UserList}
-                show={UserShow}
-                icon={<Icons.UsergroupAddOutlined />}
-            />
-            <Resource name="products" list={ProductList} icon={<PizzaIcon />} />
-            <Resource
-                name="stores"
-                list={StoreList}
-                edit={StoreEdit}
-                create={StoreCreate}
-                icon={<Icons.ShopOutlined />}
-            />
-            <Resource name="categories" list={CategoryList} />
-            <Resource
-                name="couriers"
-                list={CourierList}
-                show={CourierShow}
-                create={CouriersCreate}
-                edit={CouriersEdit}
-                icon={<BikeWhiteIcon />}
-            />
-            <Resource
-                name="reviews"
-                list={ReviewsList}
-                icon={<Icons.StarOutlined />}
-            />
-        </Refine>
+            resources={[
+                {
+                    name: "orders",
+                    list: OrderList,
+                    show: OrderShow,
+                    icon: <Icons.ShoppingOutlined />,
+                },
+                {
+                    name: "users",
+                    list: UserList,
+                    show: UserShow,
+                    icon: <Icons.UsergroupAddOutlined />,
+                },
+                {
+                    name: "products",
+                    list: ProductList,
+                    icon: <PizzaIcon />,
+                },
+
+                {
+                    name: "stores",
+                    list: StoreList,
+                    edit: StoreEdit,
+                    create: StoreCreate,
+                    icon: <Icons.ShopOutlined />,
+                },
+                {
+                    name: "categories",
+                    list: CategoryList,
+                },
+                {
+                    name: "couriers",
+                    list: CourierList,
+                    show: CourierShow,
+                    create: CouriersCreate,
+                    edit: CouriersEdit,
+                    icon: <BikeWhiteIcon />,
+                },
+                {
+                    name: "reviews",
+                    list: ReviewsList,
+                    icon: <Icons.StarOutlined />,
+                },
+            ]}
+        ></Refine>
     );
 };
 

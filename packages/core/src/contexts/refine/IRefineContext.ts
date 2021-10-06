@@ -1,6 +1,7 @@
 import React from "react";
 
 import { MutationMode, TitleProps, LayoutProps } from "../../interfaces";
+import { RouteProps } from "react-router-dom";
 
 export interface IRefineContext {
     hasDashboard: boolean;
@@ -8,6 +9,10 @@ export interface IRefineContext {
     warnWhenUnsavedChanges: boolean;
     syncWithLocation: boolean;
     undoableTimeout: number;
+    customRoutes: RouteProps[];
+    catchAll?: React.ReactNode;
+    DashboardPage?: React.FC;
+    LoginPage?: React.FC | false;
     Title: React.FC<TitleProps>;
     Layout: React.FC<LayoutProps>;
     Sider: React.FC;
@@ -22,6 +27,10 @@ export interface IRefineContextProvider {
     warnWhenUnsavedChanges: boolean;
     syncWithLocation: boolean;
     undoableTimeout: number;
+    customRoutes: RouteProps[];
+    catchAll?: React.ReactNode;
+    DashboardPage?: React.FC;
+    LoginPage?: React.FC | false;
     Title?: React.FC<TitleProps>;
     Layout?: React.FC<LayoutProps>;
     Sider?: React.FC;

@@ -1,4 +1,16 @@
-import { IDataContext } from "../src/interfaces";
+import {
+    useHistory,
+    useParams,
+    useLocation,
+    BrowserRouter,
+    Prompt,
+    Link,
+    Redirect,
+    Route,
+    Switch,
+} from "react-router-dom";
+
+import { IDataContext, IRouterContext } from "../src/interfaces";
 
 export const posts = [
     {
@@ -42,3 +54,11 @@ const MockDataProvider = () => {
 };
 
 export const MockJSONServer = MockDataProvider() as IDataContext;
+
+export const MockRouterProvider: IRouterContext = {
+    useHistory,
+    useLocation,
+    useParams,
+    Link,
+    Prompt: () => null,
+};

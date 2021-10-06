@@ -1,9 +1,13 @@
 import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { RedoOutlined } from "@ant-design/icons";
-import { useParams } from "react-router-dom";
 
-import { useOne, useResourceWithRoute, useTranslate } from "@hooks";
+import {
+    useOne,
+    useResourceWithRoute,
+    useRouterContext,
+    useTranslate,
+} from "@hooks";
 import { MetaDataQuery, ResourceRouterParams } from "../../../interfaces";
 
 type RefreshButtonProps = ButtonProps & {
@@ -29,6 +33,8 @@ export const RefreshButton: FC<RefreshButtonProps> = ({
 }) => {
     const translate = useTranslate();
     const resourceWithRoute = useResourceWithRoute();
+
+    const { useParams } = useRouterContext();
 
     const { resource: routeResourceName, id: idFromRoute } =
         useParams<ResourceRouterParams>();

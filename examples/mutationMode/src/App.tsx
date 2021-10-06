@@ -1,6 +1,8 @@
-import { Refine, Resource, BackTop } from "@pankod/refine";
+import { Refine, BackTop } from "@pankod/refine";
 import { DemoSidebar, useDemoSidebar } from "@pankod/refine-demo-sidebar";
 import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router";
+
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -13,6 +15,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
+            routerProvider={routerProvider}
             OffLayoutArea={() => (
                 <>
                     <BackTop />
@@ -20,15 +23,16 @@ const App: React.FC = () => {
                 </>
             )}
             {...refineProps}
-        >
-            <Resource
-                name="posts"
-                list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
-                show={PostShow}
-            />
-        </Refine>
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+            ]}
+        />
     );
 };
 

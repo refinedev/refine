@@ -13,8 +13,7 @@ import {
     CrudSorting,
     MetaDataQuery,
 } from "../../interfaces";
-import { useTranslate } from "@hooks/translate";
-import { useCheckError } from "@hooks";
+import { useCheckError, useTranslate } from "@hooks";
 import { handleNotification } from "@definitions";
 
 interface UseListConfig {

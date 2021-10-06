@@ -1,9 +1,8 @@
 import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { PlusSquareOutlined } from "@ant-design/icons";
-import { useParams } from "react-router-dom";
 
-import { useNavigation, useTranslate } from "@hooks";
+import { useNavigation, useRouterContext, useTranslate } from "@hooks";
 import { ResourceRouterParams } from "../../../interfaces";
 
 export type CreateButtonProps = ButtonProps & {
@@ -26,6 +25,8 @@ export const CreateButton: FC<CreateButtonProps> = ({
 }) => {
     const translate = useTranslate();
     const { create } = useNavigation();
+
+    const { useParams } = useRouterContext();
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 

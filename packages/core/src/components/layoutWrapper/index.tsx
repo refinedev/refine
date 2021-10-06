@@ -1,7 +1,6 @@
 import React, { FC, useContext, useEffect } from "react";
-import { Prompt } from "react-router-dom";
 
-import { useTranslate, useWarnAboutChange } from "@hooks";
+import { useRouterContext, useTranslate, useWarnAboutChange } from "@hooks";
 import { RefineContext } from "@contexts/refine";
 import { IRefineContext } from "@contexts/refine/IRefineContext";
 import { LayoutProps, TitleProps } from "../../interfaces";
@@ -54,9 +53,11 @@ export const LayoutWrapper: FC<LayoutWrapperProps> = ({
 };
 
 const UnsavedPrompt: React.FC = () => {
+    const { Prompt } = useRouterContext();
+
     const translate = useTranslate();
 
-    const { warnWhen } = useWarnAboutChange();
+    const { warnWhen, setWarnWhen } = useWarnAboutChange();
 
     const warnWhenListener = (e: {
         preventDefault: () => void;
@@ -87,6 +88,7 @@ const UnsavedPrompt: React.FC = () => {
                 "warnWhenUnsavedChanges",
                 "Are you sure you want to leave? You have unsaved changes.",
             )}
+            setWarnWhen={setWarnWhen}
         />
     );
 };

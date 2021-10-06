@@ -26,6 +26,7 @@ yarn-error.log*
 example/.eslintcache
 example/.cache
 
-examples/**/*/package-lock.json
+examples/*/package-lock.json
+!examples/fineFoods/package-lock.json
 
 .next
