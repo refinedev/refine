@@ -3,7 +3,7 @@ id: overview
 title: Overview
 ---
 
-import architectureDiagram from '@site/static/img/getting-started/refine_architecture.jpg';
+import architectureDiagram from '@site/static/img/getting-started/refine_architecture.png';
 
 import benchmarkChart from '@site/static/img/getting-started/benchmark.png';
 
