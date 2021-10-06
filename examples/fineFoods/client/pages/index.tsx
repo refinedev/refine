@@ -1,22 +1,20 @@
-import React from "react";
+export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
+import { GetServerSideProps } from "next";
+import { checkAuthentication } from "@pankod/refine-nextjs-router";
 
-import { Header, Main, Cards, Footer } from "@components/css";
+import { authProvider } from "../src/authProvider";
 
-const Home: React.FC = () => {
-    return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                minHeight: "100vh",
-            }}
-        >
-            <Header />
-            <Main />
-            <Cards />
-            <Footer />
-        </div>
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const { isAuthenticated, redirect } = await checkAuthentication(
+        authProvider,
+        context,
     );
-};
 
-export default Home;
+    if (!isAuthenticated) {
+        return { redirect };
+    }
+
+    return {
+        props: {},
+    };
+};
