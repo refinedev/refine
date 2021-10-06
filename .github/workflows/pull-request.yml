@@ -39,14 +39,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Set up kubectl
-        uses: matootie/dokube@v1.3.4
-        with:
-          personalAccessToken: ${{ secrets.DIGITALOCEAN_TOKEN }}
-          clusterName: pankod-k8s
-          expirationTime: 1200
-      - name: Get nodes
-        run: kubectl get nodes
       - name: backoffice docker build
         uses: docker/build-push-action@v1
         with:
@@ -55,6 +47,14 @@ jobs:
           registry: docker.pkg.github.com
           repository: pankod/refine/refine-example
           tag_with_sha: true
+      - name: Set up kubectl
+        uses: matootie/dokube@v1.3.4
+        with:
+          personalAccessToken: ${{ secrets.DIGITALOCEAN_TOKEN }}
+          clusterName: pankod-k8s
+          expirationTime: 1200
+      - name: Get nodes
+        run: kubectl get nodes
       - name: Deploy refine-example to k8s
         run: |
           cd examples/fineFoods

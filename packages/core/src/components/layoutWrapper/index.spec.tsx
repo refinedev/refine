@@ -44,6 +44,7 @@ describe("LayoutWrapper", () => {
             // Header: CustomHeader,
             Footer: CustomFooter,
             OffLayoutArea: CustomOffLayoutArea,
+            customRoutes: [],
         });
 
         expect(screen.getByText(customSiderContent));
@@ -92,6 +93,7 @@ describe("LayoutWrapper", () => {
             Header: CustomHeader,
             Footer: CustomFooter,
             OffLayoutArea: CustomOffLayoutArea,
+            customRoutes: [],
         });
 
         expect(getByText(customSiderContent));
@@ -111,6 +113,7 @@ describe("LayoutWrapper", () => {
             undoableTimeout: 5000,
             hasDashboard: false,
             Title: CustomTitle,
+            customRoutes: [],
         });
 
         expect(getByText(customTitleContent));
@@ -164,6 +167,7 @@ describe("LayoutWrapper", () => {
                 syncWithLocation: false,
                 undoableTimeout: 5000,
                 hasDashboard: false,
+                customRoutes: [],
             },
         );
 

@@ -3,7 +3,17 @@ import { ReactNode } from "react";
 export interface IResourceContext {
     resources: IResourceItem[];
 }
+export interface OptionsProps {
+    label?: string;
+    route?: string;
+}
 
+export interface ResourceProps extends IResourceComponents {
+    name: string;
+    canDelete?: boolean;
+    icon?: ReactNode;
+    options?: OptionsProps;
+}
 export interface IResourceComponentsProps {
     canCreate?: boolean;
     canEdit?: boolean;

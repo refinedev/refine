@@ -1,10 +1,9 @@
 import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { BarsOutlined } from "@ant-design/icons";
-import { useParams } from "react-router-dom";
 import humanizeString from "humanize-string";
 
-import { useNavigation, useTranslate } from "@hooks";
+import { useNavigation, useRouterContext, useTranslate } from "@hooks";
 import { ResourceRouterParams } from "../../../interfaces";
 
 type ListButtonProps = ButtonProps & {
@@ -27,6 +26,8 @@ export const ListButton: FC<ListButtonProps> = ({
 }) => {
     const { list } = useNavigation();
     const translate = useTranslate();
+
+    const { useParams } = useRouterContext();
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 

@@ -13,5 +13,6 @@ export interface IAuthContext {
     getPermissions: (params?: any) => Promise<any>;
     getUserIdentity?: () => Promise<any>;
     isProvided?: boolean;
+    isAuthenticated?: boolean;
     [key: string]: any;
 }

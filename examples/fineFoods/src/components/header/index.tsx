@@ -17,8 +17,9 @@ import {
     useGetIdentity,
     useTranslate,
     useList,
-    Link,
 } from "@pankod/refine";
+import { Link } from "@pankod/refine-react-router";
+
 import { useTranslation } from "react-i18next";
 import debounce from "lodash/debounce";
 
@@ -116,7 +117,7 @@ export const Header: React.FC = () => {
                     setOptions((prevOptions) => [
                         ...prevOptions,
                         {
-                            label: renderTitle(t("stores.title")),
+                            label: renderTitle(t("stores.stores")),
                             options: storeOptionGroup,
                         },
                     ]);
@@ -144,7 +145,7 @@ export const Header: React.FC = () => {
                     setOptions((prevOptions) => [
                         ...prevOptions,
                         {
-                            label: renderTitle(t("couriers.title")),
+                            label: renderTitle(t("couriers.couriers")),
                             options: courierOptionGroup,
                         },
                     ]);

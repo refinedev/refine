@@ -73,6 +73,11 @@ const siteConfig = {
                     position: "left",
                 },
                 {
+                    type: "docsVersionDropdown",
+                    position: "right",
+                    dropdownActiveClassDisabled: true,
+                },
+                {
                     href: "https://github.com/pankod/refine",
                     position: "right",
                     className: "header-icon-link header-github-link",
