@@ -17,7 +17,9 @@ export const checkAuthentication = async (
     return {
         isAuthenticated,
         redirect: {
-            destination: `/login?to=${context.req.url}`,
+            destination: `/login?to=${encodeURIComponent(
+                context.req.url ?? "",
+            )}`,
             permanent: false,
         },
     };

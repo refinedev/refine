@@ -1,6 +1,7 @@
 import React from "react";
 import { useMutation, UseMutationResult } from "react-query";
 import { notification } from "antd";
+import qs from "qs";
 
 import { AuthContext } from "@contexts/auth";
 
@@ -33,12 +34,14 @@ export const useLogin = <TData, TVariables = {}>(): UseLoginReturnType<
     const { useLocation } = useRouterContext();
     const { search } = useLocation();
 
+    const { to } = qs.parse(search.substring(1));
+
     const queryResponse = useMutation<TData, unknown, TVariables, unknown>(
         "useLogin",
         loginFromContext,
         {
             onSuccess: () => {
-                replace(search.substring(4) ?? "/");
+                replace((to as string) ?? "/");
                 notification.close("login-error");
             },
             onError: (error: any) => {

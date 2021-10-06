@@ -21,14 +21,7 @@ export const RouterProvider: IRouterProvider = {
         const router = useRouter();
         const { pathname, query } = router;
 
-        const queryParams = qs.stringify(
-            Object.fromEntries(
-                Object.entries(query).filter(
-                    ([key]) => !["resource", "action", "id"].includes(key),
-                ),
-            ),
-            { encode: false },
-        );
+        const queryParams = qs.stringify(query);
 
         return {
             pathname,
