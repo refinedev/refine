@@ -3,6 +3,7 @@ import { GraphQLClient } from "graphql-request";
 import * as gql from "gql-query-builder";
 import pluralize from "pluralize";
 import camelCase from "camelcase";
+import { stringify } from "query-string";
 
 const genereteSort = (sort?: CrudSorting) => {
     if (sort && sort.length > 0) {
@@ -28,7 +29,7 @@ const generateFilter = (filters?: CrudFilters) => {
     return queryFilters;
 };
 
-const dataProvider = (client: GraphQLClient): DataProvider => {
+const dataProvider = (client: GraphQLClient, apiUrl: string): DataProvider => {
     return {
         getList: async ({ resource, pagination, sort, filters, metaData }) => {
             const current = pagination?.current || 1;
@@ -53,16 +54,16 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                 fields: metaData?.fields,
             });
 
-            const response = await client.request(query, variables);
-
-            const countRequest = await fetch(
-                `https://api.strapi.refine.dev/${resource}/count`,
-            );
-            const count = await countRequest.json();
+            const response = await Promise.all([
+                client.request(query, variables),
+                fetch(
+                    `${apiUrl}/${resource}/count?${stringify(filterBy)}`,
+                ).then((res) => res.json()),
+            ]);
 
             return {
-                data: response[operation],
-                total: count,
+                data: response[0][operation],
+                total: response[1],
             };
         },
 
