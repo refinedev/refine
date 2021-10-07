@@ -6,10 +6,11 @@ import "@pankod/refine/dist/styles.min.css";
 import { Login } from "pages/login";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
-const API_URL = "https://api.strapi.refine.dev/graphql";
+const GRAPHQL_API_URL = "https://api.strapi.refine.dev/graphql";
+const REST_API_URL = "https://api.strapi.refine.dev";
 
-const client = new GraphQLClient(API_URL);
-const gqlDataProvider = dataProvider(client);
+const client = new GraphQLClient(GRAPHQL_API_URL);
+const gqlDataProvider = dataProvider(client, REST_API_URL);
 
 const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
