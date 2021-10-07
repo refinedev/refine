@@ -26,7 +26,11 @@ export const NextRouteComponent: React.FC = () => {
 
     if (pathname === "/") {
         if (DashboardPage) {
-            return <DashboardPage />;
+            return (
+                <LayoutWrapper>
+                    <DashboardPage />
+                </LayoutWrapper>
+            );
         } else {
             if (isServer) push(`/${resources[0].route}`);
             return null;

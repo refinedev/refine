@@ -7,7 +7,17 @@
     Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
+// custom finefoods colors
+@finefoods-orange: rgba(250, 140, 22, 1);
+
 // colors
 @primary-color: #67be23;
 @error-color: #fa541c;
 @text-color: #626262;
+
+@layout-body-background: @finefoods-orange;
+@layout-footer-background: linear-gradient(180deg, #FB7A32 0%, @finefoods-orange 100%);
+
+@text-color: fade(@black, 85%);
+@text-color-secondary: fade(@black, 45%);
+@text-color-inverse: @white;

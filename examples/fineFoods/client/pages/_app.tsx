@@ -5,13 +5,7 @@ import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-nextjs-router";
 
-import {
-    PostList,
-    PostCreate,
-    PostEdit,
-    PostShow,
-    HomePage,
-} from "@components";
+import { Layout, HomePage, Header, Footer } from "@components";
 import { authProvider } from "../src/authProvider";
 
 // import "@pankod/refine/dist/styles.min.css";
@@ -26,20 +20,25 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             dataProvider={dataProvider(API_URL)}
             authProvider={authProvider}
             DashboardPage={HomePage}
+            Layout={Layout}
+            Header={Header}
+            Footer={Footer}
             resources={[
-                // { name: "users" },
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                    canDelete: true,
-                },
+                { name: "users" },
+                // {
+                //     name: "posts",
+                //     list: PostList,
+                //     create: PostCreate,
+                //     edit: PostEdit,
+                //     show: PostShow,
+                //     canDelete: true,
+                // },
             ]}
             warnWhenUnsavedChanges={true}
         >
+            {/* <Layout> */}
             <Component {...pageProps} hede="1" />
+            {/* </Layout> */}
         </Refine>
     );
 }
