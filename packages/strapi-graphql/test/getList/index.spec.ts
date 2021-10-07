@@ -10,9 +10,9 @@ describe("getList", () => {
                 fields: ["id", "title"],
             },
         });
-        expect(data[0]["id"]).toBe("21");
-        expect(data[0]["title"]).toBe("Another New Post");
-        expect(total).toBe(97);
+        expect(data[0]["id"]).toBe("1050");
+        expect(data[0]["title"]).toBe("Numquam accusamus adipisci et.");
+        expect(total).toBe(98);
     });
 
     it("correct sorting response", async () => {
@@ -29,19 +29,21 @@ describe("getList", () => {
             },
         });
 
-        expect(data[0]["id"]).toBe("7");
-        expect(data[0]["title"]).toBe("GraphQl 3");
-        expect(total).toBe(97);
+        expect(data[0]["id"]).toBe("65");
+        expect(data[0]["title"]).toBe(
+            "Delectus neque rerum nulla vel reiciendis.",
+        );
+        expect(total).toBe(98);
     });
 
     it("correct filter response", async () => {
-        const { data } = await dataProvider(client).getList({
+        const { data, total } = await dataProvider(client).getList({
             resource: "posts",
             filters: [
                 {
                     field: "title",
                     operator: "eq",
-                    value: "GraphQl 3",
+                    value: "Delectus neque rerum nulla vel reiciendis.",
                 },
             ],
             metaData: {
@@ -49,11 +51,14 @@ describe("getList", () => {
             },
         });
 
-        expect(data[0]["title"]).toBe("GraphQl 3");
+        expect(data[0]["title"]).toBe(
+            "Delectus neque rerum nulla vel reiciendis.",
+        );
+        expect(total).toBe(2);
     });
 
     it("correct filter and sort response", async () => {
-        const response = await dataProvider(client).getList({
+        const { data, total } = await dataProvider(client).getList({
             resource: "posts",
             filters: [
                 {
@@ -73,7 +78,8 @@ describe("getList", () => {
             },
         });
 
-        expect(response.data[0]["id"]).toBe("21");
-        expect(response.data[0]["category"].title).toBe("Demo");
+        expect(data[0]["id"]).toBe("824");
+        expect(data[0]["category"].title).toBe("Demo");
+        expect(total).toBe(33);
     });
 });

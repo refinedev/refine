@@ -3,6 +3,7 @@ import { GraphQLClient } from "graphql-request";
 import * as gql from "gql-query-builder";
 import pluralize from "pluralize";
 import camelCase from "camelcase";
+import { stringify } from "query-string";
 
 const genereteSort = (sort?: CrudSorting) => {
     if (sort && sort.length > 0) {
@@ -53,16 +54,19 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                 fields: metaData?.fields,
             });
 
-            const response = await client.request(query, variables);
+            const domain = new URL(client["url"]);
+            const restApiUrl = domain.origin;
 
-            const countRequest = await fetch(
-                `https://api.strapi.refine.dev/${resource}/count`,
-            );
-            const count = await countRequest.json();
+            const response = await Promise.all([
+                client.request(query, variables),
+                fetch(
+                    `${restApiUrl}/${resource}/count?${stringify(filterBy)}`,
+                ).then((res) => res.json()),
+            ]);
 
             return {
-                data: response[operation],
-                total: count,
+                data: response[0][operation],
+                total: response[1],
             };
         },
 
