@@ -29,7 +29,7 @@ const generateFilter = (filters?: CrudFilters) => {
     return queryFilters;
 };
 
-const dataProvider = (client: GraphQLClient, apiUrl: string): DataProvider => {
+const dataProvider = (client: GraphQLClient): DataProvider => {
     return {
         getList: async ({ resource, pagination, sort, filters, metaData }) => {
             const current = pagination?.current || 1;
@@ -54,10 +54,12 @@ const dataProvider = (client: GraphQLClient, apiUrl: string): DataProvider => {
                 fields: metaData?.fields,
             });
 
+            const restApiUrl = client["url"].replace("/graphql", "");
+
             const response = await Promise.all([
                 client.request(query, variables),
                 fetch(
-                    `${apiUrl}/${resource}/count?${stringify(filterBy)}`,
+                    `${restApiUrl}/${resource}/count?${stringify(filterBy)}`,
                 ).then((res) => res.json()),
             ]);
 
