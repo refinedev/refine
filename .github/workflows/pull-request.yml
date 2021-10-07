@@ -7,7 +7,7 @@ on:
       - opened
       - reopened
     paths:
-      - "examples/fineFoods/**"
+      - "examples/fineFoods/admin/**"
       - "packages/**"
 
 jobs:
@@ -57,7 +57,7 @@ jobs:
         run: kubectl get nodes
       - name: Deploy refine-example to k8s
         run: |
-          cd examples/fineFoods
+          cd examples/fineFoods/admin
           mv ./k8s/refine-example/Chart.yaml ./k8s/refine-example/Chart.old.yaml &&
           cat ./k8s/refine-example/Chart.old.yaml | grep -v appVersion > ./k8s/refine-example/Chart.yaml &&
           echo -e "\r\nappVersion: sha-${GITHUB_SHA::7}\r\n" >> ./k8s/refine-example/Chart.yaml &&

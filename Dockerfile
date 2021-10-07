@@ -14,7 +14,7 @@ RUN npm run lerna bootstrap
 RUN npm run build
 
 #Example 
-WORKDIR /opt/app/examples/fineFoods
+WORKDIR /opt/app/examples/fineFoods/admin
 
 RUN npm install
 
@@ -22,7 +22,7 @@ RUN npm run build
 
 FROM node:14-alpine
 
-COPY --from=0 /opt/app/examples/fineFoods/build /opt/app
+COPY --from=0 /opt/app/examples/fineFoods/admin/build /opt/app
 WORKDIR /opt/app/
 
 ENV NODE_ENV=production
