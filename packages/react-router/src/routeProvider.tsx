@@ -167,19 +167,18 @@ const RouteProviderBase: React.FC = () => {
                         return null;
                     }
 
+                    const { pathname, search } = location;
+                    const toURL = `${pathname}${search}`;
+
                     return (
                         <Redirect
-                            to={{
-                                pathname: "/",
-                                state: { from: location },
-                            }}
+                            to={`/login?to=${encodeURIComponent(toURL)}`}
                         />
                     );
                 }}
             />
         </Switch>
     );
-
     return isAuthenticated ? renderAuthorized() : renderUnauthorized();
 };
 

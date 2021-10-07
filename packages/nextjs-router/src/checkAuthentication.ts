@@ -15,11 +15,11 @@ export const checkAuthentication = async (
     } catch (error) {}
 
     const encodeURI = () => {
-        if (context.req.url === "/") {
+        if (context.req.url === "/" || context.req.url === undefined) {
             return "/login";
         }
 
-        return `/login?to=${encodeURIComponent(context.req.url ?? "")}`;
+        return `/login?to=${encodeURIComponent(context.req.url)}`;
     };
 
     return {
