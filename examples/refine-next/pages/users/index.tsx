@@ -51,8 +51,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         return { redirect };
     }
 
+    const { resolvedUrl } = context;
+    const index = resolvedUrl.indexOf("?");
+    const search = resolvedUrl.slice(index);
+
     const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
-        parseTableParams(context.req.url || "");
+        parseTableParams(search);
 
     const data = await dataProvider(API_URL).getList({
         resource: "users",
