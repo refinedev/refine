@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             ]}
             warnWhenUnsavedChanges={true}
         >
-            <Component {...pageProps} hede="1" />
+            <Component {...pageProps} />
         </Refine>
     );
 }
