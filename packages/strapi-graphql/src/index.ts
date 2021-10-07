@@ -54,7 +54,8 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                 fields: metaData?.fields,
             });
 
-            const restApiUrl = client["url"].replace("/graphql", "");
+            const domain = new URL(client["url"]);
+            const restApiUrl = domain.origin;
 
             const response = await Promise.all([
                 client.request(query, variables),
