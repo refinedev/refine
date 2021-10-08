@@ -10,7 +10,7 @@
         "start": "lerna run start --stream --parallel",
         "test": "lerna run test --stream --parallel",
         "test:coverage": "npm run test --stream -- -- -- --coverage",
-        "bootstrap": "lerna bootstrap -- --hoist",
+        "bootstrap": "lerna bootstrap --hoist",
         "lint": "eslint -c ./.eslintrc packages examples",
         "lint:fix": "npm run lint -- --quiet --fix",
         "build": "lerna run build",
