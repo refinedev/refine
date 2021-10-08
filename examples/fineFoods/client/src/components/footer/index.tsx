@@ -15,7 +15,7 @@ export const Footer = () => {
     const { Link } = useRouterContext();
     return (
         <AntdLayout.Footer className="footer">
-            <div>
+            <div style={{ display: "flex" }}>
                 <MotorcycleIcon height={36} style={{ marginRight: 24 }} />
                 <FinefoodsIcon height={36} />
             </div>
