@@ -15,7 +15,7 @@ RUN npm run build
 
 FROM node:14-alpine
 
-COPY --from=0 /opt/app/examples/fineFoods/build /opt/app
+COPY --from=0 /opt/app/examples/fineFoods/build/opt/app
 WORKDIR /opt/app/
 
 ENV NODE_ENV=production
