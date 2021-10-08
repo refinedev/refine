@@ -23,6 +23,7 @@ Then, start all the packages in watch mode:
 
 ```bash
 npm run bootstrap
+npm run build
 npm run start
 ```
 

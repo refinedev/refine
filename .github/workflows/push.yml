@@ -38,6 +38,7 @@ jobs:
       run: |
         npm install
         npm run bootstrap
+        npm run build
         npm run lint
         npm run test:coverage
     - name: npm test & publish code coverage
