@@ -3,6 +3,7 @@ import {
     Space,
     Typography,
     useRouterContext,
+    Row,
 } from "@pankod/refine";
 
 import { MotorcycleIcon, FinefoodsIcon, RefineLoveIcon } from "@components";
@@ -15,10 +16,10 @@ export const Footer = () => {
     const { Link } = useRouterContext();
     return (
         <AntdLayout.Footer className="footer">
-            <div style={{ display: "flex" }}>
+            <Row>
                 <MotorcycleIcon height={36} style={{ marginRight: 24 }} />
                 <FinefoodsIcon height={36} />
-            </div>
+            </Row>
             <Space size="large">
                 {footerItems.map((i) => (
                     <Link key={i} href={i.href ?? "/"}>
