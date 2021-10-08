@@ -36,7 +36,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test",
+    "test": "craco test --passWithNoTests",
     "eject": "craco eject"
   },
   "browserslist": [

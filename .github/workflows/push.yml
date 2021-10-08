@@ -37,7 +37,7 @@ jobs:
     - name: npm install, build
       run: |
         npm install
-        npm run lerna bootstrap
+        npm run bootstrap
         npm run lint
         npm run test:coverage
     - name: npm test & publish code coverage

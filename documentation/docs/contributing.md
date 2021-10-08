@@ -22,7 +22,7 @@ npm install
 Then, start all the packages in watch mode:
 
 ```bash
-npm run lerna bootstrap
+npm run bootstrap
 npm run start
 ```
 
