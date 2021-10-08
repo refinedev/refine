@@ -10,7 +10,7 @@ RUN npm install
 
 COPY . /opt/app
 
-RUN npm run lerna bootstrap
+RUN npm run lerna bootstrap -- --hoist
 RUN npm run build
 
 FROM node:14-alpine
