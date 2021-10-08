@@ -1,5 +1,5 @@
 export * from "./posts";
-export * from "./homepage";
+export * from "./promotional";
 export * from "./header";
 export * from "./footer";
 export * from "./layout";

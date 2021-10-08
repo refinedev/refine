@@ -4,9 +4,9 @@ import { PlateIcon } from "@components/icons";
 
 const { Text } = Typography;
 
-require("./homepage.less");
+require("./promotional.less");
 
-export const HomePage = () => {
+export const Promotional = () => {
     return (
         <div className="promotional-wrapper">
             <div className="text-wrapper">

@@ -3,13 +3,14 @@ import { checkAuthentication } from "@pankod/refine-nextjs-router";
 import { Row, Col, LayoutWrapper, Card, Typography } from "@pankod/refine";
 
 import { authProvider } from "../src/authProvider";
-import { CategoryCard, ProductCard } from "@components";
+import { CategoryCard, ProductCard, Promotional } from "@components";
 
 const { Title } = Typography;
 
 export const HomePage: React.FC = () => {
     return (
         <LayoutWrapper>
+            <Promotional />
             <Card className="main-card" bodyStyle={{ padding: "0px" }}>
                 <Row gutter={[24, 24]}>
                     <Col xs={24} sm={24} md={12} lg={8} xl={8}>
