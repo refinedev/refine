@@ -5,8 +5,8 @@
   "dependencies": {
     "@ant-design/charts": "^1.1.9",
     "@craco/craco": "^6.1.2",
-    "@pankod/refine": "../../packages/core",
-    "@pankod/refine-simple-rest": "../../packages/simple-rest",
+    "@pankod/refine": "^1.0.80",
+    "@pankod/refine-simple-rest": "^0.1.8",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",

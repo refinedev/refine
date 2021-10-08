@@ -49,7 +49,7 @@ We didn't give any property to `useShow` because it can read `resource` and `id`
 
 ```tsx title="src/App.tsx" {3, 10}
 import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 
 import { PostShow } from "./pages/posts";
 
@@ -170,7 +170,7 @@ Finally, let's pass this page to the `<Resource>` component.
 
 ```tsx title="src/App.tsx" {3,10}
 import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 
 import { PostList } from "./pages/posts";
 
