@@ -28,7 +28,7 @@ export const Header = () => {
                 {headerItems.map((i) => (
                     <Link key={i} href={i.href ?? "/"}>
                         <a>
-                            <Text className="header-item">{i}</Text>
+                            <Text className="header-item">{i.label}</Text>
                         </a>
                     </Link>
                 ))}
@@ -41,4 +41,8 @@ export const Header = () => {
     );
 };
 
-const headerItems = ["Home", "Menu", "Contact"];
+const headerItems: Array<{ label: string; href: string }> = [
+    { label: "Home", href: "/" },
+    { label: "Menu", href: "/" },
+    { label: "Contact", href: "/" },
+];

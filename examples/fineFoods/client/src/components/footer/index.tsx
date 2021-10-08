@@ -23,7 +23,7 @@ export const Footer = () => {
                 {footerItems.map((i) => (
                     <Link key={i} href={i.href ?? "/"}>
                         <a>
-                            <Text className="footer-item">{i}</Text>
+                            <Text className="footer-item">{i.label}</Text>
                         </a>
                     </Link>
                 ))}
@@ -33,4 +33,10 @@ export const Footer = () => {
     );
 };
 
-const footerItems = ["Home", "Menu", "Contact", "Getting Started", "Tutorials"];
+const footerItems: Array<{ label: string; href: string }> = [
+    { label: "Home", href: "/" },
+    { label: "Menu", href: "/" },
+    { label: "Contact", href: "/" },
+    { label: "Getting Started", href: "/" },
+    { label: "Tutorials", href: "/" },
+];
