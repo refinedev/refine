@@ -22,18 +22,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
     return (
         <Card className="product-card">
-            <span className="product-badge">{badgeTitle}</span>
+            <span className="badge">{badgeTitle}</span>
             <Space>
                 <Avatar src={productImg} size={140} />
-                <div className="product-info-container">
-                    <Title className="product-title" level={4}>
+                <div className="info-container">
+                    <Title className="title" level={4}>
                         {title}
                     </Title>
-                    <Text className="product-description">{description}</Text>
-                    <Text className="product-price">{price}</Text>
+                    <Text className="description">{description}</Text>
+                    <Text className="price">{price}</Text>
                 </div>
             </Space>
-            <div className="product-input-container">
+            <div className="input-container">
                 <Input defaultValue={0} />
                 <PlusCircleOutlined />
             </div>
