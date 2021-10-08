@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Refine, Resource, Icons, Icon } from "@pankod/refine";
+import { Refine, Resource, Icons } from "@pankod/refine";
 import jsonServerDataProvider from "@pankod/refine-simple-rest";
 import de_DE from "antd/lib/locale/de_DE";
 import { authProvider } from "authProvider";

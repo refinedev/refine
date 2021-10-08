@@ -1,6 +1,7 @@
 {
   "packages": [
-    "packages/*"
+    "packages/*",
+    "examples/fineFoods"
   ],
   "registry": "https://registry.npmjs.org/",
   "npmClient": "npm",

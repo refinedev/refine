@@ -13,13 +13,6 @@ COPY . /opt/app
 RUN npm run lerna bootstrap
 RUN npm run build
 
-#Example 
-WORKDIR /opt/app/examples/fineFoods
-
-RUN npm install
-
-RUN npm run build
-
 FROM node:14-alpine
 
 COPY --from=0 /opt/app/examples/fineFoods/build /opt/app
