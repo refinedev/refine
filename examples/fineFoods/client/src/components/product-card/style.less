@@ -3,9 +3,24 @@
     border: none;
     box-shadow: 0 1px 2px -2px rgb(0 0 0 / 16%), 0 3px 6px 0 rgb(0 0 0 / 12%),
         0 5px 12px 4px rgb(0 0 0 / 9%);
+    height: 100%;
 
     .ant-card-body {
-        padding: 28px 24px;
+        padding: 28px 12px 48px 12px;
+    }
+
+    .ant-space {
+        flex-wrap: nowrap;
+        justify-content: center;
+
+        @media screen and (max-width: 1200px) {
+            flex-wrap: wrap;
+            padding-top: 8px;
+        }
+
+        @media screen and (max-width: 768px) {
+            flex-wrap: nowrap;
+        }
     }
 
     .product {
@@ -62,7 +77,7 @@
                 transition: all 0.2s;
 
                 &:hover {
-                    color: #FA541C;
+                    color: #fa541c;
                 }
             }
         }

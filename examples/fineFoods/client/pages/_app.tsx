@@ -9,6 +9,7 @@ import { Layout, Header, Footer } from "@components";
 import { authProvider } from "../src/authProvider";
 
 require("@pankod/refine/node_modules/antd/dist/antd.less");
+require("@styles/global.less");
 
 const API_URL = "https://api.fake-rest.refine.dev";
 

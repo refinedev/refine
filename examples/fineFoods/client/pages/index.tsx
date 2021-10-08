@@ -10,7 +10,7 @@ const { Title } = Typography;
 export const HomePage: React.FC = () => {
     return (
         <LayoutWrapper>
-            <Card style={{ borderRadius: "48px", padding: "50px" }}>
+            <Card className="main-card" bodyStyle={{ padding: "0px" }}>
                 <Row gutter={[24, 24]}>
                     <Col xs={24} sm={24} md={12} lg={8} xl={8}>
                         <CategoryCard
