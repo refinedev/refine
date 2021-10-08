@@ -1,4 +1,4 @@
-import "node_modules/antd/dist/antd.css";
+import "antd/dist/antd.css";
 
 export * from "./components";
 export * from "./components/antd";
