@@ -42,31 +42,35 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
 
             const operation = metaData?.operation ?? camelResource;
 
-            const { query, variables } = gql.query({
-                operation,
-                variables: {
-                    ...metaData?.variables,
-                    sort: sortBy,
-                    where: { value: filterBy, type: "JSON" },
-                    start: (current - 1) * pageSize,
-                    limit: pageSize,
+            const operationConnection = `${operation}Connection`;
+
+            const { query, variables } = gql.query([
+                {
+                    operation: operationConnection,
+                    variables: {
+                        ...metaData?.variables,
+                        where: { value: filterBy, type: "JSON" },
+                    },
+                    fields: [{ aggregate: ["count"] }],
                 },
-                fields: metaData?.fields,
-            });
-
-            const domain = new URL(client["url"]);
-            const restApiUrl = domain.origin;
-
-            const response = await Promise.all([
-                client.request(query, variables),
-                fetch(
-                    `${restApiUrl}/${resource}/count?${stringify(filterBy)}`,
-                ).then((res) => res.json()),
+                {
+                    operation,
+                    variables: {
+                        ...metaData?.variables,
+                        sort: sortBy,
+                        where: { value: filterBy, type: "JSON" },
+                        start: (current - 1) * pageSize,
+                        limit: pageSize,
+                    },
+                    fields: metaData?.fields,
+                },
             ]);
+
+            const response = await client.request(query, variables);
 
             return {
                 data: response[0][operation],
-                total: response[1],
+                total: response[0][operationConnection].aggregate.count,
             };
         },
 
