@@ -54,7 +54,13 @@ describe("getList", () => {
         expect(data[0]["title"]).toBe(
             "Delectus neque rerum nulla vel reiciendis.",
         );
-        expect(total).toBe(2);
+        expect(data[1]["title"]).toBe(
+            "Delectus neque rerum nulla vel reiciendis.",
+        );
+        expect(data[2]["title"]).toBe(
+            "Delectus neque rerum nulla vel reiciendis.",
+        );
+        expect(total).toBe(3);
     });
 
     it("correct filter and sort response", async () => {
@@ -80,6 +86,6 @@ describe("getList", () => {
 
         expect(data[0]["id"]).toBe("824");
         expect(data[0]["category"].title).toBe("Demo");
-        expect(total).toBe(33);
+        expect(total).toBe(31);
     });
 });
