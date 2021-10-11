@@ -1,12 +1,6 @@
-export { default as BasketIcon } from "./BasketIcon";
-export { default as FinefoodsIcon } from "./FinefoodsIcon";
-export { default as GithubIcon } from "./GithubIcon";
-export { default as LinkedinIcon } from "./LinkedinIcon";
-export { default as MotorcycleIcon } from "./MotorcycleIcon";
-export { default as NextjsIcon } from "./NextjsIcon";
-export { default as PankodIcon } from "./PankodIcon";
-export { default as PlateIcon } from "./PlateIcon";
-export { default as RefineLoveIcon } from "./RefineLoveIcon";
-export { default as SearchIcon } from "./SearchIcon";
-export { default as TwitterIcon } from "./TwitterIcon";
-export { default as YoutubeIcon } from "./YoutubeIcon";
+export * from "./BasketIcon";
+export * from "./FinefoodsIcon";
+export * from "./MotorcycleIcon";
+export * from "./PlateIcon";
+export * from "./RefineLoveIcon";
+export * from "./SearchIcon";

@@ -1,6 +1,6 @@
-import * as React from "react";
+import { Icon } from "@pankod/refine";
 
-function SvgRefineLoveIcon(props: React.SVGProps<SVGSVGElement>) {
+const SvgRefineLoveIcon = (props: React.SVGProps<SVGSVGElement>) => {
     return (
         <svg
             viewBox="0 0 100 73"
@@ -56,6 +56,8 @@ function SvgRefineLoveIcon(props: React.SVGProps<SVGSVGElement>) {
             </defs>
         </svg>
     );
-}
+};
 
-export default SvgRefineLoveIcon;
+export const RefineLoveIcon = (props: any) => (
+    <Icon component={() => <SvgRefineLoveIcon {...props} />} {...props} />
+);
