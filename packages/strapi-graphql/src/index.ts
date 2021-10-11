@@ -69,8 +69,8 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             const response = await client.request(query, variables);
 
             return {
-                data: response[0][operation],
-                total: response[0][operationConnection].aggregate.count,
+                data: response[operation],
+                total: response[operationConnection].aggregate.count,
             };
         },
 
