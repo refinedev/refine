@@ -42,40 +42,35 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
 
             const operation = metaData?.operation ?? camelResource;
 
-            const operationConnection = operation+"Connection";
+            const operationConnection = `${operation}Connection`;
 
             const { query, variables } = gql.query([
-              {
-                operation:operationConnection,
-                variables: {
-                    ...metaData?.variables,
-                    sort: sortBy,
-                    where: { value: filterBy, type: "JSON" },
-                    start: (current - 1) * pageSize,
-                    limit: pageSize,
+                {
+                    operation: operationConnection,
+                    variables: {
+                        ...metaData?.variables,
+                        where: { value: filterBy, type: "JSON" },
+                    },
+                    fields: [{ aggregate: ["count"] }],
                 },
-                fields: [{aggregate:["count", "totalCount"]}],
-              },
-              {
-                operation,
-                variables: {
-                    ...metaData?.variables,
-                    sort: sortBy,
-                    where: { value: filterBy, type: "JSON" },
-                    start: (current - 1) * pageSize,
-                    limit: pageSize,
+                {
+                    operation,
+                    variables: {
+                        ...metaData?.variables,
+                        sort: sortBy,
+                        where: { value: filterBy, type: "JSON" },
+                        start: (current - 1) * pageSize,
+                        limit: pageSize,
+                    },
+                    fields: metaData?.fields,
                 },
-                fields: metaData?.fields,
-            }]);
-
-            const response = await Promise.all([
-                client.request(query, variables),
             ]);
+
+            const response = await client.request(query, variables);
 
             return {
                 data: response[0][operation],
-                count: response[0][operationConnection].aggregate.count,
-                total: response[0][operationConnection].aggregate.totalCount,
+                total: response[0][operationConnection].aggregate.count,
             };
         },
 
