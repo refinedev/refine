@@ -37,6 +37,7 @@ jobs:
           registry: docker.pkg.github.com
           repository: pankod/refine/refine-example
           tags: sha-${{ steps.current-time.outputs.formattedTime }}
+          path: examples/fineFoods/admin
       - name: Set up kubectl
         uses: matootie/dokube@v1.3.4
         with:
