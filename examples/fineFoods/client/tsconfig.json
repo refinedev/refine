@@ -17,6 +17,7 @@
         "paths": {
             "@components/*": ["src/components/*"],
             "@components": ["src/components"],
+            "@interfaces": ["src/interfaces"],
             "@styles/*": ["src/styles/*"],
             "@styles": ["src/styles"],
             "@public/*": ["public/*"],

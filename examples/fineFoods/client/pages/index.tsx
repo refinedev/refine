@@ -1,36 +1,41 @@
 import { GetServerSideProps } from "next";
 import { checkAuthentication } from "@pankod/refine-nextjs-router";
 import { Row, Col, LayoutWrapper, Card, Typography } from "@pankod/refine";
+import dataProvider from "@pankod/refine-simple-rest";
 
 import { authProvider } from "../src/authProvider";
 import { CategoryCard, ProductCard, Promotional } from "@components";
 
+import { ICategory } from "@interfaces";
+
+const API_URL = "https://api.finefoods.refine.dev";
 const { Title } = Typography;
 
-export const HomePage: React.FC = () => {
+type HomePageProps = {
+    categories: ICategory[];
+};
+
+export const HomePage: React.FC<HomePageProps> = ({ categories }) => {
     return (
         <LayoutWrapper>
             <Promotional />
             <Card className="main-card" bodyStyle={{ padding: "0px" }}>
                 <Row gutter={[24, 24]}>
-                    <Col xs={24} sm={24} md={12} lg={8} xl={8}>
-                        <CategoryCard
-                            title="Staters"
-                            backgroundImg="https://food-images.files.bbci.co.uk/food/recipes/dirty_veggie_starter_89235_16x9.jpg"
-                        />
-                    </Col>
-                    <Col xs={24} sm={24} md={12} lg={8} xl={8}>
-                        <CategoryCard
-                            title="Pastas"
-                            backgroundImg="https://post.healthline.com/wp-content/uploads/2020/09/variety-of-pasta-1296x728-1-1200x628.jpg"
-                        />
-                    </Col>
-                    <Col xs={24} sm={24} md={24} lg={8} xl={8}>
-                        <CategoryCard
-                            title="Pizzas"
-                            backgroundImg="https://www.oggusto.com/uploads/images/custom/14175-kategori.jpg"
-                        />
-                    </Col>
+                    {categories.map((category, index) => (
+                        <Col
+                            xs={24}
+                            sm={24}
+                            md={index === 2 ? 24 : 12}
+                            lg={8}
+                            xl={8}
+                            key={category.id}
+                        >
+                            <CategoryCard
+                                title={category.title}
+                                backgroundImg={category.cover}
+                            />
+                        </Col>
+                    ))}
                 </Row>
                 <br />
                 <br />
@@ -108,7 +113,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         return { redirect };
     }
 
+    const { data } = await dataProvider(API_URL).getMany({
+        resource: "categories",
+        ids: ["1", "2", "3"],
+    });
+
     return {
-        props: {},
+        props: { categories: data },
     };
 };
