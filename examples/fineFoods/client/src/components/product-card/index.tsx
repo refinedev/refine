@@ -1,4 +1,12 @@
-import { Card, Typography, Avatar, Space, Input, Icons } from "@pankod/refine";
+import {
+    Card,
+    Typography,
+    Avatar,
+    Space,
+    Input,
+    Icons,
+    NumberField,
+} from "@pankod/refine";
 
 require("./style.less");
 
@@ -10,7 +18,8 @@ export type ProductCardProps = {
     badgeTitle: string;
     title: string;
     description: string;
-    price: string;
+    price: number;
+    badgeBgColor?: string;
 };
 
 export const ProductCard: React.FC<ProductCardProps> = ({
@@ -19,10 +28,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     title,
     description,
     price,
+    badgeBgColor,
 }) => {
     return (
         <Card className="product-card">
-            <span className="badge">{badgeTitle}</span>
+            <span className="badge" style={{ backgroundColor: badgeBgColor }}>
+                {badgeTitle}
+            </span>
             <Space>
                 <Avatar src={productImg} size={140} />
                 <div className="info-container">
@@ -30,7 +42,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                         {title}
                     </Title>
                     <Text className="description">{description}</Text>
-                    <Text className="price">{price}</Text>
+                    <NumberField
+                        className="price"
+                        options={{
+                            currency: "USD",
+                            style: "currency",
+                        }}
+                        value={price / 100}
+                    />
                 </div>
             </Space>
             <div className="input-container">

@@ -6,16 +6,43 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { authProvider } from "../src/authProvider";
 import { CategoryCard, ProductCard, Promotional } from "@components";
 
-import { ICategory } from "@interfaces";
+import { ICategory, IProduct } from "@interfaces";
 
 const API_URL = "https://api.finefoods.refine.dev";
 const { Title } = Typography;
 
 type HomePageProps = {
     categories: ICategory[];
+    products: IProduct[];
 };
 
-export const HomePage: React.FC<HomePageProps> = ({ categories }) => {
+export const HomePage: React.FC<HomePageProps> = ({ categories, products }) => {
+    const dealsOfDayProducts = products.slice(0, 3);
+    const fastAndDeliciousProducts = products.slice(3);
+
+    const getBadgeProps = (index: number) => {
+        switch (index) {
+            case 0:
+                return {
+                    badgeTitle: "25%",
+                };
+            case 1:
+                return {
+                    badgeTitle: "1+1",
+                    badgeBgColor: "#67BE23",
+                };
+            case 2:
+                return {
+                    badgeTitle: "FREE BEVERAGE",
+                    badgeBgColor: "#0CCEE9",
+                };
+            default:
+                return {
+                    badgeTitle: "25%",
+                };
+        }
+    };
+
     return (
         <LayoutWrapper>
             <Promotional />
@@ -43,33 +70,24 @@ export const HomePage: React.FC<HomePageProps> = ({ categories }) => {
                     DEALS OF THE DAY
                 </Title>
                 <Row gutter={[24, 24]}>
-                    <Col xs={24} sm={24} md={12} lg={8} xl={8}>
-                        <ProductCard
-                            productImg="https://food-images.files.bbci.co.uk/food/recipes/dirty_veggie_starter_89235_16x9.jpg"
-                            title="Cheese and Tomato"
-                            badgeTitle="1+1"
-                            description="based on the “Pines of Rome” classic"
-                            price="10.95$"
-                        />
-                    </Col>
-                    <Col xs={24} sm={24} md={12} lg={8} xl={8}>
-                        <ProductCard
-                            productImg="https://post.healthline.com/wp-content/uploads/2020/09/variety-of-pasta-1296x728-1-1200x628.jpg"
-                            title="Fettuccine Alfredo"
-                            badgeTitle="25%"
-                            description="Egg Noodles in Cream Sauce and Parmesan Cheese"
-                            price="10.95$"
-                        />
-                    </Col>
-                    <Col xs={24} sm={24} md={24} lg={8} xl={8}>
-                        <ProductCard
-                            productImg="https://www.oggusto.com/uploads/images/custom/14175-kategori.jpg"
-                            title="Black Forest Ham"
-                            badgeTitle="FREE BEVERAGE"
-                            description="Egg Noodles in Cream Sauce and Parmesan Cheese"
-                            price="10.95$"
-                        />
-                    </Col>
+                    {dealsOfDayProducts.map((product, index) => (
+                        <Col
+                            xs={24}
+                            sm={24}
+                            md={12}
+                            lg={8}
+                            xl={8}
+                            key={product.id}
+                        >
+                            <ProductCard
+                                productImg={product.images[0].url}
+                                title={product.name}
+                                description={product.description}
+                                price={product.price}
+                                {...getBadgeProps(index)}
+                            />
+                        </Col>
+                    ))}
                 </Row>
                 <br />
                 <br />
@@ -77,24 +95,24 @@ export const HomePage: React.FC<HomePageProps> = ({ categories }) => {
                     FAST & DELICIOUS
                 </Title>
                 <Row gutter={[24, 24]}>
-                    <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-                        <ProductCard
-                            productImg="https://www.oggusto.com/uploads/images/custom/14175-kategori.jpg"
-                            title="Cheese and Tomato"
-                            badgeTitle="taste in less than 30 minutes"
-                            description="based on the “Pines of Rome” classic"
-                            price="10.95$"
-                        />
-                    </Col>
-                    <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-                        <ProductCard
-                            productImg="https://food-images.files.bbci.co.uk/food/recipes/dirty_veggie_starter_89235_16x9.jpg"
-                            title="Cheese and Tomato"
-                            badgeTitle="taste in less than 30 minutes"
-                            description="based on the “Pines of Rome” classic"
-                            price="10.95$"
-                        />
-                    </Col>
+                    {fastAndDeliciousProducts.map((product) => (
+                        <Col
+                            xs={24}
+                            sm={24}
+                            md={12}
+                            lg={12}
+                            xl={12}
+                            key={product.id}
+                        >
+                            <ProductCard
+                                productImg={product.images[0].url}
+                                title={product.name}
+                                description={product.description}
+                                price={product.price}
+                                badgeTitle="taste in less than 30 minutes"
+                            />
+                        </Col>
+                    ))}
                 </Row>
             </Card>
         </LayoutWrapper>
@@ -113,12 +131,19 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         return { redirect };
     }
 
-    const { data } = await dataProvider(API_URL).getMany({
+    const { data: categoryData } = await dataProvider(API_URL).getMany({
         resource: "categories",
         ids: ["1", "2", "3"],
     });
 
+    const { data: productData } = await dataProvider(API_URL).getList({
+        resource: "products",
+        pagination: {
+            pageSize: 5,
+        },
+    });
+
     return {
-        props: { categories: data },
+        props: { categories: categoryData, products: productData },
     };
 };
