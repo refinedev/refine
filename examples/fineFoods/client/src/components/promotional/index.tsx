@@ -1,15 +1,15 @@
-import { Button, Typography, Grid } from "@pankod/refine";
+import { Button, Typography } from "@pankod/refine";
 
 import { PlateIcon } from "@components/icons";
 
+import { useIsMobile } from "@hooks";
+
 const { Text } = Typography;
-const { useBreakpoint } = Grid;
 
 require("./promotional.less");
 
 export const Promotional = () => {
-    const screens = useBreakpoint();
-    const isMobile = !screens.lg || screens.xs;
+    const isMobile = useIsMobile();
 
     return (
         <div className="promotional-wrapper">
