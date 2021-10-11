@@ -47,6 +47,7 @@ jobs:
           registry: docker.pkg.github.com
           repository: pankod/refine/refine-example
           tag_with_sha: true
+          path: examples/fineFoods/admin
       - name: Set up kubectl
         uses: matootie/dokube@v1.3.4
         with:
