@@ -23,7 +23,7 @@ export const Header = () => {
         <AntdLayout.Header className="header">
             <Row>
                 <MotorcycleIcon height={36} style={{ marginRight: 24 }} />
-                <FinefoodsIcon height={36} />
+                <FinefoodsIcon />
             </Row>
             <Space size="large">
                 {headerItems.map((i) => (
@@ -36,7 +36,7 @@ export const Header = () => {
             </Space>
             <Row>
                 <SearchIcon height={24} style={{ marginRight: 14 }} />
-                <BasketIcon height={24} />
+                <BasketIcon />
             </Row>
         </AntdLayout.Header>
     );
