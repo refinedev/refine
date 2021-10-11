@@ -1,10 +1,4 @@
-import {
-    AntdLayout,
-    Space,
-    Typography,
-    useRouterContext,
-    Row,
-} from "@pankod/refine";
+import { AntdLayout, Typography, Row } from "@pankod/refine";
 
 import {
     MotorcycleIcon,
@@ -18,22 +12,12 @@ const { Text } = Typography;
 require("./header.less");
 
 export const Header = () => {
-    const { Link } = useRouterContext();
     return (
         <AntdLayout.Header className="header">
             <Row>
                 <MotorcycleIcon height={36} style={{ marginRight: 24 }} />
                 <FinefoodsIcon />
             </Row>
-            <Space size="large">
-                {headerItems.map((i) => (
-                    <Link key={i} href={i.href ?? "/"}>
-                        <a>
-                            <Text className="header-item">{i.label}</Text>
-                        </a>
-                    </Link>
-                ))}
-            </Space>
             <Row>
                 <SearchIcon height={24} style={{ marginRight: 14 }} />
                 <BasketIcon />
@@ -41,9 +25,3 @@ export const Header = () => {
         </AntdLayout.Header>
     );
 };
-
-const headerItems: Array<{ label: string; href: string }> = [
-    { label: "Home", href: "/" },
-    { label: "Menu", href: "/" },
-    { label: "Contact", href: "/" },
-];

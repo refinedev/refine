@@ -18,7 +18,7 @@ export const Layout: React.FC<LayoutProps> = ({
                     <OffLayoutArea />
                 </AntdLayout.Content>
             </AntdLayout>
-            <Footer />
+            {/* <Footer /> */}
         </AntdLayout>
     );
 };
