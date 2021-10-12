@@ -1,4 +1,3 @@
-export * from "./posts";
 export * from "./promotional";
 export * from "./header";
 export * from "./footer";

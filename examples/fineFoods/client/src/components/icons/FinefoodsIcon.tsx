@@ -1,13 +1,13 @@
 import { Icon } from "@pankod/refine";
 
-const SvgFinefoodsIcon: React.FC<React.SVGProps<SVGSVGElement>> = () => (
+const SvgFinefoodsIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     <svg
-        width="192"
-        height="32"
+        // width="192"
+        // height="32"
         viewBox="0 0 192 32"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        // {...props}
+        {...props}
     >
         <path
             fillRule="evenodd"
@@ -25,5 +25,5 @@ const SvgFinefoodsIcon: React.FC<React.SVGProps<SVGSVGElement>> = () => (
 );
 
 export const FinefoodsIcon = (props: any) => (
-    <Icon component={SvgFinefoodsIcon} {...props} />
+    <Icon component={() => <SvgFinefoodsIcon {...props} />} {...props} />
 );

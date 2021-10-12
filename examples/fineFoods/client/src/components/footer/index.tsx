@@ -14,10 +14,13 @@ require("./footer.less");
 
 export const Footer = () => {
     const { Link } = useRouterContext();
+
     return (
         <AntdLayout.Footer className="footer">
             <Row>
-                <MotorcycleIcon height={36} style={{ marginRight: 24 }} />
+                <MotorcycleIcon
+                    svgProps={{ height: 36, style: { marginRight: 24 } }}
+                />
                 <FinefoodsIcon height={36} />
             </Row>
             <Space size="large">
@@ -36,7 +39,6 @@ export const Footer = () => {
 
 const footerItems: Array<{ label: string; href: string }> = [
     { label: "Home", href: "/" },
-    { label: "Menu", href: "/" },
     { label: "Contact", href: "/" },
     { label: "Getting Started", href: "/" },
     { label: "Tutorials", href: "/" },

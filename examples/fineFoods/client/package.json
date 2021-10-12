@@ -7,8 +7,7 @@
         "build": "next build",
         "start": "next start",
         "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
-        "prettier": "prettier --write '**/*.{js,jsx,ts,tsx}'",
-        "svgr": "npx @svgr/cli -d src/components/icons public/icons"
+        "prettier": "prettier --write '**/*.{js,jsx,ts,tsx}'"
     },
     "dependencies": {
         "@pankod/refine": "../../../packages/core",
@@ -22,7 +21,6 @@
         "react-dom": "file:../../../node_modules/react-dom"
     },
     "devDependencies": {
-        "@svgr/cli": "^5.5.0",
         "@types/node": "^14.14.13",
         "@types/react": "^17.0.0",
         "@types/react-dom": "^17.0.0",

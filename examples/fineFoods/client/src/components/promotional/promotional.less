@@ -1,6 +1,6 @@
 .promotional-wrapper {
     display: flex;
-    margin-left: 108px;
+    margin: 0 0 24px 72px;
     justify-content: space-between;
     align-items: center;
 
@@ -11,11 +11,12 @@
             font-size: 76px;
             line-height: 65px;
             font-weight: 700;
+            margin-bottom: 10px;
         }
 
         &.subtitle {
             font-size: 33px;
-            line-height: 65px;
+            line-height: 36px;
             font-weight: 400;
         }
     }
@@ -32,6 +33,33 @@
             border-radius: 8px;
             background: @finefoods-red;
             border-color: @finefoods-red;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .promotional-wrapper {
+        margin-left: 0;
+        flex-direction: column;
+
+        .ant-typography {
+
+            &.title {
+                font-size: 40px;
+                line-height: 36px;
+            }
+
+            &.subtitle {
+                font-size: 18px;
+            }
+        }
+
+        .text-wrapper {
+            margin-bottom: 18px;
+
+            .explore-button {
+                display: none;
+            }
         }
     }
 }

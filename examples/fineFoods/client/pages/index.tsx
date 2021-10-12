@@ -123,15 +123,6 @@ export const HomePage: React.FC<HomePageProps> = ({ categories, products }) => {
 export default HomePage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { isAuthenticated, redirect } = await checkAuthentication(
-        authProvider,
-        context,
-    );
-
-    if (!isAuthenticated) {
-        return { redirect };
-    }
-
     const { data: categoryData } = await dataProvider(API_URL).getMany({
         resource: "categories",
         ids: ["1", "2", "3"],
