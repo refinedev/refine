@@ -22,7 +22,6 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             Layout={Layout}
             Header={Header}
             Footer={Footer}
-            resources={[{ name: "users" }]}
             warnWhenUnsavedChanges={true}
         >
             <Component {...pageProps} />
