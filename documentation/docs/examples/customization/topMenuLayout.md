@@ -3,7 +3,7 @@ id: topMenuLayout
 title: Top Menu Layout
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/topMenuLayout)
+[View Source](https://github.com/pankod/refine/tree/master/examples/customization/topMenuLayout)
 
 <iframe src="https://codesandbox.io/embed/refine-top-menu-layout-example-n1v8x?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
