@@ -1,5 +1,4 @@
 import { GetServerSideProps } from "next";
-import { checkAuthentication } from "@pankod/refine-nextjs-router";
 import { Row, Col, LayoutWrapper, Card, Typography } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -83,6 +82,7 @@ export const HomePage: React.FC<HomePageProps> = ({ categories, products }) => {
                                 title={product.name}
                                 description={product.description}
                                 price={product.price}
+                                productId={product.id}
                                 {...getBadgeProps(index)}
                             />
                         </Col>
@@ -109,6 +109,7 @@ export const HomePage: React.FC<HomePageProps> = ({ categories, products }) => {
                                 description={product.description}
                                 price={product.price}
                                 badgeTitle="taste in less than 30 minutes"
+                                productId={product.id}
                             />
                         </Col>
                     ))}

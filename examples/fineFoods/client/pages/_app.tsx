@@ -6,11 +6,12 @@ import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-nextjs-router";
 
 import { Layout, Header, Footer } from "@components";
+import { BasketContextProvider } from "@contextProviders";
 
 require("@pankod/refine/node_modules/antd/dist/antd.less");
 require("@styles/global.less");
 
-const API_URL = "https://api.fake-rest.refine.dev";
+const API_URL = "https://api.finefoods.refine.dev";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
@@ -23,7 +24,9 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             resources={[{ name: "users" }]}
             warnWhenUnsavedChanges={true}
         >
-            <Component {...pageProps} />
+            <BasketContextProvider>
+                <Component {...pageProps} />
+            </BasketContextProvider>
         </Refine>
     );
 }

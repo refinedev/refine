@@ -4,9 +4,24 @@
     align-items: center;
     justify-content: space-between;
 
-    .ant-typography.header-item {
-        font-size: 16px;
-        font-weight: 700;
-        color: white
+    .ant-typography.basket-amount {
+        color: rgba(255, 245, 0, 1) !important;
+        font-size: 21px;
+        line-height: 32px;
+        margin-right: 4px;
+
+
+        &.total-amount {
+            font-weight: 800;
+            margin-right: 12px;
+        }
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .ant-layout-header.header {
+        .ant-typography.basket-amount {
+            display: none;
+        }
     }
 }

@@ -26,3 +26,8 @@ export interface IProduct {
     category: ICategory;
     stock: number;
 }
+
+export interface IOrder {
+    productId: string;
+    amount: number;
+}

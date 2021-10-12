@@ -46,6 +46,12 @@
             "@interfaces": [
                 "src/interfaces"
             ],
+            "@contextProviders/*": [
+                "src/contextProviders/*"
+            ],
+            "@contextProviders": [
+                "src/contextProviders"
+            ],
         }
     },
     "include": [
