@@ -19,11 +19,13 @@ const SvgMotorcycleIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
 );
 
 export const MotorcycleIcon: React.FC<{
-    iconProps?: Parameters<typeof Icon>;
+    iconProps?: Parameters<typeof Icon>[0];
     svgProps?: React.SVGProps<SVGSVGElement>;
-}> = ({ iconProps, svgProps }) => (
-    <Icon
-        component={() => <SvgMotorcycleIcon {...svgProps} />}
-        {...iconProps}
-    />
-);
+}> = ({ iconProps, svgProps }) => {
+    return (
+        <Icon
+            component={() => <SvgMotorcycleIcon {...svgProps} />}
+            {...iconProps}
+        />
+    );
+};
