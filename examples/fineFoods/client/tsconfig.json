@@ -42,7 +42,10 @@
             ],
             "@hooks": [
                 "src/hooks"
-            ]
+            ],
+            "@interfaces": [
+                "src/interfaces"
+            ],
         }
     },
     "include": [

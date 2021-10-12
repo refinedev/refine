@@ -1,0 +1,23 @@
+FROM node:14-alpine
+
+WORKDIR /opt/app
+
+ENV NODE_ENV development
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . /opt/app
+
+RUN npm run lerna bootstrap
+RUN npm run build
+
+#Example client
+WORKDIR /opt/app/examples/fineFoods/client
+
+RUN npm install
+
+RUN npm run build
+
+CMD npm run start
