@@ -33,10 +33,10 @@ const dataProvider = (client: GraphQLClient): any => {
 
             console.log(query);
 
-            const result = await client.request(query, variables, {
-                'x-hasura-admin-secret': 'HASURA_SECRET',
-            });
+            const result = await client.request(query, variables);
+
             console.log(result);
+
             return {
                 data: result[operation],
                 total: result[`${operation}_aggregate`].aggregate.count,
