@@ -3,7 +3,7 @@ id: google-auth
 title: Google Auth
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/googleLogin)
+[View Source](https://github.com/pankod/refine/tree/master/examples/authProvider/googleLogin)
 
 <iframe src="https://codesandbox.io/embed/refine-google-login-example-td8fr?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
