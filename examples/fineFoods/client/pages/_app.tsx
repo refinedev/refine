@@ -18,7 +18,6 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
-            authProvider={authProvider}
             Layout={Layout}
             Header={Header}
             Footer={Footer}
