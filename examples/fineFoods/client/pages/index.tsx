@@ -3,12 +3,12 @@ import { checkAuthentication } from "@pankod/refine-nextjs-router";
 import { Row, Col, LayoutWrapper, Card, Typography } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
+import { API_URL } from "../src/constants";
 import { authProvider } from "../src/authProvider";
 import { CategoryCard, ProductCard, Promotional } from "@components";
 
 import { ICategory, IProduct } from "@interfaces";
 
-const API_URL = "https://api.finefoods.refine.dev";
 const { Title } = Typography;
 
 type HomePageProps = {
@@ -58,6 +58,7 @@ export const HomePage: React.FC<HomePageProps> = ({ categories, products }) => {
                             key={category.id}
                         >
                             <CategoryCard
+                                id={category.id}
                                 title={category.title}
                                 backgroundImg={category.cover}
                             />
