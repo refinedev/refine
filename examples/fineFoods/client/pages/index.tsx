@@ -3,7 +3,6 @@ import { checkAuthentication } from "@pankod/refine-nextjs-router";
 import { Row, Col, LayoutWrapper, Card, Typography } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import { authProvider } from "../src/authProvider";
 import { CategoryCard, ProductCard, Promotional } from "@components";
 
 import { ICategory, IProduct } from "@interfaces";
@@ -122,15 +121,6 @@ export const HomePage: React.FC<HomePageProps> = ({ categories, products }) => {
 export default HomePage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { isAuthenticated, redirect } = await checkAuthentication(
-        authProvider,
-        context,
-    );
-
-    if (!isAuthenticated) {
-        return { redirect };
-    }
-
     const { data: categoryData } = await dataProvider(API_URL).getMany({
         resource: "categories",
         ids: ["1", "2", "3"],
