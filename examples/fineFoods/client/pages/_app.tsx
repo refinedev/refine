@@ -7,7 +7,6 @@ import routerProvider from "@pankod/refine-nextjs-router";
 
 import { Layout, Header, Footer } from "@components";
 
-import { authProvider } from "../src/authProvider";
 import { API_URL } from "../src/constants";
 
 require("@pankod/refine/node_modules/antd/dist/antd.less");
