@@ -25,8 +25,6 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
     const { query } = useRouter();
     const { id } = query;
 
-    const categoryId = (id as string).split("-")[1];
-
     const { listProps } = useSimpleList<IProduct>({
         resource: "products",
         queryOptions: {
@@ -39,7 +37,7 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
             {
                 field: "category.id",
                 operator: "eq",
-                value: categoryId,
+                value: id,
             },
         ],
     });
