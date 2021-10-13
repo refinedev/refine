@@ -39,6 +39,7 @@ jobs:
         run: |
           echo ${{ steps.substring-pr-branch-name.outputs.substring }}
           helm delete ${{ env.branch }}-refine-example || :
+          helm delete ${{ env.branch }}-client-refine-example || :
           helm delete ${{ env.branch }}-refine-documentation || :
         env:
           branch: ${{ steps.substring-pr-branch-name.outputs.substring }}
