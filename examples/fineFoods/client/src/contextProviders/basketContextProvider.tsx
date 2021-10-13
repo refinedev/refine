@@ -1,12 +1,15 @@
 import React, { useReducer } from "react";
-import { IOrder, IProduct } from "@interfaces";
 import { useMany } from "@pankod/refine";
+
+import { IOrder, IProduct } from "@interfaces";
+import { OrdersModalContextProvider } from "@contextProviders";
 
 export const BasketContext = React.createContext<{
     orders: IOrder[];
     dispatch: Function;
-    totalAmount: number;
-}>({ orders: [], dispatch: () => null, totalAmount: 0 });
+    totalPrice: number;
+    products: IProduct[];
+}>({ orders: [], dispatch: () => null, totalPrice: 0, products: [] });
 
 const initialBasket: IOrder[] = [];
 
@@ -40,7 +43,7 @@ export const BasketContextProvider: React.FC = ({ children }) => {
         },
     });
 
-    const totalAmount = orders.reduce((total, currentValue) => {
+    const totalPrice = orders.reduce((total, currentValue) => {
         const product = productsData?.data.find(
             (value) => value.id === currentValue.productId,
         );
@@ -49,8 +52,15 @@ export const BasketContextProvider: React.FC = ({ children }) => {
     }, 0);
 
     return (
-        <BasketContext.Provider value={{ orders, dispatch, totalAmount }}>
-            {children}
+        <BasketContext.Provider
+            value={{
+                orders,
+                dispatch,
+                totalPrice,
+                products: productsData?.data ?? [],
+            }}
+        >
+            <OrdersModalContextProvider>{children}</OrdersModalContextProvider>
         </BasketContext.Provider>
     );
 };

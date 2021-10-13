@@ -8,6 +8,7 @@ import {
 } from "@components";
 
 import { useBasketContext, useIsMobile } from "@hooks";
+import { useOrdesModalContext } from "@hooks/useOrdersModalContext";
 
 const { Text } = Typography;
 
@@ -16,7 +17,8 @@ require("./header.less");
 export const Header = () => {
     const isMobile = useIsMobile();
 
-    const { orders, totalAmount } = useBasketContext();
+    const { setOrdersModalVisible } = useOrdesModalContext();
+    const { orders, totalPrice } = useBasketContext();
     const isBasketHaveOrders = orders.length > 0;
 
     return (
@@ -39,7 +41,7 @@ export const Header = () => {
                         </Text>
                         <NumberField
                             className="basket-amount total-amount"
-                            value={totalAmount / 100}
+                            value={totalPrice / 100}
                             options={{
                                 currency: "USD",
                                 style: "currency",
@@ -47,7 +49,11 @@ export const Header = () => {
                         />
                     </>
                 )}
-                <BasketIcon />
+                <BasketIcon
+                    onClick={() =>
+                        setOrdersModalVisible((prev: boolean) => !prev)
+                    }
+                />
             </Row>
         </AntdLayout.Header>
     );

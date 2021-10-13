@@ -1,6 +1,8 @@
 import React from "react";
 import { LayoutProps, AntdLayout } from "@pankod/refine";
 
+import { OrdersModal } from "@components";
+
 require("./layout.less");
 
 export const Layout: React.FC<LayoutProps> = ({
@@ -10,15 +12,18 @@ export const Layout: React.FC<LayoutProps> = ({
     OffLayoutArea,
 }) => {
     return (
-        <AntdLayout style={{ minHeight: "100vh" }}>
-            <AntdLayout className="inner">
-                <Header />
-                <AntdLayout.Content>
-                    {children}
-                    <OffLayoutArea />
-                </AntdLayout.Content>
+        <>
+            <AntdLayout style={{ minHeight: "100vh" }}>
+                <AntdLayout className="inner">
+                    <Header />
+                    <AntdLayout.Content>
+                        {children}
+                        <OffLayoutArea />
+                    </AntdLayout.Content>
+                </AntdLayout>
+                <Footer />
             </AntdLayout>
-            <Footer />
-        </AntdLayout>
+            <OrdersModal />
+        </>
     );
 };
