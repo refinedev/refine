@@ -85,14 +85,6 @@ jobs:
         with:
           meercode-token: ${{ secrets.MEERCODE_TOKEN }}
           url: 'https://alpha.example.refine.dev'
-      - uses: tzkhan/pr-update-action@v2
-        with:
-          repo-token: "${{ secrets.PANKOD_BOT_TOKEN }}"
-          base-branch-regex: '[a-z\d-_.\\/]+'
-          head-branch-regex: '[a-z\d-_.\\/]+'
-          body-template: |
-            Test me! '%basebranch%'
-            [Link to %headbranch%](https://alpha.example.refine.dev)
 
   client-example:
     runs-on: ubuntu-latest
@@ -150,11 +142,3 @@ jobs:
         with:
           meercode-token: ${{ secrets.MEERCODE_TOKEN }}
           url: 'https://alpha.client.example.refine.dev'
-      - uses: tzkhan/pr-update-action@v2
-        with:
-          repo-token: "${{ secrets.PANKOD_BOT_TOKEN }}"
-          base-branch-regex: '[a-z\d-_.\\/]+'
-          head-branch-regex: '[a-z\d-_.\\/]+'
-          body-template: |
-            Hey, I'm client! Test me! '%basebranch%'
-            [Link to %headbranch%](https://alpha.client.example.refine.dev)
