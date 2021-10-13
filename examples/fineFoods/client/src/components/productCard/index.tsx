@@ -70,12 +70,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 />
                 <PlusCircleOutlined
                     onClick={() => {
-                        if (amount > 0) {
-                            dispatch({
-                                type: "addProduct",
-                                payload: { productId, amount },
-                            });
-                        }
+                        dispatch({
+                            type: "addProduct",
+                            payload: { productId, amount },
+                        });
                     }}
                 />
             </div>

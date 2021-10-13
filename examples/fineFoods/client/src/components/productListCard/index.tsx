@@ -8,6 +8,8 @@ import {
 } from "@pankod/refine";
 
 import { IProduct } from "@interfaces";
+import { useState } from "react";
+import { useBasketContext } from "@hooks";
 
 require("./style.less");
 
@@ -21,7 +23,10 @@ type ProductListCardProps = {
 export const ProductListCard: React.FC<ProductListCardProps> = ({
     product,
 }) => {
-    const { name, images, description, price } = product;
+    const [amount, setAmount] = useState(1);
+    const { dispatch } = useBasketContext();
+
+    const { name, images, description, price, id: productId } = product;
 
     return (
         <div className="product-list-container">
@@ -46,8 +51,23 @@ export const ProductListCard: React.FC<ProductListCardProps> = ({
                 value={price / 100}
             />
             <div className="input-container">
-                <InputNumber className="add-input" min={1} defaultValue={1} />
-                <Button className="add-button" shape="round">
+                <InputNumber
+                    className="add-input"
+                    min={1}
+                    defaultValue={1}
+                    value={amount}
+                    onChange={(value) => setAmount(value)}
+                />
+                <Button
+                    className="add-button"
+                    shape="round"
+                    onClick={() => {
+                        dispatch({
+                            type: "addProduct",
+                            payload: { productId, amount },
+                        });
+                    }}
+                >
                     <PlusCircleOutlined />
                     Add to cart
                 </Button>
