@@ -4,7 +4,6 @@ import { Row, Col, LayoutWrapper, Card, Typography } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import { API_URL } from "../src/constants";
-import { authProvider } from "../src/authProvider";
 import { CategoryCard, ProductCard, Promotional } from "@components";
 
 import { ICategory, IProduct } from "@interfaces";
