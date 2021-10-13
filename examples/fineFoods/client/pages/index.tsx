@@ -1,13 +1,12 @@
 import { GetServerSideProps } from "next";
-import { checkAuthentication } from "@pankod/refine-nextjs-router";
 import { Row, Col, LayoutWrapper, Card, Typography } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
+import { API_URL } from "../src/constants";
 import { CategoryCard, ProductCard, Promotional } from "@components";
 
 import { ICategory, IProduct } from "@interfaces";
 
-const API_URL = "https://api.finefoods.refine.dev";
 const { Title } = Typography;
 
 type HomePageProps = {
@@ -57,6 +56,7 @@ export const HomePage: React.FC<HomePageProps> = ({ categories, products }) => {
                             key={category.id}
                         >
                             <CategoryCard
+                                id={category.id}
                                 title={category.title}
                                 backgroundImg={category.cover}
                             />
@@ -120,7 +120,7 @@ export const HomePage: React.FC<HomePageProps> = ({ categories, products }) => {
 
 export default HomePage;
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
     const { data: categoryData } = await dataProvider(API_URL).getMany({
         resource: "categories",
         ids: ["1", "2", "3"],
