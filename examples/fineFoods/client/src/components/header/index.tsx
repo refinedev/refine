@@ -1,4 +1,10 @@
-import { AntdLayout, Row, Typography, NumberField } from "@pankod/refine";
+import {
+    AntdLayout,
+    Row,
+    Typography,
+    NumberField,
+    useRouterContext,
+} from "@pankod/refine";
 
 import {
     MotorcycleIcon,
@@ -16,6 +22,7 @@ require("./header.less");
 
 export const Header = () => {
     const isMobile = useIsMobile();
+    const { Link } = useRouterContext();
 
     const { setOrdersModalVisible } = useOrdesModalContext();
     const { orders, totalPrice } = useBasketContext();
@@ -24,13 +31,17 @@ export const Header = () => {
     return (
         <AntdLayout.Header className="header">
             <Row>
-                <MotorcycleIcon
-                    svgProps={{
-                        height: isMobile ? 24 : 36,
-                        style: { marginRight: isMobile ? 14 : 24 },
-                    }}
-                />
-                <FinefoodsIcon height={isMobile ? 24 : 36} />
+                <Link href="/">
+                    <a>
+                        <MotorcycleIcon
+                            svgProps={{
+                                height: isMobile ? 24 : 36,
+                                style: { marginRight: isMobile ? 14 : 24 },
+                            }}
+                        />
+                        <FinefoodsIcon height={isMobile ? 24 : 36} />
+                    </a>
+                </Link>
             </Row>
             <Row style={{ alignItems: "center" }}>
                 <SearchIcon height={24} style={{ marginRight: 14 }} />
