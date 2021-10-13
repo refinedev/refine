@@ -11,7 +11,10 @@ import { BasketContextProvider } from "@contextProviders";
 require("@pankod/refine/node_modules/antd/dist/antd.less");
 require("@styles/global.less");
 
-const API_URL = "https://api.finefoods.refine.dev";
+import { API_URL } from "../src/constants";
+
+require("@pankod/refine/node_modules/antd/dist/antd.less");
+require("@styles/global.less");
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
