@@ -64,9 +64,17 @@
         align-items: center;
         gap: 4px;
 
-        .ant-input {
-            width: 36px;
+        .add-input {
+            width: 60px;
             border-radius: 4px;
+
+            .ant-input-number-handler-wrap {
+                opacity: 1;
+
+                & .anticon {
+                    font-size: 7px
+                }
+            }
         }
 
         .anticon {

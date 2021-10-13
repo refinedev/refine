@@ -36,7 +36,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     productId,
 }) => {
     const { dispatch } = useBasketContext();
-    const [amount, setAmount] = useState(0);
+    const [amount, setAmount] = useState(1);
 
     return (
         <Card className="product-card">
@@ -62,9 +62,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             </Space>
             <div className="input-container">
                 <InputNumber
+                    className="add-input"
                     value={amount}
                     onChange={(value) => setAmount(value)}
-                    defaultValue={0}
+                    defaultValue={1}
                     min={1}
                 />
                 <PlusCircleOutlined

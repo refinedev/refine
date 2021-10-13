@@ -32,17 +32,21 @@ export const Header = () => {
             </Row>
             <Row style={{ alignItems: "center" }}>
                 <SearchIcon height={24} style={{ marginRight: 14 }} />
-                <Text className="basket-amount">
-                    {isBasketHaveOrders && `${orders.length} items /`}
-                </Text>
-                <NumberField
-                    className="basket-amount total-amount"
-                    value={totalAmount / 100}
-                    options={{
-                        currency: "USD",
-                        style: "currency",
-                    }}
-                />
+                {isBasketHaveOrders && (
+                    <>
+                        <Text className="basket-amount">
+                            {isBasketHaveOrders && `${orders.length} items /`}
+                        </Text>
+                        <NumberField
+                            className="basket-amount total-amount"
+                            value={totalAmount / 100}
+                            options={{
+                                currency: "USD",
+                                style: "currency",
+                            }}
+                        />
+                    </>
+                )}
                 <BasketIcon />
             </Row>
         </AntdLayout.Header>
