@@ -1,5 +1,4 @@
 import { GetServerSideProps } from "next";
-import { checkAuthentication } from "@pankod/refine-nextjs-router";
 import { Row, Col, LayoutWrapper, Card, Typography } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -121,7 +120,7 @@ export const HomePage: React.FC<HomePageProps> = ({ categories, products }) => {
 
 export default HomePage;
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
     const { data: categoryData } = await dataProvider(API_URL).getMany({
         resource: "categories",
         ids: ["1", "2", "3"],
