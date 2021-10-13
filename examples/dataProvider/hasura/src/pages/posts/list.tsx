@@ -16,12 +16,14 @@ import {
     useExport,
     useImport,
     CreateButton,
+    Input,
+    getDefaultFilter,
 } from "@pankod/refine";
 
 import { ICategory, IPost } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<IPost>({
+    const { tableProps, filters, sorter } = useTable<IPost>({
         initialSorter: [
             {
                 field: "id",
@@ -35,6 +37,8 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 {
                     category: ["title"],
                 },
+                "content",
+                "category_id",
             ],
         },
     });
@@ -88,20 +92,33 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         >
             <Table {...tableProps} rowKey="id">
                 <Table.Column
-                    key="id"
                     dataIndex="id"
                     title="ID"
                     sorter={{ multiple: 2 }}
                     defaultSortOrder={getDefaultSortOrder("id", sorter)}
                 />
                 <Table.Column
-                    key="title"
                     dataIndex="title"
                     title="Title"
                     sorter={{ multiple: 1 }}
                 />
+                <Table.Column
+                    dataIndex="content"
+                    title="Content"
+                    sorter={{ multiple: 3 }}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Input />
+                        </FilterDropdown>
+                    )}
+                    defaultFilteredValue={getDefaultFilter(
+                        "content",
+                        filters,
+                        "eq",
+                    )}
+                />
                 <Table.Column<IPost>
-                    dataIndex="category"
+                    dataIndex="category_id"
                     title="Category"
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
@@ -114,6 +131,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                         </FilterDropdown>
                     )}
                     render={(_, record) => record.category.title}
+                    defaultFilteredValue={getDefaultFilter(
+                        "category_id",
+                        filters,
+                        "in",
+                    )}
                 />
                 <Table.Column<IPost>
                     title="Actions"
