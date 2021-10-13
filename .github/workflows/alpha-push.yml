@@ -40,11 +40,6 @@ jobs:
         uses: rokroskar/workflow-run-cleanup-action@v0.2.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Get PR Branch Name
-        uses: mdecoleman/pr-branch-name@1.0.0
-        id: pr-branch-name
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -110,11 +105,6 @@ jobs:
         uses: rokroskar/workflow-run-cleanup-action@v0.2.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Get PR Branch Name
-        uses: mdecoleman/pr-branch-name@1.0.0
-        id: pr-branch-name
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
