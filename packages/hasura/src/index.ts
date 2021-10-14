@@ -79,7 +79,7 @@ export const generateFilters: any = (filters?: CrudFilters) => {
     return resultFilter;
 };
 
-const dataProvider = (client: GraphQLClient): Partial<DataProvider> => {
+const dataProvider = (client: GraphQLClient): DataProvider => {
     return {
         getOne: async ({ resource, id, metaData }) => {
             const operation = `${pluralize.plural(
@@ -375,6 +375,12 @@ const dataProvider = (client: GraphQLClient): Partial<DataProvider> => {
             return {
                 data: result[operation],
             };
+        },
+
+        getApiUrl: () => {
+            throw new Error(
+                'getApiUrl method is not implemented on refine-hasura data provider.'
+            );
         },
     };
 };
