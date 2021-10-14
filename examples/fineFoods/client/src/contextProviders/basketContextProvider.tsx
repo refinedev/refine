@@ -1,25 +1,25 @@
 import React, { useReducer } from "react";
 import { useMany } from "@pankod/refine";
 
-import { IOrder, IProduct } from "@interfaces";
+import { IBasketOrder, IProduct } from "@interfaces";
 import { OrdersModalContextProvider } from "@contextProviders";
 
 export const BasketContext = React.createContext<{
-    orders: IOrder[];
+    orders: IBasketOrder[];
     dispatch: Function;
     totalPrice: number;
     products: IProduct[];
 }>({ orders: [], dispatch: () => null, totalPrice: 0, products: [] });
 
-const initialBasket: IOrder[] = [];
+const initialBasket: IBasketOrder[] = [];
 
 const basketReducer = (
-    state: IOrder[],
+    state: IBasketOrder[],
     action: {
-        payload: IOrder;
+        payload: IBasketOrder;
         type: string;
     },
-): IOrder[] => {
+): IBasketOrder[] => {
     switch (action.type) {
         case "addProduct":
             return [...state, { ...action.payload }];

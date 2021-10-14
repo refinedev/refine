@@ -2,8 +2,6 @@ import { Icon } from "@pankod/refine";
 
 const SvgFinefoodsIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     <svg
-        // width="192"
-        // height="32"
         viewBox="0 0 192 32"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

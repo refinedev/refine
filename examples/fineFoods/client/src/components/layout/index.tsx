@@ -3,7 +3,7 @@ import { LayoutProps, AntdLayout } from "@pankod/refine";
 
 import { OrdersModal } from "@components";
 
-require("./layout.less");
+require("./style.less");
 
 export const Layout: React.FC<LayoutProps> = ({
     children,

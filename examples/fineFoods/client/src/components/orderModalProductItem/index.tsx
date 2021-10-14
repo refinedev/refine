@@ -1,10 +1,10 @@
 import { useBasketContext } from "@hooks/useBasketContext";
-import { IOrder } from "@interfaces";
+import { IBasketOrder } from "@interfaces";
 import { Avatar, NumberField, Row, Typography } from "@pankod/refine";
 
 const { Text } = Typography;
 
-export const OrderModalProductItem: React.FC<{ order: IOrder }> = ({
+export const OrderModalProductItem: React.FC<{ order: IBasketOrder }> = ({
     order,
 }) => {
     const { products } = useBasketContext();

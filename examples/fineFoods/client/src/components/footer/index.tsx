@@ -10,7 +10,7 @@ import { MotorcycleIcon, FinefoodsIcon, RefineLoveIcon } from "@components";
 
 const { Text } = Typography;
 
-require("./footer.less");
+require("./style.less");
 
 export const Footer = () => {
     const { Link } = useRouterContext();

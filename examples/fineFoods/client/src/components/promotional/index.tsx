@@ -6,7 +6,7 @@ import { useIsMobile } from "@hooks";
 
 const { Text } = Typography;
 
-require("./promotional.less");
+require("./style.less");
 
 export const Promotional = () => {
     const isMobile = useIsMobile();

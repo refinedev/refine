@@ -6,19 +6,14 @@ import {
     useRouterContext,
 } from "@pankod/refine";
 
-import {
-    MotorcycleIcon,
-    FinefoodsIcon,
-    BasketIcon,
-    SearchIcon,
-} from "@components";
+import { MotorcycleIcon, FinefoodsIcon, BasketIcon } from "@components";
 
 import { useBasketContext, useIsMobile } from "@hooks";
 import { useOrdesModalContext } from "@hooks/useOrdersModalContext";
 
 const { Text } = Typography;
 
-require("./header.less");
+require("./style.less");
 
 export const Header = () => {
     const isMobile = useIsMobile();

@@ -73,8 +73,8 @@ export const HomePage: React.FC<HomePageProps> = ({ categories, products }) => {
                         <Col
                             xs={24}
                             sm={24}
-                            md={12}
-                            lg={8}
+                            md={index === 2 ? 24 : 12}
+                            lg={index === 2 ? 24 : 12}
                             xl={8}
                             key={product.id}
                         >

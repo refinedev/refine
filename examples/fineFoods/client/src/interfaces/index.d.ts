@@ -27,7 +27,68 @@ export interface IProduct {
     stock: number;
 }
 
+export interface IAddress {
+    text: string;
+    coordinate: [string, string];
+}
+export interface IUser {
+    id: string;
+    firstName: string;
+    lastName: string;
+    fullName: string;
+    gender: string;
+    gsm: string;
+    createdAt: string;
+    isActive: boolean;
+    avatar: IFile[];
+    addresses: IAddress[];
+}
+
+export interface IOrderStatus {
+    id: string;
+    text: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";
+}
+
+export interface IStore {
+    id: string;
+    title: string;
+    isActive: boolean;
+    createdAt: string;
+    address: IAddress;
+    products: IProduct[];
+}
+
+export interface ICourier {
+    id: string;
+    name: string;
+    surname: string;
+    gender: string;
+    gsm: string;
+    createdAt: string;
+    isActive: boolean;
+    avatar: IFile[];
+}
+
+export interface IEvent {
+    date: string;
+    status: string;
+}
+
 export interface IOrder {
+    id: string;
+    user: IUser;
+    createdAt: string;
+    products: IProduct[];
+    status: IOrderStatus;
+    adress: IAddress;
+    store: IStore;
+    courier: ICourier;
+    events: IEvent[];
+    orderNumber: number;
+    amount: number;
+}
+
+export interface IBasketOrder {
     productId: string;
     amount: number;
 }
