@@ -101,6 +101,7 @@ const dataProvider = (client: GraphQLClient): Partial<DataProvider> => {
                 data: response[operation],
             };
         },
+
         getMany: async ({ resource, ids, metaData }) => {
             const operation = pluralize.plural(metaData?.operation ?? resource);
 
@@ -125,6 +126,7 @@ const dataProvider = (client: GraphQLClient): Partial<DataProvider> => {
                 data: result[operation],
             };
         },
+
         getList: async ({ resource, sort, filters, pagination, metaData }) => {
             const current = pagination?.current ?? 1;
             const limit = pagination?.pageSize || 10;
@@ -133,11 +135,18 @@ const dataProvider = (client: GraphQLClient): Partial<DataProvider> => {
             const hasuraSorting = generateSorting(sort);
             const hasuraFilters = generateFilters(filters);
 
-            const operation = metaData?.operation ?? resource;
+            const pluralResource = pluralize.plural(
+                metaData?.operation ?? resource
+            );
+
+            const aggreateOperation = `${pluralResource}_aggregate`;
+
+            const hasuraSortingType = `[${pluralResource}_order_by!]`;
+            const hasuraFiltersType = `${pluralResource}_bool_exp`;
 
             const { query, variables } = gql.query([
                 {
-                    operation,
+                    operation: pluralResource,
                     fields: metaData?.fields,
                     variables: {
                         limit,
@@ -145,19 +154,19 @@ const dataProvider = (client: GraphQLClient): Partial<DataProvider> => {
                         ...(hasuraSorting && {
                             order_by: {
                                 value: hasuraSorting,
-                                type: `[${operation}_order_by!]`,
+                                type: hasuraSortingType,
                             },
                         }),
                         ...(hasuraSorting && {
                             where: {
                                 value: hasuraFilters,
-                                type: `${operation}_bool_exp`,
+                                type: hasuraFiltersType,
                             },
                         }),
                     },
                 },
                 {
-                    operation: `${operation}_aggregate`,
+                    operation: aggreateOperation,
                     fields: [{ aggregate: ['count'] }],
                 },
             ]);
@@ -169,14 +178,15 @@ const dataProvider = (client: GraphQLClient): Partial<DataProvider> => {
                 total: result[`${operation}_aggregate`].aggregate.count,
             };
         },
-        create: async ({ resource, variables, metaData }) => {
-            const operation = `insert_${pluralize.plural(
-                metaData?.operation ?? resource
-            )}_one`;
 
-            const insertType = `${pluralize.plural(
+        create: async ({ resource, variables, metaData }) => {
+            const pluralResource = pluralize.plural(
                 metaData?.operation ?? resource
-            )}_insert_input`;
+            );
+
+            const operation = `insert_${pluralResource}_one`;
+
+            const insertType = `${pluralResource}_insert_input`;
 
             const { query, variables: gqlVariables } = gql.mutation({
                 operation,
@@ -196,14 +206,15 @@ const dataProvider = (client: GraphQLClient): Partial<DataProvider> => {
                 data: response[operation],
             };
         },
-        createMany: async ({ resource, variables, metaData }) => {
-            const operation = `insert_${pluralize.plural(
-                metaData?.operation ?? resource
-            )}`;
 
-            const insertType = `[${pluralize.plural(
+        createMany: async ({ resource, variables, metaData }) => {
+            const pluralResource = pluralize.plural(
                 metaData?.operation ?? resource
-            )}_insert_input!]`;
+            );
+
+            const operation = `insert_${pluralResource}`;
+
+            const insertType = `[${pluralResource}_insert_input!]`;
 
             const { query, variables: gqlVariables } = gql.mutation({
                 operation,
@@ -227,18 +238,17 @@ const dataProvider = (client: GraphQLClient): Partial<DataProvider> => {
                 data: response[operation],
             };
         },
+
         update: async ({ resource, id, variables, metaData }) => {
-            const operation = `update_${pluralize.plural(
+            const pluralResource = pluralize.plural(
                 metaData?.operation ?? resource
-            )}_by_pk`;
+            );
 
-            const pkColumnsType = `${pluralize.plural(
-                metaData?.operation ?? resource
-            )}_pk_columns_input`;
+            const operation = `update_${pluralResource}_by_pk`;
 
-            const setInputType = `${pluralize.plural(
-                metaData?.operation ?? resource
-            )}_set_input`;
+            const pkColumnsType = `${pluralResource}_pk_columns_input`;
+
+            const setInputType = `${pluralResource}_set_input`;
 
             const { query, variables: gqlVariables } = gql.mutation({
                 operation,
@@ -266,17 +276,15 @@ const dataProvider = (client: GraphQLClient): Partial<DataProvider> => {
             };
         },
         updateMany: async ({ resource, ids, variables, metaData }) => {
-            const operation = `update_${pluralize.plural(
+            const pluralResource = pluralize.plural(
                 metaData?.operation ?? resource
-            )}`;
+            );
 
-            const whereType = `${pluralize.plural(
-                metaData?.operation ?? resource
-            )}_bool_exp`;
+            const operation = `update_${pluralResource}`;
 
-            const setInputType = `${pluralize.plural(
-                metaData?.operation ?? resource
-            )}_set_input`;
+            const whereType = `${pluralResource}_bool_exp`;
+
+            const setInputType = `${pluralResource}_set_input`;
 
             const { query, variables: gqlVariables } = gql.mutation({
                 operation,
@@ -307,6 +315,65 @@ const dataProvider = (client: GraphQLClient): Partial<DataProvider> => {
 
             return {
                 data: response[operation],
+            };
+        },
+
+        deleteOne: async ({ resource, id, metaData }) => {
+            const pluralResource = pluralize.plural(
+                metaData?.operation ?? resource
+            );
+
+            const operation = `delete_${pluralResource}_by_pk`;
+
+            const { query, variables } = gql.query({
+                operation,
+                variables: {
+                    id: { value: id, type: 'uuid', required: true },
+                    ...metaData?.variables,
+                },
+                fields: metaData?.fields ?? ['id'],
+            });
+
+            const response = await client.request(query, variables);
+
+            return {
+                data: response[operation],
+            };
+        },
+
+        deleteMany: async ({ resource, ids, metaData }) => {
+            const pluralResource = pluralize.plural(
+                metaData?.operation ?? resource
+            );
+
+            const operation = `delete_${pluralResource}`;
+
+            const whereType = `${pluralResource}_bool_exp`;
+
+            const { query, variables } = gql.mutation({
+                operation,
+                fields: [
+                    {
+                        returning: metaData?.fields ?? ['id'],
+                    },
+                ],
+                variables: metaData?.variables ?? {
+                    where: {
+                        type: whereType,
+                        required: true,
+                        value: {
+                            id: {
+                                _in: ids,
+                            },
+                        },
+                    },
+                },
+            });
+
+            const result = await client.request(query, variables);
+
+            return {
+                data: result[operation],
             };
         },
     };
