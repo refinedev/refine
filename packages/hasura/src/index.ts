@@ -1,13 +1,13 @@
 // import { DataProvider } from '@pankod/refine';
 import { GraphQLClient } from 'graphql-request';
 import * as gql from 'gql-query-builder';
-import camelCase from 'camelcase';
 import {
     CrudOperators,
     CrudFilters,
     CrudSorting,
     DataProvider,
 } from '@pankod/refine';
+import pluralize from 'pluralize';
 
 export type HasuraSortingType = Record<string, 'asc' | 'desc'>;
 
@@ -81,6 +81,50 @@ export const generateFilters: any = (filters?: CrudFilters) => {
 
 const dataProvider = (client: GraphQLClient): Partial<DataProvider> => {
     return {
+        getOne: async ({ resource, id, metaData }) => {
+            const operation = `${pluralize.plural(
+                metaData?.operation ?? resource
+            )}_by_pk`;
+
+            const { query, variables } = gql.query({
+                operation,
+                variables: {
+                    id: { value: id, type: 'uuid', required: true },
+                    ...metaData?.variables,
+                },
+                fields: metaData?.fields,
+            });
+
+            const response = await client.request(query, variables);
+
+            return {
+                data: response[operation],
+            };
+        },
+        getMany: async ({ resource, ids, metaData }) => {
+            const operation = pluralize.plural(metaData?.operation ?? resource);
+
+            const { query, variables } = gql.query({
+                operation,
+                fields: metaData?.fields,
+                variables: metaData?.variables ?? {
+                    where: {
+                        type: `${operation}_bool_exp`,
+                        value: {
+                            id: {
+                                _in: ids,
+                            },
+                        },
+                    },
+                },
+            });
+
+            const result = await client.request(query, variables);
+
+            return {
+                data: result[operation],
+            };
+        },
         getList: async ({ resource, sort, filters, pagination, metaData }) => {
             const current = pagination?.current ?? 1;
             const limit = pagination?.pageSize || 10;
@@ -89,9 +133,7 @@ const dataProvider = (client: GraphQLClient): Partial<DataProvider> => {
             const hasuraSorting = generateSorting(sort);
             const hasuraFilters = generateFilters(filters);
 
-            const camelResource = camelCase(resource);
-
-            const operation = metaData?.operation ?? camelResource;
+            const operation = metaData?.operation ?? resource;
 
             const { query, variables } = gql.query([
                 {
@@ -125,6 +167,146 @@ const dataProvider = (client: GraphQLClient): Partial<DataProvider> => {
             return {
                 data: result[operation],
                 total: result[`${operation}_aggregate`].aggregate.count,
+            };
+        },
+        create: async ({ resource, variables, metaData }) => {
+            const operation = `insert_${pluralize.plural(
+                metaData?.operation ?? resource
+            )}_one`;
+
+            const insertType = `${pluralize.plural(
+                metaData?.operation ?? resource
+            )}_insert_input`;
+
+            const { query, variables: gqlVariables } = gql.mutation({
+                operation,
+                variables: {
+                    object: {
+                        type: insertType,
+                        value: variables,
+                        required: true,
+                    },
+                },
+                fields: metaData?.fields ?? ['id', ...Object.keys(variables)],
+            });
+
+            const response = await client.request(query, gqlVariables);
+
+            return {
+                data: response[operation],
+            };
+        },
+        createMany: async ({ resource, variables, metaData }) => {
+            const operation = `insert_${pluralize.plural(
+                metaData?.operation ?? resource
+            )}`;
+
+            const insertType = `[${pluralize.plural(
+                metaData?.operation ?? resource
+            )}_insert_input!]`;
+
+            const { query, variables: gqlVariables } = gql.mutation({
+                operation,
+                variables: {
+                    objects: {
+                        type: insertType,
+                        value: variables,
+                        required: true,
+                    },
+                },
+                fields: [
+                    {
+                        returning: metaData?.fields ?? ['id'],
+                    },
+                ],
+            });
+
+            const response = await client.request(query, gqlVariables);
+
+            return {
+                data: response[operation],
+            };
+        },
+        update: async ({ resource, id, variables, metaData }) => {
+            const operation = `update_${pluralize.plural(
+                metaData?.operation ?? resource
+            )}_by_pk`;
+
+            const pkColumnsType = `${pluralize.plural(
+                metaData?.operation ?? resource
+            )}_pk_columns_input`;
+
+            const setInputType = `${pluralize.plural(
+                metaData?.operation ?? resource
+            )}_set_input`;
+
+            const { query, variables: gqlVariables } = gql.mutation({
+                operation,
+                variables: {
+                    pk_columns: {
+                        type: pkColumnsType,
+                        value: {
+                            id: id,
+                        },
+                        required: true,
+                    },
+                    _set: {
+                        type: setInputType,
+                        value: variables,
+                        required: true,
+                    },
+                },
+                fields: metaData?.fields ?? ['id'],
+            });
+
+            const response = await client.request(query, gqlVariables);
+
+            return {
+                data: response[operation],
+            };
+        },
+        updateMany: async ({ resource, ids, variables, metaData }) => {
+            const operation = `update_${pluralize.plural(
+                metaData?.operation ?? resource
+            )}`;
+
+            const whereType = `${pluralize.plural(
+                metaData?.operation ?? resource
+            )}_bool_exp`;
+
+            const setInputType = `${pluralize.plural(
+                metaData?.operation ?? resource
+            )}_set_input`;
+
+            const { query, variables: gqlVariables } = gql.mutation({
+                operation,
+                variables: {
+                    where: {
+                        type: whereType,
+                        value: {
+                            id: {
+                                _in: ids,
+                            },
+                        },
+                        required: true,
+                    },
+                    _set: {
+                        type: setInputType,
+                        value: variables,
+                        required: true,
+                    },
+                },
+                fields: [
+                    {
+                        returning: metaData?.fields ?? ['id'],
+                    },
+                ],
+            });
+
+            const response = await client.request(query, gqlVariables);
+
+            return {
+                data: response[operation],
             };
         },
     };
