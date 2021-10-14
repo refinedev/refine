@@ -28,11 +28,10 @@ export const OrderSuccess: React.FC<OrderPageProps> = ({ order }) => {
     const q = gsap.utils.selector(el);
 
     const [showMessage, setShowMessage] = useState(false);
-    const [timeline, setTimeline] = useState(() => gsap.timeline());
+    const [timeline] = useState(() => gsap.timeline());
 
     useLayoutEffect(() => {
         const motoAnimation = timeline.to(q(".moto"), {
-            delay: 2,
             rotate: -30,
             duration: 1,
             scale: 1.2,
