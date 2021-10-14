@@ -9,7 +9,7 @@ import {
 
 import { useIsMobile } from "@hooks";
 
-require("./header.less");
+require("./style.less");
 
 export const Header = () => {
     const isMobile = useIsMobile();
