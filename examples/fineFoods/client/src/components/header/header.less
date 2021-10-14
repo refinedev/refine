@@ -1,17 +1,33 @@
 .ant-layout-header.header {
-    padding: 48px 0px;
+    padding: 40px 108px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-bottom: 4px solid @finefoods-red;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+
+    @media screen and (max-width: 1200px) {
+        padding: 40px 48px;
+    }
+
+    @media screen and (max-width: 768px) {
+        padding: 32px 32px;
+    }
+
+    @media screen and (max-width: 576px) {
+        padding: 24px 16px;
+    }
 
     .ant-typography.basket-amount {
-        color: rgba(255, 245, 0, 1) !important;
+        color: white !important;
         font-size: 21px;
         line-height: 32px;
         margin-right: 4px;
 
 
-        &.total-amount {
+        &.total-price {
             font-weight: 800;
             margin-right: 12px;
         }

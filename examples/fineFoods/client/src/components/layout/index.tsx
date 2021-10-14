@@ -14,8 +14,8 @@ export const Layout: React.FC<LayoutProps> = ({
     return (
         <>
             <AntdLayout style={{ minHeight: "100vh" }}>
+                <Header />
                 <AntdLayout className="inner">
-                    <Header />
                     <AntdLayout.Content>
                         {children}
                         <OffLayoutArea />

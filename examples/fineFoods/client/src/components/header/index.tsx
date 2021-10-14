@@ -32,7 +32,7 @@ export const Header = () => {
         <AntdLayout.Header className="header">
             <Row>
                 <Link href="/">
-                    <a>
+                    <a style={{ display: "flex" }}>
                         <MotorcycleIcon
                             svgProps={{
                                 height: isMobile ? 24 : 36,
@@ -51,7 +51,7 @@ export const Header = () => {
                             {isBasketHaveOrders && `${orders.length} items /`}
                         </Text>
                         <NumberField
-                            className="basket-amount total-amount"
+                            className="basket-amount total-price"
                             value={totalPrice / 100}
                             options={{
                                 currency: "USD",
