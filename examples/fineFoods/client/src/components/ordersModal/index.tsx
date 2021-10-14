@@ -8,6 +8,7 @@ import {
     Typography,
     NumberField,
     Button,
+    useCreate,
 } from "@pankod/refine";
 
 import { OrderIcon, OrderModalProductItem } from "@components";
@@ -19,7 +20,8 @@ require("./style.less");
 export const OrdersModal = () => {
     const { ordersModalVisible, setOrdersModalVisible } =
         useOrdesModalContext();
-    const { orders, totalPrice } = useBasketContext();
+    const { orders, totalPrice, products } = useBasketContext();
+    const { mutate } = useCreate();
 
     return (
         <Modal
@@ -46,7 +48,20 @@ export const OrdersModal = () => {
                         />
                     </Col>
                     <Col span={24}>
-                        <Button className="order-button">Order</Button>
+                        <Button
+                            onClick={() =>
+                                mutate({
+                                    resource: "orders",
+                                    values: {
+                                        products,
+                                        amount: totalPrice,
+                                    },
+                                })
+                            }
+                            className="order-button"
+                        >
+                            Order
+                        </Button>
                     </Col>
                 </Row>
             }

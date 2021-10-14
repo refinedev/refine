@@ -175,9 +175,8 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                         options={{
                                             currency: "USD",
                                             style: "currency",
-                                            notation: "compact",
                                         }}
-                                        value={value}
+                                        value={value / 100}
                                     />
                                 );
                             }}
