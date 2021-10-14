@@ -174,8 +174,8 @@ const dataProvider = (client: GraphQLClient): Partial<DataProvider> => {
             const result = await client.request(query, variables);
 
             return {
-                data: result[operation],
-                total: result[`${operation}_aggregate`].aggregate.count,
+                data: result[pluralResource],
+                total: result[aggreateOperation].aggregate.count,
             };
         },
 
