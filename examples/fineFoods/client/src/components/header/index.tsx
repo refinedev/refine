@@ -43,8 +43,11 @@ export const Header = () => {
                     </a>
                 </Link>
             </Row>
-            <Row style={{ alignItems: "center" }}>
-                <SearchIcon height={24} style={{ marginRight: 14 }} />
+            <Row
+                className="basket"
+                style={{ alignItems: "center" }}
+                onClick={() => setOrdersModalVisible((prev: boolean) => !prev)}
+            >
                 {isBasketHaveOrders && (
                     <>
                         <Text className="basket-amount">
@@ -60,11 +63,7 @@ export const Header = () => {
                         />
                     </>
                 )}
-                <BasketIcon
-                    onClick={() =>
-                        setOrdersModalVisible((prev: boolean) => !prev)
-                    }
-                />
+                <BasketIcon />
             </Row>
         </AntdLayout.Header>
     );
