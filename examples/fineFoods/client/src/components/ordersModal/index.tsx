@@ -9,19 +9,22 @@ import {
     NumberField,
     Button,
     useCreate,
+    useNavigation,
 } from "@pankod/refine";
 
 import { OrderIcon, OrderModalProductItem } from "@components";
+import { IOrder } from "@interfaces";
 
 const { Text } = Typography;
 
 require("./style.less");
 
 export const OrdersModal = () => {
+    const { replace } = useNavigation();
     const { ordersModalVisible, setOrdersModalVisible } =
         useOrdesModalContext();
-    const { orders, totalPrice, products } = useBasketContext();
-    const { mutate } = useCreate();
+    const { orders, totalPrice, products, dispatch } = useBasketContext();
+    const { mutate, isLoading } = useCreate<IOrder>();
 
     return (
         <Modal
@@ -49,14 +52,28 @@ export const OrdersModal = () => {
                     </Col>
                     <Col span={24}>
                         <Button
+                            loading={isLoading}
                             onClick={() =>
-                                mutate({
-                                    resource: "orders",
-                                    values: {
-                                        products,
-                                        amount: totalPrice,
+                                mutate(
+                                    {
+                                        resource: "orders",
+                                        values: {
+                                            products,
+                                            amount: totalPrice,
+                                        },
+                                        successNotification: false,
                                     },
-                                })
+                                    {
+                                        onSuccess: (data) => {
+                                            replace(
+                                                `/order/[id]`,
+                                                `/order/${data.data.id}`,
+                                            );
+                                            setOrdersModalVisible(false);
+                                            dispatch({ type: "resetBasket" });
+                                        },
+                                    },
+                                )
                             }
                             className="order-button"
                         >

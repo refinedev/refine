@@ -23,6 +23,8 @@ const basketReducer = (
     switch (action.type) {
         case "addProduct":
             return [...state, { ...action.payload }];
+        case "resetBasket":
+            return [];
         default:
             return [];
     }
