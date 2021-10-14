@@ -1,7 +1,7 @@
 import React from "react";
 import { LayoutProps, AntdLayout } from "@pankod/refine";
 
-require("./layout.less");
+require("./style.less");
 
 export const Layout: React.FC<LayoutProps> = ({
     children,
