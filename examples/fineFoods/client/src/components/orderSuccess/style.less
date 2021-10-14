@@ -1,4 +1,34 @@
+.ant-card.image-card {
+    padding: 0px;
+    border-radius: 48px;
+
+    .ant-card-head {
+        padding: 48px;
+        background-size: cover;
+        background-position: center;
+        border-top-left-radius: 48px;
+        border-top-right-radius: 48px;
+    }
+}
+
 .ant-card.order-success {
+    padding: 0px;
+    border-radius: 48px;
+
+    .ant-card-head {
+        padding: 16px;
+        border-top-left-radius: 48px;
+        border-top-right-radius: 48px;
+    }
+
+    .head-title {
+        color: white;
+        font-size: 54px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 0px;
+    }
+
     .main-title {
         font-weight: 700;
         margin-bottom: 8px;
@@ -44,5 +74,55 @@
             flex-wrap: wrap;
             justify-content: center;
         }
+    }
+
+    .animation-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 8px;
+
+        .message {
+            position: absolute;
+            right: -18px;
+            top: -55px;
+            animation: scaleUp 1s;
+
+            &:before {
+                content: "";
+                width: 0px;
+                height: 0px;
+                position: absolute;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 5px solid @finefoods-orange;
+                right: 47%;
+                bottom: -5px;
+            }
+        }
+
+        .ant-btn {
+            font-weight: 700;
+            border-color: @finefoods-orange;
+            border-width: 2px;
+        }
+
+        .ant-typography {
+            margin-bottom: 0px;
+        }
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.3);
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        transform: translateY(0px);
+        opacity: 1;
     }
 }

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { GetServerSideProps } from "next";
 import dataProvider from "@pankod/refine-simple-rest";
 import JSConfetti from "js-confetti";
@@ -12,14 +12,11 @@ type OrderPageProps = {
 };
 
 export const OrderDetail: React.FC<OrderPageProps> = ({ order }) => {
-    useEffect(() => {
+    useLayoutEffect(() => {
         const jsConfetti = new JSConfetti();
         setTimeout(() => {
-            jsConfetti.addConfetti({
-                emojis: ["🦄", "🌈", "⚡️", "💥"],
-                confettiNumber: 70,
-            });
-        }, 1000);
+            jsConfetti.addConfetti();
+        }, 500);
     }, []);
     return <OrderSuccess order={order} />;
 };
