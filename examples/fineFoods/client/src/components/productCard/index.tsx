@@ -3,10 +3,13 @@ import {
     Typography,
     Avatar,
     Space,
-    Input,
+    InputNumber,
     Icons,
     NumberField,
 } from "@pankod/refine";
+
+import { useBasketContext } from "@hooks";
+import { useState } from "react";
 
 require("./style.less");
 
@@ -20,6 +23,7 @@ export type ProductCardProps = {
     description: string;
     price: number;
     badgeBgColor?: string;
+    productId?: string;
 };
 
 export const ProductCard: React.FC<ProductCardProps> = ({
@@ -29,7 +33,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     description,
     price,
     badgeBgColor,
+    productId,
 }) => {
+    const { dispatch } = useBasketContext();
+    const [amount, setAmount] = useState(1);
+
     return (
         <Card className="product-card">
             <span className="badge" style={{ backgroundColor: badgeBgColor }}>
@@ -53,8 +61,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 </div>
             </Space>
             <div className="input-container">
-                <Input defaultValue={0} />
-                <PlusCircleOutlined />
+                <InputNumber
+                    className="add-input"
+                    value={amount}
+                    onChange={(value) => setAmount(value)}
+                    defaultValue={1}
+                    min={1}
+                />
+                <PlusCircleOutlined
+                    onClick={() => {
+                        dispatch({
+                            type: "addProduct",
+                            payload: { productId, amount },
+                        });
+                    }}
+                />
             </div>
         </Card>
     );

@@ -87,3 +87,8 @@ export interface IOrder {
     orderNumber: number;
     amount: number;
 }
+
+export interface IBasketOrder {
+    productId: string;
+    amount: number;
+}

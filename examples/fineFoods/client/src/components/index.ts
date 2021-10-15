@@ -6,4 +6,6 @@ export * from "./icons";
 export * from "./categoryCard";
 export * from "./productCard";
 export * from "./productListCard";
+export * from "./ordersModal";
+export * from "./orderModalProductItem";
 export * from "./orderSuccess";
