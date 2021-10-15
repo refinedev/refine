@@ -41,7 +41,7 @@ Let's say that we have a resource named `posts`
 
 First of all, we will use `useList` without passing any query configurations.
 
-```tsx twoslash 
+```tsx twoslash
 import { useList } from "@pankod/refine";
 
 type IPost = {
@@ -283,14 +283,14 @@ const postListQueryResult = useList<IPost>({
 
 ### Properties
 
-| Property                                                                                           | Description                                                                    | Type                                                                       |
-| -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------- | ----------------------------------- |
-| <div className="required-block"><div>resource</div> <div className="required">Required</div></div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                                   |
-| config                                                                                             | Configuration for pagination, sorting and filtering                            | [`UseListConfig`](#config-parameters)                                      |                                     |
-| queryOptions                                                                                       | `react-query`'s `useQuery` options                                             | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                |
-| successNotification                                                                                | Successful Query notification                                                  | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | `false`                             |
-| errorNotification                                                                                  | Unsuccessful Query notification                                                | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Error (status code: `statusCode`)" |
-| metaData                                            | Metadata query for `dataProvider`                                              | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)           | {}                                                                   |
+| Property                                                                                           | Description                                         | Type                                                                       |
+| -------------------------------------------------------------------------------------------------- | --------------------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------- |
+| <div className="required-block"><div>resource</div> <div className="required">Required</div></div> | Resource name for API data interactions             | `string`                                                                   |
+| config                                                                                             | Configuration for pagination, sorting and filtering | [`UseListConfig`](#config-parameters)                                      |                                     |
+| queryOptions                                                                                       | `react-query`'s `useQuery` options                  | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                |
+| successNotification                                                                                | Successful Query notification                       | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | `false`                             |
+| errorNotification                                                                                  | Unsuccessful Query notification                     | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Error (status code: `statusCode`)" |
+| metaData                                                                                           | Metadata query for `dataProvider`                   | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)             | {}                                  |
 
 ### Config parameters
 
