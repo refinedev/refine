@@ -144,7 +144,6 @@ module.exports = {
                     items: [
                         "api-references/components/refine-config",
                         "api-references/components/layout-wrapper",
-                        "api-references/components/resource",
                         "api-references/components/filter-dropdown",
                         {
                             type: "category",
