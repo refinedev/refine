@@ -44,7 +44,7 @@
         "rollup-plugin-postcss": "^4.0.0",
         "size-limit": "^4.9.2",
         "tsdx": "^0.14.1",
-        "typescript": "^3.9.8"
+        "typescript": "^4.2.4"
     },
     "dependencies": {
         "@ant-design/icons": "^4.5.0",
