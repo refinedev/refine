@@ -28,7 +28,6 @@ export const CreatePage: React.FC = () => {
 
 `<Create>` component has a default button that submits the form. If you want to customize this button you can use the `saveButtonProps` property like the code below.
 
-
 [Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-references/components/buttons/save.md)
 
 ```tsx twoslash
@@ -41,7 +40,7 @@ export const CreatePage: React.FC = () => {
 
 ### `actionButtons`
 
-`<Create>` uses the Ant Design [`<Card>`](https://ant.design/components/card) component. The `action` prop of the `<Card>` component shows `<SaveButton>` and `<DeleteButton>` depending on your resource definition on the `<Resource>` components. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
+`<Create>` uses the Ant Design [`<Card>`](https://ant.design/components/card) component. The `action` property of the `<Card>` component shows `<SaveButton>` and `<DeleteButton>` based on your resource definition in the `resources` property you pass to `<Refine>`. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
 
 ```tsx twoslash
 import { Create, Button } from "@pankod/refine";
@@ -114,7 +113,7 @@ The `<Create>` component reads the `resource` information from the route by defa
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
 ```tsx twoslash {2-4, 11-17}
-import { Refine, Resource, Create } from "@pankod/refine";
+import { Refine, Create } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
 const CustomPage = () => {
@@ -125,6 +124,7 @@ export const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
+            resources={[{ name: "posts" }]}
             routes={[
                 {
                     exact: true,
@@ -132,20 +132,19 @@ export const App: React.FC = () => {
                     path: "/custom",
                 },
             ]}
-        >
-            <Resource name="posts" />
-        </Refine>
+        />
     );
 };
 ```
+
 ## API Reference
 
 ### Properties
 
-| Property        | Description                                                                    | Type                                                              | Default                                                                            |
-| --------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| saveButtonProps | Adds props for create button                                                   | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton>`                                                                     |
-| title           | Adds title                                                                     | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                    |
-| actionButtons   | Passes the props for `<PageHeader>`                                            | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
-| pageHeaderProps | Passes the props for `<PageHeader>`                                            | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
-| resource        | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                          | Resource name that it reads from the URL.                                          |
+| Property        | Description                             | Type                                                              | Default                                                                        |
+| --------------- | --------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| saveButtonProps | Adds props for create button            | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton>`                                                                 |
+| title           | Adds title                              | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                |
+| actionButtons   | Passes the props for `<PageHeader>`     | `React.ReactNode`                                                 | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
+| pageHeaderProps | Passes the props for `<PageHeader>`     | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` } |
+| resource        | Resource name for API data interactions | `string`                                                          | Resource name that it reads from the URL.                                      |
