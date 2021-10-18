@@ -3,6 +3,9 @@ id: router-provider
 title: Router Provider
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 **refine** needs some router functions to create resource pages, navigate, etc. This provider allows you to use the router library you want.
 
 A router provider must include following methods:
@@ -46,7 +49,13 @@ We do not recommend creating this provider unless you do not need any customizat
 
 To activate router provider in **refine**, we have to pass the `routerProvider` to the `<Refine />` component.
 
-### `react-router`
+<Tabs
+defaultValue="react"
+values={[
+{label: 'react-router', value: 'react'},
+{label: 'nextjs-router', value: 'nextjs'}
+]}>
+<TabItem value="react">
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine";
@@ -57,7 +66,8 @@ const App: React.FC = () => {
 };
 ```
 
-### `nextjs-router`
+  </TabItem>
+    <TabItem value="nextjs">
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine";
@@ -67,3 +77,6 @@ const App: React.FC = () => {
     return <Refine routerProvider={routerProvider} />;
 };
 ```
+
+  </TabItem>
+</Tabs>
