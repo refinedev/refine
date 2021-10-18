@@ -10,10 +10,10 @@ A router provider must include following methods:
 ```tsx
 const routerProvider = {
     useHistory: () => any,
-    useLocation: <S = any>() => any,
+    useLocation: () => any,
     useParams: <Params extends { [K in keyof Params]?: string } = {}>() => Params,
     Prompt: React.FC<PromptProps>,
-    Link: any,
+    Link: React.FC,
     RouterComponent?: React.FC,
 };
 ```
