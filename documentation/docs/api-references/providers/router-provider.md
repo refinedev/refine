@@ -99,7 +99,7 @@ values={[
 ]}>
 <TabItem value="react-useHistory">
 
-```ts title="dataProvider.ts" {1,5}
+```ts title="routerProvider.ts" {1,5}
 import { IRouterProvider } from "@pankod/refine";
 import { useHistory } from "react-router-dom";
 
@@ -113,7 +113,7 @@ const routerProvider: IRouterProvider = {
   </TabItem>
     <TabItem value="nextjs-useHistory">
 
-```ts title="dataProvider.ts" {1,5-13}
+```ts title="routerProvider.ts" {1,5-13}
 import { IRouterProvider } from "@pankod/refine";
 import { useRouter } from "next/router";
 
@@ -147,7 +147,7 @@ values={[
 ]}>
 <TabItem value="react-useLocation">
 
-```ts title="dataProvider.ts" {1,5}
+```ts title="routerProvider.ts" {1,5}
 import { IRouterProvider } from "@pankod/refine";
 import { useLocation } from "react-router-dom";
 
@@ -161,7 +161,7 @@ const routerProvider: IRouterProvider = {
   </TabItem>
     <TabItem value="nextjs-useLocation">
 
-```ts title="dataProvider.ts" {1-2,6-16}
+```ts title="routerProvider.ts" {1-2,6-16}
 import { IRouterProvider } from "@pankod/refine";
 import { useRouter } from "next/router";
 import qs from "qs";
@@ -179,6 +179,125 @@ const routerProvider: IRouterProvider = {
             search: queryParams && `?${queryParams}`,
         };
     },
+    ...
+};
+```
+
+  </TabItem>
+</Tabs>
+
+### `useParams`
+
+**refine** uses `useParams` to use action name, record id, etc. found in the route.
+
+<Tabs
+defaultValue="react-useParams"
+values={[
+{label: 'react-router', value: 'react-useParams'},
+{label: 'nextjs-router', value: 'nextjs-useParams'}
+]}>
+<TabItem value="react-useParams">
+
+```ts title="routerProvider.ts" {1,5}
+import { IRouterProvider } from "@pankod/refine";
+import { useParams } from "react-router-dom";
+
+const routerProvider: IRouterProvider = {
+    ...
+    useParams,
+    ...
+};
+```
+
+  </TabItem>
+    <TabItem value="nextjs-useParams">
+
+```ts title="routerProvider.ts" {1,5-10}
+import { IRouterProvider } from "@pankod/refine";
+import { useRouter } from "next/router";
+
+const routerProvider: IRouterProvider = {
+    ...
+    useParams: <Params>() => {
+        const router = useRouter();
+
+        const { query } = router;
+        return query as unknown as Params;
+    },
+    ...
+};
+```
+
+  </TabItem>
+</Tabs>
+
+### `Prompt`
+
+**refine** uses `<Prompt>` to display the alert when [warnWhenUnsavedChanges](/api-references/components/refine-config.md#warnwhenunsavedchanges) is `true`.
+
+<Tabs
+defaultValue="react-prompt"
+values={[
+{label: 'react-router', value: 'react-prompt'},
+{label: 'nextjs-router', value: 'nextjs-prompt'}
+]}>
+<TabItem value="react-prompt">
+
+```ts title="routerProvider.ts" {1,5}
+import { IRouterProvider } from "@pankod/refine";
+import { Prompt } from "react-router-dom";
+
+const routerProvider: IRouterProvider = {
+    ...
+    Prompt: Prompt as any,
+    ...
+};
+```
+
+  </TabItem>
+    <TabItem value="nextjs-prompt">
+
+```tsx title="Prompt.tsx"
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+
+import type { PromptProps } from "@pankod/refine";
+
+export const Prompt: React.FC<PromptProps> = ({
+    message,
+    when,
+    setWarnWhen,
+}) => {
+    const router = useRouter();
+
+    useEffect(() => {
+        const routeChangeStart = () => {
+            if (when) {
+                const allowTransition = window.confirm(message);
+                if (allowTransition) {
+                    setWarnWhen?.(false);
+                } else {
+                    router.events.emit("routeChangeError");
+                    throw "Abort route change due to unsaved changes prompt. Ignore this error.";
+                }
+            }
+        };
+        router.events.on("routeChangeStart", routeChangeStart);
+
+        return () => router.events.off("routeChangeStart", routeChangeStart);
+    }, [when]);
+    return null;
+};
+```
+
+```ts title="routerProvider.ts" {2, 6}
+import { IRouterProvider } from "@pankod/refine";
+
+import { Prompt } from "./prompt";
+
+const routerProvider: IRouterProvider = {
+    ...
+    Prompt,
     ...
 };
 ```
