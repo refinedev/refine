@@ -7,7 +7,7 @@ export const defaultProvider: IRouterContext = {
     useLocation: () => false,
     useParams: () => ({} as any),
     Prompt: () => null,
-    Link: null,
+    Link: () => null,
 };
 
 export const RouterContext =
