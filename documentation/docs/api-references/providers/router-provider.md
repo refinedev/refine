@@ -9,14 +9,23 @@ A router provider must include following methods:
 
 ```tsx
 const routerProvider = {
-    useHistory: () => any,
-    useLocation: () => any,
+    useHistory: () => {
+        push: (...args) => any,
+        replace: (...args) => any,
+        goBach: (...args) => any,
+    },
+    useLocation: () => {
+        pathname: string,
+        search: string,
+    },
     useParams: <Params extends { [K in keyof Params]?: string } = {}>() => Params,
-    Prompt: React.FC<PromptProps>,
-    Link: React.FC,
-    RouterComponent?: React.FC,
+    Prompt: React.FC<PromptProps*>,
+    Link: React.FC<any>,
+    RouterComponent?: React.FC<any>,
 };
 ```
+
+> `*`: Too see &#8594 [`<PromptProps>`](/api-references/interfaces.md#promptprops)
 
 :::info
 
