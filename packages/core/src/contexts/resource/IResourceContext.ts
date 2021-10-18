@@ -14,12 +14,13 @@ export interface ResourceProps extends IResourceComponents {
     icon?: ReactNode;
     options?: OptionsProps;
 }
-export interface IResourceComponentsProps {
+export interface IResourceComponentsProps<TCrudData = any> {
     canCreate?: boolean;
     canEdit?: boolean;
     canDelete?: boolean;
     canShow?: boolean;
     name?: string;
+    crudData?: TCrudData;
 }
 export interface IResourceComponents {
     list?: React.FunctionComponent<IResourceComponentsProps>;

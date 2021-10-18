@@ -8,9 +8,9 @@ import routerProvider from "@pankod/refine-nextjs-router";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "@components";
 
-import "@pankod/refine/dist/styles.min.css";
+import { API_URL } from "../src/constants";
 
-const API_URL = "https://api.fake-rest.refine.dev";
+import "@pankod/refine/dist/styles.min.css";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
