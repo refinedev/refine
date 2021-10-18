@@ -10,7 +10,7 @@ import {
     SuccessErrorNotification,
     MetaDataQuery,
 } from "../../interfaces";
-import { useListResourceQueries, useTranslate } from "@hooks";
+import { useCacheQueries, useTranslate } from "@hooks";
 import { handleNotification } from "@definitions";
 import pluralize from "pluralize";
 
@@ -49,7 +49,7 @@ export const useCreateMany = <
     TVariables = {},
 >(): UseCreateManyReturnType<TData, TError, TVariables> => {
     const { createMany } = useContext<IDataContext>(DataContext);
-    const getListQueries = useListResourceQueries();
+    const getAllQueries = useCacheQueries();
     const translate = useTranslate();
     const queryClient = useQueryClient();
 
@@ -83,7 +83,7 @@ export const useCreateMany = <
                     type: "success",
                 });
 
-                getListQueries(resource).forEach((query) => {
+                getAllQueries(resource).forEach((query) => {
                     queryClient.invalidateQueries(query.queryKey);
                 });
             },

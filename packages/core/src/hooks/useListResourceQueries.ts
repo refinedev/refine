@@ -33,13 +33,31 @@ export const useGetOneQueries = () => {
     );
 };
 
+export const useGetManyQueries = () => {
+    const queryClient = useQueryClient();
+    const data = queryClient.getQueryCache();
+
+    const getManyResourceQueries = useCallback(
+        (resource: string) => {
+            return data.getAll().filter((query) => {
+                return query.queryKey.includes(`resource/getMany/${resource}`);
+            });
+        },
+        [data],
+    );
+
+    return getManyResourceQueries;
+};
+
 export const useCacheQueries = () => {
     const listResourceQueries = useListResourceQueries();
     const getOneQuery = useGetOneQueries();
+    const getManyResourceQuery = useGetManyQueries();
 
     return useCallback((resource: string, id?: string | string[]) => {
         const queries = getOneQuery(resource);
         const listQuery = listResourceQueries(resource);
+        const getManyQuery = getManyResourceQuery(resource);
 
         if (id) {
             let getOneQueriesWithId;
@@ -53,8 +71,9 @@ export const useCacheQueries = () => {
                 });
             }
 
-            return [...listQuery, ...getOneQueriesWithId];
+            return [...listQuery, ...getManyQuery, ...getOneQueriesWithId];
         }
-        return [...listQuery, ...queries];
+
+        return [...listQuery, ...getManyQuery, ...queries];
     }, []);
 };
