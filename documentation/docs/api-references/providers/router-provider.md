@@ -89,7 +89,7 @@ To understand how to create a `routerProvider`, let's examine how the [react-rou
 
 ### `useHistory`
 
-**refine** navigation operations use the `push`, `replace`, and `goBack` functions of `useHistory`.
+**refine** uses `push`, `replace`, and `goBack` functions of `useHistory` for navigation.
 
 <Tabs
 defaultValue="react-useHistory"
@@ -126,6 +126,57 @@ const routerProvider: IRouterProvider = {
             push,
             replace,
             goBack: back,
+        };
+    },
+    ...
+};
+```
+
+  </TabItem>
+</Tabs>
+
+### `useLocation`
+
+**refine** uses the `pathname` to find the location of the user and `search` to find the query string.
+
+<Tabs
+defaultValue="react-useLocation"
+values={[
+{label: 'react-router', value: 'react-useLocation'},
+{label: 'nextjs-router', value: 'nextjs-useLocation'}
+]}>
+<TabItem value="react-useLocation">
+
+```ts title="dataProvider.ts" {1,5}
+import { IRouterProvider } from "@pankod/refine";
+import { useLocation } from "react-router-dom";
+
+const routerProvider: IRouterProvider = {
+    ...
+    useLocation,
+    ...
+};
+```
+
+  </TabItem>
+    <TabItem value="nextjs-useLocation">
+
+```ts title="dataProvider.ts" {1-2,6-16}
+import { IRouterProvider } from "@pankod/refine";
+import { useRouter } from "next/router";
+import qs from "qs";
+
+const routerProvider: IRouterProvider = {
+    ...
+    useLocation: () => {
+        const router = useRouter();
+        const { pathname, query } = router;
+
+        const queryParams = qs.stringify(query);
+
+        return {
+            pathname,
+            search: queryParams && `?${queryParams}`,
         };
     },
     ...
