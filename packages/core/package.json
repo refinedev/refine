@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine",
-    "version": "1.0.84",
+    "version": "1.0.85",
     "description": "",
     "private": false,
     "main": "dist/index.js",
@@ -27,6 +27,7 @@
         "@testing-library/react": "^9.5.0",
         "@testing-library/react-hooks": "^5.0.3",
         "@testing-library/user-event": "^7.2.1",
+        "@types/jest": "^26.0.24",
         "@types/lodash": "^4.14.168",
         "@types/papaparse": "^5.2.5",
         "@types/pluralize": "^0.0.29",
