@@ -32,3 +32,29 @@ const routerProvider = {
 We do not recommend creating this provider unless you do not need any customization on the router. Instead, you can use [nextjs-router](https://github.com/pankod/refine/tree/alpha/packages/nextjs-router) for your [Next.js](https://nextjs.org/) app and [react-router](https://github.com/pankod/refine/tree/alpha/packages/react-router) for your [react](https://en.reactjs.org/) app.
 
 :::
+
+## Usage
+
+To activate router provider in **refine**, we have to pass the `routerProvider` to the `<Refine />` component.
+
+### `react-router`
+
+```tsx title="App.tsx"
+import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
+
+const App: React.FC = () => {
+    return <Refine routerProvider={routerProvider} />;
+};
+```
+
+### `nextjs-router`
+
+```tsx title="App.tsx"
+import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-nextjs-router";
+
+const App: React.FC = () => {
+    return <Refine routerProvider={routerProvider} />;
+};
+```
