@@ -1,8 +1,8 @@
 import { useEffect } from "react";
+import routerProvider from "@pankod/refine-react-router";
 import { Refine, Icons } from "@pankod/refine";
 import jsonServerDataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router";
-import de_DE from "@pankod/refine/node_modules/antd/lib/locale/de_DE";
+import de_DE from "antd/lib/locale/de_DE";
 import { authProvider } from "authProvider";
 import dayjs from "dayjs";
 

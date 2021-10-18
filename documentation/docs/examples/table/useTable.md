@@ -3,7 +3,7 @@ id: useTable
 title: useTable
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/useTable)
+[View Source](https://github.com/pankod/refine/tree/master/examples/table/useTable)
 
 <iframe src="https://codesandbox.io/embed/refine-use-table-example-ule39?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Flist.tsx&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}

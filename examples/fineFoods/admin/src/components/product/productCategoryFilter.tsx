@@ -19,7 +19,9 @@ export const ProductCategoryFilter: React.FC<ProductItemProps> = ({
     );
 
     useEffect(() => {
-        onChange?.(filterCategories);
+        if (filterCategories.length > 0) {
+            onChange?.(filterCategories);
+        }
     }, [filterCategories]);
 
     const { data: categoryData, isLoading: categoryIsLoading } =
