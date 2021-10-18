@@ -80,3 +80,57 @@ const App: React.FC = () => {
 
   </TabItem>
 </Tabs>
+
+## Creating a router provider
+
+The `routerProvider` methods **refine** expects are exactly the same as [react-router-dom](https://reactrouter.com/web) methods.
+
+To understand how to create a `routerProvider`, let's examine how the [react-router](https://github.com/pankod/refine/tree/alpha/packages/react-router) and [nextjs-router](https://github.com/pankod/refine/tree/alpha/packages/nextjs-router) libraries provided by **refine** create a `routerProvider`.
+
+### `useHistory`
+
+**refine** navigation operations use the `push`, `replace`, and `goBack` functions of `useHistory`.
+
+<Tabs
+defaultValue="react-useHistory"
+values={[
+{label: 'react-router', value: 'react-useHistory'},
+{label: 'nextjs-router', value: 'nextjs-useHistory'}
+]}>
+<TabItem value="react-useHistory">
+
+```ts title="dataProvider.ts" {1,5}
+import { IRouterProvider } from "@pankod/refine";
+import { useHistory } from "react-router-dom";
+
+const routerProvider: IRouterProvider = {
+    ...
+    useHistory,
+    ...
+};
+```
+
+  </TabItem>
+    <TabItem value="nextjs-useHistory">
+
+```ts title="dataProvider.ts" {1,5-13}
+import { IRouterProvider } from "@pankod/refine";
+import { useRouter } from "next/router";
+
+const routerProvider: IRouterProvider = {
+    ...
+    useHistory: () => {
+        const router = useRouter();
+        const { push, replace, back } = router;
+        return {
+            push,
+            replace,
+            goBack: back,
+        };
+    },
+    ...
+};
+```
+
+  </TabItem>
+</Tabs>
