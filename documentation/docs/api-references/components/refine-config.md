@@ -7,10 +7,11 @@ sidebar_label: <Refine>
 import warnwhen from '@site/static/img/warnwhen.png';
 
 `<Refine>` component is the entry point of a **refine** app. It is where the highest level of configuration of the app occurs.
-Only a [`dataProvider`](api-references/providers/data-provider.md) is required to bootstrap the app. After adding a `dataProvider`, `<Resource>`'s can be added as children.
+
+[`dataProvider`](api-references/providers/data-provider.md) and [`routerProvider`](#routerprovider) are required to bootstrap the app. After adding them, [`resources`](#resources) can be added as property.
 
 ```tsx title="App.tsx"
-import { Refine, Resource } from "@pankod/refine";
+import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -20,12 +21,15 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine dataProvider={dataProvider(API_URL)}>
-            <Resource
-                name="posts"
-                list={PostList}
-            />
-        </Refine>
+        <Refine
+            dataProvider={dataProvider(API_URL)}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                },
+            ]}
+        />
     );
 };
 
@@ -34,24 +38,185 @@ export default App;
 
 <br />
 
-## Props
+## `dataProvider`
 
-
-### `dataProvider`
 <div className="required">Required</div>
 <br/>
 <br/>
 
 A [`dataProvider`](api-references/providers/data-provider.md) is the place where a refine app communicates with an API.
-Data providers also act as adapters for refine, making it possible for it to consume different API's and data services.   
-A [`dataProvider`](api-references/providers/data-provider.md) makes HTTP requests and returns response data back using predefined methods.  
-
+Data providers also act as adapters for refine, making it possible for it to consume different API's and data services.  
+A [`dataProvider`](api-references/providers/data-provider.md) makes HTTP requests and returns response data back using predefined methods.
 
 [Refer to the Data Provider documentation for detailed information. &#8594](api-references/providers/data-provider.md)
 
 <br />
 
-### `authProvider`
+## `routerProvider`
+
+<div className="required">Required</div>
+<br/>
+<br/>
+
+## `resources`
+
+`resources` is the main building block of a **refine** app. A resource represents an entity in an endpoint in the API (e.g. https://api.fake-rest.refine.dev/posts). It serves as a bridge between the data from the API and the pages in the app, allowing pages to interact with the data from the API.
+
+Here's an app that consumes the https://api.fake-rest.refine.dev/posts endpoint as a resource to list multiple items, edit or create an item and show a single item.
+
+Page components that are for interacting with the CRUD API operations are passed as a resource element to `resources`.
+<br />
+
+```tsx title="App.tsx" {12-20}
+import { Refine } from "@pankod/refine";
+import dataProvider from "@pankod/refine-json-server";
+import "@pankod/refine/dist/styles.min.css";
+
+import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const App: React.FC = () => {
+    return (
+        <Refine
+            dataProvider={dataProvider(API_URL)}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+            ]}
+        />
+    );
+};
+
+export default App;
+```
+
+<br />
+
+These components will receive some properties.
+
+```tsx title="PostList.tsx"
+interface IResourceComponentsProps {
+    canCreate?: boolean;
+    canEdit?: boolean;
+    canDelete?: boolean;
+    canShow?: boolean;
+    name: string;
+}
+
+const PostList: React.FC<IResourceComponentsProps> = (props) => {
+    ...
+}
+```
+
+The values of `canCreate`, `canEdit` and `canShow` are determined by whether associated component are passed as an element to `resources` or not.  
+`name` and `canDelete` are the values passed to the `resources`.
+
+:::tip
+This props can be get by using the [useResource](api-references/hooks/resource/useResource.md) hook.
+:::
+
+### `name`
+
+<div className="required">Required</div>
+<br/>
+<br/>
+
+A string value that identifies a resource in the API. Interacting with the data in a resource will be done using an endpoint determined by the `name`:
+
+```
+https://api.fake-rest.refine.dev/posts
+https://api.fake-rest.refine.dev/posts/1
+```
+
+<br />
+
+`name` also determines the routes of the pages of a resource:
+
+-   List page -> `/posts`
+-   Create page -> `/posts/create/:id?`
+-   Edit page -> `/posts/edit/:id`
+-   Show page -> `/posts/show/:id`
+
+<br />
+
+### `list`
+
+The component passed to `list` prop will be rendered on the `/posts` route.
+
+### `create`
+
+The component passed to `create` will be rendered on the `/posts/create` route by default.
+
+> It will also be rendered on `/posts/create/:id`. This represents namely a clone page. `id` represent a record and it will be available as a route parameter.  
+> For example [`useForm` uses this parameter to create a clone form](/api-references/hooks/form/useForm.md#clone-mode)
+
+> `clone` from `useNavigation` can be used to navigate to a clone page.
+
+### `edit`
+
+The component passed to `edit` will be rendered on the `/posts/edit/:id` route.
+
+### `show`
+
+The component passed to `show` will be rendered on the `/posts/show/:id` route.
+
+### `canDelete`
+
+This value will be passed to all CRUD pages defined to as the `resources` element.
+
+:::tip
+**refine**'s <[Edit](api-references/components/basic-views/edit.md)> component uses `canDelete` value to whether show delete button in the edit form or not.
+:::
+
+### `icon`
+
+An icon element can be passed as properties for the icon in the menu.
+
+```tsx {5}
+<Refine
+    ...
+    resources={[
+        {
+            ...
+            icon={<CustomIcon />}
+        },
+    ]}
+/>
+```
+
+### `options`
+
+Menu item name and route on clicking can be customized.
+
+```tsx {5}
+<Refine
+    ...
+    resources={[
+        {
+            ...
+            options={{ label: "custom", route: "/custom" }}
+        },
+    ]}
+/>
+```
+
+#### `label`
+
+Name to show in the menu. Plural form of the resource name is shown by default.
+
+#### `route`
+
+Custom route name
+
+<br />
+
+## `authProvider`
 
 `authProvider` handles authentication logic like login, logout flow and checking user credentials. It is an object with methods that refine uses when necessary.
 
@@ -59,7 +224,7 @@ A [`dataProvider`](api-references/providers/data-provider.md) makes HTTP request
 
 <br />
 
-### `i18nProvider`
+## `i18nProvider`
 
 `i18nProvider` property lets you add i18n support to your app. Making you able to use any i18n framework.
 
@@ -67,37 +232,34 @@ A [`dataProvider`](api-references/providers/data-provider.md) makes HTTP request
 
 <br />
 
-### `routes`
+## `routes`
 
-`routes` allow us to create custom pages with paths that are different than the ones defined by `<Resource>`s.
+`routes` allow us to create custom pages with paths that are different than the ones defined by `resources`.
 
 [Refer to the Custom Pages documentation for detailed information. &#8594](guides-and-concepts/custom-pages.md)
 
 <br />
 
-### `catchAll`
+## `catchAll`
 
 When the app is navigated to a non-existent route, **refine** shows a default error page. A custom error component can be used for this error page by passing the customized component to `catchAll` property:
 
-```tsx title="App.tsx" {0-2, 8}
-const CustomErrorPage = () => (
-    <div>Page not found</div>
-);
+```tsx title="App.tsx" {0, 6}
+const CustomErrorPage = () => <div>Page not found</div>;
 
 const App: React.FC = () => {
     return (
         <Refine
-            dataProvider={dataProvider(API_URL)}
+            ...
             catchAll={CustomErrorPage}
-        >
-         ...
-        </Refine>
+        />
     );
 };
 ```
+
 <br />
 
-### `mutationMode`
+## `mutationMode`
 
 `mutationMode` determines which mode the mutations run with. (e.g. useUpdate, useDelete).
 
@@ -105,24 +267,22 @@ const App: React.FC = () => {
 const App: React.FC = () => {
     return (
         <Refine
-            dataProvider={dataProvider(API_URL)}
+            ...
             mutationMode="optimistic"
-        >
-         ...
-        </Refine>
+        />
     );
 };
 ```
- `pessimistic`: The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfuly. This is the default setting.
 
- `optimistic`: The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is succesful. If the mutation returns with error, UI updates accordingly.
+`pessimistic`: The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfuly. This is the default setting.
 
- `undoable`: The mutation is applied locally, redirection and UI updates are executed immediately as if mutation is succesful. Waits for a customizable amount of timeout before mutation is applied. During the timeout, mutation can be cancelled from the notification with the ?undo? button. UI will revert back accordingly.
+`optimistic`: The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is succesful. If the mutation returns with error, UI updates accordingly.
 
+`undoable`: The mutation is applied locally, redirection and UI updates are executed immediately as if mutation is succesful. Waits for a customizable amount of timeout before mutation is applied. During the timeout, mutation can be cancelled from the notification with the ?undo? button. UI will revert back accordingly.
 
 [Refer to the Mutation Mode docs for further information. &#8594](/guides-and-concepts/mutation-mode.md)
 
-### `undoableTimeout`
+## `undoableTimeout`
 
 The duration of the timeout period in **undoable** mode, shown in milliseconds. Mutations can be cancelled during this period. This period can also be set on the supported data hooks.  
 The value set in hooks will override the value set with `undoableTimeout`.  
@@ -132,19 +292,17 @@ The value set in hooks will override the value set with `undoableTimeout`.
 const App: React.FC = () => {
     return (
         <Refine
-            dataProvider={dataProvider(API_URL)}
+            ...
             mutationMode="undoable"
             undoableTimeout={3500}
-        >
-         ...
-        </Refine>
+        />
     );
 };
 ```
 
 <br />
 
-### `syncWithLocation`
+## `syncWithLocation`
 
 List query parameter values can be edited manually by typing directly in the URL. To activate this feature `syncWithLocation` needs to be set to `true`.
 
@@ -160,13 +318,12 @@ Default value is `false`.
 
 <br />
 
-### `warnWhenUnsavedChanges`
+## `warnWhenUnsavedChanges`
 
 When you have unsaved changes and try to leave the current page, **refine** shows a confirmation modal box.
 To activate this feature, set the `warnWhenUnsavedChanges` to `true`.
 
 <br />
-
 
 <div style={{textAlign: "center",  backgroundColor:"#efefef",  padding: "13px 10px 10px"}}>
 
@@ -179,252 +336,220 @@ Default value is `false`.
 
 <br />
 
-### `configProviderProps`
+## `configProviderProps`
 
-Ant Design's [ConfigProvider](https://ant.design/components/config-provider) which includes default configurations can be changed using `configProviderProps`. 
+Ant Design's [ConfigProvider](https://ant.design/components/config-provider) which includes default configurations can be changed using `configProviderProps`.
 
 [Props for the Ant Design's ConfigProvider &#8594](https://ant.design/components/config-provider/#API)
 
 For example, Layout direction can be set to other way:
 
-```tsx title="App.tsx" {4-6}
-const App: React.FC = () => 
-    (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            configProviderProps={{
-                direction: "rtl"
-            }}
-        >
-         ...
-        </Refine>
-    );
+```tsx title="App.tsx" {3-5}
+const App: React.FC = () => (
+    <Refine
+        ...
+        configProviderProps={{
+            direction: "rtl",
+        }}
+    />
+);
 ```
 
 <br />
 
-### `LoginPage`
+## `LoginPage`
 
 **refine** has a default login page form which is served on `/login` route when the `authProvider` configuration is provided.
 
 Custom login component can be passed to the `LoginPage` property.
 
-```tsx title="App.tsx" {0, 6}
+```tsx title="App.tsx" {0, 5}
 const CustomLoginPage = () => <div> Custom Login Page </div>;
 
-const App: React.FC = () => 
-    (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            LoginPage={CustomLoginPage}
-        >
-         ...
-        </Refine>
-    );
+const App: React.FC = () => (
+    <Refine
+        ...
+        LoginPage={CustomLoginPage}
+    />
+);
 ```
+
 <br />
 
-### `DashboardPage`
+## `DashboardPage`
 
-A custom dashboard page can be passed to the `DashboardPage` prop which is accessible on root route.  
-The dashboard item will appear at the top of the sider menu.
+A custom dashboard page can be passed to the `DashboardPage` prop which is accessible on root route.
 
-`<Resource>` will be shown first if no `DashboardPage` is given.
+The dashboard item will appear at the top of the sider menu. If `DashboardPage` is not given, the first resource of `resources` will be shown.
 
-
-```tsx title="App.tsx" {0, 6}
+```tsx title="App.tsx" {0, 5}
 const CustomDashboardPage = () => <div> Custom Dashboard Page </div>;
 
-const App: React.FC = () => 
-    (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            DashboardPage={CustomDashboardPage}
-        >
-         ...
-        </Refine>
-    );
+const App: React.FC = () => (
+    <Refine
+        ...
+        DashboardPage={CustomDashboardPage}
+    />
+);
 ```
 
 <br />
 
-### `ReadyPage`
+## `ReadyPage`
 
-**refine** shows a default ready page on root route when no `<Resource>` is passed to the `<Refine>` component as a child.
+**refine** shows a default ready page on root route when no `resources` is passed to the `<Refine>`.
 
 Custom ready page component can be set by passing to `ReadyPage` property?.
 
-```tsx title="App.tsx" {0, 6}
+```tsx title="App.tsx" {0, 5}
 const CustomReadyPage = () => <div> Custom Ready Page </div>;
 
-const App: React.FC = () => 
-    (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            ReadyPage={CustomReadyPage}
-        >
-         ...
-        </Refine>
-    );
+const App: React.FC = () => (
+    <Refine
+        ...
+        ReadyPage={CustomReadyPage}
+    />
+);
 ```
 
 <br />
 
-### `Sider`
+## `Sider`
 
 The default sidebar can be customized by using refine hooks and passing custom components to `Sider` property.
 
-**refine** uses [Ant Design Sider](https://ant.design/components/layout/#Layout.Sider) component by default. 
+**refine** uses [Ant Design Sider](https://ant.design/components/layout/#Layout.Sider) component by default.
 
 [Refer to the useMenu hook documentation for detailed sidebar customization. &#8594](api-references/hooks/resource/useMenu.md)
 
 <br />
 
-### `Footer`
+## `Footer`
 
 The default app footer can be customized by passing the `Footer` property.
 
-
-```tsx title="App.tsx" {0, 6}
+```tsx title="App.tsx" {0, 5}
 const CustomFooter = () => <div>Custom Footer</div>;
 
-const App: React.FC = () => 
-    (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            Footer={CustomFooter}
-        >
-         ...
-        </Refine>
-    );
+const App: React.FC = () => (
+    <Refine
+        ...
+        Footer={CustomFooter}
+    />
+);
 ```
 
 <br />
 
-### `Header`
+## `Header`
 
 The default app header can be customized by passing the `Header` property.
 
-
-```tsx title="App.tsx" {0, 6}
+```tsx title="App.tsx" {0, 5}
 const CustomHeader = () => <div>Custom Header</div>;
 
-const App: React.FC = () => 
-    (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            Header={CustomHeader}
-        >
-         ...
-        </Refine>
-    );
+const App: React.FC = () => (
+    <Refine
+        ...
+        Header={CustomHeader}
+    />
+);
 ```
 
 <br />
 
-### `Layout`
+## `Layout`
 
 Default layout can be customized by passing the `Layout` property.
 
-**refine** uses [Ant Design Layout](https://ant.design/components/layout/) components by default. 
+**refine** uses [Ant Design Layout](https://ant.design/components/layout/) components by default.
 
 Layout property will receive individual layout components as property.
 
-```tsx title="App.tsx" {4-20}
-const App: React.FC = () => 
-    (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            Layout={({ children, Sider, Footer, Header, OffLayoutArea }) => (
-                <AntdLayout
-                    style={{ minHeight: "100vh", flexDirection: "row" }}
-                >
-                    <Sider />
-                    <AntdLayout>
-                        <Header />
-                        <AntdLayout.Content>
-                            <div style={{ padding: 24, minHeight: 360 }}>
-                                {children}
-                            </div>
-                        </AntdLayout.Content>
-                        <Footer />
-                    </AntdLayout>
-                    <OffLayoutArea />
+```tsx title="App.tsx" {3-17}
+const App: React.FC = () => (
+    <Refine
+        ...
+        Layout={({ children, Sider, Footer, Header, OffLayoutArea }) => (
+            <AntdLayout style={{ minHeight: "100vh", flexDirection: "row" }}>
+                <Sider />
+                <AntdLayout>
+                    <Header />
+                    <AntdLayout.Content>
+                        <div style={{ padding: 24, minHeight: 360 }}>
+                            {children}
+                        </div>
+                    </AntdLayout.Content>
+                    <Footer />
                 </AntdLayout>
-            )}
-        >
-         ...
-        </Refine>
-    );
+                <OffLayoutArea />
+            </AntdLayout>
+        )}
+    />
+);
 ```
 
 <br />
 
-A completely custom layout can also be implemented instead of the  **refine**'s default [Ant Design based layout](https://ant.design/components/layout) like below.
+A completely custom layout can also be implemented instead of the **refine**'s default [Ant Design based layout](https://ant.design/components/layout) like below.
 
-```tsx title="App.tsx" {4-9}
-const App: React.FC = () => 
-    (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            Layout={({ children }) => (
-                <div style={{display: "flex", flexDirection: "column"}} >
-                    <div>Custom Layout</div>
-                    <div>{children}</div>
-                </div>
-            )}
-        >
-         ...
-        </Refine>
-    );
+```tsx title="App.tsx" {3-8}
+const App: React.FC = () => (
+    <Refine
+        ...
+        Layout={({ children }) => (
+            <div style={{ display: "flex", flexDirection: "column" }}>
+                <div>Custom Layout</div>
+                <div>{children}</div>
+            </div>
+        )}
+    />
+);
 ```
-> `children` will be what is passed as component for the route in a Resource(list, edit..) or a custom route.
+
+[Refer to the Custom Layout documentation for detailed information. &#8594](guides-and-concepts/custom-layout.md)
+
+> `children` will be what is passed as a component for the route in a resource(list, edit..) or a custom route.
 
 <br />
 
-
-### `OffLayoutArea`
+## `OffLayoutArea`
 
 The component wanted to be placed out of app layout structure can be set by passing to `OffLayoutArea` prop.
 
-```tsx title="App.tsx" {0, 6}
+```tsx title="App.tsx" {0, 5}
 import { Refine, BackTop } from "@pankod/refine";
 
-const App: React.FC = () => 
-    (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            OffLayoutArea={() => <BackTop />}
-        >
-         ...
-        </Refine>
-    );
+const App: React.FC = () => (
+    <Refine
+        ...
+        OffLayoutArea={() => <BackTop />}
+    />
+);
 ```
 
 <br />
 
-### `Title`
+## `Title`
 
 The app title can be set by passing the `Title` property.
 
+```tsx title="App.tsx" {0-2, 7}
+const CustomTitle = ({ collapsed }) => (
+    <div>{collapsed ? "Collapsed Title" : "Full Title"}</div>
+);
 
-```tsx title="App.tsx" {0, 6}
-const CustomTitle = ({collapsed}) => <div>{collapsed ? "Collapsed Title" : "Full Title"}</div>;
-
-const App: React.FC = () => 
-    (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            Title={CustomTitle}
-        >
-         ...
-        </Refine>
-    );
+const App: React.FC = () => (
+    <Refine
+        ...
+        Title={CustomTitle}
+    />
+);
 ```
 
 <br />
 
-### `reactQueryClientConfig`
+## `reactQueryClientConfig`
 
 Config for React Query client that **refine** uses.
 
@@ -436,43 +561,38 @@ Config for React Query client that **refine** uses.
     keepPreviousData: true,
 }
 ```
+
 [Refer to the QueryClient documentation for detailed information. &#8594](https://react-query.tanstack.com/reference/QueryClient#queryclient)
 
-
-```tsx {4-10}
-const App: React.FC = () => 
-    (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            reactQueryClientConfig={{
-                defaultOptions: {
-                    queries: {
-                        staleTime: Infinity,
-                    },
+```tsx {3-9}
+const App: React.FC = () => (
+    <Refine
+        ...
+        reactQueryClientConfig={{
+            defaultOptions: {
+                queries: {
+                    staleTime: Infinity,
                 },
-            }}
-        >
-         ...
-        </Refine>
-    );
+            },
+        }}
+    />
+);
 ```
 
-### `notificationConfig`
+## `notificationConfig`
 
 Config for Ant Design [notification](https://ant.design/components/notification/) that **refine** uses.
 
-```tsx {4-8}
-const App: React.FC = () =>
-    (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            notifcationConfig={{
-                placement: "bottomRight",
-                bottom: 40,
-                closeIcon: <CloseOutlined />,
-            }}
-        >
-         ...
-        </Refine>
-    );
+```tsx {3-7}
+const App: React.FC = () => (
+    <Refine
+        ...
+        notifcationConfig={{
+            placement: "bottomRight",
+            bottom: 40,
+            closeIcon: <CloseOutlined />,
+        }}
+    />
+);
 ```
+

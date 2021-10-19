@@ -14,7 +14,7 @@ We will show what `<List>` does using properties with examples.
 
 ### `canCreate` and `createButtonProps`
 
-`canCreate` allows us to add the create button inside the `<List>` component. If `<Resource>` is passed a create component, refine adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the code below.
+`canCreate` allows us to add the create button inside the `<List>` component. If resource is passed a create component, **refine** adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the code below.
 
 Create button redirects to the create page of the resource according to the value it reads from the URL.
 
@@ -91,7 +91,7 @@ export const ListPage: React.FC = () => {
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
 ```tsx twoslash
-import { Refine, Resource, List } from "@pankod/refine";
+import { Refine, List } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
 const CustomPage = () => {
@@ -102,6 +102,7 @@ export const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
+            resources={[{ name: "posts" }]}
             routes={[
                 {
                     exact: true,
@@ -109,9 +110,7 @@ export const App: React.FC = () => {
                     path: "/custom",
                 },
             ]}
-        >
-            <Resource name="posts" />
-        </Refine>
+        />
     );
 };
 ```
@@ -120,10 +119,10 @@ export const App: React.FC = () => {
 
 ### Properties
 
-| Property          | Description                                                                    | Type                                                                                  | Default                                                           |
-| ----------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| canCreate         | Adds create button                                                             | `boolean`                                                                             | If `<Resource>` is passed a create component, `true` else `false` |
-| createButtonProps | Adds props for create button                                                   | [ButtonProps](https://ant.design/components/button/#API) & `{ resourceName: string }` | `<CreateButton />`                                                |
-| title             | Adds title                                                                     | `string`                                                                              | Plural of `resource.name`                                         |
-| pageHeaderProps   | Passes properties for `<PageHeader>`                                           | [PageHeaderProps](https://ant.design/components/page-header/#API)                     | { ghost: false, [title](#title), extra: `<CreateButton />` }      |
-| resource          | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                                              | Resource name that it reads from the url.                         |
+| Property          | Description                             | Type                                                                                  | Default                                                       |
+| ----------------- | --------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| canCreate         | Adds create button                      | `boolean`                                                                             | If the resource is passed a create component, `true` else `false` |
+| createButtonProps | Adds props for create button            | [ButtonProps](https://ant.design/components/button/#API) & `{ resourceName: string }` | `<CreateButton />`                                            |
+| title             | Adds title                              | `string`                                                                              | Plural of `resource.name`                                     |
+| pageHeaderProps   | Passes properties for `<PageHeader>`    | [PageHeaderProps](https://ant.design/components/page-header/#API)                     | { ghost: false, [title](#title), extra: `<CreateButton />` }  |
+| resource          | Resource name for API data interactions | `string`                                                                              | Resource name that it reads from the url.                     |
