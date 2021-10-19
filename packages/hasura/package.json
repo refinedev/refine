@@ -13,7 +13,7 @@
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
-    "test": "tsdx test",
+    "test": "tsdx test --passWithNoTests --runInBand",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
     "size": "size-limit",
@@ -24,12 +24,6 @@
     "hooks": {
       "pre-commit": "tsdx lint"
     }
-  },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
   },
   "name": "@pankod/refine-hasura",
   "author": "Pankod",
@@ -48,6 +42,7 @@
     "@size-limit/preset-small-lib": "^5.0.5",
     "@types/pluralize": "0.0.29",
     "husky": "^7.0.2",
+    "nock": "^13.1.3",
     "size-limit": "^5.0.5",
     "tsdx": "^0.14.1",
     "tslib": "^2.3.1",
@@ -56,6 +51,7 @@
   "dependencies": {
     "@pankod/refine": "^1.0.80",
     "gql-query-builder": "^3.5.5",
+    "graphql": "^15.6.1",
     "graphql-request": "^3.5.0",
     "pluralize": "^8.0.0",
     "query-string": "^7.0.1"
