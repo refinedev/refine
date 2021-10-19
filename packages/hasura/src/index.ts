@@ -1,15 +1,14 @@
-// import { DataProvider } from '@pankod/refine';
-import { GraphQLClient } from 'graphql-request';
-import * as gql from 'gql-query-builder';
+import { GraphQLClient } from "graphql-request";
+import * as gql from "gql-query-builder";
 import {
     CrudOperators,
     CrudFilters,
     CrudSorting,
     DataProvider,
-} from '@pankod/refine';
-import pluralize from 'pluralize';
+} from "@pankod/refine";
+import pluralize from "pluralize";
 
-export type HasuraSortingType = Record<string, 'asc' | 'desc'>;
+export type HasuraSortingType = Record<string, "asc" | "desc">;
 
 export type GenerateSortingType = {
     (sorting?: CrudSorting): HasuraSortingType | undefined;
@@ -20,7 +19,7 @@ export const generateSorting: GenerateSortingType = (sorting?: CrudSorting) => {
         return undefined;
     }
 
-    const sortingQueryResult: Record<string, 'asc' | 'desc'> = {};
+    const sortingQueryResult: Record<string, "asc" | "desc"> = {};
 
     sorting.forEach((sortItem) => {
         sortingQueryResult[sortItem.field] = sortItem.order;
@@ -30,37 +29,37 @@ export const generateSorting: GenerateSortingType = (sorting?: CrudSorting) => {
 };
 
 export type HasuraFilterCondition =
-    | '_and'
-    | '_not'
-    | '_or'
-    | '_eq'
-    | '_gt'
-    | '_gte'
-    | '_lt'
-    | '_lte'
-    | '_neq'
-    | '_in'
-    | '_nin'
-    | '_like'
-    | '_nlike'
-    | '_ilike'
-    | '_nilike'
-    | '_is_null';
+    | "_and"
+    | "_not"
+    | "_or"
+    | "_eq"
+    | "_gt"
+    | "_gte"
+    | "_lt"
+    | "_lte"
+    | "_neq"
+    | "_in"
+    | "_nin"
+    | "_like"
+    | "_nlike"
+    | "_ilike"
+    | "_nilike"
+    | "_is_null";
 
 const hasuraFilters: Record<CrudOperators, HasuraFilterCondition> = {
-    eq: '_eq',
-    ne: '_neq',
-    lt: '_lt',
-    gt: '_gt',
-    lte: '_lte',
-    gte: '_gte',
-    in: '_in',
-    nin: '_nin',
-    contains: '_ilike',
-    ncontains: '_nilike',
-    containss: '_like',
-    ncontainss: '_nlike',
-    null: '_is_null',
+    eq: "_eq",
+    ne: "_neq",
+    lt: "_lt",
+    gt: "_gt",
+    lte: "_lte",
+    gte: "_gte",
+    in: "_in",
+    nin: "_nin",
+    contains: "_ilike",
+    ncontains: "_nilike",
+    containss: "_like",
+    ncontainss: "_nlike",
+    null: "_is_null",
 };
 
 export const generateFilters: any = (filters?: CrudFilters) => {
@@ -83,13 +82,13 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
     return {
         getOne: async ({ resource, id, metaData }) => {
             const operation = `${pluralize.plural(
-                metaData?.operation ?? resource
+                metaData?.operation ?? resource,
             )}_by_pk`;
 
             const { query, variables } = gql.query({
                 operation,
                 variables: {
-                    id: { value: id, type: 'uuid', required: true },
+                    id: { value: id, type: "uuid", required: true },
                     ...metaData?.variables,
                 },
                 fields: metaData?.fields,
@@ -136,7 +135,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             const hasuraFilters = generateFilters(filters);
 
             const pluralResource = pluralize.plural(
-                metaData?.operation ?? resource
+                metaData?.operation ?? resource,
             );
 
             const aggreateOperation = `${pluralResource}_aggregate`;
@@ -167,7 +166,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                 },
                 {
                     operation: aggreateOperation,
-                    fields: [{ aggregate: ['count'] }],
+                    fields: [{ aggregate: ["count"] }],
                 },
             ]);
 
@@ -181,7 +180,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
 
         create: async ({ resource, variables, metaData }) => {
             const pluralResource = pluralize.plural(
-                metaData?.operation ?? resource
+                metaData?.operation ?? resource,
             );
 
             const operation = `insert_${pluralResource}_one`;
@@ -197,7 +196,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                         required: true,
                     },
                 },
-                fields: metaData?.fields ?? ['id', ...Object.keys(variables)],
+                fields: metaData?.fields ?? ["id", ...Object.keys(variables)],
             });
 
             const response = await client.request(query, gqlVariables);
@@ -209,7 +208,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
 
         createMany: async ({ resource, variables, metaData }) => {
             const pluralResource = pluralize.plural(
-                metaData?.operation ?? resource
+                metaData?.operation ?? resource,
             );
 
             const operation = `insert_${pluralResource}`;
@@ -227,7 +226,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                 },
                 fields: [
                     {
-                        returning: metaData?.fields ?? ['id'],
+                        returning: metaData?.fields ?? ["id"],
                     },
                 ],
             });
@@ -235,13 +234,13 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             const response = await client.request(query, gqlVariables);
 
             return {
-                data: response[operation],
+                data: response[operation]["returning"],
             };
         },
 
         update: async ({ resource, id, variables, metaData }) => {
             const pluralResource = pluralize.plural(
-                metaData?.operation ?? resource
+                metaData?.operation ?? resource,
             );
 
             const operation = `update_${pluralResource}_by_pk`;
@@ -266,7 +265,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                         required: true,
                     },
                 },
-                fields: metaData?.fields ?? ['id'],
+                fields: metaData?.fields ?? ["id"],
             });
 
             const response = await client.request(query, gqlVariables);
@@ -277,7 +276,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
         },
         updateMany: async ({ resource, ids, variables, metaData }) => {
             const pluralResource = pluralize.plural(
-                metaData?.operation ?? resource
+                metaData?.operation ?? resource,
             );
 
             const operation = `update_${pluralResource}`;
@@ -306,7 +305,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                 },
                 fields: [
                     {
-                        returning: metaData?.fields ?? ['id'],
+                        returning: metaData?.fields ?? ["id"],
                     },
                 ],
             });
@@ -314,24 +313,24 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             const response = await client.request(query, gqlVariables);
 
             return {
-                data: response[operation],
+                data: response[operation]["returning"],
             };
         },
 
         deleteOne: async ({ resource, id, metaData }) => {
             const pluralResource = pluralize.plural(
-                metaData?.operation ?? resource
+                metaData?.operation ?? resource,
             );
 
             const operation = `delete_${pluralResource}_by_pk`;
 
-            const { query, variables } = gql.query({
+            const { query, variables } = gql.mutation({
                 operation,
                 variables: {
-                    id: { value: id, type: 'uuid', required: true },
+                    id: { value: id, type: "uuid", required: true },
                     ...metaData?.variables,
                 },
-                fields: metaData?.fields ?? ['id'],
+                fields: metaData?.fields ?? ["id"],
             });
 
             const response = await client.request(query, variables);
@@ -343,7 +342,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
 
         deleteMany: async ({ resource, ids, metaData }) => {
             const pluralResource = pluralize.plural(
-                metaData?.operation ?? resource
+                metaData?.operation ?? resource,
             );
 
             const operation = `delete_${pluralResource}`;
@@ -354,7 +353,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                 operation,
                 fields: [
                     {
-                        returning: metaData?.fields ?? ['id'],
+                        returning: metaData?.fields ?? ["id"],
                     },
                 ],
                 variables: metaData?.variables ?? {
@@ -373,13 +372,13 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             const result = await client.request(query, variables);
 
             return {
-                data: result[operation],
+                data: result[operation]["returning"],
             };
         },
 
         getApiUrl: () => {
             throw new Error(
-                'getApiUrl method is not implemented on refine-hasura data provider.'
+                "getApiUrl method is not implemented on refine-hasura data provider.",
             );
         },
     };
