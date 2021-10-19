@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev",
+        "dev": "NODE_OPTIONS=--max_old_space_size=4096 next dev",
         "build": "next build",
         "start": "next start",
         "lint": "eslint '**/*.{js,jsx,ts,tsx}'"

@@ -1,14 +1,4 @@
-import {
-    useHistory,
-    useParams,
-    useLocation,
-    BrowserRouter,
-    Prompt,
-    Link,
-    Redirect,
-    Route,
-    Switch,
-} from "react-router-dom";
+import { useHistory, useParams, useLocation, Link } from "react-router-dom";
 
 import { IDataContext, IRouterContext } from "../src/interfaces";
 

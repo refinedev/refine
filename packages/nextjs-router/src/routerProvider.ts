@@ -10,7 +10,7 @@ import { Prompt } from "./prompt";
 export const RouterProvider: IRouterProvider = {
     useHistory: () => {
         const router = useRouter();
-        const { push, replace, back } = router as any;
+        const { push, replace, back } = router;
         return {
             push,
             replace,
