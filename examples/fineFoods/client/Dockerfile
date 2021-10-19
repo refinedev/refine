@@ -16,8 +16,4 @@ RUN npm run build
 #Example client
 WORKDIR /opt/app/examples/fineFoods/client
 
-RUN npm install
-
-RUN npm run build
-
 CMD npm run start:prod
