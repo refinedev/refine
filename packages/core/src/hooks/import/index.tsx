@@ -191,7 +191,7 @@ export const useImport = <
         return new Promise<CreatedValuesType<TVariables, TData>[]>(
             (resolve) => {
                 setIsLoading(true);
-                parse(file as unknown as File, {
+                parse(file as any, {
                     complete: async ({ data }: { data: unknown[][] }) => {
                         const values = importCSVMapper(data, mapData);
 

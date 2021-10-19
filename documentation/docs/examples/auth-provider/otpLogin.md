@@ -3,7 +3,7 @@ id: otpLogin
 title: OTP Login
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/otpLogin)
+[View Source](https://github.com/pankod/refine/tree/master/examples/authProvider/otpLogin)
 
 <iframe src="https://codesandbox.io/embed/refine-otp-login-example-o5rz9?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}

@@ -3,6 +3,7 @@ import { GraphQLClient } from "graphql-request";
 import * as gql from "gql-query-builder";
 import pluralize from "pluralize";
 import camelCase from "camelcase";
+import { stringify } from "query-string";
 
 const genereteSort = (sort?: CrudSorting) => {
     if (sort && sort.length > 0) {
@@ -41,28 +42,35 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
 
             const operation = metaData?.operation ?? camelResource;
 
-            const { query, variables } = gql.query({
-                operation,
-                variables: {
-                    ...metaData?.variables,
-                    sort: sortBy,
-                    where: { value: filterBy, type: "JSON" },
-                    start: (current - 1) * pageSize,
-                    limit: pageSize,
+            const operationConnection = `${operation}Connection`;
+
+            const { query, variables } = gql.query([
+                {
+                    operation: operationConnection,
+                    variables: {
+                        ...metaData?.variables,
+                        where: { value: filterBy, type: "JSON" },
+                    },
+                    fields: [{ aggregate: ["count"] }],
                 },
-                fields: metaData?.fields,
-            });
+                {
+                    operation,
+                    variables: {
+                        ...metaData?.variables,
+                        sort: sortBy,
+                        where: { value: filterBy, type: "JSON" },
+                        start: (current - 1) * pageSize,
+                        limit: pageSize,
+                    },
+                    fields: metaData?.fields,
+                },
+            ]);
 
             const response = await client.request(query, variables);
 
-            const countRequest = await fetch(
-                `https://api.strapi.refine.dev/${resource}/count`,
-            );
-            const count = await countRequest.json();
-
             return {
                 data: response[operation],
-                total: count,
+                total: response[operationConnection].aggregate.count,
             };
         },
 
