@@ -45,7 +45,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 export default MyApp;
 ```
 
-### Custom Page
+## Custom Page
 
 Let's say we want to show a list of users in `/users`. After creating `users.tsx` under `pages` in your Nextjs app, we can use the `useTable` hook to list the users in a table:
 
@@ -92,7 +92,64 @@ Notice how we passed `resource` prop to [`useTable`][useTable]. This is necessar
 We also used `<LayoutWrapper>` to show the page in the layout provided to [`<Refine>`][Refine]. This is deliberately opt-in to provide flexibility. [If you're building a standart CRUD page layout can be baked in automatically](#standart-crud-page).
 :::
 
-### Standart CRUD Page
+### SSR Data
+
+**refine** uses [react-query][ReactQuery] in its hooks for data management. [Following react-query's guide][ReactQuerySSR] SSR can be achieved like this:
+
+```tsx twoslash {0, 7, 12-14, 17-19, 34-42 }
+import { GetServerSideProps } from "next";
+import dataProvider from "@pankod/refine-simple-rest";
+import {
+    useTable,
+    List,
+    Table,
+    LayoutWrapper,
+    GetListResponse,
+} from "@pankod/refine";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
+    users
+}) => {
+    const { tableProps } = useTable<IPost>({
+        resource: "users",
+        queryOptions: {
+            initialData: users,
+        },
+    });
+
+    return (
+        <LayoutWrapper>
+            <List title="Users">
+                <Table {...tableProps} rowKey="id">
+                    <Table.Column dataIndex="id" title="ID" sorter />
+                    <Table.Column dataIndex="firstName" title="Name" />
+                </Table>
+            </List>
+        </LayoutWrapper>
+    );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const data = await dataProvider(API_URL).getList({
+        resource: "users",
+    });
+
+    return {
+        props: { users: data },
+    };
+};
+
+interface IPost {
+    id: string;
+    firstName: string;
+}
+
+export default UserList;
+```
+
+## Standart CRUD Page
 
 
 [Nextjs]: https://nextjs.org/docs/getting-started
@@ -103,3 +160,5 @@ We also used `<LayoutWrapper>` to show the page in the layout provided to [`<Ref
 [Refine]: /api-references/components/refine-config.md
 [NextjsPages]: https://nextjs.org/docs/basic-features/pages
 [useTable]: /api-references/hooks/table/useTable.md
+[ReactQuerySSR]: https://react-query.tanstack.com/guides/ssr#using-initialdata
+[ReactQuery]: https://react-query.tanstack.com/
