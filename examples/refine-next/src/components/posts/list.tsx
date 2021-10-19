@@ -13,11 +13,11 @@ import { IPost } from "../../interfaces";
 
 export const PostList: React.FC<
     IResourceComponentsProps<GetListResponse<IPost>>
-> = ({ crudData }) => {
+> = ({ initialData }) => {
     const { tableProps } = useTable<IPost>({
         resource: "posts",
         queryOptions: {
-            initialData: crudData,
+            initialData: initialData,
         },
     });
 

@@ -74,7 +74,7 @@ export const NextRouteComponent: React.FC<NextRouteComponent> = ({
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
-                            crudData={pageData?.list}
+                            initialData={pageData?.list}
                         />
                     );
                 }
@@ -87,7 +87,7 @@ export const NextRouteComponent: React.FC<NextRouteComponent> = ({
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
-                            crudData={pageData?.create}
+                            initialData={pageData?.create}
                         />
                     );
                 }
@@ -100,7 +100,7 @@ export const NextRouteComponent: React.FC<NextRouteComponent> = ({
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
-                            crudData={pageData?.edit}
+                            initialData={pageData?.edit}
                         />
                     );
                 }
@@ -113,7 +113,7 @@ export const NextRouteComponent: React.FC<NextRouteComponent> = ({
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
-                            crudData={pageData?.show}
+                            initialData={pageData?.show}
                         />
                     );
                 }

@@ -20,7 +20,7 @@ export interface IResourceComponentsProps<TCrudData = any> {
     canDelete?: boolean;
     canShow?: boolean;
     name?: string;
-    crudData?: TCrudData;
+    initialData?: TCrudData;
 }
 export interface IResourceComponents {
     list?: React.FunctionComponent<IResourceComponentsProps>;
