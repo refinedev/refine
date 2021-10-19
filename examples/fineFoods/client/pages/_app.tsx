@@ -8,13 +8,10 @@ import routerProvider from "@pankod/refine-nextjs-router";
 import { Layout, Header, Footer } from "@components";
 import { BasketContextProvider } from "@contextProviders";
 
-require("@pankod/refine/node_modules/antd/dist/antd.less");
+require("antd/dist/antd.less");
 require("@styles/global.less");
 
 import { API_URL } from "../src/constants";
-
-require("@pankod/refine/node_modules/antd/dist/antd.less");
-require("@styles/global.less");
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
