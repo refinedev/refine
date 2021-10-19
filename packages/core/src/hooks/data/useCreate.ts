@@ -11,7 +11,7 @@ import {
     SuccessErrorNotification,
     MetaDataQuery,
 } from "../../interfaces";
-import { useListResourceQueries, useTranslate, useCheckError } from "@hooks";
+import { useTranslate, useCheckError, useCacheQueries } from "@hooks";
 import { handleNotification } from "@definitions";
 
 type useCreateParams<TVariables> = {
@@ -50,7 +50,7 @@ export const useCreate = <
 >(): UseCreateReturnType<TData, TError, TVariables> => {
     const { mutate: checkError } = useCheckError();
     const { create } = useContext<IDataContext>(DataContext);
-    const getListQueries = useListResourceQueries();
+    const getAllQueries = useCacheQueries();
     const translate = useTranslate();
     const queryClient = useQueryClient();
 
@@ -88,7 +88,7 @@ export const useCreate = <
                     type: "success",
                 });
 
-                getListQueries(resource).forEach((query) => {
+                getAllQueries(resource).forEach((query) => {
                     queryClient.invalidateQueries(query.queryKey);
                 });
             },
