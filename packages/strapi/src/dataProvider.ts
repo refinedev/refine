@@ -68,15 +68,16 @@ export const DataProvider = (
             _sort: _sort.length > 0 ? _sort.join(",") : undefined,
         };
 
-        const { data } = await httpClient.get(
-            `${url}?${stringify(query)}&${stringify(queryFilters)}`,
-        );
-
-        const countRequest = await httpClient.get(`${url}/count`);
+        const response = await Promise.all([
+            httpClient.get(
+                `${url}?${stringify(query)}&${stringify(queryFilters)}`,
+            ),
+            httpClient.get(`${url}/count?${stringify(queryFilters)}`),
+        ]);
 
         return {
-            data: data,
-            total: countRequest.data,
+            data: response[0].data,
+            total: response[1].data,
         };
     },
 

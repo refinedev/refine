@@ -738,7 +738,7 @@ Now we can add the newly created component to our `<Resource>` with `show` prop:
 
 ```tsx title="src/App.tsx" {3, 11}
 import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-json-server";
+import dataProvider from "@pankod/refine-simple-rest";
 
 import { PostList, PostShow } from "./pages";
 

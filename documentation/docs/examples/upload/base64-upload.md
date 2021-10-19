@@ -3,7 +3,7 @@ id: base64Upload
 title: Base64 Upload
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/multipartUpload)
+[View Source](https://github.com/pankod/refine/tree/master/examples/upload/multipartUpload)
 
 
 <iframe src="https://codesandbox.io/embed/refine-base64-upload-example-tz06h?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fusers%2Fedit.tsx&theme=dark&view=preview"

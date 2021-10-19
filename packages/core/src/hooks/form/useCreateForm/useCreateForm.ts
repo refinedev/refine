@@ -124,7 +124,7 @@ export const useCreateForm = <
 
                     form.resetFields();
 
-                    const id = data.data.id;
+                    const id = data?.data?.id;
 
                     handleSubmitWithRedirect({
                         redirect,
