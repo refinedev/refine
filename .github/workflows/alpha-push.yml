@@ -22,7 +22,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: |
           npm ci
-          npm run bootstrap -- -- --production
+          npm run bootstrap
           npm run build
           npm run lint
           npm test
