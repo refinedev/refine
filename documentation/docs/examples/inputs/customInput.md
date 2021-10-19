@@ -3,7 +3,7 @@ id: customInput
 title: Custom Input
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/customInputs)
+[View Source](https://github.com/pankod/refine/tree/master/examples/inputs/customInputs)
 
 <iframe src="https://codesandbox.io/embed/refine-custom-inputs-example-mfmh6?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Fedit.tsx&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
